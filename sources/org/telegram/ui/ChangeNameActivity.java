@@ -76,9 +76,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = ChangeNameActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return ChangeNameActivity.lambda$createView$0(view, motionEvent);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -117,9 +115,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                boolean lambda$createView$1;
-                lambda$createView$1 = ChangeNameActivity.this.lambda$createView$1(textView, i6, keyEvent);
-                return lambda$createView$1;
+                return this.f$0.lambda$createView$1(textView, i6, keyEvent);
             }
         });
         EditTextBoldCursor editTextBoldCursor5 = new EditTextBoldCursor(context) {
@@ -148,9 +144,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                boolean lambda$createView$2;
-                lambda$createView$2 = ChangeNameActivity.this.lambda$createView$2(textView, i6, keyEvent);
-                return lambda$createView$2;
+                return this.f$0.lambda$createView$2(textView, i6, keyEvent);
             }
         });
         if (user != null) {
@@ -196,16 +190,16 @@ public class ChangeNameActivity extends BaseFragment {
         if (currentUser == null || this.lastNameField.getText() == null || this.firstNameField.getText() == null) {
             return;
         }
-        String obj = this.firstNameField.getText().toString();
-        String obj2 = this.lastNameField.getText().toString();
+        String string = this.firstNameField.getText().toString();
+        String string2 = this.lastNameField.getText().toString();
         String str2 = currentUser.first_name;
-        if (str2 == null || !str2.equals(obj) || (str = currentUser.last_name) == null || !str.equals(obj2)) {
+        if (str2 == null || !str2.equals(string) || (str = currentUser.last_name) == null || !str.equals(string2)) {
             TL_account.updateProfile updateprofile = new TL_account.updateProfile();
             updateprofile.flags = 3;
-            updateprofile.first_name = obj;
-            currentUser.first_name = obj;
-            updateprofile.last_name = obj2;
-            currentUser.last_name = obj2;
+            updateprofile.first_name = string;
+            currentUser.first_name = string;
+            updateprofile.last_name = string2;
+            currentUser.last_name = string2;
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
             if (user != null) {
                 user.first_name = updateprofile.first_name;
@@ -234,7 +228,7 @@ public class ChangeNameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeNameActivity.this.lambda$onTransitionAnimationEnd$4();
+                    this.f$0.lambda$onTransitionAnimationEnd$4();
                 }
             }, 100L);
         }

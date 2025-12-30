@@ -85,9 +85,9 @@ public class BusinessBotButton extends FrameLayout {
         clickableAnimatedTextView.setAnimationProperties(0.75f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         clickableAnimatedTextView.setScaleProperty(0.6f);
         clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
-        int dp = AndroidUtilities.dp(14.0f);
+        int iDp = AndroidUtilities.dp(14.0f);
         int i = Theme.key_featuredStickers_addButton;
-        clickableAnimatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i, resourcesProvider), Theme.blendOver(Theme.getColor(i, resourcesProvider), Theme.multAlpha(-1, 0.12f))));
+        clickableAnimatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(iDp, Theme.getColor(i, resourcesProvider), Theme.blendOver(Theme.getColor(i, resourcesProvider), Theme.multAlpha(-1, 0.12f))));
         clickableAnimatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
         clickableAnimatedTextView.setGravity(5);
         clickableAnimatedTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
@@ -95,13 +95,13 @@ public class BusinessBotButton extends FrameLayout {
         clickableAnimatedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BusinessBotButton.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         clickableAnimatedTextView.setOnWidthUpdatedListener(new Runnable() {
             @Override
             public final void run() {
-                BusinessBotButton.this.updateTextRightPadding();
+                this.f$0.updateTextRightPadding();
             }
         });
         clickableAnimatedTextView.setText(LocaleController.getString(this.paused ? R.string.BizBotStart : R.string.BizBotStop));
@@ -115,7 +115,7 @@ public class BusinessBotButton extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BusinessBotButton.this.lambda$new$3(chatActivity, resourcesProvider, view);
+                this.f$0.lambda$new$3(chatActivity, resourcesProvider, view);
             }
         });
         addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 0.0f, 9.0f, 0.0f));
@@ -140,24 +140,24 @@ public class BusinessBotButton extends FrameLayout {
     }
 
     public void lambda$new$3(ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider, View view) {
-        ItemOptions makeOptions = ItemOptions.makeOptions(chatActivity.getLayoutContainer(), resourcesProvider, this.menuView);
-        makeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.BizBotRemove), true, new Runnable() {
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(chatActivity.getLayoutContainer(), resourcesProvider, this.menuView);
+        itemOptionsMakeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.BizBotRemove), true, new Runnable() {
             @Override
             public final void run() {
-                BusinessBotButton.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         }).makeMultiline(false);
         if (this.manageUrl != null) {
-            makeOptions.add(R.drawable.msg_settings, LocaleController.getString(R.string.BizBotManage), new Runnable() {
+            itemOptionsMakeOptions.add(R.drawable.msg_settings, LocaleController.getString(R.string.BizBotManage), new Runnable() {
                 @Override
                 public final void run() {
-                    BusinessBotButton.this.lambda$new$2();
+                    this.f$0.lambda$new$2();
                 }
             });
         }
-        makeOptions.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
-        makeOptions.setDimAlpha(0);
-        makeOptions.show();
+        itemOptionsMakeOptions.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
+        itemOptionsMakeOptions.setDimAlpha(0);
+        itemOptionsMakeOptions.show();
     }
 
     public void lambda$new$1() {

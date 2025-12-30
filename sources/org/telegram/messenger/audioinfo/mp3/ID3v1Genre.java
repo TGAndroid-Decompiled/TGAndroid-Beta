@@ -131,11 +131,11 @@ public enum ID3v1Genre {
     private final String description;
 
     public static ID3v1Genre getGenre(int i) {
-        ID3v1Genre[] values = values();
-        if (i < 0 || i >= values.length) {
+        ID3v1Genre[] iD3v1GenreArrValues = values();
+        if (i < 0 || i >= iD3v1GenreArrValues.length) {
             return null;
         }
-        return values[i];
+        return iD3v1GenreArrValues[i];
     }
 
     ID3v1Genre(String str) {

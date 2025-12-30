@@ -23,7 +23,7 @@ public class FileVideoCapturer implements VideoCapturer {
         }
     };
 
-    public interface VideoReader {
+    private interface VideoReader {
         void close();
 
         VideoFrame getNextFrame();
@@ -48,82 +48,82 @@ public class FileVideoCapturer implements VideoCapturer {
         private final FileChannel mediaFileChannel;
         private final long videoStart;
 
-        public VideoReaderY4M(String str) {
+        public VideoReaderY4M(String str) throws IOException, NumberFormatException {
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
             StringBuilder sb = new StringBuilder();
             while (true) {
-                int read = this.mediaFile.read();
-                if (read == -1) {
+                int i = this.mediaFile.read();
+                if (i == -1) {
                     throw new RuntimeException("Found end of file before end of header for file: " + str);
                 }
-                if (read != 10) {
-                    sb.append((char) read);
+                if (i != 10) {
+                    sb.append((char) i);
                 } else {
                     this.videoStart = this.mediaFileChannel.position();
-                    String str2 = "";
-                    int i = 0;
+                    String strSubstring = "";
                     int i2 = 0;
-                    for (String str3 : sb.toString().split("[ ]")) {
-                        char charAt = str3.charAt(0);
-                        if (charAt == 'C') {
-                            str2 = str3.substring(1);
-                        } else if (charAt == 'H') {
-                            i2 = Integer.parseInt(str3.substring(1));
-                        } else if (charAt == 'W') {
-                            i = Integer.parseInt(str3.substring(1));
+                    int i3 = 0;
+                    for (String str2 : sb.toString().split("[ ]")) {
+                        char cCharAt = str2.charAt(0);
+                        if (cCharAt == 'C') {
+                            strSubstring = str2.substring(1);
+                        } else if (cCharAt == 'H') {
+                            i3 = Integer.parseInt(str2.substring(1));
+                        } else if (cCharAt == 'W') {
+                            i2 = Integer.parseInt(str2.substring(1));
                         }
                     }
-                    Logging.d("VideoReaderY4M", "Color space: " + str2);
-                    if (!str2.equals("420") && !str2.equals("420mpeg2")) {
+                    Logging.d("VideoReaderY4M", "Color space: " + strSubstring);
+                    if (!strSubstring.equals("420") && !strSubstring.equals("420mpeg2")) {
                         throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
                     }
-                    if (i % 2 == 1 || i2 % 2 == 1) {
+                    if (i2 % 2 == 1 || i3 % 2 == 1) {
                         throw new IllegalArgumentException("Does not support odd width or height");
                     }
-                    this.frameWidth = i;
-                    this.frameHeight = i2;
-                    Logging.d("VideoReaderY4M", "frame dim: (" + i + ", " + i2 + ")");
+                    this.frameWidth = i2;
+                    this.frameHeight = i3;
+                    Logging.d("VideoReaderY4M", "frame dim: (" + i2 + ", " + i3 + ")");
                     return;
                 }
             }
         }
 
         @Override
-        public VideoFrame getNextFrame() {
+        public VideoFrame getNextFrame() throws IOException {
             long nanos = TimeUnit.MILLISECONDS.toNanos(SystemClock.elapsedRealtime());
-            JavaI420Buffer allocate = JavaI420Buffer.allocate(this.frameWidth, this.frameHeight);
-            ByteBuffer dataY = allocate.getDataY();
-            ByteBuffer dataU = allocate.getDataU();
-            ByteBuffer dataV = allocate.getDataV();
-            allocate.getStrideY();
-            allocate.getStrideU();
-            allocate.getStrideV();
+            JavaI420Buffer javaI420BufferAllocate = JavaI420Buffer.allocate(this.frameWidth, this.frameHeight);
+            ByteBuffer dataY = javaI420BufferAllocate.getDataY();
+            ByteBuffer dataU = javaI420BufferAllocate.getDataU();
+            ByteBuffer dataV = javaI420BufferAllocate.getDataV();
+            javaI420BufferAllocate.getStrideY();
+            javaI420BufferAllocate.getStrideU();
+            javaI420BufferAllocate.getStrideV();
             try {
                 int i = FRAME_DELIMETER_LENGTH;
-                ByteBuffer allocate2 = ByteBuffer.allocate(i);
-                if (this.mediaFileChannel.read(allocate2) < i) {
+                ByteBuffer byteBufferAllocate = ByteBuffer.allocate(i);
+                if (this.mediaFileChannel.read(byteBufferAllocate) < i) {
                     this.mediaFileChannel.position(this.videoStart);
-                    if (this.mediaFileChannel.read(allocate2) < i) {
+                    if (this.mediaFileChannel.read(byteBufferAllocate) < i) {
                         throw new RuntimeException("Error looping video");
                     }
                 }
-                String str = new String(allocate2.array(), Charset.forName("US-ASCII"));
+                String str = new String(byteBufferAllocate.array(), Charset.forName("US-ASCII"));
                 if (!str.equals("FRAME\n")) {
                     throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
                 }
                 this.mediaFileChannel.read(dataY);
                 this.mediaFileChannel.read(dataU);
                 this.mediaFileChannel.read(dataV);
-                return new VideoFrame(allocate, 0, nanos);
+                return new VideoFrame(javaI420BufferAllocate, 0, nanos);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
         @Override
-        public void close() {
+        public void close() throws IOException {
             try {
                 this.mediaFile.close();
             } catch (IOException e) {
@@ -132,7 +132,7 @@ public class FileVideoCapturer implements VideoCapturer {
         }
     }
 
-    public FileVideoCapturer(String str) {
+    public FileVideoCapturer(String str) throws IOException {
         try {
             this.videoReader = new VideoReaderY4M(str);
         } catch (IOException e) {

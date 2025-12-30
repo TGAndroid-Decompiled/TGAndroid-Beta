@@ -72,11 +72,11 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         textView2.setGravity(1);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 22, 8, 22, 0));
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_privacy, LocaleController.getString(R.string.SearchAdsAbout1Title), LocaleController.getString(R.string.SearchAdsAbout1Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 20, 0, 0));
-        final boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.SearchAdsAbout2Title), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(isPremium ? R.string.SearchAdsAbout2SubtitlePremium : R.string.SearchAdsAbout2Subtitle), new Runnable() {
+        final boolean zIsPremium = UserConfig.getInstance(this.currentAccount).isPremium();
+        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.SearchAdsAbout2Title), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(zIsPremium ? R.string.SearchAdsAbout2SubtitlePremium : R.string.SearchAdsAbout2Subtitle), new Runnable() {
             @Override
             public final void run() {
-                SearchAdsInfoBottomSheet.this.lambda$new$0(isPremium, runnable);
+                this.f$0.lambda$new$0(zIsPremium, runnable);
             }
         }), true)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
@@ -92,14 +92,14 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         textView3.setTextAlignment(4);
         textView3.setGravity(17);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 1, 22, 0, 22, 0));
-        SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new Runnable() {
+        SpannableStringBuilder spannableStringBuilderReplaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new Runnable() {
             @Override
             public final void run() {
-                SearchAdsInfoBottomSheet.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         }), true));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-        linksTextView.setText(replaceCharSequence);
+        linksTextView.setText(spannableStringBuilderReplaceCharSequence);
         linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         linksTextView.setTextSize(1, 14.0f);
@@ -119,7 +119,7 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SearchAdsInfoBottomSheet.this.lambda$new$2(view2);
+                this.f$0.lambda$new$2(view2);
             }
         });
         linearLayout.addView(textView4, LayoutHelper.createLinear(-1, 48, 0, 14, 22, 14, 14));
@@ -155,10 +155,10 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
             super(context);
             boolean z = LocaleController.isRTL;
             ImageView imageView = new ImageView(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
+            Drawable drawableMutate = getContext().getResources().getDrawable(i).mutate();
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            imageView.setImageDrawable(mutate);
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView.setImageDrawable(drawableMutate);
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
             TextView textView = new TextView(getContext());
             textView.setText(charSequence);
@@ -187,7 +187,7 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                SearchAdsInfoBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;

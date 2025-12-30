@@ -35,17 +35,17 @@ public class BlurredLinearLayout extends LinearLayout {
             }
             this.backgroundPaint.setColor(this.backgroundColor);
             this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
-            float f = 0.0f;
+            float y = 0.0f;
             View view = this;
             while (true) {
                 sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
                 if (view == sizeNotifierFrameLayout) {
                     break;
                 }
-                f += view.getY();
+                y += view.getY();
                 view = (View) view.getParent();
             }
-            sizeNotifierFrameLayout.drawBlurRect(canvas, f, this.blurBounds, this.backgroundPaint, this.isTopView);
+            sizeNotifierFrameLayout.drawBlurRect(canvas, y, this.blurBounds, this.backgroundPaint, this.isTopView);
         }
         super.dispatchDraw(canvas);
     }

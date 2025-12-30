@@ -7,9 +7,9 @@ import kotlin.jvm.internal.Intrinsics;
 
 public abstract class CollectionsKt__CollectionsJVMKt {
     public static List listOf(Object obj) {
-        List singletonList = Collections.singletonList(obj);
-        Intrinsics.checkNotNullExpressionValue(singletonList, "singletonList(...)");
-        return singletonList;
+        List listSingletonList = Collections.singletonList(obj);
+        Intrinsics.checkNotNullExpressionValue(listSingletonList, "singletonList(...)");
+        return listSingletonList;
     }
 
     public static List shuffled(Iterable iterable) {
@@ -32,8 +32,8 @@ public abstract class CollectionsKt__CollectionsJVMKt {
         if (z && Intrinsics.areEqual(objArr.getClass(), Object[].class)) {
             return objArr;
         }
-        Object[] copyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);
-        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-        return copyOf;
+        Object[] objArrCopyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);
+        Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+        return objArrCopyOf;
     }
 }

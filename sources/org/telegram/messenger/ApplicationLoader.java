@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -20,7 +21,6 @@ import android.os.SystemClock;
 import android.view.ViewGroup;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.PushListenerController;
@@ -28,9 +28,8 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
-import org.telegram.ui.IUpdateButton;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.LauncherIconController;
 
@@ -57,6 +56,9 @@ public class ApplicationLoader extends Application {
     private static PushListenerController.IPushListenerServiceProvider pushProvider;
     public static long startTime;
 
+    public void addItemOptions(ItemOptions itemOptions) {
+    }
+
     protected void appCenterLogInternal(Throwable th) {
     }
 
@@ -82,10 +84,6 @@ public class ApplicationLoader extends Application {
     }
 
     public void downloadUpdate() {
-    }
-
-    public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
-        return false;
     }
 
     public File getDownloadedUpdateFile() {
@@ -172,11 +170,7 @@ public class ApplicationLoader extends Application {
     protected void startAppCenterInternal(Activity activity) {
     }
 
-    public IUpdateButton takeUpdateButton(Context context) {
-        return null;
-    }
-
-    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup) {
         return null;
     }
 
@@ -187,9 +181,9 @@ public class ApplicationLoader extends Application {
 
     public static ILocationServiceProvider getLocationServiceProvider() {
         if (locationServiceProvider == null) {
-            ILocationServiceProvider onCreateLocationServiceProvider = applicationLoaderInstance.onCreateLocationServiceProvider();
-            locationServiceProvider = onCreateLocationServiceProvider;
-            onCreateLocationServiceProvider.init(applicationContext);
+            ILocationServiceProvider iLocationServiceProviderOnCreateLocationServiceProvider = applicationLoaderInstance.onCreateLocationServiceProvider();
+            locationServiceProvider = iLocationServiceProviderOnCreateLocationServiceProvider;
+            iLocationServiceProviderOnCreateLocationServiceProvider.init(applicationContext);
         }
         return locationServiceProvider;
     }
@@ -288,10 +282,10 @@ public class ApplicationLoader extends Application {
                         ApplicationLoader.currentNetworkInfo = ApplicationLoader.connectivityManager.getActiveNetworkInfo();
                     } catch (Throwable unused) {
                     }
-                    boolean isConnectionSlow = ApplicationLoader.isConnectionSlow();
+                    boolean zIsConnectionSlow = ApplicationLoader.isConnectionSlow();
                     for (int i = 0; i < 4; i++) {
                         ConnectionsManager.getInstance(i).checkConnection();
-                        FileLoader.getInstance(i).onNetworkChanged(isConnectionSlow);
+                        FileLoader.getInstance(i).onNetworkChanged(zIsConnectionSlow);
                     }
                 }
             }, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
@@ -342,7 +336,7 @@ public class ApplicationLoader extends Application {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate() throws PackageManager.NameNotFoundException {
         String str;
         applicationLoaderInstance = this;
         try {
@@ -353,9 +347,9 @@ public class ApplicationLoader extends Application {
         if (BuildVars.LOGS_ENABLED) {
             StringBuilder sb = new StringBuilder();
             sb.append("app start time = ");
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            startTime = elapsedRealtime;
-            sb.append(elapsedRealtime);
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            startTime = jElapsedRealtime;
+            sb.append(jElapsedRealtime);
             FileLog.d(sb.toString());
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
@@ -382,9 +376,9 @@ public class ApplicationLoader extends Application {
             new ForegroundDetector(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
-                    boolean isBackground = isBackground();
+                    boolean zIsBackground = isBackground();
                     super.onActivityStarted(activity);
-                    if (isBackground) {
+                    if (zIsBackground) {
                         ApplicationLoader.ensureCurrentNetworkGet(true);
                     }
                 }
@@ -468,9 +462,9 @@ public class ApplicationLoader extends Application {
     }
 
     private static void ensureCurrentNetworkGet() {
-        long currentTimeMillis = System.currentTimeMillis();
-        ensureCurrentNetworkGet(currentTimeMillis - lastNetworkCheck > 5000);
-        lastNetworkCheck = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        ensureCurrentNetworkGet(jCurrentTimeMillis - lastNetworkCheck > 5000);
+        lastNetworkCheck = jCurrentTimeMillis;
     }
 
     public static void ensureCurrentNetworkGet(boolean z) {
@@ -516,11 +510,7 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedOrConnectingToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null) {
-                if (currentNetworkInfo.getType() != 1) {
-                    if (currentNetworkInfo.getType() == 9) {
-                    }
-                }
+            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
                 NetworkInfo.State state = currentNetworkInfo.getState();
                 if (state != NetworkInfo.State.CONNECTED && state != NetworkInfo.State.CONNECTING) {
                     if (state == NetworkInfo.State.SUSPENDED) {
@@ -537,11 +527,7 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null) {
-                if (currentNetworkInfo.getType() != 1) {
-                    if (currentNetworkInfo.getType() == 9) {
-                    }
-                }
+            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
                 if (currentNetworkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     return true;
                 }
@@ -646,11 +632,11 @@ public class ApplicationLoader extends Application {
     }
 
     public static boolean isNetworkOnline() {
-        boolean isNetworkOnlineRealtime = isNetworkOnlineRealtime();
-        if (BuildVars.DEBUG_PRIVATE_VERSION && isNetworkOnlineRealtime != isNetworkOnlineFast()) {
+        boolean zIsNetworkOnlineRealtime = isNetworkOnlineRealtime();
+        if (BuildVars.DEBUG_PRIVATE_VERSION && zIsNetworkOnlineRealtime != isNetworkOnlineFast()) {
             FileLog.d("network online mismatch");
         }
-        return isNetworkOnlineRealtime;
+        return zIsNetworkOnlineRealtime;
     }
 
     public static void startAppCenter(Activity activity) {

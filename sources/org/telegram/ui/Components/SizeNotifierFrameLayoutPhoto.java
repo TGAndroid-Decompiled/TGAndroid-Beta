@@ -29,7 +29,7 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         notifyHeightChanged();
     }
@@ -66,7 +66,7 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         post(new Runnable() {
             @Override
             public final void run() {
-                SizeNotifierFrameLayoutPhoto.this.lambda$notifyHeightChanged$0(z);
+                this.f$0.lambda$notifyHeightChanged$0(z);
             }
         });
     }

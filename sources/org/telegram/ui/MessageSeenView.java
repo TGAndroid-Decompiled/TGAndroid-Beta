@@ -89,9 +89,9 @@ public class MessageSeenView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        Drawable mutate = ContextCompat.getDrawable(context, this.isVoice ? R.drawable.msg_played : R.drawable.msg_seen).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
-        this.iconView.setImageDrawable(mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(context, this.isVoice ? R.drawable.msg_played : R.drawable.msg_seen).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
+        this.iconView.setImageDrawable(drawableMutate);
         this.avatarsImageView.setAlpha(0.0f);
         this.titleView.setAlpha(0.0f);
         TLRPC.Peer peer = messageObject.messageOwner.from_id;
@@ -99,7 +99,7 @@ public class MessageSeenView extends FrameLayout {
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MessageSeenView.this.lambda$new$5(j, i, chat, tLObject, tL_error);
+                this.f$0.lambda$new$5(j, i, chat, tLObject, tL_error);
             }
         });
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
@@ -110,7 +110,7 @@ public class MessageSeenView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSeenView.this.lambda$new$4(tL_error, tLObject, j, i, chat);
+                this.f$0.lambda$new$4(tL_error, tLObject, j, i, chat);
             }
         });
     }
@@ -120,7 +120,7 @@ public class MessageSeenView extends FrameLayout {
             Vector vector = (Vector) tLObject;
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            final HashMap hashMap = new HashMap();
+            final HashMap map = new HashMap();
             final ArrayList arrayList3 = new ArrayList();
             int size = vector.objects.size();
             for (int i2 = 0; i2 < size; i2++) {
@@ -129,11 +129,11 @@ public class MessageSeenView extends FrameLayout {
                     TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) obj;
                     int i3 = tL_readParticipantDate.date;
                     long j2 = tL_readParticipantDate.user_id;
-                    Long valueOf = Long.valueOf(j2);
+                    Long lValueOf = Long.valueOf(j2);
                     if (j != j2) {
-                        MessagesController.getInstance(i).getUser(valueOf);
-                        arrayList3.add(new Pair(valueOf, Integer.valueOf(i3)));
-                        arrayList.add(valueOf);
+                        MessagesController.getInstance(i).getUser(lValueOf);
+                        arrayList3.add(new Pair(lValueOf, Integer.valueOf(i3)));
+                        arrayList.add(lValueOf);
                     }
                 } else if (obj instanceof Long) {
                     Long l = (Long) obj;
@@ -155,7 +155,7 @@ public class MessageSeenView extends FrameLayout {
                     Pair pair = (Pair) arrayList3.get(i4);
                     this.peerIds.add((Long) pair.first);
                     this.dates.add((Integer) pair.second);
-                    this.users.add((TLObject) hashMap.get(pair.first));
+                    this.users.add((TLObject) map.get(pair.first));
                 }
                 updateView();
                 return;
@@ -169,7 +169,7 @@ public class MessageSeenView extends FrameLayout {
                 ConnectionsManager.getInstance(i).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        MessageSeenView.this.lambda$new$1(i, hashMap, arrayList3, tLObject2, tL_error2);
+                        this.f$0.lambda$new$1(i, map, arrayList3, tLObject2, tL_error2);
                     }
                 });
                 return;
@@ -179,7 +179,7 @@ public class MessageSeenView extends FrameLayout {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tL_error2);
+                    this.f$0.lambda$new$3(i, map, arrayList3, tLObject2, tL_error2);
                 }
             });
             return;
@@ -187,55 +187,55 @@ public class MessageSeenView extends FrameLayout {
         updateView();
     }
 
-    public void lambda$new$1(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$new$1(final int i, final HashMap map, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSeenView.this.lambda$new$0(tLObject, i, hashMap, arrayList);
+                this.f$0.lambda$new$0(tLObject, i, map, arrayList);
             }
         });
     }
 
-    public void lambda$new$0(TLObject tLObject, int i, HashMap hashMap, ArrayList arrayList) {
+    public void lambda$new$0(TLObject tLObject, int i, HashMap map, ArrayList arrayList) {
         if (tLObject != null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
             for (int i2 = 0; i2 < tL_channels_channelParticipants.users.size(); i2++) {
                 TLRPC.User user = tL_channels_channelParticipants.users.get(i2);
                 MessagesController.getInstance(i).putUser(user, false);
-                hashMap.put(Long.valueOf(user.id), user);
+                map.put(Long.valueOf(user.id), user);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 Pair pair = (Pair) arrayList.get(i3);
                 this.peerIds.add((Long) pair.first);
                 this.dates.add((Integer) pair.second);
-                this.users.add((TLObject) hashMap.get(pair.first));
+                this.users.add((TLObject) map.get(pair.first));
             }
         }
         updateView();
     }
 
-    public void lambda$new$3(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$new$3(final int i, final HashMap map, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSeenView.this.lambda$new$2(tLObject, i, hashMap, arrayList);
+                this.f$0.lambda$new$2(tLObject, i, map, arrayList);
             }
         });
     }
 
-    public void lambda$new$2(TLObject tLObject, int i, HashMap hashMap, ArrayList arrayList) {
+    public void lambda$new$2(TLObject tLObject, int i, HashMap map, ArrayList arrayList) {
         if (tLObject != null) {
             TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
             for (int i2 = 0; i2 < tL_messages_chatFull.users.size(); i2++) {
                 TLRPC.User user = tL_messages_chatFull.users.get(i2);
                 MessagesController.getInstance(i).putUser(user, false);
-                hashMap.put(Long.valueOf(user.id), user);
+                map.put(Long.valueOf(user.id), user);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 Pair pair = (Pair) arrayList.get(i3);
                 this.peerIds.add((Long) pair.first);
                 this.dates.add((Integer) pair.second);
-                this.users.add((TLObject) hashMap.get(pair.first));
+                this.users.add((TLObject) map.get(pair.first));
             }
         }
         updateView();
@@ -313,11 +313,11 @@ public class MessageSeenView extends FrameLayout {
         }
         RecyclerListView recyclerListView2 = new RecyclerListView(getContext()) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i2);
-                int dp = AndroidUtilities.dp(4.0f) + (AndroidUtilities.dp(50.0f) * getAdapter().getItemCount());
-                if (dp <= size) {
-                    size = dp;
+                int iDp = AndroidUtilities.dp(4.0f) + (AndroidUtilities.dp(50.0f) * getAdapter().getItemCount());
+                if (iDp <= size) {
+                    size = iDp;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
             }
@@ -429,11 +429,11 @@ public class MessageSeenView extends FrameLayout {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            String formatString = LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.nameView.getText());
+            String string = LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.nameView.getText());
             if (this.readView.getVisibility() == 0) {
-                formatString = formatString + " " + ((Object) this.readView.getText());
+                string = string + " " + ((Object) this.readView.getText());
             }
-            accessibilityNodeInfo.setText(formatString);
+            accessibilityNodeInfo.setText(string);
         }
 
         @Override

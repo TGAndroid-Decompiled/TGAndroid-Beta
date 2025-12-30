@@ -16,9 +16,9 @@ public abstract class StoryCustomParamsHelper {
         if (nativeByteBuffer == null) {
             return;
         }
-        int readInt32 = nativeByteBuffer.readInt32(true);
-        if (readInt32 != 1) {
-            throw new RuntimeException("(story) can't read params version = " + readInt32);
+        int int32 = nativeByteBuffer.readInt32(true);
+        if (int32 != 1) {
+            throw new RuntimeException("(story) can't read params version = " + int32);
         }
         new Params_v1(storyItem).readParams(nativeByteBuffer, true);
     }
@@ -71,11 +71,11 @@ public abstract class StoryCustomParamsHelper {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(true);
-            this.flags = readInt32;
+            int int32 = inputSerializedData.readInt32(true);
+            this.flags = int32;
             TL_stories.StoryItem storyItem = this.storyItem;
-            storyItem.translated = (readInt32 & 1) != 0;
-            if ((readInt32 & 2) != 0) {
+            storyItem.translated = (int32 & 1) != 0;
+            if ((int32 & 2) != 0) {
                 storyItem.detectedLng = inputSerializedData.readString(z);
             }
             if ((this.flags & 4) != 0) {

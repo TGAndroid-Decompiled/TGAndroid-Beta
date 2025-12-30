@@ -55,14 +55,14 @@ public class BotAskCellDrawable extends Drawable {
         this.text = text2;
         text2.multiline(4);
         text2.align(alignment);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.filled_topic_new_24).mutate();
-        this.botLogo = mutate;
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.filled_topic_new_24).mutate();
+        this.botLogo = drawableMutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        Drawable mutate2 = context.getResources().getDrawable(R.drawable.arrow_more).mutate();
-        this.groupsArrow = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        mutate2.setAlpha(153);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        Drawable drawableMutate2 = context.getResources().getDrawable(R.drawable.arrow_more).mutate();
+        this.groupsArrow = drawableMutate2;
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        drawableMutate2.setAlpha(153);
         this.dPaint.setColor(-16777216);
         this.dPaint.setAlpha(30);
     }
@@ -72,17 +72,17 @@ public class BotAskCellDrawable extends Drawable {
         this.text.multiline(1);
         this.text.setMaxWidth(9999.0f);
         this.text.setText(LocaleController.formatString(R.string.BotForumAskForStartNewChat, UserObject.getUserName(user)));
-        float calculateRealWidth = (this.text.calculateRealWidth() / 2.0f) * 1.2f;
+        float fCalculateRealWidth = (this.text.calculateRealWidth() / 2.0f) * 1.2f;
         this.text.multiline(4);
         float f = (int) (AndroidUtilities.displaySize.x * 0.95f);
-        this.text.setMaxWidth(Math.min(f, calculateRealWidth));
+        this.text.setMaxWidth(Math.min(f, fCalculateRealWidth));
         if (this.text.getLineCount() > 2) {
-            this.text.setMaxWidth(Math.min(f, calculateRealWidth * 1.2f));
+            this.text.setMaxWidth(Math.min(f, fCalculateRealWidth * 1.2f));
         }
-        float min = Math.min(Math.max(Math.max(0.0f, this.text.calculateRealWidth()), this.title.calculateRealWidth()) + AndroidUtilities.dp(32.0f), f);
-        float dp = AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + this.title.getHeight() + AndroidUtilities.dp(4.0f) + this.text.getHeight() + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f);
-        this.width = (int) min;
-        this.height = (int) dp;
+        float fMin = Math.min(Math.max(Math.max(0.0f, this.text.calculateRealWidth()), this.title.calculateRealWidth()) + AndroidUtilities.dp(32.0f), f);
+        float fDp = AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + this.title.getHeight() + AndroidUtilities.dp(4.0f) + this.text.getHeight() + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f);
+        this.width = (int) fMin;
+        this.height = (int) fDp;
     }
 
     public int getBubbleWidth() {
@@ -102,9 +102,9 @@ public class BotAskCellDrawable extends Drawable {
         canvas.save();
         canvas.translate(0.0f, this.tmpRect.top + AndroidUtilities.dp(17.0f));
         canvas.drawCircle(this.tmpRect.centerX(), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), this.dPaint);
-        int centerX = (int) (this.tmpRect.centerX() - AndroidUtilities.dp(20.0f));
-        int dp = AndroidUtilities.dp(15.0f);
-        this.botLogo.setBounds(centerX, dp, AndroidUtilities.dp(40.0f) + centerX, AndroidUtilities.dp(40.0f) + dp);
+        int iCenterX = (int) (this.tmpRect.centerX() - AndroidUtilities.dp(20.0f));
+        int iDp = AndroidUtilities.dp(15.0f);
+        this.botLogo.setBounds(iCenterX, iDp, AndroidUtilities.dp(40.0f) + iCenterX, AndroidUtilities.dp(40.0f) + iDp);
         this.botLogo.draw(canvas);
         canvas.translate(0.0f, AndroidUtilities.dp(70.0f));
         canvas.translate(0.0f, AndroidUtilities.dp(14.0f));

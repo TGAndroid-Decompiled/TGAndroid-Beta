@@ -21,8 +21,8 @@ public class ChatBigEmptyView extends LinearLayout {
     private ArrayList textViews;
 
     public ChatBigEmptyView(Context context, View view, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         int i2;
+        super(context);
         this.textViews = new ArrayList();
         this.imageViews = new ArrayList();
         this.resourcesProvider = resourcesProvider;
@@ -143,9 +143,7 @@ public class ChatBigEmptyView extends LinearLayout {
                     linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 8.0f, 3.0f, 0.0f, 0.0f));
                 }
             } else {
-                if (i == 0) {
-                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));
-                } else if (i == 2) {
+                if (i != 0 && i == 2) {
                     linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 8.0f, 8.0f, 0.0f));
                 } else {
                     linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));

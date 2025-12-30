@@ -3,13 +3,14 @@ package kotlin.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import kotlin.Unit;
 import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponentsKt {
-    public static byte[] readBytes(File file) {
+    public static byte[] readBytes(File file) throws IOException {
         Intrinsics.checkNotNullParameter(file, "<this>");
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
@@ -18,38 +19,38 @@ public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponen
                 throw new OutOfMemoryError("File " + file + " is too big (" + length + " bytes) to fit in memory.");
             }
             int i = (int) length;
-            byte[] bArr = new byte[i];
+            byte[] bArrCopyInto = new byte[i];
             int i2 = i;
             int i3 = 0;
             while (i2 > 0) {
-                int read = fileInputStream.read(bArr, i3, i2);
-                if (read < 0) {
+                int i4 = fileInputStream.read(bArrCopyInto, i3, i2);
+                if (i4 < 0) {
                     break;
                 }
-                i2 -= read;
-                i3 += read;
+                i2 -= i4;
+                i3 += i4;
             }
             if (i2 > 0) {
-                bArr = Arrays.copyOf(bArr, i3);
-                Intrinsics.checkNotNullExpressionValue(bArr, "copyOf(...)");
+                bArrCopyInto = Arrays.copyOf(bArrCopyInto, i3);
+                Intrinsics.checkNotNullExpressionValue(bArrCopyInto, "copyOf(...)");
             } else {
-                int read2 = fileInputStream.read();
-                if (read2 != -1) {
+                int i5 = fileInputStream.read();
+                if (i5 != -1) {
                     ExposingBufferByteArrayOutputStream exposingBufferByteArrayOutputStream = new ExposingBufferByteArrayOutputStream(8193);
-                    exposingBufferByteArrayOutputStream.write(read2);
+                    exposingBufferByteArrayOutputStream.write(i5);
                     ByteStreamsKt.copyTo$default(fileInputStream, exposingBufferByteArrayOutputStream, 0, 2, null);
                     int size = exposingBufferByteArrayOutputStream.size() + i;
                     if (size < 0) {
                         throw new OutOfMemoryError("File " + file + " is too big to fit in memory.");
                     }
                     byte[] buffer = exposingBufferByteArrayOutputStream.getBuffer();
-                    byte[] copyOf = Arrays.copyOf(bArr, size);
-                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-                    bArr = ArraysKt.copyInto(buffer, copyOf, i, 0, exposingBufferByteArrayOutputStream.size());
+                    byte[] bArrCopyOf = Arrays.copyOf(bArrCopyInto, size);
+                    Intrinsics.checkNotNullExpressionValue(bArrCopyOf, "copyOf(...)");
+                    bArrCopyInto = ArraysKt.copyInto(buffer, bArrCopyOf, i, 0, exposingBufferByteArrayOutputStream.size());
                 }
             }
             CloseableKt.closeFinally(fileInputStream, null);
-            return bArr;
+            return bArrCopyInto;
         } catch (Throwable th) {
             try {
                 throw th;
@@ -60,7 +61,7 @@ public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponen
         }
     }
 
-    public static void writeBytes(File file, byte[] array) {
+    public static void writeBytes(File file, byte[] array) throws IOException {
         Intrinsics.checkNotNullParameter(file, "<this>");
         Intrinsics.checkNotNullParameter(array, "array");
         FileOutputStream fileOutputStream = new FileOutputStream(file);

@@ -83,7 +83,7 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
             this.textView2.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new Runnable() {
                 @Override
                 public final void run() {
-                    BalanceCloud.this.lambda$updateBalance$1();
+                    this.f$0.lambda$updateBalance$1();
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
             return;

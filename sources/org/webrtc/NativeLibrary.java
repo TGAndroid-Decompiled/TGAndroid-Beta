@@ -9,6 +9,9 @@ class NativeLibrary {
     }
 
     static class DefaultLoader implements NativeLibraryLoader {
+        DefaultLoader() {
+        }
+
         @Override
         public boolean load(String str) {
             Logging.d(NativeLibrary.TAG, "Loading library: " + str);
@@ -17,7 +20,7 @@ class NativeLibrary {
         }
     }
 
-    public static void initialize(NativeLibraryLoader nativeLibraryLoader, String str) {
+    static void initialize(NativeLibraryLoader nativeLibraryLoader, String str) {
         synchronized (lock) {
             try {
                 if (libraryLoaded) {
@@ -32,7 +35,7 @@ class NativeLibrary {
         }
     }
 
-    public static boolean isLoaded() {
+    static boolean isLoaded() {
         boolean z;
         synchronized (lock) {
             z = libraryLoaded;

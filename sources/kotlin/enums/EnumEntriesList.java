@@ -5,7 +5,7 @@ import kotlin.collections.AbstractList;
 import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class EnumEntriesList extends AbstractList implements EnumEntries, Serializable {
+final class EnumEntriesList extends AbstractList implements EnumEntries, Serializable {
     private final Enum[] entries;
 
     @Override
@@ -55,9 +55,9 @@ public final class EnumEntriesList extends AbstractList implements EnumEntries, 
 
     public int indexOf(Enum element) {
         Intrinsics.checkNotNullParameter(element, "element");
-        int ordinal = element.ordinal();
-        if (((Enum) ArraysKt.getOrNull(this.entries, ordinal)) == element) {
-            return ordinal;
+        int iOrdinal = element.ordinal();
+        if (((Enum) ArraysKt.getOrNull(this.entries, iOrdinal)) == element) {
+            return iOrdinal;
         }
         return -1;
     }

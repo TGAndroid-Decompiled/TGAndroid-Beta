@@ -139,16 +139,16 @@ public class WallpaperCheckBoxView extends View {
                 f = 2.0f - f3;
                 f3 = 1.0f;
             }
-            float dp = AndroidUtilities.dp(1.0f) * f;
-            this.rect.set(dp, dp, AndroidUtilities.dp(18.0f) - dp, AndroidUtilities.dp(18.0f) - dp);
+            float fDp = AndroidUtilities.dp(1.0f) * f;
+            this.rect.set(fDp, fDp, AndroidUtilities.dp(18.0f) - fDp, AndroidUtilities.dp(18.0f) - fDp);
             this.drawBitmap.eraseColor(0);
             this.backgroundPaint.setColor(Theme.getColor(i, this.resourcesProvider));
             Canvas canvas2 = this.drawCanvas;
             RectF rectF = this.rect;
             canvas2.drawRoundRect(rectF, rectF.width() / 2.0f, this.rect.height() / 2.0f, this.backgroundPaint);
             if (f3 != 1.0f) {
-                float min = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f3) + dp);
-                this.rect.set(AndroidUtilities.dp(2.0f) + min, AndroidUtilities.dp(2.0f) + min, AndroidUtilities.dp(16.0f) - min, AndroidUtilities.dp(16.0f) - min);
+                float fMin = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f3) + fDp);
+                this.rect.set(AndroidUtilities.dp(2.0f) + fMin, AndroidUtilities.dp(2.0f) + fMin, AndroidUtilities.dp(16.0f) - fMin, AndroidUtilities.dp(16.0f) - fMin);
                 Canvas canvas3 = this.drawCanvas;
                 RectF rectF2 = this.rect;
                 canvas3.drawRoundRect(rectF2, rectF2.width() / 2.0f, this.rect.height() / 2.0f, this.eraserPaint);
@@ -205,9 +205,9 @@ public class WallpaperCheckBoxView extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, (Property<WallpaperCheckBoxView, Float>) this.PROGRESS_PROPERTY, z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(300L);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, (Property<WallpaperCheckBoxView, Float>) this.PROGRESS_PROPERTY, z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(300L);
         this.checkAnimator.start();
     }
 

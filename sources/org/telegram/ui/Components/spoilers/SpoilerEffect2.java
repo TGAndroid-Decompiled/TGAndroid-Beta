@@ -44,7 +44,7 @@ public class SpoilerEffect2 {
     private final Runnable checkDestroy = new Runnable() {
         @Override
         public final void run() {
-            SpoilerEffect2.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -73,10 +73,10 @@ public class SpoilerEffect2 {
             if (viewGroup == null) {
                 return null;
             }
-            HashMap hashMap = instance;
-            Integer valueOf = Integer.valueOf(i);
+            HashMap map = instance;
+            Integer numValueOf = Integer.valueOf(i);
             SpoilerEffect2 spoilerEffect22 = new SpoilerEffect2(i, makeTextureViewContainer(viewGroup), size, size);
-            hashMap.put(valueOf, spoilerEffect22);
+            map.put(numValueOf, spoilerEffect22);
             spoilerEffect2 = spoilerEffect22;
         }
         spoilerEffect2.attach(view);
@@ -84,11 +84,11 @@ public class SpoilerEffect2 {
     }
 
     private static ViewGroup getRootView(View view) {
-        Activity findActivity = AndroidUtilities.findActivity(view.getContext());
-        if (findActivity == null) {
+        Activity activityFindActivity = AndroidUtilities.findActivity(view.getContext());
+        if (activityFindActivity == null) {
             return null;
         }
-        View rootView = findActivity.findViewById(16908290).getRootView();
+        View rootView = activityFindActivity.findViewById(16908290).getRootView();
         if (rootView instanceof ViewGroup) {
             return (ViewGroup) rootView;
         }
@@ -96,11 +96,11 @@ public class SpoilerEffect2 {
     }
 
     public static void pause(boolean z) {
-        HashMap hashMap = instance;
-        if (hashMap == null) {
+        HashMap map = instance;
+        if (map == null) {
             return;
         }
-        Iterator it = hashMap.values().iterator();
+        Iterator it = map.values().iterator();
         while (it.hasNext()) {
             SpoilerThread spoilerThread = ((SpoilerEffect2) it.next()).thread;
             if (spoilerThread != null) {
@@ -111,11 +111,11 @@ public class SpoilerEffect2 {
 
     public static void pause(int i, boolean z) {
         SpoilerThread spoilerThread;
-        HashMap hashMap = instance;
-        if (hashMap == null) {
+        HashMap map = instance;
+        if (map == null) {
             return;
         }
-        for (SpoilerEffect2 spoilerEffect2 : hashMap.values()) {
+        for (SpoilerEffect2 spoilerEffect2 : map.values()) {
             if (spoilerEffect2.type == i && (spoilerThread = spoilerEffect2.thread) != null) {
                 spoilerThread.pause(z);
             }
@@ -152,10 +152,10 @@ public class SpoilerEffect2 {
             return;
         }
         this.holders.add(view);
-        HashMap hashMap = this.holdersToIndex;
+        HashMap map = this.holdersToIndex;
         int i = this.holdersIndex;
         this.holdersIndex = i + 1;
-        hashMap.put(view, Integer.valueOf(i));
+        map.put(view, Integer.valueOf(i));
     }
 
     public void reassignAttach(View view, int i) {
@@ -221,8 +221,8 @@ public class SpoilerEffect2 {
             canvas.scale(1.0f, -1.0f, i3 / 2.0f, i4 / 2.0f);
         }
         if (i > i3 || i2 > i4) {
-            float max = Math.max(i / i3, i2 / i4);
-            canvas.scale(max, max);
+            float fMax = Math.max(i / i3, i2 / i4);
+            canvas.scale(fMax, fMax);
         }
         if (z) {
             Bitmap bitmap = this.textureView.getBitmap();
@@ -280,10 +280,10 @@ public class SpoilerEffect2 {
                 if (SpoilerEffect2.this.thread == null) {
                     SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
                     final SpoilerEffect2 spoilerEffect22 = SpoilerEffect2.this;
-                    spoilerEffect2.thread = new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
+                    spoilerEffect2.thread = spoilerEffect22.new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
                         @Override
                         public final void run() {
-                            SpoilerEffect2.this.invalidate();
+                            spoilerEffect22.invalidate();
                         }
                     });
                     SpoilerEffect2.this.thread.start();
@@ -311,7 +311,7 @@ public class SpoilerEffect2 {
         viewGroup.addView(textureView);
     }
 
-    public class SpoilerThread extends Thread {
+    private class SpoilerThread extends Thread {
         private int deltaTimeHandle;
         private int drawProgram;
         private EGL10 egl;
@@ -368,12 +368,12 @@ public class SpoilerEffect2 {
         }
 
         @Override
-        public void run() {
+        public void run() throws InterruptedException {
             init();
-            long nanoTime = System.nanoTime();
+            long jNanoTime = System.nanoTime();
             while (this.running) {
-                long nanoTime2 = System.nanoTime();
-                double d = (nanoTime2 - nanoTime) / 1.0E9d;
+                long jNanoTime2 = System.nanoTime();
+                double d = (jNanoTime2 - jNanoTime) / 1.0E9d;
                 if (d < SpoilerEffect2.this.MIN_DELTA) {
                     double d2 = SpoilerEffect2.this.MIN_DELTA - d;
                     long j = (long) (d2 * 1000.0d);
@@ -395,7 +395,7 @@ public class SpoilerEffect2 {
                 drawFrame((float) d);
                 AndroidUtilities.cancelRunOnUIThread(this.invalidate);
                 AndroidUtilities.runOnUIThread(this.invalidate);
-                nanoTime = nanoTime2;
+                jNanoTime = jNanoTime2;
             }
             die();
         }
@@ -403,14 +403,14 @@ public class SpoilerEffect2 {
         private void init() {
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
             this.egl = egl10;
-            EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-            this.eglDisplay = eglGetDisplay;
+            EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(0);
+            this.eglDisplay = eGLDisplayEglGetDisplay;
             EGL10 egl102 = this.egl;
-            if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 this.running = false;
                 return;
             }
-            if (!egl102.eglInitialize(eglGetDisplay, new int[2])) {
+            if (!egl102.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
                 this.running = false;
                 return;
             }
@@ -421,56 +421,56 @@ public class SpoilerEffect2 {
             }
             EGLConfig eGLConfig = eGLConfigArr[0];
             this.eglConfig = eGLConfig;
-            EGLContext eglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
-            this.eglContext = eglCreateContext;
-            if (eglCreateContext == null) {
+            EGLContext eGLContextEglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+            this.eglContext = eGLContextEglCreateContext;
+            if (eGLContextEglCreateContext == null) {
                 this.running = false;
                 return;
             }
-            EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
-            this.eglSurface = eglCreateWindowSurface;
-            if (eglCreateWindowSurface == null) {
+            EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
+            this.eglSurface = eGLSurfaceEglCreateWindowSurface;
+            if (eGLSurfaceEglCreateWindowSurface == null) {
                 this.running = false;
                 return;
             }
-            if (!this.egl.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
+            if (!this.egl.eglMakeCurrent(this.eglDisplay, eGLSurfaceEglCreateWindowSurface, eGLSurfaceEglCreateWindowSurface, this.eglContext)) {
                 this.running = false;
                 return;
             }
             genParticlesData();
-            int glCreateShader = GLES20.glCreateShader(35633);
-            int glCreateShader2 = GLES20.glCreateShader(35632);
-            if (glCreateShader == 0 || glCreateShader2 == 0) {
+            int iGlCreateShader = GLES20.glCreateShader(35633);
+            int iGlCreateShader2 = GLES20.glCreateShader(35632);
+            if (iGlCreateShader == 0 || iGlCreateShader2 == 0) {
                 this.running = false;
                 return;
             }
-            GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex) + "\n// " + Math.random());
-            GLES20.glCompileShader(glCreateShader);
+            GLES20.glShaderSource(iGlCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex) + "\n// " + Math.random());
+            GLES20.glCompileShader(iGlCreateShader);
             int[] iArr = new int[1];
-            GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+            GLES20.glGetShaderiv(iGlCreateShader, 35713, iArr, 0);
             if (iArr[0] == 0) {
-                FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-                GLES20.glDeleteShader(glCreateShader);
+                FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(iGlCreateShader));
+                GLES20.glDeleteShader(iGlCreateShader);
                 this.running = false;
                 return;
             }
-            GLES20.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment) + "\n// " + Math.random());
-            GLES20.glCompileShader(glCreateShader2);
-            GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
+            GLES20.glShaderSource(iGlCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment) + "\n// " + Math.random());
+            GLES20.glCompileShader(iGlCreateShader2);
+            GLES20.glGetShaderiv(iGlCreateShader2, 35713, iArr, 0);
             if (iArr[0] == 0) {
-                FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
-                GLES20.glDeleteShader(glCreateShader2);
+                FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(iGlCreateShader2));
+                GLES20.glDeleteShader(iGlCreateShader2);
                 this.running = false;
                 return;
             }
-            int glCreateProgram = GLES20.glCreateProgram();
-            this.drawProgram = glCreateProgram;
-            if (glCreateProgram == 0) {
+            int iGlCreateProgram = GLES20.glCreateProgram();
+            this.drawProgram = iGlCreateProgram;
+            if (iGlCreateProgram == 0) {
                 this.running = false;
                 return;
             }
-            GLES20.glAttachShader(glCreateProgram, glCreateShader);
-            GLES20.glAttachShader(this.drawProgram, glCreateShader2);
+            GLES20.glAttachShader(iGlCreateProgram, iGlCreateShader);
+            GLES20.glAttachShader(this.drawProgram, iGlCreateShader2);
             GLES30.glTransformFeedbackVaryings(this.drawProgram, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
             GLES20.glLinkProgram(this.drawProgram);
             GLES20.glGetProgramiv(this.drawProgram, 35714, iArr, 0);
@@ -596,12 +596,12 @@ public class SpoilerEffect2 {
                     if (this.resize) {
                         GLES20.glUniform2f(this.sizeHandle, this.width, this.height);
                         GLES20.glViewport(0, 0, this.width, this.height);
-                        int particlesCount = particlesCount();
-                        if (particlesCount > this.particlesCount) {
+                        int iParticlesCount = particlesCount();
+                        if (iParticlesCount > this.particlesCount) {
                             this.reset = true;
                             genParticlesData();
                         }
-                        this.particlesCount = particlesCount;
+                        this.particlesCount = iParticlesCount;
                         this.resize = false;
                     }
                 } catch (Throwable th) {
@@ -627,11 +627,11 @@ public class SpoilerEffect2 {
 
         private void checkGlErrors() {
             while (true) {
-                int glGetError = GLES20.glGetError();
-                if (glGetError == 0) {
+                int iGlGetError = GLES20.glGetError();
+                if (iGlGetError == 0) {
                     return;
                 }
-                FileLog.e("spoiler gles error " + glGetError);
+                FileLog.e("spoiler gles error " + iGlGetError);
             }
         }
     }

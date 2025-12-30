@@ -36,7 +36,6 @@ import org.telegram.ui.Cells.GroupCallTextCell;
 import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UsersAlertBase;
 
 public abstract class UsersAlertBase extends BottomSheet {
     public static final Property COLOR_PROGRESS = new AnimationProperties.FloatProperty("colorProgress") {
@@ -84,13 +83,13 @@ public abstract class UsersAlertBase extends BottomSheet {
     private TextView titleView;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
     protected abstract void onSearchViewTouched(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor);
 
-    public void search(String str) {
+    protected void search(String str) {
     }
 
     protected void updateColorKeys() {
@@ -123,9 +122,9 @@ public abstract class UsersAlertBase extends BottomSheet {
         setDimBehindAlpha(75);
         this.currentAccount = i;
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        ContainerView createContainerView = createContainerView(context);
-        this.containerView = createContainerView;
-        createContainerView.setWillNotDraw(false);
+        ContainerView containerViewCreateContainerView = createContainerView(context);
+        this.containerView = containerViewCreateContainerView;
+        containerViewCreateContainerView.setWillNotDraw(false);
         this.containerView.setClipChildren(false);
         ViewGroup viewGroup = this.containerView;
         int i5 = this.backgroundPaddingLeft;
@@ -218,7 +217,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         return new ContainerView(context);
     }
 
-    public class SearchField extends FrameLayout {
+    protected class SearchField extends FrameLayout {
         private final ImageView clearSearchImageView;
         private final CloseProgressDrawable2 progressDrawable;
         private final View searchBackground;
@@ -257,19 +256,19 @@ public abstract class UsersAlertBase extends BottomSheet {
             imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    UsersAlertBase.SearchField.this.lambda$new$0(view2);
+                    this.f$0.lambda$new$0(view2);
                 }
             });
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
                 @Override
                 public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                    MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                    obtain.setLocation(obtain.getRawX(), obtain.getRawY() - UsersAlertBase.this.listView.getMeasuredHeight());
-                    if (obtain.getAction() == 1) {
-                        obtain.setAction(3);
+                    MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                    motionEventObtain.setLocation(motionEventObtain.getRawX(), motionEventObtain.getRawY() - UsersAlertBase.this.listView.getMeasuredHeight());
+                    if (motionEventObtain.getAction() == 1) {
+                        motionEventObtain.setAction(3);
                     }
-                    UsersAlertBase.this.listView.dispatchTouchEvent(obtain);
-                    obtain.recycle();
+                    UsersAlertBase.this.listView.dispatchTouchEvent(motionEventObtain);
+                    motionEventObtain.recycle();
                     return super.dispatchTouchEvent(motionEvent);
                 }
             };
@@ -304,10 +303,10 @@ public abstract class UsersAlertBase extends BottomSheet {
                     if (z != (SearchField.this.clearSearchImageView.getAlpha() != 0.0f)) {
                         SearchField.this.clearSearchImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).start();
                     }
-                    String obj = SearchField.this.searchEditText.getText().toString();
+                    String string = SearchField.this.searchEditText.getText().toString();
                     int itemCount = UsersAlertBase.this.listView.getAdapter() == null ? 0 : UsersAlertBase.this.listView.getAdapter().getItemCount();
-                    UsersAlertBase.this.search(obj);
-                    if (TextUtils.isEmpty(obj) && (recyclerListView = UsersAlertBase.this.listView) != null) {
+                    UsersAlertBase.this.search(string);
+                    if (TextUtils.isEmpty(string) && (recyclerListView = UsersAlertBase.this.listView) != null) {
                         RecyclerView.Adapter adapter = recyclerListView.getAdapter();
                         UsersAlertBase usersAlertBase = UsersAlertBase.this;
                         if (adapter != usersAlertBase.listViewAdapter) {
@@ -326,9 +325,7 @@ public abstract class UsersAlertBase extends BottomSheet {
             this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    boolean lambda$new$1;
-                    lambda$new$1 = UsersAlertBase.SearchField.this.lambda$new$1(textView, i, keyEvent);
-                    return lambda$new$1;
+                    return this.f$0.lambda$new$1(textView, i, keyEvent);
                 }
             });
         }
@@ -365,7 +362,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         return this.colorProgress;
     }
 
-    public void setColorProgress(float f) {
+    protected void setColorProgress(float f) {
         this.colorProgress = f;
         this.backgroundColor = AndroidUtilities.getOffsetColor(Theme.getColor(this.keyInviteMembersBackground, this.resourcesProvider), Theme.getColor(this.keyListViewBackground, this.resourcesProvider), f, 1.0f);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
@@ -396,14 +393,14 @@ public abstract class UsersAlertBase extends BottomSheet {
         super.dismiss();
     }
 
-    public void updateLayout() {
+    protected void updateLayout() {
         if (this.listView.getChildCount() <= 0) {
             return;
         }
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(0);
-        int top = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() - AndroidUtilities.dp(8.0f) : 0;
-        int i = (top <= 0 || findViewHolderForAdapterPosition == null || findViewHolderForAdapterPosition.getAdapterPosition() != 0) ? 0 : top;
-        if (top >= 0 && findViewHolderForAdapterPosition != null && findViewHolderForAdapterPosition.getAdapterPosition() == 0) {
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(0);
+        int top = viewHolderFindViewHolderForAdapterPosition != null ? viewHolderFindViewHolderForAdapterPosition.itemView.getTop() - AndroidUtilities.dp(8.0f) : 0;
+        int i = (top <= 0 || viewHolderFindViewHolderForAdapterPosition == null || viewHolderFindViewHolderForAdapterPosition.getAdapterPosition() != 0) ? 0 : top;
+        if (top >= 0 && viewHolderFindViewHolderForAdapterPosition != null && viewHolderFindViewHolderForAdapterPosition.getAdapterPosition() == 0) {
             runShadowAnimation(false);
         } else {
             runShadowAnimation(true);
@@ -415,7 +412,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         }
     }
 
-    public void setTranslationY(int i) {
+    protected void setTranslationY(int i) {
         this.listView.setTopGlowOffset(i);
         float f = i;
         this.frameLayout.setTranslationY(f);
@@ -464,7 +461,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         this.shadowAnimation.start();
     }
 
-    public void showItemsAnimated(final int i) {
+    protected void showItemsAnimated(final int i) {
         if (isShowing()) {
             this.listView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                 @Override
@@ -480,11 +477,11 @@ public abstract class UsersAlertBase extends BottomSheet {
                                 childAt = ((GraySectionCell) childAt).getTextView();
                             }
                             childAt.setAlpha(0.0f);
-                            int min = (int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f);
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay(min);
-                            ofFloat.setDuration(200L);
-                            animatorSet.playTogether(ofFloat);
+                            int iMin = (int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f);
+                            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                            objectAnimatorOfFloat.setStartDelay(iMin);
+                            objectAnimatorOfFloat.setDuration(200L);
+                            animatorSet.playTogether(objectAnimatorOfFloat);
                         }
                     }
                     animatorSet.start();
@@ -494,7 +491,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         }
     }
 
-    public class ContainerView extends FrameLayout {
+    protected class ContainerView extends FrameLayout {
         private boolean ignoreLayout;
         float snapToTopOffset;
         private Boolean statusBarOpen;
@@ -513,14 +510,14 @@ public abstract class UsersAlertBase extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int measurePadding;
+            int iMeasurePadding;
             int size = View.MeasureSpec.getSize(i2);
             this.ignoreLayout = true;
             setPadding(((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, ((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, 0);
             this.ignoreLayout = false;
             int paddingTop = size - getPaddingTop();
             if (((BottomSheet) UsersAlertBase.this).keyboardVisible) {
-                measurePadding = AndroidUtilities.dp(8.0f);
+                iMeasurePadding = AndroidUtilities.dp(8.0f);
                 UsersAlertBase.this.setAllowNestedScroll(false);
                 int i3 = UsersAlertBase.this.scrollOffsetY;
                 if (i3 != 0) {
@@ -532,12 +529,12 @@ public abstract class UsersAlertBase extends BottomSheet {
                         valueAnimator.removeAllListeners();
                         this.valueAnimator.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.snapToTopOffset, 0.0f);
-                    this.valueAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.snapToTopOffset, 0.0f);
+                    this.valueAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            UsersAlertBase.ContainerView.this.lambda$onMeasure$0(valueAnimator2);
+                            this.f$0.lambda$onMeasure$0(valueAnimator2);
                         }
                     });
                     this.valueAnimator.setDuration(250L);
@@ -557,21 +554,21 @@ public abstract class UsersAlertBase extends BottomSheet {
                     setTranslationY(this.snapToTopOffset);
                 }
             } else {
-                measurePadding = UsersAlertBase.this.measurePadding(paddingTop);
+                iMeasurePadding = UsersAlertBase.this.measurePadding(paddingTop);
                 UsersAlertBase.this.setAllowNestedScroll(true);
             }
-            if (UsersAlertBase.this.listView.getPaddingTop() != measurePadding) {
+            if (UsersAlertBase.this.listView.getPaddingTop() != iMeasurePadding) {
                 this.ignoreLayout = true;
-                UsersAlertBase.this.listView.setPadding(0, measurePadding, 0, 0);
+                UsersAlertBase.this.listView.setPadding(0, iMeasurePadding, 0, 0);
                 this.ignoreLayout = false;
             }
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         }
 
         public void lambda$onMeasure$0(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.snapToTopOffset = floatValue;
-            setTranslationY(floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.snapToTopOffset = fFloatValue;
+            setTranslationY(fFloatValue);
         }
 
         @Override
@@ -608,48 +605,48 @@ public abstract class UsersAlertBase extends BottomSheet {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            float f;
+            float fMin;
             canvas.save();
             UsersAlertBase usersAlertBase = UsersAlertBase.this;
-            int dp = (usersAlertBase.scrollOffsetY - ((BottomSheet) usersAlertBase).backgroundPaddingTop) + AndroidUtilities.dp(6.0f);
+            int iDp = (usersAlertBase.scrollOffsetY - ((BottomSheet) usersAlertBase).backgroundPaddingTop) + AndroidUtilities.dp(6.0f);
             UsersAlertBase usersAlertBase2 = UsersAlertBase.this;
-            int dp2 = (usersAlertBase2.scrollOffsetY - ((BottomSheet) usersAlertBase2).backgroundPaddingTop) - AndroidUtilities.dp(13.0f);
+            int iDp2 = (usersAlertBase2.scrollOffsetY - ((BottomSheet) usersAlertBase2).backgroundPaddingTop) - AndroidUtilities.dp(13.0f);
             int measuredHeight = getMeasuredHeight() + AndroidUtilities.dp(50.0f) + ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop;
             int i = AndroidUtilities.statusBarHeight;
-            int i2 = dp2 + i;
-            int i3 = dp + i;
+            int i2 = iDp2 + i;
+            int i3 = iDp + i;
             int i4 = measuredHeight - i;
             float translationY = ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2 + getTranslationY();
             int i5 = AndroidUtilities.statusBarHeight;
             if (translationY < i5 * 2) {
-                int min = (int) Math.min(i5, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY());
-                i2 -= min;
-                i4 += min;
-                f = 1.0f - Math.min(1.0f, (min * 2) / AndroidUtilities.statusBarHeight);
+                int iMin = (int) Math.min(i5, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY());
+                i2 -= iMin;
+                i4 += iMin;
+                fMin = 1.0f - Math.min(1.0f, (iMin * 2) / AndroidUtilities.statusBarHeight);
             } else {
-                f = 1.0f;
+                fMin = 1.0f;
             }
             float translationY2 = ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2 + getTranslationY();
-            float f2 = AndroidUtilities.statusBarHeight;
-            int min2 = translationY2 < f2 ? (int) Math.min(f2, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY()) : 0;
+            float f = AndroidUtilities.statusBarHeight;
+            int iMin2 = translationY2 < f ? (int) Math.min(f, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY()) : 0;
             UsersAlertBase.this.shadowDrawable.setBounds(0, i2, getMeasuredWidth(), i4);
             UsersAlertBase.this.shadowDrawable.draw(canvas);
             if (!UsersAlertBase.this.drawTitle) {
-                if (f != 1.0f) {
+                if (fMin != 1.0f) {
                     Theme.dialogs_onlineCirclePaint.setColor(UsersAlertBase.this.backgroundColor);
                     UsersAlertBase.this.rect.set(((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2, getMeasuredWidth() - ((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2 + AndroidUtilities.dp(24.0f));
-                    canvas.drawRoundRect(UsersAlertBase.this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
+                    canvas.drawRoundRect(UsersAlertBase.this.rect, AndroidUtilities.dp(12.0f) * fMin, AndroidUtilities.dp(12.0f) * fMin, Theme.dialogs_onlineCirclePaint);
                 }
-                int dp3 = AndroidUtilities.dp(36.0f);
-                UsersAlertBase.this.rect.set((getMeasuredWidth() - dp3) / 2, i3, (getMeasuredWidth() + dp3) / 2, i3 + AndroidUtilities.dp(4.0f));
+                int iDp3 = AndroidUtilities.dp(36.0f);
+                UsersAlertBase.this.rect.set((getMeasuredWidth() - iDp3) / 2, i3, (getMeasuredWidth() + iDp3) / 2, i3 + AndroidUtilities.dp(4.0f));
                 Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(UsersAlertBase.this.keyScrollUp));
                 canvas.drawRoundRect(UsersAlertBase.this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
             }
-            if (min2 > 0) {
+            if (iMin2 > 0) {
                 Theme.dialogs_onlineCirclePaint.setColor(UsersAlertBase.this.backgroundColor);
-                canvas.drawRect(((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, (AndroidUtilities.statusBarHeight - min2) - getTranslationY(), getMeasuredWidth() - ((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight - getTranslationY(), Theme.dialogs_onlineCirclePaint);
+                canvas.drawRect(((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, (AndroidUtilities.statusBarHeight - iMin2) - getTranslationY(), getMeasuredWidth() - ((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight - getTranslationY(), Theme.dialogs_onlineCirclePaint);
             }
-            updateLightStatusBar(min2 > AndroidUtilities.statusBarHeight / 2);
+            updateLightStatusBar(iMin2 > AndroidUtilities.statusBarHeight / 2);
             canvas.restore();
         }
 
@@ -667,7 +664,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             canvas.save();
             canvas.clipRect(0, getPaddingTop(), getMeasuredWidth(), getMeasuredHeight());
             super.dispatchDraw(canvas);

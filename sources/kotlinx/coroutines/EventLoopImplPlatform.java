@@ -6,7 +6,7 @@ import kotlinx.coroutines.EventLoopImplBase;
 public abstract class EventLoopImplPlatform extends EventLoop {
     protected abstract Thread getThread();
 
-    public final void unpark() {
+    protected final void unpark() {
         Thread thread = getThread();
         if (Thread.currentThread() != thread) {
             AbstractTimeSourceKt.access$getTimeSource$p();
@@ -14,7 +14,7 @@ public abstract class EventLoopImplPlatform extends EventLoop {
         }
     }
 
-    public void reschedule(long j, EventLoopImplBase.DelayedTask delayedTask) {
+    protected void reschedule(long j, EventLoopImplBase.DelayedTask delayedTask) {
         DefaultExecutor.INSTANCE.schedule(j, delayedTask);
     }
 }

@@ -17,20 +17,20 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (this.backgroundDrawable != null) {
             this.bounds.set(getDrawable().getBounds());
-            int ceil = (int) Math.ceil(getDrawable().getCurrentWidth());
+            int iCeil = (int) Math.ceil(getDrawable().getCurrentWidth());
             if (getDrawable().getGravity() == 3) {
                 android.graphics.Rect rect = this.bounds;
-                rect.right = rect.left + ceil;
+                rect.right = rect.left + iCeil;
             } else if (getDrawable().getGravity() == 5) {
                 android.graphics.Rect rect2 = this.bounds;
-                rect2.left = rect2.right - ceil;
+                rect2.left = rect2.right - iCeil;
             } else if (getDrawable().getGravity() == 17) {
                 android.graphics.Rect rect3 = this.bounds;
                 int i = (rect3.left + rect3.right) / 2;
-                int i2 = ceil / 2;
+                int i2 = iCeil / 2;
                 rect3.left = i - i2;
                 rect3.right = i + i2;
             }
@@ -81,8 +81,8 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
+        boolean zContains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && zContains) {
             this.pressed = true;
             Drawable drawable = this.backgroundDrawable;
             if (drawable != null) {
@@ -91,7 +91,7 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
             }
             invalidate();
         } else if (motionEvent.getAction() == 1) {
-            if (this.pressed && contains) {
+            if (this.pressed && zContains) {
                 callOnClick();
             }
             this.pressed = false;
@@ -106,6 +106,6 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
                 drawable3.setState(StateSet.NOTHING);
             }
         }
-        return contains;
+        return zContains;
     }
 }

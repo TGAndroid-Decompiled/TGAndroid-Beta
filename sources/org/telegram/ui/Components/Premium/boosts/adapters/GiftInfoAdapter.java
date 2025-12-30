@@ -72,9 +72,9 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         return false;
     }
 
-    public abstract void onHiddenLinkClicked();
+    protected abstract void onHiddenLinkClicked();
 
-    public abstract void onObjectClicked(TLObject tLObject);
+    protected abstract void onObjectClicked(TLObject tLObject);
 
     public GiftInfoAdapter(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
@@ -126,7 +126,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 headerCell.setGiftLinkToUserText(tL_payments_checkedGiftCode.to_id, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        GiftInfoAdapter.this.onObjectClicked((TLObject) obj);
+                        this.f$0.onObjectClicked((TLObject) obj);
                     }
                 });
             }
@@ -143,7 +143,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 linkCell.hideSlug(new Runnable() {
                     @Override
                     public final void run() {
-                        GiftInfoAdapter.this.onHiddenLinkClicked();
+                        this.f$0.onHiddenLinkClicked();
                     }
                 });
             }
@@ -152,7 +152,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 linkCell.hideSlug(new Runnable() {
                     @Override
                     public final void run() {
-                        GiftInfoAdapter.this.onHiddenLinkClicked();
+                        this.f$0.onHiddenLinkClicked();
                     }
                 });
                 return;
@@ -163,7 +163,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             ((TableCell) viewHolder.itemView).setData(this.giftCode, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.onObjectClicked((TLObject) obj);
+                    this.f$0.onObjectClicked((TLObject) obj);
                 }
             });
             return;
@@ -177,7 +177,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             actionBtnCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$2(actionBtnCell, view);
+                    this.f$0.lambda$onBindViewHolder$2(actionBtnCell, view);
                 }
             });
             TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
@@ -186,7 +186,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GiftInfoAdapter.this.lambda$onBindViewHolder$3(view);
+                        this.f$0.lambda$onBindViewHolder$3(view);
                     }
                 });
                 return;
@@ -232,12 +232,12 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
+                    this.f$0.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
+                    this.f$0.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
                 }
             });
             return;
@@ -274,9 +274,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                boolean lambda$share$4;
-                lambda$share$4 = GiftInfoAdapter.this.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
-                return lambda$share$4;
+                return this.f$0.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override

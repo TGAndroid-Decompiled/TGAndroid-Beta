@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -94,7 +95,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         VoIPService.StateListener.CC.$default$onVideoAvailableChange(this, z);
     }
 
-    public PrivateVideoPreviewDialog(Context context, boolean z, boolean z2) {
+    public PrivateVideoPreviewDialog(Context context, boolean z, boolean z2) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
         super(context);
         this.currentTexturePage = 1;
         this.visibleCameraPage = 1;
@@ -222,7 +223,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PrivateVideoPreviewDialog.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
@@ -252,8 +253,8 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             }
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    PrivateVideoPreviewDialog.this.lambda$new$1(i2, view);
+                public final void onClick(View view) throws Resources.NotFoundException {
+                    this.f$0.lambda$new$1(i2, view);
                 }
             });
             i2++;
@@ -291,7 +292,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.micIconView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PrivateVideoPreviewDialog.this.lambda$new$2(rLottieDrawable, view);
+                    this.f$0.lambda$new$2(rLottieDrawable, view);
                 }
             });
             addView(this.micIconView, LayoutHelper.createFrame(48, 48.0f, 83, 24.0f, 0.0f, 0.0f, 136.0f));
@@ -309,7 +310,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
     }
 
-    public void lambda$new$1(int i, View view) {
+    public void lambda$new$1(int i, View view) throws Resources.NotFoundException {
         this.viewPager.setCurrentItem(i, true);
     }
 
@@ -405,9 +406,9 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         if (this.currentTexturePage == this.visibleCameraPage || sharedInstance == null) {
             return;
         }
-        boolean isFrontFaceCamera = sharedInstance.isFrontFaceCamera();
+        boolean zIsFrontFaceCamera = sharedInstance.isFrontFaceCamera();
         int i = this.currentTexturePage;
-        if ((i == 1 && !isFrontFaceCamera) || (i == 2 && isFrontFaceCamera)) {
+        if ((i == 1 && !zIsFrontFaceCamera) || (i == 2 && zIsFrontFaceCamera)) {
             saveLastCameraBitmap();
             this.cameraReady = false;
             VoIPService.getSharedInstance().switchCamera();
@@ -421,18 +422,18 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             try {
                 Bitmap bitmap = this.textureView.renderer.getBitmap();
                 if (bitmap != null) {
-                    Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.textureView.renderer.getMatrix(), true);
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.textureView.renderer.getMatrix(), true);
                     bitmap.recycle();
-                    Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 80, (int) (createBitmap.getHeight() / (createBitmap.getWidth() / 80.0f)), true);
-                    if (createScaledBitmap != null) {
-                        if (createScaledBitmap != createBitmap) {
-                            createBitmap.recycle();
+                    Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmapCreateBitmap, 80, (int) (bitmapCreateBitmap.getHeight() / (bitmapCreateBitmap.getWidth() / 80.0f)), true);
+                    if (bitmapCreateScaledBitmap != null) {
+                        if (bitmapCreateScaledBitmap != bitmapCreateBitmap) {
+                            bitmapCreateBitmap.recycle();
                         }
-                        Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
-                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
-                        View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (1 ^ (this.needScreencast ? 1 : 0))));
-                        if (findViewWithTag instanceof ImageView) {
-                            ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
+                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7, 1, bitmapCreateScaledBitmap.getWidth(), bitmapCreateScaledBitmap.getHeight(), bitmapCreateScaledBitmap.getRowBytes());
+                        bitmapCreateScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
+                        View viewFindViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (1 ^ (this.needScreencast ? 1 : 0))));
+                        if (viewFindViewWithTag instanceof ImageView) {
+                            ((ImageView) viewFindViewWithTag).setImageBitmap(bitmapCreateScaledBitmap);
                         }
                     }
                 }
@@ -480,25 +481,25 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         boolean z = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.positiveButton.getLayoutParams();
         if (z) {
-            int dp = AndroidUtilities.dp(80.0f);
-            marginLayoutParams.leftMargin = dp;
-            marginLayoutParams.rightMargin = dp;
+            int iDp = AndroidUtilities.dp(80.0f);
+            marginLayoutParams.leftMargin = iDp;
+            marginLayoutParams.rightMargin = iDp;
         } else {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            marginLayoutParams.leftMargin = dp2;
-            marginLayoutParams.rightMargin = dp2;
+            int iDp2 = AndroidUtilities.dp(16.0f);
+            marginLayoutParams.leftMargin = iDp2;
+            marginLayoutParams.rightMargin = iDp2;
         }
         RLottieImageView rLottieImageView = this.micIconView;
         if (rLottieImageView != null) {
             ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) rLottieImageView.getLayoutParams();
             if (z) {
-                int dp3 = AndroidUtilities.dp(88.0f);
-                marginLayoutParams2.leftMargin = dp3;
-                marginLayoutParams2.rightMargin = dp3;
+                int iDp3 = AndroidUtilities.dp(88.0f);
+                marginLayoutParams2.leftMargin = iDp3;
+                marginLayoutParams2.rightMargin = iDp3;
             } else {
-                int dp4 = AndroidUtilities.dp(24.0f);
-                marginLayoutParams2.leftMargin = dp4;
-                marginLayoutParams2.rightMargin = dp4;
+                int iDp4 = AndroidUtilities.dp(24.0f);
+                marginLayoutParams2.leftMargin = iDp4;
+                marginLayoutParams2.rightMargin = iDp4;
             }
         }
         super.onMeasure(i, i2);
@@ -548,7 +549,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
 
         @Override
         public Object instantiateItem(ViewGroup viewGroup, int i) {
-            Bitmap bitmap;
+            Bitmap bitmapDecodeFile;
             ImageView imageView;
             int i2 = 1;
             if (PrivateVideoPreviewDialog.this.needScreencast && i == 0) {
@@ -579,12 +580,12 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                     }
                     sb.append(i2);
                     sb.append(".jpg");
-                    bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, sb.toString()).getAbsolutePath());
+                    bitmapDecodeFile = BitmapFactory.decodeFile(new File(filesDirFixed, sb.toString()).getAbsolutePath());
                 } catch (Throwable unused) {
-                    bitmap = null;
+                    bitmapDecodeFile = null;
                 }
-                if (bitmap != null) {
-                    imageView3.setImageBitmap(bitmap);
+                if (bitmapDecodeFile != null) {
+                    imageView3.setImageBitmap(bitmapDecodeFile);
                 } else {
                     imageView3.setImageResource(R.drawable.icplaceholder);
                 }

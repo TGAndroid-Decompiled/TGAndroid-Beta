@@ -53,11 +53,11 @@ public abstract class AbstractCoroutine extends JobSupport implements Job, Conti
 
     @Override
     public final void resumeWith(Object obj) {
-        Object makeCompletingOnce$kotlinx_coroutines_core = makeCompletingOnce$kotlinx_coroutines_core(CompletionStateKt.toState$default(obj, null, 1, null));
-        if (makeCompletingOnce$kotlinx_coroutines_core == JobSupportKt.COMPLETING_WAITING_CHILDREN) {
+        Object objMakeCompletingOnce$kotlinx_coroutines_core = makeCompletingOnce$kotlinx_coroutines_core(CompletionStateKt.toState$default(obj, null, 1, null));
+        if (objMakeCompletingOnce$kotlinx_coroutines_core == JobSupportKt.COMPLETING_WAITING_CHILDREN) {
             return;
         }
-        afterResume(makeCompletingOnce$kotlinx_coroutines_core);
+        afterResume(objMakeCompletingOnce$kotlinx_coroutines_core);
     }
 
     protected void afterResume(Object obj) {

@@ -45,9 +45,9 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
 
     @Override
     public void setHintText(final String str) {
-        boolean isEmpty;
-        boolean isEmpty2 = TextUtils.isEmpty(str);
-        final boolean z = !isEmpty2;
+        boolean zIsEmpty;
+        boolean zIsEmpty2 = TextUtils.isEmpty(str);
+        final boolean z = !zIsEmpty2;
         Boolean bool = this.wasHintVisible;
         if (bool == null || bool.booleanValue() != z) {
             this.hintAnimationValues.clear();
@@ -57,23 +57,23 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
             }
             this.hintAnimations.clear();
             this.wasHintVisible = Boolean.valueOf(z);
-            isEmpty = TextUtils.isEmpty(getText());
+            zIsEmpty = TextUtils.isEmpty(getText());
         } else {
-            isEmpty = false;
+            zIsEmpty = false;
         }
-        String str2 = !isEmpty2 ? str : this.wasHint;
+        String str2 = !zIsEmpty2 ? str : this.wasHint;
         if (str2 == null) {
             str2 = "";
         }
         this.wasHint = str;
-        if (!isEmpty2 || !isEmpty) {
+        if (!zIsEmpty2 || !zIsEmpty) {
             super.setHintText(str);
         }
-        if (isEmpty) {
+        if (zIsEmpty) {
             runHintAnimation(str2.length(), z, new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedPhoneNumberEditText.this.lambda$setHintText$0(z, str);
+                    this.f$0.lambda$setHintText$0(z, str);
                 }
             });
         }
@@ -115,7 +115,7 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
             postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    SpringAnimation.this.start();
+                    springAnimation.start();
                 }
             }, i2 * 5);
         }
@@ -136,12 +136,12 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         super.onTextChanged(charSequence, i, i2, i3);
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
         super.onDraw(canvas);
     }
 
@@ -162,23 +162,23 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
         this.progress = 0.0f;
         while (i < str.length()) {
             int i2 = i + 1;
-            String substring = str.substring(i, i2);
-            String substring2 = (this.oldLetters.isEmpty() || i >= this.oldText.length()) ? null : this.oldText.substring(i, i2);
-            if (!z && substring2 != null && substring2.equals(substring)) {
+            String strSubstring = str.substring(i, i2);
+            String strSubstring2 = (this.oldLetters.isEmpty() || i >= this.oldText.length()) ? null : this.oldText.substring(i, i2);
+            if (!z && strSubstring2 != null && strSubstring2.equals(strSubstring)) {
                 this.letters.add((StaticLayout) this.oldLetters.get(i));
                 this.oldLetters.set(i, null);
             } else {
-                if (z && substring2 == null) {
+                if (z && strSubstring2 == null) {
                     this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
-                this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r9.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                this.letters.add(new StaticLayout(strSubstring, this.textPaint, (int) Math.ceil(r9.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             i = i2;
         }
         if (!this.oldLetters.isEmpty()) {
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
-            this.animator = ofFloat;
-            ofFloat.setDuration(150L);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
+            this.animator = objectAnimatorOfFloat;
+            objectAnimatorOfFloat.setDuration(150L);
             this.animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -211,7 +211,7 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
         return this.progress;
     }
 
-    public final class HintFadeProperty extends FloatPropertyCompat {
+    private final class HintFadeProperty extends FloatPropertyCompat {
         public HintFadeProperty() {
             super("hint_fade");
         }

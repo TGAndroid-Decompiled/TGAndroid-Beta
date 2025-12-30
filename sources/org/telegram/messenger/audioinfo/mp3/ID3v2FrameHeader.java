@@ -1,5 +1,7 @@
 package org.telegram.messenger.audioinfo.mp3;
 
+import java.io.IOException;
+
 public class ID3v2FrameHeader {
     private int bodySize;
     private boolean compression;
@@ -9,7 +11,7 @@ public class ID3v2FrameHeader {
     private int headerSize;
     private boolean unsynchronization;
 
-    public ID3v2FrameHeader(ID3v2TagBody iD3v2TagBody) {
+    public ID3v2FrameHeader(ID3v2TagBody iD3v2TagBody) throws IOException {
         byte b;
         byte b2;
         long position = iD3v2TagBody.getPosition();
@@ -30,8 +32,8 @@ public class ID3v2FrameHeader {
         }
         if (iD3v2TagBody.getTagHeader().getVersion() > 2) {
             data.readByte();
-            byte readByte = data.readByte();
-            byte b5 = 64;
+            byte b5 = data.readByte();
+            byte b6 = 64;
             if (iD3v2TagBody.getTagHeader().getVersion() == 3) {
                 b4 = 128;
                 b3 = 0;
@@ -39,12 +41,12 @@ public class ID3v2FrameHeader {
                 b2 = 0;
             } else {
                 b = 64;
-                b5 = 4;
+                b6 = 4;
                 b2 = 1;
             }
-            this.compression = (b4 & readByte) != 0;
-            this.unsynchronization = (readByte & b3) != 0;
-            this.encryption = (readByte & b5) != 0;
+            this.compression = (b4 & b5) != 0;
+            this.unsynchronization = (b5 & b3) != 0;
+            this.encryption = (b5 & b6) != 0;
             if (iD3v2TagBody.getTagHeader().getVersion() == 3) {
                 if (this.compression) {
                     this.dataLengthIndicator = data.readInt();
@@ -54,12 +56,12 @@ public class ID3v2FrameHeader {
                     data.readByte();
                     this.bodySize--;
                 }
-                if ((readByte & b) != 0) {
+                if ((b5 & b) != 0) {
                     data.readByte();
                     this.bodySize--;
                 }
             } else {
-                if ((readByte & b) != 0) {
+                if ((b5 & b) != 0) {
                     data.readByte();
                     this.bodySize--;
                 }
@@ -67,7 +69,7 @@ public class ID3v2FrameHeader {
                     data.readByte();
                     this.bodySize--;
                 }
-                if ((readByte & b2) != 0) {
+                if ((b5 & b2) != 0) {
                     this.dataLengthIndicator = data.readSyncsafeInt();
                     this.bodySize -= 4;
                 }

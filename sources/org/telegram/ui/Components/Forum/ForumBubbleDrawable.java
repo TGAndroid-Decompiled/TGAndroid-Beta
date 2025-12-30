@@ -56,9 +56,9 @@ public class ForumBubbleDrawable extends Drawable {
         if (mainDrawable == null) {
             mainDrawable = SvgHelper.getDrawable(R.raw.topic_bubble, -1);
         }
-        SvgHelper.SvgDrawable clone = mainDrawable.clone();
-        this.svgDrawable = clone;
-        clone.copyCommandFromPosition(0);
+        SvgHelper.SvgDrawable svgDrawableClone = mainDrawable.clone();
+        this.svgDrawable = svgDrawableClone;
+        svgDrawableClone.copyCommandFromPosition(0);
         Paint paint = new Paint(1);
         this.topPaint = paint;
         Paint paint2 = new Paint(1);
@@ -113,28 +113,28 @@ public class ForumBubbleDrawable extends Drawable {
             this.currentColors = new int[]{ColorUtils.blendARGB(this.currentColors[0], -1, 0.2f), ColorUtils.blendARGB(this.currentColors[1], -1, 0.2f)};
         }
         invalidateSelf();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ForumBubbleDrawable.this.lambda$moveNexColor$0(iArr2, valueAnimator);
+                this.f$0.lambda$moveNexColor$0(iArr2, valueAnimator);
             }
         });
-        ofFloat.setDuration(200L);
-        ofFloat.start();
+        valueAnimatorOfFloat.setDuration(200L);
+        valueAnimatorOfFloat.start();
         return iArr[this.colorIndex];
     }
 
     public void lambda$moveNexColor$0(int[] iArr, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         Paint paint = new Paint(1);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue)}, (float[]) null, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], this.currentColors[0], fFloatValue), ColorUtils.blendARGB(iArr[1], this.currentColors[1], fFloatValue)}, (float[]) null, Shader.TileMode.CLAMP);
         this.gradient = linearGradient;
         linearGradient.setLocalMatrix(this.gradientMatrix);
         paint.setShader(this.gradient);
         this.svgDrawable.setPaint(paint, 0);
-        this.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue), -1, 0.1f));
-        this.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), -16777216, 0.1f));
+        this.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], this.currentColors[1], fFloatValue), -1, 0.1f));
+        this.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], this.currentColors[0], fFloatValue), -16777216, 0.1f));
         invalidateSelf();
     }
 
@@ -157,7 +157,7 @@ public class ForumBubbleDrawable extends Drawable {
             return;
         }
         this.color = i;
-        int colorDistance = colorDistance(serverSupportedColor[0], i);
+        int iColorDistance = colorDistance(serverSupportedColor[0], i);
         this.colorIndex = 0;
         int i3 = 0;
         while (true) {
@@ -165,10 +165,10 @@ public class ForumBubbleDrawable extends Drawable {
             if (i3 >= iArr.length) {
                 break;
             }
-            int colorDistance2 = colorDistance(iArr[i3], i);
-            if (colorDistance2 < colorDistance) {
+            int iColorDistance2 = colorDistance(iArr[i3], i);
+            if (iColorDistance2 < iColorDistance) {
                 this.colorIndex = i3;
-                colorDistance = colorDistance2;
+                iColorDistance = iColorDistance2;
             }
             i3++;
         }

@@ -29,8 +29,8 @@ class VLog {
             stringWriter.append((CharSequence) ": ");
         }
         th.printStackTrace(new PrintWriter(stringWriter));
-        String[] split = stringWriter.toString().split("\n");
-        for (String str2 : split) {
+        String[] strArrSplit = stringWriter.toString().split("\n");
+        for (String str2 : strArrSplit) {
             e(str2);
         }
     }

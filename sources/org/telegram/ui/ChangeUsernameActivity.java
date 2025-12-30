@@ -65,7 +65,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.ChangeUsernameActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -222,21 +221,21 @@ public class ChangeUsernameActivity extends BaseFragment {
             private Paint backgroundPaint = new Paint(1);
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 int childAdapterPosition;
                 int size = ChangeUsernameActivity.this.usernames.size() + 3;
-                int i4 = Integer.MAX_VALUE;
-                int i5 = Integer.MIN_VALUE;
-                for (int i6 = 0; i6 < getChildCount(); i6++) {
-                    View childAt = getChildAt(i6);
+                int iMin = Integer.MAX_VALUE;
+                int iMax = Integer.MIN_VALUE;
+                for (int i4 = 0; i4 < getChildCount(); i4++) {
+                    View childAt = getChildAt(i4);
                     if (childAt != null && (childAdapterPosition = getChildAdapterPosition(childAt)) >= 4 && childAdapterPosition <= size) {
-                        i4 = Math.min(childAt.getTop(), i4);
-                        i5 = Math.max(childAt.getBottom(), i5);
+                        iMin = Math.min(childAt.getTop(), iMin);
+                        iMax = Math.max(childAt.getBottom(), iMax);
                     }
                 }
-                if (i4 < i5) {
+                if (iMin < iMax) {
                     this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-                    canvas.drawRect(0.0f, i4, getWidth(), i5, this.backgroundPaint);
+                    canvas.drawRect(0.0f, iMin, getWidth(), iMax, this.backgroundPaint);
                 }
                 super.dispatchDraw(canvas);
             }
@@ -258,22 +257,20 @@ public class ChangeUsernameActivity extends BaseFragment {
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = ChangeUsernameActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return ChangeUsernameActivity.lambda$createView$0(view, motionEvent);
             }
         });
         this.listView.setOnItemClickListener(new AnonymousClass3());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChangeUsernameActivity.this.lambda$createView$1();
+                this.f$0.lambda$createView$1();
             }
         }, 40L);
         return this.fragmentView;
     }
 
-    public class AnonymousClass3 implements RecyclerListView.OnItemClickListener {
+    class AnonymousClass3 implements RecyclerListView.OnItemClickListener {
         AnonymousClass3() {
         }
 
@@ -293,7 +290,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                     new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLink : R.string.UsernameActivateLink)).setMessage(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLinkProfileMessage : R.string.UsernameActivateLinkProfileMessage)).setPositiveButton(LocaleController.getString(tL_username.active ? R.string.Hide : R.string.Show), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
-                            ChangeUsernameActivity.AnonymousClass3.this.lambda$onItemClick$3(tL_username, i, view, alertDialog, i2);
+                            this.f$0.lambda$onItemClick$3(tL_username, i, view, alertDialog, i2);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                         @Override
@@ -329,7 +326,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             ChangeUsernameActivity.this.getConnectionsManager().sendRequest(toggleusername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChangeUsernameActivity.AnonymousClass3.this.lambda$onItemClick$2(str, i, z2, tL_username, z, tLObject, tL_error);
+                    this.f$0.lambda$onItemClick$2(str, i, z2, tL_username, z, tLObject, tL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tL_username.username);
@@ -340,7 +337,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.AnonymousClass3.this.lambda$onItemClick$1(str, tLObject, i, z, tL_error, tL_username, z2);
+                    this.f$0.lambda$onItemClick$1(str, tLObject, i, z, tL_error, tL_username, z2);
                 }
             });
         }
@@ -356,7 +353,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString(R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        ChangeUsernameActivity.AnonymousClass3.this.lambda$onItemClick$0(tL_username, z2, alertDialog, i2);
+                        this.f$0.lambda$onItemClick$0(tL_username, z2, alertDialog, i2);
                     }
                 }).show();
             } else {
@@ -418,8 +415,68 @@ public class ChangeUsernameActivity extends BaseFragment {
         toggleUsername(i, z, false);
     }
 
-    public void toggleUsername(int r6, boolean r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChangeUsernameActivity.toggleUsername(int, boolean, boolean):void");
+    public void toggleUsername(int i, boolean z, boolean z2) {
+        TLRPC.TL_username tL_username;
+        int iMin;
+        int i2 = i - 4;
+        if (i2 < 0 || i2 >= this.usernames.size() || (tL_username = (TLRPC.TL_username) this.usernames.get(i2)) == null) {
+            return;
+        }
+        tL_username.active = z;
+        int i3 = -1;
+        int i4 = 0;
+        if (z) {
+            int i5 = 0;
+            while (true) {
+                if (i5 >= this.usernames.size()) {
+                    i5 = -1;
+                    break;
+                } else if (!((TLRPC.TL_username) this.usernames.get(i5)).active) {
+                    break;
+                } else {
+                    i5++;
+                }
+            }
+            if (i5 >= 0) {
+                iMin = Math.max(0, i5 - 1);
+                i3 = iMin + 4;
+            }
+        } else {
+            int i6 = -1;
+            for (int i7 = 0; i7 < this.usernames.size(); i7++) {
+                if (((TLRPC.TL_username) this.usernames.get(i7)).active) {
+                    i6 = i7;
+                }
+            }
+            if (i6 >= 0) {
+                iMin = Math.min(this.usernames.size() - 1, i6 + 1);
+                i3 = iMin + 4;
+            }
+        }
+        if (this.listView != null) {
+            while (true) {
+                if (i4 >= this.listView.getChildCount()) {
+                    break;
+                }
+                View childAt = this.listView.getChildAt(i4);
+                if (this.listView.getChildAdapterPosition(childAt) == i) {
+                    if (z2) {
+                        AndroidUtilities.shakeView(childAt);
+                    }
+                    if (childAt instanceof UsernameCell) {
+                        UsernameCell usernameCell = (UsernameCell) childAt;
+                        usernameCell.setLoading(this.loadingUsernames.contains(tL_username.username));
+                        usernameCell.update();
+                    }
+                } else {
+                    i4++;
+                }
+            }
+        }
+        if (i3 < 0 || i == i3) {
+            return;
+        }
+        this.adapter.moveElement(i, i3);
     }
 
     public void focusUsernameField(boolean z) {
@@ -436,7 +493,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
         }
 
@@ -449,14 +506,14 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
             if (i == 1) {
                 ChangeUsernameActivity changeUsernameActivity = ChangeUsernameActivity.this;
-                return new RecyclerListView.Holder(new UsernameHelpCell(changeUsernameActivity.getContext()));
+                return new RecyclerListView.Holder(changeUsernameActivity.new UsernameHelpCell(changeUsernameActivity.getContext()));
             }
             if (i == 2) {
                 return new RecyclerListView.Holder(new TextInfoPrivacyCell(ChangeUsernameActivity.this.getContext()));
             }
             if (i == 3) {
                 ChangeUsernameActivity changeUsernameActivity2 = ChangeUsernameActivity.this;
-                return new RecyclerListView.Holder(new InputCell(changeUsernameActivity2.getContext()));
+                return new RecyclerListView.Holder(changeUsernameActivity2.new InputCell(changeUsernameActivity2.getContext()));
             }
             if (i != 4) {
                 return null;
@@ -617,7 +674,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         MessagesController.getInstance(this.currentAccount).putUser(user, false, true);
     }
 
-    public class UsernameHelpCell extends FrameLayout {
+    class UsernameHelpCell extends FrameLayout {
         private Integer height;
         private ValueAnimator heightUpdateAnimator;
         private LinkSpanDrawable.LinksTextView text1View;
@@ -648,10 +705,10 @@ public class ChangeUsernameActivity extends BaseFragment {
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
                         charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                        int indexOf = charSequence.toString().indexOf(10);
-                        if (indexOf >= 0) {
-                            charSequence.replace(indexOf, indexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
+                        int iIndexOf = charSequence.toString().indexOf(10);
+                        if (iIndexOf >= 0) {
+                            charSequence.replace(iIndexOf, iIndexOf + 1, " ");
+                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, iIndexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
                         for (int i4 = 0; i4 < typefaceSpanArr.length; i4++) {
@@ -685,12 +742,12 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (ChangeUsernameActivity.this.botId != 0) {
                 String string = LocaleController.getString(R.string.BotUsernameHelp);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-                int indexOf = string.indexOf(42);
-                int lastIndexOf = string.lastIndexOf(42);
-                if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                    spannableStringBuilder.setSpan(new URLSpanNoUnderline("https://fragment.com"), indexOf, lastIndexOf - 1, 33);
+                int iIndexOf = string.indexOf(42);
+                int iLastIndexOf = string.lastIndexOf(42);
+                if (iIndexOf != -1 && iLastIndexOf != -1 && iIndexOf != iLastIndexOf) {
+                    spannableStringBuilder.replace(iLastIndexOf, iLastIndexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(iIndexOf, iIndexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.setSpan(new URLSpanNoUnderline("https://fragment.com"), iIndexOf, iLastIndexOf - 1, 33);
                 }
                 this.text1View.setText(spannableStringBuilder);
                 return;
@@ -717,15 +774,15 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
             Integer num = this.height;
             final int measuredHeight = num == null ? getMeasuredHeight() : num.intValue();
-            final int dp = AndroidUtilities.dp(27.0f) + this.text1View.getHeight() + ((this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0 : this.text2View.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
+            final int iDp = AndroidUtilities.dp(27.0f) + this.text1View.getHeight() + ((this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0 : this.text2View.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
             final float translationY = this.text1View.getTranslationY();
             final float measuredHeight2 = (this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0.0f : this.text2View.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.heightUpdateAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.heightUpdateAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChangeUsernameActivity.UsernameHelpCell.this.lambda$update$0(translationY, measuredHeight2, measuredHeight, dp, valueAnimator2);
+                    this.f$0.lambda$update$0(translationY, measuredHeight2, measuredHeight, iDp, valueAnimator2);
                 }
             });
             this.heightUpdateAnimator.setDuration(200L);
@@ -734,14 +791,14 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void lambda$update$0(float f, float f2, int i, int i2, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.text1View.setTranslationY(AndroidUtilities.lerp(f, f2, floatValue));
-            this.height = Integer.valueOf(AndroidUtilities.lerp(i, i2, floatValue));
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.text1View.setTranslationY(AndroidUtilities.lerp(f, f2, fFloatValue));
+            this.height = Integer.valueOf(AndroidUtilities.lerp(i, i2, fFloatValue));
             requestLayout();
         }
     }
 
-    public class InputCell extends FrameLayout {
+    class InputCell extends FrameLayout {
         public EditTextBoldCursor field;
         public TextView tme;
 
@@ -771,9 +828,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.field.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                    boolean lambda$new$0;
-                    lambda$new$0 = ChangeUsernameActivity.InputCell.this.lambda$new$0(textView, i2, keyEvent);
-                    return lambda$new$0;
+                    return this.f$0.lambda$new$0(textView, i2, keyEvent);
                 }
             });
             this.field.setText(ChangeUsernameActivity.this.username);
@@ -805,11 +860,11 @@ public class ChangeUsernameActivity extends BaseFragment {
                     }
                     if (ChangeUsernameActivity.this.username.length() > 0) {
                         String str = "https://" + MessagesController.getInstance(((BaseFragment) ChangeUsernameActivity.this).currentAccount).linkPrefix + "/" + ChangeUsernameActivity.this.username;
-                        String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, str);
-                        int indexOf = formatString.indexOf(str);
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-                        if (indexOf >= 0) {
-                            spannableStringBuilder.setSpan(new LinkSpan(str), indexOf, str.length() + indexOf, 33);
+                        String string = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, str);
+                        int iIndexOf = string.indexOf(str);
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+                        if (iIndexOf >= 0) {
+                            spannableStringBuilder.setSpan(ChangeUsernameActivity.this.new LinkSpan(str), iIndexOf, str.length() + iIndexOf, 33);
                         }
                     }
                 }
@@ -929,12 +984,12 @@ public class ChangeUsernameActivity extends BaseFragment {
                     valueAnimator.cancel();
                 }
                 this.loadingView.setVisibility(0);
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.loadingFloat, z ? 1.0f : 0.0f);
-                this.loadingAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadingFloat, z ? 1.0f : 0.0f);
+                this.loadingAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChangeUsernameActivity.UsernameCell.this.lambda$setLoading$0(valueAnimator2);
+                        this.f$0.lambda$setLoading$0(valueAnimator2);
                     }
                 });
                 this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -950,9 +1005,9 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void lambda$setLoading$0(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.loadingFloat = floatValue;
-            this.activeView.setTranslationX(floatValue * AndroidUtilities.dp(16.0f));
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.loadingFloat = fFloatValue;
+            this.activeView.setTranslationX(fFloatValue * AndroidUtilities.dp(16.0f));
             this.loadingView.setAlpha(this.loadingFloat);
         }
 
@@ -1003,12 +1058,12 @@ public class ChangeUsernameActivity extends BaseFragment {
                 this.activeViewTextColorAnimator = null;
             }
             if (z2) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.activeViewTextColorT, z ? 1.0f : 0.0f);
-                this.activeViewTextColorAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.activeViewTextColorT, z ? 1.0f : 0.0f);
+                this.activeViewTextColorAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChangeUsernameActivity.UsernameCell.this.lambda$animateValueTextColor$1(valueAnimator2);
+                        this.f$0.lambda$animateValueTextColor$1(valueAnimator2);
                     }
                 });
                 this.activeViewTextColorAnimator.setDuration(120L);
@@ -1017,16 +1072,16 @@ public class ChangeUsernameActivity extends BaseFragment {
                 return;
             }
             this.activeViewTextColorT = z ? 1.0f : 0.0f;
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
-            this.loadingDrawable.setColor(blendARGB);
-            this.activeView.setTextColor(blendARGB);
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
+            this.loadingDrawable.setColor(iBlendARGB);
+            this.activeView.setTextColor(iBlendARGB);
         }
 
         public void lambda$animateValueTextColor$1(ValueAnimator valueAnimator) {
             this.activeViewTextColorT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
-            this.loadingDrawable.setColor(blendARGB);
-            this.activeView.setTextColor(blendARGB);
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
+            this.loadingDrawable.setColor(iBlendARGB);
+            this.activeView.setTextColor(iBlendARGB);
         }
 
         public void update() {
@@ -1184,8 +1239,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 return false;
             }
             for (int i2 = 0; i2 < str.length(); i2++) {
-                char charAt = str.charAt(i2);
-                if (i2 == 0 && charAt >= '0' && charAt <= '9') {
+                char cCharAt = str.charAt(i2);
+                if (i2 == 0 && cCharAt >= '0' && cCharAt <= '9') {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.UsernameInvalidStartNumber));
                     } else {
@@ -1204,7 +1259,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                     }
                     return false;
                 }
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
+                if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.UsernameInvalid));
                     } else {
@@ -1299,7 +1354,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.this.lambda$checkUserName$5(str);
+                    this.f$0.lambda$checkUserName$5(str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -1314,7 +1369,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(checkusername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChangeUsernameActivity.this.lambda$checkUserName$4(str, checkusername, tLObject, tL_error);
+                this.f$0.lambda$checkUserName$4(str, checkusername, tLObject, tL_error);
             }
         }, 2);
     }
@@ -1323,7 +1378,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChangeUsernameActivity.this.lambda$checkUserName$3(str, tL_error, tLObject, checkusername);
+                this.f$0.lambda$checkUserName$3(str, tL_error, tLObject, checkusername);
             }
         });
     }
@@ -1410,17 +1465,17 @@ public class ChangeUsernameActivity extends BaseFragment {
         final TL_account.updateUsername updateusername = new TL_account.updateUsername();
         updateusername.username = this.username;
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-        final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateusername, new RequestDelegate() {
+        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateusername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChangeUsernameActivity.this.lambda$saveName$10(alertDialog, updateusername, tLObject, tL_error);
+                this.f$0.lambda$saveName$10(alertDialog, updateusername, tLObject, tL_error);
             }
         }, 2);
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, this.classGuid);
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                ChangeUsernameActivity.this.lambda$saveName$11(sendRequest, dialogInterface);
+                this.f$0.lambda$saveName$11(iSendRequest, dialogInterface);
             }
         });
         alertDialog.show();
@@ -1432,28 +1487,28 @@ public class ChangeUsernameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.this.lambda$saveName$6(alertDialog, user);
+                    this.f$0.lambda$saveName$6(alertDialog, user);
                 }
             });
         } else if ("USERNAME_NOT_MODIFIED".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.this.lambda$saveName$7(alertDialog);
+                    this.f$0.lambda$saveName$7(alertDialog);
                 }
             });
         } else if ("USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text) || "USERNAME_INVALID".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.this.lambda$saveName$8(alertDialog);
+                    this.f$0.lambda$saveName$8(alertDialog);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.this.lambda$saveName$9(alertDialog, tL_error, updateusername);
+                    this.f$0.lambda$saveName$9(alertDialog, tL_error, updateusername);
                 }
             });
         }

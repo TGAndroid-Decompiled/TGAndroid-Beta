@@ -13,7 +13,7 @@ public class SmoothScroller extends LinearSmoothScroller {
     private Interpolator interpolator;
     private int offset;
 
-    public void onEnd() {
+    protected void onEnd() {
     }
 
     public SmoothScroller(Context context) {
@@ -32,33 +32,33 @@ public class SmoothScroller extends LinearSmoothScroller {
 
     @Override
     protected void updateActionForInterimTarget(RecyclerView.SmoothScroller.Action action) {
-        PointF computeScrollVectorForPosition = computeScrollVectorForPosition(getTargetPosition());
-        if (computeScrollVectorForPosition == null || (computeScrollVectorForPosition.x == 0.0f && computeScrollVectorForPosition.y == 0.0f)) {
+        PointF pointFComputeScrollVectorForPosition = computeScrollVectorForPosition(getTargetPosition());
+        if (pointFComputeScrollVectorForPosition == null || (pointFComputeScrollVectorForPosition.x == 0.0f && pointFComputeScrollVectorForPosition.y == 0.0f)) {
             action.jumpTo(getTargetPosition());
             stop();
             return;
         }
-        normalize(computeScrollVectorForPosition);
-        this.mTargetVector = computeScrollVectorForPosition;
-        this.mInterimTargetDx = (int) (computeScrollVectorForPosition.x * 10000.0f);
-        this.mInterimTargetDy = (int) (computeScrollVectorForPosition.y * 10000.0f);
+        normalize(pointFComputeScrollVectorForPosition);
+        this.mTargetVector = pointFComputeScrollVectorForPosition;
+        this.mInterimTargetDx = (int) (pointFComputeScrollVectorForPosition.x * 10000.0f);
+        this.mInterimTargetDy = (int) (pointFComputeScrollVectorForPosition.y * 10000.0f);
         action.update((int) (this.mInterimTargetDx * 1.2f), (int) (this.mInterimTargetDy * 1.2f), (int) (calculateTimeForScrolling(10000) * 1.2f), this.interpolator);
     }
 
     @Override
     protected void onTargetFound(View view, RecyclerView.State state, RecyclerView.SmoothScroller.Action action) {
-        int calculateDxToMakeVisible = calculateDxToMakeVisible(view, getHorizontalSnapPreference());
-        int calculateDyToMakeVisible = calculateDyToMakeVisible(view, getVerticalSnapPreference());
-        int calculateTimeForDeceleration = calculateTimeForDeceleration((int) Math.sqrt((calculateDxToMakeVisible * calculateDxToMakeVisible) + (calculateDyToMakeVisible * calculateDyToMakeVisible)));
-        if (calculateTimeForDeceleration > 0) {
-            action.update(-calculateDxToMakeVisible, -calculateDyToMakeVisible, calculateTimeForDeceleration, this.interpolator);
+        int iCalculateDxToMakeVisible = calculateDxToMakeVisible(view, getHorizontalSnapPreference());
+        int iCalculateDyToMakeVisible = calculateDyToMakeVisible(view, getVerticalSnapPreference());
+        int iCalculateTimeForDeceleration = calculateTimeForDeceleration((int) Math.sqrt((iCalculateDxToMakeVisible * iCalculateDxToMakeVisible) + (iCalculateDyToMakeVisible * iCalculateDyToMakeVisible)));
+        if (iCalculateTimeForDeceleration > 0) {
+            action.update(-iCalculateDxToMakeVisible, -iCalculateDyToMakeVisible, iCalculateTimeForDeceleration, this.interpolator);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SmoothScroller.this.onEnd();
+                this.f$0.onEnd();
             }
-        }, Math.max(0, calculateTimeForDeceleration));
+        }, Math.max(0, iCalculateTimeForDeceleration));
     }
 
     @Override
@@ -67,12 +67,12 @@ public class SmoothScroller extends LinearSmoothScroller {
     }
 
     @Override
-    public int calculateTimeForDeceleration(int i) {
+    protected int calculateTimeForDeceleration(int i) {
         return Math.round(Math.min(super.calculateTimeForDeceleration(i), 500) * this.durationScale);
     }
 
     @Override
-    public int calculateTimeForScrolling(int i) {
+    protected int calculateTimeForScrolling(int i) {
         return Math.round(Math.min(super.calculateTimeForScrolling(i), 150) * this.durationScale);
     }
 }

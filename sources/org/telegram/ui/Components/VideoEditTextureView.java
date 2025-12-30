@@ -84,7 +84,7 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
         FilterGLThread filterGLThread = new FilterGLThread(surfaceTexture, new FilterGLThread.FilterGLThreadVideoDelegate() {
             @Override
             public final void onVideoSurfaceCreated(SurfaceTexture surfaceTexture2) {
-                VideoEditTextureView.this.lambda$onSurfaceTextureAvailable$0(surfaceTexture2);
+                this.f$0.lambda$onSurfaceTextureAvailable$0(surfaceTexture2);
             }
         }, this.hdrInfo, this.uiBlurManager, i, i2);
         this.eglThread = filterGLThread;
@@ -117,7 +117,7 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
             this.eglThread.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoEditTextureView.this.lambda$onSurfaceTextureSizeChanged$1();
+                    this.f$0.lambda$onSurfaceTextureSizeChanged$1();
                 }
             });
         }

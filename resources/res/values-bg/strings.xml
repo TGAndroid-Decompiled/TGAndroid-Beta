@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Споделяне със:</string>
     <string name="abc_shareactionprovider_share_with_application">Споделяне със: %s</string>
     <string name="abc_toolbar_collapse_description">Свиване</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Парола</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Код за достъп</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Парола</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Код за достъп</string>
     <string name="call_notification_answer_action">Отговор</string>
     <string name="call_notification_answer_video_action">Видеообаждане</string>
     <string name="call_notification_decline_action">Отхвърляне</string>

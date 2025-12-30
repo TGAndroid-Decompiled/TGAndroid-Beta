@@ -171,17 +171,17 @@ public class SendLocationCell extends FrameLayout {
             return;
         }
         LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-        float f2 = this.progress.get();
+        float fAbs = this.progress.get();
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
         if (sharingLocationInfo != null && (i = sharingLocationInfo.stopTime) >= currentTime && sharingLocationInfo.period != Integer.MAX_VALUE) {
-            f2 = Math.abs(i - currentTime) / sharingLocationInfo.period;
+            fAbs = Math.abs(i - currentTime) / sharingLocationInfo.period;
             f = this.progressAlpha.set(true);
         } else {
             f = this.progressAlpha.set(false);
         }
-        float f3 = f2;
-        float f4 = f;
-        if (f4 <= 0.0f) {
+        float f2 = fAbs;
+        float f3 = f;
+        if (f3 <= 0.0f) {
             return;
         }
         if (LocaleController.isRTL) {
@@ -190,17 +190,17 @@ public class SendLocationCell extends FrameLayout {
             this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
         }
         canvas.save();
-        float f5 = 1.0f;
-        float lerp = AndroidUtilities.lerp(0.6f, 1.0f, f4);
-        canvas.scale(lerp, lerp, this.rect.centerX(), this.rect.centerY());
+        float f4 = 1.0f;
+        float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, f3);
+        canvas.scale(fLerp, fLerp, this.rect.centerX(), this.rect.centerY());
         int themedColor = getThemedColor(Theme.key_location_liveLocationProgress);
         Theme.chat_radialProgress2Paint.setColor(themedColor);
         int alpha = Theme.chat_radialProgress2Paint.getAlpha();
-        float f6 = alpha;
-        Theme.chat_radialProgress2Paint.setAlpha((int) (0.2f * f6 * f4));
+        float f5 = alpha;
+        Theme.chat_radialProgress2Paint.setAlpha((int) (0.2f * f5 * f3));
         canvas.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
-        Theme.chat_radialProgress2Paint.setAlpha((int) (f6 * f4));
-        canvas.drawArc(this.rect, -90.0f, this.progress.set(f3) * (-360.0f), false, Theme.chat_radialProgress2Paint);
+        Theme.chat_radialProgress2Paint.setAlpha((int) (f5 * f3));
+        canvas.drawArc(this.rect, -90.0f, this.progress.set(f2) * (-360.0f), false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha(alpha);
         if (sharingLocationInfo != null) {
             this.textDrawable.setText(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)));
@@ -208,20 +208,20 @@ public class SendLocationCell extends FrameLayout {
         int length = this.textDrawable.getText().length();
         AnimatedFloat animatedFloat = this.progressScale;
         if (length > 4) {
-            f5 = 0.75f;
+            f4 = 0.75f;
         } else if (length > 3) {
-            f5 = 0.85f;
+            f4 = 0.85f;
         }
-        float f7 = animatedFloat.set(f5);
-        canvas.scale(f7, f7, this.rect.centerX(), this.rect.centerY());
+        float f6 = animatedFloat.set(f4);
+        canvas.scale(f6, f6, this.rect.centerX(), this.rect.centerY());
         this.textDrawable.setTextColor(themedColor);
-        this.textDrawable.setAlpha((int) (f4 * 255.0f));
+        this.textDrawable.setAlpha((int) (f3 * 255.0f));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
         RectF rectF = this.rect;
         int i2 = (int) rectF.left;
-        int centerY = (int) (rectF.centerY() - AndroidUtilities.dp(13.0f));
+        int iCenterY = (int) (rectF.centerY() - AndroidUtilities.dp(13.0f));
         RectF rectF2 = this.rect;
-        animatedTextDrawable.setBounds(i2, centerY, (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
+        animatedTextDrawable.setBounds(i2, iCenterY, (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
         this.textDrawable.draw(canvas);
         canvas.restore();
     }

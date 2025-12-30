@@ -34,9 +34,9 @@ public class Shape {
             rectF.union(this.radiusX, this.radiusY);
             rectF.union(this.middleX, this.middleY);
         } else {
-            float max = Math.max(Math.abs(this.radiusX), Math.abs(this.radiusY));
+            float fMax = Math.max(Math.abs(this.radiusX), Math.abs(this.radiusY));
             float f4 = this.centerX;
-            float f5 = max * 1.42f;
+            float f5 = fMax * 1.42f;
             float f6 = this.centerY;
             rectF.set(f4 - f5, f6 - f5, f4 + f5, f6 + f5);
             if (getType() == 3) {

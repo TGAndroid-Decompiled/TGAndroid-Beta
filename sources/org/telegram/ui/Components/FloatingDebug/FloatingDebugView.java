@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -83,12 +84,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public FloatingDebugView(final Context context) {
+    public FloatingDebugView(final Context context) throws Resources.NotFoundException {
         super(context);
         this.onLongPress = new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.debugItems = new ArrayList();
@@ -188,7 +189,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 FloatingDebugView floatingDebugView;
                 DisplayMetrics displayMetrics;
                 float f;
-                boolean onTouchEvent = gestureDetectorCompat.onTouchEvent(motionEvent);
+                boolean zOnTouchEvent = gestureDetectorCompat.onTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0) {
                     AndroidUtilities.runOnUIThread(FloatingDebugView.this.onLongPress, 200L);
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -214,7 +215,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                     FloatingDebugView.this.isScrollDisallowed = false;
                     FloatingDebugView.this.isFromFling = false;
                 }
-                return onTouchEvent;
+                return zOnTouchEvent;
             }
         };
         ImageView imageView = new ImageView(context);
@@ -252,7 +253,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 } else if (i2 != 3) {
                     headerCell = new AlertDialog.AlertDialogCell(context, null);
                 } else {
-                    headerCell = new SeekBarCell(context);
+                    headerCell = FloatingDebugView.this.new SeekBarCell(context);
                 }
                 headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(headerCell);
@@ -297,7 +298,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                FloatingDebugView.this.lambda$new$1(view, i);
+                this.f$0.lambda$new$1(view, i);
             }
         });
         this.bigLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
@@ -359,12 +360,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.mPrefs.edit().putFloat("x", this.fabXSpring.getSpring().getFinalPosition()).putFloat("y", this.fabYSpring.getSpring().getFinalPosition()).commit();
     }
 
-    private void updateDrawables() {
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
-        Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
+    private void updateDrawables() throws Resources.NotFoundException {
+        Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
+        Drawable drawableMutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(drawableMutate, drawableCreateSimpleSelectorCircleDrawable, 0, 0);
         combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
@@ -380,7 +381,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         if (i == NotificationCenter.didSetNewTheme) {
             updateDrawables();
             this.listView.getAdapter().notifyDataSetChanged();
@@ -444,12 +445,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         ((SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z ? 0.0f : 1000.0f)).setSpring(new SpringForce(1000.0f).setStiffness(900.0f).setDampingRatio(1.0f).setFinalPosition(z ? 1000.0f : 0.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                FloatingDebugView.this.lambda$showBigMenu$2(translationX, translationY, window, dynamicAnimation, f, f2);
+                this.f$0.lambda$showBigMenu$2(translationX, translationY, window, dynamicAnimation, f, f2);
             }
         })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                FloatingDebugView.this.lambda$showBigMenu$3(translationX, translationY, z, dynamicAnimation, z2, f, f2);
+                this.f$0.lambda$showBigMenu$3(translationX, translationY, z, dynamicAnimation, z2, f, f2);
             }
         })).start();
     }
@@ -509,14 +510,14 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         arrayList.add(new FloatingDebugController.DebugItem("Show blur settings", new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.this.lambda$getBuiltInDebugItems$5();
+                this.f$0.lambda$getBuiltInDebugItems$5();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugGeneral)));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.this.lambda$getBuiltInDebugItems$6();
+                this.f$0.lambda$getBuiltInDebugItems$6();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
@@ -528,7 +529,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugSendLogs), new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.this.lambda$getBuiltInDebugItems$9();
+                this.f$0.lambda$getBuiltInDebugItems$9();
             }
         }));
         return arrayList;
@@ -587,7 +588,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         ((SpringAnimation) new SpringAnimation(new FloatValueHolder(0.0f)).setSpring(new SpringForce(1000.0f).setStiffness(750.0f).setDampingRatio(0.75f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                FloatingDebugView.this.lambda$showFab$10(dynamicAnimation, f, f2);
+                this.f$0.lambda$showFab$10(dynamicAnimation, f, f2);
             }
         })).start();
     }
@@ -664,8 +665,8 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             canvas.drawText(this.title, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), this.textPaint);
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
-            String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.value));
-            canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - this.textPaint.measureText(format), AndroidUtilities.dp(23.0f) + this.seekBar.getY(), this.textPaint);
+            String str = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.value));
+            canvas.drawText(str, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - this.textPaint.measureText(str), AndroidUtilities.dp(23.0f) + this.seekBar.getY(), this.textPaint);
         }
 
         @Override
@@ -674,9 +675,9 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             int size = View.MeasureSpec.getSize(i);
             if (this.lastWidth != size) {
                 SeekBarView seekBarView = this.seekBar;
-                float floatValue = ((Float) this.callback.get(null)).floatValue();
+                float fFloatValue = ((Float) this.callback.get(null)).floatValue();
                 float f = this.min;
-                seekBarView.setProgress((floatValue - f) / (this.max - f));
+                seekBarView.setProgress((fFloatValue - f) / (this.max - f));
                 this.lastWidth = size;
             }
         }

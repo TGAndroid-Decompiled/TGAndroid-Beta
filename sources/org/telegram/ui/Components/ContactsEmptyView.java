@@ -67,7 +67,7 @@ public class ContactsEmptyView extends LinearLayout {
         this.buttonTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.NoContactsYet2Invite), new Runnable() {
             @Override
             public final void run() {
-                ContactsEmptyView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
         this.buttonTextView.setMaxWidth(AndroidUtilities.dp(260.0f));
@@ -75,15 +75,15 @@ public class ContactsEmptyView extends LinearLayout {
     }
 
     public void lambda$new$0() {
-        Activity findActivity = AndroidUtilities.findActivity(getContext());
-        if (findActivity == null || findActivity.isFinishing()) {
+        Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+        if (activityFindActivity == null || activityFindActivity.isFinishing()) {
             return;
         }
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
         String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
         intent.putExtra("android.intent.extra.TEXT", inviteText);
-        findActivity.startActivityForResult(Intent.createChooser(intent, inviteText), 500);
+        activityFindActivity.startActivityForResult(Intent.createChooser(intent, inviteText), 500);
     }
 
     private void setSticker() {

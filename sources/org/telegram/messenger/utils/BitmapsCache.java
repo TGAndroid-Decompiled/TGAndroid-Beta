@@ -89,7 +89,7 @@ public class BitmapsCache {
     public void cancelCreate() {
     }
 
-    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z) {
+    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z) throws IOException {
         RandomAccessFile randomAccessFile;
         Throwable th;
         this.source = cacheable;
@@ -131,8 +131,8 @@ public class BitmapsCache {
                         this.cacheCreated = randomAccessFile.readBoolean();
                         if (this.cacheCreated && this.frameOffsets.isEmpty()) {
                             randomAccessFile.seek(randomAccessFile.readInt());
-                            int readInt = randomAccessFile.readInt();
-                            fillFrames(randomAccessFile, readInt > 10000 ? 0 : readInt);
+                            int i4 = randomAccessFile.readInt();
+                            fillFrames(randomAccessFile, i4 > 10000 ? 0 : i4);
                             if (this.frameOffsets.size() == 0) {
                                 this.cacheCreated = false;
                                 this.fileExist = false;
@@ -245,22 +245,22 @@ public class BitmapsCache {
         countDownLatchArr[i].countDown();
     }
 
-    private void fillFrames(RandomAccessFile randomAccessFile, int i) {
+    private void fillFrames(RandomAccessFile randomAccessFile, int i) throws IOException {
         if (i == 0) {
             return;
         }
         byte[] bArr = new byte[i * 8];
         randomAccessFile.read(bArr);
-        ByteBuffer wrap = ByteBuffer.wrap(bArr);
+        ByteBuffer byteBufferWrap = ByteBuffer.wrap(bArr);
         for (int i2 = 0; i2 < i; i2++) {
             FrameOffset frameOffset = new FrameOffset(i2);
-            frameOffset.frameOffset = wrap.getInt();
-            frameOffset.frameSize = wrap.getInt();
+            frameOffset.frameOffset = byteBufferWrap.getInt();
+            frameOffset.frameSize = byteBufferWrap.getInt();
             this.frameOffsets.add(frameOffset);
         }
     }
 
-    public int getFrame(Bitmap bitmap, Metadata metadata) {
+    public int getFrame(Bitmap bitmap, Metadata metadata) throws IOException {
         int frame = getFrame(this.frameIndex, bitmap);
         metadata.frame = this.frameIndex;
         if (this.cacheCreated && !this.frameOffsets.isEmpty()) {
@@ -273,11 +273,11 @@ public class BitmapsCache {
         return frame;
     }
 
-    public int getFrame(int r8, android.graphics.Bitmap r9) {
+    public int getFrame(int r8, android.graphics.Bitmap r9) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.utils.BitmapsCache.getFrame(int, android.graphics.Bitmap):int");
     }
 
-    private void closeCachedFile() {
+    private void closeCachedFile() throws IOException {
         RandomAccessFile randomAccessFile = this.cachedFile;
         if (randomAccessFile != null) {
             try {
@@ -315,7 +315,7 @@ public class BitmapsCache {
         return (this.cacheCreated && this.fileExist) ? false : true;
     }
 
-    public void recycle() {
+    public void recycle() throws IOException {
         RandomAccessFile randomAccessFile = this.cachedFile;
         if (randomAccessFile != null) {
             try {
@@ -332,7 +332,7 @@ public class BitmapsCache {
         return this.frameOffsets.size();
     }
 
-    public class FrameOffset {
+    class FrameOffset {
         int frameOffset;
         int frameSize;
         final int index;
@@ -342,7 +342,7 @@ public class BitmapsCache {
         }
     }
 
-    public static class CacheGeneratorSharedTools {
+    static class CacheGeneratorSharedTools {
         private Bitmap[] bitmap;
         ImmutableByteArrayOutputStream[] byteArrayOutputStream;
         private int lastSize;

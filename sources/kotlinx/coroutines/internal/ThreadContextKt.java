@@ -14,8 +14,8 @@ public abstract class ThreadContextKt {
                 return obj;
             }
             Integer num = obj instanceof Integer ? (Integer) obj : null;
-            int intValue = num != null ? num.intValue() : 1;
-            return intValue == 0 ? element : Integer.valueOf(intValue + 1);
+            int iIntValue = num != null ? num.intValue() : 1;
+            return iIntValue == 0 ? element : Integer.valueOf(iIntValue + 1);
         }
     };
     private static final Function2 findOne = new Function2() {
@@ -42,9 +42,9 @@ public abstract class ThreadContextKt {
     };
 
     public static final Object threadContextElements(CoroutineContext coroutineContext) {
-        Object fold = coroutineContext.fold(0, countAll);
-        Intrinsics.checkNotNull(fold);
-        return fold;
+        Object objFold = coroutineContext.fold(0, countAll);
+        Intrinsics.checkNotNull(objFold);
+        return objFold;
     }
 
     public static final Object updateThreadContext(CoroutineContext coroutineContext, Object obj) {
@@ -69,8 +69,8 @@ public abstract class ThreadContextKt {
             ((ThreadState) obj).restore(coroutineContext);
             return;
         }
-        Object fold = coroutineContext.fold(null, findOne);
-        Intrinsics.checkNotNull(fold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
-        ((ThreadContextElement) fold).restoreThreadContext(coroutineContext, obj);
+        Object objFold = coroutineContext.fold(null, findOne);
+        Intrinsics.checkNotNull(objFold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
+        ((ThreadContextElement) objFold).restoreThreadContext(coroutineContext, obj);
     }
 }

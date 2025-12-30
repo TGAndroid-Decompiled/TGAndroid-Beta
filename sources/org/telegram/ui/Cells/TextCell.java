@@ -6,7 +6,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -177,10 +176,10 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         CharSequence charSequence;
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(this.heightDp);
+        int iDp = AndroidUtilities.dp(this.heightDp);
         int i3 = this.lastWidth;
         if (i3 != 0 && i3 != size && (charSequence = this.valueText) != null) {
             AnimatedTextView animatedTextView = this.valueTextView;
@@ -195,21 +194,21 @@ public class TextCell extends FrameLayout {
         } else {
             this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
             this.valueSpoilersTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), LocaleController.isRTL ? Integer.MIN_VALUE : 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-            int max = Math.max(this.valueTextView.width(), this.valueSpoilersTextView.getTextWidth());
-            this.textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, (size - AndroidUtilities.dp(this.leftPadding + 71)) - max), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-            this.subtitleView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            int iMax = Math.max(this.valueTextView.width(), this.valueSpoilersTextView.getTextWidth());
+            this.textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, (size - AndroidUtilities.dp(this.leftPadding + 71)) - iMax), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.subtitleView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - iMax, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         }
         if (this.imageView.getVisibility() == 0) {
-            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         }
         if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         }
         Switch r0 = this.checkBox;
         if (r0 != null) {
             r0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(37.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         }
-        setMeasuredDimension(size, dp + (this.needDivider ? 1 : 0));
+        setMeasuredDimension(size, iDp + (this.needDivider ? 1 : 0));
     }
 
     @Override
@@ -230,58 +229,58 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int dp;
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int iDp;
         int i5 = i4 - i2;
         int i6 = i3 - i;
-        int max = (i5 - Math.max(this.valueSpoilersTextView.getTextHeight(), this.valueTextView.getTextHeight())) / 2;
-        int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : (i6 - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
+        int iMax = (i5 - Math.max(this.valueSpoilersTextView.getTextHeight(), this.valueTextView.getTextHeight())) / 2;
+        int iDp2 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : (i6 - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
         if (this.prioritizeTitleOverValue && !LocaleController.isRTL) {
-            dp2 = (i6 - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
+            iDp2 = (i6 - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
         }
         AnimatedTextView animatedTextView = this.valueTextView;
-        animatedTextView.layout(dp2, max, animatedTextView.getMeasuredWidth() + dp2, this.valueTextView.getMeasuredHeight() + max);
-        int dp3 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : (i6 - this.valueSpoilersTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
+        animatedTextView.layout(iDp2, iMax, animatedTextView.getMeasuredWidth() + iDp2, this.valueTextView.getMeasuredHeight() + iMax);
+        int iDp3 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : (i6 - this.valueSpoilersTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
         SimpleTextView simpleTextView = this.valueSpoilersTextView;
-        simpleTextView.layout(dp3, max, simpleTextView.getMeasuredWidth() + dp3, this.valueSpoilersTextView.getMeasuredHeight() + max);
+        simpleTextView.layout(iDp3, iMax, simpleTextView.getMeasuredWidth() + iDp3, this.valueSpoilersTextView.getMeasuredHeight() + iMax);
         if (LocaleController.isRTL) {
-            dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
+            iDp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
         } else {
-            dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
+            iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
         }
         if (this.subtitleView.getVisibility() == 0) {
             float f = this.heightDp > 50 ? 4 : 2;
             int textHeight = (((i5 - this.textView.getTextHeight()) - this.subtitleView.getTextHeight()) - AndroidUtilities.dp(f)) / 2;
             SimpleTextView simpleTextView2 = this.textView;
-            simpleTextView2.layout(dp, textHeight, simpleTextView2.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight);
+            simpleTextView2.layout(iDp, textHeight, simpleTextView2.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight);
             int textHeight2 = textHeight + this.textView.getTextHeight() + AndroidUtilities.dp(f);
             SimpleTextView simpleTextView3 = this.subtitleView;
-            simpleTextView3.layout(dp, textHeight2, simpleTextView3.getMeasuredWidth() + dp, this.subtitleView.getMeasuredHeight() + textHeight2);
+            simpleTextView3.layout(iDp, textHeight2, simpleTextView3.getMeasuredWidth() + iDp, this.subtitleView.getMeasuredHeight() + textHeight2);
         } else {
             int textHeight3 = (i5 - this.textView.getTextHeight()) / 2;
             SimpleTextView simpleTextView4 = this.textView;
-            simpleTextView4.layout(dp, textHeight3, simpleTextView4.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight3);
+            simpleTextView4.layout(iDp, textHeight3, simpleTextView4.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight3);
         }
         if (this.imageView.getVisibility() == 0) {
-            int dp4 = (AndroidUtilities.dp(this.heightDp > 50 ? 0.0f : 2.0f) + ((i5 - this.imageView.getMeasuredHeight()) / 2)) - this.imageView.getPaddingTop();
-            int dp5 = !LocaleController.isRTL ? AndroidUtilities.dp(this.imageLeft) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageLeft);
+            int iDp4 = (AndroidUtilities.dp(this.heightDp > 50 ? 0.0f : 2.0f) + ((i5 - this.imageView.getMeasuredHeight()) / 2)) - this.imageView.getPaddingTop();
+            int iDp5 = !LocaleController.isRTL ? AndroidUtilities.dp(this.imageLeft) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageLeft);
             RLottieImageView rLottieImageView = this.imageView;
-            rLottieImageView.layout(dp5, dp4, rLottieImageView.getMeasuredWidth() + dp5, this.imageView.getMeasuredHeight() + dp4);
+            rLottieImageView.layout(iDp5, iDp4, rLottieImageView.getMeasuredWidth() + iDp5, this.imageView.getMeasuredHeight() + iDp4);
         }
         if (this.valueImageView.getVisibility() == 0) {
             int measuredHeight = (i5 - this.valueImageView.getMeasuredHeight()) / 2;
-            int dp6 = LocaleController.isRTL ? AndroidUtilities.dp(23.0f) : (i6 - this.valueImageView.getMeasuredWidth()) - AndroidUtilities.dp(23.0f);
+            int iDp6 = LocaleController.isRTL ? AndroidUtilities.dp(23.0f) : (i6 - this.valueImageView.getMeasuredWidth()) - AndroidUtilities.dp(23.0f);
             ImageView imageView = this.valueImageView;
-            imageView.layout(dp6, measuredHeight, imageView.getMeasuredWidth() + dp6, this.valueImageView.getMeasuredHeight() + measuredHeight);
+            imageView.layout(iDp6, measuredHeight, imageView.getMeasuredWidth() + iDp6, this.valueImageView.getMeasuredHeight() + measuredHeight);
         }
         Switch r6 = this.checkBox;
         if (r6 == null || r6.getVisibility() != 0) {
             return;
         }
         int measuredHeight2 = (i5 - this.checkBox.getMeasuredHeight()) / 2;
-        int dp7 = LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : (i6 - this.checkBox.getMeasuredWidth()) - AndroidUtilities.dp(22.0f);
+        int iDp7 = LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : (i6 - this.checkBox.getMeasuredWidth()) - AndroidUtilities.dp(22.0f);
         Switch r7 = this.checkBox;
-        r7.layout(dp7, measuredHeight2, r7.getMeasuredWidth() + dp7, this.checkBox.getMeasuredHeight() + measuredHeight2);
+        r7.layout(iDp7, measuredHeight2, r7.getMeasuredWidth() + iDp7, this.checkBox.getMeasuredHeight() + measuredHeight2);
     }
 
     public void setTextColor(int i) {
@@ -289,16 +288,16 @@ public class TextCell extends FrameLayout {
     }
 
     public void updateColors() {
-        int intValue = this.textView.getTag() instanceof Integer ? ((Integer) this.textView.getTag()).intValue() : Theme.key_windowBackgroundWhiteBlackText;
-        int color = Theme.getColor(intValue, this.resourcesProvider);
-        if (intValue != Theme.key_dialogTextBlack && intValue != Theme.key_windowBackgroundWhiteBlackText) {
+        int iIntValue = this.textView.getTag() instanceof Integer ? ((Integer) this.textView.getTag()).intValue() : Theme.key_windowBackgroundWhiteBlackText;
+        int color = Theme.getColor(iIntValue, this.resourcesProvider);
+        if (iIntValue != Theme.key_dialogTextBlack && iIntValue != Theme.key_windowBackgroundWhiteBlackText) {
             color = processColor(color);
         }
         this.textView.setTextColor(color);
         if (this.imageView.getTag() instanceof Integer) {
-            int intValue2 = ((Integer) this.imageView.getTag()).intValue();
-            int color2 = Theme.getColor(intValue2, this.resourcesProvider);
-            if (intValue2 != Theme.key_dialogIcon && intValue2 != Theme.key_windowBackgroundWhiteGrayIcon) {
+            int iIntValue2 = ((Integer) this.imageView.getTag()).intValue();
+            int color2 = Theme.getColor(iIntValue2, this.resourcesProvider);
+            if (iIntValue2 != Theme.key_dialogIcon && iIntValue2 != Theme.key_windowBackgroundWhiteGrayIcon) {
                 color2 = processColor(color2);
             }
             this.imageView.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
@@ -459,31 +458,31 @@ public class TextCell extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence, boolean z) {
-        CharSequence ellipsize;
+        CharSequence charSequenceEllipsize;
         AnimatedTextView animatedTextView = this.valueTextView;
         if (charSequence == null) {
-            ellipsize = "";
+            charSequenceEllipsize = "";
         } else {
             this.valueText = charSequence;
-            ellipsize = TextUtils.ellipsize(charSequence, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
+            charSequenceEllipsize = TextUtils.ellipsize(charSequence, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
         }
-        animatedTextView.setText(ellipsize, z);
+        animatedTextView.setText(charSequenceEllipsize, z);
     }
 
     public void setTextAndValueAndColorfulIcon(String str, CharSequence charSequence, boolean z, int i, int i2, boolean z2) {
-        CharSequence ellipsize;
+        CharSequence charSequenceEllipsize;
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(str);
         this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         if (charSequence == null) {
-            ellipsize = "";
+            charSequenceEllipsize = "";
         } else {
             this.valueText = charSequence;
-            ellipsize = TextUtils.ellipsize(charSequence, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
+            charSequenceEllipsize = TextUtils.ellipsize(charSequence, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
         }
-        animatedTextView.setText(ellipsize, z);
+        animatedTextView.setText(charSequenceEllipsize, z);
         this.valueTextView.setVisibility(0);
         this.valueSpoilersTextView.setVisibility(8);
         setColorfulIcon(i2, i);
@@ -568,10 +567,10 @@ public class TextCell extends FrameLayout {
         this.textView.setRightDrawable((Drawable) null);
         this.imageView.setVisibility(0);
         if (charSequence2 != null) {
-            int max = (int) Math.max(1.0f, AndroidUtilities.displaySize.x - ((AndroidUtilities.dp(this.offsetFromImage) + HintView2.measureCorrectly(charSequence, this.textView.getTextPaint())) + AndroidUtilities.dp(16.0f)));
+            int iMax = (int) Math.max(1.0f, AndroidUtilities.displaySize.x - ((AndroidUtilities.dp(this.offsetFromImage) + HintView2.measureCorrectly(charSequence, this.textView.getTextPaint())) + AndroidUtilities.dp(16.0f)));
             AnimatedTextView animatedTextView = this.valueTextView;
             this.valueText = charSequence2;
-            animatedTextView.setText(TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), max, TextUtils.TruncateAt.END), z);
+            animatedTextView.setText(TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), iMax, TextUtils.TruncateAt.END), z);
         } else {
             this.valueTextView.setText("", z);
         }
@@ -806,8 +805,8 @@ public class TextCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         float f;
-        float dp;
-        int i;
+        float fDp;
+        int iDp;
         if (this.needDivider) {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : null;
@@ -817,14 +816,14 @@ public class TextCell extends FrameLayout {
             Paint paint2 = paint;
             float f2 = 20.0f;
             if (LocaleController.isRTL) {
-                dp = 0.0f;
+                fDp = 0.0f;
             } else {
                 if (this.imageView.getVisibility() == 0) {
                     f = this.inDialogs ? 72 : 68;
                 } else {
                     f = 20.0f;
                 }
-                dp = AndroidUtilities.dp(f);
+                fDp = AndroidUtilities.dp(f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
@@ -832,11 +831,11 @@ public class TextCell extends FrameLayout {
                 if (this.imageView.getVisibility() == 0) {
                     f2 = this.inDialogs ? 72 : 68;
                 }
-                i = AndroidUtilities.dp(f2);
+                iDp = AndroidUtilities.dp(f2);
             } else {
-                i = 0;
+                iDp = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, paint2);
+            canvas.drawLine(fDp, measuredHeight, measuredWidth - iDp, getMeasuredHeight() - 1, paint2);
         }
     }
 
@@ -890,7 +889,7 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emojiDrawable;
@@ -911,78 +910,8 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        if (this.drawLoading || this.drawLoadingProgress != 0.0f) {
-            if (this.paint == null) {
-                Paint paint = new Paint(1);
-                this.paint = paint;
-                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
-            }
-            if (this.incrementLoadingProgress) {
-                float f = this.loadingProgress + 0.016f;
-                this.loadingProgress = f;
-                if (f > 1.0f) {
-                    this.loadingProgress = 1.0f;
-                    this.incrementLoadingProgress = false;
-                }
-            } else {
-                float f2 = this.loadingProgress - 0.016f;
-                this.loadingProgress = f2;
-                if (f2 < 0.0f) {
-                    this.loadingProgress = 0.0f;
-                    this.incrementLoadingProgress = true;
-                }
-            }
-            int i = this.changeProgressStartDelay;
-            if (i > 0) {
-                this.changeProgressStartDelay = i - 15;
-            } else {
-                boolean z = this.drawLoading;
-                if (z) {
-                    float f3 = this.drawLoadingProgress;
-                    if (f3 != 1.0f) {
-                        float f4 = f3 + 0.10666667f;
-                        this.drawLoadingProgress = f4;
-                        if (f4 > 1.0f) {
-                            this.drawLoadingProgress = 1.0f;
-                        }
-                    }
-                }
-                if (!z) {
-                    float f5 = this.drawLoadingProgress;
-                    if (f5 != 0.0f) {
-                        float f6 = f5 - 0.10666667f;
-                        this.drawLoadingProgress = f6;
-                        if (f6 < 0.0f) {
-                            this.drawLoadingProgress = 0.0f;
-                        }
-                    }
-                }
-            }
-            this.paint.setAlpha((int) (((this.loadingProgress * 0.4f) + 0.6f) * this.drawLoadingProgress * 255.0f));
-            int measuredHeight = getMeasuredHeight() >> 1;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(21.0f)) - AndroidUtilities.dp(this.loadingSize), measuredHeight - AndroidUtilities.dp(3.0f), getMeasuredWidth() - AndroidUtilities.dp(21.0f), measuredHeight + AndroidUtilities.dp(3.0f));
-            if (LocaleController.isRTL) {
-                rectF.left = getMeasuredWidth() - rectF.left;
-                rectF.right = getMeasuredWidth() - rectF.right;
-            }
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.paint);
-            invalidate();
-        }
-        AnimatedTextView animatedTextView = this.valueTextView;
-        float f7 = 1.0f - this.drawLoadingProgress;
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emojiDrawable;
-        animatedTextView.setAlpha(f7 * (swapAnimatedEmojiDrawable == null ? 1.0f : 1.0f - swapAnimatedEmojiDrawable.isNotEmpty()));
-        SimpleTextView simpleTextView = this.valueSpoilersTextView;
-        float f8 = 1.0f - this.drawLoadingProgress;
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.emojiDrawable;
-        simpleTextView.setAlpha(f8 * (swapAnimatedEmojiDrawable2 != null ? 1.0f - swapAnimatedEmojiDrawable2.isNotEmpty() : 1.0f));
-        super.dispatchDraw(canvas);
-        if (this.emojiDrawable != null) {
-            updateEmojiBounds();
-            this.emojiDrawable.draw(canvas);
-        }
+    protected void dispatchDraw(android.graphics.Canvas r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.TextCell.dispatchDraw(android.graphics.Canvas):void");
     }
 
     public void setSubtitle(CharSequence charSequence) {

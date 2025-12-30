@@ -89,14 +89,14 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotShareSheet.lambda$share$3(TLObject.this, context, i, j, str, resourcesProvider, runnable, callback2);
+                BotShareSheet.lambda$share$3(tLObject, context, i, j, str, resourcesProvider, runnable, callback2);
             }
         });
     }
 
     public static void lambda$share$3(TLObject tLObject, final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
         TLRPC.WebDocument webDocument;
-        String str2;
+        String extensionByMimeType;
         if (!(tLObject instanceof TLRPC.TL_messages_preparedInlineMessage)) {
             if (callback2 != null) {
                 callback2.run("MESSAGE_EXPIRED", null);
@@ -115,14 +115,14 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         if (tL_messages_preparedInlineMessage != null && (webDocument = tL_messages_preparedInlineMessage.result.content) != null && !TextUtils.isEmpty(webDocument.url)) {
             TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
             if (botInlineResult.send_message instanceof TLRPC.TL_botInlineMessageMediaAuto) {
-                String str3 = botInlineResult.content.url;
-                String httpUrlExtension = ImageLoader.getHttpUrlExtension(str3, null);
+                String str2 = botInlineResult.content.url;
+                String httpUrlExtension = ImageLoader.getHttpUrlExtension(str2, null);
                 if (TextUtils.isEmpty(httpUrlExtension)) {
-                    str2 = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
+                    extensionByMimeType = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
                 } else {
-                    str2 = "." + httpUrlExtension;
+                    extensionByMimeType = "." + httpUrlExtension;
                 }
-                File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str3) + str2);
+                File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str2) + extensionByMimeType);
                 if (!file.exists()) {
                     final AlertDialog alertDialog = new AlertDialog(context, 3);
                     final HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new Utilities.Callback() {
@@ -133,11 +133,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                     }, null);
                     httpGetFileTask.setDestFile(file);
                     httpGetFileTask.setMaxSize(8388608L);
-                    httpGetFileTask.execute(str3);
+                    httpGetFileTask.execute(str2);
                     alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
-                            HttpGetFileTask.this.cancel(true);
+                            httpGetFileTask.cancel(true);
                         }
                     });
                     alertDialog.showDelayed(180L);
@@ -284,9 +284,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public boolean canPerformReply() {
-                boolean canPerformActions;
-                canPerformActions = canPerformActions();
-                return canPerformActions;
+                return canPerformActions();
             }
 
             @Override
@@ -462,6 +460,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell2, f, f2);
+            }
+
+            @Override
+            public void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell2, z);
             }
 
             @Override
@@ -678,7 +681,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotShareSheet.this.lambda$new$6(tL_messages_preparedInlineMessage, callback2, i, j, runnable, view);
+                this.f$0.lambda$new$6(tL_messages_preparedInlineMessage, callback2, i, j, runnable, view);
             }
         });
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
@@ -749,9 +752,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-                boolean lambda$new$5;
-                lambda$new$5 = BotShareSheet.this.lambda$new$5(i, tL_messages_preparedInlineMessage, j, safeLastFragment, callback2, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
-                return lambda$new$5;
+                return this.f$0.lambda$new$5(i, tL_messages_preparedInlineMessage, j, safeLastFragment, callback2, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
             }
 
             @Override
@@ -767,7 +768,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
     }
 
     public boolean lambda$new$5(int i, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, long j, BaseFragment baseFragment, Utilities.Callback2 callback2, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-        TLRPC.TL_forumTopic findTopic;
+        TLRPC.TL_forumTopic tL_forumTopicFindTopic;
         ArrayList arrayList2 = new ArrayList();
         Iterator it = arrayList.iterator();
         while (true) {
@@ -779,15 +780,15 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             long j2 = topicKey.dialogId;
             long j3 = topicKey.topicId;
             if (!DialogObject.isEncryptedDialog(j2)) {
-                if (j3 != 0 && (findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(-j2, j3)) != null && findTopic.topicStartMessage != null) {
-                    messageObject = new MessageObject(i, findTopic.topicStartMessage, false, false);
+                if (j3 != 0 && (tL_forumTopicFindTopic = MessagesController.getInstance(i).getTopicsController().findTopic(-j2, j3)) != null && tL_forumTopicFindTopic.topicStartMessage != null) {
+                    messageObject = new MessageObject(i, tL_forumTopicFindTopic.topicStartMessage, false, false);
                     messageObject.isTopicMainMessage = true;
                 }
-                HashMap hashMap = new HashMap();
-                hashMap.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
-                hashMap.put("id", "" + tL_messages_preparedInlineMessage.result.id);
-                hashMap.put("bot", "" + j);
-                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, 0, null, 0, 0L);
+                HashMap map = new HashMap();
+                map.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
+                map.put("id", "" + tL_messages_preparedInlineMessage.result.id);
+                map.put("bot", "" + j);
+                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, map, j2, messageObject, messageObject, null, null, z2, i2, 0, null, 0, 0L);
                 if (charSequence != null) {
                     SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, 0, null, false));
                 }
@@ -810,7 +811,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.recyclerListView.scrollToPosition(Math.max((this.recyclerListView.getAdapter() == null ? 0 : this.recyclerListView.getAdapter().getItemCount()) - 1, 0));
     }
@@ -838,7 +839,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotShareSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;

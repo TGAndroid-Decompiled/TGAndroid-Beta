@@ -24,15 +24,15 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         VideoDecoderFactory videoDecoderFactory;
-        VideoDecoder createDecoder = this.softwareVideoDecoderFactory.createDecoder(videoCodecInfo);
-        VideoDecoder createDecoder2 = this.hardwareVideoDecoderFactory.createDecoder(videoCodecInfo);
-        if (createDecoder == null && (videoDecoderFactory = this.platformSoftwareVideoDecoderFactory) != null) {
-            createDecoder = videoDecoderFactory.createDecoder(videoCodecInfo);
+        VideoDecoder videoDecoderCreateDecoder = this.softwareVideoDecoderFactory.createDecoder(videoCodecInfo);
+        VideoDecoder videoDecoderCreateDecoder2 = this.hardwareVideoDecoderFactory.createDecoder(videoCodecInfo);
+        if (videoDecoderCreateDecoder == null && (videoDecoderFactory = this.platformSoftwareVideoDecoderFactory) != null) {
+            videoDecoderCreateDecoder = videoDecoderFactory.createDecoder(videoCodecInfo);
         }
-        if (createDecoder2 == null || createDecoder == null) {
-            return createDecoder2 != null ? createDecoder2 : createDecoder;
+        if (videoDecoderCreateDecoder2 == null || videoDecoderCreateDecoder == null) {
+            return videoDecoderCreateDecoder2 != null ? videoDecoderCreateDecoder2 : videoDecoderCreateDecoder;
         }
-        return new VideoDecoderFallback(createDecoder, createDecoder2);
+        return new VideoDecoderFallback(videoDecoderCreateDecoder, videoDecoderCreateDecoder2);
     }
 
     @Override

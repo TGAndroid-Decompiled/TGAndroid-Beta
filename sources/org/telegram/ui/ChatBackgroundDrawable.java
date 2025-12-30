@@ -102,32 +102,32 @@ public class ChatBackgroundDrawable extends Drawable {
             EmojiThemes.loadWallpaperImage(UserConfig.selectedAccount, wallPaper.id, wallPaper, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ChatBackgroundDrawable.this.lambda$new$0(wallPaper, (WallpaperBitmapHolder) obj);
+                    this.f$0.lambda$new$0(wallPaper, (WallpaperBitmapHolder) obj);
                 }
             });
             return;
         }
         Point point = AndroidUtilities.displaySize;
-        int min = Math.min(point.x, point.y);
+        int iMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
-        int max = Math.max(point2.x, point2.y);
+        int iMax = Math.max(point2.x, point2.y);
         if (z2) {
             str = "150_150_wallpaper";
         } else {
-            str = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_wallpaper";
+            str = ((int) (iMin / AndroidUtilities.density)) + "_" + ((int) (iMax / AndroidUtilities.density)) + "_wallpaper";
         }
         String str2 = (str + wallPaper.id) + hash(wallPaper.settings);
-        Drawable createThumb = createThumb(wallPaper);
+        Drawable drawableCreateThumb = createThumb(wallPaper);
         String str3 = wallPaper.uploadingImage;
         if (str3 != null) {
-            this.imageReceiver.setImage(ImageLocation.getForPath(str3), str2, createThumb, null, wallPaper, 1);
+            this.imageReceiver.setImage(ImageLocation.getForPath(str3), str2, drawableCreateThumb, null, wallPaper, 1);
             return;
         }
         TLRPC.Document document = wallPaper.document;
         if (document != null) {
-            this.imageReceiver.setImage(ImageLocation.getForDocument(document), str2, createThumb, null, wallPaper, 1);
+            this.imageReceiver.setImage(ImageLocation.getForDocument(document), str2, drawableCreateThumb, null, wallPaper, 1);
         } else {
-            this.imageReceiver.setImageBitmap(createThumb);
+            this.imageReceiver.setImageBitmap(drawableCreateThumb);
         }
     }
 
@@ -140,7 +140,7 @@ public class ChatBackgroundDrawable extends Drawable {
     }
 
     public static Drawable createThumb(TLRPC.WallPaper wallPaper) {
-        Drawable bitmapDrawableOf;
+        Drawable drawableBitmapDrawableOf;
         Drawable drawable = wallPaper.thumbDrawable;
         if (drawable != null) {
             return drawable;
@@ -152,42 +152,42 @@ public class ChatBackgroundDrawable extends Drawable {
             return new ColorDrawable(-16777216);
         }
         if (wallPaper.document != null) {
-            bitmapDrawableOf = null;
-            while (r2 < wallPaper.document.thumbs.size()) {
-                if (wallPaper.document.thumbs.get(r2) instanceof TLRPC.TL_photoStrippedSize) {
-                    bitmapDrawableOf = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(wallPaper.document.thumbs.get(r2).bytes, "b"));
+            drawableBitmapDrawableOf = null;
+            while (alphaComponent < wallPaper.document.thumbs.size()) {
+                if (wallPaper.document.thumbs.get(alphaComponent) instanceof TLRPC.TL_photoStrippedSize) {
+                    drawableBitmapDrawableOf = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(wallPaper.document.thumbs.get(alphaComponent).bytes, "b"));
                 }
-                r2++;
+                alphaComponent++;
             }
         } else {
             TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
             if (wallPaperSettings == null || wallPaperSettings.intensity < 0) {
-                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(-16777216));
+                drawableBitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(-16777216));
             } else if (wallPaperSettings.second_background_color == 0) {
-                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(wallPaper.settings.background_color, 255)));
+                drawableBitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(wallPaper.settings.background_color, 255)));
             } else if (wallPaperSettings.third_background_color == 0) {
-                bitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255)}));
+                drawableBitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255)}));
             } else {
                 int alphaComponent = ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255);
                 int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
                 int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
                 int i = wallPaper.settings.fourth_background_color;
-                r2 = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
+                alphaComponent = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
                 MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
-                motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
-                bitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
+                motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, alphaComponent);
+                drawableBitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
             }
         }
-        wallPaper.thumbDrawable = bitmapDrawableOf;
-        return bitmapDrawableOf;
+        wallPaper.thumbDrawable = drawableBitmapDrawableOf;
+        return drawableBitmapDrawableOf;
     }
 
     private static Drawable bitmapDrawableOf(Drawable drawable) {
-        Bitmap createBitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         drawable.setBounds(0, 0, 20, 20);
         drawable.draw(canvas);
-        return new BitmapDrawable(createBitmap);
+        return new BitmapDrawable(bitmapCreateBitmap);
     }
 
     @Override

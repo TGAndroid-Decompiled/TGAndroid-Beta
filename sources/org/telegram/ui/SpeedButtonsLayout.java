@@ -9,7 +9,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.ui.SpeedButtonsLayout;
 
 public class SpeedButtonsLayout extends LinearLayout {
     ActionBarMenuSubItem[] speedItems;
@@ -22,56 +21,56 @@ public class SpeedButtonsLayout extends LinearLayout {
         super(context);
         this.speedItems = new ActionBarMenuSubItem[5];
         setOrientation(1);
-        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
-        addItem.setColors(-328966, -328966);
-        addItem.setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
+        actionBarMenuSubItemAddItem.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SpeedButtonsLayout.Callback.this.onSpeedSelected(0.2f, true, true);
+                callback.onSpeedSelected(0.2f, true, true);
             }
         });
-        addItem.setSelectorColor(268435455);
-        this.speedItems[0] = addItem;
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
-        addItem2.setColors(-328966, -328966);
-        addItem2.setOnClickListener(new View.OnClickListener() {
+        actionBarMenuSubItemAddItem.setSelectorColor(268435455);
+        this.speedItems[0] = actionBarMenuSubItemAddItem;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
+        actionBarMenuSubItemAddItem2.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SpeedButtonsLayout.Callback.this.onSpeedSelected(0.5f, true, true);
+                callback.onSpeedSelected(0.5f, true, true);
             }
         });
-        addItem2.setSelectorColor(268435455);
-        this.speedItems[1] = addItem2;
-        ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
-        addItem3.setColors(-328966, -328966);
-        addItem3.setOnClickListener(new View.OnClickListener() {
+        actionBarMenuSubItemAddItem2.setSelectorColor(268435455);
+        this.speedItems[1] = actionBarMenuSubItemAddItem2;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
+        actionBarMenuSubItemAddItem3.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SpeedButtonsLayout.Callback.this.onSpeedSelected(1.0f, true, true);
+                callback.onSpeedSelected(1.0f, true, true);
             }
         });
-        addItem3.setSelectorColor(268435455);
-        this.speedItems[2] = addItem3;
-        ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
-        addItem4.setColors(-328966, -328966);
-        addItem4.setOnClickListener(new View.OnClickListener() {
+        actionBarMenuSubItemAddItem3.setSelectorColor(268435455);
+        this.speedItems[2] = actionBarMenuSubItemAddItem3;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
+        actionBarMenuSubItemAddItem4.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SpeedButtonsLayout.Callback.this.onSpeedSelected(1.5f, true, true);
+                callback.onSpeedSelected(1.5f, true, true);
             }
         });
-        addItem4.setSelectorColor(268435455);
-        this.speedItems[3] = addItem4;
-        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
-        addItem5.setColors(-328966, -328966);
-        addItem5.setOnClickListener(new View.OnClickListener() {
+        actionBarMenuSubItemAddItem4.setSelectorColor(268435455);
+        this.speedItems[3] = actionBarMenuSubItemAddItem4;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem5 = ActionBarMenuItem.addItem(this, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
+        actionBarMenuSubItemAddItem5.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem5.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SpeedButtonsLayout.Callback.this.onSpeedSelected(2.0f, true, true);
+                callback.onSpeedSelected(2.0f, true, true);
             }
         });
-        addItem5.setSelectorColor(268435455);
-        this.speedItems[4] = addItem5;
+        actionBarMenuSubItemAddItem5.setSelectorColor(268435455);
+        this.speedItems[4] = actionBarMenuSubItemAddItem5;
         View view = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {

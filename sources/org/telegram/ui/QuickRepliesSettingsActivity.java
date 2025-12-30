@@ -82,22 +82,22 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         int i = 0;
-        SharedPreferences.Editor edit = getParentActivity().getSharedPreferences("mainconfig", 0).edit();
+        SharedPreferences.Editor editorEdit = getParentActivity().getSharedPreferences("mainconfig", 0).edit();
         while (true) {
             EditTextSettingsCell[] editTextSettingsCellArr = this.textCells;
             if (i < editTextSettingsCellArr.length) {
                 EditTextSettingsCell editTextSettingsCell = editTextSettingsCellArr[i];
                 if (editTextSettingsCell != null) {
-                    String obj = editTextSettingsCell.getTextView().getText().toString();
-                    if (!TextUtils.isEmpty(obj)) {
-                        edit.putString("quick_reply_msg" + (i + 1), obj);
+                    String string = editTextSettingsCell.getTextView().getText().toString();
+                    if (!TextUtils.isEmpty(string)) {
+                        editorEdit.putString("quick_reply_msg" + (i + 1), string);
                     } else {
-                        edit.remove("quick_reply_msg" + (i + 1));
+                        editorEdit.remove("quick_reply_msg" + (i + 1));
                     }
                 }
                 i++;
             } else {
-                edit.commit();
+                editorEdit.commit();
                 return;
             }
         }
@@ -126,8 +126,8 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String string;
             String str;
-            String str2;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
@@ -149,29 +149,28 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
                             if (i != QuickRepliesSettingsActivity.this.reply2Row) {
                                 if (i != QuickRepliesSettingsActivity.this.reply3Row) {
                                     if (i == QuickRepliesSettingsActivity.this.reply4Row) {
-                                        str = LocaleController.getString(R.string.QuickReplyDefault4);
-                                        str2 = "quick_reply_msg4";
+                                        string = LocaleController.getString(R.string.QuickReplyDefault4);
+                                        str = "quick_reply_msg4";
                                     } else {
+                                        string = null;
                                         str = null;
-                                        str2 = null;
                                     }
                                 } else {
-                                    str = LocaleController.getString(R.string.QuickReplyDefault3);
-                                    str2 = "quick_reply_msg3";
+                                    string = LocaleController.getString(R.string.QuickReplyDefault3);
+                                    str = "quick_reply_msg3";
                                 }
                             } else {
-                                str = LocaleController.getString(R.string.QuickReplyDefault2);
-                                str2 = "quick_reply_msg2";
+                                string = LocaleController.getString(R.string.QuickReplyDefault2);
+                                str = "quick_reply_msg2";
                             }
                         } else {
-                            str = LocaleController.getString(R.string.QuickReplyDefault1);
-                            str2 = "quick_reply_msg1";
+                            string = LocaleController.getString(R.string.QuickReplyDefault1);
+                            str = "quick_reply_msg1";
                         }
-                        editTextSettingsCell.setTextAndHint(QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str2, ""), str, i != QuickRepliesSettingsActivity.this.reply4Row);
-                        return;
-                    default:
-                        return;
+                        editTextSettingsCell.setTextAndHint(QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str, ""), string, i != QuickRepliesSettingsActivity.this.reply4Row);
+                        break;
                 }
+                return;
             }
             ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString(R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
         }

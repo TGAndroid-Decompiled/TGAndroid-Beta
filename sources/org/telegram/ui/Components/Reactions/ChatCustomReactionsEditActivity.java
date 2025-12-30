@@ -50,7 +50,6 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 
 public class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -87,7 +86,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     private final Runnable checkAfterFastDeleteRunnable = new Runnable() {
         @Override
         public final void run() {
-            ChatCustomReactionsEditActivity.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -118,7 +117,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         getMessagesController().getBoostsController().getBoostsStats(-this.chatId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatCustomReactionsEditActivity.this.lambda$onFragmentCreate$1((TL_stories.TL_premium_boostsStatus) obj);
+                this.f$0.lambda$onFragmentCreate$1((TL_stories.TL_premium_boostsStatus) obj);
             }
         });
         getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
@@ -179,23 +178,23 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             }
         }
         TextCheckCell textCheckCell = this.paidCheckCell;
-        Boolean valueOf = (textCheckCell == null || !this.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell.isChecked());
+        Boolean boolValueOf = (textCheckCell == null || !this.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell.isChecked());
         this.actionButton.setLoading(true);
         MessagesController messagesController = getMessagesController();
         long j = this.chatId;
         int i3 = this.selectedType;
-        List<TLRPC.Reaction> grabReactions = grabReactions(false);
+        List<TLRPC.Reaction> listGrabReactions = grabReactions(false);
         int i4 = this.reactionsCount;
         this.currentReactionsCount = i4;
-        messagesController.setCustomChatReactions(j, i3, grabReactions, i4, valueOf, new Utilities.Callback() {
+        messagesController.setCustomChatReactions(j, i3, listGrabReactions, i4, boolValueOf, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.this.lambda$createView$8((TLRPC.TL_error) obj);
+                this.f$0.lambda$createView$8((TLRPC.TL_error) obj);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.finishFragment();
+                this.f$0.finishFragment();
             }
         });
     }
@@ -211,7 +210,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatCustomReactionsEditActivity.this.lambda$createView$7(tL_error);
+                    this.f$0.lambda$createView$7(tL_error);
                 }
             }, this.boostsStatus == null ? 200L : 0L);
         }
@@ -222,11 +221,11 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             ReactionsUtils.showLimitReachedDialogForReactions(-this.chatId, this.selectedCustomReactions, this.boostsStatus);
             return;
         }
-        String str = tL_error.text;
-        if (str.equals("REACTIONS_TOO_MANY")) {
-            str = LocaleController.formatPluralString("ReactionMaxCountError", this.maxReactionsCount, new Object[0]);
+        String pluralString = tL_error.text;
+        if (pluralString.equals("REACTIONS_TOO_MANY")) {
+            pluralString = LocaleController.formatPluralString("ReactionMaxCountError", this.maxReactionsCount, new Object[0]);
         }
-        BulletinFactory.of(this).createErrorBulletin(str).show();
+        BulletinFactory.of(this).createErrorBulletin(pluralString).show();
     }
 
     private void initSelectAnimatedEmojiDialog() {
@@ -244,7 +243,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         backSpaceButtonView.setOnBackspace(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$11((Boolean) obj);
+                this.f$0.lambda$initSelectAnimatedEmojiDialog$11((Boolean) obj);
             }
         });
         this.bottomDialogLayout.addView(this.backSpaceButtonView, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
@@ -254,7 +253,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
     }
 
-    public class AnonymousClass5 extends SelectAnimatedEmojiDialog {
+    class AnonymousClass5 extends SelectAnimatedEmojiDialog {
         private boolean firstLayout;
 
         AnonymousClass5(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, boolean z2, Theme.ResourcesProvider resourcesProvider, int i2, int i3) {
@@ -264,7 +263,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if (this.firstLayout) {
                 this.firstLayout = false;
@@ -280,7 +279,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 animatedEmojiSpan.setRemoved(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatCustomReactionsEditActivity.AnonymousClass5.this.lambda$onEmojiSelected$0(animatedEmojiSpan);
+                        this.f$0.lambda$onEmojiSelected$0(animatedEmojiSpan);
                     }
                 });
                 ChatCustomReactionsEditActivity.this.animateChangesInNextRows(animatedEmojiSpan);
@@ -295,17 +294,17 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             try {
                 int editTextSelectionEnd = ChatCustomReactionsEditActivity.this.editText.getEditTextSelectionEnd();
                 SpannableString spannableString = new SpannableString("b");
-                AnimatedEmojiSpan createAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(document, l, ChatCustomReactionsEditActivity.this.editText.getFontMetricsInt());
-                createAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-                createAnimatedEmojiSpan.setAdded();
+                AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(document, l, ChatCustomReactionsEditActivity.this.editText.getFontMetricsInt());
+                animatedEmojiSpanCreateAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+                animatedEmojiSpanCreateAnimatedEmojiSpan.setAdded();
                 ChatCustomReactionsEditActivity.this.selectedEmojisIds.add(editTextSelectionEnd, l);
-                ChatCustomReactionsEditActivity.this.selectedEmojisMap.put(l, createAnimatedEmojiSpan);
-                spannableString.setSpan(createAnimatedEmojiSpan, 0, spannableString.length(), 33);
+                ChatCustomReactionsEditActivity.this.selectedEmojisMap.put(l, animatedEmojiSpanCreateAnimatedEmojiSpan);
+                spannableString.setSpan(animatedEmojiSpanCreateAnimatedEmojiSpan, 0, spannableString.length(), 33);
                 ChatCustomReactionsEditActivity.this.editText.getText().insert(editTextSelectionEnd, spannableString);
                 ChatCustomReactionsEditActivity.this.editText.setSelection(editTextSelectionEnd + spannableString.length());
                 ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
                 ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(true);
-                ChatCustomReactionsEditActivity.this.animateChangesInNextRows(createAnimatedEmojiSpan);
+                ChatCustomReactionsEditActivity.this.animateChangesInNextRows(animatedEmojiSpanCreateAnimatedEmojiSpan);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -356,7 +355,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                     animatedEmojiSpan.setRemoved(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$10(animatedEmojiSpan, editTextSelectionEnd);
+                            this.f$0.lambda$initSelectAnimatedEmojiDialog$10(animatedEmojiSpan, editTextSelectionEnd);
                         }
                     });
                     animateChangesInNextRows(animatedEmojiSpan);
@@ -539,7 +538,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatCustomReactionsEditActivity.this.lambda$onResume$13();
+                        this.f$0.lambda$onResume$13();
                     }
                 }, 250L);
             }
@@ -585,13 +584,13 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$14(alertDialog, i);
+                    this.f$0.lambda$checkChangesBeforeExit$14(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Discard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$15(alertDialog, i);
+                    this.f$0.lambda$checkChangesBeforeExit$15(alertDialog, i);
                 }
             });
             builder.show();
@@ -666,7 +665,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.bottomDialogLayout.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatCustomReactionsEditActivity.this.lambda$showKeyboard$16(valueAnimator);
+                this.f$0.lambda$showKeyboard$16(valueAnimator);
             }
         }).setListener(new AnimatorListenerAdapter() {
             @Override
@@ -697,7 +696,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatCustomReactionsEditActivity.this.lambda$closeKeyboard$17(valueAnimator);
+                this.f$0.lambda$closeKeyboard$17(valueAnimator);
             }
         }).setListener(new AnimatorListenerAdapter() {
             @Override
@@ -748,7 +747,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 animatedEmojiSpan.setRemoved(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatCustomReactionsEditActivity.this.lambda$toggleStarsEnabled$18(animatedEmojiSpan);
+                        this.f$0.lambda$toggleStarsEnabled$18(animatedEmojiSpan);
                     }
                 });
             }
@@ -766,11 +765,11 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                     private final Bitmap bitmap;
 
                     {
-                        Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
-                        this.bitmap = createBitmap;
-                        Drawable mutate = ChatCustomReactionsEditActivity.this.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate();
-                        mutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-                        mutate.draw(new Canvas(createBitmap));
+                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
+                        this.bitmap = bitmapCreateBitmap;
+                        Drawable drawableMutate = ChatCustomReactionsEditActivity.this.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate();
+                        drawableMutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+                        drawableMutate.draw(new Canvas(bitmapCreateBitmap));
                     }
 
                     @Override

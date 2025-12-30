@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Premium.boosts.cells.statistics;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -67,7 +68,7 @@ public class GiftedUserCell extends UserCell {
         }
     }
 
-    public void setStatus(TL_stories.Boost boost) {
+    public void setStatus(TL_stories.Boost boost) throws Resources.NotFoundException {
         this.boost = boost;
         if (boost.gift || boost.giveaway) {
             this.badgeLayout.setVisibility(0);
@@ -91,11 +92,11 @@ public class GiftedUserCell extends UserCell {
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
-            String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
+            String str = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             if (boost.stars > 0) {
-                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingStarsExpires, format));
+                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingStarsExpires, str));
             } else {
-                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingExpires, format));
+                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingExpires, str));
             }
             if (boost.gift) {
                 if (this.giftDrawable == null) {
@@ -132,9 +133,9 @@ public class GiftedUserCell extends UserCell {
             this.nameTextView.setRightDrawable((Drawable) null);
         }
         if (this.badgeLayout.getVisibility() == 0) {
-            int measureText = ((int) this.badgeTextView.getPaint().measureText(this.badgeTextView.getText().toString())) + AndroidUtilities.dp(22.0f);
+            int iMeasureText = ((int) this.badgeTextView.getPaint().measureText(this.badgeTextView.getText().toString())) + AndroidUtilities.dp(22.0f);
             SimpleTextView simpleTextView = this.nameTextView;
-            simpleTextView.setPadding(LocaleController.isRTL ? measureText : 0, simpleTextView.getPaddingTop(), LocaleController.isRTL ? 0 : measureText, this.nameTextView.getPaddingBottom());
+            simpleTextView.setPadding(LocaleController.isRTL ? iMeasureText : 0, simpleTextView.getPaddingTop(), LocaleController.isRTL ? 0 : iMeasureText, this.nameTextView.getPaddingBottom());
         } else {
             SimpleTextView simpleTextView2 = this.nameTextView;
             simpleTextView2.setPadding(0, simpleTextView2.getPaddingTop(), 0, this.nameTextView.getPaddingBottom());

@@ -8,7 +8,7 @@ import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 
 public class BarChartView extends BaseChartView {
     @Override
-    public void drawSelection(Canvas canvas) {
+    protected void drawSelection(Canvas canvas) {
     }
 
     @Override
@@ -69,11 +69,11 @@ public class BarChartView extends BaseChartView {
                             } else {
                                 i3 = length;
                                 jArr = jArr2;
-                                f = (float) chartData.maxValue;
+                                f = chartData.maxValue;
                             }
                             float[] fArr2 = barViewData.linesPath;
                             fArr2[i8] = f4;
-                            fArr2[i8 + 1] = (1.0f - ((((float) j) / f) * f3)) * (i5 - measuredHeight2);
+                            fArr2[i8 + 1] = (1.0f - ((j / f) * f3)) * (i5 - measuredHeight2);
                             int i9 = i8 + 3;
                             fArr2[i8 + 2] = f4;
                             i8 += 4;
@@ -102,7 +102,7 @@ public class BarChartView extends BaseChartView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         tick();
         drawChart(canvas);
         drawBottomLine(canvas);

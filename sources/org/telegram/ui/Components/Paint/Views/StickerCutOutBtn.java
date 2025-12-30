@@ -53,7 +53,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (this.wrapContentDynamic) {
             float currentWidth = this.text.getCurrentWidth() + getPaddingLeft() + getPaddingRight();
             this.bounds.set((getMeasuredWidth() - currentWidth) / 2.0f, 0.0f, (getMeasuredWidth() + currentWidth) / 2.0f, getMeasuredHeight());
@@ -163,7 +163,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         if (this.wrapContent) {
             i = View.MeasureSpec.makeMeasureSpec(getPaddingLeft() + ((int) this.text.getCurrentWidth()) + getPaddingRight(), 1073741824);
         }

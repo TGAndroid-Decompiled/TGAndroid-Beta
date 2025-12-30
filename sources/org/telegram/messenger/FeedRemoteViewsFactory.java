@@ -18,7 +18,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 
-public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, NotificationCenter.NotificationCenterDelegate {
+class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, NotificationCenter.NotificationCenterDelegate {
     private AccountInstance accountInstance;
     private int classGuid;
     private long dialogId;
@@ -121,7 +121,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     }
 
     @Override
-    public void onDataSetChanged() {
+    public void onDataSetChanged() throws InterruptedException {
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {
             this.messages.clear();
@@ -130,7 +130,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FeedRemoteViewsFactory.this.lambda$onDataSetChanged$0();
+                this.f$0.lambda$onDataSetChanged$0();
             }
         });
         try {

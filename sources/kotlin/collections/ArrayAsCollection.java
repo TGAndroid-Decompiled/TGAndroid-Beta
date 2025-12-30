@@ -68,7 +68,7 @@ final class ArrayAsCollection implements Collection {
 
     @Override
     public boolean contains(Object obj) {
-        return ArraysKt___ArraysKt.contains(this.values, obj);
+        return ArraysKt.contains(this.values, obj);
     }
 
     @Override

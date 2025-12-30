@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Chia sẻ với</string>
     <string name="abc_shareactionprovider_share_with_application">Chia sẻ với %s</string>
     <string name="abc_toolbar_collapse_description">Thu gọn</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Mật khẩu</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Khoá truy cập</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Mật khẩu</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Khoá truy cập</string>
     <string name="call_notification_answer_action">Trả lời</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Từ chối</string>

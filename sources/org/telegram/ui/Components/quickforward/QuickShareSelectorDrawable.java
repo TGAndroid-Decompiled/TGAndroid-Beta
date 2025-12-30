@@ -214,7 +214,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
                 AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        QuickShareSelectorDrawable.this.lambda$new$0((Bitmap) obj);
+                        this.f$0.lambda$new$0((Bitmap) obj);
                     }
                 }, 15.0f);
                 return;
@@ -258,15 +258,15 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         int i4 = iArr[1];
         this.offsetX = i - i3;
         this.offsetY = i2 - i4;
-        float dp = AndroidUtilities.dp(16.0f);
-        float sideButtonStartX = this.offsetX + this.cell.getSideButtonStartX() + dp;
-        float sideButtonStartY = this.offsetY + this.cell.getSideButtonStartY() + dp;
-        this.bubbleStart.set(sideButtonStartX - dp, sideButtonStartY - dp, sideButtonStartX + dp, sideButtonStartY + dp);
-        float dp2 = AndroidUtilities.dp(16.0f);
-        if (this.bubbleStart.right + AndroidUtilities.dp(48.0f) + dp2 > this.parent.getMeasuredWidth()) {
-            this.bubbleOffset = Math.max(0.0f, (this.parent.getMeasuredWidth() - dp2) - this.bubbleStart.right);
-        } else if (((this.bubbleStart.right + AndroidUtilities.dp(48.0f)) - getBubbleWidth()) - dp2 < 0.0f) {
-            this.bubbleOffset = Math.max(0.0f, (dp2 + getBubbleWidth()) - this.bubbleStart.right);
+        float fDp = AndroidUtilities.dp(16.0f);
+        float sideButtonStartX = this.offsetX + this.cell.getSideButtonStartX() + fDp;
+        float sideButtonStartY = this.offsetY + this.cell.getSideButtonStartY() + fDp;
+        this.bubbleStart.set(sideButtonStartX - fDp, sideButtonStartY - fDp, sideButtonStartX + fDp, sideButtonStartY + fDp);
+        float fDp2 = AndroidUtilities.dp(16.0f);
+        if (this.bubbleStart.right + AndroidUtilities.dp(48.0f) + fDp2 > this.parent.getMeasuredWidth()) {
+            this.bubbleOffset = Math.max(0.0f, (this.parent.getMeasuredWidth() - fDp2) - this.bubbleStart.right);
+        } else if (((this.bubbleStart.right + AndroidUtilities.dp(48.0f)) - getBubbleWidth()) - fDp2 < 0.0f) {
+            this.bubbleOffset = Math.max(0.0f, (fDp2 + getBubbleWidth()) - this.bubbleStart.right);
         } else {
             this.bubbleOffset = AndroidUtilities.dp(48.0f);
         }
@@ -324,7 +324,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
             BlurVisibilityDrawable blurVisibilityDrawable = new BlurVisibilityDrawable(new BlurVisibilityDrawable.DrawRunnable() {
                 @Override
                 public final void draw(Canvas canvas, int i) {
-                    QuickShareSelectorDrawable.this.drawBubble(canvas, i);
+                    this.f$0.drawBubble(canvas, i);
                 }
             });
             this.closeAnimationDrawable = blurVisibilityDrawable;
@@ -398,7 +398,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
     public void draw(Canvas canvas, int i, boolean z) {
         int i2;
         int i3;
-        float min;
+        float fMin;
         if (!this.isReady) {
             prepare();
         }
@@ -406,34 +406,34 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         if (blurVisibilityDrawable != null && !z) {
             RectF rectF = this.bubbleCurrent;
             int i4 = (int) rectF.left;
-            int dp = (int) (rectF.top - AndroidUtilities.dp(30.0f));
+            int iDp = (int) (rectF.top - AndroidUtilities.dp(30.0f));
             RectF rectF2 = this.bubbleCurrent;
-            blurVisibilityDrawable.setBounds(i4, dp, (int) rectF2.right, (int) rectF2.bottom);
+            blurVisibilityDrawable.setBounds(i4, iDp, (int) rectF2.right, (int) rectF2.bottom);
             this.closeAnimationDrawable.setAlpha((int) ((1.0f - Interpolators.closeAlpha.getInterpolation(this.closeProgress)) * 255.0f));
             this.closeAnimationDrawable.draw(canvas);
             if (this.selectedIndex != -1) {
                 float interpolation = 1.0f - Interpolators.closeAvatarAlpha.getInterpolation(this.closeProgress);
                 float interpolation2 = Interpolators.closeAvatarPosition.getInterpolation(this.closeProgress);
-                float centerX = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * (this.selectedIndex - 2));
-                float centerY = this.bubbleCurrent.centerY();
+                float fCenterX = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * (this.selectedIndex - 2));
+                float fCenterY = this.bubbleCurrent.centerY();
                 float f = this.bulletinImageCx;
                 float f2 = this.bulletinImageCy;
-                float f3 = (centerX + f) / 2.0f;
+                float f3 = (fCenterX + f) / 2.0f;
                 Bulletin.LottieLayout lottieLayout = this.bulletinLayout;
                 if (lottieLayout != null && lottieLayout.top) {
-                    min = Math.max(centerY, f2) + AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
+                    fMin = Math.max(fCenterY, f2) + AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
                 } else {
-                    min = Math.min(centerY, f2) - AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
+                    fMin = Math.min(fCenterY, f2) - AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
                 }
-                this.avatarCells[this.selectedIndex].drawBlurredAvatar(canvas, fromTo(centerX, f, interpolation2), findParabola(centerX, centerY, f, f2, f3, min, interpolation2), fromTo((AndroidUtilities.dp(Sizes.AVATAR) / 2.0f) + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), interpolation2), interpolation);
+                this.avatarCells[this.selectedIndex].drawBlurredAvatar(canvas, fromTo(fCenterX, f, interpolation2), findParabola(fCenterX, fCenterY, f, f2, f3, fMin, interpolation2), fromTo((AndroidUtilities.dp(Sizes.AVATAR) / 2.0f) + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), interpolation2), interpolation);
                 return;
             }
             return;
         }
         float f4 = !z ? 1.0f - this.closeProgress : i / 255.0f;
-        float fromTo = fromTo(0.3f, 0.075f, Interpolators.bgScale.getInterpolation(this.openProgress));
+        float fFromTo = fromTo(0.3f, 0.075f, Interpolators.bgScale.getInterpolation(this.openProgress));
         this.shaderMatrix.reset();
-        this.shaderMatrix.setScale(fromTo, fromTo);
+        this.shaderMatrix.setScale(fFromTo, fFromTo);
         this.shaderMatrix.postTranslate(0.0f, this.bubbleCurrent.bottom);
         this.linearGradient.setLocalMatrix(this.shaderMatrix);
         this.paintBubbleBg.setAlpha((int) (Interpolators.bgOpacity.getInterpolation(this.openProgress) * 255.0f * f4));
@@ -459,17 +459,17 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         if (this.ballsAllowed && !this.openAnimationCompleted) {
             canvas.drawPath(this.path, this.paintBubbleBg);
         } else {
-            float min2 = Math.min(this.bubbleCurrent.width(), this.bubbleCurrent.height()) / 2.0f;
-            float min3 = Math.min(this.buttonCurrent.width(), this.buttonCurrent.height()) / 2.0f;
-            canvas.drawRoundRect(this.bubbleCurrent, min2, min2, this.paintBubbleBg);
+            float fMin2 = Math.min(this.bubbleCurrent.width(), this.bubbleCurrent.height()) / 2.0f;
+            float fMin3 = Math.min(this.buttonCurrent.width(), this.buttonCurrent.height()) / 2.0f;
+            canvas.drawRoundRect(this.bubbleCurrent, fMin2, fMin2, this.paintBubbleBg);
             if (!this.openAnimationCompleted) {
-                canvas.drawRoundRect(this.buttonCurrent, min3, min3, this.paintBubbleBg);
+                canvas.drawRoundRect(this.buttonCurrent, fMin3, fMin3, this.paintBubbleBg);
             }
         }
-        float dp2 = AndroidUtilities.dp(2.0f) * Interpolators.avatarOvershootCancel.getInterpolation(this.openProgress);
-        float dp3 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar1.getInterpolation(this.openProgress)) / 2.0f) - dp2;
-        float dp4 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar2.getInterpolation(this.openProgress)) / 2.0f) - dp2;
-        float dp5 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar3.getInterpolation(this.openProgress)) / 2.0f) - dp2;
+        float fDp = AndroidUtilities.dp(2.0f) * Interpolators.avatarOvershootCancel.getInterpolation(this.openProgress);
+        float fDp2 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar1.getInterpolation(this.openProgress)) / 2.0f) - fDp;
+        float fDp3 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar2.getInterpolation(this.openProgress)) / 2.0f) - fDp;
+        float fDp4 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar3.getInterpolation(this.openProgress)) / 2.0f) - fDp;
         int i6 = 0;
         while (i6 < 2) {
             int i7 = 0;
@@ -477,11 +477,11 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
                 if (i7 < this.avatarCells.length) {
                     if (!(i6 == 0 && i7 == this.selectedIndex) && (i6 != i5 || i7 == this.selectedIndex)) {
                         float length = i7 - ((r1.length / 2.0f) - 0.5f);
-                        float f5 = i7 == 2 ? dp3 : (i7 == i5 || i7 == 3) ? dp4 : dp5;
-                        float centerX2 = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * length);
-                        float centerY2 = this.bubbleCurrent.centerY();
+                        float f5 = i7 == 2 ? fDp2 : (i7 == i5 || i7 == 3) ? fDp3 : fDp4;
+                        float fCenterX2 = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * length);
+                        float fCenterY2 = this.bubbleCurrent.centerY();
                         QuickShareAvatarCell quickShareAvatarCell = this.avatarCells[i7];
-                        float dp6 = AndroidUtilities.dp(Sizes.TEXT_PADDING_EXTERNAL);
+                        float fDp5 = AndroidUtilities.dp(Sizes.TEXT_PADDING_EXTERNAL);
                         float measuredWidth = this.parent.getMeasuredWidth() - AndroidUtilities.dp(Sizes.TEXT_PADDING_EXTERNAL);
                         RectF rectF5 = this.bubbleCurrent;
                         float f6 = rectF5.left;
@@ -490,7 +490,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
                         i2 = i7;
                         float f8 = f5;
                         i3 = i6;
-                        quickShareAvatarCell.draw(canvas, dp6, measuredWidth, f6, f7, centerX2, centerY2, f8, f4, z2);
+                        quickShareAvatarCell.draw(canvas, fDp5, measuredWidth, f6, f7, fCenterX2, fCenterY2, f8, f4, z2);
                     } else {
                         i2 = i7;
                         i3 = i6;
@@ -518,62 +518,62 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         float interpolation2 = (Interpolators.buttonJumpUp.getInterpolation(this.openProgress) - Interpolators.buttonJumpDown.getInterpolation(this.openProgress)) * AndroidUtilities.dp(13.0f);
         this.buttonCurrent.set(this.bubbleStart);
         this.buttonCurrent.offset(0.0f, -interpolation2);
-        float fromTo = fromTo(this.buttonCurrent.height(), AndroidUtilities.dp(Sizes.BUBBLE_HEIGHT) + (AndroidUtilities.dp(2.0f) * interpolation), Interpolators.heightExpansion.getInterpolation(this.openProgress)) / 2.0f;
+        float fFromTo = fromTo(this.buttonCurrent.height(), AndroidUtilities.dp(Sizes.BUBBLE_HEIGHT) + (AndroidUtilities.dp(2.0f) * interpolation), Interpolators.heightExpansion.getInterpolation(this.openProgress)) / 2.0f;
         Interpolator interpolator = Interpolators.widthExpansion;
-        float fromTo2 = fromTo(this.buttonCurrent.width(), getBubbleWidth() + (AndroidUtilities.dp(10.0f) * interpolation), interpolator.getInterpolation(this.openProgress));
-        float f = fromTo * 2.0f;
-        float max = Math.max(fromTo2, f);
-        float centerX = this.bubbleStart.centerX() + fromTo + (Math.min(AndroidUtilities.dp(-12.0f) + this.bubbleOffset, (max - Math.max(this.buttonCurrent.width(), f)) / 2.0f) * interpolator.getInterpolation(this.openProgress));
-        float dp = ((this.bubbleStart.bottom - fromTo) - 1.0f) - ((AndroidUtilities.dp(38.0f) + (AndroidUtilities.dp(6.0f) * interpolation)) * Interpolators.bubbleY.getInterpolation(this.openProgress));
+        float fFromTo2 = fromTo(this.buttonCurrent.width(), getBubbleWidth() + (AndroidUtilities.dp(10.0f) * interpolation), interpolator.getInterpolation(this.openProgress));
+        float f = fFromTo * 2.0f;
+        float fMax = Math.max(fFromTo2, f);
+        float fCenterX = this.bubbleStart.centerX() + fFromTo + (Math.min(AndroidUtilities.dp(-12.0f) + this.bubbleOffset, (fMax - Math.max(this.buttonCurrent.width(), f)) / 2.0f) * interpolator.getInterpolation(this.openProgress));
+        float fDp = ((this.bubbleStart.bottom - fFromTo) - 1.0f) - ((AndroidUtilities.dp(38.0f) + (AndroidUtilities.dp(6.0f) * interpolation)) * Interpolators.bubbleY.getInterpolation(this.openProgress));
         RectF rectF = this.bubbleCurrent;
-        rectF.left = centerX - max;
-        rectF.top = dp - fromTo;
-        rectF.right = centerX;
-        rectF.bottom = dp + fromTo;
+        rectF.left = fCenterX - fMax;
+        rectF.top = fDp - fFromTo;
+        rectF.right = fCenterX;
+        rectF.bottom = fDp + fFromTo;
         if (!this.ballsAllowed || this.openAnimationCompleted) {
             return;
         }
-        float fromTo3 = fromTo(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), Interpolators.ballsRadius.getInterpolation(this.openProgress));
-        float f2 = this.bubbleCurrent.bottom + fromTo3;
-        float findOtherLeg = (float) findOtherLeg((this.buttonCurrent.width() / 2.0f) + fromTo3, Math.abs(f2 - this.buttonCurrent.centerY()));
-        float centerX2 = this.buttonCurrent.centerX() - findOtherLeg;
+        float fFromTo3 = fromTo(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), Interpolators.ballsRadius.getInterpolation(this.openProgress));
+        float f2 = this.bubbleCurrent.bottom + fFromTo3;
+        float fFindOtherLeg = (float) findOtherLeg((this.buttonCurrent.width() / 2.0f) + fFromTo3, Math.abs(f2 - this.buttonCurrent.centerY()));
+        float fCenterX2 = this.buttonCurrent.centerX() - fFindOtherLeg;
         RectF rectF2 = this.bubbleCurrent;
-        boolean z = centerX2 < rectF2.left + (rectF2.height() / 2.0f);
+        boolean z = fCenterX2 < rectF2.left + (rectF2.height() / 2.0f);
         if (z) {
-            float centerX3 = this.buttonCurrent.centerX();
-            float centerY = this.buttonCurrent.centerY();
-            float height = (this.buttonCurrent.height() / 2.0f) + fromTo3;
+            float fCenterX3 = this.buttonCurrent.centerX();
+            float fCenterY = this.buttonCurrent.centerY();
+            float fHeight = (this.buttonCurrent.height() / 2.0f) + fFromTo3;
             RectF rectF3 = this.bubbleCurrent;
-            PointF findIntersectionWithGravity = findIntersectionWithGravity(centerX3, centerY, height, rectF3.left + (rectF3.height() / 2.0f), this.bubbleCurrent.centerY(), (this.bubbleCurrent.height() / 2.0f) + fromTo3, true);
-            if (findIntersectionWithGravity != null) {
-                centerX2 = findIntersectionWithGravity.x;
-                f2 = findIntersectionWithGravity.y;
+            PointF pointFFindIntersectionWithGravity = findIntersectionWithGravity(fCenterX3, fCenterY, fHeight, rectF3.left + (rectF3.height() / 2.0f), this.bubbleCurrent.centerY(), (this.bubbleCurrent.height() / 2.0f) + fFromTo3, true);
+            if (pointFFindIntersectionWithGravity != null) {
+                fCenterX2 = pointFFindIntersectionWithGravity.x;
+                f2 = pointFFindIntersectionWithGravity.y;
             } else {
                 this.ballsAllowed = false;
             }
         }
-        this.ballLeft.set(centerX2 - fromTo3, f2 - fromTo3, centerX2 + fromTo3, f2 + fromTo3);
-        float f3 = this.bubbleCurrent.bottom + fromTo3;
-        float centerX4 = this.buttonCurrent.centerX() + findOtherLeg;
+        this.ballLeft.set(fCenterX2 - fFromTo3, f2 - fFromTo3, fCenterX2 + fFromTo3, f2 + fFromTo3);
+        float f3 = this.bubbleCurrent.bottom + fFromTo3;
+        float fCenterX4 = this.buttonCurrent.centerX() + fFindOtherLeg;
         RectF rectF4 = this.bubbleCurrent;
-        boolean z2 = centerX4 > rectF4.right - (rectF4.height() / 2.0f);
+        boolean z2 = fCenterX4 > rectF4.right - (rectF4.height() / 2.0f);
         if (z2) {
-            float centerX5 = this.buttonCurrent.centerX();
-            float centerY2 = this.buttonCurrent.centerY();
-            float height2 = (this.buttonCurrent.height() / 2.0f) + fromTo3;
+            float fCenterX5 = this.buttonCurrent.centerX();
+            float fCenterY2 = this.buttonCurrent.centerY();
+            float fHeight2 = (this.buttonCurrent.height() / 2.0f) + fFromTo3;
             RectF rectF5 = this.bubbleCurrent;
-            PointF findIntersectionWithGravity2 = findIntersectionWithGravity(centerX5, centerY2, height2, rectF5.right - (rectF5.height() / 2.0f), this.bubbleCurrent.centerY(), (this.bubbleCurrent.height() / 2.0f) + fromTo3, false);
-            if (findIntersectionWithGravity2 != null) {
-                centerX4 = findIntersectionWithGravity2.x;
-                f3 = findIntersectionWithGravity2.y;
+            PointF pointFFindIntersectionWithGravity2 = findIntersectionWithGravity(fCenterX5, fCenterY2, fHeight2, rectF5.right - (rectF5.height() / 2.0f), this.bubbleCurrent.centerY(), (this.bubbleCurrent.height() / 2.0f) + fFromTo3, false);
+            if (pointFFindIntersectionWithGravity2 != null) {
+                fCenterX4 = pointFFindIntersectionWithGravity2.x;
+                f3 = pointFFindIntersectionWithGravity2.y;
             } else {
                 this.ballsAllowed = false;
             }
         }
-        this.ballRight.set(centerX4 - fromTo3, f3 - fromTo3, centerX4 + fromTo3, f3 + fromTo3);
-        float abs = Math.abs(this.ballLeft.centerX() - this.ballRight.centerX());
-        float abs2 = Math.abs(this.ballLeft.centerY() - this.ballRight.centerY());
-        if (Math.sqrt((abs * abs) + (abs2 * abs2)) <= (this.ballLeft.width() + this.ballRight.width()) / 2.0f && this.ballsAllowed) {
+        this.ballRight.set(fCenterX4 - fFromTo3, f3 - fFromTo3, fCenterX4 + fFromTo3, f3 + fFromTo3);
+        float fAbs = Math.abs(this.ballLeft.centerX() - this.ballRight.centerX());
+        float fAbs2 = Math.abs(this.ballLeft.centerY() - this.ballRight.centerY());
+        if (Math.sqrt((fAbs * fAbs) + (fAbs2 * fAbs2)) <= (this.ballLeft.width() + this.ballRight.width()) / 2.0f && this.ballsAllowed) {
             this.ballsAllowed = false;
         }
         if (this.ballsAllowed) {
@@ -622,26 +622,26 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
 
     private void buildPath(Path path, RectF rectF, RectF rectF2, RectF rectF3, RectF rectF4, boolean z, boolean z2) {
         path.reset();
-        float calculateAngle = calculateAngle(rectF.centerX(), rectF.centerY(), rectF4.centerX(), rectF4.centerY());
-        float calculateAngle2 = calculateAngle(rectF.centerX(), rectF.centerY(), rectF3.centerX(), rectF3.centerY());
-        arcTo(path, rectF, calculateAngle, calculateAngle2, false);
-        float calculateAngle3 = z ? calculateAngle(rectF3.centerX(), rectF3.centerY(), rectF2.left + (rectF2.height() / 2.0f), rectF2.centerY()) : -90.0f;
-        arcTo(path, rectF3, reverseAngle(calculateAngle2), calculateAngle3, true, true);
+        float fCalculateAngle = calculateAngle(rectF.centerX(), rectF.centerY(), rectF4.centerX(), rectF4.centerY());
+        float fCalculateAngle2 = calculateAngle(rectF.centerX(), rectF.centerY(), rectF3.centerX(), rectF3.centerY());
+        arcTo(path, rectF, fCalculateAngle, fCalculateAngle2, false);
+        float fCalculateAngle3 = z ? calculateAngle(rectF3.centerX(), rectF3.centerY(), rectF2.left + (rectF2.height() / 2.0f), rectF2.centerY()) : -90.0f;
+        arcTo(path, rectF3, reverseAngle(fCalculateAngle2), fCalculateAngle3, true, true);
         if (!z) {
             path.lineTo(rectF2.left + (rectF2.height() / 2.0f), rectF2.bottom);
         }
         RectF rectF5 = tmpRectF;
         float f = rectF2.left;
         rectF5.set(f, rectF2.top, rectF2.height() + f, rectF2.bottom);
-        arcTo(path, rectF5, reverseAngle(calculateAngle3), -90.0f, false);
+        arcTo(path, rectF5, reverseAngle(fCalculateAngle3), -90.0f, false);
         path.lineTo(rectF2.right - (rectF2.height() / 2.0f), rectF2.top);
-        float calculateAngle4 = z2 ? calculateAngle(rectF4.centerX(), rectF4.centerY(), rectF2.right - (rectF2.height() / 2.0f), rectF2.centerY()) : -90.0f;
+        float fCalculateAngle4 = z2 ? calculateAngle(rectF4.centerX(), rectF4.centerY(), rectF2.right - (rectF2.height() / 2.0f), rectF2.centerY()) : -90.0f;
         rectF5.set(rectF2.right - rectF2.height(), rectF2.top, rectF2.right, rectF2.bottom);
-        arcTo(path, rectF5, -90.0f, reverseAngle(calculateAngle4), false);
+        arcTo(path, rectF5, -90.0f, reverseAngle(fCalculateAngle4), false);
         if (!z2) {
             path.lineTo(rectF4.centerX(), rectF2.bottom);
         }
-        arcTo(path, rectF4, calculateAngle4, reverseAngle(calculateAngle), true, true);
+        arcTo(path, rectF4, fCalculateAngle4, reverseAngle(fCalculateAngle), true, true);
         path.close();
     }
 
@@ -674,17 +674,17 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
     public static PointF findIntersectionWithGravity(float f, float f2, float f3, float f4, float f5, float f6, boolean z) {
         float f7 = f4 - f;
         float f8 = f5 - f2;
-        float sqrt = (float) Math.sqrt(Math.pow(f7, 2.0d) + Math.pow(f8, 2.0d));
-        if (sqrt > f3 + f6 || sqrt < Math.abs(f3 - f6)) {
+        float fSqrt = (float) Math.sqrt(Math.pow(f7, 2.0d) + Math.pow(f8, 2.0d));
+        if (fSqrt > f3 + f6 || fSqrt < Math.abs(f3 - f6)) {
             return null;
         }
-        float f9 = (((f3 * f3) - (f6 * f6)) + (sqrt * sqrt)) / (2.0f * sqrt);
-        float sqrt2 = (float) Math.sqrt(r8 - (f9 * f9));
-        float f10 = f + ((f9 * f7) / sqrt);
-        float f11 = f2 + ((f9 * f8) / sqrt);
-        float f12 = (f8 * sqrt2) / sqrt;
+        float f9 = (((f3 * f3) - (f6 * f6)) + (fSqrt * fSqrt)) / (2.0f * fSqrt);
+        float fSqrt2 = (float) Math.sqrt(r8 - (f9 * f9));
+        float f10 = f + ((f9 * f7) / fSqrt);
+        float f11 = f2 + ((f9 * f8) / fSqrt);
+        float f12 = (f8 * fSqrt2) / fSqrt;
         float f13 = f10 + f12;
-        float f14 = (sqrt2 * f7) / sqrt;
+        float f14 = (fSqrt2 * f7) / fSqrt;
         float f15 = f11 - f14;
         float f16 = f10 - f12;
         float f17 = f11 + f14;
@@ -715,9 +715,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         return new Interpolator() {
             @Override
             public final float getInterpolation(float f4) {
-                float lambda$interpolator$1;
-                lambda$interpolator$1 = QuickShareSelectorDrawable.lambda$interpolator$1(z, f2, f3, interpolator, f4);
-                return lambda$interpolator$1;
+                return QuickShareSelectorDrawable.lambda$interpolator$1(z, f2, f3, interpolator, f4);
             }
         };
     }
@@ -734,11 +732,11 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         double d2 = f2;
         double d3 = f3;
         double d4 = f4;
-        double calculateC2 = calculateC2(d, d2, d3, d4, f5, f6);
-        double calculateC1 = calculateC1(d, d2, d3, d4, calculateC2);
-        double calculateC0 = calculateC0(d, d2, calculateC1, calculateC2);
-        double fromTo = fromTo(f, f3, f7);
-        return (float) ((calculateC2 * fromTo * fromTo) + (calculateC1 * fromTo) + calculateC0);
+        double dCalculateC2 = calculateC2(d, d2, d3, d4, f5, f6);
+        double dCalculateC1 = calculateC1(d, d2, d3, d4, dCalculateC2);
+        double dCalculateC0 = calculateC0(d, d2, dCalculateC1, dCalculateC2);
+        double dFromTo = fromTo(f, f3, f7);
+        return (float) ((dCalculateC2 * dFromTo * dFromTo) + (dCalculateC1 * dFromTo) + dCalculateC0);
     }
 
     public static class Interpolators {

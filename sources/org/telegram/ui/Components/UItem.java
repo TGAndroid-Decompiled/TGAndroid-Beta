@@ -30,6 +30,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public String chatType;
     public boolean checked;
     public View.OnClickListener clickCallback;
+    public View.OnClickListener clickCallback2;
     public boolean collapsed;
     public long dialogId;
     public Drawable drawable;
@@ -76,12 +77,21 @@ public class UItem extends AdapterWithDiffUtils.Item {
         UItem uItem = new UItem(-1, false);
         uItem.id = i;
         uItem.view = view;
+        uItem.intValue = -1;
         return uItem;
     }
 
     public static UItem asCustom(View view) {
         UItem uItem = new UItem(-1, false);
         uItem.view = view;
+        uItem.intValue = -1;
+        return uItem;
+    }
+
+    public static UItem asCustom(View view, int i) {
+        UItem uItem = new UItem(-1, false);
+        uItem.view = view;
+        uItem.intValue = i;
         return uItem;
     }
 
@@ -506,13 +516,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public boolean instanceOf(Class cls) {
-        HashMap hashMap;
+        HashMap map;
         UItemFactory uItemFactory;
-        return this.viewType >= factoryViewTypeStartsWith && (hashMap = factoryInstances) != null && (uItemFactory = (UItemFactory) hashMap.get(cls)) != null && uItemFactory.viewType == this.viewType;
+        return this.viewType >= factoryViewTypeStartsWith && (map = factoryInstances) != null && (uItemFactory = (UItemFactory) map.get(cls)) != null && uItemFactory.viewType == this.viewType;
     }
 
     public boolean equals(Object obj) {
-        UItemFactory findFactory;
+        UItemFactory uItemFactoryFindFactory;
         if (this == obj) {
             return true;
         }
@@ -530,15 +540,15 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (i == 31) {
             return TextUtils.equals(this.text, uItem.text);
         }
-        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
-            return findFactory.equals(this, uItem);
+        if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
+            return uItemFactoryFindFactory.equals(this, uItem);
         }
         return itemEquals(uItem);
     }
 
     @Override
-    public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
-        UItemFactory findFactory;
+    protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        UItemFactory uItemFactoryFindFactory;
         if (this == item) {
             return true;
         }
@@ -556,8 +566,8 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (i == 35 || i == 37) {
             return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
         }
-        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
-            return findFactory.contentsEquals(this, uItem);
+        if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
+            return uItemFactoryFindFactory.contentsEquals(this, uItem);
         }
         return itemContentEquals(uItem);
     }
@@ -604,7 +614,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
             UItem.factories.put(uItemFactory.viewType, uItemFactory);
         }
 
-        public View getCached() {
+        protected View getCached() {
             ArrayList arrayList = this.cache;
             if (arrayList == null || arrayList.isEmpty()) {
                 return null;

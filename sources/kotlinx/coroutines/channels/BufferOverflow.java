@@ -26,8 +26,8 @@ public final class BufferOverflow {
     }
 
     static {
-        BufferOverflow[] $values = $values();
-        $VALUES = $values;
-        $ENTRIES = EnumEntriesKt.enumEntries($values);
+        BufferOverflow[] bufferOverflowArr$values = $values();
+        $VALUES = bufferOverflowArr$values;
+        $ENTRIES = EnumEntriesKt.enumEntries(bufferOverflowArr$values);
     }
 }

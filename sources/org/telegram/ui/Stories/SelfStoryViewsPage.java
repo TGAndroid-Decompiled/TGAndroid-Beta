@@ -125,7 +125,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
     public void onTopOffsetChanged(int i) {
     }
 
-    public void updateSharedState() {
+    protected void updateSharedState() {
     }
 
     public static void access$1300(SelfStoryViewsPage selfStoryViewsPage) {
@@ -177,7 +177,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         this.headerView = new HeaderView(getContext());
         RecyclerListViewInner recyclerListViewInner = new RecyclerListViewInner(context, this.resourcesProvider) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 SelfStoryViewsPage.this.measuerdHeight = View.MeasureSpec.getSize(i2);
                 super.onMeasure(i, i2);
             }
@@ -228,7 +228,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                SelfStoryViewsPage.this.lambda$new$0(storyViewer, view, i);
+                this.f$0.lambda$new$0(storyViewer, view, i);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new AnonymousClass4(storyViewer));
@@ -297,7 +297,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
     }
 
-    public class AnonymousClass4 implements RecyclerListView.OnItemLongClickListener {
+    class AnonymousClass4 implements RecyclerListView.OnItemLongClickListener {
         final StoryViewer val$storyViewer;
 
         AnonymousClass4(StoryViewer storyViewer) {
@@ -324,46 +324,46 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
             boolean z2 = messagesController.blockePeers.indexOfKey(user.id) >= 0;
             boolean z3 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
-            boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(storyView);
-            boolean isBlocked = messagesController.getStoriesController().isBlocked(storyView);
-            boolean isUserSelf = UserObject.isUserSelf(user);
-            String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
-            int indexOf = str.indexOf(" ");
-            if (indexOf > 2) {
-                str = str.substring(0, indexOf);
+            boolean zIsStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(storyView);
+            boolean zIsBlocked = messagesController.getStoriesController().isBlocked(storyView);
+            boolean zIsUserSelf = UserObject.isUserSelf(user);
+            String strSubstring = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
+            int iIndexOf = strSubstring.indexOf(" ");
+            if (iIndexOf > 2) {
+                strSubstring = strSubstring.substring(0, iIndexOf);
             }
-            final String str2 = str;
-            if (isUserSelf) {
+            final String str = strSubstring;
+            if (zIsUserSelf) {
                 return false;
             }
             boolean z4 = z3;
-            ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z2 || isUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
+            ItemOptions itemOptionsCutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!zIsStoryShownToUser || zIsBlocked || z2 || zIsUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str), new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, storyView);
+                    this.f$0.lambda$onItemClick$0(messagesController, user, str, reactedUserHolderView, storyView);
                 }
-            }).makeMultiline(false).cutTextInFancyHalf().addIf((!isBlocked || z2 || isUserSelf) ? false : true, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str2), new Runnable() {
+            }).makeMultiline(false).cutTextInFancyHalf().addIf((!zIsBlocked || z2 || zIsUserSelf) ? false : true, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str), new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$1(messagesController, user, str2, reactedUserHolderView, storyView);
+                    this.f$0.lambda$onItemClick$1(messagesController, user, str, reactedUserHolderView, storyView);
                 }
             }).makeMultiline(false).cutTextInFancyHalf();
-            boolean z5 = (z4 || z2 || isUserSelf) ? false : true;
+            boolean z5 = (z4 || z2 || zIsUserSelf) ? false : true;
             int i2 = R.drawable.msg_user_remove;
-            final ItemOptions addIf = cutTextInFancyHalf.addIf(z5, i2, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable() {
+            final ItemOptions itemOptionsAddIf = itemOptionsCutTextInFancyHalf.addIf(z5, i2, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, storyView);
+                    this.f$0.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, storyView);
                 }
-            }).addIf((z4 || !z2 || isUserSelf) ? false : true, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable() {
+            }).addIf((z4 || !z2 || zIsUserSelf) ? false : true, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, storyView);
+                    this.f$0.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, storyView);
                 }
-            }).addIf(z4 && !isUserSelf, i2, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
+            }).addIf(z4 && !zIsUserSelf, i2, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, storyView);
+                    this.f$0.lambda$onItemClick$4(user, str, reactedUserHolderView, storyView);
                 }
             });
             TLRPC.Reaction reaction = storyView.reaction;
@@ -371,31 +371,30 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 try {
                     if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
                         anonymousClass4 = this;
-                        TLRPC.InputStickerSet findStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC.TL_reactionCustomEmoji) reaction).document_id);
-                        if (findStickerSet != null) {
-                            addIf.addGap();
+                        TLRPC.InputStickerSet inputStickerSetFindStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC.TL_reactionCustomEmoji) reaction).document_id);
+                        if (inputStickerSetFindStickerSet != null) {
+                            itemOptionsAddIf.addGap();
                             final ArrayList arrayList = new ArrayList();
-                            arrayList.add(findStickerSet);
+                            arrayList.add(inputStickerSetFindStickerSet);
                             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
                             MessageContainsEmojiButton messageContainsEmojiButton = new MessageContainsEmojiButton(selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, arrayList, 3);
                             messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view2) {
-                                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$5(arrayList, addIf, view2);
+                                    this.f$0.lambda$onItemClick$5(arrayList, itemOptionsAddIf, view2);
                                 }
                             });
-                            addIf.addView(messageContainsEmojiButton);
+                            itemOptionsAddIf.addView(messageContainsEmojiButton);
                             z = true;
-                            if (addIf.getItemsCount() > 0 && !z) {
-                                return false;
-                            }
-                            addIf.show();
-                            SelfStoryViewsPage.this.performHapticFeedback(0, 1);
-                            return true;
                         }
-                    } else {
-                        anonymousClass4 = this;
+                        if (itemOptionsAddIf.getItemsCount() > 0 && !z) {
+                            return false;
+                        }
+                        itemOptionsAddIf.show();
+                        SelfStoryViewsPage.this.performHapticFeedback(0, 1);
+                        return true;
                     }
+                    anonymousClass4 = this;
                     SelfStoryViewsPage.this.performHapticFeedback(0, 1);
                     return true;
                 } catch (Exception unused) {
@@ -405,9 +404,9 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 return true;
             }
             z = false;
-            if (addIf.getItemsCount() > 0) {
+            if (itemOptionsAddIf.getItemsCount() > 0) {
             }
-            addIf.show();
+            itemOptionsAddIf.show();
         }
 
         public void lambda$onItemClick$0(MessagesController messagesController, TLRPC.User user, String str, ReactedUserHolderView reactedUserHolderView, TL_stories.StoryView storyView) {
@@ -469,7 +468,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
     }
 
-    public class AnonymousClass5 extends SearchField {
+    class AnonymousClass5 extends SearchField {
         Runnable runnable;
 
         AnonymousClass5(Context context, boolean z, float f, Theme.ResourcesProvider resourcesProvider) {
@@ -485,7 +484,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             this.runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass5.this.lambda$onTextChange$0(str);
+                    this.f$0.lambda$onTextChange$0(str);
                 }
             };
             if (!TextUtils.isEmpty(str)) {
@@ -774,7 +773,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         return this.topViewsContainer.getTranslationY();
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         ArrayList items;
 
         private ListAdapter() {
@@ -788,10 +787,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FlickerLoadingView flickerLoadingView;
-            View view;
+            View fixedHeightEmptyCell;
             switch (i) {
                 case 0:
-                    view = new View(SelfStoryViewsPage.this.getContext()) {
+                    fixedHeightEmptyCell = new View(SelfStoryViewsPage.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(SelfStoryViewsPage.this.TOP_PADDING), 1073741824));
@@ -801,23 +800,23 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 case 1:
                     int i2 = ReactedUserHolderView.STYLE_STORY;
                     SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
-                    view = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, false, true) {
+                    fixedHeightEmptyCell = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, false, true) {
                         @Override
                         public void openStory(long j, Runnable runnable) {
                             BaseFragment lastFragment = LaunchActivity.getLastFragment();
                             if (lastFragment == null) {
                                 return;
                             }
-                            StoryViewer createOverlayStoryViewer = lastFragment.createOverlayStoryViewer();
-                            createOverlayStoryViewer.doOnAnimationReady(runnable);
-                            createOverlayStoryViewer.open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
+                            StoryViewer storyViewerCreateOverlayStoryViewer = lastFragment.createOverlayStoryViewer();
+                            storyViewerCreateOverlayStoryViewer.doOnAnimationReady(runnable);
+                            storyViewerCreateOverlayStoryViewer.open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
                         }
                     };
                     break;
                 case 2:
                 case 9:
                 default:
-                    view = new View(SelfStoryViewsPage.this.getContext()) {
+                    fixedHeightEmptyCell = new View(SelfStoryViewsPage.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             int lastItemHeight = SelfStoryViewsPage.this.layoutManager.getLastItemHeight();
@@ -829,14 +828,14 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     };
                     break;
                 case 3:
-                    view = new FixedHeightEmptyCell(SelfStoryViewsPage.this.getContext(), 70);
+                    fixedHeightEmptyCell = new FixedHeightEmptyCell(SelfStoryViewsPage.this.getContext(), 70);
                     break;
                 case 4:
                     flickerLoadingView = new FlickerLoadingView(SelfStoryViewsPage.this.getContext(), SelfStoryViewsPage.this.resourcesProvider);
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(28);
                     flickerLoadingView.showDate(false);
-                    view = flickerLoadingView;
+                    fixedHeightEmptyCell = flickerLoadingView;
                     break;
                 case 5:
                 case 7:
@@ -869,7 +868,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(string, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    SelfStoryViewsPage.access$1300(SelfStoryViewsPage.this);
+                                    SelfStoryViewsPage.access$1300(selfStoryViewsPage2);
                                 }
                             }));
                             String string2 = LocaleController.getString(R.string.LearnMore);
@@ -877,7 +876,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             stickerEmptyView.createButtonLayout(string2, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    SelfStoryViewsPage.access$1300(SelfStoryViewsPage.this);
+                                    SelfStoryViewsPage.access$1300(selfStoryViewsPage3);
                                 }
                             });
                         }
@@ -893,7 +892,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         }
                     }
                     stickerEmptyView.showProgress(false, false);
-                    view = stickerEmptyView;
+                    fixedHeightEmptyCell = stickerEmptyView;
                     break;
                 case 6:
                     flickerLoadingView = new FlickerLoadingView(SelfStoryViewsPage.this.getContext(), SelfStoryViewsPage.this.resourcesProvider);
@@ -902,7 +901,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     flickerLoadingView.setItemsCount(20);
                     flickerLoadingView.setViewType(28);
                     flickerLoadingView.showDate(false);
-                    view = flickerLoadingView;
+                    fixedHeightEmptyCell = flickerLoadingView;
                     break;
                 case 11:
                 case 12:
@@ -910,9 +909,9 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     linksTextView.setTextSize(1, 13.0f);
                     linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, SelfStoryViewsPage.this.resourcesProvider));
                     linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, SelfStoryViewsPage.this.resourcesProvider));
-                    int dp = AndroidUtilities.dp(16.0f);
-                    int dp2 = AndroidUtilities.dp(21.0f);
-                    linksTextView.setPadding(dp2, dp, dp2, dp);
+                    int iDp = AndroidUtilities.dp(16.0f);
+                    int iDp2 = AndroidUtilities.dp(21.0f);
+                    linksTextView.setPadding(iDp2, iDp, iDp2, iDp);
                     linksTextView.setMaxLines(Integer.MAX_VALUE);
                     linksTextView.setGravity(17);
                     linksTextView.setDisablePaddingsOffsetY(true);
@@ -920,31 +919,31 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryViewsPremiumHint), new Runnable() {
                             @Override
                             public final void run() {
-                                SelfStoryViewsPage.ListAdapter.this.lambda$onCreateViewHolder$0();
+                                this.f$0.lambda$onCreateViewHolder$0();
                             }
                         }));
                     } else {
                         linksTextView.setText(LocaleController.getString(R.string.ServerErrorViewersFull));
                     }
                     linksTextView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    view = linksTextView;
+                    fixedHeightEmptyCell = linksTextView;
                     break;
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(fixedHeightEmptyCell);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            TLRPC.Peer peer;
+            TLRPC.Peer tL_peerUser;
             TLRPC.Message message;
             TLRPC.Chat chat;
             TLRPC.User user;
-            ReactionsLayoutInBubble.VisibleReaction fromTL;
+            ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL;
             String str;
             int i2;
             float f;
             boolean z;
-            ReactionsLayoutInBubble.VisibleReaction fromTL2;
+            ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL2;
             String str2;
             TLRPC.Message message2;
             if (viewHolder.getItemViewType() != 1 || i < 0 || i >= this.items.size()) {
@@ -955,22 +954,22 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             TL_stories.StoryView storyView = item.view;
             if (storyView != null) {
                 if (storyView instanceof TL_stories.TL_storyViewPublicRepost) {
-                    peer = storyView.peer_id;
+                    tL_peerUser = storyView.peer_id;
                 } else if ((storyView instanceof TL_stories.TL_storyViewPublicForward) && (message2 = storyView.message) != null) {
-                    peer = message2.peer_id;
+                    tL_peerUser = message2.peer_id;
                 } else {
-                    peer = new TLRPC.TL_peerUser();
-                    peer.user_id = item.view.user_id;
+                    tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_peerUser.user_id = item.view.user_id;
                 }
             } else {
                 TL_stories.StoryReaction storyReaction = item.reaction;
                 if (storyReaction != null) {
-                    peer = (!(storyReaction instanceof TL_stories.TL_storyReactionPublicForward) || (message = storyReaction.message) == null) ? storyReaction.peer_id : message.peer_id;
+                    tL_peerUser = (!(storyReaction instanceof TL_stories.TL_storyReactionPublicForward) || (message = storyReaction.message) == null) ? storyReaction.peer_id : message.peer_id;
                 } else {
-                    peer = null;
+                    tL_peerUser = null;
                 }
             }
-            long peerDialogId = DialogObject.getPeerDialogId(peer);
+            long peerDialogId = DialogObject.getPeerDialogId(tL_peerUser);
             if (peerDialogId >= 0) {
                 user = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount).getUser(Long.valueOf(peerDialogId));
                 chat = null;
@@ -978,23 +977,23 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 chat = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount).getChat(Long.valueOf(-peerDialogId));
                 user = null;
             }
-            boolean remove = SelfStoryViewsPage.this.defaultModel.animateDateForUsers.remove(Long.valueOf(peerDialogId));
+            boolean zRemove = SelfStoryViewsPage.this.defaultModel.animateDateForUsers.remove(Long.valueOf(peerDialogId));
             TL_stories.StoryView storyView2 = item.view;
             if (storyView2 != null) {
                 TLRPC.Reaction reaction = storyView2.reaction;
-                boolean z2 = (reaction == null || (fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction)) == null || (str2 = fromTL2.emojicon) == null || !str2.equals("❤")) ? false : true;
+                boolean z2 = (reaction == null || (visibleReactionFromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction)) == null || (str2 = visibleReactionFromTL2.emojicon) == null || !str2.equals("❤")) ? false : true;
                 TL_stories.StoryView storyView3 = item.view;
                 if (storyView3 instanceof TL_stories.TL_storyViewPublicRepost) {
                     i2 = 11;
-                    reactedUserHolderView.setUserReaction(user, null, null, z2, 0L, storyView3.story, false, true, remove);
+                    reactedUserHolderView.setUserReaction(user, null, null, z2, 0L, storyView3.story, false, true, zRemove);
                 } else {
                     i2 = 11;
                     if (storyView3 instanceof TL_stories.TL_storyViewPublicForward) {
                         long j = storyView3.message != null ? r5.date : 0L;
                         SelfStoryViewsView.StoryItemInternal storyItemInternal = SelfStoryViewsPage.this.storyItem;
-                        reactedUserHolderView.setUserReaction(user, null, null, z2, j, storyItemInternal == null ? null : storyItemInternal.storyItem, true, true, remove);
+                        reactedUserHolderView.setUserReaction(user, null, null, z2, j, storyItemInternal == null ? null : storyItemInternal.storyItem, true, true, zRemove);
                     } else {
-                        reactedUserHolderView.setUserReaction(user, null, z2 ? null : storyView3.reaction, z2, storyView3.date, null, false, true, remove);
+                        reactedUserHolderView.setUserReaction(user, null, z2 ? null : storyView3.reaction, z2, storyView3.date, null, false, true, zRemove);
                     }
                 }
                 int i3 = i < this.items.size() - 1 ? ((Item) this.items.get(i + 1)).viewType : -1;
@@ -1014,14 +1013,14 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 if (storyReaction2 instanceof TL_stories.TL_storyReaction) {
                     TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction2;
                     TLRPC.Reaction reaction2 = tL_storyReaction.reaction;
-                    boolean z3 = (reaction2 == null || (fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction2)) == null || (str = fromTL.emojicon) == null || !str.equals("❤")) ? false : true;
-                    reactedUserHolderView.setUserReaction(user, chat, z3 ? null : tL_storyReaction.reaction, z3, tL_storyReaction.date, null, false, true, remove);
+                    boolean z3 = (reaction2 == null || (visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction2)) == null || (str = visibleReactionFromTL.emojicon) == null || !str.equals("❤")) ? false : true;
+                    reactedUserHolderView.setUserReaction(user, chat, z3 ? null : tL_storyReaction.reaction, z3, tL_storyReaction.date, null, false, true, zRemove);
                 } else if (storyReaction2 instanceof TL_stories.TL_storyReactionPublicRepost) {
-                    reactedUserHolderView.setUserReaction(user, chat, null, false, 0L, ((TL_stories.TL_storyReactionPublicRepost) storyReaction2).story, false, true, remove);
+                    reactedUserHolderView.setUserReaction(user, chat, null, false, 0L, ((TL_stories.TL_storyReactionPublicRepost) storyReaction2).story, false, true, zRemove);
                 } else if (storyReaction2 instanceof TL_stories.TL_storyReactionPublicForward) {
                     long j2 = storyReaction2.message != null ? r2.date : 0L;
                     SelfStoryViewsView.StoryItemInternal storyItemInternal2 = SelfStoryViewsPage.this.storyItem;
-                    reactedUserHolderView.setUserReaction(user, chat, null, false, j2, storyItemInternal2 == null ? null : storyItemInternal2.storyItem, true, true, remove);
+                    reactedUserHolderView.setUserReaction(user, chat, null, false, j2, storyItemInternal2 == null ? null : storyItemInternal2.storyItem, true, true, zRemove);
                 }
                 int i4 = i < this.items.size() - 1 ? ((Item) this.items.get(i + 1)).viewType : -1;
                 reactedUserHolderView.drawDivider = i4 == 1 || i4 == 11 || i4 == 12;
@@ -1110,7 +1109,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         new PremiumFeatureBottomSheet(this.storyViewer.fragment, 14, false).show();
     }
 
-    public static class Item {
+    private static class Item {
         final TL_stories.StoryReaction reaction;
         final TL_stories.StoryView view;
         final int viewType;
@@ -1186,10 +1185,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
             for (int i3 = 0; i3 < storyItem.views.recent_viewers.size(); i3++) {
                 Long l = storyItem.views.recent_viewers.get(i3);
-                long longValue = l.longValue();
+                long jLongValue = l.longValue();
                 if (MessagesController.getInstance(i).getUser(l) != null) {
                     TL_stories.TL_storyView tL_storyView = new TL_stories.TL_storyView();
-                    tL_storyView.user_id = longValue;
+                    tL_storyView.user_id = jLongValue;
                     tL_storyView.date = 0;
                     this.views.add(tL_storyView);
                 }
@@ -1215,14 +1214,14 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 }
                 this.loading = true;
                 FileLog.d("SelfStoryViewsPage reactions load next " + this.storyItem.id + " " + this.initial + " offset=" + tL_getStoryReactionsList.offset);
-                int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getStoryReactionsList, new RequestDelegate() {
+                int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getStoryReactionsList, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        SelfStoryViewsPage.ViewsModel.this.lambda$loadNext$1(r2, tLObject, tL_error);
+                        this.f$0.lambda$loadNext$1(iArr, tLObject, tL_error);
                     }
                 });
-                this.reqId = sendRequest;
-                final int[] iArr = {sendRequest};
+                this.reqId = iSendRequest;
+                final int[] iArr = {iSendRequest};
                 return;
             }
             TL_stories.TL_stories_getStoryViewsList tL_stories_getStoryViewsList = new TL_stories.TL_stories_getStoryViewsList();
@@ -1250,21 +1249,21 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
             this.loading = true;
             FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
-            int sendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate() {
+            int iSendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    SelfStoryViewsPage.ViewsModel.this.lambda$loadNext$3(r2, tLObject, tL_error);
+                    this.f$0.lambda$loadNext$3(iArr, tLObject, tL_error);
                 }
             });
-            this.reqId = sendRequest2;
-            final int[] iArr2 = {sendRequest2};
+            this.reqId = iSendRequest2;
+            final int[] iArr2 = {iSendRequest2};
         }
 
         public void lambda$loadNext$1(final int[] iArr, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.ViewsModel.this.lambda$loadNext$0(iArr, tLObject, tL_error);
+                    this.f$0.lambda$loadNext$0(iArr, tLObject, tL_error);
                 }
             });
         }
@@ -1331,7 +1330,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.ViewsModel.this.lambda$loadNext$2(iArr, tLObject, tL_error);
+                    this.f$0.lambda$loadNext$2(iArr, tLObject, tL_error);
                 }
             });
         }
@@ -1419,10 +1418,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
 
         private void applyLocalFilter() {
+            String lowerCase;
+            String translitString;
             String str;
             String str2;
-            String str3;
-            String str4;
             if (this.isChannel) {
                 return;
             }
@@ -1430,24 +1429,24 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             FiltersState filtersState = this.state;
             if (filtersState.contactsOnly || !TextUtils.isEmpty(filtersState.searchQuery)) {
                 if (TextUtils.isEmpty(this.state.searchQuery)) {
+                    lowerCase = null;
+                    translitString = null;
                     str = null;
                     str2 = null;
-                    str3 = null;
-                    str4 = null;
                 } else {
-                    str = this.state.searchQuery.trim().toLowerCase();
-                    str2 = LocaleController.getInstance().getTranslitString(str);
-                    str3 = " " + str;
-                    str4 = " " + str2;
+                    lowerCase = this.state.searchQuery.trim().toLowerCase();
+                    translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+                    str = " " + lowerCase;
+                    str2 = " " + translitString;
                 }
                 for (int i = 0; i < this.originalViews.size(); i++) {
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TL_stories.StoryView) this.originalViews.get(i)).user_id));
                     boolean z = !this.state.contactsOnly || (user != null && user.contact);
-                    if (z && str != null) {
-                        String lowerCase = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
+                    if (z && lowerCase != null) {
+                        String lowerCase2 = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
                         String publicUsername = UserObject.getPublicUsername(user);
-                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                        if ((lowerCase == null || (!lowerCase.startsWith(str) && !lowerCase.contains(str3))) && ((translitSafe == null || (!translitSafe.startsWith(str2) && !translitSafe.contains(str4))) && (publicUsername == null || (!publicUsername.startsWith(str2) && !publicUsername.contains(str4))))) {
+                        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase2);
+                        if ((lowerCase2 == null || (!lowerCase2.startsWith(lowerCase) && !lowerCase2.contains(str))) && ((strTranslitSafe == null || (!strTranslitSafe.startsWith(translitString) && !strTranslitSafe.contains(str2))) && (publicUsername == null || (!publicUsername.startsWith(translitString) && !publicUsername.contains(str2))))) {
                             z = false;
                         }
                     }
@@ -1464,9 +1463,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             Collections.sort(this.views, Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
                 public final int applyAsInt(Object obj) {
-                    int lambda$applyLocalFilter$4;
-                    lambda$applyLocalFilter$4 = SelfStoryViewsPage.ViewsModel.lambda$applyLocalFilter$4((TL_stories.StoryView) obj);
-                    return lambda$applyLocalFilter$4;
+                    return SelfStoryViewsPage.ViewsModel.lambda$applyLocalFilter$4((TL_stories.StoryView) obj);
                 }
             }));
         }
@@ -1524,7 +1521,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
     }
 
-    public class HeaderView extends FrameLayout {
+    class HeaderView extends FrameLayout {
         TextView allViewersView;
         float animateFromAlpha1;
         float animateFromAlpha2;
@@ -1592,19 +1589,19 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             this.allViewersView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SelfStoryViewsPage.HeaderView.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             this.contactsViewersView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SelfStoryViewsPage.HeaderView.this.lambda$new$1(view);
+                    this.f$0.lambda$new$1(view);
                 }
             });
             linearLayout2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SelfStoryViewsPage.HeaderView.this.lambda$new$2(view);
+                    this.f$0.lambda$new$2(view);
                 }
             });
         }
@@ -1630,7 +1627,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             SelfStoryViewsPage.this.reload();
         }
 
-        public class AnonymousClass1 extends CustomPopupMenu {
+        class AnonymousClass1 extends CustomPopupMenu {
             @Override
             protected void onDismissed() {
             }
@@ -1651,24 +1648,24 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 } else {
                     i = selfStoryViewsPage.state.sortByReactions ? R.drawable.menu_views_reactions2 : R.drawable.menu_views_reactions;
                 }
-                ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i, LocaleController.getString(z ? R.string.SortByReposts : R.string.SortByReactions), false, SelfStoryViewsPage.this.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i, LocaleController.getString(z ? R.string.SortByReposts : R.string.SortByReactions), false, SelfStoryViewsPage.this.resourcesProvider);
                 if (!SelfStoryViewsPage.this.state.sortByReactions) {
-                    addItem.setAlpha(0.5f);
+                    actionBarMenuSubItemAddItem.setAlpha(0.5f);
                 }
-                addItem.setOnClickListener(new View.OnClickListener() {
+                actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        SelfStoryViewsPage.HeaderView.AnonymousClass1.this.lambda$onCreate$0(view);
+                        this.f$0.lambda$onCreate$0(view);
                     }
                 });
-                ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, !SelfStoryViewsPage.this.state.sortByReactions ? R.drawable.menu_views_recent2 : R.drawable.menu_views_recent, LocaleController.getString(R.string.SortByTime), false, SelfStoryViewsPage.this.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, !SelfStoryViewsPage.this.state.sortByReactions ? R.drawable.menu_views_recent2 : R.drawable.menu_views_recent, LocaleController.getString(R.string.SortByTime), false, SelfStoryViewsPage.this.resourcesProvider);
                 if (SelfStoryViewsPage.this.state.sortByReactions) {
-                    addItem2.setAlpha(0.5f);
+                    actionBarMenuSubItemAddItem2.setAlpha(0.5f);
                 }
-                addItem2.setOnClickListener(new View.OnClickListener() {
+                actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        SelfStoryViewsPage.HeaderView.AnonymousClass1.this.lambda$onCreate$1(view);
+                        this.f$0.lambda$onCreate$1(view);
                     }
                 });
                 ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(HeaderView.this.getContext(), SelfStoryViewsPage.this.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
@@ -1729,30 +1726,30 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            float f;
+            float fLerp;
             if (SelfStoryViewsPage.this.showContactsFilter) {
-                float f2 = 0.5f;
+                float fLerp2 = 0.5f;
                 if (this.selected == 0) {
                     this.allViewersView.getHitRect(AndroidUtilities.rectTmp2);
-                    f = 0.5f;
-                    f2 = 1.0f;
+                    fLerp = 0.5f;
+                    fLerp2 = 1.0f;
                 } else {
                     this.contactsViewersView.getHitRect(AndroidUtilities.rectTmp2);
-                    f = 1.0f;
+                    fLerp = 1.0f;
                 }
                 this.rectF.set(AndroidUtilities.rectTmp2);
-                float f3 = this.animationProgress;
-                if (f3 != 1.0f) {
-                    f2 = AndroidUtilities.lerp(this.animateFromAlpha1, f2, f3);
-                    f = AndroidUtilities.lerp(this.animateFromAlpha2, f, this.animationProgress);
+                float f = this.animationProgress;
+                if (f != 1.0f) {
+                    fLerp2 = AndroidUtilities.lerp(this.animateFromAlpha1, fLerp2, f);
+                    fLerp = AndroidUtilities.lerp(this.animateFromAlpha2, fLerp, this.animationProgress);
                     RectF rectF = this.animateFromRect;
                     RectF rectF2 = this.rectF;
                     AndroidUtilities.lerp(rectF, rectF2, this.animationProgress, rectF2);
                 }
-                this.allViewersView.setAlpha(f2);
-                this.contactsViewersView.setAlpha(f);
-                float height = this.rectF.height() / 2.0f;
-                canvas.drawRoundRect(this.rectF, height, height, this.selectedPaint);
+                this.allViewersView.setAlpha(fLerp2);
+                this.contactsViewersView.setAlpha(fLerp);
+                float fHeight = this.rectF.height() / 2.0f;
+                canvas.drawRoundRect(this.rectF, fHeight, fHeight, this.selectedPaint);
             }
             super.dispatchDraw(canvas);
         }
@@ -1777,12 +1774,12 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             this.animateFromAlpha2 = this.contactsViewersView.getAlpha();
             this.animationProgress = 0.0f;
             invalidate();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.animator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.animator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SelfStoryViewsPage.HeaderView.this.lambda$setState$3(valueAnimator2);
+                    this.f$0.lambda$setState$3(valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {

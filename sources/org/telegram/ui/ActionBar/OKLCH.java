@@ -27,19 +27,19 @@ public abstract class OKLCH {
     }
 
     public static double[] oklab2xyz(double[] dArr) {
-        double[] multiply = multiply(LabtoLMS_M, dArr);
-        for (int i = 0; i < multiply.length; i++) {
-            multiply[i] = Math.pow(multiply[i], 3.0d);
+        double[] dArrMultiply = multiply(LabtoLMS_M, dArr);
+        for (int i = 0; i < dArrMultiply.length; i++) {
+            dArrMultiply[i] = Math.pow(dArrMultiply[i], 3.0d);
         }
-        return multiply(LMStoXYZ_M, multiply);
+        return multiply(LMStoXYZ_M, dArrMultiply);
     }
 
     public static double[] xyz2oklab(double[] dArr) {
-        double[] multiply = multiply(XYZtoLMS_M, dArr);
-        for (int i = 0; i < multiply.length; i++) {
-            multiply[i] = Math.cbrt(multiply[i]);
+        double[] dArrMultiply = multiply(XYZtoLMS_M, dArr);
+        for (int i = 0; i < dArrMultiply.length; i++) {
+            dArrMultiply[i] = Math.cbrt(dArrMultiply[i]);
         }
-        return multiply(LMStoLab_M, multiply);
+        return multiply(LMStoLab_M, dArrMultiply);
     }
 
     public static double[] xyz2rgbLinear(double[] dArr) {
@@ -67,19 +67,19 @@ public abstract class OKLCH {
     }
 
     public static int adapt(int i, int i2) {
-        double[] rgb2oklch = rgb2oklch(rgb(i2));
-        double[] rgb2oklch2 = rgb2oklch(rgb(i));
-        rgb2oklch2[2] = rgb2oklch[2];
-        if (Double.isNaN(rgb2oklch[2]) || rgb2oklch[1] < 0.07999999821186066d) {
-            rgb2oklch2[1] = rgb2oklch[1];
+        double[] dArrRgb2oklch = rgb2oklch(rgb(i2));
+        double[] dArrRgb2oklch2 = rgb2oklch(rgb(i));
+        dArrRgb2oklch2[2] = dArrRgb2oklch[2];
+        if (Double.isNaN(dArrRgb2oklch[2]) || dArrRgb2oklch[1] < 0.07999999821186066d) {
+            dArrRgb2oklch2[1] = dArrRgb2oklch[1];
             if (!Theme.isCurrentThemeDark()) {
-                double d = rgb2oklch2[0];
+                double d = dArrRgb2oklch2[0];
                 if (d < 0.800000011920929d) {
-                    rgb2oklch2[0] = Utilities.clamp(d - 0.1d, 1.0d, 0.0d);
+                    dArrRgb2oklch2[0] = Utilities.clamp(d - 0.1d, 1.0d, 0.0d);
                 }
             }
         }
-        return ColorUtils.setAlphaComponent(rgb(oklch2rgb(rgb2oklch2)), Color.alpha(i));
+        return ColorUtils.setAlphaComponent(rgb(oklch2rgb(dArrRgb2oklch2)), Color.alpha(i));
     }
 
     private static double[] multiply(double[] dArr, double[] dArr2) {

@@ -41,7 +41,7 @@ public class VoIpBitmapTextView extends View {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIpBitmapTextView.this.lambda$onLayout$0();
+                    this.f$0.lambda$onLayout$0();
                 }
             });
         }

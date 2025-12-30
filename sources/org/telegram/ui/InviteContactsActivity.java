@@ -56,7 +56,6 @@ import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.InviteContactsActivity;
 
 public class InviteContactsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private InviteAdapter adapter;
@@ -80,7 +79,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     private HashMap selectedContacts = new HashMap();
     private ArrayList allSpans = new ArrayList();
 
-    public class SpansContainer extends ViewGroup {
+    private class SpansContainer extends ViewGroup {
         private View addingSpan;
         private boolean animationStarted;
         private ArrayList animators;
@@ -94,7 +93,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int min;
+            int iMin;
             boolean z;
             float f;
             float f2;
@@ -103,38 +102,38 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
             float f3 = 32.0f;
-            int dp = size - AndroidUtilities.dp(32.0f);
-            int dp2 = AndroidUtilities.dp(12.0f);
-            int dp3 = AndroidUtilities.dp(12.0f);
+            int iDp = size - AndroidUtilities.dp(32.0f);
+            int iDp2 = AndroidUtilities.dp(12.0f);
+            int iDp3 = AndroidUtilities.dp(12.0f);
             int i4 = 0;
-            int i5 = 0;
-            int i6 = 0;
+            int measuredWidth = 0;
+            int measuredWidth2 = 0;
             while (i4 < childCount) {
                 View childAt = getChildAt(i4);
                 if (childAt instanceof GroupCreateSpan) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f3), 1073741824));
-                    if (childAt == this.removingSpan || childAt.getMeasuredWidth() + i5 <= dp) {
+                    if (childAt == this.removingSpan || childAt.getMeasuredWidth() + measuredWidth <= iDp) {
                         f = 12.0f;
                     } else {
                         f = 12.0f;
-                        dp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(12.0f);
-                        i5 = 0;
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(12.0f);
+                        measuredWidth = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i6 > dp) {
-                        dp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(f);
+                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
+                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(f);
                         f2 = 16.0f;
-                        i6 = 0;
+                        measuredWidth2 = 0;
                     } else {
                         f2 = 16.0f;
                     }
-                    int dp4 = AndroidUtilities.dp(f2) + i5;
+                    int iDp4 = AndroidUtilities.dp(f2) + measuredWidth;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.dp(f2) + i6);
-                            childAt.setTranslationY(dp3);
+                            childAt.setTranslationX(AndroidUtilities.dp(f2) + measuredWidth2);
+                            childAt.setTranslationY(iDp3);
                         } else if (view != null) {
-                            float f4 = dp4;
+                            float f4 = iDp4;
                             if (childAt.getTranslationX() != f4) {
                                 i3 = 1;
                                 c = 0;
@@ -143,7 +142,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                                 i3 = 1;
                                 c = 0;
                             }
-                            float f5 = dp2;
+                            float f5 = iDp2;
                             if (childAt.getTranslationY() != f5) {
                                 ArrayList arrayList = this.animators;
                                 float[] fArr = new float[i3];
@@ -151,46 +150,46 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                                 arrayList.add(ObjectAnimator.ofFloat(childAt, "translationY", fArr));
                             }
                         } else {
-                            childAt.setTranslationX(dp4);
-                            childAt.setTranslationY(dp2);
+                            childAt.setTranslationX(iDp4);
+                            childAt.setTranslationY(iDp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i5 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                     }
-                    i6 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                 }
                 i4++;
                 f3 = 32.0f;
             }
             if (AndroidUtilities.isTablet()) {
-                min = AndroidUtilities.dp(366.0f) / 3;
+                iMin = AndroidUtilities.dp(366.0f) / 3;
             } else {
                 Point point = AndroidUtilities.displaySize;
-                min = (Math.min(point.x, point.y) - AndroidUtilities.dp(164.0f)) / 3;
+                iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(164.0f)) / 3;
             }
-            if (dp - i5 < min) {
-                dp2 += AndroidUtilities.dp(44.0f);
-                i5 = 0;
+            if (iDp - measuredWidth < iMin) {
+                iDp2 += AndroidUtilities.dp(44.0f);
+                measuredWidth = 0;
             }
-            if (dp - i6 < min) {
-                dp3 += AndroidUtilities.dp(44.0f);
+            if (iDp - measuredWidth2 < iMin) {
+                iDp3 += AndroidUtilities.dp(44.0f);
             }
-            InviteContactsActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(dp - i5, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+            InviteContactsActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
             if (!this.animationStarted) {
-                int dp5 = dp3 + AndroidUtilities.dp(44.0f);
-                int dp6 = i5 + AndroidUtilities.dp(16.0f);
-                InviteContactsActivity.this.fieldY = dp2;
+                int iDp5 = iDp3 + AndroidUtilities.dp(44.0f);
+                int iDp6 = measuredWidth + AndroidUtilities.dp(16.0f);
+                InviteContactsActivity.this.fieldY = iDp2;
                 if (this.currentAnimation == null) {
-                    InviteContactsActivity.this.containerHeight = dp5;
-                    InviteContactsActivity.this.editText.setTranslationX(dp6);
+                    InviteContactsActivity.this.containerHeight = iDp5;
+                    InviteContactsActivity.this.editText.setTranslationX(iDp6);
                     InviteContactsActivity.this.editText.setTranslationY(InviteContactsActivity.this.fieldY);
                 } else {
-                    int dp7 = dp2 + AndroidUtilities.dp(44.0f);
-                    if (InviteContactsActivity.this.containerHeight != dp7) {
-                        this.animators.add(ObjectAnimator.ofInt(InviteContactsActivity.this, "containerHeight", dp7));
+                    int iDp7 = iDp2 + AndroidUtilities.dp(44.0f);
+                    if (InviteContactsActivity.this.containerHeight != iDp7) {
+                        this.animators.add(ObjectAnimator.ofInt(InviteContactsActivity.this, "containerHeight", iDp7));
                     }
-                    float f6 = dp6;
+                    float f6 = iDp6;
                     if (InviteContactsActivity.this.editText.getTranslationX() != f6) {
                         this.animators.add(ObjectAnimator.ofFloat(InviteContactsActivity.this.editText, "translationX", f6));
                     }
@@ -325,7 +324,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(Context context) throws NoSuchFieldException, SecurityException {
         this.searching = false;
         this.searchWas = false;
         this.allSpans.clear();
@@ -345,19 +344,19 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         ViewGroup viewGroup = new ViewGroup(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                int dp;
+                int iDp;
                 int size = View.MeasureSpec.getSize(i);
                 int size2 = View.MeasureSpec.getSize(i2);
                 setMeasuredDimension(size, size2);
                 if (AndroidUtilities.isTablet() || size2 > size) {
-                    dp = AndroidUtilities.dp(144.0f);
+                    iDp = AndroidUtilities.dp(144.0f);
                 } else {
-                    dp = AndroidUtilities.dp(56.0f);
+                    iDp = AndroidUtilities.dp(56.0f);
                 }
-                InviteContactsActivity.this.infoTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                InviteContactsActivity.this.infoTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
                 InviteContactsActivity.this.counterView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 int measuredHeight = InviteContactsActivity.this.infoTextView.getVisibility() == 0 ? InviteContactsActivity.this.infoTextView.getMeasuredHeight() : InviteContactsActivity.this.counterView.getMeasuredHeight();
-                InviteContactsActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                InviteContactsActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
                 InviteContactsActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
                 InviteContactsActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
             }
@@ -376,11 +375,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
 
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 if (view == InviteContactsActivity.this.listView || view == InviteContactsActivity.this.emptyView) {
                     ((BaseFragment) InviteContactsActivity.this).parentLayout.drawHeaderShadow(canvas, InviteContactsActivity.this.scrollView.getMeasuredHeight());
                 }
-                return drawChild;
+                return zDrawChild;
             }
         };
         this.fragmentView = viewGroup;
@@ -539,7 +538,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                InviteContactsActivity.this.lambda$createView$0(view, i);
+                this.f$0.lambda$createView$0(view, i);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -571,7 +570,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.counterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                InviteContactsActivity.this.lambda$createView$1(view);
+                this.f$0.lambda$createView$1(view);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -618,8 +617,8 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
         }
         if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
-            boolean containsKey = this.selectedContacts.containsKey(contact.key);
-            if (containsKey) {
+            boolean zContainsKey = this.selectedContacts.containsKey(contact.key);
+            if (zContainsKey) {
                 this.spansContainer.removeSpan((GroupCreateSpan) this.selectedContacts.get(contact.key));
             } else {
                 GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.editText.getContext(), contact);
@@ -630,7 +629,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             if (this.searching || this.searchWas) {
                 AndroidUtilities.showKeyboard(this.editText);
             } else {
-                inviteUserCell.setChecked(!containsKey, true);
+                inviteUserCell.setChecked(!zContainsKey, true);
             }
             if (this.editText.length() > 0) {
                 this.editText.setText((CharSequence) null);
@@ -725,9 +724,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$fetchContacts$2;
-                lambda$fetchContacts$2 = InviteContactsActivity.lambda$fetchContacts$2((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
-                return lambda$fetchContacts$2;
+                return InviteContactsActivity.lambda$fetchContacts$2((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
             }
         });
         StickerEmptyView stickerEmptyView = this.emptyView;
@@ -785,15 +782,15 @@ public class InviteContactsActivity extends BaseFragment implements Notification
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            FrameLayout inviteUserCell;
             if (i == 1) {
                 InviteTextCell inviteTextCell = new InviteTextCell(this.context);
                 inviteTextCell.setTextAndIcon(LocaleController.getString(R.string.ShareTelegram), R.drawable.share);
-                frameLayout = inviteTextCell;
+                inviteUserCell = inviteTextCell;
             } else {
-                frameLayout = new InviteUserCell(this.context, true);
+                inviteUserCell = new InviteUserCell(this.context, true);
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(inviteUserCell);
         }
 
         @Override
@@ -848,7 +845,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
         }
 
-        public class AnonymousClass1 extends TimerTask {
+        class AnonymousClass1 extends TimerTask {
             final String val$query;
 
             AnonymousClass1(String str) {
@@ -867,7 +864,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$1(str);
+                        this.f$0.lambda$run$1(str);
                     }
                 });
             }
@@ -876,7 +873,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$0(str);
+                        this.f$0.lambda$run$0(str);
                     }
                 });
             }
@@ -890,7 +887,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteContactsActivity.InviteAdapter.this.lambda$updateSearchResults$0(arrayList, arrayList2);
+                    this.f$0.lambda$updateSearchResults$0(arrayList, arrayList2);
                 }
             });
         }
@@ -921,7 +918,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                InviteContactsActivity.this.lambda$getThemeDescriptions$3();
+                this.f$0.lambda$getThemeDescriptions$3();
             }
 
             @Override

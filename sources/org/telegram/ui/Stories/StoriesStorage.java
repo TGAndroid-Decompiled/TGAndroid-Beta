@@ -40,7 +40,7 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$getAllStories$3(consumer);
+                this.f$0.lambda$getAllStories$3(consumer);
             }
         });
     }
@@ -87,32 +87,32 @@ public class StoriesStorage {
         if (peerStories != null) {
             try {
                 ArrayList<TL_stories.StoryItem> arrayList = peerStories.stories;
-                SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 for (int i = 0; i < arrayList.size(); i++) {
-                    executeFast.requery();
+                    sQLitePreparedStatementExecuteFast.requery();
                     TL_stories.StoryItem storyItem = arrayList.get(i);
                     if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                         FileLog.e("try write deleted story");
                     } else {
-                        executeFast.bindLong(1, j);
-                        executeFast.bindLong(2, storyItem.id);
+                        sQLitePreparedStatementExecuteFast.bindLong(1, j);
+                        sQLitePreparedStatementExecuteFast.bindLong(2, storyItem.id);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                         storyItem.serializeToStream(nativeByteBuffer);
-                        executeFast.bindByteBuffer(3, nativeByteBuffer);
-                        NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
-                        if (writeLocalParams != null) {
-                            executeFast.bindByteBuffer(4, writeLocalParams);
+                        sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
+                        NativeByteBuffer nativeByteBufferWriteLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
+                        if (nativeByteBufferWriteLocalParams != null) {
+                            sQLitePreparedStatementExecuteFast.bindByteBuffer(4, nativeByteBufferWriteLocalParams);
                         } else {
-                            executeFast.bindNull(4);
+                            sQLitePreparedStatementExecuteFast.bindNull(4);
                         }
-                        if (writeLocalParams != null) {
-                            writeLocalParams.reuse();
+                        if (nativeByteBufferWriteLocalParams != null) {
+                            nativeByteBufferWriteLocalParams.reuse();
                         }
-                        executeFast.step();
+                        sQLitePreparedStatementExecuteFast.step();
                         nativeByteBuffer.reuse();
                     }
                 }
-                executeFast.dispose();
+                sQLitePreparedStatementExecuteFast.dispose();
                 database.executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, %d, %d)", Long.valueOf(j), 0, Integer.valueOf(peerStories.max_read_id))).stepThis().dispose();
             } catch (Exception e) {
                 FileLog.e(e);
@@ -122,28 +122,28 @@ public class StoriesStorage {
 
     public void putStoryInternal(long j, TL_stories.StoryItem storyItem) {
         try {
-            SQLitePreparedStatement executeFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
             if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                 FileLog.e("putStoryInternal: try write deleted story");
                 return;
             }
-            executeFast.bindLong(1, j);
-            executeFast.bindLong(2, storyItem.id);
+            sQLitePreparedStatementExecuteFast.bindLong(1, j);
+            sQLitePreparedStatementExecuteFast.bindLong(2, storyItem.id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
             storyItem.serializeToStream(nativeByteBuffer);
-            executeFast.bindByteBuffer(3, nativeByteBuffer);
-            NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
-            if (writeLocalParams != null) {
-                executeFast.bindByteBuffer(4, writeLocalParams);
+            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
+            NativeByteBuffer nativeByteBufferWriteLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
+            if (nativeByteBufferWriteLocalParams != null) {
+                sQLitePreparedStatementExecuteFast.bindByteBuffer(4, nativeByteBufferWriteLocalParams);
             } else {
-                executeFast.bindNull(4);
+                sQLitePreparedStatementExecuteFast.bindNull(4);
             }
-            if (writeLocalParams != null) {
-                writeLocalParams.reuse();
+            if (nativeByteBufferWriteLocalParams != null) {
+                nativeByteBufferWriteLocalParams.reuse();
             }
-            executeFast.step();
+            sQLitePreparedStatementExecuteFast.step();
             nativeByteBuffer.reuse();
-            executeFast.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -152,13 +152,13 @@ public class StoriesStorage {
     public void saveAllStories(final ArrayList arrayList, final boolean z, final boolean z2, final Runnable runnable) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$saveAllStories$4(arrayList, z, z2, runnable);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$saveAllStories$4(arrayList, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
+    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) throws InterruptedException {
         SQLiteDatabase database = this.storage.getDatabase();
         for (int i = 0; i < arrayList.size(); i++) {
             TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i);
@@ -166,26 +166,26 @@ public class StoriesStorage {
         }
         if (!z) {
             try {
-                SQLiteCursor queryFinalized = database.queryFinalized("SELECT DISTINCT dialog_id FROM stories", new Object[0]);
+                SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized("SELECT DISTINCT dialog_id FROM stories", new Object[0]);
                 ArrayList arrayList2 = new ArrayList();
-                while (queryFinalized.next()) {
-                    long longValue = queryFinalized.longValue(0);
-                    if (longValue > 0) {
-                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(longValue));
+                while (sQLiteCursorQueryFinalized.next()) {
+                    long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
+                    if (jLongValue > 0) {
+                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jLongValue));
                         if (user == null) {
-                            user = MessagesStorage.getInstance(this.currentAccount).getUser(longValue);
+                            user = MessagesStorage.getInstance(this.currentAccount).getUser(jLongValue);
                         }
-                        if (user == null || (user.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(longValue)))) {
-                            arrayList2.add(Long.valueOf(longValue));
+                        if (user == null || (user.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(jLongValue)))) {
+                            arrayList2.add(Long.valueOf(jLongValue));
                         }
                     } else {
-                        long j = -longValue;
+                        long j = -jLongValue;
                         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                         if (chat == null) {
                             chat = MessagesStorage.getInstance(this.currentAccount).getChat(j);
                         }
-                        if (chat == null || (chat.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(longValue)))) {
-                            arrayList2.add(Long.valueOf(longValue));
+                        if (chat == null || (chat.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(jLongValue)))) {
+                            arrayList2.add(Long.valueOf(jLongValue));
                         }
                     }
                 }
@@ -225,29 +225,29 @@ public class StoriesStorage {
     }
 
     private TL_stories.StoryItem getStoryInternal(long j, int i) {
-        TL_stories.StoryItem storyItem = null;
+        TL_stories.StoryItem storyItemTLdeserialize = null;
         try {
-            SQLiteCursor queryFinalized = this.storage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, custom_params FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i)), new Object[0]);
-            if (queryFinalized.next()) {
-                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                NativeByteBuffer byteBufferValue2 = queryFinalized.byteBufferValue(1);
-                if (byteBufferValue != null) {
-                    storyItem = TL_stories.StoryItem.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                    storyItem.dialogId = j;
-                    byteBufferValue.reuse();
+            SQLiteCursor sQLiteCursorQueryFinalized = this.storage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, custom_params FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i)), new Object[0]);
+            if (sQLiteCursorQueryFinalized.next()) {
+                NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
+                NativeByteBuffer nativeByteBufferByteBufferValue2 = sQLiteCursorQueryFinalized.byteBufferValue(1);
+                if (nativeByteBufferByteBufferValue != null) {
+                    storyItemTLdeserialize = TL_stories.StoryItem.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(true), true);
+                    storyItemTLdeserialize.dialogId = j;
+                    nativeByteBufferByteBufferValue.reuse();
                 }
-                if (storyItem != null) {
-                    StoryCustomParamsHelper.readLocalParams(storyItem, byteBufferValue2);
+                if (storyItemTLdeserialize != null) {
+                    StoryCustomParamsHelper.readLocalParams(storyItemTLdeserialize, nativeByteBufferByteBufferValue2);
                 }
-                if (byteBufferValue2 != null) {
-                    byteBufferValue2.reuse();
+                if (nativeByteBufferByteBufferValue2 != null) {
+                    nativeByteBufferByteBufferValue2.reuse();
                 }
             }
-            queryFinalized.dispose();
+            sQLiteCursorQueryFinalized.dispose();
         } catch (SQLiteException e) {
             FileLog.e(e);
         }
-        return storyItem;
+        return storyItemTLdeserialize;
     }
 
     public void updateStoryItem(final long j, final TL_stories.StoryItem storyItem) {
@@ -257,7 +257,7 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateStoryItem$7(j, storyItem);
+                this.f$0.lambda$updateStoryItem$7(j, storyItem);
             }
         });
     }
@@ -273,23 +273,23 @@ public class StoriesStorage {
             FileLog.e("StoriesStorage: try write expired story");
         }
         try {
-            SQLitePreparedStatement executeFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
-            executeFast.requery();
-            executeFast.bindLong(1, j);
-            executeFast.bindLong(2, storyItem.id);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+            sQLitePreparedStatementExecuteFast.requery();
+            sQLitePreparedStatementExecuteFast.bindLong(1, j);
+            sQLitePreparedStatementExecuteFast.bindLong(2, storyItem.id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
             storyItem.serializeToStream(nativeByteBuffer);
-            executeFast.bindByteBuffer(3, nativeByteBuffer);
-            NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
-            if (writeLocalParams != null) {
-                executeFast.bindByteBuffer(4, writeLocalParams);
+            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
+            NativeByteBuffer nativeByteBufferWriteLocalParams = StoryCustomParamsHelper.writeLocalParams(storyItem);
+            if (nativeByteBufferWriteLocalParams != null) {
+                sQLitePreparedStatementExecuteFast.bindByteBuffer(4, nativeByteBufferWriteLocalParams);
             } else {
-                executeFast.bindNull(4);
+                sQLitePreparedStatementExecuteFast.bindNull(4);
             }
-            if (writeLocalParams != null) {
-                writeLocalParams.reuse();
+            if (nativeByteBufferWriteLocalParams != null) {
+                nativeByteBufferWriteLocalParams.reuse();
             }
-            executeFast.step();
+            sQLitePreparedStatementExecuteFast.step();
             nativeByteBuffer.reuse();
         } catch (Exception e) {
             FileLog.e(e);
@@ -314,13 +314,13 @@ public class StoriesStorage {
         }
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$updateMaxReadId$8(j, i);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$updateMaxReadId$8(j, i);
             }
         });
     }
 
-    public void lambda$updateMaxReadId$8(long j, int i) {
+    public void lambda$updateMaxReadId$8(long j, int i) throws InterruptedException {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, 0, %d)", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -331,13 +331,13 @@ public class StoriesStorage {
     public void processUpdate(final TL_stories.TL_updateStory tL_updateStory) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$processUpdate$9(tL_updateStory);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$processUpdate$9(tL_updateStory);
             }
         });
     }
 
-    public void lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories.TL_updateStory r12) {
+    public void lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories.TL_updateStory r12) throws java.lang.InterruptedException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories$TL_updateStory):void");
     }
 
@@ -345,7 +345,7 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateStories$10(peerStories);
+                this.f$0.lambda$updateStories$10(peerStories);
             }
         });
     }
@@ -359,13 +359,13 @@ public class StoriesStorage {
     public void deleteStory(final long j, final int i) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$deleteStory$11(j, i);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$deleteStory$11(j, i);
             }
         });
     }
 
-    public void lambda$deleteStory$11(long j, int i) {
+    public void lambda$deleteStory$11(long j, int i) throws InterruptedException {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -376,13 +376,13 @@ public class StoriesStorage {
     public void deleteStories(final long j, final ArrayList arrayList) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$deleteStories$12(arrayList, j);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$deleteStories$12(arrayList, j);
             }
         });
     }
 
-    public void lambda$deleteStories$12(ArrayList arrayList, long j) {
+    public void lambda$deleteStories$12(ArrayList arrayList, long j) throws InterruptedException {
         SQLiteDatabase database = this.storage.getDatabase();
         try {
             database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id IN (%s)", Long.valueOf(j), TextUtils.join(", ", arrayList))).stepThis().dispose();
@@ -406,17 +406,17 @@ public class StoriesStorage {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        Timer.Task start = Timer.start(timer2, "fillMessagesWithStories: applying stories for existing array");
+        Timer.Task taskStart = Timer.start(timer2, "fillMessagesWithStories: applying stories for existing array");
         int i2 = 0;
         while (i2 < longSparseArray.size()) {
-            long keyAt = longSparseArray2.keyAt(i2);
+            long jKeyAt = longSparseArray2.keyAt(i2);
             ArrayList arrayList2 = (ArrayList) longSparseArray2.valueAt(i2);
             int i3 = 0;
             while (i3 < arrayList2.size()) {
                 MessageObject messageObject = (MessageObject) arrayList2.get(i3);
-                TL_stories.StoryItem storyInternal = getStoryInternal(keyAt, getStoryId(messageObject));
+                TL_stories.StoryItem storyInternal = getStoryInternal(jKeyAt, getStoryId(messageObject));
                 if (storyInternal != null && !(storyInternal instanceof TL_stories.TL_storyItemSkipped)) {
-                    applyStory(this.currentAccount, keyAt, messageObject, storyInternal);
+                    applyStory(this.currentAccount, jKeyAt, messageObject, storyInternal);
                     arrayList.add(messageObject);
                     arrayList2.remove(i3);
                     i3--;
@@ -429,7 +429,7 @@ public class StoriesStorage {
             }
             i2++;
         }
-        Timer.done(start);
+        Timer.done(taskStart);
         if (z) {
             lambda$fillMessagesWithStories$13(arrayList);
         }
@@ -437,23 +437,23 @@ public class StoriesStorage {
             final int[] iArr = {longSparseArray.size()};
             int i4 = 0;
             while (i4 < longSparseArray.size()) {
-                final long keyAt2 = longSparseArray2.keyAt(i4);
+                final long jKeyAt2 = longSparseArray2.keyAt(i4);
                 final ArrayList arrayList3 = (ArrayList) longSparseArray2.valueAt(i4);
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                tL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(keyAt2);
+                tL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(jKeyAt2);
                 for (int i5 = 0; i5 < arrayList3.size(); i5++) {
                     tL_stories_getStoriesByID.id.add(Integer.valueOf(getStoryId((MessageObject) arrayList3.get(i5))));
                 }
-                final Timer.Task start2 = Timer.start(timer2, "fillMessagesWithStories: getStoriesByID did=" + keyAt2 + " ids=" + TextUtils.join(",", tL_stories_getStoriesByID.id));
+                final Timer.Task taskStart2 = Timer.start(timer2, "fillMessagesWithStories: getStoriesByID did=" + jKeyAt2 + " ids=" + TextUtils.join(",", tL_stories_getStoriesByID.id));
                 int i6 = i4;
-                int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
+                int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StoriesStorage.this.lambda$fillMessagesWithStories$14(start2, arrayList3, keyAt2, z, timer, iArr, runnable, tLObject, tL_error);
+                        this.f$0.lambda$fillMessagesWithStories$14(taskStart2, arrayList3, jKeyAt2, z, timer, iArr, runnable, tLObject, tL_error);
                     }
                 });
                 if (i != 0) {
-                    ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, i);
+                    ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, i);
                 }
                 i4 = i6 + 1;
                 longSparseArray2 = longSparseArray;
@@ -488,8 +488,8 @@ public class StoriesStorage {
                 if (z) {
                     this.storage.getStorageQueue().postRunnable(new Runnable() {
                         @Override
-                        public final void run() {
-                            StoriesStorage.this.lambda$fillMessagesWithStories$13(arrayList);
+                        public final void run() throws InterruptedException {
+                            this.f$0.lambda$fillMessagesWithStories$13(arrayList);
                         }
                     });
                 }
@@ -557,22 +557,22 @@ public class StoriesStorage {
         return messageObject.messageOwner.reply_to.story_id;
     }
 
-    public void lambda$fillMessagesWithStories$13(List list) {
+    public void lambda$fillMessagesWithStories$13(List list) throws InterruptedException {
         try {
             SQLiteDatabase database = this.storage.getDatabase();
             if (list.isEmpty()) {
                 return;
             }
-            SQLitePreparedStatement executeFast = database.executeFast("UPDATE messages_v2 SET replydata = ? WHERE mid = ? AND uid = ?");
-            SQLitePreparedStatement executeFast2 = database.executeFast("UPDATE messages_topics SET replydata = ? WHERE mid = ? AND uid = ?");
-            SQLitePreparedStatement executeFast3 = database.executeFast("UPDATE messages_v2 SET data = ? WHERE mid = ? AND uid = ?");
-            SQLitePreparedStatement executeFast4 = database.executeFast("UPDATE messages_topics SET data = ? WHERE mid = ? AND uid = ?");
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("UPDATE messages_v2 SET replydata = ? WHERE mid = ? AND uid = ?");
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = database.executeFast("UPDATE messages_topics SET replydata = ? WHERE mid = ? AND uid = ?");
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast3 = database.executeFast("UPDATE messages_v2 SET data = ? WHERE mid = ? AND uid = ?");
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast4 = database.executeFast("UPDATE messages_topics SET data = ? WHERE mid = ? AND uid = ?");
             for (int i = 0; i < list.size(); i++) {
                 MessageObject messageObject = (MessageObject) list.get(i);
                 int i2 = 0;
                 while (i2 < 2) {
                     if (messageObject.messageOwner.replyStory != null) {
-                        SQLitePreparedStatement sQLitePreparedStatement = i2 == 0 ? executeFast : executeFast2;
+                        SQLitePreparedStatement sQLitePreparedStatement = i2 == 0 ? sQLitePreparedStatementExecuteFast : sQLitePreparedStatementExecuteFast2;
                         if (sQLitePreparedStatement != null) {
                             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageObject.messageOwner.replyStory.getObjectSize());
                             messageObject.messageOwner.replyStory.serializeToStream(nativeByteBuffer);
@@ -583,7 +583,7 @@ public class StoriesStorage {
                             sQLitePreparedStatement.step();
                         }
                     } else {
-                        SQLitePreparedStatement sQLitePreparedStatement2 = i2 == 0 ? executeFast3 : executeFast4;
+                        SQLitePreparedStatement sQLitePreparedStatement2 = i2 == 0 ? sQLitePreparedStatementExecuteFast3 : sQLitePreparedStatementExecuteFast4;
                         if (sQLitePreparedStatement2 != null) {
                             NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(messageObject.messageOwner.getObjectSize());
                             messageObject.messageOwner.serializeToStream(nativeByteBuffer2);
@@ -597,10 +597,10 @@ public class StoriesStorage {
                     i2++;
                 }
             }
-            executeFast.dispose();
-            executeFast2.dispose();
-            executeFast3.dispose();
-            executeFast4.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
+            sQLitePreparedStatementExecuteFast2.dispose();
+            sQLitePreparedStatementExecuteFast3.dispose();
+            sQLitePreparedStatementExecuteFast4.dispose();
         } catch (Throwable th) {
             this.storage.checkSQLException(th);
         }
@@ -624,19 +624,19 @@ public class StoriesStorage {
     public void getMaxReadIds(final Consumer consumer) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$getMaxReadIds$16(consumer);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$getMaxReadIds$16(consumer);
             }
         });
     }
 
-    public void lambda$getMaxReadIds$16(final Consumer consumer) {
+    public void lambda$getMaxReadIds$16(final Consumer consumer) throws InterruptedException {
         SQLiteDatabase database = this.storage.getDatabase();
         final LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         try {
-            SQLiteCursor queryFinalized = database.queryFinalized("SELECT dialog_id, max_read FROM stories_counter", new Object[0]);
-            while (queryFinalized.next()) {
-                longSparseIntArray.put(queryFinalized.longValue(0), queryFinalized.intValue(1));
+            SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized("SELECT dialog_id, max_read FROM stories_counter", new Object[0]);
+            while (sQLiteCursorQueryFinalized.next()) {
+                longSparseIntArray.put(sQLiteCursorQueryFinalized.longValue(0), sQLiteCursorQueryFinalized.intValue(1));
             }
         } catch (Exception e) {
             this.storage.checkSQLException(e);
@@ -644,7 +644,7 @@ public class StoriesStorage {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Consumer.this.accept(longSparseIntArray);
+                consumer.accept(longSparseIntArray);
             }
         });
     }
@@ -653,7 +653,7 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$putPeerStories$17(peerStories);
+                this.f$0.lambda$putPeerStories$17(peerStories);
             }
         });
     }
@@ -665,13 +665,13 @@ public class StoriesStorage {
     public void deleteAllUserStories(final long j) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StoriesStorage.this.lambda$deleteAllUserStories$18(j);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$deleteAllUserStories$18(j);
             }
         });
     }
 
-    public void lambda$deleteAllUserStories$18(long j) {
+    public void lambda$deleteAllUserStories$18(long j) throws InterruptedException {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d", Long.valueOf(j))).stepThis().dispose();
         } catch (Throwable th) {

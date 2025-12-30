@@ -124,13 +124,13 @@ public class AvailableReactionCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         float strokeWidth = Theme.dividerPaint.getStrokeWidth();
-        int dp = AndroidUtilities.dp(81.0f);
+        int iDp = AndroidUtilities.dp(81.0f);
         int i = 0;
         if (LocaleController.isRTL) {
-            i = dp;
-            dp = 0;
+            i = iDp;
+            iDp = 0;
         }
-        canvas.drawLine(getPaddingLeft() + dp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
+        canvas.drawLine(getPaddingLeft() + iDp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
     }
 
     @Override

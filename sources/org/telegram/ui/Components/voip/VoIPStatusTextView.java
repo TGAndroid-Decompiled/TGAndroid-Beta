@@ -17,7 +17,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.voip.VoIPStatusTextView;
 
 public class VoIPStatusTextView extends FrameLayout {
     boolean animationInProgress;
@@ -125,7 +124,7 @@ public class VoIPStatusTextView extends FrameLayout {
             replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPStatusTextView.this.lambda$setText$0();
+                    this.f$0.lambda$setText$0();
                 }
             });
         }
@@ -172,9 +171,9 @@ public class VoIPStatusTextView extends FrameLayout {
         view2.setTranslationY(AndroidUtilities.dp(15.0f));
         view2.setAlpha(0.0f);
         this.animationInProgress = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 VoIPStatusTextView.lambda$replaceViews$1(view2, view, valueAnimator);
@@ -186,15 +185,15 @@ public class VoIPStatusTextView extends FrameLayout {
     }
 
     public static void lambda$replaceViews$1(View view, View view2, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f = 1.0f - floatValue;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float f = 1.0f - fFloatValue;
         view.setTranslationY(AndroidUtilities.dp(8.0f) * f);
-        view.setAlpha(floatValue);
-        view2.setTranslationY((-AndroidUtilities.dp(6.0f)) * floatValue);
+        view.setAlpha(fFloatValue);
+        view2.setTranslationY((-AndroidUtilities.dp(6.0f)) * fFloatValue);
         view2.setAlpha(f);
     }
 
-    public class AnonymousClass2 extends AnimatorListenerAdapter {
+    class AnonymousClass2 extends AnimatorListenerAdapter {
         final View val$in;
         final Runnable val$onEnd;
         final View val$out;
@@ -235,7 +234,7 @@ public class VoIPStatusTextView extends FrameLayout {
                     voIPStatusTextView3.replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPStatusTextView.AnonymousClass2.this.lambda$onAnimationEnd$0();
+                            this.f$0.lambda$onAnimationEnd$0();
                         }
                     });
                 }

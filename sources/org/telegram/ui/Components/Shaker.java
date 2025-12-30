@@ -32,10 +32,10 @@ public class Shaker {
 
     public void concat(Canvas canvas, float f, float f2, float f3) {
         Runnable runnable;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.start)) / 1000.0f;
+        float fCurrentTimeMillis = (System.currentTimeMillis() - this.start) / 1000.0f;
         canvas.translate(f2, f3);
-        canvas.rotate(((float) Math.sin(this.r * currentTimeMillis * 3.141592653589793d)) * 1.0f * f);
-        canvas.translate(((float) Math.cos(this.sx * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f, ((float) Math.sin(currentTimeMillis * this.sy * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f);
+        canvas.rotate(((float) Math.sin(this.r * fCurrentTimeMillis * 3.141592653589793d)) * 1.0f * f);
+        canvas.translate(((float) Math.cos(this.sx * fCurrentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f, ((float) Math.sin(fCurrentTimeMillis * this.sy * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f);
         canvas.translate(-f2, -f3);
         if (f <= 0.0f || (runnable = this.invalidate) == null) {
             return;

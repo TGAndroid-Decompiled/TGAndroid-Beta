@@ -9,7 +9,6 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt;
 import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.internal.LockFreeTaskQueueCore;
-import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.internal.ThreadSafeHeap;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
 
@@ -28,21 +27,17 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
 
         @Override
         public final void dispose() {
-            Symbol symbol;
-            Symbol symbol2;
             synchronized (this) {
                 try {
                     Object obj = this._heap;
-                    symbol = EventLoop_commonKt.DISPOSED_TASK;
-                    if (obj == symbol) {
+                    if (obj == EventLoop_commonKt.DISPOSED_TASK) {
                         return;
                     }
                     DelayedTaskQueue delayedTaskQueue = obj instanceof DelayedTaskQueue ? (DelayedTaskQueue) obj : null;
                     if (delayedTaskQueue != null) {
                         delayedTaskQueue.remove(this);
                     }
-                    symbol2 = EventLoop_commonKt.DISPOSED_TASK;
-                    this._heap = symbol2;
+                    this._heap = EventLoop_commonKt.DISPOSED_TASK;
                     Unit unit = Unit.INSTANCE;
                 } catch (Throwable th) {
                     throw th;
@@ -51,11 +46,8 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         }
 
         public final int scheduleTask(long j, DelayedTaskQueue delayedTaskQueue, EventLoopImplBase eventLoopImplBase) {
-            Symbol symbol;
             synchronized (this) {
-                Object obj = this._heap;
-                symbol = EventLoop_commonKt.DISPOSED_TASK;
-                if (obj == symbol) {
+                if (this._heap == EventLoop_commonKt.DISPOSED_TASK) {
                     return 2;
                 }
                 synchronized (delayedTaskQueue) {
@@ -104,10 +96,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
 
         @Override
         public void setHeap(ThreadSafeHeap threadSafeHeap) {
-            Symbol symbol;
-            Object obj = this._heap;
-            symbol = EventLoop_commonKt.DISPOSED_TASK;
-            if (obj == symbol) {
+            if (this._heap == EventLoop_commonKt.DISPOSED_TASK) {
                 throw new IllegalArgumentException("Failed requirement.");
             }
             this._heap = threadSafeHeap;
@@ -153,8 +142,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         _isCompleted$volatile$FU.set(this, z ? 1 : 0);
     }
 
-    public boolean isEmpty() {
-        Symbol symbol;
+    protected boolean isEmpty() {
         if (!isUnconfinedQueueEmpty()) {
             return false;
         }
@@ -167,8 +155,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             if (obj instanceof LockFreeTaskQueueCore) {
                 return ((LockFreeTaskQueueCore) obj).isEmpty();
             }
-            symbol = EventLoop_commonKt.CLOSED_EMPTY;
-            if (obj != symbol) {
+            if (obj != EventLoop_commonKt.CLOSED_EMPTY) {
                 return false;
             }
         }
@@ -178,15 +165,13 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     @Override
     protected long getNextTime() {
         DelayedTask delayedTask;
-        Symbol symbol;
         if (super.getNextTime() == 0) {
             return 0L;
         }
         Object obj = _queue$volatile$FU.get(this);
         if (obj != null) {
             if (!(obj instanceof LockFreeTaskQueueCore)) {
-                symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                return obj == symbol ? Long.MAX_VALUE : 0L;
+                return obj == EventLoop_commonKt.CLOSED_EMPTY ? Long.MAX_VALUE : 0L;
             }
             if (!((LockFreeTaskQueueCore) obj).isEmpty()) {
                 return 0L;
@@ -206,18 +191,30 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         ThreadLocalEventLoop.INSTANCE.resetEventLoop$kotlinx_coroutines_core();
         setCompleted(true);
         closeQueue();
-        do {
-        } while (processNextEvent() <= 0);
+        while (processNextEvent() <= 0) {
+        }
         rescheduleAllDelayed();
     }
 
-    public final DisposableHandle scheduleInvokeOnTimeout(long j, Runnable runnable) {
-        long delayToNanos = EventLoop_commonKt.delayToNanos(j);
-        if (delayToNanos < 4611686018427387903L) {
+    @Override
+    public void scheduleResumeAfterDelay(long j, CancellableContinuation cancellableContinuation) {
+        long jDelayToNanos = EventLoop_commonKt.delayToNanos(j);
+        if (jDelayToNanos < 4611686018427387903L) {
             AbstractTimeSourceKt.access$getTimeSource$p();
-            long nanoTime = System.nanoTime();
-            DelayedRunnableTask delayedRunnableTask = new DelayedRunnableTask(delayToNanos + nanoTime, runnable);
-            schedule(nanoTime, delayedRunnableTask);
+            long jNanoTime = System.nanoTime();
+            DelayedResumeTask delayedResumeTask = new DelayedResumeTask(jDelayToNanos + jNanoTime, cancellableContinuation);
+            schedule(jNanoTime, delayedResumeTask);
+            CancellableContinuationKt.disposeOnCancellation(cancellableContinuation, delayedResumeTask);
+        }
+    }
+
+    protected final DisposableHandle scheduleInvokeOnTimeout(long j, Runnable runnable) {
+        long jDelayToNanos = EventLoop_commonKt.delayToNanos(j);
+        if (jDelayToNanos < 4611686018427387903L) {
+            AbstractTimeSourceKt.access$getTimeSource$p();
+            long jNanoTime = System.nanoTime();
+            DelayedRunnableTask delayedRunnableTask = new DelayedRunnableTask(jDelayToNanos + jNanoTime, runnable);
+            schedule(jNanoTime, delayedRunnableTask);
             return delayedRunnableTask;
         }
         return NonDisposableHandle.INSTANCE;
@@ -225,31 +222,31 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
 
     @Override
     public long processNextEvent() {
-        ThreadSafeHeapNode threadSafeHeapNode;
+        ThreadSafeHeapNode threadSafeHeapNodeRemoveAtImpl;
         if (processUnconfinedEvent()) {
             return 0L;
         }
         DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) _delayed$volatile$FU.get(this);
         if (delayedTaskQueue != null && !delayedTaskQueue.isEmpty()) {
             AbstractTimeSourceKt.access$getTimeSource$p();
-            long nanoTime = System.nanoTime();
+            long jNanoTime = System.nanoTime();
             do {
                 synchronized (delayedTaskQueue) {
                     try {
-                        ThreadSafeHeapNode firstImpl = delayedTaskQueue.firstImpl();
-                        if (firstImpl != null) {
-                            DelayedTask delayedTask = (DelayedTask) firstImpl;
-                            threadSafeHeapNode = delayedTask.timeToExecute(nanoTime) ? enqueueImpl(delayedTask) : false ? delayedTaskQueue.removeAtImpl(0) : null;
+                        ThreadSafeHeapNode threadSafeHeapNodeFirstImpl = delayedTaskQueue.firstImpl();
+                        if (threadSafeHeapNodeFirstImpl != null) {
+                            DelayedTask delayedTask = (DelayedTask) threadSafeHeapNodeFirstImpl;
+                            threadSafeHeapNodeRemoveAtImpl = delayedTask.timeToExecute(jNanoTime) ? enqueueImpl(delayedTask) : false ? delayedTaskQueue.removeAtImpl(0) : null;
                         }
                     } catch (Throwable th) {
                         throw th;
                     }
                 }
-            } while (((DelayedTask) threadSafeHeapNode) != null);
+            } while (((DelayedTask) threadSafeHeapNodeRemoveAtImpl) != null);
         }
-        Runnable dequeue = dequeue();
-        if (dequeue != null) {
-            dequeue.run();
+        Runnable runnableDequeue = dequeue();
+        if (runnableDequeue != null) {
+            runnableDequeue.run();
             return 0L;
         }
         return getNextTime();
@@ -269,7 +266,6 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     private final boolean enqueueImpl(Runnable runnable) {
-        Symbol symbol;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -281,8 +277,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                     return true;
                 }
             } else if (!(obj instanceof LockFreeTaskQueueCore)) {
-                symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                if (obj == symbol) {
+                if (obj == EventLoop_commonKt.CLOSED_EMPTY) {
                     return false;
                 }
                 LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);
@@ -295,13 +290,13 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             } else {
                 Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeTaskQueueCore<java.lang.Runnable{ kotlinx.coroutines.RunnableKt.Runnable }>{ kotlinx.coroutines.EventLoop_commonKt.Queue<java.lang.Runnable{ kotlinx.coroutines.RunnableKt.Runnable }> }");
                 LockFreeTaskQueueCore lockFreeTaskQueueCore2 = (LockFreeTaskQueueCore) obj;
-                int addLast = lockFreeTaskQueueCore2.addLast(runnable);
-                if (addLast == 0) {
+                int iAddLast = lockFreeTaskQueueCore2.addLast(runnable);
+                if (iAddLast == 0) {
                     return true;
                 }
-                if (addLast == 1) {
+                if (iAddLast == 1) {
                     AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$volatile$FU, this, obj, lockFreeTaskQueueCore2.next());
-                } else if (addLast == 2) {
+                } else if (iAddLast == 2) {
                     return false;
                 }
             }
@@ -309,7 +304,6 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     private final Runnable dequeue() {
-        Symbol symbol;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -317,8 +311,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 return null;
             }
             if (!(obj instanceof LockFreeTaskQueueCore)) {
-                symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                if (obj == symbol) {
+                if (obj == EventLoop_commonKt.CLOSED_EMPTY) {
                     return null;
                 }
                 if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$volatile$FU, this, obj, null)) {
@@ -328,9 +321,9 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             } else {
                 Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeTaskQueueCore<java.lang.Runnable{ kotlinx.coroutines.RunnableKt.Runnable }>{ kotlinx.coroutines.EventLoop_commonKt.Queue<java.lang.Runnable{ kotlinx.coroutines.RunnableKt.Runnable }> }");
                 LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) obj;
-                Object removeFirstOrNull = lockFreeTaskQueueCore.removeFirstOrNull();
-                if (removeFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
-                    return (Runnable) removeFirstOrNull;
+                Object objRemoveFirstOrNull = lockFreeTaskQueueCore.removeFirstOrNull();
+                if (objRemoveFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
+                    return (Runnable) objRemoveFirstOrNull;
                 }
                 AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$volatile$FU, this, obj, lockFreeTaskQueueCore.next());
             }
@@ -338,20 +331,15 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     private final void closeQueue() {
-        Symbol symbol;
-        Symbol symbol2;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (obj == null) {
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = _queue$volatile$FU;
-                symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater2, this, null, symbol)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$volatile$FU, this, null, EventLoop_commonKt.CLOSED_EMPTY)) {
                     return;
                 }
             } else if (!(obj instanceof LockFreeTaskQueueCore)) {
-                symbol2 = EventLoop_commonKt.CLOSED_EMPTY;
-                if (obj == symbol2) {
+                if (obj == EventLoop_commonKt.CLOSED_EMPTY) {
                     return;
                 }
                 LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);
@@ -368,14 +356,14 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     public final void schedule(long j, DelayedTask delayedTask) {
-        int scheduleImpl = scheduleImpl(j, delayedTask);
-        if (scheduleImpl == 0) {
+        int iScheduleImpl = scheduleImpl(j, delayedTask);
+        if (iScheduleImpl == 0) {
             if (shouldUnpark(delayedTask)) {
                 unpark();
             }
-        } else if (scheduleImpl == 1) {
+        } else if (iScheduleImpl == 1) {
             reschedule(j, delayedTask);
-        } else if (scheduleImpl != 2) {
+        } else if (iScheduleImpl != 2) {
             throw new IllegalStateException("unexpected result");
         }
     }
@@ -399,7 +387,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         return delayedTask.scheduleTask(j, delayedTaskQueue, this);
     }
 
-    public final void resetAll() {
+    protected final void resetAll() {
         _queue$volatile$FU.set(this, null);
         _delayed$volatile$FU.set(this, null);
     }
@@ -407,14 +395,33 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     private final void rescheduleAllDelayed() {
         DelayedTask delayedTask;
         AbstractTimeSourceKt.access$getTimeSource$p();
-        long nanoTime = System.nanoTime();
+        long jNanoTime = System.nanoTime();
         while (true) {
             DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) _delayed$volatile$FU.get(this);
             if (delayedTaskQueue == null || (delayedTask = (DelayedTask) delayedTaskQueue.removeFirstOrNull()) == null) {
                 return;
             } else {
-                reschedule(nanoTime, delayedTask);
+                reschedule(jNanoTime, delayedTask);
             }
+        }
+    }
+
+    private final class DelayedResumeTask extends DelayedTask {
+        private final CancellableContinuation cont;
+
+        public DelayedResumeTask(long j, CancellableContinuation cancellableContinuation) {
+            super(j);
+            this.cont = cancellableContinuation;
+        }
+
+        @Override
+        public void run() {
+            this.cont.resumeUndispatched(EventLoopImplBase.this, Unit.INSTANCE);
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + this.cont;
         }
     }
 

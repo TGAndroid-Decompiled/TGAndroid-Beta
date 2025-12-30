@@ -75,7 +75,7 @@ public class JoinCallAlert extends BottomSheet {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -164,10 +164,10 @@ public class JoinCallAlert extends BottomSheet {
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             TextView textView = this.textView[0];
             Property property = View.ALPHA;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f, 0.0f);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f, 0.0f);
             TextView textView2 = this.textView[0];
             Property property2 = View.TRANSLATION_Y;
-            animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property2, AndroidUtilities.dp(10.0f), 0.0f));
+            animatorSet.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property2, AndroidUtilities.dp(10.0f), 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -196,16 +196,16 @@ public class JoinCallAlert extends BottomSheet {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         TL_phone.getGroupCallJoinAs getgroupcalljoinas = new TL_phone.getGroupCallJoinAs();
         getgroupcalljoinas.peer = accountInstance.getMessagesController().getInputPeer(j);
-        final int sendRequest = accountInstance.getConnectionsManager().sendRequest(getgroupcalljoinas, new RequestDelegate() {
+        final int iSendRequest = accountInstance.getConnectionsManager().sendRequest(getgroupcalljoinas, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                JoinCallAlert.lambda$checkFewUsers$1(AlertDialog.this, j, accountInstance, booleanCallback, tLObject, tL_error);
+                JoinCallAlert.lambda$checkFewUsers$1(alertDialog, j, accountInstance, booleanCallback, tLObject, tL_error);
             }
         });
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                JoinCallAlert.lambda$checkFewUsers$2(AccountInstance.this, sendRequest, dialogInterface);
+                JoinCallAlert.lambda$checkFewUsers$2(accountInstance, iSendRequest, dialogInterface);
             }
         });
         try {
@@ -218,7 +218,7 @@ public class JoinCallAlert extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinCallAlert.lambda$checkFewUsers$0(AlertDialog.this, tLObject, j, accountInstance, booleanCallback);
+                JoinCallAlert.lambda$checkFewUsers$0(alertDialog, tLObject, j, accountInstance, booleanCallback);
             }
         });
     }
@@ -261,16 +261,16 @@ public class JoinCallAlert extends BottomSheet {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         TL_phone.getGroupCallJoinAs getgroupcalljoinas = new TL_phone.getGroupCallJoinAs();
         getgroupcalljoinas.peer = accountInstance.getMessagesController().getInputPeer(j);
-        final int sendRequest = accountInstance.getConnectionsManager().sendRequest(getgroupcalljoinas, new RequestDelegate() {
+        final int iSendRequest = accountInstance.getConnectionsManager().sendRequest(getgroupcalljoinas, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                JoinCallAlert.lambda$open$4(AlertDialog.this, accountInstance, joinCallAlertDelegate, j, context, baseFragment, i, peer, tLObject, tL_error);
+                JoinCallAlert.lambda$open$4(alertDialog, accountInstance, joinCallAlertDelegate, j, context, baseFragment, i, peer, tLObject, tL_error);
             }
         });
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                JoinCallAlert.lambda$open$5(AccountInstance.this, sendRequest, dialogInterface);
+                JoinCallAlert.lambda$open$5(accountInstance, iSendRequest, dialogInterface);
             }
         });
         try {
@@ -283,7 +283,7 @@ public class JoinCallAlert extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinCallAlert.lambda$open$3(AlertDialog.this, tLObject, accountInstance, joinCallAlertDelegate, j, context, baseFragment, i, peer);
+                JoinCallAlert.lambda$open$3(alertDialog, tLObject, accountInstance, joinCallAlertDelegate, j, context, baseFragment, i, peer);
             }
         });
     }
@@ -331,17 +331,17 @@ public class JoinCallAlert extends BottomSheet {
     }
 
     private JoinCallAlert(Context context, long j, ArrayList arrayList, int i, TLRPC.Peer peer, final JoinCallAlertDelegate joinCallAlertDelegate) {
-        super(context, false);
         int color;
         ViewGroup viewGroup;
         boolean z;
+        super(context, false);
         this.location = new int[2];
         setApplyBottomPadding(false);
         this.chats = new ArrayList(arrayList);
         this.delegate = joinCallAlertDelegate;
         this.currentType = i;
-        Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.shadowDrawable = mutate;
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = drawableMutate;
         if (i == 2) {
             if (VoIPService.getSharedInstance() != null) {
                 long selfId = VoIPService.getSharedInstance().getSelfId();
@@ -383,7 +383,7 @@ public class JoinCallAlert extends BottomSheet {
             drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         } else {
             color = Theme.getColor(Theme.key_dialogBackground);
-            mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             this.selectedPeer = (TLRPC.Peer) this.chats.get(0);
         }
         fixNavigationBar(color);
@@ -412,9 +412,9 @@ public class JoinCallAlert extends BottomSheet {
                             layoutParams.gravity = 49;
                             if (!this.sorted) {
                                 if (JoinCallAlert.this.selectedPeer != null) {
-                                    int max = JoinCallAlert.this.chats.size() % 2 == 0 ? Math.max(0, (JoinCallAlert.this.chats.size() / 2) - 1) : JoinCallAlert.this.chats.size() / 2;
+                                    int iMax = JoinCallAlert.this.chats.size() % 2 == 0 ? Math.max(0, (JoinCallAlert.this.chats.size() / 2) - 1) : JoinCallAlert.this.chats.size() / 2;
                                     JoinCallAlert.this.chats.remove(JoinCallAlert.this.selectedPeer);
-                                    JoinCallAlert.this.chats.add(max, JoinCallAlert.this.selectedPeer);
+                                    JoinCallAlert.this.chats.add(iMax, JoinCallAlert.this.selectedPeer);
                                 }
                                 this.sorted = true;
                             }
@@ -451,9 +451,9 @@ public class JoinCallAlert extends BottomSheet {
                     int measuredHeight = JoinCallAlert.this.messageTextView.getMeasuredHeight();
                     ((FrameLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
                     getMeasuredWidth();
-                    int dp = AndroidUtilities.dp(80.0f) + (JoinCallAlert.this.chats.size() * AndroidUtilities.dp(58.0f)) + ((BottomSheet) JoinCallAlert.this).backgroundPaddingTop + AndroidUtilities.dp(55.0f) + measuredHeight;
+                    int iDp = AndroidUtilities.dp(80.0f) + (JoinCallAlert.this.chats.size() * AndroidUtilities.dp(58.0f)) + ((BottomSheet) JoinCallAlert.this).backgroundPaddingTop + AndroidUtilities.dp(55.0f) + measuredHeight;
                     int i6 = size3 / 5;
-                    int i7 = dp < i6 * 3 ? size3 - dp : i6 * 2;
+                    int i7 = iDp < i6 * 3 ? size3 - iDp : i6 * 2;
                     if (JoinCallAlert.this.listView.getPaddingTop() != i7) {
                         JoinCallAlert.this.ignoreLayout = true;
                         JoinCallAlert.this.listView.setPadding(0, i7, 0, 0);
@@ -516,7 +516,7 @@ public class JoinCallAlert extends BottomSheet {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                JoinCallAlert.this.lambda$new$6(chat, view, i5);
+                this.f$0.lambda$new$6(chat, view, i5);
             }
         });
         if (i != 0) {
@@ -615,7 +615,7 @@ public class JoinCallAlert extends BottomSheet {
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinCallAlert.this.lambda$new$7(joinCallAlertDelegate, view);
+                this.f$0.lambda$new$7(joinCallAlertDelegate, view);
             }
         });
         if (this.currentType == 0) {
@@ -629,7 +629,7 @@ public class JoinCallAlert extends BottomSheet {
             bottomSheetCell2.background.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    JoinCallAlert.this.lambda$new$8(view);
+                    this.f$0.lambda$new$8(view);
                 }
             });
             viewGroup.addView(bottomSheetCell2, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
@@ -802,19 +802,19 @@ public class JoinCallAlert extends BottomSheet {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             TLObject chat;
-            String str;
+            String string;
             long peerId = MessageObject.getPeerId((TLRPC.Peer) JoinCallAlert.this.chats.get(i));
             if (peerId > 0) {
                 chat = MessagesController.getInstance(((BottomSheet) JoinCallAlert.this).currentAccount).getUser(Long.valueOf(peerId));
-                str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
+                string = LocaleController.getString(R.string.VoipGroupPersonalAccount);
             } else {
                 chat = MessagesController.getInstance(((BottomSheet) JoinCallAlert.this).currentAccount).getChat(Long.valueOf(-peerId));
-                str = null;
+                string = null;
             }
             if (JoinCallAlert.this.currentType == 0) {
                 ((ShareDialogCell) viewHolder.itemView).setDialog(peerId, peerId == MessageObject.getPeerId(JoinCallAlert.this.selectedPeer), null);
             } else {
-                ((GroupCreateUserCell) viewHolder.itemView).setObject(chat, null, str, i != getItemCount() - 1);
+                ((GroupCreateUserCell) viewHolder.itemView).setObject(chat, null, string, i != getItemCount() - 1);
             }
         }
     }

@@ -22,11 +22,11 @@ public class BitmapShaderTools {
         this.paint = paint;
         this.bounds = new RectF();
         this.matrix = new Matrix();
-        Bitmap createBitmap = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
-        this.bitmap = createBitmap;
-        this.canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
+        this.bitmap = bitmapCreateBitmap;
+        this.canvas = new Canvas(bitmapCreateBitmap);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
+        BitmapShader bitmapShader = new BitmapShader(bitmapCreateBitmap, tileMode, tileMode);
         this.shader = bitmapShader;
         paint.setShader(bitmapShader);
         updateBounds();
@@ -37,11 +37,11 @@ public class BitmapShaderTools {
         this.paint = paint;
         this.bounds = new RectF();
         this.matrix = new Matrix();
-        Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, i), Math.max(1, i2), Bitmap.Config.ARGB_8888);
-        this.bitmap = createBitmap;
-        this.canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(Math.max(1, i), Math.max(1, i2), Bitmap.Config.ARGB_8888);
+        this.bitmap = bitmapCreateBitmap;
+        this.canvas = new Canvas(bitmapCreateBitmap);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
+        BitmapShader bitmapShader = new BitmapShader(bitmapCreateBitmap, tileMode, tileMode);
         this.shader = bitmapShader;
         paint.setShader(bitmapShader);
         updateBounds();
@@ -68,13 +68,13 @@ public class BitmapShaderTools {
         if (this.shader == null) {
             return;
         }
-        float width = this.bounds.width() / this.bitmap.getWidth();
-        float height = this.bounds.height() / this.bitmap.getHeight();
+        float fWidth = this.bounds.width() / this.bitmap.getWidth();
+        float fHeight = this.bounds.height() / this.bitmap.getHeight();
         this.matrix.reset();
         Matrix matrix = this.matrix;
         RectF rectF = this.bounds;
         matrix.postTranslate(rectF.left, rectF.top);
-        this.matrix.preScale(width, height);
+        this.matrix.preScale(fWidth, fHeight);
         this.shader.setLocalMatrix(this.matrix);
     }
 

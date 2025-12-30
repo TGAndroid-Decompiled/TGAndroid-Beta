@@ -2,12 +2,14 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.util.Pair;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,7 +54,7 @@ public class ChatThemeController extends BaseController {
     public void clearWallpaperImages() {
     }
 
-    public static class ThemeList {
+    private static class ThemeList {
         private boolean completed;
         private long hash;
         private long lastReloadTimeMs;
@@ -89,7 +91,7 @@ public class ChatThemeController extends BaseController {
         getMessagesStorage().loadGiftChatTheme(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatThemeController.this.lambda$init$0((List) obj);
+                this.f$0.lambda$init$0((List) obj);
             }
         });
         preloadSticker("❌");
@@ -145,7 +147,7 @@ public class ChatThemeController extends BaseController {
             connectionsManager.sendRequestTyped(getchatthemes, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatThemeController.this.lambda$requestAllChatThemes$3(resultCallback, z, (TL_account.Themes) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$requestAllChatThemes$3(resultCallback, z, (TL_account.Themes) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -157,40 +159,40 @@ public class ChatThemeController extends BaseController {
     }
 
     public void lambda$requestAllChatThemes$3(final ResultCallback resultCallback, final boolean z, TL_account.Themes themes, final TLRPC.TL_error tL_error) {
-        final List<EmojiThemes> list;
+        final List<EmojiThemes> allChatThemesFromPrefs;
         boolean z2 = false;
         if (themes instanceof TL_account.TL_themes) {
             TL_account.TL_themes tL_themes = (TL_account.TL_themes) themes;
             this.themesHash = tL_themes.hash;
             this.lastReloadTimeMs = System.currentTimeMillis();
-            SharedPreferences.Editor edit = getSharedPreferences().edit();
-            edit.clear();
-            edit.putLong("hash", this.themesHash);
-            edit.putLong("lastReload", this.lastReloadTimeMs);
-            edit.putInt("count", tL_themes.themes.size());
-            list = new ArrayList<>(tL_themes.themes.size());
+            SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
+            editorEdit.clear();
+            editorEdit.putLong("hash", this.themesHash);
+            editorEdit.putLong("lastReload", this.lastReloadTimeMs);
+            editorEdit.putInt("count", tL_themes.themes.size());
+            allChatThemesFromPrefs = new ArrayList<>(tL_themes.themes.size());
             for (int i = 0; i < tL_themes.themes.size(); i++) {
                 TLRPC.TL_theme tL_theme = tL_themes.themes.get(i);
                 Emoji.preloadEmoji(tL_theme.emoticon);
                 SerializedData serializedData = new SerializedData(tL_theme.getObjectSize());
                 tL_theme.serializeToStream(serializedData);
-                edit.putString("theme_" + i, Utilities.bytesToHex(serializedData.toByteArray()));
+                editorEdit.putString("theme_" + i, Utilities.bytesToHex(serializedData.toByteArray()));
                 EmojiThemes emojiThemes = new EmojiThemes(this.currentAccount, tL_theme, false);
                 emojiThemes.preloadWallpaper();
-                list.add(emojiThemes);
+                allChatThemesFromPrefs.add(emojiThemes);
             }
-            edit.apply();
+            editorEdit.apply();
         } else if (themes instanceof TL_account.TL_themesNotModified) {
-            list = getAllChatThemesFromPrefs();
+            allChatThemesFromPrefs = getAllChatThemesFromPrefs();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ResultCallback.this.onError(tL_error);
+                    resultCallback.onError(tL_error);
                 }
             });
             z2 = true;
-            list = null;
+            allChatThemesFromPrefs = null;
         }
         if (z2) {
             return;
@@ -198,7 +200,7 @@ public class ChatThemeController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatThemeController.this.lambda$requestAllChatThemes$2(list, resultCallback, z);
+                this.f$0.lambda$requestAllChatThemes$2(allChatThemesFromPrefs, resultCallback, z);
             }
         });
     }
@@ -227,9 +229,9 @@ public class ChatThemeController extends BaseController {
         for (int i2 = 0; i2 < i; i2++) {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
-                TLRPC.TL_theme TLdeserialize = TLRPC.Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                if (TLdeserialize != null) {
-                    arrayList.add(new EmojiThemes(this.currentAccount, TLdeserialize, false));
+                TLRPC.TL_theme tL_themeTLdeserialize = TLRPC.Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (tL_themeTLdeserialize != null) {
+                    arrayList.add(new EmojiThemes(this.currentAccount, tL_themeTLdeserialize, false));
                 }
             } catch (Throwable th) {
                 FileLog.e(th);
@@ -350,7 +352,7 @@ public class ChatThemeController extends BaseController {
             getConnectionsManager().sendRequestTyped(tL_messages_setChatTheme, null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatThemeController.this.lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -363,12 +365,12 @@ public class ChatThemeController extends BaseController {
     }
 
     public EmojiThemes getDialogTheme(long j) {
-        ThemeKey themeKey = this.dialogEmoticonsMap.get(j);
-        if (themeKey == null) {
-            themeKey = ThemeKey.fromSavedString(getEmojiSharedPreferences().getString("chatTheme_" + this.currentAccount + "_" + j, null));
-            this.dialogEmoticonsMap.put(j, themeKey);
+        ThemeKey themeKeyFromSavedString = this.dialogEmoticonsMap.get(j);
+        if (themeKeyFromSavedString == null) {
+            themeKeyFromSavedString = ThemeKey.fromSavedString(getEmojiSharedPreferences().getString("chatTheme_" + this.currentAccount + "_" + j, null));
+            this.dialogEmoticonsMap.put(j, themeKeyFromSavedString);
         }
-        return getTheme(themeKey);
+        return getTheme(themeKeyFromSavedString);
     }
 
     public EmojiThemes getTheme(ThemeKey themeKey) {
@@ -393,8 +395,8 @@ public class ChatThemeController extends BaseController {
             }
             SerializedData serializedData = new SerializedData(wallPaper.getObjectSize());
             wallPaper.serializeToStream(serializedData);
-            String bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
-            getEmojiSharedPreferences().edit().putString("chatWallpaper_" + this.currentAccount + "_" + j, bytesToHex).apply();
+            String strBytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
+            getEmojiSharedPreferences().edit().putString("chatWallpaper_" + this.currentAccount + "_" + j, strBytesToHex).apply();
             return;
         }
         getEmojiSharedPreferences().edit().remove("chatWallpaper_" + this.currentAccount + "_" + j).apply();
@@ -440,7 +442,7 @@ public class ChatThemeController extends BaseController {
                 emojiThemes.loadWallpaperThumb(z ? 1 : 0, new ResultCallback() {
                     @Override
                     public final void onComplete(Object obj) {
-                        ChatThemeController.this.lambda$preloadAllWallpaperThumbs$5((Pair) obj);
+                        this.f$0.lambda$preloadAllWallpaperThumbs$5((Pair) obj);
                     }
 
                     @Override
@@ -481,8 +483,20 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    public static void lambda$getWallpaperBitmap$7(java.io.File r1, final org.telegram.tgnet.ResultCallback r2) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatThemeController.lambda$getWallpaperBitmap$7(java.io.File, org.telegram.tgnet.ResultCallback):void");
+    public static void lambda$getWallpaperBitmap$7(File file, final ResultCallback resultCallback) {
+        try {
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        final Bitmap bitmapDecodeFile = file.exists() ? BitmapFactory.decodeFile(file.getAbsolutePath()) : null;
+        if (resultCallback != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    resultCallback.onComplete(bitmapDecodeFile);
+                }
+            });
+        }
     }
 
     private File getPatternFile(long j) {
@@ -493,13 +507,13 @@ public class ChatThemeController extends BaseController {
         final File patternFile = getPatternFile(j);
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 ChatThemeController.lambda$saveWallpaperBitmap$8(patternFile, bitmap);
             }
         });
     }
 
-    public static void lambda$saveWallpaperBitmap$8(File file, Bitmap bitmap) {
+    public static void lambda$saveWallpaperBitmap$8(File file, Bitmap bitmap) throws IOException {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
@@ -524,7 +538,7 @@ public class ChatThemeController extends BaseController {
             getWallpaperBitmap(j, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
-                    ChatThemeController.lambda$loadWallpaperBitmap$9(Utilities.Callback.this, (Bitmap) obj);
+                    ChatThemeController.lambda$loadWallpaperBitmap$9(callback, (Bitmap) obj);
                 }
 
                 @Override
@@ -554,13 +568,13 @@ public class ChatThemeController extends BaseController {
         final File file = new File(ApplicationLoader.getFilesDirFixed("rasterized/wallpaper"), String.format(Locale.US, "pattern_%d.pgm.gz", Long.valueOf(j)));
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Throwable {
                 ChatThemeController.lambda$loadWallpaperPatternBitmap$11(file, callback);
             }
         });
     }
 
-    public static void lambda$loadWallpaperPatternBitmap$11(java.io.File r10, final org.telegram.messenger.Utilities.Callback r11) {
+    public static void lambda$loadWallpaperPatternBitmap$11(java.io.File r10, final org.telegram.messenger.Utilities.Callback r11) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatThemeController.lambda$loadWallpaperPatternBitmap$11(java.io.File, org.telegram.messenger.Utilities$Callback):void");
     }
 
@@ -568,13 +582,13 @@ public class ChatThemeController extends BaseController {
         final File file = new File(ApplicationLoader.getFilesDirFixed("rasterized/wallpaper"), String.format(Locale.US, "pattern_%d.pgm.gz", Long.valueOf(j)));
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 ChatThemeController.lambda$saveWallpaperPatternBitmap$12(file, list, bitmap);
             }
         });
     }
 
-    public static void lambda$saveWallpaperPatternBitmap$12(java.io.File r3, java.util.List r4, android.graphics.Bitmap r5) {
+    public static void lambda$saveWallpaperPatternBitmap$12(java.io.File r3, java.util.List r4, android.graphics.Bitmap r5) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatThemeController.lambda$saveWallpaperPatternBitmap$12(java.io.File, java.util.List, android.graphics.Bitmap):void");
     }
 
@@ -609,7 +623,7 @@ public class ChatThemeController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatThemeController.this.lambda$processUpdate$13(j, userFull);
+                    this.f$0.lambda$processUpdate$13(j, userFull);
                 }
             });
             return;
@@ -631,7 +645,7 @@ public class ChatThemeController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatThemeController.this.lambda$processUpdate$14(chatFull);
+                this.f$0.lambda$processUpdate$14(chatFull);
             }
         });
     }
@@ -824,7 +838,7 @@ public class ChatThemeController extends BaseController {
         return ConnectionsManager.getInstance(chatThemeController.currentAccount).sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatThemeController.this.lambda$setWallpaperToPeer$17(j, z2, str, runnable, tLObject, tL_error);
+                this.f$0.lambda$setWallpaperToPeer$17(j, z2, str, runnable, tLObject, tL_error);
             }
         });
     }
@@ -832,13 +846,13 @@ public class ChatThemeController extends BaseController {
     public void lambda$setWallpaperToPeer$17(final long j, final boolean z, final String str, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                ChatThemeController.this.lambda$setWallpaperToPeer$16(tLObject, j, z, str, runnable);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$setWallpaperToPeer$16(tLObject, j, z, str, runnable);
             }
         });
     }
 
-    public void lambda$setWallpaperToPeer$16(TLObject tLObject, long j, boolean z, String str, Runnable runnable) {
+    public void lambda$setWallpaperToPeer$16(TLObject tLObject, long j, boolean z, String str, Runnable runnable) throws InterruptedException {
         TLRPC.ChatFull chatFull;
         TLRPC.UserFull userFull;
         String str2;
@@ -904,30 +918,30 @@ public class ChatThemeController extends BaseController {
 
     private void setGiftThemeUser(String str, long j) {
         if (TextUtils.isEmpty(str)) {
-            String remove = this.usedGiftThemesByUsers.remove(Long.valueOf(j));
-            if (remove != null) {
-                this.usedGiftThemesBySlug.remove(remove);
+            String strRemove = this.usedGiftThemesByUsers.remove(Long.valueOf(j));
+            if (strRemove != null) {
+                this.usedGiftThemesBySlug.remove(strRemove);
                 return;
             }
             return;
         }
         if (j == 0) {
-            Long remove2 = this.usedGiftThemesBySlug.remove(str);
-            if (remove2 != null) {
-                this.usedGiftThemesByUsers.remove(remove2);
+            Long lRemove = this.usedGiftThemesBySlug.remove(str);
+            if (lRemove != null) {
+                this.usedGiftThemesByUsers.remove(lRemove);
                 return;
             }
             return;
         }
-        String put = this.usedGiftThemesByUsers.put(Long.valueOf(j), str);
-        Long put2 = this.usedGiftThemesBySlug.put(str, Long.valueOf(j));
-        if (put != null && !TextUtils.equals(str, put)) {
-            this.usedGiftThemesBySlug.remove(put);
+        String strPut = this.usedGiftThemesByUsers.put(Long.valueOf(j), str);
+        Long lPut = this.usedGiftThemesBySlug.put(str, Long.valueOf(j));
+        if (strPut != null && !TextUtils.equals(str, strPut)) {
+            this.usedGiftThemesBySlug.remove(strPut);
         }
-        if (put2 == null || put2.longValue() == j) {
+        if (lPut == null || lPut.longValue() == j) {
             return;
         }
-        this.usedGiftThemesByUsers.remove(put2);
+        this.usedGiftThemesByUsers.remove(lPut);
     }
 
     public long getGiftThemeUser(String str) {
@@ -940,17 +954,17 @@ public class ChatThemeController extends BaseController {
 
     public List<EmojiThemes> getEmojiThemes(int i) {
         List<EmojiThemes> list;
-        boolean hasFlag = TLObject.hasFlag(i, 1);
-        boolean hasFlag2 = TLObject.hasFlag(i, 2);
-        boolean hasFlag3 = TLObject.hasFlag(i, 4);
+        boolean zHasFlag = TLObject.hasFlag(i, 1);
+        boolean zHasFlag2 = TLObject.hasFlag(i, 2);
+        boolean zHasFlag3 = TLObject.hasFlag(i, 4);
         ArrayList arrayList = new ArrayList();
-        if (hasFlag3 && this.giftsThemeList.themes != null) {
+        if (zHasFlag3 && this.giftsThemeList.themes != null) {
             arrayList.addAll(this.giftsThemeList.themes);
         }
-        if (hasFlag2 && (list = this.allChatThemes) != null) {
+        if (zHasFlag2 && (list = this.allChatThemes) != null) {
             arrayList.addAll(list);
         }
-        if (hasFlag && (arrayList.isEmpty() || !((EmojiThemes) arrayList.get(0)).showAsDefaultStub)) {
+        if (zHasFlag && (arrayList.isEmpty() || !((EmojiThemes) arrayList.get(0)).showAsDefaultStub)) {
             arrayList.add(0, EmojiThemes.createChatThemesDefault(this.currentAccount));
         }
         Iterator it = arrayList.iterator();
@@ -985,7 +999,7 @@ public class ChatThemeController extends BaseController {
             connectionsManager.sendRequestTyped(tl_getUniqueGiftChatThemes, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatThemeController.this.lambda$requestNextChatThemes$21(resultCallback, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$requestNextChatThemes$21(resultCallback, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -996,7 +1010,7 @@ public class ChatThemeController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ResultCallback.this.onError(tL_error);
+                    resultCallback.onError(tL_error);
                 }
             });
             return;
@@ -1024,7 +1038,7 @@ public class ChatThemeController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatThemeController.this.lambda$requestNextChatThemes$19(tl_chatThemes, arrayList2, arrayList, resultCallback);
+                    this.f$0.lambda$requestNextChatThemes$19(tl_chatThemes, arrayList2, arrayList, resultCallback);
                 }
             });
             return;
@@ -1033,7 +1047,7 @@ public class ChatThemeController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatThemeController.this.lambda$requestNextChatThemes$20(resultCallback);
+                    this.f$0.lambda$requestNextChatThemes$20(resultCallback);
                 }
             });
         }

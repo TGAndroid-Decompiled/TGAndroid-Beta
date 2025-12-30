@@ -28,8 +28,6 @@ public interface INavigationLayout {
 
     boolean addFragmentToStack(BaseFragment baseFragment, int i);
 
-    boolean allowSwipe();
-
     void animateThemedValues(ThemeAnimationSettings themeAnimationSettings, Runnable runnable);
 
     void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2);
@@ -43,8 +41,6 @@ public interface INavigationLayout {
     void closeLastFragment(boolean z);
 
     void dismissDialogs();
-
-    void drawCurrentPreviewFragment(Canvas canvas, Drawable drawable);
 
     void drawHeaderShadow(Canvas canvas, int i);
 
@@ -61,8 +57,6 @@ public interface INavigationLayout {
     BottomSheet getBottomSheet();
 
     int getBottomTabsHeight(boolean z);
-
-    float getCurrentPreviewFragmentAlpha();
 
     DrawerLayoutContainer getDrawerLayoutContainer();
 
@@ -191,24 +185,13 @@ public interface INavigationLayout {
             return new ActionBarLayout(context, z);
         }
 
-        public static INavigationLayout newLayout(Context context, boolean z, Supplier supplier) {
+        public static INavigationLayout newLayout(Context context, boolean z, final Supplier supplier) {
             return new ActionBarLayout(context, z) {
-                final Supplier val$supplier;
-
-                AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
-                    super(context2, z2);
-                    r3 = supplier2;
-                }
-
                 @Override
                 public BottomSheet getBottomSheet() {
-                    return (BottomSheet) r3.get();
+                    return (BottomSheet) supplier.get();
                 }
             };
-        }
-
-        public static void $default$removeFragmentFromStack(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
-            iNavigationLayout.removeFragmentFromStack(baseFragment, false);
         }
 
         public static void $default$rebuildFragments(INavigationLayout iNavigationLayout, int i) {
@@ -218,10 +201,6 @@ public interface INavigationLayout {
                 boolean z = (i & 1) != 0;
                 iNavigationLayout.rebuildAllFragmentViews(z, z);
             }
-        }
-
-        public static void $default$drawHeaderShadow(INavigationLayout iNavigationLayout, Canvas canvas, int i) {
-            iNavigationLayout.drawHeaderShadow(canvas, 255, i);
         }
 
         public static BaseFragment $default$getBackgroundFragment(INavigationLayout iNavigationLayout) {
@@ -257,14 +236,6 @@ public interface INavigationLayout {
             return null;
         }
 
-        public static void $default$animateThemedValues(INavigationLayout iNavigationLayout, Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
-            iNavigationLayout.animateThemedValues(new ThemeAnimationSettings(themeInfo, i, z, z2), null);
-        }
-
-        public static void $default$animateThemedValues(INavigationLayout iNavigationLayout, Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2, Runnable runnable) {
-            iNavigationLayout.animateThemedValues(new ThemeAnimationSettings(themeInfo, i, z, z2), runnable);
-        }
-
         public static Activity $default$getParentActivity(INavigationLayout iNavigationLayout) {
             Context context = iNavigationLayout.getView().getContext();
             if (context instanceof Activity) {
@@ -280,43 +251,11 @@ public interface INavigationLayout {
             throw new IllegalArgumentException("You should override getView() if you're not inheriting from it.");
         }
 
-        public static void $default$closeLastFragment(INavigationLayout iNavigationLayout) {
-            iNavigationLayout.closeLastFragment(true);
-        }
-
         public static void $default$removeFragmentFromStack(INavigationLayout iNavigationLayout, int i) {
             if (i < 0 || i >= iNavigationLayout.getFragmentStack().size()) {
                 return;
             }
             iNavigationLayout.removeFragmentFromStack((BaseFragment) iNavigationLayout.getFragmentStack().get(i));
-        }
-
-        public static boolean $default$addFragmentToStack(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
-            return iNavigationLayout.addFragmentToStack(baseFragment, -1);
-        }
-
-        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment));
-        }
-
-        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z));
-        }
-
-        public static boolean $default$presentFragmentAsPreview(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setPreview(true));
-        }
-
-        public static boolean $default$presentFragmentAsPreviewWithMenu(INavigationLayout iNavigationLayout, BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setPreview(true).setMenuView(actionBarPopupWindowLayout));
-        }
-
-        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4));
-        }
-
-        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4).setMenuView(actionBarPopupWindowLayout));
         }
 
         public static void $default$dismissDialogs(INavigationLayout iNavigationLayout) {
@@ -325,20 +264,6 @@ public interface INavigationLayout {
                 return;
             }
             ((BaseFragment) fragmentStack.get(fragmentStack.size() - 1)).dismissCurrentDialog();
-        }
-    }
-
-    public class AnonymousClass1 extends ActionBarLayout {
-        final Supplier val$supplier;
-
-        AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
-            super(context2, z2);
-            r3 = supplier2;
-        }
-
-        @Override
-        public BottomSheet getBottomSheet() {
-            return (BottomSheet) r3.get();
         }
     }
 
@@ -379,10 +304,6 @@ public interface INavigationLayout {
             }
 
             public static void $default$onThemeProgress(INavigationLayoutDelegate iNavigationLayoutDelegate, float f) {
-            }
-
-            public static boolean $default$needPresentFragment(INavigationLayoutDelegate iNavigationLayoutDelegate, INavigationLayout iNavigationLayout, NavigationParams navigationParams) {
-                return iNavigationLayoutDelegate.needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
             }
         }
     }
@@ -463,16 +384,12 @@ public interface INavigationLayout {
 
         @Override
         public ColorFilter getAnimatedEmojiColorFilter() {
-            ColorFilter colorFilter;
-            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-            return colorFilter;
+            return Theme.chat_animatedEmojiTextColorFilter;
         }
 
         @Override
         public int getColorOrDefault(int i) {
-            int color;
-            color = getColor(i);
-            return color;
+            return getColor(i);
         }
 
         @Override
@@ -482,9 +399,7 @@ public interface INavigationLayout {
 
         @Override
         public Paint getPaint(String str) {
-            Paint themePaint;
-            themePaint = Theme.getThemePaint(str);
-            return themePaint;
+            return Theme.getThemePaint(str);
         }
 
         @Override
@@ -494,9 +409,7 @@ public interface INavigationLayout {
 
         @Override
         public boolean isDark() {
-            boolean isCurrentThemeDark;
-            isCurrentThemeDark = Theme.isCurrentThemeDark();
-            return isCurrentThemeDark;
+            return Theme.isCurrentThemeDark();
         }
 
         @Override
@@ -506,9 +419,9 @@ public interface INavigationLayout {
 
         @Override
         public int getColor(int i) {
-            int indexOfKey = this.colors.indexOfKey(i);
-            if (indexOfKey >= 0) {
-                return this.colors.valueAt(indexOfKey);
+            int iIndexOfKey = this.colors.indexOfKey(i);
+            if (iIndexOfKey >= 0) {
+                return this.colors.valueAt(iIndexOfKey);
             }
             return Theme.getColor(i);
         }

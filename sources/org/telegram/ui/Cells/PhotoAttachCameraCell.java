@@ -40,7 +40,7 @@ public class PhotoAttachCameraCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(2.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(2.0f), 1073741824));
     }
 
     public void setItemSize(int i) {
@@ -66,14 +66,14 @@ public class PhotoAttachCameraCell extends FrameLayout {
     }
 
     public void updateBitmap() {
-        Bitmap bitmap;
+        Bitmap bitmapDecodeFile;
         try {
-            bitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb.jpg").getAbsolutePath());
+            bitmapDecodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb.jpg").getAbsolutePath());
         } catch (Throwable unused) {
-            bitmap = null;
+            bitmapDecodeFile = null;
         }
-        if (bitmap != null) {
-            this.backgroundView.setImageBitmap(bitmap);
+        if (bitmapDecodeFile != null) {
+            this.backgroundView.setImageBitmap(bitmapDecodeFile);
         } else {
             this.backgroundView.setImageResource(R.drawable.icplaceholder);
         }

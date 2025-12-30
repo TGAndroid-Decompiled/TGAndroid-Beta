@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -27,7 +29,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.GroupCallRecordAlert;
+import org.xml.sax.SAXException;
 
 public abstract class GroupCallRecordAlert extends BottomSheet {
     private int currentPage;
@@ -39,7 +41,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
 
     public abstract void onStartRecord(int i);
 
-    public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) {
+    public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
         super(context, false);
         int color = Theme.getColor(Theme.key_voipgroup_inviteMembersBackground);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
@@ -51,13 +53,13 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
                 boolean z2 = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) GroupCallRecordAlert.this.positiveButton.getLayoutParams();
                 if (z2) {
-                    int dp = AndroidUtilities.dp(80.0f);
-                    marginLayoutParams.leftMargin = dp;
-                    marginLayoutParams.rightMargin = dp;
+                    int iDp = AndroidUtilities.dp(80.0f);
+                    marginLayoutParams.leftMargin = iDp;
+                    marginLayoutParams.rightMargin = iDp;
                 } else {
-                    int dp2 = AndroidUtilities.dp(16.0f);
-                    marginLayoutParams.leftMargin = dp2;
-                    marginLayoutParams.rightMargin = dp2;
+                    int iDp2 = AndroidUtilities.dp(16.0f);
+                    marginLayoutParams.leftMargin = iDp2;
+                    marginLayoutParams.rightMargin = iDp2;
                 }
                 int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(200.0f)) / 2;
                 GroupCallRecordAlert.this.viewPager.setPadding(size, 0, size, 0);
@@ -191,7 +193,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                GroupCallRecordAlert.this.lambda$new$0(view3);
+                this.f$0.lambda$new$0(view3);
             }
         });
         this.containerView.addView(this.positiveButton, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
@@ -221,8 +223,8 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             }
             this.titles[i3].setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view3) {
-                    GroupCallRecordAlert.this.lambda$new$1(i3, view3);
+                public final void onClick(View view3) throws Resources.NotFoundException {
+                    this.f$0.lambda$new$1(i3, view3);
                 }
             });
             i3++;
@@ -237,7 +239,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         dismiss();
     }
 
-    public void lambda$new$1(int i, View view) {
+    public void lambda$new$1(int i, View view) throws Resources.NotFoundException {
         this.viewPager.setCurrentItem(i, true);
     }
 
@@ -282,7 +284,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
     }
 
-    public class Adapter extends PagerAdapter {
+    class Adapter extends PagerAdapter {
         @Override
         public void restoreState(Parcelable parcelable, ClassLoader classLoader) {
         }
@@ -301,11 +303,11 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup viewGroup, final int i) {
+        public Object instantiateItem(ViewGroup viewGroup, final int i) throws SAXException, IOException {
             int i2;
             ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext()) {
                 @Override
-                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) throws Resources.NotFoundException {
                     super.onInitializeAccessibilityEvent(accessibilityEvent);
                     if (accessibilityEvent.getEventType() == 32768) {
                         GroupCallRecordAlert.this.viewPager.setCurrentItem(i, true);
@@ -315,7 +317,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GroupCallRecordAlert.Adapter.this.lambda$instantiateItem$0(i, view);
+                    this.f$0.lambda$instantiateItem$0(i, view);
                 }
             });
             imageView.setFocusable(true);

@@ -65,47 +65,47 @@ public class FilledTabsView extends View {
         }
         int width = getWidth();
         int height = getHeight();
-        int dp = AndroidUtilities.dp(2.0f) + (this.tabs.length * AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(2.0f);
+        int iDp = AndroidUtilities.dp(2.0f) + (this.tabs.length * AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(2.0f);
         int i = 0;
         while (true) {
             Text[] textArr = this.tabs;
             if (i >= textArr.length) {
                 break;
             }
-            dp = (int) (dp + textArr[i].getWidth());
+            iDp = (int) (iDp + textArr[i].getWidth());
             i++;
         }
-        float dp2 = (height - AndroidUtilities.dp(30.0f)) / 2.0f;
-        float dp3 = (AndroidUtilities.dp(30.0f) + height) / 2.0f;
-        float f = (width - dp) / 2.0f;
+        float fDp = (height - AndroidUtilities.dp(30.0f)) / 2.0f;
+        float fDp2 = (AndroidUtilities.dp(30.0f) + height) / 2.0f;
+        float f = (width - iDp) / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f, dp2, dp + f, dp3);
+        rectF.set(f, fDp, iDp + f, fDp2);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.backgroundPaint);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float dp4 = f + AndroidUtilities.dp(14.0f);
+        float fDp3 = f + AndroidUtilities.dp(14.0f);
         int i2 = 0;
         while (true) {
             Text[] textArr2 = this.tabs;
             if (i2 < textArr2.length) {
                 int i3 = i2;
-                textArr2[i2].draw(canvas, dp4, height / 2.0f, -1, 1.0f);
-                this.bounds[i3].set(dp4 - AndroidUtilities.dp(14.0f), dp2, this.tabs[i3].getWidth() + dp4 + AndroidUtilities.dp(14.0f), dp3);
-                dp4 += this.tabs[i3].getWidth() + AndroidUtilities.dp(24.0f);
+                textArr2[i2].draw(canvas, fDp3, height / 2.0f, -1, 1.0f);
+                this.bounds[i3].set(fDp3 - AndroidUtilities.dp(14.0f), fDp, this.tabs[i3].getWidth() + fDp3 + AndroidUtilities.dp(14.0f), fDp2);
+                fDp3 += this.tabs[i3].getWidth() + AndroidUtilities.dp(24.0f);
                 i2 = i3 + 1;
             } else {
                 AndroidUtilities.dp(2.0f);
-                int clamp = Utilities.clamp((int) Math.floor(this.selectedTabIndex), this.tabs.length - 1, 0);
-                int clamp2 = Utilities.clamp((int) Math.ceil(this.selectedTabIndex), this.tabs.length - 1, 0);
-                float dp5 = this.bounds[clamp].left + AndroidUtilities.dp(2.0f);
-                float dp6 = this.bounds[clamp2].left + AndroidUtilities.dp(2.0f);
+                int iClamp = Utilities.clamp((int) Math.floor(this.selectedTabIndex), this.tabs.length - 1, 0);
+                int iClamp2 = Utilities.clamp((int) Math.ceil(this.selectedTabIndex), this.tabs.length - 1, 0);
+                float fDp4 = this.bounds[iClamp].left + AndroidUtilities.dp(2.0f);
+                float fDp5 = this.bounds[iClamp2].left + AndroidUtilities.dp(2.0f);
                 double d = this.selectedTabIndex;
-                float lerp = AndroidUtilities.lerp(dp5, dp6, (float) (d - Math.floor(d)));
-                float dp7 = this.bounds[clamp].right - AndroidUtilities.dp(2.0f);
-                float dp8 = this.bounds[clamp2].right - AndroidUtilities.dp(2.0f);
+                float fLerp = AndroidUtilities.lerp(fDp4, fDp5, (float) (d - Math.floor(d)));
+                float fDp6 = this.bounds[iClamp].right - AndroidUtilities.dp(2.0f);
+                float fDp7 = this.bounds[iClamp2].right - AndroidUtilities.dp(2.0f);
                 double d2 = this.selectedTabIndex;
-                float lerp2 = AndroidUtilities.lerp(dp7, dp8, (float) (d2 - Math.floor(d2)));
+                float fLerp2 = AndroidUtilities.lerp(fDp6, fDp7, (float) (d2 - Math.floor(d2)));
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(lerp, (height - AndroidUtilities.dp(26.0f)) / 2.0f, lerp2, (height + AndroidUtilities.dp(26.0f)) / 2.0f);
+                rectF2.set(fLerp, (height - AndroidUtilities.dp(26.0f)) / 2.0f, fLerp2, (height + AndroidUtilities.dp(26.0f)) / 2.0f);
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.selectedPaint);
                 canvas.restore();
                 return;

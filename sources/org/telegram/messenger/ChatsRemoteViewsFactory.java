@@ -76,12 +76,12 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     }
 
     @Override
-    public android.widget.RemoteViews getViewAt(int r23) {
+    public android.widget.RemoteViews getViewAt(int r23) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatsRemoteViewsFactory.getViewAt(int):android.widget.RemoteViews");
     }
 
     @Override
-    public void onDataSetChanged() {
+    public void onDataSetChanged() throws InterruptedException {
         this.dids.clear();
         this.messageObjects.clear();
         AccountInstance accountInstance = this.accountInstance;

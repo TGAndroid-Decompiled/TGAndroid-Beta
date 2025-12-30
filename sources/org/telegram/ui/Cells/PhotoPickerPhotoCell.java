@@ -1,6 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -58,11 +59,11 @@ public class PhotoPickerPhotoCell extends FrameLayout {
                 fArr[2] = 0.0f;
                 fArr[1] = 0.0f;
                 fArr[0] = 0.0f;
-                float dp = AndroidUtilities.dp(4.0f);
-                fArr[7] = dp;
-                fArr[6] = dp;
-                fArr[5] = dp;
-                fArr[4] = dp;
+                float fDp = AndroidUtilities.dp(4.0f);
+                fArr[7] = fDp;
+                fArr[6] = fDp;
+                fArr[5] = fDp;
+                fArr[4] = fDp;
                 this.path.reset();
                 this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
                 this.path.close();
@@ -119,7 +120,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         this.checkBox.setNum(i);
     }
 
-    public void setImage(MediaController.PhotoEntry photoEntry) {
+    public void setImage(MediaController.PhotoEntry photoEntry) throws Resources.NotFoundException {
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {

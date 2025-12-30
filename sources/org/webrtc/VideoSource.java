@@ -57,17 +57,17 @@ public class VideoSource extends MediaSource {
 
             @Override
             public void onFrameCaptured(VideoFrame videoFrame) {
-                VideoProcessor.FrameAdaptationParameters adaptFrame = VideoSource.this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
+                VideoProcessor.FrameAdaptationParameters frameAdaptationParametersAdaptFrame = VideoSource.this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
                 synchronized (VideoSource.this.videoProcessorLock) {
                     try {
                         if (VideoSource.this.videoProcessor != null) {
-                            VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, adaptFrame);
+                            VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, frameAdaptationParametersAdaptFrame);
                             return;
                         }
-                        VideoFrame applyFrameAdaptationParameters = VideoProcessor.CC.applyFrameAdaptationParameters(videoFrame, adaptFrame);
-                        if (applyFrameAdaptationParameters != null) {
-                            VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(applyFrameAdaptationParameters);
-                            applyFrameAdaptationParameters.release();
+                        VideoFrame videoFrameApplyFrameAdaptationParameters = VideoProcessor.CC.applyFrameAdaptationParameters(videoFrame, frameAdaptationParametersAdaptFrame);
+                        if (videoFrameApplyFrameAdaptationParameters != null) {
+                            VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrameApplyFrameAdaptationParameters);
+                            videoFrameApplyFrameAdaptationParameters.release();
                         }
                     } catch (Throwable th) {
                         throw th;
@@ -79,9 +79,9 @@ public class VideoSource extends MediaSource {
     }
 
     public void adaptOutputFormat(int i, int i2, int i3) {
-        int max = Math.max(i, i2);
-        int min = Math.min(i, i2);
-        adaptOutputFormat(max, min, min, max, i3);
+        int iMax = Math.max(i, i2);
+        int iMin = Math.min(i, i2);
+        adaptOutputFormat(iMax, iMin, iMin, iMax, i3);
     }
 
     public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
@@ -111,7 +111,7 @@ public class VideoSource extends MediaSource {
                     videoProcessor.setSink(new VideoSink() {
                         @Override
                         public final void onFrame(VideoFrame videoFrame) {
-                            VideoSource.this.lambda$setVideoProcessor$1(videoFrame);
+                            this.f$0.lambda$setVideoProcessor$1(videoFrame);
                         }
 
                         @Override
@@ -137,7 +137,7 @@ public class VideoSource extends MediaSource {
         runWithReference(new Runnable() {
             @Override
             public final void run() {
-                VideoSource.this.lambda$setVideoProcessor$0(videoFrame);
+                this.f$0.lambda$setVideoProcessor$0(videoFrame);
             }
         });
     }
@@ -146,7 +146,7 @@ public class VideoSource extends MediaSource {
         return this.capturerObserver;
     }
 
-    public long getNativeVideoTrackSource() {
+    long getNativeVideoTrackSource() {
         return getNativeMediaSource();
     }
 

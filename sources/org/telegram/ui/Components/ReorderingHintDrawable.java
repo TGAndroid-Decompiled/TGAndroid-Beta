@@ -56,27 +56,27 @@ public class ReorderingHintDrawable extends Drawable {
     @Override
     public void draw(Canvas canvas) {
         if (this.startedTime > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.startedTime);
-            int i = currentTimeMillis - 300;
+            int iCurrentTimeMillis = (int) (System.currentTimeMillis() - this.startedTime);
+            int i = iCurrentTimeMillis - 300;
             if (i < 0) {
                 drawStage1(canvas, 0.0f);
             } else if (i < 150) {
                 drawStage1(canvas, i / 150.0f);
             } else {
-                int i2 = currentTimeMillis - 750;
+                int i2 = iCurrentTimeMillis - 750;
                 if (i2 < 0) {
                     drawStage1(canvas, 1.0f);
                 } else if (i2 < 200) {
                     drawStage2(canvas, i2 / 200.0f);
                 } else {
-                    int i3 = currentTimeMillis - 1250;
+                    int i3 = iCurrentTimeMillis - 1250;
                     if (i3 < 0) {
                         drawStage2(canvas, 1.0f);
                     } else if (i3 < 150) {
                         drawStage3(canvas, i3 / 150.0f);
                     } else {
                         drawStage3(canvas, 1.0f);
-                        if (currentTimeMillis - 1400 >= 100) {
+                        if (iCurrentTimeMillis - 1400 >= 100) {
                             this.startedTime = System.currentTimeMillis();
                         }
                     }
@@ -99,13 +99,13 @@ public class ReorderingHintDrawable extends Drawable {
         this.secondaryRectDrawable.setBounds(this.tempRect);
         this.secondaryRectDrawable.draw(canvas);
         android.graphics.Rect rect2 = this.tempRect;
-        int dp = AndroidUtilities.dp(12.0f);
-        rect2.right = dp;
-        rect2.left = dp;
+        int iDp = AndroidUtilities.dp(12.0f);
+        rect2.right = iDp;
+        rect2.left = iDp;
         android.graphics.Rect rect3 = this.tempRect;
-        int dp2 = AndroidUtilities.dp(8.0f);
-        rect3.bottom = dp2;
-        rect3.top = dp2;
+        int iDp2 = AndroidUtilities.dp(8.0f);
+        rect3.bottom = iDp2;
+        rect3.top = iDp2;
         this.tempRect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
         this.primaryRectDrawable.setBounds(this.tempRect);
         this.primaryRectDrawable.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
@@ -173,7 +173,7 @@ public class ReorderingHintDrawable extends Drawable {
         return this.intrinsicHeight;
     }
 
-    public static class RectDrawable extends Drawable {
+    protected static class RectDrawable extends Drawable {
         private final RectF tempRect = new RectF();
         private final Paint paint = new Paint(1);
 
@@ -188,8 +188,8 @@ public class ReorderingHintDrawable extends Drawable {
         @Override
         public void draw(Canvas canvas) {
             this.tempRect.set(getBounds());
-            float height = this.tempRect.height() * 0.2f;
-            canvas.drawRoundRect(this.tempRect, height, height, this.paint);
+            float fHeight = this.tempRect.height() * 0.2f;
+            canvas.drawRoundRect(this.tempRect, fHeight, fHeight, this.paint);
         }
 
         public void setColor(int i) {

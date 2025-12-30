@@ -31,7 +31,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.LayoutHelper;
@@ -98,7 +97,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                AppIconsSelectorCell.this.lambda$new$0(baseFragment, context, view, i2);
+                this.f$0.lambda$new$0(baseFragment, context, view, i2);
             }
         });
         updateIconsVisibility();
@@ -121,7 +120,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             }
 
             @Override
-            public float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+            protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
                 return super.calculateSpeedPerPixel(displayMetrics) * 3.0f;
             }
         };
@@ -162,24 +161,24 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
     }
 
     @Override
-    public void onSizeChanged(int i, int i2, int i3, int i4) {
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         invalidateItemDecorations();
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.premiumStatusChangedGlobal);
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.premiumStatusChangedGlobal);
     }
@@ -191,7 +190,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         }
     }
 
-    public static final class IconHolderView extends LinearLayout {
+    static final class IconHolderView extends LinearLayout {
         private Paint fillPaint;
         private AdaptiveIconImageView iconView;
         private Paint outlinePaint;
@@ -252,7 +251,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        AppIconsSelectorCell.IconHolderView.this.lambda$setSelected$0(valueAnimator);
+                        this.f$0.lambda$setSelected$0(valueAnimator);
                     }
                 });
                 duration.start();

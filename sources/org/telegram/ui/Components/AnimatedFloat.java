@@ -175,17 +175,17 @@ public class AnimatedFloat {
 
     public float getValue() {
         if (this.transition) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
-            if (elapsedRealtime - this.transitionStart >= this.transitionDelay) {
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            float fClamp = MathUtils.clamp(((jElapsedRealtime - this.transitionStart) - this.transitionDelay) / this.transitionDuration, 0.0f, 1.0f);
+            if (jElapsedRealtime - this.transitionStart >= this.transitionDelay) {
                 TimeInterpolator timeInterpolator = this.transitionInterpolator;
                 if (timeInterpolator == null) {
-                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, clamp);
+                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, fClamp);
                 } else {
-                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
+                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, timeInterpolator.getInterpolation(fClamp));
                 }
             }
-            if (clamp >= 1.0f) {
+            if (fClamp >= 1.0f) {
                 this.transition = false;
             } else {
                 View view = this.parent;
@@ -219,7 +219,7 @@ public class AnimatedFloat {
 
     public float getTransitionProgress() {
         if (this.transition) {
-            return MathUtils.clamp(((float) ((SystemClock.elapsedRealtime() - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
+            return MathUtils.clamp(((SystemClock.elapsedRealtime() - this.transitionStart) - this.transitionDelay) / this.transitionDuration, 0.0f, 1.0f);
         }
         return 0.0f;
     }

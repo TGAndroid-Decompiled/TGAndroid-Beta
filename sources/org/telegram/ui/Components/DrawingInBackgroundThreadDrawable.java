@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
@@ -37,47 +36,7 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
     private final Runnable bitmapCreateTask = new Runnable() {
         @Override
         public void run() {
-            int i;
-            Bitmap bitmap;
-            try {
-                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
-                i = drawingInBackgroundThreadDrawable.height + drawingInBackgroundThreadDrawable.padding;
-                bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
-            } catch (Exception e) {
-                FileLog.e(e);
-                DrawingInBackgroundThreadDrawable.this.error = true;
-            }
-            if (bitmap != null) {
-                int width = bitmap.getWidth();
-                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = DrawingInBackgroundThreadDrawable.this;
-                if (width == drawingInBackgroundThreadDrawable2.width) {
-                    if (drawingInBackgroundThreadDrawable2.backgroundBitmap.getHeight() != i) {
-                    }
-                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
-                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
-                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
-                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable3 = DrawingInBackgroundThreadDrawable.this;
-                    drawingInBackgroundThreadDrawable3.drawInBackground(drawingInBackgroundThreadDrawable3.backgroundCanvas);
-                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
-                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
-                    AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
-                }
-            }
-            Bitmap bitmap2 = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable4 = DrawingInBackgroundThreadDrawable.this;
-            drawingInBackgroundThreadDrawable4.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable4.width, i, Bitmap.Config.ARGB_8888);
-            DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
-            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
-            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
-            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
-            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable32 = DrawingInBackgroundThreadDrawable.this;
-            drawingInBackgroundThreadDrawable32.drawInBackground(drawingInBackgroundThreadDrawable32.backgroundCanvas);
-            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
-            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
-            AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DrawingInBackgroundThreadDrawable.AnonymousClass1.run():void");
         }
     };
     Runnable uiFrameRunnable = new Runnable() {
@@ -232,9 +191,9 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
             Integer num = (Integer) objArr[0];
             if (this.currentLayerNum < num.intValue()) {
                 if (num.intValue() != 512 || SharedConfig.getDevicePerformanceClass() < 2) {
-                    int intValue = num.intValue() | this.currentOpenedLayerFlags;
-                    this.currentOpenedLayerFlags = intValue;
-                    if (intValue == 0 || this.paused) {
+                    int iIntValue = num.intValue() | this.currentOpenedLayerFlags;
+                    this.currentOpenedLayerFlags = iIntValue;
+                    if (iIntValue == 0 || this.paused) {
                         return;
                     }
                     this.paused = true;

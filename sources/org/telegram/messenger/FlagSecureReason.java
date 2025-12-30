@@ -48,11 +48,11 @@ public class FlagSecureReason {
             currentSecureReasons = new HashMap<>();
         }
         Integer num = currentSecureReasons.get(this.window);
-        int max = Math.max(0, (num == null ? 0 : num.intValue()) + i);
-        if (max <= 0) {
+        int iMax = Math.max(0, (num == null ? 0 : num.intValue()) + i);
+        if (iMax <= 0) {
             currentSecureReasons.remove(this.window);
         } else {
-            currentSecureReasons.put(this.window, Integer.valueOf(max));
+            currentSecureReasons.put(this.window, Integer.valueOf(iMax));
         }
         updateWindowSecure(this.window);
     }
@@ -71,7 +71,7 @@ public class FlagSecureReason {
     }
 
     public static boolean isSecuredNow(Window window) {
-        HashMap<Window, Integer> hashMap = currentSecureReasons;
-        return (hashMap == null || hashMap.get(window) == null) ? false : true;
+        HashMap<Window, Integer> map = currentSecureReasons;
+        return (map == null || map.get(window) == null) ? false : true;
     }
 }

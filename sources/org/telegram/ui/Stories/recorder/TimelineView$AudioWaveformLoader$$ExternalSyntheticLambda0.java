@@ -1,5 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.media.MediaCodec;
+import java.io.IOException;
 import org.telegram.ui.Stories.recorder.TimelineView;
 
 public final class TimelineView$AudioWaveformLoader$$ExternalSyntheticLambda0 implements Runnable {
@@ -10,7 +12,7 @@ public final class TimelineView$AudioWaveformLoader$$ExternalSyntheticLambda0 im
     }
 
     @Override
-    public final void run() {
-        TimelineView.AudioWaveformLoader.$r8$lambda$euafz_GZqdf0mOeuLVK7symE8Ls(this.f$0);
+    public final void run() throws MediaCodec.CryptoException, IOException {
+        this.f$0.run();
     }
 }

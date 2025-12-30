@@ -36,23 +36,23 @@ public class PieChartView extends StackLinearChartView {
     float[] values;
 
     @Override
-    public void drawBottomLine(Canvas canvas) {
+    protected void drawBottomLine(Canvas canvas) {
     }
 
     @Override
-    public void drawBottomSignature(Canvas canvas) {
+    void drawBottomSignature(Canvas canvas) {
     }
 
     @Override
-    public void drawHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
+    protected void drawHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
     }
 
     @Override
-    public void drawSelection(Canvas canvas) {
+    protected void drawSelection(Canvas canvas) {
     }
 
     @Override
-    public void drawSignaturesToHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
+    protected void drawSignaturesToHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
     }
 
     public PieChartView(Context context) {
@@ -78,342 +78,13 @@ public class PieChartView extends StackLinearChartView {
     }
 
     @Override
-    protected void drawChart(Canvas canvas) {
-        int i;
-        float f;
-        float f2;
-        float f3;
-        Canvas canvas2;
-        int i2;
-        int i3;
-        float f4;
-        int i4;
-        Canvas canvas3 = canvas;
-        if (this.chartData == null) {
-            return;
-        }
-        if (canvas3 != null) {
-            canvas.save();
-        }
-        if (this.transitionMode == 1) {
-            float f5 = this.transitionParams.progress;
-            i = (int) (f5 * f5 * 255.0f);
-        } else {
-            i = 255;
-        }
-        float f6 = 1.0f;
-        float f7 = 0.0f;
-        if (this.isEmpty) {
-            float f8 = this.emptyDataAlpha;
-            if (f8 != 0.0f) {
-                float f9 = f8 - 0.12f;
-                this.emptyDataAlpha = f9;
-                if (f9 < 0.0f) {
-                    this.emptyDataAlpha = 0.0f;
-                }
-                invalidate();
-            }
-        } else {
-            float f10 = this.emptyDataAlpha;
-            if (f10 != 1.0f) {
-                float f11 = f10 + 0.12f;
-                this.emptyDataAlpha = f11;
-                if (f11 > 1.0f) {
-                    this.emptyDataAlpha = 1.0f;
-                }
-                invalidate();
-            }
-        }
-        float f12 = this.emptyDataAlpha;
-        int i5 = (int) (i * f12);
-        float f13 = (f12 * 0.6f) + 0.4f;
-        if (canvas3 != null) {
-            canvas3.scale(f13, f13, this.chartArea.centerX(), this.chartArea.centerY());
-        }
-        float height = (int) ((this.chartArea.width() > this.chartArea.height() ? this.chartArea.height() : this.chartArea.width()) * 0.45f);
-        this.rectF.set(this.chartArea.centerX() - height, (this.chartArea.centerY() + AndroidUtilities.dp(16.0f)) - height, this.chartArea.centerX() + height, this.chartArea.centerY() + AndroidUtilities.dp(16.0f) + height);
-        int size = this.lines.size();
-        float f14 = 0.0f;
-        for (int i6 = 0; i6 < size; i6++) {
-            f14 += ((PieChartViewData) this.lines.get(i6)).drawingPart * ((PieChartViewData) this.lines.get(i6)).alpha;
-        }
-        if (f14 == 0.0f) {
-            if (canvas3 != null) {
-                canvas.restore();
-                return;
-            }
-            return;
-        }
-        float f15 = -90.0f;
-        int i7 = 0;
-        float f16 = -90.0f;
-        while (true) {
-            f = 2.0f;
-            f2 = 8.0f;
-            if (i7 >= size) {
-                break;
-            }
-            if (((PieChartViewData) this.lines.get(i7)).alpha > f7 || ((PieChartViewData) this.lines.get(i7)).enabled) {
-                ((PieChartViewData) this.lines.get(i7)).paint.setAlpha(i5);
-                float f17 = (((PieChartViewData) this.lines.get(i7)).drawingPart / f14) * ((PieChartViewData) this.lines.get(i7)).alpha;
-                this.darawingValuesPercentage[i7] = f17;
-                if (f17 != f7) {
-                    if (canvas3 != null) {
-                        canvas.save();
-                    }
-                    double d = f16 + ((f17 / 2.0f) * 360.0f);
-                    if (((PieChartViewData) this.lines.get(i7)).selectionA > f7) {
-                        float interpolation = BaseChartView.INTERPOLATOR.getInterpolation(((PieChartViewData) this.lines.get(i7)).selectionA);
-                        if (canvas3 != null) {
-                            f4 = f14;
-                            double d2 = interpolation;
-                            i3 = i5;
-                            canvas3.translate((float) (Math.cos(Math.toRadians(d)) * AndroidUtilities.dp(8.0f) * d2), (float) (Math.sin(Math.toRadians(d)) * AndroidUtilities.dp(8.0f) * d2));
-                            ((PieChartViewData) this.lines.get(i7)).paint.setStyle(Paint.Style.FILL_AND_STROKE);
-                            ((PieChartViewData) this.lines.get(i7)).paint.setStrokeWidth(1.0f);
-                            ((PieChartViewData) this.lines.get(i7)).paint.setAntiAlias(!BaseChartView.USE_LINES);
-                            if (canvas3 != null || this.transitionMode == 1) {
-                                i4 = i7;
-                            } else {
-                                i4 = i7;
-                                canvas.drawArc(this.rectF, f16, f17 * 360.0f, true, ((PieChartViewData) this.lines.get(i7)).paint);
-                                ((PieChartViewData) this.lines.get(i4)).paint.setStyle(Paint.Style.STROKE);
-                                canvas.restore();
-                            }
-                            ((PieChartViewData) this.lines.get(i4)).paint.setAlpha(255);
-                            f16 += f17 * 360.0f;
-                            i7 = i4 + 1;
-                            f14 = f4;
-                            i5 = i3;
-                            f7 = 0.0f;
-                        }
-                    }
-                    i3 = i5;
-                    f4 = f14;
-                    ((PieChartViewData) this.lines.get(i7)).paint.setStyle(Paint.Style.FILL_AND_STROKE);
-                    ((PieChartViewData) this.lines.get(i7)).paint.setStrokeWidth(1.0f);
-                    ((PieChartViewData) this.lines.get(i7)).paint.setAntiAlias(!BaseChartView.USE_LINES);
-                    if (canvas3 != null) {
-                    }
-                    i4 = i7;
-                    ((PieChartViewData) this.lines.get(i4)).paint.setAlpha(255);
-                    f16 += f17 * 360.0f;
-                    i7 = i4 + 1;
-                    f14 = f4;
-                    i5 = i3;
-                    f7 = 0.0f;
-                }
-            }
-            i4 = i7;
-            i3 = i5;
-            f4 = f14;
-            i7 = i4 + 1;
-            f14 = f4;
-            i5 = i3;
-            f7 = 0.0f;
-        }
-        int i8 = i5;
-        float f18 = f14;
-        if (canvas3 != null) {
-            int i9 = 0;
-            while (i9 < size) {
-                if (((PieChartViewData) this.lines.get(i9)).alpha > 0.0f || ((PieChartViewData) this.lines.get(i9)).enabled) {
-                    float f19 = (((PieChartViewData) this.lines.get(i9)).drawingPart * ((PieChartViewData) this.lines.get(i9)).alpha) / f18;
-                    canvas.save();
-                    double d3 = f15 + ((f19 / f) * 360.0f);
-                    if (((PieChartViewData) this.lines.get(i9)).selectionA > 0.0f) {
-                        double interpolation2 = BaseChartView.INTERPOLATOR.getInterpolation(((PieChartViewData) this.lines.get(i9)).selectionA);
-                        canvas3.translate((float) (Math.cos(Math.toRadians(d3)) * AndroidUtilities.dp(f2) * interpolation2), (float) (Math.sin(Math.toRadians(d3)) * AndroidUtilities.dp(f2) * interpolation2));
-                    }
-                    int i10 = (int) (100.0f * f19);
-                    if (f19 < 0.02f || i10 <= 0 || i10 > 100) {
-                        f3 = f19;
-                        canvas2 = canvas3;
-                        i2 = i8;
-                    } else {
-                        float width = (float) (this.rectF.width() * 0.42f * Math.sqrt(f6 - f19));
-                        this.textPaint.setTextSize(this.MIN_TEXT_SIZE + (this.MAX_TEXT_SIZE * f19));
-                        i2 = i8;
-                        this.textPaint.setAlpha((int) (i2 * ((PieChartViewData) this.lines.get(i9)).alpha));
-                        double d4 = width;
-                        f3 = f19;
-                        canvas2 = canvas;
-                        canvas2.drawText(this.lookupTable[i10], (float) (this.rectF.centerX() + (Math.cos(Math.toRadians(d3)) * d4)), ((float) (this.rectF.centerY() + (d4 * Math.sin(Math.toRadians(d3))))) - ((this.textPaint.descent() + this.textPaint.ascent()) / 2.0f), this.textPaint);
-                    }
-                    canvas.restore();
-                    ((PieChartViewData) this.lines.get(i9)).paint.setAlpha(255);
-                    f15 += f3 * 360.0f;
-                } else {
-                    canvas2 = canvas3;
-                    i2 = i8;
-                }
-                i9++;
-                canvas3 = canvas2;
-                i8 = i2;
-                f = 2.0f;
-                f2 = 8.0f;
-                f6 = 1.0f;
-            }
-            canvas.restore();
-        }
+    protected void drawChart(android.graphics.Canvas r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.PieChartView.drawChart(android.graphics.Canvas):void");
     }
 
     @Override
-    protected void drawPickerChart(Canvas canvas) {
-        int i;
-        float f;
-        float f2;
-        float f3;
-        int i2;
-        int i3;
-        ChartData chartData = this.chartData;
-        if (chartData != null) {
-            int length = ((StackLinearChartData) chartData).xPercentage.length;
-            int size = this.lines.size();
-            for (int i4 = 0; i4 < this.lines.size(); i4++) {
-                ((LineViewData) this.lines.get(i4)).linesPathBottomSize = 0;
-            }
-            float length2 = (1.0f / ((StackLinearChartData) this.chartData).xPercentage.length) * this.pickerWidth;
-            for (int i5 = 0; i5 < length; i5++) {
-                float f4 = (length2 / 2.0f) + (((StackLinearChartData) this.chartData).xPercentage[i5] * (this.pickerWidth - length2));
-                float f5 = 0.0f;
-                int i6 = 0;
-                float f6 = 0.0f;
-                int i7 = 0;
-                boolean z = true;
-                while (i6 < size) {
-                    LineViewData lineViewData = (LineViewData) this.lines.get(i6);
-                    boolean z2 = lineViewData.enabled;
-                    if (z2 || lineViewData.alpha != 0.0f) {
-                        i3 = i6;
-                        float f7 = ((float) lineViewData.line.y[i5]) * lineViewData.alpha;
-                        f6 += f7;
-                        if (f7 > 0.0f) {
-                            i7++;
-                            if (z2) {
-                                z = false;
-                            }
-                        }
-                    } else {
-                        i3 = i6;
-                    }
-                    i6 = i3 + 1;
-                }
-                int i8 = 0;
-                float f8 = 0.0f;
-                while (i8 < size) {
-                    LineViewData lineViewData2 = (LineViewData) this.lines.get(i8);
-                    if (lineViewData2.enabled || lineViewData2.alpha != f5) {
-                        long[] jArr = lineViewData2.line.y;
-                        if (i7 == 1) {
-                            if (jArr[i5] != 0) {
-                                f3 = lineViewData2.alpha;
-                                i = i8;
-                                float f9 = this.pikerHeight;
-                                float f10 = f3 * f9;
-                                float[] fArr = lineViewData2.linesPath;
-                                int i9 = lineViewData2.linesPathBottomSize;
-                                int i10 = i9 + 1;
-                                lineViewData2.linesPathBottomSize = i10;
-                                fArr[i9] = f4;
-                                i2 = length;
-                                int i11 = i9 + 2;
-                                lineViewData2.linesPathBottomSize = i11;
-                                fArr[i10] = (f9 - f10) - f8;
-                                int i12 = i9 + 3;
-                                lineViewData2.linesPathBottomSize = i12;
-                                fArr[i11] = f4;
-                                lineViewData2.linesPathBottomSize = i9 + 4;
-                                fArr[i12] = f9 - f8;
-                                f8 += f10;
-                            }
-                            i = i8;
-                            f3 = 0.0f;
-                            float f92 = this.pikerHeight;
-                            float f102 = f3 * f92;
-                            float[] fArr2 = lineViewData2.linesPath;
-                            int i92 = lineViewData2.linesPathBottomSize;
-                            int i102 = i92 + 1;
-                            lineViewData2.linesPathBottomSize = i102;
-                            fArr2[i92] = f4;
-                            i2 = length;
-                            int i112 = i92 + 2;
-                            lineViewData2.linesPathBottomSize = i112;
-                            fArr2[i102] = (f92 - f102) - f8;
-                            int i122 = i92 + 3;
-                            lineViewData2.linesPathBottomSize = i122;
-                            fArr2[i112] = f4;
-                            lineViewData2.linesPathBottomSize = i92 + 4;
-                            fArr2[i122] = f92 - f8;
-                            f8 += f102;
-                        } else {
-                            if (f6 != f5) {
-                                if (z) {
-                                    i = i8;
-                                    float f11 = ((float) jArr[i5]) / f6;
-                                    f2 = lineViewData2.alpha;
-                                    f = f11 * f2;
-                                } else {
-                                    i = i8;
-                                    f = ((float) jArr[i5]) / f6;
-                                    f2 = lineViewData2.alpha;
-                                }
-                                f3 = f * f2;
-                                float f922 = this.pikerHeight;
-                                float f1022 = f3 * f922;
-                                float[] fArr22 = lineViewData2.linesPath;
-                                int i922 = lineViewData2.linesPathBottomSize;
-                                int i1022 = i922 + 1;
-                                lineViewData2.linesPathBottomSize = i1022;
-                                fArr22[i922] = f4;
-                                i2 = length;
-                                int i1122 = i922 + 2;
-                                lineViewData2.linesPathBottomSize = i1122;
-                                fArr22[i1022] = (f922 - f1022) - f8;
-                                int i1222 = i922 + 3;
-                                lineViewData2.linesPathBottomSize = i1222;
-                                fArr22[i1122] = f4;
-                                lineViewData2.linesPathBottomSize = i922 + 4;
-                                fArr22[i1222] = f922 - f8;
-                                f8 += f1022;
-                            }
-                            i = i8;
-                            f3 = 0.0f;
-                            float f9222 = this.pikerHeight;
-                            float f10222 = f3 * f9222;
-                            float[] fArr222 = lineViewData2.linesPath;
-                            int i9222 = lineViewData2.linesPathBottomSize;
-                            int i10222 = i9222 + 1;
-                            lineViewData2.linesPathBottomSize = i10222;
-                            fArr222[i9222] = f4;
-                            i2 = length;
-                            int i11222 = i9222 + 2;
-                            lineViewData2.linesPathBottomSize = i11222;
-                            fArr222[i10222] = (f9222 - f10222) - f8;
-                            int i12222 = i9222 + 3;
-                            lineViewData2.linesPathBottomSize = i12222;
-                            fArr222[i11222] = f4;
-                            lineViewData2.linesPathBottomSize = i9222 + 4;
-                            fArr222[i12222] = f9222 - f8;
-                            f8 += f10222;
-                        }
-                    } else {
-                        i2 = length;
-                        i = i8;
-                    }
-                    i8 = i + 1;
-                    length = i2;
-                    f5 = 0.0f;
-                }
-            }
-            for (int i13 = 0; i13 < size; i13++) {
-                LineViewData lineViewData3 = (LineViewData) this.lines.get(i13);
-                lineViewData3.paint.setStrokeWidth(length2);
-                lineViewData3.paint.setAlpha(255);
-                lineViewData3.paint.setAntiAlias(false);
-                canvas.drawLines(lineViewData3.linesPath, 0, lineViewData3.linesPathBottomSize, lineViewData3.paint);
-            }
-        }
+    protected void drawPickerChart(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.PieChartView.drawPickerChart(android.graphics.Canvas):void");
     }
 
     @Override
@@ -470,22 +141,22 @@ public class PieChartView extends StackLinearChartView {
             LineViewData lineViewData = (LineViewData) this.lines.get(i3);
             this.pieLegendView.setData(lineViewData.line.name, (int) this.values[this.currentSelection], lineViewData.lineColor);
             this.pieLegendView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
-            double width = this.rectF.width() / 2.0f;
-            int min = (int) Math.min(this.rectF.centerX() + (Math.cos(Math.toRadians((f * 360.0f) - 90.0f)) * width), this.rectF.centerX() + (Math.cos(Math.toRadians((f3 * 360.0f) - 90.0f)) * width));
-            int i4 = min >= 0 ? min : 0;
-            if (this.pieLegendView.getMeasuredWidth() + i4 > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
-                i4 -= (this.pieLegendView.getMeasuredWidth() + i4) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
+            double dWidth = this.rectF.width() / 2.0f;
+            int iMin = (int) Math.min(this.rectF.centerX() + (Math.cos(Math.toRadians((f * 360.0f) - 90.0f)) * dWidth), this.rectF.centerX() + (Math.cos(Math.toRadians((f3 * 360.0f) - 90.0f)) * dWidth));
+            int measuredWidth = iMin >= 0 ? iMin : 0;
+            if (this.pieLegendView.getMeasuredWidth() + measuredWidth > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
+                measuredWidth -= (this.pieLegendView.getMeasuredWidth() + measuredWidth) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
             }
-            int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(this.rectF.centerY() + (Math.sin(Math.toRadians(r14)) * width), this.rectF.centerY() + (width * Math.sin(Math.toRadians(r9)))))) - AndroidUtilities.dp(50.0f);
-            this.pieLegendView.setTranslationX(i4);
-            this.pieLegendView.setTranslationY(min2);
+            int iMin2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(this.rectF.centerY() + (Math.sin(Math.toRadians(r14)) * dWidth), this.rectF.centerY() + (dWidth * Math.sin(Math.toRadians(r9)))))) - AndroidUtilities.dp(50.0f);
+            this.pieLegendView.setTranslationX(measuredWidth);
+            this.pieLegendView.setTranslationY(iMin2);
             AndroidUtilities.vibrateCursor(this);
         }
         moveLegend();
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (this.chartData != null) {
             for (int i = 0; i < this.lines.size(); i++) {
                 if (i == this.currentSelection) {
@@ -516,13 +187,13 @@ public class PieChartView extends StackLinearChartView {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (getMeasuredWidth() != this.oldW) {
             this.oldW = getMeasuredWidth();
-            int height = (int) ((this.chartArea.width() > this.chartArea.height() ? this.chartArea.height() : this.chartArea.width()) * 0.45f);
-            this.MIN_TEXT_SIZE = height / 13;
-            this.MAX_TEXT_SIZE = height / 7;
+            int iHeight = (int) ((this.chartArea.width() > this.chartArea.height() ? this.chartArea.height() : this.chartArea.width()) * 0.45f);
+            this.MIN_TEXT_SIZE = iHeight / 13;
+            this.MAX_TEXT_SIZE = iHeight / 7;
         }
     }
 
@@ -612,8 +283,8 @@ public class PieChartView extends StackLinearChartView {
         while (i3 <= i2) {
             for (int i6 = 0; i6 < size; i6++) {
                 float[] fArr = this.values;
-                fArr[i6] = fArr[i6] + ((float) ((ChartData.Line) ((StackLinearChartData) this.chartData).lines.get(i6)).y[i3]);
-                this.sum += (float) ((ChartData.Line) ((StackLinearChartData) this.chartData).lines.get(i6)).y[i3];
+                fArr[i6] = fArr[i6] + ((ChartData.Line) ((StackLinearChartData) this.chartData).lines.get(i6)).y[i3];
+                this.sum += ((ChartData.Line) ((StackLinearChartData) this.chartData).lines.get(i6)).y[i3];
                 if (this.isEmpty && ((PieChartViewData) this.lines.get(i6)).enabled && ((ChartData.Line) ((StackLinearChartData) this.chartData).lines.get(i6)).y[i3] > 0) {
                     this.isEmpty = false;
                 }
@@ -638,14 +309,14 @@ public class PieChartView extends StackLinearChartView {
                 animator.cancel();
             }
             float f4 = this.sum;
-            ValueAnimator createAnimator = createAnimator(pieChartViewData.drawingPart, f4 == 0.0f ? 0.0f : this.values[i] / f4, new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorCreateAnimator = createAnimator(pieChartViewData.drawingPart, f4 == 0.0f ? 0.0f : this.values[i] / f4, new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PieChartView.this.lambda$updateCharValues$0(pieChartViewData, valueAnimator);
+                    this.f$0.lambda$updateCharValues$0(pieChartViewData, valueAnimator);
                 }
             });
-            pieChartViewData.animator = createAnimator;
-            createAnimator.start();
+            pieChartViewData.animator = valueAnimatorCreateAnimator;
+            valueAnimatorCreateAnimator.start();
             i++;
         }
     }

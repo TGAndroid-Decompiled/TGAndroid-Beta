@@ -120,19 +120,19 @@ public class StoryContainsEmojiButton extends View {
     protected void onMeasure(int i, int i2) {
         boolean z = View.MeasureSpec.getMode(i) == 1073741824;
         int paddingTop = getPaddingTop();
-        int dp = AndroidUtilities.dp(29.0f);
+        int iDp = AndroidUtilities.dp(29.0f);
         StaticLayout staticLayout = this.layout;
-        setMeasuredDimension(z ? View.MeasureSpec.getSize(i) : getMinimumWidth(), paddingTop + AndroidUtilities.lerp(dp, staticLayout == null ? AndroidUtilities.dp(29.0f) : staticLayout.getHeight(), this.loadT) + getPaddingBottom());
+        setMeasuredDimension(z ? View.MeasureSpec.getSize(i) : getMinimumWidth(), paddingTop + AndroidUtilities.lerp(iDp, staticLayout == null ? AndroidUtilities.dp(29.0f) : staticLayout.getHeight(), this.loadT) + getPaddingBottom());
         int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
         if (z) {
-            CharSequence charSequence = this.toSetText;
-            if (charSequence == null && (this.layout == null || this.lastContentWidth == size)) {
+            CharSequence text = this.toSetText;
+            if (text == null && (this.layout == null || this.lastContentWidth == size)) {
                 return;
             }
-            if (charSequence == null) {
-                charSequence = this.layout.getText();
+            if (text == null) {
+                text = this.layout.getText();
             }
-            setText(charSequence);
+            setText(text);
             this.toSetText = null;
             this.lastContentWidth = size;
         }
@@ -208,7 +208,7 @@ public class StoryContainsEmojiButton extends View {
             final RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    StoryContainsEmojiButton.this.lambda$load$2(obj, arrayList, zArr, i, tLObject2, tL_error);
+                    this.f$0.lambda$load$2(obj, arrayList, zArr, i, tLObject2, tL_error);
                 }
             };
             if (lastRequestParentObject == obj && (vector = lastResponse) != null) {
@@ -234,7 +234,7 @@ public class StoryContainsEmojiButton extends View {
             MediaDataController.getInstance(i).getStickerSet((TLRPC.InputStickerSet) this.inputSets.get(0), 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
-                    StoryContainsEmojiButton.this.lambda$load$4((TLRPC.TL_messages_stickerSet) obj2);
+                    this.f$0.lambda$load$4((TLRPC.TL_messages_stickerSet) obj2);
                 }
             });
         } else {
@@ -247,7 +247,7 @@ public class StoryContainsEmojiButton extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryContainsEmojiButton.this.lambda$load$1(tLObject, obj, arrayList, zArr, i);
+                this.f$0.lambda$load$1(tLObject, obj, arrayList, zArr, i);
             }
         });
     }
@@ -303,7 +303,7 @@ public class StoryContainsEmojiButton extends View {
                         MediaDataController.getInstance(i).getStickerSet((TLRPC.InputStickerSet) arrayList.get(0), 0, false, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj2) {
-                                StoryContainsEmojiButton.this.lambda$load$0((TLRPC.TL_messages_stickerSet) obj2);
+                                this.f$0.lambda$load$0((TLRPC.TL_messages_stickerSet) obj2);
                             }
                         });
                         return;
@@ -337,7 +337,7 @@ public class StoryContainsEmojiButton extends View {
 
     private void set(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         TLRPC.Document document;
-        CharSequence charSequence;
+        CharSequence charSequenceSubSequence;
         String string;
         if (tL_messages_stickerSet == null) {
             return;
@@ -364,9 +364,9 @@ public class StoryContainsEmojiButton extends View {
         }
         if (document != null) {
             spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequence = spannableString;
+            charSequenceSubSequence = spannableString;
         } else {
-            charSequence = spannableString.subSequence(2, spannableString.length());
+            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -376,11 +376,11 @@ public class StoryContainsEmojiButton extends View {
         } else {
             string = LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
     }
 
     private void set(TLRPC.StickerSetCovered stickerSetCovered) {
-        CharSequence charSequence;
+        CharSequence charSequenceSubSequence;
         String string;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
         spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
@@ -399,9 +399,9 @@ public class StoryContainsEmojiButton extends View {
         }
         if (document != null) {
             spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequence = spannableString;
+            charSequenceSubSequence = spannableString;
         } else {
-            charSequence = spannableString.subSequence(2, spannableString.length());
+            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -411,7 +411,7 @@ public class StoryContainsEmojiButton extends View {
         } else {
             string = LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
     }
 
     private void set(int i) {
@@ -439,7 +439,7 @@ public class StoryContainsEmojiButton extends View {
             this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StoryContainsEmojiButton.this.lambda$animateLoad$5(z2, valueAnimator2);
+                    this.f$0.lambda$animateLoad$5(z2, valueAnimator2);
                 }
             });
             this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -453,7 +453,7 @@ public class StoryContainsEmojiButton extends View {
         post(new Runnable() {
             @Override
             public final void run() {
-                StoryContainsEmojiButton.this.requestLayout();
+                this.f$0.requestLayout();
             }
         });
     }

@@ -97,17 +97,17 @@ public class GradientTools {
         updateBounds();
     }
 
-    public void updateBounds() {
+    protected void updateBounds() {
         if (this.shader == null) {
             return;
         }
-        float width = this.bounds.width() / 60.0f;
-        float height = this.bounds.height() / 80.0f;
+        float fWidth = this.bounds.width() / 60.0f;
+        float fHeight = this.bounds.height() / 80.0f;
         this.matrix.reset();
         Matrix matrix = this.matrix;
         RectF rectF = this.bounds;
         matrix.postTranslate(rectF.left, rectF.top);
-        this.matrix.preScale(width, height);
+        this.matrix.preScale(fWidth, fHeight);
         this.shader.setLocalMatrix(this.matrix);
     }
 
@@ -118,16 +118,16 @@ public class GradientTools {
     }
 
     public int getAverageColor() {
-        int i = this.color1;
-        int i2 = this.color2;
+        int iBlendARGB = this.color1;
+        int i = this.color2;
+        if (i != 0) {
+            iBlendARGB = ColorUtils.blendARGB(iBlendARGB, i, 0.5f);
+        }
+        int i2 = this.color3;
         if (i2 != 0) {
-            i = ColorUtils.blendARGB(i, i2, 0.5f);
+            iBlendARGB = ColorUtils.blendARGB(iBlendARGB, i2, 0.5f);
         }
-        int i3 = this.color3;
-        if (i3 != 0) {
-            i = ColorUtils.blendARGB(i, i3, 0.5f);
-        }
-        int i4 = this.color4;
-        return i4 != 0 ? ColorUtils.blendARGB(i, i4, 0.5f) : i;
+        int i3 = this.color4;
+        return i3 != 0 ? ColorUtils.blendARGB(iBlendARGB, i3, 0.5f) : iBlendARGB;
     }
 }

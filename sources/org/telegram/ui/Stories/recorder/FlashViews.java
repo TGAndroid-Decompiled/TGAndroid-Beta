@@ -99,7 +99,7 @@ public class FlashViews {
         flashTo(1.0f, 320L, new Runnable() {
             @Override
             public final void run() {
-                FlashViews.this.lambda$flash$3(callback);
+                this.f$0.lambda$flash$3(callback);
             }
         });
     }
@@ -108,7 +108,7 @@ public class FlashViews {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FlashViews.this.lambda$flash$2(callback);
+                this.f$0.lambda$flash$2(callback);
             }
         }, 320L);
     }
@@ -117,7 +117,7 @@ public class FlashViews {
         callback.run(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                FlashViews.this.lambda$flash$1((Runnable) obj);
+                this.f$0.lambda$flash$1((Runnable) obj);
             }
         });
     }
@@ -127,7 +127,7 @@ public class FlashViews {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FlashViews.this.lambda$flash$0(runnable);
+                this.f$0.lambda$flash$0(runnable);
             }
         }, 80L);
     }
@@ -149,11 +149,11 @@ public class FlashViews {
             }
             return;
         }
-        Activity findActivity = AndroidUtilities.findActivity(this.context);
-        if (findActivity == null) {
-            findActivity = LaunchActivity.instance;
+        Activity activityFindActivity = AndroidUtilities.findActivity(this.context);
+        if (activityFindActivity == null) {
+            activityFindActivity = LaunchActivity.instance;
         }
-        if (findActivity == null || findActivity.isFinishing() || (window = findActivity.getWindow()) == null) {
+        if (activityFindActivity == null || activityFindActivity.isFinishing() || (window = activityFindActivity.getWindow()) == null) {
             return;
         }
         WindowManager.LayoutParams attributes = window.getAttributes();
@@ -194,12 +194,12 @@ public class FlashViews {
             }
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.invert, f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.invert, f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                FlashViews.this.lambda$flashTo$4(valueAnimator2);
+                this.f$0.lambda$flashTo$4(valueAnimator2);
             }
         });
         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -258,13 +258,6 @@ public class FlashViews {
     }
 
     public void invalidateGradient() {
-        ColorSpace.Named named;
-        ColorSpace colorSpace;
-        Color valueOf;
-        long pack;
-        ColorSpace colorSpace2;
-        Color valueOf2;
-        long pack2;
         if (this.lastColor == this.color && this.lastWidth == this.backgroundView.getMeasuredWidth() && this.lastHeight == this.backgroundView.getMeasuredHeight() && Math.abs(this.lastInvert - this.invert) <= 0.005f) {
             return;
         }
@@ -278,17 +271,10 @@ public class FlashViews {
         }
         if (Build.VERSION.SDK_INT >= 29) {
             FlashViews$$ExternalSyntheticApiModelOutline1.m();
-            float f = this.lastWidth * 0.5f;
-            float f2 = this.lastHeight * 0.4f;
-            float min = (Math.min(r4, r5) / 2.0f) * 1.35f * (2.0f - this.invert);
-            named = ColorSpace.Named.EXTENDED_SRGB;
-            colorSpace = ColorSpace.get(named);
-            valueOf = Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, colorSpace);
-            pack = valueOf.pack();
-            colorSpace2 = ColorSpace.get(named);
-            valueOf2 = Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, colorSpace2);
-            pack2 = valueOf2.pack();
-            this.gradient = FlashViews$$ExternalSyntheticApiModelOutline0.m(f, f2, min, new long[]{pack, pack2}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            int i = this.lastWidth;
+            int i2 = this.lastHeight;
+            ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
+            this.gradient = FlashViews$$ExternalSyntheticApiModelOutline0.m(i * 0.5f, i2 * 0.4f, (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         } else {
             this.gradient = new RadialGradient(this.lastWidth * 0.5f, 0.4f * this.lastHeight, (Math.min(r4, r6) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }

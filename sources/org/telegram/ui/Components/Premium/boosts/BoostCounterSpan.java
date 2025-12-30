@@ -44,12 +44,12 @@ public class BoostCounterSpan extends ReplacementSpan {
         animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setText("");
         animatedTextDrawable.setGravity(17);
-        Drawable mutate = ContextCompat.getDrawable(view.getContext(), R.drawable.mini_boost_profile_badge).mutate();
-        this.boostProfileBadge = mutate;
-        Drawable mutate2 = ContextCompat.getDrawable(view.getContext(), R.drawable.mini_boost_profile_badge2).mutate();
-        this.boostProfileBadge2 = mutate2;
-        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        Drawable drawableMutate = ContextCompat.getDrawable(view.getContext(), R.drawable.mini_boost_profile_badge).mutate();
+        this.boostProfileBadge = drawableMutate;
+        Drawable drawableMutate2 = ContextCompat.getDrawable(view.getContext(), R.drawable.mini_boost_profile_badge2).mutate();
+        this.boostProfileBadge2 = drawableMutate2;
+        drawableMutate.setBounds(0, 0, drawableMutate.getIntrinsicWidth(), drawableMutate.getIntrinsicHeight());
+        drawableMutate2.setBounds(0, 0, drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         setCount(i, false);
     }
 

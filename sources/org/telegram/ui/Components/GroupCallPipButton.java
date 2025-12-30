@@ -183,7 +183,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color5, color6, color7}, (float[]) null, Shader.TileMode.CLAMP);
                 }
             }
-            int dp = AndroidUtilities.dp(130.0f);
+            int iDp = AndroidUtilities.dp(130.0f);
             float f2 = this.duration;
             if (f2 == 0.0f || this.time >= f2) {
                 this.duration = Utilities.random.nextInt(700) + 500;
@@ -195,7 +195,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 this.startY = this.targetY;
                 updateTargets();
             }
-            float f3 = (float) j;
+            float f3 = j;
             float f4 = this.time + ((BlobDrawable.GRADIENT_SPEED_MIN + 0.5f) * f3) + (f3 * BlobDrawable.GRADIENT_SPEED_MAX * 2.0f * f);
             this.time = f4;
             float f5 = this.duration;
@@ -203,7 +203,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 this.time = f5;
             }
             float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.time / f5);
-            float f6 = dp;
+            float f6 = iDp;
             float f7 = this.startX;
             float f8 = ((f7 + ((this.targetX - f7) * interpolation)) * f6) - 200.0f;
             float f9 = this.startY;
@@ -245,9 +245,9 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
     }
 
     private void setAmplitude(double d) {
-        float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.animateToAmplitude = min;
-        this.animateAmplitudeDiff = (min - this.amplitude) / ((BlobDrawable.AMPLITUDE_SPEED * 500.0f) + 100.0f);
+        float fMin = (float) (Math.min(8500.0d, d) / 8500.0d);
+        this.animateToAmplitude = fMin;
+        this.animateAmplitudeDiff = (fMin - this.amplitude) / ((BlobDrawable.AMPLITUDE_SPEED * 500.0f) + 100.0f);
     }
 
     public void setState(int i) {
@@ -329,10 +329,10 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 sharedInstance.setMicMute(true, false, false);
             }
             setState(3);
-            long uptimeMillis = SystemClock.uptimeMillis();
-            MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
+            long jUptimeMillis = SystemClock.uptimeMillis();
+            MotionEvent motionEventObtain = MotionEvent.obtain(jUptimeMillis, jUptimeMillis, 3, 0.0f, 0.0f, 0);
             if (getParent() != null) {
-                ((View) getParent()).dispatchTouchEvent(obtain);
+                ((View) getParent()).dispatchTouchEvent(motionEventObtain);
                 return;
             }
             return;

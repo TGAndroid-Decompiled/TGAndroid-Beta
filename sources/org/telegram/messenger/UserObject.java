@@ -57,9 +57,9 @@ public class UserObject {
         if (user == null || isDeleted(user)) {
             return LocaleController.getString(R.string.HiddenName);
         }
-        String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
-        if (removeRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
-            return removeRTL;
+        String strRemoveRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
+        if (strRemoveRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
+            return strRemoveRTL;
         }
         return PhoneFormat.getInstance().format("+" + user.phone);
     }
@@ -131,8 +131,8 @@ public class UserObject {
         if (str == null) {
             return LocaleController.getString(R.string.HiddenName);
         }
-        int indexOf = str.indexOf(" ", 2);
-        return indexOf >= 0 ? str.substring(0, indexOf) : str;
+        int iIndexOf = str.indexOf(" ", 2);
+        return iIndexOf >= 0 ? str.substring(0, iIndexOf) : str;
     }
 
     public static boolean hasPhoto(TLRPC.User user) {

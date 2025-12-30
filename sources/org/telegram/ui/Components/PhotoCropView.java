@@ -203,20 +203,20 @@ public class PhotoCropView extends FrameLayout {
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         CropView cropView;
-        boolean drawChild = super.drawChild(canvas, view, j);
+        boolean zDrawChild = super.drawChild(canvas, view, j);
         if (this.thumbImageVisible && view == (cropView = this.cropView)) {
             RectF actualRect = cropView.getActualRect();
-            int dp = AndroidUtilities.dp(32.0f);
-            int videoThumbX = (this.delegate.getVideoThumbX() - (dp / 2)) + AndroidUtilities.dp(2.0f);
+            int iDp = AndroidUtilities.dp(32.0f);
+            int videoThumbX = (this.delegate.getVideoThumbX() - (iDp / 2)) + AndroidUtilities.dp(2.0f);
             int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(156.0f);
             float f = actualRect.left;
             float f2 = this.thumbAnimationProgress;
             float f3 = f + ((videoThumbX - f) * f2);
             float f4 = actualRect.top;
             float f5 = f4 + ((measuredHeight - f4) * f2);
-            float width = actualRect.width() + ((dp - actualRect.width()) * this.thumbAnimationProgress);
-            this.thumbImageView.setRoundRadius((int) (width / 2.0f));
-            this.thumbImageView.setImageCoords(f3, f5, width, width);
+            float fWidth = actualRect.width() + ((iDp - actualRect.width()) * this.thumbAnimationProgress);
+            this.thumbImageView.setRoundRadius((int) (fWidth / 2.0f));
+            this.thumbImageView.setImageCoords(f3, f5, fWidth, fWidth);
             this.thumbImageView.setAlpha(this.thumbImageVisibleProgress);
             this.thumbImageView.draw(canvas);
             if (this.flashAlpha > 0.0f) {
@@ -226,9 +226,9 @@ public class PhotoCropView extends FrameLayout {
             }
             this.circlePaint.setColor(getThemedColor(Theme.key_chat_editMediaButton));
             this.circlePaint.setAlpha(Math.min(255, (int) (this.thumbAnimationProgress * 255.0f * this.thumbImageVisibleProgress)));
-            canvas.drawCircle(videoThumbX + r1, measuredHeight + dp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
+            canvas.drawCircle(videoThumbX + r1, measuredHeight + iDp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     public boolean rotate(float f) {

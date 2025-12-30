@@ -89,8 +89,8 @@ public class SessionCell extends FrameLayout {
     }
 
     public void setSession(TLObject tLObject, boolean z) {
-        String str;
-        String stringForMessageListDate;
+        String firstName;
+        String strStringForMessageListDate;
         this.needDivider = z;
         if (tLObject instanceof TLRPC.TL_authorization) {
             TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
@@ -113,10 +113,10 @@ public class SessionCell extends FrameLayout {
             this.nameTextView.setText(sb);
             if ((tL_authorization.flags & 1) != 0) {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteValueText));
-                stringForMessageListDate = LocaleController.getString(R.string.Online);
+                strStringForMessageListDate = LocaleController.getString(R.string.Online);
             } else {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteGrayText3));
-                stringForMessageListDate = LocaleController.stringForMessageListDate(tL_authorization.date_active);
+                strStringForMessageListDate = LocaleController.stringForMessageListDate(tL_authorization.date_active);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (tL_authorization.country.length() != 0) {
@@ -127,7 +127,7 @@ public class SessionCell extends FrameLayout {
                 dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
                 spannableStringBuilder.append((CharSequence) " . ").setSpan(dotDividerSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
             }
-            spannableStringBuilder.append((CharSequence) stringForMessageListDate);
+            spannableStringBuilder.append((CharSequence) strStringForMessageListDate);
             this.detailExTextView.setText(spannableStringBuilder);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(tL_authorization.app_name);
@@ -140,10 +140,10 @@ public class SessionCell extends FrameLayout {
             this.nameTextView.setText(tL_webAuthorization.domain);
             if (user != null) {
                 this.avatarDrawable.setInfo(this.currentAccount, user);
-                str = UserObject.getFirstName(user);
+                firstName = UserObject.getFirstName(user);
                 this.imageView.setForUserOrChat(user, this.avatarDrawable);
             } else {
-                str = "";
+                firstName = "";
             }
             int i = Theme.key_windowBackgroundWhiteGrayText3;
             setTag(Integer.valueOf(i));
@@ -162,8 +162,8 @@ public class SessionCell extends FrameLayout {
             }
             this.detailExTextView.setText(sb3);
             StringBuilder sb4 = new StringBuilder();
-            if (!TextUtils.isEmpty(str)) {
-                sb4.append(str);
+            if (!TextUtils.isEmpty(firstName)) {
+                sb4.append(firstName);
             }
             if (tL_webAuthorization.browser.length() != 0) {
                 if (sb4.length() != 0) {
@@ -279,12 +279,12 @@ public class SessionCell extends FrameLayout {
             i3 = -1;
             i4 = -1;
         }
-        Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
+        Drawable drawableMutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
         float f = i;
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(f), i3 == -1 ? -16777216 : Theme.getColor(i3), i4 != -1 ? Theme.getColor(i4) : -16777216), mutate);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(f), i3 == -1 ? -16777216 : Theme.getColor(i3), i4 != -1 ? Theme.getColor(i4) : -16777216), drawableMutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
-            combinedDrawable.setIconSize((int) ((mutate.getIntrinsicWidth() / 44.0f) * f), (int) ((mutate.getIntrinsicHeight() / 44.0f) * f));
+            combinedDrawable.setIconSize((int) ((drawableMutate.getIntrinsicWidth() / 44.0f) * f), (int) ((drawableMutate.getIntrinsicHeight() / 44.0f) * f));
         }
         return combinedDrawable;
     }
@@ -377,9 +377,9 @@ public class SessionCell extends FrameLayout {
     public void showStub(FlickerLoadingView flickerLoadingView) {
         this.globalGradient = flickerLoadingView;
         this.showStub = true;
-        Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? R.drawable.device_tablet_android : R.drawable.device_phone_android).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(Theme.key_avatar_backgroundGreen)), mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? R.drawable.device_tablet_android : R.drawable.device_phone_android).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(Theme.key_avatar_backgroundGreen)), drawableMutate);
         BackupImageView backupImageView = this.placeholderImageView;
         if (backupImageView != null) {
             backupImageView.setImageDrawable(combinedDrawable);

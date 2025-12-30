@@ -126,16 +126,16 @@ public class ShutterButton extends View {
             return;
         }
         if (this.redProgress != 1.0f) {
-            long abs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
-            if (abs > 17) {
-                abs = 17;
+            long jAbs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
+            if (jAbs > 17) {
+                jAbs = 17;
             }
-            long j = this.totalTime + abs;
+            long j = this.totalTime + jAbs;
             this.totalTime = j;
             if (j > 120) {
                 this.totalTime = 120L;
             }
-            this.redProgress = this.interpolator.getInterpolation(((float) this.totalTime) / 120.0f);
+            this.redProgress = this.interpolator.getInterpolation(this.totalTime / 120.0f);
             invalidate();
         }
         canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX * this.redProgress, this.redPaint);

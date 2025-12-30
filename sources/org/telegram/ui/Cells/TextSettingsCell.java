@@ -2,11 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,31 +111,31 @@ public class TextSettingsCell extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0));
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
-        int i3 = this.betterLayout ? measuredWidth : measuredWidth / 2;
+        int measuredWidth2 = this.betterLayout ? measuredWidth : measuredWidth / 2;
         if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
         }
         if (this.imageView.getVisibility() == 0) {
             if (this.imageViewIsColorful) {
                 this.imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
             } else {
-                this.imageView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
+                this.imageView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
             }
             if (this.betterLayout) {
-                i3 -= this.imageView.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
+                measuredWidth2 -= this.imageView.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
             }
         }
         BackupImageView backupImageView = this.valueBackupImageView;
         if (backupImageView != null) {
             backupImageView.measure(View.MeasureSpec.makeMeasureSpec(backupImageView.getLayoutParams().height, 1073741824), View.MeasureSpec.makeMeasureSpec(this.valueBackupImageView.getLayoutParams().width, 1073741824));
             if (this.betterLayout) {
-                i3 -= this.valueBackupImageView.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
+                measuredWidth2 -= this.valueBackupImageView.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
             }
         }
         if (this.valueTextView.getVisibility() == 0) {
-            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             if (this.betterLayout) {
-                measuredWidth = i3 - (this.valueTextView.getMeasuredWidth() + AndroidUtilities.dp(8.0f));
+                measuredWidth = measuredWidth2 - (this.valueTextView.getMeasuredWidth() + AndroidUtilities.dp(8.0f));
             } else {
                 measuredWidth = (measuredWidth - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f);
             }
@@ -272,70 +270,8 @@ public class TextSettingsCell extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (this.drawLoading || this.drawLoadingProgress != 0.0f) {
-            if (this.paint == null) {
-                Paint paint = new Paint(1);
-                this.paint = paint;
-                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
-            }
-            if (this.incrementLoadingProgress) {
-                float f = this.loadingProgress + 0.016f;
-                this.loadingProgress = f;
-                if (f > 1.0f) {
-                    this.loadingProgress = 1.0f;
-                    this.incrementLoadingProgress = false;
-                }
-            } else {
-                float f2 = this.loadingProgress - 0.016f;
-                this.loadingProgress = f2;
-                if (f2 < 0.0f) {
-                    this.loadingProgress = 0.0f;
-                    this.incrementLoadingProgress = true;
-                }
-            }
-            int i = this.changeProgressStartDelay;
-            if (i > 0) {
-                this.changeProgressStartDelay = i - 15;
-            } else {
-                boolean z = this.drawLoading;
-                if (z) {
-                    float f3 = this.drawLoadingProgress;
-                    if (f3 != 1.0f) {
-                        float f4 = f3 + 0.10666667f;
-                        this.drawLoadingProgress = f4;
-                        if (f4 > 1.0f) {
-                            this.drawLoadingProgress = 1.0f;
-                        }
-                    }
-                }
-                if (!z) {
-                    float f5 = this.drawLoadingProgress;
-                    if (f5 != 0.0f) {
-                        float f6 = f5 - 0.10666667f;
-                        this.drawLoadingProgress = f6;
-                        if (f6 < 0.0f) {
-                            this.drawLoadingProgress = 0.0f;
-                        }
-                    }
-                }
-            }
-            this.paint.setAlpha((int) (((this.loadingProgress * 0.4f) + 0.6f) * this.drawLoadingProgress * 255.0f));
-            int measuredHeight = getMeasuredHeight() >> 1;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(this.padding)) - AndroidUtilities.dp(this.loadingSize), measuredHeight - AndroidUtilities.dp(3.0f), getMeasuredWidth() - AndroidUtilities.dp(this.padding), measuredHeight + AndroidUtilities.dp(3.0f));
-            if (LocaleController.isRTL) {
-                rectF.left = getMeasuredWidth() - rectF.left;
-                rectF.right = getMeasuredWidth() - rectF.right;
-            }
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.paint);
-            invalidate();
-        }
-        this.valueTextView.setAlpha(1.0f - this.drawLoadingProgress);
-        super.dispatchDraw(canvas);
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? r0 : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
+    protected void dispatchDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.TextSettingsCell.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override

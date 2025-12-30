@@ -23,11 +23,7 @@ class EglBase10Impl implements EglBase10 {
     private EGLDisplay eglDisplay;
     private EGLSurface eglSurface;
 
-    private static native long nativeGetCurrentNativeEGLContext();
-
-    static long access$000() {
-        return nativeGetCurrentNativeEGLContext();
-    }
+    public static native long nativeGetCurrentNativeEGLContext();
 
     private static class Context implements EglBase10.Context {
         private final EGL10 egl;
@@ -41,31 +37,31 @@ class EglBase10Impl implements EglBase10 {
 
         @Override
         public long getNativeEglContext() {
-            EGLContext eglGetCurrentContext = this.egl.eglGetCurrentContext();
-            EGLDisplay eglGetCurrentDisplay = this.egl.eglGetCurrentDisplay();
-            EGLSurface eglGetCurrentSurface = this.egl.eglGetCurrentSurface(12377);
-            EGLSurface eglGetCurrentSurface2 = this.egl.eglGetCurrentSurface(12378);
-            if (eglGetCurrentDisplay == EGL10.EGL_NO_DISPLAY) {
-                eglGetCurrentDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+            EGLContext eGLContextEglGetCurrentContext = this.egl.eglGetCurrentContext();
+            EGLDisplay eGLDisplayEglGetCurrentDisplay = this.egl.eglGetCurrentDisplay();
+            EGLSurface eGLSurfaceEglGetCurrentSurface = this.egl.eglGetCurrentSurface(12377);
+            EGLSurface eGLSurfaceEglGetCurrentSurface2 = this.egl.eglGetCurrentSurface(12378);
+            if (eGLDisplayEglGetCurrentDisplay == EGL10.EGL_NO_DISPLAY) {
+                eGLDisplayEglGetCurrentDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
             }
-            EGLSurface eGLSurface = null;
+            EGLSurface eGLSurfaceEglCreatePbufferSurface = null;
             try {
-                if (eglGetCurrentContext != this.eglContext) {
-                    eGLSurface = this.egl.eglCreatePbufferSurface(eglGetCurrentDisplay, this.eglContextConfig, new int[]{12375, 1, 12374, 1, 12344});
-                    if (!this.egl.eglMakeCurrent(eglGetCurrentDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                if (eGLContextEglGetCurrentContext != this.eglContext) {
+                    eGLSurfaceEglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(eGLDisplayEglGetCurrentDisplay, this.eglContextConfig, new int[]{12375, 1, 12374, 1, 12344});
+                    if (!this.egl.eglMakeCurrent(eGLDisplayEglGetCurrentDisplay, eGLSurfaceEglCreatePbufferSurface, eGLSurfaceEglCreatePbufferSurface, this.eglContext)) {
                         throw new RuntimeException("Failed to make temporary EGL surface active: " + this.egl.eglGetError());
                     }
                 }
-                long access$000 = EglBase10Impl.access$000();
-                if (eGLSurface != null) {
-                    this.egl.eglMakeCurrent(eglGetCurrentDisplay, eglGetCurrentSurface, eglGetCurrentSurface2, eglGetCurrentContext);
-                    this.egl.eglDestroySurface(eglGetCurrentDisplay, eGLSurface);
+                long jNativeGetCurrentNativeEGLContext = EglBase10Impl.nativeGetCurrentNativeEGLContext();
+                if (eGLSurfaceEglCreatePbufferSurface != null) {
+                    this.egl.eglMakeCurrent(eGLDisplayEglGetCurrentDisplay, eGLSurfaceEglGetCurrentSurface, eGLSurfaceEglGetCurrentSurface2, eGLContextEglGetCurrentContext);
+                    this.egl.eglDestroySurface(eGLDisplayEglGetCurrentDisplay, eGLSurfaceEglCreatePbufferSurface);
                 }
-                return access$000;
+                return jNativeGetCurrentNativeEGLContext;
             } catch (Throwable th) {
                 if (0 != 0) {
-                    this.egl.eglMakeCurrent(eglGetCurrentDisplay, eglGetCurrentSurface, eglGetCurrentSurface2, eglGetCurrentContext);
-                    this.egl.eglDestroySurface(eglGetCurrentDisplay, null);
+                    this.egl.eglMakeCurrent(eGLDisplayEglGetCurrentDisplay, eGLSurfaceEglGetCurrentSurface, eGLSurfaceEglGetCurrentSurface2, eGLContextEglGetCurrentContext);
+                    this.egl.eglDestroySurface(eGLDisplayEglGetCurrentDisplay, null);
                 }
                 throw th;
             }
@@ -113,9 +109,9 @@ class EglBase10Impl implements EglBase10 {
             if (eGLSurface != eGLSurface2) {
                 throw new RuntimeException("Already has an EGLSurface");
             }
-            EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-            this.eglBackgroundSurface = eglCreateWindowSurface;
-            if (eglCreateWindowSurface != eGLSurface2) {
+            EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+            this.eglBackgroundSurface = eGLSurfaceEglCreateWindowSurface;
+            if (eGLSurfaceEglCreateWindowSurface != eGLSurface2) {
                 return;
             }
             throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
@@ -125,9 +121,9 @@ class EglBase10Impl implements EglBase10 {
         if (eGLSurface3 != eGLSurface4) {
             throw new RuntimeException("Already has an EGLSurface");
         }
-        EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-        this.eglSurface = eglCreateWindowSurface2;
-        if (eglCreateWindowSurface2 != eGLSurface4) {
+        EGLSurface eGLSurfaceEglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+        this.eglSurface = eGLSurfaceEglCreateWindowSurface2;
+        if (eGLSurfaceEglCreateWindowSurface2 != eGLSurface4) {
             return;
         }
         throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
@@ -146,9 +142,9 @@ class EglBase10Impl implements EglBase10 {
         if (eGLSurface != eGLSurface2) {
             throw new RuntimeException("Already has an EGLSurface");
         }
-        EGLSurface eglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i, 12374, i2, 12344});
-        this.eglSurface = eglCreatePbufferSurface;
-        if (eglCreatePbufferSurface != eGLSurface2) {
+        EGLSurface eGLSurfaceEglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i, 12374, i2, 12344});
+        this.eglSurface = eGLSurfaceEglCreatePbufferSurface;
+        if (eGLSurfaceEglCreatePbufferSurface != eGLSurface2) {
             return;
         }
         throw new RuntimeException("Failed to create pixel buffer surface with size " + i + "x" + i2 + ": 0x" + Integer.toHexString(this.egl.eglGetError()));
@@ -301,12 +297,12 @@ class EglBase10Impl implements EglBase10 {
     }
 
     private EGLDisplay getEglDisplay() {
-        EGLDisplay eglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+        EGLDisplay eGLDisplayEglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             throw new RuntimeException("Unable to get EGL10 display: 0x" + Integer.toHexString(this.egl.eglGetError()));
         }
-        if (this.egl.eglInitialize(eglGetDisplay, new int[2])) {
-            return eglGetDisplay;
+        if (this.egl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
+            return eGLDisplayEglGetDisplay;
         }
         throw new RuntimeException("Unable to initialize EGL10: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
@@ -328,7 +324,7 @@ class EglBase10Impl implements EglBase10 {
     }
 
     private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
-        EGLContext eglCreateContext;
+        EGLContext eGLContextEglCreateContext;
         if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
             throw new RuntimeException("Invalid sharedContext");
         }
@@ -337,10 +333,10 @@ class EglBase10Impl implements EglBase10 {
             eGLContext = EGL10.EGL_NO_CONTEXT;
         }
         synchronized (EglBase.lock) {
-            eglCreateContext = this.egl.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr);
+            eGLContextEglCreateContext = this.egl.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr);
         }
-        if (eglCreateContext != EGL10.EGL_NO_CONTEXT) {
-            return eglCreateContext;
+        if (eGLContextEglCreateContext != EGL10.EGL_NO_CONTEXT) {
+            return eGLContextEglCreateContext;
         }
         throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }

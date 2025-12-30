@@ -25,11 +25,11 @@ public abstract class CustomTabsHelper {
         }
         PackageManager packageManager2 = context.getPackageManager();
         Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.example.com"));
-        ResolveInfo resolveActivity = packageManager2.resolveActivity(intent, 0);
-        String str2 = resolveActivity != null ? resolveActivity.activityInfo.packageName : null;
-        List<ResolveInfo> queryIntentActivities = packageManager2.queryIntentActivities(intent, 0);
+        ResolveInfo resolveInfoResolveActivity = packageManager2.resolveActivity(intent, 0);
+        String str2 = resolveInfoResolveActivity != null ? resolveInfoResolveActivity.activityInfo.packageName : null;
+        List<ResolveInfo> listQueryIntentActivities = packageManager2.queryIntentActivities(intent, 0);
         ArrayList arrayList = new ArrayList();
-        for (ResolveInfo resolveInfo : queryIntentActivities) {
+        for (ResolveInfo resolveInfo : listQueryIntentActivities) {
             Intent intent2 = new Intent();
             intent2.setAction("android.support.customtabs.action.CustomTabsService");
             intent2.setPackage(resolveInfo.activityInfo.packageName);
@@ -63,14 +63,14 @@ public abstract class CustomTabsHelper {
     }
 
     private static boolean hasSpecializedHandlerIntents(Context context, Intent intent) {
-        List<ResolveInfo> queryIntentActivities;
+        List<ResolveInfo> listQueryIntentActivities;
         try {
-            queryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 64);
+            listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 64);
         } catch (RuntimeException unused) {
             Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
         }
-        if (queryIntentActivities != null && queryIntentActivities.size() != 0) {
-            for (ResolveInfo resolveInfo : queryIntentActivities) {
+        if (listQueryIntentActivities != null && listQueryIntentActivities.size() != 0) {
+            for (ResolveInfo resolveInfo : listQueryIntentActivities) {
                 IntentFilter intentFilter = resolveInfo.filter;
                 if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo.activityInfo != null) {
                     return true;

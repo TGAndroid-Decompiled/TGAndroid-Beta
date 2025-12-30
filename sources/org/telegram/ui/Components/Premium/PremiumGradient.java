@@ -72,15 +72,15 @@ public class PremiumGradient {
         }
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int minimumHeight = drawable.getMinimumHeight();
-        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, minimumHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, minimumHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
         drawable.draw(canvas);
         premiumGradientTools.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         premiumGradientTools.gradientMatrix(0, 0, intrinsicWidth, minimumHeight, -intrinsicWidth, 0.0f);
         canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, premiumGradientTools.paint);
         premiumGradientTools.paint.setXfermode(null);
-        return new InternalDrawable(drawable, createBitmap, premiumGradientTools.colors);
+        return new InternalDrawable(drawable, bitmapCreateBitmap, premiumGradientTools.colors);
     }
 
     public void checkIconColors() {

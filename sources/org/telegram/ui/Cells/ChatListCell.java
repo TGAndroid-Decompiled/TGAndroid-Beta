@@ -22,7 +22,7 @@ public abstract class ChatListCell extends LinearLayout {
 
     protected abstract void didSelectChatType(boolean z);
 
-    public class ListView extends FrameLayout {
+    private class ListView extends FrameLayout {
         private RadioButton button;
         private boolean isThreeLines;
         private RectF rect;
@@ -58,37 +58,37 @@ public abstract class ChatListCell extends LinearLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             int color = Theme.getColor(Theme.key_switchTrack);
-            int red = Color.red(color);
-            int green = Color.green(color);
-            int blue = Color.blue(color);
+            int iRed = Color.red(color);
+            int iGreen = Color.green(color);
+            int iBlue = Color.blue(color);
             this.button.setColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_radioBackgroundChecked));
             this.rect.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(73.0f));
-            Theme.chat_instantViewRectPaint.setColor(Color.argb((int) (this.button.getProgress() * 43.0f), red, green, blue));
+            Theme.chat_instantViewRectPaint.setColor(Color.argb((int) (this.button.getProgress() * 43.0f), iRed, iGreen, iBlue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.chat_instantViewRectPaint);
             this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(74.0f));
-            Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
+            Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), iRed, iGreen, iBlue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.dialogs_onlineCirclePaint);
             String string = LocaleController.getString(this.isThreeLines ? R.string.ChatListExpanded : R.string.ChatListDefault);
-            int ceil = (int) Math.ceil(this.textPaint.measureText(string));
+            int iCeil = (int) Math.ceil(this.textPaint.measureText(string));
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            int measuredWidth = getMeasuredWidth() - ceil;
+            int measuredWidth = getMeasuredWidth() - iCeil;
             canvas.drawText(string, measuredWidth / 2, AndroidUtilities.dp(96.0f), this.textPaint);
             int i = 0;
             for (int i2 = 2; i < i2; i2 = 2) {
-                int dp = AndroidUtilities.dp(i == 0 ? 21.0f : 53.0f);
-                Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i == 0 ? 204 : 90, red, green, blue));
-                canvas.drawCircle(AndroidUtilities.dp(22.0f), dp, AndroidUtilities.dp(11.0f), Theme.dialogs_onlineCirclePaint);
+                int iDp = AndroidUtilities.dp(i == 0 ? 21.0f : 53.0f);
+                Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i == 0 ? 204 : 90, iRed, iGreen, iBlue));
+                canvas.drawCircle(AndroidUtilities.dp(22.0f), iDp, AndroidUtilities.dp(11.0f), Theme.dialogs_onlineCirclePaint);
                 int i3 = 0;
                 while (true) {
                     if (i3 < (this.isThreeLines ? 3 : 2)) {
-                        Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i3 == 0 ? 204 : 90, red, green, blue));
+                        Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i3 == 0 ? 204 : 90, iRed, iGreen, iBlue));
                         if (this.isThreeLines) {
                             float f = i3 * 7;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(5.3f - f));
+                            this.rect.set(AndroidUtilities.dp(41.0f), iDp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), iDp - AndroidUtilities.dp(5.3f - f));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), Theme.dialogs_onlineCirclePaint);
                         } else {
                             int i4 = i3 * 10;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(7 - i4), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(3 - i4));
+                            this.rect.set(AndroidUtilities.dp(41.0f), iDp - AndroidUtilities.dp(7 - i4), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), iDp - AndroidUtilities.dp(3 - i4));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                         }
                         i3++;
@@ -125,7 +125,7 @@ public abstract class ChatListCell extends LinearLayout {
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatListCell.this.lambda$new$0(z, view);
+                    this.f$0.lambda$new$0(z, view);
                 }
             });
             i++;

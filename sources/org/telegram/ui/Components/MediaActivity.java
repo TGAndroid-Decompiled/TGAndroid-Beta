@@ -39,7 +39,6 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.BottomPagerTabs;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugProvider;
-import org.telegram.ui.Components.MediaActivity;
 import org.telegram.ui.Components.Paint.ShapeDetector;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.ProfileActivity;
@@ -157,7 +156,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
     }
 
-    public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass1() {
         }
 
@@ -201,7 +200,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i3) {
-                        MediaActivity.AnonymousClass1.this.lambda$onItemClick$0(arrayList, alertDialog, i3);
+                        this.f$0.lambda$onItemClick$0(arrayList, alertDialog, i3);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -210,9 +209,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                         alertDialog.dismiss();
                     }
                 });
-                AlertDialog create = builder.create();
-                create.show();
-                create.redPositive();
+                AlertDialog alertDialogCreate = builder.create();
+                alertDialogCreate.show();
+                alertDialogCreate.redPositive();
             }
         }
 
@@ -227,23 +226,23 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     public void lambda$createView$2(View view) {
-        Boolean zoomIn = this.sharedMediaLayout.zoomIn();
-        if (zoomIn == null) {
+        Boolean boolZoomIn = this.sharedMediaLayout.zoomIn();
+        if (boolZoomIn == null) {
             return;
         }
-        boolean booleanValue = zoomIn.booleanValue();
+        boolean zBooleanValue = boolZoomIn.booleanValue();
         this.zoomOutItem.setEnabled(true);
         this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
-        this.zoomInItem.setEnabled(booleanValue);
+        this.zoomInItem.setEnabled(zBooleanValue);
         this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
     }
 
     public void lambda$createView$3(View view) {
-        Boolean zoomOut = this.sharedMediaLayout.zoomOut();
-        if (zoomOut == null) {
+        Boolean boolZoomOut = this.sharedMediaLayout.zoomOut();
+        if (boolZoomOut == null) {
             return;
         }
-        this.zoomOutItem.setEnabled(zoomOut.booleanValue());
+        this.zoomOutItem.setEnabled(boolZoomOut.booleanValue());
         this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
         this.zoomInItem.setEnabled(true);
         this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
@@ -289,7 +288,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     public void lambda$createView$10(View view) {
         int i;
-        Bulletin show;
+        Bulletin bulletinShow;
         Runnable runnable = this.applyBulletin;
         if (runnable != null) {
             runnable.run();
@@ -328,24 +327,24 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.applyBulletin = new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.this.lambda$createView$7(arrayList, z);
+                this.f$0.lambda$createView$7(arrayList, z);
             }
         };
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.this.lambda$createView$8(zArr2, arrayList, zArr);
+                this.f$0.lambda$createView$8(zArr2, arrayList, zArr);
             }
         };
         if (z) {
-            show = BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySavedTitle", i, new Object[0]), LocaleController.getString("StorySavedSubtitle"), LocaleController.getString("Undo"), runnable2).show();
+            bulletinShow = BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySavedTitle", i, new Object[0]), LocaleController.getString("StorySavedSubtitle"), LocaleController.getString("Undo"), runnable2).show();
         } else {
-            show = BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", i, new Object[0]), LocaleController.getString("Undo"), 5000, runnable2).show();
+            bulletinShow = BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", i, new Object[0]), LocaleController.getString("Undo"), 5000, runnable2).show();
         }
-        show.setOnHideListener(new Runnable() {
+        bulletinShow.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.this.lambda$createView$9(zArr2);
+                this.f$0.lambda$createView$9(zArr2);
             }
         });
     }
@@ -461,7 +460,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                         this.optionsItem.animate().alpha(z3 ? 0.0f : 1.0f).withEndAction(new Runnable() {
                             @Override
                             public final void run() {
-                                MediaActivity.this.lambda$updateMediaCount$11(z3);
+                                this.f$0.lambda$updateMediaCount$11(z3);
                             }
                         }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
                     }
@@ -575,7 +574,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator2);
+                        this.f$0.lambda$showSubtitle$12(i, valueAnimator2);
                     }
                 });
                 this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
@@ -650,7 +649,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                MediaActivity.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override
@@ -686,7 +685,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         return Arrays.asList(new FloatingDebugController.DebugItem(sb.toString(), new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.this.lambda$onGetDebugItems$13();
+                this.f$0.lambda$onGetDebugItems$13();
             }
         }));
     }

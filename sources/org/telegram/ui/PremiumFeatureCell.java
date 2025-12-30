@@ -100,9 +100,9 @@ public class PremiumFeatureCell extends FrameLayout {
         }
         if (j == 0) {
             if (this.premiumStar == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-                this.premiumStar = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
+                Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
+                this.premiumStar = drawableMutate;
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
             }
             this.imageDrawable.set(this.premiumStar, z);
             return;
@@ -115,7 +115,7 @@ public class PremiumFeatureCell extends FrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.imageDrawable != null) {
             updateImageBounds();

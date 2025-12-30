@@ -23,9 +23,9 @@ public class ProgressButton extends Button {
         setTypeface(AndroidUtilities.bold());
         setOutlineProvider(null);
         ViewHelper.setPadding(this, 8.0f, 0.0f, 8.0f, 0.0f);
-        int dp = AndroidUtilities.dp(60.0f);
-        setMinWidth(dp);
-        setMinimumWidth(dp);
+        int iDp = AndroidUtilities.dp(60.0f);
+        setMinWidth(iDp);
+        setMinimumWidth(iDp);
         this.progressRect = new RectF();
         Paint paint = new Paint(1);
         this.progressPaint = paint;
@@ -41,15 +41,15 @@ public class ProgressButton extends Button {
             this.progressRect.set(getMeasuredWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(3.0f), r0 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(11.0f));
             this.progressPaint.setAlpha(Math.min(255, (int) (this.progressAlpha * 255.0f)));
             canvas.drawArc(this.progressRect, this.angle, 220.0f, false, this.progressPaint);
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             if (Math.abs(this.lastUpdateTime - System.currentTimeMillis()) < 1000) {
-                long j = currentTimeMillis - this.lastUpdateTime;
-                int i = (int) (this.angle + (((float) (360 * j)) / 2000.0f));
+                long j = jCurrentTimeMillis - this.lastUpdateTime;
+                int i = (int) (this.angle + ((360 * j) / 2000.0f));
                 this.angle = i - ((i / 360) * 360);
                 if (this.drawProgress) {
                     float f = this.progressAlpha;
                     if (f < 1.0f) {
-                        float f2 = f + (((float) j) / 200.0f);
+                        float f2 = f + (j / 200.0f);
                         this.progressAlpha = f2;
                         if (f2 > 1.0f) {
                             this.progressAlpha = 1.0f;
@@ -58,7 +58,7 @@ public class ProgressButton extends Button {
                 } else {
                     float f3 = this.progressAlpha;
                     if (f3 > 0.0f) {
-                        float f4 = f3 - (((float) j) / 200.0f);
+                        float f4 = f3 - (j / 200.0f);
                         this.progressAlpha = f4;
                         if (f4 < 0.0f) {
                             this.progressAlpha = 0.0f;
@@ -66,7 +66,7 @@ public class ProgressButton extends Button {
                     }
                 }
             }
-            this.lastUpdateTime = currentTimeMillis;
+            this.lastUpdateTime = jCurrentTimeMillis;
             postInvalidateOnAnimation();
         }
     }

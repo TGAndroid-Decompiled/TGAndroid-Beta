@@ -201,7 +201,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     private final Object stateLock = new Object();
     private SwitchState switchState = SwitchState.IDLE;
 
-    public enum SwitchState {
+    enum SwitchState {
         IDLE,
         PENDING,
         IN_PROGRESS
@@ -258,12 +258,12 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         } : cameraEventsHandler;
         this.cameraEnumerator = cameraEnumerator;
         this.cameraName = str;
-        List asList = Arrays.asList(cameraEnumerator.getDeviceNames());
+        List listAsList = Arrays.asList(cameraEnumerator.getDeviceNames());
         this.uiThreadHandler = new Handler(Looper.getMainLooper());
-        if (asList.isEmpty()) {
+        if (listAsList.isEmpty()) {
             throw new RuntimeException("No cameras attached.");
         }
-        if (asList.contains(this.cameraName)) {
+        if (listAsList.contains(this.cameraName)) {
             return;
         }
         throw new IllegalArgumentException("Camera name " + this.cameraName + " does not match any known camera device.");
@@ -367,11 +367,11 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         this.cameraThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                List asList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
-                if (asList.size() < 2) {
+                List listAsList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
+                if (listAsList.size() < 2) {
                     CameraCapturer.this.reportCameraSwitchError("No camera to switch to.", cameraSwitchHandler);
                 } else {
-                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
+                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) listAsList.get((listAsList.indexOf(CameraCapturer.this.cameraName) + 1) % listAsList.size()));
                 }
             }
         });

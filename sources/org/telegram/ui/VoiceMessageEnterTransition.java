@@ -59,17 +59,17 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         paint.setShader(linearGradient);
         this.messageId = chatMessageCell.getMessageObject().stableId;
         messageEnterTransitionContainer.addTransition(this);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoiceMessageEnterTransition.this.lambda$new$0(messageEnterTransitionContainer, valueAnimator);
+                this.f$0.lambda$new$0(messageEnterTransitionContainer, valueAnimator);
             }
         });
-        ofFloat.setInterpolator(new LinearInterpolator());
-        ofFloat.setDuration(220L);
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
+        valueAnimatorOfFloat.setDuration(220L);
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 chatMessageCell.setEnterTransitionInProgress(false);
@@ -95,8 +95,8 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
 
     @Override
     public void onDraw(final Canvas canvas) {
-        float centerY;
-        float centerX;
+        float fCenterY;
+        float fCenterX;
         final float f = this.progress;
         float f2 = f > 0.6f ? 1.0f : f / 0.6f;
         ChatActivityEnterView.RecordCircle recordCircle = this.recordCircle;
@@ -104,21 +104,21 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         ChatActivityEnterView.RecordCircle recordCircle2 = this.recordCircle;
         final float y = recordCircle2 == null ? 0.0f : (recordCircle2.drawingCy + recordCircle2.getY()) - this.container.getY();
         if (this.messageView.getMessageObject().stableId != this.messageId) {
-            centerX = this.lastToCx;
-            centerY = this.lastToCy;
+            fCenterX = this.lastToCx;
+            fCenterY = this.lastToCy;
         } else {
-            centerY = ((this.messageView.getRadialProgress().getProgressRect().centerY() + this.messageView.getY()) + this.listView.getY()) - this.container.getY();
-            centerX = ((this.messageView.getRadialProgress().getProgressRect().centerX() + this.messageView.getX()) + this.listView.getX()) - this.container.getX();
+            fCenterY = ((this.messageView.getRadialProgress().getProgressRect().centerY() + this.messageView.getY()) + this.listView.getY()) - this.container.getY();
+            fCenterX = ((this.messageView.getRadialProgress().getProgressRect().centerX() + this.messageView.getX()) + this.listView.getX()) - this.container.getX();
         }
-        this.lastToCx = centerX;
-        this.lastToCy = centerY;
+        this.lastToCx = fCenterX;
+        this.lastToCy = fCenterY;
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(f);
         float interpolation2 = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(f);
-        final float f3 = ((1.0f - interpolation2) * x) + (centerX * interpolation2);
+        final float f3 = ((1.0f - interpolation2) * x) + (fCenterX * interpolation2);
         float f4 = 1.0f - interpolation;
-        final float f5 = (y * f4) + (centerY * interpolation);
-        float height = this.messageView.getRadialProgress().getProgressRect().height() / 2.0f;
-        float f6 = (this.fromRadius * f4) + (height * interpolation);
+        final float f5 = (y * f4) + (fCenterY * interpolation);
+        float fHeight = this.messageView.getRadialProgress().getProgressRect().height() / 2.0f;
+        float f6 = (this.fromRadius * f4) + (fHeight * interpolation);
         this.listView.getY();
         this.container.getY();
         this.listView.getMeasuredHeight();
@@ -139,17 +139,17 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         }
         canvas.drawCircle(f3, f5, f6, this.circlePaint);
         canvas.save();
-        final float f7 = f6 / height;
+        final float f7 = f6 / fHeight;
         canvas.scale(f7, f7, f3, f5);
-        final float centerX2 = f3 - this.messageView.getRadialProgress().getProgressRect().centerX();
-        final float centerY2 = f5 - this.messageView.getRadialProgress().getProgressRect().centerY();
-        canvas.translate(centerX2, centerY2);
+        final float fCenterX2 = f3 - this.messageView.getRadialProgress().getProgressRect().centerX();
+        final float fCenterY2 = f5 - this.messageView.getRadialProgress().getProgressRect().centerY();
+        canvas.translate(fCenterX2, fCenterY2);
         this.messageView.getRadialProgress().setOverrideAlpha(interpolation);
         this.messageView.getRadialProgress().setDrawBackground(false);
         this.messageView.drawVoiceOnce(canvas, interpolation, new Runnable() {
             @Override
             public final void run() {
-                VoiceMessageEnterTransition.this.lambda$onDraw$1(canvas, centerX2, centerY2, f7, f3, f5, x, y, f);
+                this.f$0.lambda$onDraw$1(canvas, fCenterX2, fCenterY2, f7, f3, f5, x, y, f);
             }
         });
         this.messageView.getRadialProgress().setDrawBackground(true);

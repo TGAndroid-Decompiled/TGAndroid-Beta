@@ -19,7 +19,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     private Runnable checkProxyAndSwitchRunnable = new Runnable() {
         @Override
         public final void run() {
-            ProxyRotationController.this.lambda$new$2();
+            this.f$0.lambda$new$2();
         }
     };
     private boolean isCurrentlyChecking;
@@ -35,7 +35,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
                 proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new RequestTimeDelegate() {
                     @Override
                     public final void run(long j) {
-                        ProxyRotationController.lambda$new$1(SharedConfig.ProxyInfo.this, j);
+                        ProxyRotationController.lambda$new$1(proxyInfo, j);
                     }
                 });
                 z = true;
@@ -52,7 +52,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProxyRotationController.lambda$new$0(SharedConfig.ProxyInfo.this, j);
+                ProxyRotationController.lambda$new$0(proxyInfo, j);
             }
         });
     }
@@ -81,24 +81,22 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$switchToAvailable$3;
-                    lambda$switchToAvailable$3 = ProxyRotationController.lambda$switchToAvailable$3((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
-                    return lambda$switchToAvailable$3;
+                    return ProxyRotationController.lambda$switchToAvailable$3((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
                 }
             });
             for (SharedConfig.ProxyInfo proxyInfo : arrayList) {
                 if (proxyInfo != SharedConfig.currentProxy && !proxyInfo.checking && proxyInfo.available) {
-                    SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                    edit.putString("proxy_ip", proxyInfo.address);
-                    edit.putString("proxy_pass", proxyInfo.password);
-                    edit.putString("proxy_user", proxyInfo.username);
-                    edit.putInt("proxy_port", proxyInfo.port);
-                    edit.putString("proxy_secret", proxyInfo.secret);
-                    edit.putBoolean("proxy_enabled", true);
+                    SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
+                    editorEdit.putString("proxy_ip", proxyInfo.address);
+                    editorEdit.putString("proxy_pass", proxyInfo.password);
+                    editorEdit.putString("proxy_user", proxyInfo.username);
+                    editorEdit.putInt("proxy_port", proxyInfo.port);
+                    editorEdit.putString("proxy_secret", proxyInfo.secret);
+                    editorEdit.putBoolean("proxy_enabled", true);
                     if (!proxyInfo.secret.isEmpty()) {
-                        edit.putBoolean("proxy_enabled_calls", false);
+                        editorEdit.putBoolean("proxy_enabled_calls", false);
                     }
-                    edit.apply();
+                    editorEdit.apply();
                     SharedConfig.currentProxy = proxyInfo;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyChangedByRotation, new Object[0]);

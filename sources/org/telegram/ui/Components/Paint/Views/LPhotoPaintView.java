@@ -97,7 +97,6 @@ import org.telegram.ui.Components.Paint.Swatch;
 import org.telegram.ui.Components.Paint.UndoStore;
 import org.telegram.ui.Components.Paint.Views.EntitiesContainerView;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Paint.Views.LPhotoPaintView;
 import org.telegram.ui.Components.Paint.Views.PaintTextOptionsView;
 import org.telegram.ui.Components.Paint.Views.PaintToolsView;
 import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
@@ -287,10 +286,10 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     protected abstract void updateKeyboard();
 
     public LPhotoPaintView(final Context context, Activity activity, final int i, Bitmap bitmap, final Bitmap bitmap2, int i2, ArrayList arrayList, MediaController.CropState cropState, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
-        super(context, activity, true);
         int i3;
         Emoji.EmojiSpan[] emojiSpanArr;
         PhotoView photoView;
+        super(context, activity, true);
         this.tabsSelectedIndex = 0;
         this.tabsNewSelectedIndex = -1;
         this.weightDefaultValueOverride = new PaintWeightChooserView.ValueOverride() {
@@ -350,30 +349,22 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
 
             @Override
             public ColorFilter getAnimatedEmojiColorFilter() {
-                ColorFilter colorFilter;
-                colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-                return colorFilter;
+                return Theme.chat_animatedEmojiTextColorFilter;
             }
 
             @Override
             public final int getColor(int i4) {
-                int lambda$new$0;
-                lambda$new$0 = LPhotoPaintView.lambda$new$0(Theme.ResourcesProvider.this, i4);
-                return lambda$new$0;
+                return LPhotoPaintView.lambda$new$0(resourcesProvider, i4);
             }
 
             @Override
             public int getColorOrDefault(int i4) {
-                int color;
-                color = getColor(i4);
-                return color;
+                return getColor(i4);
             }
 
             @Override
             public int getCurrentColor(int i4) {
-                int color;
-                color = getColor(i4);
-                return color;
+                return getColor(i4);
             }
 
             @Override
@@ -383,9 +374,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
 
             @Override
             public Paint getPaint(String str) {
-                Paint themePaint;
-                themePaint = Theme.getThemePaint(str);
-                return themePaint;
+                return Theme.getThemePaint(str);
             }
 
             @Override
@@ -395,9 +384,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
 
             @Override
             public boolean isDark() {
-                boolean isCurrentThemeDark;
-                isCurrentThemeDark = Theme.isCurrentThemeDark();
-                return isCurrentThemeDark;
+                return Theme.isCurrentThemeDark();
             }
 
             @Override
@@ -420,18 +407,18 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         undoStore.setDelegate(new UndoStore.UndoStoreDelegate() {
             @Override
             public final void historyChanged() {
-                LPhotoPaintView.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         });
         RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap2, i2, null), this.bitmapToEdit, null, null) {
             @Override
             public void selectBrush(Brush brush) {
-                int indexOf = Brush.BRUSHES_LIST.indexOf(brush);
-                int i4 = indexOf + 1;
+                int iIndexOf = Brush.BRUSHES_LIST.indexOf(brush);
+                int i4 = iIndexOf + 1;
                 if (i4 <= 1 || bitmap2 != null) {
-                    indexOf = i4;
+                    iIndexOf = i4;
                 }
-                LPhotoPaintView.this.paintToolsView.select(indexOf);
+                LPhotoPaintView.this.paintToolsView.select(iIndexOf);
                 LPhotoPaintView.this.onBrushSelected(brush);
             }
         };
@@ -535,57 +522,57 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i4);
                 byte b = mediaEntity.type;
                 if (b == 0) {
-                    StickerView createSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
+                    StickerView stickerViewCreateSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
                     if ((mediaEntity.subType & 2) != 0) {
-                        createSticker.mirror();
+                        stickerViewCreateSticker.mirror();
                     }
-                    ViewGroup.LayoutParams layoutParams = createSticker.getLayoutParams();
+                    ViewGroup.LayoutParams layoutParams = stickerViewCreateSticker.getLayoutParams();
                     layoutParams.width = mediaEntity.viewWidth;
                     layoutParams.height = mediaEntity.viewHeight;
                     i3 = size;
-                    photoView = createSticker;
+                    photoView = stickerViewCreateSticker;
                 } else if (b == 1) {
-                    TextPaintView createText = createText(false);
-                    createText.setType(mediaEntity.subType);
-                    createText.setTypeface(mediaEntity.textTypeface);
-                    createText.setBaseFontSize(mediaEntity.fontSize);
+                    TextPaintView textPaintViewCreateText = createText(false);
+                    textPaintViewCreateText.setType(mediaEntity.subType);
+                    textPaintViewCreateText.setTypeface(mediaEntity.textTypeface);
+                    textPaintViewCreateText.setBaseFontSize(mediaEntity.fontSize);
                     SpannableString spannableString = new SpannableString(mediaEntity.text);
                     Iterator<VideoEditedInfo.EmojiEntity> it = mediaEntity.entities.iterator();
                     while (it.hasNext()) {
                         VideoEditedInfo.EmojiEntity next = it.next();
-                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, createText.getFontMetricsInt());
+                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, textPaintViewCreateText.getFontMetricsInt());
                         int i5 = next.offset;
                         spannableString.setSpan(animatedEmojiSpan, i5, next.length + i5, 33);
                         size = size;
                     }
                     i3 = size;
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, createText.getFontMetricsInt(), false);
-                    if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableString, textPaintViewCreateText.getFontMetricsInt(), false);
+                    if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                         for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                             emojiSpan.scale = 0.85f;
                         }
                     }
-                    createText.setText(replaceEmoji);
-                    setTextAlignment(createText, mediaEntity.textAlign);
-                    Swatch swatch = createText.getSwatch();
+                    textPaintViewCreateText.setText(charSequenceReplaceEmoji);
+                    setTextAlignment(textPaintViewCreateText, mediaEntity.textAlign);
+                    Swatch swatch = textPaintViewCreateText.getSwatch();
                     swatch.color = mediaEntity.color;
-                    createText.setSwatch(swatch);
-                    photoView = createText;
+                    textPaintViewCreateText.setSwatch(swatch);
+                    photoView = textPaintViewCreateText;
                 } else {
                     i3 = size;
                     if (b == 2) {
-                        PhotoView createPhoto = createPhoto(mediaEntity.text, false);
-                        createPhoto.preloadSegmented(mediaEntity.segmentedPath);
+                        PhotoView photoViewCreatePhoto = createPhoto(mediaEntity.text, false);
+                        photoViewCreatePhoto.preloadSegmented(mediaEntity.segmentedPath);
                         if ((mediaEntity.subType & 2) != 0) {
-                            createPhoto.mirror();
+                            photoViewCreatePhoto.mirror();
                         }
                         if ((mediaEntity.subType & 16) != 0) {
-                            createPhoto.toggleSegmented(false);
+                            photoViewCreatePhoto.toggleSegmented(false);
                         }
-                        ViewGroup.LayoutParams layoutParams2 = createPhoto.getLayoutParams();
+                        ViewGroup.LayoutParams layoutParams2 = photoViewCreatePhoto.getLayoutParams();
                         layoutParams2.width = mediaEntity.viewWidth;
                         layoutParams2.height = mediaEntity.viewHeight;
-                        photoView = createPhoto;
+                        photoView = photoViewCreatePhoto;
                     } else {
                         i4++;
                         size = i3;
@@ -624,7 +611,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$2(view2);
+                this.f$0.lambda$new$2(view2);
             }
         });
         this.undoButton.setAlpha(0.6f);
@@ -666,7 +653,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.undoAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$4(view2);
+                this.f$0.lambda$new$4(view2);
             }
         });
         this.undoAllButton.setAlpha(0.6f);
@@ -683,7 +670,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$5(view2);
+                this.f$0.lambda$new$5(view2);
             }
         });
         this.cancelTextButton.setAlpha(0.0f);
@@ -701,7 +688,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.doneTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$6(view2);
+                this.f$0.lambda$new$6(view2);
             }
         });
         this.doneTextButton.setAlpha(0.0f);
@@ -742,8 +729,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 ViewGroup barView = LPhotoPaintView.this.getBarView();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(AndroidUtilities.lerp(barView.getLeft(), LPhotoPaintView.this.colorsListView.getLeft(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getTop(), LPhotoPaintView.this.colorsListView.getTop(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getRight(), LPhotoPaintView.this.colorsListView.getRight(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getBottom(), LPhotoPaintView.this.colorsListView.getBottom(), LPhotoPaintView.this.toolsTransformProgress));
-                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), LPhotoPaintView.this.toolsTransformProgress);
-                canvas.drawRoundRect(rectF, lerp, lerp, LPhotoPaintView.this.toolsPaint);
+                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), LPhotoPaintView.this.toolsTransformProgress);
+                canvas.drawRoundRect(rectF, fLerp, fLerp, LPhotoPaintView.this.toolsPaint);
                 if (barView.getChildCount() < 1 || LPhotoPaintView.this.toolsTransformProgress == 1.0f) {
                     return;
                 }
@@ -761,7 +748,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                     int height = (view2.getHeight() - view2.getPaddingTop()) - view2.getPaddingBottom();
                     float x = view2.getX() + view2.getPaddingLeft() + (width / 2.0f);
                     float y = view2.getY() + view2.getPaddingTop() + (height / 2.0f);
-                    int i6 = LPhotoPaintView.this.colorSwatch.color;
+                    int iBlendARGB = LPhotoPaintView.this.colorSwatch.color;
                     if (LPhotoPaintView.this.tabsNewSelectedIndex != -1) {
                         LPhotoPaintView lPhotoPaintView = LPhotoPaintView.this;
                         ViewGroup viewGroup = (ViewGroup) lPhotoPaintView.getBarView(lPhotoPaintView.tabsNewSelectedIndex);
@@ -776,27 +763,27 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                         View childAt3 = LPhotoPaintView.this.colorsListView.getChildAt(0);
                         x = AndroidUtilities.lerp(x, (LPhotoPaintView.this.colorsListView.getX() - barView.getLeft()) + childAt3.getX() + (childAt3.getWidth() / 2.0f), LPhotoPaintView.this.toolsTransformProgress);
                         y = AndroidUtilities.lerp(y, (LPhotoPaintView.this.colorsListView.getY() - barView.getTop()) + childAt3.getY() + (childAt3.getHeight() / 2.0f), LPhotoPaintView.this.toolsTransformProgress);
-                        i6 = ColorUtils.blendARGB(LPhotoPaintView.this.colorSwatch.color, persistColorPalette.getColor(0), LPhotoPaintView.this.toolsTransformProgress);
+                        iBlendARGB = ColorUtils.blendARGB(LPhotoPaintView.this.colorSwatch.color, persistColorPalette.getColor(0), LPhotoPaintView.this.toolsTransformProgress);
                     }
                     float f = x;
                     checkRainbow(f, y);
-                    float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
+                    float fMin = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
                     if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getChildCount() > 0) {
                         View childAt4 = LPhotoPaintView.this.colorsListView.getChildAt(0);
-                        min = AndroidUtilities.lerp(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), LPhotoPaintView.this.toolsTransformProgress);
+                        fMin = AndroidUtilities.lerp(fMin, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), LPhotoPaintView.this.toolsTransformProgress);
                     }
-                    float f2 = min;
+                    float f2 = fMin;
                     rectF.set(f - f2, y - f2, f + f2, y + f2);
                     canvas.drawArc(rectF, 0.0f, 360.0f, false, LPhotoPaintView.this.colorPickerRainbowPaint);
-                    LPhotoPaintView.this.colorSwatchPaint.setColor(i6);
+                    LPhotoPaintView.this.colorSwatchPaint.setColor(iBlendARGB);
                     LPhotoPaintView.this.colorSwatchPaint.setAlpha((int) (LPhotoPaintView.this.colorSwatchPaint.getAlpha() * view2.getAlpha()));
-                    LPhotoPaintView.this.colorSwatchOutlinePaint.setColor(i6);
+                    LPhotoPaintView.this.colorSwatchOutlinePaint.setColor(iBlendARGB);
                     LPhotoPaintView.this.colorSwatchOutlinePaint.setAlpha((int) (view2.getAlpha() * 255.0f));
-                    float dp = f2 - AndroidUtilities.dp(3.0f);
+                    float fDp = f2 - AndroidUtilities.dp(3.0f);
                     if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getSelectedColorIndex() != 0) {
-                        dp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, LPhotoPaintView.this.toolsTransformProgress);
+                        fDp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, LPhotoPaintView.this.toolsTransformProgress);
                     }
-                    PaintColorsListView.drawColorCircle(canvas, f, y, dp, LPhotoPaintView.this.colorSwatchPaint.getColor());
+                    PaintColorsListView.drawColorCircle(canvas, f, y, fDp, LPhotoPaintView.this.colorSwatchPaint.getColor());
                     if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getSelectedColorIndex() == 0) {
                         LPhotoPaintView.this.colorSwatchOutlinePaint.setAlpha((int) (LPhotoPaintView.this.colorSwatchOutlinePaint.getAlpha() * LPhotoPaintView.this.toolsTransformProgress * view2.getAlpha()));
                         canvas.drawCircle(f, y, f2 - ((AndroidUtilities.dp(3.0f) + LPhotoPaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (1.0f - LPhotoPaintView.this.toolsTransformProgress)), LPhotoPaintView.this.colorSwatchOutlinePaint);
@@ -845,12 +832,12 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 paintTextOptionsView2.getTypefaceCellBounds(rectF);
                 float top = LPhotoPaintView.this.bottomLayout.getTop() + LPhotoPaintView.this.textOptionsView.getTop() + LPhotoPaintView.this.bottomLayout.getTranslationY() + LPhotoPaintView.this.textOptionsView.getTranslationY();
                 rectF.set(AndroidUtilities.lerp(rectF.left, LPhotoPaintView.this.typefaceListView.getLeft(), LPhotoPaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(rectF.top + top, LPhotoPaintView.this.typefaceListView.getTop() - LPhotoPaintView.this.typefaceListView.getTranslationY(), LPhotoPaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(rectF.right, LPhotoPaintView.this.typefaceListView.getRight(), LPhotoPaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(top + rectF.bottom, LPhotoPaintView.this.typefaceListView.getBottom() - LPhotoPaintView.this.typefaceListView.getTranslationY(), LPhotoPaintView.this.typefaceMenuTransformProgress));
-                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, LPhotoPaintView.this.typefaceMenuTransformProgress));
+                float fDp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, LPhotoPaintView.this.typefaceMenuTransformProgress));
                 int alpha = LPhotoPaintView.this.typefaceMenuBackgroundPaint.getAlpha();
                 LPhotoPaintView.this.typefaceMenuBackgroundPaint.setAlpha((int) (alpha * LPhotoPaintView.this.typefaceMenuTransformProgress));
-                canvas.drawRoundRect(rectF, dp, dp, LPhotoPaintView.this.typefaceMenuBackgroundPaint);
+                canvas.drawRoundRect(rectF, fDp, fDp, LPhotoPaintView.this.typefaceMenuBackgroundPaint);
                 LPhotoPaintView.this.typefaceMenuBackgroundPaint.setAlpha(alpha);
-                canvas.drawRoundRect(rectF, dp, dp, LPhotoPaintView.this.typefaceMenuOutlinePaint);
+                canvas.drawRoundRect(rectF, fDp, fDp, LPhotoPaintView.this.typefaceMenuOutlinePaint);
             }
         };
         this.overlayLayout = frameLayout5;
@@ -861,7 +848,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.typefaceListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i6) {
-                LPhotoPaintView.this.lambda$new$7(view2, i6);
+                this.f$0.lambda$new$7(view2, i6);
             }
         });
         this.textOptionsView.setTypefaceListView(this.typefaceListView);
@@ -894,7 +881,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.colorsListView.setColorListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                LPhotoPaintView.this.lambda$new$8((Integer) obj);
+                this.f$0.lambda$new$8((Integer) obj);
             }
         });
         this.bottomLayout.addView(this.colorsListView, LayoutHelper.createFrame(-1, 84.0f, 48, 56.0f, 0.0f, 56.0f, 6.0f));
@@ -911,7 +898,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$10(context, bitmap2, persistColorPalette, view2);
+                this.f$0.lambda$new$10(context, bitmap2, persistColorPalette, view2);
             }
         });
         this.bottomLayout.addView(this.doneButton, LayoutHelper.createFrame(32, 32.0f, 85, 0.0f, 0.0f, 12.0f, 4.0f));
@@ -924,7 +911,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.weightChooserView.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$new$11(i);
+                this.f$0.lambda$new$11(i);
             }
         });
         addView(this.weightChooserView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1013,13 +1000,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public void lambda$new$1() {
-        boolean canUndo = this.undoStore.canUndo();
+        boolean zCanUndo = this.undoStore.canUndo();
         this.undoButton.animate().cancel();
-        this.undoButton.animate().alpha(canUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoButton.setClickable(canUndo);
+        this.undoButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        this.undoButton.setClickable(zCanUndo);
         this.undoAllButton.animate().cancel();
-        this.undoAllButton.animate().alpha(canUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoAllButton.setClickable(canUndo);
+        this.undoAllButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        this.undoAllButton.setClickable(zCanUndo);
     }
 
     public void lambda$new$2(View view) {
@@ -1137,7 +1124,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             }).setColorListener(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    LPhotoPaintView.this.lambda$new$9(persistColorPalette, (Integer) obj);
+                    this.f$0.lambda$new$9(persistColorPalette, (Integer) obj);
                 }
             }).show();
             return;
@@ -1176,15 +1163,15 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                LPhotoPaintView.this.lambda$setNewColor$12(i2, i, valueAnimator);
+                this.f$0.lambda$setNewColor$12(i2, i, valueAnimator);
             }
         });
         duration.start();
     }
 
     public void lambda$setNewColor$12(int i, int i2, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(i, i2, floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.colorSwatch.color = ColorUtils.blendARGB(i, i2, fFloatValue);
         this.bottomLayout.invalidate();
     }
 
@@ -1200,37 +1187,37 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public float getSelectedEntityBottom() {
-        float f;
+        float y;
         float height;
         EntityView entityView = this.currentEntityView;
         if (entityView == null) {
-            f = getY();
+            y = getY();
             height = this.entitiesView.getMeasuredHeight();
         } else {
             int[] iArr = new int[2];
             entityView.getLocationInWindow(iArr);
-            f = iArr[1];
+            y = iArr[1];
             height = this.currentEntityView.getHeight() * this.entitiesView.getScaleY();
         }
-        return f + height;
+        return y + height;
     }
 
     private TextPaintView createText(boolean z) {
         onTextAdd();
         Size paintingSize = getPaintingSize();
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
+        TextPaintView textPaintView = new TextPaintView(getContext(), pointStartPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
         float f = paintingSize.width / 9.0f;
         textPaintView.setMinMaxFontSize((int) (0.5f * f), (int) (f * 2.0f), new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$createText$13();
+                this.f$0.lambda$createText$13();
             }
         });
-        if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setStickyX(2);
         }
-        if (startPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             textPaintView.setStickyY(2);
         }
         textPaintView.setDelegate(this);
@@ -1417,8 +1404,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
         if ((view == this.renderView || view == this.renderInputView || ((view == (entitiesContainerView = this.entitiesView) && entitiesContainerView.getClipChildren()) || (view == (frameLayout = this.selectionContainerView) && frameLayout.getClipChildren()))) && this.currentCropState != null) {
             canvas.save();
-            r12 = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
-            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + r12;
+            i = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
+            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i;
             int measuredWidth = view.getMeasuredWidth();
             int measuredHeight = view.getMeasuredHeight();
             MediaController.CropState cropState = this.currentCropState;
@@ -1431,16 +1418,16 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             MediaController.CropState cropState2 = this.currentCropState;
             int i2 = (int) (scaleX / cropState2.cropScale);
             int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
-            float ceil = ((float) Math.ceil((getMeasuredWidth() - i2) / 2.0f)) + this.transformX;
-            float measuredHeight2 = ((((((getMeasuredHeight() - this.emojiPadding) - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + r12 + this.transformY;
-            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, measuredHeight2), Math.min(ceil + i2, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
-            r12 = 1;
+            float fCeil = ((float) Math.ceil((getMeasuredWidth() - i2) / 2.0f)) + this.transformX;
+            float measuredHeight2 = ((((((getMeasuredHeight() - this.emojiPadding) - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
+            canvas.clipRect(Math.max(0.0f, fCeil), Math.max(0.0f, measuredHeight2), Math.min(fCeil + i2, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
+            i = 1;
         }
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (r12 != 0) {
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        if (i != 0) {
             canvas.restore();
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     public ViewGroup getBarView() {
@@ -1470,8 +1457,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 Layout layout = textView.getLayout();
                 Layout layout2 = textView2 != null ? textView2.getLayout() : null;
                 float interpolation = layout2 == null ? 0.0f : CubicBezierInterpolator.DEFAULT.getInterpolation(LPhotoPaintView.this.tabsSelectionProgress);
-                float lerp = AndroidUtilities.lerp(textView.getX() + layout.getPrimaryHorizontal(layout.getLineStart(0)), textView2 != null ? textView2.getX() + layout2.getPrimaryHorizontal(layout.getLineStart(0)) : 0.0f, interpolation);
-                canvas.drawLine(lerp, y, lerp + AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineEnd(0)) - layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? layout2.getPrimaryHorizontal(layout2.getLineEnd(0)) - layout2.getPrimaryHorizontal(layout2.getLineStart(0)) : 0.0f, interpolation), y, this.linePaint);
+                float fLerp = AndroidUtilities.lerp(textView.getX() + layout.getPrimaryHorizontal(layout.getLineStart(0)), textView2 != null ? textView2.getX() + layout2.getPrimaryHorizontal(layout.getLineStart(0)) : 0.0f, interpolation);
+                canvas.drawLine(fLerp, y, fLerp + AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineEnd(0)) - layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? layout2.getPrimaryHorizontal(layout2.getLineEnd(0)) - layout2.getPrimaryHorizontal(layout2.getLineStart(0)) : 0.0f, interpolation), y, this.linePaint);
             }
         };
         this.tabsLayout = linearLayout;
@@ -1493,7 +1480,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$setupTabsLayout$14(view);
+                this.f$0.lambda$setupTabsLayout$14(view);
             }
         });
         this.tabsLayout.addView(this.drawTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1505,7 +1492,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.stickerTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$setupTabsLayout$15(view);
+                this.f$0.lambda$setupTabsLayout$15(view);
             }
         });
         this.stickerTab.setTextColor(-1);
@@ -1529,7 +1516,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$setupTabsLayout$16(view);
+                this.f$0.lambda$setupTabsLayout$16(view);
             }
         });
         this.tabsLayout.addView(this.textTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1585,7 +1572,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.tabsSelectionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                LPhotoPaintView.this.lambda$switchTab$17(barView, barView2, valueAnimator2);
+                this.f$0.lambda$switchTab$17(barView, barView2, valueAnimator2);
             }
         });
         this.tabsSelectionAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1659,7 +1646,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         postDelayed(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$openStickersView$18();
+                this.f$0.lambda$openStickersView$18();
             }
         }, 350L);
         EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
@@ -1671,23 +1658,19 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
-                Boolean lambda$openStickersView$19;
-                lambda$openStickersView$19 = LPhotoPaintView.this.lambda$openStickersView$19(obj, (TLRPC.Document) obj2, (Boolean) obj3);
-                return lambda$openStickersView$19;
+                return this.f$0.lambda$openStickersView$19(obj, (TLRPC.Document) obj2, (Boolean) obj3);
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                Boolean lambda$openStickersView$20;
-                lambda$openStickersView$20 = LPhotoPaintView.this.lambda$openStickersView$20((Integer) obj);
-                return lambda$openStickersView$20;
+                return this.f$0.lambda$openStickersView$20((Integer) obj);
             }
         });
         emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                LPhotoPaintView.this.lambda$openStickersView$21(i, dialogInterface);
+                this.f$0.lambda$openStickersView$21(i, dialogInterface);
             }
         });
         emojiBottomSheet.show();
@@ -1701,9 +1684,9 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public Boolean lambda$openStickersView$19(Object obj, TLRPC.Document document, Boolean bool) {
-        StickerView createSticker = createSticker(obj, document, true);
+        StickerView stickerViewCreateSticker = createSticker(obj, document, true);
         if (bool.booleanValue()) {
-            createSticker.setScale(1.5f);
+            stickerViewCreateSticker.setScale(1.5f);
         }
         return Boolean.TRUE;
     }
@@ -1840,7 +1823,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$appearAnimation$23(view);
+                this.f$0.lambda$appearAnimation$23(view);
             }
         }).start();
     }
@@ -1854,14 +1837,14 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public PhotoView createPhoto(String str, boolean z) {
-        Size basePhotoSize = basePhotoSize(str);
+        Size sizeBasePhotoSize = basePhotoSize(str);
         Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(str);
         if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == 1) {
-            float f = basePhotoSize.width;
-            basePhotoSize.width = basePhotoSize.height;
-            basePhotoSize.height = f;
+            float f = sizeBasePhotoSize.width;
+            sizeBasePhotoSize.width = sizeBasePhotoSize.height;
+            sizeBasePhotoSize.height = f;
         }
-        PhotoView photoView = new PhotoView(getContext(), centerPositionForEntity(), 0.0f, 1.0f, basePhotoSize, str, ((Integer) imageOrientation.first).intValue(), ((Integer) imageOrientation.second).intValue());
+        PhotoView photoView = new PhotoView(getContext(), centerPositionForEntity(), 0.0f, 1.0f, sizeBasePhotoSize, str, ((Integer) imageOrientation.first).intValue(), ((Integer) imageOrientation.second).intValue());
         photoView.setDelegate(this);
         this.entitiesView.addView(photoView);
         if (z) {
@@ -1883,11 +1866,11 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             f = 1.0f;
         }
         if (f > 1.0f) {
-            float floor = (float) Math.floor(this.entitiesView.getMeasuredWidth() * 0.5d);
-            return new Size(floor, floor / f);
+            float fFloor = (float) Math.floor(this.entitiesView.getMeasuredWidth() * 0.5d);
+            return new Size(fFloor, fFloor / f);
         }
-        float floor2 = (float) Math.floor(this.entitiesView.getMeasuredHeight() * 0.5d);
-        return new Size(f * floor2, floor2);
+        float fFloor2 = (float) Math.floor(this.entitiesView.getMeasuredHeight() * 0.5d);
+        return new Size(f * fFloor2, fFloor2);
     }
 
     @Override
@@ -1901,7 +1884,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     @Override
     protected void onMeasure(int i, int i2) {
         float currentActionBarHeight;
-        float f;
+        float width;
         this.ignoreLayout = true;
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
@@ -1909,26 +1892,26 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         int currentActionBarHeight2 = (((AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - getAdditionalTop()) - getAdditionalBottom()) - AndroidUtilities.dp(48.0f);
         Bitmap bitmap = this.bitmapToEdit;
         if (bitmap != null) {
-            f = bitmap.getWidth();
+            width = bitmap.getWidth();
             currentActionBarHeight = this.bitmapToEdit.getHeight();
         } else {
             currentActionBarHeight = (size2 - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(48.0f);
-            f = size;
+            width = size;
         }
-        float f2 = size;
-        float floor = (float) Math.floor((f2 * currentActionBarHeight) / f);
-        float f3 = currentActionBarHeight2;
-        if (floor > f3) {
-            f2 = (float) Math.floor((f * f3) / currentActionBarHeight);
-            floor = f3;
+        float fFloor = size;
+        float fFloor2 = (float) Math.floor((fFloor * currentActionBarHeight) / width);
+        float f = currentActionBarHeight2;
+        if (fFloor2 > f) {
+            fFloor = (float) Math.floor((width * f) / currentActionBarHeight);
+            fFloor2 = f;
         }
-        int i3 = (int) f2;
-        int i4 = (int) floor;
+        int i3 = (int) fFloor;
+        int i4 = (int) fFloor2;
         this.renderView.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(i4, 1073741824));
         this.renderInputView.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(i4, 1073741824));
-        float f4 = f2 / this.paintingSize.width;
-        this.baseScale = f4;
-        this.entitiesView.setScaleX(f4);
+        float f2 = fFloor / this.paintingSize.width;
+        this.baseScale = f2;
+        this.entitiesView.setScaleX(f2);
         this.entitiesView.setScaleY(this.baseScale);
         this.entitiesView.measure(View.MeasureSpec.makeMeasureSpec((int) this.paintingSize.width, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.paintingSize.height, 1073741824));
         ThanosEffect thanosEffect = this.thanosEffect;
@@ -1962,30 +1945,30 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int measureKeyboardHeight;
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int iMeasureKeyboardHeight;
         super.onLayout(z, i, i2, i3, i4);
         int i5 = i3 - i;
         int i6 = i4 - i2;
         if (this.emojiView != null) {
             if (AndroidUtilities.isTablet()) {
-                measureKeyboardHeight = i6 - this.emojiView.getMeasuredHeight();
+                iMeasureKeyboardHeight = i6 - this.emojiView.getMeasuredHeight();
             } else {
-                measureKeyboardHeight = (measureKeyboardHeight() + i6) - this.emojiView.getMeasuredHeight();
+                iMeasureKeyboardHeight = (measureKeyboardHeight() + i6) - this.emojiView.getMeasuredHeight();
             }
             EmojiView emojiView = this.emojiView;
-            emojiView.layout(0, measureKeyboardHeight, emojiView.getMeasuredWidth(), this.emojiView.getMeasuredHeight() + measureKeyboardHeight);
+            emojiView.layout(0, iMeasureKeyboardHeight, emojiView.getMeasuredWidth(), this.emojiView.getMeasuredHeight() + iMeasureKeyboardHeight);
         }
         int i7 = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i7;
-        int ceil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
-        int dp = ((((i6 - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) - this.renderView.getMeasuredHeight()) / 2) + AndroidUtilities.dp(8.0f) + i7 + ((getAdditionalTop() - getAdditionalBottom()) / 2);
+        int iCeil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
+        int iDp = ((((i6 - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) - this.renderView.getMeasuredHeight()) / 2) + AndroidUtilities.dp(8.0f) + i7 + ((getAdditionalTop() - getAdditionalBottom()) / 2);
         RenderView renderView = this.renderView;
-        renderView.layout(ceil, dp, renderView.getMeasuredWidth() + ceil, this.renderView.getMeasuredHeight() + dp);
+        renderView.layout(iCeil, iDp, renderView.getMeasuredWidth() + iCeil, this.renderView.getMeasuredHeight() + iDp);
         View view = this.renderInputView;
-        view.layout(ceil, dp, view.getMeasuredWidth() + ceil, this.renderInputView.getMeasuredHeight() + dp);
-        int measuredWidth = ((this.renderView.getMeasuredWidth() - this.entitiesView.getMeasuredWidth()) / 2) + ceil;
-        int measuredHeight = ((this.renderView.getMeasuredHeight() - this.entitiesView.getMeasuredHeight()) / 2) + dp;
+        view.layout(iCeil, iDp, view.getMeasuredWidth() + iCeil, this.renderInputView.getMeasuredHeight() + iDp);
+        int measuredWidth = ((this.renderView.getMeasuredWidth() - this.entitiesView.getMeasuredWidth()) / 2) + iCeil;
+        int measuredHeight = ((this.renderView.getMeasuredHeight() - this.entitiesView.getMeasuredHeight()) / 2) + iDp;
         EntitiesContainerView entitiesContainerView = this.entitiesView;
         entitiesContainerView.layout(measuredWidth, measuredHeight, entitiesContainerView.getMeasuredWidth() + measuredWidth, this.entitiesView.getMeasuredHeight() + measuredHeight);
         ThanosEffect thanosEffect = this.thanosEffect;
@@ -1993,7 +1976,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             thanosEffect.layout(measuredWidth, measuredHeight, this.entitiesView.getMeasuredWidth() + measuredWidth, this.entitiesView.getMeasuredHeight() + measuredHeight);
         }
         FrameLayout frameLayout = this.selectionContainerView;
-        frameLayout.layout(ceil, dp, frameLayout.getMeasuredWidth() + ceil, this.selectionContainerView.getMeasuredHeight() + dp);
+        frameLayout.layout(iCeil, iDp, frameLayout.getMeasuredWidth() + iCeil, this.selectionContainerView.getMeasuredHeight() + iDp);
     }
 
     private Size getPaintingSize() {
@@ -2008,9 +1991,9 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         Size size2 = new Size(width, height);
         float f = i;
         size2.width = f;
-        float floor = (float) Math.floor((f * height) / width);
-        size2.height = floor;
-        if (floor > f) {
+        float fFloor = (float) Math.floor((f * height) / width);
+        size2.height = fFloor;
+        if (fFloor > f) {
             size2.height = f;
             size2.width = (float) Math.floor((f * width) / height);
         }
@@ -2045,49 +2028,49 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$detectFaces$24();
+                this.f$0.lambda$detectFaces$24();
             }
         }, 200L);
     }
 
     public void lambda$detectFaces$24() {
         int i;
-        FaceDetector faceDetector = null;
+        FaceDetector faceDetectorBuild = null;
         try {
             try {
-                faceDetector = new FaceDetector.Builder(getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
+                faceDetectorBuild = new FaceDetector.Builder(getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
             } catch (Exception e) {
                 FileLog.e(e);
                 if (0 == 0) {
                     return;
                 }
             }
-            if (!faceDetector.isOperational()) {
+            if (!faceDetectorBuild.isOperational()) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("face detection is not operational");
                 }
-                faceDetector.release();
+                faceDetectorBuild.release();
                 return;
             }
             try {
-                SparseArray detect = faceDetector.detect(new Frame.Builder().setBitmap(this.facesBitmap).setRotation(getFrameRotation()).build());
+                SparseArray sparseArrayDetect = faceDetectorBuild.detect(new Frame.Builder().setBitmap(this.facesBitmap).setRotation(getFrameRotation()).build());
                 ArrayList arrayList = new ArrayList();
                 Size paintingSize = getPaintingSize();
-                for (i = 0; i < detect.size(); i++) {
-                    PhotoFace photoFace = new PhotoFace((Face) detect.get(detect.keyAt(i)), this.facesBitmap, paintingSize, isSidewardOrientation());
+                for (i = 0; i < sparseArrayDetect.size(); i++) {
+                    PhotoFace photoFace = new PhotoFace((Face) sparseArrayDetect.get(sparseArrayDetect.keyAt(i)), this.facesBitmap, paintingSize, isSidewardOrientation());
                     if (photoFace.isSufficient()) {
                         arrayList.add(photoFace);
                     }
                 }
                 this.faces = arrayList;
-                faceDetector.release();
+                faceDetectorBuild.release();
             } catch (Throwable th) {
                 FileLog.e(th);
-                faceDetector.release();
+                faceDetectorBuild.release();
             }
         } catch (Throwable th2) {
             if (0 != 0) {
-                faceDetector.release();
+                faceDetectorBuild.release();
             }
             throw th2;
         }
@@ -2106,9 +2089,9 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public static void lambda$shutdown$25() {
-        Looper myLooper = Looper.myLooper();
-        if (myLooper != null) {
-            myLooper.quit();
+        Looper looperMyLooper = Looper.myLooper();
+        if (looperMyLooper != null) {
+            looperMyLooper.quit();
         }
     }
 
@@ -2215,12 +2198,12 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         double d = x;
         double radians = (float) Math.toRadians(-this.renderView.getRotation());
         double d2 = y;
-        float cos = ((float) ((Math.cos(radians) * d) - (Math.sin(radians) * d2))) + (this.renderView.getMeasuredWidth() / 2.0f);
-        float sin = ((float) ((d * Math.sin(radians)) + (d2 * Math.cos(radians)))) + (this.renderView.getMeasuredHeight() / 2.0f);
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setLocation(cos, sin);
-        this.renderView.onTouch(obtain);
-        obtain.recycle();
+        float fCos = ((float) ((Math.cos(radians) * d) - (Math.sin(radians) * d2))) + (this.renderView.getMeasuredWidth() / 2.0f);
+        float fSin = ((float) ((d * Math.sin(radians)) + (d2 * Math.cos(radians)))) + (this.renderView.getMeasuredHeight() / 2.0f);
+        MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+        motionEventObtain.setLocation(fCos, fSin);
+        this.renderView.onTouch(motionEventObtain);
+        motionEventObtain.recycle();
         return true;
     }
 
@@ -2274,13 +2257,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                     measuredHeight = measuredWidth;
                     measuredWidth = measuredHeight;
                 }
-                float max = Math.max(f4 / ((int) (r12.cropPw * r11)), f5 / ((int) (r12.cropPh * r10)));
-                f7 = f12 * max;
+                float fMax = Math.max(f4 / ((int) (r12.cropPw * r11)), f5 / ((int) (r12.cropPh * r10)));
+                f7 = f12 * fMax;
                 MediaController.CropState cropState2 = this.currentCropState;
-                float f13 = cropState2.cropPx * measuredHeight * f * max;
+                float f13 = cropState2.cropPx * measuredHeight * f * fMax;
                 float f14 = cropState2.cropScale;
                 f8 = (f13 * f14) + f2;
-                float f15 = (cropState2.cropPy * measuredWidth * f * max * f14) + f11;
+                float f15 = (cropState2.cropPy * measuredWidth * f * fMax * f14) + f11;
                 f10 = cropState2.cropRotate + i2;
                 f9 = f15;
                 f6 = 1.0f;
@@ -2346,18 +2329,18 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 if ((text instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) != null) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
                         if (animatedEmojiSpan != null) {
-                            TLRPC.Document document = animatedEmojiSpan.document;
-                            if (document == null) {
-                                document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                            TLRPC.Document documentFindDocument = animatedEmojiSpan.document;
+                            if (documentFindDocument == null) {
+                                documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                             }
-                            if (document != null) {
+                            if (documentFindDocument != null) {
                                 if (arrayList == null) {
                                     arrayList = new ArrayList();
                                 }
                                 TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
-                                tL_inputDocument2.id = document.id;
-                                tL_inputDocument2.access_hash = document.access_hash;
-                                byte[] bArr2 = document.file_reference;
+                                tL_inputDocument2.id = documentFindDocument.id;
+                                tL_inputDocument2.access_hash = documentFindDocument.access_hash;
+                                byte[] bArr2 = documentFindDocument.file_reference;
                                 tL_inputDocument2.file_reference = bArr2;
                                 if (bArr2 == null) {
                                     tL_inputDocument2.file_reference = new byte[0];
@@ -2414,13 +2397,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             this.typefaceMenuTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    LPhotoPaintView.this.lambda$showTypefaceMenu$27(dynamicAnimation, f, f2);
+                    this.f$0.lambda$showTypefaceMenu$27(dynamicAnimation, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    LPhotoPaintView.this.lambda$showTypefaceMenu$28(z, dynamicAnimation, z2, f, f2);
+                    this.f$0.lambda$showTypefaceMenu$28(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.start();
@@ -2462,13 +2445,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             this.toolsTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    LPhotoPaintView.this.lambda$showColorList$29(barView, z, zArr, translationY, dynamicAnimation, f, f2);
+                    this.f$0.lambda$showColorList$29(barView, z, zArr, translationY, dynamicAnimation, f, f2);
                 }
             });
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    LPhotoPaintView.this.lambda$showColorList$30(z, dynamicAnimation, z2, f, f2);
+                    this.f$0.lambda$showColorList$30(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -2534,7 +2517,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        LPhotoPaintView.this.lambda$setCurrentSwatch$31(num, i, valueAnimator);
+                        this.f$0.lambda$setCurrentSwatch$31(num, i, valueAnimator);
                     }
                 });
                 duration.start();
@@ -2552,8 +2535,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     public void lambda$setCurrentSwatch$31(Integer num, int i, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, fFloatValue);
         FrameLayout frameLayout = this.bottomLayout;
         if (frameLayout != null) {
             frameLayout.invalidate();
@@ -2634,9 +2617,9 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                         this.path.rewind();
                         this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, measuredWidth, Path.Direction.CW);
                         canvas.clipPath(this.path);
-                        boolean drawChild = super.drawChild(canvas, view, j);
+                        boolean zDrawChild = super.drawChild(canvas, view, j);
                         canvas.restore();
-                        return drawChild;
+                        return zDrawChild;
                     }
                     return super.drawChild(canvas, view, j);
                 }
@@ -2697,12 +2680,12 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 this.image2View.setImageResource(i);
                 this.image2View.setVisibility(0);
                 this.image2View.setAlpha(1.0f);
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.imageSwitchAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.imageSwitchAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        LPhotoPaintView.PopupButton.this.lambda$setIcon$0(z, valueAnimator2);
+                        this.f$0.lambda$setIcon$0(z, valueAnimator2);
                     }
                 });
                 this.imageSwitchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2727,10 +2710,10 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         public void lambda$setIcon$0(boolean z, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.imageSwitchT = floatValue;
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.imageSwitchT = fFloatValue;
             if (!z) {
-                this.imageView.setAlpha(1.0f - floatValue);
+                this.imageView.setAlpha(1.0f - fFloatValue);
             }
             this.imagesView.invalidate();
         }
@@ -2797,7 +2780,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$onAddButtonPressed$35();
+                this.f$0.lambda$onAddButtonPressed$35();
             }
         }, this, 53, 0, getHeight());
     }
@@ -2807,21 +2790,19 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         for (int i = 0; i < Brush.Shape.SHAPES_LIST.size(); i++) {
             final Brush.Shape shape = (Brush.Shape) Brush.Shape.SHAPES_LIST.get(i);
             final int filledIconRes = fillShapes ? shape.getFilledIconRes() : shape.getIconRes();
-            PopupButton buttonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
+            PopupButton popupButtonButtonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
                 @Override
                 public final void run() {
-                    LPhotoPaintView.this.lambda$onAddButtonPressed$33(shape, filledIconRes);
+                    this.f$0.lambda$onAddButtonPressed$33(shape, filledIconRes);
                 }
             });
-            buttonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
+            popupButtonButtonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$onAddButtonPressed$34;
-                    lambda$onAddButtonPressed$34 = LPhotoPaintView.this.lambda$onAddButtonPressed$34(view);
-                    return lambda$onAddButtonPressed$34;
+                    return this.f$0.lambda$onAddButtonPressed$34(view);
                 }
             });
-            this.popupLayout.addView((View) buttonForPopup, LayoutHelper.createLinear(-1, 48));
+            this.popupLayout.addView((View) popupButtonButtonForPopup, LayoutHelper.createLinear(-1, 48));
         }
     }
 
@@ -2853,7 +2834,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$showMenuForEntity$41(entityView);
+                this.f$0.lambda$showMenuForEntity$41(entityView);
             }
         }, this, 51, centerLocationInWindow[0], centerLocationInWindow[1] - AndroidUtilities.dp(32.0f));
     }
@@ -2875,7 +2856,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$showMenuForEntity$36(entityView, view);
+                this.f$0.lambda$showMenuForEntity$36(entityView, view);
             }
         });
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, 48));
@@ -2892,7 +2873,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LPhotoPaintView.this.lambda$showMenuForEntity$37(view);
+                    this.f$0.lambda$showMenuForEntity$37(view);
                 }
             });
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, 48));
@@ -2910,7 +2891,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LPhotoPaintView.this.lambda$showMenuForEntity$38(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$38(entityView, view);
                 }
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 48));
@@ -2929,7 +2910,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LPhotoPaintView.this.lambda$showMenuForEntity$39(view);
+                    this.f$0.lambda$showMenuForEntity$39(view);
                 }
             });
             linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 48));
@@ -2949,7 +2930,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 textView5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        LPhotoPaintView.this.lambda$showMenuForEntity$40(photoView, view);
+                        this.f$0.lambda$showMenuForEntity$40(photoView, view);
                     }
                 });
                 linearLayout.addView(textView5, LayoutHelper.createLinear(-2, 44));
@@ -3017,15 +2998,15 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         if (entityView2 == null) {
             return;
         }
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(entityView2);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(entityView2);
         EntityView entityView3 = this.currentEntityView;
         if (entityView3 instanceof StickerView) {
-            StickerView stickerView = new StickerView(getContext(), (StickerView) this.currentEntityView, startPositionRelativeToEntity);
+            StickerView stickerView = new StickerView(getContext(), (StickerView) this.currentEntityView, pointStartPositionRelativeToEntity);
             stickerView.setDelegate(this);
             this.entitiesView.addView(stickerView);
             entityView = stickerView;
         } else if (entityView3 instanceof TextPaintView) {
-            TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) this.currentEntityView, startPositionRelativeToEntity);
+            TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) this.currentEntityView, pointStartPositionRelativeToEntity);
             textPaintView.setDelegate(this);
             textPaintView.setMaxWidth((int) (getPaintingSize().width - 20.0f));
             this.entitiesView.addView(textPaintView, LayoutHelper.createFrame(-2, -2.0f));
@@ -3045,22 +3026,22 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             return new Point(position.x + f, position.y + f);
         }
         float f2 = cropState != null ? 100.0f / cropState.cropScale : 100.0f;
-        Point centerPositionForEntity = centerPositionForEntity();
+        Point pointCenterPositionForEntity = centerPositionForEntity();
         while (true) {
             boolean z = false;
             for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
                 View childAt = this.entitiesView.getChildAt(i);
                 if (childAt instanceof EntityView) {
                     Point position2 = ((EntityView) childAt).getPosition();
-                    if (((float) Math.sqrt(Math.pow(position2.x - centerPositionForEntity.x, 2.0d) + Math.pow(position2.y - centerPositionForEntity.y, 2.0d))) < f2) {
+                    if (((float) Math.sqrt(Math.pow(position2.x - pointCenterPositionForEntity.x, 2.0d) + Math.pow(position2.y - pointCenterPositionForEntity.y, 2.0d))) < f2) {
                         z = true;
                     }
                 }
             }
             if (!z) {
-                return centerPositionForEntity;
+                return pointCenterPositionForEntity;
             }
-            centerPositionForEntity = new Point(centerPositionForEntity.x + f, centerPositionForEntity.y + f);
+            pointCenterPositionForEntity = new Point(pointCenterPositionForEntity.x + f, pointCenterPositionForEntity.y + f);
         }
     }
 
@@ -3079,15 +3060,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    boolean lambda$showPopup$42;
-                    lambda$showPopup$42 = LPhotoPaintView.this.lambda$showPopup$42(view2, motionEvent);
-                    return lambda$showPopup$42;
+                    return this.f$0.lambda$showPopup$42(view2, motionEvent);
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    LPhotoPaintView.this.lambda$showPopup$43(keyEvent);
+                    this.f$0.lambda$showPopup$43(keyEvent);
                 }
             });
             this.popupLayout.setShownFromBottom(true);
@@ -3107,7 +3086,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    LPhotoPaintView.this.lambda$showPopup$44();
+                    this.f$0.lambda$showPopup$44();
                 }
             });
         }
@@ -3155,8 +3134,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     private Size baseStickerSize() {
-        float floor = (float) Math.floor(getPaintingSize().width * 0.5d);
-        return new Size(floor, floor);
+        float fFloor = (float) Math.floor(getPaintingSize().width * 0.5d);
+        return new Size(fFloor, fFloor);
     }
 
     private Point centerPositionForEntity() {
@@ -3165,10 +3144,10 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         float f2 = paintingSize.height / 2.0f;
         if (this.currentCropState != null) {
             double radians = (float) Math.toRadians(-(r2.transformRotation + r2.cropRotate));
-            float cos = (float) ((this.currentCropState.cropPx * Math.cos(radians)) - (this.currentCropState.cropPy * Math.sin(radians)));
-            float sin = (float) ((this.currentCropState.cropPx * Math.sin(radians)) + (this.currentCropState.cropPy * Math.cos(radians)));
-            f -= cos * paintingSize.width;
-            f2 -= sin * paintingSize.height;
+            float fCos = (float) ((this.currentCropState.cropPx * Math.cos(radians)) - (this.currentCropState.cropPy * Math.sin(radians)));
+            float fSin = (float) ((this.currentCropState.cropPx * Math.sin(radians)) + (this.currentCropState.cropPy * Math.cos(radians)));
+            f -= fCos * paintingSize.width;
+            f2 -= fSin * paintingSize.height;
         }
         return new Point(f, f2);
     }
@@ -3218,13 +3197,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (i >= 0 && i <= 3 && !this.faces.isEmpty()) {
             int size = this.faces.size();
-            int nextInt = Utilities.random.nextInt(size);
+            int iNextInt = Utilities.random.nextInt(size);
             for (int i2 = size; i2 > 0; i2--) {
-                PhotoFace photoFace = (PhotoFace) this.faces.get(nextInt);
+                PhotoFace photoFace = (PhotoFace) this.faces.get(iNextInt);
                 if (!isFaceAnchorOccupied(photoFace, i, j, tL_maskCoords)) {
                     return photoFace;
                 }
-                nextInt = (nextInt + 1) % size;
+                iNextInt = (iNextInt + 1) % size;
             }
         }
         return null;
@@ -3243,8 +3222,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                     continue;
                 } else {
                     Point position = stickerView.getPosition();
-                    float hypot = (float) Math.hypot(position.x - r14.x, position.y - r14.y);
-                    if ((j == stickerView.getSticker().id || this.faces.size() > 1) && hypot < widthForAnchor) {
+                    float fHypot = (float) Math.hypot(position.x - r14.x, position.y - r14.y);
+                    if ((j == stickerView.getSticker().id || this.faces.size() > 1) && fHypot < widthForAnchor) {
                         return true;
                     }
                 }
@@ -3254,8 +3233,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     private StickerView createSticker(Object obj, TLRPC.Document document, boolean z) {
-        StickerPosition calculateStickerPosition = calculateStickerPosition(document);
-        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), document, obj) {
+        StickerPosition stickerPositionCalculateStickerPosition = calculateStickerPosition(document);
+        StickerView stickerView = new StickerView(getContext(), stickerPositionCalculateStickerPosition.position, stickerPositionCalculateStickerPosition.angle, stickerPositionCalculateStickerPosition.scale, baseStickerSize(), document, obj) {
             @Override
             protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
                 LPhotoPaintView.this.didSetAnimatedSticker(rLottieDrawable);
@@ -3265,10 +3244,10 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             stickerView.centerImage.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         stickerView.centerImage.setLayerNum(12);
-        if (calculateStickerPosition.position.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        if (stickerPositionCalculateStickerPosition.position.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             stickerView.setStickyX(2);
         }
-        if (calculateStickerPosition.position.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (stickerPositionCalculateStickerPosition.position.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             stickerView.setStickyY(2);
         }
         stickerView.setDelegate(this);
@@ -3310,7 +3289,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$registerRemovalUndo$45(entityView);
+                this.f$0.lambda$registerRemovalUndo$45(entityView);
             }
         });
     }
@@ -3394,7 +3373,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return 0.0f;
     }
 
-    public static class StickerPosition {
+    private static class StickerPosition {
         private float angle;
         private Point position;
         private float scale;
@@ -3470,20 +3449,20 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             if (z || this.keyboardVisible) {
                 return;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    LPhotoPaintView.this.lambda$showEmojiPopup$46(valueAnimator);
+                    this.f$0.lambda$showEmojiPopup$46(valueAnimator);
                 }
             });
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     LPhotoPaintView.this.emojiView.setTranslationY(0.0f);
                 }
             });
-            ofFloat.start();
+            valueAnimatorOfFloat.start();
             return;
         }
         ChatActivityEnterViewAnimatedIconView emojiButton2 = this.textOptionsView.getEmojiButton();
@@ -3517,16 +3496,16 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         if (z) {
             EmojiView emojiView = this.emojiView;
             if (emojiView != null && emojiView.getVisibility() == 0 && !this.waitingForKeyboardOpen) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.emojiView.getMeasuredHeight());
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, this.emojiView.getMeasuredHeight());
                 this.bottomPanelIgnoreOnce = false;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        LPhotoPaintView.this.lambda$hideEmojiPopup$47(valueAnimator);
+                        this.f$0.lambda$hideEmojiPopup$47(valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
-                ofFloat.addListener(new AnimatorListenerAdapter() {
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         LPhotoPaintView lPhotoPaintView = LPhotoPaintView.this;
@@ -3535,9 +3514,9 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                         LPhotoPaintView.this.hideEmojiView();
                     }
                 });
-                ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(250L);
+                valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                valueAnimatorOfFloat.start();
                 return;
             }
             hideEmojiView();
@@ -3672,7 +3651,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         addView(this.emojiView);
     }
 
-    public class AnonymousClass22 implements EmojiView.EmojiViewDelegate {
+    class AnonymousClass22 implements EmojiView.EmojiViewDelegate {
         int innerTextChange;
 
         @Override
@@ -3805,14 +3784,14 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 try {
                     try {
                         this.innerTextChange = 2;
-                        CharSequence replaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
-                        if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
+                        if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                             for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                                 emojiSpan.scale = 0.85f;
                             }
                         }
-                        editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
-                        int length = selectionEnd + replaceEmoji.length();
+                        editText.setText(editText.getText().insert(selectionEnd, charSequenceReplaceEmoji));
+                        int length = selectionEnd + charSequenceReplaceEmoji.length();
                         editText.setSelection(length, length);
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -3867,7 +3846,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    LPhotoPaintView.AnonymousClass22.this.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -3884,14 +3863,14 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         this.destroyed = false;
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         this.destroyed = true;
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
@@ -3918,7 +3897,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
                 @Override
                 public final void run() {
-                    LPhotoPaintView.this.lambda$getThanosEffect$48();
+                    this.f$0.lambda$getThanosEffect$48();
                 }
             });
             this.thanosEffect = thanosEffect;
@@ -3959,24 +3938,24 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             float height2 = segmentedOutBitmap.getHeight();
             float f3 = width2 / 2.0f;
             float f4 = height2 / 2.0f;
-            float sqrt = (float) Math.sqrt((f3 * f3) + (f4 * f4));
-            float f5 = sqrt * 2.0f;
+            float fSqrt = (float) Math.sqrt((f3 * f3) + (f4 * f4));
+            float f5 = fSqrt * 2.0f;
             int i = (int) f5;
-            Bitmap createBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             canvas.save();
-            canvas.rotate(photoView.getRotation(), sqrt, sqrt);
+            canvas.rotate(photoView.getRotation(), fSqrt, fSqrt);
             canvas.drawBitmap(segmentedOutBitmap, (f5 - width2) / 2.0f, (f5 - height2) / 2.0f, (Paint) null);
             segmentedOutBitmap.recycle();
             float f6 = width / 2.0f;
             float f7 = height / 2.0f;
-            float sqrt2 = ((float) Math.sqrt((f6 * f6) + (f7 * f7))) * 2.0f;
-            f2 = (-(sqrt2 - width)) / 2.0f;
-            float f8 = (-(sqrt2 - height)) / 2.0f;
-            height = sqrt2;
+            float fSqrt2 = ((float) Math.sqrt((f6 * f6) + (f7 * f7))) * 2.0f;
+            f2 = (-(fSqrt2 - width)) / 2.0f;
+            float f8 = (-(fSqrt2 - height)) / 2.0f;
+            height = fSqrt2;
             f = f8;
             width = height;
-            segmentedOutBitmap = createBitmap;
+            segmentedOutBitmap = bitmapCreateBitmap;
         } else {
             f = 0.0f;
         }
@@ -3986,7 +3965,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         thanosEffect.animate(matrix, segmentedOutBitmap, new Runnable() {
             @Override
             public final void run() {
-                PhotoView.this.onSwitchSegmentedAnimationStarted(true);
+                photoView.onSwitchSegmentedAnimationStarted(true);
             }
         }, new Runnable() {
             @Override

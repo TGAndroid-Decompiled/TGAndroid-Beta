@@ -20,17 +20,17 @@ class RefCountDelegate implements RefCounted {
     @Override
     public void release() {
         Runnable runnable;
-        int decrementAndGet = this.refCount.decrementAndGet();
-        if (decrementAndGet < 0) {
+        int iDecrementAndGet = this.refCount.decrementAndGet();
+        if (iDecrementAndGet < 0) {
             throw new IllegalStateException("release() called on an object with refcount < 1");
         }
-        if (decrementAndGet != 0 || (runnable = this.releaseCallback) == null) {
+        if (iDecrementAndGet != 0 || (runnable = this.releaseCallback) == null) {
             return;
         }
         runnable.run();
     }
 
-    public boolean safeRetain() {
+    boolean safeRetain() {
         int i = this.refCount.get();
         while (i != 0) {
             if (this.refCount.weakCompareAndSet(i, i + 1)) {

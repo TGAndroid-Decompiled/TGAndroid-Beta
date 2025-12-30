@@ -679,7 +679,7 @@ public class PeerConnection {
         this(nativePeerConnectionFactory.createNativePeerConnection());
     }
 
-    public PeerConnection(long j) {
+    PeerConnection(long j) {
         this.localStreams = new ArrayList();
         this.senders = new ArrayList();
         this.receivers = new ArrayList();
@@ -765,11 +765,11 @@ public class PeerConnection {
     }
 
     public RtpSender createSender(String str, String str2) {
-        RtpSender nativeCreateSender = nativeCreateSender(str, str2);
-        if (nativeCreateSender != null) {
-            this.senders.add(nativeCreateSender);
+        RtpSender rtpSenderNativeCreateSender = nativeCreateSender(str, str2);
+        if (rtpSenderNativeCreateSender != null) {
+            this.senders.add(rtpSenderNativeCreateSender);
         }
-        return nativeCreateSender;
+        return rtpSenderNativeCreateSender;
     }
 
     public List<RtpSender> getSenders() {
@@ -777,9 +777,9 @@ public class PeerConnection {
         while (it.hasNext()) {
             it.next().dispose();
         }
-        List<RtpSender> nativeGetSenders = nativeGetSenders();
-        this.senders = nativeGetSenders;
-        return DesugarCollections.unmodifiableList(nativeGetSenders);
+        List<RtpSender> listNativeGetSenders = nativeGetSenders();
+        this.senders = listNativeGetSenders;
+        return DesugarCollections.unmodifiableList(listNativeGetSenders);
     }
 
     public List<RtpReceiver> getReceivers() {
@@ -787,9 +787,9 @@ public class PeerConnection {
         while (it.hasNext()) {
             it.next().dispose();
         }
-        List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
-        this.receivers = nativeGetReceivers;
-        return DesugarCollections.unmodifiableList(nativeGetReceivers);
+        List<RtpReceiver> listNativeGetReceivers = nativeGetReceivers();
+        this.receivers = listNativeGetReceivers;
+        return DesugarCollections.unmodifiableList(listNativeGetReceivers);
     }
 
     public List<RtpTransceiver> getTransceivers() {
@@ -797,9 +797,9 @@ public class PeerConnection {
         while (it.hasNext()) {
             it.next().dispose();
         }
-        List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
-        this.transceivers = nativeGetTransceivers;
-        return DesugarCollections.unmodifiableList(nativeGetTransceivers);
+        List<RtpTransceiver> listNativeGetTransceivers = nativeGetTransceivers();
+        this.transceivers = listNativeGetTransceivers;
+        return DesugarCollections.unmodifiableList(listNativeGetTransceivers);
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {
@@ -810,12 +810,12 @@ public class PeerConnection {
         if (mediaStreamTrack == null || list == null) {
             throw new NullPointerException("No MediaStreamTrack specified in addTrack.");
         }
-        RtpSender nativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
-        if (nativeAddTrack == null) {
+        RtpSender rtpSenderNativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
+        if (rtpSenderNativeAddTrack == null) {
             throw new IllegalStateException("C++ addTrack failed.");
         }
-        this.senders.add(nativeAddTrack);
-        return nativeAddTrack;
+        this.senders.add(rtpSenderNativeAddTrack);
+        return rtpSenderNativeAddTrack;
     }
 
     public boolean removeTrack(RtpSender rtpSender) {
@@ -836,12 +836,12 @@ public class PeerConnection {
         if (rtpTransceiverInit == null) {
             rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
         }
-        RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
-        if (nativeAddTransceiverWithTrack == null) {
+        RtpTransceiver rtpTransceiverNativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
+        if (rtpTransceiverNativeAddTransceiverWithTrack == null) {
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
-        this.transceivers.add(nativeAddTransceiverWithTrack);
-        return nativeAddTransceiverWithTrack;
+        this.transceivers.add(rtpTransceiverNativeAddTransceiverWithTrack);
+        return rtpTransceiverNativeAddTransceiverWithTrack;
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType) {
@@ -855,12 +855,12 @@ public class PeerConnection {
         if (rtpTransceiverInit == null) {
             rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
         }
-        RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
-        if (nativeAddTransceiverOfType == null) {
+        RtpTransceiver rtpTransceiverNativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
+        if (rtpTransceiverNativeAddTransceiverOfType == null) {
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
-        this.transceivers.add(nativeAddTransceiverOfType);
-        return nativeAddTransceiverOfType;
+        this.transceivers.add(rtpTransceiverNativeAddTransceiverOfType);
+        return rtpTransceiverNativeAddTransceiverOfType;
     }
 
     @Deprecated

@@ -74,7 +74,7 @@ public class PhotoEditToolCell extends FrameLayout {
         this.seekBar.setDelegate(new PhotoEditorSeekBar.PhotoEditorSeekBarDelegate() {
             @Override
             public final void onProgressChanged(int i, int i2) {
-                PhotoEditToolCell.this.lambda$setSeekBarDelegate$0(photoEditorSeekBarDelegate, i, i2);
+                this.f$0.lambda$setSeekBarDelegate$0(photoEditorSeekBarDelegate, i, i2);
             }
         });
     }

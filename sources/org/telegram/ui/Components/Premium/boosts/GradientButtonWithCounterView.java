@@ -26,7 +26,7 @@ public class GradientButtonWithCounterView extends ButtonWithCounterView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (this.incGradient) {
             float f = this.progress + 0.016f;
             this.progress = f;

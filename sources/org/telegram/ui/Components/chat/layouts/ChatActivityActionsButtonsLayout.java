@@ -40,18 +40,18 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
         ButtonHolder buttonHolder2 = new ButtonHolder();
         this.forwardButton = buttonHolder2;
         this.resourcesProvider = resourcesProvider;
-        ChatActivityBlurredRoundButton create = ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider, 0);
-        buttonHolder.button = create;
-        create.setOnClickListener(new View.OnClickListener() {
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider);
+        buttonHolder.button = chatActivityBlurredRoundButtonCreate;
+        chatActivityBlurredRoundButtonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 ChatActivityActionsButtonsLayout.lambda$new$0(view);
             }
         });
         ScaleStateListAnimator.apply(buttonHolder.button, 0.065f, 2.0f);
-        ChatActivityBlurredRoundButton create2 = ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider, 0);
-        buttonHolder2.button = create2;
-        create2.setOnClickListener(new View.OnClickListener() {
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate2 = ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider);
+        buttonHolder2.button = chatActivityBlurredRoundButtonCreate2;
+        chatActivityBlurredRoundButtonCreate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 ChatActivityActionsButtonsLayout.lambda$new$1(view);
@@ -87,13 +87,13 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         textView.setTextColor(Theme.getColor(Theme.key_glass_defaultText, this.resourcesProvider));
         textView.setTypeface(AndroidUtilities.bold());
-        Drawable mutate = getContext().getResources().getDrawable(i).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        Drawable drawable = z ? mutate : null;
+        Drawable drawableMutate = getContext().getResources().getDrawable(i).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        Drawable drawable = z ? drawableMutate : null;
         if (z) {
-            mutate = null;
+            drawableMutate = null;
         }
-        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, drawableMutate, (Drawable) null);
         buttonHolder.textView = textView;
         buttonHolder.button.addView(textView, LayoutHelper.createFrame(-2, -2, 17));
     }
@@ -127,18 +127,18 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
 
     public void checkHolderPositionsAndVisibility(ButtonHolder buttonHolder) {
         float floatValue = this.totalVisibilityFactor * buttonHolder.visibilityAnimator.getFloatValue();
-        float dp = AndroidUtilities.dp(54.0f) * (1.0f - floatValue);
+        float fDp = AndroidUtilities.dp(54.0f) * (1.0f - floatValue);
         float measuredWidth = (getMeasuredWidth() / 2.0f) * (1.0f - AnimatorUtils.DECELERATE_INTERPOLATOR.getInterpolation(floatValue));
         if (buttonHolder == this.replyButton) {
             measuredWidth *= -1.0f;
         }
         buttonHolder.button.setTranslationX(measuredWidth);
-        buttonHolder.button.setTranslationY(dp);
+        buttonHolder.button.setTranslationY(fDp);
         buttonHolder.button.setAlpha(floatValue);
         buttonHolder.button.setVisibility(floatValue > 0.0f ? 0 : 4);
     }
 
-    public class ButtonHolder implements FactorAnimator.Target {
+    private class ButtonHolder implements FactorAnimator.Target {
         public ChatActivityBlurredRoundButton button;
         public BoolAnimator enabledAnimator;
         public TextView textView;

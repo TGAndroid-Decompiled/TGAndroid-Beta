@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.Collator;
@@ -134,16 +135,16 @@ public class CountrySelectActivity extends BaseFragment {
 
             @Override
             public void onTextChanged(EditText editText) {
-                String obj = editText.getText().toString();
-                if (TextUtils.isEmpty(obj)) {
+                String string = editText.getText().toString();
+                if (TextUtils.isEmpty(string)) {
                     CountrySelectActivity.this.searchListViewAdapter.search(null);
                     CountrySelectActivity.this.searchWas = false;
                     CountrySelectActivity.this.listView.setAdapter(CountrySelectActivity.this.listViewAdapter);
                     CountrySelectActivity.this.listView.setFastScrollVisible(true);
                     return;
                 }
-                CountrySelectActivity.this.searchListViewAdapter.search(obj);
-                if (obj.length() != 0) {
+                CountrySelectActivity.this.searchListViewAdapter.search(string);
+                if (string.length() != 0) {
                     CountrySelectActivity.this.searchWas = true;
                 }
             }
@@ -178,7 +179,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                CountrySelectActivity.this.lambda$createView$0(view, i2);
+                this.f$0.lambda$createView$0(view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -261,7 +262,7 @@ public class CountrySelectActivity extends BaseFragment {
             return null;
         }
 
-        public CountryAdapter(Context context, ArrayList arrayList, boolean z) {
+        public CountryAdapter(Context context, ArrayList arrayList, boolean z) throws IOException {
             final Comparator boostRepository$$ExternalSyntheticLambda31;
             this.mContext = context;
             if (arrayList != null) {
@@ -278,18 +279,18 @@ public class CountrySelectActivity extends BaseFragment {
                 }
             } else {
                 try {
-                    InputStream open = ApplicationLoader.applicationContext.getResources().getAssets().open("countries.txt");
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open));
+                    InputStream inputStreamOpen = ApplicationLoader.applicationContext.getResources().getAssets().open("countries.txt");
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStreamOpen));
                     while (true) {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine == null) {
+                        String line = bufferedReader.readLine();
+                        if (line == null) {
                             break;
                         }
-                        String[] split = readLine.split(";");
+                        String[] strArrSplit = line.split(";");
                         Country country2 = new Country();
-                        country2.name = split[2];
-                        country2.code = split[0];
-                        String str = split[1];
+                        country2.name = strArrSplit[2];
+                        country2.code = strArrSplit[0];
+                        String str = strArrSplit[1];
                         country2.shortname = str;
                         if (!str.equals("FT") || !z) {
                             String upperCase2 = country2.name.substring(0, 1).toUpperCase();
@@ -303,7 +304,7 @@ public class CountrySelectActivity extends BaseFragment {
                         }
                     }
                     bufferedReader.close();
-                    open.close();
+                    inputStreamOpen.close();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -321,9 +322,7 @@ public class CountrySelectActivity extends BaseFragment {
                 Collections.sort((ArrayList) it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        int lambda$new$0;
-                        lambda$new$0 = CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda31, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
-                        return lambda$new$0;
+                        return CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda31, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
                     }
                 });
             }
@@ -366,14 +365,14 @@ public class CountrySelectActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View createSettingsCell;
+            View viewCreateSettingsCell;
             if (i == 0) {
-                createSettingsCell = CountrySelectActivity.createSettingsCell(this.mContext);
+                viewCreateSettingsCell = CountrySelectActivity.createSettingsCell(this.mContext);
             } else {
-                createSettingsCell = new DividerCell(this.mContext);
-                createSettingsCell.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f));
+                viewCreateSettingsCell = new DividerCell(this.mContext);
+                viewCreateSettingsCell.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f));
             }
-            return new RecyclerListView.Holder(createSettingsCell);
+            return new RecyclerListView.Holder(viewCreateSettingsCell);
         }
 
         @Override
@@ -382,13 +381,13 @@ public class CountrySelectActivity extends BaseFragment {
             if (viewHolder.getItemViewType() == 0) {
                 Country country = (Country) ((ArrayList) this.countries.get(this.sortedCountries.get(i))).get(i2);
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), false);
+                CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), false);
                 if (CountrySelectActivity.this.needPhoneCode) {
                     str = "+" + country.code;
                 } else {
                     str = null;
                 }
-                textSettingsCell.setTextAndValue(replaceEmoji, str, false);
+                textSettingsCell.setTextAndValue(charSequenceReplaceEmoji, str, false);
             }
         }
 
@@ -429,9 +428,9 @@ public class CountrySelectActivity extends BaseFragment {
             return true;
         }
 
-        public CountrySearchAdapter(Context context, HashMap hashMap) {
+        public CountrySearchAdapter(Context context, HashMap map) {
             this.mContext = context;
-            Iterator it = hashMap.values().iterator();
+            Iterator it = map.values().iterator();
             while (it.hasNext()) {
                 Iterator it2 = ((List) it.next()).iterator();
                 while (it2.hasNext()) {
@@ -473,7 +472,7 @@ public class CountrySelectActivity extends BaseFragment {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    CountrySelectActivity.CountrySearchAdapter.this.lambda$processSearch$0(str);
+                    this.f$0.lambda$processSearch$0(str);
                 }
             });
         }
@@ -484,7 +483,7 @@ public class CountrySelectActivity extends BaseFragment {
                 updateSearchResults(new ArrayList());
                 return;
             }
-            String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
             ArrayList arrayList = new ArrayList();
             for (Country country : this.countryList) {
                 String str2 = country.name;
@@ -505,10 +504,10 @@ public class CountrySelectActivity extends BaseFragment {
                 }
                 String str5 = TextUtils.isEmpty(str4) ? "" : "+" + str4;
                 if (!lowerCase2.startsWith(lowerCase)) {
-                    if (!lowerCase2.contains(" " + lowerCase) && !lowerCase3.startsWith(translitSafe)) {
-                        if (!lowerCase3.contains(" " + translitSafe) && !lowerCase4.startsWith(lowerCase)) {
-                            if (!lowerCase4.contains(" " + lowerCase) && !lowerCase5.startsWith(translitSafe)) {
-                                if (!lowerCase5.contains(" " + translitSafe) && !str4.startsWith(lowerCase) && !str5.startsWith(lowerCase)) {
+                    if (!lowerCase2.contains(" " + lowerCase) && !lowerCase3.startsWith(strTranslitSafe)) {
+                        if (!lowerCase3.contains(" " + strTranslitSafe) && !lowerCase4.startsWith(lowerCase)) {
+                            if (!lowerCase4.contains(" " + lowerCase) && !lowerCase5.startsWith(strTranslitSafe)) {
+                                if (lowerCase5.contains(" " + strTranslitSafe) || str4.startsWith(lowerCase) || str5.startsWith(lowerCase)) {
                                 }
                             }
                         }
@@ -523,7 +522,7 @@ public class CountrySelectActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CountrySelectActivity.CountrySearchAdapter.this.lambda$updateSearchResults$1(arrayList);
+                    this.f$0.lambda$updateSearchResults$1(arrayList);
                 }
             });
         }
@@ -566,13 +565,13 @@ public class CountrySelectActivity extends BaseFragment {
             String str;
             Country country = (Country) this.searchResult.get(i);
             TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), false);
+            CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), false);
             if (CountrySelectActivity.this.needPhoneCode) {
                 str = "+" + country.code;
             } else {
                 str = null;
             }
-            textSettingsCell.setTextAndValue(replaceEmoji, str, false);
+            textSettingsCell.setTextAndValue(charSequenceReplaceEmoji, str, false);
         }
     }
 
@@ -583,7 +582,7 @@ public class CountrySelectActivity extends BaseFragment {
         return textSettingsCell;
     }
 
-    public class AnonymousClass4 implements View.OnAttachStateChangeListener {
+    class AnonymousClass4 implements View.OnAttachStateChangeListener {
         private NotificationCenter.NotificationCenterDelegate listener;
         final TextSettingsCell val$view;
 
@@ -592,7 +591,7 @@ public class CountrySelectActivity extends BaseFragment {
             this.listener = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    CountrySelectActivity.AnonymousClass4.lambda$$0(TextSettingsCell.this, i, i2, objArr);
+                    CountrySelectActivity.AnonymousClass4.lambda$$0(textSettingsCell, i, i2, objArr);
                 }
             };
         }

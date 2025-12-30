@@ -25,9 +25,9 @@ public class TLJsonBuilder {
         JSONArray jSONArray = new JSONArray();
         Iterator<T> it = list.iterator();
         while (it.hasNext()) {
-            JSONObject serialize = serialize(it.next());
-            if (serialize != null) {
-                jSONArray.put(serialize);
+            JSONObject jSONObjectSerialize = serialize(it.next());
+            if (jSONObjectSerialize != null) {
+                jSONArray.put(jSONObjectSerialize);
             }
         }
         write(str, jSONArray);
@@ -49,7 +49,7 @@ public class TLJsonBuilder {
         write(str, Boolean.valueOf(z));
     }
 
-    private void write(String str, Object obj) {
+    private void write(String str, Object obj) throws JSONException {
         try {
             this.result2.putOpt(str, obj);
         } catch (JSONException e) {

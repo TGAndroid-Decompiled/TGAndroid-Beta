@@ -88,7 +88,7 @@ public class TermsOfServiceView extends FrameLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TermsOfServiceView.this.lambda$new$4(view2);
+                this.f$0.lambda$new$4(view2);
             }
         });
         TextView textView4 = new TextView(context);
@@ -103,7 +103,7 @@ public class TermsOfServiceView extends FrameLayout {
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TermsOfServiceView.this.lambda$new$6(view2);
+                this.f$0.lambda$new$6(view2);
             }
         });
         View view2 = new View(context);
@@ -120,7 +120,7 @@ public class TermsOfServiceView extends FrameLayout {
         builder.setPositiveButton(LocaleController.getString(R.string.DeclineDeactivate), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                TermsOfServiceView.this.lambda$new$3(alertDialog, i);
+                this.f$0.lambda$new$3(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Back), null);
@@ -135,7 +135,7 @@ public class TermsOfServiceView extends FrameLayout {
         builder.setPositiveButton(LocaleController.getString(R.string.Deactivate), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog2, int i2) {
-                TermsOfServiceView.this.lambda$new$2(alertDialog2, i2);
+                this.f$0.lambda$new$2(alertDialog2, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -150,7 +150,7 @@ public class TermsOfServiceView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(deleteaccount, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TermsOfServiceView.this.lambda$new$1(alertDialog2, tLObject, tL_error);
+                this.f$0.lambda$new$1(alertDialog2, tLObject, tL_error);
             }
         });
         alertDialog2.show();
@@ -160,7 +160,7 @@ public class TermsOfServiceView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TermsOfServiceView.this.lambda$new$0(alertDialog, tLObject, tL_error);
+                this.f$0.lambda$new$0(alertDialog, tLObject, tL_error);
             }
         });
     }
@@ -195,7 +195,7 @@ public class TermsOfServiceView extends FrameLayout {
             builder.setPositiveButton(LocaleController.getString(R.string.Agree), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    TermsOfServiceView.this.lambda$new$5(alertDialog, i);
+                    this.f$0.lambda$new$5(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);

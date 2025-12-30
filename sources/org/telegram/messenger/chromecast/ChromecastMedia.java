@@ -75,43 +75,17 @@ public class ChromecastMedia {
         }
 
         public MediaMetadata buildMetadata() {
-            int i = 3;
+            int i;
+            i = 3;
             String str = this.mimeType;
             str.hashCode();
-            char c = 65535;
-            switch (str.hashCode()) {
-                case -1487394660:
-                    if (str.equals("image/jpeg")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case -979127466:
-                    if (str.equals("application/x-mpegURL")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case -879258763:
-                    if (str.equals("image/png")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-                case 1331848029:
-                    if (str.equals("video/mp4")) {
-                        c = 3;
-                        break;
-                    }
-                    break;
-            }
-            switch (c) {
-                case 0:
-                case 2:
+            switch (str) {
+                case "image/jpeg":
+                case "image/png":
                     i = 4;
                     break;
-                case 1:
-                case 3:
+                case "application/x-mpegURL":
+                case "video/mp4":
                     i = 1;
                     break;
                 default:

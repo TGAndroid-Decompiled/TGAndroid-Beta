@@ -118,9 +118,7 @@ public class PhotoView extends EntityView {
         Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
             @Override
             public final Bitmap decode(BitmapFactory.Options options) {
-                Bitmap decodeFile;
-                decodeFile = BitmapFactory.decodeFile(str, options);
-                return decodeFile;
+                return BitmapFactory.decodeFile(str, options);
             }
         }, 1920, 1920, false, false);
         this.bitmap = scaledBitmap;
@@ -158,8 +156,8 @@ public class PhotoView extends EntityView {
 
     private String getImageFilter() {
         android.graphics.Point point = AndroidUtilities.displaySize;
-        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
-        return round + "_" + round;
+        int iRound = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
+        return iRound + "_" + iRound;
     }
 
     public void lambda$segmentImage$2(final Bitmap bitmap) {
@@ -171,12 +169,12 @@ public class PhotoView extends EntityView {
         client.process(InputImage.fromBitmap(bitmap, this.orientation)).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public final void onSuccess(Object obj) {
-                PhotoView.this.lambda$segmentImage$1((SubjectSegmentationResult) obj);
+                this.f$0.lambda$segmentImage$1((SubjectSegmentationResult) obj);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                PhotoView.this.lambda$segmentImage$3(bitmap, exc);
+                this.f$0.lambda$segmentImage$3(bitmap, exc);
             }
         });
     }
@@ -193,7 +191,7 @@ public class PhotoView extends EntityView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoView.this.lambda$segmentImage$2(bitmap);
+                    this.f$0.lambda$segmentImage$2(bitmap);
                 }
             }, 2000L);
         } else {
@@ -255,8 +253,8 @@ public class PhotoView extends EntityView {
             width = bitmap2.getHeight();
             height = bitmap2.getWidth();
         }
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         this.roundRectPath.rewind();
         RectF rectF = AndroidUtilities.rectTmp;
         float f = width;
@@ -280,7 +278,7 @@ public class PhotoView extends EntityView {
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
         canvas.restore();
         canvas.restore();
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     @Override
@@ -367,8 +365,8 @@ public class PhotoView extends EntityView {
             if (this.bitmap != null) {
                 canvas.translate(this.containerView.getWidth() / 2.0f, this.containerView.getHeight() / 2.0f);
                 canvas.rotate(this.orientation);
-                float max = Math.max(this.baseSize.width / this.bitmap.getWidth(), this.baseSize.height / this.bitmap.getHeight());
-                canvas.scale(max, max);
+                float fMax = Math.max(this.baseSize.width / this.bitmap.getWidth(), this.baseSize.height / this.bitmap.getHeight());
+                canvas.scale(fMax, fMax);
                 if (this.crop != null) {
                     canvas.rotate(-getOrientation());
                     int contentWidth = getContentWidth();
@@ -407,13 +405,13 @@ public class PhotoView extends EntityView {
                 canvas.saveLayerAlpha(0.0f, 0.0f, size.width, size.height, 255, 31);
                 drawSegmented(canvas);
                 canvas.save();
-                long currentTimeMillis = System.currentTimeMillis();
+                long jCurrentTimeMillis = System.currentTimeMillis();
                 if (this.highlightStart <= 0) {
-                    this.highlightStart = currentTimeMillis;
+                    this.highlightStart = jCurrentTimeMillis;
                 }
                 float f8 = this.baseSize.width;
                 float f9 = f8 * 0.8f;
-                float f10 = ((float) (currentTimeMillis - this.highlightStart)) / 1000.0f;
+                float f10 = (jCurrentTimeMillis - this.highlightStart) / 1000.0f;
                 float f11 = (((2.0f * f9) + f8) * f10) - f9;
                 if (this.highlightPaint == null) {
                     Paint paint = new Paint(1);
@@ -459,9 +457,9 @@ public class PhotoView extends EntityView {
             height = this.segmentedImage.getWidth();
         }
         Size size = this.baseSize;
-        float max = Math.max(width / size.width, height / size.height);
-        float width2 = this.segmentedImage.getWidth() / max;
-        float height2 = this.segmentedImage.getHeight() / max;
+        float fMax = Math.max(width / size.width, height / size.height);
+        float width2 = this.segmentedImage.getWidth() / fMax;
+        float height2 = this.segmentedImage.getHeight() / fMax;
         RectF rectF = this.dest;
         Size size2 = this.baseSize;
         float f = size2.width;
@@ -557,18 +555,18 @@ public class PhotoView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDp2 = AndroidUtilities.dp(19.5f);
+            float f3 = fDp + fDp2;
             float f4 = f3 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f4;
             float measuredHeight = getMeasuredHeight() - f4;
             float f5 = (measuredHeight / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > f5 - dp2 && f < f3 + dp2 && f2 < f5 + dp2) {
+            if (f > f3 - fDp2 && f2 > f5 - fDp2 && f < f3 + fDp2 && f2 < f5 + fDp2) {
                 return 1;
             }
             float f6 = f3 + measuredWidth;
-            if (f <= f6 - dp2 || f2 <= f5 - dp2 || f >= f6 + dp2 || f2 >= f5 + dp2) {
+            if (f <= f6 - fDp2 || f2 <= f5 - fDp2 || f >= f6 + fDp2 || f2 >= f5 + fDp2) {
                 return (f <= f3 || f >= measuredWidth || f2 <= f3 || f2 >= measuredHeight) ? 0 : 3;
             }
             return 2;
@@ -585,50 +583,50 @@ public class PhotoView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
-            float dp = AndroidUtilities.dp(2.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float f = dp2 * 2.0f;
+            float fDp = AndroidUtilities.dp(2.0f);
+            float fDpf2 = AndroidUtilities.dpf2(5.66f);
+            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
+            float f = fDp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f;
             float measuredHeight = getMeasuredHeight() - f;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp2 + measuredWidth;
-            float f3 = dp2 + measuredHeight;
-            rectF.set(dp2, dp2, f2, f3);
-            float dp3 = AndroidUtilities.dp(12.0f);
-            float min = Math.min(dp3, measuredWidth / 2.0f);
+            float f2 = fDp2 + measuredWidth;
+            float f3 = fDp2 + measuredHeight;
+            rectF.set(fDp2, fDp2, f2, f3);
+            float fDp3 = AndroidUtilities.dp(12.0f);
+            float fMin = Math.min(fDp3, measuredWidth / 2.0f);
             float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(dp3, f4);
+            float fMin2 = Math.min(fDp3, f4);
             this.path.rewind();
-            float f5 = min * 2.0f;
-            float f6 = dp2 + f5;
-            float f7 = 2.0f * min2;
-            float f8 = dp2 + f7;
-            rectF.set(dp2, dp2, f6, f8);
+            float f5 = fMin * 2.0f;
+            float f6 = fDp2 + f5;
+            float f7 = 2.0f * fMin2;
+            float f8 = fDp2 + f7;
+            rectF.set(fDp2, fDp2, f6, f8);
             this.path.arcTo(rectF, 180.0f, 90.0f);
             float f9 = f2 - f5;
-            rectF.set(f9, dp2, f2, f8);
+            rectF.set(f9, fDp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
             canvas.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
-            rectF.set(dp2, f10, f6, f3);
+            rectF.set(fDp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
             canvas.drawPath(this.path, this.paint);
-            float f11 = dp2 + f4;
-            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            float f11 = fDp2 + f4;
+            canvas.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = dp2 + min2;
-            float f13 = f3 - min2;
-            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
+            float f12 = fDp2 + fMin2;
+            float f13 = f3 - fMin2;
+            canvas.drawLine(fDp2, f12, fDp2, f13, this.paint);
             canvas.drawLine(f2, f12, f2, f13, this.paint);
-            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
+            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + fDpf2) - 1.0f, this.clearPaint);
+            canvas.drawCircle(fDp2, f11, (fDpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
             canvas.restoreToCount(saveCount);
         }
     }

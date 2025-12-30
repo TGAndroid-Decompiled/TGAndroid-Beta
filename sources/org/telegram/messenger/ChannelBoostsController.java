@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -38,7 +37,7 @@ public class ChannelBoostsController {
         this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelBoostsController.lambda$getBoostsStats$1(Consumer.this, tLObject, tL_error);
+                ChannelBoostsController.lambda$getBoostsStats$1(consumer, tLObject, tL_error);
             }
         });
     }
@@ -47,7 +46,7 @@ public class ChannelBoostsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelBoostsController.lambda$getBoostsStats$0(TLObject.this, consumer, tL_error);
+                ChannelBoostsController.lambda$getBoostsStats$0(tLObject, consumer, tL_error);
             }
         });
     }
@@ -63,11 +62,11 @@ public class ChannelBoostsController {
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
                 builder.setTitle(LocaleController.getString(R.string.AppName));
-                HashMap hashMap = new HashMap();
+                HashMap map = new HashMap();
                 int i = Theme.key_dialogTopBackground;
-                hashMap.put("info1.**", Integer.valueOf(Theme.getColor(i)));
-                hashMap.put("info2.**", Integer.valueOf(Theme.getColor(i)));
-                builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), hashMap);
+                map.put("info1.**", Integer.valueOf(Theme.getColor(i)));
+                map.put("info2.**", Integer.valueOf(Theme.getColor(i)));
+                builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), map);
                 builder.setTopAnimationIsNew(true);
                 builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
                 builder.setMessage(LocaleController.getString(R.string.ChannelCantOpenPrivate2));
@@ -88,12 +87,12 @@ public class ChannelBoostsController {
         BoostRepository.getMyBoosts(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChannelBoostsController.lambda$userCanBoostChannel$2(ChannelBoostsController.CanApplyBoost.this, tL_premium_boostsStatus, consumer, (TL_stories.TL_premium_myBoosts) obj);
+                ChannelBoostsController.lambda$userCanBoostChannel$2(canApplyBoost, tL_premium_boostsStatus, consumer, (TL_stories.TL_premium_myBoosts) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChannelBoostsController.lambda$userCanBoostChannel$3(ChannelBoostsController.CanApplyBoost.this, consumer, (TLRPC.TL_error) obj);
+                ChannelBoostsController.lambda$userCanBoostChannel$3(canApplyBoost, consumer, (TLRPC.TL_error) obj);
             }
         });
     }

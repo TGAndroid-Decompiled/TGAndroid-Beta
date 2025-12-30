@@ -71,10 +71,10 @@ public class ManageChatUserCell extends FrameLayout {
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (ManageChatUserCell.this.storyItem != null) {
-                    float dp = AndroidUtilities.dp(1.0f);
-                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
+                    float fDp = AndroidUtilities.dp(1.0f);
+                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(fDp, fDp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
                     ManageChatUserCell.this.storyAvatarParams.drawSegments = false;
                     ManageChatUserCell.this.storyAvatarParams.animate = false;
                     ManageChatUserCell.this.storyAvatarParams.drawInside = true;
@@ -118,7 +118,7 @@ public class ManageChatUserCell extends FrameLayout {
             this.optionsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ManageChatUserCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrUserOptions));
@@ -179,19 +179,19 @@ public class ManageChatUserCell extends FrameLayout {
         this.currentName = charSequence;
         this.currentObject = obj;
         if (this.optionsButton != null) {
-            boolean onOptionsButtonCheck = this.delegate.onOptionsButtonCheck(this, false);
-            this.optionsButton.setVisibility(onOptionsButtonCheck ? 0 : 4);
+            boolean zOnOptionsButtonCheck = this.delegate.onOptionsButtonCheck(this, false);
+            this.optionsButton.setVisibility(zOnOptionsButtonCheck ? 0 : 4);
             SimpleTextView simpleTextView = this.nameTextView;
             boolean z2 = LocaleController.isRTL;
-            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : onOptionsButtonCheck ? 46 : 28, 0.0f));
+            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? zOnOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : zOnOptionsButtonCheck ? 46 : 28, 0.0f));
             SimpleTextView simpleTextView2 = this.statusTextView;
             boolean z3 = LocaleController.isRTL;
             int i = (z3 ? 5 : 3) | 48;
-            float f3 = z3 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
+            float f3 = z3 ? zOnOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
             if (z3) {
                 f2 = this.namePadding + 68;
             } else {
-                f2 = onOptionsButtonCheck ? 46 : 28;
+                f2 = zOnOptionsButtonCheck ? 46 : 28;
             }
             simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f3, 34.5f, f2, 0.0f));
         } else {

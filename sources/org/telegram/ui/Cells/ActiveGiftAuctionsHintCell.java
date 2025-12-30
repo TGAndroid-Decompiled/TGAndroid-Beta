@@ -20,7 +20,6 @@ import org.telegram.messenger.utils.CountdownTimer;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ActiveGiftAuctionsHintCell;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlurredFrameLayout;
@@ -61,7 +60,7 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ActiveGiftAuctionsHintCell.this.onClick(view);
+                this.f$0.onClick(view);
             }
         });
     }
@@ -79,14 +78,14 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         onActiveAuctionsUpdate(GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions());
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
     }
@@ -111,48 +110,48 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
     }
 
     private void update(boolean z) {
-        String formatString;
-        String formatPlace;
-        String formatString2;
+        String string;
+        String place;
+        String string2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size = this.activeAuctions.size();
         if (size == 0) {
             return;
         }
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+        boolean zIsUpcoming = false;
         boolean z2 = false;
-        boolean z3 = false;
         for (int i = 0; i < size; i++) {
             GiftAuctionController.Auction auction = (GiftAuctionController.Auction) this.activeAuctions.get(i);
-            z2 |= auction.isUpcoming(currentTime);
+            zIsUpcoming |= auction.isUpcoming(currentTime);
             if (auction.giftDocumentId != 0) {
                 spannableStringBuilder.append((CharSequence) "*");
                 spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction.giftDocumentId, this.titleTextView.getPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             }
             GiftAuctionController.Auction.BidStatus bidStatus = auction.getBidStatus();
-            z3 |= bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED;
+            z2 |= bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED;
         }
         spannableStringBuilder.append(' ');
-        if (z2) {
+        if (zIsUpcoming) {
             if (size == 1) {
-                formatString2 = LocaleController.getString(R.string.Gift2ActiveAuctionsUpcomingAuctionTitle);
+                string2 = LocaleController.getString(R.string.Gift2ActiveAuctionsUpcomingAuctionTitle);
             } else {
-                formatString2 = LocaleController.formatString(R.string.Gift2ActiveAuctionsUpcomingAuctionsTitle, Integer.valueOf(size));
+                string2 = LocaleController.formatString(R.string.Gift2ActiveAuctionsUpcomingAuctionsTitle, Integer.valueOf(size));
             }
-            spannableStringBuilder.append((CharSequence) formatString2);
+            spannableStringBuilder.append((CharSequence) string2);
         } else {
             if (size == 1) {
-                formatString = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveAuctionTitle);
+                string = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveAuctionTitle);
             } else {
-                formatString = LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(size));
+                string = LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(size));
             }
-            spannableStringBuilder.append((CharSequence) formatString);
+            spannableStringBuilder.append((CharSequence) string);
         }
         this.titleTextView.setText(spannableStringBuilder, z);
         this.isOutbid = false;
-        if (z2) {
+        if (zIsUpcoming) {
             this.messageTextView.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusEarly));
-        } else if (z3) {
+        } else if (z2) {
             this.messageTextView.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusOutbid));
             this.isOutbid = true;
         } else if (size > 1) {
@@ -160,15 +159,15 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         } else {
             int approximatedMyPlace = ((GiftAuctionController.Auction) this.activeAuctions.get(0)).getApproximatedMyPlace();
             if (approximatedMyPlace == 1) {
-                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning1Place);
+                place = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning1Place);
             } else if (approximatedMyPlace == 2) {
-                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning2Place);
+                place = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning2Place);
             } else if (approximatedMyPlace == 3) {
-                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning3Place);
+                place = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning3Place);
             } else {
-                formatPlace = formatPlace(approximatedMyPlace);
+                place = formatPlace(approximatedMyPlace);
             }
-            this.messageTextView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOne, formatPlace));
+            this.messageTextView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOne, place));
         }
         updateColors();
     }
@@ -205,7 +204,7 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
             this.timer = new CountdownTimer(new CountdownTimer.Callback() {
                 @Override
                 public final void onTimerUpdate(long j) {
-                    ActiveGiftAuctionsHintCell.CountDown.this.updateTimer(j);
+                    this.f$0.updateTimer(j);
                 }
             });
             this.currentAccount = i;
@@ -229,9 +228,9 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         public void start(int i) {
             this.endTime = i;
             if (isAttachedToWindow()) {
-                long max = Math.max(0, i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                this.timer.start(max);
-                updateTimer(max);
+                long jMax = Math.max(0, i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
+                this.timer.start(jMax);
+                updateTimer(jMax);
             }
         }
 
@@ -264,10 +263,10 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         @Override
         protected void dispatchDraw(Canvas canvas) {
             int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - ((int) this.textView.getCurrentWidth());
-            int dp = measuredWidth - AndroidUtilities.dp(30.0f);
+            int iDp = measuredWidth - AndroidUtilities.dp(30.0f);
             canvas.save();
-            canvas.translate(dp, 0.0f);
-            canvas.drawRoundRect(0.0f, 0.0f, getWidth() - dp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.fillPaint);
+            canvas.translate(iDp, 0.0f);
+            canvas.drawRoundRect(0.0f, 0.0f, getWidth() - iDp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.fillPaint);
             canvas.restore();
             this.textView.setBounds(measuredWidth, 0, getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
             this.textView.draw(canvas);

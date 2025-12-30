@@ -113,7 +113,7 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
                 bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GigagroupConvertAlert.this.lambda$new$1(context, baseFragment, view);
+                        this.f$0.lambda$new$1(context, baseFragment, view);
                     }
                 });
                 linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 29, 0, 0));
@@ -126,7 +126,7 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
                 textView3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GigagroupConvertAlert.this.lambda$new$2(view);
+                        this.f$0.lambda$new$2(view);
                     }
                 });
                 return;
@@ -142,7 +142,7 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
         builder.setPositiveButton(LocaleController.getString(R.string.GigagroupConvertAlertConver), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                GigagroupConvertAlert.this.lambda$new$0(alertDialog, i);
+                this.f$0.lambda$new$0(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);

@@ -18,6 +18,7 @@ import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -31,17 +32,23 @@ public class StarParticlesView extends View {
     private Utilities.Callback powerSaverCallback;
     int size;
 
-    public StarParticlesView(android.content.Context r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.<init>(android.content.Context):void");
+    public StarParticlesView(Context context) {
+        int i;
+        if (SharedConfig.getDevicePerformanceClass() == 2) {
+            i = 200;
+        } else {
+            i = SharedConfig.getDevicePerformanceClass() == 1 ? 100 : 50;
+        }
+        this(context, i);
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarParticlesView.this.lambda$onAttachedToWindow$0((Boolean) obj);
+                this.f$0.lambda$onAttachedToWindow$0((Boolean) obj);
             }
         };
         this.powerSaverCallback = callback;
@@ -54,7 +61,7 @@ public class StarParticlesView extends View {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Utilities.Callback callback = this.powerSaverCallback;
         if (callback != null) {
@@ -63,9 +70,9 @@ public class StarParticlesView extends View {
     }
 
     private void onApplyPowerSaverMode() {
-        boolean isEnabled = LiteMode.isEnabled(131072);
-        if (this.isLiteModeParticlesAllowed != isEnabled) {
-            this.isLiteModeParticlesAllowed = isEnabled;
+        boolean zIsEnabled = LiteMode.isEnabled(131072);
+        if (this.isLiteModeParticlesAllowed != zIsEnabled) {
+            this.isLiteModeParticlesAllowed = zIsEnabled;
             invalidate();
         }
     }
@@ -77,7 +84,7 @@ public class StarParticlesView extends View {
         configure();
     }
 
-    public void configure() {
+    protected void configure() {
         Drawable drawable = this.drawable;
         drawable.type = 100;
         drawable.roundEffect = true;
@@ -92,7 +99,7 @@ public class StarParticlesView extends View {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
         this.drawable.rect.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
@@ -156,16 +163,16 @@ public class StarParticlesView extends View {
         ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                StarParticlesView.this.lambda$flingParticles$1(valueAnimator);
+                this.f$0.lambda$flingParticles$1(valueAnimator);
             }
         };
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f2);
-        ofFloat.addUpdateListener(animatorUpdateListener);
-        ofFloat.setDuration(600L);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f2, 1.0f);
-        ofFloat2.addUpdateListener(animatorUpdateListener);
-        ofFloat2.setDuration(2000L);
-        animatorSet.playTogether(ofFloat, ofFloat2);
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, f2);
+        valueAnimatorOfFloat.addUpdateListener(animatorUpdateListener);
+        valueAnimatorOfFloat.setDuration(600L);
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f2, 1.0f);
+        valueAnimatorOfFloat2.addUpdateListener(animatorUpdateListener);
+        valueAnimatorOfFloat2.setDuration(2000L);
+        animatorSet.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2);
         animatorSet.start();
     }
 
@@ -276,9 +283,9 @@ public class StarParticlesView extends View {
         }
 
         public void resetPositions() {
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             for (int i = 0; i < this.particles.size(); i++) {
-                ((Particle) this.particles.get(i)).genPosition(currentTimeMillis);
+                ((Particle) this.particles.get(i)).genPosition(jCurrentTimeMillis);
             }
         }
 
@@ -287,11 +294,11 @@ public class StarParticlesView extends View {
         }
 
         public void onDraw(Canvas canvas, float f) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long clamp = MathUtils.clamp(currentTimeMillis - this.prevTime, 4L, 50L);
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long jClamp = MathUtils.clamp(jCurrentTimeMillis - this.prevTime, 4L, 50L);
             if (this.useRotate) {
                 this.matrix.reset();
-                float f2 = (float) clamp;
+                float f2 = jClamp;
                 float f3 = this.a + ((f2 / 40000.0f) * 360.0f);
                 this.a = f3;
                 this.a1 += (f2 / 50000.0f) * 360.0f;
@@ -323,16 +330,16 @@ public class StarParticlesView extends View {
                 if (this.paused) {
                     particle.draw(canvas, this.pausedTime, f);
                 } else {
-                    particle.draw(canvas, currentTimeMillis, f);
+                    particle.draw(canvas, jCurrentTimeMillis, f);
                 }
-                if (this.checkTime && currentTimeMillis > particle.lifeTime) {
-                    particle.genPosition(currentTimeMillis);
+                if (this.checkTime && jCurrentTimeMillis > particle.lifeTime) {
+                    particle.genPosition(jCurrentTimeMillis);
                 }
                 if (this.checkBounds && !this.rect2.contains(particle.drawingX, particle.drawingY)) {
-                    particle.genPosition(currentTimeMillis);
+                    particle.genPosition(jCurrentTimeMillis);
                 }
             }
-            this.prevTime = currentTimeMillis;
+            this.prevTime = jCurrentTimeMillis;
         }
 
         public class Particle {
@@ -396,11 +403,11 @@ public class StarParticlesView extends View {
             }
 
             public void genPosition(long j) {
-                float f;
-                double atan2;
+                float fDp;
+                double dAtan2;
                 int i;
+                float f;
                 float f2;
-                float f3;
                 if (Drawable.this.type != 28) {
                     this.starIndex = Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.stars.length);
                 } else {
@@ -418,51 +425,51 @@ public class StarParticlesView extends View {
                 }
                 Drawable drawable2 = Drawable.this;
                 if (drawable2.distributionAlgorithm) {
-                    float abs = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
-                    float abs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    float f4 = 0.0f;
+                    float fAbs = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
+                    float fAbs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
+                    float f3 = 0.0f;
                     for (int i2 = 0; i2 < 10; i2++) {
-                        float abs3 = Drawable.this.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
-                        float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                        float f5 = 2.1474836E9f;
+                        float fAbs3 = Drawable.this.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
+                        float fAbs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
+                        float f4 = 2.1474836E9f;
                         for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
                             Drawable drawable3 = Drawable.this;
                             if (drawable3.startFromCenter) {
-                                f2 = ((Particle) drawable3.particles.get(i3)).x2 - abs3;
-                                f3 = ((Particle) Drawable.this.particles.get(i3)).y2;
+                                f = ((Particle) drawable3.particles.get(i3)).x2 - fAbs3;
+                                f2 = ((Particle) Drawable.this.particles.get(i3)).y2;
                             } else {
-                                f2 = ((Particle) drawable3.particles.get(i3)).x - abs3;
-                                f3 = ((Particle) Drawable.this.particles.get(i3)).y;
+                                f = ((Particle) drawable3.particles.get(i3)).x - fAbs3;
+                                f2 = ((Particle) Drawable.this.particles.get(i3)).y;
                             }
-                            float f6 = f3 - abs4;
-                            float f7 = (f2 * f2) + (f6 * f6);
-                            if (f7 < f5) {
-                                f5 = f7;
+                            float f5 = f2 - fAbs4;
+                            float f6 = (f * f) + (f5 * f5);
+                            if (f6 < f4) {
+                                f4 = f6;
                             }
                         }
-                        if (f5 > f4) {
-                            abs = abs3;
-                            abs2 = abs4;
-                            f4 = f5;
+                        if (f4 > f3) {
+                            fAbs = fAbs3;
+                            fAbs2 = fAbs4;
+                            f3 = f4;
                         }
                     }
-                    this.x = abs;
-                    this.y = abs2;
+                    this.x = fAbs;
+                    this.y = fAbs2;
                 } else if (drawable2.isCircle) {
-                    float width = Drawable.this.rect.width();
-                    float f8 = Drawable.this.excludeRadius;
-                    float abs5 = ((Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f) * (width - f8)) + f8;
-                    float abs6 = Math.abs(Utilities.fastRandom.nextInt() % 360);
+                    float fWidth = Drawable.this.rect.width();
+                    float f7 = Drawable.this.excludeRadius;
+                    float fAbs5 = ((Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f) * (fWidth - f7)) + f7;
+                    float fAbs6 = Math.abs(Utilities.fastRandom.nextInt() % 360);
                     if (!Drawable.this.flip[this.starIndex] || this.first) {
-                        f = 0.0f;
+                        fDp = 0.0f;
                     } else {
-                        abs5 = Math.min(abs5, AndroidUtilities.dp(10.0f));
-                        f = AndroidUtilities.dp(30.0f) + 0.0f;
+                        fAbs5 = Math.min(fAbs5, AndroidUtilities.dp(10.0f));
+                        fDp = AndroidUtilities.dp(30.0f) + 0.0f;
                     }
-                    double d = abs5;
-                    double d2 = abs6;
+                    double d = fAbs5;
+                    double d2 = fAbs6;
                     this.x = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + ((float) (Math.sin(Math.toRadians(d2)) * d));
-                    this.y = Drawable.this.rect.centerY() + f + Drawable.this.centerOffsetY + ((float) (d * Math.cos(Math.toRadians(d2))));
+                    this.y = Drawable.this.rect.centerY() + fDp + Drawable.this.centerOffsetY + ((float) (d * Math.cos(Math.toRadians(d2))));
                 } else {
                     this.x = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
                     this.y = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
@@ -472,17 +479,17 @@ public class StarParticlesView extends View {
                 }
                 Drawable drawable4 = Drawable.this;
                 if (drawable4.flip[this.starIndex]) {
-                    atan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
+                    dAtan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
                 } else if (drawable4.startFromCenter) {
-                    atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
+                    dAtan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
                 } else {
-                    float f9 = this.y;
-                    float centerY = drawable4.rect.centerY();
+                    float f8 = this.y;
+                    float fCenterY = drawable4.rect.centerY();
                     Drawable drawable5 = Drawable.this;
-                    atan2 = Math.atan2(f9 - (centerY + drawable5.centerOffsetY), this.x - (drawable5.rect.centerX() + Drawable.this.centerOffsetX));
+                    dAtan2 = Math.atan2(f8 - (fCenterY + drawable5.centerOffsetY), this.x - (drawable5.rect.centerX() + Drawable.this.centerOffsetX));
                 }
-                this.vecX = (float) Math.cos(atan2);
-                this.vecY = (float) Math.sin(atan2);
+                this.vecX = (float) Math.cos(dAtan2);
+                this.vecY = (float) Math.sin(dAtan2);
                 if (Drawable.this.svg[this.starIndex]) {
                     this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 120.0f);
                 } else {
@@ -497,13 +504,13 @@ public class StarParticlesView extends View {
                     this.inProgress = 0.0f;
                 }
                 if (drawable6.startFromCenter) {
-                    float nextFloat = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
-                    float centerX = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(atan2)) * nextFloat);
-                    this.x = centerX;
-                    this.x2 = centerX;
-                    float centerY2 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(atan2)) * nextFloat);
-                    this.y = centerY2;
-                    this.y2 = centerY2;
+                    float fNextFloat = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
+                    float fCenterX = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(dAtan2)) * fNextFloat);
+                    this.x = fCenterX;
+                    this.x2 = fCenterX;
+                    float fCenterY2 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(dAtan2)) * fNextFloat);
+                    this.y = fCenterY2;
+                    this.y2 = fCenterY2;
                 }
                 this.first = false;
             }

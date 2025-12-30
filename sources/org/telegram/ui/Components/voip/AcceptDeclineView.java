@@ -121,15 +121,15 @@ public class AcceptDeclineView extends View {
         String string = LocaleController.getString(R.string.AcceptCall);
         String string2 = LocaleController.getString(R.string.DeclineCall);
         String string3 = LocaleController.getString(R.string.RetryCall);
-        int measureText = (int) textPaint.measureText(string);
+        int iMeasureText = (int) textPaint.measureText(string);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.acceptLayout = new StaticLayout(string, textPaint, measureText, alignment, 1.0f, 0.0f, false);
+        this.acceptLayout = new StaticLayout(string, textPaint, iMeasureText, alignment, 1.0f, 0.0f, false);
         this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
         this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), alignment, 1.0f, 0.0f, false);
         this.callDrawable = ContextCompat.getDrawable(context, R.drawable.calls_decline).mutate();
-        Drawable mutate = ContextCompat.getDrawable(context, R.drawable.ic_close_white).mutate();
-        this.cancelDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.ic_close_white).mutate();
+        this.cancelDrawable = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         int i3 = R.raw.call_accept;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.acceptVoiceDrawable = rLottieDrawable;
@@ -139,18 +139,18 @@ public class AcceptDeclineView extends View {
         this.acceptVideoDrawable = ContextCompat.getDrawable(context, R.drawable.calls_video).mutate();
         paint.setColor(-1);
         paint.setAlpha(20);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
-        this.rippleDrawable = createSimpleSelectorCircleDrawable;
-        createSimpleSelectorCircleDrawable.setCallback(this);
+        Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
+        this.rippleDrawable = drawableCreateSimpleSelectorCircleDrawable;
+        drawableCreateSimpleSelectorCircleDrawable.setCallback(this);
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         this.maxOffset = (getMeasuredWidth() / 2.0f) - ((this.buttonWidth / 2.0f) + AndroidUtilities.dp(46.0f));
-        int dp = (this.buttonWidth - AndroidUtilities.dp(28.0f)) / 2;
-        this.callDrawable.setBounds(dp, dp, AndroidUtilities.dp(28.0f) + dp, AndroidUtilities.dp(28.0f) + dp);
-        this.cancelDrawable.setBounds(dp, dp, AndroidUtilities.dp(28.0f) + dp, AndroidUtilities.dp(28.0f) + dp);
+        int iDp = (this.buttonWidth - AndroidUtilities.dp(28.0f)) / 2;
+        this.callDrawable.setBounds(iDp, iDp, AndroidUtilities.dp(28.0f) + iDp, AndroidUtilities.dp(28.0f) + iDp);
+        this.cancelDrawable.setBounds(iDp, iDp, AndroidUtilities.dp(28.0f) + iDp, AndroidUtilities.dp(28.0f) + iDp);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         this.linePaint.setColor(-1);
     }
@@ -176,31 +176,31 @@ public class AcceptDeclineView extends View {
     protected void onDraw(Canvas canvas) {
         if (!this.retryMod) {
             if (this.expandSmallRadius) {
-                float dp = this.smallRadius + (AndroidUtilities.dp(2.0f) * 0.04f);
-                this.smallRadius = dp;
-                if (dp > AndroidUtilities.dp(4.0f)) {
+                float fDp = this.smallRadius + (AndroidUtilities.dp(2.0f) * 0.04f);
+                this.smallRadius = fDp;
+                if (fDp > AndroidUtilities.dp(4.0f)) {
                     this.smallRadius = AndroidUtilities.dp(4.0f);
                     this.expandSmallRadius = false;
                 }
             } else {
-                float dp2 = this.smallRadius - (AndroidUtilities.dp(2.0f) * 0.04f);
-                this.smallRadius = dp2;
-                if (dp2 < 0.0f) {
+                float fDp2 = this.smallRadius - (AndroidUtilities.dp(2.0f) * 0.04f);
+                this.smallRadius = fDp2;
+                if (fDp2 < 0.0f) {
                     this.smallRadius = 0.0f;
                     this.expandSmallRadius = true;
                 }
             }
             if (this.expandBigRadius) {
-                float dp3 = this.bigRadius + (AndroidUtilities.dp(4.0f) * 0.03f);
-                this.bigRadius = dp3;
-                if (dp3 > AndroidUtilities.dp(10.0f)) {
+                float fDp3 = this.bigRadius + (AndroidUtilities.dp(4.0f) * 0.03f);
+                this.bigRadius = fDp3;
+                if (fDp3 > AndroidUtilities.dp(10.0f)) {
                     this.bigRadius = AndroidUtilities.dp(10.0f);
                     this.expandBigRadius = false;
                 }
             } else {
-                float dp4 = this.bigRadius - (AndroidUtilities.dp(5.0f) * 0.03f);
-                this.bigRadius = dp4;
-                if (dp4 < AndroidUtilities.dp(5.0f)) {
+                float fDp4 = this.bigRadius - (AndroidUtilities.dp(5.0f) * 0.03f);
+                this.bigRadius = fDp4;
+                if (fDp4 < AndroidUtilities.dp(5.0f)) {
                     this.bigRadius = AndroidUtilities.dp(5.0f);
                     this.expandBigRadius = true;
                 }
@@ -264,9 +264,9 @@ public class AcceptDeclineView extends View {
         canvas.save();
         canvas.translate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
         if (this.isVideo) {
-            int dp5 = AndroidUtilities.dp(28.0f);
-            canvas.translate((AndroidUtilities.dp(48.0f) - dp5) / 2.0f, (AndroidUtilities.dp(48.0f) - dp5) / 2.0f);
-            this.acceptVideoDrawable.setBounds(0, 0, dp5, dp5);
+            int iDp = AndroidUtilities.dp(28.0f);
+            canvas.translate((AndroidUtilities.dp(48.0f) - iDp) / 2.0f, (AndroidUtilities.dp(48.0f) - iDp) / 2.0f);
+            this.acceptVideoDrawable.setBounds(0, 0, iDp, iDp);
             this.acceptVideoDrawable.draw(canvas);
         } else {
             this.acceptVoiceDrawable.draw(canvas);
@@ -296,12 +296,12 @@ public class AcceptDeclineView extends View {
         this.acceptVoiceDrawable.start();
         this.avatarWavesDrawable.setShowWaves(true, this);
         this.declineDrawable.setColor(-1041108);
-        ValueAnimator ofInt = ValueAnimator.ofInt(0, 60, 0, 0, 60, 0, 0, 0, 0);
-        this.callAnimator = ofInt;
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 60, 0, 0, 60, 0, 0, 0, 0);
+        this.callAnimator = valueAnimatorOfInt;
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AcceptDeclineView.this.lambda$setRetryMod$2(valueAnimator);
+                this.f$0.lambda$setRetryMod$2(valueAnimator);
             }
         });
         this.callAnimator.setDuration(1500L);
@@ -444,29 +444,29 @@ public class AcceptDeclineView extends View {
         @Override
         public AccessibilityNodeInfo createAccessibilityNodeInfo(int i) {
             if (i == -1) {
-                AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(this.hostView);
-                obtain.setPackageName(this.hostView.getContext().getPackageName());
+                AccessibilityNodeInfo accessibilityNodeInfoObtain = AccessibilityNodeInfo.obtain(this.hostView);
+                accessibilityNodeInfoObtain.setPackageName(this.hostView.getContext().getPackageName());
                 for (int i2 = 0; i2 < this.virtualViewsCount; i2++) {
-                    obtain.addChild(this.hostView, i2);
+                    accessibilityNodeInfoObtain.addChild(this.hostView, i2);
                 }
-                return obtain;
+                return accessibilityNodeInfoObtain;
             }
-            AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain(this.hostView, i);
-            obtain2.setPackageName(this.hostView.getContext().getPackageName());
+            AccessibilityNodeInfo accessibilityNodeInfoObtain2 = AccessibilityNodeInfo.obtain(this.hostView, i);
+            accessibilityNodeInfoObtain2.setPackageName(this.hostView.getContext().getPackageName());
             int i3 = Build.VERSION.SDK_INT;
-            obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
-            obtain2.setText(getVirtualViewText(i));
-            obtain2.setClassName(Button.class.getName());
+            accessibilityNodeInfoObtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
+            accessibilityNodeInfoObtain2.setText(getVirtualViewText(i));
+            accessibilityNodeInfoObtain2.setClassName(Button.class.getName());
             if (i3 >= 24) {
-                obtain2.setImportantForAccessibility(true);
+                accessibilityNodeInfoObtain2.setImportantForAccessibility(true);
             }
-            obtain2.setVisibleToUser(true);
-            obtain2.setClickable(true);
-            obtain2.setEnabled(true);
-            obtain2.setParent(this.hostView);
+            accessibilityNodeInfoObtain2.setVisibleToUser(true);
+            accessibilityNodeInfoObtain2.setClickable(true);
+            accessibilityNodeInfoObtain2.setEnabled(true);
+            accessibilityNodeInfoObtain2.setParent(this.hostView);
             getVirtualViewBoundsInScreen(i, this.rect);
-            obtain2.setBoundsInScreen(this.rect);
-            return obtain2;
+            accessibilityNodeInfoObtain2.setBoundsInScreen(this.rect);
+            return accessibilityNodeInfoObtain2;
         }
 
         @Override
@@ -511,10 +511,10 @@ public class AcceptDeclineView extends View {
             if (!this.accessibilityManager.isTouchExplorationEnabled() || (parent = this.hostView.getParent()) == null) {
                 return;
             }
-            AccessibilityEvent obtain = AccessibilityEvent.obtain(i2);
-            obtain.setPackageName(this.hostView.getContext().getPackageName());
-            obtain.setSource(this.hostView, i);
-            parent.requestSendAccessibilityEvent(this.hostView, obtain);
+            AccessibilityEvent accessibilityEventObtain = AccessibilityEvent.obtain(i2);
+            accessibilityEventObtain.setPackageName(this.hostView.getContext().getPackageName());
+            accessibilityEventObtain.setSource(this.hostView, i);
+            parent.requestSendAccessibilityEvent(this.hostView, accessibilityEventObtain);
         }
     }
 }

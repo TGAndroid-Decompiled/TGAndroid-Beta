@@ -157,7 +157,7 @@ public class VoIPGroupNotification {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPGroupNotification.lambda$request$0(TLObject.this, i, j, j2, i2, z, context, str);
+                VoIPGroupNotification.lambda$request$0(tLObject, i, j, j2, i2, z, context, str);
             }
         });
     }
@@ -193,12 +193,12 @@ public class VoIPGroupNotification {
         }
         ((NotificationManager) context.getSystemService("notification")).cancel(203);
         VoIPPreNotificationService.stopRinging();
-        Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        if (findActivity == null) {
-            findActivity = LaunchActivity.instance;
+        Activity activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        if (activityFindActivity == null) {
+            activityFindActivity = LaunchActivity.instance;
         }
-        if (findActivity != null) {
-            VoIPFragment.show(findActivity, i);
+        if (activityFindActivity != null) {
+            VoIPFragment.show(activityFindActivity, i);
         }
     }
 
@@ -213,13 +213,13 @@ public class VoIPGroupNotification {
             return;
         }
         TLRPC.GroupCall groupCall = state.groupCall;
-        boolean isCallingVideo = currentState.isCallingVideo();
+        boolean zIsCallingVideo = currentState.isCallingVideo();
         currentState = null;
         currentCallId = 0L;
         ((NotificationManager) context.getSystemService("notification")).cancel(203);
         TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
         tL_inputGroupCallInviteMessage.msg_id = i2;
-        VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCallInviteMessage, isCallingVideo, groupCall);
+        VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCallInviteMessage, zIsCallingVideo, groupCall);
     }
 
     public static void decline(Context context, final int i, int i2) {

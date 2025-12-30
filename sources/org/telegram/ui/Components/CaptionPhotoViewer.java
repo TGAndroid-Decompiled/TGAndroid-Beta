@@ -80,7 +80,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.collapseMoveButton = new Runnable() {
             @Override
             public final void run() {
-                CaptionPhotoViewer.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.applyCaption = runnable;
@@ -122,13 +122,13 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CaptionPhotoViewer.this.lambda$new$1(frameLayout, view);
+                this.f$0.lambda$new$1(frameLayout, view);
             }
         });
     }
 
     public void lambda$new$1(FrameLayout frameLayout, View view) {
-        String formatPluralString;
+        String pluralString;
         ItemOptions itemOptions = this.timerPopup;
         if (itemOptions != null && itemOptions.isShown()) {
             this.timerPopup.dismiss();
@@ -136,23 +136,23 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             return;
         }
         this.hint.hide();
-        ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
-        this.timerPopup = makeOptions;
-        makeOptions.setDimAlpha(0);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
+        this.timerPopup = itemOptionsMakeOptions;
+        itemOptionsMakeOptions.setDimAlpha(0);
         this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
         this.timerPopup.addGap();
         for (final int i : this.values) {
             if (i == 0) {
-                formatPluralString = LocaleController.getString(R.string.TimerPeriodDoNotDelete);
+                pluralString = LocaleController.getString(R.string.TimerPeriodDoNotDelete);
             } else if (i == Integer.MAX_VALUE) {
-                formatPluralString = LocaleController.getString(R.string.TimerPeriodOnce);
+                pluralString = LocaleController.getString(R.string.TimerPeriodOnce);
             } else {
-                formatPluralString = LocaleController.formatPluralString("Seconds", i, new Object[0]);
+                pluralString = LocaleController.formatPluralString("Seconds", i, new Object[0]);
             }
-            this.timerPopup.add(0, formatPluralString, new Runnable() {
+            this.timerPopup.add(0, pluralString, new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionPhotoViewer.this.lambda$new$0(i);
+                    this.f$0.lambda$new$0(i);
                 }
             });
             if (this.timer == i) {
@@ -164,9 +164,9 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
 
     public void expandMoveButton() {
         AndroidUtilities.cancelRunOnUIThread(this.collapseMoveButton);
-        boolean shouldShowMoveCaptionHint = MessagesController.getInstance(this.currentAccount).shouldShowMoveCaptionHint();
-        this.moveButtonExpanded = shouldShowMoveCaptionHint;
-        if (shouldShowMoveCaptionHint) {
+        boolean zShouldShowMoveCaptionHint = MessagesController.getInstance(this.currentAccount).shouldShowMoveCaptionHint();
+        this.moveButtonExpanded = zShouldShowMoveCaptionHint;
+        if (zShouldShowMoveCaptionHint) {
             MessagesController.getInstance(this.currentAccount).incrementMoveCaptionHint();
             invalidate();
             AndroidUtilities.runOnUIThread(this.collapseMoveButton, 5000L);
@@ -191,7 +191,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         float f = this.moveButtonAnimated.set(this.moveButtonVisible, !showMoveButton());
         float f2 = this.moveButtonExpandedAnimated.set(this.moveButtonExpanded);
@@ -209,35 +209,35 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             }
             canvas.scale(scale, scale, this.moveButtonBounds.centerX(), this.moveButtonBounds.centerY());
             canvas.clipRect(this.moveButtonBounds);
-            float dpf2 = AndroidUtilities.dpf2(8.33f);
+            float fDpf2 = AndroidUtilities.dpf2(8.33f);
             if (customBlur()) {
-                drawBlur(this.backgroundBlur, canvas, this.moveButtonBounds, dpf2, false, 0.0f, 0.0f, true, 1.0f);
+                drawBlur(this.backgroundBlur, canvas, this.moveButtonBounds, fDpf2, false, 0.0f, 0.0f, true, 1.0f);
                 this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 64, f));
-                canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
+                canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
             } else {
                 Paint[] paints = this.backgroundBlur.getPaints(f, 0.0f, 0.0f);
                 if (paints == null || paints[1] == null) {
                     this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 128, f));
-                    canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
+                    canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
                 } else {
                     Paint paint = paints[0];
                     if (paint != null) {
-                        canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, paint);
+                        canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, paint);
                     }
                     Paint paint2 = paints[1];
                     if (paint2 != null) {
-                        canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, paint2);
+                        canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, paint2);
                     }
                     this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 51, f));
-                    canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
+                    canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
                 }
             }
             this.moveButtonIcon.setBounds((int) (this.moveButtonBounds.left + AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.centerY() - AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.left + AndroidUtilities.dp(27.0f)), (int) (this.moveButtonBounds.centerY() + AndroidUtilities.dp(9.0f)));
             this.moveButtonIcon.draw(canvas);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.moveButtonText;
-            float dp = this.moveButtonBounds.left + AndroidUtilities.dp(34.0f);
+            float fDp = this.moveButtonBounds.left + AndroidUtilities.dp(34.0f);
             RectF rectF = this.moveButtonBounds;
-            animatedTextDrawable.setBounds(dp, rectF.top, rectF.right, rectF.bottom);
+            animatedTextDrawable.setBounds(fDp, rectF.top, rectF.right, rectF.bottom);
             this.moveButtonText.setAlpha((int) (f2 * 255.0f));
             this.moveButtonText.draw(canvas);
             canvas.restore();
@@ -257,7 +257,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             this.addPhotoButton.animate().alpha(z ? 1.0f : 0.0f).translationX(z ? 0.0f : AndroidUtilities.dp(-8.0f)).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionPhotoViewer.this.lambda$setAddPhotoVisible$3(z);
+                    this.f$0.lambda$setAddPhotoVisible$3(z);
                 }
             }).start();
         } else {
@@ -310,7 +310,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             this.timerButton.animate().alpha(z ? 1.0f : 0.0f).translationX(z ? 0.0f : AndroidUtilities.dp(8.0f)).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionPhotoViewer.this.lambda$setTimerVisible$4(z);
+                    this.f$0.lambda$setTimerVisible$4(z);
                 }
             }).start();
         } else {
@@ -347,7 +347,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     public void lambda$new$0(int i) {
-        CharSequence replaceTags;
+        CharSequence charSequenceReplaceTags;
         if (this.timer == i) {
             return;
         }
@@ -357,14 +357,14 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             callback.run(Integer.valueOf(i));
         }
         if (i == 0) {
-            replaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoKeep : R.string.TimerPeriodPhotoKeep);
+            charSequenceReplaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoKeep : R.string.TimerPeriodPhotoKeep);
             this.hint.setMaxWidthPx(getMeasuredWidth());
             this.hint.setMultilineText(false);
             this.hint.setInnerPadding(13.0f, 4.0f, 10.0f, 4.0f);
             this.hint.setIconMargin(0);
             this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
         } else if (i == Integer.MAX_VALUE) {
-            replaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoSetOnce : R.string.TimerPeriodPhotoSetOnce);
+            charSequenceReplaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoSetOnce : R.string.TimerPeriodPhotoSetOnce);
             this.hint.setMaxWidthPx(getMeasuredWidth());
             this.hint.setMultilineText(false);
             this.hint.setInnerPadding(13.0f, 4.0f, 10.0f, 4.0f);
@@ -374,16 +374,16 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             if (i <= 0) {
                 return;
             }
-            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
+            charSequenceReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
             this.hint.setMultilineText(true);
             HintView2 hintView2 = this.hint;
-            hintView2.setMaxWidthPx(HintView2.cutInFancyHalf(replaceTags, hintView2.getTextPaint()));
+            hintView2.setMaxWidthPx(HintView2.cutInFancyHalf(charSequenceReplaceTags, hintView2.getTextPaint()));
             this.hint.setInnerPadding(12.0f, 7.0f, 11.0f, 7.0f);
             this.hint.setIconMargin(2);
             this.hint.setIconTranslate(0.0f, 0.0f);
         }
         this.hint.setTranslationY(((-Math.min(AndroidUtilities.dp(34.0f), getEditTextHeight())) - AndroidUtilities.dp(14.0f)) * (isAtTop() ? -1.0f : 1.0f));
-        this.hint.setText(replaceTags);
+        this.hint.setText(charSequenceReplaceTags);
         int i2 = i > 0 ? R.raw.fire_on : R.raw.fire_off;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         rLottieDrawable.start();
@@ -436,7 +436,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void onUpdateShowKeyboard(float f) {
+    protected void onUpdateShowKeyboard(float f) {
         float f2 = 1.0f - f;
         this.timerButton.setAlpha(f2);
         this.addPhotoButton.setAlpha(f2);

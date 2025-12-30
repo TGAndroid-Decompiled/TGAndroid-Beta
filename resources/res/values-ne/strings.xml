@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">यसमार्फत सेयर गर्नुहोस्</string>
     <string name="abc_shareactionprovider_share_with_application">%s मार्फत सेयर गर्नुहोस्</string>
     <string name="abc_toolbar_collapse_description">संक्षिप्त गर्नुहोस्</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">पासवर्ड</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">पासकी</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">पासवर्ड</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">पासकी</string>
     <string name="call_notification_answer_action">जवाफ दिनुहोस्</string>
     <string name="call_notification_answer_video_action">भिडियो</string>
     <string name="call_notification_decline_action">काट्नुहोस्</string>

@@ -175,14 +175,14 @@ public class AudioVisualizerDrawable {
                 this.tmpWaveform[i3] = (int) (this.current[i3 + 3] * this.WAVE_RADIUS);
             }
             this.drawables[1].setAdditionals(this.tmpWaveform);
-            float dp = AndroidUtilities.dp(22.0f) + (AndroidUtilities.dp(4.0f) * f10) + (this.IDLE_RADIUS * f9);
-            if (dp > AndroidUtilities.dp(26.0f)) {
-                dp = AndroidUtilities.dp(26.0f);
+            float fDp = AndroidUtilities.dp(22.0f) + (AndroidUtilities.dp(4.0f) * f10) + (this.IDLE_RADIUS * f9);
+            if (fDp > AndroidUtilities.dp(26.0f)) {
+                fDp = AndroidUtilities.dp(26.0f);
             }
             CircleBezierDrawable[] circleBezierDrawableArr = this.drawables;
             CircleBezierDrawable circleBezierDrawable = circleBezierDrawableArr[0];
-            circleBezierDrawableArr[1].radius = dp;
-            circleBezierDrawable.radius = dp;
+            circleBezierDrawableArr[1].radius = fDp;
+            circleBezierDrawable.radius = fDp;
             canvas.save();
             float f11 = (float) (this.rotation + 0.6d);
             this.rotation = f11;

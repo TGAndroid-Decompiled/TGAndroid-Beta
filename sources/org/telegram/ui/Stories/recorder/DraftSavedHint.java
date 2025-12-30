@@ -73,7 +73,7 @@ public class DraftSavedHint extends View {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                DraftSavedHint.this.lambda$show$0();
+                this.f$0.lambda$show$0();
             }
         };
         this.hideRunnable = runnable2;
@@ -95,24 +95,24 @@ public class DraftSavedHint extends View {
         float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(f);
         float measuredWidth = getMeasuredWidth();
         float measuredHeight = getMeasuredHeight();
-        float dp = AndroidUtilities.dp(22.0f) + this.layoutWidth;
-        float min = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
-        float max = Math.max(AndroidUtilities.dp(8.0f), min - (dp / 2.0f));
+        float fDp = AndroidUtilities.dp(22.0f) + this.layoutWidth;
+        float fMin = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
+        float fMax = Math.max(AndroidUtilities.dp(8.0f), fMin - (fDp / 2.0f));
         this.path.rewind();
-        this.path.moveTo(max, 0.0f);
-        float f2 = dp + max;
+        this.path.moveTo(fMax, 0.0f);
+        float f2 = fDp + fMax;
         this.path.lineTo(f2, 0.0f);
         this.path.lineTo(f2, measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(AndroidUtilities.dp(7.0f) + min, measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(AndroidUtilities.dp(1.0f) + min, measuredHeight - AndroidUtilities.dp(12.0f));
-        this.path.lineTo(min - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
-        this.path.lineTo(min - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(max, measuredHeight - AndroidUtilities.dp(18.0f));
+        this.path.lineTo(AndroidUtilities.dp(7.0f) + fMin, measuredHeight - AndroidUtilities.dp(18.0f));
+        this.path.lineTo(AndroidUtilities.dp(1.0f) + fMin, measuredHeight - AndroidUtilities.dp(12.0f));
+        this.path.lineTo(fMin - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
+        this.path.lineTo(fMin - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
+        this.path.lineTo(fMax, measuredHeight - AndroidUtilities.dp(18.0f));
         this.path.close();
         this.backgroundPaint.setAlpha((int) (204.0f * interpolation));
         canvas.drawPath(this.path, this.backgroundPaint);
         canvas.save();
-        canvas.translate((max + AndroidUtilities.dp(11.0f)) - this.layoutLeft, ((measuredHeight - AndroidUtilities.dp(18.0f)) - this.layout.getHeight()) / 2.0f);
+        canvas.translate((fMax + AndroidUtilities.dp(11.0f)) - this.layoutLeft, ((measuredHeight - AndroidUtilities.dp(18.0f)) - this.layout.getHeight()) / 2.0f);
         this.textPaint.setAlpha((int) (interpolation * 255.0f));
         this.layout.draw(canvas);
         canvas.restore();

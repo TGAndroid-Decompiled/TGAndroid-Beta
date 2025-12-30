@@ -38,7 +38,6 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupCreateActivity;
-import org.telegram.ui.PrivacyUsersActivity;
 
 public class PrivacyUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int blockUserDetailRow;
@@ -132,9 +131,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                Integer lambda$createView$0;
-                lambda$createView$0 = PrivacyUsersActivity.this.lambda$createView$0((Integer) obj);
-                return lambda$createView$0;
+                return this.f$0.lambda$createView$0((Integer) obj);
             }
         });
         this.listView.setEmptyView(this.emptyView);
@@ -152,15 +149,13 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                PrivacyUsersActivity.this.lambda$createView$3(view, i2);
+                this.f$0.lambda$createView$3(view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                boolean lambda$createView$4;
-                lambda$createView$4 = PrivacyUsersActivity.this.lambda$createView$4(view, i2);
-                return lambda$createView$4;
+                return this.f$0.lambda$createView$4(view, i2);
             }
         });
         if (this.currentType == 1) {
@@ -170,9 +165,9 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                     if (PrivacyUsersActivity.this.getMessagesController().blockedEndReached) {
                         return;
                     }
-                    int abs = Math.abs(PrivacyUsersActivity.this.layoutManager.findLastVisibleItemPosition() - PrivacyUsersActivity.this.layoutManager.findFirstVisibleItemPosition()) + 1;
+                    int iAbs = Math.abs(PrivacyUsersActivity.this.layoutManager.findLastVisibleItemPosition() - PrivacyUsersActivity.this.layoutManager.findFirstVisibleItemPosition()) + 1;
                     int itemCount = recyclerView.getAdapter().getItemCount();
-                    if (abs <= 0 || PrivacyUsersActivity.this.layoutManager.findLastVisibleItemPosition() < itemCount - 10) {
+                    if (iAbs <= 0 || PrivacyUsersActivity.this.layoutManager.findLastVisibleItemPosition() < itemCount - 10) {
                         return;
                     }
                     PrivacyUsersActivity.this.getMessagesController().getBlockedPeers(false);
@@ -197,14 +192,14 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
 
     public void lambda$createView$3(View view, int i) {
         if (i == this.deleteAllRow) {
-            AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
+            AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
-                    PrivacyUsersActivity.this.lambda$createView$1();
+                    this.f$0.lambda$createView$1();
                 }
             }, null).create();
-            create.show();
-            create.redPositive();
+            alertDialogCreate.show();
+            alertDialogCreate.redPositive();
             return;
         }
         if (i == this.blockUserRow) {
@@ -228,7 +223,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             groupCreateActivity.setDelegate(new GroupCreateActivity.GroupCreateActivityDelegate() {
                 @Override
                 public final void didSelectUsers(boolean z, boolean z2, ArrayList arrayList) {
-                    PrivacyUsersActivity.this.lambda$createView$2(z, z2, arrayList);
+                    this.f$0.lambda$createView$2(z, z2, arrayList);
                 }
             });
             presentFragment(groupCreateActivity);
@@ -243,11 +238,11 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             presentFragment(new ProfileActivity(bundle2));
         } else {
             Bundle bundle3 = new Bundle();
-            long longValue = ((Long) this.uidArray.get(i - this.usersStartRow)).longValue();
-            if (DialogObject.isUserDialog(longValue)) {
-                bundle3.putLong("user_id", longValue);
+            long jLongValue = ((Long) this.uidArray.get(i - this.usersStartRow)).longValue();
+            if (DialogObject.isUserDialog(jLongValue)) {
+                bundle3.putLong("user_id", jLongValue);
             } else {
-                bundle3.putLong("chat_id", -longValue);
+                bundle3.putLong("chat_id", -jLongValue);
             }
             presentFragment(new ProfileActivity(bundle3));
         }
@@ -287,17 +282,17 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         if (getParentActivity() == null) {
             return;
         }
-        ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(this.currentType == 1, 0, LocaleController.getString(R.string.Unblock), new Runnable() {
+        ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(this.currentType == 1, 0, LocaleController.getString(R.string.Unblock), new Runnable() {
             @Override
             public final void run() {
-                PrivacyUsersActivity.this.lambda$showUnblockAlert$5(l);
+                this.f$0.lambda$showUnblockAlert$5(l);
             }
         });
         int i = this.currentType;
-        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString(R.string.Remove), true, new Runnable() {
+        itemOptionsAddIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
-                PrivacyUsersActivity.this.lambda$showUnblockAlert$6(l);
+                this.f$0.lambda$showUnblockAlert$6(l);
             }
         }).setMinWidth(190).show();
     }
@@ -370,11 +365,11 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.updateInterfaces) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            if ((MessagesController.UPDATE_MASK_AVATAR & intValue) == 0 && (MessagesController.UPDATE_MASK_NAME & intValue) == 0) {
+            int iIntValue = ((Integer) objArr[0]).intValue();
+            if ((MessagesController.UPDATE_MASK_AVATAR & iIntValue) == 0 && (MessagesController.UPDATE_MASK_NAME & iIntValue) == 0) {
                 return;
             }
-            updateVisibleRows(intValue);
+            updateVisibleRows(iIntValue);
             return;
         }
         if (i == NotificationCenter.blockedUsersDidLoad) {
@@ -406,7 +401,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
@@ -434,38 +429,36 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            FrameLayout textInfoPrivacyCell;
             if (i == 0) {
                 ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 7, 6, true);
                 manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 manageChatUserCell.setDelegate(new ManageChatUserCell.ManageChatUserCellDelegate() {
                     @Override
                     public final boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell2, boolean z) {
-                        boolean lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = PrivacyUsersActivity.ListAdapter.this.lambda$onCreateViewHolder$0(manageChatUserCell2, z);
-                        return lambda$onCreateViewHolder$0;
+                        return this.f$0.lambda$onCreateViewHolder$0(manageChatUserCell2, z);
                     }
                 });
-                frameLayout = manageChatUserCell;
+                textInfoPrivacyCell = manageChatUserCell;
             } else if (i == 1) {
-                frameLayout = new TextInfoPrivacyCell(this.mContext);
+                textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
             } else if (i == 2) {
                 FrameLayout manageChatTextCell = new ManageChatTextCell(this.mContext);
                 manageChatTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                frameLayout = manageChatTextCell;
+                textInfoPrivacyCell = manageChatTextCell;
             } else if (i != 4) {
                 HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 11, false);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 headerCell.setHeight(43);
-                frameLayout = headerCell;
+                textInfoPrivacyCell = headerCell;
             } else {
                 TextCell textCell = new TextCell(viewGroup.getContext());
                 textCell.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell.setColors(-1, Theme.key_text_RedRegular);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                frameLayout = textCell;
+                textInfoPrivacyCell = textCell;
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(textInfoPrivacyCell);
         }
 
         @Override
@@ -527,10 +520,10 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 return;
             }
             ManageChatUserCell manageChatUserCell = (ManageChatUserCell) viewHolder.itemView;
-            long keyAt = PrivacyUsersActivity.this.currentType == 1 ? PrivacyUsersActivity.this.getMessagesController().blockePeers.keyAt(i - PrivacyUsersActivity.this.usersStartRow) : ((Long) PrivacyUsersActivity.this.uidArray.get(i - PrivacyUsersActivity.this.usersStartRow)).longValue();
-            manageChatUserCell.setTag(Long.valueOf(keyAt));
-            if (keyAt > 0) {
-                TLRPC.User user = PrivacyUsersActivity.this.getMessagesController().getUser(Long.valueOf(keyAt));
+            long jKeyAt = PrivacyUsersActivity.this.currentType == 1 ? PrivacyUsersActivity.this.getMessagesController().blockePeers.keyAt(i - PrivacyUsersActivity.this.usersStartRow) : ((Long) PrivacyUsersActivity.this.uidArray.get(i - PrivacyUsersActivity.this.usersStartRow)).longValue();
+            manageChatUserCell.setTag(Long.valueOf(jKeyAt));
+            if (jKeyAt > 0) {
+                TLRPC.User user = PrivacyUsersActivity.this.getMessagesController().getUser(Long.valueOf(jKeyAt));
                 if (user != null) {
                     if (user.bot) {
                         StringBuilder sb = new StringBuilder();
@@ -551,7 +544,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 }
                 return;
             }
-            TLRPC.Chat chat = PrivacyUsersActivity.this.getMessagesController().getChat(Long.valueOf(-keyAt));
+            TLRPC.Chat chat = PrivacyUsersActivity.this.getMessagesController().getChat(Long.valueOf(-jKeyAt));
             if (chat != null) {
                 int i3 = chat.participants_count;
                 if (i3 != 0) {
@@ -588,7 +581,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                PrivacyUsersActivity.this.lambda$getThemeDescriptions$7();
+                this.f$0.lambda$getThemeDescriptions$7();
             }
 
             @Override

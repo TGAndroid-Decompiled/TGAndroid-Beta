@@ -186,12 +186,12 @@ public final class ListAnimator implements Iterable {
     }
 
     public void applyAnimation(float f) {
-        boolean applyAnimation = this.metadata.applyAnimation(f);
+        boolean zApplyAnimation = this.metadata.applyAnimation(f);
         Iterator it = this.entries.iterator();
         while (it.hasNext()) {
-            applyAnimation = ((Entry) it.next()).applyAnimation(f) || applyAnimation;
+            zApplyAnimation = ((Entry) it.next()).applyAnimation(f) || zApplyAnimation;
         }
-        if (applyAnimation) {
+        if (zApplyAnimation) {
             this.callback.onItemsChanged(this);
             if (f == 1.0f) {
                 removeJunk(true);
@@ -407,16 +407,16 @@ public final class ListAnimator implements Iterable {
             boolean z4 = false;
             for (int i2 = 0; i2 < this.entries.size(); i2++) {
                 Entry entry2 = (Entry) this.entries.get(i2);
-                int indexOf = list.indexOf(entry2.item);
-                if (indexOf != -1) {
+                int iIndexOf = list.indexOf(entry2.item);
+                if (iIndexOf != -1) {
                     i++;
-                    float f = indexOf;
+                    float f = iIndexOf;
                     if (entry2.position.differs(f)) {
                         onBeforeListChanged();
                         entry2.position.setTo(f);
                     }
-                    if (entry2.index != indexOf) {
-                        entry2.index = indexOf;
+                    if (entry2.index != iIndexOf) {
+                        entry2.index = iIndexOf;
                         z3 = z3 || entry2.isAffectingList();
                         z4 = true;
                     }

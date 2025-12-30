@@ -87,7 +87,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     private final OutlineTextContainerView starsCountEditOutline;
 
     @Override
-    public boolean isTouchOutside(float f, float f2) {
+    protected boolean isTouchOutside(float f, float f2) {
         BalanceCloud balanceCloud;
         if (!this.balanceCloudVisible || (balanceCloud = this.balanceCloud) == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
             return super.isTouchOutside(f, f2);
@@ -96,8 +96,8 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     }
 
     public GiftOfferSheet(final Context context, final int i, final long j, TL_stars.TL_starGiftUnique tL_starGiftUnique, final Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
-        super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         TLRPC.User user;
+        super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         AmountUtils$AmountLimits amountUtils$AmountLimits = new AmountUtils$AmountLimits();
         this.inputAmountLimits = amountUtils$AmountLimits;
         this.spanRefStars = new ColoredImageSpan[1];
@@ -111,20 +111,20 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         this.closeParentSheet = runnable;
         this.waitingKeyboard = true;
         this.smoothKeyboardAnimationEnabled = true;
-        boolean canUseTon = StarsController.getTonInstance(i).canUseTon();
+        boolean zCanUseTon = StarsController.getTonInstance(i).canUseTon();
         if (j > 0 && MessagesController.getInstance(i).getUserFull(j) == null && (user = MessagesController.getInstance(i).getUser(Long.valueOf(j))) != null) {
             MessagesController.getInstance(i).loadFullUser(user, 0, false);
         }
         AppGlobalConfig appGlobalConfig = MessagesController.getInstance(i).config;
         long j2 = tL_starGiftUnique.offer_min_stars;
         AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
-        AmountUtils$Amount fromDecimal = AmountUtils$Amount.fromDecimal(j2, amountUtils$Currency);
-        AmountUtils$Amount fromDecimal2 = AmountUtils$Amount.fromDecimal(Math.max(fromDecimal.asDecimal() * 2, appGlobalConfig.starsSuggestedPostAmountMax.get()), amountUtils$Currency);
+        AmountUtils$Amount amountUtils$AmountFromDecimal = AmountUtils$Amount.fromDecimal(j2, amountUtils$Currency);
+        AmountUtils$Amount amountUtils$AmountFromDecimal2 = AmountUtils$Amount.fromDecimal(Math.max(amountUtils$AmountFromDecimal.asDecimal() * 2, appGlobalConfig.starsStarGiftResaleAmountMax.get()), amountUtils$Currency);
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
-        AmountUtils$Amount round = fromDecimal.convertTo(amountUtils$Currency2).round(2);
-        AmountUtils$Amount fromNano = AmountUtils$Amount.fromNano(Math.max(round.asNano() * 2, appGlobalConfig.tonSuggestedPostAmountMax.get()), amountUtils$Currency2);
-        amountUtils$AmountLimits.set(fromDecimal, fromDecimal2);
-        amountUtils$AmountLimits.set(round, fromNano);
+        AmountUtils$Amount amountUtils$AmountFromNano = AmountUtils$Amount.fromNano(Math.max(amountUtils$AmountFromDecimal.convertTo(amountUtils$Currency2).round(2).asNano(), appGlobalConfig.tonStarGiftResaleAmountMin.get()), amountUtils$Currency2);
+        AmountUtils$Amount amountUtils$AmountFromNano2 = AmountUtils$Amount.fromNano(Math.max(amountUtils$AmountFromNano.asNano() * 2, appGlobalConfig.tonStarGiftResaleAmountMax.get()), amountUtils$Currency2);
+        amountUtils$AmountLimits.set(amountUtils$AmountFromDecimal, amountUtils$AmountFromDecimal2);
+        amountUtils$AmountLimits.set(amountUtils$AmountFromNano, amountUtils$AmountFromNano2);
         BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
         this.balanceCloud = balanceCloud;
         balanceCloud.setScaleX(0.6f);
@@ -137,7 +137,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         balanceCloud.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GiftOfferSheet.this.lambda$new$0(context, resourcesProvider, view);
+                this.f$0.lambda$new$0(context, resourcesProvider, view);
             }
         });
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -147,7 +147,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         linearLayout.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(16.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.starsCountEditField = editTextBoldCursor;
-        if (canUseTon) {
+        if (zCanUseTon) {
             HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context);
             this.currencyTabsView = horizontalRoundTabsLayout;
             ArrayList arrayList = new ArrayList();
@@ -156,7 +156,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i2) {
-                    GiftOfferSheet.this.lambda$new$1(i2);
+                    this.f$0.lambda$new$1(i2);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 18.0f));
@@ -185,7 +185,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                GiftOfferSheet.this.lambda$new$2(view, z);
+                this.f$0.lambda$new$2(view, z);
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -235,7 +235,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         outlineTextContainerView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GiftOfferSheet.this.lambda$new$4(context, view);
+                this.f$0.lambda$new$4(context, view);
             }
         });
         linearLayout2.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 18.0f, 18.0f, 0.0f));
@@ -253,7 +253,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GiftOfferSheet.this.lambda$new$5(i, context, resourcesProvider, j, view);
+                this.f$0.lambda$new$5(i, context, resourcesProvider, j, view);
             }
         });
         setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), false, true, false);
@@ -269,22 +269,22 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String obj;
-                int indexOf;
+                String string;
+                int iIndexOf;
                 boolean z = editable == null || editable.toString().isEmpty() || ".".equals(editable.toString());
-                if (!z && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-                    editable.delete(indexOf + 3, obj.length());
+                if (!z && (iIndexOf = (string = editable.toString()).indexOf(46)) >= 0 && (string.length() - iIndexOf) - 1 > 2) {
+                    editable.delete(iIndexOf + 3, string.length());
                 }
                 GiftOfferSheet.this.setAmount(!z ? AmountUtils$Amount.fromDecimal(editable.toString(), GiftOfferSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, GiftOfferSheet.this.inputAmount.currency), false, false, true);
                 GiftOfferSheet.this.starsCountEditOutline.animateSelection(GiftOfferSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(GiftOfferSheet.this.starsCountEditField.getText()));
             }
         });
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i4 = createFrame.leftMargin;
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i4 = layoutParamsCreateFrame.leftMargin;
         int i5 = this.backgroundPaddingLeft;
-        createFrame.leftMargin = i4 + i5;
-        createFrame.rightMargin += i5;
-        this.containerView.addView(buttonWithCounterView, createFrame);
+        layoutParamsCreateFrame.leftMargin = i4 + i5;
+        layoutParamsCreateFrame.rightMargin += i5;
+        this.containerView.addView(buttonWithCounterView, layoutParamsCreateFrame);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i6 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i6, 0, i6, AndroidUtilities.dp(64.0f));
@@ -330,7 +330,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                 AlertsCreator.createCustomPicker(context, LocaleController.getString(R.string.GiftOfferDuration), i2, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        GiftOfferSheet.this.lambda$new$3((Integer) obj);
+                        this.f$0.lambda$new$3((Integer) obj);
                     }
                 });
                 return;
@@ -349,8 +349,8 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
             StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
-            AmountUtils$Amount of = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-            if (of == null || of.asNano() < this.inputAmount.asNano()) {
+            AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
+            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < this.inputAmount.asNano()) {
                 AmountUtils$Amount amountUtils$Amount = this.inputAmount;
                 AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
                 if (amountUtils$Currency == AmountUtils$Currency.STARS) {
@@ -410,9 +410,9 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             checkRateText(z3);
         }
         if (z && z5) {
-            String asDecimalString = this.inputAmount.asDecimalString();
-            this.starsCountEditField.setText(asDecimalString);
-            this.starsCountEditField.setSelection(asDecimalString.length());
+            String strAsDecimalString = this.inputAmount.asDecimalString();
+            this.starsCountEditField.setText(strAsDecimalString);
+            this.starsCountEditField.setSelection(strAsDecimalString.length());
         }
     }
 
@@ -435,10 +435,10 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
         if (z) {
             this.iconStars.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
-            ViewPropertyAnimator animate = this.iconTon.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.iconTon.animate();
             AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
             AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
-            animate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
+            viewPropertyAnimatorAnimate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
         } else {
             this.iconStars.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
             this.iconTon.setAlpha(this.inputAmount.currency == AmountUtils$Currency.TON ? 1.0f : 0.0f);
@@ -476,17 +476,17 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void checkButtonOfferText(boolean z) {
-        String formatNumber;
+        String number;
         AmountUtils$Amount amountUtils$Amount = this.inputAmount;
         boolean z2 = amountUtils$Amount.currency == AmountUtils$Currency.TON;
         ButtonWithCounterView buttonWithCounterView = this.buttonView;
         int i = R.string.GiftOfferButtonStars;
         if (z2) {
-            formatNumber = amountUtils$Amount.asDecimalString();
+            number = amountUtils$Amount.asDecimalString();
         } else {
-            formatNumber = LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',');
+            number = LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',');
         }
-        buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(i, formatNumber), z2 ? this.spanRefTon : this.spanRefStars), z);
+        buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(i, number), z2 ? this.spanRefTon : this.spanRefStars), z);
     }
 
     private void checkButtonEnabled(boolean z) {
@@ -562,7 +562,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftOfferSheet.this.lambda$show$6();
+                this.f$0.lambda$show$6();
             }
         }, 50L);
     }
@@ -581,7 +581,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftOfferSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -597,8 +597,8 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void openConfirmAlert() {
-        String formatString;
-        String asFormatString = this.inputAmount.asFormatString();
+        String string;
+        String strAsFormatString = this.inputAmount.asFormatString();
         final boolean z = this.inputAmount.currency == AmountUtils$Currency.TON;
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
@@ -615,60 +615,60 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
         if (amountUtils$Currency == amountUtils$Currency2) {
-            formatString = LocaleController.formatString(R.string.GiftOfferTransferInfoTextStars, asFormatString, DialogObject.getShortName(this.dialogId), this.giftName);
+            string = LocaleController.formatString(R.string.GiftOfferTransferInfoTextStars, strAsFormatString, DialogObject.getShortName(this.dialogId), this.giftName);
         } else {
-            formatString = LocaleController.formatString(R.string.GiftOfferTransferInfoTextTON, asFormatString, DialogObject.getShortName(this.dialogId), this.giftName);
+            string = LocaleController.formatString(R.string.GiftOfferTransferInfoTextTON, strAsFormatString, DialogObject.getShortName(this.dialogId), this.giftName);
         }
-        textView2.setText(AndroidUtilities.replaceTags(formatString));
+        textView2.setText(AndroidUtilities.replaceTags(string));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 48, 24, 4, 24, 4));
         TableView tableView = new TableView(getContext(), this.resourcesProvider);
         final long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(this.dialogId);
-        final AmountUtils$Amount fromDecimal = AmountUtils$Amount.fromDecimal(sendPaidMessagesStars, amountUtils$Currency2);
-        String string = LocaleController.getString(R.string.GiftOfferRowOffer);
+        final AmountUtils$Amount amountUtils$AmountFromDecimal = AmountUtils$Amount.fromDecimal(sendPaidMessagesStars, amountUtils$Currency2);
+        String string2 = LocaleController.getString(R.string.GiftOfferRowOffer);
         int i2 = R.string.GiftOfferAmount;
-        tableView.addRow(string, StarsIntroActivity.replaceStarsWithPlain(z, LocaleController.formatString(i2, asFormatString), 0.8f));
+        tableView.addRow(string2, StarsIntroActivity.replaceStarsWithPlain(z, LocaleController.formatString(i2, strAsFormatString), 0.8f));
         if (sendPaidMessagesStars > 0) {
-            tableView.addRow(LocaleController.getString(R.string.GiftOfferRowFee), StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(i2, fromDecimal.asFormatString()), 0.8f));
+            tableView.addRow(LocaleController.getString(R.string.GiftOfferRowFee), StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(i2, amountUtils$AmountFromDecimal.asFormatString()), 0.8f));
         }
         tableView.addRow(LocaleController.getString(R.string.GiftOfferRowDuration), LocaleController.formatPluralString("GiftOfferHours", this.selectedDuration / 3600, new Object[0]));
         linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 48, 23, 16, 23, 4));
         final long nextRandomId = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (sendPaidMessagesStars == 0) {
-            spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(z, LocaleController.formatString(R.string.GiftOfferPay, asFormatString)));
+            spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(z, LocaleController.formatString(R.string.GiftOfferPay, strAsFormatString)));
         } else if (z) {
             int i3 = R.string.GiftOfferPayMultiPart;
-            spannableStringBuilder.append(LocaleController.formatSpannable(R.string.GiftOfferPayMulti, StarsIntroActivity.replaceStars(true, (CharSequence) LocaleController.formatString(i3, asFormatString)), StarsIntroActivity.replaceStars(LocaleController.formatString(i3, fromDecimal.asFormatString()))));
+            spannableStringBuilder.append(LocaleController.formatSpannable(R.string.GiftOfferPayMulti, StarsIntroActivity.replaceStars(true, (CharSequence) LocaleController.formatString(i3, strAsFormatString)), StarsIntroActivity.replaceStars(LocaleController.formatString(i3, amountUtils$AmountFromDecimal.asFormatString()))));
         } else {
-            spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.GiftOfferPay, AmountUtils$Amount.fromNano(this.inputAmount.asNano() + fromDecimal.asNano(), amountUtils$Currency2).asFormatString())));
+            spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.GiftOfferPay, AmountUtils$Amount.fromNano(this.inputAmount.asNano() + amountUtils$AmountFromDecimal.asNano(), amountUtils$Currency2).asFormatString())));
         }
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setView(linearLayout).setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i4) {
-                GiftOfferSheet.this.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, fromDecimal, nextRandomId, alertDialog, i4);
+                this.f$0.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog, i4);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().setShowStarsBalance(true).show();
     }
 
     public void lambda$openConfirmAlert$9(long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, final AlertDialog alertDialog, int i) {
-        AmountUtils$Amount fromNano;
+        AmountUtils$Amount amountUtils$AmountFromNano;
         if (j > 0) {
             int i2 = this.currentAccount;
             AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
             StarsController starsController = StarsController.getInstance(i2, amountUtils$Currency);
-            AmountUtils$Amount of = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
+            AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
             if (z) {
-                fromNano = AmountUtils$Amount.fromDecimal(j, amountUtils$Currency);
+                amountUtils$AmountFromNano = AmountUtils$Amount.fromDecimal(j, amountUtils$Currency);
             } else {
-                fromNano = AmountUtils$Amount.fromNano(this.inputAmount.asNano() + amountUtils$Amount.asNano(), amountUtils$Currency);
+                amountUtils$AmountFromNano = AmountUtils$Amount.fromNano(this.inputAmount.asNano() + amountUtils$Amount.asNano(), amountUtils$Currency);
             }
-            if (of == null || of.asNano() < fromNano.asNano()) {
-                new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, fromNano.asDecimal(), 14, null, null, this.dialogId).show();
+            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < amountUtils$AmountFromNano.asNano()) {
+                new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, amountUtils$AmountFromNano.asDecimal(), 14, null, null, this.dialogId).show();
                 return;
             }
         }
-        final Browser.Progress makeButtonLoading = alertDialog.makeButtonLoading(-1);
-        makeButtonLoading.init();
+        final Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(-1);
+        progressMakeButtonLoading.init();
         TL_payments.TL_sendStarGiftOffer tL_sendStarGiftOffer = new TL_payments.TL_sendStarGiftOffer();
         tL_sendStarGiftOffer.price = this.inputAmount.toTl();
         tL_sendStarGiftOffer.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
@@ -682,7 +682,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftOfferSheet.this.lambda$openConfirmAlert$8(makeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$openConfirmAlert$8(progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -694,7 +694,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftOfferSheet.this.lambda$openConfirmAlert$7(progress, alertDialog, updates, tL_error);
+                this.f$0.lambda$openConfirmAlert$7(progress, alertDialog, updates, tL_error);
             }
         });
     }
@@ -722,14 +722,14 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     }
 
     public static void lambda$openOfferAcceptAlert$12(int i, final int i2, final BaseFragment baseFragment, final AlertDialog alertDialog, int i3) {
-        final Browser.Progress makeButtonLoading = alertDialog.makeButtonLoading(-1);
-        makeButtonLoading.init();
+        final Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(-1);
+        progressMakeButtonLoading.init();
         TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
         tL_resolveStarGiftOffer.offer_msg_id = i;
         ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftOfferSheet.lambda$openOfferAcceptAlert$11(i2, baseFragment, makeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                GiftOfferSheet.lambda$openOfferAcceptAlert$11(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -741,7 +741,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftOfferSheet.lambda$openOfferAcceptAlert$10(BaseFragment.this, tL_error, progress, alertDialog);
+                GiftOfferSheet.lambda$openOfferAcceptAlert$10(baseFragment, tL_error, progress, alertDialog);
             }
         });
     }

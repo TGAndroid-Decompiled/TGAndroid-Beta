@@ -54,14 +54,14 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BoostAdapter.this.lambda$new$0((HashMap) obj);
+                this.f$0.lambda$new$0((HashMap) obj);
             }
         });
     }
 
-    public void lambda$new$0(HashMap hashMap) {
+    public void lambda$new$0(HashMap map) {
         this.chatsParticipantsCount.clear();
-        this.chatsParticipantsCount.putAll(hashMap);
+        this.chatsParticipantsCount.putAll(map);
     }
 
     public void setItems(TLRPC.Chat chat, List list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
@@ -139,74 +139,74 @@ public class BoostAdapter extends AdapterWithDiffUtils {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view;
+        View boostTypeCell;
         Context context = viewGroup.getContext();
         switch (i) {
             case 2:
-                view = new BoostTypeCell(context, this.resourcesProvider);
+                boostTypeCell = new BoostTypeCell(context, this.resourcesProvider);
                 break;
             case 3:
-                view = new View(context);
+                boostTypeCell = new View(context);
                 break;
             case 4:
-                view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+                boostTypeCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
                 break;
             case 5:
-                view = new SliderCell(context, this.resourcesProvider);
+                boostTypeCell = new SliderCell(context, this.resourcesProvider);
                 break;
             case 6:
                 View headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view = headerCell;
+                boostTypeCell = headerCell;
                 break;
             case 7:
-                view = new TextInfoCell(context, this.resourcesProvider);
+                boostTypeCell = new TextInfoCell(context, this.resourcesProvider);
                 break;
             case 8:
-                view = new AddChannelCell(context, this.resourcesProvider);
+                boostTypeCell = new AddChannelCell(context, this.resourcesProvider);
                 break;
             case 9:
-                view = new ChatCell(context, this.resourcesProvider);
+                boostTypeCell = new ChatCell(context, this.resourcesProvider);
                 break;
             case 10:
-                view = new DateEndCell(context, this.resourcesProvider);
+                boostTypeCell = new DateEndCell(context, this.resourcesProvider);
                 break;
             case 11:
-                view = new ParticipantsTypeCell(context, this.resourcesProvider);
+                boostTypeCell = new ParticipantsTypeCell(context, this.resourcesProvider);
                 break;
             case 12:
-                view = new DurationCell(context, this.resourcesProvider);
+                boostTypeCell = new DurationCell(context, this.resourcesProvider);
                 break;
             case 13:
                 View subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
                 subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view = subtitleWithCounterCell;
+                boostTypeCell = subtitleWithCounterCell;
                 break;
             case 14:
-                view = new BoostTypeSingleCell(context, this.resourcesProvider);
+                boostTypeCell = new BoostTypeSingleCell(context, this.resourcesProvider);
                 break;
             case 15:
                 SwitcherCell switcherCell = new SwitcherCell(context, this.resourcesProvider);
                 switcherCell.setHeight(50);
-                view = switcherCell;
+                boostTypeCell = switcherCell;
                 break;
             case 16:
-                view = new EnterPrizeCell(context, this.resourcesProvider);
+                boostTypeCell = new EnterPrizeCell(context, this.resourcesProvider);
                 break;
             case 17:
-                view = new StarGiveawayOptionCell(context, this.resourcesProvider);
+                boostTypeCell = new StarGiveawayOptionCell(context, this.resourcesProvider);
                 break;
             case 18:
                 StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context, this.resourcesProvider);
                 expandView.set(LocaleController.getString(R.string.NotifyMoreOptions), true, true, false);
-                view = expandView;
+                boostTypeCell = expandView;
                 break;
             default:
-                view = new HeaderCell(context, this.resourcesProvider);
+                boostTypeCell = new HeaderCell(context, this.resourcesProvider);
                 break;
         }
-        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(view);
+        boostTypeCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(boostTypeCell);
     }
 
     @Override
@@ -218,7 +218,6 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             this.headerCell = headerCell;
             headerCell.setBoostViaGifsText(this.currentChat);
             this.headerCell.setStars(item.boolValue);
-            return;
         }
         if (itemViewType == 2) {
             ((BoostTypeCell) viewHolder.itemView).setType(item.subType, item.intValue, (TLRPC.User) item.user, item.selectable);
@@ -257,39 +256,37 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                     chatCell.setChat(chat3, item.intValue, item.boolValue, getParticipantsCount(chat3));
                 }
                 chatCell.setChatDeleteListener(this.chatDeleteListener);
-                return;
+                break;
             case 10:
                 ((DateEndCell) viewHolder.itemView).setDate(item.longValue);
-                return;
+                break;
             case 11:
                 ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user, this.currentChat);
-                return;
+                break;
             case 12:
                 ((DurationCell) viewHolder.itemView).setDuration(item.object, item.intValue, item.intValue2, item.longValue, item.text, item.boolValue, item.selectable);
-                return;
+                break;
             case 13:
                 SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) viewHolder.itemView;
                 subtitleWithCounterCell.setText(item.text);
                 subtitleWithCounterCell.updateCounter(true, item.intValue);
-                return;
+                break;
             case 14:
                 ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories.PrepaidGiveaway) item.user);
-                return;
+                break;
             case 15:
                 ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
-                return;
+                break;
             case 16:
                 EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
                 enterPrizeCell.setCount(item.intValue);
                 enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
-                return;
+                break;
             case 17:
                 StarGiveawayOptionCell starGiveawayOptionCell = (StarGiveawayOptionCell) viewHolder.itemView;
                 Object obj = item.object;
                 starGiveawayOptionCell.setOption(obj == null ? null : (TL_stars.TL_starsGiveawayOption) obj, item.intValue, item.longValue, item.selectable, item.boolValue);
-                return;
-            default:
-                return;
+                break;
         }
     }
 
@@ -492,7 +489,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         }
 
         @Override
-        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
             Item item2;
             int i;
             int i2;

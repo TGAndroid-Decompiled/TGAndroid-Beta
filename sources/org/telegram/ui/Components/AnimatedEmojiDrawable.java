@@ -41,7 +41,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stars.StarsReactionsSheet;
@@ -94,12 +93,12 @@ public class AnimatedEmojiDrawable extends Drawable {
         if (globalEmojiCache == null) {
             globalEmojiCache = new SparseArray();
         }
-        int hash = Objects.hash(Integer.valueOf(i), Integer.valueOf(i2));
-        LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.get(hash);
+        int iHash = Objects.hash(Integer.valueOf(i), Integer.valueOf(i2));
+        LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.get(iHash);
         if (longSparseArray == null) {
             SparseArray sparseArray = globalEmojiCache;
             LongSparseArray longSparseArray2 = new LongSparseArray();
-            sparseArray.put(hash, longSparseArray2);
+            sparseArray.put(iHash, longSparseArray2);
             longSparseArray = longSparseArray2;
         }
         AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) longSparseArray.get(j);
@@ -115,12 +114,12 @@ public class AnimatedEmojiDrawable extends Drawable {
         if (globalEmojiCache == null) {
             globalEmojiCache = new SparseArray();
         }
-        int hash = Objects.hash(Integer.valueOf(i), Integer.valueOf(i2));
-        LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.get(hash);
+        int iHash = Objects.hash(Integer.valueOf(i), Integer.valueOf(i2));
+        LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.get(iHash);
         if (longSparseArray == null) {
             SparseArray sparseArray = globalEmojiCache;
             LongSparseArray longSparseArray2 = new LongSparseArray();
-            sparseArray.put(hash, longSparseArray2);
+            sparseArray.put(iHash, longSparseArray2);
             longSparseArray = longSparseArray2;
         }
         AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) longSparseArray.get(document.id);
@@ -170,10 +169,10 @@ public class AnimatedEmojiDrawable extends Drawable {
         if (emojiDocumentFetcher != null) {
             return emojiDocumentFetcher;
         }
-        HashMap hashMap = fetchers;
-        Integer valueOf = Integer.valueOf(i);
+        HashMap map = fetchers;
+        Integer numValueOf = Integer.valueOf(i);
         EmojiDocumentFetcher emojiDocumentFetcher2 = new EmojiDocumentFetcher(i);
-        hashMap.put(valueOf, emojiDocumentFetcher2);
+        map.put(numValueOf, emojiDocumentFetcher2);
         return emojiDocumentFetcher2;
     }
 
@@ -200,8 +199,8 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             synchronized (this) {
                 try {
-                    HashMap hashMap = this.emojiDocumentsCache;
-                    if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j))) != null) {
+                    HashMap map = this.emojiDocumentsCache;
+                    if (map != null && (document = (TLRPC.Document) map.get(Long.valueOf(j))) != null) {
                         if (receivedDocument != null) {
                             receivedDocument.run(document);
                         }
@@ -228,8 +227,8 @@ public class AnimatedEmojiDrawable extends Drawable {
                         }
                         Runnable runnable = new Runnable() {
                             @Override
-                            public final void run() {
-                                AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$fetchDocument$0();
+                            public final void run() throws InterruptedException {
+                                this.f$0.lambda$fetchDocument$0();
                             }
                         };
                         this.fetchRunnable = runnable;
@@ -241,7 +240,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$fetchDocument$0() {
+        public void lambda$fetchDocument$0() throws InterruptedException {
             ArrayList arrayList = new ArrayList(this.toFetchDocuments);
             this.toFetchDocuments.clear();
             loadFromDatabase(arrayList, this.uiDbCallback == null);
@@ -259,12 +258,12 @@ public class AnimatedEmojiDrawable extends Drawable {
             return false;
         }
 
-        private void loadFromDatabase(final ArrayList arrayList, boolean z) {
+        private void loadFromDatabase(final ArrayList arrayList, boolean z) throws InterruptedException {
             if (z) {
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() {
-                        AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromDatabase$1(arrayList);
+                    public final void run() throws InterruptedException {
+                        this.f$0.lambda$loadFromDatabase$1(arrayList);
                     }
                 });
             } else {
@@ -272,33 +271,33 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$loadFromDatabase$1(ArrayList arrayList) {
+        public void lambda$loadFromDatabase$1(ArrayList arrayList) throws InterruptedException {
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (database == null) {
                 return;
             }
             try {
-                SQLiteCursor queryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT data FROM animated_emoji WHERE document_id IN (%s)", TextUtils.join(",", arrayList)), new Object[0]);
+                SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT data FROM animated_emoji WHERE document_id IN (%s)", TextUtils.join(",", arrayList)), new Object[0]);
                 ArrayList arrayList2 = new ArrayList();
                 HashSet hashSet = new HashSet(arrayList);
-                while (queryFinalized.next()) {
-                    NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                while (sQLiteCursorQueryFinalized.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
                     try {
-                        TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (TLdeserialize != null && TLdeserialize.id != 0) {
-                            arrayList2.add(TLdeserialize);
-                            hashSet.remove(Long.valueOf(TLdeserialize.id));
+                        TLRPC.Document documentTLdeserialize = TLRPC.Document.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(true), true);
+                        if (documentTLdeserialize != null && documentTLdeserialize.id != 0) {
+                            arrayList2.add(documentTLdeserialize);
+                            hashSet.remove(Long.valueOf(documentTLdeserialize.id));
                         }
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
-                    if (byteBufferValue != null) {
-                        byteBufferValue.reuse();
+                    if (nativeByteBufferByteBufferValue != null) {
+                        nativeByteBufferByteBufferValue.reuse();
                     }
                 }
                 processDatabaseResult(arrayList2, hashSet);
-                queryFinalized.dispose();
+                sQLiteCursorQueryFinalized.dispose();
                 Runnable runnable = this.uiDbCallback;
                 if (runnable != null) {
                     runnable.run();
@@ -324,7 +323,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$processDatabaseResult$3(arrayList, hashSet);
+                        this.f$0.lambda$processDatabaseResult$3(arrayList, hashSet);
                     }
                 });
             }
@@ -334,7 +333,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$processDatabaseResult$2(arrayList, hashSet);
+                    this.f$0.lambda$processDatabaseResult$2(arrayList, hashSet);
                 }
             });
         }
@@ -345,7 +344,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getCustomEmojiDocuments, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$6(arrayList, tLObject, tL_error);
+                    this.f$0.lambda$loadFromServer$6(arrayList, tLObject, tL_error);
                 }
             });
         }
@@ -354,7 +353,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$4(arrayList, tLObject);
+                    this.f$0.lambda$loadFromServer$4(arrayList, tLObject);
                 }
             });
         }
@@ -363,7 +362,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$5(arrayList, tLObject);
+                    this.f$0.lambda$loadFromServer$5(arrayList, tLObject);
                 }
             });
         }
@@ -390,7 +389,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$putToStorage$7(arrayList);
+                    this.f$0.lambda$putToStorage$7(arrayList);
                 }
             });
         }
@@ -407,8 +406,8 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (arrayList.get(i) instanceof TLRPC.Document) {
                         TLRPC.Document document = (TLRPC.Document) arrayList.get(i);
                         putDocument(document);
-                        HashMap hashMap = this.loadingDocuments;
-                        if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.id))) != null) {
+                        HashMap map = this.loadingDocuments;
+                        if (map != null && (arrayList2 = (ArrayList) map.remove(Long.valueOf(document.id))) != null) {
                             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                                 ReceivedDocument receivedDocument = (ReceivedDocument) arrayList2.get(i2);
                                 if (receivedDocument != null) {
@@ -461,11 +460,11 @@ public class AnimatedEmojiDrawable extends Drawable {
         public TLRPC.InputStickerSet findStickerSet(long j) {
             synchronized (this) {
                 try {
-                    HashMap hashMap = this.emojiDocumentsCache;
-                    if (hashMap == null) {
+                    HashMap map = this.emojiDocumentsCache;
+                    if (map == null) {
                         return null;
                     }
-                    TLRPC.Document document = (TLRPC.Document) hashMap.get(Long.valueOf(j));
+                    TLRPC.Document document = (TLRPC.Document) map.get(Long.valueOf(j));
                     if (document == null) {
                         return null;
                     }
@@ -493,7 +492,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         getDocumentFetcher(i2).fetchDocument(j, new ReceivedDocument() {
             @Override
             public final void run(TLRPC.Document document) {
-                AnimatedEmojiDrawable.this.lambda$new$0(document);
+                this.f$0.lambda$new$0(document);
             }
         });
     }
@@ -512,7 +511,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         getDocumentFetcher(i2).fetchDocument(j, new ReceivedDocument() {
             @Override
             public final void run(TLRPC.Document document) {
-                AnimatedEmojiDrawable.this.lambda$new$1(document);
+                this.f$0.lambda$new$1(document);
             }
         });
     }
@@ -598,7 +597,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         return this.document;
     }
 
-    public class AnonymousClass1 extends ImageReceiver {
+    class AnonymousClass1 extends ImageReceiver {
         AnonymousClass1() {
         }
 
@@ -609,7 +608,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
 
         @Override
-        public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
+        protected boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
             AnimatedEmojiDrawable.this.invalidate();
             boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i, z, i2);
             if (AnimatedEmojiDrawable.this.preloading && hasImageLoaded()) {
@@ -618,7 +617,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        AnimatedEmojiDrawable.access$200(AnimatedEmojiDrawable.this);
+                        AnimatedEmojiDrawable.access$200(animatedEmojiDrawable);
                     }
                 });
             }
@@ -916,11 +915,11 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
         Integer num = (Integer) dominantColors.get(Long.valueOf(documentId));
         if (num == null && animatedEmojiDrawable.getImageReceiver() != null && animatedEmojiDrawable.getImageReceiver().getBitmap() != null) {
-            HashMap hashMap = dominantColors;
-            Long valueOf = Long.valueOf(documentId);
-            Integer valueOf2 = Integer.valueOf(AndroidUtilities.getDominantColor(animatedEmojiDrawable.getImageReceiver().getBitmap()));
-            hashMap.put(valueOf, valueOf2);
-            num = valueOf2;
+            HashMap map = dominantColors;
+            Long lValueOf = Long.valueOf(documentId);
+            Integer numValueOf = Integer.valueOf(AndroidUtilities.getDominantColor(animatedEmojiDrawable.getImageReceiver().getBitmap()));
+            map.put(lValueOf, numValueOf);
+            num = numValueOf;
         }
         if (num == null) {
             return 0;
@@ -1049,7 +1048,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.invalidateRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable.this.invalidate();
+                    this.f$0.invalidate();
                 }
             };
             this.parentView = view;
@@ -1109,9 +1108,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                 this.lastColor = num;
                 if (num == null || this.colorFilterLastColor != num.intValue()) {
                     if (num != null) {
-                        int intValue = num.intValue();
-                        this.colorFilterLastColor = intValue;
-                        porterDuffColorFilter = new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
+                        int iIntValue = num.intValue();
+                        this.colorFilterLastColor = iIntValue;
+                        porterDuffColorFilter = new PorterDuffColorFilter(iIntValue, PorterDuff.Mode.SRC_IN);
                     } else {
                         porterDuffColorFilter = null;
                     }
@@ -1161,9 +1160,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                     android.graphics.Rect rect = this.bounds;
                     int i3 = rect.left;
                     int i4 = intrinsicHeight / 2;
-                    int centerY = rect.centerY() - i4;
+                    int iCenterY = rect.centerY() - i4;
                     android.graphics.Rect rect2 = this.bounds;
-                    drawable2.setBounds(i3, centerY, rect2.left + intrinsicWidth, rect2.centerY() + i4);
+                    drawable2.setBounds(i3, iCenterY, rect2.left + intrinsicWidth, rect2.centerY() + i4);
                 }
                 this.drawables[1].setColorFilter(this.colorFilter);
                 this.drawables[1].draw(canvas);
@@ -1201,9 +1200,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                     android.graphics.Rect rect4 = this.bounds;
                     int i7 = rect4.left;
                     int i8 = intrinsicHeight2 / 2;
-                    int centerY2 = rect4.centerY() - i8;
+                    int iCenterY2 = rect4.centerY() - i8;
                     android.graphics.Rect rect5 = this.bounds;
-                    drawable4.setBounds(i7, centerY2, rect5.left + intrinsicWidth2, rect5.centerY() + i8);
+                    drawable4.setBounds(i7, iCenterY2, rect5.left + intrinsicWidth2, rect5.centerY() + i8);
                 }
                 this.drawables[0].setAlpha(this.alpha);
                 this.drawables[0].setColorFilter(this.colorFilter);
@@ -1444,12 +1443,12 @@ public class AnimatedEmojiDrawable extends Drawable {
         for (int i = 0; i < globalEmojiCache.size(); i++) {
             LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.valueAt(i);
             for (int i2 = 0; i2 < longSparseArray.size(); i2++) {
-                long keyAt = longSparseArray.keyAt(i2);
-                AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) longSparseArray.get(keyAt);
+                long jKeyAt = longSparseArray.keyAt(i2);
+                AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) longSparseArray.get(jKeyAt);
                 if (animatedEmojiDrawable != null && animatedEmojiDrawable.attached) {
                     animatedEmojiDrawable.initDocument(true);
                 } else {
-                    longSparseArray.remove(keyAt);
+                    longSparseArray.remove(jKeyAt);
                 }
             }
         }

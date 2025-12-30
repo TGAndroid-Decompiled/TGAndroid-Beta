@@ -42,12 +42,12 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
 
     public void subscribe(View view, ViewGroup viewGroup, OnChangedListener onChangedListener) {
         Tracked tracked = new Tracked(viewGroup, onChangedListener);
-        List list = (List) this.tracked.get(view);
-        if (list == null) {
-            list = new ArrayList(1);
-            this.tracked.put(view, list);
+        List arrayList = (List) this.tracked.get(view);
+        if (arrayList == null) {
+            arrayList = new ArrayList(1);
+            this.tracked.put(view, arrayList);
         }
-        list.add(tracked);
+        arrayList.add(tracked);
         computeRectInParent(view, viewGroup, this.tmpRect);
         tracked.last.set(this.tmpRect);
         tracked.hasLast = true;
@@ -128,32 +128,34 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
     }
 
     public static boolean computeCoordinatesInParent(View view, ViewGroup viewGroup, PointF pointF) {
-        boolean computeRectInParent = computeRectInParent(view, viewGroup, tmpRectF2);
-        if (computeRectInParent) {
+        boolean zComputeRectInParent = computeRectInParent(view, viewGroup, tmpRectF2);
+        if (zComputeRectInParent) {
             RectF rectF = tmpRectF2;
             pointF.x = rectF.left;
             pointF.y = rectF.top;
         }
-        return computeRectInParent;
+        return zComputeRectInParent;
     }
 
     public static boolean computeRectInParent(View view, ViewGroup viewGroup, RectF rectF) {
-        float f = 0.0f;
-        float f2 = 0.0f;
+        float scrollX = 0.0f;
+        float scrollY = 0.0f;
         View view2 = view;
         while (view2 != null && view2 != viewGroup) {
-            f += view2.getX();
-            f2 += view2.getY();
+            float x = scrollX + view2.getX();
+            float y = scrollY + view2.getY();
             Object parent = view2.getParent();
             if (!(parent instanceof View)) {
                 return false;
             }
             view2 = (View) parent;
+            scrollX = x - view2.getScrollX();
+            scrollY = y - view2.getScrollY();
         }
         if (view2 != viewGroup) {
             return false;
         }
-        rectF.set(f, f2, view.getWidth() + f, view.getHeight() + f2);
+        rectF.set(scrollX, scrollY, view.getWidth() + scrollX, view.getHeight() + scrollY);
         return true;
     }
 }

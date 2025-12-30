@@ -13,7 +13,7 @@ public abstract class CoroutineExceptionHandlerImplKt {
     }
 
     public static final void propagateExceptionFinalResort(Throwable th) {
-        Thread currentThread = Thread.currentThread();
-        currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, th);
+        Thread threadCurrentThread = Thread.currentThread();
+        threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, th);
     }
 }

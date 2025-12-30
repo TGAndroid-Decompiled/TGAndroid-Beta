@@ -34,16 +34,16 @@ public class PacmanAnimation {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 17) {
             j = 17;
         }
         if (this.progress >= 1.0f) {
             this.progress = 0.0f;
         }
-        float f = (float) j;
+        float f = j;
         float f2 = this.progress + (f / 400.0f);
         this.progress = f2;
         if (f2 > 1.0f) {
@@ -126,17 +126,17 @@ public class PacmanAnimation {
     }
 
     public void draw(Canvas canvas, int i) {
-        int dp = AndroidUtilities.dp(110.0f);
-        int dp2 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
-        float measuredWidth = ((this.parentView.getMeasuredWidth() + r2) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + dp);
-        int i2 = dp / 2;
+        int iDp = AndroidUtilities.dp(110.0f);
+        int iDp2 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+        float measuredWidth = ((this.parentView.getMeasuredWidth() + r2) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + iDp);
+        int i2 = iDp / 2;
         this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        int i3 = dp2 / 2;
+        int i3 = iDp2 / 2;
         float f = measuredWidth + i2;
         canvas.drawRect(0.0f, i - i3, f, i + i3 + 1, this.paint);
         this.paint.setColor(-69120);
-        float f2 = measuredWidth + dp;
-        this.rect.set(measuredWidth, i - i2, f2, r12 + dp);
+        float f2 = measuredWidth + iDp;
+        this.rect.set(measuredWidth, i - i2, f2, r12 + iDp);
         float f3 = this.progress;
         int i4 = (int) (f3 < 0.5f ? (1.0f - (f3 / 0.5f)) * 35.0f : ((f3 - 0.5f) * 35.0f) / 0.5f);
         float f4 = i4;
@@ -144,7 +144,7 @@ public class PacmanAnimation {
         canvas.drawArc(this.rect, f4, f5, true, this.edgePaint);
         canvas.drawArc(this.rect, f4, f5, true, this.paint);
         this.paint.setColor(-16777216);
-        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), r12 + (dp / 4), AndroidUtilities.dp(8.0f), this.paint);
+        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), r12 + (iDp / 4), AndroidUtilities.dp(8.0f), this.paint);
         canvas.save();
         canvas.translate(f2 + AndroidUtilities.dp(20.0f), i - AndroidUtilities.dp(25.0f));
         for (int i5 = 0; i5 < 3; i5++) {

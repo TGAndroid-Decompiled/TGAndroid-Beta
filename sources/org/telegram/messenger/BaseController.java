@@ -12,79 +12,79 @@ public class BaseController {
         this.currentAccount = i;
     }
 
-    public final AccountInstance getAccountInstance() {
+    protected final AccountInstance getAccountInstance() {
         return this.parentAccountInstance;
     }
 
-    public final AppGlobalConfig getAppGlobalConfig() {
+    protected final AppGlobalConfig getAppGlobalConfig() {
         return getMessagesController().config;
     }
 
-    public final MessagesController getMessagesController() {
+    protected final MessagesController getMessagesController() {
         return this.parentAccountInstance.getMessagesController();
     }
 
-    public final ContactsController getContactsController() {
+    protected final ContactsController getContactsController() {
         return this.parentAccountInstance.getContactsController();
     }
 
-    public final PersistColorPalette getColorPalette() {
+    protected final PersistColorPalette getColorPalette() {
         return this.parentAccountInstance.getColorPalette();
     }
 
-    public final MediaDataController getMediaDataController() {
+    protected final MediaDataController getMediaDataController() {
         return this.parentAccountInstance.getMediaDataController();
     }
 
-    public final ConnectionsManager getConnectionsManager() {
+    protected final ConnectionsManager getConnectionsManager() {
         return this.parentAccountInstance.getConnectionsManager();
     }
 
-    public final LocationController getLocationController() {
+    protected final LocationController getLocationController() {
         return this.parentAccountInstance.getLocationController();
     }
 
-    public final NotificationsController getNotificationsController() {
+    protected final NotificationsController getNotificationsController() {
         return this.parentAccountInstance.getNotificationsController();
     }
 
-    public final NotificationCenter getNotificationCenter() {
+    protected final NotificationCenter getNotificationCenter() {
         return this.parentAccountInstance.getNotificationCenter();
     }
 
-    public final UserConfig getUserConfig() {
+    protected final UserConfig getUserConfig() {
         return this.parentAccountInstance.getUserConfig();
     }
 
-    public final MessagesStorage getMessagesStorage() {
+    protected final MessagesStorage getMessagesStorage() {
         return this.parentAccountInstance.getMessagesStorage();
     }
 
-    public final DownloadController getDownloadController() {
+    protected final DownloadController getDownloadController() {
         return this.parentAccountInstance.getDownloadController();
     }
 
-    public final SendMessagesHelper getSendMessagesHelper() {
+    protected final SendMessagesHelper getSendMessagesHelper() {
         return this.parentAccountInstance.getSendMessagesHelper();
     }
 
-    public final SecretChatHelper getSecretChatHelper() {
+    protected final SecretChatHelper getSecretChatHelper() {
         return this.parentAccountInstance.getSecretChatHelper();
     }
 
-    public final StatsController getStatsController() {
+    protected final StatsController getStatsController() {
         return this.parentAccountInstance.getStatsController();
     }
 
-    public final FileLoader getFileLoader() {
+    protected final FileLoader getFileLoader() {
         return this.parentAccountInstance.getFileLoader();
     }
 
-    public final FileRefController getFileRefController() {
+    protected final FileRefController getFileRefController() {
         return this.parentAccountInstance.getFileRefController();
     }
 
-    public final MemberRequestsController getMemberRequestsController() {
+    protected final MemberRequestsController getMemberRequestsController() {
         return this.parentAccountInstance.getMemberRequestsController();
     }
 }

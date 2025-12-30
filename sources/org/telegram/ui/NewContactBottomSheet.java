@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -14,8 +15,10 @@ import android.os.RemoteException;
 import android.os.Vibrator;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,20 +27,26 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.exoplayer2.util.Consumer;
+import j$.util.Comparator$CC;
+import j$.util.Objects;
+import j$.util.function.Function$CC;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -63,12 +72,16 @@ import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CircularProgressDrawable;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.OutlineEditText;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.CountrySelectActivity;
 import org.telegram.ui.NewContactBottomSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -140,8 +153,585 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         setTitle(LocaleController.getString(R.string.NewContactTitle), true);
     }
 
-    public android.view.View createView(android.content.Context r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.createView(android.content.Context):android.view.View");
+    public View createView(Context context) throws IOException {
+        String str;
+        CountrySelectActivity.Country country;
+        TelephonyManager telephonyManager;
+        ContextProgressView contextProgressView = new ContextProgressView(context, 1);
+        this.editDoneItemProgress = contextProgressView;
+        contextProgressView.setVisibility(4);
+        ScrollView scrollView = new ScrollView(context);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.contentLayout = linearLayout;
+        linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        this.contentLayout.setOrientation(1);
+        scrollView.addView(this.contentLayout, LayoutHelper.createScroll(-1, -2, 51));
+        this.contentLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                return NewContactBottomSheet.lambda$createView$0(view, motionEvent);
+            }
+        });
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.contentLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 0.0f));
+        OutlineEditText outlineEditText = new OutlineEditText(context);
+        this.firstNameField = outlineEditText;
+        outlineEditText.getEditText().setInputType(49152);
+        this.firstNameField.getEditText().setImeOptions(5);
+        this.firstNameField.setHint(LocaleController.getString(R.string.FirstName));
+        if (this.initialFirstName != null) {
+            this.firstNameField.getEditText().setText(this.initialFirstName);
+            this.initialFirstName = null;
+        }
+        frameLayout.addView(this.firstNameField, LayoutHelper.createFrame(-1, 58.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.firstNameField.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$1(textView, i, keyEvent);
+            }
+        });
+        OutlineEditText outlineEditText2 = new OutlineEditText(context);
+        this.lastNameField = outlineEditText2;
+        outlineEditText2.setBackground(null);
+        this.lastNameField.getEditText().setInputType(49152);
+        this.lastNameField.getEditText().setImeOptions(5);
+        this.lastNameField.setHint(LocaleController.getString(R.string.LastName));
+        if (this.initialLastName != null) {
+            this.lastNameField.getEditText().setText(this.initialLastName);
+            this.initialLastName = null;
+        }
+        frameLayout.addView(this.lastNameField, LayoutHelper.createFrame(-1, 58.0f, 51, 0.0f, 68.0f, 0.0f, 0.0f));
+        this.lastNameField.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$2(textView, i, keyEvent);
+            }
+        });
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
+        this.phoneOutlineView = outlineTextContainerView;
+        outlineTextContainerView.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 16, 4.0f, 8.0f, 16.0f, 8.0f));
+        OutlineTextContainerView outlineTextContainerView2 = this.phoneOutlineView;
+        int i = R.string.PhoneNumber;
+        outlineTextContainerView2.setText(LocaleController.getString(i));
+        this.contentLayout.addView(this.phoneOutlineView, LayoutHelper.createLinear(-1, 58, 0.0f, 12.0f, 0.0f, 6.0f));
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        this.underPhoneTextView = linksTextView;
+        linksTextView.setTextSize(1, 12.0f);
+        this.underPhoneTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
+        this.underPhoneTextView.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
+        this.contentLayout.addView(this.underPhoneTextView, LayoutHelper.createLinear(-1, -2, 12.0f, 0.0f, 12.0f, 0.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(context);
+        this.countryFlag = anonymousClass1;
+        anonymousClass1.setTextSize(1, 16.0f);
+        this.countryFlag.setFocusable(false);
+        this.countryFlag.setGravity(17);
+        frameLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$3(view);
+            }
+        });
+        int iDp = AndroidUtilities.dp(6.0f);
+        int i2 = Theme.key_listSelector;
+        frameLayout2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, 0, Theme.getColor(i2)));
+        frameLayout2.addView(this.countryFlag, LayoutHelper.createFrame(-1, -2, 16));
+        linearLayout2.addView(frameLayout2, LayoutHelper.createLinear(42, -1));
+        TextView textView = new TextView(context);
+        this.plusTextView = textView;
+        textView.setText("+");
+        this.plusTextView.setTextSize(1, 16.0f);
+        this.plusTextView.setFocusable(false);
+        linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context) {
+            @Override
+            protected void onFocusChanged(boolean z, int i3, Rect rect) {
+                super.onFocusChanged(z, i3, rect);
+                NewContactBottomSheet.this.phoneOutlineView.animateSelection((z || NewContactBottomSheet.this.phoneField.isFocused()) ? 1.0f : 0.0f);
+            }
+        };
+        this.codeField = animatedPhoneNumberEditText;
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        animatedPhoneNumberEditText.setTextColor(Theme.getColor(i3));
+        this.codeField.setInputType(3);
+        this.codeField.setCursorSize(AndroidUtilities.dp(20.0f));
+        this.codeField.setCursorWidth(1.5f);
+        this.codeField.setPadding(AndroidUtilities.dp(10.0f), 0, 0, 0);
+        this.codeField.setTextSize(1, 16.0f);
+        this.codeField.setMaxLines(1);
+        this.codeField.setGravity(19);
+        this.codeField.setImeOptions(268435461);
+        this.codeField.setBackground(null);
+        this.codeField.setContentDescription(LocaleController.getString(R.string.LoginAccessibilityCountryCode));
+        linearLayout2.addView(this.codeField, LayoutHelper.createLinear(55, 36, -9.0f, 0.0f, 0.0f, 0.0f));
+        this.codeField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String str2;
+                boolean z;
+                CountrySelectActivity.Country country2;
+                CountrySelectActivity.Country country3;
+                if (NewContactBottomSheet.this.ignoreOnTextChange) {
+                    return;
+                }
+                NewContactBottomSheet.this.ignoreOnTextChange = true;
+                String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(NewContactBottomSheet.this.codeField.getText().toString());
+                NewContactBottomSheet.this.codeField.setText(strStripExceptNumbers);
+                if (strStripExceptNumbers.length() == 0) {
+                    NewContactBottomSheet.this.setCountryButtonText(null);
+                    NewContactBottomSheet.this.phoneField.setHintText((String) null);
+                } else {
+                    int i4 = 4;
+                    if (strStripExceptNumbers.length() > 4) {
+                        while (true) {
+                            if (i4 < 1) {
+                                str2 = null;
+                                z = false;
+                                break;
+                            }
+                            String strSubstring = strStripExceptNumbers.substring(0, i4);
+                            List list = (List) NewContactBottomSheet.this.codesMap.get(strSubstring);
+                            if (list == null) {
+                                country3 = null;
+                            } else if (list.size() > 1) {
+                                String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + strSubstring, null);
+                                country3 = (CountrySelectActivity.Country) list.get(list.size() - 1);
+                                if (string != null) {
+                                    Iterator it = NewContactBottomSheet.this.countriesArray.iterator();
+                                    while (true) {
+                                        if (!it.hasNext()) {
+                                            break;
+                                        }
+                                        CountrySelectActivity.Country country4 = (CountrySelectActivity.Country) it.next();
+                                        if (Objects.equals(country4.shortname, string)) {
+                                            country3 = country4;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } else {
+                                country3 = (CountrySelectActivity.Country) list.get(0);
+                            }
+                            if (country3 != null) {
+                                String str3 = strStripExceptNumbers.substring(i4) + NewContactBottomSheet.this.phoneField.getText().toString();
+                                NewContactBottomSheet.this.codeField.setText(strSubstring);
+                                z = true;
+                                str2 = str3;
+                                strStripExceptNumbers = strSubstring;
+                                break;
+                            }
+                            i4--;
+                        }
+                        if (!z) {
+                            str2 = strStripExceptNumbers.substring(1) + NewContactBottomSheet.this.phoneField.getText().toString();
+                            AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = NewContactBottomSheet.this.codeField;
+                            strStripExceptNumbers = strStripExceptNumbers.substring(0, 1);
+                            animatedPhoneNumberEditText2.setText(strStripExceptNumbers);
+                        }
+                    } else {
+                        str2 = null;
+                        z = false;
+                    }
+                    Iterator it2 = NewContactBottomSheet.this.countriesArray.iterator();
+                    CountrySelectActivity.Country country5 = null;
+                    int i5 = 0;
+                    while (it2.hasNext()) {
+                        CountrySelectActivity.Country country6 = (CountrySelectActivity.Country) it2.next();
+                        if (country6.code.startsWith(strStripExceptNumbers)) {
+                            i5++;
+                            if (country6.code.equals(strStripExceptNumbers)) {
+                                country5 = country6;
+                            }
+                        }
+                    }
+                    if (i5 == 1 && country5 != null && str2 == null) {
+                        str2 = strStripExceptNumbers.substring(country5.code.length()) + NewContactBottomSheet.this.phoneField.getText().toString();
+                        AnimatedPhoneNumberEditText animatedPhoneNumberEditText3 = NewContactBottomSheet.this.codeField;
+                        String str4 = country5.code;
+                        animatedPhoneNumberEditText3.setText(str4);
+                        strStripExceptNumbers = str4;
+                    }
+                    List list2 = (List) NewContactBottomSheet.this.codesMap.get(strStripExceptNumbers);
+                    if (list2 == null) {
+                        country2 = null;
+                    } else if (list2.size() > 1) {
+                        String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + strStripExceptNumbers, null);
+                        country2 = (CountrySelectActivity.Country) list2.get(list2.size() - 1);
+                        if (string2 != null) {
+                            Iterator it3 = NewContactBottomSheet.this.countriesArray.iterator();
+                            while (true) {
+                                if (!it3.hasNext()) {
+                                    break;
+                                }
+                                CountrySelectActivity.Country country7 = (CountrySelectActivity.Country) it3.next();
+                                if (Objects.equals(country7.shortname, string2)) {
+                                    country2 = country7;
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        country2 = (CountrySelectActivity.Country) list2.get(0);
+                    }
+                    if (country2 != null) {
+                        NewContactBottomSheet.this.ignoreSelection = true;
+                        NewContactBottomSheet.this.setCountryHint(strStripExceptNumbers, country2);
+                    } else {
+                        NewContactBottomSheet.this.setCountryButtonText(null);
+                        NewContactBottomSheet.this.phoneField.setHintText((String) null);
+                    }
+                    if (!z) {
+                        NewContactBottomSheet.this.codeField.setSelection(NewContactBottomSheet.this.codeField.getText().length());
+                    }
+                    if (str2 != null && str2.length() != 0) {
+                        NewContactBottomSheet.this.phoneField.requestFocus();
+                        NewContactBottomSheet.this.phoneField.setText(str2);
+                        NewContactBottomSheet.this.phoneField.setSelection(NewContactBottomSheet.this.phoneField.length());
+                    }
+                }
+                NewContactBottomSheet.this.ignoreOnTextChange = false;
+                NewContactBottomSheet.this.updatedTextPhone();
+            }
+        });
+        this.codeField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView2, int i4, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$4(textView2, i4, keyEvent);
+            }
+        });
+        this.codeDividerView = new View(context);
+        LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(0, -1, 4.0f, 8.0f, 12.0f, 8.0f);
+        layoutParamsCreateLinear.width = Math.max(2, AndroidUtilities.dp(0.5f));
+        linearLayout2.addView(this.codeDividerView, layoutParamsCreateLinear);
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = new AnimatedPhoneNumberEditText(context) {
+            @Override
+            public boolean onKeyDown(int i4, KeyEvent keyEvent) {
+                if (i4 == 67 && NewContactBottomSheet.this.phoneField.length() == 0) {
+                    NewContactBottomSheet.this.codeField.requestFocus();
+                    NewContactBottomSheet.this.codeField.setSelection(NewContactBottomSheet.this.codeField.length());
+                    NewContactBottomSheet.this.codeField.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i4, keyEvent);
+            }
+
+            @Override
+            protected void onFocusChanged(boolean z, int i4, Rect rect) {
+                super.onFocusChanged(z, i4, rect);
+                NewContactBottomSheet.this.phoneOutlineView.animateSelection((z || NewContactBottomSheet.this.codeField.isFocused()) ? 1.0f : 0.0f);
+            }
+        };
+        this.phoneField = animatedPhoneNumberEditText2;
+        animatedPhoneNumberEditText2.setTextColor(Theme.getColor(i3));
+        this.phoneField.setInputType(3);
+        this.phoneField.setPadding(0, 0, 0, 0);
+        this.phoneField.setCursorSize(AndroidUtilities.dp(20.0f));
+        this.phoneField.setCursorWidth(1.5f);
+        this.phoneField.setTextSize(1, 16.0f);
+        this.phoneField.setMaxLines(1);
+        this.phoneField.setGravity(19);
+        this.phoneField.setImeOptions(268435461);
+        this.phoneField.setBackground(null);
+        this.phoneField.setContentDescription(LocaleController.getString(i));
+        linearLayout2.addView(this.phoneField, LayoutHelper.createLinear(-1, 36));
+        this.phoneField.addTextChangedListener(new TextWatcher() {
+            private int actionPosition;
+            private int characterAction = -1;
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                if (i5 == 0 && i6 == 1) {
+                    this.characterAction = 1;
+                    return;
+                }
+                if (i5 == 1 && i6 == 0) {
+                    if (charSequence.charAt(i4) == ' ' && i4 > 0) {
+                        this.characterAction = 3;
+                        this.actionPosition = i4 - 1;
+                        return;
+                    } else {
+                        this.characterAction = 2;
+                        return;
+                    }
+                }
+                this.characterAction = -1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int i4;
+                int i5;
+                if (NewContactBottomSheet.this.ignoreOnPhoneChange) {
+                    return;
+                }
+                int selectionStart = NewContactBottomSheet.this.phoneField.getSelectionStart();
+                String string = NewContactBottomSheet.this.phoneField.getText().toString();
+                if (this.characterAction == 3) {
+                    string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                    selectionStart--;
+                }
+                StringBuilder sb = new StringBuilder(string.length());
+                int i6 = 0;
+                while (i6 < string.length()) {
+                    int i7 = i6 + 1;
+                    String strSubstring = string.substring(i6, i7);
+                    if ("0123456789".contains(strSubstring)) {
+                        sb.append(strSubstring);
+                    }
+                    i6 = i7;
+                }
+                NewContactBottomSheet.this.ignoreOnPhoneChange = true;
+                String hintText = NewContactBottomSheet.this.phoneField.getHintText();
+                if (hintText != null) {
+                    int i8 = 0;
+                    while (true) {
+                        if (i8 >= sb.length()) {
+                            break;
+                        }
+                        if (i8 < hintText.length()) {
+                            if (hintText.charAt(i8) == ' ') {
+                                sb.insert(i8, ' ');
+                                i8++;
+                                if (selectionStart == i8 && (i5 = this.characterAction) != 2 && i5 != 3) {
+                                    selectionStart++;
+                                }
+                            }
+                            i8++;
+                        } else {
+                            sb.insert(i8, ' ');
+                            if (selectionStart == i8 + 1 && (i4 = this.characterAction) != 2 && i4 != 3) {
+                                selectionStart++;
+                            }
+                        }
+                    }
+                }
+                editable.replace(0, editable.length(), sb);
+                if (selectionStart >= 0) {
+                    NewContactBottomSheet.this.phoneField.setSelection(Math.min(selectionStart, NewContactBottomSheet.this.phoneField.length()));
+                }
+                NewContactBottomSheet.this.phoneField.onTextChange();
+                NewContactBottomSheet.this.ignoreOnPhoneChange = false;
+                NewContactBottomSheet.this.updatedTextPhone();
+            }
+        });
+        this.phoneField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView2, int i4, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$5(textView2, i4, keyEvent);
+            }
+        });
+        ImageView imageView = new ImageView(context);
+        this.phoneStatusView = imageView;
+        imageView.setScaleX(0.5f);
+        this.phoneStatusView.setScaleY(0.5f);
+        this.phoneStatusView.setAlpha(0.0f);
+        this.phoneOutlineView.addView(this.phoneStatusView, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        CheckBox2 checkBox2 = new CheckBox2(context, 21, this.resourcesProvider);
+        this.checkBox = checkBox2;
+        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
+        this.checkBox.setDrawUnchecked(true);
+        this.checkBox.setChecked(false, false);
+        this.checkBox.setDrawBackgroundAsArc(10);
+        TextView textView2 = new TextView(context);
+        this.checkTextView = textView2;
+        textView2.setTextColor(Theme.getColor(i3, this.resourcesProvider));
+        this.checkTextView.setTextSize(1, 14.0f);
+        this.checkTextView.setText("Sync Contact to Phone");
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        this.checkLayout = linearLayout3;
+        linearLayout3.setOrientation(0);
+        this.checkLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        this.checkLayout.addView(this.checkBox, LayoutHelper.createLinear(21, 21, 16, 0, 0, 9, 0));
+        this.checkLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2, 16));
+        this.checkLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$6(view);
+            }
+        });
+        this.checkLayout.setTranslationY(AndroidUtilities.dp(-21.33f));
+        this.checkLayout.setPivotX(0.0f);
+        ScaleStateListAnimator.apply(this.checkLayout, 0.0125f, 1.2f);
+        this.checkLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(i2, this.resourcesProvider), 6, 6));
+        this.contentLayout.addView(this.checkLayout, LayoutHelper.createLinear(-2, -2, 0.0f, 5.0f, 0.0f, 0.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.qrButtonContainer = frameLayout3;
+        frameLayout3.setTranslationY(AndroidUtilities.dp(-10.665f));
+        this.contentLayout.addView(this.qrButtonContainer, LayoutHelper.createLinear(-1, -2, 0.0f, 6.0f, 0.0f, -6.0f));
+        View view = new View(context);
+        this.qrButtonSeparator = view;
+        view.setBackgroundColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+        this.qrButtonContainer.addView(this.qrButtonSeparator, LayoutHelper.createFrame(-1, 1.0f / AndroidUtilities.density, 48, 0.0f, 6.0f, 0.0f, 0.0f));
+        this.qrButton = new ButtonWithCounterView(context, false, this.resourcesProvider);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("QR");
+        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.header_qr_24), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append((CharSequence) "  ");
+        spannableStringBuilder.append((CharSequence) "Add via QR Code");
+        this.qrButton.setText(spannableStringBuilder, false);
+        this.qrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                this.f$0.lambda$createView$7(view2);
+            }
+        });
+        this.qrButtonContainer.addView(this.qrButton, LayoutHelper.createFrame(-1, 48.0f, 48, 0.0f, 12.0f, 0.0f, 0.0f));
+        OutlineEditText outlineEditText3 = new OutlineEditText(context);
+        this.notesField = outlineEditText3;
+        outlineEditText3.setBackground(null);
+        this.notesField.getEditText().setInputType(49152);
+        this.notesField.getEditText().setImeOptions(5);
+        this.notesField.setHint("Notes");
+        this.qrButtonContainer.addView(this.notesField, LayoutHelper.createFrame(-1, 58.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.notesField.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView3, int i4, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$8(textView3, i4, keyEvent);
+            }
+        });
+        updateQrButtonVisible(false);
+        HashMap map = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(ApplicationLoader.applicationContext.getResources().getAssets().open("countries.txt")));
+            while (true) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
+                    break;
+                }
+                String[] strArrSplit = line.split(";");
+                CountrySelectActivity.Country country2 = new CountrySelectActivity.Country();
+                country2.name = strArrSplit[2];
+                country2.code = strArrSplit[0];
+                country2.shortname = strArrSplit[1];
+                this.countriesArray.add(0, country2);
+                List list = (List) this.codesMap.get(strArrSplit[0]);
+                if (list == null) {
+                    HashMap map2 = this.codesMap;
+                    String str2 = strArrSplit[0];
+                    ArrayList arrayList = new ArrayList();
+                    map2.put(str2, arrayList);
+                    list = arrayList;
+                }
+                list.add(country2);
+                if (strArrSplit.length > 3) {
+                    this.phoneFormatMap.put(strArrSplit[0], Collections.singletonList(strArrSplit[3]));
+                }
+                map.put(strArrSplit[1], strArrSplit[2]);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        Collections.sort(this.countriesArray, Comparator$CC.comparing(new Function() {
+            public Function andThen(Function function) {
+                return Function$CC.$default$andThen(this, function);
+            }
+
+            @Override
+            public final Object apply(Object obj) {
+                return ((CountrySelectActivity.Country) obj).name;
+            }
+
+            public Function compose(Function function) {
+                return Function$CC.$default$compose(this, function);
+            }
+        }));
+        if (!TextUtils.isEmpty(this.initialPhoneNumber)) {
+            TLRPC.User currentUser = this.parentFragment.getUserConfig().getCurrentUser();
+            if (this.initialPhoneNumber.startsWith("+")) {
+                this.codeField.setText(this.initialPhoneNumber.substring(1));
+            } else if (this.initialPhoneNumberWithCountryCode || currentUser == null || TextUtils.isEmpty(currentUser.phone)) {
+                this.codeField.setText(this.initialPhoneNumber);
+            } else {
+                String str3 = currentUser.phone;
+                int i4 = 4;
+                while (true) {
+                    if (i4 < 1) {
+                        break;
+                    }
+                    String strSubstring = str3.substring(0, i4);
+                    if (((List) this.codesMap.get(strSubstring)) != null) {
+                        this.codeField.setText(strSubstring);
+                        break;
+                    }
+                    i4--;
+                }
+                this.phoneField.setText(this.initialPhoneNumber);
+            }
+            this.initialPhoneNumber = null;
+        } else {
+            try {
+                telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+            String upperCase = telephonyManager != null ? telephonyManager.getSimCountryIso().toUpperCase() : null;
+            if (upperCase != null && (str = (String) map.get(upperCase)) != null) {
+                int i5 = 0;
+                while (true) {
+                    if (i5 >= this.countriesArray.size()) {
+                        country = null;
+                        break;
+                    }
+                    if (Objects.equals(((CountrySelectActivity.Country) this.countriesArray.get(i5)).name, str)) {
+                        country = (CountrySelectActivity.Country) this.countriesArray.get(i5);
+                        break;
+                    }
+                    i5++;
+                }
+                if (country != null) {
+                    this.codeField.setText(country.code);
+                }
+            }
+            if (this.codeField.length() == 0) {
+                this.phoneField.setHintText((String) null);
+            }
+        }
+        this.doneButtonContainer = new FrameLayout(getContext());
+        TextView textView3 = new TextView(context);
+        this.doneButton = textView3;
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        this.doneButton.setGravity(17);
+        this.doneButton.setLines(1);
+        this.doneButton.setSingleLine(true);
+        this.doneButton.setText(LocaleController.getString(R.string.CreateContact));
+        TextView textView4 = this.doneButton;
+        BaseFragment baseFragment = this.parentFragment;
+        int i6 = Theme.key_featuredStickers_buttonText;
+        textView4.setTextColor(baseFragment.getThemedColor(i6));
+        this.doneButton.setTextSize(1, 15.0f);
+        this.doneButton.setTypeface(AndroidUtilities.bold());
+        RadialProgressView radialProgressView = new RadialProgressView(context);
+        this.progressView = radialProgressView;
+        radialProgressView.setSize(AndroidUtilities.dp(20.0f));
+        this.progressView.setProgressColor(this.parentFragment.getThemedColor(i6));
+        this.doneButtonContainer.addView(this.doneButton, LayoutHelper.createFrame(-1, -1.0f));
+        this.doneButtonContainer.addView(this.progressView, LayoutHelper.createFrame(40, 40, 17));
+        this.contentLayout.addView(this.doneButtonContainer, LayoutHelper.createLinear(-1, 48, 0, 0, 16, 0, 16));
+        AndroidUtilities.updateViewVisibilityAnimated(this.doneButton, true, 1.0f, false);
+        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, false, 1.0f, false);
+        this.doneButtonContainer.setBackground(Theme.AdaptiveRipple.filledRect(this.parentFragment.getThemedColor(Theme.key_featuredStickers_addButton), 6.0f));
+        this.doneButtonContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) throws RemoteException, OperationApplicationException {
+                this.f$0.lambda$createView$10(view2);
+            }
+        });
+        this.plusTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.codeDividerView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhiteInputField));
+        return scrollView;
     }
 
     public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
@@ -163,7 +753,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return true;
     }
 
-    public class AnonymousClass1 extends TextView {
+    class AnonymousClass1 extends TextView {
         final NotificationCenter.NotificationCenterDelegate delegate;
 
         AnonymousClass1(Context context) {
@@ -171,7 +761,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             this.delegate = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    NewContactBottomSheet.AnonymousClass1.this.lambda$$0(i, i2, objArr);
+                    this.f$0.lambda$$0(i, i2, objArr);
                 }
             };
         }
@@ -193,7 +783,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public class AnonymousClass2 implements CountrySelectActivity.CountrySelectActivityDelegate {
+    class AnonymousClass2 implements CountrySelectActivity.CountrySelectActivityDelegate {
         AnonymousClass2() {
         }
 
@@ -203,7 +793,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.AnonymousClass2.this.lambda$didSelectCountry$0();
+                    this.f$0.lambda$didSelectCountry$0();
                 }
             }, 300L);
             NewContactBottomSheet.this.phoneField.requestFocus();
@@ -244,7 +834,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         updateQrButtonVisible(true);
     }
 
-    public class AnonymousClass7 implements CameraScanActivity.CameraScanActivityDelegate {
+    class AnonymousClass7 implements CameraScanActivity.CameraScanActivityDelegate {
         @Override
         public void didFindMrzInfo(MrzRecognizer.Result result) {
             CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
@@ -270,9 +860,9 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
         @Override
         public void didFindQr(String str) {
-            String extractUsername = Browser.extractUsername(str);
-            if (!TextUtils.isEmpty(extractUsername)) {
-                MessagesController.getInstance(((BottomSheet) NewContactBottomSheet.this).currentAccount).getUserNameResolver().resolve(extractUsername, new Consumer() {
+            String strExtractUsername = Browser.extractUsername(str);
+            if (!TextUtils.isEmpty(strExtractUsername)) {
+                MessagesController.getInstance(((BottomSheet) NewContactBottomSheet.this).currentAccount).getUserNameResolver().resolve(strExtractUsername, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
                         NewContactBottomSheet.AnonymousClass7.lambda$didFindQr$1((Long) obj);
@@ -328,55 +918,55 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return true;
     }
 
-    public void lambda$createView$10(View view) {
+    public void lambda$createView$10(View view) throws RemoteException, OperationApplicationException {
         doOnDone();
     }
 
     private void updateBottomTranslation(boolean z) {
-        ViewPropertyAnimator translationY = this.checkLayout.animate().translationY(z ? -AndroidUtilities.dp(21.33f) : 0.0f);
+        ViewPropertyAnimator viewPropertyAnimatorTranslationY = this.checkLayout.animate().translationY(z ? -AndroidUtilities.dp(21.33f) : 0.0f);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        translationY.setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
+        viewPropertyAnimatorTranslationY.setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
         this.qrButtonContainer.animate().translationY(z ? -AndroidUtilities.dp(10.665f) : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
     }
 
     private void updateQrButtonVisible(boolean z) {
-        boolean isChecked = this.checkBox.isChecked();
-        final boolean z2 = !isChecked;
+        boolean zIsChecked = this.checkBox.isChecked();
+        final boolean z2 = !zIsChecked;
         if (z) {
             this.qrButton.setVisibility(0);
-            ViewPropertyAnimator alpha = this.qrButton.animate().alpha(!isChecked ? 1.0f : 0.0f);
+            ViewPropertyAnimator viewPropertyAnimatorAlpha = this.qrButton.animate().alpha(!zIsChecked ? 1.0f : 0.0f);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            alpha.setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
+            viewPropertyAnimatorAlpha.setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.this.lambda$updateQrButtonVisible$11(z2);
+                    this.f$0.lambda$updateQrButtonVisible$11(z2);
                 }
             }).start();
             this.qrButtonSeparator.setVisibility(0);
-            this.qrButtonSeparator.animate().alpha(!isChecked ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
+            this.qrButtonSeparator.animate().alpha(!zIsChecked ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.this.lambda$updateQrButtonVisible$12(z2);
+                    this.f$0.lambda$updateQrButtonVisible$12(z2);
                 }
             }).start();
             this.notesField.setVisibility(0);
-            this.notesField.animate().alpha(isChecked ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
+            this.notesField.animate().alpha(zIsChecked ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.this.lambda$updateQrButtonVisible$13(z2);
+                    this.f$0.lambda$updateQrButtonVisible$13(z2);
                 }
             }).start();
             return;
         }
         this.qrButton.animate().cancel();
-        this.qrButton.setVisibility(!isChecked ? 0 : 4);
-        this.qrButton.setAlpha(!isChecked ? 1.0f : 0.0f);
+        this.qrButton.setVisibility(!zIsChecked ? 0 : 4);
+        this.qrButton.setAlpha(!zIsChecked ? 1.0f : 0.0f);
         this.qrButtonSeparator.animate().cancel();
-        this.qrButtonSeparator.setVisibility(!isChecked ? 0 : 8);
-        this.qrButtonSeparator.setAlpha(!isChecked ? 1.0f : 0.0f);
+        this.qrButtonSeparator.setVisibility(!zIsChecked ? 0 : 8);
+        this.qrButtonSeparator.setAlpha(!zIsChecked ? 1.0f : 0.0f);
         this.notesField.animate().cancel();
-        this.notesField.setVisibility(isChecked ? 0 : 4);
-        this.notesField.setAlpha(isChecked ? 1.0f : 0.0f);
+        this.notesField.setVisibility(zIsChecked ? 0 : 4);
+        this.notesField.setAlpha(zIsChecked ? 1.0f : 0.0f);
     }
 
     public void lambda$updateQrButtonVisible$11(boolean z) {
@@ -400,20 +990,20 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public void updatedTextPhone() {
-        String replaceAll = (this.codeField.getText().toString() + this.phoneField.getText().toString()).replaceAll("[^\\d]+", "");
+        String strReplaceAll = (this.codeField.getText().toString() + this.phoneField.getText().toString()).replaceAll("[^\\d]+", "");
         boolean z = false;
-        for (int min = Math.min(3, replaceAll.length()); min >= 0; min--) {
-            String substring = replaceAll.substring(0, min);
-            List list = (List) this.codesMap.get(substring);
+        for (int iMin = Math.min(3, strReplaceAll.length()); iMin >= 0; iMin--) {
+            String strSubstring = strReplaceAll.substring(0, iMin);
+            List list = (List) this.codesMap.get(strSubstring);
             if (list != null && !list.isEmpty()) {
-                List list2 = (List) this.phoneFormatMap.get(substring);
+                List list2 = (List) this.phoneFormatMap.get(strSubstring);
                 if (list2 != null && !list2.isEmpty()) {
                     Iterator it = list2.iterator();
                     while (true) {
                         if (!it.hasNext()) {
                             break;
                         }
-                        if (replaceAll.length() - min >= ((String) it.next()).replace(" ", "").length()) {
+                        if (strReplaceAll.length() - iMin >= ((String) it.next()).replace(" ", "").length()) {
                             z = true;
                             break;
                         }
@@ -432,11 +1022,11 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             updatedPhone(null);
             return;
         }
-        if (TextUtils.equals(this.lastPhone, replaceAll)) {
+        if (TextUtils.equals(this.lastPhone, strReplaceAll)) {
             return;
         }
-        this.lastPhone = replaceAll;
-        updatedPhone(replaceAll);
+        this.lastPhone = strReplaceAll;
+        updatedPhone(strReplaceAll);
     }
 
     private void updatedPhone(final String str) {
@@ -457,7 +1047,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                NewContactBottomSheet.this.lambda$updatedPhone$16(str, (TLRPC.User) obj);
+                this.f$0.lambda$updatedPhone$16(str, (TLRPC.User) obj);
             }
         };
         final TLRPC.TL_contact tL_contact = ContactsController.getInstance(this.currentAccount).contactsByPhone.get(PhoneFormat.stripExceptNumbers(str));
@@ -469,8 +1059,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             } else {
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() {
-                        NewContactBottomSheet.this.lambda$updatedPhone$18(tL_contact, callback);
+                    public final void run() throws InterruptedException {
+                        this.f$0.lambda$updatedPhone$18(tL_contact, callback);
                     }
                 });
                 return;
@@ -481,7 +1071,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.requestingPhoneId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolvePhone, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NewContactBottomSheet.this.lambda$updatedPhone$20(callback, tLObject, tL_error);
+                this.f$0.lambda$updatedPhone$20(callback, tLObject, tL_error);
             }
         });
     }
@@ -492,18 +1082,18 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             this.underPhoneTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is not on Telegram. **Invite >**", new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.this.lambda$updatedPhone$14(str);
+                    this.f$0.lambda$updatedPhone$14(str);
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
         } else {
-            Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_text_check).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
-            this.phoneStatusView.setImageDrawable(mutate);
+            Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_text_check).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
+            this.phoneStatusView.setImageDrawable(drawableMutate);
             if (user.contact) {
                 this.underPhoneTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is already in your contacts. **View >**", new Runnable() {
                     @Override
                     public final void run() {
-                        NewContactBottomSheet.this.lambda$updatedPhone$15(user);
+                        this.f$0.lambda$updatedPhone$15(user);
                     }
                 }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
             } else {
@@ -528,12 +1118,12 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public void lambda$updatedPhone$18(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
+    public void lambda$updatedPhone$18(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) throws InterruptedException {
         final TLRPC.User user = MessagesStorage.getInstance(this.currentAccount).getUser(tL_contact.user_id);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Utilities.Callback.this.run(user);
+                callback.run(user);
             }
         });
     }
@@ -542,28 +1132,16 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$updatedPhone$19(tLObject, callback);
+                this.f$0.lambda$updatedPhone$19(tLObject, callback);
             }
         });
     }
 
-    public void lambda$updatedPhone$19(TLObject tLObject, Utilities.Callback callback) {
-        TLRPC.User user;
-        if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
-            TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
-            long peerDialogId = DialogObject.getPeerDialogId(tL_contacts_resolvedPeer.peer);
-            if (peerDialogId >= 0) {
-                user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                callback.run(user);
-            }
-        }
-        user = null;
-        callback.run(user);
+    public void lambda$updatedPhone$19(org.telegram.tgnet.TLObject r5, org.telegram.messenger.Utilities.Callback r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.lambda$updatedPhone$19(org.telegram.tgnet.TLObject, org.telegram.messenger.Utilities$Callback):void");
     }
 
-    private void doOnDone() {
+    private void doOnDone() throws RemoteException, OperationApplicationException {
         BaseFragment baseFragment;
         if (this.donePressed || (baseFragment = this.parentFragment) == null || baseFragment.getParentActivity() == null) {
             return;
@@ -595,8 +1173,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (this.checkBox.isChecked()) {
             PermissionRequest.ensurePermission(R.raw.permission_request_contacts, R.string.PermissionNoContactsSaving, "android.permission.WRITE_CONTACTS", new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
-                    NewContactBottomSheet.this.lambda$doOnDone$21((Boolean) obj);
+                public final void run(Object obj) throws RemoteException, OperationApplicationException {
+                    this.f$0.lambda$doOnDone$21((Boolean) obj);
                 }
             });
         } else {
@@ -604,39 +1182,39 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public void lambda$doOnDone$21(Boolean bool) {
+    public void lambda$doOnDone$21(Boolean bool) throws RemoteException, OperationApplicationException {
         if (bool.booleanValue()) {
             done();
         }
     }
 
-    private void done() {
+    private void done() throws RemoteException, OperationApplicationException {
         this.donePressed = true;
         showEditDoneProgress(true, true);
         String str = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
-        String obj = this.firstNameField.getEditText().getText().toString();
-        String obj2 = this.lastNameField.getEditText().getText().toString();
-        String obj3 = this.notesField.getVisibility() == 0 ? this.notesField.getEditText().getText().toString() : "";
+        String string = this.firstNameField.getEditText().getText().toString();
+        String string2 = this.lastNameField.getEditText().getText().toString();
+        String string3 = this.notesField.getVisibility() == 0 ? this.notesField.getEditText().getText().toString() : "";
         final TLRPC.TL_contacts_importContacts tL_contacts_importContacts = new TLRPC.TL_contacts_importContacts();
         final TLRPC.TL_inputPhoneContact tL_inputPhoneContact = new TLRPC.TL_inputPhoneContact();
-        tL_inputPhoneContact.first_name = obj;
-        tL_inputPhoneContact.last_name = obj2;
+        tL_inputPhoneContact.first_name = string;
+        tL_inputPhoneContact.last_name = string2;
         tL_inputPhoneContact.phone = str;
-        if (!TextUtils.isEmpty(obj3)) {
+        if (!TextUtils.isEmpty(string3)) {
             tL_inputPhoneContact.flags = 1 | tL_inputPhoneContact.flags;
             TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
             tL_inputPhoneContact.note = tL_textWithEntities;
-            tL_textWithEntities.text = obj3;
+            tL_textWithEntities.text = string3;
         }
         tL_contacts_importContacts.contacts.add(tL_inputPhoneContact);
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_importContacts, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NewContactBottomSheet.this.lambda$done$23(tL_inputPhoneContact, tL_contacts_importContacts, tLObject, tL_error);
+                this.f$0.lambda$done$23(tL_inputPhoneContact, tL_contacts_importContacts, tLObject, tL_error);
             }
         }, 2), this.classGuid);
         if (this.checkBox.isChecked()) {
-            saveContact(getContext(), str, obj, obj2, null, null);
+            saveContact(getContext(), str, string, string2, null, null);
         }
     }
 
@@ -645,7 +1223,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$done$22(tL_contacts_importedContacts, tL_inputPhoneContact, tL_error, tL_contacts_importContacts);
+                this.f$0.lambda$done$22(tL_contacts_importedContacts, tL_inputPhoneContact, tL_error, tL_contacts_importContacts);
             }
         });
     }
@@ -679,7 +1257,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$show$24();
+                this.f$0.lambda$show$24();
             }
         }, 50L);
     }
@@ -694,16 +1272,16 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public static String getPhoneNumber(Context context, TLRPC.User user, String str, boolean z) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
             while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
                     break;
                 }
-                String[] split = readLine.split(";");
-                hashMap.put(split[0], split[2]);
+                String[] strArrSplit = line.split(";");
+                map.put(strArrSplit[0], strArrSplit[2]);
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -717,17 +1295,15 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
         String str2 = user.phone;
         for (int i = 4; i >= 1; i--) {
-            String substring = str2.substring(0, i);
-            if (((String) hashMap.get(substring)) != null) {
-                return "+" + substring + str;
+            String strSubstring = str2.substring(0, i);
+            if (((String) map.get(strSubstring)) != null) {
+                return "+" + strSubstring + str;
             }
         }
         return str;
     }
 
     public NewContactBottomSheet setInitialPhoneNumber(String str, boolean z) {
-        String country;
-        Object systemService;
         this.initialPhoneNumber = str;
         this.initialPhoneNumberWithCountryCode = z;
         if (!TextUtils.isEmpty(str)) {
@@ -753,14 +1329,9 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                         }
                     } else if (Build.VERSION.SDK_INT >= 23) {
                         Context context = ApplicationLoader.applicationContext;
-                        if (context != null) {
-                            systemService = context.getSystemService((Class<Object>) TelephonyManager.class);
-                            country = ((TelephonyManager) systemService).getSimCountryIso().toUpperCase(Locale.US);
-                        } else {
-                            country = Locale.getDefault().getCountry();
-                        }
-                        this.codeField.setText(country);
-                        if (country.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
+                        String upperCase = context != null ? ((TelephonyManager) context.getSystemService(TelephonyManager.class)).getSimCountryIso().toUpperCase(Locale.US) : Locale.getDefault().getCountry();
+                        this.codeField.setText(upperCase);
+                        if (upperCase.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
                             this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
                         }
                     }
@@ -801,17 +1372,17 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
     public void setCountryButtonText(CharSequence charSequence) {
         if (TextUtils.isEmpty(charSequence)) {
-            ViewPropertyAnimator animate = this.countryFlag.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.countryFlag.animate();
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-            animate.setInterpolator(cubicBezierInterpolator).translationY(AndroidUtilities.dp(30.0f)).setDuration(150L);
+            viewPropertyAnimatorAnimate.setInterpolator(cubicBezierInterpolator).translationY(AndroidUtilities.dp(30.0f)).setDuration(150L);
             this.plusTextView.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
             this.codeField.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
             return;
         }
         this.countryFlag.animate().setInterpolator(AndroidUtilities.overshootInterpolator).translationY(0.0f).setDuration(350L).start();
-        ViewPropertyAnimator animate2 = this.plusTextView.animate();
+        ViewPropertyAnimator viewPropertyAnimatorAnimate2 = this.plusTextView.animate();
         CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.DEFAULT;
-        animate2.setInterpolator(cubicBezierInterpolator2).translationX(0.0f).setDuration(150L);
+        viewPropertyAnimatorAnimate2.setInterpolator(cubicBezierInterpolator2).translationX(0.0f).setDuration(150L);
         this.codeField.animate().setInterpolator(cubicBezierInterpolator2).translationX(0.0f).setDuration(150L);
         this.countryFlag.setText(charSequence);
     }
@@ -880,7 +1451,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$dismiss$25();
+                this.f$0.lambda$dismiss$25();
             }
         }, 50L);
     }
@@ -889,21 +1460,21 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.hideKeyboard(this.contentLayout);
     }
 
-    public static boolean saveContact(Context context, String str, String str2, String str3, String str4, AccountInfo accountInfo) {
+    public static boolean saveContact(Context context, String str, String str2, String str3, String str4, AccountInfo accountInfo) throws RemoteException, OperationApplicationException {
         ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
-        ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
-        newInsert.withValue("account_type", null);
-        newInsert.withValue("account_name", null);
-        arrayList.add(newInsert.build());
+        ContentProviderOperation.Builder builderNewInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
+        builderNewInsert.withValue("account_type", null);
+        builderNewInsert.withValue("account_name", null);
+        arrayList.add(builderNewInsert.build());
         Uri uri = ContactsContract.Data.CONTENT_URI;
-        ContentProviderOperation.Builder withValue = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/name");
+        ContentProviderOperation.Builder builderWithValue = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/name");
         if (!TextUtils.isEmpty(str2)) {
-            withValue = withValue.withValue("data2", str2);
+            builderWithValue = builderWithValue.withValue("data2", str2);
         }
         if (!TextUtils.isEmpty(str3)) {
-            withValue = withValue.withValue("data2", str3);
+            builderWithValue = builderWithValue.withValue("data2", str3);
         }
-        arrayList.add(withValue.build());
+        arrayList.add(builderWithValue.build());
         if (str != null && !str.isEmpty()) {
             arrayList.add(ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/phone_v2").withValue("data1", str).withValue("data2", 2).build());
         }

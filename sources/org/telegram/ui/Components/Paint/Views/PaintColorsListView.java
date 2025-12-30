@@ -51,7 +51,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                return new RecyclerListView.Holder(new ColorView(context));
+                return new RecyclerListView.Holder(PaintColorsListView.this.new ColorView(context));
             }
 
             @Override
@@ -68,7 +68,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                PaintColorsListView.this.lambda$new$0(view, i);
+                this.f$0.lambda$new$0(view, i);
             }
         });
     }
@@ -154,9 +154,9 @@ public abstract class PaintColorsListView extends RecyclerListView {
                 childAt.setAlpha(interpolation == 1.0f ? 1.0f : 0.0f);
             } else {
                 float f2 = i * childCount;
-                float min = Math.min(interpolation, f2) / f2;
-                childAt.setScaleX(min);
-                childAt.setScaleY(min);
+                float fMin = Math.min(interpolation, f2) / f2;
+                childAt.setScaleX(fMin);
+                childAt.setScaleY(fMin);
             }
         }
         invalidate();
@@ -176,13 +176,13 @@ public abstract class PaintColorsListView extends RecyclerListView {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             PaintColorsListView.this.paint.setColor(this.mColor);
-            float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+            float fMin = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
             if (this.selectProgress != 0.0f) {
-                min -= (AndroidUtilities.dp(3.0f) + PaintColorsListView.this.outlinePaint.getStrokeWidth()) * this.selectProgress;
+                fMin -= (AndroidUtilities.dp(3.0f) + PaintColorsListView.this.outlinePaint.getStrokeWidth()) * this.selectProgress;
             }
             float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
             float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
-            PaintColorsListView.drawColorCircle(canvas, width, height, min, this.mColor);
+            PaintColorsListView.drawColorCircle(canvas, width, height, fMin, this.mColor);
             if (this.selectProgress != 0.0f) {
                 PaintColorsListView.this.outlinePaint.setColor(this.mColor);
                 PaintColorsListView.this.outlinePaint.setAlpha(255);

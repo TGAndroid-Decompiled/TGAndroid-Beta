@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.SharedConfig;
 
-public abstract class HwFrameLayout extends FrameLayout {
+abstract class HwFrameLayout extends FrameLayout {
     private final boolean isFastDevice;
     static final Set hwViews = new HashSet();
     static boolean hwEnabled = false;

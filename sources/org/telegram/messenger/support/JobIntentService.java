@@ -30,13 +30,13 @@ public abstract class JobIntentService extends Service {
     boolean mStopped = false;
     boolean mDestroyed = false;
 
-    public interface CompatJobEngine {
+    interface CompatJobEngine {
         IBinder compatGetBinder();
 
         GenericWorkItem dequeueWork();
     }
 
-    public interface GenericWorkItem {
+    interface GenericWorkItem {
         void complete();
 
         Intent getIntent();
@@ -48,7 +48,7 @@ public abstract class JobIntentService extends Service {
         return true;
     }
 
-    public static abstract class WorkEnqueuer {
+    static abstract class WorkEnqueuer {
         final ComponentName mComponentName;
         boolean mHasJobId;
         int mJobId;
@@ -81,7 +81,7 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public static final class CompatWorkEnqueuer extends WorkEnqueuer {
+    static final class CompatWorkEnqueuer extends WorkEnqueuer {
         private final Context mContext;
         private final PowerManager.WakeLock mLaunchWakeLock;
         boolean mLaunchingService;
@@ -92,12 +92,12 @@ public abstract class JobIntentService extends Service {
             super(context, componentName);
             this.mContext = context.getApplicationContext();
             PowerManager powerManager = (PowerManager) context.getSystemService("power");
-            PowerManager.WakeLock newWakeLock = powerManager.newWakeLock(1, componentName.getClassName() + ":launch");
-            this.mLaunchWakeLock = newWakeLock;
-            newWakeLock.setReferenceCounted(false);
-            PowerManager.WakeLock newWakeLock2 = powerManager.newWakeLock(1, componentName.getClassName() + ":run");
-            this.mRunWakeLock = newWakeLock2;
-            newWakeLock2.setReferenceCounted(false);
+            PowerManager.WakeLock wakeLockNewWakeLock = powerManager.newWakeLock(1, componentName.getClassName() + ":launch");
+            this.mLaunchWakeLock = wakeLockNewWakeLock;
+            wakeLockNewWakeLock.setReferenceCounted(false);
+            PowerManager.WakeLock wakeLockNewWakeLock2 = powerManager.newWakeLock(1, componentName.getClassName() + ":run");
+            this.mRunWakeLock = wakeLockNewWakeLock2;
+            wakeLockNewWakeLock2.setReferenceCounted(false);
         }
 
         @Override
@@ -180,9 +180,7 @@ public abstract class JobIntentService extends Service {
 
             @Override
             public Intent getIntent() {
-                Intent intent;
-                intent = this.mJobWork.getIntent();
-                return intent;
+                return this.mJobWork.getIntent();
             }
 
             @Override
@@ -208,9 +206,7 @@ public abstract class JobIntentService extends Service {
 
         @Override
         public IBinder compatGetBinder() {
-            IBinder binder;
-            binder = getBinder();
-            return binder;
+            return getBinder();
         }
 
         @Override
@@ -222,38 +218,36 @@ public abstract class JobIntentService extends Service {
 
         @Override
         public boolean onStopJob(JobParameters jobParameters) {
-            boolean doStopCurrentWork = this.mService.doStopCurrentWork();
+            boolean zDoStopCurrentWork = this.mService.doStopCurrentWork();
             synchronized (this.mLock) {
                 this.mParams = null;
             }
-            return doStopCurrentWork;
+            return zDoStopCurrentWork;
         }
 
         @Override
         public GenericWorkItem dequeueWork() {
-            JobWorkItem jobWorkItem;
-            Intent intent;
+            JobWorkItem jobWorkItemDequeueWork;
             synchronized (this.mLock) {
                 JobParameters jobParameters = this.mParams;
                 if (jobParameters == null) {
                     return null;
                 }
                 try {
-                    jobWorkItem = jobParameters.dequeueWork();
+                    jobWorkItemDequeueWork = jobParameters.dequeueWork();
                 } catch (Throwable unused) {
-                    jobWorkItem = null;
+                    jobWorkItemDequeueWork = null;
                 }
-                if (jobWorkItem == null) {
+                if (jobWorkItemDequeueWork == null) {
                     return null;
                 }
-                intent = jobWorkItem.getIntent();
-                intent.setExtrasClassLoader(this.mService.getClassLoader());
-                return new WrapperWorkItem(jobWorkItem);
+                jobWorkItemDequeueWork.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
+                return new WrapperWorkItem(jobWorkItemDequeueWork);
             }
         }
     }
 
-    public static final class JobWorkEnqueuer extends WorkEnqueuer {
+    static final class JobWorkEnqueuer extends WorkEnqueuer {
         private final JobInfo mJobInfo;
         private final JobScheduler mJobScheduler;
 
@@ -270,7 +264,7 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public final class CompatWorkItem implements GenericWorkItem {
+    final class CompatWorkItem implements GenericWorkItem {
         final Intent mIntent;
         final int mStartId;
 
@@ -290,20 +284,20 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public final class CommandProcessor extends AsyncTask<Void, Void, Void> {
+    final class CommandProcessor extends AsyncTask<Void, Void, Void> {
         CommandProcessor() {
         }
 
         @Override
         public Void doInBackground(Void... voidArr) {
             while (true) {
-                GenericWorkItem dequeueWork = JobIntentService.this.dequeueWork();
-                if (dequeueWork == null) {
+                GenericWorkItem genericWorkItemDequeueWork = JobIntentService.this.dequeueWork();
+                if (genericWorkItemDequeueWork == null) {
                     return null;
                 }
-                JobIntentService.this.onHandleWork(dequeueWork.getIntent());
+                JobIntentService.this.onHandleWork(genericWorkItemDequeueWork.getIntent());
                 try {
-                    dequeueWork.complete();
+                    genericWorkItemDequeueWork.complete();
                 } catch (Throwable unused) {
                 }
             }
@@ -395,8 +389,8 @@ public abstract class JobIntentService extends Service {
 
     static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z, int i) {
         WorkEnqueuer compatWorkEnqueuer;
-        HashMap<ComponentName, WorkEnqueuer> hashMap = sClassWorkEnqueuer;
-        WorkEnqueuer workEnqueuer = hashMap.get(componentName);
+        HashMap<ComponentName, WorkEnqueuer> map = sClassWorkEnqueuer;
+        WorkEnqueuer workEnqueuer = map.get(componentName);
         if (workEnqueuer == null) {
             if (Build.VERSION.SDK_INT < 26) {
                 compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
@@ -407,7 +401,7 @@ public abstract class JobIntentService extends Service {
                 compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
             }
             workEnqueuer = compatWorkEnqueuer;
-            hashMap.put(componentName, workEnqueuer);
+            map.put(componentName, workEnqueuer);
         }
         return workEnqueuer;
     }

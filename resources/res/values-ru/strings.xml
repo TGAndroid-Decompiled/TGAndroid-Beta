@@ -251,8 +251,8 @@
     <string name="abc_shareactionprovider_share_with">Поделиться с помощью</string>
     <string name="abc_shareactionprovider_share_with_application">Поделиться с помощью %s</string>
     <string name="abc_toolbar_collapse_description">Свернуть</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Пароль</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Ключ доступа</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Пароль</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Ключ доступа</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Распространение отключено</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d из %2$d МБ</string>
     <string name="appcenter_distribute_downloading_mandatory_update">Скачивается обновление</string>

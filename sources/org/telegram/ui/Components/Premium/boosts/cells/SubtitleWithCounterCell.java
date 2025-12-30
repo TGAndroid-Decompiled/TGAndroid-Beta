@@ -25,8 +25,8 @@ public class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
     }
 
     public void updateCounter(boolean z, int i) {
-        String formatPluralString = i <= 0 ? "" : LocaleController.formatPluralString("BoostingBoostsCountTitle", i, Integer.valueOf(i));
+        String pluralString = i <= 0 ? "" : LocaleController.formatPluralString("BoostingBoostsCountTitle", i, Integer.valueOf(i));
         this.counterTextView.cancelAnimation();
-        this.counterTextView.setText(formatPluralString, z);
+        this.counterTextView.setText(pluralString, z);
     }
 }

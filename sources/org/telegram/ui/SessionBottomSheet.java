@@ -35,7 +35,6 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.SessionBottomSheet;
 
 public class SessionBottomSheet extends BottomSheet {
     RLottieImageView imageView;
@@ -50,8 +49,8 @@ public class SessionBottomSheet extends BottomSheet {
     }
 
     public SessionBottomSheet(BaseFragment baseFragment, final TLRPC.TL_authorization tL_authorization, boolean z, Callback callback) {
+        String dateTime;
         super(baseFragment.getParentActivity(), false);
-        String formatDateTime;
         setOpenNoDelay(true);
         Activity parentActivity = baseFragment.getParentActivity();
         this.session = tL_authorization;
@@ -85,11 +84,11 @@ public class SessionBottomSheet extends BottomSheet {
         textView2.setGravity(17);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 21, 4, 21, 21));
         if ((tL_authorization.flags & 1) != 0) {
-            formatDateTime = LocaleController.getString(R.string.Online);
+            dateTime = LocaleController.getString(R.string.Online);
         } else {
-            formatDateTime = LocaleController.formatDateTime(tL_authorization.date_active, true);
+            dateTime = LocaleController.formatDateTime(tL_authorization.date_active, true);
         }
-        textView2.setText(formatDateTime);
+        textView2.setText(dateTime);
         StringBuilder sb = new StringBuilder();
         if (tL_authorization.device_model.length() != 0) {
             sb.append(tL_authorization.device_model);
@@ -113,20 +112,20 @@ public class SessionBottomSheet extends BottomSheet {
         sb2.append(" ");
         sb2.append(tL_authorization.app_version);
         itemView.valueText.setText(sb2);
-        Drawable mutate = ContextCompat.getDrawable(parentActivity, R.drawable.menu_devices).mutate();
+        Drawable drawableMutate = ContextCompat.getDrawable(parentActivity, R.drawable.menu_devices).mutate();
         int i = Theme.key_windowBackgroundWhiteGrayIcon;
         int color = Theme.getColor(i);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        mutate.setColorFilter(new PorterDuffColorFilter(color, mode));
-        itemView.iconView.setImageDrawable(mutate);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(color, mode));
+        itemView.iconView.setImageDrawable(drawableMutate);
         itemView.descriptionText.setText(LocaleController.getString(R.string.Application));
         linearLayout.addView(itemView);
         if (tL_authorization.country.length() != 0) {
             ItemView itemView2 = new ItemView(parentActivity, false);
             itemView2.valueText.setText(tL_authorization.country);
-            Drawable mutate2 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_location).mutate();
-            mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            itemView2.iconView.setImageDrawable(mutate2);
+            Drawable drawableMutate2 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_location).mutate();
+            drawableMutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+            itemView2.iconView.setImageDrawable(drawableMutate2);
             itemView2.descriptionText.setText(LocaleController.getString(R.string.Location));
             itemView2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,9 +148,9 @@ public class SessionBottomSheet extends BottomSheet {
         if (tL_authorization.ip.length() != 0) {
             ItemView itemView3 = new ItemView(parentActivity, false);
             itemView3.valueText.setText(tL_authorization.ip);
-            Drawable mutate3 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_language).mutate();
-            mutate3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            itemView3.iconView.setImageDrawable(mutate3);
+            Drawable drawableMutate3 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_language).mutate();
+            drawableMutate3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+            itemView3.iconView.setImageDrawable(drawableMutate3);
             itemView3.descriptionText.setText(LocaleController.getString(R.string.IpAddress));
             itemView3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -174,9 +173,9 @@ public class SessionBottomSheet extends BottomSheet {
         if (secretChatsEnabled(tL_authorization)) {
             final ItemView itemView4 = new ItemView(parentActivity, true);
             itemView4.valueText.setText(LocaleController.getString(R.string.AcceptSecretChats));
-            Drawable mutate4 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_secret).mutate();
-            mutate4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            itemView4.iconView.setImageDrawable(mutate4);
+            Drawable drawableMutate4 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_secret).mutate();
+            drawableMutate4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+            itemView4.iconView.setImageDrawable(drawableMutate4);
             itemView4.switchView.setChecked(!tL_authorization.encrypted_requests_disabled, false);
             itemView4.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
             itemView4.setOnClickListener(new View.OnClickListener() {
@@ -195,9 +194,9 @@ public class SessionBottomSheet extends BottomSheet {
         if (acceptCallsEnabled(tL_authorization)) {
             final ItemView itemView5 = new ItemView(parentActivity, true);
             itemView5.valueText.setText(LocaleController.getString(R.string.AcceptCalls));
-            Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
-            mutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            itemView5.iconView.setImageDrawable(mutate5);
+            Drawable drawableMutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
+            drawableMutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+            itemView5.iconView.setImageDrawable(drawableMutate5);
             itemView5.switchView.setChecked(!tL_authorization.call_requests_disabled, false);
             itemView5.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
             itemView5.setOnClickListener(new View.OnClickListener() {
@@ -229,7 +228,7 @@ public class SessionBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public class AnonymousClass8 implements View.OnClickListener {
+    class AnonymousClass8 implements View.OnClickListener {
         final Callback val$callback;
         final BaseFragment val$fragment;
         final TLRPC.TL_authorization val$session;
@@ -251,13 +250,13 @@ public class SessionBottomSheet extends BottomSheet {
             builder.setPositiveButton(string, new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    SessionBottomSheet.AnonymousClass8.this.lambda$onClick$0(callback, tL_authorization, alertDialog, i);
+                    this.f$0.lambda$onClick$0(callback, tL_authorization, alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            this.val$fragment.showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
+            AlertDialog alertDialogCreate = builder.create();
+            this.val$fragment.showDialog(alertDialogCreate);
+            TextView textView = (TextView) alertDialogCreate.getButton(-1);
             if (textView != null) {
                 textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
             }
@@ -298,7 +297,7 @@ public class SessionBottomSheet extends BottomSheet {
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                SessionBottomSheet.this.lambda$copyText$1(str, dialogInterface, i);
+                this.f$0.lambda$copyText$1(str, dialogInterface, i);
             }
         });
         builder.show();

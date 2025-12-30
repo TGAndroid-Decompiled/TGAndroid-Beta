@@ -68,7 +68,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.ObjectDetectionEmojis;
 import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
-import org.telegram.ui.Components.Paint.Views.StickerMakerView;
 import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.Stories.recorder.DownloadButton;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -177,9 +176,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         paint3.setStyle(style);
         paint3.setStrokeCap(cap);
         paint3.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(20.0f)));
-        float dp = AndroidUtilities.dp(4.0f);
+        float fDp = AndroidUtilities.dp(4.0f);
         BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
-        paint3.setMaskFilter(new BlurMaskFilter(dp, blur));
+        paint3.setMaskFilter(new BlurMaskFilter(fDp, blur));
         paint4.setColor(-1);
         paint4.setStrokeWidth(AndroidUtilities.dp(3.0f));
         paint4.setStyle(style);
@@ -230,7 +229,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$getThanosEffect$0();
+                    this.f$0.lambda$getThanosEffect$0();
                 }
             });
             this.thanosEffect = thanosEffect;
@@ -284,22 +283,22 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
 
         public Bitmap makeDarkMaskImage() {
-            Bitmap createBitmap = Bitmap.createBitmap(getImage().getWidth(), getImage().getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(getImage().getWidth(), getImage().getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             canvas.drawColor(-16777216);
             Paint paint = new Paint(3);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             canvas.drawBitmap(getImage(), 0.0f, 0.0f, paint);
-            return createBitmap;
+            return bitmapCreateBitmap;
         }
 
         public void initPoints() {
             PathMeasure pathMeasure = new PathMeasure();
             pathMeasure.setPath(this.segmentBorderPath, true);
             float length = pathMeasure.getLength();
-            int ceil = (int) Math.ceil(length / AndroidUtilities.dp(2.0f));
-            this.pointsCount = ceil;
-            this.points = new float[ceil * 2];
+            int iCeil = (int) Math.ceil(length / AndroidUtilities.dp(2.0f));
+            this.pointsCount = iCeil;
+            this.points = new float[iCeil * 2];
             float[] fArr = new float[2];
             int i = 0;
             while (true) {
@@ -333,9 +332,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                     this.pointsPaint.setColor(-1);
                     this.pointsPaint.setStrokeCap(cap);
                     Paint paint4 = this.pointsPaint;
-                    float dp = AndroidUtilities.dp(0.33f);
+                    float fDp = AndroidUtilities.dp(0.33f);
                     BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
-                    paint4.setMaskFilter(new BlurMaskFilter(dp, blur));
+                    paint4.setMaskFilter(new BlurMaskFilter(fDp, blur));
                     this.pointsHighlightPaint.setStyle(style);
                     this.pointsHighlightPaint.setColor(Theme.multAlpha(-1, 0.04f));
                     this.pointsHighlightPaint.setStrokeCap(cap);
@@ -374,7 +373,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (StickerMakerView.this.sourceBitmap == null || f2 <= 0.0f) {
                 return;
             }
-            float lerp = AndroidUtilities.lerp(1.0f, 1.065f, f2) * AndroidUtilities.lerp(1.0f, 1.05f, this.select.set(this.hover));
+            float fLerp = AndroidUtilities.lerp(1.0f, 1.065f, f2) * AndroidUtilities.lerp(1.0f, 1.05f, this.select.set(this.hover));
             if ((this.orientation / 90) % 2 != 0) {
                 width = StickerMakerView.this.sourceBitmap.getHeight();
                 height = StickerMakerView.this.sourceBitmap.getWidth();
@@ -384,20 +383,20 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }
             canvas.save();
             float f3 = width;
-            float centerX = this.rotatedBounds.centerX() / f3;
+            float fCenterX = this.rotatedBounds.centerX() / f3;
             float f4 = this.borderImageWidth;
-            float f5 = (centerX * f4) - (f4 / 2.0f);
+            float f5 = (fCenterX * f4) - (f4 / 2.0f);
             float f6 = height;
-            float centerY = this.rotatedBounds.centerY() / f6;
+            float fCenterY = this.rotatedBounds.centerY() / f6;
             float f7 = this.borderImageHeight;
-            canvas.scale(lerp, lerp, f5, (centerY * f7) - (f7 / 2.0f));
+            canvas.scale(fLerp, fLerp, f5, (fCenterY * f7) - (f7 / 2.0f));
             if (this.points != null) {
                 float f8 = this.pointsCount;
                 int i = (int) (f * f8);
-                int min = Math.min(500, (int) (f8 * 0.6f)) + i;
+                int iMin = Math.min(500, (int) (f8 * 0.6f)) + i;
                 if (this.pointsCount > 0) {
-                    while (i <= min) {
-                        float f9 = 1.0f - ((min - i) / this.pointsCount);
+                    while (i <= iMin) {
+                        float f9 = 1.0f - ((iMin - i) / this.pointsCount);
                         if (f9 > 0.0f) {
                             this.pointsHighlightPaint.setAlpha((int) (f9 * 10.2f * f2));
                             canvas.drawPoints(this.points, (i % this.pointsCount) * 2, 2, this.pointsHighlightPaint);
@@ -437,10 +436,10 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             } else {
                 float f11 = this.pointsCount;
                 int i2 = (int) (f * f11);
-                int min2 = Math.min(500, (int) (f11 * 0.6f)) + i2;
+                int iMin2 = Math.min(500, (int) (f11 * 0.6f)) + i2;
                 if (this.pointsCount > 0) {
-                    for (int i3 = i2; i3 <= min2; i3++) {
-                        float f12 = (i3 - i2) / (min2 - i2);
+                    for (int i3 = i2; i3 <= iMin2; i3++) {
+                        float f12 = (i3 - i2) / (iMin2 - i2);
                         this.pointsPaint.setAlpha((int) (Math.min(1.0f, Math.min(f12, 1.0f - f12) * 4.0f) * 255.0f * f2));
                         canvas.drawPoints(this.points, (i3 % this.pointsCount) * 2, 2, this.pointsPaint);
                     }
@@ -612,7 +611,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StickerMakerView.this.lambda$enableClippingMode$1(callback, view);
+                this.f$0.lambda$enableClippingMode$1(callback, view);
             }
         });
         this.actionTextView.setText(LocaleController.getString(R.string.SegmentationTabToCrop));
@@ -623,12 +622,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             valueAnimator.cancel();
         }
         this.bordersAnimatorValueStart = this.bordersAnimatorValue;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.bordersAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.bordersAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StickerMakerView.this.lambda$enableClippingMode$2(valueAnimator2);
+                this.f$0.lambda$enableClippingMode$2(valueAnimator2);
             }
         });
         this.bordersAnimator.setRepeatCount(-1);
@@ -639,12 +638,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     }
 
     public void lambda$enableClippingMode$1(Utilities.Callback callback, View view) {
-        SegmentedObject objectBehind;
+        SegmentedObject segmentedObjectObjectBehind;
         SegmentedObject[] segmentedObjectArr = this.objects;
-        if (segmentedObjectArr == null || segmentedObjectArr.length == 0 || this.sourceBitmap == null || (objectBehind = objectBehind(this.tx, this.ty)) == null) {
+        if (segmentedObjectArr == null || segmentedObjectArr.length == 0 || this.sourceBitmap == null || (segmentedObjectObjectBehind = objectBehind(this.tx, this.ty)) == null) {
             return;
         }
-        callback.run(objectBehind);
+        callback.run(segmentedObjectObjectBehind);
     }
 
     public void lambda$enableClippingMode$2(ValueAnimator valueAnimator) {
@@ -767,16 +766,16 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
 
     public Bitmap getThanosImage(MediaController.PhotoEntry photoEntry, int i) {
         String str = photoEntry.filterPath;
-        Bitmap decodeFile = str != null ? BitmapFactory.decodeFile(str) : getSourceBitmap();
-        Bitmap decodeFile2 = BitmapFactory.decodeFile(photoEntry.paintPath);
-        Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapDecodeFile = str != null ? BitmapFactory.decodeFile(str) : getSourceBitmap();
+        Bitmap bitmapDecodeFile2 = BitmapFactory.decodeFile(photoEntry.paintPath);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeFile.getWidth(), bitmapDecodeFile.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         Paint paint = new Paint(3);
         Paint paint2 = new Paint(3);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas.drawBitmap(decodeFile, 0.0f, 0.0f, paint2);
+        canvas.drawBitmap(bitmapDecodeFile, 0.0f, 0.0f, paint2);
         Rect rect = new Rect();
-        rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
+        rect.set(0, 0, bitmapDecodeFile.getWidth(), bitmapDecodeFile.getHeight());
         SegmentedObject segmentedObject = this.selectedObject;
         if (segmentedObject == null) {
             SegmentedObject[] segmentedObjectArr = this.objects;
@@ -794,40 +793,40 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 float height = (segmentedObject.getDarkMaskImage().getHeight() - segmentedObject.getDarkMaskImage().getWidth()) / 2.0f;
                 matrix.postTranslate(height, -height);
             }
-            matrix.postScale(decodeFile.getWidth() / segmentedObject.getDarkMaskImage().getHeight(), decodeFile.getHeight() / segmentedObject.getDarkMaskImage().getWidth());
+            matrix.postScale(bitmapDecodeFile.getWidth() / segmentedObject.getDarkMaskImage().getHeight(), bitmapDecodeFile.getHeight() / segmentedObject.getDarkMaskImage().getWidth());
             canvas.drawBitmap(segmentedObject.getDarkMaskImage(), matrix, paint);
         } else {
             canvas.drawBitmap(segmentedObject.getDarkMaskImage(), (Rect) null, rect, paint);
         }
-        if (decodeFile2 != null) {
+        if (bitmapDecodeFile2 != null) {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             if (segmentedObject.orientation != 0 && !photoEntry.isFiltered) {
                 Matrix matrix2 = new Matrix();
-                matrix2.postRotate(-segmentedObject.orientation, decodeFile2.getWidth() / 2.0f, decodeFile2.getHeight() / 2.0f);
+                matrix2.postRotate(-segmentedObject.orientation, bitmapDecodeFile2.getWidth() / 2.0f, bitmapDecodeFile2.getHeight() / 2.0f);
                 if ((segmentedObject.orientation / 90) % 2 != 0) {
-                    float height2 = (decodeFile2.getHeight() - decodeFile2.getWidth()) / 2.0f;
+                    float height2 = (bitmapDecodeFile2.getHeight() - bitmapDecodeFile2.getWidth()) / 2.0f;
                     matrix2.postTranslate(height2, -height2);
                 }
-                matrix2.postScale(decodeFile.getWidth() / decodeFile2.getHeight(), decodeFile.getHeight() / decodeFile2.getWidth());
-                canvas.drawBitmap(decodeFile2, matrix2, paint);
+                matrix2.postScale(bitmapDecodeFile.getWidth() / bitmapDecodeFile2.getHeight(), bitmapDecodeFile.getHeight() / bitmapDecodeFile2.getWidth());
+                canvas.drawBitmap(bitmapDecodeFile2, matrix2, paint);
             } else {
-                canvas.drawBitmap(decodeFile2, (Rect) null, rect, paint);
+                canvas.drawBitmap(bitmapDecodeFile2, (Rect) null, rect, paint);
             }
         }
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        float dp = AndroidUtilities.dp(10.0f);
-        float f = dp * 2.0f;
+        float fDp = AndroidUtilities.dp(10.0f);
+        float f = fDp * 2.0f;
         float measuredWidth = getMeasuredWidth() - f;
         float measuredHeight = getMeasuredHeight() - f;
         float f2 = measuredWidth / 8.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        float f3 = measuredWidth + dp;
-        rectF.set(dp, dp, f3, f3);
+        float f3 = measuredWidth + fDp;
+        rectF.set(fDp, fDp, f3, f3);
         rectF.offset(0.0f, (measuredHeight - rectF.height()) / 2.0f);
         this.areaPath.rewind();
         Path path = this.areaPath;
@@ -858,23 +857,23 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         int width = sourceBitmap.getWidth();
         int height = sourceBitmap.getHeight();
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, config);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width, height, config);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         if (z) {
-            canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+            canvas.scale(bitmapCreateBitmap.getWidth() / bitmap.getWidth(), bitmapCreateBitmap.getHeight() / bitmap.getHeight());
             canvas.drawBitmap(bitmap, i, i2, paint);
         } else {
             canvas.drawBitmap(bitmap, i, i2, paint);
         }
-        Utilities.stackBlurBitmap(createBitmap, 5);
-        Bitmap createBitmap2 = Bitmap.createBitmap(sourceBitmap.getWidth(), sourceBitmap.getHeight(), config);
-        Canvas canvas2 = new Canvas(createBitmap2);
+        Utilities.stackBlurBitmap(bitmapCreateBitmap, 5);
+        Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(sourceBitmap.getWidth(), sourceBitmap.getHeight(), config);
+        Canvas canvas2 = new Canvas(bitmapCreateBitmap2);
         canvas2.drawBitmap(sourceBitmap, 0.0f, 0.0f, paint);
         Paint paint2 = new Paint(3);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
-        createBitmap.recycle();
-        return createBitmap2;
+        canvas2.drawBitmap(bitmapCreateBitmap, 0.0f, 0.0f, paint2);
+        bitmapCreateBitmap.recycle();
+        return bitmapCreateBitmap2;
     }
 
     public void segmentImage(Bitmap bitmap, final int i, int i2, int i3, final Utilities.Callback callback) {
@@ -895,7 +894,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         segment(bitmap, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerMakerView.this.lambda$segmentImage$6(i, callback, (List) obj);
+                this.f$0.lambda$segmentImage$6(i, callback, (List) obj);
             }
         }, callback);
     }
@@ -905,7 +904,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$segmentImage$5(i, list, arrayList, callback);
+                this.f$0.lambda$segmentImage$5(i, list, arrayList, callback);
             }
         });
     }
@@ -930,9 +929,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             segmentedObject.rotatedBounds.set(segmentedObject.bounds);
             matrix.mapRect(segmentedObject.rotatedBounds);
             segmentedObject.orientation = i;
-            Bitmap createSmoothEdgesSegmentedImage = createSmoothEdgesSegmentedImage(0, 0, this.sourceBitmap, false);
-            segmentedObject.image = createSmoothEdgesSegmentedImage;
-            if (createSmoothEdgesSegmentedImage == null) {
+            Bitmap bitmapCreateSmoothEdgesSegmentedImage = createSmoothEdgesSegmentedImage(0, 0, this.sourceBitmap, false);
+            segmentedObject.image = bitmapCreateSmoothEdgesSegmentedImage;
+            if (bitmapCreateSmoothEdgesSegmentedImage == null) {
                 FileLog.e(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"));
                 return;
             }
@@ -944,7 +943,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$segmentImage$3(arrayList, callback, segmentedObject);
+                    this.f$0.lambda$segmentImage$3(arrayList, callback, segmentedObject);
                 }
             });
             this.selectedObject = segmentedObject;
@@ -959,9 +958,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             segmentedObject2.rotatedBounds.set(segmentedObject2.bounds);
             matrix.mapRect(segmentedObject2.rotatedBounds);
             segmentedObject2.orientation = i;
-            Bitmap createSmoothEdgesSegmentedImage2 = createSmoothEdgesSegmentedImage(subjectMock.startX, subjectMock.startY, subjectMock.bitmap, false);
-            segmentedObject2.image = createSmoothEdgesSegmentedImage2;
-            if (createSmoothEdgesSegmentedImage2 != null) {
+            Bitmap bitmapCreateSmoothEdgesSegmentedImage2 = createSmoothEdgesSegmentedImage(subjectMock.startX, subjectMock.startY, subjectMock.bitmap, false);
+            segmentedObject2.image = bitmapCreateSmoothEdgesSegmentedImage2;
+            if (bitmapCreateSmoothEdgesSegmentedImage2 != null) {
                 segmentedObject2.darkMaskImage = segmentedObject2.makeDarkMaskImage();
                 createSegmentImagePath(segmentedObject2, this.containerWidth, this.containerHeight);
                 this.segmentBorderImageWidth = segmentedObject2.borderImageWidth;
@@ -975,7 +974,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$segmentImage$4(arrayList);
+                this.f$0.lambda$segmentImage$4(arrayList);
             }
         });
     }
@@ -998,7 +997,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public static class SubjectMock {
+    private static class SubjectMock {
         public Bitmap bitmap;
         public int height;
         public int startX;
@@ -1020,10 +1019,10 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
 
         public static SubjectMock mock(Bitmap bitmap) {
             SubjectMock subjectMock = new SubjectMock();
-            int min = (int) (Math.min(bitmap.getWidth(), bitmap.getHeight()) * 0.4f);
-            subjectMock.height = min;
-            subjectMock.width = min;
-            subjectMock.bitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
+            int iMin = (int) (Math.min(bitmap.getWidth(), bitmap.getHeight()) * 0.4f);
+            subjectMock.height = iMin;
+            subjectMock.width = iMin;
+            subjectMock.bitmap = Bitmap.createBitmap(iMin, iMin, Bitmap.Config.ARGB_8888);
             new Canvas(subjectMock.bitmap).drawRect(0.0f, 0.0f, subjectMock.width, subjectMock.height, Theme.DEBUG_RED);
             subjectMock.startX = (bitmap.getWidth() - subjectMock.width) / 2;
             subjectMock.startY = (bitmap.getHeight() - subjectMock.height) / 2;
@@ -1040,23 +1039,23 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             callback.run(arrayList);
             return;
         }
-        InputImage fromBitmap = InputImage.fromBitmap(bitmap, i);
-        client.process(fromBitmap).addOnSuccessListener(new OnSuccessListener() {
+        InputImage inputImageFromBitmap = InputImage.fromBitmap(bitmap, i);
+        client.process(inputImageFromBitmap).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public final void onSuccess(Object obj) {
-                StickerMakerView.lambda$segment$7(Utilities.Callback.this, (SubjectSegmentationResult) obj);
+                StickerMakerView.lambda$segment$7(callback, (SubjectSegmentationResult) obj);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                StickerMakerView.this.lambda$segment$9(bitmap, i, callback2, callback, exc);
+                this.f$0.lambda$segment$9(bitmap, i, callback2, callback, exc);
             }
         });
         if (this.detectedEmoji == null) {
-            ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS).process(fromBitmap).addOnSuccessListener(new OnSuccessListener() {
+            ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS).process(inputImageFromBitmap).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    StickerMakerView.this.lambda$segment$10((List) obj);
+                    this.f$0.lambda$segment$10((List) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -1086,7 +1085,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$segment$8(bitmap, i, callback);
+                    this.f$0.lambda$segment$8(bitmap, i, callback);
                 }
             }, 2000L);
         } else {
@@ -1114,17 +1113,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         Point point;
         int width = segmentedObject.getImage().getWidth();
         int height = segmentedObject.getImage().getHeight();
-        float max = Math.max(width, height) / (SharedConfig.getDevicePerformanceClass() == 2 ? 512.0f : 384.0f);
+        float fMax = Math.max(width, height) / (SharedConfig.getDevicePerformanceClass() == 2 ? 512.0f : 384.0f);
         if ((segmentedObject.orientation / 90) % 2 != 0) {
             width = segmentedObject.getImage().getHeight();
             height = segmentedObject.getImage().getWidth();
         }
         float f2 = width;
         float f3 = height;
-        Bitmap createBitmap = Bitmap.createBitmap((int) (f2 / max), (int) (f3 / max), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap((int) (f2 / fMax), (int) (f3 / fMax), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         RectF rectF = new RectF();
-        rectF.set(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
+        rectF.set(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
         if (segmentedObject.orientation != 0) {
             Matrix matrix = new Matrix();
             matrix.postRotate(segmentedObject.orientation, segmentedObject.getImage().getWidth() / 2.0f, segmentedObject.image.getHeight() / 2.0f);
@@ -1137,14 +1136,14 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         } else {
             canvas.drawBitmap(segmentedObject.getImage(), (Rect) null, rectF, new Paint(3));
         }
-        int width2 = createBitmap.getWidth() * createBitmap.getHeight();
+        int width2 = bitmapCreateBitmap.getWidth() * bitmapCreateBitmap.getHeight();
         int[] iArr = new int[width2];
-        createBitmap.getPixels(iArr, 0, createBitmap.getWidth(), 0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+        bitmapCreateBitmap.getPixels(iArr, 0, bitmapCreateBitmap.getWidth(), 0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         float f4 = i;
         float f5 = i2;
-        float min = Math.min(f4 / createBitmap.getWidth(), f5 / createBitmap.getHeight());
+        float fMin = Math.min(f4 / bitmapCreateBitmap.getWidth(), f5 / bitmapCreateBitmap.getHeight());
         Point point2 = null;
         Point point3 = null;
         int i4 = 0;
@@ -1152,8 +1151,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (i4 >= width2) {
                 break;
             }
-            int width3 = i4 / createBitmap.getWidth();
-            int width4 = i4 - (createBitmap.getWidth() * width3);
+            int width3 = i4 / bitmapCreateBitmap.getWidth();
+            int width4 = i4 - (bitmapCreateBitmap.getWidth() * width3);
             int i5 = iArr[i4];
             boolean z = i5 != 0;
             if (i5 == 0) {
@@ -1162,17 +1161,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 Point point4 = point2;
                 int i7 = i4 + 1;
                 boolean z3 = i7 < width2;
-                Point point5 = (!z2 || iArr[i6] == 0) ? point4 : new Point(width4, width3, min);
+                Point point5 = (!z2 || iArr[i6] == 0) ? point4 : new Point(width4, width3, fMin);
                 if (point3 == null && z3 && iArr[i7] != 0) {
-                    point3 = new Point(width4, width3, min);
+                    point3 = new Point(width4, width3, fMin);
                 }
                 point2 = point5;
             }
-            boolean z4 = width4 == createBitmap.getWidth() + (-1);
+            boolean z4 = width4 == bitmapCreateBitmap.getWidth() + (-1);
             boolean z5 = width4 == 0;
             if (z4) {
                 if (z) {
-                    point2 = new Point(width4, width3, min);
+                    point2 = new Point(width4, width3, fMin);
                 }
                 if (point3 != null) {
                     arrayList.add(point3);
@@ -1184,7 +1183,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 point3 = null;
             }
             if (z5 && z) {
-                point3 = new Point(width4, width3, min);
+                point3 = new Point(width4, width3, fMin);
             }
             i4++;
         }
@@ -1194,18 +1193,18 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         Point point7 = null;
         int i8 = 0;
         while (i8 < width2) {
-            int height3 = i8 / createBitmap.getHeight();
+            int height3 = i8 / bitmapCreateBitmap.getHeight();
             Point point8 = point6;
-            int height4 = i8 - (createBitmap.getHeight() * height3);
-            boolean z6 = iArr[height3 + (createBitmap.getWidth() * height4)] != 0;
+            int height4 = i8 - (bitmapCreateBitmap.getHeight() * height3);
+            boolean z6 = iArr[height3 + (bitmapCreateBitmap.getWidth() * height4)] != 0;
             if (z6) {
                 f = f3;
                 i3 = width2;
                 point = point8;
             } else {
-                int width5 = height3 + ((height4 - 1) * createBitmap.getWidth());
+                int width5 = height3 + ((height4 - 1) * bitmapCreateBitmap.getWidth());
                 f = f3;
-                int width6 = height3 + ((height4 + 1) * createBitmap.getWidth());
+                int width6 = height3 + ((height4 + 1) * bitmapCreateBitmap.getWidth());
                 boolean z7 = width5 >= 0;
                 boolean z8 = width6 < width2;
                 if (!z7 || iArr[width5] == 0) {
@@ -1213,17 +1212,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                     point = point8;
                 } else {
                     i3 = width2;
-                    point = new Point(height3, height4, min);
+                    point = new Point(height3, height4, fMin);
                 }
                 if (point7 == null && z8 && iArr[width6] != 0) {
-                    point7 = new Point(height3, height4, min);
+                    point7 = new Point(height3, height4, fMin);
                 }
             }
-            boolean z9 = height4 == createBitmap.getHeight() + (-1);
+            boolean z9 = height4 == bitmapCreateBitmap.getHeight() + (-1);
             boolean z10 = height4 == 0;
             if (z9) {
                 if (z6) {
-                    point = new Point(height3, height4, min);
+                    point = new Point(height3, height4, fMin);
                 }
                 if (point7 != null) {
                     arrayList3.add(point7);
@@ -1235,7 +1234,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 point7 = null;
             }
             if (z10 && z6) {
-                point7 = new Point(height3, height4, min);
+                point7 = new Point(height3, height4, fMin);
             }
             i8++;
             point6 = point;
@@ -1251,11 +1250,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         linkedHashSet2.addAll(arrayList2);
         linkedHashSet.addAll(arrayList4);
         linkedHashSet.addAll(arrayList3);
-        List removeUnnecessaryPoints = removeUnnecessaryPoints(new ArrayList(linkedHashSet));
-        List removeUnnecessaryPoints2 = removeUnnecessaryPoints(new ArrayList(linkedHashSet2));
+        List listRemoveUnnecessaryPoints = removeUnnecessaryPoints(new ArrayList(linkedHashSet));
+        List listRemoveUnnecessaryPoints2 = removeUnnecessaryPoints(new ArrayList(linkedHashSet2));
         Path path = new Path();
-        for (int i9 = 0; i9 < removeUnnecessaryPoints2.size(); i9 += 2) {
-            Point point9 = (Point) removeUnnecessaryPoints2.get(i9);
+        for (int i9 = 0; i9 < listRemoveUnnecessaryPoints2.size(); i9 += 2) {
+            Point point9 = (Point) listRemoveUnnecessaryPoints2.get(i9);
             if (path.isEmpty()) {
                 path.moveTo(((android.graphics.Point) point9).x, ((android.graphics.Point) point9).y);
             } else {
@@ -1263,8 +1262,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }
         }
         Path path2 = new Path();
-        for (int i10 = 0; i10 < removeUnnecessaryPoints.size(); i10 += 2) {
-            Point point10 = (Point) removeUnnecessaryPoints.get(i10);
+        for (int i10 = 0; i10 < listRemoveUnnecessaryPoints.size(); i10 += 2) {
+            Point point10 = (Point) listRemoveUnnecessaryPoints.get(i10);
             if (path2.isEmpty()) {
                 path2.moveTo(((android.graphics.Point) point10).x, ((android.graphics.Point) point10).y);
             } else {
@@ -1273,9 +1272,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
         segmentedObject.segmentBorderPath.reset();
         segmentedObject.segmentBorderPath.op(path, path2, Path.Op.INTERSECT);
-        float min2 = Math.min(f4 / f2, f5 / f6);
-        segmentedObject.borderImageWidth = f2 * min2;
-        segmentedObject.borderImageHeight = min2 * f6;
+        float fMin2 = Math.min(f4 / f2, f5 / f6);
+        segmentedObject.borderImageWidth = f2 * fMin2;
+        segmentedObject.borderImageHeight = fMin2 * f6;
         segmentedObject.segmentBorderPath.offset((-segmentedObject.borderImageWidth) / 2.0f, (-segmentedObject.borderImageHeight) / 2.0f);
         segmentedObject.initPoints();
     }
@@ -1319,8 +1318,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         if (segmentedObject.darkMaskImage == null || !this.isSegmentedState) {
             return bitmap;
         }
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         Paint paint = new Paint(3);
         Paint paint2 = new Paint(3);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
@@ -1341,7 +1340,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         } else {
             canvas.drawBitmap(segmentedObject2.getDarkMaskImage(), (Rect) null, rect, paint);
         }
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public void clean() {
@@ -1456,11 +1455,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (stickerUploader3 == null || !str2.equalsIgnoreCase(stickerUploader3.finalPath)) {
                 return;
             }
-            long longValue = ((Long) objArr[1]).longValue();
-            long longValue2 = ((Long) objArr[2]).longValue();
-            if (longValue2 > 0) {
+            long jLongValue = ((Long) objArr[1]).longValue();
+            long jLongValue2 = ((Long) objArr[2]).longValue();
+            if (jLongValue2 > 0) {
                 StickerUploader stickerUploader4 = this.stickerUploader;
-                stickerUploader4.uploadProgress = Utilities.clamp(((float) longValue) / ((float) longValue2), 1.0f, stickerUploader4.uploadProgress);
+                stickerUploader4.uploadProgress = Utilities.clamp(jLongValue / jLongValue2, 1.0f, stickerUploader4.uploadProgress);
                 DownloadButton.PreparingVideoToast preparingVideoToast = this.loadingToast;
                 if (preparingVideoToast != null) {
                     preparingVideoToast.setProgress(this.stickerUploader.getProgress());
@@ -1491,14 +1490,14 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             StickerUploader stickerUploader7 = this.stickerUploader;
             if (stickerUploader7 != null && objArr[0] == stickerUploader7.messageObject) {
                 String str4 = (String) objArr[1];
-                long longValue3 = ((Long) objArr[2]).longValue();
-                long longValue4 = ((Long) objArr[3]).longValue();
+                long jLongValue3 = ((Long) objArr[2]).longValue();
+                long jLongValue4 = ((Long) objArr[3]).longValue();
                 Float f = (Float) objArr[4];
-                float floatValue = f.floatValue();
+                float fFloatValue = f.floatValue();
                 this.stickerUploader.messageObject.videoEditedInfo.needUpdateProgress = true;
-                FileLoader.getInstance(this.currentAccount).checkUploadNewDataAvailable(str4, false, Math.max(1L, longValue3), longValue4, f);
+                FileLoader.getInstance(this.currentAccount).checkUploadNewDataAvailable(str4, false, Math.max(1L, jLongValue3), jLongValue4, f);
                 StickerUploader stickerUploader8 = this.stickerUploader;
-                stickerUploader8.convertingProgress = Math.max(stickerUploader8.convertingProgress, floatValue);
+                stickerUploader8.convertingProgress = Math.max(stickerUploader8.convertingProgress, fFloatValue);
                 DownloadButton.PreparingVideoToast preparingVideoToast2 = this.loadingToast;
                 if (preparingVideoToast2 != null) {
                     preparingVideoToast2.setProgress(this.stickerUploader.getProgress());
@@ -1517,7 +1516,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$uploadStickerFile$12(callback, str2, str, charSequence, z, stickerSet, document, videoEditedInfo, str3, callback2);
+                this.f$0.lambda$uploadStickerFile$12(callback, str2, str, charSequence, z, stickerSet, document, videoEditedInfo, str3, callback2);
             }
         }, 300L);
     }
@@ -1572,7 +1571,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         this.loadingToast.setOnCancelListener(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$showLoadingDialog$13();
+                this.f$0.lambda$showLoadingDialog$13();
             }
         });
         if (this.loadingToast.getParent() == null) {
@@ -1628,7 +1627,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickerMakerView.this.lambda$uploadMedia$15(stickerUploader, tLObject, tL_error);
+                this.f$0.lambda$uploadMedia$15(stickerUploader, tLObject, tL_error);
             }
         }, 2);
     }
@@ -1637,7 +1636,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$uploadMedia$14(tLObject, stickerUploader, tL_error);
+                this.f$0.lambda$uploadMedia$14(tLObject, stickerUploader, tL_error);
             }
         });
     }
@@ -1686,7 +1685,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             ConnectionsManager.getInstance(i).sendRequest(tL_stickers_replaceSticker, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$19(i, stickerUploader, tLObject, tL_error);
+                    this.f$0.lambda$afterUploadingMedia$19(i, stickerUploader, tLObject, tL_error);
                 }
             });
             return;
@@ -1700,7 +1699,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             ConnectionsManager.getInstance(i).sendRequest(tL_stickers_createStickerSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$22(i, stickerUploader, tLObject, tL_error);
+                    this.f$0.lambda$afterUploadingMedia$22(i, stickerUploader, tLObject, tL_error);
                 }
             });
             return;
@@ -1711,7 +1710,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.lambda$afterUploadingMedia$23(StickerMakerView.StickerUploader.this);
+                    StickerMakerView.lambda$afterUploadingMedia$23(stickerUploader);
                 }
             }, 350L);
             Utilities.Callback callback = stickerUploader.whenDone;
@@ -1728,7 +1727,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             ConnectionsManager.getInstance(i).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$26(i, stickerUploader, tLObject, tL_error);
+                    this.f$0.lambda$afterUploadingMedia$26(i, stickerUploader, tLObject, tL_error);
                 }
             });
         }
@@ -1742,7 +1741,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$18(tLObject, i, stickerUploader, tL_error);
+                this.f$0.lambda$afterUploadingMedia$18(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -1762,7 +1761,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$afterUploadingMedia$17(tLObject, stickerUploader);
+                    this.f$0.lambda$afterUploadingMedia$17(tLObject, stickerUploader);
                 }
             }, 450L);
             z = true;
@@ -1787,7 +1786,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$21(tLObject, i, stickerUploader, tL_error);
+                this.f$0.lambda$afterUploadingMedia$21(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -1804,7 +1803,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$afterUploadingMedia$20(tLObject, stickerUploader);
+                    this.f$0.lambda$afterUploadingMedia$20(tLObject, stickerUploader);
                 }
             }, 250L);
             z = true;
@@ -1838,7 +1837,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$25(tLObject, i, stickerUploader, tL_error);
+                this.f$0.lambda$afterUploadingMedia$25(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -1858,7 +1857,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.this.lambda$afterUploadingMedia$24(tLObject, stickerUploader);
+                    this.f$0.lambda$afterUploadingMedia$24(tLObject, stickerUploader);
                 }
             }, 450L);
             z = true;
@@ -1955,7 +1954,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public static class Point extends android.graphics.Point {
+    private static class Point extends android.graphics.Point {
         public Point(int i, int i2, float f) {
             super((int) (i * f), (int) (i2 * f));
         }

@@ -27,7 +27,7 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             editWidgetActivity.setDelegate(new EditWidgetActivity.EditWidgetActivityDelegate() {
                 @Override
                 public final void didSelectDialogs(ArrayList arrayList) {
-                    ContactsWidgetConfigActivity.this.lambda$handleIntent$0(arrayList);
+                    this.f$0.lambda$handleIntent$0(arrayList);
                 }
             });
             if (AndroidUtilities.isTablet()) {

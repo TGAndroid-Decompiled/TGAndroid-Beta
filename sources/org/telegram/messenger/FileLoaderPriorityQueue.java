@@ -18,7 +18,7 @@ public class FileLoaderPriorityQueue {
     Runnable checkOperationsRunnable = new Runnable() {
         @Override
         public final void run() {
-            FileLoaderPriorityQueue.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -27,7 +27,7 @@ public class FileLoaderPriorityQueue {
         this.checkOperationsScheduled = false;
     }
 
-    public FileLoaderPriorityQueue(int i, String str, int i2, DispatchQueue dispatchQueue) {
+    FileLoaderPriorityQueue(int i, String str, int i2, DispatchQueue dispatchQueue) {
         this.currentAccount = i;
         this.name = str;
         this.type = i2;
@@ -93,7 +93,7 @@ public class FileLoaderPriorityQueue {
         this.tmpListOperations.clear();
         int i2 = 0;
         boolean z = false;
-        int i3 = 0;
+        int priority = 0;
         while (i2 < this.allOperations.size()) {
             FileLoadOperation fileLoadOperation = i2 > 0 ? this.allOperations.get(i2 - 1) : null;
             FileLoadOperation fileLoadOperation2 = this.allOperations.get(i2);
@@ -101,7 +101,7 @@ public class FileLoaderPriorityQueue {
                 if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
                     z = true;
                 }
-                if (i3 > 0 && fileLoadOperation2.getPriority() == 0) {
+                if (priority > 0 && fileLoadOperation2.getPriority() == 0) {
                     z = true;
                 }
             }
@@ -113,12 +113,12 @@ public class FileLoaderPriorityQueue {
                 } else if (fileLoadOperation2.wasStarted()) {
                     fileLoadOperation2.pause();
                 }
-                i3 = fileLoadOperation2.getPriority();
+                priority = fileLoadOperation2.getPriority();
             }
             i2++;
         }
-        for (int i4 = 0; i4 < this.tmpListOperations.size(); i4++) {
-            this.tmpListOperations.get(i4).start();
+        for (int i3 = 0; i3 < this.tmpListOperations.size(); i3++) {
+            this.tmpListOperations.get(i3).start();
         }
     }
 

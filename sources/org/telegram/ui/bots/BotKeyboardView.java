@@ -108,9 +108,9 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         if (!this.isFullSize || (tL_replyKeyboardMarkup = this.botButtons) == null || tL_replyKeyboardMarkup.rows.isEmpty()) {
             return;
         }
-        int max = !this.isFullSize ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.dp(20.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.dp(4.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
-        this.buttonHeight = max;
-        int dp = AndroidUtilities.dp(max);
+        int iMax = !this.isFullSize ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.dp(20.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.dp(4.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
+        this.buttonHeight = iMax;
+        int iDp = AndroidUtilities.dp(iMax);
         Iterator it = this.animator.iterator();
         while (it.hasNext()) {
             ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
@@ -118,8 +118,8 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt = ((ButtonsLayout) entry.item).getChildAt(i2);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
-                if (layoutParams.height != dp) {
-                    layoutParams.height = dp;
+                if (layoutParams.height != iDp) {
+                    layoutParams.height = iDp;
                     childAt.setLayoutParams(layoutParams);
                 }
             }
@@ -176,7 +176,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            BotKeyboardView.this.lambda$setButtons$0(view);
+                            this.f$0.lambda$setButtons$0(view);
                         }
                     });
                     ScaleStateListAnimator.apply(button, 0.02f, 1.5f);
@@ -209,7 +209,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         this.delegate.didPressedButton((TLRPC.KeyboardButton) view.getTag());
     }
 
-    public class Button extends TextView {
+    private class Button extends TextView {
         public Button(Context context, TLRPC.KeyboardButton keyboardButton) {
             super(context);
             setTag(keyboardButton);
@@ -221,12 +221,12 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         }
 
         public void setBackground(boolean z, boolean z2, boolean z3, boolean z4) {
-            int dp = AndroidUtilities.dp(19.0f);
-            int dp2 = AndroidUtilities.dp(4.0f);
-            int i = (z && z2) ? dp : dp2;
-            int i2 = (z3 && z2) ? dp : dp2;
-            int i3 = (z3 && z4) ? dp : dp2;
-            int i4 = (z && z4) ? dp : dp2;
+            int iDp = AndroidUtilities.dp(19.0f);
+            int iDp2 = AndroidUtilities.dp(4.0f);
+            int i = (z && z2) ? iDp : iDp2;
+            int i2 = (z3 && z2) ? iDp : iDp2;
+            int i3 = (z3 && z4) ? iDp : iDp2;
+            int i4 = (z && z4) ? iDp : iDp2;
             int themedColor = BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonBackground);
             BotKeyboardView botKeyboardView = BotKeyboardView.this;
             int i5 = Theme.key_chat_botKeyboardButtonBackgroundPressed;
@@ -259,14 +259,14 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         while (it.hasNext()) {
             ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
             float visibility = entry.getVisibility();
-            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, visibility);
+            float fLerp = AndroidUtilities.lerp(0.7f, 1.0f, visibility);
             ((ButtonsLayout) entry.item).setAlpha(visibility);
-            ((ButtonsLayout) entry.item).setScaleX(lerp);
-            ((ButtonsLayout) entry.item).setScaleY(lerp);
+            ((ButtonsLayout) entry.item).setScaleX(fLerp);
+            ((ButtonsLayout) entry.item).setScaleY(fLerp);
         }
     }
 
-    public static class ButtonsLayout extends LinearLayout implements Destroyable {
+    private static class ButtonsLayout extends LinearLayout implements Destroyable {
         public ButtonsLayout(Context context) {
             super(context);
         }

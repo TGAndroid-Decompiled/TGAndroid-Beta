@@ -98,9 +98,9 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
                     return false;
                 }
                 if (this.isLocked) {
-                    boolean addReference = ReferenceUtils.addReference(this, this.itemsToAdd, obj);
+                    boolean zAddReference = ReferenceUtils.addReference(this, this.itemsToAdd, obj);
                     ReferenceUtils.removeReference(this.itemsToRemove, obj);
-                    return addReference;
+                    return zAddReference;
                 }
                 this.items.add(newReference(obj));
                 checkFull();
@@ -114,18 +114,18 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
     public final boolean remove(Object obj) {
         synchronized (this.items) {
             try {
-                int indexOf = indexOf(obj);
-                if (indexOf == -1) {
+                int iIndexOf = indexOf(obj);
+                if (iIndexOf == -1) {
                     return false;
                 }
                 if (this.isLocked) {
-                    Reference reference = (Reference) this.items.get(indexOf);
+                    Reference reference = (Reference) this.items.get(iIndexOf);
                     if (!this.itemsToRemove.contains(reference)) {
                         this.itemsToRemove.add(reference);
                     }
                     ReferenceUtils.removeReference(this.itemsToAdd, reference.get());
                 } else {
-                    this.items.remove(indexOf);
+                    this.items.remove(iIndexOf);
                     checkFull();
                 }
                 return true;
@@ -149,7 +149,7 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
     }
 
     @Override
-    public final Iterator iterator() {
+    public final Iterator iterator() throws InterruptedException {
         Semaphore semaphore = this.semaphore;
         if (semaphore != null) {
             try {
@@ -181,7 +181,7 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
         }
     }
 
-    public final class Itr implements Iterator {
+    private final class Itr implements Iterator {
         private int index;
         private Object nextItem;
 
@@ -195,16 +195,17 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
                 try {
                     this.nextItem = null;
                     while (true) {
-                        if (this.nextItem != null || this.index <= 0) {
-                            break;
-                        }
-                        List list = ReferenceList.this.items;
-                        int i = this.index - 1;
-                        this.index = i;
-                        Reference reference = (Reference) list.get(i);
-                        Object obj = reference.get();
-                        if (obj != null && !ReferenceList.this.itemsToRemove.contains(reference)) {
-                            this.nextItem = obj;
+                        if (this.nextItem == null && this.index > 0) {
+                            List list = ReferenceList.this.items;
+                            int i = this.index - 1;
+                            this.index = i;
+                            Reference reference = (Reference) list.get(i);
+                            Object obj = reference.get();
+                            if (obj != null && !ReferenceList.this.itemsToRemove.contains(reference)) {
+                                this.nextItem = obj;
+                                break;
+                            }
+                        } else {
                             break;
                         }
                     }

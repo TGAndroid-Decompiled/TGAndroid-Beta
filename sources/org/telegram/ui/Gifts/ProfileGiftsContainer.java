@@ -8,6 +8,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -17,7 +18,6 @@ import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -82,6 +83,8 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.Gifts.ProfileGiftsContainer;
 import org.telegram.ui.LaunchActivity;
@@ -101,7 +104,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     private final ButtonWithCounterView button;
     private final FrameLayout buttonContainer;
     private int buttonContainerHeightDp;
-    private final View buttonShadow;
+    private int buttonContainerOffset;
     private final CheckBox2 checkbox;
     private final LinearLayout checkboxLayout;
     private int checkboxRequestId;
@@ -111,6 +114,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     public ItemOptions currentMenu;
     private final long dialogId;
     private final BaseFragment fragment;
+    public IBlur3Capture iBlur3Capture;
+    private ViewGroup iBlur3CaptureParent;
     private final StarsController.GiftsList list;
     private int pendingScrollToCollectionId;
     private boolean reorderingCollections;
@@ -149,6 +154,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         private LinearLayout emptyView2Layout;
         private TextView emptyView2Subtitle;
         private TextView emptyView2Title;
+        private boolean hasTabs;
+        public IBlur3Capture iBlur3Capture;
         public boolean isCollection;
         public StarsController.GiftsList list;
         private final UniversalRecyclerView listView;
@@ -163,9 +170,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             if (universalRecyclerView == null || universalRecyclerView.adapter == null) {
                 return;
             }
-            boolean canScrollVertically = universalRecyclerView.canScrollVertically(-1);
+            boolean zCanScrollVertically = universalRecyclerView.canScrollVertically(-1);
             this.listView.adapter.update(z);
-            if (canScrollVertically) {
+            if (zCanScrollVertically) {
                 return;
             }
             this.listView.scrollToPosition(0);
@@ -181,35 +188,40 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, false, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ProfileGiftsContainer.Page.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ProfileGiftsContainer.Page.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, new Utilities.Callback5Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    return Boolean.valueOf(ProfileGiftsContainer.Page.this.onItemLongPress((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
+                    return Boolean.valueOf(this.f$0.onItemLongPress((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
                 }
-            }, resourcesProvider, 3, 1);
+            }, resourcesProvider, 3, 1) {
+                @Override
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                    super.onLayout(z, i2, i3, i4, i5);
+                    profileGiftsContainer.updateTabsY();
+                }
+            };
             this.listView = universalRecyclerView;
             universalRecyclerView.adapter.setApplyBackground(false);
             universalRecyclerView.setSelectorType(9);
             universalRecyclerView.setSelectorDrawableColor(0);
-            universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(30.0f));
+            universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
             universalRecyclerView.setClipToPadding(false);
             universalRecyclerView.setClipChildren(false);
             addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
             universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                    if (Page.this.isAttachedToWindow()) {
-                        if (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible()) {
-                            Page.this.list.load();
-                        }
+                    if (Page.this.isAttachedToWindow() && (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible())) {
+                        Page.this.list.load();
                     }
+                    profileGiftsContainer.updateTabsY();
                 }
             });
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
@@ -331,13 +343,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
         public void setVisibleHeight(int i) {
             this.visibleHeight = i;
-            float clamp01 = Utilities.clamp01(AndroidUtilities.ilerp(i, AndroidUtilities.dp(150.0f), AndroidUtilities.dp(220.0f)));
-            float lerp = AndroidUtilities.lerp(0.6f, 1.0f, clamp01);
+            float fClamp01 = Utilities.clamp01(AndroidUtilities.ilerp(i, AndroidUtilities.dp(150.0f), AndroidUtilities.dp(220.0f)));
+            float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, fClamp01);
             LinearLayout linearLayout = this.emptyView1Layout;
             if (linearLayout != null) {
-                linearLayout.setAlpha(clamp01);
-                this.emptyView1Layout.setScaleX(lerp);
-                this.emptyView1Layout.setScaleY(lerp);
+                linearLayout.setAlpha(fClamp01);
+                this.emptyView1Layout.setScaleX(fLerp);
+                this.emptyView1Layout.setScaleY(fLerp);
             }
             FrameLayout frameLayout = this.emptyView1;
             if (frameLayout != null) {
@@ -345,9 +357,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             LinearLayout linearLayout2 = this.emptyView2Layout;
             if (linearLayout2 != null) {
-                linearLayout2.setAlpha(clamp01);
-                this.emptyView2Layout.setScaleX(lerp);
-                this.emptyView2Layout.setScaleY(lerp);
+                linearLayout2.setAlpha(fClamp01);
+                this.emptyView2Layout.setScaleX(fLerp);
+                this.emptyView2Layout.setScaleY(fLerp);
             }
             FrameLayout frameLayout2 = this.emptyView2;
             if (frameLayout2 != null) {
@@ -430,7 +442,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 this.emptyView1Button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ProfileGiftsContainer.Page.this.lambda$updateEmptyView$0(view);
+                        this.f$0.lambda$updateEmptyView$0(view);
                     }
                 });
                 this.emptyView1Button.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
@@ -470,7 +482,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.emptyView2Button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ProfileGiftsContainer.Page.this.lambda$updateEmptyView$1(view);
+                    this.f$0.lambda$updateEmptyView$1(view);
                 }
             });
             addView(this.emptyView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
@@ -525,7 +537,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.lambda$setReordering$2(BaseFragment.this);
+                            ProfileGiftsContainer.Page.lambda$setReordering$2(safeLastFragment);
                         }
                     });
                 }
@@ -546,6 +558,34 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
         }
 
+        public void setHasTabs(boolean z) {
+            if (this.hasTabs == z) {
+                return;
+            }
+            this.hasTabs = z;
+            boolean zCanScrollVertically = this.listView.canScrollVertically(-1);
+            this.listView.adapter.update(true);
+            if (!zCanScrollVertically) {
+                this.listView.scrollToPosition(0);
+            }
+            this.parent.updateTabsY();
+        }
+
+        public float getTabsHeight() {
+            for (int i = 0; i < this.listView.getChildCount(); i++) {
+                View childAt = this.listView.getChildAt(i);
+                int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+                if (childAt instanceof GiftSheet.GiftCell) {
+                    if (childAdapterPosition == 0) {
+                        return Math.max(0.0f, this.listView.getPaddingTop() + childAt.getY());
+                    }
+                } else if (childAdapterPosition == 0) {
+                    return Math.max(0.0f, this.listView.getPaddingTop() + childAt.getY() + (childAt.getHeight() * childAt.getAlpha()));
+                }
+            }
+            return 0.0f;
+        }
+
         public boolean isReordering() {
             return this.reordering;
         }
@@ -553,7 +593,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
             int i;
             int i2;
-            int i3;
             StarsController.GiftsList giftsList = this.list;
             if (giftsList == null) {
                 return;
@@ -565,36 +604,30 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }
             StarsController.GiftsList giftsList3 = this.list;
-            final int max = Math.max(1, (giftsList3 == null || (i3 = giftsList3.totalCount) == 0) ? 3 : Math.min(3, i3));
+            final int iMax = Math.max(1, (giftsList3 == null || (i2 = giftsList3.totalCount) == 0) ? 3 : Math.min(3, i2));
             StarsController.GiftsList giftsList4 = this.list;
             if (giftsList4 != null) {
                 Iterator it = giftsList4.gifts.iterator();
                 loop0: while (true) {
                     i = 3;
-                    do {
-                        i2 = 0;
-                        r5 = false;
-                        boolean z = false;
-                        if (!it.hasNext()) {
-                            break loop0;
-                        }
+                    while (it.hasNext()) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
-                        UItem asStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, false, this.isCollection);
-                        if (this.reordering && (this.list != this.parent.list || savedStarGift.pinned_to_top)) {
-                            z = true;
-                        }
-                        arrayList.add(asStarGift.setReordering(z));
+                        arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, false, this.isCollection).setReordering(this.reordering && (this.list != this.parent.list || savedStarGift.pinned_to_top)));
                         i--;
-                    } while (i != 0);
+                        if (i == 0) {
+                            break;
+                        }
+                    }
                 }
                 StarsController.GiftsList giftsList5 = this.list;
                 if (giftsList5.loading || !giftsList5.endReached) {
+                    int i3 = 0;
                     while (true) {
-                        if (i2 >= (i <= 0 ? 3 : i)) {
+                        if (i3 >= (i <= 0 ? 3 : i)) {
                             break;
                         }
-                        i2++;
-                        arrayList.add(UItem.asFlicker(i2, 34).setSpanCount(1));
+                        i3++;
+                        arrayList.add(UItem.asFlicker(i3, 34).setSpanCount(1));
                     }
                 }
             }
@@ -607,11 +640,26 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             } else if (!arrayList.isEmpty()) {
                 arrayList.add(UItem.asSpace(AndroidUtilities.dp(82.0f)));
             }
-            if (this.listView.getSpanCount() != max) {
+            if (!arrayList.isEmpty()) {
+                arrayList.add(0, UItem.asSpace(AndroidUtilities.dp(this.hasTabs ? 42.0f : 12.0f)));
+            }
+            if (this.listView.getSpanCount() != iMax) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$fillItems$3(max);
+                        this.f$0.lambda$fillItems$3(iMax);
+                    }
+                });
+            }
+            ProfileGiftsContainer profileGiftsContainer = this.parent;
+            if (profileGiftsContainer != null) {
+                profileGiftsContainer.updateTabsY();
+                final ProfileGiftsContainer profileGiftsContainer2 = this.parent;
+                Objects.requireNonNull(profileGiftsContainer2);
+                profileGiftsContainer2.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        profileGiftsContainer2.updateTabsY();
                     }
                 });
             }
@@ -656,12 +704,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider).setOnGiftUpdatedListener(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemClick$4();
+                        this.f$0.lambda$onItemClick$4();
                     }
                 }).setOnBoughtGift(new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj2, Object obj3) {
-                        ProfileGiftsContainer.Page.this.lambda$onItemClick$5(savedStarGift, (TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
+                        this.f$0.lambda$onItemClick$5(savedStarGift, (TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
                     }
                 }).set(savedStarGift, this.list).show();
             }
@@ -699,21 +747,21 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             final GiftSheet.GiftCell giftCell = (GiftSheet.GiftCell) view;
             final TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-            final ItemOptions makeOptions = ItemOptions.makeOptions(this.parent.fragment, view, true);
+            final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.parent.fragment, view, true);
             ProfileGiftsContainer profileGiftsContainer = this.parent;
-            profileGiftsContainer.currentMenu = makeOptions;
+            profileGiftsContainer.currentMenu = itemOptionsMakeOptions;
             if (profileGiftsContainer.collections.isMine()) {
                 if (!this.isCollection) {
                     this.parent.collections.getCollections().size();
                 }
-                final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-                makeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+                final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
                     @Override
                     public final void run() {
-                        ItemOptions.this.closeSwipeback();
+                        itemOptionsMakeOptions.closeSwipeback();
                     }
                 });
-                makeSwipeback.addGap();
+                itemOptionsMakeSwipeback.addGap();
                 ScrollView scrollView = new ScrollView(getContext()) {
                     @Override
                     protected void onMeasure(int i3, int i4) {
@@ -723,7 +771,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 LinearLayout linearLayout = new LinearLayout(getContext());
                 scrollView.addView(linearLayout);
                 linearLayout.setOrientation(1);
-                makeSwipeback.addView(scrollView, LayoutHelper.createLinear(-1, -2));
+                itemOptionsMakeSwipeback.addView(scrollView, LayoutHelper.createLinear(-1, -2));
                 float f3 = 0.12f;
                 if (this.parent.collections.getCollections().size() + 1 < MessagesController.getInstance(this.currentAccount).config.stargiftsCollectionsLimit.get()) {
                     ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), false, false, this.resourcesProvider);
@@ -735,7 +783,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$9(makeOptions, savedStarGift, view2);
+                            this.f$0.lambda$onItemLongPress$9(itemOptionsMakeOptions, savedStarGift, view2);
                         }
                     });
                     linearLayout.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
@@ -743,9 +791,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 Iterator it = this.parent.collections.getCollections().iterator();
                 while (it.hasNext()) {
                     final TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) it.next();
-                    final boolean contains = this.parent.collections.getListById(tL_starGiftCollection.collection_id).contains(savedStarGift);
+                    final boolean zContains = this.parent.collections.getListById(tL_starGiftCollection.collection_id).contains(savedStarGift);
                     ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
-                    actionBarMenuSubItem2.setChecked(contains);
+                    actionBarMenuSubItem2.setChecked(zContains);
                     actionBarMenuSubItem2.setPadding(AndroidUtilities.dp(18.0f), i2, AndroidUtilities.dp(18.0f), i2);
                     int i4 = Theme.key_actionBarDefaultSubmenuItem;
                     actionBarMenuSubItem2.setColors(Theme.getColor(i4, this.resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
@@ -769,8 +817,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     }
                     actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$10(contains, tL_starGiftCollection, savedStarGift, makeOptions, view2);
+                        public final void onClick(View view2) throws IOException {
+                            this.f$0.lambda$onItemLongPress$10(zContains, tL_starGiftCollection, savedStarGift, itemOptionsMakeOptions, view2);
                         }
                     });
                     linearLayout.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
@@ -778,34 +826,34 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     f3 = 0.12f;
                     i2 = 0;
                 }
-                makeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.Gift2AddToCollection), new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.Gift2AddToCollection), new Runnable() {
                     @Override
                     public final void run() {
-                        ItemOptions.this.openSwipeback(makeSwipeback);
+                        itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
                     }
                 });
-                makeOptions.addGap();
+                itemOptionsMakeOptions.addGap();
             }
             if (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique) {
                 if (this.parent.canReorder() && !this.isCollection && (!savedStarGift.unsaved || !savedStarGift.pinned_to_top)) {
                     boolean z3 = savedStarGift.pinned_to_top;
-                    makeOptions.add(z3 ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z3 ? R.string.Gift2Unpin : R.string.Gift2Pin), new Runnable() {
+                    itemOptionsMakeOptions.add(z3 ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z3 ? R.string.Gift2Unpin : R.string.Gift2Pin), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$13(savedStarGift, giftCell, view);
+                            this.f$0.lambda$onItemLongPress$13(savedStarGift, giftCell, view);
                         }
                     });
-                    makeOptions.addIf(savedStarGift.pinned_to_top, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
+                    itemOptionsMakeOptions.addIf(savedStarGift.pinned_to_top, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$14();
+                            this.f$0.lambda$onItemLongPress$14();
                         }
                     });
                 } else if (this.parent.canReorder() && this.isCollection) {
-                    makeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
+                    itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$15();
+                            this.f$0.lambda$onItemLongPress$15();
                         }
                     });
                 }
@@ -817,77 +865,77 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     str = null;
                 }
                 if (StarGiftSheet.isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(tL_starGiftUnique.owner_id))) {
-                    boolean isWorn = StarGiftSheet.isWorn(this.currentAccount, tL_starGiftUnique);
-                    makeOptions.add(isWorn ? R.drawable.menu_takeoff : R.drawable.menu_wear, LocaleController.getString(isWorn ? R.string.Gift2Unwear : R.string.Gift2Wear), new Runnable() {
+                    boolean zIsWorn = StarGiftSheet.isWorn(this.currentAccount, tL_starGiftUnique);
+                    itemOptionsMakeOptions.add(zIsWorn ? R.drawable.menu_takeoff : R.drawable.menu_wear, LocaleController.getString(zIsWorn ? R.string.Gift2Unwear : R.string.Gift2Wear), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.this.lambda$onItemLongPress$16(savedStarGift);
+                            this.f$0.lambda$onItemLongPress$16(savedStarGift);
                         }
                     });
                 }
-                makeOptions.addIf(str != null, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
+                itemOptionsMakeOptions.addIf(str != null, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$17(str);
+                        this.f$0.lambda$onItemLongPress$17(str);
                     }
                 });
-                makeOptions.addIf(str != null, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), new Runnable() {
+                itemOptionsMakeOptions.addIf(str != null, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$18(savedStarGift);
+                        this.f$0.lambda$onItemLongPress$18(savedStarGift);
                     }
                 });
             } else if (this.parent.canReorder() && this.isCollection) {
-                makeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$19();
+                        this.f$0.lambda$onItemLongPress$19();
                     }
                 });
             }
             if (StarGiftSheet.isMineWithActions(this.currentAccount, this.parent.dialogId)) {
                 boolean z4 = savedStarGift.unsaved;
-                makeOptions.add(z4 ? R.drawable.msg_message : R.drawable.menu_hide_gift, LocaleController.getString(z4 ? R.string.Gift2ShowGift : R.string.Gift2HideGift), new Runnable() {
+                itemOptionsMakeOptions.add(z4 ? R.drawable.msg_message : R.drawable.menu_hide_gift, LocaleController.getString(z4 ? R.string.Gift2ShowGift : R.string.Gift2HideGift), new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$20(savedStarGift, giftCell);
+                        this.f$0.lambda$onItemLongPress$20(savedStarGift, giftCell);
                     }
                 });
             }
             TL_stars.StarGift starGift2 = savedStarGift.gift;
             if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
-                makeOptions.addIf(DialogObject.getPeerDialogId(((TL_stars.TL_starGiftUnique) starGift2).owner_id) == UserConfig.getInstance(this.currentAccount).getClientUserId(), R.drawable.menu_transfer, LocaleController.getString(R.string.Gift2TransferOption), new Runnable() {
+                itemOptionsMakeOptions.addIf(DialogObject.getPeerDialogId(((TL_stars.TL_starGiftUnique) starGift2).owner_id) == UserConfig.getInstance(this.currentAccount).getClientUserId(), R.drawable.menu_transfer, LocaleController.getString(R.string.Gift2TransferOption), new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$21(savedStarGift);
+                        this.f$0.lambda$onItemLongPress$21(savedStarGift);
                     }
                 });
             }
             if (this.parent.collections.isMine() && this.isCollection) {
                 z2 = true;
                 z = false;
-                makeOptions.add(R.drawable.msg_removefolder, (CharSequence) LocaleController.getString(R.string.Gift2RemoveFromCollection), true, new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.msg_removefolder, (CharSequence) LocaleController.getString(R.string.Gift2RemoveFromCollection), true, new Runnable() {
                     @Override
-                    public final void run() {
-                        ProfileGiftsContainer.Page.this.lambda$onItemLongPress$22(savedStarGift, makeOptions);
+                    public final void run() throws IOException {
+                        this.f$0.lambda$onItemLongPress$22(savedStarGift, itemOptionsMakeOptions);
                     }
                 }).makeMultiline(false).cutTextInFancyHalf();
             } else {
                 z = false;
                 z2 = true;
             }
-            if (makeOptions.getItemsCount() <= 0) {
+            if (itemOptionsMakeOptions.getItemsCount() <= 0) {
                 return z;
             }
-            makeOptions.setGravity(5);
-            makeOptions.setBlur(z2);
-            makeOptions.allowMoveScrim();
+            itemOptionsMakeOptions.setGravity(5);
+            itemOptionsMakeOptions.setBlur(z2);
+            itemOptionsMakeOptions.allowMoveScrim();
             Point point = AndroidUtilities.displaySize;
-            int min = Math.min(point.x, point.y);
-            makeOptions.animateToSize(min - AndroidUtilities.dp(32.0f), (int) (min * 0.6f));
-            makeOptions.hideScrimUnder();
-            makeOptions.forceBottom(true);
-            makeOptions.show();
+            int iMin = Math.min(point.x, point.y);
+            itemOptionsMakeOptions.animateToSize(iMin - AndroidUtilities.dp(32.0f), (int) (iMin * 0.6f));
+            itemOptionsMakeOptions.hideScrimUnder();
+            itemOptionsMakeOptions.forceBottom(true);
+            itemOptionsMakeOptions.show();
             giftCell.imageView.getImageReceiver().startAnimation(true);
             return true;
         }
@@ -897,7 +945,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.parent.openEnterNameAlert(null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ProfileGiftsContainer.Page.this.lambda$onItemLongPress$8(savedStarGift, (String) obj);
+                    this.f$0.lambda$onItemLongPress$8(savedStarGift, (String) obj);
                 }
             });
         }
@@ -905,13 +953,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         public void lambda$onItemLongPress$8(final TL_stars.SavedStarGift savedStarGift, String str) {
             this.parent.collections.createCollection(str, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
-                    ProfileGiftsContainer.Page.this.lambda$onItemLongPress$7(savedStarGift, (TL_stars.TL_starGiftCollection) obj);
+                public final void run(Object obj) throws IOException {
+                    this.f$0.lambda$onItemLongPress$7(savedStarGift, (TL_stars.TL_starGiftCollection) obj);
                 }
             });
         }
 
-        public void lambda$onItemLongPress$7(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+        public void lambda$onItemLongPress$7(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftCollection tL_starGiftCollection) throws IOException {
             this.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
             this.parent.fillTabs(true);
             ViewPagerFixed.TabsView tabsView = this.parent.tabsView;
@@ -924,7 +972,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
         }
 
-        public void lambda$onItemLongPress$10(boolean z, TL_stars.TL_starGiftCollection tL_starGiftCollection, TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions, View view) {
+        public void lambda$onItemLongPress$10(boolean z, TL_stars.TL_starGiftCollection tL_starGiftCollection, TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions, View view) throws IOException {
             if (!z) {
                 this.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
                 BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
@@ -951,9 +999,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 new UnpinSheet(getContext(), this.parent.dialogId, savedStarGift, this.resourcesProvider, new Utilities.Callback0Return() {
                     @Override
                     public final Object run() {
-                        BulletinFactory lambda$onItemLongPress$12;
-                        lambda$onItemLongPress$12 = ProfileGiftsContainer.Page.this.lambda$onItemLongPress$12(view, z2);
-                        return lambda$onItemLongPress$12;
+                        return this.f$0.lambda$onItemLongPress$12(view, z2);
                     }
                 }).show();
                 return;
@@ -1031,13 +1077,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }.set(savedStarGift, (StarsController.IGiftsList) null).openTransfer();
         }
 
-        public void lambda$onItemLongPress$22(TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions) {
+        public void lambda$onItemLongPress$22(TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions) throws IOException {
             this.parent.collections.removeGift(this.list.collectionId, savedStarGift);
             itemOptions.dismiss();
             this.parent.updateTabsShown(true);
-            TL_stars.TL_starGiftCollection findById = this.parent.collections.findById(this.list.collectionId);
-            if (findById != null) {
-                BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), findById.title))).show();
+            TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = this.parent.collections.findById(this.list.collectionId);
+            if (tL_starGiftCollectionFindById != null) {
+                BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title))).show();
             }
         }
 
@@ -1094,13 +1140,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             i3++;
         }
         final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i).getUserOrChat(this.dialogId));
-        boolean isMine = this.collections.isMine();
-        if (TextUtils.isEmpty(publicUsername) && !isMine) {
+        boolean zIsMine = this.collections.isMine();
+        if (TextUtils.isEmpty(publicUsername) && !zIsMine) {
             return Boolean.FALSE;
         }
         final TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
         final int i4 = i2;
-        ItemOptions addIf = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
+        ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
             private final Drawable bg;
             private final Rect bgBounds = new Rect();
 
@@ -1129,34 +1175,34 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             public void setAlpha(int i5) {
                 this.bg.setAlpha(i5);
             }
-        }).addIf(isMine, R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
+        }).addIf(zIsMine, R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.addGifts();
+                this.f$0.addGifts();
             }
         }).addIf(!TextUtils.isEmpty(publicUsername), R.drawable.msg_share, LocaleController.getString(R.string.Gift2CollectionsShare), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$1(i, publicUsername, tL_starGiftCollection2, context, resourcesProvider, baseFragment);
+                this.f$0.lambda$new$1(i, publicUsername, tL_starGiftCollection2, context, resourcesProvider, baseFragment);
             }
-        }).addIf(isMine, R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
+        }).addIf(zIsMine, R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$3(tL_starGiftCollection);
+                this.f$0.lambda$new$3(tL_starGiftCollection);
             }
-        }).addIf(isMine, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
+        }).addIf(zIsMine, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$4();
+                this.f$0.lambda$new$4();
             }
-        }).addIf(isMine, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
+        }).addIf(zIsMine, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$5(i4, tL_starGiftCollection);
+                this.f$0.lambda$new$5(i4, tL_starGiftCollection);
             }
         });
-        this.currentMenu = addIf;
-        addIf.show();
+        this.currentMenu = itemOptionsAddIf;
+        itemOptionsAddIf.show();
         return Boolean.TRUE;
     }
 
@@ -1164,20 +1210,20 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         String str2 = MessagesController.getInstance(i).linkPrefix + "/" + str + "/c/" + tL_starGiftCollection.collection_id;
         new ShareAlert(context, null, str2, false, str2, false, resourcesProvider) {
             @Override
-            public void onSend(LongSparseArray longSparseArray, int i2, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                BulletinFactory of;
-                if (z && (of = BulletinFactory.of(baseFragment)) != null) {
+            protected void onSend(LongSparseArray longSparseArray, int i2, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+                BulletinFactory bulletinFactoryOf;
+                if (z && (bulletinFactoryOf = BulletinFactory.of(baseFragment)) != null) {
                     if (longSparseArray.size() == 1) {
-                        long keyAt = longSparseArray.keyAt(0);
-                        if (keyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                            of.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])), 5000).hideAfterBottomSheet(false).show();
-                        } else if (keyAt < 0) {
-                            of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, tL_forumTopic != null ? tL_forumTopic.title : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-keyAt)).title)), 5000).hideAfterBottomSheet(false).show();
+                        long jKeyAt = longSparseArray.keyAt(0);
+                        if (jKeyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                            bulletinFactoryOf.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])), 5000).hideAfterBottomSheet(false).show();
+                        } else if (jKeyAt < 0) {
+                            bulletinFactoryOf.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, tL_forumTopic != null ? tL_forumTopic.title : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-jKeyAt)).title)), 5000).hideAfterBottomSheet(false).show();
                         } else {
-                            of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(keyAt)).first_name)), 5000).hideAfterBottomSheet(false).show();
+                            bulletinFactoryOf.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jKeyAt)).first_name)), 5000).hideAfterBottomSheet(false).show();
                         }
                     } else {
-                        of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", longSparseArray.size(), Integer.valueOf(longSparseArray.size())))).hideAfterBottomSheet(false).show();
+                        bulletinFactoryOf.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", longSparseArray.size(), Integer.valueOf(longSparseArray.size())))).hideAfterBottomSheet(false).show();
                     }
                     try {
                         ProfileGiftsContainer.this.performHapticFeedback(3);
@@ -1192,7 +1238,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         openEnterNameAlert(tL_starGiftCollection.title, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$new$2(tL_starGiftCollection, (String) obj);
+                this.f$0.lambda$new$2(tL_starGiftCollection, (String) obj);
             }
         });
     }
@@ -1222,20 +1268,20 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public void lambda$new$9(final Theme.ResourcesProvider resourcesProvider, int i, View view) {
         this.checkbox.setChecked(!r7.isChecked(), true);
-        boolean isChecked = this.checkbox.isChecked();
-        BulletinFactory.of(this.bulletinContainer, resourcesProvider).createSimpleBulletinDetail(isChecked ? R.raw.silent_unmute : R.raw.silent_mute, LocaleController.getString(isChecked ? R.string.Gift2ChannelNotifyChecked : R.string.Gift2ChannelNotifyNotChecked)).show();
-        this.list.chat_notifications_enabled = Boolean.valueOf(isChecked);
+        boolean zIsChecked = this.checkbox.isChecked();
+        BulletinFactory.of(this.bulletinContainer, resourcesProvider).createSimpleBulletinDetail(zIsChecked ? R.raw.silent_unmute : R.raw.silent_mute, LocaleController.getString(zIsChecked ? R.string.Gift2ChannelNotifyChecked : R.string.Gift2ChannelNotifyNotChecked)).show();
+        this.list.chat_notifications_enabled = Boolean.valueOf(zIsChecked);
         if (this.checkboxRequestId >= 0) {
             ConnectionsManager.getInstance(i).cancelRequest(this.checkboxRequestId, true);
             this.checkboxRequestId = -1;
         }
         TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
         togglechatstargiftnotifications.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
-        togglechatstargiftnotifications.enabled = isChecked;
+        togglechatstargiftnotifications.enabled = zIsChecked;
         ConnectionsManager.getInstance(i).sendRequest(togglechatstargiftnotifications, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ProfileGiftsContainer.this.lambda$new$8(resourcesProvider, tLObject, tL_error);
+                this.f$0.lambda$new$8(resourcesProvider, tLObject, tL_error);
             }
         });
     }
@@ -1244,7 +1290,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$7(tL_error, resourcesProvider);
+                this.f$0.lambda$new$7(tL_error, resourcesProvider);
             }
         });
     }
@@ -1267,18 +1313,34 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public void updateTabsShown(boolean z) {
-        boolean isEmpty = this.collections.getCollections().isEmpty();
-        if (z) {
-            ViewPropertyAnimator duration = this.tabsView.animate().translationY(!isEmpty ? 0.0f : AndroidUtilities.dp(-42.0f)).setDuration(200L);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            duration.setInterpolator(cubicBezierInterpolator).start();
-            this.viewPager.animate().translationY(isEmpty ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(200L).setInterpolator(cubicBezierInterpolator).start();
+        boolean z2 = !this.collections.getCollections().isEmpty();
+        if (this.viewPager.getViewPages() != null) {
+            for (View view : this.viewPager.getViewPages()) {
+                if (view instanceof Page) {
+                    ((Page) view).setHasTabs(z2);
+                }
+            }
+        }
+    }
+
+    public float getTabsHeight() {
+        float translationX = 0.0f;
+        if (this.viewPager.getViewPages() != null) {
+            for (View view : this.viewPager.getViewPages()) {
+                if (view instanceof Page) {
+                    translationX += (1.0f - (view.getTranslationX() / view.getWidth())) * ((Page) view).getTabsHeight();
+                }
+            }
+        }
+        return translationX;
+    }
+
+    public void updateTabsY() {
+        ViewPagerFixed.TabsView tabsView = this.tabsView;
+        if (tabsView == null) {
             return;
         }
-        this.tabsView.animate().cancel();
-        this.tabsView.setTranslationY(!isEmpty ? 0.0f : AndroidUtilities.dp(-42.0f));
-        this.viewPager.animate().cancel();
-        this.viewPager.setTranslationY(isEmpty ? 0.0f : AndroidUtilities.dp(30.0f));
+        tabsView.setTranslationY(Math.min(0.0f, getTabsHeight() - AndroidUtilities.dp(42.0f)));
     }
 
     public boolean isReordering() {
@@ -1346,7 +1408,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.lambda$setReorderingCollections$12(BaseFragment.this);
+                        ProfileGiftsContainer.lambda$setReorderingCollections$12(safeLastFragment);
                     }
                 });
             }
@@ -1397,11 +1459,21 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         } else {
             currentPositionAlpha = (((shouldHideButton(this.viewPager.getCurrentPosition()) ? 1.0f : 0.0f) * this.viewPager.getCurrentPositionAlpha()) + ((shouldHideButton(this.viewPager.getNextPosition()) ? 1.0f : 0.0f) * this.viewPager.getNextPositionAlpha())) * (AndroidUtilities.dp(68.0f) + 2);
         }
-        float max = currentPositionAlpha + ((((-this.buttonContainer.getTop()) + Math.max(AndroidUtilities.dp(240.0f), this.visibleHeight)) - AndroidUtilities.dp(this.buttonContainerHeightDp)) - 1);
-        this.bulletinContainer.setTranslationY(max - AndroidUtilities.dp(200.0f));
-        this.buttonContainer.setTranslationY(max);
+        float fDp = currentPositionAlpha + ((((-this.buttonContainer.getTop()) + this.visibleHeight) - AndroidUtilities.dp(this.buttonContainerHeightDp)) - 1);
+        if (this.visibleHeight < AndroidUtilities.dp(220.0f)) {
+            fDp += Math.min(AndroidUtilities.dp(220.0f) - this.visibleHeight, AndroidUtilities.dp(64.0f));
+        }
+        this.bulletinContainer.setTranslationY(fDp - AndroidUtilities.dp(200.0f));
+        this.buttonContainer.setTranslationY(fDp - this.buttonContainerOffset);
         this.button.setText((!this.collections.isMine() || this.viewPager.getPositionAnimated() < 0.5f) ? this.sendGiftsToFriendsText : this.addGiftsText, true);
         Bulletin.updateCurrentPosition();
+    }
+
+    public void setButtonOffset(int i) {
+        if (this.buttonContainerOffset != i) {
+            this.buttonContainerOffset = i;
+            updateButton();
+        }
     }
 
     public int getBottomOffset() {
@@ -1442,7 +1514,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             this.button.setVisibility(canSwitchNotify() ? 8 : 0);
             this.checkboxLayout.setVisibility(canSwitchNotify() ? 0 : 8);
-            this.buttonContainerHeightDp = canSwitchNotify() ? 50 : 68;
+            this.buttonContainerHeightDp = 60;
             Boolean bool = this.list.chat_notifications_enabled;
             if (bool != null) {
                 this.checkbox.setChecked(bool.booleanValue(), true);
@@ -1461,7 +1533,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         if (i == NotificationCenter.updateInterfaces) {
             this.button.setVisibility(canSwitchNotify() ? 8 : 0);
             this.checkboxLayout.setVisibility(canSwitchNotify() ? 0 : 8);
-            this.buttonContainerHeightDp = canSwitchNotify() ? 50 : 68;
+            this.buttonContainerHeightDp = 60;
             setVisibleHeight(this.visibleHeight);
         }
     }
@@ -1587,7 +1659,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public long getLastEmojisHash() {
         StarsController.GiftsList giftsList = this.list;
-        long j = 0;
+        long jHash = 0;
         if (giftsList != null && !giftsList.gifts.isEmpty()) {
             HashSet hashSet = new HashSet();
             int i = 0;
@@ -1595,12 +1667,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 TLRPC.Document document = ((TL_stars.SavedStarGift) this.list.gifts.get(i2)).gift.getDocument();
                 if (document != null) {
                     hashSet.add(Long.valueOf(document.id));
-                    j = Objects.hash(Long.valueOf(j), Long.valueOf(document.id));
+                    jHash = Objects.hash(Long.valueOf(jHash), Long.valueOf(document.id));
                     i++;
                 }
             }
         }
-        return j;
+        return jHash;
     }
 
     public void setVisibleHeight(int i) {
@@ -1633,7 +1705,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         public LinkSpanDrawable.LinksTextView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             return new LinkSpanDrawable.LinksTextView(context) {
                 @Override
-                public void onMeasure(int i3, int i4) {
+                protected void onMeasure(int i3, int i4) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
                 }
             };
@@ -1652,24 +1724,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         public static UItem asText(int i, int i2, float f, CharSequence charSequence, boolean z, int i3) {
-            UItem ofFactory = UItem.ofFactory(TextFactory.class);
-            ofFactory.text = charSequence;
-            ofFactory.intValue = i2;
-            ofFactory.longValue = i;
-            ofFactory.floatValue = f;
-            ofFactory.pad = i3;
-            ofFactory.checked = z;
-            return ofFactory;
+            UItem uItemOfFactory = UItem.ofFactory(TextFactory.class);
+            uItemOfFactory.text = charSequence;
+            uItemOfFactory.intValue = i2;
+            uItemOfFactory.longValue = i;
+            uItemOfFactory.floatValue = f;
+            uItemOfFactory.pad = i3;
+            uItemOfFactory.checked = z;
+            return uItemOfFactory;
         }
     }
 
     public void updateColors() {
-        int blendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
-        this.backgroundColor = blendOver;
-        setBackgroundColor(blendOver);
-        this.tabsView.setBackgroundColor(this.backgroundColor);
+        int iBlendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
+        this.backgroundColor = iBlendOver;
+        setBackgroundColor(iBlendOver);
         this.button.updateColors();
-        this.button.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), processColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider))));
+        this.button.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(19.0f), processColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider))));
         View[] viewPages = this.viewPager.getViewPages();
         if (viewPages != null) {
             for (View view : viewPages) {
@@ -1678,8 +1749,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }
         }
-        this.buttonContainer.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-        this.buttonShadow.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, this.resourcesProvider));
         this.checkboxTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
         this.checkboxLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 6, 6));
     }
@@ -1693,23 +1762,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             fixNavigationBar();
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
-            TextView makeTextView = TextHelper.makeTextView(context, 20.0f, Theme.key_windowBackgroundWhiteBlackText, true, resourcesProvider);
-            makeTextView.setText(LocaleController.getString(R.string.Gift2UnpinAlertTitle));
-            linearLayout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 22.0f, 12.0f, 22.0f, 0.0f));
-            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false, resourcesProvider);
-            makeTextView2.setText(LocaleController.getString(R.string.Gift2UnpinAlertSubtitle));
-            linearLayout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 22.0f, 4.33f, 22.0f, 10.0f));
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 20.0f, Theme.key_windowBackgroundWhiteBlackText, true, resourcesProvider);
+            textViewMakeTextView.setText(LocaleController.getString(R.string.Gift2UnpinAlertTitle));
+            linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 22.0f, 12.0f, 22.0f, 0.0f));
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false, resourcesProvider);
+            textViewMakeTextView2.setText(LocaleController.getString(R.string.Gift2UnpinAlertSubtitle));
+            linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 22.0f, 4.33f, 22.0f, 10.0f));
             final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
             final StarsController.GiftsList profileGiftsList = StarsController.getInstance(this.currentAccount).getProfileGiftsList(j);
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$0(profileGiftsList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.lambda$new$0(profileGiftsList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$1(buttonWithCounterView, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    this.f$0.lambda$new$1(buttonWithCounterView, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null, resourcesProvider) {
                 @Override
@@ -1727,7 +1796,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$2(profileGiftsList, savedStarGift, callback0Return, view);
+                    this.f$0.lambda$new$2(profileGiftsList, savedStarGift, callback0Return, view);
                 }
             });
             setCustomView(linearLayout);
@@ -1795,8 +1864,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     public void openEnterNameAlert(String str, final Utilities.Callback callback) {
         ActionBarPopupWindow actionBarPopupWindow;
         Context context = getContext();
-        final Activity findActivity = AndroidUtilities.findActivity(context);
-        final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
+        final Activity activityFindActivity = AndroidUtilities.findActivity(context);
+        final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
         AlertDialog.Builder builder = new AlertDialog.Builder(context, this.resourcesProvider);
         if (str != null) {
@@ -1825,7 +1894,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 super.onTextChanged(charSequence, i, i2, i3);
                 if (this.limit != null) {
                     this.limitCount = 12 - charSequence.length();
@@ -1840,7 +1909,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, ProfileGiftsContainer.this.resourcesProvider)));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
@@ -1854,12 +1923,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 if (i != 6) {
                     return false;
                 }
-                String obj = editTextCaption.getText().toString();
-                if (obj.length() <= 0 || obj.length() > 12) {
+                String string = editTextCaption.getText().toString();
+                if (string.length() <= 0 || string.length() > 12) {
                     AndroidUtilities.shakeView(editTextCaption);
                     return true;
                 }
-                callback.run(obj);
+                callback.run(string);
                 AlertDialog alertDialog = alertDialogArr[0];
                 if (alertDialog != null) {
                     alertDialog.dismiss();
@@ -1917,7 +1986,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         builder.setPositiveButton(LocaleController.getString(str != null ? R.string.Edit : R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$13(EditTextCaption.this, callback, alertDialog, i);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$13(editTextCaption, callback, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -1931,17 +2000,17 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         if (itemOptions != null && (actionBarPopupWindow = itemOptions.actionBarPopupWindow) != null) {
             actionBarPopupWindow.setSoftInputMode(48);
         }
-        AndroidUtilities.requestAdjustNothing(findActivity, this.fragment.getClassGuid());
+        AndroidUtilities.requestAdjustNothing(activityFindActivity, this.fragment.getClassGuid());
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.this.lambda$openEnterNameAlert$15(editTextCaption, findActivity, dialogInterface);
+                this.f$0.lambda$openEnterNameAlert$15(editTextCaption, activityFindActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$16(EditTextCaption.this, dialogInterface);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$16(editTextCaption, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -1951,11 +2020,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public static void lambda$openEnterNameAlert$13(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
-        String obj = editTextCaption.getText().toString();
-        if (obj.length() <= 0 || obj.length() > 12) {
+        String string = editTextCaption.getText().toString();
+        if (string.length() <= 0 || string.length() > 12) {
             AndroidUtilities.shakeView(editTextCaption);
         } else {
-            callback.run(obj);
+            callback.run(string);
             alertDialog.dismiss();
         }
     }
@@ -1974,7 +2043,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         openEnterNameAlert(null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$createCollection$18((String) obj);
+                this.f$0.lambda$createCollection$18((String) obj);
             }
         });
     }
@@ -1983,7 +2052,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         this.collections.createCollection(str, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$createCollection$17((TL_stars.TL_starGiftCollection) obj);
+                this.f$0.lambda$createCollection$17((TL_stars.TL_starGiftCollection) obj);
             }
         });
     }
@@ -2009,30 +2078,30 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         final int i = giftsList.collectionId;
         new SelectGiftsBottomSheet(this.fragment, this.dialogId, i, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$addGifts$19(i, currentPage, (ArrayList) obj);
+            public final void run(Object obj) throws IOException {
+                this.f$0.lambda$addGifts$19(i, currentPage, (ArrayList) obj);
             }
         }).show();
     }
 
-    public void lambda$addGifts$19(int i, Page page, ArrayList arrayList) {
+    public void lambda$addGifts$19(int i, Page page, ArrayList arrayList) throws IOException {
         this.collections.addGifts(i, arrayList, true);
         page.update(true);
         fillTabs(true);
         updateTabsShown(true);
-        TL_stars.TL_starGiftCollection findById = this.collections.findById(i);
-        if (findById != null) {
+        TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = this.collections.findById(i);
+        if (tL_starGiftCollectionFindById != null) {
             if (arrayList.size() > 1) {
-                Bulletin createSimpleMultiBulletin = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), findById.title)));
-                createSimpleMultiBulletin.hideAfterBottomSheet = false;
-                createSimpleMultiBulletin.show();
+                Bulletin bulletinCreateSimpleMultiBulletin = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), tL_starGiftCollectionFindById.title)));
+                bulletinCreateSimpleMultiBulletin.hideAfterBottomSheet = false;
+                bulletinCreateSimpleMultiBulletin.show();
                 return;
             }
             if (arrayList.size() == 1) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
-                Bulletin createSimpleMultiBulletin2 = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), findById.title)));
-                createSimpleMultiBulletin2.hideAfterBottomSheet = false;
-                createSimpleMultiBulletin2.show();
+                Bulletin bulletinCreateSimpleMultiBulletin2 = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title)));
+                bulletinCreateSimpleMultiBulletin2.hideAfterBottomSheet = false;
+                bulletinCreateSimpleMultiBulletin2.show();
             }
         }
     }
@@ -2075,7 +2144,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ProfileGiftsContainer.SelectGiftsBottomSheet.this.lambda$new$0(callback, view2);
+                    this.f$0.lambda$new$0(callback, view2);
                 }
             });
             frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
@@ -2099,7 +2168,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view2, int i3) {
-                    ProfileGiftsContainer.SelectGiftsBottomSheet.this.lambda$new$1(view2, i3);
+                    this.f$0.lambda$new$1(view2, i3);
                 }
             });
             this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -2120,7 +2189,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         }
 
-        public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+        class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
             final long val$dialogId;
             final ActionBarMenuItem val$other;
 
@@ -2131,7 +2200,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
             @Override
             public void onItemClick(int i) {
-                boolean canUserDoAction;
+                boolean zCanUserDoAction;
                 ActionBarMenuSubItem actionBarMenuSubItem;
                 ActionBarMenuSubItem actionBarMenuSubItem2;
                 final Runnable runnable;
@@ -2148,58 +2217,58 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 SelectGiftsBottomSheet selectGiftsBottomSheet = SelectGiftsBottomSheet.this;
                 ItemOptions itemOptions = selectGiftsBottomSheet.lastMenu = ItemOptions.makeOptions(selectGiftsBottomSheet.container, ((BottomSheet) selectGiftsBottomSheet).resourcesProvider, this.val$other);
                 if (this.val$dialogId == UserConfig.getInstance(((BottomSheet) SelectGiftsBottomSheet.this).currentAccount).getClientUserId()) {
-                    canUserDoAction = true;
+                    zCanUserDoAction = true;
                 } else {
-                    canUserDoAction = this.val$dialogId >= 0 ? false : ChatObject.canUserDoAction(MessagesController.getInstance(((BottomSheet) SelectGiftsBottomSheet.this).currentAccount).getChat(Long.valueOf(-this.val$dialogId)), 5);
+                    zCanUserDoAction = this.val$dialogId >= 0 ? false : ChatObject.canUserDoAction(MessagesController.getInstance(((BottomSheet) SelectGiftsBottomSheet.this).currentAccount).getChat(Long.valueOf(-this.val$dialogId)), 5);
                 }
-                final ActionBarMenuSubItem add = itemOptions.add();
+                final ActionBarMenuSubItem actionBarMenuSubItemAdd = itemOptions.add();
                 itemOptions.addGap();
-                final ActionBarMenuSubItem addChecked = itemOptions.addChecked();
-                addChecked.setText(LocaleController.getString(R.string.Gift2FilterUnlimited));
-                final ActionBarMenuSubItem addChecked2 = itemOptions.addChecked();
-                addChecked2.setText(LocaleController.getString(R.string.Gift2FilterLimited));
-                final ActionBarMenuSubItem addChecked3 = itemOptions.addChecked();
-                addChecked3.setText(LocaleController.getString(R.string.Gift2FilterUpgradable));
-                final ActionBarMenuSubItem addChecked4 = itemOptions.addChecked();
-                addChecked4.setText(LocaleController.getString(R.string.Gift2FilterUnique));
-                if (canUserDoAction) {
+                final ActionBarMenuSubItem actionBarMenuSubItemAddChecked = itemOptions.addChecked();
+                actionBarMenuSubItemAddChecked.setText(LocaleController.getString(R.string.Gift2FilterUnlimited));
+                final ActionBarMenuSubItem actionBarMenuSubItemAddChecked2 = itemOptions.addChecked();
+                actionBarMenuSubItemAddChecked2.setText(LocaleController.getString(R.string.Gift2FilterLimited));
+                final ActionBarMenuSubItem actionBarMenuSubItemAddChecked3 = itemOptions.addChecked();
+                actionBarMenuSubItemAddChecked3.setText(LocaleController.getString(R.string.Gift2FilterUpgradable));
+                final ActionBarMenuSubItem actionBarMenuSubItemAddChecked4 = itemOptions.addChecked();
+                actionBarMenuSubItemAddChecked4.setText(LocaleController.getString(R.string.Gift2FilterUnique));
+                if (zCanUserDoAction) {
                     itemOptions.addGap();
-                    ActionBarMenuSubItem addChecked5 = itemOptions.addChecked();
-                    addChecked5.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
-                    ActionBarMenuSubItem addChecked6 = itemOptions.addChecked();
-                    addChecked6.setText(LocaleController.getString(R.string.Gift2FilterHidden));
-                    actionBarMenuSubItem2 = addChecked5;
-                    actionBarMenuSubItem = addChecked6;
+                    ActionBarMenuSubItem actionBarMenuSubItemAddChecked5 = itemOptions.addChecked();
+                    actionBarMenuSubItemAddChecked5.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
+                    ActionBarMenuSubItem actionBarMenuSubItemAddChecked6 = itemOptions.addChecked();
+                    actionBarMenuSubItemAddChecked6.setText(LocaleController.getString(R.string.Gift2FilterHidden));
+                    actionBarMenuSubItem2 = actionBarMenuSubItemAddChecked5;
+                    actionBarMenuSubItem = actionBarMenuSubItemAddChecked6;
                 } else {
                     actionBarMenuSubItem = null;
                     actionBarMenuSubItem2 = null;
                 }
                 final ActionBarMenuSubItem actionBarMenuSubItem3 = actionBarMenuSubItem;
                 final ActionBarMenuSubItem actionBarMenuSubItem4 = actionBarMenuSubItem2;
-                final boolean z = canUserDoAction;
+                final boolean z = zCanUserDoAction;
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$0(add, addChecked, addChecked2, addChecked3, addChecked4, z, actionBarMenuSubItem4, actionBarMenuSubItem3);
+                        this.f$0.lambda$onItemClick$0(actionBarMenuSubItemAdd, actionBarMenuSubItemAddChecked, actionBarMenuSubItemAddChecked2, actionBarMenuSubItemAddChecked3, actionBarMenuSubItemAddChecked4, z, actionBarMenuSubItem4, actionBarMenuSubItem3);
                     }
                 };
                 runnable2.run();
-                if (add != null) {
+                if (actionBarMenuSubItemAdd != null) {
                     runnable = runnable2;
-                    add.setOnClickListener(new View.OnClickListener() {
+                    actionBarMenuSubItemAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$1(runnable, view);
+                            this.f$0.lambda$onItemClick$1(runnable, view);
                         }
                     });
                 } else {
                     runnable = runnable2;
                 }
-                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked, SelectGiftsBottomSheet.this.list, runnable, 1);
-                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked2, SelectGiftsBottomSheet.this.list, runnable, 2);
-                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked3, SelectGiftsBottomSheet.this.list, runnable, 4);
-                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked4, SelectGiftsBottomSheet.this.list, runnable, 8);
-                if (canUserDoAction) {
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked, SelectGiftsBottomSheet.this.list, runnable, 1);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked2, SelectGiftsBottomSheet.this.list, runnable, 2);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked3, SelectGiftsBottomSheet.this.list, runnable, 4);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked4, SelectGiftsBottomSheet.this.list, runnable, 8);
+                if (zCanUserDoAction) {
                     ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem4, SelectGiftsBottomSheet.this.list, runnable, 256);
                     ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem3, SelectGiftsBottomSheet.this.list, runnable, 512);
                 }
@@ -2235,7 +2304,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             ArrayList arrayList = new ArrayList();
             Iterator it = this.selectedGiftIds.iterator();
             while (it.hasNext()) {
-                long longValue = ((Long) it.next()).longValue();
+                long jLongValue = ((Long) it.next()).longValue();
                 Iterator it2 = this.list.gifts.iterator();
                 while (true) {
                     if (!it2.hasNext()) {
@@ -2244,7 +2313,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     }
                     savedStarGift = (TL_stars.SavedStarGift) it2.next();
                     int i = savedStarGift.msg_id;
-                    if ((i != 0 && i == longValue) || savedStarGift.saved_id == longValue) {
+                    if ((i != 0 && i == jLongValue) || savedStarGift.saved_id == jLongValue) {
                         break;
                     }
                 }
@@ -2319,7 +2388,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ProfileGiftsContainer.SelectGiftsBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, this.resourcesProvider);
             this.adapter = universalAdapter;
@@ -2356,10 +2425,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                         }
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
                         if (!savedStarGift.collection_id.contains(Integer.valueOf(this.collectionId))) {
-                            UItem asStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, true, false);
+                            UItem uItemAsStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, true, false);
                             HashSet hashSet = this.selectedGiftIds;
                             int i3 = savedStarGift.msg_id;
-                            arrayList.add(asStarGift.setChecked(hashSet.contains(Long.valueOf(i3 == 0 ? savedStarGift.saved_id : i3))).setSpanCount(1));
+                            arrayList.add(uItemAsStarGift.setChecked(hashSet.contains(Long.valueOf(i3 == 0 ? savedStarGift.saved_id : i3))).setSpanCount(1));
                             i--;
                             if (i == 0) {
                                 break;
@@ -2386,15 +2455,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$20(StarsController.GiftsList.this, i, runnable, view2);
+                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$20(giftsList, i, runnable, view2);
             }
         });
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                boolean lambda$setGiftFilterOptionsClickListeners$21;
-                lambda$setGiftFilterOptionsClickListeners$21 = ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$21(StarsController.GiftsList.this, i, runnable, view2);
-                return lambda$setGiftFilterOptionsClickListeners$21;
+                return ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$21(giftsList, i, runnable, view2);
             }
         });
     }
@@ -2408,5 +2475,36 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         giftsList.forceTypeIncludeFlag(i, true);
         runnable.run();
         return true;
+    }
+
+    public void initBlurCapture(ViewGroup viewGroup) {
+        this.iBlur3CaptureParent = viewGroup;
+        this.iBlur3Capture = new IBlur3Capture() {
+            @Override
+            public final void capture(Canvas canvas, RectF rectF) {
+                this.f$0.lambda$initBlurCapture$22(canvas, rectF);
+            }
+        };
+    }
+
+    public void lambda$initBlurCapture$22(Canvas canvas, RectF rectF) {
+        for (View view : this.viewPager.getViewPages()) {
+            if (view instanceof Page) {
+                Page page = (Page) view;
+                if (page.iBlur3Capture == null) {
+                    UniversalRecyclerView universalRecyclerView = page.listView;
+                    ViewGroup viewGroup = this.iBlur3CaptureParent;
+                    final UniversalRecyclerView universalRecyclerView2 = page.listView;
+                    Objects.requireNonNull(universalRecyclerView2);
+                    page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new ViewGroupPartRenderer.DrawChildMethod() {
+                        @Override
+                        public final boolean drawChild(Canvas canvas2, View view2, long j) {
+                            return universalRecyclerView2.drawChild(canvas2, view2, j);
+                        }
+                    });
+                }
+                page.iBlur3Capture.capture(canvas, rectF);
+            }
+        }
     }
 }

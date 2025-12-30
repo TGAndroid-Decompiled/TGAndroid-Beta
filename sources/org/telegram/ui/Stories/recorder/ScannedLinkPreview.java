@@ -123,7 +123,7 @@ public class ScannedLinkPreview extends View {
             this.currentCancel = ResolvedLink.resolve(this.currentAccount, str, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ScannedLinkPreview.this.lambda$setLink$0((ScannedLinkPreview.ResolvedLink) obj);
+                    this.f$0.lambda$setLink$0((ScannedLinkPreview.ResolvedLink) obj);
                 }
             });
             return;
@@ -177,8 +177,6 @@ public class ScannedLinkPreview extends View {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         Object obj;
-        int width;
-        int height;
         float f = this.animatedAlpha.set(this.hasResolved);
         Text text = this.title;
         if (text == null || this.subtitle == null || f <= 0.0f) {
@@ -186,21 +184,21 @@ public class ScannedLinkPreview extends View {
         }
         text.ellipsize(getWidth() * 0.7f);
         this.subtitle.ellipsize(getWidth() * 0.7f);
-        float dp = AndroidUtilities.dp(5.0f);
-        float dp2 = AndroidUtilities.dp(10.0f);
-        float dp3 = AndroidUtilities.dp(32.0f);
-        float dp4 = AndroidUtilities.dp(2.0f);
-        float dp5 = AndroidUtilities.dp(11.0f);
-        float max = Math.max(Math.min(AndroidUtilities.dp(200.0f), getWidth() * 0.8f), (this.hasImage ? dp5 + dp3 + dp5 : 0.0f) + dp + Math.max(this.title.getCurrentWidth(), this.subtitle.getCurrentWidth()) + AndroidUtilities.dp(15.0f) + dp);
-        float max2 = Math.max(this.hasImage ? dp3 : 0.0f, this.title.getHeight() + dp4 + this.subtitle.getHeight()) + dp2 + dp2;
+        float fDp = AndroidUtilities.dp(5.0f);
+        float fDp2 = AndroidUtilities.dp(10.0f);
+        float fDp3 = AndroidUtilities.dp(32.0f);
+        float fDp4 = AndroidUtilities.dp(2.0f);
+        float fDp5 = AndroidUtilities.dp(11.0f);
+        float fMax = Math.max(Math.min(AndroidUtilities.dp(200.0f), getWidth() * 0.8f), (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp + Math.max(this.title.getCurrentWidth(), this.subtitle.getCurrentWidth()) + AndroidUtilities.dp(15.0f) + fDp);
+        float fMax2 = Math.max(this.hasImage ? fDp3 : 0.0f, this.title.getHeight() + fDp4 + this.subtitle.getHeight()) + fDp2 + fDp2;
         float scale = this.bounce.getScale(0.05f) * AndroidUtilities.lerp(0.6f, 1.0f, f);
-        float dp6 = AndroidUtilities.dp(15.0f) * (1.0f - f);
-        this.bounds.set((getWidth() - max) / 2.0f, (getHeight() - max2) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + max2) / 2.0f);
+        float fDp6 = AndroidUtilities.dp(15.0f) * (1.0f - f);
+        this.bounds.set((getWidth() - fMax) / 2.0f, (getHeight() - fMax2) / 2.0f, (getWidth() + fMax) / 2.0f, (getHeight() + fMax2) / 2.0f);
         this.clipBounds.set(this.bounds);
         AndroidUtilities.scaleRect(this.clipBounds, scale);
-        this.clipBounds.offset(0.0f, dp6);
+        this.clipBounds.offset(0.0f, fDp6);
         if (Build.VERSION.SDK_INT >= 29 && (obj = this.blurRenderNode) != null && this.blurView != null) {
-            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
+            RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
             this.clipPath.rewind();
             this.clipPath.addRoundRect(this.clipBounds, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
             getLocationOnScreen(this.thisLocation);
@@ -210,14 +208,9 @@ public class ScannedLinkPreview extends View {
             int i = this.blurLocation[0];
             int[] iArr = this.thisLocation;
             canvas.translate(i - iArr[0], r3[1] - iArr[1]);
-            float width2 = this.blurView.getWidth();
-            width = m.getWidth();
-            float f2 = width2 / width;
-            float height2 = this.blurView.getHeight();
-            height = m.getHeight();
-            float max3 = Math.max(f2, height2 / height);
-            canvas.scale(max3, max3);
-            canvas.drawRenderNode(m);
+            float fMax3 = Math.max(this.blurView.getWidth() / renderNodeM.getWidth(), this.blurView.getHeight() / renderNodeM.getHeight());
+            canvas.scale(fMax3, fMax3);
+            canvas.drawRenderNode(renderNodeM);
             canvas.restore();
             this.backgroundPaint.setColor(Theme.multAlpha(1879048192, f));
             canvas.drawRoundRect(this.clipBounds, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.backgroundPaint);
@@ -226,21 +219,21 @@ public class ScannedLinkPreview extends View {
             canvas.drawRoundRect(this.clipBounds, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.backgroundPaint);
         }
         canvas.save();
-        canvas.translate(0.0f, dp6);
+        canvas.translate(0.0f, fDp6);
         canvas.scale(scale, scale, this.bounds.centerX(), this.bounds.centerY());
         if (this.hasImage) {
-            float f3 = dp3 / 2.0f;
-            this.imageReceiver.setRoundRadius((int) f3);
+            float f2 = fDp3 / 2.0f;
+            this.imageReceiver.setRoundRadius((int) f2);
             ImageReceiver imageReceiver = this.imageReceiver;
             RectF rectF = this.bounds;
-            imageReceiver.setImageCoords(rectF.left + dp + dp5, rectF.centerY() - f3, dp3, dp3);
+            imageReceiver.setImageCoords(rectF.left + fDp + fDp5, rectF.centerY() - f2, fDp3, fDp3);
             this.imageReceiver.setAlpha(f);
             this.imageReceiver.draw(canvas);
         }
-        float centerY = this.bounds.centerY() - (((this.title.getHeight() + dp4) + this.subtitle.getHeight()) / 2.0f);
+        float fCenterY = this.bounds.centerY() - (((this.title.getHeight() + fDp4) + this.subtitle.getHeight()) / 2.0f);
         Text text2 = this.title;
-        text2.draw(canvas, this.bounds.left + (this.hasImage ? dp5 + dp3 + dp5 : 0.0f) + dp, centerY + (text2.getHeight() / 2.0f), -1, f);
-        this.subtitle.draw(canvas, this.bounds.left + (this.hasImage ? dp3 + dp5 + dp5 : 0.0f) + dp, centerY + this.title.getHeight() + dp4 + (this.subtitle.getHeight() / 2.0f), Theme.blendOver(-16777216, -1610612737), f);
+        text2.draw(canvas, this.bounds.left + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp, fCenterY + (text2.getHeight() / 2.0f), -1, f);
+        this.subtitle.draw(canvas, this.bounds.left + (this.hasImage ? fDp3 + fDp5 + fDp5 : 0.0f) + fDp, fCenterY + this.title.getHeight() + fDp4 + (this.subtitle.getHeight() / 2.0f), Theme.blendOver(-16777216, -1610612737), f);
         canvas.restore();
     }
 
@@ -284,7 +277,7 @@ public class ScannedLinkPreview extends View {
                 callback.run(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ScannedLinkPreview.this.lambda$dispatchTouchEvent$1((BaseFragment) obj);
+                        this.f$0.lambda$dispatchTouchEvent$1((BaseFragment) obj);
                     }
                 });
             }
@@ -326,16 +319,16 @@ public class ScannedLinkPreview extends View {
             try {
                 final MessagesController messagesController = MessagesController.getInstance(i);
                 String str2 = messagesController.linkPrefix;
-                Uri parse = Uri.parse(str);
-                if (!TextUtils.equals(parse.getHost(), str2)) {
+                Uri uri = Uri.parse(str);
+                if (!TextUtils.equals(uri.getHost(), str2)) {
                     return null;
                 }
-                List<String> pathSegments = parse.getPathSegments();
+                List<String> pathSegments = uri.getPathSegments();
                 if (pathSegments.isEmpty()) {
                     return null;
                 }
                 String str3 = pathSegments.get(0);
-                String queryParameter = parse.getQueryParameter("ref");
+                String queryParameter = uri.getQueryParameter("ref");
                 if (TextUtils.isEmpty(queryParameter)) {
                     TLObject userOrChat = messagesController.getUserOrChat(str3);
                     if (userOrChat instanceof TLRPC.User) {
@@ -350,7 +343,7 @@ public class ScannedLinkPreview extends View {
                 return messagesController.getUserNameResolver().resolve(str3, queryParameter, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ScannedLinkPreview.ResolvedLink.lambda$resolve$0(Utilities.Callback.this, messagesController, str, (Long) obj);
+                        ScannedLinkPreview.ResolvedLink.lambda$resolve$0(callback, messagesController, str, (Long) obj);
                     }
                 });
             } catch (Exception e) {

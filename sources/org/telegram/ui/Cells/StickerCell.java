@@ -1,7 +1,6 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -83,9 +82,9 @@ public class StickerCell extends FrameLayout {
 
     public void setSticker(TLRPC.Document document, Object obj) {
         this.parentObject = obj;
-        boolean isPremiumSticker = MessageObject.isPremiumSticker(document);
-        this.isPremiumSticker = isPremiumSticker;
-        if (isPremiumSticker) {
+        boolean zIsPremiumSticker = MessageObject.isPremiumSticker(document);
+        this.isPremiumSticker = zIsPremiumSticker;
+        if (zIsPremiumSticker) {
             this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.premiumIconView.setWaitingImage();
         }
@@ -150,38 +149,8 @@ public class StickerCell extends FrameLayout {
     }
 
     @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        boolean z;
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (view == this.imageView && (((z = this.scaled) && this.scale != 0.8f) || (!z && this.scale != 1.0f))) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j2 = currentTimeMillis - this.lastUpdateTime;
-            this.lastUpdateTime = currentTimeMillis;
-            if (this.scaled) {
-                float f = this.scale;
-                if (f != 0.8f) {
-                    float f2 = f - (((float) j2) / 400.0f);
-                    this.scale = f2;
-                    if (f2 < 0.8f) {
-                        this.scale = 0.8f;
-                    }
-                    this.imageView.setScaleX(this.scale);
-                    this.imageView.setScaleY(this.scale);
-                    this.imageView.invalidate();
-                    invalidate();
-                }
-            }
-            float f3 = this.scale + (((float) j2) / 400.0f);
-            this.scale = f3;
-            if (f3 > 1.0f) {
-                this.scale = 1.0f;
-            }
-            this.imageView.setScaleX(this.scale);
-            this.imageView.setScaleY(this.scale);
-            this.imageView.invalidate();
-            invalidate();
-        }
-        return drawChild;
+    protected boolean drawChild(android.graphics.Canvas r5, android.view.View r6, long r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.StickerCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
     @Override
@@ -214,17 +183,17 @@ public class StickerCell extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.premiumIconView.getLayoutParams();
         if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            int dp = AndroidUtilities.dp(24.0f);
-            layoutParams.width = dp;
-            layoutParams.height = dp;
+            int iDp = AndroidUtilities.dp(24.0f);
+            layoutParams.width = iDp;
+            layoutParams.height = iDp;
             layoutParams.gravity = 81;
             layoutParams.rightMargin = 0;
             layoutParams.bottomMargin = 0;
             this.premiumIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         } else {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            layoutParams.width = dp2;
-            layoutParams.height = dp2;
+            int iDp2 = AndroidUtilities.dp(16.0f);
+            layoutParams.width = iDp2;
+            layoutParams.height = iDp2;
             layoutParams.gravity = 85;
             layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
             layoutParams.rightMargin = AndroidUtilities.dp(8.0f);

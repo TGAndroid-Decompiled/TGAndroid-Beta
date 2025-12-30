@@ -92,14 +92,14 @@ public class BadgeLevelDrawable extends Drawable implements Drawable.Callback {
     private void setLevelIndex(int i) {
         if (this.lastLevelIndex != i || this.inner == null || this.outer == null) {
             int i2 = i * 2;
-            Drawable mutate = this.context.getResources().getDrawable(res[i2]).mutate();
-            this.inner = mutate;
+            Drawable drawableMutate = this.context.getResources().getDrawable(res[i2]).mutate();
+            this.inner = drawableMutate;
             int i3 = this.innerColor;
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            mutate.setColorFilter(i3, mode);
-            Drawable mutate2 = this.context.getResources().getDrawable(res[i2 + 1]).mutate();
-            this.outer = mutate2;
-            mutate2.setColorFilter(this.outerColor, mode);
+            drawableMutate.setColorFilter(i3, mode);
+            Drawable drawableMutate2 = this.context.getResources().getDrawable(res[i2 + 1]).mutate();
+            this.outer = drawableMutate2;
+            drawableMutate2.setColorFilter(this.outerColor, mode);
             this.lastLevelIndex = i;
             checkBounds();
         }

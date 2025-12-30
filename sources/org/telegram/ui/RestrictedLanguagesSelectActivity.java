@@ -78,18 +78,18 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
     public static void updateRestrictedLanguages(HashSet hashSet, Boolean bool) {
         restrictedLanguages = hashSet;
         gotRestrictedLanguages = true;
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         if (hashSet == null) {
-            edit.remove("translate_button_restricted_languages");
+            editorEdit.remove("translate_button_restricted_languages");
         } else {
-            edit.putStringSet("translate_button_restricted_languages", hashSet);
+            editorEdit.putStringSet("translate_button_restricted_languages", hashSet);
         }
         if (bool == null) {
-            edit.remove("translate_button_restricted_languages_changed");
+            editorEdit.remove("translate_button_restricted_languages_changed");
         } else if (bool.booleanValue()) {
-            edit.putBoolean("translate_button_restricted_languages_changed", true);
+            editorEdit.putBoolean("translate_button_restricted_languages_changed", true);
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     @Override
@@ -170,9 +170,9 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
 
             @Override
             public void onTextChanged(EditText editText) {
-                String obj = editText.getText().toString();
-                RestrictedLanguagesSelectActivity.this.search(obj);
-                if (obj.length() != 0) {
+                String string = editText.getText().toString();
+                RestrictedLanguagesSelectActivity.this.search(string);
+                if (string.length() != 0) {
                     if (RestrictedLanguagesSelectActivity.this.listView != null) {
                         RestrictedLanguagesSelectActivity.this.listView.setAdapter(RestrictedLanguagesSelectActivity.this.searchListViewAdapter);
                     }
@@ -204,7 +204,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                RestrictedLanguagesSelectActivity.this.lambda$createView$1(view, i);
+                this.f$0.lambda$createView$1(view, i);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -256,9 +256,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
 
                 @Override
                 public final boolean test(Object obj) {
-                    boolean lambda$createView$0;
-                    lambda$createView$0 = RestrictedLanguagesSelectActivity.lambda$createView$0(str, (String) obj);
-                    return lambda$createView$0;
+                    return RestrictedLanguagesSelectActivity.lambda$createView$0(str, (String) obj);
                 }
             });
         } else {
@@ -387,7 +385,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         this.searchListViewAdapter.notifyDataSetChanged();
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
         private boolean search;
 
@@ -414,25 +412,62 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View shadowSectionCell;
             if (i == 0) {
                 View textCheckbox2Cell = new TextCheckbox2Cell(this.mContext);
                 textCheckbox2Cell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCheckbox2Cell;
+                shadowSectionCell = textCheckbox2Cell;
             } else if (i == 2) {
                 HeaderCell headerCell = new HeaderCell(this.mContext);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 headerCell.setText(LocaleController.getString(R.string.ChooseLanguages));
-                view = headerCell;
+                shadowSectionCell = headerCell;
             } else {
-                view = new ShadowSectionCell(this.mContext);
+                shadowSectionCell = new ShadowSectionCell(this.mContext);
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(shadowSectionCell);
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r6, int r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.RestrictedLanguagesSelectActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            boolean z;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType != 0) {
+                if (itemViewType != 1) {
+                    return;
+                }
+                ((ShadowSectionCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                return;
+            }
+            TextCheckbox2Cell textCheckbox2Cell = (TextCheckbox2Cell) viewHolder.itemView;
+            TranslateController.Language language = null;
+            if (this.search) {
+                if (i >= 0 && i < RestrictedLanguagesSelectActivity.this.searchResult.size()) {
+                    language = (TranslateController.Language) RestrictedLanguagesSelectActivity.this.searchResult.get(i);
+                }
+                z = i == RestrictedLanguagesSelectActivity.this.searchResult.size() - 1;
+            } else {
+                if (RestrictedLanguagesSelectActivity.this.separatorRow >= 0 && i > RestrictedLanguagesSelectActivity.this.separatorRow) {
+                    i--;
+                }
+                if (i >= 0 && i < RestrictedLanguagesSelectActivity.this.allLanguages.size()) {
+                    TranslateController.Language language2 = (TranslateController.Language) RestrictedLanguagesSelectActivity.this.allLanguages.get(i);
+                    if (i == RestrictedLanguagesSelectActivity.this.allLanguages.size() - 1) {
+                        language = language2;
+                    } else {
+                        language = language2;
+                    }
+                }
+            }
+            if (language == null) {
+                return;
+            }
+            String str = language.ownDisplayName;
+            if (str == null) {
+                str = language.displayName;
+            }
+            textCheckbox2Cell.setTextAndValue(str, language.displayName, false, !z);
+            textCheckbox2Cell.setChecked(RestrictedLanguagesSelectActivity.this.selectedLanguages.contains(language.code));
         }
 
         @Override
@@ -487,13 +522,13 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
     public static void lambda$checkRestrictedLanguages$2(HashSet hashSet) {
         String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
         hashSet.addAll(getRestrictedLanguages());
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
-            edit.remove("translate_button_restricted_languages");
+            editorEdit.remove("translate_button_restricted_languages");
         } else {
-            edit.putStringSet("translate_button_restricted_languages", hashSet);
+            editorEdit.putStringSet("translate_button_restricted_languages", hashSet);
         }
-        edit.putInt("translate_button_restricted_languages_version", 2).apply();
+        editorEdit.putInt("translate_button_restricted_languages_version", 2).apply();
         invalidateRestrictedLanguages();
         for (int i = 0; i < 4; i++) {
             try {
@@ -526,7 +561,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Utilities.Callback.this.run(hashSet);
+                callback.run(hashSet);
             }
         });
     }

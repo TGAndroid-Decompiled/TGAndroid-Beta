@@ -10,6 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
@@ -31,14 +32,15 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     }
 
     static {
-        int i = R.drawable.pagedown;
-        buttonIcons = new int[]{i, R.drawable.mentionbutton, R.drawable.reactionbutton, i, i};
+        int i = R.drawable.msg_input_attach2;
+        int i2 = R.drawable.pagedown;
+        buttonIcons = new int[]{i, i2, R.drawable.mentionbutton, R.drawable.reactionbutton, i2, i2};
     }
 
     public ChatActivitySideControlsButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundColorProvider blurredBackgroundColorProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
         super(context);
-        this.buttonDescriptions = new String[]{LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
-        this.buttonHolders = new ButtonHolder[5];
+        this.buttonDescriptions = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.buttonHolders = new ButtonHolder[6];
         this.blurredBackgroundDrawableViewFactory = blurredBackgroundDrawableViewFactory;
         this.colorProvider = blurredBackgroundColorProvider;
         this.resourcesProvider = resourcesProvider;
@@ -107,7 +109,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
 
     private void checkButtonsPositionsAndVisibility() {
         int i = 0;
-        float f = 0.0f;
+        float fDp = 0.0f;
         while (true) {
             ButtonHolder[] buttonHolderArr = this.buttonHolders;
             if (i >= buttonHolderArr.length) {
@@ -120,8 +122,10 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
                 buttonHolder.button.setAlpha(floatValue);
                 buttonHolder.button.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
-                buttonHolder.button.setTranslationY((AndroidUtilities.dp(100.0f) * (1.0f - floatValue)) - f);
-                f += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 4 || i == 3) ? 10.0f : 16.0f)) * floatValue;
+                if (i != 0) {
+                    buttonHolder.button.setTranslationY((AndroidUtilities.dp(100.0f) * (1.0f - floatValue)) - fDp);
+                }
+                fDp += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 5 || i == 4) ? 10.0f : 16.0f)) * floatValue;
             }
             i++;
         }
@@ -139,35 +143,43 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     }
 
     private ButtonHolder getOrCreateButtonHolder(final int i) {
+        int i2;
+        int i3;
         if (this.buttonHolders[i] == null) {
-            BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, AnimatorUtils.DECELERATE_INTERPOLATOR, 280L);
-            ChatActivityBlurredRoundPageDownButton create = ChatActivityBlurredRoundPageDownButton.create(getContext(), this.resourcesProvider, this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i]);
-            create.setPivotX(AndroidUtilities.dp(28.0f));
-            create.setPivotY(AndroidUtilities.dp(36.0f));
-            create.setVisibility(8);
-            create.setContentDescription(this.buttonDescriptions[i]);
-            create.setOnClickListener(new View.OnClickListener() {
+            BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, i == 0 ? CubicBezierInterpolator.EASE_OUT_QUINT : AnimatorUtils.DECELERATE_INTERPOLATOR, i == 0 ? 300L : 280L);
+            if (i == 0) {
+                i2 = 50;
+                i3 = 32;
+            } else {
+                i2 = 58;
+                i3 = 48;
+            }
+            ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButtonCreate = ChatActivityBlurredRoundPageDownButton.create(getContext(), i2, i3, this.resourcesProvider, this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i]);
+            float f = i2 / 2.0f;
+            chatActivityBlurredRoundPageDownButtonCreate.setPivotX(AndroidUtilities.dp(f));
+            chatActivityBlurredRoundPageDownButtonCreate.setPivotY(AndroidUtilities.dp(f + 8.0f));
+            chatActivityBlurredRoundPageDownButtonCreate.setVisibility(8);
+            chatActivityBlurredRoundPageDownButtonCreate.setContentDescription(this.buttonDescriptions[i]);
+            chatActivityBlurredRoundPageDownButtonCreate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivitySideControlsButtonsLayout.this.lambda$getOrCreateButtonHolder$0(i, view);
+                    this.f$0.lambda$getOrCreateButtonHolder$0(i, view);
                 }
             });
-            create.setOnLongClickListener(new View.OnLongClickListener() {
+            chatActivityBlurredRoundPageDownButtonCreate.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$getOrCreateButtonHolder$1;
-                    lambda$getOrCreateButtonHolder$1 = ChatActivitySideControlsButtonsLayout.this.lambda$getOrCreateButtonHolder$1(i, view);
-                    return lambda$getOrCreateButtonHolder$1;
+                    return this.f$0.lambda$getOrCreateButtonHolder$1(i, view);
                 }
             });
-            if (i == 4) {
-                create.reverseIconByY();
+            if (i == 5) {
+                chatActivityBlurredRoundPageDownButtonCreate.reverseIconByY();
             }
-            if (i == 0) {
-                create.reverseCounter();
+            if (i == 1) {
+                chatActivityBlurredRoundPageDownButtonCreate.reverseCounter();
             }
-            addView(create, LayoutHelper.createFrame(56, 64, 83));
-            this.buttonHolders[i] = new ButtonHolder(create, boolAnimator);
+            addView(chatActivityBlurredRoundPageDownButtonCreate, LayoutHelper.createFrame(i2, i2 + 8, 83));
+            this.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundPageDownButtonCreate, boolAnimator);
             checkButtonsPositionsAndVisibility();
         }
         return this.buttonHolders[i];
@@ -188,7 +200,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
         return false;
     }
 
-    public static class ButtonHolder {
+    private static class ButtonHolder {
         public final ChatActivityBlurredRoundPageDownButton button;
         public final BoolAnimator visibilityAnimator;
 

@@ -113,14 +113,14 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Drawable drawable = this.overrideDrawable;
-        if (drawable == null) {
-            drawable = Theme.getCachedWallpaperNonBlocking();
+        Drawable cachedWallpaperNonBlocking = this.overrideDrawable;
+        if (cachedWallpaperNonBlocking == null) {
+            cachedWallpaperNonBlocking = Theme.getCachedWallpaperNonBlocking();
         }
         if (Theme.wallpaperLoadTask != null) {
             invalidate();
         }
-        if (drawable != this.backgroundDrawable && drawable != null) {
+        if (cachedWallpaperNonBlocking != this.backgroundDrawable && cachedWallpaperNonBlocking != null) {
             if (Theme.isAnimatingColor() || this.customAnimation) {
                 this.oldBackgroundDrawable = this.backgroundDrawable;
                 this.oldBackgroundGradientDisposable = this.backgroundGradientDisposable;
@@ -131,47 +131,47 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     this.backgroundGradientDisposable = null;
                 }
             }
-            this.backgroundDrawable = drawable;
+            this.backgroundDrawable = cachedWallpaperNonBlocking;
             this.overrideDrawableUpdate.set(0.0f, true);
         }
         float themeAnimationValue = this.customAnimation ? this.overrideDrawableUpdate.set(1.0f) : this.parentLayout.getThemeAnimationValue();
         int i = 0;
         while (i < 2) {
-            Drawable drawable2 = i == 0 ? this.oldBackgroundDrawable : this.backgroundDrawable;
-            if (drawable2 != null) {
+            Drawable drawable = i == 0 ? this.oldBackgroundDrawable : this.backgroundDrawable;
+            if (drawable != null) {
                 int i2 = (i != 1 || this.oldBackgroundDrawable == null || (this.parentLayout == null && !this.customAnimation)) ? 255 : (int) (255.0f * themeAnimationValue);
                 if (i2 > 0) {
-                    drawable2.setAlpha(i2);
-                    if ((drawable2 instanceof ColorDrawable) || (drawable2 instanceof GradientDrawable) || (drawable2 instanceof MotionBackgroundDrawable)) {
-                        drawable2.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                        if (drawable2 instanceof BackgroundGradientDrawable) {
-                            this.backgroundGradientDisposable = ((BackgroundGradientDrawable) drawable2).drawExactBoundsSize(canvas, this);
+                    drawable.setAlpha(i2);
+                    if ((drawable instanceof ColorDrawable) || (drawable instanceof GradientDrawable) || (drawable instanceof MotionBackgroundDrawable)) {
+                        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                        if (drawable instanceof BackgroundGradientDrawable) {
+                            this.backgroundGradientDisposable = ((BackgroundGradientDrawable) drawable).drawExactBoundsSize(canvas, this);
                         } else {
-                            drawable2.draw(canvas);
+                            drawable.draw(canvas);
                         }
-                    } else if (drawable2 instanceof BitmapDrawable) {
-                        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable2;
+                    } else if (drawable instanceof BitmapDrawable) {
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                         bitmapDrawable.setFilterBitmap(true);
                         if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
                             canvas.save();
                             float f = 2.0f / AndroidUtilities.density;
                             canvas.scale(f, f);
-                            drawable2.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
+                            drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
                         } else {
                             int measuredHeight = getMeasuredHeight();
-                            float max = Math.max(getMeasuredWidth() / drawable2.getIntrinsicWidth(), measuredHeight / drawable2.getIntrinsicHeight());
-                            int ceil = (int) Math.ceil(drawable2.getIntrinsicWidth() * max);
-                            int ceil2 = (int) Math.ceil(drawable2.getIntrinsicHeight() * max);
-                            int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                            int i3 = (measuredHeight - ceil2) / 2;
+                            float fMax = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
+                            int iCeil = (int) Math.ceil(drawable.getIntrinsicWidth() * fMax);
+                            int iCeil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * fMax);
+                            int measuredWidth = (getMeasuredWidth() - iCeil) / 2;
+                            int i3 = (measuredHeight - iCeil2) / 2;
                             canvas.save();
-                            canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                            drawable2.setBounds(measuredWidth, i3, ceil + measuredWidth, ceil2 + i3);
+                            canvas.clipRect(0, 0, iCeil, getMeasuredHeight());
+                            drawable.setBounds(measuredWidth, i3, iCeil + measuredWidth, iCeil2 + i3);
                         }
-                        drawable2.draw(canvas);
+                        drawable.draw(canvas);
                         canvas.restore();
                     } else {
-                        StoryEntry.drawBackgroundDrawable(canvas, drawable2, getWidth(), getHeight());
+                        StoryEntry.drawBackgroundDrawable(canvas, drawable, getWidth(), getHeight());
                     }
                     if (i == 0 && this.oldBackgroundDrawable != null && themeAnimationValue >= 1.0f) {
                         BackgroundGradientDrawable.Disposable disposable2 = this.oldBackgroundGradientDisposable;

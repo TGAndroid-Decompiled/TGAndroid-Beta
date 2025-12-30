@@ -76,12 +76,12 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
 
     @Override
     public void run() {
-        boolean isEmpty;
+        boolean zIsEmpty;
         ThreadLocalEventLoop.INSTANCE.setEventLoop$kotlinx_coroutines_core(this);
         AbstractTimeSourceKt.access$getTimeSource$p();
         try {
             if (!notifyStartup()) {
-                if (isEmpty) {
+                if (zIsEmpty) {
                     return;
                 } else {
                     return;
@@ -90,14 +90,14 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
             long j = Long.MAX_VALUE;
             while (true) {
                 Thread.interrupted();
-                long processNextEvent = processNextEvent();
-                if (processNextEvent == Long.MAX_VALUE) {
+                long jProcessNextEvent = processNextEvent();
+                if (jProcessNextEvent == Long.MAX_VALUE) {
                     AbstractTimeSourceKt.access$getTimeSource$p();
-                    long nanoTime = System.nanoTime();
+                    long jNanoTime = System.nanoTime();
                     if (j == Long.MAX_VALUE) {
-                        j = KEEP_ALIVE_NANOS + nanoTime;
+                        j = KEEP_ALIVE_NANOS + jNanoTime;
                     }
-                    long j2 = j - nanoTime;
+                    long j2 = j - jNanoTime;
                     if (j2 <= 0) {
                         _thread = null;
                         acknowledgeShutdownIfNeeded();
@@ -108,11 +108,11 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                         getThread();
                         return;
                     }
-                    processNextEvent = RangesKt.coerceAtMost(processNextEvent, j2);
+                    jProcessNextEvent = RangesKt.coerceAtMost(jProcessNextEvent, j2);
                 } else {
                     j = Long.MAX_VALUE;
                 }
-                if (processNextEvent > 0) {
+                if (jProcessNextEvent > 0) {
                     if (isShutdownRequested()) {
                         _thread = null;
                         acknowledgeShutdownIfNeeded();
@@ -124,7 +124,7 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                         return;
                     }
                     AbstractTimeSourceKt.access$getTimeSource$p();
-                    LockSupport.parkNanos(this, processNextEvent);
+                    LockSupport.parkNanos(this, jProcessNextEvent);
                 }
             }
         } finally {

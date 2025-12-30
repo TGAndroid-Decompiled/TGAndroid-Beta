@@ -43,7 +43,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         this.fillItems = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                HashtagsSearchAdapter.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
         this.currentAccount = i;
@@ -73,7 +73,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                HashtagsSearchAdapter.this.lambda$fillItems$0();
+                this.f$0.lambda$fillItems$0();
             }
         });
     }
@@ -117,7 +117,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                HashtagsSearchAdapter.this.lambda$search$3(i, hashtag);
+                this.f$0.lambda$search$3(i, hashtag);
             }
         };
         this.searchRunnable = runnable;
@@ -131,10 +131,10 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         StringBuilder sb = new StringBuilder();
         sb.append(this.cashtag[0] ? "$" : "#");
         sb.append(this.hashtagQuery);
-        final String sb2 = sb.toString();
+        final String string = sb.toString();
         StoriesController.SearchStoriesList searchStoriesList = this.list;
-        if (searchStoriesList == null || !TextUtils.equals(searchStoriesList.query, sb2)) {
-            this.list = new StoriesController.SearchStoriesList(this.currentAccount, null, sb2);
+        if (searchStoriesList == null || !TextUtils.equals(searchStoriesList.query, string)) {
+            this.list = new StoriesController.SearchStoriesList(this.currentAccount, null, string);
         }
         if (this.list.getLoadedCount() <= 0) {
             this.list.load(true, 4);
@@ -156,7 +156,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                HashtagsSearchAdapter.this.lambda$search$2(i, sb2, tLObject, tL_error);
+                this.f$0.lambda$search$2(i, string, tLObject, tL_error);
             }
         });
     }
@@ -165,7 +165,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                HashtagsSearchAdapter.this.lambda$search$1(i, tLObject, str);
+                this.f$0.lambda$search$1(i, tLObject, str);
             }
         });
     }
@@ -174,7 +174,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         if (i != this.searchId) {
             return;
         }
-        boolean isEmpty = this.messages.isEmpty();
+        boolean zIsEmpty = this.messages.isEmpty();
         this.loading = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -198,7 +198,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
             this.totalCount = this.messages.size();
         }
         update(true);
-        if (isEmpty) {
+        if (zIsEmpty) {
             scrollToTop(false);
         }
     }
@@ -214,17 +214,17 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         if (str == null || str.isEmpty()) {
             return null;
         }
-        String trim = str.trim();
-        if (trim.length() <= 1) {
+        String strTrim = str.trim();
+        if (strTrim.length() <= 1) {
             return null;
         }
-        if ((trim.charAt(0) != '#' && trim.charAt(0) != '$') || trim.indexOf(64) >= 0) {
+        if ((strTrim.charAt(0) != '#' && strTrim.charAt(0) != '$') || strTrim.indexOf(64) >= 0) {
             return null;
         }
         if (zArr != null) {
-            zArr[0] = trim.charAt(0) == '$';
+            zArr[0] = strTrim.charAt(0) == '$';
         }
-        return trim.substring(1);
+        return strTrim.substring(1);
     }
 
     public void cancel() {

@@ -57,7 +57,7 @@ public abstract class GroupCallSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallSheet.lambda$show$0(AlertDialog.this, progress, tLObject, i, context, j, inputGroupCall, tL_error);
+                GroupCallSheet.lambda$show$0(alertDialog, progress, tLObject, i, context, j, inputGroupCall, tL_error);
             }
         });
     }
@@ -115,10 +115,10 @@ public abstract class GroupCallSheet {
         frameLayout.addView(imageView, LayoutHelper.createFrame(56, 56, 17));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(80, 80, 1, 2, 21, 2, 13));
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        LinkSpanDrawable.LinksTextView makeLinkTextView = TextHelper.makeLinkTextView(context, 20.0f, i2, true, darkThemeResourceProvider);
-        makeLinkTextView.setText(LocaleController.getString(R.string.GroupCallLinkTitle));
-        makeLinkTextView.setGravity(17);
-        linearLayout.addView(makeLinkTextView, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 4));
+        LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView = TextHelper.makeLinkTextView(context, 20.0f, i2, true, darkThemeResourceProvider);
+        linksTextViewMakeLinkTextView.setText(LocaleController.getString(R.string.GroupCallLinkTitle));
+        linksTextViewMakeLinkTextView.setGravity(17);
+        linearLayout.addView(linksTextViewMakeLinkTextView, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 4));
         List list = (List) Collection.EL.stream(arrayList).map(new Function() {
             public Function andThen(Function function) {
                 return Function$CC.$default$andThen(this, function);
@@ -126,9 +126,7 @@ public abstract class GroupCallSheet {
 
             @Override
             public final Object apply(Object obj) {
-                Long lambda$show$3;
-                lambda$show$3 = GroupCallSheet.lambda$show$3((TLRPC.GroupCallParticipant) obj);
-                return lambda$show$3;
+                return GroupCallSheet.lambda$show$3((TLRPC.GroupCallParticipant) obj);
             }
 
             public Function compose(Function function) {
@@ -149,56 +147,54 @@ public abstract class GroupCallSheet {
 
             @Override
             public final boolean test(Object obj) {
-                boolean lambda$show$4;
-                lambda$show$4 = GroupCallSheet.lambda$show$4(i, j, (Long) obj);
-                return lambda$show$4;
+                return GroupCallSheet.lambda$show$4(i, j, (Long) obj);
             }
         }).collect(Collectors.toList());
-        boolean isEmpty = list.isEmpty();
-        LinkSpanDrawable.LinksTextView makeLinkTextView2 = TextHelper.makeLinkTextView(context, 14.0f, i2, false, darkThemeResourceProvider);
-        makeLinkTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallLinkText)));
-        makeLinkTextView2.setGravity(17);
-        makeLinkTextView2.setMaxWidth(HintView2.cutInFancyHalf(makeLinkTextView2.getText(), makeLinkTextView2.getPaint()));
-        linearLayout.addView(makeLinkTextView2, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 23));
-        if (!isEmpty) {
+        boolean zIsEmpty = list.isEmpty();
+        LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView2 = TextHelper.makeLinkTextView(context, 14.0f, i2, false, darkThemeResourceProvider);
+        linksTextViewMakeLinkTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallLinkText)));
+        linksTextViewMakeLinkTextView2.setGravity(17);
+        linksTextViewMakeLinkTextView2.setMaxWidth(HintView2.cutInFancyHalf(linksTextViewMakeLinkTextView2.getText(), linksTextViewMakeLinkTextView2.getPaint()));
+        linearLayout.addView(linksTextViewMakeLinkTextView2, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 23));
+        if (!zIsEmpty) {
             View view = new View(context);
             view.setBackgroundColor(-14012362);
             linearLayout.addView(view, LayoutHelper.createLinear(-1, 0.66f, 7, 0, 0, 0, 0));
             AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
             avatarsImageView.setCentered(true);
             avatarsImageView.setSize(AndroidUtilities.dp(38.0f));
-            int min = Math.min(3, list.size());
-            avatarsImageView.setCount(min);
-            for (int i3 = 0; i3 < min; i3++) {
+            int iMin = Math.min(3, list.size());
+            avatarsImageView.setCount(iMin);
+            for (int i3 = 0; i3 < iMin; i3++) {
                 avatarsImageView.setObject(i3, i, MessagesController.getInstance(i).getUser((Long) list.get(i3)));
             }
             avatarsImageView.commitTransition(false);
             linearLayout.addView(avatarsImageView, LayoutHelper.createLinear(-1, 58, 2.0f, 11.0f, 5.0f, 0.0f));
-            LinkSpanDrawable.LinksTextView makeLinkTextView3 = TextHelper.makeLinkTextView(context, 14.0f, Theme.key_windowBackgroundWhiteBlackText, false, darkThemeResourceProvider);
-            makeLinkTextView3.setGravity(17);
+            LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView3 = TextHelper.makeLinkTextView(context, 14.0f, Theme.key_windowBackgroundWhiteBlackText, false, darkThemeResourceProvider);
+            linksTextViewMakeLinkTextView3.setGravity(17);
             if (list.size() == 1) {
-                makeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GroupCallLinkText2One, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()))));
+                linksTextViewMakeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GroupCallLinkText2One, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()))));
             } else if (list.size() == 2) {
-                makeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GroupCallLinkText2Two, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()), DialogObject.getShortName(i, ((Long) list.get(1)).longValue()))));
+                linksTextViewMakeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GroupCallLinkText2Two, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()), DialogObject.getShortName(i, ((Long) list.get(1)).longValue()))));
             } else {
-                makeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GroupCallLinkText2Many", arrayList.size() - 2, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()), DialogObject.getShortName(i, ((Long) list.get(1)).longValue()))));
+                linksTextViewMakeLinkTextView3.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GroupCallLinkText2Many", arrayList.size() - 2, DialogObject.getShortName(i, ((Long) list.get(0)).longValue()), DialogObject.getShortName(i, ((Long) list.get(1)).longValue()))));
             }
-            makeLinkTextView3.setMaxWidth(HintView2.cutInFancyHalf(makeLinkTextView3.getText(), makeLinkTextView3.getPaint()));
-            linearLayout.addView(makeLinkTextView3, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 25));
+            linksTextViewMakeLinkTextView3.setMaxWidth(HintView2.cutInFancyHalf(linksTextViewMakeLinkTextView3.getText(), linksTextViewMakeLinkTextView3.getPaint()));
+            linearLayout.addView(linksTextViewMakeLinkTextView3, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 25));
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, darkThemeResourceProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.GroupCallLinkJoin), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 2.0f, 0.0f, 2.0f, 0.0f));
         builder.setCustomView(linearLayout);
-        final BottomSheet create = builder.create();
+        final BottomSheet bottomSheetCreate = builder.create();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                GroupCallSheet.lambda$show$5(BottomSheet.this, context, i, inputGroupCall, view2);
+            public final void onClick(View view2) throws InterruptedException {
+                GroupCallSheet.lambda$show$5(bottomSheetCreate, context, i, inputGroupCall, view2);
             }
         });
-        create.fixNavigationBar();
-        create.show();
+        bottomSheetCreate.fixNavigationBar();
+        bottomSheetCreate.show();
     }
 
     public static Long lambda$show$3(TLRPC.GroupCallParticipant groupCallParticipant) {
@@ -209,12 +205,12 @@ public abstract class GroupCallSheet {
         return (l.longValue() == UserConfig.getInstance(i).getClientUserId() || l.longValue() == j) ? false : true;
     }
 
-    public static void lambda$show$5(BottomSheet bottomSheet, Context context, int i, TLRPC.InputGroupCall inputGroupCall, View view) {
+    public static void lambda$show$5(BottomSheet bottomSheet, Context context, int i, TLRPC.InputGroupCall inputGroupCall, View view) throws InterruptedException {
         bottomSheet.lambda$new$0();
-        Activity findActivity = AndroidUtilities.findActivity(context);
-        if (findActivity == null) {
+        Activity activityFindActivity = AndroidUtilities.findActivity(context);
+        if (activityFindActivity == null) {
             return;
         }
-        VoIPHelper.joinConference(findActivity, i, inputGroupCall, false, null);
+        VoIPHelper.joinConference(activityFindActivity, i, inputGroupCall, false, null);
     }
 }

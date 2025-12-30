@@ -58,12 +58,12 @@
     </style>
     <style name="Base.TMessages.AppWidget.Badge" parent="@android:style/Widget">
         <item name="android:textSize">13dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">0x11</item>
         <item name="android:background">@drawable/widget_badge_background</item>
         <item name="android:paddingLeft">7dp</item>
         <item name="android:paddingRight">7dp</item>
         <item name="android:paddingBottom">1dp</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">-2</item>
         <item name="android:layout_height">23dp</item>
         <item name="android:minWidth">23dp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
@@ -105,7 +105,7 @@
     <style name="Base.TextAppearance.AppCompat.Menu" parent="@android:style/TextAppearance.Material.Menu">
     </style>
     <style name="Base.TextAppearance.AppCompat.SearchResult" parent="">
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">0x0</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorHint">?android:attr/textColorHint</item>
     </style>
@@ -518,7 +518,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
         <item name="android:listDivider">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowSoftInputMode">0x20</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
@@ -663,7 +663,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
         <item name="android:listDivider">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowSoftInputMode">0x20</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
@@ -684,7 +684,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
         <item name="android:listDivider">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowSoftInputMode">0x20</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
@@ -729,7 +729,7 @@
         <item name="titleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionBar" parent="">
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">0x10</item>
         <item name="actionButtonStyle">@style/Widget.AppCompat.ActionButton</item>
         <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
         <item name="background">@null</item>
@@ -788,7 +788,7 @@
         <item name="titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionMode.Title</item>
     </style>
     <style name="Base.Widget.AppCompat.ActivityChooserView" parent="">
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">0x11</item>
         <item name="android:background">@drawable/abc_ab_share_pack_mtrl_alpha</item>
         <item name="divider">?attr/dividerVertical</item>
         <item name="dividerPadding">6dp</item>
@@ -1068,10 +1068,10 @@
         <item name="android:windowExitAnimation">@anim/popup_out</item>
     </style>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="@style/Base.DialogWindowTitle.AppCompat">
-        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAlignment">5</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="@android:style/Widget">
-        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:layout_gravity">0x800013</item>
         <item name="android:paddingEnd">8dp</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.DialogTitle.Icon" parent="@android:style/Widget">
@@ -1084,18 +1084,18 @@
         <item name="android:layout_marginStart">16dp</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.PopupMenuItem.Shortcut" parent="@android:style/Widget">
-        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:textAlignment">6</item>
         <item name="android:layout_marginStart">16dp</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.PopupMenuItem.SubmenuArrow" parent="@android:style/Widget">
         <item name="android:layout_marginStart">8dp</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.PopupMenuItem.Text" parent="@android:style/Widget">
-        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAlignment">5</item>
         <item name="android:layout_alignParentStart">true</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.PopupMenuItem.Title" parent="@android:style/Widget">
-        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAlignment">5</item>
         <item name="android:layout_marginStart">16dp</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.Search.DropDown" parent="@android:style/Widget">
@@ -1539,7 +1539,7 @@
         <item name="android:colorAccent">#4991cc</item>
     </style>
     <style name="Theme.TMessages.ListView" parent="@android:style/Widget.Material.Light.ListView">
-        <item name="android:fadingEdge">none</item>
+        <item name="android:fadingEdge">0x0</item>
         <item name="android:divider">@color/divider</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
@@ -1657,18 +1657,18 @@
     </style>
     <style name="WalletFragmentDefaultButtonTextAppearance" parent="">
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">0x0</item>
         <item name="android:textColor">@color/wallet_primary_text_holo_light</item>
         <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_light</item>
         <item name="android:textColorHint">@color/wallet_hint_foreground_holo_light</item>
         <item name="android:textColorLink">@color/wallet_link_text_light</item>
     </style>
     <style name="WalletFragmentDefaultDetailsHeaderTextAppearance" parent="@style/WalletFragmentDefaultDetailsTextAppearance">
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">0x1</item>
     </style>
     <style name="WalletFragmentDefaultDetailsTextAppearance" parent="">
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">0x0</item>
         <item name="android:textColor">@color/wallet_secondary_text_holo_dark</item>
         <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_dark</item>
         <item name="android:textColorHint">@color/wallet_hint_foreground_holo_dark</item>
@@ -1855,8 +1855,8 @@
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb_inset</item>
         <item name="android:scrollbarTrackVertical">@null</item>
         <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
-        <item name="android:scrollbarStyle">insideInset</item>
-        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarStyle">0x1000000</item>
+        <item name="android:scrollbars">0x200</item>
         <item name="android:scrollbarFadeDuration">250</item>
         <item name="android:scrollbarDefaultDelayBeforeFade">400</item>
         <item name="android:fadeScrollbars">true</item>

@@ -73,12 +73,12 @@ public class ShapeInput {
                 fArr[0] = f2;
                 fArr[1] = fArr[1] - shape.centerY;
                 double d = f * (z ? -1 : 1);
-                float cos = (float) ((f2 * Math.cos(d)) - (this.tempPoint[1] * Math.sin(d)));
-                float sin = (float) ((this.tempPoint[0] * Math.sin(d)) + (this.tempPoint[1] * Math.cos(d)));
+                float fCos = (float) ((f2 * Math.cos(d)) - (this.tempPoint[1] * Math.sin(d)));
+                float fSin = (float) ((this.tempPoint[0] * Math.sin(d)) + (this.tempPoint[1] * Math.cos(d)));
                 float[] fArr2 = this.tempPoint;
                 Shape shape2 = this.shape;
-                fArr2[0] = cos + shape2.centerX;
-                fArr2[1] = sin + shape2.centerY;
+                fArr2[0] = fCos + shape2.centerX;
+                fArr2[1] = fSin + shape2.centerY;
             }
         }
     }
@@ -86,9 +86,9 @@ public class ShapeInput {
     private float distToLine(float f, float f2, float f3, float f4, float f5, float f6) {
         float f7 = f5 - f3;
         float f8 = f6 - f4;
-        float max = Math.max(Math.min((((f - f3) * f7) + ((f2 - f4) * f8)) / ((f7 * f7) + (f8 * f8)), 1.0f), 0.0f);
-        float f9 = (f3 + (f7 * max)) - f;
-        float f10 = (f4 + (max * f8)) - f2;
+        float fMax = Math.max(Math.min((((f - f3) * f7) + ((f2 - f4) * f8)) / ((f7 * f7) + (f8 * f8)), 1.0f), 0.0f);
+        float f9 = (f3 + (f7 * fMax)) - f;
+        float f10 = (f4 + (fMax * f8)) - f2;
         return (float) Math.sqrt((f9 * f9) + (f10 * f10));
     }
 
@@ -97,69 +97,69 @@ public class ShapeInput {
     }
 
     private boolean isInsideShape(float f, float f2) {
-        float sqrt;
-        float f3;
+        float fSqrt;
+        float fMin;
         Shape shape = this.shape;
         if (shape == null) {
             return false;
         }
         if (shape.getType() == 0 || this.shape.getType() == 2) {
-            double sqrt2 = Math.sqrt(Math.pow(f - this.shape.centerX, 2.0d) + Math.pow(f2 - this.shape.centerY, 2.0d));
+            double dSqrt = Math.sqrt(Math.pow(f - this.shape.centerX, 2.0d) + Math.pow(f2 - this.shape.centerY, 2.0d));
             Shape shape2 = this.shape;
-            return (sqrt2 - ((double) Math.min(shape2.radiusX, shape2.radiusY))) - ((double) (this.shape.thickness / 2.0f)) < ((double) AndroidUtilities.dp(30.0f));
+            return (dSqrt - ((double) Math.min(shape2.radiusX, shape2.radiusY))) - ((double) (this.shape.thickness / 2.0f)) < ((double) AndroidUtilities.dp(30.0f));
         }
         if (this.shape.getType() == 1 || this.shape.getType() == 3) {
             Shape shape3 = this.shape;
-            float f4 = shape3.centerX;
-            float f5 = shape3.radiusX;
-            float f6 = shape3.thickness / 2.0f;
-            float f7 = (f4 - f5) - f6;
-            float f8 = shape3.centerY;
-            float f9 = shape3.radiusY;
-            float f10 = (f8 - f9) - f6;
-            float f11 = f4 + f5 + f6;
-            float f12 = f8 + f9 + f6;
-            if (f2 <= f10 || f2 >= f12) {
-                if (f >= f7 || f <= f11) {
-                    double d = f - f7;
-                    double d2 = f2 - f10;
-                    double d3 = f - f11;
-                    double d4 = f2 - f12;
-                    sqrt = (float) Math.sqrt(Math.min(Math.min(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), Math.min(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))));
-                } else if (f2 < f10) {
-                    sqrt = f10 - f2;
+            float f3 = shape3.centerX;
+            float f4 = shape3.radiusX;
+            float f5 = shape3.thickness / 2.0f;
+            float f6 = (f3 - f4) - f5;
+            float f7 = shape3.centerY;
+            float f8 = shape3.radiusY;
+            float f9 = (f7 - f8) - f5;
+            float f10 = f3 + f4 + f5;
+            float f11 = f7 + f8 + f5;
+            if (f2 <= f9 || f2 >= f11) {
+                if (f >= f6 || f <= f10) {
+                    double d = f - f6;
+                    double d2 = f2 - f9;
+                    double d3 = f - f10;
+                    double d4 = f2 - f11;
+                    fSqrt = (float) Math.sqrt(Math.min(Math.min(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), Math.min(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))));
+                } else if (f2 < f9) {
+                    fSqrt = f9 - f2;
                 } else {
-                    if (f2 > f12) {
-                        sqrt = f2 - f12;
+                    if (f2 > f11) {
+                        fSqrt = f2 - f11;
                     }
-                    f3 = 0.0f;
+                    fMin = 0.0f;
                 }
-                f3 = sqrt;
+                fMin = fSqrt;
             } else {
-                if (f < f7) {
-                    sqrt = f7 - f;
+                if (f < f6) {
+                    fSqrt = f6 - f;
                 } else {
-                    if (f > f11) {
-                        sqrt = f - f11;
+                    if (f > f10) {
+                        fSqrt = f - f10;
                     }
-                    f3 = 0.0f;
+                    fMin = 0.0f;
                 }
-                f3 = sqrt;
+                fMin = fSqrt;
             }
             if (this.shape.getType() == 3) {
                 Shape shape4 = this.shape;
-                f3 = Math.min(f3, distToLine(f, f2, shape4.centerX, shape4.centerY, shape4.middleX, shape4.middleY));
+                fMin = Math.min(fMin, distToLine(f, f2, shape4.centerX, shape4.centerY, shape4.middleX, shape4.middleY));
             }
-            return f3 < ((float) AndroidUtilities.dp(30.0f));
+            return fMin < ((float) AndroidUtilities.dp(30.0f));
         }
         if (this.shape.getType() != 4) {
             return false;
         }
         Size size = this.renderView.getPainting().getSize();
         Shape shape5 = this.shape;
-        float distToLine = distToLine(f, f2, shape5.centerX, shape5.centerY, shape5.middleX, shape5.middleY);
+        float fDistToLine = distToLine(f, f2, shape5.centerX, shape5.centerY, shape5.middleX, shape5.middleY);
         Shape shape6 = this.shape;
-        return Math.min(distToLine, distToLine(f, f2, shape6.radiusX, shape6.radiusY, shape6.middleX, shape6.middleY)) - (this.shape.thickness / 2.0f) < Math.min(size.width, size.height) * 0.1f;
+        return Math.min(fDistToLine, distToLine(f, f2, shape6.radiusX, shape6.radiusY, shape6.middleX, shape6.middleY)) - (this.shape.thickness / 2.0f) < Math.min(size.width, size.height) * 0.1f;
     }
 
     public void process(MotionEvent motionEvent, float f) {
@@ -229,10 +229,10 @@ public class ShapeInput {
                 float f7 = point7.x;
                 float f8 = point7.y;
                 float[] fArr6 = this.tempPoint;
-                double distance = MathUtils.distance(f7, f8, fArr6[0], fArr6[1]);
-                if (distance < AndroidUtilities.dp(40.0f) && (point == null || distance < d)) {
+                double dDistance = MathUtils.distance(f7, f8, fArr6[0], fArr6[1]);
+                if (dDistance < AndroidUtilities.dp(40.0f) && (point == null || dDistance < d)) {
                     point = point7;
-                    d = distance;
+                    d = dDistance;
                 }
             }
         }
@@ -301,9 +301,9 @@ public class ShapeInput {
         shape.centerX = f / 2.0f;
         float f2 = size.height;
         shape.centerY = f2 / 2.0f;
-        float min = Math.min(f, f2) / 5.0f;
-        shape.radiusY = min;
-        shape.radiusX = min;
+        float fMin = Math.min(f, f2) / 5.0f;
+        shape.radiusY = fMin;
+        shape.radiusX = fMin;
         this.shape.thickness = this.renderView.getCurrentWeight();
         this.shape.rounding = AndroidUtilities.dp(32.0f);
         this.shape.fill = PersistColorPalette.getInstance(UserConfig.selectedAccount).getFillShapes();
@@ -325,18 +325,18 @@ public class ShapeInput {
             final Point point = new Point() {
                 @Override
                 void set() {
-                    double atan2 = Math.atan2(ShapeInput.this.shape.centerY - ShapeInput.this.shape.middleY, ShapeInput.this.shape.centerX - ShapeInput.this.shape.middleX) + 3.141592653589793d;
+                    double dAtan2 = Math.atan2(ShapeInput.this.shape.centerY - ShapeInput.this.shape.middleY, ShapeInput.this.shape.centerX - ShapeInput.this.shape.middleX) + 3.141592653589793d;
                     double d = ShapeInput.this.shape.arrowTriangleLength / 5.5f;
-                    set(ShapeInput.this.shape.centerX + ((float) (Math.cos(atan2) * d)), ShapeInput.this.shape.centerY + ((float) (Math.sin(atan2) * d)));
+                    set(ShapeInput.this.shape.centerX + ((float) (Math.cos(dAtan2) * d)), ShapeInput.this.shape.centerY + ((float) (Math.sin(dAtan2) * d)));
                 }
 
                 @Override
                 protected void update(float f8, float f9) {
-                    double atan2 = Math.atan2(ShapeInput.this.shape.centerY - ShapeInput.this.shape.middleY, ShapeInput.this.shape.centerX - ShapeInput.this.shape.middleX) + 1.5707963267948966d;
-                    float distance = (MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, ShapeInput.this.shape.middleX, ShapeInput.this.shape.middleY) * 5.5f) / 2.0f;
+                    double dAtan2 = Math.atan2(ShapeInput.this.shape.centerY - ShapeInput.this.shape.middleY, ShapeInput.this.shape.centerX - ShapeInput.this.shape.middleX) + 1.5707963267948966d;
+                    float fDistance = (MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, ShapeInput.this.shape.middleX, ShapeInput.this.shape.middleY) * 5.5f) / 2.0f;
                     Shape shape3 = ShapeInput.this.shape;
                     ShapeInput shapeInput = ShapeInput.this;
-                    shape3.arrowTriangleLength = Math.min(distance, Math.max(100.0f, (-shapeInput.distToLine(f8, f9, shapeInput.shape.centerX, ShapeInput.this.shape.centerY, atan2)) * 5.5f));
+                    shape3.arrowTriangleLength = Math.min(fDistance, Math.max(100.0f, (-shapeInput.distToLine(f8, f9, shapeInput.shape.centerX, ShapeInput.this.shape.centerY, dAtan2)) * 5.5f));
                     set();
                 }
             };
@@ -396,9 +396,9 @@ public class ShapeInput {
                     super.update(f8, f9);
                     Shape shape3 = ShapeInput.this.shape;
                     Shape shape4 = ShapeInput.this.shape;
-                    float distance = MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, f8, f9);
-                    shape4.radiusY = distance;
-                    shape3.radiusX = distance;
+                    float fDistance = MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, f8, f9);
+                    shape4.radiusY = fDistance;
+                    shape3.radiusX = fDistance;
                 }
             });
         }
@@ -408,17 +408,17 @@ public class ShapeInput {
 
                 @Override
                 void set() {
-                    float min2 = Math.min(ShapeInput.this.shape.radiusX, ShapeInput.this.shape.radiusY);
-                    set(ShapeInput.this.shape.centerX + (((float) Math.cos(-0.3141592653589793d)) * min2), ShapeInput.this.shape.centerY + (((float) Math.sin(-0.3141592653589793d)) * min2));
+                    float fMin2 = Math.min(ShapeInput.this.shape.radiusX, ShapeInput.this.shape.radiusY);
+                    set(ShapeInput.this.shape.centerX + (((float) Math.cos(-0.3141592653589793d)) * fMin2), ShapeInput.this.shape.centerY + (((float) Math.sin(-0.3141592653589793d)) * fMin2));
                 }
 
                 @Override
                 protected void update(float f8, float f9) {
                     Shape shape3 = ShapeInput.this.shape;
                     Shape shape4 = ShapeInput.this.shape;
-                    float distance = MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, f8, f9);
-                    shape4.radiusY = distance;
-                    shape3.radiusX = distance;
+                    float fDistance = MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, f8, f9);
+                    shape4.radiusY = fDistance;
+                    shape3.radiusX = fDistance;
                     ShapeInput.this.shape.rotation = (float) (r0.rotation + (((float) Math.atan2(ShapeInput.this.shape.centerY - f9, f8 - ShapeInput.this.shape.centerX)) - 0.3141592653589793d));
                     set();
                 }
@@ -627,11 +627,11 @@ public class ShapeInput {
             ShapeInput.this.rotate(f3, f4, true);
             float f5 = ShapeInput.this.tempPoint[0];
             float f6 = ShapeInput.this.tempPoint[1];
-            double atan2 = (3.141592653589793d - Math.atan2(f2 - f6, f - f5)) - this.shape.rotation;
-            double cos = Math.cos(atan2) * MathUtils.distance(f, f2, f5, f6);
-            double sin = Math.sin(atan2) * MathUtils.distance(f, f2, f5, f6);
-            this.shape.radiusX = ((float) Math.abs(cos)) / 2.0f;
-            this.shape.radiusY = ((float) Math.abs(sin)) / 2.0f;
+            double dAtan2 = (3.141592653589793d - Math.atan2(f2 - f6, f - f5)) - this.shape.rotation;
+            double dCos = Math.cos(dAtan2) * MathUtils.distance(f, f2, f5, f6);
+            double dSin = Math.sin(dAtan2) * MathUtils.distance(f, f2, f5, f6);
+            this.shape.radiusX = ((float) Math.abs(dCos)) / 2.0f;
+            this.shape.radiusY = ((float) Math.abs(dSin)) / 2.0f;
             Shape shape2 = this.shape;
             shape2.centerX = (f + f5) / 2.0f;
             shape2.centerY = (f2 + f6) / 2.0f;
@@ -641,7 +641,7 @@ public class ShapeInput {
         }
     }
 
-    public class Point {
+    private class Point {
         boolean green;
         float x;
         float y;

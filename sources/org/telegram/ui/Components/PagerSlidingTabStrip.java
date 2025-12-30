@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -158,8 +159,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
-                PagerSlidingTabStrip.this.lambda$addIconTab$0(i, view);
+            public final void onClick(View view) throws Resources.NotFoundException {
+                this.f$0.lambda$addIconTab$0(i, view);
             }
         });
         this.tabsContainer.addView(imageView);
@@ -167,7 +168,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setContentDescription(charSequence);
     }
 
-    public void lambda$addIconTab$0(int i, View view) {
+    public void lambda$addIconTab$0(int i, View view) throws Resources.NotFoundException {
         if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
             this.pager.setCurrentItem(i, false);
         }
@@ -181,18 +182,19 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         textTab.setFocusable(true);
         textTab.setGravity(17);
         textTab.setText(charSequence);
+        ScaleStateListAnimator.apply(textTab, 0.025f, 1.2f);
         textTab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
-                PagerSlidingTabStrip.this.lambda$addTab$1(i, view);
+            public final void onClick(View view) throws Resources.NotFoundException {
+                this.f$0.lambda$addTab$1(i, view);
             }
         });
-        textTab.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        textTab.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         this.tabsContainer.addView(textTab, LayoutHelper.createLinear(-2, -2, 10.0f, 0.0f, 10.0f, 0.0f));
         textTab.setSelected(i == this.currentPosition);
     }
 
-    public void lambda$addTab$1(int i, View view) {
+    public void lambda$addTab$1(int i, View view) throws Resources.NotFoundException {
         if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
             this.pager.setCurrentItem(i, false);
         }
@@ -283,14 +285,15 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             if (this.indicatorHeight != 0) {
                 this.rectPaint.setColor(this.indicatorColor);
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(f - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), f2 + AndroidUtilities.dp(12.0f), height - AndroidUtilities.dp(6.0f));
+                rectF2.set(f - AndroidUtilities.dp(11.0f), getPaddingTop(), f2 + AndroidUtilities.dp(11.0f), height - getPaddingBottom());
+                rectF2.offset(getPaddingLeft(), 0.0f);
                 canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.rectPaint);
             }
         }
         super.onDraw(canvas);
     }
 
-    public class PageListener implements ViewPager.OnPageChangeListener {
+    private class PageListener implements ViewPager.OnPageChangeListener {
         private PageListener() {
         }
 
@@ -346,7 +349,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         post(new Runnable() {
             @Override
             public final void run() {
-                PagerSlidingTabStrip.this.notifyDataSetChanged();
+                this.f$0.notifyDataSetChanged();
             }
         });
     }
@@ -435,7 +438,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         return this.tabPadding;
     }
 
-    public class TextTab extends TextView {
+    private class TextTab extends TextView {
         final int position;
 
         public TextTab(Context context, int i) {

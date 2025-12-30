@@ -27,7 +27,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.Stories.recorder.CollageLayout;
-import org.telegram.ui.Stories.recorder.CollageLayoutButton;
 
 public class CollageLayoutButton extends ToggleButton2 {
     public CollageLayoutButton(Context context) {
@@ -70,7 +69,7 @@ public class CollageLayoutButton extends ToggleButton2 {
                 }
 
                 @Override
-                public void dispatchDraw(Canvas canvas) {
+                protected void dispatchDraw(Canvas canvas) {
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (CollageLayoutListView.this.visibleProgress * 255.0f), 31);
                     canvas.save();
                     float paddingLeft = getPaddingLeft();
@@ -140,7 +139,7 @@ public class CollageLayoutButton extends ToggleButton2 {
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    CollageLayoutButton.CollageLayoutListView.this.lambda$new$0(view, i);
+                    this.f$0.lambda$new$0(view, i);
                 }
             });
             addView(recyclerListView, LayoutHelper.createFrame(-1, 56.0f));
@@ -185,12 +184,12 @@ public class CollageLayoutButton extends ToggleButton2 {
             this.visible = z;
             if (z2) {
                 this.listView.setVisibility(0);
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.visibleProgress, z ? 1.0f : 0.0f);
-                this.visibleAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.visibleProgress, z ? 1.0f : 0.0f);
+                this.visibleAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        CollageLayoutButton.CollageLayoutListView.this.lambda$setVisible$1(valueAnimator2);
+                        this.f$0.lambda$setVisible$1(valueAnimator2);
                     }
                 });
                 this.visibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -247,40 +246,40 @@ public class CollageLayoutButton extends ToggleButton2 {
             this.radii = new float[8];
             this.cross = z;
             paint.setColor(-1);
-            float dpf2 = AndroidUtilities.dpf2(13.333333f);
-            float dpf22 = AndroidUtilities.dpf2(18.666666f);
-            float dpf23 = AndroidUtilities.dpf2(3.0f);
-            float dpf24 = AndroidUtilities.dpf2(10.0f);
-            float dpf25 = AndroidUtilities.dpf2(15.333333f);
-            float dpf26 = AndroidUtilities.dpf2(1.0f);
-            float dpf27 = AndroidUtilities.dpf2(1.33f);
+            float fDpf2 = AndroidUtilities.dpf2(13.333333f);
+            float fDpf22 = AndroidUtilities.dpf2(18.666666f);
+            float fDpf23 = AndroidUtilities.dpf2(3.0f);
+            float fDpf24 = AndroidUtilities.dpf2(10.0f);
+            float fDpf25 = AndroidUtilities.dpf2(15.333333f);
+            float fDpf26 = AndroidUtilities.dpf2(1.0f);
+            float fDpf27 = AndroidUtilities.dpf2(1.33f);
             path.setFillType(Path.FillType.EVEN_ODD);
             RectF rectF = AndroidUtilities.rectTmp;
             float f2 = 2.0f;
-            rectF.set((-dpf2) / 2.0f, (-dpf22) / 2.0f, dpf2 / 2.0f, dpf22 / 2.0f);
-            path.addRoundRect(rectF, dpf23, dpf23, Path.Direction.CW);
+            rectF.set((-fDpf2) / 2.0f, (-fDpf22) / 2.0f, fDpf2 / 2.0f, fDpf22 / 2.0f);
+            path.addRoundRect(rectF, fDpf23, fDpf23, Path.Direction.CW);
             Iterator it = collageLayout.parts.iterator();
             while (it.hasNext()) {
                 CollageLayout.Part part = (CollageLayout.Part) it.next();
                 int i2 = collageLayout.columns[part.y];
                 int i3 = i2 - 1;
-                float max = (dpf24 - (Math.max(0, i3) * dpf27)) / i2;
-                float max2 = (dpf25 - (Math.max(0, collageLayout.h - i) * dpf27)) / collageLayout.h;
+                float fMax = (fDpf24 - (Math.max(0, i3) * fDpf27)) / i2;
+                float fMax2 = (fDpf25 - (Math.max(0, collageLayout.h - i) * fDpf27)) / collageLayout.h;
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                float f3 = (-dpf24) / f2;
+                float f3 = (-fDpf24) / f2;
                 float f4 = part.x;
-                float f5 = f3 + (max * f4);
-                float f6 = f4 * dpf27;
+                float f5 = f3 + (fMax * f4);
+                float f6 = f4 * fDpf27;
                 Iterator it2 = it;
                 float f7 = f5 + f6;
-                float f8 = dpf24;
-                float f9 = (-dpf25) / f2;
-                float f10 = dpf25;
+                float f8 = fDpf24;
+                float f9 = (-fDpf25) / f2;
+                float f10 = fDpf25;
                 float f11 = part.y;
-                float f12 = f9 + (max2 * f11);
-                float f13 = f11 * dpf27;
-                float f14 = dpf26;
-                rectF2.set(f7, f12 + f13, f3 + (max * (r7 + 1)) + f6, f9 + (max2 * (r15 + 1)) + f13);
+                float f12 = f9 + (fMax2 * f11);
+                float f13 = f11 * fDpf27;
+                float f14 = fDpf26;
+                rectF2.set(f7, f12 + f13, f3 + (fMax * (r7 + 1)) + f6, f9 + (fMax2 * (r15 + 1)) + f13);
                 float[] fArr = this.radii;
                 int i4 = part.x;
                 float f15 = 0.0f;
@@ -305,10 +304,10 @@ public class CollageLayoutButton extends ToggleButton2 {
                 fArr[7] = f15;
                 fArr[6] = f15;
                 this.path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                dpf24 = f8;
+                fDpf24 = f8;
                 it = it2;
-                dpf25 = f10;
-                dpf26 = f14;
+                fDpf25 = f10;
+                fDpf26 = f14;
                 i = 1;
                 f2 = 2.0f;
             }

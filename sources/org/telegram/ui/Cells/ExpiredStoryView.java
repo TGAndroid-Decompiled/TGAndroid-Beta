@@ -32,7 +32,7 @@ public class ExpiredStoryView {
         TLRPC.Message message;
         int parentWidth;
         String str;
-        CharSequence createExpiredStoryString = StoriesUtilities.createExpiredStoryString();
+        CharSequence charSequenceCreateExpiredStoryString = StoriesUtilities.createExpiredStoryString();
         MessageObject messageObject = chatMessageCell.getMessageObject();
         if (messageObject != null && (message = messageObject.messageOwner) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
@@ -47,25 +47,25 @@ public class ExpiredStoryView {
                 int i = (int) (parentWidth * 0.4f);
                 String string = LocaleController.getString(R.string.From);
                 TextPaint textPaint = Theme.chat_forwardNamePaint;
-                int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
+                int iCeil = (int) Math.ceil(textPaint.measureText(string + " "));
                 if (str2 == null) {
                     str2 = "";
                 }
-                String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - ceil, TextUtils.TruncateAt.END);
+                String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - iCeil, TextUtils.TruncateAt.END);
                 String string2 = LocaleController.getString(R.string.FromFormatted);
-                int indexOf = string2.indexOf("%1$s");
-                String format = String.format(string2, str3);
-                if (indexOf >= 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
+                int iIndexOf = string2.indexOf("%1$s");
+                String str4 = String.format(string2, str3);
+                if (iIndexOf >= 0) {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, str3.length() + iIndexOf, 33);
                     str = spannableStringBuilder;
                 } else {
-                    str = format;
+                    str = str4;
                 }
                 TextPaint textPaint2 = Theme.chat_replyTextPaint;
-                int measureText = ((int) (textPaint2.measureText(createExpiredStoryString, 0, createExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
+                int iMeasureText = ((int) (textPaint2.measureText(charSequenceCreateExpiredStoryString, 0, charSequenceCreateExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.titleLayout = new StaticLayout(createExpiredStoryString, textPaint2, measureText, alignment, 1.0f, 0.0f, false);
+                this.titleLayout = new StaticLayout(charSequenceCreateExpiredStoryString, textPaint2, iMeasureText, alignment, 1.0f, 0.0f, false);
                 this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), alignment, 1.0f, 0.0f, false);
                 this.height = 0;
                 this.verticalPadding = AndroidUtilities.dp(4.0f);
@@ -82,19 +82,19 @@ public class ExpiredStoryView {
     }
 
     public void draw(Canvas canvas, ChatMessageCell chatMessageCell) {
-        float dp = AndroidUtilities.dp(8.0f) + this.verticalPadding;
-        this.textY = dp;
+        float fDp = AndroidUtilities.dp(8.0f) + this.verticalPadding;
+        this.textY = fDp;
         if (chatMessageCell.pinnedTop) {
-            this.textY = dp - AndroidUtilities.dp(2.0f);
+            this.textY = fDp - AndroidUtilities.dp(2.0f);
         }
         RectF rectF = AndroidUtilities.rectTmp;
         if (chatMessageCell.getMessageObject().isOutOwner()) {
             this.textX = (((((-(chatMessageCell.timeWidth + AndroidUtilities.dp(12.0f))) + chatMessageCell.getExtraTextX()) + chatMessageCell.getMeasuredWidth()) - this.width) + AndroidUtilities.dp(24.0f)) - this.horizontalPadding;
             rectF.set((chatMessageCell.getMeasuredWidth() - this.width) - this.horizontalPadding, this.verticalPadding, chatMessageCell.getMeasuredWidth() - this.horizontalPadding, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
         } else {
-            float dp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
-            this.textX = this.horizontalPadding + dp2 + AndroidUtilities.dp(12.0f);
-            float f = dp2 + this.horizontalPadding;
+            float fDp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
+            this.textX = this.horizontalPadding + fDp2 + AndroidUtilities.dp(12.0f);
+            float f = fDp2 + this.horizontalPadding;
             rectF.set(f, this.verticalPadding, this.width + f, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
         }
         if (chatMessageCell.getMessageObject().isOutOwner()) {

@@ -18,9 +18,9 @@ public final class CoroutineSingletons {
     }
 
     static {
-        CoroutineSingletons[] $values = $values();
-        $VALUES = $values;
-        $ENTRIES = EnumEntriesKt.enumEntries($values);
+        CoroutineSingletons[] coroutineSingletonsArr$values = $values();
+        $VALUES = coroutineSingletonsArr$values;
+        $ENTRIES = EnumEntriesKt.enumEntries(coroutineSingletonsArr$values);
     }
 
     public static CoroutineSingletons valueOf(String str) {

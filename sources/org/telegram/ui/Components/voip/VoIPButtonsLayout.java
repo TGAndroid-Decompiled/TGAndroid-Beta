@@ -38,16 +38,16 @@ public class VoIPButtonsLayout extends FrameLayout {
         }
         this.childWidth = AndroidUtilities.dp(this.childSize);
         this.childPadding = ((size / getChildCount()) - this.childWidth) / 2;
-        int i4 = 0;
-        for (int i5 = 0; i5 < getChildCount(); i5++) {
-            if (getChildAt(i5).getVisibility() != 8) {
-                getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(this.childWidth, 1073741824), i2);
-                if (getChildAt(i5).getMeasuredHeight() > i4) {
-                    i4 = getChildAt(i5).getMeasuredHeight();
+        int measuredHeight = 0;
+        for (int i4 = 0; i4 < getChildCount(); i4++) {
+            if (getChildAt(i4).getVisibility() != 8) {
+                getChildAt(i4).measure(View.MeasureSpec.makeMeasureSpec(this.childWidth, 1073741824), i2);
+                if (getChildAt(i4).getMeasuredHeight() > measuredHeight) {
+                    measuredHeight = getChildAt(i4).getMeasuredHeight();
                 }
             }
         }
-        setMeasuredDimension(size, Math.max(i4, AndroidUtilities.dp(80.0f)));
+        setMeasuredDimension(size, Math.max(measuredHeight, AndroidUtilities.dp(80.0f)));
     }
 
     @Override

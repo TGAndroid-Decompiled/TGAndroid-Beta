@@ -48,15 +48,15 @@ public class MediaStreamTrack {
         }
     }
 
-    public static MediaStreamTrack createMediaStreamTrack(long j) {
+    static MediaStreamTrack createMediaStreamTrack(long j) {
         if (j == 0) {
             return null;
         }
-        String nativeGetKind = nativeGetKind(j);
-        if (nativeGetKind.equals("audio")) {
+        String strNativeGetKind = nativeGetKind(j);
+        if (strNativeGetKind.equals("audio")) {
             return new AudioTrack(j);
         }
-        if (nativeGetKind.equals("video")) {
+        if (strNativeGetKind.equals("video")) {
             return new VideoTrack(j);
         }
         return null;
@@ -100,7 +100,7 @@ public class MediaStreamTrack {
         this.nativeTrack = 0L;
     }
 
-    public long getNativeMediaStreamTrack() {
+    long getNativeMediaStreamTrack() {
         checkMediaStreamTrackExists();
         return this.nativeTrack;
     }

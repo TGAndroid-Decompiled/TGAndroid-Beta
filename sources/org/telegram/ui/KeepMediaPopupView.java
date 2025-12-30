@@ -55,10 +55,10 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.oneWeek = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1w, LocaleController.formatPluralString("Weeks", 1, new Object[0]), false, null);
         this.oneMonth = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1m, LocaleController.formatPluralString("Months", 1, new Object[0]), false, null);
         this.forever = ActionBarMenuItem.addItem(this, R.drawable.msg_cancel, LocaleController.getString(R.string.AutoDeleteMediaNever), false, null);
-        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
-        this.delete = addItem;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(this, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
+        this.delete = actionBarMenuSubItemAddItem;
         int i = Theme.key_text_RedRegular;
-        addItem.setColors(Theme.getColor(i), Theme.getColor(i));
+        actionBarMenuSubItemAddItem.setColors(Theme.getColor(i), Theme.getColor(i));
         this.checkItems.add(new CheckItem(this.oneDay, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
         this.checkItems.add(new CheckItem(this.twoDay, CacheByChatsController.KEEP_MEDIA_TWO_DAY));
         this.checkItems.add(new CheckItem(this.oneWeek, CacheByChatsController.KEEP_MEDIA_ONE_WEEK));
@@ -79,7 +79,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.exceptionsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                KeepMediaPopupView.this.lambda$new$2(baseFragment, view2);
+                this.f$0.lambda$new$2(baseFragment, view2);
             }
         });
         for (int i2 = 0; i2 < this.checkItems.size(); i2++) {
@@ -87,7 +87,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             ((CheckItem) this.checkItems.get(i2)).item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    KeepMediaPopupView.this.lambda$new$3(i3, view2);
+                    this.f$0.lambda$new$3(i3, view2);
                 }
             });
         }
@@ -128,9 +128,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-                    boolean lambda$new$1;
-                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
-                    return lambda$new$1;
+                    return this.f$0.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                 }
 
                 @Override
@@ -176,7 +174,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheChatsExceptionsFragment.this.showPopupFor(keepMediaException);
+                cacheChatsExceptionsFragment.showPopupFor(keepMediaException);
             }
         }, 150L);
         return true;
@@ -225,10 +223,10 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             this.exceptionsView.avatarsImageView.setObject(2, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.commitTransition(false);
         } else {
-            int min = Math.min(3, this.exceptions.size());
-            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.dp((Math.max(0, min - 1) * 12) + 64));
+            int iMin = Math.min(3, this.exceptions.size());
+            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.dp((Math.max(0, iMin - 1) * 12) + 64));
             this.exceptionsView.titleView.setText(LocaleController.formatPluralString("ExceptionShort", this.exceptions.size(), Integer.valueOf(this.exceptions.size())));
-            for (int i2 = 0; i2 < min; i2++) {
+            for (int i2 = 0; i2 < iMin; i2++) {
                 this.exceptionsView.avatarsImageView.setObject(i2, this.parentFragment.getCurrentAccount(), this.parentFragment.getMessagesController().getUserOrChat(((CacheByChatsController.KeepMediaException) this.exceptions.get(i2)).dialogId));
             }
             this.exceptionsView.avatarsImageView.commitTransition(false);
@@ -246,7 +244,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.exceptionsView.setVisibility(8);
     }
 
-    public class ExceptionsView extends FrameLayout {
+    private class ExceptionsView extends FrameLayout {
         AvatarsImageView avatarsImageView;
         boolean ignoreLayout;
         SimpleTextView titleView;

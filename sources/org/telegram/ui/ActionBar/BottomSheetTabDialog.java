@@ -42,12 +42,12 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo1263getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo1254getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.navigationBarPaint = paint;
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo1263getWindowView = sheet.mo1263getWindowView();
-        this.sheetView = mo1263getWindowView;
+        BottomSheetTabsOverlay.SheetView sheetViewMo1254getWindowView = sheet.mo1254getWindowView();
+        this.sheetView = sheetViewMo1254getWindowView;
         View view = new View(getContext()) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
@@ -62,7 +62,7 @@ public class BottomSheetTabDialog extends Dialog {
         };
         this.navigationBar = view;
         paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        WindowView windowView = new WindowView(mo1263getWindowView);
+        WindowView windowView = new WindowView(sheetViewMo1254getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
         windowView.addView(view, LayoutHelper.createFrame(-1, -2, 80));
@@ -100,19 +100,15 @@ public class BottomSheetTabDialog extends Dialog {
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets lambda$onCreate$0;
-                lambda$onCreate$0 = BottomSheetTabDialog.lambda$onCreate$0(view, windowInsets);
-                return lambda$onCreate$0;
+                return BottomSheetTabDialog.lambda$onCreate$0(view, windowInsets);
             }
         });
     }
 
     public static WindowInsets lambda$onCreate$0(View view, WindowInsets windowInsets) {
-        WindowInsets windowInsets2;
         view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
         if (Build.VERSION.SDK_INT >= 30) {
-            windowInsets2 = WindowInsets.CONSUMED;
-            return windowInsets2;
+            return WindowInsets.CONSUMED;
         }
         return windowInsets.consumeSystemWindowInsets();
     }

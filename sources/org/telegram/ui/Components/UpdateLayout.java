@@ -6,46 +6,40 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.IUpdateLayout;
 
 public class UpdateLayout extends IUpdateLayout {
-    private Activity activity;
-    private ViewGroup sideMenu;
-    private ViewGroup sideMenuContainer;
-    private FrameLayout updateLayout;
+    private final Activity activity;
+    private final ViewGroup sideMenuContainer;
+    private LinearLayout updateLayout;
     private RadialProgress2 updateLayoutIcon;
     private TextView updateSizeTextView;
     private AnimatorSet updateTextAnimator;
-    private SimpleTextView[] updateTextViews;
+    private TextView[] updateTextViews;
 
-    public UpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(activity, viewGroup, viewGroup2);
+    public UpdateLayout(Activity activity, ViewGroup viewGroup) {
+        super(activity, viewGroup);
         this.activity = activity;
-        this.sideMenu = viewGroup;
-        this.sideMenuContainer = viewGroup2;
+        this.sideMenuContainer = viewGroup;
     }
 
     @Override
     public void updateFileProgress(Object[] objArr) {
-        SimpleTextView[] simpleTextViewArr;
-        if (this.updateLayout == null || (simpleTextViewArr = this.updateTextViews) == null || simpleTextViewArr[0] == null || !ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+        TextView[] textViewArr;
+        if (this.updateLayout == null || (textViewArr = this.updateTextViews) == null || textViewArr[0] == null || !ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
             return;
         }
         float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
@@ -58,37 +52,10 @@ public class UpdateLayout extends IUpdateLayout {
         if (this.sideMenuContainer == null || this.updateLayout != null) {
             return;
         }
-        FrameLayout frameLayout = new FrameLayout(this.activity) {
-            private int lastGradientWidth;
-            private LinearGradient updateGradient;
-            private Paint paint = new Paint();
-            private Matrix matrix = new Matrix();
-
-            @Override
-            public void draw(Canvas canvas) {
-                if (this.updateGradient != null) {
-                    this.paint.setColor(-1);
-                    this.paint.setShader(this.updateGradient);
-                    this.updateGradient.setLocalMatrix(this.matrix);
-                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.paint);
-                    UpdateLayout.this.updateLayoutIcon.setBackgroundGradientDrawable(this.updateGradient);
-                    UpdateLayout.this.updateLayoutIcon.draw(canvas);
-                }
-                super.draw(canvas);
-            }
-
-            @Override
-            protected void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, i3);
-                int size = View.MeasureSpec.getSize(i2);
-                if (this.lastGradientWidth != size) {
-                    this.updateGradient = new LinearGradient(0.0f, 0.0f, size, 0.0f, new int[]{-9846926, -11291731}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.lastGradientWidth = size;
-                }
-            }
-        };
-        this.updateLayout = frameLayout;
-        frameLayout.setWillNotDraw(false);
+        LinearLayout linearLayout = new LinearLayout(this.activity);
+        this.updateLayout = linearLayout;
+        linearLayout.setOrientation(0);
+        this.updateLayout.setGravity(17);
         this.updateLayout.setVisibility(4);
         this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
         this.updateLayout.setBackground(Theme.getSelectorDrawable(1090519039, false));
@@ -96,24 +63,35 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UpdateLayout.this.lambda$createUpdateUI$0(i, view);
+                this.f$0.lambda$createUpdateUI$0(i, view);
             }
         });
-        RadialProgress2 radialProgress2 = new RadialProgress2(this.updateLayout);
+        View view = new View(this.activity) {
+            @Override
+            protected void onDraw(Canvas canvas) {
+                super.onDraw(canvas);
+                UpdateLayout.this.updateLayoutIcon.draw(canvas);
+            }
+        };
+        RadialProgress2 radialProgress2 = new RadialProgress2(view);
         this.updateLayoutIcon = radialProgress2;
-        radialProgress2.setColors(-1, -1, -1, -1);
-        this.updateLayoutIcon.setProgressRect(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(33.0f));
+        int i2 = Theme.key_featuredStickers_addButton;
+        radialProgress2.setColors(-1, -1, Theme.getColor(i2), Theme.getColor(i2));
+        this.updateLayoutIcon.setProgressRect(0, 0, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
         this.updateLayoutIcon.setCircleRadius(AndroidUtilities.dp(11.0f));
         this.updateLayoutIcon.setAsMini();
-        this.updateTextViews = new SimpleTextView[2];
-        for (int i2 = 0; i2 < 2; i2++) {
-            this.updateTextViews[i2] = new SimpleTextView(this.activity);
-            this.updateTextViews[i2].setTextSize(15);
-            this.updateTextViews[i2].setTypeface(AndroidUtilities.bold());
-            this.updateTextViews[i2].setTextColor(-1);
-            this.updateTextViews[i2].setGravity(3);
-            this.updateLayout.addView(this.updateTextViews[i2], LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
+        this.updateLayout.addView(view, LayoutHelper.createLinear(22, 22, 16));
+        FrameLayout frameLayout = new FrameLayout(this.activity);
+        this.updateTextViews = new TextView[2];
+        for (int i3 = 0; i3 < 2; i3++) {
+            this.updateTextViews[i3] = new TextView(this.activity);
+            this.updateTextViews[i3].setTextSize(1, 15.0f);
+            this.updateTextViews[i3].setTypeface(AndroidUtilities.bold());
+            this.updateTextViews[i3].setTextColor(-1);
+            this.updateTextViews[i3].setGravity(3);
+            frameLayout.addView(this.updateTextViews[i3], LayoutHelper.createFrame(-2, -2.0f));
         }
+        this.updateLayout.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 0, 0));
         this.updateTextViews[0].setText(LocaleController.getString(2131690088));
         this.updateTextViews[1].setAlpha(0.0f);
         this.updateTextViews[1].setVisibility(8);
@@ -123,7 +101,7 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateSizeTextView.setTypeface(AndroidUtilities.bold());
         this.updateSizeTextView.setGravity(5);
         this.updateSizeTextView.setTextColor(-1);
-        this.updateLayout.addView(this.updateSizeTextView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 17.0f, 0.0f));
+        this.updateLayout.addView(this.updateSizeTextView, LayoutHelper.createLinear(-2, -2, 21, 12, 0, 0, 0));
     }
 
     public void lambda$createUpdateUI$0(int i, View view) {
@@ -184,8 +162,8 @@ public class UpdateLayout extends IUpdateLayout {
                 return;
             }
         }
-        FrameLayout frameLayout = this.updateLayout;
-        if (frameLayout == null || frameLayout.getTag() == null) {
+        LinearLayout linearLayout = this.updateLayout;
+        if (linearLayout == null || linearLayout.getTag() == null) {
             return;
         }
         this.updateLayout.setTag(null);
@@ -214,18 +192,18 @@ public class UpdateLayout extends IUpdateLayout {
             this.updateTextAnimator = null;
         }
         if (z) {
-            SimpleTextView[] simpleTextViewArr = this.updateTextViews;
-            simpleTextViewArr[1].setText(simpleTextViewArr[0].getText());
+            TextView[] textViewArr = this.updateTextViews;
+            textViewArr[1].setText(textViewArr[0].getText());
             this.updateTextViews[0].setText(str);
             this.updateTextViews[0].setAlpha(0.0f);
             this.updateTextViews[1].setAlpha(1.0f);
             this.updateTextViews[0].setVisibility(0);
             this.updateTextViews[1].setVisibility(0);
             ArrayList arrayList = new ArrayList();
-            SimpleTextView simpleTextView = this.updateTextViews[1];
+            TextView textView = this.updateTextViews[1];
             Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) property, 0.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.updateTextViews[0], (Property<SimpleTextView, Float>) property, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(this.updateTextViews[0], (Property<TextView, Float>) property, 1.0f));
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.updateTextAnimator = animatorSet2;
             animatorSet2.playTogether(arrayList);

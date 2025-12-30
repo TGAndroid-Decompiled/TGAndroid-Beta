@@ -16,7 +16,6 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -245,16 +244,16 @@ public class GroupMedia {
         drawImages(canvas, true);
         if (this.buttonText != null && f > 0.0f) {
             float scale = this.bounce.getScale(0.05f);
-            float dp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
-            float dp2 = AndroidUtilities.dp(32.0f);
+            float fDp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
+            float fDp2 = AndroidUtilities.dp(32.0f);
             RectF rectF = this.clipRect;
             float f2 = this.x;
             float f3 = this.width;
             float f4 = this.y;
             float f5 = this.height;
-            rectF.set(((f3 - dp) / 2.0f) + f2, ((f5 - dp2) / 2.0f) + f4, f2 + ((f3 + dp) / 2.0f), f4 + ((f5 + dp2) / 2.0f));
+            rectF.set(((f3 - fDp) / 2.0f) + f2, ((f5 - fDp2) / 2.0f) + f4, f2 + ((f3 + fDp) / 2.0f), f4 + ((f5 + fDp2) / 2.0f));
             this.clipPath.rewind();
-            float f6 = dp2 / 2.0f;
+            float f6 = fDp2 / 2.0f;
             this.clipPath.addRoundRect(this.clipRect, f6, f6, Path.Direction.CW);
             canvas.save();
             canvas.scale(scale, scale, this.x + (this.width / 2.0f), this.y + (this.height / 2.0f));
@@ -262,7 +261,7 @@ public class GroupMedia {
             canvas.clipPath(this.clipPath);
             drawBlurred(canvas, f);
             canvas.drawColor(Theme.multAlpha(1342177280, f));
-            this.buttonText.draw(canvas, ((this.x + (this.width / 2.0f)) - (dp / 2.0f)) + AndroidUtilities.dp(14.0f), (this.height / 2.0f) + this.y, -1, f);
+            this.buttonText.draw(canvas, ((this.x + (this.width / 2.0f)) - (fDp / 2.0f)) + AndroidUtilities.dp(14.0f), (this.height / 2.0f) + this.y, -1, f);
             canvas.restore();
             if (isLoading()) {
                 LoadingDrawable loadingDrawable = this.loadingDrawable;
@@ -296,20 +295,20 @@ public class GroupMedia {
             return;
         }
         float timeAlpha = (1.0f - f) * this.cell.getTimeAlpha();
-        float dp3 = AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth();
-        float dp4 = AndroidUtilities.dp(17.0f);
-        float dp5 = AndroidUtilities.dp(5.0f);
+        float fDp3 = AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth();
+        float fDp4 = AndroidUtilities.dp(17.0f);
+        float fDp5 = AndroidUtilities.dp(5.0f);
         RectF rectF2 = this.clipRect;
         float f7 = this.x + this.width;
-        float f8 = this.y + dp5;
-        rectF2.set((f7 - dp3) - dp5, f8, f7 - dp5, f8 + dp4);
+        float f8 = this.y + fDp5;
+        rectF2.set((f7 - fDp3) - fDp5, f8, f7 - fDp5, f8 + fDp4);
         this.clipPath.rewind();
-        float f9 = dp4 / 2.0f;
+        float f9 = fDp4 / 2.0f;
         this.clipPath.addRoundRect(this.clipRect, f9, f9, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(this.clipPath);
         canvas.drawColor(Theme.multAlpha(1073741824, timeAlpha));
-        this.priceText.draw(canvas, (((this.x + this.width) - dp3) - dp5) + AndroidUtilities.dp(5.66f), this.y + dp5 + f9, -1, timeAlpha);
+        this.priceText.draw(canvas, (((this.x + this.width) - fDp3) - fDp5) + AndroidUtilities.dp(5.66f), this.y + fDp5 + f9, -1, timeAlpha);
         canvas.restore();
     }
 
@@ -330,10 +329,10 @@ public class GroupMedia {
         int id = this.cell.getMessageObject() != null ? this.cell.getMessageObject().getId() : 0;
         int i = this.width;
         int i2 = this.height;
-        int max = (int) Math.max(1.0f, i > i2 ? 100.0f : (i / i2) * 100.0f);
+        int iMax = (int) Math.max(1.0f, i > i2 ? 100.0f : (i / i2) * 100.0f);
         int i3 = this.height;
         int i4 = this.width;
-        int max2 = (int) Math.max(1.0f, i3 <= i4 ? 100.0f * (i3 / i4) : 100.0f);
+        int iMax2 = (int) Math.max(1.0f, i3 <= i4 ? 100.0f * (i3 / i4) : 100.0f);
         int i5 = 0;
         for (int i6 = 0; i6 < this.holders.size(); i6++) {
             MediaHolder mediaHolder = (MediaHolder) this.holders.get(i6);
@@ -342,19 +341,19 @@ public class GroupMedia {
             }
         }
         Bitmap bitmap = this.blurBitmap;
-        if (bitmap != null && this.blurBitmapMessageId == id && this.blurBitmapState == i5 && this.blurBitmapWidth == max && this.blurBitmapHeight == max2) {
+        if (bitmap != null && this.blurBitmapMessageId == id && this.blurBitmapState == i5 && this.blurBitmapWidth == iMax && this.blurBitmapHeight == iMax2) {
             return;
         }
         this.blurBitmapState = i5;
         this.blurBitmapMessageId = id;
-        this.blurBitmapWidth = max;
-        this.blurBitmapHeight = max2;
+        this.blurBitmapWidth = iMax;
+        this.blurBitmapHeight = iMax2;
         if (bitmap != null) {
             bitmap.recycle();
         }
-        this.blurBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+        this.blurBitmap = Bitmap.createBitmap(iMax, iMax2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.blurBitmap);
-        float f = max / this.width;
+        float f = iMax / this.width;
         canvas.scale(f, f);
         for (int i7 = 0; i7 < this.holders.size(); i7++) {
             MediaHolder mediaHolder2 = (MediaHolder) this.holders.get(i7);
@@ -385,96 +384,8 @@ public class GroupMedia {
         }
     }
 
-    public void drawImages(Canvas canvas, boolean z) {
-        float f = this.animatedHidden.set(this.hidden);
-        MessageObject messageObject = this.cell.getMessageObject();
-        this.clipPath2.rewind();
-        float f2 = Float.MAX_VALUE;
-        float f3 = Float.MAX_VALUE;
-        float f4 = Float.MIN_VALUE;
-        float f5 = Float.MIN_VALUE;
-        int i = 0;
-        while (i < this.holders.size()) {
-            MediaHolder mediaHolder = (MediaHolder) this.holders.get(i);
-            ImageReceiver imageReceiver = mediaHolder.imageReceiver;
-            int i2 = this.x;
-            int i3 = mediaHolder.l;
-            int i4 = this.y;
-            int i5 = mediaHolder.t;
-            imageReceiver.setImageCoords(i2 + i3, i4 + i5, mediaHolder.r - i3, mediaHolder.b - i5);
-            mediaHolder.imageReceiver.draw(canvas);
-            if (mediaHolder.imageReceiver.getAnimation() != null) {
-                mediaHolder.setTime(Math.round(((float) mediaHolder.imageReceiver.getAnimation().currentTime) / 1000.0f));
-            }
-            if (f > 0.0f) {
-                f3 = Math.min(this.x + mediaHolder.l, f3);
-                f2 = Math.min(this.y + mediaHolder.t, f2);
-                f5 = Math.max(this.x + mediaHolder.r, f5);
-                f4 = Math.max(this.y + mediaHolder.b, f4);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f6 = mediaHolder.l + this.x;
-                int i6 = this.y;
-                rectF.set(f6, mediaHolder.t + i6, r11 + mediaHolder.r, i6 + mediaHolder.b);
-                this.clipPath2.addRoundRect(rectF, mediaHolder.radii, Path.Direction.CW);
-            }
-            mediaHolder.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
-            float f7 = f2;
-            mediaHolder.radialProgress.setProgressRect(mediaHolder.imageReceiver.getImageX() + ((mediaHolder.imageReceiver.getImageWidth() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageY() + ((mediaHolder.imageReceiver.getImageHeight() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageX() + (mediaHolder.imageReceiver.getImageWidth() / 2.0f) + mediaHolder.radialProgress.getRadius(), mediaHolder.imageReceiver.getImageY() + (mediaHolder.imageReceiver.getImageHeight() / 2.0f) + mediaHolder.radialProgress.getRadius());
-            if (messageObject.isSending()) {
-                SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(messageObject.currentAccount);
-                long[] fileProgressSizes = ImageLoader.getInstance().getFileProgressSizes(mediaHolder.attachPath);
-                boolean isSendingPaidMessage = sendMessagesHelper.isSendingPaidMessage(messageObject.getId(), i);
-                if (fileProgressSizes == null && isSendingPaidMessage) {
-                    mediaHolder.radialProgress.setProgress(1.0f, true);
-                    mediaHolder.setIcon(mediaHolder.album ? 6 : mediaHolder.getDefaultIcon());
-                }
-            } else if (FileLoader.getInstance(messageObject.currentAccount).isLoadingFile(mediaHolder.filename)) {
-                mediaHolder.setIcon(3);
-            } else {
-                mediaHolder.setIcon(mediaHolder.getDefaultIcon());
-            }
-            canvas.saveLayerAlpha(mediaHolder.radialProgress.getProgressRect(), (int) ((1.0f - f) * 255.0f), 31);
-            mediaHolder.radialProgress.draw(canvas);
-            canvas.restore();
-            i++;
-            f2 = f7;
-        }
-        if (f > 0.0f && z) {
-            canvas.save();
-            canvas.clipPath(this.clipPath2);
-            canvas.translate(f3, f2);
-            int i7 = (int) (f5 - f3);
-            int i8 = (int) (f4 - f2);
-            canvas.saveLayerAlpha(0.0f, 0.0f, i7, i8, (int) (255.0f * f), 31);
-            SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
-            ChatMessageCell chatMessageCell = this.cell;
-            spoilerEffect2.draw(canvas, chatMessageCell, i7, i8, 1.0f, chatMessageCell.drawingToBitmap);
-            canvas.restore();
-            canvas.restore();
-            this.cell.invalidate();
-        }
-        for (int i9 = 0; i9 < this.holders.size(); i9++) {
-            MediaHolder mediaHolder2 = (MediaHolder) this.holders.get(i9);
-            if (mediaHolder2.durationText != null) {
-                float dp = AndroidUtilities.dp(11.4f) + mediaHolder2.durationText.getCurrentWidth();
-                float dp2 = AndroidUtilities.dp(17.0f);
-                float dp3 = AndroidUtilities.dp(5.0f);
-                float f8 = this.x + mediaHolder2.l + dp3;
-                float f9 = this.y + mediaHolder2.t + dp3;
-                this.clipRect.set(f8, f9, dp + f8, f9 + dp2);
-                if (this.priceText == null || this.clipRect.right <= ((this.x + this.width) - (AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth())) - dp3 || this.clipRect.top > this.y + dp3) {
-                    this.clipPath.rewind();
-                    float f10 = dp2 / 2.0f;
-                    this.clipPath.addRoundRect(this.clipRect, f10, f10, Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(this.clipPath);
-                    drawBlurred(canvas, f);
-                    canvas.drawColor(Theme.multAlpha(1073741824, 1.0f));
-                    mediaHolder2.durationText.draw(canvas, this.x + mediaHolder2.l + dp3 + AndroidUtilities.dp(5.66f), this.y + mediaHolder2.t + dp3 + f10, -1, 1.0f);
-                    canvas.restore();
-                }
-            }
-        }
+    public void drawImages(android.graphics.Canvas r18, boolean r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupMedia.drawImages(android.graphics.Canvas, boolean):void");
     }
 
     public static class MediaHolder implements DownloadController.FileDownloadProgressListener {
@@ -521,12 +432,12 @@ public class GroupMedia {
         }
 
         public void setTime(int i) {
-            int max;
-            if (this.video || this.durationValue == (max = Math.max(0, this.duration - i))) {
+            int iMax;
+            if (this.video || this.durationValue == (iMax = Math.max(0, this.duration - i))) {
                 return;
             }
-            this.durationValue = max;
-            this.durationText = new Text(AndroidUtilities.formatLongDuration(max), 12.0f);
+            this.durationValue = iMax;
+            this.durationText = new Text(AndroidUtilities.formatLongDuration(iMax), 12.0f);
         }
 
         public MediaHolder(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z, int i, int i2) {
@@ -641,22 +552,22 @@ public class GroupMedia {
 
         @Override
         public void onProgressDownload(String str, long j, long j2) {
-            float min = j2 == 0 ? 0.0f : Math.min(1.0f, ((float) j) / ((float) j2));
+            float fMin = j2 == 0 ? 0.0f : Math.min(1.0f, j / j2);
             RadialProgress2 radialProgress2 = this.radialProgress;
-            this.media.downloadProgress = min;
-            radialProgress2.setProgress(min, true);
-            setIcon(min < 1.0f ? 3 : getDefaultIcon());
+            this.media.downloadProgress = fMin;
+            radialProgress2.setProgress(fMin, true);
+            setIcon(fMin < 1.0f ? 3 : getDefaultIcon());
             this.cell.invalidate();
         }
 
         @Override
         public void onProgressUpload(String str, long j, long j2, boolean z) {
             int defaultIcon;
-            float min = j2 == 0 ? 0.0f : Math.min(1.0f, ((float) j) / ((float) j2));
+            float fMin = j2 == 0 ? 0.0f : Math.min(1.0f, j / j2);
             RadialProgress2 radialProgress2 = this.radialProgress;
-            this.media.uploadProgress = min;
-            radialProgress2.setProgress(min, true);
-            if (min < 1.0f) {
+            this.media.uploadProgress = fMin;
+            radialProgress2.setProgress(fMin, true);
+            if (fMin < 1.0f) {
                 defaultIcon = 3;
             } else {
                 defaultIcon = this.album ? 6 : getDefaultIcon();
@@ -726,7 +637,7 @@ public class GroupMedia {
             return (MessageObject.GroupedMessagePosition) this.positions.get(messageExtendedMedia);
         }
 
-        public static class MessageGroupedLayoutAttempt {
+        private static class MessageGroupedLayoutAttempt {
             public float[] heights;
             public int[] lineCounts;
 
@@ -810,9 +721,9 @@ public class GroupMedia {
             for (int i5 = 0; i5 < size; i5++) {
                 MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) this.posArray.get(i5);
                 if (groupedMessagePosition2 != groupedMessagePosition && groupedMessagePosition2.maxX < i3) {
-                    int min = Math.min((int) groupedMessagePosition2.maxY, i2) - i;
-                    for (int max = Math.max(groupedMessagePosition2.minY - i, 0); max <= min; max++) {
-                        fArr[max] = fArr[max] + groupedMessagePosition2.pw;
+                    int iMin = Math.min((int) groupedMessagePosition2.maxY, i2) - i;
+                    for (int iMax = Math.max(groupedMessagePosition2.minY - i, 0); iMax <= iMin; iMax++) {
+                        fArr[iMax] = fArr[iMax] + groupedMessagePosition2.pw;
                     }
                 }
             }

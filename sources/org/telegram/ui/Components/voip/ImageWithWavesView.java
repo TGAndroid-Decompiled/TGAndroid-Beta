@@ -15,7 +15,6 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.voip.ImageWithWavesView;
 
 public class ImageWithWavesView extends FrameLayout {
     private final boolean allowAnimations;
@@ -40,9 +39,9 @@ public class ImageWithWavesView extends FrameLayout {
         animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
         this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.animatorSet.setDuration(3000L);
-        boolean isEnabled = LiteMode.isEnabled(512);
-        this.allowAnimations = isEnabled;
-        if (isEnabled) {
+        boolean zIsEnabled = LiteMode.isEnabled(512);
+        this.allowAnimations = zIsEnabled;
+        if (zIsEnabled) {
             this.animatorSet.start();
         }
         setClipChildren(false);
@@ -258,7 +257,7 @@ public class ImageWithWavesView extends FrameLayout {
                 this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ImageWithWavesView.AvatarWavesDrawable.this.lambda$setMuteToStatic$0(valueAnimator2);
+                        this.f$0.lambda$setMuteToStatic$0(valueAnimator2);
                     }
                 });
                 if (z2) {

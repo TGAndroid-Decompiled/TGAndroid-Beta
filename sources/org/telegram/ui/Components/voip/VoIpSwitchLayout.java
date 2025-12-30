@@ -19,7 +19,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.voip.VoIpSwitchLayout;
 
 public class VoIpSwitchLayout extends FrameLayout {
     public int animationDelay;
@@ -68,14 +67,14 @@ public class VoIpSwitchLayout extends FrameLayout {
 
     private void setText(Type type, boolean z) {
         final String string;
-        int ordinal = type.ordinal();
-        if (ordinal != 0) {
-            if (ordinal == 1) {
+        int iOrdinal = type.ordinal();
+        if (iOrdinal != 0) {
+            if (iOrdinal == 1) {
                 string = LocaleController.getString(R.string.VoipFlip);
-            } else if (ordinal != 2) {
-                if (ordinal == 3) {
+            } else if (iOrdinal != 2) {
+                if (iOrdinal == 3) {
                     string = LocaleController.getString(R.string.VoipAudioRoutingBluetooth);
-                } else if (ordinal == 4) {
+                } else if (iOrdinal == 4) {
                     string = LocaleController.getString(R.string.VoipSpeaker);
                 } else {
                     string = "";
@@ -157,7 +156,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIpSwitchLayout.this.lambda$setType$0(i);
+                this.f$0.lambda$setType$0(i);
             }
         });
     }
@@ -166,7 +165,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIpSwitchLayout.this.lambda$setType$2(i);
+                this.f$0.lambda$setType$2(i);
             }
         });
     }
@@ -226,12 +225,12 @@ public class VoIpSwitchLayout extends FrameLayout {
                         valueAnimator2.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
-                    ValueAnimator ofInt = z ? ValueAnimator.ofInt(20, 100) : ValueAnimator.ofInt(100, 20);
-                    this.animator = ofInt;
-                    ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfInt = z ? ValueAnimator.ofInt(20, 100) : ValueAnimator.ofInt(100, 20);
+                    this.animator = valueAnimatorOfInt;
+                    valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator3);
+                            this.f$0.lambda$setSelectedState$0(valueAnimator3);
                         }
                     });
                     this.animator.setDuration(200L);
@@ -246,14 +245,14 @@ public class VoIpSwitchLayout extends FrameLayout {
                         valueAnimator3.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
-                    ValueAnimator ofInt2 = ValueAnimator.ofInt(0, this.maxRadius);
-                    this.animator = ofInt2;
+                    ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(0, this.maxRadius);
+                    this.animator = valueAnimatorOfInt2;
                     if (z) {
                         this.unselectedRadius = this.maxRadius;
-                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator4);
+                                this.f$0.lambda$setSelectedState$1(valueAnimator4);
                             }
                         });
                         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -269,10 +268,10 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.selectedIcon.start();
                     } else {
                         this.selectedRadius = this.maxRadius;
-                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator4);
+                                this.f$0.lambda$setSelectedState$2(valueAnimator4);
                             }
                         });
                         this.animator.setDuration(200L);
@@ -330,9 +329,9 @@ public class VoIpSwitchLayout extends FrameLayout {
             Paint paint3 = new Paint(1);
             this.darkPaint = paint3;
             this.clipPath = new Path();
-            int dp = AndroidUtilities.dp(26.0f);
-            this.maxRadius = dp;
-            this.unselectedRadius = dp;
+            int iDp = AndroidUtilities.dp(26.0f);
+            this.maxRadius = iDp;
+            this.unselectedRadius = iDp;
             this.selectedRadius = 0;
             this.isSelectedState = false;
             this.singleIconBackgroundAlphaPercent = 0;
@@ -353,12 +352,12 @@ public class VoIpSwitchLayout extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
-            this.pressedScaleAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
+            this.pressedScaleAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    VoIpSwitchLayout.VoIpButtonView.this.lambda$setPressedBtn$3(valueAnimator2);
+                    this.f$0.lambda$setPressedBtn$3(valueAnimator2);
                 }
             });
             this.pressedScaleAnimator.setDuration(150L);

@@ -122,7 +122,7 @@ public class ClickHelper {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ClickHelper.this.lambda$scheduleLongPress$0(view);
+                    this.f$0.lambda$scheduleLongPress$0(view);
                 }
             };
             this.longPressCallback = runnable;

@@ -60,7 +60,7 @@ public class BusinessChatbotController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getConnectedBots(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BusinessChatbotController.this.lambda$load$1(tLObject, tL_error);
+                    this.f$0.lambda$load$1(tLObject, tL_error);
                 }
             });
         } else if (z) {
@@ -77,7 +77,7 @@ public class BusinessChatbotController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BusinessChatbotController.this.lambda$load$0(tLObject);
+                this.f$0.lambda$load$0(tLObject);
             }
         });
     }

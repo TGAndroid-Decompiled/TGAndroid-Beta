@@ -113,9 +113,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             Collections.sort(this.onlineContacts, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$sortOnlineContacts$0;
-                    lambda$sortOnlineContacts$0 = ContactsAdapter.lambda$sortOnlineContacts$0(MessagesController.this, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                    return lambda$sortOnlineContacts$0;
+                    return ContactsAdapter.lambda$sortOnlineContacts$0(messagesController, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
                 }
             });
             notifyDataSetChanged();
@@ -140,11 +138,11 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (z && i > 1) {
             i--;
         }
-        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+        HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (this.onlyUsers != 0 && !this.isAdmin) {
             if (i < arrayList.size()) {
-                ArrayList<TLRPC.TL_contact> arrayList2 = hashMap.get(arrayList.get(i));
+                ArrayList<TLRPC.TL_contact> arrayList2 = map.get(arrayList.get(i));
                 if (i2 < arrayList2.size()) {
                     return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList2.get(i2).user_id));
                 }
@@ -157,7 +155,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (this.sortType != 2) {
             int i3 = i - 1;
             if (i3 < arrayList.size()) {
-                ArrayList<TLRPC.TL_contact> arrayList3 = hashMap.get(arrayList.get(i3));
+                ArrayList<TLRPC.TL_contact> arrayList3 = map.get(arrayList.get(i3));
                 if (i2 < arrayList3.size()) {
                     return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList3.get(i2).user_id));
                 }
@@ -193,10 +191,10 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (z && i > 1) {
             i--;
         }
-        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+        HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (this.onlyUsers != 0 && !this.isAdmin) {
-            return !this.isEmpty && i2 < hashMap.get(arrayList.get(i)).size();
+            return !this.isEmpty && i2 < map.get(arrayList.get(i)).size();
         }
         if (i == 0) {
             return this.isAdmin ? i2 != 1 : this.needPhonebook ? i2 != 1 : i2 != 3;
@@ -208,7 +206,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             return i != 1 || i2 < this.onlineContacts.size();
         }
         int i3 = i - 1;
-        return i3 >= arrayList.size() || i2 < hashMap.get(arrayList.get(i3)).size();
+        return i3 >= arrayList.size() || i2 < map.get(arrayList.get(i3)).size();
         return true;
     }
 
@@ -241,7 +239,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     }
 
     private int getCountForSectionInternal(int i) {
-        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+        HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         boolean z = this.hasStories;
         if (z && i == 1) {
@@ -260,7 +258,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.sortType != 2) {
                 int i2 = i - 1;
                 if (i2 < arrayList.size()) {
-                    int size = hashMap.get(arrayList.get(i2)).size();
+                    int size = map.get(arrayList.get(i2)).size();
                     return (i2 != arrayList.size() - 1 || this.needPhonebook) ? size + 1 : size;
                 }
             } else if (i == 1) {
@@ -274,7 +272,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 return 1;
             }
             if (i < arrayList.size()) {
-                int size2 = hashMap.get(arrayList.get(i)).size();
+                int size2 = map.get(arrayList.get(i)).size();
                 return (i != arrayList.size() - 1 || this.needPhonebook) ? size2 + 1 : size2;
             }
         }
@@ -286,10 +284,11 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public View getSectionHeaderView(int i, View view) {
+        int i2;
         if (this.onlyUsers == 2) {
-            HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict;
+            HashMap<String, ArrayList<TLRPC.TL_contact>> map = ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict;
         } else {
-            HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap2 = ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+            HashMap<String, ArrayList<TLRPC.TL_contact>> map2 = ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         }
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (view == null) {
@@ -306,19 +305,14 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
             letterSectionCell.setLetter("");
-        } else if (this.onlyUsers == 0 || this.isAdmin) {
-            if (i == 0) {
-                letterSectionCell.setLetter("");
+        } else if (this.onlyUsers != 0 && !this.isAdmin) {
+            if (i < arrayList.size()) {
+                letterSectionCell.setLetter(arrayList.get(i));
             } else {
-                int i2 = i - 1;
-                if (i2 < arrayList.size()) {
-                    letterSectionCell.setLetter(arrayList.get(i2));
-                } else {
-                    letterSectionCell.setLetter("");
-                }
+                letterSectionCell.setLetter("");
             }
-        } else if (i < arrayList.size()) {
-            letterSectionCell.setLetter(arrayList.get(i));
+        } else if (i != 0 && (i2 = i - 1) < arrayList.size()) {
+            letterSectionCell.setLetter(arrayList.get(i2));
         } else {
             letterSectionCell.setLetter("");
         }
@@ -327,45 +321,51 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
-        View view;
+        View graySectionCell;
         if (i == 0) {
-            view = new UserCell(this.mContext, 58, 1, false);
+            UserCell userCell = new UserCell(this.mContext, 58, 1, false);
+            userCell.setCallCellStyle(58);
+            graySectionCell = userCell;
         } else if (i == 1) {
-            view = new TextCell(this.mContext);
+            TextCell textCell = new TextCell(this.mContext);
+            int i2 = Theme.key_telegram_color;
+            textCell.setColors(i2, i2);
+            graySectionCell = textCell;
         } else if (i == 2) {
-            view = new GraySectionCell(this.mContext);
+            graySectionCell = new GraySectionCell(this.mContext);
         } else if (i == 3) {
             View dividerCell = new DividerCell(this.mContext);
             dividerCell.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.dp(8.0f));
-            view = dividerCell;
+            graySectionCell = dividerCell;
         } else if (i == 4) {
             FrameLayout frameLayout = new FrameLayout(this.mContext) {
                 @Override
-                protected void onMeasure(int i2, int i3) {
-                    int size = View.MeasureSpec.getSize(i3);
+                protected void onMeasure(int i3, int i4) {
+                    int size = View.MeasureSpec.getSize(i4);
                     if (size == 0) {
                         size = viewGroup.getMeasuredHeight();
                     }
                     if (size == 0) {
                         size = (AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight;
                     }
-                    int dp = AndroidUtilities.dp(50.0f);
-                    int dp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.dp(30.0f) + dp;
+                    int iDp = AndroidUtilities.dp(50.0f);
+                    int iDp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.dp(30.0f) + iDp;
                     if (!ContactsAdapter.this.isAdmin && !ContactsAdapter.this.needPhonebook) {
-                        dp2 += dp;
+                        iDp2 += iDp;
                     }
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(dp2 < size ? size - dp2 : 0, 1073741824));
+                    int paddingTop = (size - viewGroup.getPaddingTop()) - viewGroup.getPaddingBottom();
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(iDp2 < paddingTop ? paddingTop - iDp2 : 0, 1073741824));
                 }
             };
             frameLayout.addView(new ContactsEmptyView(this.mContext), LayoutHelper.createFrame(-2, -2, 17));
-            view = frameLayout;
+            graySectionCell = frameLayout;
         } else if (i == 6) {
             DialogStoriesCell dialogStoriesCell = this.dialogStoriesCell;
             if (dialogStoriesCell == null) {
                 DialogStoriesCell dialogStoriesCell2 = new DialogStoriesCell(this.mContext, this.fragment, this.currentAccount, 1) {
                     @Override
-                    public void onUserLongPressed(View view2, long j) {
-                        ContactsAdapter.this.onStoryLongPressed(view2, j);
+                    public void onUserLongPressed(View view, long j) {
+                        ContactsAdapter.this.onStoryLongPressed(view, j);
                     }
                 };
                 this.dialogStoriesCell = dialogStoriesCell2;
@@ -375,22 +375,22 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             }
             FrameLayout frameLayout2 = new FrameLayout(this.mContext);
             frameLayout2.addView(this.dialogStoriesCell, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-            view = frameLayout2;
+            graySectionCell = frameLayout2;
         } else {
             View shadowSectionCell = new ShadowSectionCell(this.mContext);
             CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             combinedDrawable.setFullsize(true);
             shadowSectionCell.setBackgroundDrawable(combinedDrawable);
-            view = shadowSectionCell;
+            graySectionCell = shadowSectionCell;
         }
-        return new RecyclerListView.Holder(view);
+        return new RecyclerListView.Holder(graySectionCell);
     }
 
     @Override
     public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
         ArrayList<TLRPC.TL_contact> arrayList;
         boolean z = this.hasStories;
-        int i3 = 6;
+        int i3 = 7;
         if (z && i == 1) {
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType != 0) {
@@ -411,7 +411,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 }
             }
             UserCell userCell = (UserCell) viewHolder.itemView;
-            userCell.setAvatarPadding(6);
+            userCell.setAvatarPadding(7, 1);
             userCell.storyParams.drawSegments = true;
             StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.PeerStories) this.userStories.get(i2)).peer)));
@@ -435,7 +435,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.sortType != 2 && !this.disableSections) {
                 i3 = 58;
             }
-            userCell2.setAvatarPadding(i3);
+            userCell2.setAvatarPadding(i3, 1);
             if (this.sortType == 2) {
                 arrayList = this.onlineContacts;
             } else {
@@ -524,7 +524,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public int getItemViewType(int i, int i2) {
-        HashMap<String, ArrayList<TLRPC.TL_contact>> hashMap = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+        HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         boolean z = this.hasStories;
         if (z && i == 1) {
@@ -537,7 +537,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.isEmpty) {
                 return 4;
             }
-            return i2 < hashMap.get(arrayList.get(i)).size() ? 0 : 3;
+            return i2 < map.get(arrayList.get(i)).size() ? 0 : 3;
         }
         if (i == 0) {
             if (this.isAdmin) {
@@ -558,7 +558,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.sortType != 2) {
                 int i3 = i - 1;
                 if (i3 < arrayList.size()) {
-                    return i2 < hashMap.get(arrayList.get(i3)).size() ? 0 : 3;
+                    return i2 < map.get(arrayList.get(i3)).size() ? 0 : 3;
                 }
             } else if (i == 1) {
                 return i2 < this.onlineContacts.size() ? 0 : 3;

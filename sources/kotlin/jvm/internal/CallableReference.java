@@ -1,9 +1,14 @@
 package kotlin.jvm.internal;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Map;
 import kotlin.jvm.KotlinReflectionNotSupportedError;
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KDeclarationContainer;
+import kotlin.reflect.KType;
+import kotlin.reflect.KVisibility;
 
 public abstract class CallableReference implements KCallable, Serializable {
     public static final Object NO_RECEIVER = NoReceiver.INSTANCE;
@@ -23,7 +28,7 @@ public abstract class CallableReference implements KCallable, Serializable {
         }
     }
 
-    public CallableReference(Object obj, Class cls, String str, String str2, boolean z) {
+    protected CallableReference(Object obj, Class cls, String str, String str2, boolean z) {
         this.receiver = obj;
         this.owner = cls;
         this.name = str;
@@ -40,15 +45,15 @@ public abstract class CallableReference implements KCallable, Serializable {
         if (kCallable != null) {
             return kCallable;
         }
-        KCallable computeReflected = computeReflected();
-        this.reflected = computeReflected;
-        return computeReflected;
+        KCallable kCallableComputeReflected = computeReflected();
+        this.reflected = kCallableComputeReflected;
+        return kCallableComputeReflected;
     }
 
-    public KCallable getReflected() {
-        KCallable compute = compute();
-        if (compute != this) {
-            return compute;
+    protected KCallable getReflected() {
+        KCallable kCallableCompute = compute();
+        if (kCallableCompute != this) {
+            return kCallableCompute;
         }
         throw new KotlinReflectionNotSupportedError();
     }
@@ -67,5 +72,56 @@ public abstract class CallableReference implements KCallable, Serializable {
 
     public String getSignature() {
         return this.signature;
+    }
+
+    @Override
+    public List<Object> getParameters() {
+        return getReflected().getParameters();
+    }
+
+    @Override
+    public KType getReturnType() {
+        getReflected().getReturnType();
+        return null;
+    }
+
+    @Override
+    public List<Annotation> getAnnotations() {
+        return getReflected().getAnnotations();
+    }
+
+    @Override
+    public List<Object> getTypeParameters() {
+        return getReflected().getTypeParameters();
+    }
+
+    @Override
+    public Object call(Object... objArr) {
+        return getReflected().call(objArr);
+    }
+
+    @Override
+    public Object callBy(Map map) {
+        return getReflected().callBy(map);
+    }
+
+    @Override
+    public KVisibility getVisibility() {
+        return getReflected().getVisibility();
+    }
+
+    @Override
+    public boolean isFinal() {
+        return getReflected().isFinal();
+    }
+
+    @Override
+    public boolean isOpen() {
+        return getReflected().isOpen();
+    }
+
+    @Override
+    public boolean isAbstract() {
+        return getReflected().isAbstract();
     }
 }

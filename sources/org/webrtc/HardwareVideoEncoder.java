@@ -18,7 +18,7 @@ import org.webrtc.ThreadUtils;
 import org.webrtc.VideoEncoder;
 import org.webrtc.VideoFrame;
 
-public class HardwareVideoEncoder implements VideoEncoder {
+class HardwareVideoEncoder implements VideoEncoder {
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
     private static final int MAX_ENCODER_Q_SIZE = 2;
     private static final int MAX_VIDEO_FRAMERATE = 30;
@@ -77,7 +77,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
         return VideoEncoder.CC.$default$isHardwareEncoder(this);
     }
 
-    public static class BusyCount {
+    private static class BusyCount {
         private int count;
         private final Object countLock;
 
@@ -203,8 +203,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
-        VideoCodecStatus resetCodec;
-        VideoCodecStatus encodeByteBuffer;
+        VideoCodecStatus videoCodecStatusResetCodec;
+        VideoCodecStatus videoCodecStatusEncodeByteBuffer;
         this.encodeThreadChecker.checkIsOnValidThread();
         if (this.codec == null) {
             return VideoCodecStatus.UNINITIALIZED;
@@ -214,8 +214,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
         int width = videoFrame.getBuffer().getWidth();
         int height = videoFrame.getBuffer().getHeight();
         boolean z2 = canUseSurface() && z;
-        if ((width != this.width || height != this.height || z2 != this.useSurfaceMode) && (resetCodec = resetCodec(width, height, z2)) != VideoCodecStatus.OK) {
-            return resetCodec;
+        if ((width != this.width || height != this.height || z2 != this.useSurfaceMode) && (videoCodecStatusResetCodec = resetCodec(width, height, z2)) != VideoCodecStatus.OK) {
+            return videoCodecStatusResetCodec;
         }
         if (this.outputBuilders.size() > 2) {
             Logging.e("HardwareVideoEncoder", "Dropped frame, encoder queue full");
@@ -235,14 +235,14 @@ public class HardwareVideoEncoder implements VideoEncoder {
         long j = this.nextPresentationTimestampUs;
         this.nextPresentationTimestampUs += (long) (TimeUnit.SECONDS.toMicros(1L) / this.bitrateAdjuster.getAdjustedFramerateFps());
         if (this.useSurfaceMode) {
-            encodeByteBuffer = encodeTextureBuffer(videoFrame, j);
+            videoCodecStatusEncodeByteBuffer = encodeTextureBuffer(videoFrame, j);
         } else {
-            encodeByteBuffer = encodeByteBuffer(videoFrame, buffer, height2);
+            videoCodecStatusEncodeByteBuffer = encodeByteBuffer(videoFrame, buffer, height2);
         }
-        if (encodeByteBuffer != VideoCodecStatus.OK) {
+        if (videoCodecStatusEncodeByteBuffer != VideoCodecStatus.OK) {
             this.outputBuilders.pollLast();
         }
-        return encodeByteBuffer;
+        return videoCodecStatusEncodeByteBuffer;
     }
 
     private VideoCodecStatus encodeTextureBuffer(VideoFrame videoFrame, long j) {
@@ -272,27 +272,27 @@ public class HardwareVideoEncoder implements VideoEncoder {
         this.encodeThreadChecker.checkIsOnValidThread();
         long timestampNs = (videoFrame.getTimestampNs() + 500) / 1000;
         try {
-            int dequeueInputBuffer = this.codec.dequeueInputBuffer(0L);
-            if (dequeueInputBuffer == -1) {
+            int iDequeueInputBuffer = this.codec.dequeueInputBuffer(0L);
+            if (iDequeueInputBuffer == -1) {
                 Logging.d("HardwareVideoEncoder", "Dropped frame, no input buffers available");
                 return VideoCodecStatus.NO_OUTPUT;
             }
             try {
-                ByteBuffer inputBuffer = this.codec.getInputBuffer(dequeueInputBuffer);
+                ByteBuffer inputBuffer = this.codec.getInputBuffer(iDequeueInputBuffer);
                 if (inputBuffer.capacity() < this.frameSizeBytes) {
                     Logging.e("HardwareVideoEncoder", "Input buffer size: " + inputBuffer.capacity() + " is smaller than frame size: " + this.frameSizeBytes);
                     return VideoCodecStatus.ERROR;
                 }
                 fillInputBuffer(inputBuffer, videoFrame.getBuffer());
                 try {
-                    this.codec.queueInputBuffer(dequeueInputBuffer, 0, this.frameSizeBytes, timestampNs, 0);
+                    this.codec.queueInputBuffer(iDequeueInputBuffer, 0, this.frameSizeBytes, timestampNs, 0);
                     return VideoCodecStatus.OK;
                 } catch (IllegalStateException e) {
                     Logging.e("HardwareVideoEncoder", "queueInputBuffer failed", e);
                     return VideoCodecStatus.ERROR;
                 }
             } catch (IllegalStateException e2) {
-                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e2);
+                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + iDequeueInputBuffer + " failed", e2);
                 return VideoCodecStatus.ERROR;
             }
         } catch (IllegalStateException e3) {
@@ -335,9 +335,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
     private VideoCodecStatus resetCodec(int i, int i2, boolean z) {
         FileLog.d("resetCodec " + i + "x" + i2);
         this.encodeThreadChecker.checkIsOnValidThread();
-        VideoCodecStatus release = release();
-        if (release != VideoCodecStatus.OK) {
-            return release;
+        VideoCodecStatus videoCodecStatusRelease = release();
+        if (videoCodecStatusRelease != VideoCodecStatus.OK) {
+            return videoCodecStatusRelease;
         }
         this.width = i;
         this.height = i2;
@@ -376,21 +376,21 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     protected void deliverEncodedImage() {
-        ByteBuffer slice;
+        ByteBuffer byteBufferSlice;
         EncodedImage.FrameType frameType;
         MediaFormat outputFormat;
         this.outputThreadChecker.checkIsOnValidThread();
         try {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-            final int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
-            if (dequeueOutputBuffer < 0) {
-                if (dequeueOutputBuffer == -3) {
+            final int iDequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
+            if (iDequeueOutputBuffer < 0) {
+                if (iDequeueOutputBuffer == -3) {
                     this.outputBuffersBusyCount.waitForZero();
                     return;
                 }
                 return;
             }
-            ByteBuffer outputBuffer = this.codec.getOutputBuffer(dequeueOutputBuffer);
+            ByteBuffer outputBuffer = this.codec.getOutputBuffer(iDequeueOutputBuffer);
             outputBuffer.position(bufferInfo.offset);
             outputBuffer.limit(bufferInfo.offset + bufferInfo.size);
             if ((bufferInfo.flags & 2) != 0) {
@@ -399,9 +399,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 if (i > 0) {
                     VideoCodecMimeType videoCodecMimeType = this.codecType;
                     if (videoCodecMimeType == VideoCodecMimeType.H264 || videoCodecMimeType == VideoCodecMimeType.H265) {
-                        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i);
-                        this.configBuffer = allocateDirect;
-                        allocateDirect.put(outputBuffer);
+                        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(i);
+                        this.configBuffer = byteBufferAllocateDirect;
+                        byteBufferAllocateDirect.put(outputBuffer);
                         return;
                     }
                     return;
@@ -420,22 +420,22 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 Logging.d("HardwareVideoEncoder", "Sync frame generated");
             }
             Runnable runnable = null;
-            Integer valueOf = (this.isEncodingStatisticsEnabled && (outputFormat = this.codec.getOutputFormat(dequeueOutputBuffer)) != null && outputFormat.containsKey("video-qp-average")) ? Integer.valueOf(outputFormat.getInteger("video-qp-average")) : null;
+            Integer numValueOf = (this.isEncodingStatisticsEnabled && (outputFormat = this.codec.getOutputFormat(iDequeueOutputBuffer)) != null && outputFormat.containsKey("video-qp-average")) ? Integer.valueOf(outputFormat.getInteger("video-qp-average")) : null;
             if (z && this.configBuffer != null) {
                 Logging.d("HardwareVideoEncoder", "Prepending config buffer of size " + this.configBuffer.capacity() + " to output buffer with offset " + bufferInfo.offset + ", size " + bufferInfo.size);
-                slice = ByteBuffer.allocateDirect(bufferInfo.size + this.configBuffer.capacity());
+                byteBufferSlice = ByteBuffer.allocateDirect(bufferInfo.size + this.configBuffer.capacity());
                 this.configBuffer.rewind();
-                slice.put(this.configBuffer);
-                slice.put(outputBuffer);
-                slice.rewind();
-                this.codec.releaseOutputBuffer(dequeueOutputBuffer, false);
+                byteBufferSlice.put(this.configBuffer);
+                byteBufferSlice.put(outputBuffer);
+                byteBufferSlice.rewind();
+                this.codec.releaseOutputBuffer(iDequeueOutputBuffer, false);
             } else {
-                slice = outputBuffer.slice();
+                byteBufferSlice = outputBuffer.slice();
                 this.outputBuffersBusyCount.increment();
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        HardwareVideoEncoder.this.lambda$deliverEncodedImage$0(dequeueOutputBuffer);
+                        this.f$0.lambda$deliverEncodedImage$0(iDequeueOutputBuffer);
                     }
                 };
             }
@@ -444,13 +444,13 @@ public class HardwareVideoEncoder implements VideoEncoder {
             } else {
                 frameType = EncodedImage.FrameType.VideoFrameDelta;
             }
-            EncodedImage.Builder poll = this.outputBuilders.poll();
-            poll.setBuffer(slice, runnable);
-            poll.setFrameType(frameType);
-            poll.setQp(valueOf);
-            EncodedImage createEncodedImage = poll.createEncodedImage();
-            this.callback.onEncodedFrame(createEncodedImage, new VideoEncoder.CodecSpecificInfo());
-            createEncodedImage.release();
+            EncodedImage.Builder builderPoll = this.outputBuilders.poll();
+            builderPoll.setBuffer(byteBufferSlice, runnable);
+            builderPoll.setFrameType(frameType);
+            builderPoll.setQp(numValueOf);
+            EncodedImage encodedImageCreateEncodedImage = builderPoll.createEncodedImage();
+            this.callback.onEncodedFrame(encodedImageCreateEncodedImage, new VideoEncoder.CodecSpecificInfo());
+            encodedImageCreateEncodedImage.release();
         } catch (IllegalStateException e) {
             Logging.e("HardwareVideoEncoder", "deliverOutput failed", e);
         }
@@ -517,9 +517,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 this.sliceHeight = Math.max(integer2, this.height);
             }
         }
-        boolean isSemiPlanar = isSemiPlanar(this.yuvColorFormat.intValue());
-        this.isSemiPlanar = isSemiPlanar;
-        if (isSemiPlanar) {
+        boolean zIsSemiPlanar = isSemiPlanar(this.yuvColorFormat.intValue());
+        this.isSemiPlanar = zIsSemiPlanar;
+        if (zIsSemiPlanar) {
             int i = (this.height + 1) / 2;
             int i2 = this.sliceHeight;
             int i3 = this.stride;

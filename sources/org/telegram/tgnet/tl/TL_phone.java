@@ -134,9 +134,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.video = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.video = (int32 & 64) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.access_hash = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
@@ -167,11 +167,11 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.p2p_allowed = (readInt32 & 32) != 0;
-            this.video = (readInt32 & 64) != 0;
-            this.conference_supported = (readInt32 & 256) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.p2p_allowed = (int32 & 32) != 0;
+            this.video = (int32 & 64) != 0;
+            this.conference_supported = (int32 & 256) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.access_hash = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
@@ -218,10 +218,10 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.p2p_allowed = (readInt32 & 32) != 0;
-            this.video = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.p2p_allowed = (int32 & 32) != 0;
+            this.video = (int32 & 64) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.access_hash = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
@@ -275,9 +275,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.video = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.video = (int32 & 64) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.access_hash = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
@@ -308,9 +308,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.video = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.video = (int32 & 64) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.access_hash = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
@@ -345,11 +345,11 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.need_rating = (readInt32 & 4) != 0;
-            this.need_debug = (readInt32 & 8) != 0;
-            this.video = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.need_rating = (int32 & 4) != 0;
+            this.need_debug = (int32 & 8) != 0;
+            this.video = (int32 & 64) != 0;
             this.id = inputSerializedData.readInt64(z);
             if ((this.flags & 1) != 0) {
                 this.reason = TLRPC.PhoneCallDiscardReason.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -1207,10 +1207,10 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.udp_p2p = (readInt32 & 1) != 0;
-            this.udp_reflector = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.udp_p2p = (int32 & 1) != 0;
+            this.udp_reflector = (int32 & 2) != 0;
             this.min_layer = inputSerializedData.readInt32(z);
             this.max_layer = inputSerializedData.readInt32(z);
             this.library_versions = Vector.deserializeString(inputSerializedData, z);
@@ -1235,10 +1235,10 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.udp_p2p = (readInt32 & 1) != 0;
-            this.udp_reflector = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.udp_p2p = (int32 & 1) != 0;
+            this.udp_reflector = (int32 & 2) != 0;
             this.min_layer = inputSerializedData.readInt32(z);
             this.max_layer = inputSerializedData.readInt32(z);
         }
@@ -1543,9 +1543,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.top = TLObject.hasFlag(readInt32, 1);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.top = TLObject.hasFlag(int32, 1);
             this.my = TLObject.hasFlag(this.flags, 2);
             this.anonymous = TLObject.hasFlag(this.flags, 4);
             if (TLObject.hasFlag(this.flags, 8)) {

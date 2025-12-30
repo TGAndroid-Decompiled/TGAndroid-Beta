@@ -16,9 +16,7 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoCodecInfo[] getImplementations() {
-        VideoCodecInfo[] supportedCodecs;
-        supportedCodecs = getSupportedCodecs();
-        return supportedCodecs;
+        return getSupportedCodecs();
     }
 
     public DefaultVideoEncoderFactory(EglBase.Context context, boolean z, boolean z2) {
@@ -31,12 +29,12 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        VideoEncoder createEncoder = this.softwareVideoEncoderFactory.createEncoder(videoCodecInfo);
-        VideoEncoder createEncoder2 = this.hardwareVideoEncoderFactory.createEncoder(videoCodecInfo);
-        if (createEncoder2 == null || createEncoder == null) {
-            return createEncoder2 != null ? createEncoder2 : createEncoder;
+        VideoEncoder videoEncoderCreateEncoder = this.softwareVideoEncoderFactory.createEncoder(videoCodecInfo);
+        VideoEncoder videoEncoderCreateEncoder2 = this.hardwareVideoEncoderFactory.createEncoder(videoCodecInfo);
+        if (videoEncoderCreateEncoder2 == null || videoEncoderCreateEncoder == null) {
+            return videoEncoderCreateEncoder2 != null ? videoEncoderCreateEncoder2 : videoEncoderCreateEncoder;
         }
-        return new VideoEncoderFallback(createEncoder, createEncoder2);
+        return new VideoEncoderFallback(videoEncoderCreateEncoder, videoEncoderCreateEncoder2);
     }
 
     @Override

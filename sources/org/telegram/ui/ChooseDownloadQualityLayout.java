@@ -33,15 +33,15 @@ public class ChooseDownloadQualityLayout {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, 0, null);
         this.layout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setFitItems(true);
-        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
-        addItem.setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+        actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PopupSwipeBackLayout.this.closeForeground();
+                popupSwipeBackLayout.closeForeground();
             }
         });
-        addItem.setColors(-328966, -328966);
-        addItem.setSelectorColor(268435455);
+        actionBarMenuSubItemAddItem.setColors(-328966, -328966);
+        actionBarMenuSubItemAddItem.setSelectorColor(268435455);
         View view = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
@@ -79,7 +79,7 @@ public class ChooseDownloadQualityLayout {
             StringBuilder sb = new StringBuilder();
             sb.append(LocaleController.formatString(R.string.QualitySaveIn, Integer.valueOf(quality.p())));
             sb.append(quality.original ? " (" + LocaleController.getString(R.string.QualitySource) + ")" : "");
-            String sb2 = sb.toString();
+            String string = sb.toString();
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (downloadUri.isCached()) {
                 spannableStringBuilder.append(AndroidUtilities.formatFileSize(downloadUri.document.size));
@@ -94,17 +94,17 @@ public class ChooseDownloadQualityLayout {
                 spannableStringBuilder.append((CharSequence) spannableString);
                 spannableStringBuilder.append(AndroidUtilities.formatFileSize(downloadUri.document.size));
             }
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, sb2, false, null);
-            addItem.setSubtext(spannableStringBuilder);
-            addItem.setColors(-328966, -328966);
-            addItem.subtextView.setPadding(0, 0, 0, 0);
-            addItem.setOnClickListener(new View.OnClickListener() {
+            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, string, false, null);
+            actionBarMenuSubItemAddItem.setSubtext(spannableStringBuilder);
+            actionBarMenuSubItemAddItem.setColors(-328966, -328966);
+            actionBarMenuSubItemAddItem.subtextView.setPadding(0, 0, 0, 0);
+            actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChooseDownloadQualityLayout.this.lambda$update$1(messageObject, quality, view);
+                    this.f$0.lambda$update$1(messageObject, quality, view);
                 }
             });
-            addItem.setSelectorColor(268435455);
+            actionBarMenuSubItemAddItem.setSelectorColor(268435455);
         }
         return true;
     }

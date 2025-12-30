@@ -50,9 +50,9 @@ public class LocationCell extends FrameLayout {
         this.wrapContent = z;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        ShapeDrawable createCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), -1);
-        this.circleDrawable = createCircleDrawable;
-        backupImageView.setBackground(createCircleDrawable);
+        ShapeDrawable shapeDrawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), -1);
+        this.circleDrawable = shapeDrawableCreateCircleDrawable;
+        backupImageView.setBackground(shapeDrawableCreateCircleDrawable);
         this.imageView.setSize(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
         BackupImageView backupImageView2 = this.imageView;
         boolean z2 = LocaleController.isRTL;
@@ -136,14 +136,14 @@ public class LocationCell extends FrameLayout {
         if (TextUtils.equals(this.lastEmoji, tL_messageMediaVenue.emoji) && TextUtils.equals(this.lastTitle, tL_messageMediaVenue.title)) {
             return this.lastCompleteTitle;
         }
-        CharSequence charSequence = tL_messageMediaVenue.title;
+        CharSequence charSequenceReplaceEmoji = tL_messageMediaVenue.title;
         if (!TextUtils.isEmpty(tL_messageMediaVenue.emoji)) {
-            charSequence = Emoji.replaceEmoji(tL_messageMediaVenue.emoji + " " + ((Object) charSequence), this.nameTextView.getPaint().getFontMetricsInt(), false);
+            charSequenceReplaceEmoji = Emoji.replaceEmoji(tL_messageMediaVenue.emoji + " " + ((Object) charSequenceReplaceEmoji), this.nameTextView.getPaint().getFontMetricsInt(), false);
         }
         this.lastEmoji = tL_messageMediaVenue.emoji;
         this.lastTitle = tL_messageMediaVenue.title;
-        this.lastCompleteTitle = charSequence;
-        return charSequence;
+        this.lastCompleteTitle = charSequenceReplaceEmoji;
+        return charSequenceReplaceEmoji;
     }
 
     public void setLocation(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, String str, int i, boolean z, boolean z2) {
@@ -160,9 +160,9 @@ public class LocationCell extends FrameLayout {
         int colorForIndex = getColorForIndex(i);
         if (tL_messageMediaVenue != null && (str2 = tL_messageMediaVenue.icon) != null) {
             if ("pin".equals(str2) || tL_messageMediaVenue.icon.startsWith("emoji")) {
-                Drawable mutate = getResources().getDrawable(R.drawable.pin).mutate();
-                mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), 0), mutate);
+                Drawable drawableMutate = getResources().getDrawable(R.drawable.pin).mutate();
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), 0), drawableMutate);
                 combinedDrawable.setCustomSize(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
                 combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 this.imageView.setImageDrawable(combinedDrawable);
@@ -180,20 +180,20 @@ public class LocationCell extends FrameLayout {
         boolean z3 = tL_messageMediaVenue == null;
         final float f = this.enterAlpha;
         final float f2 = z3 ? 0.0f : 1.0f;
-        final long abs = Math.abs(f - f2) * 150.0f;
+        final long jAbs = (long) (Math.abs(f - f2) * 150.0f);
         this.enterAnimator = ValueAnimator.ofFloat(f, f2);
-        final long elapsedRealtime = SystemClock.elapsedRealtime();
+        final long jElapsedRealtime = SystemClock.elapsedRealtime();
         this.enterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                LocationCell.this.lambda$setLocation$0(elapsedRealtime, abs, f, f2, valueAnimator2);
+                this.f$0.lambda$setLocation$0(jElapsedRealtime, jAbs, f, f2, valueAnimator2);
             }
         });
         ValueAnimator valueAnimator2 = this.enterAnimator;
         if (z3) {
-            abs = Long.MAX_VALUE;
+            jAbs = Long.MAX_VALUE;
         }
-        valueAnimator2.setDuration(abs);
+        valueAnimator2.setDuration(jAbs);
         this.enterAnimator.start();
         this.imageView.setAlpha(f);
         this.nameTextView.setAlpha(f);
@@ -202,9 +202,9 @@ public class LocationCell extends FrameLayout {
     }
 
     public void lambda$setLocation$0(long j, long j2, float f, float f2, ValueAnimator valueAnimator) {
-        float lerp = AndroidUtilities.lerp(f, f2, j2 > 0 ? Math.min(Math.max(((float) (SystemClock.elapsedRealtime() - j)) / ((float) j2), 0.0f), 1.0f) : 1.0f);
-        this.enterAlpha = lerp;
-        this.imageView.setAlpha(lerp);
+        float fLerp = AndroidUtilities.lerp(f, f2, j2 > 0 ? Math.min(Math.max((SystemClock.elapsedRealtime() - j) / j2, 0.0f), 1.0f) : 1.0f);
+        this.enterAlpha = fLerp;
+        this.imageView.setAlpha(fLerp);
         this.nameTextView.setAlpha(this.enterAlpha);
         this.addressTextView.setAlpha(this.enterAlpha);
         invalidate();

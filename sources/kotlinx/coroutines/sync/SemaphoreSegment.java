@@ -3,9 +3,8 @@ package kotlinx.coroutines.sync;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 
-public final class SemaphoreSegment extends Segment {
+final class SemaphoreSegment extends Segment {
     private final AtomicReferenceArray acquirers;
 
     public final AtomicReferenceArray getAcquirers() {
@@ -14,23 +13,17 @@ public final class SemaphoreSegment extends Segment {
 
     public SemaphoreSegment(long j, SemaphoreSegment semaphoreSegment, int i) {
         super(j, semaphoreSegment, i);
-        int i2;
-        i2 = SemaphoreKt.SEGMENT_SIZE;
-        this.acquirers = new AtomicReferenceArray(i2);
+        this.acquirers = new AtomicReferenceArray(SemaphoreKt.SEGMENT_SIZE);
     }
 
     @Override
     public int getNumberOfSlots() {
-        int i;
-        i = SemaphoreKt.SEGMENT_SIZE;
-        return i;
+        return SemaphoreKt.SEGMENT_SIZE;
     }
 
     @Override
     public void onCancellation(int i, Throwable th, CoroutineContext coroutineContext) {
-        Symbol symbol;
-        symbol = SemaphoreKt.CANCELLED;
-        getAcquirers().set(i, symbol);
+        getAcquirers().set(i, SemaphoreKt.CANCELLED);
         onSlotCleaned();
     }
 

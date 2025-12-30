@@ -77,10 +77,10 @@ public class CheckBox extends View {
         super.setVisibility(i);
         if (i == 0 && this.drawBitmap == null) {
             try {
-                int dp = AndroidUtilities.dp(this.size);
-                int dp2 = AndroidUtilities.dp(this.size);
+                int iDp = AndroidUtilities.dp(this.size);
+                int iDp2 = AndroidUtilities.dp(this.size);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.drawBitmap = Bitmap.createBitmap(dp, dp2, config);
+                this.drawBitmap = Bitmap.createBitmap(iDp, iDp2, config);
                 this.bitmapCanvas = new Canvas(this.drawBitmap);
                 this.checkBitmap = Bitmap.createBitmap(AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size), config);
                 this.checkCanvas = new Canvas(this.checkBitmap);
@@ -153,9 +153,9 @@ public class CheckBox extends View {
 
     private void animateToCheckedState(boolean z) {
         this.isCheckAnimation = z;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (animator.equals(CheckBox.this.checkAnimator)) {

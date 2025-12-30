@@ -166,9 +166,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.theme_available = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt64(z);
@@ -281,9 +281,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.theme_available = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt64(z);
@@ -388,9 +388,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.theme_available = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt64(z);
@@ -489,9 +489,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.theme_available = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt64(z);
@@ -584,9 +584,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.id = inputSerializedData.readInt64(z);
             this.gift_id = inputSerializedData.readInt64(z);
@@ -670,9 +670,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.resale_ton_only = TLObject.hasFlag(this.flags, 128);
             this.id = inputSerializedData.readInt64(z);
             this.title = inputSerializedData.readString(z);
@@ -746,9 +746,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.require_premium = TLObject.hasFlag(readInt32, 64);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.require_premium = TLObject.hasFlag(int32, 64);
             this.id = inputSerializedData.readInt64(z);
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
@@ -1119,13 +1119,13 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(readInt32, 128);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
+            this.require_premium = TLObject.hasFlag(int32, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.auction = TLObject.hasFlag(this.flags, 2048);
@@ -1242,13 +1242,13 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(readInt32, 128);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
+            this.require_premium = TLObject.hasFlag(int32, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.auction = TLObject.hasFlag(this.flags, 2048);
@@ -1352,13 +1352,13 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(readInt32, 128);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
+            this.require_premium = TLObject.hasFlag(int32, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.id = inputSerializedData.readInt64(z);
@@ -1452,13 +1452,13 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(readInt32, 128);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
+            this.require_premium = TLObject.hasFlag(int32, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -1540,12 +1540,12 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
@@ -1619,12 +1619,12 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
@@ -1686,12 +1686,12 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
-            this.can_upgrade = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
+            this.can_upgrade = (int32 & 8) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
@@ -1739,11 +1739,11 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
-            this.sold_out = (readInt32 & 2) != 0;
-            this.birthday = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
+            this.sold_out = (int32 & 2) != 0;
+            this.birthday = (int32 & 4) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
@@ -1780,9 +1780,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.limited = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.limited = (int32 & 1) != 0;
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
@@ -2095,9 +2095,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.extended = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.extended = (int32 & 2) != 0;
             this.stars = inputSerializedData.readInt64(z);
             if ((this.flags & 1) != 0) {
                 this.store_product = inputSerializedData.readString(z);
@@ -2138,9 +2138,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.extended = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.extended = (int32 & 2) != 0;
             this.stars = inputSerializedData.readInt64(z);
             if ((this.flags & 1) != 0) {
                 this.store_product = inputSerializedData.readString(z);
@@ -2177,9 +2177,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.isDefault = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.isDefault = (int32 & 1) != 0;
             this.users = inputSerializedData.readInt32(z);
             this.per_user_stars = inputSerializedData.readInt64(z);
         }
@@ -2215,10 +2215,10 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.extended = (readInt32 & 1) != 0;
-            this.isDefault = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.extended = (int32 & 1) != 0;
+            this.isDefault = (int32 & 2) != 0;
             this.stars = inputSerializedData.readInt64(z);
             this.yearly_boosts = inputSerializedData.readInt32(z);
             if ((this.flags & 4) != 0) {
@@ -2482,9 +2482,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -2527,11 +2527,11 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -2669,24 +2669,24 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
-            this.floodskip = (readInt32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & readInt32) != 0;
-            this.paid_message = (readInt32 & 524288) != 0;
-            this.premium_gift = (readInt32 & 1048576) != 0;
-            this.business_transfer = (2097152 & readInt32) != 0;
-            this.stargift_resale = (4194304 & readInt32) != 0;
-            this.posts_search = (16777216 & readInt32) != 0;
-            this.stargift_prepaid_upgrade = (33554432 & readInt32) != 0;
-            this.stargift_drop_original_details = (67108864 & readInt32) != 0;
-            this.phonegroup_message = TLObject.hasFlag(readInt32, 134217728);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
+            this.floodskip = (int32 & 32768) != 0;
+            this.stargift_upgrade = (262144 & int32) != 0;
+            this.paid_message = (int32 & 524288) != 0;
+            this.premium_gift = (int32 & 1048576) != 0;
+            this.business_transfer = (2097152 & int32) != 0;
+            this.stargift_resale = (4194304 & int32) != 0;
+            this.posts_search = (16777216 & int32) != 0;
+            this.stargift_prepaid_upgrade = (33554432 & int32) != 0;
+            this.stargift_drop_original_details = (67108864 & int32) != 0;
+            this.phonegroup_message = TLObject.hasFlag(int32, 134217728);
             this.stargift_auction_bid = TLObject.hasFlag(this.flags, 268435456);
             this.offer = TLObject.hasFlag(this.flags, 536870912);
             this.id = inputSerializedData.readString(z);
@@ -2849,19 +2849,19 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
-            this.floodskip = (readInt32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & readInt32) != 0;
-            this.paid_message = (readInt32 & 524288) != 0;
-            this.premium_gift = (readInt32 & 1048576) != 0;
-            this.stargift_resale = (readInt32 & 4194304) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
+            this.floodskip = (int32 & 32768) != 0;
+            this.stargift_upgrade = (262144 & int32) != 0;
+            this.paid_message = (int32 & 524288) != 0;
+            this.premium_gift = (int32 & 1048576) != 0;
+            this.stargift_resale = (int32 & 4194304) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
@@ -3000,18 +3000,18 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
-            this.floodskip = (readInt32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & readInt32) != 0;
-            this.paid_message = (readInt32 & 524288) != 0;
-            this.premium_gift = (readInt32 & 1048576) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
+            this.floodskip = (int32 & 32768) != 0;
+            this.stargift_upgrade = (262144 & int32) != 0;
+            this.paid_message = (int32 & 524288) != 0;
+            this.premium_gift = (int32 & 1048576) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
@@ -3142,17 +3142,17 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
-            this.floodskip = (readInt32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & readInt32) != 0;
-            this.paid_message = (readInt32 & 524288) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
+            this.floodskip = (int32 & 32768) != 0;
+            this.stargift_upgrade = (262144 & int32) != 0;
+            this.paid_message = (int32 & 524288) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
@@ -3275,15 +3275,15 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
-            this.floodskip = (readInt32 & 32768) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
+            this.floodskip = (int32 & 32768) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -3388,14 +3388,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -3492,14 +3492,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -3590,14 +3590,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
-            this.reaction = (readInt32 & 2048) != 0;
-            this.subscription = (readInt32 & 4096) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
+            this.reaction = (int32 & 2048) != 0;
+            this.subscription = (int32 & 4096) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -3682,12 +3682,12 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.refund = (readInt32 & 8) != 0;
-            this.pending = (readInt32 & 16) != 0;
-            this.failed = (readInt32 & 64) != 0;
-            this.gift = (readInt32 & 1024) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.refund = (int32 & 8) != 0;
+            this.pending = (int32 & 16) != 0;
+            this.failed = (int32 & 64) != 0;
+            this.gift = (int32 & 1024) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
@@ -4053,12 +4053,12 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.canceled = (readInt32 & 1) != 0;
-            this.can_refulfill = (readInt32 & 2) != 0;
-            this.missing_balance = (readInt32 & 4) != 0;
-            this.bot_canceled = (readInt32 & 128) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.canceled = (int32 & 1) != 0;
+            this.can_refulfill = (int32 & 2) != 0;
+            this.missing_balance = (int32 & 4) != 0;
+            this.bot_canceled = (int32 & 128) != 0;
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
@@ -4113,11 +4113,11 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.canceled = (readInt32 & 1) != 0;
-            this.can_refulfill = (readInt32 & 2) != 0;
-            this.missing_balance = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.canceled = (int32 & 1) != 0;
+            this.can_refulfill = (int32 & 2) != 0;
+            this.missing_balance = (int32 & 4) != 0;
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
@@ -4152,11 +4152,11 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.canceled = (readInt32 & 1) != 0;
-            this.can_refulfill = (readInt32 & 2) != 0;
-            this.missing_balance = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.canceled = (int32 & 1) != 0;
+            this.can_refulfill = (int32 & 2) != 0;
+            this.missing_balance = (int32 & 4) != 0;
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
@@ -4509,9 +4509,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.sender_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.recipient_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -4541,9 +4541,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 this.sender_id = tL_peerUser;
                 tL_peerUser.user_id = inputSerializedData.readInt64(z);
@@ -4659,15 +4659,15 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            this.upgrade_separate = (131072 & readInt32) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            this.upgrade_separate = (131072 & int32) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -4781,15 +4781,15 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            this.upgrade_separate = (131072 & readInt32) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            this.upgrade_separate = (131072 & int32) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -4897,15 +4897,15 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            this.upgrade_separate = (131072 & readInt32) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            this.upgrade_separate = (131072 & int32) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -5007,14 +5007,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -5108,14 +5108,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -5203,14 +5203,14 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = (readInt32 & 1) != 0;
-            this.unsaved = (readInt32 & 32) != 0;
-            this.refunded = (readInt32 & 512) != 0;
-            this.can_upgrade = (readInt32 & 1024) != 0;
-            this.pinned_to_top = (readInt32 & 4096) != 0;
-            if ((readInt32 & 2) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = (int32 & 1) != 0;
+            this.unsaved = (int32 & 32) != 0;
+            this.refunded = (int32 & 512) != 0;
+            this.can_upgrade = (int32 & 1024) != 0;
+            this.pinned_to_top = (int32 & 4096) != 0;
+            if ((int32 & 2) != 0) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
@@ -5958,9 +5958,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.last_sale_on_fragment = TLObject.hasFlag(readInt32, 2);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.last_sale_on_fragment = TLObject.hasFlag(int32, 2);
             this.value_is_average = TLObject.hasFlag(this.flags, 64);
             this.currency = inputSerializedData.readString(z);
             this.value = inputSerializedData.readInt64(z);
@@ -6275,9 +6275,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.returned = TLObject.hasFlag(readInt32, 2);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.returned = TLObject.hasFlag(int32, 2);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.bid_amount = inputSerializedData.readInt64(z);
                 this.bid_date = inputSerializedData.readInt32(z);
@@ -6323,9 +6323,9 @@ public class TL_stars {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.name_hidden = TLObject.hasFlag(readInt32, 1);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.name_hidden = TLObject.hasFlag(int32, 1);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
             this.bid_amount = inputSerializedData.readInt64(z);

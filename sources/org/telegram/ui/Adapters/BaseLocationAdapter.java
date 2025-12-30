@@ -2,6 +2,7 @@ package org.telegram.ui.Adapters;
 
 import android.location.Location;
 import android.text.TextUtils;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
@@ -75,7 +76,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.this.lambda$searchDelayed$1(str, location);
+                this.f$0.lambda$searchDelayed$1(str, location);
             }
         };
         this.searchRunnable = runnable;
@@ -86,7 +87,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.this.lambda$searchDelayed$0(str, location);
+                this.f$0.lambda$searchDelayed$0(str, location);
             }
         });
     }
@@ -113,7 +114,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BaseLocationAdapter.this.lambda$searchBotUser$3(tLObject, tL_error);
+                this.f$0.lambda$searchBotUser$3(tLObject, tL_error);
             }
         });
     }
@@ -123,7 +124,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BaseLocationAdapter.this.lambda$searchBotUser$2(tLObject);
+                    this.f$0.lambda$searchBotUser$2(tLObject);
                 }
             });
         }
@@ -204,26 +205,32 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
                 if (!TextUtils.isEmpty(str) && (this.stories || this.biz)) {
                     this.searchingLocations = true;
                     final Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
-                    if (this.stories) {
-                        if (currentLocale.getLanguage().contains("en")) {
-                            locale = currentLocale;
-                            Utilities.globalQueue.postRunnable(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
-                                }
-                            });
-                        } else {
-                            locale2 = Locale.US;
-                        }
+                    if (!this.stories) {
+                        locale = locale2;
+                        Utilities.globalQueue.postRunnable(new Runnable() {
+                            @Override
+                            public final void run() throws IOException {
+                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                            }
+                        });
+                    } else if (currentLocale.getLanguage().contains("en")) {
+                        locale = currentLocale;
+                        Utilities.globalQueue.postRunnable(new Runnable() {
+                            @Override
+                            public final void run() throws IOException {
+                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                            }
+                        });
+                    } else {
+                        locale2 = Locale.US;
+                        locale = locale2;
+                        Utilities.globalQueue.postRunnable(new Runnable() {
+                            @Override
+                            public final void run() throws IOException {
+                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                            }
+                        });
                     }
-                    locale = locale2;
-                    Utilities.globalQueue.postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
-                        }
-                    });
                 } else {
                     this.searchingLocations = false;
                 }
@@ -233,7 +240,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
                 this.currentRequestNum = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        BaseLocationAdapter.this.lambda$searchPlacesWithQuery$7(str, tLObject, tL_error);
+                        this.f$0.lambda$searchPlacesWithQuery$7(str, tLObject, tL_error);
                     }
                 });
                 update(true);
@@ -241,7 +248,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public void lambda$searchPlacesWithQuery$5(java.util.Locale r30, java.lang.String r31, java.util.Locale r32, final android.location.Location r33, final java.lang.String r34) {
+    public void lambda$searchPlacesWithQuery$5(java.util.Locale r30, java.lang.String r31, java.util.Locale r32, final android.location.Location r33, final java.lang.String r34) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, java.util.Locale, android.location.Location, java.lang.String):void");
     }
 
@@ -263,7 +270,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.this.lambda$searchPlacesWithQuery$6(tL_error, str, tLObject);
+                this.f$0.lambda$searchPlacesWithQuery$6(tL_error, str, tLObject);
             }
         });
     }

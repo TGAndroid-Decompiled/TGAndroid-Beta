@@ -24,7 +24,7 @@ public class VoIPDebugToSend {
         this.currentAccount = i;
     }
 
-    public final class Data {
+    final class Data {
         long access_hash;
         long callId;
         String logPath;
@@ -51,22 +51,22 @@ public class VoIPDebugToSend {
     }
 
     public void done(long j, boolean z) {
-        final Data remove = this.pending.remove(Long.valueOf(j));
-        if (remove == null || !z) {
+        final Data dataRemove = this.pending.remove(Long.valueOf(j));
+        if (dataRemove == null || !z) {
             return;
         }
         final TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
         TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
         savecalldebug.debug = tL_dataJSON;
-        tL_dataJSON.data = remove.state.debugLog;
+        tL_dataJSON.data = dataRemove.state.debugLog;
         TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
         savecalldebug.peer = tL_inputPhoneCall;
-        tL_inputPhoneCall.access_hash = remove.access_hash;
-        tL_inputPhoneCall.id = remove.callId;
+        tL_inputPhoneCall.access_hash = dataRemove.access_hash;
+        tL_inputPhoneCall.id = dataRemove.callId;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPDebugToSend.this.lambda$done$3(remove, savecalldebug, tLObject, tL_error);
+                this.f$0.lambda$done$3(dataRemove, savecalldebug, tLObject, tL_error);
             }
         });
     }
@@ -82,7 +82,7 @@ public class VoIPDebugToSend {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPDebugToSend.this.lambda$done$2(data, file, savecalldebug);
+                this.f$0.lambda$done$2(data, file, savecalldebug);
             }
         });
     }
@@ -92,7 +92,7 @@ public class VoIPDebugToSend {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPDebugToSend.this.lambda$done$1(file, savecalldebug);
+                    this.f$0.lambda$done$1(file, savecalldebug);
                 }
             });
         }
@@ -102,7 +102,7 @@ public class VoIPDebugToSend {
         FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                VoIPDebugToSend.this.lambda$done$0(savecalldebug, (TLRPC.InputFile) obj);
+                this.f$0.lambda$done$0(savecalldebug, (TLRPC.InputFile) obj);
             }
         });
     }

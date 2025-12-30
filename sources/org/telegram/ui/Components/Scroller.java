@@ -121,12 +121,12 @@ public class Scroller {
         if (this.mFinished) {
             return false;
         }
-        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.mStartTime);
+        int iCurrentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.mStartTime);
         int i = this.mDuration;
-        if (currentAnimationTimeMillis < i) {
+        if (iCurrentAnimationTimeMillis < i) {
             int i2 = this.mMode;
             if (i2 == 0) {
-                float f = currentAnimationTimeMillis * this.mDurationReciprocal;
+                float f = iCurrentAnimationTimeMillis * this.mDurationReciprocal;
                 Interpolator interpolator = this.mInterpolator;
                 if (interpolator == null) {
                     interpolation = viscousFluid(f);
@@ -136,25 +136,25 @@ public class Scroller {
                 this.mCurrX = this.mStartX + Math.round(this.mDeltaX * interpolation);
                 this.mCurrY = this.mStartY + Math.round(interpolation * this.mDeltaY);
             } else if (i2 == 1) {
-                float f2 = currentAnimationTimeMillis / i;
+                float f2 = iCurrentAnimationTimeMillis / i;
                 int i3 = (int) (f2 * 100.0f);
                 float f3 = i3 / 100.0f;
                 int i4 = i3 + 1;
                 float[] fArr = SPLINE;
                 float f4 = fArr[i3];
                 float f5 = f4 + (((f2 - f3) / ((i4 / 100.0f) - f3)) * (fArr[i4] - f4));
-                int round = this.mStartX + Math.round((this.mFinalX - r0) * f5);
-                this.mCurrX = round;
-                int min = Math.min(round, this.mMaxX);
-                this.mCurrX = min;
-                this.mCurrX = Math.max(min, this.mMinX);
-                int round2 = this.mStartY + Math.round(f5 * (this.mFinalY - r0));
-                this.mCurrY = round2;
-                int min2 = Math.min(round2, this.mMaxY);
-                this.mCurrY = min2;
-                int max = Math.max(min2, this.mMinY);
-                this.mCurrY = max;
-                if (this.mCurrX == this.mFinalX && max == this.mFinalY) {
+                int iRound = this.mStartX + Math.round((this.mFinalX - r0) * f5);
+                this.mCurrX = iRound;
+                int iMin = Math.min(iRound, this.mMaxX);
+                this.mCurrX = iMin;
+                this.mCurrX = Math.max(iMin, this.mMinX);
+                int iRound2 = this.mStartY + Math.round(f5 * (this.mFinalY - r0));
+                this.mCurrY = iRound2;
+                int iMin2 = Math.min(iRound2, this.mMaxY);
+                this.mCurrY = iMin2;
+                int iMax = Math.max(iMin2, this.mMinY);
+                this.mCurrY = iMax;
+                if (this.mCurrX == this.mFinalX && iMax == this.mFinalY) {
                     this.mFinished = true;
                 }
             }
@@ -185,14 +185,14 @@ public class Scroller {
     }
 
     static float viscousFluid(float f) {
-        float exp;
+        float fExp;
         float f2 = f * sViscousFluidScale;
         if (f2 < 1.0f) {
-            exp = f2 - (1.0f - ((float) Math.exp(-f2)));
+            fExp = f2 - (1.0f - ((float) Math.exp(-f2)));
         } else {
-            exp = 0.36787945f + ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f);
+            fExp = 0.36787945f + ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f);
         }
-        return exp * sViscousFluidNormalize;
+        return fExp * sViscousFluidNormalize;
     }
 
     public void abortAnimation() {

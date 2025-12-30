@@ -474,32 +474,26 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean clipOutRect(float f, float f2, float f3, float f4) {
-        boolean clipOutRect;
-        if (Build.VERSION.SDK_INT < 26) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.canvas.clipOutRect(f, f2, f3, f4);
         }
-        clipOutRect = this.canvas.clipOutRect(f, f2, f3, f4);
-        return clipOutRect;
+        return false;
     }
 
     @Override
     public boolean clipOutRect(int i, int i2, int i3, int i4) {
-        boolean clipOutRect;
-        if (Build.VERSION.SDK_INT < 26) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.canvas.clipOutRect(i, i2, i3, i4);
         }
-        clipOutRect = this.canvas.clipOutRect(i, i2, i3, i4);
-        return clipOutRect;
+        return false;
     }
 
     @Override
     public boolean clipOutRect(RectF rectF) {
-        boolean clipOutRect;
-        if (Build.VERSION.SDK_INT < 26) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.canvas.clipOutRect(rectF);
         }
-        clipOutRect = this.canvas.clipOutRect(rectF);
-        return clipOutRect;
+        return false;
     }
 
     @Override
@@ -509,22 +503,18 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean clipOutPath(Path path) {
-        boolean clipOutPath;
-        if (Build.VERSION.SDK_INT < 26) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.canvas.clipOutPath(path);
         }
-        clipOutPath = this.canvas.clipOutPath(path);
-        return clipOutPath;
+        return false;
     }
 
     @Override
     public boolean clipOutRect(android.graphics.Rect rect) {
-        boolean clipOutRect;
-        if (Build.VERSION.SDK_INT < 26) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.canvas.clipOutRect(rect);
         }
-        clipOutRect = this.canvas.clipOutRect(rect);
-        return clipOutRect;
+        return false;
     }
 
     @Override
@@ -553,32 +543,26 @@ public class NoClipCanvas extends Canvas {
 
     @Override
     public boolean quickReject(float f, float f2, float f3, float f4) {
-        boolean quickReject;
-        if (this.disableReject || Build.VERSION.SDK_INT < 30) {
-            return false;
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
+            return this.canvas.quickReject(f, f2, f3, f4);
         }
-        quickReject = this.canvas.quickReject(f, f2, f3, f4);
-        return quickReject;
+        return false;
     }
 
     @Override
     public boolean quickReject(RectF rectF) {
-        boolean quickReject;
-        if (this.disableReject || Build.VERSION.SDK_INT < 30) {
-            return false;
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
+            return this.canvas.quickReject(rectF);
         }
-        quickReject = this.canvas.quickReject(rectF);
-        return quickReject;
+        return false;
     }
 
     @Override
     public boolean quickReject(Path path) {
-        boolean quickReject;
-        if (this.disableReject || Build.VERSION.SDK_INT < 30) {
-            return false;
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
+            return this.canvas.quickReject(path);
         }
-        quickReject = this.canvas.quickReject(path);
-        return quickReject;
+        return false;
     }
 
     @Override

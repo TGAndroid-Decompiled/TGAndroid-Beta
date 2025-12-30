@@ -42,7 +42,7 @@ public class StoryPrivacyButton extends View {
     public StoryPrivacyButton(Context context) {
         super(context);
         this.gradientMatrix = new Matrix();
-        this.backgroundPaint = r0;
+        this.backgroundPaint = new Paint[]{new Paint(1), new Paint(1)};
         this.crossfadeT = new AnimatedFloat(this, 0L, 260L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.icon = new Drawable[2];
         this.iconSize = new float[2];
@@ -50,7 +50,6 @@ public class StoryPrivacyButton extends View {
         this.arrowPaint = paint;
         this.arrowPath = new Path();
         this.bounce = new ButtonBounce(this, 0.6f, 5.0f);
-        Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -142,10 +141,10 @@ public class StoryPrivacyButton extends View {
         if (this.topColor == i && this.bottomColor == i2) {
             return;
         }
-        float dp = AndroidUtilities.dp(23.0f);
+        float fDp = AndroidUtilities.dp(23.0f);
         this.topColor = i;
         this.bottomColor = i2;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, fDp, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.gradientMatrix.reset();
         this.gradientMatrix.postTranslate(0.0f, AndroidUtilities.dp(8.0f));
         linearGradient.setLocalMatrix(this.gradientMatrix);
@@ -156,11 +155,11 @@ public class StoryPrivacyButton extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.draw) {
-            float dpf2 = this.drawArrow ? 0.0f : AndroidUtilities.dpf2(7.0f);
-            float dpf22 = this.drawArrow ? AndroidUtilities.dpf2(43.0f) : AndroidUtilities.dpf2(23.66f);
-            float dpf23 = AndroidUtilities.dpf2(23.66f);
+            float fDpf2 = this.drawArrow ? 0.0f : AndroidUtilities.dpf2(7.0f);
+            float fDpf22 = this.drawArrow ? AndroidUtilities.dpf2(43.0f) : AndroidUtilities.dpf2(23.66f);
+            float fDpf23 = AndroidUtilities.dpf2(23.66f);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(((getWidth() - dpf22) / 2.0f) + dpf2, (getHeight() - dpf23) / 2.0f, dpf2 + ((getWidth() + dpf22) / 2.0f), (getHeight() + dpf23) / 2.0f);
+            rectF.set(((getWidth() - fDpf22) / 2.0f) + fDpf2, (getHeight() - fDpf23) / 2.0f, fDpf2 + ((getWidth() + fDpf22) / 2.0f), (getHeight() + fDpf23) / 2.0f);
             float scale = this.bounce.getScale(0.075f);
             canvas.save();
             canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
@@ -173,23 +172,23 @@ public class StoryPrivacyButton extends View {
                 this.backgroundPaint[0].setAlpha((int) ((1.0f - f) * 255.0f));
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.backgroundPaint[0]);
             }
-            float abs = Math.abs(f - 0.5f) + 0.5f;
+            float fAbs = Math.abs(f - 0.5f) + 0.5f;
             if (this.icon[1] != null && f > 0.5f) {
-                float dpf24 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
+                float fDpf24 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
                 Drawable drawable = this.icon[1];
-                int i = (int) (dpf24 - ((this.iconSize[1] / 2.0f) * abs));
-                float centerY = rectF.centerY();
-                float f2 = (this.iconSize[1] / 2.0f) * abs;
-                drawable.setBounds(i, (int) (centerY - f2), (int) (dpf24 + f2), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * abs)));
+                int i = (int) (fDpf24 - ((this.iconSize[1] / 2.0f) * fAbs));
+                float fCenterY = rectF.centerY();
+                float f2 = (this.iconSize[1] / 2.0f) * fAbs;
+                drawable.setBounds(i, (int) (fCenterY - f2), (int) (fDpf24 + f2), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * fAbs)));
                 this.icon[1].draw(canvas);
             }
             if (this.icon[0] != null && f <= 0.5f) {
-                float dpf25 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
+                float fDpf25 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
                 Drawable drawable2 = this.icon[0];
-                int i2 = (int) (dpf25 - ((this.iconSize[0] / 2.0f) * abs));
-                float centerY2 = rectF.centerY();
-                float f3 = (this.iconSize[0] / 2.0f) * abs;
-                drawable2.setBounds(i2, (int) (centerY2 - f3), (int) (dpf25 + f3), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * abs)));
+                int i2 = (int) (fDpf25 - ((this.iconSize[0] / 2.0f) * fAbs));
+                float fCenterY2 = rectF.centerY();
+                float f3 = (this.iconSize[0] / 2.0f) * fAbs;
+                drawable2.setBounds(i2, (int) (fCenterY2 - f3), (int) (fDpf25 + f3), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * fAbs)));
                 this.icon[0].draw(canvas);
             }
             if (this.drawArrow) {

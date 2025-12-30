@@ -53,20 +53,20 @@ public class ButtonSpan extends ReplacementSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        float dpf2 = AndroidUtilities.dpf2(17.0f);
+        float fDpf2 = AndroidUtilities.dpf2(17.0f);
         float f2 = (i3 + i5) / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        float f3 = dpf2 / 2.0f;
+        float f3 = fDpf2 / 2.0f;
         rectF.set(f, f2 - f3, getSize() + f, f2 + f3);
         ButtonBounce buttonBounce = this.bounce;
         float scale = buttonBounce == null ? 1.0f : buttonBounce.getScale(0.025f);
         canvas.save();
         canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
         Integer num = this.forcedColor;
-        int intValue = num != null ? num.intValue() : Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
-        this.backgroundPaint.setColor(Theme.multAlpha(intValue, 0.15f));
+        int iIntValue = num != null ? num.intValue() : Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        this.backgroundPaint.setColor(Theme.multAlpha(iIntValue, 0.15f));
         canvas.drawRoundRect(rectF, f3, f3, this.backgroundPaint);
-        this.text.draw(canvas, f + AndroidUtilities.dp(7.0f), f2, intValue, 1.0f);
+        this.text.draw(canvas, f + AndroidUtilities.dp(7.0f), f2, iIntValue, 1.0f);
         canvas.restore();
     }
 
@@ -109,11 +109,11 @@ public class ButtonSpan extends ReplacementSpan {
         public boolean onTouchEvent(MotionEvent motionEvent) {
             ButtonSpan buttonSpan;
             int action = motionEvent.getAction();
-            ButtonSpan findSpan = findSpan(motionEvent.getX() - getPaddingLeft(), ((int) motionEvent.getY()) - getPaddingTop());
+            ButtonSpan buttonSpanFindSpan = findSpan(motionEvent.getX() - getPaddingLeft(), ((int) motionEvent.getY()) - getPaddingTop());
             if (action == 0) {
-                this.pressedSpan = findSpan;
-                if (findSpan != null) {
-                    findSpan.setPressed(this, true);
+                this.pressedSpan = buttonSpanFindSpan;
+                if (buttonSpanFindSpan != null) {
+                    buttonSpanFindSpan.setPressed(this, true);
                     return true;
                 }
             } else if (action == 1 || action == 3) {
@@ -125,7 +125,7 @@ public class ButtonSpan extends ReplacementSpan {
                     }
                 }
                 this.pressedSpan = null;
-            } else if (action == 2 && (buttonSpan = this.pressedSpan) != null && buttonSpan != findSpan) {
+            } else if (action == 2 && (buttonSpan = this.pressedSpan) != null && buttonSpan != buttonSpanFindSpan) {
                 buttonSpan.setPressed(this, false);
                 this.pressedSpan = null;
             }
@@ -133,7 +133,7 @@ public class ButtonSpan extends ReplacementSpan {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
         }
 

@@ -82,16 +82,16 @@ public abstract class FourierTransform {
             if (i6 >= this.octaves) {
                 return;
             }
-            float pow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, r5 - i6));
-            float pow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i6) - 1))) - pow) / this.avgPerOctave;
+            float fPow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, r5 - i6));
+            float fPow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i6) - 1))) - fPow) / this.avgPerOctave;
             int i7 = 0;
             while (true) {
                 int i8 = this.avgPerOctave;
                 if (i7 < i8) {
-                    float f4 = pow + pow2;
-                    this.averages[(i8 * i6) + i7] = calcAvg(pow, f4);
+                    float f4 = fPow + fPow2;
+                    this.averages[(i8 * i6) + i7] = calcAvg(fPow, f4);
                     i7++;
-                    pow = f4;
+                    fPow = f4;
                 }
             }
             i6++;
@@ -166,13 +166,13 @@ public abstract class FourierTransform {
     }
 
     public float calcAvg(float f, float f2) {
-        int freqToIndex = freqToIndex(f);
-        int freqToIndex2 = freqToIndex(f2);
+        int iFreqToIndex = freqToIndex(f);
+        int iFreqToIndex2 = freqToIndex(f2);
         float f3 = 0.0f;
-        for (int i = freqToIndex; i <= freqToIndex2; i++) {
+        for (int i = iFreqToIndex; i <= iFreqToIndex2; i++) {
             f3 += this.spectrum[i];
         }
-        return f3 / ((freqToIndex2 - freqToIndex) + 1);
+        return f3 / ((iFreqToIndex2 - iFreqToIndex) + 1);
     }
 
     public float[] getSpectrumReal() {
@@ -274,8 +274,8 @@ public abstract class FourierTransform {
 
         private void fft() {
             for (int i = 1; i < this.real.length; i *= 2) {
-                float cos = cos(i);
-                float sin = sin(i);
+                float fCos = cos(i);
+                float fSin = sin(i);
                 float f = 1.0f;
                 float f2 = 0.0f;
                 int i2 = 0;
@@ -297,8 +297,8 @@ public abstract class FourierTransform {
                             i3 += i * 2;
                         }
                     }
-                    float f7 = (f * cos) - (f2 * sin);
-                    f2 = (f2 * cos) + (f * sin);
+                    float f7 = (f * fCos) - (f2 * fSin);
+                    f2 = (f2 * fCos) + (f * fSin);
                     i2++;
                     f = f7;
                 }

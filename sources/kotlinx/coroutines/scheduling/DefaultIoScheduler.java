@@ -12,16 +12,9 @@ import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
 public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implements Executor {
     public static final DefaultIoScheduler INSTANCE = new DefaultIoScheduler();
 
-    private static final CoroutineDispatcher f0default;
+    private static final CoroutineDispatcher f0default = UnlimitedIoScheduler.INSTANCE.limitedParallelism(SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.io.parallelism", RangesKt.coerceAtLeast(64, SystemPropsKt.getAVAILABLE_PROCESSORS()), 0, 0, 12, (Object) null));
 
     private DefaultIoScheduler() {
-    }
-
-    static {
-        int systemProp$default;
-        UnlimitedIoScheduler unlimitedIoScheduler = UnlimitedIoScheduler.INSTANCE;
-        systemProp$default = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.io.parallelism", RangesKt.coerceAtLeast(64, SystemPropsKt.getAVAILABLE_PROCESSORS()), 0, 0, 12, (Object) null);
-        f0default = unlimitedIoScheduler.limitedParallelism(systemProp$default);
     }
 
     @Override

@@ -75,19 +75,19 @@ public class AnimatedArrowDrawable extends Drawable {
 
     private void checkAnimation() {
         if (this.animateToProgress != this.animProgress) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j = elapsedRealtime - this.lastUpdateTime;
-            this.lastUpdateTime = elapsedRealtime;
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            long j = jElapsedRealtime - this.lastUpdateTime;
+            this.lastUpdateTime = jElapsedRealtime;
             float f = this.animProgress;
             float f2 = this.animateToProgress;
             if (f < f2) {
-                float f3 = f + (((float) j) / 180.0f);
+                float f3 = f + (j / 180.0f);
                 this.animProgress = f3;
                 if (f3 > f2) {
                     this.animProgress = f2;
                 }
             } else {
-                float f4 = f - (((float) j) / 180.0f);
+                float f4 = f - (j / 180.0f);
                 this.animProgress = f4;
                 if (f4 < f2) {
                     this.animProgress = f2;

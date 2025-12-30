@@ -22,17 +22,13 @@ public abstract class AnimatorUtils {
     public static final Interpolator QUADRATIC_EASE_IN_OUT_INTERPOLATOR = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            float lambda$static$0;
-            lambda$static$0 = AnimatorUtils.lambda$static$0(f);
-            return lambda$static$0;
+            return AnimatorUtils.lambda$static$0(f);
         }
     };
     public static final Interpolator QUADRATIC_OUT_INTERPOLATOR = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            float lambda$static$1;
-            lambda$static$1 = AnimatorUtils.lambda$static$1(f);
-            return lambda$static$1;
+            return AnimatorUtils.lambda$static$1(f);
         }
     };
 

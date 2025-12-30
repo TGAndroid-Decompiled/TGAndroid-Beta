@@ -19,8 +19,8 @@ public abstract class DurationKt {
     public static final long toDuration(long j, DurationUnit unit) {
         Intrinsics.checkNotNullParameter(unit, "unit");
         DurationUnit durationUnit = DurationUnit.NANOSECONDS;
-        long convertDurationUnitOverflow = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(4611686018426999999L, durationUnit, unit);
-        if ((-convertDurationUnitOverflow) <= j && j <= convertDurationUnitOverflow) {
+        long jConvertDurationUnitOverflow = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(4611686018426999999L, durationUnit, unit);
+        if ((-jConvertDurationUnitOverflow) <= j && j <= jConvertDurationUnitOverflow) {
             return durationOfNanos(DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(j, unit, durationUnit));
         }
         return durationOfMillis(RangesKt.coerceIn(DurationUnitKt__DurationUnitJvmKt.convertDurationUnit(j, unit, DurationUnit.MILLISECONDS), -4611686018427387903L, 4611686018427387903L));

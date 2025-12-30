@@ -10,11 +10,11 @@ public class ThreadSafeHeap {
     private ThreadSafeHeapNode[] a;
 
     public final ThreadSafeHeapNode peek() {
-        ThreadSafeHeapNode firstImpl;
+        ThreadSafeHeapNode threadSafeHeapNodeFirstImpl;
         synchronized (this) {
-            firstImpl = firstImpl();
+            threadSafeHeapNodeFirstImpl = firstImpl();
         }
-        return firstImpl;
+        return threadSafeHeapNodeFirstImpl;
     }
 
     public final boolean remove(ThreadSafeHeapNode threadSafeHeapNode) {
@@ -31,11 +31,11 @@ public class ThreadSafeHeap {
     }
 
     public final ThreadSafeHeapNode removeFirstOrNull() {
-        ThreadSafeHeapNode removeAtImpl;
+        ThreadSafeHeapNode threadSafeHeapNodeRemoveAtImpl;
         synchronized (this) {
-            removeAtImpl = getSize() > 0 ? removeAtImpl(0) : null;
+            threadSafeHeapNodeRemoveAtImpl = getSize() > 0 ? removeAtImpl(0) : null;
         }
-        return removeAtImpl;
+        return threadSafeHeapNodeRemoveAtImpl;
     }
 
     public final int getSize() {
@@ -58,39 +58,16 @@ public class ThreadSafeHeap {
         return null;
     }
 
-    public final ThreadSafeHeapNode removeAtImpl(int i) {
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-        Intrinsics.checkNotNull(threadSafeHeapNodeArr);
-        setSize(getSize() - 1);
-        if (i < getSize()) {
-            swap(i, getSize());
-            int i2 = (i - 1) / 2;
-            if (i > 0) {
-                ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i];
-                Intrinsics.checkNotNull(threadSafeHeapNode);
-                ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i2];
-                Intrinsics.checkNotNull(threadSafeHeapNode2);
-                if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) < 0) {
-                    swap(i, i2);
-                    siftUpFrom(i2);
-                }
-            }
-            siftDownFrom(i);
-        }
-        ThreadSafeHeapNode threadSafeHeapNode3 = threadSafeHeapNodeArr[getSize()];
-        Intrinsics.checkNotNull(threadSafeHeapNode3);
-        threadSafeHeapNode3.setHeap(null);
-        threadSafeHeapNode3.setIndex(-1);
-        threadSafeHeapNodeArr[getSize()] = null;
-        return threadSafeHeapNode3;
+    public final kotlinx.coroutines.internal.ThreadSafeHeapNode removeAtImpl(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.ThreadSafeHeap.removeAtImpl(int):kotlinx.coroutines.internal.ThreadSafeHeapNode");
     }
 
     public final void addImpl(ThreadSafeHeapNode threadSafeHeapNode) {
         threadSafeHeapNode.setHeap(this);
-        ThreadSafeHeapNode[] realloc = realloc();
+        ThreadSafeHeapNode[] threadSafeHeapNodeArrRealloc = realloc();
         int size = getSize();
         setSize(size + 1);
-        realloc[size] = threadSafeHeapNode;
+        threadSafeHeapNodeArrRealloc[size] = threadSafeHeapNode;
         threadSafeHeapNode.setIndex(size);
         siftUpFrom(size);
     }
@@ -126,9 +103,9 @@ public class ThreadSafeHeap {
         if (getSize() < threadSafeHeapNodeArr.length) {
             return threadSafeHeapNodeArr;
         }
-        Object[] copyOf = Arrays.copyOf(threadSafeHeapNodeArr, getSize() * 2);
-        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr3 = (ThreadSafeHeapNode[]) copyOf;
+        Object[] objArrCopyOf = Arrays.copyOf(threadSafeHeapNodeArr, getSize() * 2);
+        Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+        ThreadSafeHeapNode[] threadSafeHeapNodeArr3 = (ThreadSafeHeapNode[]) objArrCopyOf;
         this.a = threadSafeHeapNodeArr3;
         return threadSafeHeapNodeArr3;
     }

@@ -5,8 +5,8 @@ import java.nio.ShortBuffer;
 public class DownMixAudioRemixer implements AudioRemixer {
     @Override
     public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
-        int min = Math.min(shortBuffer.remaining() / 2, shortBuffer2.remaining());
-        for (int i3 = 0; i3 < min; i3++) {
+        int iMin = Math.min(shortBuffer.remaining() / 2, shortBuffer2.remaining());
+        for (int i3 = 0; i3 < iMin; i3++) {
             shortBuffer2.put(mix(shortBuffer.get(), shortBuffer.get()));
         }
     }
@@ -18,8 +18,8 @@ public class DownMixAudioRemixer implements AudioRemixer {
 
     public static short mix(short s, short s2) {
         int i;
-        int i2 = s + 32768;
-        int i3 = s2 + 32768;
+        int i2 = s + Short.MIN_VALUE;
+        int i3 = s2 + Short.MIN_VALUE;
         if (i2 < 32768 || i3 < 32768) {
             i = (i2 * i3) / 32768;
         } else {

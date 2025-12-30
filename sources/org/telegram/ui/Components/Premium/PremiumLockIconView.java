@@ -98,11 +98,11 @@ public class PremiumLockIconView extends ImageView {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             Path path = this.path;
-            float width = rectF.width() / 2.0f;
-            float centerY = rectF.centerY();
-            float width2 = rectF.width() / 2.0f;
+            float fWidth = rectF.width() / 2.0f;
+            float fCenterY = rectF.centerY();
+            float fWidth2 = rectF.width() / 2.0f;
             Path.Direction direction = Path.Direction.CW;
-            path.addCircle(width, centerY, width2, direction);
+            path.addCircle(fWidth, fCenterY, fWidth2, direction);
             rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
             this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
             this.path.close();
@@ -146,6 +146,7 @@ public class PremiumLockIconView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int dominantColor;
         if (this.waitingImage) {
             ImageReceiver imageReceiver = this.imageReceiver;
             if (imageReceiver != null && imageReceiver.getBitmap() != null) {
@@ -153,14 +154,9 @@ public class PremiumLockIconView extends ImageView {
                 setColor(AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap()));
             } else {
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
-                if (animatedEmojiDrawable != null) {
-                    int dominantColor = AnimatedEmojiDrawable.getDominantColor(animatedEmojiDrawable);
-                    if (dominantColor != 0) {
-                        this.waitingImage = false;
-                        setColor(dominantColor);
-                    } else {
-                        invalidate();
-                    }
+                if (animatedEmojiDrawable != null && (dominantColor = AnimatedEmojiDrawable.getDominantColor(animatedEmojiDrawable)) != 0) {
+                    this.waitingImage = false;
+                    setColor(dominantColor);
                 } else {
                     invalidate();
                 }
@@ -258,11 +254,11 @@ public class PremiumLockIconView extends ImageView {
         if (fArr[2] > 0.7f) {
             fArr[2] = 0.7f;
         }
-        int HSVToColor = Color.HSVToColor(fArr);
+        int iHSVToColor = Color.HSVToColor(fArr);
         int i = Theme.key_windowBackgroundWhite;
-        int blendARGB = ColorUtils.blendARGB(HSVToColor, Theme.getColor(i, this.resourcesProvider), 0.5f);
-        int blendARGB2 = ColorUtils.blendARGB(HSVToColor, Theme.getColor(i, this.resourcesProvider), 0.4f);
-        if (this.shader != null && this.color1 == blendARGB2 && this.color2 == blendARGB) {
+        int iBlendARGB = ColorUtils.blendARGB(iHSVToColor, Theme.getColor(i, this.resourcesProvider), 0.5f);
+        int iBlendARGB2 = ColorUtils.blendARGB(iHSVToColor, Theme.getColor(i, this.resourcesProvider), 0.4f);
+        if (this.shader != null && this.color1 == iBlendARGB2 && this.color2 == iBlendARGB) {
             return;
         }
         if (this.wasDrawn) {
@@ -273,9 +269,9 @@ public class PremiumLockIconView extends ImageView {
         }
         this.paint = new Paint(1);
         float measuredHeight = getMeasuredHeight();
-        this.color1 = blendARGB2;
-        this.color2 = blendARGB;
-        LinearGradient linearGradient = new LinearGradient(0.0f, measuredHeight, 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
+        this.color1 = iBlendARGB2;
+        this.color2 = iBlendARGB;
+        LinearGradient linearGradient = new LinearGradient(0.0f, measuredHeight, 0.0f, 0.0f, new int[]{iBlendARGB2, iBlendARGB}, (float[]) null, Shader.TileMode.CLAMP);
         this.shader = linearGradient;
         this.paint.setShader(linearGradient);
         invalidate();

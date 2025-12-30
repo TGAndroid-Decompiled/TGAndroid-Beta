@@ -61,12 +61,12 @@ public class FeaturesPageView extends BaseListPageView {
                 View itemCell;
                 if (i == 0) {
                     FeaturesPageView featuresPageView = FeaturesPageView.this;
-                    itemCell = new HeaderView(featuresPageView.getContext());
+                    itemCell = featuresPageView.new HeaderView(featuresPageView.getContext());
                 } else if (i == 2) {
                     itemCell = new FixedHeightEmptyCell(FeaturesPageView.this.getContext(), 16);
                 } else {
                     FeaturesPageView featuresPageView2 = FeaturesPageView.this;
-                    itemCell = new ItemCell(featuresPageView2.getContext());
+                    itemCell = featuresPageView2.new ItemCell(featuresPageView2.getContext());
                 }
                 itemCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(itemCell);
@@ -97,7 +97,7 @@ public class FeaturesPageView extends BaseListPageView {
         return selectionAdapter;
     }
 
-    public class Item {
+    class Item {
         String description;
         int iconRes;
         int order;
@@ -156,13 +156,13 @@ public class FeaturesPageView extends BaseListPageView {
             if (i == 1) {
                 StarParticlesView starParticlesView = new StarParticlesView(context) {
                     @Override
-                    public void onMeasure(int i2, int i3) {
+                    protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, i3);
                         this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                     }
 
                     @Override
-                    public void configure() {
+                    protected void configure() {
                         StarParticlesView.Drawable drawable = this.drawable;
                         drawable.useGradient = true;
                         drawable.useBlur = false;
@@ -183,24 +183,24 @@ public class FeaturesPageView extends BaseListPageView {
                 addView(starParticlesView, LayoutHelper.createFrame(-1, 190, 55));
                 GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
                     @Override
-                    public void onAttachedToWindow() {
+                    protected void onAttachedToWindow() {
                         super.onAttachedToWindow();
                         setPaused(false);
                     }
 
                     @Override
-                    public void onDetachedFromWindow() {
+                    protected void onDetachedFromWindow() {
                         super.onDetachedFromWindow();
                         setPaused(true);
                     }
                 };
                 this.iconTextureView = gLIconTextureView;
                 gLIconTextureView.setStarParticlesView(this.starParticlesView);
-                Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmapCreateBitmap);
                 int i2 = Theme.key_premiumGradient2;
                 canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i2, FeaturesPageView.this.resourcesProvider), Theme.getColor(Theme.key_dialogBackground, FeaturesPageView.this.resourcesProvider), 0.5f));
-                this.iconTextureView.setBackgroundBitmap(createBitmap);
+                this.iconTextureView.setBackgroundBitmap(bitmapCreateBitmap);
                 GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
                 gLIconRenderer.colorKey1 = i2;
                 gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;

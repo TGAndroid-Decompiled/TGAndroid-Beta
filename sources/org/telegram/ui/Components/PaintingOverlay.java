@@ -75,11 +75,11 @@ public class PaintingOverlay extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        float f;
+        float measuredWidth;
         this.ignoreLayout = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         if (this.mediaEntityViews != null) {
-            int measuredWidth = getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i3 = 0; i3 < childCount; i3++) {
@@ -89,14 +89,14 @@ public class PaintingOverlay extends FrameLayout {
                     if (childAt instanceof EditTextOutline) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                         if (mediaEntity.customTextView) {
-                            f = (mediaEntity.width * getMeasuredWidth()) / mediaEntity.viewWidth;
+                            measuredWidth = (mediaEntity.width * getMeasuredWidth()) / mediaEntity.viewWidth;
                         } else {
-                            f = mediaEntity.scale * ((mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth);
+                            measuredWidth = mediaEntity.scale * ((mediaEntity.textViewWidth * measuredWidth2) / mediaEntity.viewWidth);
                         }
-                        childAt.setScaleX(f);
-                        childAt.setScaleY(f);
+                        childAt.setScaleX(measuredWidth);
+                        childAt.setScaleY(measuredWidth);
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * mediaEntity.width), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * mediaEntity.height), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth2 * mediaEntity.width), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * mediaEntity.height), 1073741824));
                     }
                 }
             }
@@ -114,36 +114,36 @@ public class PaintingOverlay extends FrameLayout {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int measuredWidth;
         int i5;
         int i6;
-        int i7;
         int measuredHeight;
         if (this.mediaEntityViews != null) {
-            int measuredWidth = getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth();
             int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
-            for (int i8 = 0; i8 < childCount; i8++) {
-                View childAt = getChildAt(i8);
+            for (int i7 = 0; i7 < childCount; i7++) {
+                View childAt = getChildAt(i7);
                 VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.mediaEntityViews.get(childAt);
                 if (mediaEntity != null) {
-                    int measuredWidth2 = childAt.getMeasuredWidth();
+                    int measuredWidth3 = childAt.getMeasuredWidth();
                     int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof EditTextOutline) {
                         if (mediaEntity.customTextView) {
-                            i5 = ((int) (measuredWidth * (mediaEntity.x + (mediaEntity.width / 2.0f)))) - (childAt.getMeasuredWidth() / 2);
-                            i7 = (int) (measuredHeight2 * (mediaEntity.y + (mediaEntity.height / 2.0f)));
+                            measuredWidth = ((int) (measuredWidth2 * (mediaEntity.x + (mediaEntity.width / 2.0f)))) - (childAt.getMeasuredWidth() / 2);
+                            i6 = (int) (measuredHeight2 * (mediaEntity.y + (mediaEntity.height / 2.0f)));
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         } else {
-                            i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
-                            i7 = (int) (measuredHeight2 * mediaEntity.textViewY);
+                            measuredWidth = ((int) (measuredWidth2 * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
+                            i6 = (int) (measuredHeight2 * mediaEntity.textViewY);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         }
-                        i6 = i7 - measuredHeight;
+                        i5 = i6 - measuredHeight;
                     } else {
-                        i5 = (int) (measuredWidth * mediaEntity.x);
-                        i6 = (int) (measuredHeight2 * mediaEntity.y);
+                        measuredWidth = (int) (measuredWidth2 * mediaEntity.x);
+                        i5 = (int) (measuredHeight2 * mediaEntity.y);
                     }
-                    childAt.layout(i5, i6, measuredWidth2 + i5, measuredHeight3 + i6);
+                    childAt.layout(measuredWidth, i5, measuredWidth3 + measuredWidth, measuredHeight3 + i5);
                 }
             }
         }
@@ -153,9 +153,9 @@ public class PaintingOverlay extends FrameLayout {
         this.paintBitmap = null;
         this.backgroundDrawable = null;
         setBackground(null);
-        HashMap hashMap = this.mediaEntityViews;
-        if (hashMap != null) {
-            hashMap.clear();
+        HashMap map = this.mediaEntityViews;
+        if (map != null) {
+            map.clear();
         }
         removeAllViews();
     }
@@ -343,12 +343,12 @@ public class PaintingOverlay extends FrameLayout {
     public Bitmap getThumb() {
         float measuredWidth = getMeasuredWidth();
         float measuredHeight = getMeasuredHeight();
-        float max = Math.max(measuredWidth / AndroidUtilities.dp(120.0f), measuredHeight / AndroidUtilities.dp(120.0f));
-        Bitmap createBitmap = Bitmap.createBitmap((int) (measuredWidth / max), (int) (measuredHeight / max), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        float f = 1.0f / max;
+        float fMax = Math.max(measuredWidth / AndroidUtilities.dp(120.0f), measuredHeight / AndroidUtilities.dp(120.0f));
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap((int) (measuredWidth / fMax), (int) (measuredHeight / fMax), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
+        float f = 1.0f / fMax;
         canvas.scale(f, f);
         draw(canvas);
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 }

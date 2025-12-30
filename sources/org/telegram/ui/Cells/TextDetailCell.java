@@ -53,7 +53,7 @@ public class TextDetailCell extends FrameLayout {
         spoilersTextView.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                TextDetailCell.this.lambda$new$0(clickableSpan);
+                this.f$0.lambda$new$0(clickableSpan);
             }
         });
         spoilersTextView.setTextSize(1, 16.0f);
@@ -85,7 +85,7 @@ public class TextDetailCell extends FrameLayout {
         linksTextView.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                TextDetailCell.this.lambda$new$1(clickableSpan);
+                this.f$0.lambda$new$1(clickableSpan);
             }
         });
         if (z2) {
@@ -119,7 +119,7 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                TextDetailCell.this.lambda$new$2(clickableSpan);
+                this.f$0.lambda$new$2(clickableSpan);
             }
         });
         boolean z3 = this.multiline;
@@ -195,11 +195,11 @@ public class TextDetailCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
         if (!this.multiline) {
             i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824);
         }
-        super.onMeasure(makeMeasureSpec, i2);
+        super.onMeasure(iMakeMeasureSpec, i2);
     }
 
     public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
@@ -235,11 +235,11 @@ public class TextDetailCell extends FrameLayout {
             this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), 0, Theme.getColor(Theme.key_listSelector, this.resourcesProvider)));
             this.imageView.setImportantForAccessibility(1);
         }
-        int dp = AndroidUtilities.dp(23.0f) + (drawable != null ? AndroidUtilities.dp(48.0f) : 0);
+        int iDp = AndroidUtilities.dp(23.0f) + (drawable != null ? AndroidUtilities.dp(48.0f) : 0);
         if (LocaleController.isRTL) {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = dp;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = iDp;
         } else {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = dp;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = iDp;
         }
         this.textView.requestLayout();
     }

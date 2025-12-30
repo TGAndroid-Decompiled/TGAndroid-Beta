@@ -111,9 +111,9 @@ public class DataUsage2Activity extends BaseFragment {
         PageAdapter pageAdapter = new PageAdapter();
         this.pageAdapter = pageAdapter;
         viewPagerFixed.setAdapter(pageAdapter);
-        ViewPagerFixed.TabsView createTabsView = this.pager.createTabsView(true, 8);
-        this.tabsView = createTabsView;
-        createTabsView.setBackgroundColor(getThemedColor(i));
+        ViewPagerFixed.TabsView tabsViewCreateTabsView = this.pager.createTabsView(true, 8);
+        this.tabsView = tabsViewCreateTabsView;
+        tabsViewCreateTabsView.setBackgroundColor(getThemedColor(i));
         frameLayout.addView(this.tabsView, LayoutHelper.createFrame(-1, 48, 55));
         frameLayout.addView(this.pager, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 48.0f, 0.0f, 0.0f));
         this.fragmentView = frameLayout;
@@ -137,7 +137,7 @@ public class DataUsage2Activity extends BaseFragment {
         @Override
         public View createView(int i) {
             DataUsage2Activity dataUsage2Activity = DataUsage2Activity.this;
-            return new ListView(dataUsage2Activity.getContext());
+            return dataUsage2Activity.new ListView(dataUsage2Activity.getContext());
         }
 
         @Override
@@ -165,7 +165,7 @@ public class DataUsage2Activity extends BaseFragment {
         }
     }
 
-    public class ListView extends RecyclerListView {
+    class ListView extends RecyclerListView {
         Adapter adapter;
         private boolean animateChart;
         private CacheChart chart;
@@ -203,7 +203,7 @@ public class DataUsage2Activity extends BaseFragment {
             setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    DataUsage2Activity.ListView.this.lambda$new$1(view, i);
+                    this.f$0.lambda$new$1(view, i);
                 }
             });
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -240,13 +240,13 @@ public class DataUsage2Activity extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString(R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i3) {
-                        DataUsage2Activity.ListView.this.lambda$new$0(alertDialog, i3);
+                        this.f$0.lambda$new$0(alertDialog, i3);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                AlertDialog create = builder.create();
-                DataUsage2Activity.this.showDialog(create);
-                TextView textView = (TextView) create.getButton(-1);
+                AlertDialog alertDialogCreate = builder.create();
+                DataUsage2Activity.this.showDialog(alertDialogCreate);
+                TextView textView = (TextView) alertDialogCreate.getButton(-1);
                 if (textView != null) {
                     textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 }
@@ -300,14 +300,12 @@ public class DataUsage2Activity extends BaseFragment {
                 Size size = new Size(i, bytesCount, getReceivedBytesCount(DataUsage2Activity.stats[i]), getSentBytesCount(DataUsage2Activity.stats[i]), getReceivedItemsCount(DataUsage2Activity.stats[i]), getSentItemsCount(DataUsage2Activity.stats[i]));
                 sizeArr2[i] = size;
                 sizeArr[i] = size;
-                this.tempSizes[i] = ((float) bytesCount) / ((float) this.totalSize);
+                this.tempSizes[i] = bytesCount / this.totalSize;
             }
             Arrays.sort(this.segments, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$setup$2;
-                    lambda$setup$2 = DataUsage2Activity.ListView.lambda$setup$2((DataUsage2Activity.ListView.Size) obj, (DataUsage2Activity.ListView.Size) obj2);
-                    return lambda$setup$2;
+                    return DataUsage2Activity.ListView.lambda$setup$2((DataUsage2Activity.ListView.Size) obj, (DataUsage2Activity.ListView.Size) obj2);
                 }
             });
             AndroidUtilities.roundPercents(this.tempSizes, this.tempPercents);
@@ -322,7 +320,7 @@ public class DataUsage2Activity extends BaseFragment {
             return i <= 0 ? String.format("<%d%%", 1) : String.format("%d%%", Integer.valueOf(i));
         }
 
-        public class Size extends CacheChart.SegmentSize {
+        class Size extends CacheChart.SegmentSize {
             int inCount;
             long inSize;
             int index;
@@ -341,23 +339,23 @@ public class DataUsage2Activity extends BaseFragment {
         }
 
         private void updateRows(boolean z) {
-            String formatString;
             String string;
+            String string2;
             int i;
             String str;
             int i2;
-            CharSequence concat;
+            CharSequence charSequenceConcat;
             this.oldItems.clear();
             this.oldItems.addAll(this.itemInners);
             this.itemInners.clear();
             this.itemInners.add(new ItemInner(0));
             long j = 0;
             if (this.totalSize > 0) {
-                formatString = LocaleController.formatString("YourNetworkUsageSince", R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
+                string = LocaleController.formatString("YourNetworkUsageSince", R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             } else {
-                formatString = LocaleController.formatString("NoNetworkUsageSince", R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
+                string = LocaleController.formatString("NoNetworkUsageSince", R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             }
-            this.itemInners.add(ItemInner.asSubtitle(formatString));
+            this.itemInners.add(ItemInner.asSubtitle(string));
             ArrayList arrayList = new ArrayList();
             int i3 = 0;
             while (true) {
@@ -373,45 +371,47 @@ public class DataUsage2Activity extends BaseFragment {
                     SpannableString spannableString = new SpannableString(formatPercent(this.tempPercents[i4]));
                     spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                     spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, spannableString.length(), 33);
-                    str = formatString;
-                    spannableString.setSpan(new CustomCharacterSpan(0.1d), 0, spannableString.length(), 33);
+                    str = string;
+                    spannableString.setSpan(DataUsage2Activity.this.new CustomCharacterSpan(0.1d), 0, spannableString.length(), 33);
                     int i5 = DataUsage2Activity.particles[i4];
                     int themedColor = getThemedColor(DataUsage2Activity.colors[i4]);
                     if (j2 == j) {
-                        concat = LocaleController.getString(DataUsage2Activity.titles[i4]);
+                        charSequenceConcat = LocaleController.getString(DataUsage2Activity.titles[i4]);
                         i2 = 1;
                     } else {
                         i2 = 1;
-                        concat = TextUtils.concat(LocaleController.getString(DataUsage2Activity.titles[i4]), "  ", spannableString);
+                        charSequenceConcat = TextUtils.concat(LocaleController.getString(DataUsage2Activity.titles[i4]), "  ", spannableString);
                     }
-                    arrayList.add(ItemInner.asCell(i3, i5, themedColor, concat, AndroidUtilities.formatFileSize(j2)));
+                    arrayList.add(ItemInner.asCell(i3, i5, themedColor, charSequenceConcat, AndroidUtilities.formatFileSize(j2)));
                 } else {
-                    str = formatString;
+                    str = string;
                     i2 = 1;
                 }
                 i3 += i2;
-                formatString = str;
+                string = str;
                 j = 0;
             }
-            String str2 = formatString;
+            String str2 = string;
             if (!arrayList.isEmpty()) {
                 SpannableString spannableString2 = new SpannableString("^");
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
+                Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
                 int i6 = Theme.key_windowBackgroundWhiteBlackText;
                 int themedColor2 = getThemedColor(i6);
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                mutate.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
-                mutate.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
-                spannableString2.setSpan(new ImageSpan(mutate, 2), 0, 1, 33);
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
+                drawableMutate.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
+                spannableString2.setSpan(new ImageSpan(drawableMutate, 2), 0, 1, 33);
                 SpannableString spannableString3 = new SpannableString("v");
-                Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_mini_download).mutate();
-                mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i6), mode));
-                mutate2.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
-                spannableString3.setSpan(new ImageSpan(mutate2, 2), 0, 1, 33);
+                Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.msg_mini_download).mutate();
+                drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i6), mode));
+                drawableMutate2.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
+                spannableString3.setSpan(new ImageSpan(drawableMutate2, 2), 0, 1, 33);
                 int i7 = 0;
                 while (i7 < arrayList.size()) {
                     int i8 = ((ItemInner) arrayList.get(i7)).index;
-                    if (i8 >= 0 && !this.collapsed[i8]) {
+                    if (i8 < 0 || this.collapsed[i8]) {
+                        i = 1;
+                    } else {
                         Size size2 = this.segments[i8];
                         if (DataUsage2Activity.stats[size2.index] == 0) {
                             if (size2.outSize > 0 || size2.outCount > 0) {
@@ -443,10 +443,9 @@ public class DataUsage2Activity extends BaseFragment {
                             } else {
                                 i = 1;
                             }
-                            i7 += i;
                         }
+                        i = 1;
                     }
-                    i = 1;
                     i7 += i;
                 }
                 this.itemInners.addAll(arrayList);
@@ -469,13 +468,13 @@ public class DataUsage2Activity extends BaseFragment {
                 this.itemInners.add(ItemInner.asCell(-2, R.drawable.msg_download_settings, getThemedColor(Theme.key_statisticChartLine_lightblue), LocaleController.getString(R.string.AutomaticDownloadSettings), null));
                 int i9 = this.currentType;
                 if (i9 == 1) {
-                    string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoMobile);
+                    string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoMobile);
                 } else if (i9 == 3) {
-                    string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoRoaming);
+                    string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoRoaming);
                 } else {
-                    string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoWiFi);
+                    string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoWiFi);
                 }
-                this.itemInners.add(ItemInner.asSeparator(string));
+                this.itemInners.add(ItemInner.asSeparator(string2));
             }
             if (!arrayList.isEmpty()) {
                 this.itemInners.add(new ItemInner(5, LocaleController.getString(R.string.ResetStatistics)));
@@ -491,7 +490,7 @@ public class DataUsage2Activity extends BaseFragment {
             }
         }
 
-        public class Adapter extends AdapterWithDiffUtils {
+        class Adapter extends AdapterWithDiffUtils {
             private Adapter() {
             }
 
@@ -550,9 +549,7 @@ public class DataUsage2Activity extends BaseFragment {
                             ListView.this.highlightRow(new RecyclerListView.IntReturnCallback() {
                                 @Override
                                 public final int run() {
-                                    int lambda$onSectionDown$0;
-                                    lambda$onSectionDown$0 = DataUsage2Activity.ListView.Adapter.AnonymousClass1.lambda$onSectionDown$0(i2);
-                                    return lambda$onSectionDown$0;
+                                    return DataUsage2Activity.ListView.Adapter.AnonymousClass1.lambda$onSectionDown$0(i2);
                                 }
                             }, 0);
                             return;
@@ -567,29 +564,29 @@ public class DataUsage2Activity extends BaseFragment {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
+                View subtitleCell;
                 if (i == 0) {
                     ListView.this.chart = new AnonymousClass1(ListView.this.getContext(), DataUsage2Activity.colors.length, DataUsage2Activity.colors, 1, DataUsage2Activity.particles);
                     ListView.this.chart.setInterceptTouch(false);
-                    view = ListView.this.chart;
+                    subtitleCell = ListView.this.chart;
                 } else if (i == 1) {
                     ListView listView = ListView.this;
-                    view = new SubtitleCell(listView.getContext());
+                    subtitleCell = DataUsage2Activity.this.new SubtitleCell(listView.getContext());
                 } else if (i == 3) {
-                    view = new TextInfoPrivacyCell(ListView.this.getContext());
+                    subtitleCell = new TextInfoPrivacyCell(ListView.this.getContext());
                 } else if (i == 4) {
                     View headerCell = new HeaderCell(ListView.this.getContext());
                     headerCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    view = headerCell;
+                    subtitleCell = headerCell;
                 } else if (i == 5) {
                     TextCell textCell = new TextCell(ListView.this.getContext());
                     textCell.setTextColor(ListView.this.getThemedColor(Theme.key_text_RedRegular));
                     textCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    view = textCell;
+                    subtitleCell = textCell;
                 } else if (i == 6) {
-                    view = new RoundingCell(ListView.this.getContext());
+                    subtitleCell = new RoundingCell(ListView.this.getContext());
                 } else if (i == 7) {
-                    view = new View(ListView.this.getContext()) {
+                    subtitleCell = new View(ListView.this.getContext()) {
                         {
                             setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
                         }
@@ -601,9 +598,9 @@ public class DataUsage2Activity extends BaseFragment {
                     };
                 } else {
                     ListView listView2 = ListView.this;
-                    view = new Cell(listView2.getContext());
+                    subtitleCell = DataUsage2Activity.this.new Cell(listView2.getContext());
                 }
-                return new RecyclerListView.Holder(view);
+                return new RecyclerListView.Holder(subtitleCell);
             }
 
             @Override
@@ -621,7 +618,7 @@ public class DataUsage2Activity extends BaseFragment {
                     ListView.this.animateChart = false;
                     return;
                 }
-                Boolean bool = null;
+                Boolean boolValueOf = null;
                 if (itemViewType == 1) {
                     SubtitleCell subtitleCell = (SubtitleCell) viewHolder.itemView;
                     subtitleCell.setText(itemInner.text);
@@ -639,9 +636,9 @@ public class DataUsage2Activity extends BaseFragment {
                     int i5 = i + 1;
                     cell.set(itemInner.imageColor, itemInner.imageResId, itemInner.text, itemInner.valueText, i5 < getItemCount() && ((ItemInner) ListView.this.itemInners.get(i5)).viewType == itemViewType);
                     if (!itemInner.pad && (i2 = itemInner.index) >= 0 && (i2 >= ListView.this.segments.length || ListView.this.segments[itemInner.index].size > 0)) {
-                        bool = Boolean.valueOf(ListView.this.collapsed[itemInner.index]);
+                        boolValueOf = Boolean.valueOf(ListView.this.collapsed[itemInner.index]);
                     }
-                    cell.setArrow(bool);
+                    cell.setArrow(boolValueOf);
                     return;
                 }
                 if (itemViewType != 3) {
@@ -738,12 +735,12 @@ public class DataUsage2Activity extends BaseFragment {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
         }
     }
 
-    public static class ItemInner extends AdapterWithDiffUtils.Item {
+    private static class ItemInner extends AdapterWithDiffUtils.Item {
         public int imageColor;
         public int imageResId;
         public int index;
@@ -849,16 +846,16 @@ public class DataUsage2Activity extends BaseFragment {
             this.path.rewind();
             this.top = z;
             if (z) {
-                float dp = AndroidUtilities.dp(14.0f);
+                float fDp = AndroidUtilities.dp(14.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, AndroidUtilities.dp(4.0f), getMeasuredWidth(), AndroidUtilities.dp(4.0f) + (getMeasuredHeight() * 2));
-                this.path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+                this.path.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
                 return;
             }
-            float dp2 = AndroidUtilities.dp(8.0f);
+            float fDp2 = AndroidUtilities.dp(8.0f);
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(0.0f, ((-getMeasuredHeight()) * 2) - AndroidUtilities.dp(4.0f), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(4.0f));
-            this.path.addRoundRect(rectF2, dp2, dp2, Path.Direction.CW);
+            this.path.addRoundRect(rectF2, fDp2, fDp2, Path.Direction.CW);
         }
 
         @Override
@@ -880,7 +877,7 @@ public class DataUsage2Activity extends BaseFragment {
         }
     }
 
-    public class Cell extends FrameLayout {
+    class Cell extends FrameLayout {
         ImageView arrowView;
         boolean divider;
         ImageView imageView;

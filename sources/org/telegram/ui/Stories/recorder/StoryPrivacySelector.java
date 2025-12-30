@@ -19,51 +19,51 @@ import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public abstract class StoryPrivacySelector extends View {
     private static StoryPrivacyBottomSheet.StoryPrivacy read(AbstractSerializedData abstractSerializedData) {
-        int readInt32 = abstractSerializedData.readInt32(true);
+        int int32 = abstractSerializedData.readInt32(true);
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy");
         }
-        int readInt322 = abstractSerializedData.readInt32(true);
-        ArrayList arrayList = new ArrayList(readInt322);
-        for (int i = 0; i < readInt322; i++) {
+        int int322 = abstractSerializedData.readInt32(true);
+        ArrayList arrayList = new ArrayList(int322);
+        for (int i = 0; i < int322; i++) {
             arrayList.add(TLRPC.InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(true), true));
         }
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (2)");
         }
-        int readInt323 = abstractSerializedData.readInt32(true);
-        ArrayList arrayList2 = new ArrayList(readInt323);
-        for (int i2 = 0; i2 < readInt323; i2++) {
+        int int323 = abstractSerializedData.readInt32(true);
+        ArrayList arrayList2 = new ArrayList(int323);
+        for (int i2 = 0; i2 < int323; i2++) {
             arrayList2.add(Long.valueOf(abstractSerializedData.readInt64(true)));
         }
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (3)");
         }
-        int readInt324 = abstractSerializedData.readInt32(true);
-        HashMap hashMap = new HashMap();
-        for (int i3 = 0; i3 < readInt324; i3++) {
-            long readInt64 = abstractSerializedData.readInt64(true);
+        int int324 = abstractSerializedData.readInt32(true);
+        HashMap map = new HashMap();
+        for (int i3 = 0; i3 < int324; i3++) {
+            long int64 = abstractSerializedData.readInt64(true);
             if (abstractSerializedData.readInt32(true) != 481674261) {
                 throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (4)");
             }
-            int readInt325 = abstractSerializedData.readInt32(true);
-            ArrayList arrayList3 = new ArrayList(readInt325);
-            for (int i4 = 0; i4 < readInt325; i4++) {
+            int int325 = abstractSerializedData.readInt32(true);
+            ArrayList arrayList3 = new ArrayList(int325);
+            for (int i4 = 0; i4 < int325; i4++) {
                 arrayList3.add(Long.valueOf(abstractSerializedData.readInt64(true)));
             }
-            hashMap.put(Long.valueOf(readInt64), arrayList3);
+            map.put(Long.valueOf(int64), arrayList3);
         }
         HashSet hashSet = new HashSet();
         hashSet.addAll(arrayList2);
-        Iterator it = hashMap.values().iterator();
+        Iterator it = map.values().iterator();
         while (it.hasNext()) {
             hashSet.addAll((ArrayList) it.next());
         }
-        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(readInt32, arrayList, 0);
+        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(int32, arrayList, 0);
         storyPrivacy.selectedUserIds.clear();
         storyPrivacy.selectedUserIds.addAll(arrayList2);
         storyPrivacy.selectedUserIdsByGroup.clear();
-        storyPrivacy.selectedUserIdsByGroup.putAll(hashMap);
+        storyPrivacy.selectedUserIdsByGroup.putAll(map);
         return storyPrivacy;
     }
 
@@ -115,14 +115,14 @@ public abstract class StoryPrivacySelector extends View {
                 return new StoryPrivacyBottomSheet.StoryPrivacy();
             }
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            StoryPrivacyBottomSheet.StoryPrivacy read = read(serializedData);
+            StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = read(serializedData);
             serializedData.cleanup();
-            if (read.isNone()) {
+            if (storyPrivacy.isNone()) {
                 return new StoryPrivacyBottomSheet.StoryPrivacy();
             }
             final HashSet hashSet = new HashSet();
-            hashSet.addAll(read.selectedUserIds);
-            Iterator it = read.selectedUserIdsByGroup.values().iterator();
+            hashSet.addAll(storyPrivacy.selectedUserIds);
+            Iterator it = storyPrivacy.selectedUserIdsByGroup.values().iterator();
             while (it.hasNext()) {
                 hashSet.addAll((ArrayList) it.next());
             }
@@ -130,19 +130,19 @@ public abstract class StoryPrivacySelector extends View {
                 final MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
                 messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() {
-                        StoryPrivacySelector.lambda$getSaved$5(MessagesStorage.this, hashSet, i);
+                    public final void run() throws InterruptedException {
+                        StoryPrivacySelector.lambda$getSaved$5(messagesStorage, hashSet, i);
                     }
                 });
             }
-            return read;
+            return storyPrivacy;
         } catch (Exception e) {
             FileLog.e(e);
             return new StoryPrivacyBottomSheet.StoryPrivacy();
         }
     }
 
-    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
+    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) throws InterruptedException {
         final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

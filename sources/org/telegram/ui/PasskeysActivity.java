@@ -1,6 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -67,12 +68,12 @@ public class PasskeysActivity extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                PasskeysActivity.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -87,7 +88,7 @@ public class PasskeysActivity extends BaseFragment {
             arrayList.add(PasskeyCell.Factory.of((TL_account.Passkey) this.passkeys.get(i), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PasskeysActivity.this.openMenu(view);
+                    this.f$0.openMenu(view);
                 }
             }));
         }
@@ -97,7 +98,7 @@ public class PasskeysActivity extends BaseFragment {
         arrayList.add(UItem.asShadow(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new Runnable() {
             @Override
             public final void run() {
-                PasskeysActivity.this.lambda$fillItems$0();
+                this.f$0.lambda$fillItems$0();
             }
         }), true)));
     }
@@ -108,11 +109,11 @@ public class PasskeysActivity extends BaseFragment {
 
     public void openMenu(View view) {
         boolean z = view instanceof ImageView;
-        ViewParent viewParent = view;
+        ViewParent parent = view;
         if (z) {
-            viewParent = view.getParent();
+            parent = view.getParent();
         }
-        PasskeyCell passkeyCell = (PasskeyCell) viewParent;
+        PasskeyCell passkeyCell = (PasskeyCell) parent;
         final String str = passkeyCell.id;
         final int i = 0;
         while (true) {
@@ -132,7 +133,7 @@ public class PasskeysActivity extends BaseFragment {
         ItemOptions.makeOptions(this, passkeyCell).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
             @Override
             public final void run() {
-                PasskeysActivity.this.lambda$openMenu$3(passkey, str, i);
+                this.f$0.lambda$openMenu$3(passkey, str, i);
             }
         }).show();
     }
@@ -141,7 +142,7 @@ public class PasskeysActivity extends BaseFragment {
         new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.PasskeyDeleteTitle)).setMessage(LocaleController.getString(R.string.PasskeyDeleteText)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                PasskeysActivity.this.lambda$openMenu$2(passkey, str, i, alertDialog, i2);
+                this.f$0.lambda$openMenu$2(passkey, str, i, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -154,7 +155,7 @@ public class PasskeysActivity extends BaseFragment {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(deletepasskey, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysActivity.this.lambda$openMenu$1(i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$openMenu$1(i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -180,7 +181,7 @@ public class PasskeysActivity extends BaseFragment {
             PasskeysController.create(getContext(), this.currentAccount, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PasskeysActivity.this.lambda$onItemClick$4((TL_account.Passkey) obj, (String) obj2);
+                    this.f$0.lambda$onItemClick$4((TL_account.Passkey) obj, (String) obj2);
                 }
             });
         } else if (uItem.object != null) {
@@ -189,16 +190,21 @@ public class PasskeysActivity extends BaseFragment {
     }
 
     public void lambda$onItemClick$4(TL_account.Passkey passkey, String str) {
-        if (str != null) {
-            if ("CANCELLED".equalsIgnoreCase(str) || "EMPTY".equalsIgnoreCase(str)) {
+        if (str == null) {
+            if (passkey != null) {
+                MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "SETUP_PASSKEY");
+                added(passkey);
                 return;
             }
-            BulletinFactory.of(this).showForError(str, true);
             return;
         }
-        if (passkey != null) {
-            MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "SETUP_PASSKEY");
-            added(passkey);
+        if ("CANCELLED".equalsIgnoreCase(str)) {
+            return;
+        }
+        if ("EMPTY".equalsIgnoreCase(str)) {
+            new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.PasskeyNoOptionsTitle)).setMessage(LocaleController.getString(R.string.PasskeyNoOptionsText)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+        } else {
+            BulletinFactory.of(this).showForError(str, true);
         }
     }
 
@@ -234,22 +240,22 @@ public class PasskeysActivity extends BaseFragment {
             this.imageView = backupImageView;
             backupImageView.setImageResource(R.drawable.msg2_permissions);
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            int multAlpha = Theme.multAlpha(Theme.getColor(i2, resourcesProvider), 0.3f);
+            int iMultAlpha = Theme.multAlpha(Theme.getColor(i2, resourcesProvider), 0.3f);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            backupImageView.setColorFilter(new PorterDuffColorFilter(multAlpha, mode));
+            backupImageView.setColorFilter(new PorterDuffColorFilter(iMultAlpha, mode));
             frameLayout.addView(backupImageView, LayoutHelper.createFrame(36, 36, 17));
-            TextView makeTextView = TextHelper.makeTextView(context, 15.0f, i2, true);
-            this.titleView = makeTextView;
-            makeTextView.setSingleLine();
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 15.0f, i2, true);
+            this.titleView = textViewMakeTextView;
+            textViewMakeTextView.setSingleLine();
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            makeTextView.setEllipsize(truncateAt);
-            addView(makeTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
+            textViewMakeTextView.setEllipsize(truncateAt);
+            addView(textViewMakeTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
             int i3 = Theme.key_windowBackgroundWhiteGrayText;
-            TextView makeTextView2 = TextHelper.makeTextView(context, 13.0f, i3, false);
-            this.subtitleView = makeTextView2;
-            makeTextView2.setSingleLine();
-            makeTextView2.setEllipsize(truncateAt);
-            addView(makeTextView2, LayoutHelper.createFrame(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 13.0f, i3, false);
+            this.subtitleView = textViewMakeTextView2;
+            textViewMakeTextView2.setSingleLine();
+            textViewMakeTextView2.setEllipsize(truncateAt);
+            addView(textViewMakeTextView2, LayoutHelper.createFrame(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.optionsView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -270,9 +276,9 @@ public class PasskeysActivity extends BaseFragment {
                 this.imageView.setScaleY(1.0f);
             } else {
                 FrameLayout frameLayout = this.imageBackgroundView;
-                int dp = AndroidUtilities.dp(4.0f);
+                int iDp = AndroidUtilities.dp(4.0f);
                 int i = Theme.key_windowBackgroundWhiteBlackText;
-                frameLayout.setBackground(Theme.createRoundRectDrawable(dp, Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.04f)));
+                frameLayout.setBackground(Theme.createRoundRectDrawable(iDp, Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.04f)));
                 this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.3f), PorterDuff.Mode.SRC_IN));
                 this.imageView.setImageResource(R.drawable.msg2_permissions);
                 this.imageView.setScaleX(0.666f);
@@ -328,10 +334,10 @@ public class PasskeysActivity extends BaseFragment {
             }
 
             public static UItem of(TL_account.Passkey passkey, View.OnClickListener onClickListener) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = passkey;
-                ofFactory.clickCallback = onClickListener;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = passkey;
+                uItemOfFactory.clickCallback = onClickListener;
+                return uItemOfFactory;
             }
         }
     }
@@ -347,14 +353,14 @@ public class PasskeysActivity extends BaseFragment {
         rLottieImageView.playAnimation();
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(115, 115, 17, 0, 0, 0, 9));
         int i2 = Theme.key_dialogTextBlack;
-        TextView makeTextView = TextHelper.makeTextView(context, 18.0f, i2, true, resourcesProvider);
-        makeTextView.setGravity(17);
-        makeTextView.setText(LocaleController.getString(R.string.PasskeyFeatureTitle));
-        linearLayout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 32.0f, 0.0f, 32.0f, 6.0f));
-        TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i2, false, resourcesProvider);
-        makeTextView2.setGravity(17);
-        makeTextView2.setText(LocaleController.getString(R.string.PasskeyFeatureSubtitle));
-        linearLayout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 32.0f, 0.0f, 32.0f, 24.0f));
+        TextView textViewMakeTextView = TextHelper.makeTextView(context, 18.0f, i2, true, resourcesProvider);
+        textViewMakeTextView.setGravity(17);
+        textViewMakeTextView.setText(LocaleController.getString(R.string.PasskeyFeatureTitle));
+        linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 32.0f, 0.0f, 32.0f, 6.0f));
+        TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i2, false, resourcesProvider);
+        textViewMakeTextView2.setGravity(17);
+        textViewMakeTextView2.setText(LocaleController.getString(R.string.PasskeyFeatureSubtitle));
+        linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 32.0f, 0.0f, 32.0f, 24.0f));
         ExplainStarsSheet.FeatureCell featureCell = new ExplainStarsSheet.FeatureCell(context, 1, resourcesProvider);
         featureCell.set(R.drawable.msg2_permissions, LocaleController.getString(R.string.PasskeyFeature1Title), LocaleController.getString(R.string.PasskeyFeature1Subtitle));
         linearLayout.addView(featureCell, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 8.0f));
@@ -364,23 +370,23 @@ public class PasskeysActivity extends BaseFragment {
         ExplainStarsSheet.FeatureCell featureCell3 = new ExplainStarsSheet.FeatureCell(context, 1, resourcesProvider);
         featureCell3.set(R.drawable.menu_privacy, LocaleController.getString(R.string.PasskeyFeature3Title), LocaleController.getString(R.string.PasskeyFeature3Subtitle));
         linearLayout.addView(featureCell3, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 8.0f));
-        final BottomSheet create = builder.create();
+        final BottomSheet bottomSheetCreate = builder.create();
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.PasskeyFeatureButton), false);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasskeysActivity.lambda$showLearnSheet$8(ButtonWithCounterView.this, context, i, create, view);
+                PasskeysActivity.lambda$showLearnSheet$9(buttonWithCounterView, context, i, bottomSheetCreate, view);
             }
         });
         if (z) {
             linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 16.0f, 0.0f, 8.0f));
         }
-        create.fixNavigationBar();
-        create.show();
+        bottomSheetCreate.fixNavigationBar();
+        bottomSheetCreate.show();
     }
 
-    public static void lambda$showLearnSheet$8(final ButtonWithCounterView buttonWithCounterView, Context context, final int i, final BottomSheet bottomSheet, View view) {
+    public static void lambda$showLearnSheet$9(final ButtonWithCounterView buttonWithCounterView, final Context context, final int i, final BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -388,15 +394,27 @@ public class PasskeysActivity extends BaseFragment {
         PasskeysController.create(context, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysActivity.lambda$showLearnSheet$7(ButtonWithCounterView.this, bottomSheet, i, (TL_account.Passkey) obj, (String) obj2);
+                PasskeysActivity.lambda$showLearnSheet$8(buttonWithCounterView, context, bottomSheet, i, (TL_account.Passkey) obj, (String) obj2);
             }
         });
     }
 
-    public static void lambda$showLearnSheet$7(ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, int i, final TL_account.Passkey passkey, final String str) {
-        BaseFragment safeLastFragment;
+    public static void lambda$showLearnSheet$8(ButtonWithCounterView buttonWithCounterView, Context context, final BottomSheet bottomSheet, int i, final TL_account.Passkey passkey, final String str) {
         buttonWithCounterView.setLoading(false);
-        if ("CANCELLED".equalsIgnoreCase(str) || "EMPTY".equalsIgnoreCase(str) || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
+        if ("CANCELLED".equalsIgnoreCase(str)) {
+            return;
+        }
+        if ("EMPTY".equalsIgnoreCase(str)) {
+            new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.PasskeyNoOptionsTitle)).setMessage(LocaleController.getString(R.string.PasskeyNoOptionsText)).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    bottomSheet.lambda$new$0();
+                }
+            }).show();
+            return;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
             return;
         }
         if (str != null) {
@@ -425,13 +443,13 @@ public class PasskeysActivity extends BaseFragment {
             ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.getPasskeys(), new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PasskeysActivity.lambda$showLearnSheet$6(BottomSheet.this, passkey, str, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
+                    PasskeysActivity.lambda$showLearnSheet$7(bottomSheet, passkey, str, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void lambda$showLearnSheet$6(BottomSheet bottomSheet, final TL_account.Passkey passkey, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
+    public static void lambda$showLearnSheet$7(BottomSheet bottomSheet, final TL_account.Passkey passkey, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
         if (passkeys == null) {
             if (tL_error != null) {
                 BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(str);
@@ -457,7 +475,7 @@ public class PasskeysActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PasskeysActivity.this.added(passkey);
+                this.f$0.added(passkey);
             }
         }, 150L);
     }

@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.security.keystore.KeyGenParameterSpec;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
@@ -19,7 +18,14 @@ import j$.util.stream.Collectors;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,10 +36,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -108,11 +118,11 @@ public class BotStorage {
     private File getFile(String str) {
         File dir = getDir();
         StringBuilder sb = new StringBuilder();
-        Object obj = str;
+        Object objValueOf = str;
         if (!this.secured) {
-            obj = Long.valueOf(this.user_id);
+            objValueOf = Long.valueOf(this.user_id);
         }
-        sb.append(obj);
+        sb.append(objValueOf);
         sb.append("_");
         sb.append(this.bot_id);
         sb.append(this.secured ? "_s" : "");
@@ -133,10 +143,10 @@ public class BotStorage {
         return file;
     }
 
-    public File getFile() {
+    public File getFile() throws JSONException {
         if (this.secured && TextUtils.isEmpty(this.storage_id)) {
-            HashMap readConfig = readConfig();
-            Iterator it = readConfig.entrySet().iterator();
+            HashMap config = readConfig();
+            Iterator it = config.entrySet().iterator();
             while (true) {
                 if (!it.hasNext()) {
                     break;
@@ -153,11 +163,11 @@ public class BotStorage {
                 storageConfig.storage_id = this.storage_id;
                 storageConfig.user_id = this.user_id;
                 storageConfig.user_name = DialogObject.getName(UserConfig.getInstance(this.account).getCurrentUser());
-                long currentTimeMillis = System.currentTimeMillis();
-                storageConfig.edited_at = currentTimeMillis;
-                storageConfig.created_at = currentTimeMillis;
-                readConfig.put(this.storage_id, storageConfig);
-                saveConfig(readConfig);
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                storageConfig.edited_at = jCurrentTimeMillis;
+                storageConfig.created_at = jCurrentTimeMillis;
+                config.put(this.storage_id, storageConfig);
+                saveConfig(config);
             }
         }
         return getFile(this.storage_id);
@@ -167,11 +177,7 @@ public class BotStorage {
         return new File(getDir(), "secure_config.json");
     }
 
-    private SecretKey getSecretKey() {
-        KeyGenParameterSpec.Builder blockModes;
-        KeyGenParameterSpec.Builder encryptionPaddings;
-        KeyGenParameterSpec.Builder userAuthenticationRequired;
-        KeyGenParameterSpec build;
+    private SecretKey getSecretKey() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, NoSuchProviderException, InvalidAlgorithmParameterException {
         if (Build.VERSION.SDK_INT < 23) {
             throw new RuntimeException("UNSUPPORTED");
         }
@@ -179,24 +185,20 @@ public class BotStorage {
         keyStore.load(null);
         if (!keyStore.containsAlias("MiniAppsKey")) {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-            blockModes = CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("MiniAppsKey", 3).setBlockModes("GCM");
-            encryptionPaddings = blockModes.setEncryptionPaddings("NoPadding");
-            userAuthenticationRequired = encryptionPaddings.setUserAuthenticationRequired(false);
-            build = userAuthenticationRequired.build();
-            keyGenerator.init(build);
+            keyGenerator.init(CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("MiniAppsKey", 3).setBlockModes("GCM").setEncryptionPaddings("NoPadding").setUserAuthenticationRequired(false).build());
             keyGenerator.generateKey();
         }
         return (SecretKey) keyStore.getKey("MiniAppsKey", null);
     }
 
-    private byte[] getBytes(File file) {
+    private byte[] getBytes(File file) throws BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, IOException, InvalidKeyException, InvalidAlgorithmParameterException {
         byte[] bArr;
         FileInputStream fileInputStream = new FileInputStream(file);
         int length = (int) file.length();
         if (this.secured) {
-            int read = fileInputStream.read();
-            bArr = new byte[read];
-            length = (length - 1) - read;
+            int i = fileInputStream.read();
+            bArr = new byte[i];
+            length = (length - 1) - i;
             fileInputStream.read(bArr);
         } else {
             bArr = null;
@@ -223,7 +225,7 @@ public class BotStorage {
         }
     }
 
-    private void setBytes(File file, byte[] bArr) {
+    private void setBytes(File file, byte[] bArr) throws BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, IOException, InvalidKeyException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         if (this.secured) {
             try {
@@ -295,11 +297,11 @@ public class BotStorage {
             setJSON(json);
             if (this.secured) {
                 try {
-                    HashMap readConfig = readConfig();
-                    StorageConfig storageConfig = (StorageConfig) readConfig.get(this.storage_id);
+                    HashMap config = readConfig();
+                    StorageConfig storageConfig = (StorageConfig) config.get(this.storage_id);
                     if (storageConfig != null) {
                         storageConfig.edited_at = System.currentTimeMillis();
-                        saveConfig(readConfig);
+                        saveConfig(config);
                     }
                 } catch (Exception unused) {
                 }
@@ -311,14 +313,15 @@ public class BotStorage {
     }
 
     public Pair getKey(String str) {
+        File file;
         JSONObject json;
         if (this.secured && !isSecuredSupported()) {
             throw new RuntimeException("UNSUPPORTED");
         }
         JSONObject json2 = getJSON();
-        String optString = json2.optString(str);
+        String strOptString = json2.optString(str);
         boolean z = false;
-        if (this.secured && optString == null && !json2.keys().hasNext()) {
+        if (this.secured && strOptString == null && !json2.keys().hasNext()) {
             final HashSet hashSet = new HashSet();
             for (int i = 0; i < 4; i++) {
                 UserConfig userConfig = UserConfig.getInstance(i);
@@ -341,9 +344,7 @@ public class BotStorage {
 
                 @Override
                 public final boolean test(Object obj) {
-                    boolean lambda$getKey$0;
-                    lambda$getKey$0 = BotStorage.lambda$getKey$0(hashSet, (BotStorage.StorageConfig) obj);
-                    return lambda$getKey$0;
+                    return BotStorage.lambda$getKey$0(hashSet, (BotStorage.StorageConfig) obj);
                 }
             }).collect(Collectors.toSet())).iterator();
             while (true) {
@@ -351,17 +352,17 @@ public class BotStorage {
                     break;
                 }
                 try {
-                    File file = getFile(((StorageConfig) it.next()).storage_id);
-                    if (file.exists() && (json = getJSON(file)) != null && json.has(str)) {
-                        z = true;
-                        break;
-                    }
+                    file = getFile(((StorageConfig) it.next()).storage_id);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
+                if (file.exists() && (json = getJSON(file)) != null && json.has(str)) {
+                    z = true;
+                    break;
+                }
             }
         }
-        return new Pair(optString, Boolean.valueOf(z));
+        return new Pair(strOptString, Boolean.valueOf(z));
     }
 
     public static boolean lambda$getKey$0(HashSet hashSet, StorageConfig storageConfig) {
@@ -399,9 +400,7 @@ public class BotStorage {
 
             @Override
             public final boolean test(Object obj) {
-                boolean lambda$getStoragesWithKey$1;
-                lambda$getStoragesWithKey$1 = BotStorage.lambda$getStoragesWithKey$1(hashSet, (BotStorage.StorageConfig) obj);
-                return lambda$getStoragesWithKey$1;
+                return BotStorage.lambda$getStoragesWithKey$1(hashSet, (BotStorage.StorageConfig) obj);
             }
         }).collect(Collectors.toSet())) {
             try {
@@ -434,15 +433,15 @@ public class BotStorage {
                 hashSet.add(Long.valueOf(userConfig.getClientUserId()));
             }
         }
-        HashMap readConfig = readConfig();
-        StorageConfig storageConfig = (StorageConfig) readConfig.get(str);
+        HashMap config = readConfig();
+        StorageConfig storageConfig = (StorageConfig) config.get(str);
         if (storageConfig == null) {
             throw new RuntimeException("STORAGE_NOT_FOUND");
         }
         storageConfig.user_id = this.user_id;
         storageConfig.user_name = DialogObject.getName(UserConfig.getInstance(this.account).getCurrentUser());
         storageConfig.edited_at = System.currentTimeMillis();
-        saveConfig(readConfig);
+        saveConfig(config);
         this.storage_id = storageConfig.storage_id;
     }
 
@@ -450,7 +449,7 @@ public class BotStorage {
         setJSON(new JSONObject());
     }
 
-    private byte[] getRawBytes(File file) {
+    private byte[] getRawBytes(File file) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
             byte[] bArr = new byte[(int) file.length()];
@@ -463,19 +462,19 @@ public class BotStorage {
         }
     }
 
-    private void saveRawBytes(File file, byte[] bArr) {
+    private void saveRawBytes(File file, byte[] bArr) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(bArr);
         fileOutputStream.close();
     }
 
-    private HashMap readConfig() {
-        HashMap hashMap = new HashMap();
+    private HashMap readConfig() throws JSONException {
+        HashMap map = new HashMap();
         try {
             JSONObject jSONObject = new JSONObject(new String(getRawBytes(getConfigFile())));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
+            Iterator<String> itKeys = jSONObject.keys();
+            while (itKeys.hasNext()) {
+                String next = itKeys.next();
                 JSONObject jSONObject2 = jSONObject.getJSONObject(next);
                 StorageConfig storageConfig = new StorageConfig();
                 storageConfig.storage_id = next;
@@ -483,18 +482,18 @@ public class BotStorage {
                 storageConfig.user_name = jSONObject2.getString("user_name");
                 storageConfig.created_at = jSONObject2.getLong("created_at");
                 storageConfig.edited_at = jSONObject2.getLong("edited_at");
-                hashMap.put(next, storageConfig);
+                map.put(next, storageConfig);
             }
         } catch (Exception e) {
             FileLog.e(e);
         }
-        return hashMap;
+        return map;
     }
 
-    private void saveConfig(HashMap hashMap) {
+    private void saveConfig(HashMap map) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
-            for (Map.Entry entry : hashMap.entrySet()) {
+            for (Map.Entry entry : map.entrySet()) {
                 JSONObject jSONObject2 = new JSONObject();
                 jSONObject2.put("user_id", ((StorageConfig) entry.getValue()).user_id);
                 jSONObject2.put("user_name", ((StorageConfig) entry.getValue()).user_name);
@@ -523,14 +522,14 @@ public class BotStorage {
         backupImageView.setForUserOrChat(user, avatarDrawable);
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(80, 80, 49, 0, 21, 0, 13));
         int i = Theme.key_windowBackgroundWhiteBlackText;
-        TextView makeTextView = TextHelper.makeTextView(context, 20.0f, i, true);
-        makeTextView.setText(LocaleController.getString(R.string.BotRestoreStorageTitle));
-        makeTextView.setGravity(17);
-        linearLayout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 10));
-        TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i, false);
-        makeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotRestoreStorageText, DialogObject.getDialogTitle(user))));
-        makeTextView2.setGravity(17);
-        linearLayout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 19));
+        TextView textViewMakeTextView = TextHelper.makeTextView(context, 20.0f, i, true);
+        textViewMakeTextView.setText(LocaleController.getString(R.string.BotRestoreStorageTitle));
+        textViewMakeTextView.setGravity(17);
+        linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 10));
+        TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i, false);
+        textViewMakeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotRestoreStorageText, DialogObject.getDialogTitle(user))));
+        textViewMakeTextView2.setGravity(17);
+        linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 19));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, resourceProvider);
         textInfoPrivacyCell.setBackground(new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray, resourceProvider)), Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, resourceProvider)));
         textInfoPrivacyCell.setFixedSize(12);
@@ -559,24 +558,24 @@ public class BotStorage {
         buttonWithCounterView.setEnabled(strArr[0] != null);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 7, 8, 8, 8, 4));
         builder.setCustomView(linearLayout);
-        final BottomSheet create = builder.create();
-        create.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourceProvider));
+        final BottomSheet bottomSheetCreate = builder.create();
+        bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourceProvider));
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStorage.lambda$showChooseStorage$3(zArr, callback, strArr, create, view);
+                BotStorage.lambda$showChooseStorage$3(zArr, callback, strArr, bottomSheetCreate, view);
             }
         });
-        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 BotStorage.lambda$showChooseStorage$4(zArr, callback, dialogInterface);
             }
         });
-        create.show();
+        bottomSheetCreate.show();
     }
 
-    public class C1StorageCell extends FrameLayout {
+    class C1StorageCell extends FrameLayout {
         private final String id;
         private final boolean needDivider;
         private final RadioButton radioButton;
@@ -591,12 +590,12 @@ public class BotStorage {
             radioButton.setSize(AndroidUtilities.dp(20.0f));
             radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
             addView(radioButton, LayoutHelper.createFrame(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
-            TextView makeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true);
-            makeTextView.setText(storageConfig.user_name);
-            addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 62, 9, 8, 0));
-            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
-            makeTextView2.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(storageConfig.created_at / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(storageConfig.created_at / 1000)))));
-            addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 62, 32, 8, 0));
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true);
+            textViewMakeTextView.setText(storageConfig.user_name);
+            addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 7, 62, 9, 8, 0));
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
+            textViewMakeTextView2.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(storageConfig.created_at / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(storageConfig.created_at / 1000)))));
+            addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 7, 62, 32, 8, 0));
             this.needDivider = z;
             setWillNotDraw(!z);
         }

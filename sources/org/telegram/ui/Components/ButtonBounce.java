@@ -62,12 +62,12 @@ public class ButtonBounce {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pressedT, z ? 1.0f : 0.0f);
-            this.animator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pressedT, z ? 1.0f : 0.0f);
+            this.animator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonBounce.this.lambda$setPressed$0(valueAnimator2);
+                    this.f$0.lambda$setPressed$0(valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -82,11 +82,11 @@ public class ButtonBounce {
             });
             if (this.isPressed) {
                 this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                this.animator.setDuration(this.durationPressMultiplier * 60.0f);
+                this.animator.setDuration((long) (this.durationPressMultiplier * 60.0f));
                 this.animator.setStartDelay(0L);
             } else {
                 this.animator.setInterpolator(new OvershootInterpolator(this.overshoot));
-                this.animator.setDuration(this.durationReleaseMultiplier * 350.0f);
+                this.animator.setDuration((long) (this.durationReleaseMultiplier * 350.0f));
                 this.animator.setStartDelay(this.releaseDelay);
             }
             this.animator.start();

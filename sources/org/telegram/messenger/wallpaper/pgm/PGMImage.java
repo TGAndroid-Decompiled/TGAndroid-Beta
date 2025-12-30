@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public abstract class PGMImage {
-    public static void write(Bitmap bitmap, OutputStream outputStream, List list) {
+    public static void write(Bitmap bitmap, OutputStream outputStream, List list) throws IOException {
         if (bitmap.getConfig() != Bitmap.Config.ALPHA_8) {
             throw new IllegalArgumentException("Only Bitmap.Config.ALPHA_8 is supported");
         }
@@ -41,82 +41,82 @@ public abstract class PGMImage {
         }
     }
 
-    public static Bitmap read(InputStream inputStream, List list) {
+    public static Bitmap read(InputStream inputStream, List list) throws IOException, NumberFormatException {
         BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-        String nextToken = nextToken(bufferedInputStream, list);
-        if (!"P5".equals(nextToken)) {
-            throw new IOException("Not a binary PGM (P5), got: " + nextToken);
+        String strNextToken = nextToken(bufferedInputStream, list);
+        if (!"P5".equals(strNextToken)) {
+            throw new IOException("Not a binary PGM (P5), got: " + strNextToken);
         }
-        int parsePositiveInt = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "width");
-        int parsePositiveInt2 = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "height");
-        int parsePositiveInt3 = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "maxval");
-        if (parsePositiveInt3 != 255) {
-            throw new IOException("Only 8-bit PGM supported (maxval=255), got: " + parsePositiveInt3);
+        int positiveInt = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "width");
+        int positiveInt2 = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "height");
+        int positiveInt3 = parsePositiveInt(nextNonCommentToken(bufferedInputStream, list), "maxval");
+        if (positiveInt3 != 255) {
+            throw new IOException("Only 8-bit PGM supported (maxval=255), got: " + positiveInt3);
         }
-        Bitmap createBitmap = Bitmap.createBitmap(parsePositiveInt, parsePositiveInt2, Bitmap.Config.ALPHA_8);
-        int rowBytes = createBitmap.getRowBytes();
-        byte[] bArr = new byte[rowBytes * parsePositiveInt2];
-        ByteBuffer wrap = ByteBuffer.wrap(bArr);
-        byte[] bArr2 = new byte[parsePositiveInt];
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(positiveInt, positiveInt2, Bitmap.Config.ALPHA_8);
+        int rowBytes = bitmapCreateBitmap.getRowBytes();
+        byte[] bArr = new byte[rowBytes * positiveInt2];
+        ByteBuffer byteBufferWrap = ByteBuffer.wrap(bArr);
+        byte[] bArr2 = new byte[positiveInt];
         int i = 0;
-        for (int i2 = 0; i2 < parsePositiveInt2; i2++) {
-            readFully(bufferedInputStream, bArr2, 0, parsePositiveInt);
-            System.arraycopy(bArr2, 0, bArr, i, parsePositiveInt);
+        for (int i2 = 0; i2 < positiveInt2; i2++) {
+            readFully(bufferedInputStream, bArr2, 0, positiveInt);
+            System.arraycopy(bArr2, 0, bArr, i, positiveInt);
             i += rowBytes;
         }
-        createBitmap.copyPixelsFromBuffer(wrap);
-        return createBitmap;
+        bitmapCreateBitmap.copyPixelsFromBuffer(byteBufferWrap);
+        return bitmapCreateBitmap;
     }
 
-    private static int parsePositiveInt(String str, String str2) {
+    private static int parsePositiveInt(String str, String str2) throws NumberFormatException, IOException {
         try {
-            int parseInt = Integer.parseInt(str);
-            if (parseInt > 0) {
-                return parseInt;
+            int i = Integer.parseInt(str);
+            if (i > 0) {
+                return i;
             }
-            throw new IOException("Invalid " + str2 + ": " + parseInt);
+            throw new IOException("Invalid " + str2 + ": " + i);
         } catch (NumberFormatException e) {
             throw new IOException("Invalid " + str2 + ": " + str, e);
         }
     }
 
-    private static java.lang.String nextToken(java.io.BufferedInputStream r5, java.util.List r6) {
+    private static java.lang.String nextToken(java.io.BufferedInputStream r5, java.util.List r6) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wallpaper.pgm.PGMImage.nextToken(java.io.BufferedInputStream, java.util.List):java.lang.String");
     }
 
-    private static String nextNonCommentToken(BufferedInputStream bufferedInputStream, List list) {
-        String nextToken;
+    private static String nextNonCommentToken(BufferedInputStream bufferedInputStream, List list) throws IOException {
+        String strNextToken;
         do {
-            nextToken = nextToken(bufferedInputStream, list);
-            if (nextToken == null) {
+            strNextToken = nextToken(bufferedInputStream, list);
+            if (strNextToken == null) {
                 throw new IOException("Unexpected EOF in header");
             }
-        } while (nextToken.startsWith("#"));
-        return nextToken;
+        } while (strNextToken.startsWith("#"));
+        return strNextToken;
     }
 
-    private static String readLineAscii(InputStream inputStream) {
+    private static String readLineAscii(InputStream inputStream) throws IOException {
         StringBuilder sb = new StringBuilder();
         while (true) {
-            int read = inputStream.read();
-            if (read == -1 || read == 10) {
+            int i = inputStream.read();
+            if (i == -1 || i == 10) {
                 break;
             }
-            if (read != 13) {
-                sb.append((char) read);
+            if (i != 13) {
+                sb.append((char) i);
             }
         }
         return sb.toString();
     }
 
-    private static void readFully(InputStream inputStream, byte[] bArr, int i, int i2) {
+    private static void readFully(InputStream inputStream, byte[] bArr, int i, int i2) throws IOException {
         int i3 = 0;
         while (i3 < i2) {
-            int read = inputStream.read(bArr, i + i3, i2 - i3);
-            if (read < 0) {
+            int i4 = inputStream.read(bArr, i + i3, i2 - i3);
+            if (i4 < 0) {
                 throw new IOException("Unexpected EOF");
             }
-            i3 += read;
+            i3 += i4;
         }
     }
 }

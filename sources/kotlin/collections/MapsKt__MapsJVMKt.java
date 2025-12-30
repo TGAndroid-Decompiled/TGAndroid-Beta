@@ -19,18 +19,18 @@ public abstract class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
         return Integer.MAX_VALUE;
     }
 
-    public static final Map mapOf(Pair pair) {
+    public static Map mapOf(Pair pair) {
         Intrinsics.checkNotNullParameter(pair, "pair");
-        Map singletonMap = Collections.singletonMap(pair.getFirst(), pair.getSecond());
-        Intrinsics.checkNotNullExpressionValue(singletonMap, "singletonMap(...)");
-        return singletonMap;
+        Map mapSingletonMap = Collections.singletonMap(pair.getFirst(), pair.getSecond());
+        Intrinsics.checkNotNullExpressionValue(mapSingletonMap, "singletonMap(...)");
+        return mapSingletonMap;
     }
 
     public static final Map toSingletonMap(Map map) {
         Intrinsics.checkNotNullParameter(map, "<this>");
         Map.Entry entry = (Map.Entry) map.entrySet().iterator().next();
-        Map singletonMap = Collections.singletonMap(entry.getKey(), entry.getValue());
-        Intrinsics.checkNotNullExpressionValue(singletonMap, "with(...)");
-        return singletonMap;
+        Map mapSingletonMap = Collections.singletonMap(entry.getKey(), entry.getValue());
+        Intrinsics.checkNotNullExpressionValue(mapSingletonMap, "with(...)");
+        return mapSingletonMap;
     }
 }

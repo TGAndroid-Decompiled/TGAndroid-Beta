@@ -20,7 +20,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Forum.ForumUtilities;
-import org.telegram.ui.Components.TopicSeparator;
 
 public class TopicSeparator {
     private final Paint arrowPaint;
@@ -95,21 +94,21 @@ public class TopicSeparator {
             this.image.setRoundRadius(0);
             long topicId = messageObject.getTopicId();
             this.topicId = topicId;
-            TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), topicId);
-            if (findTopic == null) {
+            TLRPC.TL_forumTopic tL_forumTopicFindTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), topicId);
+            if (tL_forumTopicFindTopic == null) {
                 this.text = null;
                 return false;
             }
             if (topicId == 1) {
                 this.image.setImageBitmap(ForumUtilities.createGeneralTopicDrawable(this.cell.getContext(), 0.75f, Theme.getColor(Theme.key_actionBarDefaultIcon, this.resourcesProvider), false, false));
-            } else if (findTopic.icon_emoji_id != 0) {
-                this.emojiImage = new AnimatedEmojiDrawable(0, this.currentAccount, findTopic.icon_emoji_id);
+            } else if (tL_forumTopicFindTopic.icon_emoji_id != 0) {
+                this.emojiImage = new AnimatedEmojiDrawable(0, this.currentAccount, tL_forumTopicFindTopic.icon_emoji_id);
                 this.image.onDetachedFromWindow();
                 this.emojiImage.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             } else {
-                this.image.setImageBitmap(ForumUtilities.createTopicDrawable(findTopic, false));
+                this.image.setImageBitmap(ForumUtilities.createTopicDrawable(tL_forumTopicFindTopic, false));
             }
-            this.text = new Text(findTopic.title, 14.0f, AndroidUtilities.bold());
+            this.text = new Text(tL_forumTopicFindTopic.title, 14.0f, AndroidUtilities.bold());
         }
         return this.text != null;
     }
@@ -141,37 +140,37 @@ public class TopicSeparator {
             return;
         }
         text.ellipsize(i - AndroidUtilities.dp(144.66f));
-        float dp = AndroidUtilities.dp(48.66f) + this.text.getWidth();
+        float fDp = AndroidUtilities.dp(48.66f) + this.text.getWidth();
         float f6 = i;
-        float f7 = (f6 - dp) / 2.0f;
-        int i2 = (int) dp;
+        float f7 = (f6 - fDp) / 2.0f;
+        int i2 = (int) fDp;
         if (this.pathWidth == i2 && this.pathParentWidth == i && this.pathWithCenter == z && this.pathWithDots == this.withDots) {
-            f5 = dp;
+            f5 = fDp;
         } else {
             this.path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f7, AndroidUtilities.dp(4.5f), f7 + dp, AndroidUtilities.dp(28.5f));
+            rectF.set(f7, AndroidUtilities.dp(4.5f), f7 + fDp, AndroidUtilities.dp(28.5f));
             if (z) {
                 this.path.addRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
             }
             if (this.withDots) {
                 float f8 = f6 / 2.0f;
-                float dp2 = f8 - AndroidUtilities.dp(1.833f);
-                while (dp2 > 0.0f) {
+                float fDp2 = f8 - AndroidUtilities.dp(1.833f);
+                while (fDp2 > 0.0f) {
                     RectF rectF2 = AndroidUtilities.rectTmp;
-                    rectF2.set(dp2 - AndroidUtilities.dp(3.66f), AndroidUtilities.dp(15.5f), dp2, AndroidUtilities.dp(17.5f));
+                    rectF2.set(fDp2 - AndroidUtilities.dp(3.66f), AndroidUtilities.dp(15.5f), fDp2, AndroidUtilities.dp(17.5f));
                     this.path.addRoundRect(rectF2, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Path.Direction.CW);
-                    dp2 -= AndroidUtilities.dp(8.33f);
-                    dp = dp;
+                    fDp2 -= AndroidUtilities.dp(8.33f);
+                    fDp = fDp;
                 }
-                f5 = dp;
-                for (float dp3 = f8 + AndroidUtilities.dp(1.833f); dp3 < f6; dp3 += AndroidUtilities.dp(8.33f)) {
+                f5 = fDp;
+                for (float fDp3 = f8 + AndroidUtilities.dp(1.833f); fDp3 < f6; fDp3 += AndroidUtilities.dp(8.33f)) {
                     RectF rectF3 = AndroidUtilities.rectTmp;
-                    rectF3.set(dp3, AndroidUtilities.dp(15.5f), AndroidUtilities.dp(3.66f) + dp3, AndroidUtilities.dp(17.5f));
+                    rectF3.set(fDp3, AndroidUtilities.dp(15.5f), AndroidUtilities.dp(3.66f) + fDp3, AndroidUtilities.dp(17.5f));
                     this.path.addRoundRect(rectF3, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Path.Direction.CW);
                 }
             } else {
-                f5 = dp;
+                f5 = fDp;
             }
             this.pathWidth = i2;
             this.pathParentWidth = i;
@@ -235,7 +234,7 @@ public class TopicSeparator {
             topicSeparator.setOnClickListener(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicSeparator.Cell.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             });
         }

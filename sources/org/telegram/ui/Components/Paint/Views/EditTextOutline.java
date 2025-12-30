@@ -55,14 +55,14 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         super.onTextChanged(charSequence, i, i2, i3);
         this.mUpdateCachedBitmap = true;
         this.isFrameDirty = true;
     }
 
     @Override
-    public void onSizeChanged(int i, int i2, int i3, int i4) {
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         if (i > 0 && i2 > 0) {
             this.mUpdateCachedBitmap = true;
@@ -102,11 +102,11 @@ public class EditTextOutline extends EditTextBoldCursor {
         }
         this.mFrameColor = i;
         if (i != 0) {
-            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i);
-            if (computePerceivedBrightness == 0.0f) {
-                computePerceivedBrightness = Color.red(this.mFrameColor) / 255.0f;
+            float fComputePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i);
+            if (fComputePerceivedBrightness == 0.0f) {
+                fComputePerceivedBrightness = Color.red(this.mFrameColor) / 255.0f;
             }
-            if (computePerceivedBrightness > 0.87d) {
+            if (fComputePerceivedBrightness > 0.87d) {
                 setTextColor(-16777216);
             } else {
                 setTextColor(-1);
@@ -124,7 +124,7 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
         boolean z;
         int i = 0;
         if (this.mCache != null && this.mStrokeColor != 0) {
@@ -134,11 +134,11 @@ public class EditTextOutline extends EditTextBoldCursor {
                 Editable text = getText();
                 this.mCanvas.setBitmap(this.mCache);
                 this.mCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
-                float f = this.mStrokeWidth;
-                if (f <= 0.0f) {
-                    f = (float) Math.ceil(getTextSize() / 11.5f);
+                float fCeil = this.mStrokeWidth;
+                if (fCeil <= 0.0f) {
+                    fCeil = (float) Math.ceil(getTextSize() / 11.5f);
                 }
-                this.textPaint.setStrokeWidth(f);
+                this.textPaint.setStrokeWidth(fCeil);
                 this.textPaint.setColor(this.mStrokeColor);
                 this.textPaint.setTextSize(getTextSize());
                 this.textPaint.setTypeface(getTypeface());
@@ -222,7 +222,7 @@ public class EditTextOutline extends EditTextBoldCursor {
             }
             this.path.rewind();
             float textSize = getTextSize() / 3.0f;
-            float f2 = 1.5f * textSize;
+            float f = 1.5f * textSize;
             int i5 = 1;
             while (true) {
                 RectF[] rectFArr4 = this.lines;
@@ -232,18 +232,18 @@ public class EditTextOutline extends EditTextBoldCursor {
                 RectF rectF9 = rectFArr4[i5 - 1];
                 RectF rectF10 = rectFArr4[i5];
                 if (rectF9.width() >= AndroidUtilities.dp(1.0f) && rectF10.width() >= AndroidUtilities.dp(1.0f)) {
-                    if (Math.abs(rectF9.left - rectF10.left) < f2) {
-                        float min = Math.min(rectF10.left, rectF9.left);
-                        rectF9.left = min;
-                        rectF10.left = min;
+                    if (Math.abs(rectF9.left - rectF10.left) < f) {
+                        float fMin = Math.min(rectF10.left, rectF9.left);
+                        rectF9.left = fMin;
+                        rectF10.left = fMin;
                         z = true;
                     } else {
                         z = false;
                     }
-                    if (Math.abs(rectF9.right - rectF10.right) < f2) {
-                        float max = Math.max(rectF10.right, rectF9.right);
-                        rectF9.right = max;
-                        rectF10.right = max;
+                    if (Math.abs(rectF9.right - rectF10.right) < f) {
+                        float fMax = Math.max(rectF10.right, rectF9.right);
+                        rectF9.right = fMax;
+                        rectF10.right = fMax;
                         z = true;
                     }
                     if (z) {
@@ -252,15 +252,15 @@ public class EditTextOutline extends EditTextBoldCursor {
                             RectF rectF11 = rectFArr5[i6 - 1];
                             RectF rectF12 = rectFArr5[i6];
                             if (rectF11.width() >= AndroidUtilities.dp(1.0f) && rectF12.width() >= AndroidUtilities.dp(1.0f)) {
-                                if (Math.abs(rectF11.left - rectF12.left) < f2) {
-                                    float min2 = Math.min(rectF12.left, rectF11.left);
-                                    rectF11.left = min2;
-                                    rectF12.left = min2;
+                                if (Math.abs(rectF11.left - rectF12.left) < f) {
+                                    float fMin2 = Math.min(rectF12.left, rectF11.left);
+                                    rectF11.left = fMin2;
+                                    rectF12.left = fMin2;
                                 }
-                                if (Math.abs(rectF11.right - rectF12.right) < f2) {
-                                    float max2 = Math.max(rectF12.right, rectF11.right);
-                                    rectF11.right = max2;
-                                    rectF12.right = max2;
+                                if (Math.abs(rectF11.right - rectF12.right) < f) {
+                                    float fMax2 = Math.max(rectF12.right, rectF11.right);
+                                    rectF11.right = fMax2;
+                                    rectF12.right = fMax2;
                                 }
                             }
                         }

@@ -136,18 +136,18 @@ public class SelectorUserCell extends BaseCell {
             this.audioView.animate().alpha((z && this.hasAudioView) ? 1.0f : 0.0f).withEndAction((z && this.hasAudioView) ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    SelectorUserCell.this.lambda$setCallButtonsVisible$0();
+                    this.f$0.lambda$setCallButtonsVisible$0();
                 }
             }).start();
             this.videoView.setVisibility(0);
-            ViewPropertyAnimator animate = this.videoView.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.videoView.animate();
             if (z && this.hasVideoView) {
                 f = 1.0f;
             }
-            animate.alpha(f).withEndAction((z && this.hasVideoView) ? null : new Runnable() {
+            viewPropertyAnimatorAnimate.alpha(f).withEndAction((z && this.hasVideoView) ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    SelectorUserCell.this.lambda$setCallButtonsVisible$1();
+                    this.f$0.lambda$setCallButtonsVisible$1();
                 }
             }).start();
             return;
@@ -275,11 +275,11 @@ public class SelectorUserCell extends BaseCell {
         if (i <= 0) {
             i = chat.participants_count;
         }
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (i >= 1) {
-            string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
+            string = LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
         } else {
-            string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            string = LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
         }
         setSubtitle(string);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
@@ -372,9 +372,9 @@ public class SelectorUserCell extends BaseCell {
         }
 
         public static UItem make(TLRPC.User user) {
-            UItem ofFactory = UItem.ofFactory(Factory.class);
-            ofFactory.object = user;
-            return ofFactory;
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.object = user;
+            return uItemOfFactory;
         }
     }
 }

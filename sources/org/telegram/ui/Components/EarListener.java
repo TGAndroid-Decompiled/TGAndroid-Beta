@@ -262,13 +262,13 @@ public class EarListener implements SensorEventListener {
             }
             boolean z2 = ((this.raisedToBack != 6 && !this.accelerometerVertical && System.currentTimeMillis() - this.lastAccelerometerDetected >= 60) || forbidRaiseToListen() || VoIPService.isAnyKindOfCallActive() || PhotoViewer.getInstance().isVisible()) ? false : true;
             if (this.proximityWakeLock != null && disableWakeLockWhenNotUsed()) {
-                boolean isHeld = this.proximityWakeLock.isHeld();
-                if (isHeld && !z2) {
+                boolean zIsHeld = this.proximityWakeLock.isHeld();
+                if (zIsHeld && !z2) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d("wake lock releasing");
                     }
                     this.proximityWakeLock.release();
-                } else if (!isHeld && z2) {
+                } else if (!zIsHeld && z2) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.d("wake lock acquiring");
                     }
@@ -314,21 +314,14 @@ public class EarListener implements SensorEventListener {
     }
 
     protected boolean forbidRaiseToListen() {
-        AudioDeviceInfo[] devices;
-        int type;
-        boolean isSink;
         try {
             if (Build.VERSION.SDK_INT < 23) {
                 return this.audioManager.isWiredHeadsetOn() || this.audioManager.isBluetoothA2dpOn() || this.audioManager.isBluetoothScoOn();
             }
-            devices = this.audioManager.getDevices(2);
-            for (AudioDeviceInfo audioDeviceInfo : devices) {
-                type = audioDeviceInfo.getType();
-                if (type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) {
-                    isSink = audioDeviceInfo.isSink();
-                    if (isSink) {
-                        return true;
-                    }
+            for (AudioDeviceInfo audioDeviceInfo : this.audioManager.getDevices(2)) {
+                int type = audioDeviceInfo.getType();
+                if ((type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) && audioDeviceInfo.isSink()) {
+                    return true;
                 }
             }
             return false;

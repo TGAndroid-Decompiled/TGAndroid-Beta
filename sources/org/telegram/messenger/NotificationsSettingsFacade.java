@@ -80,7 +80,7 @@ public class NotificationsSettingsFacade {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsSettingsFacade.this.lambda$applyDialogNotificationsSettings$1(j, j2, peerNotifySettings);
+                this.f$0.lambda$applyDialogNotificationsSettings$1(j, j2, peerNotifySettings);
             }
         });
     }
@@ -133,11 +133,11 @@ public class NotificationsSettingsFacade {
             } else if ("NoSound".equalsIgnoreCase(tL_notificationSoundLocal.data)) {
                 notificationSound = new TLRPC.TL_notificationSoundNone();
             } else {
-                String findRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tL_notificationSoundLocal.title);
-                if (findRingtonePathByName == null) {
+                String strFindRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tL_notificationSoundLocal.title);
+                if (strFindRingtonePathByName == null) {
                     return;
                 } else {
-                    tL_notificationSoundLocal.data = findRingtonePathByName;
+                    tL_notificationSoundLocal.data = strFindRingtonePathByName;
                 }
             }
         }

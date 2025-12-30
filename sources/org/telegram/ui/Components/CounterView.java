@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.CounterView;
 
 public class CounterView extends View {
     public CounterDrawable counterDrawable;
@@ -123,11 +122,11 @@ public class CounterView extends View {
         private void drawInternal(Canvas canvas) {
             boolean z;
             float f = this.radius * 2.0f;
-            float dp = (this.lastH - AndroidUtilities.dp(f)) / 2.0f;
+            float fDp = (this.lastH - AndroidUtilities.dp(f)) / 2.0f;
             updateX(this.countWidth);
             RectF rectF = this.rectF;
             float f2 = this.x;
-            rectF.set(f2, dp, this.countWidth + f2 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(f) + dp);
+            rectF.set(f2, fDp, this.countWidth + f2 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(f) + fDp);
             if (this.circlePaint != null && this.drawBackground) {
                 if (this.circleScale != 1.0f) {
                     canvas.save();
@@ -151,7 +150,7 @@ public class CounterView extends View {
             }
             if (this.countLayout != null) {
                 canvas.save();
-                canvas.translate(this.countLeft, dp + AndroidUtilities.dp(4.0f));
+                canvas.translate(this.countLeft, fDp + AndroidUtilities.dp(4.0f));
                 this.countLayout.draw(canvas);
                 canvas.restore();
             }
@@ -202,12 +201,12 @@ public class CounterView extends View {
                     valueAnimator2.cancel();
                 }
                 this.countChangeProgress = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.countAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.countAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        CounterView.CounterDrawable.this.lambda$setText$0(valueAnimator3);
+                        this.f$0.lambda$setText$0(valueAnimator3);
                     }
                 });
                 this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -256,12 +255,12 @@ public class CounterView extends View {
                                 spannableStringBuilder3.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
                             }
                         }
-                        int max = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence2.toString())));
+                        int iMax = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence2.toString())));
                         TextPaint textPaint = this.textPaint;
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-                        this.countOldLayout = new StaticLayout(spannableStringBuilder, textPaint, max, alignment, 1.0f, 0.0f, false);
-                        this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, max, alignment, 1.0f, 0.0f, false);
-                        this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, max, alignment, 1.0f, 0.0f, false);
+                        this.countOldLayout = new StaticLayout(spannableStringBuilder, textPaint, iMax, alignment, 1.0f, 0.0f, false);
+                        this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, iMax, alignment, 1.0f, 0.0f, false);
+                        this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, iMax, alignment, 1.0f, 0.0f, false);
                     } else {
                         this.countOldLayout = this.countLayout;
                     }
@@ -340,7 +339,7 @@ public class CounterView extends View {
                 if (f6 > 1.0f) {
                     f6 = 1.0f;
                 }
-                float dp = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
+                float fDp = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
                 int i3 = this.countWidth;
                 int i4 = this.countWidthOld;
                 float f7 = i3 == i4 ? i3 : (i3 * f6) + (i4 * (1.0f - f6));
@@ -358,7 +357,7 @@ public class CounterView extends View {
                 }
                 RectF rectF = this.rectF;
                 float f9 = this.x;
-                rectF.set(f9, dp, f7 + f9 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(this.radius * 2.0f) + dp);
+                rectF.set(f9, fDp, f7 + f9 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(this.radius * 2.0f) + fDp);
                 canvas.save();
                 canvas.scale(f, f, this.rectF.centerX(), this.rectF.centerY());
                 if (this.circleScale != 1.0f) {
@@ -387,38 +386,38 @@ public class CounterView extends View {
                 if (this.countAnimationInLayout != null) {
                     canvas.save();
                     float f13 = this.countLeft;
-                    float dp2 = AndroidUtilities.dp(4.0f) + dp;
-                    int dp3 = AndroidUtilities.dp(13.0f);
+                    float fDp2 = AndroidUtilities.dp(4.0f) + fDp;
+                    int iDp = AndroidUtilities.dp(13.0f);
                     if (!z2) {
-                        dp3 = -dp3;
+                        iDp = -iDp;
                     }
-                    canvas.translate(f13, dp2 + (dp3 * (1.0f - f6)));
+                    canvas.translate(f13, fDp2 + (iDp * (1.0f - f6)));
                     this.textPaint.setAlpha((int) (f6 * 255.0f));
                     this.countAnimationInLayout.draw(canvas);
                     canvas.restore();
                 } else if (this.countLayout != null) {
                     canvas.save();
                     float f14 = this.countLeft;
-                    float dp4 = AndroidUtilities.dp(4.0f) + dp;
-                    int dp5 = AndroidUtilities.dp(13.0f);
+                    float fDp3 = AndroidUtilities.dp(4.0f) + fDp;
+                    int iDp2 = AndroidUtilities.dp(13.0f);
                     if (!z2) {
-                        dp5 = -dp5;
+                        iDp2 = -iDp2;
                     }
-                    canvas.translate(f14, dp4 + (dp5 * (1.0f - f6)));
+                    canvas.translate(f14, fDp3 + (iDp2 * (1.0f - f6)));
                     this.textPaint.setAlpha((int) (f6 * 255.0f));
                     this.countLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (this.countOldLayout != null) {
                     canvas.save();
-                    canvas.translate(this.countLeft, AndroidUtilities.dp(4.0f) + dp + ((z2 ? -AndroidUtilities.dp(13.0f) : AndroidUtilities.dp(13.0f)) * f6));
+                    canvas.translate(this.countLeft, AndroidUtilities.dp(4.0f) + fDp + ((z2 ? -AndroidUtilities.dp(13.0f) : AndroidUtilities.dp(13.0f)) * f6));
                     this.textPaint.setAlpha((int) ((1.0f - f6) * 255.0f));
                     this.countOldLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (this.countAnimationStableLayout != null) {
                     canvas.save();
-                    canvas.translate(this.countLeft, dp + AndroidUtilities.dp(4.0f));
+                    canvas.translate(this.countLeft, fDp + AndroidUtilities.dp(4.0f));
                     this.textPaint.setAlpha(255);
                     this.countAnimationStableLayout.draw(canvas);
                     canvas.restore();
@@ -436,38 +435,38 @@ public class CounterView extends View {
                 int i = this.animationType;
                 if (i == 0 || i == 1) {
                     updateX(this.countWidth);
-                    float dp = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
+                    float fDp = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
                     RectF rectF = this.rectF;
                     float f2 = this.x;
-                    rectF.set(f2, dp, this.countWidth + f2 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp);
+                    rectF.set(f2, fDp, this.countWidth + f2 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + fDp);
                     return;
                 }
                 float f3 = f * 2.0f;
                 if (f3 > 1.0f) {
                     f3 = 1.0f;
                 }
-                float dp2 = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
+                float fDp2 = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
                 int i2 = this.countWidth;
                 int i3 = this.countWidthOld;
                 float f4 = i2 == i3 ? i2 : (i2 * f3) + (i3 * (1.0f - f3));
                 updateX(f4);
                 RectF rectF2 = this.rectF;
                 float f5 = this.x;
-                rectF2.set(f5, dp2, f4 + f5 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp2);
+                rectF2.set(f5, fDp2, f4 + f5 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + fDp2);
                 return;
             }
             updateX(this.countWidth);
-            float dp3 = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
+            float fDp3 = (this.lastH - AndroidUtilities.dp(this.radius * 2.0f)) / 2.0f;
             RectF rectF3 = this.rectF;
             float f6 = this.x;
-            rectF3.set(f6, dp3, this.countWidth + f6 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp3);
+            rectF3.set(f6, fDp3, this.countWidth + f6 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + fDp3);
         }
 
         private void updateX(float f) {
-            float dp = this.drawBackground ? AndroidUtilities.dp(5.5f) : 0.0f;
+            float fDp = this.drawBackground ? AndroidUtilities.dp(5.5f) : 0.0f;
             int i = this.gravity;
             if (i == 5) {
-                float f2 = this.width - dp;
+                float f2 = this.width - fDp;
                 this.countLeft = f2;
                 float f3 = this.horizontalPadding;
                 if (f3 != 0.0f) {
@@ -476,11 +475,11 @@ public class CounterView extends View {
                     this.countLeft = f2 - f;
                 }
             } else if (i == 3) {
-                this.countLeft = dp;
+                this.countLeft = fDp;
             } else {
                 this.countLeft = (int) ((this.width - f) / 2.0f);
             }
-            this.x = this.countLeft - dp;
+            this.x = this.countLeft - fDp;
         }
 
         public float getCenterX() {

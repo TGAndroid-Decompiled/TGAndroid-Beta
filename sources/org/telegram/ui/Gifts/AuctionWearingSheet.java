@@ -77,10 +77,10 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
     }
 
     public AuctionWearingSheet(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final TL_stars.StarGift starGift, final ArrayList arrayList, final Runnable runnable, boolean z) {
-        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.FADING, resourcesProvider);
         AvatarDrawable avatarDrawable;
         TLRPC.Chat chat;
         LinkSpanDrawable.LinksTextView linksTextView;
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.FADING, resourcesProvider);
         this.starGift = starGift;
         long j2 = starGift.id;
         this.giftId = j2;
@@ -102,13 +102,13 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 if (ViewPositionWatcher.computeRectInParent(AuctionWearingSheet.this.topView.imageLayout, this, this.rectF) && ViewPositionWatcher.computeRectInParent(AuctionWearingSheet.this.giftNameTextView, this, this.rectF2)) {
-                    float dp = this.rectF2.right - AndroidUtilities.dp(32.0f);
-                    float centerY = this.rectF2.centerY() - AndroidUtilities.dp(16.0f);
+                    float fDp = this.rectF2.right - AndroidUtilities.dp(32.0f);
+                    float fCenterY = this.rectF2.centerY() - AndroidUtilities.dp(16.0f);
                     if (this.rectF.isEmpty()) {
                         return;
                     }
                     canvas.save();
-                    canvas.translate(dp, centerY);
+                    canvas.translate(fDp, fCenterY);
                     canvas.scale(AndroidUtilities.dp(32.0f) / this.rectF.width(), AndroidUtilities.dp(32.0f) / this.rectF.height());
                     AuctionWearingSheet.this.topView.imageLayout.draw(canvas);
                     canvas.restore();
@@ -119,12 +119,12 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         linearLayout.addView(frameLayout);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i = createFrame.leftMargin;
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i = layoutParamsCreateFrame.leftMargin;
         int i2 = this.backgroundPaddingLeft;
-        createFrame.leftMargin = i + i2;
-        createFrame.rightMargin += i2;
-        this.containerView.addView(buttonWithCounterView, createFrame);
+        layoutParamsCreateFrame.leftMargin = i + i2;
+        layoutParamsCreateFrame.rightMargin += i2;
+        this.containerView.addView(buttonWithCounterView, layoutParamsCreateFrame);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i3, 0, i3, AndroidUtilities.dp(64.0f));
@@ -135,7 +135,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         StarGiftSheet.TopView topView = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                AuctionWearingSheet.this.onBackPressed();
+                this.f$0.onBackPressed();
             }
         }, new View.OnClickListener() {
             @Override
@@ -185,11 +185,11 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             protected void onSizeChanged(int i6, int i7, int i8, int i9) {
                 super.onSizeChanged(i6, i7, i8, i9);
                 float[] fArr = this.r;
-                float dp = AndroidUtilities.dp(12.0f);
-                fArr[3] = dp;
-                fArr[2] = dp;
-                fArr[1] = dp;
-                fArr[0] = dp;
+                float fDp = AndroidUtilities.dp(12.0f);
+                fArr[3] = fDp;
+                fArr[2] = fDp;
+                fArr[1] = fDp;
+                fArr[0] = fDp;
                 this.path.rewind();
                 this.path.addRoundRect(0.0f, 0.0f, i6, i7, this.r, Path.Direction.CW);
             }
@@ -203,7 +203,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
                 canvas.clipPath(this.path);
                 super.dispatchDraw(canvas);
@@ -211,7 +211,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             }
 
             @Override
-            public void updateButtonsBackgrounds(int i6) {
+            protected void updateButtonsBackgrounds(int i6) {
                 super.updateButtonsBackgrounds(i6);
                 AuctionWearingSheet.this.giftCell2.setRibbonColor(i6);
             }
@@ -320,13 +320,13 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
 
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j3) {
-                boolean drawChild = super.drawChild(canvas, view, j3);
+                boolean zDrawChild = super.drawChild(canvas, view, j3);
                 if (view == this.card) {
                     if (!ViewPositionWatcher.computeRectInParent(AuctionWearingSheet.this.topView.imageLayout, AuctionWearingSheet.this.headerContainer, this.rectF) || !ViewPositionWatcher.computeRectInParent(this.card, this, this.rectF2)) {
                         return true;
                     }
-                    float centerX = this.rectF2.centerX() - AndroidUtilities.dp(40.0f);
-                    float centerY = this.rectF2.centerY() - AndroidUtilities.dp(40.0f);
+                    float fCenterX = this.rectF2.centerX() - AndroidUtilities.dp(40.0f);
+                    float fCenterY = this.rectF2.centerY() - AndroidUtilities.dp(40.0f);
                     if (!this.rectF.isEmpty()) {
                         canvas.save();
                         canvas.clipPath(this.path);
@@ -336,13 +336,13 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
                         AuctionWearingSheet.this.topView.drawPattern(canvas, AuctionWearingSheet.this.topView.getWidth() / 2.0f, AndroidUtilities.dp(104.0f), AuctionWearingSheet.this.topView.getWidth(), AuctionWearingSheet.this.topView.getHeight());
                         canvas.restore();
                         canvas.save();
-                        canvas.translate(centerX, centerY);
+                        canvas.translate(fCenterX, fCenterY);
                         canvas.scale(AndroidUtilities.dp(80.0f) / this.rectF.width(), AndroidUtilities.dp(80.0f) / this.rectF.height());
                         AuctionWearingSheet.this.topView.imageLayout.draw(canvas);
                         canvas.restore();
                     }
                 }
-                return drawChild;
+                return zDrawChild;
             }
         };
         this.giftCell2 = giftCell2;
@@ -362,12 +362,12 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         textView3.setText(LocaleController.getString(R.string.Gift2WearingHint));
         int i6 = Theme.key_windowBackgroundWhiteGrayText;
         textView3.setTextColor(getThemedColor(i6));
-        final float clamp = Utilities.clamp(starGift.availability_remains / starGift.availability_total, 1.0f, 0.0f);
+        final float fClamp = Utilities.clamp(starGift.availability_remains / starGift.availability_total, 1.0f, 0.0f);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        int dp = AndroidUtilities.dp(14.0f);
+        int iDp = AndroidUtilities.dp(14.0f);
         int color = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
         int i7 = Theme.key_windowBackgroundWhiteBlackText;
-        frameLayout2.setBackground(Theme.createRoundRectDrawable(dp, ColorUtils.blendARGB(color, Theme.getColor(i7, resourcesProvider), 0.2f)));
+        frameLayout2.setBackground(Theme.createRoundRectDrawable(iDp, ColorUtils.blendARGB(color, Theme.getColor(i7, resourcesProvider), 0.2f)));
         TextView textView4 = new TextView(context);
         textView4.setTextSize(1, 13.0f);
         textView4.setGravity(19);
@@ -385,7 +385,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         View view = new View(context) {
             @Override
             protected void onMeasure(int i8, int i9) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i8) * clamp), 1073741824), i9);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i8) * fClamp), 1073741824), i9);
             }
         };
         view.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
@@ -394,7 +394,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
-                canvas.clipRect(0.0f, 0.0f, getWidth() * clamp, getHeight());
+                canvas.clipRect(0.0f, 0.0f, getWidth() * fClamp, getHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
             }
@@ -437,7 +437,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    AuctionWearingSheet.this.lambda$new$8(view2);
+                    this.f$0.lambda$new$8(view2);
                 }
             });
         } else {
@@ -465,7 +465,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    AuctionWearingSheet.this.lambda$new$9(j, context, resourcesProvider, runnable, view2);
+                    this.f$0.lambda$new$9(j, context, resourcesProvider, runnable, view2);
                 }
             });
         }
@@ -509,7 +509,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionWearingSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;

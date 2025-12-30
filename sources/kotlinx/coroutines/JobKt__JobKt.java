@@ -2,7 +2,10 @@ package kotlinx.coroutines;
 
 import java.util.Iterator;
 import java.util.concurrent.CancellationException;
+import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.FunctionReferenceImpl;
 import kotlin.sequences.Sequence;
 
 public abstract class JobKt__JobKt {
@@ -16,8 +19,24 @@ public abstract class JobKt__JobKt {
         return JobKt.invokeOnCompletion(job, z, z2, internalCompletionHandler);
     }
 
+    class AnonymousClass1 extends FunctionReferenceImpl implements Function1 {
+        AnonymousClass1(Object obj) {
+            super(1, obj, InternalCompletionHandler.class, "invoke", "invoke(Ljava/lang/Throwable;)V", 0);
+        }
+
+        @Override
+        public Object invoke(Object obj) {
+            invoke((Throwable) obj);
+            return Unit.INSTANCE;
+        }
+
+        public final void invoke(Throwable th) {
+            ((InternalCompletionHandler) this.receiver).invoke(th);
+        }
+    }
+
     public static final DisposableHandle invokeOnCompletion(Job job, boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler) {
-        return job instanceof JobSupport ? ((JobSupport) job).invokeOnCompletionInternal$kotlinx_coroutines_core(z, z2, internalCompletionHandler) : job.invokeOnCompletion(z, z2, new JobKt__JobKt$invokeOnCompletion$1(internalCompletionHandler));
+        return job instanceof JobSupport ? ((JobSupport) job).invokeOnCompletionInternal$kotlinx_coroutines_core(z, z2, internalCompletionHandler) : job.invokeOnCompletion(z, z2, new AnonymousClass1(internalCompletionHandler));
     }
 
     public static final CompletableJob Job(Job job) {
@@ -32,9 +51,7 @@ public abstract class JobKt__JobKt {
     }
 
     public static final DisposableHandle disposeOnCompletion(Job job, DisposableHandle disposableHandle) {
-        DisposableHandle invokeOnCompletion$default;
-        invokeOnCompletion$default = invokeOnCompletion$default(job, false, false, new DisposeOnCompletion(disposableHandle), 3, null);
-        return invokeOnCompletion$default;
+        return invokeOnCompletion$default(job, false, false, new DisposeOnCompletion(disposableHandle), 3, null);
     }
 
     public static void cancel$default(CoroutineContext coroutineContext, CancellationException cancellationException, int i, Object obj) {

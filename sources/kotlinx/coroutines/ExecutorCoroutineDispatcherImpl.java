@@ -35,12 +35,24 @@ public final class ExecutorCoroutineDispatcherImpl extends ExecutorCoroutineDisp
     }
 
     @Override
+    public void scheduleResumeAfterDelay(long j, CancellableContinuation cancellableContinuation) {
+        Executor executor = getExecutor();
+        ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
+        ScheduledFuture scheduledFutureScheduleBlock = scheduledExecutorService != null ? scheduleBlock(scheduledExecutorService, new ResumeUndispatchedRunnable(this, cancellableContinuation), cancellableContinuation.getContext(), j) : null;
+        if (scheduledFutureScheduleBlock != null) {
+            JobKt.cancelFutureOnCancellation(cancellableContinuation, scheduledFutureScheduleBlock);
+        } else {
+            DefaultExecutor.INSTANCE.scheduleResumeAfterDelay(j, cancellableContinuation);
+        }
+    }
+
+    @Override
     public DisposableHandle invokeOnTimeout(long j, Runnable runnable, CoroutineContext coroutineContext) {
         Executor executor = getExecutor();
         ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
-        ScheduledFuture scheduleBlock = scheduledExecutorService != null ? scheduleBlock(scheduledExecutorService, runnable, coroutineContext, j) : null;
-        if (scheduleBlock != null) {
-            return new DisposableFutureHandle(scheduleBlock);
+        ScheduledFuture scheduledFutureScheduleBlock = scheduledExecutorService != null ? scheduleBlock(scheduledExecutorService, runnable, coroutineContext, j) : null;
+        if (scheduledFutureScheduleBlock != null) {
+            return new DisposableFutureHandle(scheduledFutureScheduleBlock);
         }
         return DefaultExecutor.INSTANCE.invokeOnTimeout(j, runnable, coroutineContext);
     }

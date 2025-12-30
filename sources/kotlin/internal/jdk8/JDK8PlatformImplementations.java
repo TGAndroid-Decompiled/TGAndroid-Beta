@@ -6,7 +6,7 @@ import kotlin.random.jdk8.PlatformThreadLocalRandom;
 
 public class JDK8PlatformImplementations extends JDK7PlatformImplementations {
 
-    public static final class ReflectSdkVersion {
+    private static final class ReflectSdkVersion {
         public static final ReflectSdkVersion INSTANCE = new ReflectSdkVersion();
         public static final Integer sdkVersion;
 
@@ -14,25 +14,17 @@ public class JDK8PlatformImplementations extends JDK7PlatformImplementations {
         }
 
         static {
-            Integer num;
             Object obj;
-            Integer num2 = null;
+            Integer num = null;
             try {
                 obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
             } catch (Throwable unused) {
             }
-            if (obj instanceof Integer) {
-                num = (Integer) obj;
-                if (num != null && num.intValue() > 0) {
-                    num2 = num;
-                }
-                sdkVersion = num2;
+            Integer num2 = obj instanceof Integer ? (Integer) obj : null;
+            if (num2 != null && num2.intValue() > 0) {
+                num = num2;
             }
-            num = null;
-            if (num != null) {
-                num2 = num;
-            }
-            sdkVersion = num2;
+            sdkVersion = num;
         }
     }
 

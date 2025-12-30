@@ -10,9 +10,16 @@ import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import com.microsoft.appcenter.utils.crypto.CryptoAesHandler$$ExternalSyntheticApiModelOutline5;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,6 +29,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -101,11 +109,11 @@ public class BotBiometry {
 
     public static String getAvailableType(Context context) {
         try {
-            BiometricManager from = BiometricManager.from(context);
-            if (from == null) {
+            BiometricManager biometricManagerFrom = BiometricManager.from(context);
+            if (biometricManagerFrom == null) {
                 return null;
             }
-            if (from.canAuthenticate(15) != 0) {
+            if (biometricManagerFrom.canAuthenticate(15) != 0) {
                 return null;
             }
             return "unknown";
@@ -119,7 +127,7 @@ public class BotBiometry {
         prompt(str, true, null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotBiometry.this.lambda$requestToken$0(callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
+                this.f$0.lambda$requestToken$0(callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
             }
         });
     }
@@ -162,7 +170,7 @@ public class BotBiometry {
         prompt(str, false, str2, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotBiometry.this.lambda$updateToken$1(str2, callback, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
+                this.f$0.lambda$updateToken$1(str2, callback, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
             }
         });
     }
@@ -235,7 +243,7 @@ public class BotBiometry {
         });
     }
 
-    private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) {
+    private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) throws InvalidKeyException, InvalidAlgorithmParameterException {
         try {
             if (Build.VERSION.SDK_INT < 23) {
                 return null;
@@ -254,26 +262,26 @@ public class BotBiometry {
         }
     }
 
-    private void prompt(String str, boolean z, String str2, Utilities.Callback2 callback2) {
+    private void prompt(String str, boolean z, String str2, Utilities.Callback2 callback2) throws InvalidKeyException, InvalidAlgorithmParameterException {
         int i;
         this.callback = callback2;
         try {
             initPrompt();
-            BiometricPrompt.CryptoObject makeCryptoObject = makeCryptoObject(z);
+            BiometricPrompt.CryptoObject cryptoObjectMakeCryptoObject = makeCryptoObject(z);
             BiometricPrompt.PromptInfo.Builder allowedAuthenticators = new BiometricPrompt.PromptInfo.Builder().setTitle(UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)))).setNegativeButtonText(LocaleController.getString(R.string.Back)).setAllowedAuthenticators(15);
             if (!TextUtils.isEmpty(str)) {
                 allowedAuthenticators.setDescription(str);
             }
-            BiometricPrompt.PromptInfo build = allowedAuthenticators.build();
-            if (makeCryptoObject != null && !z && (i = Build.VERSION.SDK_INT) >= 30) {
+            BiometricPrompt.PromptInfo promptInfoBuild = allowedAuthenticators.build();
+            if (cryptoObjectMakeCryptoObject != null && !z && (i = Build.VERSION.SDK_INT) >= 30) {
                 try {
                     if (TextUtils.isEmpty(str2)) {
                         this.encrypted_token = null;
                     } else if (i < 23) {
                         this.encrypted_token = str2;
                     } else {
-                        this.encrypted_token = Utilities.bytesToHex(makeCryptoObject.getCipher().doFinal(str2.getBytes(StandardCharsets.UTF_8)));
-                        this.iv = Utilities.bytesToHex(makeCryptoObject.getCipher().getIV());
+                        this.encrypted_token = Utilities.bytesToHex(cryptoObjectMakeCryptoObject.getCipher().doFinal(str2.getBytes(StandardCharsets.UTF_8)));
+                        this.iv = Utilities.bytesToHex(cryptoObjectMakeCryptoObject.getCipher().getIV());
                     }
                     save();
                     this.callback = null;
@@ -281,13 +289,13 @@ public class BotBiometry {
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
-                    makeCryptoObject = makeCryptoObject(z);
+                    cryptoObjectMakeCryptoObject = makeCryptoObject(z);
                 }
             }
-            if (makeCryptoObject != null && Build.VERSION.SDK_INT < 30) {
-                this.prompt.authenticate(build, makeCryptoObject);
+            if (cryptoObjectMakeCryptoObject != null && Build.VERSION.SDK_INT < 30) {
+                this.prompt.authenticate(promptInfoBuild, cryptoObjectMakeCryptoObject);
             } else {
-                this.prompt.authenticate(build);
+                this.prompt.authenticate(promptInfoBuild);
             }
         } catch (Exception e2) {
             FileLog.e(e2);
@@ -295,8 +303,7 @@ public class BotBiometry {
         }
     }
 
-    private SecretKey getSecretKey() {
-        KeyGenParameterSpec build;
+    private SecretKey getSecretKey() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, NoSuchProviderException, InvalidAlgorithmParameterException {
         if (keyStore == null) {
             KeyStore keyStore2 = KeyStore.getInstance("AndroidKeyStore");
             keyStore = keyStore2;
@@ -306,20 +313,19 @@ public class BotBiometry {
             return (SecretKey) keyStore.getKey("9bot_" + this.botId, null);
         }
         FingerprintController$$ExternalSyntheticApiModelOutline2.m();
-        KeyGenParameterSpec.Builder m = CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("9bot_" + this.botId, 3);
-        m.setBlockModes("CBC");
-        m.setEncryptionPaddings("PKCS7Padding");
-        m.setUserAuthenticationRequired(true);
+        KeyGenParameterSpec.Builder builderM = CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("9bot_" + this.botId, 3);
+        builderM.setBlockModes("CBC");
+        builderM.setEncryptionPaddings("PKCS7Padding");
+        builderM.setUserAuthenticationRequired(true);
         int i = Build.VERSION.SDK_INT;
         if (i >= 30) {
-            m.setUserAuthenticationParameters(60, 2);
+            builderM.setUserAuthenticationParameters(60, 2);
         }
         if (i >= 24) {
-            m.setInvalidatedByBiometricEnrollment(true);
+            builderM.setInvalidatedByBiometricEnrollment(true);
         }
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-        build = m.build();
-        keyGenerator.init(build);
+        keyGenerator.init(builderM.build());
         return keyGenerator.generateKey();
     }
 
@@ -327,7 +333,7 @@ public class BotBiometry {
         return Cipher.getInstance("AES/CBC/PKCS7Padding");
     }
 
-    public JSONObject getStatus() {
+    public JSONObject getStatus() throws JSONException {
         JSONObject jSONObject = new JSONObject();
         String availableType = getAvailableType(this.context);
         boolean z = false;
@@ -355,38 +361,38 @@ public class BotBiometry {
         }
         byte[] bArr = new byte[32];
         new SecureRandom().nextBytes(bArr);
-        String bytesToHex = Utilities.bytesToHex(bArr);
-        sharedPreferences.edit().putString("device_id" + j, bytesToHex).apply();
-        return bytesToHex;
+        String strBytesToHex = Utilities.bytesToHex(bArr);
+        sharedPreferences.edit().putString("device_id" + j, strBytesToHex).apply();
+        return strBytesToHex;
     }
 
     public void save() {
-        SharedPreferences.Editor edit = this.context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0).edit();
+        SharedPreferences.Editor editorEdit = this.context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0).edit();
         if (this.access_requested) {
-            edit.putBoolean(this.botId + "_requested", true);
+            editorEdit.putBoolean(this.botId + "_requested", true);
         } else {
-            edit.remove(this.botId + "_requested");
+            editorEdit.remove(this.botId + "_requested");
         }
         if (this.access_granted) {
-            String valueOf = String.valueOf(this.botId);
+            String strValueOf = String.valueOf(this.botId);
             String str = this.encrypted_token;
             if (str == null) {
                 str = "";
             }
-            edit.putString(valueOf, str);
+            editorEdit.putString(strValueOf, str);
             String str2 = String.valueOf(this.botId) + "_iv";
             String str3 = this.iv;
-            edit.putString(str2, str3 != null ? str3 : "");
+            editorEdit.putString(str2, str3 != null ? str3 : "");
         } else {
-            edit.remove(String.valueOf(this.botId));
-            edit.remove(String.valueOf(this.botId) + "_iv");
+            editorEdit.remove(String.valueOf(this.botId));
+            editorEdit.remove(String.valueOf(this.botId) + "_iv");
         }
         if (this.disabled) {
-            edit.putBoolean(this.botId + "_disabled", true);
+            editorEdit.putBoolean(this.botId + "_disabled", true);
         } else {
-            edit.remove(this.botId + "_disabled");
+            editorEdit.remove(this.botId + "_disabled");
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public static class Bot {
@@ -416,13 +422,13 @@ public class BotBiometry {
                 }
             }
         }
-        final HashMap hashMap = new HashMap();
+        final HashMap map = new HashMap();
         Iterator it2 = arrayList.iterator();
         while (it2.hasNext()) {
             Long l = (Long) it2.next();
             BotBiometry botBiometry = get(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
-                hashMap.put(l, Boolean.valueOf(!botBiometry.disabled));
+                map.put(l, Boolean.valueOf(!botBiometry.disabled));
             }
         }
         if (arrayList.isEmpty()) {
@@ -430,28 +436,28 @@ public class BotBiometry {
         } else {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    BotBiometry.lambda$getBots$3(i, arrayList, hashMap, callback);
+                public final void run() throws InterruptedException {
+                    BotBiometry.lambda$getBots$3(i, arrayList, map, callback);
                 }
             });
         }
     }
 
-    public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap hashMap, final Utilities.Callback callback) {
+    public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) throws InterruptedException {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotBiometry.lambda$getBots$2(users, hashMap, callback);
+                BotBiometry.lambda$getBots$2(users, map, callback);
             }
         });
     }
 
-    public static void lambda$getBots$2(ArrayList arrayList, HashMap hashMap, Utilities.Callback callback) {
+    public static void lambda$getBots$2(ArrayList arrayList, HashMap map, Utilities.Callback callback) {
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC.User user = (TLRPC.User) arrayList.get(i);
-            Boolean bool = (Boolean) hashMap.get(Long.valueOf(user.id));
+            Boolean bool = (Boolean) map.get(Long.valueOf(user.id));
             arrayList2.add(new Bot(user, bool == null || !bool.booleanValue()));
         }
         callback.run(arrayList2);
@@ -459,12 +465,12 @@ public class BotBiometry {
 
     public static void toggleBotDisabled(Context context, int i, long j, boolean z) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean(j + "_disabled", z);
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+        editorEdit.putBoolean(j + "_disabled", z);
         if (!z && sharedPreferences.getString(String.valueOf(j), null) == null) {
-            edit.putString(String.valueOf(j), "");
+            editorEdit.putString(String.valueOf(j), "");
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public static void clear() {

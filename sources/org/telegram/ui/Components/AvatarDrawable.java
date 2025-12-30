@@ -272,11 +272,7 @@ public class AvatarDrawable extends Drawable {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(6L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(6L)]);
-        } else if (i == 10) {
-            this.hasGradient = true;
-            this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5L)]);
-            this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(5L)]);
-        } else if (i == 17) {
+        } else if (i == 10 || i == 17) {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(5L)]);
@@ -367,9 +363,9 @@ public class AvatarDrawable extends Drawable {
     }
 
     private static String takeFirstCharacter(String str) {
-        ArrayList<Emoji.EmojiSpanRange> parseEmojis = Emoji.parseEmojis(str);
-        if (parseEmojis != null && !parseEmojis.isEmpty() && parseEmojis.get(0).start == 0) {
-            return str.substring(0, parseEmojis.get(0).end);
+        ArrayList<Emoji.EmojiSpanRange> emojis = Emoji.parseEmojis(str);
+        if (emojis != null && !emojis.isEmpty() && emojis.get(0).start == 0) {
+            return str.substring(0, emojis.get(0).end);
         }
         return str.substring(0, str.offsetByCodePoints(0, Math.min(str.codePointCount(0, str.length()), 1)));
     }
@@ -494,9 +490,9 @@ public class AvatarDrawable extends Drawable {
             sb.append(takeFirstCharacter(str));
         }
         if (str2 != null && str2.length() > 0) {
-            int lastIndexOf = str2.lastIndexOf(32);
-            if (lastIndexOf >= 0) {
-                str2 = str2.substring(lastIndexOf + 1);
+            int iLastIndexOf = str2.lastIndexOf(32);
+            if (iLastIndexOf >= 0) {
+                str2 = str2.substring(iLastIndexOf + 1);
             }
             sb.append("\u200c");
             sb.append(takeFirstCharacter(str2));
@@ -537,21 +533,21 @@ public class AvatarDrawable extends Drawable {
         if (bounds == null) {
             return;
         }
-        int width = bounds.width();
+        int iWidth = bounds.width();
         this.namePaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_avatar_text), this.alpha));
         Paint paint = Theme.avatar_backgroundPaint;
         if (this.hasAdvancedGradient && (gradientTools = this.advancedGradient) != null) {
-            gradientTools.setBounds(bounds.left, bounds.top, r4 + width, r8 + width);
+            gradientTools.setBounds(bounds.left, bounds.top, r4 + iWidth, r8 + iWidth);
             paint = this.advancedGradient.paint;
         } else if (this.hasGradient) {
             int alphaComponent = ColorUtils.setAlphaComponent(getColor(), this.alpha);
             int alphaComponent2 = ColorUtils.setAlphaComponent(getColor2(), this.alpha);
             if (this.gradient == null || this.gradientBottom != bounds.height() || this.gradientColor1 != alphaComponent || this.gradientColor2 != alphaComponent2) {
-                int height = bounds.height();
-                this.gradientBottom = height;
+                int iHeight = bounds.height();
+                this.gradientBottom = iHeight;
                 this.gradientColor1 = alphaComponent;
                 this.gradientColor2 = alphaComponent2;
-                this.gradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, alphaComponent, alphaComponent2, Shader.TileMode.CLAMP);
+                this.gradient = new LinearGradient(0.0f, 0.0f, 0.0f, iHeight, alphaComponent, alphaComponent2, Shader.TileMode.CLAMP);
             }
             paint.setShader(this.gradient);
             paint.setAlpha(this.alpha);
@@ -564,17 +560,17 @@ public class AvatarDrawable extends Drawable {
         if (this.drawAvatarBackground) {
             if (this.rotate45Background) {
                 canvas.save();
-                float f = width / 2.0f;
+                float f = iWidth / 2.0f;
                 canvas.rotate(-45.0f, f, f);
             }
             if (this.roundRadius > 0) {
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f2 = width;
+                float f2 = iWidth;
                 rectF.set(0.0f, 0.0f, f2, f2);
                 float f3 = this.roundRadius;
                 canvas.drawRoundRect(rectF, f3, f3, paint);
             } else {
-                float f4 = width / 2.0f;
+                float f4 = iWidth / 2.0f;
                 canvas.drawCircle(f4, f4, f4, paint);
             }
             if (this.rotate45Background) {
@@ -586,7 +582,7 @@ public class AvatarDrawable extends Drawable {
             if (this.archivedAvatarProgress != 0.0f) {
                 int i2 = Theme.key_avatar_backgroundArchived;
                 paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i2), this.alpha));
-                float f5 = width / 2.0f;
+                float f5 = iWidth / 2.0f;
                 canvas.drawCircle(f5, f5, this.archivedAvatarProgress * f5, paint);
                 if (Theme.dialogs_archiveAvatarDrawableRecolored) {
                     Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
@@ -604,8 +600,8 @@ public class AvatarDrawable extends Drawable {
             }
             int intrinsicWidth = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
             int intrinsicHeight = Theme.dialogs_archiveAvatarDrawable.getIntrinsicHeight();
-            int i3 = (width - intrinsicWidth) / 2;
-            int i4 = (width - intrinsicHeight) / 2;
+            int i3 = (iWidth - intrinsicWidth) / 2;
+            int i4 = (iWidth - intrinsicHeight) / 2;
             canvas.save();
             Theme.dialogs_archiveAvatarDrawable.setBounds(i3, i4, intrinsicWidth + i3, intrinsicHeight + i4);
             Theme.dialogs_archiveAvatarDrawable.draw(canvas);
@@ -667,8 +663,8 @@ public class AvatarDrawable extends Drawable {
             if (drawable3 != null) {
                 int intrinsicWidth2 = (int) (drawable3.getIntrinsicWidth() * this.scaleSize);
                 int intrinsicHeight2 = (int) (drawable3.getIntrinsicHeight() * this.scaleSize);
-                int i5 = ((width - intrinsicWidth2) / 2) + this.iconTx;
-                int i6 = ((width - intrinsicHeight2) / 2) + this.iconTy;
+                int i5 = ((iWidth - intrinsicWidth2) / 2) + this.iconTx;
+                int i6 = ((iWidth - intrinsicHeight2) / 2) + this.iconTy;
                 drawable3.setBounds(i5, i6, intrinsicWidth2 + i5, intrinsicHeight2 + i6);
                 int i7 = this.alpha;
                 if (i7 != 255) {
@@ -686,24 +682,24 @@ public class AvatarDrawable extends Drawable {
                 float f6 = this.scaleSize;
                 intrinsicWidth3 = (int) (intrinsicWidth3 * f6);
                 intrinsicHeight3 = (int) (intrinsicHeight3 * f6);
-            } else if (intrinsicWidth3 > width - AndroidUtilities.dp(6.0f) || intrinsicHeight3 > width - AndroidUtilities.dp(6.0f)) {
-                float dp = width / AndroidUtilities.dp(50.0f);
-                intrinsicWidth3 = (int) (intrinsicWidth3 * dp);
-                intrinsicHeight3 = (int) (intrinsicHeight3 * dp);
+            } else if (intrinsicWidth3 > iWidth - AndroidUtilities.dp(6.0f) || intrinsicHeight3 > iWidth - AndroidUtilities.dp(6.0f)) {
+                float fDp = iWidth / AndroidUtilities.dp(50.0f);
+                intrinsicWidth3 = (int) (intrinsicWidth3 * fDp);
+                intrinsicHeight3 = (int) (intrinsicHeight3 * fDp);
             }
-            int i8 = (width - intrinsicWidth3) / 2;
-            int i9 = (width - intrinsicHeight3) / 2;
+            int i8 = (iWidth - intrinsicWidth3) / 2;
+            int i9 = (iWidth - intrinsicHeight3) / 2;
             Theme.avatarDrawables[1].setBounds(i8, i9, intrinsicWidth3 + i8, intrinsicHeight3 + i9);
             Theme.avatarDrawables[1].draw(canvas);
         } else {
             if (this.invalidateTextLayout) {
                 this.invalidateTextLayout = false;
                 if (this.stringBuilder.length() > 0) {
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), true);
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), true);
                     StaticLayout staticLayout = this.textLayout;
-                    if (staticLayout == null || !TextUtils.equals(replaceEmoji, staticLayout.getText())) {
+                    if (staticLayout == null || !TextUtils.equals(charSequenceReplaceEmoji, staticLayout.getText())) {
                         try {
-                            StaticLayout staticLayout2 = new StaticLayout(replaceEmoji, this.namePaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                            StaticLayout staticLayout2 = new StaticLayout(charSequenceReplaceEmoji, this.namePaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                             this.textLayout = staticLayout2;
                             if (staticLayout2.getLineCount() > 0) {
                                 this.textLeft = this.textLayout.getLineLeft(0);
@@ -719,10 +715,10 @@ public class AvatarDrawable extends Drawable {
                 }
             }
             if (this.textLayout != null) {
-                float f7 = width;
-                float dp2 = f7 / AndroidUtilities.dp(50.0f);
+                float f7 = iWidth;
+                float fDp2 = f7 / AndroidUtilities.dp(50.0f);
                 float f8 = f7 / 2.0f;
-                canvas.scale(dp2, dp2, f8, f8);
+                canvas.scale(fDp2, fDp2, f8, f8);
                 canvas.translate(((f7 - this.textWidth) / 2.0f) - this.textLeft, (f7 - this.textHeight) / 2.0f);
                 this.textLayout.draw(canvas);
             }

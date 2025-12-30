@@ -79,7 +79,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -89,15 +89,15 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         frameLayout2.addView(imageView2, LayoutHelper.createFrame(56, 56, 17));
         linearLayout.addView(frameLayout2, LayoutHelper.createLinear(80, 80, 1, 2, 21, 2, 13));
         int i = Theme.key_windowBackgroundWhiteBlackText;
-        LinkSpanDrawable.LinksTextView makeLinkTextView = TextHelper.makeLinkTextView(context, 20.0f, i, true, this.resourcesProvider);
-        makeLinkTextView.setText(LocaleController.getString(R.string.GroupCallCreateTitle));
-        makeLinkTextView.setGravity(17);
-        linearLayout.addView(makeLinkTextView, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 4));
-        LinkSpanDrawable.LinksTextView makeLinkTextView2 = TextHelper.makeLinkTextView(context, 14.0f, i, false, this.resourcesProvider);
-        makeLinkTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallCreateText)));
-        makeLinkTextView2.setGravity(17);
-        makeLinkTextView2.setMaxWidth(HintView2.cutInFancyHalf(makeLinkTextView2.getText(), makeLinkTextView2.getPaint()));
-        linearLayout.addView(makeLinkTextView2, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 23));
+        LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView = TextHelper.makeLinkTextView(context, 20.0f, i, true, this.resourcesProvider);
+        linksTextViewMakeLinkTextView.setText(LocaleController.getString(R.string.GroupCallCreateTitle));
+        linksTextViewMakeLinkTextView.setGravity(17);
+        linearLayout.addView(linksTextViewMakeLinkTextView, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 4));
+        LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView2 = TextHelper.makeLinkTextView(context, 14.0f, i, false, this.resourcesProvider);
+        linksTextViewMakeLinkTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallCreateText)));
+        linksTextViewMakeLinkTextView2.setGravity(17);
+        linksTextViewMakeLinkTextView2.setMaxWidth(HintView2.cutInFancyHalf(linksTextViewMakeLinkTextView2.getText(), linksTextViewMakeLinkTextView2.getPaint()));
+        linearLayout.addView(linksTextViewMakeLinkTextView2, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 23));
         UniversalAdapter universalAdapter = this.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(false);
@@ -121,7 +121,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void onItemClick(View view, int i2, float f, float f2) {
-                CreateGroupCallSheet.this.lambda$new$1(view, i2, f, f2);
+                this.f$0.lambda$new$1(view, i2, f, f2);
             }
         });
         FrameLayout frameLayout3 = new FrameLayout(context);
@@ -142,7 +142,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallSheet.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, this.resourcesProvider);
@@ -156,7 +156,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallSheet.this.lambda$new$3(view);
+                this.f$0.lambda$new$3(view);
             }
         });
         this.containerView.addView(frameLayout3, LayoutHelper.createFrame(-1, -2, 87));
@@ -215,7 +215,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateGroupCallSheet.this.lambda$createCall$6(buttonWithCounterView, z, hashSet, tLObject, tL_error);
+                this.f$0.lambda$createCall$6(buttonWithCounterView, z, hashSet, tLObject, tL_error);
             }
         });
     }
@@ -223,13 +223,13 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
     public void lambda$createCall$6(final ButtonWithCounterView buttonWithCounterView, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                CreateGroupCallSheet.this.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
             }
         });
     }
 
-    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
@@ -242,7 +242,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    CreateGroupCallSheet.this.lambda$createCall$4(updates);
+                    this.f$0.lambda$createCall$4(updates);
                 }
             });
             if (groupCall == null || LaunchActivity.instance == null) {
@@ -294,7 +294,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CreateGroupCallSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;

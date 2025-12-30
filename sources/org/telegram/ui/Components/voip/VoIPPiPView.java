@@ -82,7 +82,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
     ValueAnimator.AnimatorUpdateListener animatorToCameraMiniUpdater = new ValueAnimator.AnimatorUpdateListener() {
         @Override
         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-            VoIPPiPView.this.lambda$new$0(valueAnimator);
+            this.f$0.lambda$new$0(valueAnimator);
         }
     };
     float[] point = new float[2];
@@ -98,9 +98,9 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
     private ValueAnimator.AnimatorUpdateListener updateXlistener = new ValueAnimator.AnimatorUpdateListener() {
         @Override
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             VoIPPiPView voIPPiPView = VoIPPiPView.this;
-            voIPPiPView.windowLayoutParams.x = (int) floatValue;
+            voIPPiPView.windowLayoutParams.x = (int) fFloatValue;
             WindowManager windowManager = voIPPiPView.windowManager;
             VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
             AndroidUtilities.updateViewLayout(windowManager, voIPPiPView2.windowView, voIPPiPView2.windowLayoutParams);
@@ -109,9 +109,9 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
     private ValueAnimator.AnimatorUpdateListener updateYlistener = new ValueAnimator.AnimatorUpdateListener() {
         @Override
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             VoIPPiPView voIPPiPView = VoIPPiPView.this;
-            voIPPiPView.windowLayoutParams.y = (int) floatValue;
+            voIPPiPView.windowLayoutParams.y = (int) fFloatValue;
             WindowManager windowManager = voIPPiPView.windowManager;
             VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
             AndroidUtilities.updateViewLayout(windowManager, voIPPiPView2.windowView, voIPPiPView2.windowLayoutParams);
@@ -173,7 +173,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         if (instance != null || VideoCapturerDevice.eglBase == null) {
             return;
         }
-        WindowManager.LayoutParams createWindowLayoutParams = createWindowLayoutParams(activity, i2, i3, 0.25f);
+        WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = createWindowLayoutParams(activity, i2, i3, 0.25f);
         instance = new VoIPPiPView(activity, i2, i3, false);
         if (AndroidUtilities.checkInlinePermissions(activity)) {
             windowManager = (WindowManager) ApplicationLoader.applicationContext.getSystemService("window");
@@ -183,11 +183,11 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         VoIPPiPView voIPPiPView = instance;
         voIPPiPView.currentAccount = i;
         voIPPiPView.windowManager = windowManager;
-        voIPPiPView.windowLayoutParams = createWindowLayoutParams;
+        voIPPiPView.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0);
         instance.setRelativePosition(sharedPreferences.getFloat("relativeX", 1.0f), sharedPreferences.getFloat("relativeY", 0.0f));
         NotificationCenter.getGlobalInstance().addObserver(instance, NotificationCenter.didEndCall);
-        windowManager.addView(instance.windowView, createWindowLayoutParams);
+        windowManager.addView(instance.windowView, layoutParamsCreateWindowLayoutParams);
         instance.currentUserTextureView.renderer.init(VideoCapturerDevice.eglBase.getEglBaseContext(), null);
         instance.callingUserTextureView.renderer.init(VideoCapturerDevice.eglBase.getEglBaseContext(), instance.rendererEvents);
         if (i4 == 0) {
@@ -268,21 +268,21 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         Point point = AndroidUtilities.displaySize;
         float f3 = point.x;
         float f4 = point.y;
-        float dp = AndroidUtilities.dp(16.0f);
-        float dp2 = AndroidUtilities.dp(16.0f);
-        float dp3 = AndroidUtilities.dp(60.0f);
-        float dp4 = AndroidUtilities.dp(16.0f);
-        float f5 = this.parentWidth * 0.25f;
-        float f6 = this.parentHeight * 0.25f;
+        float fDp = AndroidUtilities.dp(16.0f);
+        float fDp2 = AndroidUtilities.dp(16.0f);
+        float fDp3 = AndroidUtilities.dp(60.0f);
+        float fDp4 = AndroidUtilities.dp(16.0f);
+        float measuredWidth = this.parentWidth * 0.25f;
+        float measuredHeight = this.parentHeight * 0.25f;
         if (this.floatingView.getMeasuredWidth() != 0) {
-            f5 = this.floatingView.getMeasuredWidth();
+            measuredWidth = this.floatingView.getMeasuredWidth();
         }
         if (this.floatingView.getMeasuredWidth() != 0) {
-            f6 = this.floatingView.getMeasuredHeight();
+            measuredHeight = this.floatingView.getMeasuredHeight();
         }
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        layoutParams.x = (int) ((f * (((f3 - dp) - dp2) - f5)) - (this.xOffset - dp));
-        layoutParams.y = (int) ((f2 * (((f4 - dp3) - dp4) - f6)) - (this.yOffset - dp3));
+        layoutParams.x = (int) ((f * (((f3 - fDp) - fDp2) - measuredWidth)) - (this.xOffset - fDp));
+        layoutParams.y = (int) ((f2 * (((f4 - fDp3) - fDp4) - measuredHeight)) - (this.yOffset - fDp3));
         AndroidUtilities.updateViewLayout(this.windowManager, this.windowView, layoutParams);
     }
 
@@ -348,14 +348,14 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
+                public final void onClick(View view2) throws InterruptedException {
                     VoIPPiPView.lambda$new$1(view2);
                 }
             });
             this.enlargeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    VoIPPiPView.this.lambda$new$2(context, view2);
+                    this.f$0.lambda$new$2(context, view2);
                 }
             });
         }
@@ -366,7 +366,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         updateViewState();
     }
 
-    public static void lambda$new$1(View view) {
+    public static void lambda$new$1(View view) throws InterruptedException {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             sharedInstance.hangUp();
@@ -396,8 +396,8 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         this.windowView.setVisibility(8);
         if (this.windowView.getParent() != null) {
             this.floatingView.getRelativePosition(this.point);
-            float min = Math.min(1.0f, Math.max(0.0f, this.point[0]));
-            ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", min).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.point[1]))).apply();
+            float fMin = Math.min(1.0f, Math.max(0.0f, this.point[0]));
+            ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", fMin).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.point[1]))).apply();
             try {
                 this.windowManager.removeView(this.windowView);
             } catch (Throwable th) {
@@ -488,9 +488,9 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToCameraMini, this.callingUserIsVideo ? 1.0f : 0.0f);
-            this.animatorToCameraMini = ofFloat;
-            ofFloat.addUpdateListener(this.animatorToCameraMiniUpdater);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.progressToCameraMini, this.callingUserIsVideo ? 1.0f : 0.0f);
+            this.animatorToCameraMini = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(this.animatorToCameraMiniUpdater);
             this.animatorToCameraMini.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.animatorToCameraMini.start();
         }
@@ -606,7 +606,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         }
     }
 
-    public class FloatingView extends FrameLayout {
+    class FloatingView extends FrameLayout {
         float bottomPadding;
         float leftPadding;
         float rightPadding;
@@ -690,7 +690,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             if (z) {
                 Context context = VoIPPiPView.instance.windowView.getContext();
                 VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
-                WindowManager.LayoutParams createWindowLayoutParams = VoIPPiPView.createWindowLayoutParams(context, voIPPiPView2.parentWidth, voIPPiPView2.parentHeight, 0.4f);
+                WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = VoIPPiPView.createWindowLayoutParams(context, voIPPiPView2.parentWidth, voIPPiPView2.parentHeight, 0.4f);
                 Context context2 = getContext();
                 VoIPPiPView voIPPiPView3 = VoIPPiPView.this;
                 final VoIPPiPView voIPPiPView4 = new VoIPPiPView(context2, voIPPiPView3.parentWidth, voIPPiPView3.parentHeight, true);
@@ -700,12 +700,12 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
                 float f9 = fArr[0];
                 float f10 = fArr[1];
                 WindowManager.LayoutParams layoutParams = voIPPiPView5.windowLayoutParams;
-                createWindowLayoutParams.x = (int) (layoutParams.x - ((f7 - f3) * f9));
-                createWindowLayoutParams.y = (int) (layoutParams.y - ((f8 - f6) * f10));
-                AndroidUtilities.setPreferredMaxRefreshRate(voIPPiPView5.windowManager, voIPPiPView4.windowView, createWindowLayoutParams);
-                VoIPPiPView.this.windowManager.addView(voIPPiPView4.windowView, createWindowLayoutParams);
+                layoutParamsCreateWindowLayoutParams.x = (int) (layoutParams.x - ((f7 - f3) * f9));
+                layoutParamsCreateWindowLayoutParams.y = (int) (layoutParams.y - ((f8 - f6) * f10));
+                AndroidUtilities.setPreferredMaxRefreshRate(voIPPiPView5.windowManager, voIPPiPView4.windowView, layoutParamsCreateWindowLayoutParams);
+                VoIPPiPView.this.windowManager.addView(voIPPiPView4.windowView, layoutParamsCreateWindowLayoutParams);
                 voIPPiPView4.windowView.setAlpha(1.0f);
-                voIPPiPView4.windowLayoutParams = createWindowLayoutParams;
+                voIPPiPView4.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
                 voIPPiPView4.windowManager = VoIPPiPView.this.windowManager;
                 VoIPPiPView unused = VoIPPiPView.expandedInstance = voIPPiPView4;
                 swapRender(VoIPPiPView.instance, VoIPPiPView.expandedInstance);
@@ -720,7 +720,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPPiPView.FloatingView.this.lambda$expand$1(scaleX, voIPPiPView4);
+                        this.f$0.lambda$expand$1(scaleX, voIPPiPView4);
                     }
                 }, 64L);
                 return;
@@ -738,17 +738,17 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             VoIPPiPView.expandedInstance.floatingView.setPivotX(f11 * VoIPPiPView.this.parentWidth * 0.4f);
             VoIPPiPView.expandedInstance.floatingView.setPivotY(f12 * VoIPPiPView.this.parentHeight * 0.4f);
             showUi(false);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     VoIPPiPView.FloatingView.lambda$expand$2(scaleX2, valueAnimator);
                 }
             });
-            ofFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
-            ofFloat.addListener(new AnonymousClass3(z));
-            ofFloat.start();
-            VoIPPiPView.this.expandAnimator = ofFloat;
+            valueAnimatorOfFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
+            valueAnimatorOfFloat.addListener(new AnonymousClass3(z));
+            valueAnimatorOfFloat.start();
+            VoIPPiPView.this.expandAnimator = valueAnimatorOfFloat;
         }
 
         public void lambda$expand$1(final float f, final VoIPPiPView voIPPiPView) {
@@ -764,28 +764,28 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             animate().cancel();
             showUi(true);
             final float f2 = 1.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     VoIPPiPView.FloatingView.lambda$expand$0(f, f2, voIPPiPView, valueAnimator);
                 }
             });
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     super.onAnimationEnd(animator);
                     VoIPPiPView.this.expandedAnimationInProgress = false;
                 }
             });
-            ofFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
-            ofFloat.start();
-            VoIPPiPView.this.expandAnimator = ofFloat;
+            valueAnimatorOfFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
+            valueAnimatorOfFloat.start();
+            VoIPPiPView.this.expandAnimator = valueAnimatorOfFloat;
         }
 
         public static void lambda$expand$0(float f, float f2, VoIPPiPView voIPPiPView, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            float f3 = (f * (1.0f - floatValue)) + (f2 * floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float f3 = (f * (1.0f - fFloatValue)) + (f2 * fFloatValue);
             voIPPiPView.floatingView.setScaleX(f3);
             voIPPiPView.floatingView.setScaleY(f3);
             voIPPiPView.floatingView.invalidate();
@@ -794,8 +794,8 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         }
 
         public static void lambda$expand$2(float f, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            float f2 = (1.0f - floatValue) + (f * floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float f2 = (1.0f - fFloatValue) + (f * fFloatValue);
             if (VoIPPiPView.expandedInstance != null) {
                 VoIPPiPView.expandedInstance.floatingView.setScaleX(f2);
                 VoIPPiPView.expandedInstance.floatingView.setScaleY(f2);
@@ -805,7 +805,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             }
         }
 
-        public class AnonymousClass3 extends AnimatorListenerAdapter {
+        class AnonymousClass3 extends AnimatorListenerAdapter {
             final boolean val$expanded;
 
             AnonymousClass3(boolean z) {
@@ -825,7 +825,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPPiPView.FloatingView.AnonymousClass3.this.lambda$onAnimationEnd$0(z);
+                        this.f$0.lambda$onAnimationEnd$0(z);
                     }
                 }, 64L);
             }

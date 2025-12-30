@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
@@ -63,7 +64,7 @@ public class AlertDialogDecor extends AlertDialog {
         this.showRunnable = new Runnable() {
             @Override
             public final void run() {
-                AlertDialogDecor.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
     }
@@ -72,28 +73,28 @@ public class AlertDialogDecor extends AlertDialog {
         return (ViewGroup) getActivity(getContext()).getWindow().getDecorView();
     }
 
-    private void extractAnimations() {
+    private void extractAnimations() throws Resources.NotFoundException {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(16842926, typedValue, true);
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
-        this.resEnterAnimation = obtainStyledAttributes.getResourceId(0, -1);
-        this.resExitAnimation = obtainStyledAttributes.getResourceId(1, -1);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
+        this.resEnterAnimation = typedArrayObtainStyledAttributes.getResourceId(0, -1);
+        this.resExitAnimation = typedArrayObtainStyledAttributes.getResourceId(1, -1);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     @Override
-    public void show() {
+    public void show() throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
         extractAnimations();
         setDismissDialogByButtons(true);
-        View inflateContent = inflateContent(false);
-        this.contentView = inflateContent;
-        inflateContent.setClickable(true);
+        View viewInflateContent = inflateContent(false);
+        this.contentView = viewInflateContent;
+        viewInflateContent.setClickable(true);
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
-                AlertDialogDecor.this.lambda$show$1(view);
+            public final void onClick(View view) throws Resources.NotFoundException {
+                this.f$0.lambda$show$1(view);
             }
         });
         View view = new View(getContext());
@@ -109,9 +110,7 @@ public class AlertDialogDecor extends AlertDialog {
         ViewCompat.setOnApplyWindowInsetsListener(this.rootView, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
-                WindowInsetsCompat lambda$show$2;
-                lambda$show$2 = AlertDialogDecor.lambda$show$2(frameLayout2, view2, windowInsetsCompat);
-                return lambda$show$2;
+                return AlertDialogDecor.lambda$show$2(frameLayout2, view2, windowInsetsCompat);
             }
         });
         this.rootView.setVisibility(4);
@@ -123,7 +122,7 @@ public class AlertDialogDecor extends AlertDialog {
         }
     }
 
-    public void lambda$show$1(View view) {
+    public void lambda$show$1(View view) throws Resources.NotFoundException {
         dismiss();
     }
 
@@ -141,7 +140,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public void showDelayed(long j) {
+    public void showDelayed(long j) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
         if (isShowing()) {
             return;
         }
@@ -165,7 +164,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public void dismiss() {
+    public void dismiss() throws Resources.NotFoundException {
         if (isShowing() && !this.isDismissed) {
             this.isDismissed = true;
             AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
@@ -173,8 +172,8 @@ public class AlertDialogDecor extends AlertDialog {
                 getDecorView().removeView(this.rootView);
                 return;
             }
-            Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
-            loadAnimation.setAnimationListener(new Animation.AnimationListener() {
+            Animation animationLoadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
+            animationLoadAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationRepeat(Animation animation) {
                 }
@@ -189,7 +188,7 @@ public class AlertDialogDecor extends AlertDialog {
                 }
             });
             this.contentView.clearAnimation();
-            this.contentView.startAnimation(loadAnimation);
+            this.contentView.startAnimation(animationLoadAnimation);
             this.dimView.animate().setListener(null).cancel();
             this.dimView.animate().setDuration(300L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
                 @Override

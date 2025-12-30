@@ -48,19 +48,17 @@ public class BotBiometrySettings extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotBiometrySettings.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                BotBiometrySettings.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onLongClick;
-                onLongClick = BotBiometrySettings.this.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onLongClick);
+                return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         });
         this.listView = universalRecyclerView;
@@ -68,7 +66,7 @@ public class BotBiometrySettings extends BaseFragment {
         BotBiometry.getBots(getContext(), this.currentAccount, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BotBiometrySettings.this.lambda$createView$0((ArrayList) obj);
+                this.f$0.lambda$createView$0((ArrayList) obj);
             }
         });
         this.fragmentView = frameLayout;

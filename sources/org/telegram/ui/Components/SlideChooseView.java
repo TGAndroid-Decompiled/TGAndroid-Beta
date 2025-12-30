@@ -154,19 +154,19 @@ public class SlideChooseView extends View {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        float clamp = MathUtils.clamp(((x - this.sideSide) + (this.circleSize / 2.0f)) / ((this.lineSize + (this.gapSize * 2)) + r3), 0.0f, this.optionsStr.length - 1);
-        boolean z = Math.abs(clamp - ((float) Math.round(clamp))) < 0.35f;
+        float fClamp = MathUtils.clamp(((x - this.sideSide) + (this.circleSize / 2.0f)) / ((this.lineSize + (this.gapSize * 2)) + r3), 0.0f, this.optionsStr.length - 1);
+        boolean z = Math.abs(fClamp - ((float) Math.round(fClamp))) < 0.35f;
         if (z) {
-            clamp = Math.round(clamp);
+            fClamp = Math.round(fClamp);
         }
         int i = this.minIndex;
         if (i != Integer.MIN_VALUE) {
-            clamp = Math.max(clamp, i);
+            fClamp = Math.max(fClamp, i);
         }
         if (motionEvent.getAction() == 0) {
             this.xTouchDown = x;
             this.yTouchDown = y;
-            this.selectedIndexTouch = clamp;
+            this.selectedIndexTouch = fClamp;
             this.startMovingPreset = this.selectedIndex;
             this.startMoving = true;
             invalidate();
@@ -179,7 +179,7 @@ public class SlideChooseView extends View {
                 this.startMoving = false;
             }
             if (this.moving) {
-                this.selectedIndexTouch = clamp;
+                this.selectedIndexTouch = fClamp;
                 invalidate();
                 if (Math.round(this.selectedIndexTouch) != this.selectedIndex && z) {
                     setOption(Math.round(this.selectedIndexTouch));
@@ -188,7 +188,7 @@ public class SlideChooseView extends View {
             invalidate();
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             if (!this.moving) {
-                this.selectedIndexTouch = clamp;
+                this.selectedIndexTouch = fClamp;
                 if (motionEvent.getAction() == 1 && Math.round(this.selectedIndexTouch) != this.selectedIndex) {
                     setOption(Math.round(this.selectedIndexTouch));
                 }
@@ -255,48 +255,48 @@ public class SlideChooseView extends View {
             int i9 = i6 + ((i7 + i8) * i5) + (i8 / i4);
             float f7 = i5;
             float f8 = f7 - f3;
-            float max = Math.max(f4, f5 - Math.abs(f8));
-            float clamp = MathUtils.clamp((f3 - f7) + f5, f4, f5);
+            float fMax = Math.max(f4, f5 - Math.abs(f8));
+            float fClamp = MathUtils.clamp((f3 - f7) + f5, f4, f5);
             int themedColor = getThemedColor(Theme.key_switchTrack);
             int themedColor2 = getThemedColor(Theme.key_switchTrackChecked);
             int i10 = this.minIndex;
-            int blendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i10 == Integer.MIN_VALUE || i5 > i10) ? 1.0f : 0.5f), clamp);
-            this.paint.setColor(blendARGB);
-            this.linePaint.setColor(blendARGB);
+            int iBlendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i10 == Integer.MIN_VALUE || i5 > i10) ? 1.0f : 0.5f), fClamp);
+            this.paint.setColor(iBlendARGB);
+            this.linePaint.setColor(iBlendARGB);
             float f9 = measuredHeight;
-            canvas.drawCircle(i9, f9, AndroidUtilities.lerp(this.circleSize / i4, AndroidUtilities.dp(6.0f), max), this.paint);
+            canvas.drawCircle(i9, f9, AndroidUtilities.lerp(this.circleSize / i4, AndroidUtilities.dp(6.0f), fMax), this.paint);
             if (i5 != 0) {
                 int i11 = (i9 - (this.circleSize / i4)) - this.gapSize;
                 int i12 = this.lineSize;
                 int i13 = i11 - i12;
                 int i14 = this.dashedFrom;
                 if (i14 != -1 && i5 - 1 >= i14) {
-                    int dp = i13 + AndroidUtilities.dp(3.0f);
-                    int dp2 = (i12 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
-                    if (this.lastDash != dp2) {
-                        f2 = max;
+                    int iDp = i13 + AndroidUtilities.dp(3.0f);
+                    int iDp2 = (i12 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
+                    if (this.lastDash != iDp2) {
+                        f2 = fMax;
                         i3 = i9;
-                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (r12 - (AndroidUtilities.dp(8.0f) * dp2)) / (dp2 - 1)}, 0.0f));
-                        this.lastDash = dp2;
+                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (r12 - (AndroidUtilities.dp(8.0f) * iDp2)) / (iDp2 - 1)}, 0.0f));
+                        this.lastDash = iDp2;
                     } else {
-                        f2 = max;
+                        f2 = fMax;
                         i3 = i9;
                     }
                     f = f2;
                     i = i3;
                     i2 = i5;
-                    canvas.drawLine(AndroidUtilities.dp(1.0f) + dp, f9, (dp + r12) - AndroidUtilities.dp(1.0f), f9, this.linePaint);
+                    canvas.drawLine(AndroidUtilities.dp(1.0f) + iDp, f9, (iDp + r12) - AndroidUtilities.dp(1.0f), f9, this.linePaint);
                 } else {
-                    f = max;
+                    f = fMax;
                     i = i9;
                     i2 = i5;
                     float f10 = f8 - 1.0f;
-                    float clamp2 = MathUtils.clamp(1.0f - Math.abs(f10), 0.0f, 1.0f);
-                    int dp3 = (int) (i12 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f8), Math.abs(f10)), 0.0f, 1.0f)));
-                    canvas.drawRect((int) (i13 + (AndroidUtilities.dp(3.0f) * clamp2)), measuredHeight - AndroidUtilities.dp(1.0f), r1 + dp3, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
+                    float fClamp2 = MathUtils.clamp(1.0f - Math.abs(f10), 0.0f, 1.0f);
+                    int iDp3 = (int) (i12 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f8), Math.abs(f10)), 0.0f, 1.0f)));
+                    canvas.drawRect((int) (i13 + (AndroidUtilities.dp(3.0f) * fClamp2)), measuredHeight - AndroidUtilities.dp(1.0f), r1 + iDp3, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
                 }
             } else {
-                f = max;
+                f = fMax;
                 i = i9;
                 i2 = i5;
             }

@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -129,7 +130,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
     protected void onScrolled(boolean z, boolean z2) {
     }
 
-    public MentionsContainerView(Context context, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+    public MentionsContainerView(Context context, long j, long j2, final BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.shouldLiftMentions = false;
         this.rect = new android.graphics.Rect();
@@ -139,7 +140,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.updateVisibilityRunnable = new Runnable() {
             @Override
             public final void run() {
-                MentionsContainerView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.animationIndex = -1;
@@ -147,9 +148,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.hideT = 0.0f;
         this.switchLayoutManagerOnEnd = false;
         this.botContextProvider = new PhotoViewer.EmptyPhotoViewerProvider() {
-            AnonymousClass5() {
-            }
-
             @Override
             public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r4, org.telegram.tgnet.TLRPC.FileLocation r5, int r6, boolean r7, boolean r8) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MentionsContainerView.AnonymousClass5.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
@@ -172,14 +170,10 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         setClipToOutline(true);
         this.listViewPadding = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
         this.listView = new MentionsListView(context, resourcesProvider);
-        AnonymousClass1 anonymousClass1 = new LinearLayoutManager(context) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
-            }
-
-            AnonymousClass1(Context context2) {
-                super(context2);
             }
 
             @Override
@@ -188,15 +182,10 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.dp(6.0f));
             }
         };
-        this.linearLayoutManager = anonymousClass1;
-        anonymousClass1.setOrientation(1);
-        AnonymousClass2 anonymousClass2 = new ExtendedGridLayoutManager(context2, 100, false, false) {
+        this.linearLayoutManager = linearLayoutManager;
+        linearLayoutManager.setOrientation(1);
+        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100, false, false) {
             private Size size = new Size();
-
-            AnonymousClass2(Context context2, int i, boolean z, boolean z2) {
-                super(context2, i, z, z2);
-                this.size = new Size();
-            }
 
             @Override
             protected Size getSizeForItem(int i) {
@@ -272,18 +261,15 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             }
 
             @Override
-            public int getFlowItemCount() {
+            protected int getFlowItemCount() {
                 if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
                     return getItemCount() - 1;
                 }
                 return super.getFlowItemCount();
             }
         };
-        this.gridLayoutManager = anonymousClass2;
-        anonymousClass2.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            AnonymousClass3() {
-            }
-
+        this.gridLayoutManager = extendedGridLayoutManager;
+        extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i) {
                 if (i == 0) {
@@ -313,20 +299,14 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setClipToPadding(false);
         this.listView.setLayoutManager(this.linearLayoutManager);
-        MentionsAdapter mentionsAdapter = new MentionsAdapter(context2, false, j, j2, new MentionsAdapter.MentionsAdapterDelegate() {
-            final BaseFragment val$baseFragment;
-
-            AnonymousClass4(BaseFragment baseFragment2) {
-                r2 = baseFragment2;
-            }
-
+        MentionsAdapter mentionsAdapter = new MentionsAdapter(context, false, j, j2, new MentionsAdapter.MentionsAdapterDelegate() {
             @Override
             public void onItemCountUpdate(int i, int i2) {
                 if (MentionsContainerView.this.listView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager || !MentionsContainerView.this.shown) {
                     return;
                 }
                 AndroidUtilities.cancelRunOnUIThread(MentionsContainerView.this.updateVisibilityRunnable);
-                AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, r2.getFragmentBeginToShow() ? 0L : 100L);
+                AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, baseFragment.getFragmentBeginToShow() ? 0L : 100L);
             }
 
             @Override
@@ -362,180 +342,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.listView.setTranslationY(AndroidUtilities.dp(6.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         setReversed(false);
-    }
-
-    public class AnonymousClass1 extends LinearLayoutManager {
-        @Override
-        public boolean supportsPredictiveItemAnimations() {
-            return false;
-        }
-
-        AnonymousClass1(Context context2) {
-            super(context2);
-        }
-
-        @Override
-        public void setReverseLayout(boolean z) {
-            super.setReverseLayout(z);
-            MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.dp(6.0f));
-        }
-    }
-
-    public class AnonymousClass2 extends ExtendedGridLayoutManager {
-        private Size size = new Size();
-
-        AnonymousClass2(Context context2, int i, boolean z, boolean z2) {
-            super(context2, i, z, z2);
-            this.size = new Size();
-        }
-
-        @Override
-        protected Size getSizeForItem(int i) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize;
-            Size size = this.size;
-            int i2 = 0;
-            size.full = false;
-            if (i != 0) {
-                int i3 = i - 1;
-                if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
-                    i = i3;
-                }
-                Size size2 = this.size;
-                size2.width = 0.0f;
-                size2.height = 0.0f;
-                Object item = MentionsContainerView.this.adapter.getItem(i);
-                if (item instanceof TLRPC.BotInlineResult) {
-                    TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) item;
-                    TLRPC.Document document = botInlineResult.document;
-                    if (document != null) {
-                        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-                        Size size3 = this.size;
-                        size3.width = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.w : 100.0f;
-                        size3.height = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.h : 100.0f;
-                        while (i2 < botInlineResult.document.attributes.size()) {
-                            TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i2);
-                            if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                                Size size4 = this.size;
-                                size4.width = documentAttribute.w;
-                                size4.height = documentAttribute.h;
-                                break;
-                            }
-                            i2++;
-                        }
-                    } else if (botInlineResult.content != null) {
-                        while (i2 < botInlineResult.content.attributes.size()) {
-                            TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i2);
-                            if ((documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
-                                Size size5 = this.size;
-                                size5.width = documentAttribute2.w;
-                                size5.height = documentAttribute2.h;
-                                break;
-                            }
-                            i2++;
-                        }
-                    } else if (botInlineResult.thumb != null) {
-                        while (i2 < botInlineResult.thumb.attributes.size()) {
-                            TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i2);
-                            if ((documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
-                                Size size6 = this.size;
-                                size6.width = documentAttribute3.w;
-                                size6.height = documentAttribute3.h;
-                                break;
-                            }
-                            i2++;
-                        }
-                    } else {
-                        TLRPC.Photo photo = botInlineResult.photo;
-                        if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize())) != null) {
-                            Size size7 = this.size;
-                            size7.width = closestPhotoSizeWithSize.w;
-                            size7.height = closestPhotoSizeWithSize.h;
-                        }
-                    }
-                }
-                return this.size;
-            }
-            size.width = getWidth();
-            this.size.height = MentionsContainerView.this.paddedAdapter.getPadding();
-            Size size8 = this.size;
-            size8.full = true;
-            return size8;
-        }
-
-        @Override
-        public int getFlowItemCount() {
-            if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                return getItemCount() - 1;
-            }
-            return super.getFlowItemCount();
-        }
-    }
-
-    public class AnonymousClass3 extends GridLayoutManager.SpanSizeLookup {
-        AnonymousClass3() {
-        }
-
-        @Override
-        public int getSpanSize(int i) {
-            if (i == 0) {
-                return 100;
-            }
-            int i2 = i - 1;
-            Object item = MentionsContainerView.this.adapter.getItem(i2);
-            if (item instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (item instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                i = i2;
-            }
-            return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i);
-        }
-    }
-
-    public class AnonymousClass4 implements MentionsAdapter.MentionsAdapterDelegate {
-        final BaseFragment val$baseFragment;
-
-        AnonymousClass4(BaseFragment baseFragment2) {
-            r2 = baseFragment2;
-        }
-
-        @Override
-        public void onItemCountUpdate(int i, int i2) {
-            if (MentionsContainerView.this.listView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager || !MentionsContainerView.this.shown) {
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(MentionsContainerView.this.updateVisibilityRunnable);
-            AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, r2.getFragmentBeginToShow() ? 0L : 100L);
-        }
-
-        @Override
-        public void needChangePanelVisibility(boolean z) {
-            if (MentionsContainerView.this.getNeededLayoutManager() != MentionsContainerView.this.getCurrentLayoutManager() && MentionsContainerView.this.canOpen()) {
-                if (MentionsContainerView.this.adapter.getLastItemCount() > 0) {
-                    MentionsContainerView.this.switchLayoutManagerOnEnd = true;
-                    MentionsContainerView.this.updateVisibility(false);
-                    return;
-                }
-                MentionsContainerView.this.listView.setLayoutManager(MentionsContainerView.this.getNeededLayoutManager());
-            }
-            if (z && !MentionsContainerView.this.canOpen()) {
-                z = false;
-            }
-            MentionsContainerView.this.updateVisibility((!z || MentionsContainerView.this.adapter.getItemCountInternal() > 0) ? z : false);
-        }
-
-        @Override
-        public void onContextSearch(boolean z) {
-            MentionsContainerView.this.onContextSearch(z);
-        }
-
-        @Override
-        public void onContextClick(TLRPC.BotInlineResult botInlineResult) {
-            MentionsContainerView.this.onContextClick(botInlineResult);
-        }
     }
 
     public MentionsListView getListView() {
@@ -586,7 +392,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        float min;
+        float fMin;
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.draw(canvas);
@@ -596,41 +402,41 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             canvas.restore();
             return;
         }
-        boolean isReversed = isReversed();
+        boolean zIsReversed = isReversed();
         this.containerPadding = AndroidUtilities.dp(((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout() && this.adapter.getBotContextSwitch() == null && this.adapter.getBotWebViewSwitch() == null ? 2 : 0) + 2);
         canvas.save();
-        float dp = AndroidUtilities.dp(6.0f);
+        float fDp = AndroidUtilities.dp(6.0f);
         float f = this.containerTop;
-        if (isReversed) {
-            float min2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+        if (zIsReversed) {
+            float fMin2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             android.graphics.Rect rect = this.rect;
             this.containerTop = 0.0f;
             int measuredWidth = getMeasuredWidth();
-            this.containerBottom = min2;
-            rect.set(0, (int) 0.0f, measuredWidth, (int) min2);
-            min = Math.min(dp, Math.abs(getMeasuredHeight() - this.containerBottom));
-            if (min > 0.0f) {
+            this.containerBottom = fMin2;
+            rect.set(0, (int) 0.0f, measuredWidth, (int) fMin2);
+            fMin = Math.min(fDp, Math.abs(getMeasuredHeight() - this.containerBottom));
+            if (fMin > 0.0f) {
                 canvas.clipRect(0, 0, getWidth(), getHeight());
-                this.rect.top -= (int) min;
+                this.rect.top -= (int) fMin;
             }
         } else {
             if (this.listView.getLayoutManager() == this.gridLayoutManager) {
                 this.containerPadding += AndroidUtilities.dp(2.0f);
-                dp += AndroidUtilities.dp(2.0f);
+                fDp += AndroidUtilities.dp(2.0f);
             }
-            float max = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
-            this.containerTop = max;
-            float max2 = Math.max(max, this.hideT * getHeight());
+            float fMax = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
+            this.containerTop = fMax;
+            float fMax2 = Math.max(fMax, this.hideT * getHeight());
             android.graphics.Rect rect2 = this.rect;
-            this.containerTop = max2;
+            this.containerTop = fMax2;
             int measuredWidth2 = getMeasuredWidth();
             float measuredHeight = getMeasuredHeight();
             this.containerBottom = measuredHeight;
-            rect2.set(0, (int) max2, measuredWidth2, (int) measuredHeight);
-            min = Math.min(dp, Math.abs(this.containerTop));
-            if (min > 0.0f) {
+            rect2.set(0, (int) fMax2, measuredWidth2, (int) measuredHeight);
+            fMin = Math.min(fDp, Math.abs(this.containerTop));
+            if (fMin > 0.0f) {
                 canvas.clipRect(0, 0, getWidth(), getHeight());
-                this.rect.bottom += (int) min;
+                this.rect.bottom += (int) fMin;
             }
         }
         if (Math.abs(f - this.containerTop) > 0.1f) {
@@ -644,7 +450,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         Paint paint2 = this.paint;
         Integer num = this.color;
         paint2.setColor(num != null ? num.intValue() : getThemedColor(Theme.key_chat_messagePanelBackground));
-        drawRoundRect(canvas, this.rect, min);
+        drawRoundRect(canvas, this.rect, fMin);
         canvas.clipRect(this.rect);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -679,17 +485,17 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
 
     public void updateVisibility(boolean z) {
         if (z) {
-            boolean isReversed = isReversed();
+            boolean zIsReversed = isReversed();
             if (!this.shown) {
                 this.scrollToFirst = true;
                 RecyclerView.LayoutManager layoutManager = this.listView.getLayoutManager();
                 LinearLayoutManager linearLayoutManager = this.linearLayoutManager;
                 if (layoutManager == linearLayoutManager) {
-                    linearLayoutManager.scrollToPositionWithOffset(0, isReversed ? -100000 : 100000);
+                    linearLayoutManager.scrollToPositionWithOffset(0, zIsReversed ? -100000 : 100000);
                 }
                 if (getVisibility() == 8) {
                     this.hideT = 1.0f;
-                    this.listView.setTranslationY(isReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : r2.computeVerticalScrollOffset() + this.listViewPadding);
+                    this.listView.setTranslationY(zIsReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : r2.computeVerticalScrollOffset() + this.listViewPadding);
                 }
             }
             setVisibility(0);
@@ -723,9 +529,9 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
     }
 
     private void updateListViewTranslation(final boolean z, boolean z2) {
-        float f;
+        float fDp;
         int i;
-        float max;
+        float fMax;
         SpringAnimation springAnimation;
         if (this.listView == null || this.paddedAdapter == null) {
             this.scrollRangeUpdateTries = 0;
@@ -735,43 +541,43 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             this.scrollRangeUpdateTries = 0;
             return;
         }
-        boolean isReversed = isReversed();
+        boolean zIsReversed = isReversed();
         if (z) {
-            f = (-this.containerPadding) - AndroidUtilities.dp(6.0f);
+            fDp = (-this.containerPadding) - AndroidUtilities.dp(6.0f);
         } else {
-            int computeVerticalScrollRange = this.listView.computeVerticalScrollRange();
-            float padding = (computeVerticalScrollRange - this.paddedAdapter.getPadding()) + this.containerPadding;
-            if (computeVerticalScrollRange <= 0 && this.adapter.getItemCountInternal() > 0 && (i = this.scrollRangeUpdateTries) < 3) {
+            int iComputeVerticalScrollRange = this.listView.computeVerticalScrollRange();
+            float padding = (iComputeVerticalScrollRange - this.paddedAdapter.getPadding()) + this.containerPadding;
+            if (iComputeVerticalScrollRange <= 0 && this.adapter.getItemCountInternal() > 0 && (i = this.scrollRangeUpdateTries) < 3) {
                 this.scrollRangeUpdateTries = i + 1;
                 updateVisibility(true);
                 return;
             }
-            f = padding;
+            fDp = padding;
         }
         this.scrollRangeUpdateTries = 0;
-        if (isReversed) {
-            max = -Math.max(0.0f, this.listViewPadding - f);
+        if (zIsReversed) {
+            fMax = -Math.max(0.0f, this.listViewPadding - fDp);
         } else {
-            float f2 = this.listViewPadding;
-            max = Math.max(0.0f, f2 - f) + (-f2);
+            float f = this.listViewPadding;
+            fMax = Math.max(0.0f, f - fDp) + (-f);
         }
-        if (z && !isReversed) {
-            max += this.listView.computeVerticalScrollOffset();
+        if (z && !zIsReversed) {
+            fMax += this.listView.computeVerticalScrollOffset();
         }
-        final float f3 = max;
+        final float f2 = fMax;
         SpringAnimation springAnimation2 = this.listViewTranslationAnimator;
         if (springAnimation2 != null) {
             springAnimation2.cancel();
         }
-        Integer num = null;
+        Integer numValueOf = null;
         if (z2) {
             this.listViewHiding = z;
             final float translationY = this.listView.getTranslationY();
-            final float f4 = this.hideT;
-            final float f5 = z ? 1.0f : 0.0f;
-            if (translationY == f3) {
+            final float f3 = this.hideT;
+            final float f4 = z ? 1.0f : 0.0f;
+            if (translationY == f2) {
                 this.listViewTranslationAnimator = null;
-                num = Integer.valueOf(z ? 8 : 0);
+                numValueOf = Integer.valueOf(z ? 8 : 0);
                 if (this.switchLayoutManagerOnEnd && z) {
                     this.switchLayoutManagerOnEnd = false;
                     this.listView.setLayoutManager(getNeededLayoutManager());
@@ -779,41 +585,41 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                     updateVisibility(true);
                 }
             } else {
-                SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f3).setDampingRatio(1.0f).setStiffness(550.0f));
+                SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f2).setDampingRatio(1.0f).setStiffness(550.0f));
                 this.listViewTranslationAnimator = spring;
                 spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
-                    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f6, float f7) {
-                        MentionsContainerView.this.lambda$updateListViewTranslation$1(f4, f5, translationY, f3, dynamicAnimation, f6, f7);
+                    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f5, float f6) {
+                        this.f$0.lambda$updateListViewTranslation$1(f3, f4, translationY, f2, dynamicAnimation, f5, f6);
                     }
                 });
                 if (z) {
                     this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
-                        public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f6, float f7) {
-                            MentionsContainerView.this.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f6, f7);
+                        public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
+                            this.f$0.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f5, f6);
                         }
                     });
                 }
                 this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
-                    public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f6, float f7) {
-                        MentionsContainerView.lambda$updateListViewTranslation$3(dynamicAnimation, z3, f6, f7);
+                    public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
+                        MentionsContainerView.lambda$updateListViewTranslation$3(dynamicAnimation, z3, f5, f6);
                     }
                 });
                 this.listViewTranslationAnimator.start();
             }
         } else {
             this.hideT = z ? 1.0f : 0.0f;
-            this.listView.setTranslationY(f3);
+            this.listView.setTranslationY(f2);
             if (z) {
-                num = 8;
+                numValueOf = 8;
             }
         }
-        if (num == null || getVisibility() == num.intValue()) {
+        if (numValueOf == null || getVisibility() == numValueOf.intValue()) {
             return;
         }
-        setVisibility(num.intValue());
+        setVisibility(numValueOf.intValue());
     }
 
     public void lambda$updateListViewTranslation$1(float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {
@@ -840,31 +646,13 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.adapter.setDialogId(j);
     }
 
-    public class AnonymousClass5 extends PhotoViewer.EmptyPhotoViewerProvider {
-        AnonymousClass5() {
-        }
-
-        @Override
-        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r4, org.telegram.tgnet.TLRPC.FileLocation r5, int r6, boolean r7, boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MentionsContainerView.AnonymousClass5.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
-        }
-
-        @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) {
-            if (i < 0 || i >= MentionsContainerView.this.botContextResults.size()) {
-                return;
-            }
-            MentionsContainerView.this.delegate.sendBotInlineResult((TLRPC.BotInlineResult) MentionsContainerView.this.botContextResults.get(i), z, i2);
-        }
-    }
-
     public void withDelegate(final Delegate delegate) {
         this.delegate = delegate;
         MentionsListView listView = getListView();
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
-                MentionsContainerView.this.lambda$withDelegate$4(delegate, view, i);
+            public final void onItemClick(View view, int i) throws Resources.NotFoundException, NumberFormatException {
+                this.f$0.lambda$withDelegate$4(delegate, view, i);
             }
         };
         this.mentionsOnItemClickListener = onItemClickListener;
@@ -872,15 +660,13 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         getListView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$withDelegate$5;
-                lambda$withDelegate$5 = MentionsContainerView.this.lambda$withDelegate$5(view, motionEvent);
-                return lambda$withDelegate$5;
+                return this.f$0.lambda$withDelegate$5(view, motionEvent);
             }
         });
     }
 
-    public void lambda$withDelegate$4(Delegate delegate, View view, int i) {
-        Paint.FontMetricsInt fontMetricsInt;
+    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws Resources.NotFoundException, NumberFormatException {
+        Paint.FontMetricsInt fontMetrics;
         AnimatedEmojiSpan animatedEmojiSpan;
         if (i == 0 || getAdapter().isBannedInline()) {
             return;
@@ -891,14 +677,14 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         int resultLength = getAdapter().getResultLength();
         String str = "";
         if (getAdapter().isLocalHashtagHint(i2)) {
-            TLRPC.Chat chat = getAdapter().chat;
-            if (chat == null && getAdapter().parentFragment != null) {
-                chat = getAdapter().parentFragment.getCurrentChat();
+            TLRPC.Chat currentChat = getAdapter().chat;
+            if (currentChat == null && getAdapter().parentFragment != null) {
+                currentChat = getAdapter().parentFragment.getCurrentChat();
             }
             StringBuilder sb = new StringBuilder();
             sb.append(getAdapter().getHashtagHint());
-            if (chat != null) {
-                str = "@" + ChatObject.getPublicUsername(chat);
+            if (currentChat != null) {
+                str = "@" + ChatObject.getPublicUsername(currentChat);
             }
             sb.append(str);
             sb.append(" ");
@@ -937,18 +723,18 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             if (str2 != null && str2.startsWith("animated_")) {
                 try {
                     try {
-                        fontMetricsInt = delegate.getFontMetrics();
+                        fontMetrics = delegate.getFontMetrics();
                     } catch (Exception e) {
                         FileLog.e((Throwable) e, false);
-                        fontMetricsInt = null;
+                        fontMetrics = null;
                     }
-                    long parseLong = Long.parseLong(str2.substring(9));
-                    TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, parseLong);
-                    SpannableString spannableString2 = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(findDocument));
-                    if (findDocument != null) {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(findDocument, fontMetricsInt);
+                    long j = Long.parseLong(str2.substring(9));
+                    TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
+                    SpannableString spannableString2 = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(documentFindDocument));
+                    if (documentFindDocument != null) {
+                        animatedEmojiSpan = new AnimatedEmojiSpan(documentFindDocument, fontMetrics);
                     } else {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(parseLong, fontMetricsInt);
+                        animatedEmojiSpan = new AnimatedEmojiSpan(j, fontMetrics);
                     }
                     spannableString2.setSpan(animatedEmojiSpan, 0, spannableString2.length(), 33);
                     delegate.replaceText(resultStartPosition, resultLength, spannableString2, false);
@@ -986,12 +772,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         public MentionsListView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
             setOnScrollListener(new RecyclerView.OnScrollListener() {
-                final MentionsContainerView val$this$0;
-
-                AnonymousClass1(MentionsContainerView mentionsContainerView) {
-                    r2 = mentionsContainerView;
-                }
-
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                     MentionsListView.this.isScrolling = i != 0;
@@ -1000,8 +780,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
 
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                    int findLastVisibleItemPosition = MentionsListView.this.getLayoutManager() == MentionsContainerView.this.gridLayoutManager ? MentionsContainerView.this.gridLayoutManager.findLastVisibleItemPosition() : MentionsContainerView.this.linearLayoutManager.findLastVisibleItemPosition();
-                    if ((findLastVisibleItemPosition == -1 ? 0 : findLastVisibleItemPosition) > 0 && findLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
+                    int iFindLastVisibleItemPosition = MentionsListView.this.getLayoutManager() == MentionsContainerView.this.gridLayoutManager ? MentionsContainerView.this.gridLayoutManager.findLastVisibleItemPosition() : MentionsContainerView.this.linearLayoutManager.findLastVisibleItemPosition();
+                    if ((iFindLastVisibleItemPosition == -1 ? 0 : iFindLastVisibleItemPosition) > 0 && iFindLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
                         MentionsContainerView.this.adapter.searchForContextBotForNextOffset();
                     }
                     MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
@@ -1009,12 +789,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 }
             });
             addItemDecoration(new RecyclerView.ItemDecoration() {
-                final MentionsContainerView val$this$0;
-
-                AnonymousClass2(MentionsContainerView mentionsContainerView) {
-                    r2 = mentionsContainerView;
-                }
-
                 @Override
                 public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     int childAdapterPosition;
@@ -1039,62 +813,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                     rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(childAdapterPosition) ? 0 : AndroidUtilities.dp(2.0f);
                 }
             });
-        }
-
-        public class AnonymousClass1 extends RecyclerView.OnScrollListener {
-            final MentionsContainerView val$this$0;
-
-            AnonymousClass1(MentionsContainerView mentionsContainerView) {
-                r2 = mentionsContainerView;
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-                MentionsListView.this.isScrolling = i != 0;
-                MentionsListView.this.isDragging = i == 1;
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                int findLastVisibleItemPosition = MentionsListView.this.getLayoutManager() == MentionsContainerView.this.gridLayoutManager ? MentionsContainerView.this.gridLayoutManager.findLastVisibleItemPosition() : MentionsContainerView.this.linearLayoutManager.findLastVisibleItemPosition();
-                if ((findLastVisibleItemPosition == -1 ? 0 : findLastVisibleItemPosition) > 0 && findLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
-                    MentionsContainerView.this.adapter.searchForContextBotForNextOffset();
-                }
-                MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
-                MentionsContainerView.this.checkBackgroundBounds();
-            }
-        }
-
-        public class AnonymousClass2 extends RecyclerView.ItemDecoration {
-            final MentionsContainerView val$this$0;
-
-            AnonymousClass2(MentionsContainerView mentionsContainerView) {
-                r2 = mentionsContainerView;
-            }
-
-            @Override
-            public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                int childAdapterPosition;
-                rect.left = 0;
-                rect.right = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                if (recyclerView.getLayoutManager() != MentionsContainerView.this.gridLayoutManager || (childAdapterPosition = recyclerView.getChildAdapterPosition(view)) == 0 || MentionsContainerView.this.adapter.isStickers()) {
-                    return;
-                }
-                if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
-                    rect.top = AndroidUtilities.dp(2.0f);
-                } else {
-                    if (childAdapterPosition == 0) {
-                        return;
-                    }
-                    childAdapterPosition--;
-                    if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(childAdapterPosition)) {
-                        rect.top = AndroidUtilities.dp(2.0f);
-                    }
-                }
-                rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(childAdapterPosition) ? 0 : AndroidUtilities.dp(2.0f);
-            }
         }
 
         @Override
@@ -1134,18 +852,18 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int i5;
-            int i6 = i3 - i;
-            int i7 = i4 - i2;
-            boolean isReversed = MentionsContainerView.this.isReversed();
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            int top;
+            int i5 = i3 - i;
+            int i6 = i4 - i2;
+            boolean zIsReversed = MentionsContainerView.this.isReversed();
             LinearLayoutManager currentLayoutManager = MentionsContainerView.this.getCurrentLayoutManager();
-            int findFirstVisibleItemPosition = isReversed ? currentLayoutManager.findFirstVisibleItemPosition() : currentLayoutManager.findLastVisibleItemPosition();
-            View findViewByPosition = currentLayoutManager.findViewByPosition(findFirstVisibleItemPosition);
-            if (findViewByPosition != null) {
-                i5 = findViewByPosition.getTop() - (isReversed ? 0 : this.lastHeight - i7);
+            int iFindFirstVisibleItemPosition = zIsReversed ? currentLayoutManager.findFirstVisibleItemPosition() : currentLayoutManager.findLastVisibleItemPosition();
+            View viewFindViewByPosition = currentLayoutManager.findViewByPosition(iFindFirstVisibleItemPosition);
+            if (viewFindViewByPosition != null) {
+                top = viewFindViewByPosition.getTop() - (zIsReversed ? 0 : this.lastHeight - i6);
             } else {
-                i5 = 0;
+                top = 0;
             }
             super.onLayout(z, i, i2, i3, i4);
             if (MentionsContainerView.this.scrollToFirst) {
@@ -1154,14 +872,14 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 super.onLayout(false, i, i2, i3, i4);
                 MentionsContainerView.this.ignoreLayout = false;
                 MentionsContainerView.this.scrollToFirst = false;
-            } else if (findFirstVisibleItemPosition != -1 && i6 == this.lastWidth && i7 - this.lastHeight != 0) {
+            } else if (iFindFirstVisibleItemPosition != -1 && i5 == this.lastWidth && i6 - this.lastHeight != 0) {
                 MentionsContainerView.this.ignoreLayout = true;
-                currentLayoutManager.scrollToPositionWithOffset(findFirstVisibleItemPosition, i5, false);
+                currentLayoutManager.scrollToPositionWithOffset(iFindFirstVisibleItemPosition, top, false);
                 super.onLayout(false, i, i2, i3, i4);
                 MentionsContainerView.this.ignoreLayout = false;
             }
-            this.lastHeight = i7;
-            this.lastWidth = i6;
+            this.lastHeight = i6;
+            this.lastWidth = i5;
         }
 
         @Override
@@ -1172,7 +890,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i2);
             if (MentionsContainerView.this.paddedAdapter != null) {
                 MentionsContainerView.this.paddedAdapter.setPadding(size);
@@ -1244,12 +962,12 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         if (this.listView == null || this.linearLayoutManager == null) {
             return;
         }
-        boolean isReversed = isReversed();
+        boolean zIsReversed = isReversed();
         this.containerPadding = 0.0f;
-        if (isReversed) {
-            float min = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+        if (zIsReversed) {
+            float fMin = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             this.containerTop = 0.0f;
-            this.containerBottom = min;
+            this.containerBottom = fMin;
         } else {
             this.containerTop = Math.max(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding, this.hideT * getHeight());
             this.containerBottom = getMeasuredHeight();
@@ -1280,11 +998,11 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         if (this.listView == null || this.linearLayoutManager == null) {
             return;
         }
-        boolean isGif = isGif();
+        boolean zIsGif = isGif();
         if (this.backgroundDrawable == null) {
             this.listView.setPadding(0, 0, 0, 0);
         } else {
-            this.listView.setPadding(AndroidUtilities.dp(isGif ? 7.0f : 5.0f), isGif ? AndroidUtilities.dp(2.0f) : 0, AndroidUtilities.dp(isGif ? 7.0f : 5.0f), isGif ? AndroidUtilities.dp(2.0f) : 0);
+            this.listView.setPadding(AndroidUtilities.dp(zIsGif ? 7.0f : 5.0f), zIsGif ? AndroidUtilities.dp(2.0f) : 0, AndroidUtilities.dp(zIsGif ? 7.0f : 5.0f), zIsGif ? AndroidUtilities.dp(2.0f) : 0);
         }
     }
 }

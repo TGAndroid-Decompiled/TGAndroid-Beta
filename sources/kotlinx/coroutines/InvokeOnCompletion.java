@@ -1,6 +1,6 @@
 package kotlinx.coroutines;
 
-public final class InvokeOnCompletion extends JobNode {
+final class InvokeOnCompletion extends JobNode {
     private final InternalCompletionHandler handler;
 
     public InvokeOnCompletion(InternalCompletionHandler internalCompletionHandler) {

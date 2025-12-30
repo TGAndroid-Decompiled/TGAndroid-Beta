@@ -32,7 +32,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.ProfileNotificationsActivity;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.TopicsNotifySettingsFragments;
 
 public class TopicsNotifySettingsFragments extends BaseFragment {
     private final int VIEW_TYPE_ADD_EXCEPTION;
@@ -88,7 +87,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class AnonymousClass2 implements RecyclerListView.OnItemClickListener {
+    class AnonymousClass2 implements RecyclerListView.OnItemClickListener {
         AnonymousClass2() {
         }
 
@@ -103,7 +102,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 topicsFragment.setOnTopicSelectedListener(new TopicsFragment.OnTopicSelectedListener() {
                     @Override
                     public final void onTopicSelected(TLRPC.TL_forumTopic tL_forumTopic) {
-                        TopicsNotifySettingsFragments.AnonymousClass2.this.lambda$onItemClick$1(tL_forumTopic);
+                        this.f$0.lambda$onItemClick$1(tL_forumTopic);
                     }
                 });
                 TopicsNotifySettingsFragments.this.presentFragment(topicsFragment);
@@ -125,13 +124,13 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        TopicsNotifySettingsFragments.AnonymousClass2.this.lambda$onItemClick$2(alertDialog, i2);
+                        this.f$0.lambda$onItemClick$2(alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                AlertDialog create = builder.create();
-                TopicsNotifySettingsFragments.this.showDialog(create);
-                TextView textView = (TextView) create.getButton(-1);
+                AlertDialog alertDialogCreate = builder.create();
+                TopicsNotifySettingsFragments.this.showDialog(alertDialogCreate);
+                TextView textView = (TextView) alertDialogCreate.getButton(-1);
                 if (textView != null) {
                     textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 }
@@ -147,7 +146,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
                 @Override
                 public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
-                    TopicsNotifySettingsFragments.AnonymousClass2.this.lambda$onItemClick$0(tL_forumTopic, notificationException);
+                    this.f$0.lambda$onItemClick$0(tL_forumTopic, notificationException);
                 }
 
                 @Override
@@ -163,7 +162,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             TopicsNotifySettingsFragments.this.updateRows();
         }
 
-        public class AnonymousClass1 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
+        class AnonymousClass1 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
             final TLRPC.TL_forumTopic val$topic;
 
             @Override
@@ -181,7 +180,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsNotifySettingsFragments.AnonymousClass2.AnonymousClass1.this.lambda$didRemoveException$0(tL_forumTopic);
+                        this.f$0.lambda$didRemoveException$0(tL_forumTopic);
                     }
                 }, 300L);
             }
@@ -274,40 +273,40 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         this.exceptionsTopics = hashSet;
     }
 
-    public class Adapter extends AdapterWithDiffUtils {
+    private class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View shadowSectionCell;
             View view;
-            View view2;
             if (i == 1) {
                 TextCell textCell = new TextCell(viewGroup.getContext());
                 textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                 textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCell;
+                shadowSectionCell = textCell;
             } else if (i == 2) {
                 View topicExceptionCell = new TopicExceptionCell(viewGroup.getContext());
                 topicExceptionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = topicExceptionCell;
+                shadowSectionCell = topicExceptionCell;
             } else if (i == 3) {
-                view = new ShadowSectionCell(viewGroup.getContext());
+                shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
                 TextCell textCell2 = new TextCell(viewGroup.getContext());
                 textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell2.setColors(-1, Theme.key_text_RedRegular);
                 textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCell2;
+                shadowSectionCell = textCell2;
             } else {
-                view2 = null;
-                view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(view2);
+                view = null;
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(view);
             }
-            view2 = view;
-            view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(view2);
+            view = shadowSectionCell;
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -340,7 +339,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         }
     }
 
-    public class Item extends AdapterWithDiffUtils.Item {
+    private class Item extends AdapterWithDiffUtils.Item {
         final TLRPC.TL_forumTopic topic;
 
         private Item(int i, TLRPC.TL_forumTopic tL_forumTopic) {

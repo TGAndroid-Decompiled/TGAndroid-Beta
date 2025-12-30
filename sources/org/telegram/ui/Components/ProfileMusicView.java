@@ -26,35 +26,39 @@ public class ProfileMusicView extends View {
     private final Path arrowPath;
     private Text author;
     private ProfileActivity.AvatarImageView avatarView;
+    private int backgroundColor;
+    private final PorterDuffColorFilter filterColorBlack;
+    private final PorterDuffColorFilter filterColorWhite;
     private final Drawable icon;
     private final Paint iconPaint;
     private boolean ignoreRect;
+    private float parentExpanded;
     private RenderNode renderNode;
     private float renderNodeScale;
     private float renderNodeTranslateY;
     private final Theme.ResourcesProvider resourcesProvider;
     private final long start;
+    private int textColor;
     private Text title;
 
     public ProfileMusicView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.filterColorWhite = new PorterDuffColorFilter(-1, mode);
+        this.filterColorBlack = new PorterDuffColorFilter(-16777216, mode);
+        this.iconPaint = new Paint();
         Paint paint = new Paint();
-        this.iconPaint = paint;
-        Paint paint2 = new Paint();
-        this.arrowPaint = paint2;
+        this.arrowPaint = paint;
         Path path = new Path();
         this.arrowPath = path;
+        this.textColor = -1;
         this.ignoreRect = false;
         this.start = System.currentTimeMillis();
         this.resourcesProvider = resourcesProvider;
-        Drawable mutate = context.getResources().getDrawable(R.drawable.files_music).mutate();
-        this.icon = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        paint.setColor(-1);
-        paint2.setStyle(Paint.Style.STROKE);
-        paint2.setColor(Theme.multAlpha(-1, 0.85f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeJoin(Paint.Join.ROUND);
+        this.icon = context.getResources().getDrawable(R.drawable.files_music).mutate();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         path.moveTo(0.0f, -AndroidUtilities.dpf2(3.33f));
         path.lineTo(AndroidUtilities.dpf2(3.16f), 0.0f);
         path.lineTo(0.0f, AndroidUtilities.dpf2(3.33f));
@@ -68,22 +72,37 @@ public class ProfileMusicView extends View {
     }
 
     public void setColor(MessagesController.PeerColor peerColor) {
-        int bgColor1;
         int bgColor2;
+        int color;
         if (peerColor == null) {
-            if (!Theme.isCurrentThemeDark()) {
-                setBackgroundColor(Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider));
-                return;
-            } else {
-                int i = Theme.key_actionBarDefault;
-                bgColor1 = Theme.getColor(i, this.resourcesProvider);
-                bgColor2 = Theme.getColor(i, this.resourcesProvider);
-            }
+            color = Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider);
+            bgColor2 = color;
         } else {
-            bgColor1 = peerColor.getBgColor1(Theme.isCurrentThemeDark());
+            int bgColor1 = peerColor.getBgColor1(Theme.isCurrentThemeDark());
             bgColor2 = peerColor.getBgColor2(Theme.isCurrentThemeDark());
+            color = bgColor1;
         }
-        setBackgroundColor(Theme.adaptHSV(ColorUtils.blendARGB(bgColor1, bgColor2, 0.25f), 0.02f, -0.08f));
+        int iAdaptHSV = Theme.adaptHSV(ColorUtils.blendARGB(color, bgColor2, 0.25f), 0.02f, -0.08f);
+        this.backgroundColor = iAdaptHSV;
+        setBackgroundColor(iAdaptHSV);
+        checkTextColor();
+    }
+
+    private void checkTextColor() {
+        boolean z = this.parentExpanded < 0.8f && AndroidUtilities.computePerceivedBrightness(this.backgroundColor) > 0.85f;
+        this.textColor = z ? -16777216 : -1;
+        this.icon.setColorFilter(z ? this.filterColorBlack : this.filterColorWhite);
+        this.iconPaint.setColor(this.textColor);
+        this.arrowPaint.setColor(Theme.multAlpha(this.textColor, 0.85f));
+        invalidate();
+    }
+
+    public void setParentExpanded(float f) {
+        if (this.parentExpanded != f) {
+            this.parentExpanded = f;
+            checkTextColor();
+            invalidate();
+        }
     }
 
     public void setMusicDocument(TLRPC.Document document) {
@@ -175,22 +194,22 @@ public class ProfileMusicView extends View {
         int width = getWidth() - (AndroidUtilities.dp(12.0f) * 2);
         this.author.ellipsize((width - AndroidUtilities.dp(35.0f)) / 2.0f);
         this.title.ellipsize((width - this.author.getWidth()) - AndroidUtilities.dp(35.0f));
-        float dp = AndroidUtilities.dp(16.6f) + this.author.getWidth() + this.title.getWidth() + AndroidUtilities.dp(8.0f);
+        float fDp = AndroidUtilities.dp(16.6f) + this.author.getWidth() + this.title.getWidth() + AndroidUtilities.dp(8.0f);
         canvas.save();
-        canvas.translate((getWidth() - dp) / 2.0f, 0.0f);
+        canvas.translate((getWidth() - fDp) / 2.0f, 0.0f);
         System.currentTimeMillis();
         float height = getHeight() / 2.0f;
         AndroidUtilities.dp(6.0f);
         AndroidUtilities.dp(2.0f);
-        int dp2 = AndroidUtilities.dp(14.0f);
+        int iDp = AndroidUtilities.dp(14.0f);
         int i = (int) height;
-        int i2 = dp2 / 2;
-        this.icon.setBounds(0, i - i2, dp2, i + i2);
+        int i2 = iDp / 2;
+        this.icon.setBounds(0, i - i2, iDp, i + i2);
         this.icon.draw(canvas);
         canvas.translate(AndroidUtilities.dp(16.6f), 0.0f);
-        this.author.draw(canvas, 0.0f, height, -1, 1.0f);
+        this.author.draw(canvas, 0.0f, height, this.textColor, 1.0f);
         canvas.translate(this.author.getWidth(), 0.0f);
-        this.title.draw(canvas, 0.0f, height, -1, 0.85f);
+        this.title.draw(canvas, 0.0f, height, this.textColor, 0.85f);
         canvas.translate(this.title.getWidth(), 0.0f);
         this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(1.16f));
         canvas.translate(AndroidUtilities.dpf2(3.8f), height);

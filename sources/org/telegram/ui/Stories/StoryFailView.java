@@ -75,13 +75,13 @@ public class StoryFailView extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(23.0f);
+        float fDp = AndroidUtilities.dp(23.0f);
         float height = getHeight() / 2.0f;
-        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.redPaint);
+        canvas.drawCircle(fDp, height, AndroidUtilities.dp(10.0f), this.redPaint);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(dp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + dp, AndroidUtilities.dpf2(1.6f) + height);
+        rectF.set(fDp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + fDp, AndroidUtilities.dpf2(1.6f) + height);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.whitePaint);
-        rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), height + AndroidUtilities.dpf2(4.6f));
+        rectF.set(fDp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, fDp + AndroidUtilities.dp(1.0f), height + AndroidUtilities.dpf2(4.6f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.whitePaint);
     }
 }

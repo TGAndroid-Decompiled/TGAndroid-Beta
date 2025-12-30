@@ -14,7 +14,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
 public class AutoDeletePopupWrapper {
@@ -45,50 +44,50 @@ public class AutoDeletePopupWrapper {
         actionBarPopupWindowLayout.setFitItems(true);
         this.callback = callback;
         if (popupSwipeBackLayout != null) {
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, resourcesProvider);
-            this.backItem = addItem;
-            addItem.setOnClickListener(new View.OnClickListener() {
+            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, resourcesProvider);
+            this.backItem = actionBarMenuSubItemAddItem;
+            actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PopupSwipeBackLayout.this.closeForeground();
+                    popupSwipeBackLayout.closeForeground();
                 }
             });
         }
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_autodelete_1d, LocaleController.getString(R.string.AutoDelete1Day), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$1(callback, view);
+                this.f$0.lambda$new$1(callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_autodelete_1w, LocaleController.getString(R.string.AutoDelete7Days), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$2(callback, view);
+                this.f$0.lambda$new$2(callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_autodelete_1m, LocaleController.getString(R.string.AutoDelete1Month), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$3(callback, view);
+                this.f$0.lambda$new$3(callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, i == 1 ? LocaleController.getString(R.string.AutoDeleteCustom2) : LocaleController.getString(R.string.AutoDeleteCustom), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$5(context, i, resourcesProvider, callback, view);
+                this.f$0.lambda$new$5(context, i, resourcesProvider, callback, view);
             }
         });
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_disable, LocaleController.getString(R.string.AutoDeleteDisable), false, resourcesProvider);
-        this.disableItem = addItem2;
-        addItem2.setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_disable, LocaleController.getString(R.string.AutoDeleteDisable), false, resourcesProvider);
+        this.disableItem = actionBarMenuSubItemAddItem2;
+        actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$6(callback, view);
+                this.f$0.lambda$new$6(callback, view);
             }
         });
         if (i != 1) {
             int i2 = Theme.key_text_RedBold;
-            addItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
+            actionBarMenuSubItemAddItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
         }
         if (i != 1) {
             FrameLayout frameLayout = new FrameLayout(context);
@@ -132,7 +131,7 @@ public class AutoDeletePopupWrapper {
         AlertsCreator.createAutoDeleteDatePickerDialog(context, i, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i2, int i3) {
-                AutoDeletePopupWrapper.lambda$new$4(AutoDeletePopupWrapper.Callback.this, z, i2, i3);
+                AutoDeletePopupWrapper.lambda$new$4(callback, z, i2, i3);
             }
         });
     }
@@ -156,7 +155,7 @@ public class AutoDeletePopupWrapper {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AutoDeletePopupWrapper.this.lambda$updateItems$7(i);
+                    this.f$0.lambda$updateItems$7(i);
                 }
             });
         } else if (i == 0) {
@@ -176,7 +175,7 @@ public class AutoDeletePopupWrapper {
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleLink(LocaleController.getString(R.string.AutoDeletePopupDescription2), i, new Runnable() {
             @Override
             public final void run() {
-                AutoDeletePopupWrapper.this.lambda$allowExtendedHint$8();
+                this.f$0.lambda$allowExtendedHint$8();
             }
         }));
         this.textView.setText(spannableStringBuilder);

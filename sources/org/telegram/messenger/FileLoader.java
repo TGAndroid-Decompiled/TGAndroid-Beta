@@ -5,6 +5,7 @@ import android.util.SparseArray;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -265,7 +266,7 @@ public class FileLoader extends BaseController {
         this.dumpFilesQueueRunnable = new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$new$18();
+                this.f$0.lambda$new$18();
             }
         };
         this.filePathDatabase = new FilePathDatabase(i);
@@ -339,7 +340,7 @@ public class FileLoader extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.this.lambda$setLoadingVideo$0(document, z);
+                    this.f$0.lambda$setLoadingVideo$0(document, z);
                 }
             });
         } else {
@@ -352,16 +353,16 @@ public class FileLoader extends BaseController {
             return;
         }
         String attachFileName = getAttachFileName(document);
-        HashMap<String, Boolean> hashMap = this.loadingVideos;
+        HashMap<String, Boolean> map = this.loadingVideos;
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
         sb.append(z ? "" : "p");
-        if (hashMap.containsKey(sb.toString())) {
-            HashMap<String, Boolean> hashMap2 = this.loadingVideos;
+        if (map.containsKey(sb.toString())) {
+            HashMap<String, Boolean> map2 = this.loadingVideos;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(attachFileName);
             sb2.append(z ? "p" : "");
-            hashMap2.put(sb2.toString(), Boolean.TRUE);
+            map2.put(sb2.toString(), Boolean.TRUE);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
     }
@@ -384,7 +385,7 @@ public class FileLoader extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.this.lambda$removeLoadingVideo$1(document, z);
+                    this.f$0.lambda$removeLoadingVideo$1(document, z);
                 }
             });
         } else {
@@ -394,11 +395,11 @@ public class FileLoader extends BaseController {
 
     public boolean isLoadingVideo(TLRPC.Document document, boolean z) {
         if (document != null) {
-            HashMap<String, Boolean> hashMap = this.loadingVideos;
+            HashMap<String, Boolean> map = this.loadingVideos;
             StringBuilder sb = new StringBuilder();
             sb.append(getAttachFileName(document));
             sb.append(z ? "p" : "");
-            if (hashMap.containsKey(sb.toString())) {
+            if (map.containsKey(sb.toString())) {
                 return true;
             }
         }
@@ -416,7 +417,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$cancelFileUpload$2(z, str);
+                this.f$0.lambda$cancelFileUpload$2(z, str);
             }
         });
     }
@@ -445,7 +446,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$checkUploadNewDataAvailable$3(z, str, j, j2, f);
+                this.f$0.lambda$checkUploadNewDataAvailable$3(z, str, j, j2, f);
             }
         });
     }
@@ -469,7 +470,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$onNetworkChanged$4(z);
+                this.f$0.lambda$onNetworkChanged$4(z);
             }
         });
     }
@@ -496,7 +497,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$uploadFile$5(z, str, j, i, z3, z2);
+                this.f$0.lambda$uploadFile$5(z, str, j, i, z3, z2);
             }
         });
     }
@@ -550,7 +551,7 @@ public class FileLoader extends BaseController {
         }
     }
 
-    public class AnonymousClass1 implements FileUploadOperation.FileUploadOperationDelegate {
+    class AnonymousClass1 implements FileUploadOperation.FileUploadOperationDelegate {
         final boolean val$encrypted;
         final String val$location;
         final boolean val$small;
@@ -570,7 +571,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass1.this.lambda$didFinishUploadingFile$0(z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
+                    this.f$0.lambda$didFinishUploadingFile$0(z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
                 }
             });
         }
@@ -610,7 +611,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass1.this.lambda$didFailedUploadingFile$1(z, str, z2);
+                    this.f$0.lambda$didFailedUploadingFile$1(z, str, z2);
                 }
             });
         }
@@ -658,7 +659,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$setForceStreamLoadingFile$6(fileLocation, str);
+                this.f$0.lambda$setForceStreamLoadingFile$6(fileLocation, str);
             }
         });
     }
@@ -735,16 +736,16 @@ public class FileLoader extends BaseController {
         } else if (webFile != null) {
             str2 = getAttachFileName(webFile);
         }
-        LoadOperationUIObject remove = this.loadOperationPathsUI.remove(str2);
-        Runnable runnable = remove != null ? remove.loadInternalRunnable : null;
-        boolean z2 = remove != null;
+        LoadOperationUIObject loadOperationUIObjectRemove = this.loadOperationPathsUI.remove(str2);
+        Runnable runnable = loadOperationUIObjectRemove != null ? loadOperationUIObjectRemove.loadInternalRunnable : null;
+        boolean z2 = loadOperationUIObjectRemove != null;
         if (runnable != null) {
             fileLoaderQueue.cancelRunnable(runnable);
         }
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$cancelLoadFile$7(str2);
+                this.f$0.lambda$cancelLoadFile$7(str2);
             }
         });
         if (!z2 || document == null) {
@@ -753,15 +754,15 @@ public class FileLoader extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$cancelLoadFile$8();
+                this.f$0.lambda$cancelLoadFile$8();
             }
         });
     }
 
     public void lambda$cancelLoadFile$7(String str) {
-        FileLoadOperation remove = this.loadOperationPaths.remove(str);
-        if (remove != null) {
-            remove.getQueue().cancel(remove);
+        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+        if (fileLoadOperationRemove != null) {
+            fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
     }
 
@@ -774,32 +775,32 @@ public class FileLoader extends BaseController {
             return;
         }
         final String fileName = fileLoadOperation.getFileName();
-        LoadOperationUIObject remove = this.loadOperationPathsUI.remove(fileName);
-        Runnable runnable = remove != null ? remove.loadInternalRunnable : null;
-        boolean z = remove != null;
+        LoadOperationUIObject loadOperationUIObjectRemove = this.loadOperationPathsUI.remove(fileName);
+        Runnable runnable = loadOperationUIObjectRemove != null ? loadOperationUIObjectRemove.loadInternalRunnable : null;
+        boolean z = loadOperationUIObjectRemove != null;
         if (runnable != null) {
             fileLoaderQueue.cancelRunnable(runnable);
         }
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$cancel$9(fileName);
+                this.f$0.lambda$cancel$9(fileName);
             }
         });
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.this.lambda$cancel$10();
+                    this.f$0.lambda$cancel$10();
                 }
             });
         }
     }
 
     public void lambda$cancel$9(String str) {
-        FileLoadOperation remove = this.loadOperationPaths.remove(str);
-        if (remove != null) {
-            remove.getQueue().cancel(remove);
+        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+        if (fileLoadOperationRemove != null) {
+            fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
     }
 
@@ -823,7 +824,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$changePriority$11(str2, i);
+                this.f$0.lambda$changePriority$11(str2, i);
             }
         });
     }
@@ -852,16 +853,16 @@ public class FileLoader extends BaseController {
             fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.this.lambda$cancelLoadAllFiles$12(str);
+                    this.f$0.lambda$cancelLoadAllFiles$12(str);
                 }
             });
         }
     }
 
     public void lambda$cancelLoadAllFiles$12(String str) {
-        FileLoadOperation remove = this.loadOperationPaths.remove(str);
-        if (remove != null) {
-            remove.getQueue().cancel(remove);
+        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+        if (fileLoadOperationRemove != null) {
+            fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
     }
 
@@ -981,7 +982,7 @@ public class FileLoader extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, long, int, org.telegram.messenger.FileLoadOperationStream, long, boolean, int):org.telegram.messenger.FileLoadOperation");
     }
 
-    public class AnonymousClass2 implements FileLoadOperation.FileLoadOperationDelegate {
+    class AnonymousClass2 implements FileLoadOperation.FileLoadOperationDelegate {
         final TLRPC.Document val$document;
         final String val$fileName;
         final int val$finalType;
@@ -1000,7 +1001,7 @@ public class FileLoader extends BaseController {
             FileLoader.fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0(FileLoadOperation.this, queue);
+                    FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0(fileLoadOperation, queue);
                 }
             });
         }
@@ -1137,58 +1138,25 @@ public class FileLoader extends BaseController {
         linkedList.add(fileLoadOperation);
     }
 
-    private void loadFile(final TLRPC.Document document, final SecureDocument secureDocument, final WebFile webFile, final TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, final ImageLocation imageLocation, final Object obj, final String str, final long j, final int i, final int i2) {
-        String str2;
-        String attachFileName;
-        AnonymousClass1 anonymousClass1 = null;
-        if (tL_fileLocationToBeDeprecated != null) {
-            attachFileName = getAttachFileName(tL_fileLocationToBeDeprecated, str);
-        } else if (document != null) {
-            attachFileName = getAttachFileName(document);
-        } else if (webFile != null) {
-            attachFileName = getAttachFileName(webFile);
-        } else {
-            str2 = null;
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    FileLoader.this.lambda$loadFile$13(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, i2);
-                }
-            };
-            if (i2 == 10 && !TextUtils.isEmpty(str2) && !str2.contains("-2147483648")) {
-                LoadOperationUIObject loadOperationUIObject = new LoadOperationUIObject(anonymousClass1);
-                loadOperationUIObject.loadInternalRunnable = runnable;
-                this.loadOperationPathsUI.put(str2, loadOperationUIObject);
-            }
-            fileLoaderQueue.postRunnable(runnable);
-        }
-        str2 = attachFileName;
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                FileLoader.this.lambda$loadFile$13(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, i2);
-            }
-        };
-        if (i2 == 10) {
-        }
-        fileLoaderQueue.postRunnable(runnable2);
+    private void loadFile(final org.telegram.tgnet.TLRPC.Document r17, final org.telegram.messenger.SecureDocument r18, final org.telegram.messenger.WebFile r19, final org.telegram.tgnet.TLRPC.TL_fileLocationToBeDeprecated r20, final org.telegram.messenger.ImageLocation r21, final java.lang.Object r22, final java.lang.String r23, final long r24, final int r26, final int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFile(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, long, int, int):void");
     }
 
     public void lambda$loadFile$13(TLRPC.Document document, SecureDocument secureDocument, WebFile webFile, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, long j, int i, int i2) {
         loadFileInternal(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, null, 0L, false, i2);
     }
 
-    public FileLoadOperation loadStreamFile(FileLoadOperationStream fileLoadOperationStream, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j, boolean z, int i) {
+    protected FileLoadOperation loadStreamFile(FileLoadOperationStream fileLoadOperationStream, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j, boolean z, int i) {
         return loadStreamFile(fileLoadOperationStream, document, imageLocation, obj, j, z, i, document == null ? 1 : 0);
     }
 
-    public FileLoadOperation loadStreamFile(final FileLoadOperationStream fileLoadOperationStream, final TLRPC.Document document, final ImageLocation imageLocation, final Object obj, final long j, final boolean z, final int i, final int i2) {
+    protected FileLoadOperation loadStreamFile(final FileLoadOperationStream fileLoadOperationStream, final TLRPC.Document document, final ImageLocation imageLocation, final Object obj, final long j, final boolean z, final int i, final int i2) throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final FileLoadOperation[] fileLoadOperationArr = new FileLoadOperation[1];
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$loadStreamFile$14(fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
+                this.f$0.lambda$loadStreamFile$14(fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
             }
         });
         awaitFileLoadOperation(countDownLatch, true);
@@ -1205,7 +1173,7 @@ public class FileLoader extends BaseController {
         countDownLatch.countDown();
     }
 
-    private void awaitFileLoadOperation(CountDownLatch countDownLatch, boolean z) {
+    private void awaitFileLoadOperation(CountDownLatch countDownLatch, boolean z) throws InterruptedException {
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -1224,7 +1192,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$checkDownloadQueue$15(fileLoaderPriorityQueue, fileLoadOperation);
+                this.f$0.lambda$checkDownloadQueue$15(fileLoaderPriorityQueue, fileLoadOperation);
             }
         }, j);
     }
@@ -1436,47 +1404,26 @@ public class FileLoader extends BaseController {
             }
             str3 = str;
         }
-        String fixFileName = fixFileName(str3);
-        return fixFileName != null ? fixFileName : "";
+        String strFixFileName = fixFileName(str3);
+        return strFixFileName != null ? strFixFileName : "";
     }
 
     public static String getMimeTypePart(String str) {
-        int lastIndexOf = str.lastIndexOf(47);
-        if (lastIndexOf != -1) {
-            return str.substring(lastIndexOf + 1);
+        int iLastIndexOf = str.lastIndexOf(47);
+        if (iLastIndexOf != -1) {
+            return str.substring(iLastIndexOf + 1);
         }
         return "";
     }
 
     public static String getExtensionByMimeType(String str) {
         if (str != null) {
-            char c = 65535;
-            switch (str.hashCode()) {
-                case 187091926:
-                    if (str.equals("audio/ogg")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case 1331848029:
-                    if (str.equals("video/mp4")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case 2039520277:
-                    if (str.equals("video/x-matroska")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-            }
-            switch (c) {
-                case 0:
+            switch (str) {
+                case "audio/ogg":
                     return ".ogg";
-                case 1:
+                case "video/mp4":
                     return ".mp4";
-                case 2:
+                case "video/x-matroska":
                     return ".mkv";
                 default:
                     return "";
@@ -1491,15 +1438,15 @@ public class FileLoader extends BaseController {
 
     public static String getDocumentExtension(TLRPC.Document document) {
         String documentFileName = getDocumentFileName(document);
-        int lastIndexOf = documentFileName.lastIndexOf(46);
-        String substring = lastIndexOf != -1 ? documentFileName.substring(lastIndexOf + 1) : null;
-        if (substring == null || substring.length() == 0) {
-            substring = document.mime_type;
+        int iLastIndexOf = documentFileName.lastIndexOf(46);
+        String strSubstring = iLastIndexOf != -1 ? documentFileName.substring(iLastIndexOf + 1) : null;
+        if (strSubstring == null || strSubstring.length() == 0) {
+            strSubstring = document.mime_type;
         }
-        if (substring == null) {
-            substring = "";
+        if (strSubstring == null) {
+            strSubstring = "";
         }
-        return substring.toUpperCase();
+        return strSubstring.toUpperCase();
     }
 
     public static String getAttachFileName(TLObject tLObject) {
@@ -1514,13 +1461,13 @@ public class FileLoader extends BaseController {
         if (tLObject instanceof TLRPC.Document) {
             TLRPC.Document document = (TLRPC.Document) tLObject;
             String documentFileName = getDocumentFileName(document);
-            int lastIndexOf = documentFileName.lastIndexOf(46);
-            String substring = lastIndexOf != -1 ? documentFileName.substring(lastIndexOf) : "";
-            if (substring.length() <= 1) {
-                substring = getExtensionByMimeType(document.mime_type);
+            int iLastIndexOf = documentFileName.lastIndexOf(46);
+            String strSubstring = iLastIndexOf != -1 ? documentFileName.substring(iLastIndexOf) : "";
+            if (strSubstring.length() <= 1) {
+                strSubstring = getExtensionByMimeType(document.mime_type);
             }
-            if (substring.length() > 1) {
-                return document.dc_id + "_" + document.id + substring;
+            if (strSubstring.length() > 1) {
+                return document.dc_id + "_" + document.id + strSubstring;
             }
             return document.dc_id + "_" + document.id;
         }
@@ -1693,18 +1640,18 @@ public class FileLoader extends BaseController {
         return copyFile(inputStream, file, -1);
     }
 
-    public static boolean copyFile(InputStream inputStream, File file, int i) {
+    public static boolean copyFile(InputStream inputStream, File file, int i) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         byte[] bArr = new byte[4096];
         int i2 = 0;
         while (true) {
-            int read = inputStream.read(bArr);
-            if (read <= 0) {
+            int i3 = inputStream.read(bArr);
+            if (i3 <= 0) {
                 break;
             }
             Thread.yield();
-            fileOutputStream.write(bArr, 0, read);
-            i2 += read;
+            fileOutputStream.write(bArr, 0, i3);
+            i2 += i3;
             if (i > 0 && i2 >= i) {
                 break;
             }
@@ -1787,7 +1734,7 @@ public class FileLoader extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$checkCurrentDownloadsFiles$17(arrayList);
+                this.f$0.lambda$checkCurrentDownloadsFiles$17(arrayList);
             }
         });
     }
@@ -1810,14 +1757,14 @@ public class FileLoader extends BaseController {
     }
 
     public static boolean checkUploadFileSize(int i, long j) {
-        boolean isPremium = AccountInstance.getInstance(i).getUserConfig().isPremium();
+        boolean zIsPremium = AccountInstance.getInstance(i).getUserConfig().isPremium();
         if (j >= 2097152000) {
-            return j < 4194304000L && isPremium;
+            return j < 4194304000L && zIsPremium;
         }
         return true;
     }
 
-    public static class LoadOperationUIObject {
+    private static class LoadOperationUIObject {
         Runnable loadInternalRunnable;
 
         private LoadOperationUIObject() {
@@ -1829,9 +1776,9 @@ public class FileLoader extends BaseController {
     }
 
     public static byte[] longToBytes(long j) {
-        ByteBuffer allocate = ByteBuffer.allocate(8);
-        allocate.putLong(j);
-        return allocate.array();
+        ByteBuffer byteBufferAllocate = ByteBuffer.allocate(8);
+        byteBufferAllocate.putLong(j);
+        return byteBufferAllocate.array();
     }
 
     public static long bytesToLong(byte[] bArr) {
@@ -1869,7 +1816,7 @@ public class FileLoader extends BaseController {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$uploadFile$19(r2);
+                this.f$0.lambda$uploadFile$19(notificationCenterDelegateArr);
             }
         };
         final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {

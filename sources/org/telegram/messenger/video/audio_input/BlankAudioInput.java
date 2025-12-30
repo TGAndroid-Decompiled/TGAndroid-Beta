@@ -23,9 +23,9 @@ public class BlankAudioInput extends AudioInput {
 
     @Override
     public void start(int i, int i2) {
-        int usToShorts = AudioConversions.usToShorts(this.durationUs, i, i2);
-        this.requiredShortsForDuration = usToShorts;
-        this.remainingShorts = usToShorts;
+        int iUsToShorts = AudioConversions.usToShorts(this.durationUs, i, i2);
+        this.requiredShortsForDuration = iUsToShorts;
+        this.remainingShorts = iUsToShorts;
     }
 
     @Override

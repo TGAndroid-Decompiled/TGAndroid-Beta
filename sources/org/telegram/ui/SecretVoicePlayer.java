@@ -49,7 +49,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarWaveform;
 import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.SecretVoicePlayer;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class SecretVoicePlayer extends Dialog {
@@ -106,7 +105,7 @@ public class SecretVoicePlayer extends Dialog {
         this.checkTimeRunnable = new Runnable() {
             @Override
             public final void run() {
-                SecretVoicePlayer.this.checkTime();
+                this.f$0.checkTime();
             }
         };
         this.progress = 0.0f;
@@ -149,7 +148,7 @@ public class SecretVoicePlayer extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SecretVoicePlayer.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -167,17 +166,17 @@ public class SecretVoicePlayer extends Dialog {
                         canvas.translate(-SecretVoicePlayer.this.textureView.getX(), -SecretVoicePlayer.this.textureView.getY());
                         canvas.translate(SecretVoicePlayer.this.myCell.getX() + SecretVoicePlayer.this.rect.left, SecretVoicePlayer.this.myCell.getY() + SecretVoicePlayer.this.rect.top);
                         canvas.scale(SecretVoicePlayer.this.rect.width() / SecretVoicePlayer.this.textureView.getMeasuredWidth(), SecretVoicePlayer.this.rect.height() / SecretVoicePlayer.this.textureView.getMeasuredHeight(), SecretVoicePlayer.this.textureView.getX(), SecretVoicePlayer.this.textureView.getY());
-                        boolean drawChild = super.drawChild(canvas, view, j);
+                        boolean zDrawChild = super.drawChild(canvas, view, j);
                         canvas.restore();
-                        return drawChild;
+                        return zDrawChild;
                     }
                     return super.drawChild(canvas, view, j);
                 }
                 canvas.save();
                 canvas.clipRect(0.0f, AndroidUtilities.lerp(SecretVoicePlayer.this.clipTop, 0.0f, SecretVoicePlayer.this.openProgress), getWidth(), AndroidUtilities.lerp(SecretVoicePlayer.this.clipBottom, getHeight(), SecretVoicePlayer.this.openProgress));
-                boolean drawChild2 = super.drawChild(canvas, view, j);
+                boolean zDrawChild2 = super.drawChild(canvas, view, j);
                 canvas.restore();
-                return drawChild2;
+                return zDrawChild2;
             }
         };
         this.containerView = frameLayout2;
@@ -187,29 +186,17 @@ public class SecretVoicePlayer extends Dialog {
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets windowInsets2;
-                Insets insets;
-                int i;
-                int i2;
-                int i3;
-                int i4;
-                int i5 = Build.VERSION.SDK_INT;
-                if (i5 < 30) {
+                int i = Build.VERSION.SDK_INT;
+                if (i < 30) {
                     SecretVoicePlayer.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                 } else {
-                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    Rect rect = SecretVoicePlayer.this.insets;
-                    i = insets.left;
-                    i2 = insets.top;
-                    i3 = insets.right;
-                    i4 = insets.bottom;
-                    rect.set(i, i2, i3, i4);
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    SecretVoicePlayer.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
                 }
                 SecretVoicePlayer.this.containerView.setPadding(SecretVoicePlayer.this.insets.left, SecretVoicePlayer.this.insets.top, SecretVoicePlayer.this.insets.right, SecretVoicePlayer.this.insets.bottom);
                 SecretVoicePlayer.this.windowView.requestLayout();
-                if (i5 >= 30) {
-                    windowInsets2 = WindowInsets.CONSUMED;
-                    return windowInsets2;
+                if (i >= 30) {
+                    return WindowInsets.CONSUMED;
                 }
                 return windowInsets.consumeSystemWindowInsets();
             }
@@ -232,7 +219,7 @@ public class SecretVoicePlayer extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SecretVoicePlayer.this.lambda$prepareBlur$1(view, (Bitmap) obj);
+                this.f$0.lambda$prepareBlur$1(view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -304,12 +291,12 @@ public class SecretVoicePlayer extends Dialog {
             if (!this.hasDestTranslation) {
                 this.hasDestTranslation = true;
                 this.dtx = 0.0f;
-                float clamp = (Utilities.clamp(iArr[1] + (this.cell.getHeight() / 2.0f), this.windowView.getHeight() * 0.7f, this.windowView.getHeight() * 0.3f) - (this.cell.getHeight() / 2.0f)) - ((this.windowView.getHeight() - this.cell.getHeight()) / 2.0f);
-                this.dty = clamp;
+                float fClamp = (Utilities.clamp(iArr[1] + (this.cell.getHeight() / 2.0f), this.windowView.getHeight() * 0.7f, this.windowView.getHeight() * 0.3f) - (this.cell.getHeight() / 2.0f)) - ((this.windowView.getHeight() - this.cell.getHeight()) / 2.0f);
+                this.dty = fClamp;
                 if (this.isRound) {
                     this.dty = 0.0f;
                 } else {
-                    this.dty = AndroidUtilities.lerp(0.0f, clamp, 0.78f);
+                    this.dty = AndroidUtilities.lerp(0.0f, fClamp, 0.78f);
                 }
             }
             updateTranslation();
@@ -337,7 +324,7 @@ public class SecretVoicePlayer extends Dialog {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretVoicePlayer.setCell(org.telegram.ui.Cells.ChatMessageCell, java.lang.Runnable, java.lang.Runnable):void");
     }
 
-    public class AnonymousClass6 implements VideoPlayer.VideoPlayerDelegate {
+    class AnonymousClass6 implements VideoPlayer.VideoPlayerDelegate {
         @Override
         public void onError(VideoPlayer videoPlayer, Exception exc) {
         }
@@ -388,7 +375,7 @@ public class SecretVoicePlayer extends Dialog {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretVoicePlayer.AnonymousClass6.this.lambda$onRenderedFirstFrame$0();
+                    this.f$0.lambda$onRenderedFirstFrame$0();
                 }
             });
         }
@@ -424,11 +411,10 @@ public class SecretVoicePlayer extends Dialog {
     }
 
     public void checkTime() {
-        VideoPlayer videoPlayer = this.player;
-        if (videoPlayer == null) {
+        if (this.player == null) {
             return;
         }
-        this.progress = ((float) videoPlayer.getCurrentPosition()) / ((float) this.player.getDuration());
+        this.progress = r0.getCurrentPosition() / this.player.getDuration();
         ChatMessageCell chatMessageCell = this.myCell;
         if (chatMessageCell != null) {
             chatMessageCell.overrideDuration((this.player.getDuration() - this.player.getCurrentPosition()) / 1000);
@@ -458,19 +444,19 @@ public class SecretVoicePlayer extends Dialog {
             return;
         }
         if (!this.dismissing && (messageObject = this.messageObject) != null && !messageObject.isOutOwner()) {
-            AlertDialog create = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
+            AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    SecretVoicePlayer.this.lambda$onBackPressed$3(alertDialog2, i);
+                    this.f$0.lambda$onBackPressed$3(alertDialog2, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    SecretVoicePlayer.this.lambda$onBackPressed$4(alertDialog2, i);
+                    this.f$0.lambda$onBackPressed$4(alertDialog2, i);
                 }
             }).create();
-            this.backDialog = create;
-            create.show();
+            this.backDialog = alertDialogCreate;
+            alertDialogCreate.show();
             TextView textView = (TextView) this.backDialog.getButton(-2);
             if (textView != null) {
                 textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
@@ -528,7 +514,7 @@ public class SecretVoicePlayer extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                SecretVoicePlayer.this.lambda$dismiss$6();
+                this.f$0.lambda$dismiss$6();
             }
         });
         this.windowView.invalidate();
@@ -546,7 +532,7 @@ public class SecretVoicePlayer extends Dialog {
             this.thanosEffect.animate(this.myCell, 1.5f, new Runnable() {
                 @Override
                 public final void run() {
-                    SecretVoicePlayer.this.lambda$dismiss$7();
+                    this.f$0.lambda$dismiss$7();
                 }
             });
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
@@ -564,7 +550,7 @@ public class SecretVoicePlayer extends Dialog {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretVoicePlayer.this.lambda$dismiss$5();
+                    this.f$0.lambda$dismiss$5();
                 }
             });
             ChatMessageCell chatMessageCell = this.cell;
@@ -594,12 +580,12 @@ public class SecretVoicePlayer extends Dialog {
             valueAnimator2.cancel();
         }
         setupTranslation();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                SecretVoicePlayer.this.lambda$animateOpenTo$8(z, valueAnimator3);
+                this.f$0.lambda$animateOpenTo$8(z, valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -630,12 +616,12 @@ public class SecretVoicePlayer extends Dialog {
         valueAnimator3.setInterpolator(cubicBezierInterpolator);
         this.openAnimator.setDuration(j);
         this.openAnimator.start();
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
-        this.open2Animator = ofFloat2;
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
+        this.open2Animator = valueAnimatorOfFloat2;
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                SecretVoicePlayer.this.lambda$animateOpenTo$9(valueAnimator4);
+                this.f$0.lambda$animateOpenTo$9(valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -647,7 +633,7 @@ public class SecretVoicePlayer extends Dialog {
                 }
             }
         });
-        this.open2Animator.setDuration(((float) j) * 1.5f);
+        this.open2Animator.setDuration((long) (j * 1.5f));
         this.open2Animator.setInterpolator(cubicBezierInterpolator);
         this.open2Animator.start();
     }

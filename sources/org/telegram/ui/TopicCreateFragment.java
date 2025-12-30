@@ -51,7 +51,6 @@ import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.ReplaceableIconDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.TopicCreateFragment;
 
 public class TopicCreateFragment extends BaseFragment {
     BackupImageView[] backupImageView;
@@ -96,12 +95,12 @@ public class TopicCreateFragment extends BaseFragment {
         long j = this.arguments.getLong("topic_id", 0L);
         this.topicId = j;
         if (j != 0) {
-            TLRPC.TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, this.topicId);
-            this.topicForEdit = findTopic;
-            if (findTopic == null) {
+            TLRPC.TL_forumTopic tL_forumTopicFindTopic = getMessagesController().getTopicsController().findTopic(this.chatId, this.topicId);
+            this.topicForEdit = tL_forumTopicFindTopic;
+            if (tL_forumTopicFindTopic == null) {
                 return false;
             }
-            this.iconColor = findTopic.icon_color;
+            this.iconColor = tL_forumTopicFindTopic.icon_color;
         } else {
             int[] iArr = ForumBubbleDrawable.serverSupportedColor;
             this.iconColor = iArr[Math.abs(Utilities.random.nextInt() % iArr.length)];
@@ -174,10 +173,10 @@ public class TopicCreateFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String trim = editable.toString().trim();
+                String strTrim = editable.toString().trim();
                 String str = TopicCreateFragment.this.firstSymbol;
-                if (trim.length() > 0) {
-                    TopicCreateFragment.this.firstSymbol = trim.substring(0, 1).toUpperCase();
+                if (strTrim.length() > 0) {
+                    TopicCreateFragment.this.firstSymbol = strTrim.substring(0, 1).toUpperCase();
                 } else {
                     TopicCreateFragment.this.firstSymbol = "";
                 }
@@ -196,7 +195,7 @@ public class TopicCreateFragment extends BaseFragment {
         anonymousClass4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicCreateFragment.this.lambda$createView$0(view);
+                this.f$0.lambda$createView$0(view);
             }
         });
         for (int i = 0; i < 2; i++) {
@@ -219,7 +218,7 @@ public class TopicCreateFragment extends BaseFragment {
                 private boolean firstLayout = true;
 
                 @Override
-                public void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+                protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
                     super.onLayout(z, i4, i5, i6, i7);
                     if (this.firstLayout) {
                         this.firstLayout = false;
@@ -243,10 +242,10 @@ public class TopicCreateFragment extends BaseFragment {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);
             this.selectAnimatedEmojiDialog.setClipChildren(false);
             frameLayout2.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
-            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor, false);
-            this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
+            Drawable drawableCreateTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor, false);
+            this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) drawableCreateTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
-            CombinedDrawable combinedDrawable2 = new CombinedDrawable(createTopicDrawable, this.replaceableIconDrawable, 0, 0);
+            CombinedDrawable combinedDrawable2 = new CombinedDrawable(drawableCreateTopicDrawable, this.replaceableIconDrawable, 0, 0);
             combinedDrawable2.setFullsize(true);
             this.selectAnimatedEmojiDialog.setForumIconDrawable(combinedDrawable2);
             this.defaultIconDrawable = combinedDrawable2;
@@ -271,7 +270,7 @@ public class TopicCreateFragment extends BaseFragment {
             this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TopicCreateFragment.this.lambda$createView$1(view);
+                    this.f$0.lambda$createView$1(view);
                 }
             });
             frameLayout2.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50.0f, 48, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -291,7 +290,7 @@ public class TopicCreateFragment extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         public static void lambda$onItemClick$2(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
@@ -310,7 +309,7 @@ public class TopicCreateFragment extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicCreateFragment.AnonymousClass1.this.lambda$onItemClick$0(tLObject, str, alertDialog);
+                    this.f$0.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
@@ -387,7 +386,7 @@ public class TopicCreateFragment extends BaseFragment {
         }
     }
 
-    public class AnonymousClass4 extends FrameLayout {
+    class AnonymousClass4 extends FrameLayout {
         ValueAnimator backAnimator;
         boolean pressed;
         float pressedProgress;
@@ -422,12 +421,12 @@ public class TopicCreateFragment extends BaseFragment {
                 }
                 float f = this.pressedProgress;
                 if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.backAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.backAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            TopicCreateFragment.AnonymousClass4.this.lambda$setPressed$0(valueAnimator2);
+                            this.f$0.lambda$setPressed$0(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -474,27 +473,27 @@ public class TopicCreateFragment extends BaseFragment {
         if (this.selectAnimatedEmojiDialog == null || this.replaceableIconDrawable == null) {
             return;
         }
-        long longValue = l == null ? 0L : l.longValue();
-        this.selectAnimatedEmojiDialog.setSelected(Long.valueOf(longValue));
-        if (this.selectedEmojiDocumentId == longValue) {
+        long jLongValue = l == null ? 0L : l.longValue();
+        this.selectAnimatedEmojiDialog.setSelected(Long.valueOf(jLongValue));
+        if (this.selectedEmojiDocumentId == jLongValue) {
             return;
         }
-        if (!z && longValue != 0 && !getUserConfig().isPremium()) {
-            TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
-            if (findDocument != null) {
-                BulletinFactory.of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
+        if (!z && jLongValue != 0 && !getUserConfig().isPremium()) {
+            TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
+            if (documentFindDocument != null) {
+                BulletinFactory.of(this).createEmojiBulletin(documentFindDocument, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
-                        TopicCreateFragment.this.lambda$selectEmoji$2();
+                        this.f$0.lambda$selectEmoji$2();
                     }
                 }).show();
                 return;
             }
             return;
         }
-        this.selectedEmojiDocumentId = longValue;
-        if (longValue != 0) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(10, this.currentAccount, longValue);
+        this.selectedEmojiDocumentId = jLongValue;
+        if (jLongValue != 0) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(10, this.currentAccount, jLongValue);
             animatedEmojiDrawable.setColorFilter(Theme.chat_animatedEmojiTextColorFilter);
             this.backupImageView[1].setAnimatedEmojiDrawable(animatedEmojiDrawable);
             this.backupImageView[1].setImageDrawable(null);

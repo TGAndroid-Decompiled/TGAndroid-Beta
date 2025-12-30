@@ -27,9 +27,9 @@ public class OldVideoPlayerRewinder {
                 OldVideoPlayerRewinder.this.rewindLastTime = System.currentTimeMillis();
                 return;
             }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - OldVideoPlayerRewinder.this.rewindLastTime;
-            OldVideoPlayerRewinder.this.rewindLastTime = currentTimeMillis;
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - OldVideoPlayerRewinder.this.rewindLastTime;
+            OldVideoPlayerRewinder.this.rewindLastTime = jCurrentTimeMillis;
             OldVideoPlayerRewinder oldVideoPlayerRewinder = OldVideoPlayerRewinder.this;
             int i = oldVideoPlayerRewinder.rewindCount;
             long j2 = j * (i == 1 ? 3L : i == 2 ? 6L : 12L);
@@ -50,10 +50,8 @@ public class OldVideoPlayerRewinder {
                 OldVideoPlayerRewinder oldVideoPlayerRewinder4 = OldVideoPlayerRewinder.this;
                 oldVideoPlayerRewinder4.seekTo(oldVideoPlayerRewinder4.rewindBackSeekPlayerPosition);
             }
-            long j3 = OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition - OldVideoPlayerRewinder.this.startRewindFrom;
-            float duration2 = ((float) OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition) / ((float) OldVideoPlayerRewinder.this.getDuration());
             OldVideoPlayerRewinder oldVideoPlayerRewinder5 = OldVideoPlayerRewinder.this;
-            oldVideoPlayerRewinder5.updateRewindProgressUi(j3, duration2, oldVideoPlayerRewinder5.rewindByBackSeek);
+            oldVideoPlayerRewinder5.updateRewindProgressUi(OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition - OldVideoPlayerRewinder.this.startRewindFrom, OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition / OldVideoPlayerRewinder.this.getDuration(), oldVideoPlayerRewinder5.rewindByBackSeek);
             if (OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition == 0 || OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition >= duration) {
                 OldVideoPlayerRewinder oldVideoPlayerRewinder6 = OldVideoPlayerRewinder.this;
                 if (oldVideoPlayerRewinder6.rewindByBackSeek) {
@@ -129,7 +127,59 @@ public class OldVideoPlayerRewinder {
     }
 
     private void incrementRewindCount() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.OldVideoPlayerRewinder.incrementRewindCount():void");
+        if (this.videoPlayer == null && this.webView == null) {
+            return;
+        }
+        int i = this.rewindCount + 1;
+        this.rewindCount = i;
+        boolean z = false;
+        if (i == 1) {
+            if (this.rewindForward && isPlaying()) {
+                this.rewindByBackSeek = false;
+            } else {
+                this.rewindByBackSeek = true;
+            }
+        }
+        if (this.rewindForward && !this.rewindByBackSeek) {
+            int i2 = this.rewindCount;
+            if (i2 == 1) {
+                setPlaybackSpeed(4.0f);
+            } else if (i2 == 2) {
+                setPlaybackSpeed(7.0f);
+            } else {
+                setPlaybackSpeed(13.0f);
+            }
+            z = true;
+        } else {
+            int i3 = this.rewindCount;
+            if (i3 == 1 || i3 == 2) {
+                z = true;
+            }
+        }
+        if (this.rewindCount == 1) {
+            this.rewindBackSeekPlayerPosition = getCurrentPosition();
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            this.rewindLastTime = jCurrentTimeMillis;
+            this.rewindLastUpdatePlayerTime = jCurrentTimeMillis;
+            this.startRewindFrom = getCurrentPosition();
+            onRewindStart(this.rewindForward);
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.backSeek);
+        AndroidUtilities.runOnUIThread(this.backSeek);
+        if (z) {
+            Runnable runnable = this.updateRewindRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+            }
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$incrementRewindCount$0();
+                }
+            };
+            this.updateRewindRunnable = runnable2;
+            AndroidUtilities.runOnUIThread(runnable2, 2000L);
+        }
     }
 
     public void lambda$incrementRewindCount$0() {
@@ -198,6 +248,6 @@ public class OldVideoPlayerRewinder {
     }
 
     public float getVideoProgress() {
-        return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
+        return this.rewindBackSeekPlayerPosition / getDuration();
     }
 }

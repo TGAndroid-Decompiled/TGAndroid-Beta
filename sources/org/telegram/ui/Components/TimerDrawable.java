@@ -59,9 +59,9 @@ public class TimerDrawable extends Drawable {
             if (this.isDialog) {
                 this.currentTtlIcon = ContextCompat.getDrawable(this.context, R.drawable.msg_autodelete_badge2).mutate();
             } else {
-                Drawable mutate = ContextCompat.getDrawable(this.context, i == 0 ? R.drawable.msg_mini_autodelete : R.drawable.msg_mini_autodelete_empty).mutate();
-                this.currentTtlIcon = mutate;
-                mutate.setColorFilter(this.currentColorFilter);
+                Drawable drawableMutate = ContextCompat.getDrawable(this.context, i == 0 ? R.drawable.msg_mini_autodelete : R.drawable.msg_mini_autodelete_empty).mutate();
+                this.currentTtlIcon = drawableMutate;
+                drawableMutate.setColorFilter(this.currentColorFilter);
             }
             invalidateSelf();
             int i2 = this.time;
@@ -105,9 +105,9 @@ public class TimerDrawable extends Drawable {
             }
             String str2 = str;
             this.timePaint.setTextSize(AndroidUtilities.dp(11.0f));
-            float measureText = this.timePaint.measureText(str2);
-            this.timeWidth = measureText;
-            if (measureText > AndroidUtilities.dp(13.0f)) {
+            float fMeasureText = this.timePaint.measureText(str2);
+            this.timeWidth = fMeasureText;
+            if (fMeasureText > AndroidUtilities.dp(13.0f)) {
                 this.timePaint.setTextSize(AndroidUtilities.dp(9.0f));
                 this.timeWidth = this.timePaint.measureText(str2);
             }

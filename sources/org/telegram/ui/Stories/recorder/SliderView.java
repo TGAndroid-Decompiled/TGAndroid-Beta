@@ -276,30 +276,30 @@ public class SliderView extends View {
         }
         setMeasuredDimension(this.w, this.h);
         if (this.currentType == 0) {
-            float dp = AndroidUtilities.dp(25.0f);
+            float fDp = AndroidUtilities.dp(25.0f);
             float f = this.h / 2.0f;
             this.speaker1Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
             this.speaker1Path.rewind();
-            this.speaker1Path.moveTo(dp - AndroidUtilities.dpf2(8.66f), f - AndroidUtilities.dpf2(2.9f));
-            this.speaker1Path.lineTo(dp - AndroidUtilities.dpf2(3.0f), f - AndroidUtilities.dpf2(2.9f));
-            this.speaker1Path.lineTo(dp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f);
-            this.speaker1Path.lineTo(dp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f);
+            this.speaker1Path.moveTo(fDp - AndroidUtilities.dpf2(8.66f), f - AndroidUtilities.dpf2(2.9f));
+            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), f - AndroidUtilities.dpf2(2.9f));
+            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f);
+            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f);
             this.speaker1Path.close();
             this.speaker2Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
             this.speaker2Path.rewind();
-            this.speaker2Path.moveTo(dp - AndroidUtilities.dpf2(7.5f), f);
-            this.speaker2Path.lineTo(dp, f - AndroidUtilities.dpf2(7.33f));
-            this.speaker2Path.lineTo(dp, AndroidUtilities.dpf2(7.33f) + f);
+            this.speaker2Path.moveTo(fDp - AndroidUtilities.dpf2(7.5f), f);
+            this.speaker2Path.lineTo(fDp, f - AndroidUtilities.dpf2(7.33f));
+            this.speaker2Path.lineTo(fDp, AndroidUtilities.dpf2(7.33f) + f);
             this.speaker2Path.close();
             this.speakerWave1Path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((dp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(4.33f), f - AndroidUtilities.dp(4.33f), (dp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(4.33f), AndroidUtilities.dp(4.33f) + f);
+            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(4.33f), f - AndroidUtilities.dp(4.33f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(4.33f), AndroidUtilities.dp(4.33f) + f);
             this.speakerWave1Path.arcTo(rectF, -60.0f, 120.0f);
             this.speakerWave1Path.close();
             this.speakerWave2Paint.setStyle(Paint.Style.STROKE);
             this.speakerWave2Paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             this.speakerWave2Path.rewind();
-            rectF.set((dp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(8.0f), f - AndroidUtilities.dp(8.0f), (dp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(8.0f), f + AndroidUtilities.dp(8.0f));
+            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(8.0f), f - AndroidUtilities.dp(8.0f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(8.0f), f + AndroidUtilities.dp(8.0f));
             this.speakerWave2Path.arcTo(rectF, -70.0f, 140.0f);
         }
     }

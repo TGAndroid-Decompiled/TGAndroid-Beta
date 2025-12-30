@@ -5,7 +5,7 @@ import android.graphics.Matrix;
 import android.view.WindowManager;
 import org.webrtc.VideoFrame;
 
-public interface CameraSession {
+interface CameraSession {
 
     public interface CreateSessionCallback {
         void onDone(CameraSession cameraSession);

@@ -205,8 +205,8 @@ public class VideoEditedInfo {
             this.width = abstractSerializedData.readFloat(z2);
             this.height = abstractSerializedData.readFloat(z2);
             this.text = abstractSerializedData.readString(z2);
-            int readInt32 = abstractSerializedData.readInt32(z2);
-            for (int i = 0; i < readInt32; i++) {
+            int int32 = abstractSerializedData.readInt32(z2);
+            for (int i = 0; i < int32; i++) {
                 EmojiEntity emojiEntity = new EmojiEntity();
                 abstractSerializedData.readInt32(z2);
                 emojiEntity.readParams(abstractSerializedData, z2);
@@ -217,20 +217,20 @@ public class VideoEditedInfo {
             this.viewWidth = abstractSerializedData.readInt32(z2);
             this.viewHeight = abstractSerializedData.readInt32(z2);
             this.textAlign = abstractSerializedData.readInt32(z2);
-            String readString = abstractSerializedData.readString(z2);
-            this.textTypefaceKey = readString;
-            this.textTypeface = PaintTypeface.find(readString);
+            String string = abstractSerializedData.readString(z2);
+            this.textTypefaceKey = string;
+            this.textTypeface = PaintTypeface.find(string);
             this.scale = abstractSerializedData.readFloat(z2);
             this.textViewWidth = abstractSerializedData.readFloat(z2);
             this.textViewHeight = abstractSerializedData.readFloat(z2);
             this.textViewX = abstractSerializedData.readFloat(z2);
             this.textViewY = abstractSerializedData.readFloat(z2);
             if (z) {
-                int readInt322 = abstractSerializedData.readInt32(z2);
-                if (readInt322 == 1450380236) {
+                int int322 = abstractSerializedData.readInt32(z2);
+                if (int322 == 1450380236) {
                     this.document = null;
                 } else {
-                    this.document = TLRPC.Document.TLdeserialize(abstractSerializedData, readInt322, z2);
+                    this.document = TLRPC.Document.TLdeserialize(abstractSerializedData, int322, z2);
                 }
             }
             byte b = this.type;
@@ -241,10 +241,10 @@ public class VideoEditedInfo {
                 if (abstractSerializedData.remaining() <= 0 || abstractSerializedData.readInt32(z2) != -559038737) {
                     return;
                 }
-                String readString2 = abstractSerializedData.readString(z2);
+                String string2 = abstractSerializedData.readString(z2);
                 TLRPC.MessageMedia messageMedia = this.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-                    ((TLRPC.TL_messageMediaVenue) messageMedia).emoji = readString2;
+                    ((TLRPC.TL_messageMediaVenue) messageMedia).emoji = string2;
                     return;
                 }
                 return;
@@ -443,26 +443,26 @@ public class VideoEditedInfo {
     }
 
     public String getString() {
-        byte[] bArr;
-        String bytesToHex;
+        byte[] bytes;
+        String strBytesToHex;
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime != -1 || this.filterState != null || this.paintPath != null || this.blurPath != null || (((arrayList = this.mediaEntities) != null && !arrayList.isEmpty()) || this.cropState != null)) {
-            int i = this.filterState != null ? 170 : 10;
+            int length = this.filterState != null ? 170 : 10;
             String str = this.paintPath;
-            byte[] bArr2 = null;
+            byte[] bytes2 = null;
             if (str != null) {
-                bArr = str.getBytes();
-                i += bArr.length;
+                bytes = str.getBytes();
+                length += bytes.length;
             } else {
-                bArr = null;
+                bytes = null;
             }
             String str2 = this.blurPath;
             if (str2 != null) {
-                bArr2 = str2.getBytes();
-                i += bArr2.length;
+                bytes2 = str2.getBytes();
+                length += bytes2.length;
             }
-            SerializedData serializedData = new SerializedData(i);
+            SerializedData serializedData = new SerializedData(length);
             serializedData.writeInt32(11);
             serializedData.writeInt64(this.avatarStartTime);
             serializedData.writeInt32(this.originalBitrate);
@@ -494,12 +494,12 @@ public class VideoEditedInfo {
                 }
                 serializedData.writeFloat(this.filterState.blurExcludeBlurSize);
                 serializedData.writeFloat(this.filterState.blurAngle);
-                for (int i2 = 0; i2 < 4; i2++) {
-                    if (i2 == 0) {
+                for (int i = 0; i < 4; i++) {
+                    if (i == 0) {
                         curvesValue = this.filterState.curvesToolValue.luminanceCurve;
-                    } else if (i2 == 1) {
+                    } else if (i == 1) {
                         curvesValue = this.filterState.curvesToolValue.redCurve;
-                    } else if (i2 == 2) {
+                    } else if (i == 2) {
                         curvesValue = this.filterState.curvesToolValue.greenCurve;
                     } else {
                         curvesValue = this.filterState.curvesToolValue.blueCurve;
@@ -513,9 +513,9 @@ public class VideoEditedInfo {
             } else {
                 serializedData.writeByte(0);
             }
-            if (bArr != null) {
+            if (bytes != null) {
                 serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr);
+                serializedData.writeByteArray(bytes);
             } else {
                 serializedData.writeByte(0);
             }
@@ -524,8 +524,8 @@ public class VideoEditedInfo {
                 serializedData.writeByte(1);
                 serializedData.writeInt32(this.mediaEntities.size());
                 int size = this.mediaEntities.size();
-                for (int i3 = 0; i3 < size; i3++) {
-                    this.mediaEntities.get(i3).serializeTo(serializedData, false);
+                for (int i2 = 0; i2 < size; i2++) {
+                    this.mediaEntities.get(i2).serializeTo(serializedData, false);
                 }
                 serializedData.writeByte(this.isPhoto ? 1 : 0);
             } else {
@@ -549,9 +549,9 @@ public class VideoEditedInfo {
             serializedData.writeInt32(0);
             serializedData.writeBool(this.isStory);
             serializedData.writeBool(this.fromCamera);
-            if (bArr2 != null) {
+            if (bytes2 != null) {
                 serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr2);
+                serializedData.writeByteArray(bytes2);
             } else {
                 serializedData.writeByte(0);
             }
@@ -561,18 +561,18 @@ public class VideoEditedInfo {
             if (collageLayout != null && this.collageParts != null && collageLayout.parts.size() > 1 && !this.collageParts.isEmpty()) {
                 serializedData.writeInt32(-559038737);
                 serializedData.writeString(this.collage.toString());
-                for (int i4 = 0; i4 < this.collageParts.size(); i4++) {
-                    this.collageParts.get(i4).serializeToStream(serializedData);
+                for (int i3 = 0; i3 < this.collageParts.size(); i3++) {
+                    this.collageParts.get(i3).serializeToStream(serializedData);
                 }
             } else {
                 serializedData.writeInt32(1450380236);
             }
-            bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
+            strBytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
             serializedData.cleanup();
         } else {
-            bytesToHex = "";
+            strBytesToHex = "";
         }
-        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), bytesToHex, this.originalPath);
+        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), strBytesToHex, this.originalPath);
     }
 
     public boolean parseString(String str) {
@@ -581,26 +581,26 @@ public class VideoEditedInfo {
             return false;
         }
         try {
-            String[] split = str.split("_");
+            String[] strArrSplit = str.split("_");
             int i = 11;
-            if (split.length >= 11) {
-                this.startTime = Long.parseLong(split[1]);
-                this.endTime = Long.parseLong(split[2]);
-                this.rotationValue = Integer.parseInt(split[3]);
-                this.originalWidth = Integer.parseInt(split[4]);
-                this.originalHeight = Integer.parseInt(split[5]);
-                this.bitrate = Integer.parseInt(split[6]);
-                this.resultWidth = Integer.parseInt(split[7]);
-                this.resultHeight = Integer.parseInt(split[8]);
-                this.originalDuration = Long.parseLong(split[9]);
-                this.framerate = Integer.parseInt(split[10]);
+            if (strArrSplit.length >= 11) {
+                this.startTime = Long.parseLong(strArrSplit[1]);
+                this.endTime = Long.parseLong(strArrSplit[2]);
+                this.rotationValue = Integer.parseInt(strArrSplit[3]);
+                this.originalWidth = Integer.parseInt(strArrSplit[4]);
+                this.originalHeight = Integer.parseInt(strArrSplit[5]);
+                this.bitrate = Integer.parseInt(strArrSplit[6]);
+                this.resultWidth = Integer.parseInt(strArrSplit[7]);
+                this.resultHeight = Integer.parseInt(strArrSplit[8]);
+                this.originalDuration = Long.parseLong(strArrSplit[9]);
+                this.framerate = Integer.parseInt(strArrSplit[10]);
                 this.muted = this.bitrate == -1;
-                if (split[11].startsWith("-")) {
-                    String substring = split[11].substring(1);
-                    if (substring.length() > 0) {
-                        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(substring));
-                        int readInt32 = serializedData.readInt32(false);
-                        if (readInt32 >= 3) {
+                if (strArrSplit[11].startsWith("-")) {
+                    String strSubstring = strArrSplit[11].substring(1);
+                    if (strSubstring.length() > 0) {
+                        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(strSubstring));
+                        int int32 = serializedData.readInt32(false);
+                        if (int32 >= 3) {
                             this.avatarStartTime = serializedData.readInt64(false);
                             this.originalBitrate = serializedData.readInt32(false);
                         }
@@ -608,7 +608,7 @@ public class VideoEditedInfo {
                             MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
                             this.filterState = savedFilterState;
                             savedFilterState.enhanceValue = serializedData.readFloat(false);
-                            if (readInt32 >= 5) {
+                            if (int32 >= 5) {
                                 this.filterState.softenSkinValue = serializedData.readFloat(false);
                             }
                             this.filterState.exposureValue = serializedData.readFloat(false);
@@ -649,14 +649,14 @@ public class VideoEditedInfo {
                             this.paintPath = new String(serializedData.readByteArray(false));
                         }
                         if (serializedData.readByte(false) != 0) {
-                            int readInt322 = serializedData.readInt32(false);
-                            this.mediaEntities = new ArrayList<>(readInt322);
-                            for (int i3 = 0; i3 < readInt322; i3++) {
+                            int int322 = serializedData.readInt32(false);
+                            this.mediaEntities = new ArrayList<>(int322);
+                            for (int i3 = 0; i3 < int322; i3++) {
                                 this.mediaEntities.add(new MediaEntity(serializedData, false));
                             }
                             this.isPhoto = serializedData.readByte(false) == 1;
                         }
-                        if (readInt32 >= 2 && serializedData.readByte(false) != 0) {
+                        if (int32 >= 2 && serializedData.readByte(false) != 0) {
                             MediaController.CropState cropState = new MediaController.CropState();
                             this.cropState = cropState;
                             cropState.cropPx = serializedData.readFloat(false);
@@ -668,27 +668,27 @@ public class VideoEditedInfo {
                             this.cropState.transformWidth = serializedData.readInt32(false);
                             this.cropState.transformHeight = serializedData.readInt32(false);
                             this.cropState.transformRotation = serializedData.readInt32(false);
-                            if (readInt32 >= 4) {
+                            if (int32 >= 4) {
                                 this.cropState.mirrored = serializedData.readBool(false);
                             }
                         }
-                        if (readInt32 >= 6) {
+                        if (int32 >= 6) {
                             serializedData.readInt32(false);
                         }
-                        if (readInt32 >= 7) {
+                        if (int32 >= 7) {
                             this.isStory = serializedData.readBool(false);
                             this.fromCamera = serializedData.readBool(false);
                         }
-                        if (readInt32 >= 8 && serializedData.readByte(false) != 0) {
+                        if (int32 >= 8 && serializedData.readByte(false) != 0) {
                             this.blurPath = new String(serializedData.readByteArray(false));
                         }
-                        if (readInt32 >= 9) {
+                        if (int32 >= 9) {
                             this.volume = serializedData.readFloat(false);
                         }
-                        if (readInt32 >= 10) {
+                        if (int32 >= 10) {
                             this.isSticker = serializedData.readBool(false);
                         }
-                        if (readInt32 >= 11 && serializedData.readInt32(false) == -559038737) {
+                        if (int32 >= 11 && serializedData.readInt32(false) == -559038737) {
                             this.collage = new CollageLayout(serializedData.readString(false));
                             this.collageParts = new ArrayList<>();
                             for (int i4 = 0; i4 < this.collage.parts.size(); i4++) {
@@ -702,11 +702,11 @@ public class VideoEditedInfo {
                     }
                     i = 12;
                 }
-                while (i < split.length) {
+                while (i < strArrSplit.length) {
                     if (this.originalPath == null) {
-                        this.originalPath = split[i];
+                        this.originalPath = strArrSplit[i];
                     } else {
-                        this.originalPath += "_" + split[i];
+                        this.originalPath += "_" + strArrSplit[i];
                     }
                     i++;
                 }
@@ -828,11 +828,11 @@ public class VideoEditedInfo {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.isVideo = (readInt32 & 1) != 0;
-            this.loop = (readInt32 & 2) != 0;
-            this.muted = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.isVideo = (int32 & 1) != 0;
+            this.loop = (int32 & 2) != 0;
+            this.muted = (int32 & 4) != 0;
             this.path = inputSerializedData.readString(z);
             this.volume = inputSerializedData.readFloat(z);
             this.offset = inputSerializedData.readInt64(z);

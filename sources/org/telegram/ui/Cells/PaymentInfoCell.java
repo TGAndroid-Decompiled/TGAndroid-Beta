@@ -66,33 +66,33 @@ public class PaymentInfoCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3;
+        int iMakeMeasureSpec;
         if (this.imageView.getVisibility() != 8) {
-            i3 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), 1073741824);
+            iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), 1073741824);
         } else {
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+            int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
             measureChildWithMargins(this.detailTextView, i, 0, i2, 0);
             ((FrameLayout.LayoutParams) this.detailExTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(33.0f) + this.detailTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
-            i3 = makeMeasureSpec;
+            iMakeMeasureSpec = iMakeMeasureSpec2;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i3);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), iMakeMeasureSpec);
     }
 
     public void setInfo(String str, String str2, TLRPC.WebDocument webDocument, String str3, Object obj) {
-        int min;
+        int iMin;
         this.nameTextView.setText(str);
         this.detailTextView.setText(str2);
         this.detailExTextView.setText(str3);
         if (AndroidUtilities.isTablet()) {
-            min = AndroidUtilities.getMinTabletSide();
+            iMin = AndroidUtilities.getMinTabletSide();
         } else {
             Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
+            iMin = Math.min(point.x, point.y);
         }
         float f = 640;
-        float dp = f / (((int) (min * 0.7f)) - AndroidUtilities.dp(2.0f));
-        int i = (int) (f / dp);
-        int i2 = (int) (360 / dp);
+        float fDp = f / (((int) (iMin * 0.7f)) - AndroidUtilities.dp(2.0f));
+        int i = (int) (f / fDp);
+        int i2 = (int) (360 / fDp);
         if (webDocument != null && webDocument.mime_type.startsWith("image/")) {
             TextView textView = this.nameTextView;
             boolean z = LocaleController.isRTL;

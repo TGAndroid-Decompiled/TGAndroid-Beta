@@ -42,14 +42,14 @@ public class ChromecastFileServer extends NanoHTTPD {
     private boolean started;
 
     static {
-        ChromecastMedia build = ChromecastMedia.Builder.fromUri(Uri.parse("file:///android_asset/cast/default.png"), "/assets/default", "image/png").build();
-        ASSET_FALLBACK_FILE = build;
-        ChromecastMedia[] chromecastMediaArr = {build};
+        ChromecastMedia chromecastMediaBuild = ChromecastMedia.Builder.fromUri(Uri.parse("file:///android_asset/cast/default.png"), "/assets/default", "image/png").build();
+        ASSET_FALLBACK_FILE = chromecastMediaBuild;
+        ChromecastMedia[] chromecastMediaArr = {chromecastMediaBuild};
         ASSET_FILES = chromecastMediaArr;
-        HashMap hashMap = new HashMap();
-        ASSET_FILES_MAP = hashMap;
+        HashMap map = new HashMap();
+        ASSET_FILES_MAP = map;
         ChromecastMedia chromecastMedia = chromecastMediaArr[0];
-        hashMap.put(chromecastMedia.externalPath, chromecastMedia);
+        map.put(chromecastMedia.externalPath, chromecastMedia);
     }
 
     public ChromecastFileServer() {
@@ -61,9 +61,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         this.assetDataSourceFactory = new DataSource.Factory() {
             @Override
             public final DataSource createDataSource() {
-                DataSource lambda$new$0;
-                lambda$new$0 = ChromecastFileServer.lambda$new$0();
-                return lambda$new$0;
+                return ChromecastFileServer.lambda$new$0();
             }
         };
         this.fileDataSourceFactory = new FileDataSource.Factory();
@@ -138,12 +136,12 @@ public class ChromecastFileServer extends NanoHTTPD {
 
     @Override
     public NanoHTTPD.Response serve(NanoHTTPD.IHTTPSession iHTTPSession) {
-        int incrementAndGet = this.reqId.incrementAndGet();
-        Log.d("CAST_SERVER", "Request " + incrementAndGet + " " + iHTTPSession.getMethod() + " " + iHTTPSession.getUri() + " " + ((String) iHTTPSession.getHeaders().get("range")));
+        int iIncrementAndGet = this.reqId.incrementAndGet();
+        Log.d("CAST_SERVER", "Request " + iIncrementAndGet + " " + iHTTPSession.getMethod() + " " + iHTTPSession.getUri() + " " + ((String) iHTTPSession.getHeaders().get("range")));
         try {
             return addCorsHeaders(serveImpl(iHTTPSession));
         } catch (Throwable unused) {
-            Log.d("CAST_SERVER", "Error " + incrementAndGet);
+            Log.d("CAST_SERVER", "Error " + iIncrementAndGet);
             return addCorsHeaders(NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, "text/plain", "Error reading file"));
         }
     }
@@ -205,39 +203,39 @@ public class ChromecastFileServer extends NanoHTTPD {
     }
 
     private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, ChromecastMedia chromecastMedia) {
-        NanoHTTPD.Response newFixedLengthResponse;
+        NanoHTTPD.Response responseNewFixedLengthResponse;
         String str = (String) iHTTPSession.getHeaders().get("host");
         if (chromecastMedia.internalUri.toString().startsWith("data:application/x-mpegurl;base64,")) {
             return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, fixHlsManifest(new String(Base64.decode(chromecastMedia.internalUri.toString().substring(34), 0)), str));
         }
-        DataSource createDataSource = getDataSourceFactory(chromecastMedia).createDataSource();
+        DataSource dataSourceCreateDataSource = getDataSourceFactory(chromecastMedia).createDataSource();
         DataSpec.Builder uri = new DataSpec.Builder().setUri(chromecastMedia.internalUri);
-        long open = createDataSource.open(uri.build());
-        createDataSource.close();
-        boolean equals = TextUtils.equals(chromecastMedia.mimeType, "application/x-mpegURL");
-        Range parseRangeHeader = !equals ? parseRangeHeader((String) iHTTPSession.getHeaders().get("range"), open) : null;
-        long j = parseRangeHeader != null ? (parseRangeHeader.end - parseRangeHeader.start) + 1 : open;
-        if (parseRangeHeader != null) {
-            uri.setPosition(parseRangeHeader.start);
+        long jOpen = dataSourceCreateDataSource.open(uri.build());
+        dataSourceCreateDataSource.close();
+        boolean zEquals = TextUtils.equals(chromecastMedia.mimeType, "application/x-mpegURL");
+        Range rangeHeader = !zEquals ? parseRangeHeader((String) iHTTPSession.getHeaders().get("range"), jOpen) : null;
+        long j = rangeHeader != null ? (rangeHeader.end - rangeHeader.start) + 1 : jOpen;
+        if (rangeHeader != null) {
+            uri.setPosition(rangeHeader.start);
             uri.setLength(j);
         }
-        if (equals) {
+        if (zEquals) {
             int i = (int) j;
             byte[] bArr = new byte[i];
-            createDataSource.open(uri.build());
-            createDataSource.read(bArr, 0, i);
-            createDataSource.close();
+            dataSourceCreateDataSource.open(uri.build());
+            dataSourceCreateDataSource.read(bArr, 0, i);
+            dataSourceCreateDataSource.close();
             return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, fixHlsManifest(new String(bArr), str));
         }
         if (j != 0) {
-            newFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(parseRangeHeader != null ? NanoHTTPD.Response.Status.PARTIAL_CONTENT : NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, new DataSourceInputStream(createDataSource, uri.build()), j);
+            responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(rangeHeader != null ? NanoHTTPD.Response.Status.PARTIAL_CONTENT : NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, new DataSourceInputStream(dataSourceCreateDataSource, uri.build()), j);
         } else {
-            newFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NO_CONTENT, chromecastMedia.mimeType, "");
+            responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NO_CONTENT, chromecastMedia.mimeType, "");
         }
-        if (parseRangeHeader != null) {
-            newFixedLengthResponse.addHeader("Content-Range", "bytes " + parseRangeHeader.start + "-" + parseRangeHeader.end + "/" + open);
+        if (rangeHeader != null) {
+            responseNewFixedLengthResponse.addHeader("Content-Range", "bytes " + rangeHeader.start + "-" + rangeHeader.end + "/" + jOpen);
         }
-        return newFixedLengthResponse;
+        return responseNewFixedLengthResponse;
     }
 
     private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, File file) {
@@ -271,29 +269,29 @@ public class ChromecastFileServer extends NanoHTTPD {
         return str.replaceAll("mtproto:", getUrlToSource(str2, "/mtproto_"));
     }
 
-    private static Range parseRangeHeader(String str, long j) {
-        long parseLong;
-        long parseLong2;
+    private static Range parseRangeHeader(String str, long j) throws NumberFormatException {
+        long j2;
+        long j3;
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        String substring = str.trim().substring(6);
-        if (substring.startsWith("-")) {
-            parseLong2 = j - 1;
-            parseLong = parseLong2 - Long.parseLong(substring.substring(1));
+        String strSubstring = str.trim().substring(6);
+        if (strSubstring.startsWith("-")) {
+            j3 = j - 1;
+            j2 = j3 - Long.parseLong(strSubstring.substring(1));
         } else {
-            String[] split = substring.split("-");
-            parseLong = Long.parseLong(split[0]);
-            parseLong2 = split.length > 1 ? Long.parseLong(split[1]) : j - 1;
+            String[] strArrSplit = strSubstring.split("-");
+            j2 = Long.parseLong(strArrSplit[0]);
+            j3 = strArrSplit.length > 1 ? Long.parseLong(strArrSplit[1]) : j - 1;
         }
-        long j2 = j - 1;
-        if (parseLong2 > j2) {
-            parseLong2 = j2;
+        long j4 = j - 1;
+        if (j3 > j4) {
+            j3 = j4;
         }
-        return new Range(parseLong, parseLong2);
+        return new Range(j2, j3);
     }
 
-    public static class Range {
+    private static class Range {
         final long end;
         final long start;
 
@@ -307,7 +305,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return "http://" + str + str2;
     }
 
-    public static String getHost() {
+    public static String getHost() throws SocketException {
         return formatIp4(getMyLocalIp()) + ":61578";
     }
 
@@ -315,7 +313,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return String.valueOf(i & 255) + '.' + ((i >> 8) & 255) + '.' + ((i >> 16) & 255) + '.' + ((i >> 24) & 255);
     }
 
-    private static int getMyLocalIp() {
+    private static int getMyLocalIp() throws SocketException {
         int ipAddress = ((WifiManager) ApplicationLoader.applicationContext.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
@@ -323,9 +321,9 @@ public class ChromecastFileServer extends NanoHTTPD {
                 while (networkInterfaces.hasMoreElements()) {
                     Enumeration<InetAddress> inetAddresses = networkInterfaces.nextElement().getInetAddresses();
                     while (inetAddresses.hasMoreElements()) {
-                        InetAddress nextElement = inetAddresses.nextElement();
-                        if (nextElement.isSiteLocalAddress()) {
-                            byte[] address = nextElement.getAddress();
+                        InetAddress inetAddressNextElement = inetAddresses.nextElement();
+                        if (inetAddressNextElement.isSiteLocalAddress()) {
+                            byte[] address = inetAddressNextElement.getAddress();
                             ipAddress = (((address[3] + 256) % 256) << 24) + ((address[0] + 256) % 256) + (((address[1] + 256) % 256) << 8) + (((address[2] + 256) % 256) << 16);
                         }
                     }
@@ -337,7 +335,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return ipAddress;
     }
 
-    public static class DataSourceInputStream extends InputStream {
+    private static class DataSourceInputStream extends InputStream {
         private long availableBytes;
         private final DataSource dataSource;
         private final byte[] tmpByte = new byte[1];
@@ -358,9 +356,9 @@ public class ChromecastFileServer extends NanoHTTPD {
 
         @Override
         public int read() {
-            int read = this.dataSource.read(this.tmpByte, 0, 1);
+            int i = this.dataSource.read(this.tmpByte, 0, 1);
             this.availableBytes--;
-            if (read == -1) {
+            if (i == -1) {
                 return -1;
             }
             return this.tmpByte[0] & 255;
@@ -371,9 +369,9 @@ public class ChromecastFileServer extends NanoHTTPD {
             if (i2 == 0) {
                 return 0;
             }
-            int read = this.dataSource.read(bArr, i, i2);
-            this.availableBytes -= read;
-            return read;
+            int i3 = this.dataSource.read(bArr, i, i2);
+            this.availableBytes -= i3;
+            return i3;
         }
 
         @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -36,17 +37,17 @@ public class ShapeDetector {
     private Runnable detect = new Runnable() {
         @Override
         public final void run() {
-            ShapeDetector.this.lambda$new$2();
+            this.f$0.lambda$new$2();
         }
     };
 
     static {
-        double sqrt = Math.sqrt(125000.0d);
-        diagonal = sqrt;
-        halfDiagonal = sqrt / 2.0d;
+        double dSqrt = Math.sqrt(125000.0d);
+        diagonal = dSqrt;
+        halfDiagonal = dSqrt / 2.0d;
     }
 
-    public static class Point {
+    private static class Point {
         public double x;
         public double y;
 
@@ -68,7 +69,7 @@ public class ShapeDetector {
         }
     }
 
-    public static class RectD {
+    private static class RectD {
         public double bottom;
         public double left;
         public double right;
@@ -101,7 +102,7 @@ public class ShapeDetector {
         }
     }
 
-    public static class Template {
+    private static class Template {
         public ArrayList points;
         public int score;
         public int shapeType;
@@ -126,13 +127,13 @@ public class ShapeDetector {
     }
 
     public static void setLearning(Context context, boolean z) {
-        SharedPreferences.Editor edit = context.getSharedPreferences("shapedetector_conf", 0).edit();
+        SharedPreferences.Editor editorEdit = context.getSharedPreferences("shapedetector_conf", 0).edit();
         if (!z) {
-            edit.clear();
+            editorEdit.clear();
         } else {
-            edit.putBoolean("learning", true);
+            editorEdit.putBoolean("learning", true);
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public void scheduleDetect(boolean z) {
@@ -177,59 +178,59 @@ public class ShapeDetector {
     private void parseTemplates() {
         queue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                ShapeDetector.this.lambda$parseTemplates$0();
+            public final void run() throws IOException {
+                this.f$0.lambda$parseTemplates$0();
             }
         });
     }
 
-    public void lambda$parseTemplates$0() {
+    public void lambda$parseTemplates$0() throws IOException {
         AnonymousClass1 anonymousClass1;
         char c;
         String string;
         try {
-            InputStream open = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
+            InputStream inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
             while (true) {
                 anonymousClass1 = null;
                 c = 0;
-                if (open.available() <= 5) {
+                if (inputStreamOpen.available() <= 5) {
                     break;
                 }
                 Template template = new Template();
-                template.shapeType = open.read();
-                int read = open.read();
-                int read2 = open.read() - 64;
-                int read3 = open.read() - 64;
-                if (open.available() < read * 2) {
+                template.shapeType = inputStreamOpen.read();
+                int i = inputStreamOpen.read();
+                int i2 = inputStreamOpen.read() - 64;
+                int i3 = inputStreamOpen.read() - 64;
+                if (inputStreamOpen.available() < i * 2) {
                     break;
                 }
-                for (int i = 0; i < read; i++) {
-                    template.points.add(new Point((open.read() - read2) - 127, (open.read() - read3) - 127));
+                for (int i4 = 0; i4 < i; i4++) {
+                    template.points.add(new Point((inputStreamOpen.read() - i2) - 127, (inputStreamOpen.read() - i3) - 127));
                 }
                 template.score = this.preferences.getInt("score" + this.templates.size(), 0);
                 this.templates.add(template);
             }
             if (this.isLearning && (string = this.preferences.getString("moretemplates", null)) != null) {
-                String[] split = string.split("\\|");
+                String[] strArrSplit = string.split("\\|");
                 int size = this.templates.size();
-                int i2 = 0;
-                while (i2 < split.length) {
+                int i5 = 0;
+                while (i5 < strArrSplit.length) {
                     Template template2 = new Template();
-                    String[] split2 = split[i2].split(",");
-                    if (split2.length > 1) {
-                        template2.shapeType = Integer.parseInt(split2[c]);
-                        for (int i3 = 1; i3 < split2.length; i3 += 2) {
-                            template2.points.add(new Point(Double.parseDouble(split2[i3]), Double.parseDouble(split2[i3 + 1])));
+                    String[] strArrSplit2 = strArrSplit[i5].split(",");
+                    if (strArrSplit2.length > 1) {
+                        template2.shapeType = Integer.parseInt(strArrSplit2[c]);
+                        for (int i6 = 1; i6 < strArrSplit2.length; i6 += 2) {
+                            template2.points.add(new Point(Double.parseDouble(strArrSplit2[i6]), Double.parseDouble(strArrSplit2[i6 + 1])));
                         }
-                        template2.score = this.preferences.getInt("score" + (size + i2), 0);
+                        template2.score = this.preferences.getInt("score" + (size + i5), 0);
                         this.templates.add(template2);
                     }
-                    i2++;
+                    i5++;
                     anonymousClass1 = null;
                     c = 0;
                 }
             }
-            open.close();
+            inputStreamOpen.close();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -242,52 +243,52 @@ public class ShapeDetector {
         }
         this.scheduled.set(false);
         this.busy.set(true);
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         synchronized (this) {
             try {
                 if (this.points.size() < 8) {
                     this.busy.set(false);
                     return;
                 }
-                ArrayList resample = resample(fullClone(this.points), 48);
-                ArrayList fullClone = fullClone(resample);
-                rotate(fullClone, indicativeAngle(fullClone));
-                Point centroid = centroid(fullClone);
-                translate(fullClone, -centroid.x, -centroid.y);
-                scale(fullClone, 250.0d);
-                Point centroid2 = centroid(fullClone);
+                ArrayList arrayListResample = resample(fullClone(this.points), 48);
+                ArrayList arrayListFullClone = fullClone(arrayListResample);
+                rotate(arrayListFullClone, indicativeAngle(arrayListFullClone));
+                Point pointCentroid = centroid(arrayListFullClone);
+                translate(arrayListFullClone, -pointCentroid.x, -pointCentroid.y);
+                scale(arrayListFullClone, 250.0d);
+                Point pointCentroid2 = centroid(arrayListFullClone);
                 double d = Double.MAX_VALUE;
                 int i = 0;
                 int i2 = -1;
                 int i3 = -1;
                 while (i < this.templates.size()) {
-                    ArrayList arrayList = fullClone;
+                    ArrayList arrayList = arrayListFullClone;
                     int i4 = i;
-                    ArrayList arrayList2 = fullClone;
+                    ArrayList arrayList2 = arrayListFullClone;
                     int i5 = i2;
-                    double distanceAtBestAngle = distanceAtBestAngle(arrayList, centroid2, ((Template) this.templates.get(i)).points, -1.5707963267948966d, 1.5707963267948966d, 0.06981317007977318d);
-                    if (distanceAtBestAngle < d) {
-                        d = distanceAtBestAngle;
+                    double dDistanceAtBestAngle = distanceAtBestAngle(arrayList, pointCentroid2, ((Template) this.templates.get(i)).points, -1.5707963267948966d, 1.5707963267948966d, 0.06981317007977318d);
+                    if (dDistanceAtBestAngle < d) {
+                        d = dDistanceAtBestAngle;
                         i3 = ((Template) this.templates.get(i4)).shapeType;
                         i2 = i4;
                     } else {
                         i2 = i5;
                     }
                     i = i4 + 1;
-                    fullClone = arrayList2;
+                    arrayListFullClone = arrayList2;
                 }
-                final ArrayList arrayList3 = fullClone;
+                final ArrayList arrayList3 = arrayListFullClone;
                 final int i6 = i2;
                 int i7 = 1.0d - (d / halfDiagonal) < 0.8d ? -1 : i3;
-                final Shape constructShape = constructShape(i7, resample);
+                final Shape shapeConstructShape = constructShape(i7, arrayListResample);
                 if (BuildVars.LOGS_ENABLED) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("took ");
-                    sb.append(System.currentTimeMillis() - currentTimeMillis);
+                    sb.append(System.currentTimeMillis() - jCurrentTimeMillis);
                     sb.append("ms to ");
-                    sb.append(constructShape != null ? "" : "not ");
+                    sb.append(shapeConstructShape != null ? "" : "not ");
                     sb.append("detect a shape");
-                    if (constructShape != null) {
+                    if (shapeConstructShape != null) {
                         str = " (template#" + i6 + " shape#" + i7 + ")";
                     } else {
                         str = "";
@@ -298,7 +299,7 @@ public class ShapeDetector {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ShapeDetector.this.lambda$new$1(constructShape, i6, arrayList3);
+                        this.f$0.lambda$new$1(shapeConstructShape, i6, arrayList3);
                     }
                 });
                 this.busy.set(false);
@@ -328,29 +329,29 @@ public class ShapeDetector {
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add((Point) arrayList.get(0));
         int i3 = i - 1;
-        double pathLength = pathLength(arrayList) / i3;
+        double dPathLength = pathLength(arrayList) / i3;
         int i4 = 1;
         double d2 = 0.0d;
         while (i4 < arrayList.size()) {
             int i5 = i4 - 1;
-            double distance = ((Point) arrayList.get(i5)).distance((Point) arrayList.get(i4));
-            double d3 = d2 + distance;
-            if (d3 >= pathLength) {
-                double d4 = (pathLength - d2) / distance;
+            double dDistance = ((Point) arrayList.get(i5)).distance((Point) arrayList.get(i4));
+            double d3 = d2 + dDistance;
+            if (d3 >= dPathLength) {
+                double d4 = (dPathLength - d2) / dDistance;
                 i2 = i3;
-                d = pathLength;
+                d = dPathLength;
                 Point point = new Point(((Point) arrayList.get(i5)).x + ((((Point) arrayList.get(i4)).x - ((Point) arrayList.get(i5)).x) * d4), ((Point) arrayList.get(i5)).y + (d4 * (((Point) arrayList.get(i4)).y - ((Point) arrayList.get(i5)).y)));
                 arrayList2.add(point);
                 arrayList.add(i4, point);
                 d2 = 0.0d;
             } else {
-                d = pathLength;
+                d = dPathLength;
                 i2 = i3;
                 d2 = d3;
             }
             i4++;
             i3 = i2;
-            pathLength = d;
+            dPathLength = d;
         }
         if (arrayList2.size() == i3) {
             arrayList2.add((Point) arrayList.get(arrayList.size() - 1));
@@ -359,60 +360,60 @@ public class ShapeDetector {
     }
 
     private double distanceAtBestAngle(ArrayList arrayList, Point point, ArrayList arrayList2, double d, double d2, double d3) {
-        double sqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
-        double d4 = 1.0d - sqrt;
-        double d5 = (sqrt * d) + (d4 * d2);
-        double d6 = (d4 * d) + (sqrt * d2);
-        double distanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d5);
-        double distanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d6);
+        double dSqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
+        double d4 = 1.0d - dSqrt;
+        double d5 = (dSqrt * d) + (d4 * d2);
+        double d6 = (d4 * d) + (dSqrt * d2);
+        double dDistanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d5);
+        double dDistanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d6);
         double d7 = d5;
         double d8 = d6;
         double d9 = d;
         double d10 = d2;
         while (Math.abs(d10 - d9) > d3) {
-            if (distanceAtAngle < distanceAtAngle2) {
-                double d11 = (sqrt * d9) + (d4 * d8);
-                double d12 = distanceAtAngle;
-                distanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d11);
-                distanceAtAngle2 = d12;
+            if (dDistanceAtAngle < dDistanceAtAngle2) {
+                double d11 = (dSqrt * d9) + (d4 * d8);
+                double d12 = dDistanceAtAngle;
+                dDistanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d11);
+                dDistanceAtAngle2 = d12;
                 d10 = d8;
                 d8 = d7;
                 d7 = d11;
             } else {
-                double d13 = (d4 * d7) + (sqrt * d10);
-                distanceAtAngle = distanceAtAngle2;
-                distanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d13);
+                double d13 = (d4 * d7) + (dSqrt * d10);
+                dDistanceAtAngle = dDistanceAtAngle2;
+                dDistanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d13);
                 double d14 = d7;
                 d7 = d8;
                 d8 = d13;
                 d9 = d14;
             }
         }
-        return Math.min(distanceAtAngle, distanceAtAngle2);
+        return Math.min(dDistanceAtAngle, dDistanceAtAngle2);
     }
 
     private double distanceAtAngle(ArrayList arrayList, Point point, ArrayList arrayList2, double d) {
-        double cos = Math.cos(d);
-        double sin = Math.sin(d);
-        int min = Math.min(arrayList.size(), arrayList2.size());
-        double d2 = 0.0d;
+        double dCos = Math.cos(d);
+        double dSin = Math.sin(d);
+        int iMin = Math.min(arrayList.size(), arrayList2.size());
+        double dDistance = 0.0d;
         int i = 0;
-        while (i < min) {
+        while (i < iMin) {
             Point point2 = (Point) arrayList.get(i);
             Point point3 = (Point) arrayList2.get(i);
-            double d3 = point2.x;
+            double d2 = point2.x;
             int i2 = i;
-            double d4 = point.x;
-            double d5 = d3 - d4;
-            double d6 = point2.y;
-            int i3 = min;
-            double d7 = point.y;
-            double d8 = d6 - d7;
-            d2 += point3.distance(((d5 * cos) - (d8 * sin)) + d4, (d5 * sin) + (d8 * cos) + d7);
+            double d3 = point.x;
+            double d4 = d2 - d3;
+            double d5 = point2.y;
+            int i3 = iMin;
+            double d6 = point.y;
+            double d7 = d5 - d6;
+            dDistance += point3.distance(((d4 * dCos) - (d7 * dSin)) + d3, (d4 * dSin) + (d7 * dCos) + d6);
             i = i2 + 1;
-            min = i3;
+            iMin = i3;
         }
-        return d2 / arrayList.size();
+        return dDistance / arrayList.size();
     }
 
     private ArrayList fullClone(ArrayList arrayList) {
@@ -433,9 +434,9 @@ public class ShapeDetector {
     }
 
     private void scale(ArrayList arrayList, double d) {
-        RectD boundingBox = boundingBox(arrayList);
-        double d2 = boundingBox.right - boundingBox.left;
-        double d3 = boundingBox.bottom - boundingBox.top;
+        RectD rectDBoundingBox = boundingBox(arrayList);
+        double d2 = rectDBoundingBox.right - rectDBoundingBox.left;
+        double d3 = rectDBoundingBox.bottom - rectDBoundingBox.top;
         for (int i = 0; i < arrayList.size(); i++) {
             Point point = (Point) arrayList.get(i);
             point.x *= d / d2;
@@ -448,8 +449,8 @@ public class ShapeDetector {
     }
 
     private void rotate(ArrayList arrayList, double d, Point point) {
-        double cos = Math.cos(d);
-        double sin = Math.sin(d);
+        double dCos = Math.cos(d);
+        double dSin = Math.sin(d);
         int i = 0;
         while (i < arrayList.size()) {
             Point point2 = (Point) arrayList.get(i);
@@ -460,8 +461,8 @@ public class ShapeDetector {
             int i2 = i;
             double d6 = point.y;
             double d7 = d5 - d6;
-            point2.y = (d4 * sin) + (d7 * cos) + d6;
-            point2.x = ((d4 * cos) - (d7 * sin)) + d3;
+            point2.y = (d4 * dSin) + (d7 * dCos) + d6;
+            point2.x = ((d4 * dCos) - (d7 * dSin)) + d3;
             i = i2 + 1;
         }
     }
@@ -493,16 +494,16 @@ public class ShapeDetector {
     }
 
     private double indicativeAngle(ArrayList arrayList) {
-        Point centroid = centroid(arrayList);
-        return Math.atan2(centroid.y - ((Point) arrayList.get(0)).y, centroid.x - ((Point) arrayList.get(0)).x);
+        Point pointCentroid = centroid(arrayList);
+        return Math.atan2(pointCentroid.y - ((Point) arrayList.get(0)).y, pointCentroid.x - ((Point) arrayList.get(0)).x);
     }
 
     private double pathLength(ArrayList arrayList) {
-        double d = 0.0d;
+        double dDistance = 0.0d;
         for (int i = 1; i < arrayList.size(); i++) {
-            d += ((Point) arrayList.get(i - 1)).distance((Point) arrayList.get(i));
+            dDistance += ((Point) arrayList.get(i - 1)).distance((Point) arrayList.get(i));
         }
-        return d;
+        return dDistance;
     }
 
     private int findAnglePoint(ArrayList arrayList) {
@@ -510,43 +511,43 @@ public class ShapeDetector {
     }
 
     private int findAnglePoint(ArrayList arrayList, int i) {
-        int max = Math.max(1, arrayList.size() / 4);
+        int iMax = Math.max(1, arrayList.size() / 4);
         int i2 = i;
-        while (max < arrayList.size() - 1) {
-            Point point = (Point) arrayList.get(max - 1);
-            Point point2 = (Point) arrayList.get(max);
-            int i3 = max + 1;
+        while (iMax < arrayList.size() - 1) {
+            Point point = (Point) arrayList.get(iMax - 1);
+            Point point2 = (Point) arrayList.get(iMax);
+            int i3 = iMax + 1;
             Point point3 = (Point) arrayList.get(i3);
-            double distance = point.distance(point2);
-            double distance2 = point.distance(point3);
-            double distance3 = point2.distance(point3);
-            if ((Math.acos((((distance * distance) + (distance2 * distance2)) - (distance3 * distance3)) / ((distance * 2.0d) * distance2)) / 3.141592653589793d) * 180.0d > 18.0d) {
+            double dDistance = point.distance(point2);
+            double dDistance2 = point.distance(point3);
+            double dDistance3 = point2.distance(point3);
+            if ((Math.acos((((dDistance * dDistance) + (dDistance2 * dDistance2)) - (dDistance3 * dDistance3)) / ((dDistance * 2.0d) * dDistance2)) / 3.141592653589793d) * 180.0d > 18.0d) {
                 if (i2 <= 0) {
-                    return max;
+                    return iMax;
                 }
                 i2--;
             }
-            max = i3;
+            iMax = i3;
         }
         return -1;
     }
 
     private Shape constructShape(int i, ArrayList arrayList) {
-        int findAnglePoint;
+        int iFindAnglePoint;
         if (i < 0 || i >= Brush.Shape.SHAPES_LIST.size() || arrayList.size() < 1) {
             return null;
         }
         Shape shape = new Shape(Brush.Shape.make(i));
         if (i == 4) {
-            int findAnglePoint2 = findAnglePoint(arrayList);
-            if (findAnglePoint2 <= 0) {
+            int iFindAnglePoint2 = findAnglePoint(arrayList);
+            if (iFindAnglePoint2 <= 0) {
                 return null;
             }
-            if (findAnglePoint2 > 10) {
-                findAnglePoint2 -= 2;
+            if (iFindAnglePoint2 > 10) {
+                iFindAnglePoint2 -= 2;
             }
-            Point point = (Point) arrayList.get(findAnglePoint2);
-            Point point2 = (Point) arrayList.get(findAnglePoint2 / 2);
+            Point point = (Point) arrayList.get(iFindAnglePoint2);
+            Point point2 = (Point) arrayList.get(iFindAnglePoint2 / 2);
             Point point3 = (Point) arrayList.get(0);
             shape.centerX = (float) point.x;
             shape.centerY = (float) point.y;
@@ -556,14 +557,14 @@ public class ShapeDetector {
             shape.radiusY = (float) point3.y;
             shape.arrowTriangleLength = 16.0f;
         } else {
-            Point centroid = centroid(arrayList);
-            shape.centerX = (float) centroid.x;
-            shape.centerY = (float) centroid.y;
-            RectD boundingBox = boundingBox(arrayList);
-            shape.radiusX = ((float) (boundingBox.right - boundingBox.left)) / 2.0f;
-            shape.radiusY = ((float) (boundingBox.bottom - boundingBox.top)) / 2.0f;
-            if (i == 2 && (findAnglePoint = findAnglePoint(arrayList, 1)) > 0) {
-                Point point4 = (Point) arrayList.get(findAnglePoint);
+            Point pointCentroid = centroid(arrayList);
+            shape.centerX = (float) pointCentroid.x;
+            shape.centerY = (float) pointCentroid.y;
+            RectD rectDBoundingBox = boundingBox(arrayList);
+            shape.radiusX = ((float) (rectDBoundingBox.right - rectDBoundingBox.left)) / 2.0f;
+            shape.radiusY = ((float) (rectDBoundingBox.bottom - rectDBoundingBox.top)) / 2.0f;
+            if (i == 2 && (iFindAnglePoint = findAnglePoint(arrayList, 1)) > 0) {
+                Point point4 = (Point) arrayList.get(iFindAnglePoint);
                 shape.rotation = (float) Math.atan2(point4.y - shape.centerY, point4.x - shape.centerX);
             }
         }
@@ -575,7 +576,7 @@ public class ShapeDetector {
         new AlertDialog.Builder(this.context).setTitle("Shape?").setItems(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ShapeDetector.this.lambda$showSaveLearnDialog$3(arrayList, dialogInterface, i);
+                this.f$0.lambda$showSaveLearnDialog$3(arrayList, dialogInterface, i);
             }
         }).show();
         this.toSave = null;

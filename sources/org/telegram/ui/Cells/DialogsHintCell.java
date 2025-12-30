@@ -69,7 +69,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
         NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsHintCell.this.lambda$new$0((Object[]) obj);
+                this.f$0.lambda$new$0((Object[]) obj);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -131,19 +131,19 @@ public class DialogsHintCell extends BlurredFrameLayout {
     }
 
     public void setAvatars(int i, ArrayList arrayList) {
-        int min = Math.min(3, arrayList == null ? 0 : arrayList.size());
+        int iMin = Math.min(3, arrayList == null ? 0 : arrayList.size());
         AvatarsImageView avatarsImageView = this.avatarsImageView;
-        boolean z = min != avatarsImageView.avatarsDrawable.count;
-        if (min <= 1) {
+        boolean z = iMin != avatarsImageView.avatarsDrawable.count;
+        if (iMin <= 1) {
             avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
             this.avatarsImageView.setSize(AndroidUtilities.dp(32.0f));
         } else {
             avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
             this.avatarsImageView.setSize(AndroidUtilities.dp(27.0f));
         }
-        this.avatarsImageView.setCount(min);
-        this.avatarsImageView.setVisibility(min <= 0 ? 8 : 0);
-        this.avatarsImageView.getLayoutParams().width = min <= 1 ? AndroidUtilities.dp(32.0f) : AndroidUtilities.dp(((min - 1) * 16) + 27);
+        this.avatarsImageView.setCount(iMin);
+        this.avatarsImageView.setVisibility(iMin <= 0 ? 8 : 0);
+        this.avatarsImageView.getLayoutParams().width = iMin <= 1 ? AndroidUtilities.dp(32.0f) : AndroidUtilities.dp(((iMin - 1) * 16) + 27);
         if (z) {
             this.parentView.requestLayout();
         }
@@ -180,14 +180,14 @@ public class DialogsHintCell extends BlurredFrameLayout {
         this.messageView.setText(charSequence2);
         this.chevronView.setVisibility(z ? 0 : 8);
         this.closeView.setVisibility(8);
-        int dp = z ? AndroidUtilities.dp(24.0f) : 0;
+        int iDp = z ? AndroidUtilities.dp(24.0f) : 0;
         LinearLayout linearLayout = this.contentView;
         boolean z3 = LocaleController.isRTL;
-        int i = z3 ? dp : 0;
+        int i = z3 ? iDp : 0;
         if (z3) {
-            dp = 0;
+            iDp = 0;
         }
-        linearLayout.setPadding(i, 0, dp, 0);
+        linearLayout.setPadding(i, 0, iDp, 0);
         updateColors();
     }
 
@@ -202,7 +202,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
         super.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsHintCell.this.lambda$setOnClickListener$1(onClickListener, view);
+                this.f$0.lambda$setOnClickListener$1(onClickListener, view);
             }
         });
     }
@@ -223,7 +223,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
     }

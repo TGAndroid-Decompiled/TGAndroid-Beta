@@ -36,7 +36,7 @@ public abstract class CompatDrawable extends Drawable {
                 view.post(new Runnable() {
                     @Override
                     public final void run() {
-                        CompatDrawable.this.onAttachedToWindow();
+                        this.f$0.onAttachedToWindow();
                     }
                 });
             }

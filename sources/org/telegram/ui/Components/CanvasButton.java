@@ -107,8 +107,8 @@ public class CanvasButton {
                 }
                 if (this.rounded) {
                     paint.setPathEffect(null);
-                    float min = Math.min(((RectF) this.drawingRects.get(0)).width(), ((RectF) this.drawingRects.get(0)).height()) / 2.0f;
-                    canvas.drawRoundRect((RectF) this.drawingRects.get(0), min, min, paint);
+                    float fMin = Math.min(((RectF) this.drawingRects.get(0)).width(), ((RectF) this.drawingRects.get(0)).height()) / 2.0f;
+                    canvas.drawRoundRect((RectF) this.drawingRects.get(0), fMin, fMin, paint);
                     return;
                 } else {
                     paint.setPathEffect(this.pathEffect);
@@ -141,9 +141,9 @@ public class CanvasButton {
                     if (Math.abs(f - f2) < AndroidUtilities.dp(4.0f)) {
                         RectF rectF = (RectF) this.drawingRects.get(i8);
                         RectF rectF2 = (RectF) this.drawingRects.get(i2);
-                        float max = Math.max(f, f2);
-                        rectF2.right = max;
-                        rectF.right = max;
+                        float fMax = Math.max(f, f2);
+                        rectF2.right = fMax;
+                        rectF.right = fMax;
                     }
                 }
                 if (i2 == 0 || ((RectF) this.drawingRects.get(i2)).bottom > i3) {

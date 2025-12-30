@@ -62,7 +62,6 @@ import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
-import org.telegram.ui.TON.TONIntroActivity;
 import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
 
 public class TONIntroActivity extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
@@ -180,21 +179,21 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         View view = new View(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                int i3;
+                int iDp;
                 TONIntroActivity tONIntroActivity = TONIntroActivity.this;
                 if (tONIntroActivity.isLandscapeMode) {
-                    i3 = (tONIntroActivity.statusBarHeight + ((BaseFragment) tONIntroActivity).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
+                    iDp = (tONIntroActivity.statusBarHeight + ((BaseFragment) tONIntroActivity).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
                 } else {
-                    int dp = AndroidUtilities.dp(140.0f);
+                    int iDp2 = AndroidUtilities.dp(140.0f);
                     TONIntroActivity tONIntroActivity2 = TONIntroActivity.this;
-                    int i4 = dp + tONIntroActivity2.statusBarHeight;
-                    if (tONIntroActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i4) {
-                        i3 = AndroidUtilities.dp(24.0f) + TONIntroActivity.this.backgroundView.getMeasuredHeight();
+                    int i3 = iDp2 + tONIntroActivity2.statusBarHeight;
+                    if (tONIntroActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i3) {
+                        iDp = AndroidUtilities.dp(24.0f) + TONIntroActivity.this.backgroundView.getMeasuredHeight();
                     } else {
-                        i3 = i4;
+                        iDp = i3;
                     }
                 }
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (i3 - (((GradientHeaderActivity) TONIntroActivity.this).yOffset * 2.5f)), 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (iDp - (((GradientHeaderActivity) TONIntroActivity.this).yOffset * 2.5f)), 1073741824));
             }
         };
         this.emptyLayout = view;
@@ -227,7 +226,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                TONIntroActivity.this.lambda$createView$1(view2, i);
+                this.f$0.lambda$createView$1(view2, i);
             }
         });
         FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
@@ -277,7 +276,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    TONIntroActivity.this.lambda$createView$2(view2);
+                    this.f$0.lambda$createView$2(view2);
                 }
             });
             this.oneButtonsLayout.addView(this.buyButton, LayoutHelper.createFrame(-1, 48, 119));
@@ -301,7 +300,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TONIntroActivity.this.lambda$createView$3(view2);
+                this.f$0.lambda$createView$3(view2);
             }
         });
         if (this.allowTopUp) {
@@ -315,7 +314,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.withdrawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TONIntroActivity.this.lambda$createView$4(view2);
+                this.f$0.lambda$createView$4(view2);
             }
         });
         this.twoButtonsLayout.addView(this.withdrawButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 0, 0));
@@ -389,13 +388,13 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.oneButtonsLayout.animate().alpha(z ? 0.0f : 1.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    TONIntroActivity.this.lambda$updateButtonsLayouts$5(z);
+                    this.f$0.lambda$updateButtonsLayouts$5(z);
                 }
             }).start();
             this.twoButtonsLayout.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    TONIntroActivity.this.lambda$updateButtonsLayouts$6(z);
+                    this.f$0.lambda$updateButtonsLayouts$6(z);
                 }
             }).start();
             return;
@@ -426,7 +425,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         return new NestedFrameLayout(getContext());
     }
 
-    public class NestedFrameLayout extends GradientHeaderActivity.ContentView implements NestedScrollingParent3 {
+    class NestedFrameLayout extends GradientHeaderActivity.ContentView implements NestedScrollingParent3 {
         private NestedScrollingParentHelper nestedScrollingParentHelper;
 
         @Override
@@ -462,7 +461,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TONIntroActivity.NestedFrameLayout.this.lambda$onNestedScroll$0();
+                        this.f$0.lambda$onNestedScroll$0();
                     }
                 });
             }
@@ -488,26 +487,26 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
             int i4;
             if (view == ((GradientHeaderActivity) TONIntroActivity.this).listView && TONIntroActivity.this.transactionsLayout.isAttachedToWindow()) {
-                boolean isSearchFieldVisible = ((BaseFragment) TONIntroActivity.this).actionBar.isSearchFieldVisible();
+                boolean zIsSearchFieldVisible = ((BaseFragment) TONIntroActivity.this).actionBar.isSearchFieldVisible();
                 int top = (((View) TONIntroActivity.this.transactionsLayout.getParent()).getTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
                 int bottom = ((View) TONIntroActivity.this.transactionsLayout.getParent()).getBottom();
                 boolean z = false;
                 if (i2 < 0) {
                     if (((GradientHeaderActivity) TONIntroActivity.this).listView.getHeight() - bottom >= 0) {
                         RecyclerListView currentListView = TONIntroActivity.this.transactionsLayout.getCurrentListView();
-                        int findFirstVisibleItemPosition = ((LinearLayoutManager) currentListView.getLayoutManager()).findFirstVisibleItemPosition();
-                        if (findFirstVisibleItemPosition != -1) {
-                            RecyclerView.ViewHolder findViewHolderForAdapterPosition = currentListView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                            int top2 = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : -1;
+                        int iFindFirstVisibleItemPosition = ((LinearLayoutManager) currentListView.getLayoutManager()).findFirstVisibleItemPosition();
+                        if (iFindFirstVisibleItemPosition != -1) {
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = currentListView.findViewHolderForAdapterPosition(iFindFirstVisibleItemPosition);
+                            int top2 = viewHolderFindViewHolderForAdapterPosition != null ? viewHolderFindViewHolderForAdapterPosition.itemView.getTop() : -1;
                             int paddingTop = currentListView.getPaddingTop();
-                            if (top2 != paddingTop || findFirstVisibleItemPosition != 0) {
-                                iArr[1] = findFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
+                            if (top2 != paddingTop || iFindFirstVisibleItemPosition != 0) {
+                                iArr[1] = iFindFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
                                 currentListView.scrollBy(0, i2);
                                 z = true;
                             }
                         }
                     }
-                    if (isSearchFieldVisible) {
+                    if (zIsSearchFieldVisible) {
                         if (!z && top < 0) {
                             iArr[1] = i2 - Math.max(top, i2);
                             return;
@@ -518,7 +517,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                     }
                     return;
                 }
-                if (isSearchFieldVisible) {
+                if (zIsSearchFieldVisible) {
                     RecyclerListView currentListView2 = TONIntroActivity.this.transactionsLayout.getCurrentListView();
                     iArr[1] = i2;
                     if (top > 0) {
@@ -570,7 +569,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         return makeParticlesView(getContext(), 75, 1);
     }
 
-    public class AnonymousClass4 extends StarParticlesView {
+    class AnonymousClass4 extends StarParticlesView {
         Paint[] paints;
         final int val$particlesCount;
         final int val$type;
@@ -583,7 +582,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         }
 
         @Override
-        public void configure() {
+        protected void configure() {
             StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(this.val$particlesCount);
             this.drawable = drawable;
             drawable.type = 106;
@@ -609,9 +608,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                     this.drawable.getPaint = new Utilities.CallbackReturn() {
                         @Override
                         public final Object run(Object obj) {
-                            Paint lambda$configure$0;
-                            lambda$configure$0 = TONIntroActivity.AnonymousClass4.this.lambda$configure$0((Integer) obj);
-                            return lambda$configure$0;
+                            return this.f$0.lambda$configure$0((Integer) obj);
                         }
                     };
                     StarParticlesView.Drawable drawable2 = this.drawable;
@@ -669,7 +666,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         UniversalAdapter universalAdapter = new UniversalAdapter(this.listView, getContext(), this.currentAccount, this.classGuid, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TONIntroActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, getResourceProvider()) {
             @Override
@@ -696,9 +693,9 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         if (this.allowTopUp) {
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.TopUpViaFragmentInfo)));
         }
-        boolean hasTransactions = tonInstance.hasTransactions();
-        this.hadTransactions = hasTransactions;
-        if (hasTransactions) {
+        boolean zHasTransactions = tonInstance.hasTransactions();
+        this.hadTransactions = zHasTransactions;
+        if (zHasTransactions) {
             if (!this.allowTopUp) {
                 arrayList.add(UItem.asShadow(null));
             }
@@ -805,7 +802,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i2) {
-                    TONIntroActivity.StarsNeededSheet.this.lambda$new$0(view, i2);
+                    this.f$0.lambda$new$0(view, i2);
                 }
             });
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -833,7 +830,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        TONIntroActivity.StarsNeededSheet.this.lambda$new$1(view);
+                        this.f$0.lambda$new$1(view);
                     }
                 });
             } else {
@@ -841,7 +838,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        TONIntroActivity.StarsNeededSheet.this.lambda$new$2(view);
+                        this.f$0.lambda$new$2(view);
                     }
                 });
             }
@@ -882,7 +879,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    TONIntroActivity.StarsNeededSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, this.resourcesProvider);
             this.adapter = universalAdapter;
@@ -917,16 +914,16 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 this.topView = frameLayout;
                 frameLayout.setClipChildren(false);
                 frameLayout.setClipToPadding(false);
-                StarParticlesView makeParticlesView = TONIntroActivity.makeParticlesView(context, 70, 0);
-                this.particlesView = makeParticlesView;
-                frameLayout.addView(makeParticlesView, LayoutHelper.createFrame(-1, -1.0f));
+                StarParticlesView starParticlesViewMakeParticlesView = TONIntroActivity.makeParticlesView(context, 70, 0);
+                this.particlesView = starParticlesViewMakeParticlesView;
+                frameLayout.addView(starParticlesViewMakeParticlesView, LayoutHelper.createFrame(-1, -1.0f));
                 GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 4);
                 this.iconView = gLIconTextureView;
                 GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
                 gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
                 gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
                 gLIconRenderer.updateColors();
-                gLIconTextureView.setStarParticlesView(makeParticlesView);
+                gLIconTextureView.setStarParticlesView(starParticlesViewMakeParticlesView);
                 frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
                 gLIconTextureView.setPaused(false);
                 addView(frameLayout, LayoutHelper.createFrame(-1, 180.0f));

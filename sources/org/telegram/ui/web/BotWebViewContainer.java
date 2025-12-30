@@ -8,11 +8,12 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -59,6 +60,8 @@ import androidx.core.util.Consumer;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.IDN;
 import java.net.URL;
@@ -122,7 +125,6 @@ import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
-import org.telegram.ui.WrappedResourceProvider;
 import org.telegram.ui.bots.BotBiometry;
 import org.telegram.ui.bots.BotDownloads;
 import org.telegram.ui.bots.BotLocation;
@@ -221,7 +223,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     protected void onErrorShown(boolean z, int i, String str) {
     }
 
-    public void onFaviconChanged(Bitmap bitmap) {
+    protected void onFaviconChanged(Bitmap bitmap) {
     }
 
     protected void onTitleChanged(String str) {
@@ -266,7 +268,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.notifyLocationChecked = new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$new$49();
+                this.f$0.lambda$new$49();
             }
         };
         this.lastDialogType = -1;
@@ -282,25 +284,24 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
         cellFlickerDrawable.drawFrame = false;
         cellFlickerDrawable.setColors(i, 153, 204);
-        AnonymousClass1 anonymousClass1 = new BackupImageView(context) {
-            AnonymousClass1(Context context2) {
-                super(context2);
-                this.imageReceiver = new C00471(this);
+        BackupImageView backupImageView = new BackupImageView(context) {
+            {
+                this.imageReceiver = new C00481(this);
             }
 
-            public class C00471 extends ImageReceiver {
-                C00471(View view) {
+            class C00481 extends ImageReceiver {
+                C00481(View view) {
                     super(view);
                 }
 
                 @Override
-                public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
+                protected boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
                     boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i, z, i2);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00471.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            this.f$0.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -314,7 +315,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (BotWebViewContainer.this.isFlickeringCenter) {
                     super.onDraw(canvas);
                     return;
@@ -325,67 +326,23 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
             }
         };
-        this.flickerView = anonymousClass1;
+        this.flickerView = backupImageView;
         int color = getColor(Theme.key_bot_loadingIcon);
         this.flickerViewColor = color;
-        anonymousClass1.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+        backupImageView.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         this.flickerView.getImageReceiver().setAspectFit(true);
         addView(this.flickerView, LayoutHelper.createFrame(-1, -2, 48));
-        TextView textView = new TextView(context2);
+        TextView textView = new TextView(context);
         this.webViewNotAvailableText = textView;
         textView.setText(LocaleController.getString(R.string.BotWebViewNotAvailablePlaceholder));
         this.webViewNotAvailableText.setTextColor(getColor(Theme.key_windowBackgroundWhiteGrayText));
         this.webViewNotAvailableText.setTextSize(1, 15.0f);
         this.webViewNotAvailableText.setGravity(17);
         this.webViewNotAvailableText.setVisibility(8);
-        int dp = AndroidUtilities.dp(16.0f);
-        this.webViewNotAvailableText.setPadding(dp, dp, dp, dp);
+        int iDp = AndroidUtilities.dp(16.0f);
+        this.webViewNotAvailableText.setPadding(iDp, iDp, iDp, iDp);
         addView(this.webViewNotAvailableText, LayoutHelper.createFrame(-1, -2, 17));
         setFocusable(false);
-    }
-
-    public class AnonymousClass1 extends BackupImageView {
-        AnonymousClass1(Context context2) {
-            super(context2);
-            this.imageReceiver = new C00471(this);
-        }
-
-        public class C00471 extends ImageReceiver {
-            C00471(View view) {
-                super(view);
-            }
-
-            @Override
-            public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i, z, i2);
-                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-                duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        BotWebViewContainer.AnonymousClass1.C00471.this.lambda$setImageBitmapByKey$0(valueAnimator);
-                    }
-                });
-                duration.start();
-                return imageBitmapByKey;
-            }
-
-            public void lambda$setImageBitmapByKey$0(ValueAnimator valueAnimator) {
-                ((BackupImageView) AnonymousClass1.this).imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                invalidate();
-            }
-        }
-
-        @Override
-        public void onDraw(Canvas canvas) {
-            if (BotWebViewContainer.this.isFlickeringCenter) {
-                super.onDraw(canvas);
-                return;
-            }
-            if (this.imageReceiver.getDrawable() != null) {
-                this.imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), r0.getIntrinsicHeight() * (getWidth() / r0.getIntrinsicWidth()));
-                this.imageReceiver.draw(canvas);
-            }
-        }
     }
 
     public void setViewPortByMeasureSuppressed(boolean z) {
@@ -393,18 +350,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void setFlickerViewColor(int i) {
-        int adaptHSV;
+        int iAdaptHSV;
         if (AndroidUtilities.computePerceivedBrightness(i) > 0.7f) {
-            adaptHSV = Theme.adaptHSV(i, 0.0f, -0.15f);
+            iAdaptHSV = Theme.adaptHSV(i, 0.0f, -0.15f);
         } else {
-            adaptHSV = Theme.adaptHSV(i, 0.025f, 0.15f);
+            iAdaptHSV = Theme.adaptHSV(i, 0.025f, 0.15f);
         }
-        if (this.flickerViewColor == adaptHSV) {
+        if (this.flickerViewColor == iAdaptHSV) {
             return;
         }
         BackupImageView backupImageView = this.flickerView;
-        this.flickerViewColor = adaptHSV;
-        backupImageView.setColorFilter(new PorterDuffColorFilter(adaptHSV, PorterDuff.Mode.SRC_IN));
+        this.flickerViewColor = iAdaptHSV;
+        backupImageView.setColorFilter(new PorterDuffColorFilter(iAdaptHSV, PorterDuff.Mode.SRC_IN));
         SvgHelper.SvgDrawable svgDrawable = this.flickerViewDrawable;
         if (svgDrawable != null) {
             svgDrawable.setColor(this.flickerViewColor);
@@ -432,7 +389,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void replaceWebView(int i, MyWebView myWebView, Object obj) {
+    public void replaceWebView(int i, MyWebView myWebView, Object obj) throws PackageManager.NameNotFoundException {
         this.currentAccount = i;
         setupWebView(myWebView, obj);
         if (this.bot) {
@@ -440,7 +397,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void setupWebView(MyWebView myWebView) {
+    private void setupWebView(MyWebView myWebView) throws PackageManager.NameNotFoundException {
         setupWebView(myWebView, null);
     }
 
@@ -471,7 +428,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 
-    private void setupWebView(MyWebView myWebView, Object obj) {
+    private void setupWebView(MyWebView myWebView, Object obj) throws PackageManager.NameNotFoundException {
         MyWebView myWebView2;
         String str;
         TLRPC.User user;
@@ -538,13 +495,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             settings.setMediaPlaybackRequiresUserGesture(false);
         }
         try {
-            String replace = settings.getUserAgentString().replace("; wv)", ")");
+            String strReplace = settings.getUserAgentString().replace("; wv)", ")");
             StringBuilder sb = new StringBuilder();
             sb.append("(Linux; Android ");
             String str2 = Build.VERSION.RELEASE;
             sb.append(str2);
             sb.append("; K)");
-            String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb.toString()).replaceAll("Version/[\\d\\.]+ ", "");
+            String strReplaceAll = strReplace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb.toString()).replaceAll("Version/[\\d\\.]+ ", "");
             if (this.bot) {
                 PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
@@ -553,9 +510,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 } else {
                     str = devicePerformanceClass == 1 ? "AVERAGE" : "HIGH";
                 }
-                replaceAll = replaceAll + " Telegram-Android/" + packageInfo.versionName + " (" + capitalizeFirst(Build.MANUFACTURER) + " " + Build.MODEL + "; Android " + str2 + "; SDK " + Build.VERSION.SDK_INT + "; " + str + ")";
+                strReplaceAll = strReplaceAll + " Telegram-Android/" + packageInfo.versionName + " (" + capitalizeFirst(Build.MANUFACTURER) + " " + Build.MODEL + "; Android " + str2 + "; SDK " + Build.VERSION.SDK_INT + "; " + str + ")";
             }
-            settings.setUserAgentString(replaceAll);
+            settings.setUserAgentString(strReplaceAll);
         } catch (Exception e2) {
             FileLog.e(e2);
         }
@@ -679,9 +636,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             Property property = View.ALPHA;
             animatorSet.playTogether(ObjectAnimator.ofFloat(myWebView4, (Property<MyWebView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.flickerView, (Property<BackupImageView, Float>) property, 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
-                AnonymousClass2() {
-                }
-
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     BotWebViewContainer.this.flickerView.setVisibility(8);
@@ -704,16 +658,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.isPageLoaded = true;
         updateKeyboardFocusable();
         this.delegate.onWebAppReady();
-    }
-
-    public class AnonymousClass2 extends AnimatorListenerAdapter {
-        AnonymousClass2() {
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animator) {
-            BotWebViewContainer.this.flickerView.setVisibility(8);
-        }
     }
 
     public void setState(boolean z, String str) {
@@ -751,7 +695,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onPermissionsRequestResultCallback = new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$runWithPermissions$0(consumer, strArr);
+                this.f$0.lambda$runWithPermissions$0(consumer, strArr);
             }
         };
         Activity activity = this.parentActivity;
@@ -773,10 +717,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     private boolean checkPermissions(String[] strArr) {
-        int checkSelfPermission;
         for (String str : strArr) {
-            checkSelfPermission = getContext().checkSelfPermission(str);
-            if (checkSelfPermission != 0) {
+            if (getContext().checkSelfPermission(str) != 0) {
                 return false;
             }
         }
@@ -798,11 +740,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void onInvoiceStatusUpdate(String str, String str2) {
+    public void onInvoiceStatusUpdate(String str, String str2) throws JSONException {
         onInvoiceStatusUpdate(str, str2, false);
     }
 
-    public void onInvoiceStatusUpdate(String str, String str2, boolean z) {
+    public void onInvoiceStatusUpdate(String str, String str2, boolean z) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("slug", str);
@@ -842,27 +784,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onPermissionsRequestResultCallback = null;
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) {
-        Uri[] uriArr;
-        if (i != 3000 || this.mFilePathCallback == null) {
-            return;
-        }
-        if (i2 == -1 && intent != null) {
-            if (intent.getClipData() != null) {
-                ClipData clipData = intent.getClipData();
-                uriArr = new Uri[clipData.getItemCount()];
-                for (int i3 = 0; i3 < clipData.getItemCount(); i3++) {
-                    uriArr[i3] = clipData.getItemAt(i3).getUri();
-                }
-            } else if (intent.getData() != null) {
-                uriArr = new Uri[]{intent.getData()};
-            }
-            this.mFilePathCallback.onReceiveValue(uriArr);
-            this.mFilePathCallback = null;
-        }
-        uriArr = null;
-        this.mFilePathCallback.onReceiveValue(uriArr);
-        this.mFilePathCallback = null;
+    public void onActivityResult(int r3, int r4, android.content.Intent r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onActivityResult(int, int, android.content.Intent):void");
     }
 
     @Override
@@ -904,14 +827,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (z) {
                 this.lastExpanded = webViewSwipeContainer.getSwipeOffsetY() == (-webViewSwipeContainer.getOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY();
             }
-            int max = Math.max(getMinHeight(), (int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY() + this.viewPortHeightOffset));
-            if (!z2 && max == this.lastViewportHeightReported && this.lastViewportStateStable == z && this.lastViewportIsExpanded == this.lastExpanded) {
+            int iMax = Math.max(getMinHeight(), (int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY() + this.viewPortHeightOffset));
+            if (!z2 && iMax == this.lastViewportHeightReported && this.lastViewportStateStable == z && this.lastViewportIsExpanded == this.lastExpanded) {
                 return;
             }
-            this.lastViewportHeightReported = max;
+            this.lastViewportHeightReported = iMax;
             this.lastViewportStateStable = z;
             this.lastViewportIsExpanded = this.lastExpanded;
-            notifyEvent_fast("viewport_changed", "{height:" + (max / AndroidUtilities.density) + ",is_state_stable:" + z + ",is_expanded:" + this.lastExpanded + "}");
+            notifyEvent_fast("viewport_changed", "{height:" + (iMax / AndroidUtilities.density) + ",is_state_stable:" + z + ",is_expanded:" + this.lastExpanded + "}");
         }
     }
 
@@ -922,7 +845,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 canvas.save();
                 canvas.translate(0.0f, (ActionBar.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             }
-            boolean drawChild = super.drawChild(canvas, view, j);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
             if (this.isFlickeringCenter) {
                 canvas.restore();
             }
@@ -932,14 +855,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 this.flickerDrawable.draw(canvas, rectF, 0.0f, this);
                 invalidate();
             }
-            return drawChild;
+            return zDrawChild;
         }
         if (view == this.webViewNotAvailableText) {
             canvas.save();
             canvas.translate(0.0f, (ActionBar.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
-            boolean drawChild2 = super.drawChild(canvas, view, j);
+            boolean zDrawChild2 = super.drawChild(canvas, view, j);
             canvas.restore();
-            return drawChild2;
+            return zDrawChild2;
         }
         if (view == this.webView) {
             if (AndroidUtilities.makingGlobalBlurBitmap) {
@@ -979,7 +902,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void loadFlickerAndSettingsItem(int i, long j, ActionBarMenuSubItem actionBarMenuSubItem) {
-        TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        TLRPC.TL_attachMenuBot next;
         TL_bots.BotInfo botInfo;
         TL_bots.botAppSettings botappsettings;
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
@@ -995,27 +918,27 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tL_attachMenuBot = null;
+                next = null;
                 break;
             } else {
-                tL_attachMenuBot = it.next();
-                if (tL_attachMenuBot.bot_id == j) {
+                next = it.next();
+                if (next.bot_id == j) {
                     break;
                 }
             }
         }
         boolean z = true;
-        if (tL_attachMenuBot != null) {
-            TLRPC.TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tL_attachMenuBot);
+        if (next != null) {
+            TLRPC.TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(next);
             if (placeholderStaticAttachMenuBotIcon == null) {
-                placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
+                placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(next);
             } else {
                 z = false;
             }
             if (placeholderStaticAttachMenuBotIcon != null) {
                 this.flickerView.setVisibility(0);
                 this.flickerView.setAlpha(1.0f);
-                this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tL_attachMenuBot);
+                this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, next);
                 setupFlickerParams(z);
                 return;
             }
@@ -1062,9 +985,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.flickerView.getLayoutParams();
         layoutParams.gravity = z ? 17 : 48;
         if (z) {
-            int dp = AndroidUtilities.dp(100.0f);
-            layoutParams.height = dp;
-            layoutParams.width = dp;
+            int iDp = AndroidUtilities.dp(100.0f);
+            layoutParams.height = iDp;
+            layoutParams.width = iDp;
         } else {
             layoutParams.width = -1;
             layoutParams.height = -2;
@@ -1076,7 +999,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$reload$1();
+                this.f$0.lambda$reload$1();
             }
         });
     }
@@ -1110,7 +1033,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         NotificationCenter.getInstance(i).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$loadUrl$2(str);
+                this.f$0.lambda$loadUrl$2(str);
             }
         });
     }
@@ -1172,9 +1095,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
 
-            AnonymousClass3() {
-            }
-
             @Override
             public int getBottomOffset(int i) {
                 if (!(BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer)) {
@@ -1184,55 +1104,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return (int) ((webViewSwipeContainer.getOffsetY() + webViewSwipeContainer.getSwipeOffsetY()) - webViewSwipeContainer.getTopActionBarOffsetY());
             }
         });
-    }
-
-    class AnonymousClass3 implements Bulletin.Delegate {
-        @Override
-        public boolean allowLayoutChanges() {
-            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-        }
-
-        @Override
-        public boolean bottomOffsetAnimated() {
-            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-        }
-
-        @Override
-        public boolean clipWithGradient(int i) {
-            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-        }
-
-        @Override
-        public int getTopOffset(int i) {
-            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
-        }
-
-        @Override
-        public void onBottomOffsetChange(float f) {
-            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-        }
-
-        @Override
-        public void onHide(Bulletin bulletin) {
-            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-        }
-
-        @Override
-        public void onShow(Bulletin bulletin) {
-            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-        }
-
-        AnonymousClass3() {
-        }
-
-        @Override
-        public int getBottomOffset(int i) {
-            if (!(BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer)) {
-                return 0;
-            }
-            ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = (ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) BotWebViewContainer.this.getParent();
-            return (int) ((webViewSwipeContainer.getOffsetY() + webViewSwipeContainer.getSwipeOffsetY()) - webViewSwipeContainer.getTopActionBarOffsetY());
-        }
     }
 
     @Override
@@ -1295,7 +1166,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$evaluateJs$3(z, str);
+                this.f$0.lambda$evaluateJs$3(z, str);
             }
         });
     }
@@ -1361,7 +1232,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         NotificationCenter.getInstance(i).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.lambda$notifyEvent$4(BotWebViewContainer.MyWebView.this, str, jSONObject);
+                BotWebViewContainer.lambda$notifyEvent$4(myWebView, str, jSONObject);
             }
         });
     }
@@ -1399,117 +1270,66 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void onWebEventReceived(String str, String str2) {
-        boolean z;
-        boolean z2 = true;
+        boolean zOptBoolean;
+        boolean zOptBoolean2 = true;
         if (this.bot || this.delegate == null) {
             return;
         }
         d("onWebEventReceived " + str + " " + str2);
         str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1695046810:
-                if (str.equals("actionBarColor")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -462720700:
-                if (str.equals("navigationBarColor")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 675009138:
-                if (str.equals("siteName")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 997530486:
-                if (str.equals("allowScroll")) {
-                    c = 3;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-            case 1:
+        switch (str) {
+            case "actionBarColor":
+            case "navigationBarColor":
                 try {
                     JSONArray jSONArray = new JSONArray(str2);
-                    boolean equals = TextUtils.equals(str, "actionBarColor");
-                    int argb = Color.argb((int) Math.round(jSONArray.optDouble(3, 1.0d) * 255.0d), (int) Math.round(jSONArray.optDouble(0)), (int) Math.round(jSONArray.optDouble(1)), (int) Math.round(jSONArray.optDouble(2)));
+                    boolean zEquals = TextUtils.equals(str, "actionBarColor");
+                    int iArgb = Color.argb((int) Math.round(jSONArray.optDouble(3, 1.0d) * 255.0d), (int) Math.round(jSONArray.optDouble(0)), (int) Math.round(jSONArray.optDouble(1)), (int) Math.round(jSONArray.optDouble(2)));
                     MyWebView myWebView = this.webView;
                     if (myWebView != null) {
-                        if (equals) {
+                        if (zEquals) {
                             myWebView.lastActionBarColorGot = true;
-                            myWebView.lastActionBarColor = argb;
+                            myWebView.lastActionBarColor = iArgb;
                         } else {
                             myWebView.lastBackgroundColorGot = true;
-                            myWebView.lastBackgroundColor = argb;
+                            myWebView.lastBackgroundColor = iArgb;
                         }
                         myWebView.saveHistory();
                     }
-                    this.delegate.onWebAppBackgroundChanged(equals, argb);
-                    return;
+                    this.delegate.onWebAppBackgroundChanged(zEquals, iArgb);
+                    break;
                 } catch (Exception unused) {
                     return;
                 }
-            case 2:
+            case "siteName":
                 d("siteName " + str2);
                 MyWebView myWebView2 = this.webView;
                 if (myWebView2 != null) {
                     myWebView2.lastSiteName = str2;
                     myWebView2.saveHistory();
-                    return;
+                    break;
                 }
-                return;
-            case 3:
+                break;
+            case "allowScroll":
                 try {
                     JSONArray jSONArray2 = new JSONArray(str2);
-                    z = jSONArray2.optBoolean(0, true);
+                    zOptBoolean = jSONArray2.optBoolean(0, true);
                     try {
-                        z2 = jSONArray2.optBoolean(1, true);
+                        zOptBoolean2 = jSONArray2.optBoolean(1, true);
                     } catch (Exception unused2) {
                     }
                 } catch (Exception unused3) {
-                    z = true;
+                    zOptBoolean = true;
                 }
                 if (getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) {
-                    ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) getParent()).allowThisScroll(z, z2);
-                    return;
+                    ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) getParent()).allowThisScroll(zOptBoolean, zOptBoolean2);
+                    break;
                 }
-                return;
-            default:
-                return;
+                break;
         }
     }
 
-    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r41, java.lang.String r42, java.lang.String r43) {
+    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r41, java.lang.String r42, java.lang.String r43) throws org.json.JSONException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, java.lang.String, java.lang.String):void");
-    }
-
-    public class AnonymousClass4 implements NotificationCenter.NotificationCenterDelegate {
-        AnonymousClass4() {
-        }
-
-        @Override
-        public void didReceivedNotification(int i, int i2, Object... objArr) {
-            int i3 = NotificationCenter.onRequestPermissionResultReceived;
-            if (i == i3) {
-                int intValue = ((Integer) objArr[0]).intValue();
-                int[] iArr = (int[]) objArr[2];
-                if (intValue == 5000) {
-                    NotificationCenter.getGlobalInstance().removeObserver(this, i3);
-                    if (iArr[0] == 0) {
-                        BotWebViewContainer.this.openQrScanActivity();
-                    } else {
-                        BotWebViewContainer.this.notifyEvent("scan_qr_popup_closed", new JSONObject());
-                    }
-                }
-            }
-        }
     }
 
     public void lambda$onEventReceived$5(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
@@ -1556,13 +1376,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$10(final String str, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$9(tL_error, str, tL_inputInvoiceSlug, tLObject);
+            public final void run() throws JSONException {
+                this.f$0.lambda$onEventReceived$9(tL_error, str, tL_inputInvoiceSlug, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$9(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
+    public void lambda$onEventReceived$9(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) throws JSONException {
         if (tL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {
@@ -1573,13 +1393,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$17(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$16(tLObject, i, myWebView, tL_error);
+            public final void run() throws JSONException {
+                this.f$0.lambda$onEventReceived$16(tLObject, i, myWebView, tL_error);
             }
         });
     }
 
-    public void lambda$onEventReceived$16(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$16(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) throws JSONException {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (tL_error != null) {
                 unknownError(tL_error.text);
@@ -1589,7 +1409,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 showDialog(3, new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotWebViewRequestWriteTitle)).setMessage(LocaleController.getString(R.string.BotWebViewRequestWriteMessage)).setPositiveButton(LocaleController.getString(R.string.BotWebViewRequestAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        BotWebViewContainer.this.lambda$onEventReceived$13(strArr, alertDialog, i2);
+                        this.f$0.lambda$onEventReceived$13(strArr, alertDialog, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
@@ -1598,7 +1418,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     }
                 }).create(), new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws JSONException {
                         BotWebViewContainer.lambda$onEventReceived$15(strArr, i, myWebView);
                     }
                 });
@@ -1620,7 +1440,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(allowsendmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotWebViewContainer.this.lambda$onEventReceived$12(strArr, alertDialog, tLObject, tL_error);
+                this.f$0.lambda$onEventReceived$12(strArr, alertDialog, tLObject, tL_error);
             }
         });
     }
@@ -1629,7 +1449,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$11(tLObject, strArr, tL_error, alertDialog);
+                this.f$0.lambda$onEventReceived$11(tLObject, strArr, tL_error, alertDialog);
             }
         });
     }
@@ -1647,7 +1467,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.dismiss();
     }
 
-    public static void lambda$onEventReceived$15(String[] strArr, int i, MyWebView myWebView) {
+    public static void lambda$onEventReceived$15(String[] strArr, int i, MyWebView myWebView) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", strArr[0]);
@@ -1660,13 +1480,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$19(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$18(str, tLObject, tL_error, i, myWebView);
+            public final void run() throws JSONException {
+                this.f$0.lambda$onEventReceived$18(str, tLObject, tL_error, i, myWebView);
             }
         });
     }
 
-    public void lambda$onEventReceived$18(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) {
+    public void lambda$onEventReceived$18(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("req_id", str);
@@ -1682,14 +1502,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$21(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) {
+    public void lambda$onEventReceived$21(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) throws JSONException {
         strArr[0] = null;
         alertDialog.dismiss();
         if (z) {
             MessagesController.getInstance(this.currentAccount).unblockPeer(this.botUser.id, new Runnable() {
                 @Override
-                public final void run() {
-                    BotWebViewContainer.this.lambda$onEventReceived$20(i, myWebView);
+                public final void run() throws JSONException {
+                    this.f$0.lambda$onEventReceived$20(i, myWebView);
                 }
             });
             return;
@@ -1704,7 +1524,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$20(int i, MyWebView myWebView) {
+    public void lambda$onEventReceived$20(int i, MyWebView myWebView) throws JSONException {
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
         try {
             JSONObject jSONObject = new JSONObject();
@@ -1715,7 +1535,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static void lambda$onEventReceived$23(String[] strArr, int i, MyWebView myWebView) {
+    public static void lambda$onEventReceived$23(String[] strArr, int i, MyWebView myWebView) throws JSONException {
         if (strArr[0] == null) {
             return;
         }
@@ -1745,7 +1565,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.biometry.requestToken(null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotWebViewContainer.this.lambda$onEventReceived$25((Boolean) obj, (String) obj2);
+                this.f$0.lambda$onEventReceived$25((Boolean) obj, (String) obj2);
             }
         });
     }
@@ -1778,7 +1598,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$29(Boolean bool, String str) {
+    public void lambda$onEventReceived$29(Boolean bool, String str) throws JSONException {
         if (bool.booleanValue()) {
             this.biometry.access_granted = true;
         }
@@ -1792,7 +1612,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$30(String str, Boolean bool) {
+    public void lambda$onEventReceived$30(String str, Boolean bool) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", bool.booleanValue() ? TextUtils.isEmpty(str) ? "removed" : "updated" : "failed");
@@ -1802,60 +1622,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public class AnonymousClass5 extends BaseFragment {
-        @Override
-        public boolean isLightStatusBar() {
-            return false;
-        }
-
-        AnonymousClass5() {
-            this.currentAccount = BotWebViewContainer.this.currentAccount;
-        }
-
-        @Override
-        public Dialog showDialog(Dialog dialog) {
-            dialog.show();
-            return dialog;
-        }
-
-        @Override
-        public Activity getParentActivity() {
-            return BotWebViewContainer.this.parentActivity;
-        }
-
-        class AnonymousClass1 extends WrappedResourceProvider {
-            AnonymousClass1(Theme.ResourcesProvider resourcesProvider) {
-                super(resourcesProvider);
-            }
-
-            @Override
-            public void appendColors() {
-                this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
-                this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
-            }
-        }
-
-        @Override
-        public Theme.ResourcesProvider getResourceProvider() {
-            return new WrappedResourceProvider(BotWebViewContainer.this.resourcesProvider) {
-                AnonymousClass1(Theme.ResourcesProvider resourcesProvider) {
-                    super(resourcesProvider);
-                }
-
-                @Override
-                public void appendColors() {
-                    this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
-                    this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
-                }
-            };
-        }
-    }
-
     public void lambda$onEventReceived$34(final AlertDialog alertDialog, final String str, final String str2, final String str3, final File file) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$33(file, alertDialog, str, str2, str3);
+                this.f$0.lambda$onEventReceived$33(file, alertDialog, str, str2, str3);
             }
         });
     }
@@ -1868,8 +1639,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         final int[] iArr = new int[11];
         final Runnable runnable = new Runnable() {
             @Override
-            public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$31(iArr, file, alertDialog, str, str2, str3);
+            public final void run() throws Resources.NotFoundException, IOException {
+                this.f$0.lambda$onEventReceived$31(iArr, file, alertDialog, str, str2, str3);
             }
         };
         Utilities.globalQueue.postRunnable(new Runnable() {
@@ -1880,9 +1651,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         });
     }
 
-    public void lambda$onEventReceived$31(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) {
+    public void lambda$onEventReceived$31(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) throws Resources.NotFoundException, IOException {
         StoryRecorder.SourceView sourceView;
-        StoryEntry fromPhotoShoot;
+        StoryEntry storyEntryFromPhotoShoot;
         File file2;
         File file3;
         if (iArr[4] > 0) {
@@ -1890,41 +1661,41 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             int i2 = iArr[2];
             int photoSize = i > AndroidUtilities.getPhotoSize() ? AndroidUtilities.getPhotoSize() : i;
             int photoSize2 = i2 > AndroidUtilities.getPhotoSize() ? AndroidUtilities.getPhotoSize() : i2;
-            File makeCacheFile = StoryEntry.makeCacheFile(UserConfig.selectedAccount, "jpg");
+            File fileMakeCacheFile = StoryEntry.makeCacheFile(UserConfig.selectedAccount, "jpg");
             AnimatedFileDrawable animatedFileDrawable = new AnimatedFileDrawable(file, true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, photoSize, photoSize2, null);
             sourceView = null;
             Bitmap firstFrame = animatedFileDrawable.getFirstFrame(null);
             animatedFileDrawable.recycle();
             if (firstFrame != null) {
                 try {
-                    file3 = makeCacheFile;
+                    file3 = fileMakeCacheFile;
                     firstFrame.compress(Bitmap.CompressFormat.JPEG, 80, new FileOutputStream(file3));
                 } catch (Exception e) {
                     FileLog.e(e);
                     file2 = null;
                 }
             } else {
-                file3 = makeCacheFile;
+                file3 = fileMakeCacheFile;
             }
             file2 = file3;
-            fromPhotoShoot = StoryEntry.fromVideoShoot(file, file2 == null ? null : file2.getAbsolutePath(), iArr[4]);
-            fromPhotoShoot.width = i;
-            fromPhotoShoot.height = i2;
-            fromPhotoShoot.setupMatrix();
+            storyEntryFromPhotoShoot = StoryEntry.fromVideoShoot(file, file2 == null ? null : file2.getAbsolutePath(), iArr[4]);
+            storyEntryFromPhotoShoot.width = i;
+            storyEntryFromPhotoShoot.height = i2;
+            storyEntryFromPhotoShoot.setupMatrix();
         } else {
             sourceView = null;
-            fromPhotoShoot = StoryEntry.fromPhotoShoot(file, ((Integer) AndroidUtilities.getImageOrientation(file).first).intValue());
+            storyEntryFromPhotoShoot = StoryEntry.fromPhotoShoot(file, ((Integer) AndroidUtilities.getImageOrientation(file).first).intValue());
         }
-        if (fromPhotoShoot.width <= 0 || fromPhotoShoot.height <= 0) {
+        if (storyEntryFromPhotoShoot.width <= 0 || storyEntryFromPhotoShoot.height <= 0) {
             alertDialog.dismissUnless(500L);
             return;
         }
         if (str != null) {
-            fromPhotoShoot.caption = str;
+            storyEntryFromPhotoShoot.caption = str;
         }
         if (!TextUtils.isEmpty(str2) && UserConfig.getInstance(this.currentAccount).isPremium()) {
-            if (fromPhotoShoot.mediaEntities == null) {
-                fromPhotoShoot.mediaEntities = new ArrayList();
+            if (storyEntryFromPhotoShoot.mediaEntities == null) {
+                storyEntryFromPhotoShoot.mediaEntities = new ArrayList();
             }
             VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
             mediaEntity.type = (byte) 7;
@@ -1937,9 +1708,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 webPagePreview.flags |= 2;
                 webPagePreview.name = str3;
             }
-            fromPhotoShoot.mediaEntities.add(mediaEntity);
+            storyEntryFromPhotoShoot.mediaEntities.add(mediaEntity);
         }
-        StoryRecorder.getInstance(this.parentActivity, UserConfig.selectedAccount).openRepost(sourceView, fromPhotoShoot);
+        StoryRecorder.getInstance(this.parentActivity, UserConfig.selectedAccount).openRepost(sourceView, storyEntryFromPhotoShoot);
         alertDialog.dismissUnless(500L);
     }
 
@@ -1984,7 +1755,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.location.requestObject(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BotWebViewContainer.this.lambda$onEventReceived$38((JSONObject) obj);
+                this.f$0.lambda$onEventReceived$38((JSONObject) obj);
             }
         });
     }
@@ -2001,7 +1772,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$42(tLObject, str, str2);
+                this.f$0.lambda$onEventReceived$42(tLObject, str, str2);
             }
         });
     }
@@ -2013,7 +1784,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             BotDownloads.showAlert(getContext(), str, str2, UserObject.getUserName(this.botUser), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BotWebViewContainer.this.lambda$onEventReceived$41(str, str2, (Boolean) obj);
+                    this.f$0.lambda$onEventReceived$41(str, str2, (Boolean) obj);
                 }
             });
         }
@@ -2046,7 +1817,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.lambda$onEventReceived$45(BotWebViewContainer.BotWebViewProxy.this, arrayList);
+                    BotWebViewContainer.lambda$onEventReceived$45(botWebViewProxy, arrayList);
                 }
             }, 500L);
             return;
@@ -2067,7 +1838,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onVerifiedAge.run(Boolean.valueOf(z), Double.valueOf(d), str, Double.valueOf(d2));
     }
 
-    private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+    private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2075,14 +1846,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject(str);
             String string = jSONObject.getString("req_id");
             try {
-                String optString = jSONObject.optString("key");
-                if (optString == null) {
+                String strOptString = jSONObject.optString("key");
+                if (strOptString == null) {
                     notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
                     return;
                 }
                 try {
                     try {
-                        botStorage.setKey(optString, jSONObject.optString("value"));
+                        botStorage.setKey(strOptString, jSONObject.optString("value"));
                         notifyEvent(str2, obj("req_id", string));
                     } catch (RuntimeException e) {
                         notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
@@ -2102,7 +1873,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+    private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
         Object obj;
         if (botStorage == null || this.botUser == null) {
             return;
@@ -2111,13 +1882,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject(str);
             String string = jSONObject.getString("req_id");
             try {
-                String optString = jSONObject.optString("key");
-                if (optString == null) {
+                String strOptString = jSONObject.optString("key");
+                if (strOptString == null) {
                     notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
                     return;
                 }
                 try {
-                    Pair key = botStorage.getKey(optString);
+                    Pair key = botStorage.getKey(strOptString);
                     if (botStorage.secured && (obj = key.first) == null) {
                         notifyEvent(str2, obj("req_id", string, "value", obj, "can_restore", key.second));
                     } else {
@@ -2138,7 +1909,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void restoreStorageKey(final BotStorage botStorage, String str, final String str2, final String str3) {
+    private void restoreStorageKey(final BotStorage botStorage, String str, final String str2, final String str3) throws JSONException {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2146,20 +1917,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject(str);
             final String string = jSONObject.getString("req_id");
             try {
-                final String optString = jSONObject.optString("key");
-                if (optString == null) {
+                final String strOptString = jSONObject.optString("key");
+                if (strOptString == null) {
                     notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
                     return;
                 }
                 try {
-                    List storagesWithKey = botStorage.getStoragesWithKey(optString);
+                    List storagesWithKey = botStorage.getStoragesWithKey(strOptString);
                     if (storagesWithKey.isEmpty()) {
                         notifyEvent(str3, obj("req_id", string, "error", "RESTORE_UNAVAILABLE"));
                     } else {
                         botStorage.showChooseStorage(getContext(), storagesWithKey, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                BotWebViewContainer.this.lambda$restoreStorageKey$48(str3, string, botStorage, optString, str2, (String) obj);
+                                this.f$0.lambda$restoreStorageKey$48(str3, string, botStorage, strOptString, str2, (String) obj);
                             }
                         });
                     }
@@ -2191,7 +1962,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void clearStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+    private void clearStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2312,7 +2083,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotWebViewContainer.this.lambda$showDialog$50(runnable, dialogInterface);
+                this.f$0.lambda$showDialog$50(runnable, dialogInterface);
             }
         });
         this.currentDialog = alertDialog;
@@ -2339,7 +2110,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (activity == null) {
             return;
         }
-        this.cameraBottomSheet = CameraScanActivity.showAsSheet(activity, false, 3, (CameraScanActivity.CameraScanActivityDelegate) new CameraScanActivity.CameraScanActivityDelegate() {
+        this.cameraBottomSheet = CameraScanActivity.showAsSheet(activity, false, 3, new CameraScanActivity.CameraScanActivityDelegate() {
             @Override
             public void didFindMrzInfo(MrzRecognizer.Result result) {
                 CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
@@ -2348,9 +2119,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public boolean processQr(String str, Runnable runnable) {
                 return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
-            }
-
-            AnonymousClass6() {
             }
 
             @Override
@@ -2376,47 +2144,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         });
     }
 
-    public class AnonymousClass6 implements CameraScanActivity.CameraScanActivityDelegate {
-        @Override
-        public void didFindMrzInfo(MrzRecognizer.Result result) {
-            CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
-        }
-
-        @Override
-        public boolean processQr(String str, Runnable runnable) {
-            return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
-        }
-
-        AnonymousClass6() {
-        }
-
-        @Override
-        public void didFindQr(String str) {
-            try {
-                BotWebViewContainer.this.lastClickMs = System.currentTimeMillis();
-                BotWebViewContainer.this.notifyEvent("qr_text_received", new JSONObject().put("data", str));
-            } catch (JSONException e) {
-                FileLog.e(e);
-            }
-        }
-
-        @Override
-        public String getSubtitleText() {
-            return BotWebViewContainer.this.lastQrText;
-        }
-
-        @Override
-        public void onDismiss() {
-            BotWebViewContainer.this.notifyEvent("scan_qr_popup_closed", null);
-            BotWebViewContainer.this.hasQRPending = false;
-        }
-    }
-
     private JSONObject buildThemeParams() {
         try {
-            JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider, true);
-            if (makeThemeParams != null) {
-                return new JSONObject().put("theme_params", makeThemeParams);
+            JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider, true);
+            if (jSONObjectMakeThemeParams != null) {
+                return new JSONObject().put("theme_params", jSONObjectMakeThemeParams);
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -2452,7 +2184,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            BotWebViewContainer.BotWebViewProxy.this.lambda$postEvent$0(str, str2);
+                            this.f$0.lambda$postEvent$0(str, str2);
                         }
                     });
                 }
@@ -2495,7 +2227,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.WebViewProxy.this.lambda$post$0(str, str2);
+                    this.f$0.lambda$post$0(str, str2);
                 }
             });
         }
@@ -2512,13 +2244,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public void resolveShare(final String str, final byte[] bArr, final String str2, final String str3) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
-                    BotWebViewContainer.WebViewProxy.this.lambda$resolveShare$2(str, bArr, str2, str3);
+                public final void run() throws IOException {
+                    this.f$0.lambda$resolveShare$2(str, bArr, str2, str3);
                 }
             });
         }
 
-        public void lambda$resolveShare$2(java.lang.String r9, byte[] r10, java.lang.String r11, java.lang.String r12) {
+        public void lambda$resolveShare$2(java.lang.String r9, byte[] r10, java.lang.String r11, java.lang.String r12) throws java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.WebViewProxy.lambda$resolveShare$2(java.lang.String, byte[], java.lang.String, java.lang.String):void");
         }
 
@@ -2637,7 +2369,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public String text;
         public int textColorKey;
 
-        public PopupButton(JSONObject jSONObject) {
+        public PopupButton(JSONObject jSONObject) throws JSONException {
             char c = 65535;
             this.textColorKey = -1;
             this.id = jSONObject.getString("id");
@@ -2718,20 +2450,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         } catch (Exception e) {
             FileLog.e(e);
         }
-        String[] split = str.split("\\.");
+        String[] strArrSplit = str.split("\\.");
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < split.length; i++) {
+        for (int i = 0; i < strArrSplit.length; i++) {
             if (i > 0) {
                 sb.append("-d");
             }
-            sb.append(split[i].replaceAll("\\-", "-h"));
+            sb.append(strArrSplit[i].replaceAll("\\-", "-h"));
         }
         sb.append(".");
         sb.append(MessagesController.getInstance(UserConfig.selectedAccount).tonProxyAddress);
         return sb.toString();
     }
 
-    public static WebResourceResponse proxyTON(String str, String str2, Map map) {
+    public static WebResourceResponse proxyTON(String str, String str2, Map map) throws IOException {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(Browser.replaceHostname(Uri.parse(str2), rotateTONHost(AndroidUtilities.getHostAuthority(str2)), "https")).openConnection();
             httpURLConnection.setRequestMethod(str);
@@ -2807,9 +2539,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             setWebViewClient(new AnonymousClass2(z, context));
             setWebChromeClient(new AnonymousClass3(context, z, j));
             setFindListener(new WebView.FindListener() {
-                AnonymousClass4() {
-                }
-
                 @Override
                 public void onFindResultReceived(int i, int i2, boolean z2) {
                     MyWebView.this.searchIndex = i;
@@ -2826,7 +2555,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             setDownloadListener(new AnonymousClass5());
         }
 
-        public class AnonymousClass1 implements View.OnLongClickListener {
+        class AnonymousClass1 implements View.OnLongClickListener {
             AnonymousClass1() {
             }
 
@@ -2837,8 +2566,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     final String extra = hitTestResult.getExtra();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() {
-                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra);
+                        public final void run() throws UnsupportedEncodingException {
+                            this.f$0.lambda$onLongClick$1(extra);
                         }
                     });
                     return true;
@@ -2849,15 +2578,62 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 final String extra2 = hitTestResult.getExtra();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
-                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$3(extra2);
+                    public final void run() throws UnsupportedEncodingException {
+                        this.f$0.lambda$onLongClick$3(extra2);
                     }
                 });
                 return true;
             }
 
-            public void lambda$onLongClick$1(final java.lang.String r8) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.MyWebView.AnonymousClass1.lambda$onLongClick$1(java.lang.String):void");
+            public void lambda$onLongClick$1(final String str) throws UnsupportedEncodingException {
+                String strReplaceHostname;
+                Uri uri;
+                BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
+                try {
+                    uri = Uri.parse(str);
+                } catch (Exception e) {
+                    try {
+                        FileLog.e((Throwable) e, false);
+                    } catch (Exception e2) {
+                        e = e2;
+                        strReplaceHostname = str;
+                        FileLog.e(e);
+                        builder.setTitleMultipleLines(true);
+                        builder.setTitle(strReplaceHostname);
+                        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                this.f$0.lambda$onLongClick$0(str, dialogInterface, i);
+                            }
+                        });
+                        MyWebView.this.currentSheet = builder.show();
+                    }
+                }
+                strReplaceHostname = (uri == null || uri.getScheme().equalsIgnoreCase("data")) ? str : Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
+                try {
+                    strReplaceHostname = URLDecoder.decode(strReplaceHostname.replaceAll("\\+", "%2b"), "UTF-8");
+                } catch (Exception e3) {
+                    e = e3;
+                    FileLog.e(e);
+                    builder.setTitleMultipleLines(true);
+                    builder.setTitle(strReplaceHostname);
+                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface, int i) {
+                            this.f$0.lambda$onLongClick$0(str, dialogInterface, i);
+                        }
+                    });
+                    MyWebView.this.currentSheet = builder.show();
+                }
+                builder.setTitleMultipleLines(true);
+                builder.setTitle(strReplaceHostname);
+                builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        this.f$0.lambda$onLongClick$0(str, dialogInterface, i);
+                    }
+                });
+                MyWebView.this.currentSheet = builder.show();
             }
 
             public void lambda$onLongClick$0(String str, DialogInterface dialogInterface, int i) {
@@ -2887,52 +2663,52 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
             }
 
-            public void lambda$onLongClick$3(final String str) {
-                String str2;
+            public void lambda$onLongClick$3(final String str) throws UnsupportedEncodingException {
+                String strDecode;
                 BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                 try {
-                    Uri parse = Uri.parse(str);
-                    str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                    Uri uri = Uri.parse(str);
+                    strDecode = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
                 } catch (Exception e) {
                     try {
                         FileLog.e((Throwable) e, false);
-                        str2 = str;
+                        strDecode = str;
                     } catch (Exception e2) {
                         e = e2;
-                        str2 = str;
+                        strDecode = str;
                         FileLog.e(e);
                         builder.setTitleMultipleLines(true);
-                        builder.setTitle(str2);
+                        builder.setTitle(strDecode);
                         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
+                                this.f$0.lambda$onLongClick$2(str, dialogInterface, i);
                             }
                         });
                         MyWebView.this.currentSheet = builder.show();
                     }
                 }
                 try {
-                    str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+                    strDecode = URLDecoder.decode(strDecode.replaceAll("\\+", "%2b"), "UTF-8");
                 } catch (Exception e3) {
                     e = e3;
                     FileLog.e(e);
                     builder.setTitleMultipleLines(true);
-                    builder.setTitle(str2);
+                    builder.setTitle(strDecode);
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
+                            this.f$0.lambda$onLongClick$2(str, dialogInterface, i);
                         }
                     });
                     MyWebView.this.currentSheet = builder.show();
                 }
                 builder.setTitleMultipleLines(true);
-                builder.setTitle(str2);
+                builder.setTitle(strDecode);
                 builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
+                        this.f$0.lambda$onLongClick$2(str, dialogInterface, i);
                     }
                 });
                 MyWebView.this.currentSheet = builder.show();
@@ -2964,21 +2740,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     return;
                 }
                 try {
-                    String guessFileName = URLUtil.guessFileName(str, null, "image/*");
-                    if (guessFileName == null) {
-                        guessFileName = "image.png";
+                    String strGuessFileName = URLUtil.guessFileName(str, null, "image/*");
+                    if (strGuessFileName == null) {
+                        strGuessFileName = "image.png";
                     }
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
                     request.setMimeType("image/*");
                     request.setDescription(LocaleController.getString(R.string.WebDownloading));
                     request.setNotificationVisibility(1);
-                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, guessFileName);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, strGuessFileName);
                     DownloadManager downloadManager = (DownloadManager) MyWebView.this.getContext().getSystemService("download");
                     if (downloadManager != null) {
                         downloadManager.enqueue(request);
                     }
                     if (MyWebView.this.botWebViewContainer != null) {
-                        BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, guessFileName))).show(true);
+                        BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, strGuessFileName))).show(true);
                     }
                 } catch (Exception e2) {
                     FileLog.e(e2);
@@ -2986,12 +2762,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
         }
 
-        public class AnonymousClass2 extends WebViewClient {
+        class AnonymousClass2 extends WebViewClient {
             private boolean firstRequest = true;
             private final Runnable resetErrorRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$$3();
+                    this.f$0.lambda$$3();
                 }
             };
             final boolean val$bot;
@@ -3003,7 +2779,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
 
             @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) throws IOException {
                 HttpURLConnection httpURLConnection;
                 int i;
                 MyWebView myWebView = MyWebView.this;
@@ -3031,7 +2807,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                             }
                         }
                         httpURLConnection.connect();
-                        HashMap hashMap = new HashMap();
+                        HashMap map = new HashMap();
                         Iterator<Map.Entry<String, List<String>>> it = httpURLConnection.getHeaderFields().entrySet().iterator();
                         while (true) {
                             if (!it.hasNext()) {
@@ -3040,7 +2816,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                             Map.Entry<String, List<String>> next = it.next();
                             String key = next.getKey();
                             if (key != null) {
-                                hashMap.put(key, TextUtils.join(", ", next.getValue()));
+                                map.put(key, TextUtils.join(", ", next.getValue()));
                                 if (!MyWebView.this.dangerousUrl && ("cross-origin-resource-policy".equals(key.toLowerCase()) || "cross-origin-embedder-policy".equals(key.toLowerCase()))) {
                                     Iterator<String> it2 = next.getValue().iterator();
                                     while (true) {
@@ -3054,7 +2830,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                                             AndroidUtilities.runOnUIThread(new Runnable() {
                                                 @Override
                                                 public final void run() {
-                                                    BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$shouldInterceptRequest$0();
+                                                    this.f$0.lambda$shouldInterceptRequest$0();
                                                 }
                                             });
                                             break;
@@ -3066,19 +2842,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         String contentType = httpURLConnection.getContentType();
                         String contentEncoding = httpURLConnection.getContentEncoding();
                         if (contentType.indexOf("; ") >= 0) {
-                            String[] split = contentType.split("; ");
-                            if (!TextUtils.isEmpty(split[0])) {
-                                contentType = split[0];
+                            String[] strArrSplit = contentType.split("; ");
+                            if (!TextUtils.isEmpty(strArrSplit[0])) {
+                                contentType = strArrSplit[0];
                             }
-                            for (i = 1; i < split.length; i++) {
-                                if (split[i].startsWith("charset=")) {
-                                    contentEncoding = split[i].substring(8);
+                            for (i = 1; i < strArrSplit.length; i++) {
+                                if (strArrSplit[i].startsWith("charset=")) {
+                                    contentEncoding = strArrSplit[i].substring(8);
                                 }
                             }
                         }
                         String str = contentEncoding;
                         this.firstRequest = false;
-                        return new WebResourceResponse(contentType, str, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), hashMap, httpURLConnection.getInputStream());
+                        return new WebResourceResponse(contentType, str, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), map, httpURLConnection.getInputStream());
                     } catch (Exception e2) {
                         e = e2;
                         httpURLConnection2 = httpURLConnection;
@@ -3152,29 +2928,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                int rendererPriorityAtExit;
-                Integer valueOf;
-                boolean didCrash;
-                Boolean valueOf2;
                 if (Build.VERSION.SDK_INT >= 26) {
                     MyWebView myWebView = MyWebView.this;
                     StringBuilder sb = new StringBuilder();
                     sb.append("onRenderProcessGone priority=");
-                    if (renderProcessGoneDetail == null) {
-                        valueOf = null;
-                    } else {
-                        rendererPriorityAtExit = renderProcessGoneDetail.rendererPriorityAtExit();
-                        valueOf = Integer.valueOf(rendererPriorityAtExit);
-                    }
-                    sb.append(valueOf);
+                    sb.append(renderProcessGoneDetail == null ? null : Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit()));
                     sb.append(" didCrash=");
-                    if (renderProcessGoneDetail == null) {
-                        valueOf2 = null;
-                    } else {
-                        didCrash = renderProcessGoneDetail.didCrash();
-                        valueOf2 = Boolean.valueOf(didCrash);
-                    }
-                    sb.append(valueOf2);
+                    sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
                     myWebView.d(sb.toString());
                 } else {
                     MyWebView.this.d("onRenderProcessGone");
@@ -3186,12 +2946,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer == null ? null : MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                         @Override
                         public final void run() {
-                            BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onRenderProcessGone$1();
+                            this.f$0.lambda$onRenderProcessGone$1();
                         }
                     })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            BotWebViewContainer.MyWebView.AnonymousClass2.this.lambda$onRenderProcessGone$2(dialogInterface);
+                            this.f$0.lambda$onRenderProcessGone$2(dialogInterface);
                         }
                     }).show();
                     return true;
@@ -3230,7 +2990,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     Browser.openUrl(this.val$context, str);
                     return true;
                 }
-                Uri parse = Uri.parse(str);
+                Uri uri = Uri.parse(str);
                 if (!this.val$bot) {
                     if (Browser.openInExternalApp(this.val$context, str, true)) {
                         MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (openInExternalBrowser)");
@@ -3244,9 +3004,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         }
                         return true;
                     }
-                    if (str.startsWith("intent://") || (parse != null && parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent"))) {
+                    if (str.startsWith("intent://") || (uri != null && uri.getScheme() != null && uri.getScheme().equalsIgnoreCase("intent"))) {
                         try {
-                            String stringExtra = Intent.parseUri(parse.toString(), 1).getStringExtra("browser_fallback_url");
+                            String stringExtra = Intent.parseUri(uri.toString(), 1).getStringExtra("browser_fallback_url");
                             if (!TextUtils.isEmpty(stringExtra)) {
                                 MyWebView.this.loadUrl(stringExtra);
                                 return true;
@@ -3255,17 +3015,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                             FileLog.e(e);
                         }
                     }
-                    if (parse != null && parse.getScheme() != null && !"https".equals(parse.getScheme()) && !"http".equals(parse.getScheme()) && !"tonsite".equals(parse.getScheme())) {
+                    if (uri != null && uri.getScheme() != null && !"https".equals(uri.getScheme()) && !"http".equals(uri.getScheme()) && !"tonsite".equals(uri.getScheme())) {
                         MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (browser open)");
-                        Browser.openUrl(MyWebView.this.getContext(), parse);
+                        Browser.openUrl(MyWebView.this.getContext(), uri);
                         return true;
                     }
                 }
-                if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(parse, null)) {
-                    if (!this.val$bot && "1".equals(parse.getQueryParameter("embed")) && "t.me".equals(parse.getAuthority())) {
+                if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(uri, null)) {
+                    if (!this.val$bot && "1".equals(uri.getQueryParameter("embed")) && "t.me".equals(uri.getAuthority())) {
                         return false;
                     }
-                    if (MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols.contains(parse.getScheme())) {
+                    if (MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols.contains(uri.getScheme())) {
                         MyWebView myWebView2 = MyWebView.this;
                         if (myWebView2.opener != null) {
                             if (myWebView2.botWebViewContainer.delegate != null) {
@@ -3278,13 +3038,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                                 MyWebView.this.opener.botWebViewContainer.delegate.onCloseToTabs();
                             }
                         }
-                        MyWebView.this.botWebViewContainer.onOpenUri(parse);
+                        MyWebView.this.botWebViewContainer.onOpenUri(uri);
                     }
                     MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true");
                     return true;
                 }
-                if (parse != null) {
-                    MyWebView.this.currentUrl = parse.toString();
+                if (uri != null) {
+                    MyWebView.this.currentUrl = uri.toString();
                 }
                 MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = false");
                 return false;
@@ -3369,31 +3129,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-                int errorCode;
-                CharSequence description;
-                int errorCode2;
-                CharSequence description2;
-                CharSequence description3;
                 if (Build.VERSION.SDK_INT >= 23) {
-                    MyWebView myWebView = MyWebView.this;
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("onReceivedError: ");
-                    errorCode = webResourceError.getErrorCode();
-                    sb.append(errorCode);
-                    sb.append(" ");
-                    description = webResourceError.getDescription();
-                    sb.append((Object) description);
-                    myWebView.d(sb.toString());
+                    MyWebView.this.d("onReceivedError: " + webResourceError.getErrorCode() + " " + ((Object) webResourceError.getDescription()));
                     if (MyWebView.this.botWebViewContainer != null && (webResourceRequest == null || webResourceRequest.isForMainFrame())) {
                         AndroidUtilities.cancelRunOnUIThread(this.resetErrorRunnable);
-                        MyWebView myWebView2 = MyWebView.this;
-                        String str = null;
-                        myWebView2.lastSiteName = null;
-                        myWebView2.lastActionBarColorGot = false;
-                        myWebView2.lastBackgroundColorGot = false;
-                        myWebView2.lastFaviconGot = false;
-                        myWebView2.lastTitleGot = false;
-                        myWebView2.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
+                        MyWebView myWebView = MyWebView.this;
+                        myWebView.lastSiteName = null;
+                        myWebView.lastActionBarColorGot = false;
+                        myWebView.lastBackgroundColorGot = false;
+                        myWebView.lastFaviconGot = false;
+                        myWebView.lastTitleGot = false;
+                        myWebView.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
                         BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
                         MyWebView.this.lastTitle = null;
                         botWebViewContainer.onTitleChanged(null);
@@ -3402,13 +3148,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         botWebViewContainer2.onFaviconChanged(null);
                         BotWebViewContainer botWebViewContainer3 = MyWebView.this.botWebViewContainer;
                         MyWebView.this.errorShown = true;
-                        errorCode2 = webResourceError.getErrorCode();
-                        description2 = webResourceError.getDescription();
-                        if (description2 != null) {
-                            description3 = webResourceError.getDescription();
-                            str = description3.toString();
-                        }
-                        botWebViewContainer3.onErrorShown(true, errorCode2, str);
+                        botWebViewContainer3.onErrorShown(true, webResourceError.getErrorCode(), webResourceError.getDescription() != null ? webResourceError.getDescription().toString() : null);
                     }
                 }
                 super.onReceivedError(webView, webResourceRequest, webResourceError);
@@ -3486,7 +3226,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
         }
 
-        public class AnonymousClass3 extends WebChromeClient {
+        class AnonymousClass3 extends WebChromeClient {
             private Dialog lastPermissionsDialog;
             final boolean val$bot;
             final long val$botId;
@@ -3621,32 +3361,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 message.overrideDismissListener(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        BotWebViewContainer.MyWebView.AnonymousClass3.lambda$onJsPrompt$8(EditTextCaption.this, (Runnable) obj);
+                        BotWebViewContainer.MyWebView.AnonymousClass3.lambda$onJsPrompt$8(editTextCaption, (Runnable) obj);
                     }
                 });
+                final AlertDialog alertDialogShow = message.show();
                 editTextCaption.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    final AlertDialog val$dialog;
-                    final boolean[] val$done;
-                    final EditTextCaption val$editText;
-                    final JsPromptResult val$result;
-
-                    AnonymousClass1(final boolean[] zArr2, final JsPromptResult jsPromptResult2, final EditTextCaption editTextCaption2, AlertDialog alertDialog) {
-                        r2 = zArr2;
-                        r3 = jsPromptResult2;
-                        r4 = editTextCaption2;
-                        r5 = alertDialog;
-                    }
-
                     @Override
                     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                         if (i != 6) {
                             return false;
                         }
-                        boolean[] zArr2 = r2;
+                        boolean[] zArr2 = zArr;
                         if (!zArr2[0]) {
                             zArr2[0] = true;
-                            r3.confirm(r4.getText().toString());
-                            r5.dismiss();
+                            jsPromptResult.confirm(editTextCaption.getText().toString());
+                            alertDialogShow.dismiss();
                         }
                         return true;
                     }
@@ -3654,7 +3383,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EditTextCaption.this.requestFocus();
+                        editTextCaption.requestFocus();
                     }
                 });
                 return true;
@@ -3687,34 +3416,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             public static void lambda$onJsPrompt$8(EditTextCaption editTextCaption, Runnable runnable) {
                 AndroidUtilities.hideKeyboard(editTextCaption);
                 AndroidUtilities.runOnUIThread(runnable, 80L);
-            }
-
-            class AnonymousClass1 implements TextView.OnEditorActionListener {
-                final AlertDialog val$dialog;
-                final boolean[] val$done;
-                final EditTextCaption val$editText;
-                final JsPromptResult val$result;
-
-                AnonymousClass1(final boolean[] zArr2, final JsPromptResult jsPromptResult2, final EditTextCaption editTextCaption2, AlertDialog alertDialog) {
-                    r2 = zArr2;
-                    r3 = jsPromptResult2;
-                    r4 = editTextCaption2;
-                    r5 = alertDialog;
-                }
-
-                @Override
-                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    if (i != 6) {
-                        return false;
-                    }
-                    boolean[] zArr2 = r2;
-                    if (!zArr2[0]) {
-                        zArr2[0] = true;
-                        r3.confirm(r4.getText().toString());
-                        r5.dismiss();
-                    }
-                    return true;
-                }
             }
 
             @Override
@@ -3780,10 +3481,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     if (safeLastFragment.getParentLayout() instanceof ActionBarLayout) {
                         safeLastFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment();
                     }
-                    ArticleViewer createArticleViewer = safeLastFragment.createArticleViewer(true);
-                    createArticleViewer.setOpener(MyWebView.this);
-                    createArticleViewer.open((String) null);
-                    MyWebView lastWebView = createArticleViewer.getLastWebView();
+                    ArticleViewer articleViewerCreateArticleViewer = safeLastFragment.createArticleViewer(true);
+                    articleViewerCreateArticleViewer.setOpener(MyWebView.this);
+                    articleViewerCreateArticleViewer.open((String) null);
+                    MyWebView lastWebView = articleViewerCreateArticleViewer.getLastWebView();
                     if (!TextUtils.isEmpty(url)) {
                         lastWebView.urlFallback = url;
                     }
@@ -3793,7 +3494,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         message.sendToTarget();
                         return true;
                     }
-                    createArticleViewer.close(true, true);
+                    articleViewerCreateArticleViewer.close(true, true);
                     return false;
                 }
                 WebView webView2 = new WebView(webView.getContext());
@@ -3803,7 +3504,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return true;
             }
 
-            public class AnonymousClass2 extends WebViewClient {
+            class AnonymousClass2 extends WebViewClient {
                 final WebView val$newWebView;
 
                 AnonymousClass2(WebView webView) {
@@ -3812,29 +3513,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
                 @Override
                 public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-                    int rendererPriorityAtExit;
-                    Integer valueOf;
-                    boolean didCrash;
-                    Boolean valueOf2;
                     if (Build.VERSION.SDK_INT >= 26) {
                         MyWebView myWebView = MyWebView.this;
                         StringBuilder sb = new StringBuilder();
                         sb.append("newWebView.onRenderProcessGone priority=");
-                        if (renderProcessGoneDetail == null) {
-                            valueOf = null;
-                        } else {
-                            rendererPriorityAtExit = renderProcessGoneDetail.rendererPriorityAtExit();
-                            valueOf = Integer.valueOf(rendererPriorityAtExit);
-                        }
-                        sb.append(valueOf);
+                        sb.append(renderProcessGoneDetail == null ? null : Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit()));
                         sb.append(" didCrash=");
-                        if (renderProcessGoneDetail == null) {
-                            valueOf2 = null;
-                        } else {
-                            didCrash = renderProcessGoneDetail.didCrash();
-                            valueOf2 = Boolean.valueOf(didCrash);
-                        }
-                        sb.append(valueOf2);
+                        sb.append(renderProcessGoneDetail == null ? null : Boolean.valueOf(renderProcessGoneDetail.didCrash()));
                         myWebView.d(sb.toString());
                     } else {
                         MyWebView.this.d("newWebView.onRenderProcessGone");
@@ -3846,12 +3531,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         new AlertDialog.Builder(MyWebView.this.getContext(), MyWebView.this.botWebViewContainer == null ? null : MyWebView.this.botWebViewContainer.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                             @Override
                             public final void run() {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.AnonymousClass2.this.lambda$onRenderProcessGone$0();
+                                this.f$0.lambda$onRenderProcessGone$0();
                             }
                         })).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public final void onDismiss(DialogInterface dialogInterface) {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.AnonymousClass2.this.lambda$onRenderProcessGone$1(dialogInterface);
+                                this.f$0.lambda$onRenderProcessGone$1(dialogInterface);
                             }
                         }).show();
                         return true;
@@ -3896,19 +3581,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-                Activity findActivity = AndroidUtilities.findActivity(MyWebView.this.getContext());
-                if (findActivity != null) {
+                Activity activityFindActivity = AndroidUtilities.findActivity(MyWebView.this.getContext());
+                if (activityFindActivity != null) {
                     if (MyWebView.this.botWebViewContainer != null) {
                         if (MyWebView.this.botWebViewContainer.mFilePathCallback != null) {
                             MyWebView.this.botWebViewContainer.mFilePathCallback.onReceiveValue(null);
                         }
                         MyWebView.this.botWebViewContainer.mFilePathCallback = valueCallback;
                         boolean z = fileChooserParams.getMode() == 1;
-                        Intent createIntent = fileChooserParams.createIntent();
+                        Intent intentCreateIntent = fileChooserParams.createIntent();
                         if (z) {
-                            createIntent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                            intentCreateIntent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
                         }
-                        findActivity.startActivityForResult(createIntent, 3000);
+                        activityFindActivity.startActivityForResult(intentCreateIntent, 3000);
                         MyWebView.this.d("onShowFileChooser: true");
                         return true;
                     }
@@ -3938,14 +3623,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 MyWebView.this.d("onGeolocationPermissionsShowPrompt " + str);
                 String userName = this.val$bot ? UserObject.getUserName(MyWebView.this.botWebViewContainer.botUser) : AndroidUtilities.getHostAuthority(MyWebView.this.getUrl());
-                Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, R.raw.permission_request_location, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestGeolocationPermission : R.string.WebViewRequestGeolocationPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestGeolocationPermissionWithHint : R.string.WebViewRequestGeolocationPermissionWithHint, userName), new Consumer() {
+                Dialog dialogCreateWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, R.raw.permission_request_location, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestGeolocationPermission : R.string.WebViewRequestGeolocationPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestGeolocationPermissionWithHint : R.string.WebViewRequestGeolocationPermissionWithHint, userName), new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onGeolocationPermissionsShowPrompt$11(callback, str, (Boolean) obj);
+                        this.f$0.lambda$onGeolocationPermissionsShowPrompt$11(callback, str, (Boolean) obj);
                     }
                 });
-                this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
-                createWebViewPermissionsRequestDialog.show();
+                this.lastPermissionsDialog = dialogCreateWebViewPermissionsRequestDialog;
+                dialogCreateWebViewPermissionsRequestDialog.show();
             }
 
             public void lambda$onGeolocationPermissionsShowPrompt$11(final GeolocationPermissions.Callback callback, final String str, Boolean bool) {
@@ -3955,7 +3640,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Consumer() {
                             @Override
                             public final void accept(Object obj) {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onGeolocationPermissionsShowPrompt$10(callback, str, (Boolean) obj);
+                                this.f$0.lambda$onGeolocationPermissionsShowPrompt$10(callback, str, (Boolean) obj);
                             }
                         });
                     } else {
@@ -4006,25 +3691,25 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         }
                         str.hashCode();
                         if (str.equals("android.webkit.resource.VIDEO_CAPTURE")) {
-                            Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA"}, R.raw.permission_request_camera, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermission : R.string.WebViewRequestCameraPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermissionWithHint : R.string.WebViewRequestCameraPermissionWithHint, userName), new Consumer() {
+                            Dialog dialogCreateWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA"}, R.raw.permission_request_camera, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermission : R.string.WebViewRequestCameraPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermissionWithHint : R.string.WebViewRequestCameraPermissionWithHint, userName), new Consumer() {
                                 @Override
                                 public final void accept(Object obj) {
-                                    BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$15(permissionRequest, str, (Boolean) obj);
+                                    this.f$0.lambda$onPermissionRequest$15(permissionRequest, str, (Boolean) obj);
                                 }
                             });
-                            this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
-                            createWebViewPermissionsRequestDialog.show();
+                            this.lastPermissionsDialog = dialogCreateWebViewPermissionsRequestDialog;
+                            dialogCreateWebViewPermissionsRequestDialog.show();
                             return;
                         } else {
                             if (str.equals("android.webkit.resource.AUDIO_CAPTURE")) {
-                                Dialog createWebViewPermissionsRequestDialog2 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.RECORD_AUDIO"}, R.raw.permission_request_microphone, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestMicrophonePermission : R.string.WebViewRequestMicrophonePermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestMicrophonePermissionWithHint : R.string.WebViewRequestMicrophonePermissionWithHint, userName), new Consumer() {
+                                Dialog dialogCreateWebViewPermissionsRequestDialog2 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.RECORD_AUDIO"}, R.raw.permission_request_microphone, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestMicrophonePermission : R.string.WebViewRequestMicrophonePermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestMicrophonePermissionWithHint : R.string.WebViewRequestMicrophonePermissionWithHint, userName), new Consumer() {
                                     @Override
                                     public final void accept(Object obj) {
-                                        BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$13(permissionRequest, str, (Boolean) obj);
+                                        this.f$0.lambda$onPermissionRequest$13(permissionRequest, str, (Boolean) obj);
                                     }
                                 });
-                                this.lastPermissionsDialog = createWebViewPermissionsRequestDialog2;
-                                createWebViewPermissionsRequestDialog2.show();
+                                this.lastPermissionsDialog = dialogCreateWebViewPermissionsRequestDialog2;
+                                dialogCreateWebViewPermissionsRequestDialog2.show();
                                 return;
                             }
                             return;
@@ -4036,14 +3721,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (resources.length == 2) {
                     if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[0]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[0])) {
                         if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[1]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[1])) {
-                            Dialog createWebViewPermissionsRequestDialog3 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, R.raw.permission_request_camera, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraMicPermission : R.string.WebViewRequestCameraMicPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraMicPermissionWithHint : R.string.WebViewRequestCameraMicPermissionWithHint, userName), new Consumer() {
+                            Dialog dialogCreateWebViewPermissionsRequestDialog3 = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, R.raw.permission_request_camera, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraMicPermission : R.string.WebViewRequestCameraMicPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraMicPermissionWithHint : R.string.WebViewRequestCameraMicPermissionWithHint, userName), new Consumer() {
                                 @Override
                                 public final void accept(Object obj) {
-                                    BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$17(permissionRequest, resources, (Boolean) obj);
+                                    this.f$0.lambda$onPermissionRequest$17(permissionRequest, resources, (Boolean) obj);
                                 }
                             });
-                            this.lastPermissionsDialog = createWebViewPermissionsRequestDialog3;
-                            createWebViewPermissionsRequestDialog3.show();
+                            this.lastPermissionsDialog = dialogCreateWebViewPermissionsRequestDialog3;
+                            dialogCreateWebViewPermissionsRequestDialog3.show();
                         }
                     }
                 }
@@ -4056,7 +3741,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.RECORD_AUDIO"}, new Consumer() {
                             @Override
                             public final void accept(Object obj) {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$12(permissionRequest, str, (Boolean) obj);
+                                this.f$0.lambda$onPermissionRequest$12(permissionRequest, str, (Boolean) obj);
                             }
                         });
                     } else {
@@ -4081,7 +3766,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.CAMERA"}, new Consumer() {
                             @Override
                             public final void accept(Object obj) {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$14(permissionRequest, str, (Boolean) obj);
+                                this.f$0.lambda$onPermissionRequest$14(permissionRequest, str, (Boolean) obj);
                             }
                         });
                     } else {
@@ -4106,7 +3791,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         MyWebView.this.botWebViewContainer.runWithPermissions(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new Consumer() {
                             @Override
                             public final void accept(Object obj) {
-                                BotWebViewContainer.MyWebView.AnonymousClass3.this.lambda$onPermissionRequest$16(permissionRequest, strArr, (Boolean) obj);
+                                this.f$0.lambda$onPermissionRequest$16(permissionRequest, strArr, (Boolean) obj);
                             }
                         });
                     } else {
@@ -4141,31 +3826,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
         }
 
-        public class AnonymousClass4 implements WebView.FindListener {
-            AnonymousClass4() {
-            }
-
-            @Override
-            public void onFindResultReceived(int i, int i2, boolean z2) {
-                MyWebView.this.searchIndex = i;
-                MyWebView.this.searchCount = i2;
-                MyWebView.this.searchLoading = !z2;
-                if (MyWebView.this.searchListener != null) {
-                    MyWebView.this.searchListener.run();
-                }
-            }
-        }
-
-        public class AnonymousClass5 implements DownloadListener {
+        class AnonymousClass5 implements DownloadListener {
             AnonymousClass5() {
             }
 
             private String getFilename(String str, String str2, String str3) {
                 try {
                     String str4 = Uri.parse(str).getPathSegments().get(r0.size() - 1);
-                    int lastIndexOf = str4.lastIndexOf(".");
-                    if (lastIndexOf > 0) {
-                        if (!TextUtils.isEmpty(str4.substring(lastIndexOf + 1))) {
+                    int iLastIndexOf = str4.lastIndexOf(".");
+                    if (iLastIndexOf > 0) {
+                        if (!TextUtils.isEmpty(str4.substring(iLastIndexOf + 1))) {
                             return str4;
                         }
                     }
@@ -4181,17 +3851,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     if (str.startsWith("blob:")) {
                         return;
                     }
-                    final String escape = AndroidUtilities.escape(getFilename(str, str3, str4));
+                    final String strEscape = AndroidUtilities.escape(getFilename(str, str3, str4));
                     final Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            BotWebViewContainer.MyWebView.AnonymousClass5.this.lambda$onDownloadStart$0(str, str4, str2, escape);
+                            this.f$0.lambda$onDownloadStart$0(str, str4, str2, strEscape);
                         }
                     };
                     if (!DownloadController.getInstance(UserConfig.selectedAccount).canDownloadMedia(8, j)) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MyWebView.this.getContext());
                         builder.setTitle(LocaleController.getString(R.string.WebDownloadAlertTitle));
-                        builder.setMessage(AndroidUtilities.replaceTags(j > 0 ? LocaleController.formatString(R.string.WebDownloadAlertInfoWithSize, escape, AndroidUtilities.formatFileSize(j)) : LocaleController.formatString(R.string.WebDownloadAlertInfo, escape)));
+                        builder.setMessage(AndroidUtilities.replaceTags(j > 0 ? LocaleController.formatString(R.string.WebDownloadAlertInfoWithSize, strEscape, AndroidUtilities.formatFileSize(j)) : LocaleController.formatString(R.string.WebDownloadAlertInfo, strEscape)));
                         builder.setPositiveButton(LocaleController.getString(R.string.WebDownloadAlertYes), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i) {
@@ -4238,13 +3908,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (this.bot) {
                 return;
             }
-            WebMetadataCache.WebMetadata from = WebMetadataCache.WebMetadata.from(this);
-            WebMetadataCache.getInstance().save(from);
+            WebMetadataCache.WebMetadata webMetadataFrom = WebMetadataCache.WebMetadata.from(this);
+            WebMetadataCache.getInstance().save(webMetadataFrom);
             BrowserHistory.Entry entry = this.currentHistoryEntry;
-            if (entry == null || from == null) {
+            if (entry == null || webMetadataFrom == null) {
                 return;
             }
-            entry.meta = from;
+            entry.meta = webMetadataFrom;
             BrowserHistory.pushHistory(entry);
         }
 
@@ -4336,11 +4006,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
 
         public float getScrollProgress() {
-            float max = Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent());
-            if (max <= getHeight()) {
+            float fMax = Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent());
+            if (fMax <= getHeight()) {
                 return 0.0f;
             }
-            return Utilities.clamp01(getScrollY() / max);
+            return Utilities.clamp01(getScrollY() / fMax);
         }
 
         public void setScrollProgress(float f) {
@@ -4366,9 +4036,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 d("onCheckIsTextEditor: no container");
                 return false;
             }
-            boolean isFocusable = botWebViewContainer.isFocusable();
-            d("onCheckIsTextEditor: " + isFocusable);
-            return isFocusable;
+            boolean zIsFocusable = botWebViewContainer.isFocusable();
+            d("onCheckIsTextEditor: " + zIsFocusable);
+            return zIsFocusable;
         }
 
         @Override
@@ -4670,12 +4340,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             hostAuthority = IDN.toASCII(hostAuthority, 1);
         } catch (Exception unused) {
         }
-        String rotateTONHost = rotateTONHost(hostAuthority);
+        String strRotateTONHost = rotateTONHost(hostAuthority);
         if (rotatedTONHosts == null) {
             rotatedTONHosts = new HashMap();
         }
-        rotatedTONHosts.put(rotateTONHost, hostAuthority);
-        return Browser.replaceHostname(Uri.parse(str), rotateTONHost, "https");
+        rotatedTONHosts.put(strRotateTONHost, hostAuthority);
+        return Browser.replaceHostname(Uri.parse(str), strRotateTONHost, "https");
     }
 
     public static String magic2tonsite(String str) {
@@ -4690,7 +4360,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return (hostAuthority.endsWith(sb.toString()) && (str2 = (String) rotatedTONHosts.get(hostAuthority)) != null) ? Browser.replace(Uri.parse(str), "tonsite", null, str2, null) : str;
     }
 
-    private static JSONObject obj(String str, Object obj) {
+    private static JSONObject obj(String str, Object obj) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4700,7 +4370,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2) {
+    private static JSONObject obj(String str, Object obj, String str2, Object obj2) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4711,7 +4381,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) {
+    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4723,7 +4393,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) {
+    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);

@@ -36,7 +36,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Business.QuickRepliesController;
@@ -168,7 +167,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return i;
     }
 
-    public static class StickerResult {
+    private static class StickerResult {
         public Object parent;
         public TLRPC.Document sticker;
 
@@ -210,7 +209,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
 
             @Override
-            public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
+            public void onSetHashtags(ArrayList arrayList, HashMap map) {
                 if (MentionsAdapter.this.lastText != null) {
                     MentionsAdapter mentionsAdapter = MentionsAdapter.this;
                     mentionsAdapter.lambda$searchUsernameOrHashtag$7(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
@@ -264,8 +263,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             return;
         }
         String str = document.dc_id + "_" + document.id;
-        HashMap hashMap = this.stickersMap;
-        if (hashMap == null || !hashMap.containsKey(str)) {
+        HashMap map = this.stickersMap;
+        if (map == null || !map.containsKey(str)) {
             if (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(document)) {
                 if (this.stickers == null) {
                     this.stickers = new ArrayList();
@@ -289,8 +288,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         for (int i = 0; i < size; i++) {
             TLRPC.Document document = (TLRPC.Document) arrayList.get(i);
             String str = document.dc_id + "_" + document.id;
-            HashMap hashMap = this.stickersMap;
-            if ((hashMap == null || !hashMap.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(document))) {
+            HashMap map = this.stickersMap;
+            if ((map == null || !map.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(document))) {
                 int size2 = document.attributes.size();
                 int i2 = 0;
                 while (true) {
@@ -319,8 +318,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             return false;
         }
         this.stickersToLoad.clear();
-        int min = Math.min(6, this.stickers.size());
-        for (int i = 0; i < min; i++) {
+        int iMin = Math.min(6, this.stickers.size());
+        for (int i = 0; i < iMin; i++) {
             StickerResult stickerResult = (StickerResult) this.stickers.get(i);
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerResult.sticker.thumbs, 90);
             if (((closestPhotoSizeWithSize instanceof TLRPC.TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC.TL_photoSizeProgressive)) && !FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, "webp", true).exists()) {
@@ -358,7 +357,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MentionsAdapter.this.lambda$searchServerStickers$1(str, tLObject, tL_error);
+                this.f$0.lambda$searchServerStickers$1(str, tLObject, tL_error);
             }
         });
     }
@@ -367,7 +366,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MentionsAdapter.this.lambda$searchServerStickers$0(str, tLObject);
+                this.f$0.lambda$searchServerStickers$0(str, tLObject);
             }
         });
     }
@@ -396,46 +395,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     @Override
     public void notifyDataSetChanged() {
-        MentionsAdapterDelegate mentionsAdapterDelegate;
-        int i = this.lastItemCount;
-        if (i == -1 || this.lastData == null) {
-            MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
-            if (mentionsAdapterDelegate2 != null) {
-                mentionsAdapterDelegate2.onItemCountUpdate(0, getItemCount());
-            }
-            super.notifyDataSetChanged();
-            this.lastData = new Object[getItemCount()];
-            while (true) {
-                Object[] objArr = this.lastData;
-                if (r2 >= objArr.length) {
-                    return;
-                }
-                objArr[r2] = getItem(r2);
-                r2++;
-            }
-        } else {
-            int itemCount = getItemCount();
-            boolean z = i != itemCount;
-            int min = Math.min(i, itemCount);
-            Object[] objArr2 = new Object[itemCount];
-            for (int i2 = 0; i2 < itemCount; i2++) {
-                objArr2[i2] = getItem(i2);
-            }
-            while (r2 < min) {
-                if (r2 >= 0) {
-                    Object[] objArr3 = this.lastData;
-                    r2 = (r2 < objArr3.length && r2 < itemCount && itemsEqual(objArr3[r2], objArr2[r2])) ? r2 + 1 : 0;
-                }
-                notifyItemChanged(r2);
-                z = true;
-            }
-            notifyItemRangeRemoved(min, i - min);
-            notifyItemRangeInserted(min, itemCount - min);
-            if (z && (mentionsAdapterDelegate = this.delegate) != null) {
-                mentionsAdapterDelegate.onItemCountUpdate(i, itemCount);
-            }
-            this.lastData = objArr2;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.notifyDataSetChanged():void");
     }
 
     private boolean itemsEqual(Object obj, Object obj2) {
@@ -527,9 +487,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.currentAccount = UserConfig.selectedAccount;
         this.info = chatFull;
         if (!this.inlineMediaEnabled && this.foundContextBot != null && (chatActivity = this.parentFragment) != null && (currentChat = chatActivity.getCurrentChat()) != null) {
-            boolean canSendStickers = ChatObject.canSendStickers(currentChat);
-            this.inlineMediaEnabled = canSendStickers;
-            if (canSendStickers) {
+            boolean zCanSendStickers = ChatObject.canSendStickers(currentChat);
+            this.inlineMediaEnabled = zCanSendStickers;
+            if (zCanSendStickers) {
                 this.searchResultUsernames = null;
                 notifyDataSetChanged();
                 this.delegate.needChangePanelVisibility(false);
@@ -611,9 +571,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             ChatActivity chatActivity2 = this.parentFragment;
             if (chatActivity2 != null && (currentChat = chatActivity2.getCurrentChat()) != null) {
-                boolean canSendStickers = ChatObject.canSendStickers(currentChat);
-                this.inlineMediaEnabled = canSendStickers;
-                if (!canSendStickers) {
+                boolean zCanSendStickers = ChatObject.canSendStickers(currentChat);
+                this.inlineMediaEnabled = zCanSendStickers;
+                if (!zCanSendStickers) {
                     notifyDataSetChanged();
                     this.delegate.needChangePanelVisibility(true);
                     return;
@@ -629,19 +589,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            MentionsAdapter.this.lambda$processFoundUser$2(zArr, user2, alertDialog, i);
+                            this.f$0.lambda$processFoundUser$2(zArr, user2, alertDialog, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            MentionsAdapter.this.lambda$processFoundUser$3(zArr, alertDialog, i);
+                            this.f$0.lambda$processFoundUser$3(zArr, alertDialog, i);
                         }
                     });
                     this.parentFragment.showDialog(builder.create(), new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            MentionsAdapter.this.lambda$processFoundUser$4(zArr, dialogInterface);
+                            this.f$0.lambda$processFoundUser$4(zArr, dialogInterface);
                         }
                     });
                 } else {
@@ -758,7 +718,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public class AnonymousClass4 implements Runnable {
+    class AnonymousClass4 implements Runnable {
         final MessagesController val$messagesController;
         final MessagesStorage val$messagesStorage;
         final String val$query;
@@ -801,7 +761,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             mentionsAdapter2.contextUsernameReqid = connectionsManager.sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MentionsAdapter.AnonymousClass4.this.lambda$run$1(str, messagesController, messagesStorage, tLObject, tL_error);
+                    this.f$0.lambda$run$1(str, messagesController, messagesStorage, tLObject, tL_error);
                 }
             });
         }
@@ -810,7 +770,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.AnonymousClass4.this.lambda$run$0(str, tL_error, tLObject, messagesController, messagesStorage);
+                    this.f$0.lambda$run$0(str, tL_error, tLObject, messagesController, messagesStorage);
                 }
             });
         }
@@ -847,17 +807,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     private void checkLocationPermissionsOrStart() {
-        int checkSelfPermission;
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null || chatActivity.getParentActivity() == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-            if (checkSelfPermission != 0) {
-                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-                return;
-            }
+        if (Build.VERSION.SDK_INT >= 23 && this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
+            this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+            return;
         }
         TLRPC.User user = this.foundContextBot;
         if (user == null || !user.bot_inline_geo) {
@@ -925,12 +881,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         sb.append(user.id);
         sb.append("_");
         sb.append((!user.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? "" : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
-        final String sb2 = sb.toString();
+        final String string = sb.toString();
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MentionsAdapter.this.lambda$searchForContextBotResults$6(str, z, user, str2, messagesStorage, sb2, tLObject, tL_error);
+                this.f$0.lambda$searchForContextBotResults$6(str, z, user, str2, messagesStorage, string, tLObject, tL_error);
             }
         };
         long j = user.id;
@@ -939,7 +895,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             this.searchResultBotContextSwitchUserId = j;
         }
         if (z) {
-            messagesStorage.getBotCache(sb2, requestDelegate);
+            messagesStorage.getBotCache(string, requestDelegate);
             return;
         }
         TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
@@ -965,7 +921,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MentionsAdapter.this.lambda$searchForContextBotResults$5(str, z, tLObject, user, str2, messagesStorage, str3);
+                this.f$0.lambda$searchForContextBotResults$5(str, z, tLObject, user, str2, messagesStorage, str3);
             }
         });
     }
@@ -1049,7 +1005,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         showUsersResult(arrayList, longSparseArray, true);
     }
 
-    public class AnonymousClass7 implements Runnable {
+    class AnonymousClass7 implements Runnable {
         final TLRPC.Chat val$chat;
         final MessagesController val$messagesController;
         final LongSparseArray val$newMap;
@@ -1085,7 +1041,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 tL_channelParticipantsMentions.top_msg_id = (int) j;
             }
             tL_channels_getParticipants.filter = tL_channelParticipantsMentions;
-            final int access$1704 = MentionsAdapter.access$1704(MentionsAdapter.this);
+            final int iAccess$1704 = MentionsAdapter.access$1704(MentionsAdapter.this);
             MentionsAdapter mentionsAdapter = MentionsAdapter.this;
             ConnectionsManager connectionsManager = ConnectionsManager.getInstance(mentionsAdapter.currentAccount);
             final ArrayList arrayList = this.val$newResult;
@@ -1094,7 +1050,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             mentionsAdapter.channelReqId = connectionsManager.sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MentionsAdapter.AnonymousClass7.this.lambda$run$1(access$1704, arrayList, longSparseArray, messagesController, tLObject, tL_error);
+                    this.f$0.lambda$run$1(iAccess$1704, arrayList, longSparseArray, messagesController, tLObject, tL_error);
                 }
             });
         }
@@ -1103,7 +1059,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.AnonymousClass7.this.lambda$run$0(i, arrayList, longSparseArray, tL_error, tLObject, messagesController);
+                    this.f$0.lambda$run$0(i, arrayList, longSparseArray, tL_error, tLObject, messagesController);
                 }
             });
         }
@@ -1442,34 +1398,34 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View botSwitchCell;
         View view;
-        View view2;
         if (i == 0) {
             MentionCell mentionCell = new MentionCell(this.mContext, this.resourcesProvider);
             mentionCell.setIsDarkTheme(this.isDarkTheme);
-            view = mentionCell;
+            botSwitchCell = mentionCell;
         } else if (i == 1) {
             ContextLinkCell contextLinkCell = new ContextLinkCell(this.mContext);
             contextLinkCell.setDelegate(new ContextLinkCell.ContextLinkCellDelegate() {
                 @Override
                 public final void didPressedImage(ContextLinkCell contextLinkCell2) {
-                    MentionsAdapter.this.lambda$onCreateViewHolder$10(contextLinkCell2);
+                    this.f$0.lambda$onCreateViewHolder$10(contextLinkCell2);
                 }
             });
-            view = contextLinkCell;
+            botSwitchCell = contextLinkCell;
         } else if (i != 2) {
             if (i == 3) {
                 TextView textView = new TextView(this.mContext);
                 textView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                 textView.setTextSize(1, 14.0f);
                 textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
-                view2 = textView;
+                view = textView;
             } else if (i == 5) {
-                view = new QuickRepliesActivity.QuickReplyView(this.mContext, false, this.resourcesProvider);
+                botSwitchCell = new QuickRepliesActivity.QuickReplyView(this.mContext, false, this.resourcesProvider);
             } else if (i == 6) {
-                view = new HashtagHint(this.mContext, this.stories, this.resourcesProvider);
+                botSwitchCell = new HashtagHint(this.mContext, this.stories, this.resourcesProvider);
             } else if (i == 7) {
-                View view3 = new View(this.mContext) {
+                View view2 = new View(this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(8.0f), 1073741824));
@@ -1477,16 +1433,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 };
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(this.stories ? Theme.multAlpha(-1, 0.15f) : Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, this.resourcesProvider)), 0, 0);
                 combinedDrawable.setFullsize(true);
-                view3.setBackground(combinedDrawable);
-                view2 = view3;
+                view2.setBackground(combinedDrawable);
+                view = view2;
             } else {
-                view = new StickerCell(this.mContext, this.resourcesProvider);
+                botSwitchCell = new StickerCell(this.mContext, this.resourcesProvider);
             }
-            view = view2;
+            botSwitchCell = view;
         } else {
-            view = new BotSwitchCell(this.mContext);
+            botSwitchCell = new BotSwitchCell(this.mContext);
         }
-        return new RecyclerListView.Holder(view);
+        return new RecyclerListView.Holder(botSwitchCell);
     }
 
     @Override
@@ -1561,11 +1517,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             } else {
                 this.bottomHint = hashtagHint;
             }
-            TLRPC.Chat chat = this.chat;
-            if (chat == null && (chatActivity = this.parentFragment) != null) {
-                chat = chatActivity.getCurrentChat();
+            TLRPC.Chat currentChat2 = this.chat;
+            if (currentChat2 == null && (chatActivity = this.parentFragment) != null) {
+                currentChat2 = chatActivity.getCurrentChat();
             }
-            hashtagHint.set(i2, this.hintHashtag, chat);
+            hashtagHint.set(i2, this.hintHashtag, currentChat2);
             return;
         }
         if (itemViewType == 7) {

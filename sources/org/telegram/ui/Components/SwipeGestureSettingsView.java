@@ -80,11 +80,11 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         NumberPicker numberPicker = new NumberPicker(context, 13) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                float dp = AndroidUtilities.dp(31.0f);
+                float fDp = AndroidUtilities.dp(31.0f);
                 SwipeGestureSettingsView.this.pickerDividersPaint.setColor(Theme.getColor(Theme.key_radioBackgroundChecked));
-                canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, SwipeGestureSettingsView.this.pickerDividersPaint);
+                canvas.drawLine(AndroidUtilities.dp(2.0f), fDp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), fDp, SwipeGestureSettingsView.this.pickerDividersPaint);
                 float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
                 canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, SwipeGestureSettingsView.this.pickerDividersPaint);
             }
@@ -92,23 +92,21 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.picker = numberPicker;
         numberPicker.setMinValue(0);
         this.picker.setDrawDividers(false);
-        boolean isEmpty = MessagesController.getInstance(i).dialogFilters.isEmpty();
-        this.hasTabs = !isEmpty;
-        this.picker.setMaxValue(!isEmpty ? this.strings.length - 1 : this.strings.length - 2);
+        boolean zIsEmpty = MessagesController.getInstance(i).dialogFilters.isEmpty();
+        this.hasTabs = !zIsEmpty;
+        this.picker.setMaxValue(!zIsEmpty ? this.strings.length - 1 : this.strings.length - 2);
         this.picker.setAllItemsCount(this.hasTabs ? this.strings.length : this.strings.length - 1);
         this.picker.setWrapSelectorWheel(true);
         this.picker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                String lambda$new$0;
-                lambda$new$0 = SwipeGestureSettingsView.this.lambda$new$0(i3);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(i3);
             }
         });
         this.picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker2, int i3, int i4) {
-                SwipeGestureSettingsView.this.lambda$new$1(numberPicker2, i3, i4);
+                this.f$0.lambda$new$1(numberPicker2, i3, i4);
             }
         });
         this.picker.setImportantForAccessibility(2);
@@ -166,7 +164,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SwipeGestureSettingsView.this.lambda$swapIcons$2();
+                    this.f$0.lambda$swapIcons$2();
                 }
             };
             this.swapIconRunnable = runnable;
@@ -215,10 +213,10 @@ public class SwipeGestureSettingsView extends FrameLayout {
 
     public void updateIconColor(int i) {
         if (this.icons[i] != null) {
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
             int color = Theme.getColor(Theme.key_chats_archiveIcon);
             if (i == 2) {
-                this.icons[i].setLayerColor("Arrow.**", blendARGB);
+                this.icons[i].setLayerColor("Arrow.**", iBlendARGB);
                 this.icons[i].setLayerColor("Box2.**", color);
                 this.icons[i].setLayerColor("Box1.**", color);
                 return;

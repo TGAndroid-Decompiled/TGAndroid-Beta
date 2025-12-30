@@ -68,12 +68,12 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
                         ArrayList arrayList = PremiumStickersPreviewRecycler.this.sortedView;
                         int childAdapterPosition = PremiumStickersPreviewRecycler.this.getChildAdapterPosition((StickerView) arrayList.get(arrayList.size() - 1));
                         if (childAdapterPosition >= 0) {
-                            View findViewByPosition = PremiumStickersPreviewRecycler.this.layoutManager.findViewByPosition(childAdapterPosition + 1);
-                            if (findViewByPosition != null) {
+                            View viewFindViewByPosition = PremiumStickersPreviewRecycler.this.layoutManager.findViewByPosition(childAdapterPosition + 1);
+                            if (viewFindViewByPosition != null) {
                                 PremiumStickersPreviewRecycler premiumStickersPreviewRecycler2 = PremiumStickersPreviewRecycler.this;
                                 premiumStickersPreviewRecycler2.haptic = false;
-                                premiumStickersPreviewRecycler2.drawEffectForView(findViewByPosition, true);
-                                PremiumStickersPreviewRecycler.this.smoothScrollBy(0, findViewByPosition.getTop() - ((PremiumStickersPreviewRecycler.this.getMeasuredHeight() - findViewByPosition.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
+                                premiumStickersPreviewRecycler2.drawEffectForView(viewFindViewByPosition, true);
+                                PremiumStickersPreviewRecycler.this.smoothScrollBy(0, viewFindViewByPosition.getTop() - ((PremiumStickersPreviewRecycler.this.getMeasuredHeight() - viewFindViewByPosition.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                             }
                         }
                     }
@@ -86,9 +86,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         this.comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$new$0;
-                lambda$new$0 = PremiumStickersPreviewRecycler.lambda$new$0((PremiumStickersPreviewRecycler.StickerView) obj, (PremiumStickersPreviewRecycler.StickerView) obj2);
-                return lambda$new$0;
+                return PremiumStickersPreviewRecycler.lambda$new$0((PremiumStickersPreviewRecycler.StickerView) obj, (PremiumStickersPreviewRecycler.StickerView) obj2);
             }
         };
         this.selectStickerOnNextLayout = -1;
@@ -137,7 +135,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                PremiumStickersPreviewRecycler.this.lambda$new$1(view, i2);
+                this.f$0.lambda$new$1(view, i2);
             }
         });
         MediaDataController.getInstance(i).preloadPremiumPreviewStickers();
@@ -153,7 +151,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         if (View.MeasureSpec.getSize(i2) > View.MeasureSpec.getSize(i)) {
             this.size = View.MeasureSpec.getSize(i);
         } else {
@@ -182,22 +180,22 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         if (this.firstMeasure && !this.premiumStickers.isEmpty() && getChildCount() > 0) {
             this.firstMeasure = false;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumStickersPreviewRecycler.this.lambda$onLayout$2();
+                    this.f$0.lambda$onLayout$2();
                 }
             });
         }
         int i5 = this.selectStickerOnNextLayout;
         if (i5 > 0) {
-            RecyclerView.ViewHolder findViewHolderForAdapterPosition = findViewHolderForAdapterPosition(i5);
-            if (findViewHolderForAdapterPosition != null) {
-                drawEffectForView(findViewHolderForAdapterPosition.itemView, false);
+            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = findViewHolderForAdapterPosition(i5);
+            if (viewHolderFindViewHolderForAdapterPosition != null) {
+                drawEffectForView(viewHolderFindViewHolderForAdapterPosition.itemView, false);
             }
             this.selectStickerOnNextLayout = -1;
         }
@@ -212,7 +210,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         if (this.isVisible) {
             this.sortedView.clear();
             for (int i = 0; i < getChildCount(); i++) {
@@ -221,9 +219,9 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
                 if (top > 1.0f) {
                     top = 2.0f - top;
                 }
-                float clamp = Utilities.clamp(top, 1.0f, 0.0f);
-                stickerView.progress = clamp;
-                stickerView.view.setTranslationX((-getMeasuredWidth()) * 2.0f * (1.0f - this.interpolator.getInterpolation(clamp)));
+                float fClamp = Utilities.clamp(top, 1.0f, 0.0f);
+                stickerView.progress = fClamp;
+                stickerView.view.setTranslationX((-getMeasuredWidth()) * 2.0f * (1.0f - this.interpolator.getInterpolation(fClamp)));
                 this.sortedView.add(stickerView);
             }
             Collections.sort(this.sortedView, this.comparator);
@@ -277,7 +275,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            StickerView stickerView = new StickerView(viewGroup.getContext());
+            StickerView stickerView = PremiumStickersPreviewRecycler.this.new StickerView(viewGroup.getContext());
             stickerView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(stickerView);
         }
@@ -294,14 +292,14 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
         scheduleAutoScroll();
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
     }
@@ -320,7 +318,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         invalidate();
     }
 
-    public class StickerView extends FrameLayout {
+    class StickerView extends FrameLayout {
         boolean animateImage;
         private float animateImageProgress;
         ImageReceiver centerImage;
@@ -458,9 +456,9 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
             int i3 = (int) (PremiumStickersPreviewRecycler.this.size * 0.6f);
             ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
             ViewGroup.LayoutParams layoutParams2 = this.view.getLayoutParams();
-            int dp = i3 - AndroidUtilities.dp(16.0f);
-            layoutParams2.height = dp;
-            layoutParams.width = dp;
+            int iDp = i3 - AndroidUtilities.dp(16.0f);
+            layoutParams2.height = iDp;
+            layoutParams.width = iDp;
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (i3 * 0.7f), 1073741824));
         }
 

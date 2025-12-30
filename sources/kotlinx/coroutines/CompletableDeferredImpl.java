@@ -2,6 +2,8 @@ package kotlinx.coroutines;
 
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.selects.SelectClause1;
 
 final class CompletableDeferredImpl extends JobSupport implements CompletableDeferred {
     @Override
@@ -20,10 +22,17 @@ final class CompletableDeferredImpl extends JobSupport implements CompletableDef
     }
 
     @Override
-    public Object await(Continuation continuation) {
-        Object awaitInternal = awaitInternal(continuation);
+    public Object await(Continuation continuation) throws Throwable {
+        Object objAwaitInternal = awaitInternal(continuation);
         IntrinsicsKt.getCOROUTINE_SUSPENDED();
-        return awaitInternal;
+        return objAwaitInternal;
+    }
+
+    @Override
+    public SelectClause1 getOnAwait() {
+        SelectClause1 onAwaitInternal = getOnAwaitInternal();
+        Intrinsics.checkNotNull(onAwaitInternal, "null cannot be cast to non-null type kotlinx.coroutines.selects.SelectClause1<T of kotlinx.coroutines.CompletableDeferredImpl>");
+        return onAwaitInternal;
     }
 
     @Override

@@ -97,9 +97,7 @@ public final class FloatingActionMode extends ActionMode {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
-                boolean lambda$new$0;
-                lambda$new$0 = FloatingActionMode.this.lambda$new$0(menuItem);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(menuItem);
             }
         });
         this.mContentRect = new Rect();
@@ -131,9 +129,7 @@ public final class FloatingActionMode extends ActionMode {
         FloatingToolbar onMenuItemClickListener = floatingToolbar.setMenu(this.mMenu).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
-                boolean lambda$setFloatingToolbar$1;
-                lambda$setFloatingToolbar$1 = FloatingActionMode.this.lambda$setFloatingToolbar$1(menuItem);
-                return lambda$setFloatingToolbar$1;
+                return this.f$0.lambda$setFloatingToolbar$1(menuItem);
             }
         });
         this.mFloatingToolbar = onMenuItemClickListener;
@@ -210,9 +206,7 @@ public final class FloatingActionMode extends ActionMode {
     }
 
     private boolean isContentRectWithinBounds() {
-        Object systemService;
-        systemService = this.mContext.getSystemService((Class<Object>) WindowManager.class);
-        ((WindowManager) systemService).getDefaultDisplay().getRealSize(this.mDisplaySize);
+        ((WindowManager) this.mContext.getSystemService(WindowManager.class)).getDefaultDisplay().getRealSize(this.mDisplaySize);
         Rect rect = this.mScreenRect;
         Point point = this.mDisplaySize;
         rect.set(0, 0, point.x, point.y);
@@ -228,15 +222,15 @@ public final class FloatingActionMode extends ActionMode {
         if (j == -1) {
             j = ViewConfiguration.getDefaultActionModeHideDuration();
         }
-        long min = Math.min(3000L, j);
+        long jMin = Math.min(3000L, j);
         this.mOriginatingView.removeCallbacks(this.mHideOff);
-        if (min <= 0) {
+        if (jMin <= 0) {
             this.mHideOff.run();
             return;
         }
         this.mFloatingToolbarVisibilityHelper.setHideRequested(true);
         this.mFloatingToolbarVisibilityHelper.updateToolbarVisibility();
-        this.mOriginatingView.postDelayed(this.mHideOff, min);
+        this.mOriginatingView.postDelayed(this.mHideOff, jMin);
     }
 
     @Override
@@ -272,7 +266,7 @@ public final class FloatingActionMode extends ActionMode {
         return this.mOriginatingView.getWindowVisibility() == 0 && this.mOriginatingView.isShown();
     }
 
-    public static final class FloatingToolbarVisibilityHelper {
+    private static final class FloatingToolbarVisibilityHelper {
         private boolean mActive;
         private boolean mHideRequested;
         private long mLastShowTime;

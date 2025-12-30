@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -30,7 +32,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.DialogsBotsAdapter;
 
 public class DialogsBotsAdapter extends UniversalAdapter {
     private int allCount;
@@ -66,20 +67,20 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         this.searchMessagesRunnable = new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$new$8();
+                this.f$0.lambda$new$8();
             }
         };
         this.first = true;
         this.openBotCallback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DialogsBotsAdapter.this.openBot((TLRPC.User) obj);
+                this.f$0.openBot((TLRPC.User) obj);
             }
         };
         this.fillItems = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                DialogsBotsAdapter.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
         this.context = context;
@@ -90,13 +91,13 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         this.popular = new PopularBots(i, new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         this.infoText = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$new$2(resourcesProvider, context);
+                this.f$0.lambda$new$2(resourcesProvider, context);
             }
         }), true);
         update(false);
@@ -109,23 +110,23 @@ public class DialogsBotsAdapter extends UniversalAdapter {
 
     public void lambda$new$2(Theme.ResourcesProvider resourcesProvider, final Context context) {
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(LocaleController.getString(R.string.AppsTabInfoText), resourcesProvider, new Runnable() {
+        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(LocaleController.getString(R.string.AppsTabInfoText), resourcesProvider, new Runnable() {
             @Override
             public final void run() {
                 DialogsBotsAdapter.lambda$new$1(alertDialogArr);
             }
         }));
-        Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
+        Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(spannableStringBuilderReplaceTags);
         while (matcher.find()) {
-            final String group = matcher.group(1);
-            replaceTags.setSpan(new ClickableSpan() {
+            final String strGroup = matcher.group(1);
+            spannableStringBuilderReplaceTags.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog alertDialog = alertDialogArr[0];
                     if (alertDialog != null) {
                         alertDialog.dismiss();
                     }
-                    Browser.openUrl(context, "https://t.me/" + group);
+                    Browser.openUrl(context, "https://t.me/" + strGroup);
                 }
 
                 @Override
@@ -135,7 +136,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 }
             }, matcher.start(), matcher.end(), 33);
         }
-        alertDialogArr[0] = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.AppsTabInfoTitle)).setMessage(replaceTags).setPositiveButton(LocaleController.getString(R.string.AppsTabInfoButton), null).show();
+        alertDialogArr[0] = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.AppsTabInfoTitle)).setMessage(spannableStringBuilderReplaceTags).setPositiveButton(LocaleController.getString(R.string.AppsTabInfoButton), null).show();
     }
 
     public static void lambda$new$1(AlertDialog[] alertDialogArr) {
@@ -159,7 +160,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchApps), LocaleController.getString(this.expandedSearchBots ? R.string.ShowLess : R.string.ShowMore), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            DialogsBotsAdapter.this.toggleExpandedSearchBots(view);
+                            this.f$0.toggleExpandedSearchBots(view);
                         }
                     }));
                 }
@@ -202,7 +203,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchAppsMine), LocaleController.getString(this.expandedMyBots ? R.string.ShowLess : R.string.ShowMore), new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        DialogsBotsAdapter.this.toggleExpandedMyBots(view);
+                        this.f$0.toggleExpandedMyBots(view);
                     }
                 }));
             } else {
@@ -313,7 +314,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$searchMessages$5(i, tL_messages_searchGlobal, z);
+                this.f$0.lambda$searchMessages$5(i, tL_messages_searchGlobal, z);
             }
         }, z ? 800L : 0L);
         if (z) {
@@ -326,7 +327,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_search, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                DialogsBotsAdapter.this.lambda$searchMessages$7(tL_contacts_search, tLObject, tL_error);
+                this.f$0.lambda$searchMessages$7(tL_contacts_search, tLObject, tL_error);
             }
         });
     }
@@ -336,7 +337,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    DialogsBotsAdapter.this.lambda$searchMessages$4(i, tL_messages_searchGlobal, z, tLObject, tL_error);
+                    this.f$0.lambda$searchMessages$4(i, tL_messages_searchGlobal, z, tLObject, tL_error);
                 }
             });
         }
@@ -346,7 +347,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$searchMessages$3(i, tL_messages_searchGlobal, z, tLObject);
+                this.f$0.lambda$searchMessages$3(i, tL_messages_searchGlobal, z, tLObject);
             }
         });
     }
@@ -380,7 +381,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.this.lambda$searchMessages$6(tL_contacts_search, tLObject);
+                this.f$0.lambda$searchMessages$6(tL_contacts_search, tLObject);
             }
         });
     }
@@ -517,71 +518,73 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    DialogsBotsAdapter.PopularBots.this.lambda$loadCache$1(messagesStorage, runnable);
+                public final void run() throws Throwable {
+                    this.f$0.lambda$loadCache$1(messagesStorage, runnable);
                 }
             });
         }
 
-        public void lambda$loadCache$1(MessagesStorage messagesStorage, final Runnable runnable) {
-            final String str;
-            SQLiteCursor sQLiteCursor;
-            TLRPC.User user;
+        public void lambda$loadCache$1(MessagesStorage messagesStorage, final Runnable runnable) throws Throwable {
+            final String strStringValue;
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            TLRPC.User next;
             final ArrayList arrayList = new ArrayList();
             ArrayList<Long> arrayList2 = new ArrayList<>();
-            final long j = 0;
+            final long jMax = 0;
+            final SQLiteCursor sQLiteCursor = 0;
             SQLiteCursor sQLiteCursor2 = null;
             try {
                 try {
-                    sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT uid, time, offset FROM popular_bots ORDER BY pos", new Object[0]);
-                    str = null;
-                    while (sQLiteCursor.next()) {
+                    sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT uid, time, offset FROM popular_bots ORDER BY pos", new Object[0]);
+                    strStringValue = null;
+                    while (sQLiteCursorQueryFinalized.next()) {
                         try {
-                            arrayList2.add(Long.valueOf(sQLiteCursor.longValue(0)));
-                            j = Math.max(j, sQLiteCursor.longValue(1));
-                            str = sQLiteCursor.stringValue(2);
+                            arrayList2.add(Long.valueOf(sQLiteCursorQueryFinalized.longValue(0)));
+                            jMax = Math.max(jMax, sQLiteCursorQueryFinalized.longValue(1));
+                            strStringValue = sQLiteCursorQueryFinalized.stringValue(2);
                         } catch (Exception e) {
                             e = e;
-                            sQLiteCursor2 = sQLiteCursor;
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized;
                             FileLog.e(e);
                             if (sQLiteCursor2 != null) {
-                                sQLiteCursor = sQLiteCursor2;
-                                sQLiteCursor.dispose();
+                                sQLiteCursorQueryFinalized = sQLiteCursor2;
+                                sQLiteCursorQueryFinalized.dispose();
                             }
+                            sQLiteCursor = this;
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    DialogsBotsAdapter.PopularBots.this.lambda$loadCache$0(arrayList, j, str, runnable);
+                                    this.f$0.lambda$loadCache$0(arrayList, jMax, strStringValue, runnable);
                                 }
                             });
                         } catch (Throwable th) {
                             th = th;
-                            sQLiteCursor2 = sQLiteCursor;
-                            if (sQLiteCursor2 != null) {
-                                sQLiteCursor2.dispose();
+                            sQLiteCursor = sQLiteCursorQueryFinalized;
+                            if (sQLiteCursor != 0) {
+                                sQLiteCursor.dispose();
                             }
                             throw th;
                         }
                     }
-                    sQLiteCursor.dispose();
+                    sQLiteCursorQueryFinalized.dispose();
                     ArrayList<TLRPC.User> users = messagesStorage.getUsers(arrayList2);
                     if (users != null) {
                         Iterator<Long> it = arrayList2.iterator();
                         while (it.hasNext()) {
-                            long longValue = it.next().longValue();
+                            long jLongValue = it.next().longValue();
                             Iterator<TLRPC.User> it2 = users.iterator();
                             while (true) {
                                 if (!it2.hasNext()) {
-                                    user = null;
+                                    next = null;
                                     break;
                                 }
-                                user = it2.next();
-                                if (user != null && user.id == longValue) {
+                                next = it2.next();
+                                if (next != null && next.id == jLongValue) {
                                     break;
                                 }
                             }
-                            if (user != null) {
-                                arrayList.add(user);
+                            if (next != null) {
+                                arrayList.add(next);
                             }
                         }
                     }
@@ -590,13 +593,14 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 }
             } catch (Exception e2) {
                 e = e2;
-                str = null;
+                strStringValue = null;
             }
-            sQLiteCursor.dispose();
+            sQLiteCursorQueryFinalized.dispose();
+            sQLiteCursor = this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsBotsAdapter.PopularBots.this.lambda$loadCache$0(arrayList, j, str, runnable);
+                    this.f$0.lambda$loadCache$0(arrayList, jMax, strStringValue, runnable);
                 }
             });
         }
@@ -630,13 +634,46 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsBotsAdapter.PopularBots.this.lambda$saveCache$3(messagesStorage, arrayList, j, str2);
+                    this.f$0.lambda$saveCache$3(messagesStorage, arrayList, j, str2);
                 }
             });
         }
 
-        public void lambda$saveCache$3(org.telegram.messenger.MessagesStorage r5, java.util.ArrayList r6, long r7, java.lang.String r9) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DialogsBotsAdapter.PopularBots.lambda$saveCache$3(org.telegram.messenger.MessagesStorage, java.util.ArrayList, long, java.lang.String):void");
+        public void lambda$saveCache$3(MessagesStorage messagesStorage, ArrayList arrayList, long j, String str) {
+            SQLiteDatabase database = messagesStorage.getDatabase();
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
+            try {
+                try {
+                    database.executeFast("DELETE FROM popular_bots").stepThis().dispose();
+                    sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO popular_bots VALUES(?, ?, ?, ?)");
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        sQLitePreparedStatementExecuteFast.requery();
+                        sQLitePreparedStatementExecuteFast.bindLong(1, ((Long) arrayList.get(i)).longValue());
+                        sQLitePreparedStatementExecuteFast.bindLong(2, j);
+                        sQLitePreparedStatementExecuteFast.bindString(3, str);
+                        sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+                        sQLitePreparedStatementExecuteFast.step();
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    if (sQLitePreparedStatementExecuteFast != null) {
+                    }
+                }
+                if (sQLitePreparedStatementExecuteFast != null) {
+                    sQLitePreparedStatementExecuteFast.dispose();
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$saveCache$2();
+                    }
+                });
+            } catch (Throwable th) {
+                if (sQLitePreparedStatementExecuteFast != null) {
+                    sQLitePreparedStatementExecuteFast.dispose();
+                }
+                throw th;
+            }
         }
 
         public void lambda$saveCache$2() {
@@ -652,7 +689,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 loadCache(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsBotsAdapter.PopularBots.this.lambda$load$4();
+                        this.f$0.lambda$load$4();
                     }
                 });
                 return;
@@ -667,7 +704,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(getpopularappbots, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    DialogsBotsAdapter.PopularBots.this.lambda$load$6(tLObject, tL_error);
+                    this.f$0.lambda$load$6(tLObject, tL_error);
                 }
             });
         }
@@ -687,7 +724,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsBotsAdapter.PopularBots.this.lambda$load$5(tLObject);
+                    this.f$0.lambda$load$5(tLObject);
                 }
             });
         }

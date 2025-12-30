@@ -25,25 +25,25 @@ public class GroupCallStatusIcon {
     private Runnable shakeHandCallback = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
     private Runnable raiseHandCallback = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.this.lambda$new$1();
+            this.f$0.lambda$new$1();
         }
     };
     private Runnable updateRunnable = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.this.lambda$new$2();
+            this.f$0.lambda$new$2();
         }
     };
     private Runnable checkRaiseRunnable = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.this.lambda$new$3();
+            this.f$0.lambda$new$3();
         }
     };
 
@@ -62,20 +62,20 @@ public class GroupCallStatusIcon {
 
     public void lambda$new$1() {
         int i;
-        int nextInt = Utilities.random.nextInt(100);
+        int iNextInt = Utilities.random.nextInt(100);
         int i2 = 120;
-        if (nextInt < 32) {
+        if (iNextInt < 32) {
             i = 0;
         } else {
             i = 240;
-            if (nextInt < 64) {
+            if (iNextInt < 64) {
                 i2 = 240;
                 i = 120;
             } else {
                 i2 = 420;
-                if (nextInt >= 97) {
+                if (iNextInt >= 97) {
                     i = 540;
-                    if (nextInt == 98) {
+                    if (iNextInt == 98) {
                         i2 = 540;
                         i = 420;
                     } else {
@@ -150,9 +150,9 @@ public class GroupCallStatusIcon {
             return;
         }
         boolean z4 = groupCallParticipant.muted_by_you && !groupCallParticipant.self;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
         TLRPC.GroupCallParticipant groupCallParticipant2 = this.participant;
-        if (elapsedRealtime - groupCallParticipant2.lastVoiceUpdateTime < 500) {
+        if (jElapsedRealtime - groupCallParticipant2.lastVoiceUpdateTime < 500) {
             z2 = groupCallParticipant2.hasVoiceDelayed;
         } else {
             z2 = groupCallParticipant2.hasVoice;
@@ -161,9 +161,9 @@ public class GroupCallStatusIcon {
         TLRPC.GroupCallParticipant groupCallParticipant3 = this.participant;
         boolean z6 = ((groupCallParticipant3.muted && !this.isSpeaking) || z4) && !(((z3 = groupCallParticipant3.can_self_unmute) && !z4) || z3 || groupCallParticipant3.raise_hand_rating == 0);
         if (z6) {
-            long elapsedRealtime2 = SystemClock.elapsedRealtime();
+            long jElapsedRealtime2 = SystemClock.elapsedRealtime();
             long j = this.participant.lastRaiseHandDate;
-            long j2 = elapsedRealtime2 - j;
+            long j2 = jElapsedRealtime2 - j;
             if (j != 0 && j2 <= 5000) {
                 AndroidUtilities.runOnUIThread(this.checkRaiseRunnable, 5000 - j2);
             }

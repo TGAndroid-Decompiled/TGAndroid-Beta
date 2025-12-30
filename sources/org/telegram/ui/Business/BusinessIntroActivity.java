@@ -68,7 +68,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private final Runnable updateRandomStickerRunnable = new Runnable() {
         @Override
         public final void run() {
-            BusinessIntroActivity.this.updateRandomSticker();
+            this.f$0.updateRandomSticker();
         }
     };
     private boolean stickerRandom = true;
@@ -77,7 +77,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private int shiftDp = -4;
 
     @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
 
@@ -102,7 +102,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             this.greetingsView.setNextSticker(MediaDataController.getInstance(this.currentAccount).getGreetingsSticker(), new Runnable() {
                 @Override
                 public final void run() {
-                    BusinessIntroActivity.this.lambda$updateRandomSticker$0();
+                    this.f$0.lambda$updateRandomSticker$0();
                 }
             });
         }
@@ -245,10 +245,10 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i2 = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i2)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i2)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false, true);
         this.listView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -273,7 +273,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         new KeyboardNotifier(this.fragmentView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BusinessIntroActivity.this.lambda$createView$1((Integer) obj);
+                this.f$0.lambda$createView$1((Integer) obj);
             }
         });
         return this.fragmentView;
@@ -294,16 +294,16 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     public void updateGreetingScale() {
         if (this.previewContainer.getParent() instanceof View) {
             int top = ((View) this.previewContainer.getParent()).getTop();
-            float clamp = Utilities.clamp((top + r1) / (this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f)), 1.0f, 0.65f);
-            this.greetingsView.setScaleX(clamp);
-            this.greetingsView.setScaleY(clamp);
-            this.greetingsView.setAlpha(Utilities.clamp(clamp * 2.0f, 1.0f, 0.0f));
+            float fClamp = Utilities.clamp((top + r1) / (this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f)), 1.0f, 0.65f);
+            this.greetingsView.setScaleX(fClamp);
+            this.greetingsView.setScaleY(fClamp);
+            this.greetingsView.setAlpha(Utilities.clamp(fClamp * 2.0f, 1.0f, 0.0f));
             this.previewContainer.invalidate();
         }
     }
 
     @Override
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asCustom(this.previewContainer));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessIntroHeader)));
         arrayList.add(UItem.asCustom(this.titleEdit));
@@ -316,9 +316,9 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             arrayList.add(UItem.asStickerButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.sticker));
         }
         arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessIntroInfo)));
-        boolean isEmpty = isEmpty();
-        this.clearVisible = !isEmpty;
-        if (!isEmpty) {
+        boolean zIsEmpty = isEmpty();
+        this.clearVisible = !zIsEmpty;
+        if (!zIsEmpty) {
             arrayList.add(UItem.asShadow(null));
             arrayList.add(UItem.asButton(2, LocaleController.getString(R.string.BusinessIntroReset)).red());
         }
@@ -371,11 +371,11 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         if (chatGreetingsView != null) {
             chatGreetingsView.setPreview(this.titleEdit.getText().toString(), this.messageEdit.getText().toString());
             ChatGreetingsView chatGreetingsView2 = this.greetingsView;
-            TLRPC.Document document2 = this.sticker;
-            if (document2 == null || this.stickerRandom) {
-                document2 = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
+            TLRPC.Document greetingsSticker = this.sticker;
+            if (greetingsSticker == null || this.stickerRandom) {
+                greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
             }
-            chatGreetingsView2.setSticker(document2);
+            chatGreetingsView2.setSticker(greetingsSticker);
         }
         if (this.stickerRandom) {
             AndroidUtilities.cancelRunOnUIThread(this.updateRandomStickerRunnable);
@@ -389,22 +389,20 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     @Override
-    public void onClick(UItem uItem, final View view, int i, float f, float f2) {
+    protected void onClick(UItem uItem, final View view, int i, float f, float f2) {
         int i2 = uItem.id;
         if (i2 == 1) {
             EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), true, getResourceProvider(), true);
             emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3) {
-                    Boolean lambda$onClick$2;
-                    lambda$onClick$2 = BusinessIntroActivity.this.lambda$onClick$2(view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
-                    return lambda$onClick$2;
+                    return this.f$0.lambda$onClick$2(view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
                 }
             });
             emojiBottomSheet.whenPlusSelected(new Runnable() {
                 @Override
                 public final void run() {
-                    BusinessIntroActivity.this.openCustomStickerEditor();
+                    this.f$0.openCustomStickerEditor();
                 }
             });
             showDialog(emojiBottomSheet);
@@ -440,15 +438,15 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
 
     public boolean hasChanges() {
         TLRPC.Document document;
-        String charSequence = this.titleEdit.getText().toString();
+        String string = this.titleEdit.getText().toString();
         String str = this.currentTitle;
         if (str == null) {
             str = "";
         }
-        if (TextUtils.equals(charSequence, str)) {
-            String charSequence2 = this.messageEdit.getText().toString();
+        if (TextUtils.equals(string, str)) {
+            String string2 = this.messageEdit.getText().toString();
             String str2 = this.currentMessage;
-            if (TextUtils.equals(charSequence2, str2 != null ? str2 : "")) {
+            if (TextUtils.equals(string2, str2 != null ? str2 : "")) {
                 boolean z = this.stickerRandom;
                 if (((z || (document = this.sticker) == null) ? 0L : document.id) == this.currentSticker && (z || this.inputSticker == null)) {
                     return false;
@@ -462,14 +460,14 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
         } else {
-            this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+            this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || universalRecyclerView.adapter == null || this.clearVisible == (!isEmpty())) {
@@ -523,7 +521,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         getConnectionsManager().sendRequest(updatebusinessintro, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BusinessIntroActivity.this.lambda$processDone$4(tLObject, tL_error);
+                this.f$0.lambda$processDone$4(tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
@@ -533,7 +531,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BusinessIntroActivity.this.lambda$processDone$3(tL_error, tLObject);
+                this.f$0.lambda$processDone$3(tL_error, tLObject);
             }
         });
     }
@@ -567,13 +565,13 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BusinessIntroActivity.this.lambda$onBackPressed$5(alertDialog, i);
+                this.f$0.lambda$onBackPressed$5(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BusinessIntroActivity.this.lambda$onBackPressed$6(alertDialog, i);
+                this.f$0.lambda$onBackPressed$6(alertDialog, i);
             }
         });
         showDialog(builder.create());
@@ -600,7 +598,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         this.chatAttachAlert.enableStickerMode(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BusinessIntroActivity.this.setCustomSticker((String) obj, (TLRPC.InputDocument) obj2);
+                this.f$0.setCustomSticker((String) obj, (TLRPC.InputDocument) obj2);
             }
         });
         this.chatAttachAlert.init();

@@ -70,34 +70,34 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterF
         return new TypeAdapter() {
             @Override
             public R read(JsonReader jsonReader) {
-                JsonElement parse = Streams.parse(jsonReader);
-                if (parse.isJsonObject()) {
-                    JsonElement remove = parse.getAsJsonObject().remove(RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
-                    if (remove == null) {
+                JsonElement jsonElement = Streams.parse(jsonReader);
+                if (jsonElement.isJsonObject()) {
+                    JsonElement jsonElementRemove = jsonElement.getAsJsonObject().remove(RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
+                    if (jsonElementRemove == null) {
                         throw new JsonParseException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + " because it does not define a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
                     }
-                    String asString = remove.getAsString();
-                    TypeAdapter typeAdapter = (TypeAdapter) linkedHashMap.get(asString);
-                    if (typeAdapter == null) {
+                    String asString = jsonElementRemove.getAsString();
+                    TypeAdapter delegateAdapter2 = (TypeAdapter) linkedHashMap.get(asString);
+                    if (delegateAdapter2 == null) {
                         try {
-                            typeAdapter = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, TypeToken.get((Class) Class.forName(asString)));
-                            if (typeAdapter == null) {
+                            delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, TypeToken.get((Class) Class.forName(asString)));
+                            if (delegateAdapter2 == null) {
                                 throw new JsonParseException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + " subtype named " + asString + "; did you forget to register a subtype?");
                             }
                         } catch (ClassNotFoundException e) {
                             throw new JsonParseException("Cannot find class " + asString, e);
                         }
                     }
-                    return typeAdapter.fromJsonTree(parse);
+                    return delegateAdapter2.fromJsonTree(jsonElement);
                 }
-                if (parse.isJsonNull()) {
+                if (jsonElement.isJsonNull()) {
                     return null;
                 }
-                TypeAdapter delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, typeToken);
-                if (delegateAdapter2 == null) {
+                TypeAdapter delegateAdapter3 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, typeToken);
+                if (delegateAdapter3 == null) {
                     throw new JsonParseException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + "; did you forget to register a subtype?");
                 }
-                return delegateAdapter2.fromJsonTree(parse);
+                return delegateAdapter3.fromJsonTree(jsonElement);
             }
 
             @Override

@@ -57,9 +57,9 @@ public class LoadingStickerDrawable extends Drawable {
         this.currentColor1 = color2;
         int averageColor = AndroidUtilities.getAverageColor(color2, color);
         this.placeholderPaint.setColor(color2);
-        float dp = AndroidUtilities.dp(500.0f);
-        this.gradientWidth = dp;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color2, averageColor, color2}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
+        float fDp = AndroidUtilities.dp(500.0f);
+        this.gradientWidth = fDp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, fDp, 0.0f, new int[]{color2, averageColor, color2}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
         this.placeholderGradient = linearGradient;
         linearGradient.setLocalMatrix(this.placeholderMatrix);
         Bitmap bitmap = this.bitmap;
@@ -75,13 +75,13 @@ public class LoadingStickerDrawable extends Drawable {
         setColors(Theme.key_dialogBackground, Theme.key_dialogBackgroundGray);
         android.graphics.Rect bounds = getBounds();
         canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, this.placeholderPaint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.lastUpdateTime - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long jAbs = Math.abs(this.lastUpdateTime - jElapsedRealtime);
+        if (jAbs > 17) {
+            jAbs = 16;
         }
-        this.lastUpdateTime = elapsedRealtime;
-        this.totalTranslation += (((float) abs) * this.gradientWidth) / 1800.0f;
+        this.lastUpdateTime = jElapsedRealtime;
+        this.totalTranslation += (jAbs * this.gradientWidth) / 1800.0f;
         while (true) {
             float f = this.totalTranslation;
             float f2 = this.gradientWidth * 2.0f;

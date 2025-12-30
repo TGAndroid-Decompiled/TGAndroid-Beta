@@ -3,7 +3,6 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
-import android.graphics.RecordingCanvas;
 import android.graphics.RenderNode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -51,7 +50,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         return i;
     }
 
-    public final class CheckForTap implements Runnable {
+    private final class CheckForTap implements Runnable {
         private CheckForTap() {
         }
 
@@ -59,7 +58,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         public void run() {
             if (BaseCell.this.pendingCheckForLongPress == null) {
                 BaseCell baseCell = BaseCell.this;
-                baseCell.pendingCheckForLongPress = new CheckForLongPress();
+                baseCell.pendingCheckForLongPress = baseCell.new CheckForLongPress();
             }
             BaseCell.this.pendingCheckForLongPress.currentPressCount = BaseCell.access$104(BaseCell.this);
             BaseCell baseCell2 = BaseCell.this;
@@ -67,7 +66,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
     }
 
-    public class CheckForLongPress implements Runnable {
+    class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {
@@ -82,9 +81,9 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
                         BaseCell.this.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
-                    MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                    BaseCell.this.onTouchEvent(obtain);
-                    obtain.recycle();
+                    MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                    BaseCell.this.onTouchEvent(motionEventObtain);
+                    motionEventObtain.recycle();
                 }
             }
         }
@@ -129,7 +128,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
     }
 
-    public void startCheckLongPress() {
+    protected void startCheckLongPress() {
         if (this.checkingForLongPress) {
             return;
         }
@@ -140,7 +139,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
     }
 
-    public void cancelCheckLongPress() {
+    protected void cancelCheckLongPress() {
         this.checkingForLongPress = false;
         CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
         if (checkForLongPress != null) {
@@ -174,49 +173,20 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         super.invalidate();
     }
 
-    public void setCaching(boolean z, boolean z2) {
-        boolean z3 = false;
-        if (z) {
-            if (SharedConfig.useNewBlur && z2) {
-                z3 = true;
-            }
-            this.cachingTop = z3;
-            return;
-        }
-        if (SharedConfig.useNewBlur && z2) {
-            z3 = true;
-        }
-        this.cachingBottom = z3;
-    }
-
     public void forceNotCacheNextFrame() {
         this.forceNotCacheNextFrame = true;
     }
 
-    public void drawCached(Canvas canvas) {
-        RenderNode renderNode;
-        boolean hasDisplayList;
-        if (Build.VERSION.SDK_INT >= 29 && (renderNode = this.renderNode) != null) {
-            hasDisplayList = renderNode.hasDisplayList();
-            if (hasDisplayList && canvas.isHardwareAccelerated() && !this.updatedContent) {
-                canvas.drawRenderNode(this.renderNode);
-                return;
-            }
-        }
-        draw(canvas);
-    }
-
     @Override
     public void draw(Canvas canvas) {
-        RecordingCanvas beginRecording;
         boolean z = (this.cachingTop || this.cachingBottom || SharedConfig.useNewBlur) && allowCaching();
         int i = Build.VERSION.SDK_INT;
         if (i >= 29) {
             if (z != (this.renderNode != null)) {
                 if (z) {
-                    RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("basecell");
-                    this.renderNode = m;
-                    m.setClipToBounds(false);
+                    RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("basecell");
+                    this.renderNode = renderNodeM;
+                    renderNodeM.setClipToBounds(false);
                     this.updatedContent = true;
                 } else {
                     this.renderNode = null;
@@ -225,8 +195,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
         if (i >= 29 && this.renderNode != null && !this.forceNotCacheNextFrame && canvas.isHardwareAccelerated()) {
             this.renderNode.setPosition(0, 0, getWidth(), getHeight());
-            beginRecording = this.renderNode.beginRecording();
-            super.draw(beginRecording);
+            super.draw(this.renderNode.beginRecording());
             this.renderNode.endRecording();
             canvas.drawRenderNode(this.renderNode);
         } else {
@@ -251,7 +220,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
 
         @Override
         public void draw(Canvas canvas) {
-            int save = canvas.save();
+            int iSave = canvas.save();
             try {
                 try {
                     super.draw(canvas);
@@ -259,7 +228,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
                     FileLog.e("probably forgot to put setCallback", e);
                 }
             } finally {
-                canvas.restoreToCount(save);
+                canvas.restoreToCount(iSave);
             }
         }
     }

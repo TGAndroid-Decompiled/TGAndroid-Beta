@@ -11,6 +11,6 @@ public final class RenderSynchronizer$$ExternalSyntheticLambda2 implements Chore
 
     @Override
     public final void doFrame(long j) {
-        RenderSynchronizer.$r8$lambda$IpnHPZxhIFAGtBuxmTkRpKpu6p8(this.f$0, j);
+        this.f$0.onDisplayRefreshCycleBegin(j);
     }
 }

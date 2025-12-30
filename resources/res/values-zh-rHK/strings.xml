@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">分享對象</string>
     <string name="abc_shareactionprovider_share_with_application">使用「%s」分享</string>
     <string name="abc_toolbar_collapse_description">收合</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">密碼</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">密鑰</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">密碼</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">密鑰</string>
     <string name="call_notification_answer_action">接聽</string>
     <string name="call_notification_answer_video_action">視像</string>
     <string name="call_notification_decline_action">拒接</string>

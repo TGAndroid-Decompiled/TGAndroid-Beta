@@ -83,9 +83,7 @@ public class CheckBoxBase {
         this.circlePaintProvider = new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                Paint lambda$new$0;
-                lambda$new$0 = CheckBoxBase.lambda$new$0((Void) obj);
-                return lambda$new$0;
+                return CheckBoxBase.lambda$new$0((Void) obj);
             }
         };
         this.animationDuration = 200L;
@@ -214,9 +212,9 @@ public class CheckBoxBase {
     }
 
     private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (animator.equals(CheckBoxBase.this.checkAnimator)) {

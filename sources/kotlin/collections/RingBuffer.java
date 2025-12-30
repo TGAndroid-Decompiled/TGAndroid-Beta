@@ -51,18 +51,14 @@ final class RingBuffer extends AbstractList implements RandomAccess {
             private int index;
 
             {
-                int i;
                 this.count = RingBuffer.this.size();
-                i = RingBuffer.this.startIndex;
-                this.index = i;
+                this.index = RingBuffer.this.startIndex;
             }
 
             @Override
             protected void computeNext() {
-                Object[] objArr;
                 if (this.count != 0) {
-                    objArr = RingBuffer.this.buffer;
-                    setNext(objArr[this.index]);
+                    setNext(RingBuffer.this.buffer[this.index]);
                     this.index = (this.index + 1) % RingBuffer.this.capacity;
                     this.count--;
                     return;
@@ -102,12 +98,12 @@ final class RingBuffer extends AbstractList implements RandomAccess {
     public final RingBuffer expanded(int i) {
         Object[] array;
         int i2 = this.capacity;
-        int coerceAtMost = RangesKt.coerceAtMost(i2 + (i2 >> 1) + 1, i);
+        int iCoerceAtMost = RangesKt.coerceAtMost(i2 + (i2 >> 1) + 1, i);
         if (this.startIndex == 0) {
-            array = Arrays.copyOf(this.buffer, coerceAtMost);
+            array = Arrays.copyOf(this.buffer, iCoerceAtMost);
             Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
         } else {
-            array = toArray(new Object[coerceAtMost]);
+            array = toArray(new Object[iCoerceAtMost]);
         }
         return new RingBuffer(array, size());
     }

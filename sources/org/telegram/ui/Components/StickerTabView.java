@@ -72,7 +72,7 @@ public class StickerTabView extends FrameLayout {
         textView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
-                StickerTabView.this.lambda$new$0(view, i3, i4, i5, i6, i7, i8, i9, i10);
+                this.f$0.lambda$new$0(view, i3, i4, i5, i6, i7, i8, i9, i10);
             }
         });
         this.textView.setLines(1);
@@ -160,9 +160,9 @@ public class StickerTabView extends FrameLayout {
                 valueAnimator.removeAllListeners();
                 this.dragOffsetAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.dragOffset, 0.0f);
-            this.dragOffsetAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.dragOffset, 0.0f);
+            this.dragOffsetAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     StickerTabView.this.dragOffset = ((Float) valueAnimator2.getAnimatedValue()).floatValue();

@@ -23,7 +23,6 @@ import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
@@ -40,7 +39,6 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.AboutLinkCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
@@ -143,10 +141,10 @@ public abstract class AboutLinkCell extends FrameLayout {
         this.valueTextView.setFocusable(false);
         this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 0.0f, 23.0f, 10.0f));
         this.bottomShadow = new FrameLayout(context);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
         int i = Theme.key_windowBackgroundWhite;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_ATOP));
-        this.bottomShadow.setBackground(mutate);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_ATOP));
+        this.bottomShadow.setBackground(drawableMutate);
         addView(this.bottomShadow, LayoutHelper.createFrame(-1, 12.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         addView(this.container, LayoutHelper.createFrame(-1, -1, 55));
         TextView textView2 = new TextView(context) {
@@ -186,14 +184,14 @@ public abstract class AboutLinkCell extends FrameLayout {
         this.showMoreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AboutLinkCell.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         this.showMoreTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.showMoreTextBackgroundView = new FrameLayout(context);
-        Drawable mutate2 = context.getResources().getDrawable(R.drawable.gradient_left).mutate();
-        this.showMoreBackgroundDrawable = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate2 = context.getResources().getDrawable(R.drawable.gradient_left).mutate();
+        this.showMoreBackgroundDrawable = drawableMutate2;
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.showMoreTextBackgroundView.setBackground(this.showMoreBackgroundDrawable);
         FrameLayout frameLayout2 = this.showMoreTextBackgroundView;
         frameLayout2.setPadding(frameLayout2.getPaddingLeft() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(3.0f));
@@ -212,40 +210,8 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        int x = (int) motionEvent.getX();
-        int y = (int) motionEvent.getY();
-        if (this.showMoreTextView.getVisibility() == 0 && x >= this.showMoreTextBackgroundView.getLeft() && x <= this.showMoreTextBackgroundView.getRight() && y >= this.showMoreTextBackgroundView.getTop() && y <= this.showMoreTextBackgroundView.getBottom()) {
-            return false;
-        }
-        if (this.textLayout != null || this.nextLinesLayouts != null) {
-            if (motionEvent.getAction() == 0 || (this.pressedLink != null && motionEvent.getAction() == 1)) {
-                if (motionEvent.getAction() == 0) {
-                    resetPressedLink();
-                    LinkSpanDrawable hitLink = hitLink(x, y);
-                    if (hitLink != null) {
-                        this.pressedLinkLayout = this.textLayout;
-                        LinkSpanDrawable.LinkCollector linkCollector = this.links;
-                        this.pressedLink = hitLink;
-                        linkCollector.addLink(hitLink);
-                        AndroidUtilities.runOnUIThread(this.longPressedRunnable, ViewConfiguration.getLongPressTimeout());
-                    }
-                } else {
-                    LinkSpanDrawable linkSpanDrawable = this.pressedLink;
-                    if (linkSpanDrawable != null) {
-                        try {
-                            onLinkClick((ClickableSpan) linkSpanDrawable.getSpan(), this.textLayout, this.pressedLinkYOffset);
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                        resetPressedLink();
-                    }
-                }
-            } else if (motionEvent.getAction() == 3) {
-                resetPressedLink();
-            }
-        }
-        return super.onTouchEvent(motionEvent);
+    public boolean onTouchEvent(android.view.MotionEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.AboutLinkCell.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     private void setShowMoreMarginBottom(int i) {
@@ -259,13 +225,13 @@ public abstract class AboutLinkCell extends FrameLayout {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        float pow = ((View) getParent()) == null ? 1.0f : (float) Math.pow(r0.getAlpha(), 2.0d);
+        float fPow = ((View) getParent()) == null ? 1.0f : (float) Math.pow(r0.getAlpha(), 2.0d);
         drawText(canvas);
         float alpha = this.showMoreTextBackgroundView.getAlpha();
         if (alpha > 0.0f) {
             canvas.save();
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (alpha * 255.0f), 31);
-            this.showMoreBackgroundDrawable.setAlpha((int) (pow * 255.0f));
+            this.showMoreBackgroundDrawable.setAlpha((int) (fPow * 255.0f));
             canvas.translate(this.showMoreTextBackgroundView.getLeft(), this.showMoreTextBackgroundView.getTop());
             this.showMoreTextBackgroundView.draw(canvas);
             canvas.restore();
@@ -282,80 +248,79 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     private void drawText(Canvas canvas) {
-        StaticLayout staticLayout;
         int i;
         int i2;
-        StaticLayout staticLayout2;
+        StaticLayout staticLayout;
         canvas.save();
         canvas.clipRect(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f), getWidth() - AndroidUtilities.dp(23.0f), getHeight());
-        int dp = AndroidUtilities.dp(23.0f);
-        this.textX = dp;
+        int iDp = AndroidUtilities.dp(23.0f);
+        this.textX = iDp;
         float f = 0.0f;
-        canvas.translate(dp, 0.0f);
+        canvas.translate(iDp, 0.0f);
         LinkSpanDrawable.LinkCollector linkCollector = this.links;
         if (linkCollector != null && linkCollector.draw(canvas)) {
             invalidate();
         }
-        int dp2 = AndroidUtilities.dp(8.0f);
-        this.textY = dp2;
-        canvas.translate(0.0f, dp2);
+        int iDp2 = AndroidUtilities.dp(8.0f);
+        this.textY = iDp2;
+        canvas.translate(0.0f, iDp2);
         try {
             Theme.profile_aboutTextPaint.linkColor = processColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
-            staticLayout = this.firstThreeLinesLayout;
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (staticLayout != null && this.shouldExpand) {
-            staticLayout.draw(canvas);
-            int lineCount = this.firstThreeLinesLayout.getLineCount() - 1;
-            float lineTop = this.firstThreeLinesLayout.getLineTop(lineCount) + this.firstThreeLinesLayout.getTopPadding();
-            float lineRight = this.firstThreeLinesLayout.getLineRight(lineCount) + (this.needSpace ? this.SPACE : 0.0f);
-            float lineBottom = (this.firstThreeLinesLayout.getLineBottom(lineCount) - this.firstThreeLinesLayout.getLineTop(lineCount)) - this.firstThreeLinesLayout.getBottomPadding();
-            float easeInOutCubic = easeInOutCubic(1.0f - ((float) Math.pow(this.expandT, 0.25d)));
-            if (this.nextLinesLayouts != null) {
-                float f2 = lineRight;
-                int i3 = 0;
-                while (true) {
-                    StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
-                    if (i3 >= staticLayoutArr.length) {
-                        break;
-                    }
-                    StaticLayout staticLayout3 = staticLayoutArr[i3];
-                    if (staticLayout3 != null) {
-                        int save = canvas.save();
-                        Point point = this.nextLinesLayoutsPositions[i3];
-                        if (point != null) {
-                            point.set((int) (this.textX + (f2 * easeInOutCubic)), (int) (this.textY + lineTop + ((1.0f - easeInOutCubic) * lineBottom)));
+            StaticLayout staticLayout2 = this.firstThreeLinesLayout;
+            if (staticLayout2 == null || !this.shouldExpand) {
+                StaticLayout staticLayout3 = this.textLayout;
+                if (staticLayout3 != null) {
+                    staticLayout3.draw(canvas);
+                }
+            } else {
+                staticLayout2.draw(canvas);
+                int lineCount = this.firstThreeLinesLayout.getLineCount() - 1;
+                float lineTop = this.firstThreeLinesLayout.getLineTop(lineCount) + this.firstThreeLinesLayout.getTopPadding();
+                float lineRight = this.firstThreeLinesLayout.getLineRight(lineCount) + (this.needSpace ? this.SPACE : 0.0f);
+                float lineBottom = (this.firstThreeLinesLayout.getLineBottom(lineCount) - this.firstThreeLinesLayout.getLineTop(lineCount)) - this.firstThreeLinesLayout.getBottomPadding();
+                float fEaseInOutCubic = easeInOutCubic(1.0f - ((float) Math.pow(this.expandT, 0.25d)));
+                if (this.nextLinesLayouts != null) {
+                    float lineRight2 = lineRight;
+                    int i3 = 0;
+                    while (true) {
+                        StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
+                        if (i3 >= staticLayoutArr.length) {
+                            break;
                         }
-                        int i4 = this.lastInlineLine;
-                        if (i4 != -1 && i4 <= i3) {
-                            canvas.translate(f, lineTop + lineBottom);
-                            i2 = save;
-                            staticLayout2 = staticLayout3;
-                            i = i3;
-                            canvas.saveLayerAlpha(0.0f, 0.0f, staticLayout3.getWidth(), staticLayout3.getHeight(), (int) (this.expandT * 255.0f), 31);
+                        StaticLayout staticLayout4 = staticLayoutArr[i3];
+                        if (staticLayout4 != null) {
+                            int iSave = canvas.save();
+                            Point point = this.nextLinesLayoutsPositions[i3];
+                            if (point != null) {
+                                point.set((int) (this.textX + (lineRight2 * fEaseInOutCubic)), (int) (this.textY + lineTop + ((1.0f - fEaseInOutCubic) * lineBottom)));
+                            }
+                            int i4 = this.lastInlineLine;
+                            if (i4 != -1 && i4 <= i3) {
+                                canvas.translate(f, lineTop + lineBottom);
+                                i2 = iSave;
+                                staticLayout = staticLayout4;
+                                i = i3;
+                                canvas.saveLayerAlpha(0.0f, 0.0f, staticLayout4.getWidth(), staticLayout4.getHeight(), (int) (this.expandT * 255.0f), 31);
+                            } else {
+                                i2 = iSave;
+                                staticLayout = staticLayout4;
+                                i = i3;
+                                canvas.translate(lineRight2 * fEaseInOutCubic, ((1.0f - fEaseInOutCubic) * lineBottom) + lineTop);
+                            }
+                            staticLayout.draw(canvas);
+                            canvas.restoreToCount(i2);
+                            lineRight2 += staticLayout.getLineRight(0) + this.SPACE;
+                            lineBottom += (staticLayout.getLineBottom(0) + staticLayout.getTopPadding()) - 1;
                         } else {
-                            i2 = save;
-                            staticLayout2 = staticLayout3;
                             i = i3;
-                            canvas.translate(f2 * easeInOutCubic, ((1.0f - easeInOutCubic) * lineBottom) + lineTop);
                         }
-                        staticLayout2.draw(canvas);
-                        canvas.restoreToCount(i2);
-                        f2 += staticLayout2.getLineRight(0) + this.SPACE;
-                        lineBottom += (staticLayout2.getLineBottom(0) + staticLayout2.getTopPadding()) - 1;
-                    } else {
-                        i = i3;
+                        i3 = i + 1;
+                        f = 0.0f;
                     }
-                    i3 = i + 1;
-                    f = 0.0f;
                 }
             }
-            canvas.restore();
-        }
-        StaticLayout staticLayout4 = this.textLayout;
-        if (staticLayout4 != null) {
-            staticLayout4.draw(canvas);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         canvas.restore();
     }
@@ -398,7 +363,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         requestLayout();
     }
 
-    public class AnonymousClass2 implements Runnable {
+    class AnonymousClass2 implements Runnable {
         AnonymousClass2() {
         }
 
@@ -419,13 +384,13 @@ public abstract class AboutLinkCell extends FrameLayout {
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            AboutLinkCell.AnonymousClass2.this.lambda$run$0(clickableSpan, layout, f, url, dialogInterface, i);
+                            this.f$0.lambda$run$0(clickableSpan, layout, f, url, dialogInterface, i);
                         }
                     });
                     builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            AboutLinkCell.AnonymousClass2.this.lambda$run$1(dialogInterface);
+                            this.f$0.lambda$run$1(dialogInterface);
                         }
                     });
                     builder.show();
@@ -467,9 +432,9 @@ public abstract class AboutLinkCell extends FrameLayout {
         }
         StaticLayout staticLayout = this.firstThreeLinesLayout;
         if (staticLayout != null && this.expandT < 1.0f && this.shouldExpand) {
-            LinkSpanDrawable checkTouchTextLayout = checkTouchTextLayout(staticLayout, this.textX, this.textY, i, i2);
-            if (checkTouchTextLayout != null) {
-                return checkTouchTextLayout;
+            LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout = checkTouchTextLayout(staticLayout, this.textX, this.textY, i, i2);
+            if (linkSpanDrawableCheckTouchTextLayout != null) {
+                return linkSpanDrawableCheckTouchTextLayout;
             }
             if (this.nextLinesLayouts != null) {
                 int i3 = 0;
@@ -480,17 +445,17 @@ public abstract class AboutLinkCell extends FrameLayout {
                     }
                     StaticLayout staticLayout2 = staticLayoutArr[i3];
                     Point point = this.nextLinesLayoutsPositions[i3];
-                    LinkSpanDrawable checkTouchTextLayout2 = checkTouchTextLayout(staticLayout2, point.x, point.y, i, i2);
-                    if (checkTouchTextLayout2 != null) {
-                        return checkTouchTextLayout2;
+                    LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout2 = checkTouchTextLayout(staticLayout2, point.x, point.y, i, i2);
+                    if (linkSpanDrawableCheckTouchTextLayout2 != null) {
+                        return linkSpanDrawableCheckTouchTextLayout2;
                     }
                     i3++;
                 }
             }
         }
-        LinkSpanDrawable checkTouchTextLayout3 = checkTouchTextLayout(this.textLayout, this.textX, this.textY, i, i2);
-        if (checkTouchTextLayout3 != null) {
-            return checkTouchTextLayout3;
+        LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout3 = checkTouchTextLayout(this.textLayout, this.textX, this.textY, i, i2);
+        if (linkSpanDrawableCheckTouchTextLayout3 != null) {
+            return linkSpanDrawableCheckTouchTextLayout3;
         }
         return null;
     }
@@ -515,11 +480,11 @@ public abstract class AboutLinkCell extends FrameLayout {
             linkSpanDrawable.setColor(processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider)));
             int spanStart = spannable.getSpanStart(clickableSpanArr[0]);
             int spanEnd = spannable.getSpanEnd(clickableSpanArr[0]);
-            LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
+            LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
             float f2 = i2;
             this.pressedLinkYOffset = f2;
-            obtainNewPath.setCurrentLayout(staticLayout, spanStart, f2);
-            staticLayout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+            linkPathObtainNewPath.setCurrentLayout(staticLayout, spanStart, f2);
+            staticLayout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
             return linkSpanDrawable;
         } catch (Exception e) {
             FileLog.e(e);
@@ -559,7 +524,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         clickableSpan.onClick(this);
     }
 
-    public class AnonymousClass3 extends Browser.Progress {
+    class AnonymousClass3 extends Browser.Progress {
         LoadingDrawable thisLoading;
         final Layout val$layout;
         final ClickableSpan val$pressedLink;
@@ -577,12 +542,12 @@ public abstract class AboutLinkCell extends FrameLayout {
                 AboutLinkCell.this.links.removeLoading(AboutLinkCell.this.currentLoading, true);
             }
             AboutLinkCell aboutLinkCell = AboutLinkCell.this;
-            LoadingDrawable makeLoading = LinkSpanDrawable.LinkCollector.makeLoading(this.val$layout, this.val$pressedLink, this.val$yOffset);
-            this.thisLoading = makeLoading;
-            aboutLinkCell.currentLoading = makeLoading;
+            LoadingDrawable loadingDrawableMakeLoading = LinkSpanDrawable.LinkCollector.makeLoading(this.val$layout, this.val$pressedLink, this.val$yOffset);
+            this.thisLoading = loadingDrawableMakeLoading;
+            aboutLinkCell.currentLoading = loadingDrawableMakeLoading;
             AboutLinkCell aboutLinkCell2 = AboutLinkCell.this;
-            int processColor = aboutLinkCell2.processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, aboutLinkCell2.resourcesProvider));
-            this.thisLoading.setColors(Theme.multAlpha(processColor, 0.8f), Theme.multAlpha(processColor, 1.3f), Theme.multAlpha(processColor, 1.0f), Theme.multAlpha(processColor, 4.0f));
+            int iProcessColor = aboutLinkCell2.processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, aboutLinkCell2.resourcesProvider));
+            this.thisLoading.setColors(Theme.multAlpha(iProcessColor, 0.8f), Theme.multAlpha(iProcessColor, 1.3f), Theme.multAlpha(iProcessColor, 1.0f), Theme.multAlpha(iProcessColor, 4.0f));
             this.thisLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
             AboutLinkCell.this.links.addLoading(this.thisLoading);
         }
@@ -592,7 +557,7 @@ public abstract class AboutLinkCell extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AboutLinkCell.AnonymousClass3.this.lambda$end$0();
+                    this.f$0.lambda$end$0();
                 }
             }, z ? 0L : 350L);
         }
@@ -605,9 +570,9 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     static {
-        int dp = AndroidUtilities.dp(76.0f);
-        COLLAPSED_HEIGHT = dp;
-        MAX_OPEN_HEIGHT = dp;
+        int iDp = AndroidUtilities.dp(76.0f);
+        COLLAPSED_HEIGHT = iDp;
+        MAX_OPEN_HEIGHT = iDp;
         MOST_SPEC = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
     }
 
@@ -624,11 +589,11 @@ public abstract class AboutLinkCell extends FrameLayout {
         }
 
         public float getValue(float f) {
-            float min = Math.min(f, 250.0f);
-            while (min > 0.0f) {
-                float min2 = Math.min(min, 18.0f);
-                step(min2);
-                min -= min2;
+            float fMin = Math.min(f, 250.0f);
+            while (fMin > 0.0f) {
+                float fMin2 = Math.min(fMin, 18.0f);
+                step(fMin2);
+                fMin -= fMin2;
             }
             return this.position;
         }
@@ -656,17 +621,17 @@ public abstract class AboutLinkCell extends FrameLayout {
             if (f2 > 0.0f) {
                 didExtend();
             }
-            float textHeight = textHeight();
-            float min = Math.min(COLLAPSED_HEIGHT, textHeight);
-            Math.abs(AndroidUtilities.lerp(min, textHeight, f2) - AndroidUtilities.lerp(min, textHeight, f));
+            float fTextHeight = textHeight();
+            float fMin = Math.min(COLLAPSED_HEIGHT, fTextHeight);
+            Math.abs(AndroidUtilities.lerp(fMin, fTextHeight, f2) - AndroidUtilities.lerp(fMin, fTextHeight, f));
             this.collapseAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-            float abs = Math.abs(f - f2) * 1250.0f * 2.0f;
+            float fAbs = Math.abs(f - f2) * 1250.0f * 2.0f;
             final SpringInterpolator springInterpolator = new SpringInterpolator(380.0f, 20.17f);
             final AtomicReference atomicReference = new AtomicReference(Float.valueOf(f));
             this.collapseAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AboutLinkCell.this.lambda$updateCollapse$1(atomicReference, f, f2, springInterpolator, valueAnimator2);
+                    this.f$0.lambda$updateCollapse$1(atomicReference, f, f2, springInterpolator, valueAnimator2);
                 }
             });
             this.collapseAnimator.addListener(new AnimatorListenerAdapter() {
@@ -684,7 +649,7 @@ public abstract class AboutLinkCell extends FrameLayout {
                     AboutLinkCell.this.didResizeStart();
                 }
             });
-            this.collapseAnimator.setDuration(abs);
+            this.collapseAnimator.setDuration((long) fAbs);
             this.collapseAnimator.start();
             return;
         }
@@ -694,11 +659,11 @@ public abstract class AboutLinkCell extends FrameLayout {
 
     public void lambda$updateCollapse$1(AtomicReference atomicReference, float f, float f2, SpringInterpolator springInterpolator, ValueAnimator valueAnimator) {
         Float f3 = (Float) valueAnimator.getAnimatedValue();
-        float floatValue = (f3.floatValue() - ((Float) atomicReference.getAndSet(f3)).floatValue()) * 1000.0f * 8.0f;
+        float fFloatValue = (f3.floatValue() - ((Float) atomicReference.getAndSet(f3)).floatValue()) * 1000.0f * 8.0f;
         this.rawCollapseT = AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        float lerp = AndroidUtilities.lerp(f, f2, springInterpolator.getValue(floatValue));
-        this.expandT = lerp;
-        if (lerp > 0.8f && this.container.getBackground() == null) {
+        float fLerp = AndroidUtilities.lerp(f, f2, springInterpolator.getValue(fFloatValue));
+        this.expandT = fLerp;
+        if (fLerp > 0.8f && this.container.getBackground() == null) {
             this.container.setBackground(this.rippleBackground);
         }
         this.showMoreTextBackgroundView.setAlpha(1.0f - this.expandT);
@@ -712,13 +677,13 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     private int updateHeight() {
-        int textHeight = textHeight();
-        float fromHeight = fromHeight();
+        int iTextHeight = textHeight();
+        float fFromHeight = fromHeight();
         if (this.shouldExpand) {
-            textHeight = (int) AndroidUtilities.lerp(fromHeight, textHeight, this.expandT);
+            iTextHeight = (int) AndroidUtilities.lerp(fFromHeight, iTextHeight, this.expandT);
         }
-        setHeight(textHeight);
-        return textHeight;
+        setHeight(iTextHeight);
+        return iTextHeight;
     }
 
     private void setHeight(int i) {
@@ -731,10 +696,10 @@ public abstract class AboutLinkCell extends FrameLayout {
             }
             layoutParams = new RecyclerView.LayoutParams(-1, i);
         } else {
-            r1 = ((ViewGroup.MarginLayoutParams) layoutParams).height != i;
+            z = ((ViewGroup.MarginLayoutParams) layoutParams).height != i;
             ((ViewGroup.MarginLayoutParams) layoutParams).height = i;
         }
-        if (r1) {
+        if (z) {
             setLayoutParams(layoutParams);
         }
     }
@@ -746,18 +711,8 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     private StaticLayout makeTextLayout(CharSequence charSequence, int i) {
-        StaticLayout.Builder obtain;
-        StaticLayout.Builder breakStrategy;
-        StaticLayout.Builder hyphenationFrequency;
-        StaticLayout.Builder alignment;
-        StaticLayout build;
         if (Build.VERSION.SDK_INT >= 24) {
-            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), Theme.profile_aboutTextPaint, Math.max(1, i));
-            breakStrategy = obtain.setBreakStrategy(0);
-            hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
-            alignment = hyphenationFrequency.setAlignment(LocaleController.isRTL ? StaticLayoutEx.ALIGN_RIGHT() : StaticLayoutEx.ALIGN_LEFT());
-            build = alignment.build();
-            return build;
+            return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), Theme.profile_aboutTextPaint, Math.max(1, i)).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(LocaleController.isRTL ? StaticLayoutEx.ALIGN_RIGHT() : StaticLayoutEx.ALIGN_LEFT()).build();
         }
         return new StaticLayout(charSequence, Theme.profile_aboutTextPaint, i, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
@@ -768,17 +723,17 @@ public abstract class AboutLinkCell extends FrameLayout {
         }
         SpannableStringBuilder spannableStringBuilder = this.stringBuilder;
         if (spannableStringBuilder != null && (i != this.lastMaxWidth || z)) {
-            StaticLayout makeTextLayout = makeTextLayout(spannableStringBuilder, i);
-            this.textLayout = makeTextLayout;
-            this.shouldExpand = makeTextLayout.getLineCount() >= 4;
+            StaticLayout staticLayoutMakeTextLayout = makeTextLayout(spannableStringBuilder, i);
+            this.textLayout = staticLayoutMakeTextLayout;
+            this.shouldExpand = staticLayoutMakeTextLayout.getLineCount() >= 4;
             if (this.textLayout.getLineCount() >= 3 && this.shouldExpand) {
-                int max = Math.max(this.textLayout.getLineStart(2), this.textLayout.getLineEnd(2));
-                if (this.stringBuilder.charAt(max - 1) == '\n') {
-                    max--;
+                int iMax = Math.max(this.textLayout.getLineStart(2), this.textLayout.getLineEnd(2));
+                if (this.stringBuilder.charAt(iMax - 1) == '\n') {
+                    iMax--;
                 }
-                int i2 = max - 1;
+                int i2 = iMax - 1;
                 this.needSpace = (this.stringBuilder.charAt(i2) == ' ' || this.stringBuilder.charAt(i2) == '\n') ? false : true;
-                this.firstThreeLinesLayout = makeTextLayout(this.stringBuilder.subSequence(0, max), i);
+                this.firstThreeLinesLayout = makeTextLayout(this.stringBuilder.subSequence(0, iMax), i);
                 this.nextLinesLayouts = new StaticLayout[this.textLayout.getLineCount() - 3];
                 this.nextLinesLayoutsPositions = new Point[this.textLayout.getLineCount() - 3];
                 float lineRight = this.firstThreeLinesLayout.getLineRight(this.firstThreeLinesLayout.getLineCount() - 1) + (this.needSpace ? this.SPACE : 0.0f);
@@ -791,14 +746,14 @@ public abstract class AboutLinkCell extends FrameLayout {
                 for (int i4 = 3; i4 < this.textLayout.getLineCount(); i4++) {
                     int lineStart = this.textLayout.getLineStart(i4);
                     int lineEnd = this.textLayout.getLineEnd(i4);
-                    StaticLayout makeTextLayout2 = makeTextLayout(this.stringBuilder.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd)), i);
+                    StaticLayout staticLayoutMakeTextLayout2 = makeTextLayout(this.stringBuilder.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd)), i);
                     int i5 = i4 - 3;
-                    this.nextLinesLayouts[i5] = makeTextLayout2;
+                    this.nextLinesLayouts[i5] = staticLayoutMakeTextLayout2;
                     this.nextLinesLayoutsPositions[i5] = new Point();
                     if (this.lastInlineLine == -1 && lineRight > (i - this.showMoreTextBackgroundView.getMeasuredWidth()) + this.showMoreTextBackgroundView.getPaddingLeft()) {
                         this.lastInlineLine = i5;
                     }
-                    lineRight += makeTextLayout2.getLineRight(0) + this.SPACE;
+                    lineRight += staticLayoutMakeTextLayout2.getLineRight(0) + this.SPACE;
                 }
                 if (lineRight < (i - this.showMoreTextBackgroundView.getMeasuredWidth()) + this.showMoreTextBackgroundView.getPaddingLeft()) {
                     this.shouldExpand = false;
@@ -811,9 +766,9 @@ public abstract class AboutLinkCell extends FrameLayout {
             this.lastMaxWidth = i;
             this.container.setMinimumHeight(textHeight());
             if (this.shouldExpand && this.firstThreeLinesLayout != null) {
-                int fromHeight = fromHeight() - AndroidUtilities.dp(8.0f);
+                int iFromHeight = fromHeight() - AndroidUtilities.dp(8.0f);
                 StaticLayout staticLayout = this.firstThreeLinesLayout;
-                setShowMoreMarginBottom((((fromHeight - staticLayout.getLineBottom(staticLayout.getLineCount() - 1)) - this.showMoreTextBackgroundView.getPaddingBottom()) - this.showMoreTextView.getPaddingBottom()) - (this.showMoreTextView.getLayout() == null ? 0 : this.showMoreTextView.getLayout().getHeight() - this.showMoreTextView.getLayout().getLineBottom(this.showMoreTextView.getLineCount() - 1)));
+                setShowMoreMarginBottom((((iFromHeight - staticLayout.getLineBottom(staticLayout.getLineCount() - 1)) - this.showMoreTextBackgroundView.getPaddingBottom()) - this.showMoreTextView.getPaddingBottom()) - (this.showMoreTextView.getLayout() == null ? 0 : this.showMoreTextView.getLayout().getHeight() - this.showMoreTextView.getLayout().getLineBottom(this.showMoreTextView.getLineCount() - 1)));
             }
         }
         this.showMoreTextView.setVisibility(this.shouldExpand ? 0 : 8);

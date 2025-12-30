@@ -28,11 +28,11 @@ public final class PeerConnectionDependencies {
         return new Builder(observer);
     }
 
-    public PeerConnection.Observer getObserver() {
+    PeerConnection.Observer getObserver() {
         return this.observer;
     }
 
-    public SSLCertificateVerifier getSSLCertificateVerifier() {
+    SSLCertificateVerifier getSSLCertificateVerifier() {
         return this.sslCertificateVerifier;
     }
 

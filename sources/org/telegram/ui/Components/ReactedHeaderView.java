@@ -73,9 +73,9 @@ public class ReactedHeaderView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
-        Drawable mutate = ContextCompat.getDrawable(context, R.drawable.msg_reactions).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
-        this.iconView.setImageDrawable(mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.msg_reactions).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
+        this.iconView.setImageDrawable(drawableMutate);
         this.iconView.setVisibility(8);
         BackupImageView backupImageView = new BackupImageView(context);
         this.reactView = backupImageView;
@@ -123,7 +123,7 @@ public class ReactedHeaderView extends FrameLayout {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ReactedHeaderView.this.lambda$onAttachedToWindow$5(j, chat, tLObject, tL_error);
+                    this.f$0.lambda$onAttachedToWindow$5(j, chat, tLObject, tL_error);
                 }
             }, 64);
             return;
@@ -160,7 +160,7 @@ public class ReactedHeaderView extends FrameLayout {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ReactedHeaderView.this.lambda$onAttachedToWindow$0(arrayList3);
+                    this.f$0.lambda$onAttachedToWindow$0(arrayList3);
                 }
             };
             if (ChatObject.isChannel(chat)) {
@@ -172,7 +172,7 @@ public class ReactedHeaderView extends FrameLayout {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        ReactedHeaderView.this.lambda$onAttachedToWindow$2(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                        this.f$0.lambda$onAttachedToWindow$2(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
                     }
                 });
                 return;
@@ -182,7 +182,7 @@ public class ReactedHeaderView extends FrameLayout {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    ReactedHeaderView.this.lambda$onAttachedToWindow$4(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                    this.f$0.lambda$onAttachedToWindow$4(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
                 }
             });
         }
@@ -216,7 +216,7 @@ public class ReactedHeaderView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReactedHeaderView.this.lambda$onAttachedToWindow$1(tLObject, list, list2, list3, runnable);
+                this.f$0.lambda$onAttachedToWindow$1(tLObject, list, list2, list3, runnable);
             }
         });
     }
@@ -227,9 +227,9 @@ public class ReactedHeaderView extends FrameLayout {
             for (int i = 0; i < tL_channels_channelParticipants.users.size(); i++) {
                 TLRPC.User user = tL_channels_channelParticipants.users.get(i);
                 MessagesController.getInstance(this.currentAccount).putUser(user, false);
-                int indexOf = list.indexOf(Long.valueOf(user.id));
-                if (!user.self && indexOf >= 0) {
-                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
+                int iIndexOf = list.indexOf(Long.valueOf(user.id));
+                if (!user.self && iIndexOf >= 0) {
+                    list2.add(new UserSeen(user, ((Integer) list3.get(iIndexOf)).intValue()));
                 }
             }
         }
@@ -240,7 +240,7 @@ public class ReactedHeaderView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReactedHeaderView.this.lambda$onAttachedToWindow$3(tLObject, list, list2, list3, runnable);
+                this.f$0.lambda$onAttachedToWindow$3(tLObject, list, list2, list3, runnable);
             }
         });
     }
@@ -251,9 +251,9 @@ public class ReactedHeaderView extends FrameLayout {
             for (int i = 0; i < tL_messages_chatFull.users.size(); i++) {
                 TLRPC.User user = tL_messages_chatFull.users.get(i);
                 MessagesController.getInstance(this.currentAccount).putUser(user, false);
-                int indexOf = list.indexOf(Long.valueOf(user.id));
-                if (!user.self && indexOf >= 0) {
-                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
+                int iIndexOf = list.indexOf(Long.valueOf(user.id));
+                if (!user.self && iIndexOf >= 0) {
+                    list2.add(new UserSeen(user, ((Integer) list3.get(iIndexOf)).intValue()));
                 }
             }
         }
@@ -271,7 +271,7 @@ public class ReactedHeaderView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedHeaderView.this.lambda$loadReactions$7(tLObject, tL_error);
+                this.f$0.lambda$loadReactions$7(tLObject, tL_error);
             }
         }, 64);
     }
@@ -284,23 +284,23 @@ public class ReactedHeaderView extends FrameLayout {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ReactedHeaderView.this.lambda$loadReactions$6(i, tL_messages_messageReactionsList);
+                    this.f$0.lambda$loadReactions$6(i, tL_messages_messageReactionsList);
                 }
             });
         }
     }
 
     public void lambda$loadReactions$6(int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
-        String formatPluralString;
+        String pluralString;
         if (this.seenUsers.isEmpty() || this.seenUsers.size() < i) {
-            formatPluralString = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
+            pluralString = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
         } else {
-            formatPluralString = String.format(LocaleController.getPluralString("Reacted", i), i == this.seenUsers.size() ? String.valueOf(i) : i + "/" + this.seenUsers.size());
+            pluralString = String.format(LocaleController.getPluralString("Reacted", i), i == this.seenUsers.size() ? String.valueOf(i) : i + "/" + this.seenUsers.size());
         }
         if (getMeasuredWidth() > 0) {
             this.fixedWidth = getMeasuredWidth();
         }
-        this.titleView.setText(formatPluralString);
+        this.titleView.setText(pluralString);
         TLRPC.TL_messageReactions tL_messageReactions = this.message.messageOwner.reactions;
         if (tL_messageReactions != null && tL_messageReactions.results.size() == 1 && !tL_messages_messageReactionsList.reactions.isEmpty()) {
             for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(this.currentAccount).getReactionsList()) {
@@ -313,10 +313,14 @@ public class ReactedHeaderView extends FrameLayout {
                     break;
                 }
             }
+            this.iconView.setVisibility(0);
+            this.iconView.setAlpha(0.0f);
+            this.iconView.animate().alpha(1.0f).start();
+        } else {
+            this.iconView.setVisibility(0);
+            this.iconView.setAlpha(0.0f);
+            this.iconView.animate().alpha(1.0f).start();
         }
-        this.iconView.setVisibility(0);
-        this.iconView.setAlpha(0.0f);
-        this.iconView.animate().alpha(1.0f).start();
         Iterator<TLRPC.User> it = tL_messages_messageReactionsList.users.iterator();
         while (it.hasNext()) {
             TLRPC.User next = it.next();

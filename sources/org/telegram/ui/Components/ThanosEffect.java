@@ -58,7 +58,7 @@ public class ThanosEffect extends TextureView {
         return bool == null || !bool.booleanValue();
     }
 
-    public static class ToSet {
+    private static class ToSet {
         public final Bitmap bitmap;
         public Runnable doneCallback;
         public float durationMultiplier;
@@ -136,14 +136,14 @@ public class ThanosEffect extends TextureView {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ThanosEffect.this.invalidate();
+                    thanosEffect2.invalidate();
                 }
             };
             final ThanosEffect thanosEffect3 = ThanosEffect.this;
             thanosEffect.drawThread = new DrawingThread(surfaceTexture, runnable, new Runnable() {
                 @Override
                 public final void run() {
-                    ThanosEffect.access$500(ThanosEffect.this);
+                    ThanosEffect.access$500(thanosEffect3);
                 }
             }, i, i2);
             ThanosEffect.this.drawThread.isEmulator = EmuDetector.with(ThanosEffect.this.getContext()).detect();
@@ -298,7 +298,7 @@ public class ThanosEffect extends TextureView {
         }
     }
 
-    public static class DrawingThread extends DispatchQueue {
+    static class DrawingThread extends DispatchQueue {
         private AtomicBoolean alive;
         private int deltaTimeHandle;
         private int densityHandle;
@@ -479,24 +479,24 @@ public class ThanosEffect extends TextureView {
             }
             ThanosEffect.ensureRunOnUIThread(this.destroy);
             this.destroy = null;
-            Looper myLooper = Looper.myLooper();
-            if (myLooper != null) {
-                myLooper.quit();
+            Looper looperMyLooper = Looper.myLooper();
+            if (looperMyLooper != null) {
+                looperMyLooper.quit();
             }
         }
 
         private void init() {
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
             this.egl = egl10;
-            EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-            this.eglDisplay = eglGetDisplay;
+            EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(0);
+            this.eglDisplay = eGLDisplayEglGetDisplay;
             EGL10 egl102 = this.egl;
-            if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 FileLog.e("ThanosEffect: eglDisplay == egl.EGL_NO_DISPLAY");
                 killInternal();
                 return;
             }
-            if (!egl102.eglInitialize(eglGetDisplay, new int[2])) {
+            if (!egl102.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
                 FileLog.e("ThanosEffect: failed eglInitialize");
                 killInternal();
                 return;
@@ -509,60 +509,60 @@ public class ThanosEffect extends TextureView {
             }
             EGLConfig eGLConfig = eGLConfigArr[0];
             this.eglConfig = eGLConfig;
-            EGLContext eglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
-            this.eglContext = eglCreateContext;
-            if (eglCreateContext == null) {
+            EGLContext eGLContextEglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+            this.eglContext = eGLContextEglCreateContext;
+            if (eGLContextEglCreateContext == null) {
                 FileLog.e("ThanosEffect: eglContext == null");
                 killInternal();
                 return;
             }
-            EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
-            this.eglSurface = eglCreateWindowSurface;
-            if (eglCreateWindowSurface == null) {
+            EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
+            this.eglSurface = eGLSurfaceEglCreateWindowSurface;
+            if (eGLSurfaceEglCreateWindowSurface == null) {
                 FileLog.e("ThanosEffect: eglSurface == null");
                 killInternal();
                 return;
             }
-            if (!this.egl.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
+            if (!this.egl.eglMakeCurrent(this.eglDisplay, eGLSurfaceEglCreateWindowSurface, eGLSurfaceEglCreateWindowSurface, this.eglContext)) {
                 FileLog.e("ThanosEffect: failed eglMakeCurrent");
                 killInternal();
                 return;
             }
-            int glCreateShader = GLES20.glCreateShader(35633);
-            int glCreateShader2 = GLES20.glCreateShader(35632);
-            if (glCreateShader == 0 || glCreateShader2 == 0) {
+            int iGlCreateShader = GLES20.glCreateShader(35633);
+            int iGlCreateShader2 = GLES20.glCreateShader(35632);
+            if (iGlCreateShader == 0 || iGlCreateShader2 == 0) {
                 FileLog.e("ThanosEffect: vertexShader == 0 || fragmentShader == 0");
                 killInternal();
                 return;
             }
-            GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(R.raw.thanos_vertex) + "\n// " + Math.random());
-            GLES20.glCompileShader(glCreateShader);
+            GLES20.glShaderSource(iGlCreateShader, AndroidUtilities.readRes(R.raw.thanos_vertex) + "\n// " + Math.random());
+            GLES20.glCompileShader(iGlCreateShader);
             int[] iArr = new int[1];
-            GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+            GLES20.glGetShaderiv(iGlCreateShader, 35713, iArr, 0);
             if (iArr[0] != 1) {
-                FileLog.e("ThanosEffect, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-                GLES20.glDeleteShader(glCreateShader);
+                FileLog.e("ThanosEffect, compile vertex shader error: " + GLES20.glGetShaderInfoLog(iGlCreateShader));
+                GLES20.glDeleteShader(iGlCreateShader);
                 killInternal();
                 return;
             }
-            GLES20.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.thanos_fragment) + "\n// " + Math.random());
-            GLES20.glCompileShader(glCreateShader2);
-            GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
+            GLES20.glShaderSource(iGlCreateShader2, AndroidUtilities.readRes(R.raw.thanos_fragment) + "\n// " + Math.random());
+            GLES20.glCompileShader(iGlCreateShader2);
+            GLES20.glGetShaderiv(iGlCreateShader2, 35713, iArr, 0);
             if (iArr[0] != 1) {
-                FileLog.e("ThanosEffect, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
-                GLES20.glDeleteShader(glCreateShader2);
+                FileLog.e("ThanosEffect, compile fragment shader error: " + GLES20.glGetShaderInfoLog(iGlCreateShader2));
+                GLES20.glDeleteShader(iGlCreateShader2);
                 killInternal();
                 return;
             }
-            int glCreateProgram = GLES20.glCreateProgram();
-            this.drawProgram = glCreateProgram;
-            if (glCreateProgram == 0) {
+            int iGlCreateProgram = GLES20.glCreateProgram();
+            this.drawProgram = iGlCreateProgram;
+            if (iGlCreateProgram == 0) {
                 FileLog.e("ThanosEffect: drawProgram == 0");
                 killInternal();
                 return;
             }
-            GLES20.glAttachShader(glCreateProgram, glCreateShader);
-            GLES20.glAttachShader(this.drawProgram, glCreateShader2);
+            GLES20.glAttachShader(iGlCreateProgram, iGlCreateShader);
+            GLES20.glAttachShader(this.drawProgram, iGlCreateShader2);
             GLES30.glTransformFeedbackVaryings(this.drawProgram, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
             GLES20.glLinkProgram(this.drawProgram);
             GLES20.glGetProgramiv(this.drawProgram, 35714, iArr, 0);
@@ -683,7 +683,7 @@ public class ThanosEffect extends TextureView {
             postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ThanosEffect.DrawingThread.this.lambda$animateGroup$2(animation);
+                    this.f$0.lambda$animateGroup$2(animation);
                 }
             });
         }
@@ -710,7 +710,7 @@ public class ThanosEffect extends TextureView {
             postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ThanosEffect.DrawingThread.this.lambda$animate$3(animation);
+                    this.f$0.lambda$animate$3(animation);
                 }
             });
         }
@@ -756,7 +756,7 @@ public class ThanosEffect extends TextureView {
                 postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ThanosEffect.DrawingThread.this.lambda$animate$5(animation);
+                        this.f$0.lambda$animate$5(animation);
                     }
                 });
             }
@@ -805,7 +805,7 @@ public class ThanosEffect extends TextureView {
             animation.ready = true;
         }
 
-        public class Animation {
+        class Animation {
             private Bitmap bitmap;
             public final int[] buffer;
             public int currentBuffer;
@@ -918,12 +918,12 @@ public class ThanosEffect extends TextureView {
                 if (this.isPhotoEditor) {
                     i4 /= 2;
                 }
-                float max = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
-                this.particlesCount = Utilities.clamp((int) ((this.viewWidth * this.viewHeight) / (max * max)), (int) (i4 * f), 10);
+                float fMax = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
+                this.particlesCount = Utilities.clamp((int) ((this.viewWidth * this.viewHeight) / (fMax * fMax)), (int) (i4 * f), 10);
                 float f2 = this.viewWidth / this.viewHeight;
-                int round = (int) Math.round(Math.sqrt(r6 / f2));
-                this.gridHeight = round;
-                this.gridWidth = Math.round(this.particlesCount / round);
+                int iRound = (int) Math.round(Math.sqrt(r6 / f2));
+                this.gridHeight = iRound;
+                this.gridWidth = Math.round(this.particlesCount / iRound);
                 while (true) {
                     i = this.gridWidth;
                     i2 = this.gridHeight;
@@ -976,9 +976,9 @@ public class ThanosEffect extends TextureView {
             }
 
             public void draw() {
-                long nanoTime = System.nanoTime();
-                double d = this.lastDrawTime < 0 ? 0.0d : (nanoTime - r3) / 1.0E9d;
-                this.lastDrawTime = nanoTime;
+                long jNanoTime = System.nanoTime();
+                double d = this.lastDrawTime < 0 ? 0.0d : (jNanoTime - r3) / 1.0E9d;
+                this.lastDrawTime = jNanoTime;
                 if (this.invalidateMatrix && !this.customMatrix) {
                     this.matrix.reset();
                     this.matrix.postScale(this.viewWidth, this.viewHeight);
@@ -1064,11 +1064,11 @@ public class ThanosEffect extends TextureView {
 
         private void checkGlErrors() {
             while (true) {
-                int glGetError = GLES20.glGetError();
-                if (glGetError == 0) {
+                int iGlGetError = GLES20.glGetError();
+                if (iGlGetError == 0) {
                     return;
                 }
-                FileLog.e("thanos gles error " + glGetError);
+                FileLog.e("thanos gles error " + iGlGetError);
             }
         }
     }

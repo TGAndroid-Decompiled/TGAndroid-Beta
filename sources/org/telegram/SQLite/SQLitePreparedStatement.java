@@ -30,7 +30,7 @@ public class SQLitePreparedStatement {
 
     native void reset(long j);
 
-    public native int step(long j);
+    native int step(long j);
 
     public long getStatementHandle() {
         return this.sqliteStatementHandle;
@@ -88,7 +88,7 @@ public class SQLitePreparedStatement {
         finalizeQuery();
     }
 
-    void checkFinalized() {
+    void checkFinalized() throws SQLiteException {
         if (this.isFinalized) {
             throw new SQLiteException("Prepared query finalized");
         }
@@ -99,9 +99,9 @@ public class SQLitePreparedStatement {
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
-            if (elapsedRealtime > 500) {
-                FileLog.d("sqlite query " + this.query + " took " + elapsedRealtime + "ms");
+            long jElapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
+            if (jElapsedRealtime > 500) {
+                FileLog.d("sqlite query " + this.query + " took " + jElapsedRealtime + "ms");
             }
         }
         try {

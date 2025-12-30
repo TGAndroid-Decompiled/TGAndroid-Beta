@@ -106,7 +106,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         BoostRepository.searchContactsLocally(str, bool != null && bool.booleanValue(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MultiContactsSelectorBottomSheet.this.lambda$loadData$1(str, (List) obj);
+                this.f$0.lambda$loadData$1(str, (List) obj);
             }
         });
     }
@@ -129,7 +129,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
             this.lastRequestId = BoostRepository.searchContacts(str, true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    MultiContactsSelectorBottomSheet.this.lambda$loadData$0(hashSet, (List) obj);
+                    this.f$0.lambda$loadData$0(hashSet, (List) obj);
                 }
             });
         } else {
@@ -176,8 +176,8 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         ArrayList arrayList3 = new ArrayList();
         this.hints = arrayList3;
         this.foundUsers = new ArrayList();
-        HashMap hashMap = new HashMap();
-        this.contactsMap = hashMap;
+        HashMap map = new HashMap();
+        this.contactsMap = map;
         ArrayList arrayList4 = new ArrayList();
         this.contactsLetters = arrayList4;
         this.allSelectedObjects = new LinkedHashMap();
@@ -210,7 +210,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         selectorHeaderCell.setOnCloseClickListener(new Runnable() {
             @Override
             public final void run() {
-                MultiContactsSelectorBottomSheet.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         selectorHeaderCell.setText(getTitle());
@@ -226,9 +226,9 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 MultiContactsSelectorBottomSheet.this.listPaddingTop = getMeasuredHeight() + AndroidUtilities.dp(64.0f);
                 MultiContactsSelectorBottomSheet.this.selectorAdapter.notifyChangedLast();
                 if (this.isKeyboardVisible != MultiContactsSelectorBottomSheet.this.isKeyboardVisible()) {
-                    boolean isKeyboardVisible = MultiContactsSelectorBottomSheet.this.isKeyboardVisible();
-                    this.isKeyboardVisible = isKeyboardVisible;
-                    if (isKeyboardVisible) {
+                    boolean zIsKeyboardVisible = MultiContactsSelectorBottomSheet.this.isKeyboardVisible();
+                    this.isKeyboardVisible = zIsKeyboardVisible;
+                    if (zIsKeyboardVisible) {
                         MultiContactsSelectorBottomSheet.this.scrollToTop(true);
                     }
                 }
@@ -240,7 +240,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         selectorSearchCell.setOnSearchTextChange(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MultiContactsSelectorBottomSheet.this.onSearch((String) obj);
+                this.f$0.onSearch((String) obj);
             }
         });
         selectorSearchCell.setHintText(LocaleController.getString(R.string.Search), false);
@@ -282,7 +282,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                MultiContactsSelectorBottomSheet.this.lambda$new$2(view2);
+                this.f$0.lambda$new$2(view2);
             }
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
@@ -314,7 +314,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
 
             @Override
             public final void onItemClick(View view2, int i8, float f, float f2) {
-                MultiContactsSelectorBottomSheet.this.lambda$new$4(i, view2, i8, f, f2);
+                this.f$0.lambda$new$4(i, view2, i8, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -337,13 +337,13 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         selectorSearchCell.updateSpans(false, hashSet, new Runnable() {
             @Override
             public final void run() {
-                MultiContactsSelectorBottomSheet.this.lambda$new$5();
+                this.f$0.lambda$new$5();
             }
         }, null);
         selectorHeaderCell.setText(getTitle());
         updateActionButton(false);
         arrayList2.addAll(ContactsController.getInstance(this.currentAccount).contacts);
-        hashMap.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
+        map.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
         arrayList4.addAll(ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray);
         arrayList3.addAll(MediaDataController.getInstance(this.currentAccount).hints);
         Boolean bool3 = this.filterBots;
@@ -375,7 +375,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
                     @Override
                     public final void run() {
-                        MultiContactsSelectorBottomSheet.this.lambda$new$3();
+                        this.f$0.lambda$new$3();
                     }
                 }, null);
                 updateList(true, false);
@@ -521,7 +521,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
             this.selectorAdapter.setTopSectionClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MultiContactsSelectorBottomSheet.this.lambda$updateSectionCell$6(view);
+                    this.f$0.lambda$updateSectionCell$6(view);
                 }
             });
         } else {
@@ -540,34 +540,34 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
     }
 
     public void updateItems(boolean z, boolean z2) {
-        int i;
-        int i2;
+        int iDp;
+        int iDp2;
         SelectorAdapter selectorAdapter;
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
         if (isSearching()) {
-            i2 = 0;
+            iDp2 = 0;
             for (TLRPC.User user : this.foundUsers) {
-                i2 += AndroidUtilities.dp(56.0f);
+                iDp2 += AndroidUtilities.dp(56.0f);
                 this.items.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))));
             }
         } else {
             if (this.hints.isEmpty()) {
-                i = 0;
+                iDp = 0;
             } else {
                 ArrayList arrayList = new ArrayList();
                 Iterator it = this.hints.iterator();
-                i = 0;
+                iDp = 0;
                 while (it.hasNext()) {
                     TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) it.next()).peer.user_id));
                     if (!user2.self && !user2.bot && !UserObject.isService(user2.id) && !UserObject.isDeleted(user2) && filter(user2)) {
-                        i += AndroidUtilities.dp(56.0f);
+                        iDp += AndroidUtilities.dp(56.0f);
                         arrayList.add(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(user2.id))));
                     }
                 }
                 if (!arrayList.isEmpty()) {
-                    i += AndroidUtilities.dp(32.0f);
+                    iDp += AndroidUtilities.dp(32.0f);
                     this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.GiftPremiumFrequentContacts)));
                     this.items.addAll(arrayList);
                 }
@@ -582,13 +582,13 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                     if (next.id >= 0) {
                         TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(next.id));
                         if (filter(user3)) {
-                            i += AndroidUtilities.dp(56.0f);
+                            iDp += AndroidUtilities.dp(56.0f);
                             arrayList2.add(SelectorAdapter.Item.asUser(user3, this.selectedIds.contains(Long.valueOf(user3.id))));
                         }
                     }
                 }
                 if (!arrayList2.isEmpty()) {
-                    i += AndroidUtilities.dp(32.0f);
+                    iDp += AndroidUtilities.dp(32.0f);
                     this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.SearchApps)));
                     this.items.addAll(arrayList2);
                 }
@@ -601,25 +601,25 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                         if (tL_contact.user_id != clientUserId) {
                             TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_contact.user_id));
                             if (filter(user4)) {
-                                i += AndroidUtilities.dp(56.0f);
+                                iDp += AndroidUtilities.dp(56.0f);
                                 arrayList3.add(SelectorAdapter.Item.asUser(user4, this.selectedIds.contains(Long.valueOf(user4.id))));
                             }
                         }
                     }
                     if (!arrayList3.isEmpty()) {
-                        i += AndroidUtilities.dp(32.0f);
+                        iDp += AndroidUtilities.dp(32.0f);
                         this.items.add(SelectorAdapter.Item.asLetter(str.toUpperCase()));
                         this.items.addAll(arrayList3);
                     }
                 }
             }
-            i2 = i;
+            iDp2 = iDp;
         }
         if (this.items.isEmpty()) {
             this.items.add(SelectorAdapter.Item.asNoUsers());
-            i2 += AndroidUtilities.dp(150.0f);
+            iDp2 += AndroidUtilities.dp(150.0f);
         }
-        this.items.add(SelectorAdapter.Item.asPad(Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - i2)));
+        this.items.add(SelectorAdapter.Item.asPad(Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - iDp2)));
         updateSectionCell(z);
         if (!z2 || (selectorAdapter = this.selectorAdapter) == null) {
             return;

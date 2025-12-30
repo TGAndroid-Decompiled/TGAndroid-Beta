@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
@@ -52,11 +51,11 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
     private int urlSearchLength;
 
     public FeaturedStickerSetInfoCell(Context context, int i, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        FrameLayout.LayoutParams layoutParamsCreateFrame;
+        FrameLayout.LayoutParams layoutParamsCreateFrame2;
+        FrameLayout.LayoutParams layoutParamsCreateFrame3;
+        FrameLayout.LayoutParams layoutParamsCreateFrame4;
         super(context);
-        FrameLayout.LayoutParams createFrame;
-        FrameLayout.LayoutParams createFrame2;
-        FrameLayout.LayoutParams createFrame3;
-        FrameLayout.LayoutParams createFrame4;
         this.currentAccount = UserConfig.selectedAccount;
         this.paint = new Paint(1);
         this.canAddRemove = z2;
@@ -71,11 +70,11 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         textView2.setEllipsize(truncateAt);
         this.nameTextView.setSingleLine(true);
         if (z) {
-            createFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 8.0f, 40.0f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 8.0f, 40.0f, 0.0f);
         } else {
-            createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, i, 8.0f, 40.0f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -2.0f, 51, i, 8.0f, 40.0f, 0.0f);
         }
-        addView(this.nameTextView, createFrame);
+        addView(this.nameTextView, layoutParamsCreateFrame);
         TextView textView3 = new TextView(context);
         this.infoTextView = textView3;
         textView3.setTextColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
@@ -83,22 +82,22 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         this.infoTextView.setEllipsize(truncateAt);
         this.infoTextView.setSingleLine(true);
         if (z) {
-            createFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 30.0f, 100.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 30.0f, 100.0f, 0.0f);
         } else {
-            createFrame2 = LayoutHelper.createFrame(-2, -2.0f, 51, i, 30.0f, 100.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrame(-2, -2.0f, 51, i, 30.0f, 100.0f, 0.0f);
         }
-        addView(this.infoTextView, createFrame2);
+        addView(this.infoTextView, layoutParamsCreateFrame2);
         if (z2) {
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
             progressButton.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             this.addButton.setText(LocaleController.getString(R.string.Add));
             if (z) {
-                createFrame3 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
+                layoutParamsCreateFrame3 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
             } else {
-                createFrame3 = LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f);
+                layoutParamsCreateFrame3 = LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f);
             }
-            addView(this.addButton, createFrame3);
+            addView(this.addButton, layoutParamsCreateFrame3);
             TextView textView4 = new TextView(context);
             this.delButton = textView4;
             textView4.setGravity(17);
@@ -107,11 +106,11 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             this.delButton.setTypeface(AndroidUtilities.bold());
             this.delButton.setText(LocaleController.getString(R.string.StickersRemove));
             if (z) {
-                createFrame4 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
+                layoutParamsCreateFrame4 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
             } else {
-                createFrame4 = LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f);
+                layoutParamsCreateFrame4 = LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f);
             }
-            addView(this.delButton, createFrame4);
+            addView(this.delButton, layoutParamsCreateFrame4);
         }
         setWillNotDraw(false);
         updateColors();
@@ -218,13 +217,13 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 AnimatorSet animatorSet3 = this.animatorSet;
                 TextView textView = this.delButton;
                 Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, this.isInstalled ? 1.0f : 0.0f);
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, this.isInstalled ? 1.0f : 0.0f);
                 TextView textView2 = this.delButton;
                 Property property2 = View.SCALE_X;
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, this.isInstalled ? 1.0f : 0.0f);
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, this.isInstalled ? 1.0f : 0.0f);
                 TextView textView3 = this.delButton;
                 Property property3 = View.SCALE_Y;
-                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, this.isInstalled ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, this.isInstalled ? 0.0f : 1.0f));
+                animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, this.isInstalled ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, this.isInstalled ? 0.0f : 1.0f));
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
@@ -287,41 +286,8 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        boolean z = this.isUnread;
-        if (z || this.unreadProgress != 0.0f) {
-            if (z) {
-                float f = this.unreadProgress;
-                if (f != 1.0f) {
-                    float f2 = f + 0.16f;
-                    this.unreadProgress = f2;
-                    if (f2 > 1.0f) {
-                        this.unreadProgress = 1.0f;
-                    } else {
-                        invalidate();
-                    }
-                    this.paint.setColor(getThemedColor(Theme.key_featuredStickers_unread));
-                    canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.unreadProgress, this.paint);
-                }
-            }
-            if (!z) {
-                float f3 = this.unreadProgress;
-                if (f3 != 0.0f) {
-                    float f4 = f3 - 0.16f;
-                    this.unreadProgress = f4;
-                    if (f4 < 0.0f) {
-                        this.unreadProgress = 0.0f;
-                    } else {
-                        invalidate();
-                    }
-                }
-            }
-            this.paint.setColor(getThemedColor(Theme.key_featuredStickers_unread));
-            canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.unreadProgress, this.paint);
-        }
-        if (this.needDivider) {
-            canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, Theme.getThemePaint("paintDivider", this.resourcesProvider));
-        }
+    protected void onDraw(android.graphics.Canvas r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.FeaturedStickerSetInfoCell.onDraw(android.graphics.Canvas):void");
     }
 
     public void updateColors() {

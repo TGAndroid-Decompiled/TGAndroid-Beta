@@ -29,11 +29,11 @@ public class NotificationDismissReceiver extends BroadcastReceiver {
                 return;
             }
             FileLog.d("set dismissDate of " + longExtra + " to " + intExtra2);
-            SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(intExtra).edit();
+            SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(intExtra).edit();
             StringBuilder sb = new StringBuilder();
             sb.append("dismissDate");
             sb.append(longExtra);
-            edit.putInt(sb.toString(), intExtra2).commit();
+            editorEdit.putInt(sb.toString(), intExtra2).commit();
         }
     }
 }

@@ -6,9 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
-import android.os.Build;
 import android.text.TextPaint;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -74,15 +72,13 @@ public class CropRotationWheel extends FrameLayout {
         this.mirrorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropRotationWheel.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         this.mirrorButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                boolean lambda$new$1;
-                lambda$new$1 = CropRotationWheel.this.lambda$new$1(view);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(view);
             }
         });
         this.mirrorButton.setContentDescription(LocaleController.getString(R.string.AccDescrMirror));
@@ -95,7 +91,7 @@ public class CropRotationWheel extends FrameLayout {
         this.aspectRatioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropRotationWheel.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         this.aspectRatioButton.setVisibility(8);
@@ -109,7 +105,7 @@ public class CropRotationWheel extends FrameLayout {
         this.rotation90Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropRotationWheel.this.lambda$new$3(view);
+                this.f$0.lambda$new$3(view);
             }
         });
         this.rotation90Button.setContentDescription(LocaleController.getString(R.string.AccDescrRotate));
@@ -192,52 +188,8 @@ public class CropRotationWheel extends FrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        float x = motionEvent.getX();
-        if (actionMasked == 0) {
-            this.prevX = x;
-            RotationWheelListener rotationWheelListener = this.rotationListener;
-            if (rotationWheelListener != null) {
-                rotationWheelListener.onStart();
-            }
-        } else if (actionMasked == 1 || actionMasked == 3) {
-            RotationWheelListener rotationWheelListener2 = this.rotationListener;
-            if (rotationWheelListener2 != null) {
-                rotationWheelListener2.onEnd(this.rotation);
-            }
-            AndroidUtilities.makeAccessibilityAnnouncement(String.format("%.1f°", Float.valueOf(this.rotation)));
-        } else if (actionMasked == 2) {
-            float max = Math.max(-45.0f, Math.min(45.0f, this.rotation + ((float) ((((this.prevX - x) / AndroidUtilities.density) / 3.141592653589793d) / 1.649999976158142d))));
-            if (Build.VERSION.SDK_INT >= 27) {
-                try {
-                    if (Math.abs(max - 45.0f) < 0.001f) {
-                        if (Math.abs(this.rotation - 45.0f) < 0.001f) {
-                        }
-                        performHapticFeedback(3, 1);
-                    }
-                    if (Math.abs(max - (-45.0f)) >= 0.001f || Math.abs(this.rotation - (-45.0f)) < 0.001f) {
-                        if (Math.floor(this.rotation / 2.5f) != Math.floor(max / 2.5f)) {
-                            AndroidUtilities.vibrateCursor(this);
-                        }
-                    }
-                    performHapticFeedback(3, 1);
-                } catch (Exception unused) {
-                }
-            }
-            if (Math.abs(max - this.rotation) > 0.001d) {
-                if (Math.abs(max) < 0.05d) {
-                    max = 0.0f;
-                }
-                setRotation(max, false);
-                RotationWheelListener rotationWheelListener3 = this.rotationListener;
-                if (rotationWheelListener3 != null) {
-                    rotationWheelListener3.onChange(this.rotation);
-                }
-                this.prevX = x;
-            }
-        }
-        return true;
+    public boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Crop.CropRotationWheel.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     @Override
@@ -246,18 +198,18 @@ public class CropRotationWheel extends FrameLayout {
         int width = getWidth();
         int height = getHeight();
         float f = ((-this.rotation) * 2.0f) % 5.0f;
-        int floor = (int) Math.floor(r0 / 5.0f);
+        int iFloor = (int) Math.floor(r0 / 5.0f);
         int i = 0;
         while (i < 16) {
             Paint paint = this.whitePaint;
-            if (i < floor || (i == 0 && f < 0.0f)) {
+            if (i < iFloor || (i == 0 && f < 0.0f)) {
                 paint = this.bluePaint;
             }
             int i2 = i;
-            drawLine(canvas, i, f, width, height, i == floor || (i == 0 && floor == -1), paint);
+            drawLine(canvas, i, f, width, height, i == iFloor || (i == 0 && iFloor == -1), paint);
             if (i2 != 0) {
                 int i3 = -i2;
-                drawLine(canvas, i3, f, width, height, i3 == floor + 1, i3 > floor ? this.bluePaint : this.whitePaint);
+                drawLine(canvas, i3, f, width, height, i3 == iFloor + 1, i3 > iFloor ? this.bluePaint : this.whitePaint);
             }
             i = i2 + 1;
         }
@@ -271,18 +223,18 @@ public class CropRotationWheel extends FrameLayout {
     }
 
     protected void drawLine(Canvas canvas, int i, float f, int i2, int i3, boolean z, Paint paint) {
-        int dp = (int) ((i2 / 2.0f) - AndroidUtilities.dp(70.0f));
-        int cos = (i2 / 2) + ((int) (dp * Math.cos(Math.toRadians(90.0f - ((i * 5) + f)))));
-        float abs = Math.abs(r8) / dp;
-        int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
+        int iDp = (int) ((i2 / 2.0f) - AndroidUtilities.dp(70.0f));
+        int iCos = (i2 / 2) + ((int) (iDp * Math.cos(Math.toRadians(90.0f - ((i * 5) + f)))));
+        float fAbs = Math.abs(r8) / iDp;
+        int iMin = Math.min(255, Math.max(0, (int) ((1.0f - (fAbs * fAbs)) * 255.0f)));
         if (z) {
             paint = this.bluePaint;
         }
         Paint paint2 = paint;
-        paint2.setAlpha(min);
+        paint2.setAlpha(iMin);
         int i4 = z ? 4 : 2;
-        int dp2 = AndroidUtilities.dp(z ? 16.0f : 12.0f);
+        int iDp2 = AndroidUtilities.dp(z ? 16.0f : 12.0f);
         int i5 = i4 / 2;
-        canvas.drawRect(cos - i5, (i3 - dp2) / 2, cos + i5, (i3 + dp2) / 2, paint2);
+        canvas.drawRect(iCos - i5, (i3 - iDp2) / 2, iCos + i5, (i3 + iDp2) / 2, paint2);
     }
 }

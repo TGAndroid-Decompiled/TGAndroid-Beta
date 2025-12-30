@@ -24,7 +24,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     }
 
     public TextPaintImageReceiverSpan(View view, TLRPC.Document document, Object obj, int i, int i2, boolean z, boolean z2) {
-        String format = String.format(Locale.US, "%d_%d_i", Integer.valueOf(i), Integer.valueOf(i2));
+        String str = String.format(Locale.US, "%d_%d_i", Integer.valueOf(i), Integer.valueOf(i2));
         this.width = i;
         this.height = i2;
         ImageReceiver imageReceiver = new ImageReceiver(view);
@@ -38,8 +38,8 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
                 }
 
                 @Override
-                public void didSetImageBitmap(int i3, String str, Drawable drawable) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
+                public void didSetImageBitmap(int i3, String str2, Drawable drawable) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str2, drawable);
                 }
 
                 @Override
@@ -48,7 +48,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
                 }
             });
         }
-        this.imageReceiver.setImage(ImageLocation.getForDocument(document), format, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), format, -1L, null, obj, 1);
+        this.imageReceiver.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), str, -1L, null, obj, 1);
         this.alignTop = z;
     }
 
@@ -102,21 +102,21 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         if (fontMetricsInt != null) {
             if (this.alignTop) {
-                int dp = (fontMetricsInt.descent - fontMetricsInt.ascent) - AndroidUtilities.dp(4.0f);
-                int i3 = this.height - dp;
+                int iDp = (fontMetricsInt.descent - fontMetricsInt.ascent) - AndroidUtilities.dp(4.0f);
+                int i3 = this.height - iDp;
                 fontMetricsInt.descent = i3;
                 fontMetricsInt.bottom = i3;
-                int i4 = 0 - dp;
+                int i4 = 0 - iDp;
                 fontMetricsInt.ascent = i4;
                 fontMetricsInt.top = i4;
             } else {
-                int dp2 = ((-this.height) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = dp2;
-                fontMetricsInt.top = dp2;
+                int iDp2 = ((-this.height) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = iDp2;
+                fontMetricsInt.top = iDp2;
                 int i5 = this.height;
-                int dp3 = (i5 - (i5 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = dp3;
-                fontMetricsInt.bottom = dp3;
+                int iDp3 = (i5 - (i5 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = iDp3;
+                fontMetricsInt.bottom = iDp3;
             }
         }
         return this.width;
@@ -128,8 +128,8 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         if (this.alignTop) {
             this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
         } else {
-            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
+            int iDp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((iDp - r4) / 2), this.width, this.height);
         }
         this.imageReceiver.draw(canvas);
         canvas.restore();

@@ -130,7 +130,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
             @Override
             public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                AuctionBidSheet.this.onColorFactorChanged(i, f, f2, factorAnimator);
+                this.f$0.onColorFactorChanged(i, f, f2, factorAnimator);
             }
         };
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -143,7 +143,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
             @Override
             public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                AuctionBidSheet.this.onColorFactorChanged(i, f, f2, factorAnimator);
+                this.f$0.onColorFactorChanged(i, f, f2, factorAnimator);
             }
         }, cubicBezierInterpolator, 380L);
         this.spanRefStars = new ColoredImageSpan[1];
@@ -153,17 +153,17 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         this.giftId = j;
         this.centerTitle = true;
         this.topPadding = 0.2f;
-        GiftAuctionController.Auction subscribeToGiftAuction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j, this);
+        GiftAuctionController.Auction auctionSubscribeToGiftAuction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j, this);
         this.timer = new CountdownTimer(new CountdownTimer.Callback() {
             @Override
             public final void onTimerUpdate(long j2) {
-                AuctionBidSheet.this.updateCountdownCell(j2);
+                this.f$0.updateCountdownCell(j2);
             }
         });
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(12.0f);
         fixNavigationBar();
-        AuctionJoinSheet.initActionBar(this.actionBar, context, resourcesProvider, this.currentAccount, subscribeToGiftAuction.gift);
+        AuctionJoinSheet.initActionBar(this.actionBar, context, resourcesProvider, this.currentAccount, auctionSubscribeToGiftAuction.gift);
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -209,13 +209,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         linearLayout2.setOrientation(0);
         InfoCell infoCell = new InfoCell(context, resourcesProvider);
         this.minimumBidCell = infoCell;
-        int dp = AndroidUtilities.dp(12.0f);
+        int iDp = AndroidUtilities.dp(12.0f);
         int i = Theme.key_windowBackgroundGray;
-        infoCell.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, getThemedColor(i), ColorUtils.compositeColors(getThemedColor(Theme.key_listSelector), getThemedColor(i))));
+        infoCell.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, getThemedColor(i), ColorUtils.compositeColors(getThemedColor(Theme.key_listSelector), getThemedColor(i))));
         infoCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AuctionBidSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         infoCell.titleView.setText(LocaleController.getString(R.string.Gift2AuctionBidInfoMinimumBid));
@@ -233,7 +233,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         linearLayout2.addView(new View(context), LayoutHelper.createLinear(10, -1, 0.0f));
         linearLayout2.addView(infoCell3, LayoutHelper.createLinear(0, -1, 1.0f));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, 56, 16.0f, 0.0f, 16.0f, 15.0f));
-        if (subscribeToGiftAuction.auctionUserState.acquired_count > 0) {
+        if (auctionSubscribeToGiftAuction.auctionUserState.acquired_count > 0) {
             final boolean[] zArr = new boolean[1];
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
             linksTextView.setGravity(17);
@@ -244,12 +244,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             linksTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.this.lambda$new$2(zArr, resourcesProvider, view);
+                    this.f$0.lambda$new$2(zArr, resourcesProvider, view);
                 }
             });
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(subscribeToGiftAuction.giftDocumentId, linksTextView.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
-            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", subscribeToGiftAuction.auctionUserState.acquired_count, spannableStringBuilder), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auctionSubscribeToGiftAuction.giftDocumentId, linksTextView.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", auctionSubscribeToGiftAuction.auctionUserState.acquired_count, spannableStringBuilder), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
             ScaleStateListAnimator.apply(linksTextView, 0.02f, 1.5f);
             linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 16.0f, 4.0f, 16.0f, 4.0f));
         }
@@ -266,7 +266,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         headerCell.setOnWidthUpdateListener(new Runnable() {
             @Override
             public final void run() {
-                AuctionBidSheet.this.lambda$new$3();
+                this.f$0.lambda$new$3();
             }
         });
         headerCell.addView(animatedTextView, LayoutHelper.createFrame(-1, 17.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
@@ -308,12 +308,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             }
         };
         this.buttonView = buttonWithCounterView;
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i6 = createFrame.leftMargin;
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i6 = layoutParamsCreateFrame.leftMargin;
         int i7 = this.backgroundPaddingLeft;
-        createFrame.leftMargin = i6 + i7;
-        createFrame.rightMargin += i7;
-        this.containerView.addView(buttonWithCounterView, createFrame);
+        layoutParamsCreateFrame.leftMargin = i6 + i7;
+        layoutParamsCreateFrame.rightMargin += i7;
+        this.containerView.addView(buttonWithCounterView, layoutParamsCreateFrame);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i8 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i8, 0, i8, AndroidUtilities.dp(64.0f));
@@ -323,11 +323,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                 AuctionBidSheet.lambda$new$5(view, i9);
             }
         });
-        long j2 = subscribeToGiftAuction.auctionUserState.bid_amount;
+        long j2 = auctionSubscribeToGiftAuction.auctionUserState.bid_amount;
         if (j2 > 0) {
             this.slider.setValue((int) j2);
         } else {
-            this.slider.setValue((int) subscribeToGiftAuction.getMinimumBid());
+            this.slider.setValue((int) auctionSubscribeToGiftAuction.getMinimumBid());
         }
         updateTable(false);
         this.recyclerListView.setOverScrollMode(2);
@@ -365,7 +365,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(this.currentAccount).getOrRequestAcquiredGifts(this.giftId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AuctionBidSheet.this.lambda$new$1(zArr, resourcesProvider, (List) obj);
+                this.f$0.lambda$new$1(zArr, resourcesProvider, (List) obj);
             }
         });
     }
@@ -475,20 +475,20 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         if (this.lastAcquiredCount < j && !this.isFirstCheck && (lastFragment = LaunchActivity.getLastFragment()) != null) {
             long j2 = this.lastRecipientDialogId;
             if (j2 != 0) {
-                final ChatActivity of = ChatActivity.of(j2);
-                Objects.requireNonNull(of);
-                of.whenFullyVisible(new Runnable() {
+                final ChatActivity chatActivityOf = ChatActivity.of(j2);
+                Objects.requireNonNull(chatActivityOf);
+                chatActivityOf.whenFullyVisible(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.startFireworks();
+                        chatActivityOf.startFireworks();
                     }
                 });
-                lastFragment.presentFragment(of);
+                lastFragment.presentFragment(chatActivityOf);
                 Runnable runnable = this.closeParentSheet;
                 if (runnable != null) {
                     runnable.run();
                 }
-                lambda$new$0();
+                dismiss();
             }
         }
         if (peerDialogId != 0) {
@@ -508,13 +508,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         if (this.auction.auctionStateActive != null) {
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             if (this.auction.isUpcoming(currentTime)) {
-                long max = Math.max(0, this.auction.auctionStateActive.start_date - currentTime);
-                this.timer.start(max);
-                updateCountdownCell(max, z);
+                long jMax = Math.max(0, this.auction.auctionStateActive.start_date - currentTime);
+                this.timer.start(jMax);
+                updateCountdownCell(jMax, z);
             } else {
-                long max2 = Math.max(0, this.auction.auctionStateActive.next_round_at - currentTime);
-                this.timer.start(max2);
-                updateCountdownCell(max2, z);
+                long jMax2 = Math.max(0, this.auction.auctionStateActive.next_round_at - currentTime);
+                this.timer.start(jMax2);
+                updateCountdownCell(jMax2, z);
             }
             if (this.animatedEmojiSpan == null && this.auction.gift.sticker != null) {
                 this.animatedEmojiSpan = new AnimatedEmojiSpan(this.auction.gift.sticker.id, this.giftsLeftCell.infoView.getPaint().getFontMetricsInt());
@@ -534,13 +534,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                 i = tL_starGiftAuctionState.current_round == tL_starGiftAuctionState.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound;
             }
             textView.setText(LocaleController.getString(i));
-            int min = Math.min(this.topBidderCells.length, this.auction.auctionStateActive.top_bidders.size());
-            if (min > 0) {
+            int iMin = Math.min(this.topBidderCells.length, this.auction.auctionStateActive.top_bidders.size());
+            if (iMin > 0) {
                 int i2 = 0;
-                while (i2 < min) {
+                while (i2 < iMin) {
                     int i3 = i2 + 1;
                     Long l = this.auction.auctionStateActive.top_bidders.get(i2);
-                    final long longValue = l.longValue();
+                    final long jLongValue = l.longValue();
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l);
                     if (user != null) {
                         this.topBidderCells[i2].setUser(user, z);
@@ -549,7 +549,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                     this.topBidderCells[i2].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AuctionBidSheet.this.lambda$updateTable$7(longValue, view);
+                            this.f$0.lambda$updateTable$7(jLongValue, view);
                         }
                     });
                     i2 = i3;
@@ -593,7 +593,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         if (runnable != null) {
             runnable.run();
         }
-        lambda$new$0();
+        dismiss();
     }
 
     public void onColorFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
@@ -601,11 +601,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     private void updateColors() {
-        int blendARGB = ColorUtils.blendARGB(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), getThemedColor(Theme.key_text_RedBold), this.outbidColor.getFloatValue()), getThemedColor(Theme.key_color_green), this.winningColor.getFloatValue());
-        this.selfBidderHeader.setTextColor(blendARGB);
-        this.selfBidderFutureGift.setTextColor(blendARGB);
-        this.selfBidderCell.placeTextView.setTextColor(blendARGB);
-        if (Theme.setSelectorDrawableColor(this.selfBidderFutureGift.getSizeableBackground(), Theme.multAlpha(blendARGB, 0.15f), false)) {
+        int iBlendARGB = ColorUtils.blendARGB(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), getThemedColor(Theme.key_text_RedBold), this.outbidColor.getFloatValue()), getThemedColor(Theme.key_color_green), this.winningColor.getFloatValue());
+        this.selfBidderHeader.setTextColor(iBlendARGB);
+        this.selfBidderFutureGift.setTextColor(iBlendARGB);
+        this.selfBidderCell.placeTextView.setTextColor(iBlendARGB);
+        if (Theme.setSelectorDrawableColor(this.selfBidderFutureGift.getSizeableBackground(), Theme.multAlpha(iBlendARGB, 0.15f), false)) {
             this.selfBidderFutureGift.invalidate();
         }
     }
@@ -618,9 +618,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.selfBidderHeader.setText(LocaleController.getString(R.string.Gift2AuctionBidStatusFuture), z);
         } else {
             z2 = true;
-            if (bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID) {
-                this.selfBidderHeader.setText(LocaleController.getString(R.string.Gift2AuctionBidStatusOutbid), z);
-            } else if (bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED) {
+            if (bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED) {
                 this.selfBidderHeader.setText(LocaleController.getString(R.string.Gift2AuctionBidStatusOutbid), z);
             } else if (bidStatus == GiftAuctionController.Auction.BidStatus.WINNING) {
                 this.selfBidderHeader.setText(LocaleController.getString(R.string.Gift2AuctionBidStatusWinning), z);
@@ -640,16 +638,16 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     private void updateSelfBidderCell(boolean z) {
         long value = this.slider.getValue();
         int approximatedMyPlace = this.auction.getApproximatedMyPlace();
-        int approximatePlaceFromStars = this.auction.approximatePlaceFromStars(value);
+        int iApproximatePlaceFromStars = this.auction.approximatePlaceFromStars(value);
         this.selfBidderCell.setBid(Math.max(value, this.auction.getCurrentMyBid()), false);
         if (approximatedMyPlace > 0) {
-            approximatePlaceFromStars = Math.min(approximatedMyPlace, approximatePlaceFromStars);
+            iApproximatePlaceFromStars = Math.min(approximatedMyPlace, iApproximatePlaceFromStars);
         }
-        this.selfBidderCell.setPlace(approximatePlaceFromStars, false, z);
+        this.selfBidderCell.setPlace(iApproximatePlaceFromStars, false, z);
         GiftAuctionController.Auction auction = this.auction;
-        if (auction.auctionStateActive != null && approximatePlaceFromStars > 0 && auction.gift.title != null && auction.getBidStatus() == GiftAuctionController.Auction.BidStatus.WINNING && !this.auction.isUpcoming()) {
+        if (auction.auctionStateActive != null && iApproximatePlaceFromStars > 0 && auction.gift.title != null && auction.getBidStatus() == GiftAuctionController.Auction.BidStatus.WINNING && !this.auction.isUpcoming()) {
             GiftAuctionController.Auction auction2 = this.auction;
-            int i = auction2.auctionStateActive.last_gift_num + approximatePlaceFromStars;
+            int i = auction2.auctionStateActive.last_gift_num + iApproximatePlaceFromStars;
             if (i <= auction2.gift.availability_total) {
                 this.selfBidderFutureGift.setText(this.auction.gift.title + " #" + LocaleController.formatNumber(i, ','));
                 return;
@@ -681,7 +679,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.this.lambda$updateButtonText$8(view);
+                    this.f$0.lambda$updateButtonText$8(view);
                 }
             });
             return;
@@ -696,13 +694,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AuctionBidSheet.this.lambda$updateButtonText$9(view);
+                this.f$0.lambda$updateButtonText$9(view);
             }
         });
     }
 
     public void lambda$updateButtonText$8(View view) {
-        lambda$new$0();
+        dismiss();
     }
 
     public void lambda$updateButtonText$9(View view) {
@@ -771,10 +769,10 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.giftId, this);
         this.timer.stop();
-        super.lambda$new$0();
+        super.dismiss();
     }
 
     @Override
@@ -787,7 +785,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionBidSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -845,7 +843,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionBidSheet.this.lambda$sendBid$10(j, (Boolean) obj, (String) obj2);
+                this.f$0.lambda$sendBid$10(j, (Boolean) obj, (String) obj2);
             }
         });
     }
@@ -888,22 +886,22 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
     public void showCustomPlaceABid() {
         Context context = getContext();
-        final Activity findActivity = AndroidUtilities.findActivity(context);
+        final Activity activityFindActivity = AndroidUtilities.findActivity(context);
         final BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (findActivity != null) {
-            findActivity.getCurrentFocus();
+        if (activityFindActivity != null) {
+            activityFindActivity.getCurrentFocus();
         }
         final View[] viewArr = new View[1];
         AlertDialog.Builder builder = new AlertDialog.Builder(context, this.resourcesProvider);
         builder.setTitle(LocaleController.getString(R.string.Gift2AuctionPlaceACustomBid));
         builder.setMessage(LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(this.auction.gift.gifts_per_round)));
-        final Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        final Drawable drawableMutate = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         final EditTextCaption editTextCaption = new EditTextCaption(context, this.resourcesProvider) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                mutate.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
-                mutate.draw(canvas);
+                drawableMutate.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
+                drawableMutate.draw(canvas);
             }
         };
         editTextCaption.setTextSize(1, 18.0f);
@@ -948,7 +946,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         builder.setPositiveButton(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AuctionBidSheet.this.lambda$showCustomPlaceABid$11(editTextCaption, alertDialog, i);
+                this.f$0.lambda$showCustomPlaceABid$11(editTextCaption, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -959,18 +957,18 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         });
         AlertDialog[] alertDialogArr = {builder.create()};
         if (lastFragment != null) {
-            AndroidUtilities.requestAdjustNothing(findActivity, lastFragment.getClassGuid());
+            AndroidUtilities.requestAdjustNothing(activityFindActivity, lastFragment.getClassGuid());
         }
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$13(EditTextCaption.this, lastFragment, findActivity, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$13(editTextCaption, lastFragment, activityFindActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$14(EditTextCaption.this, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$14(editTextCaption, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -983,9 +981,9 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
     public void lambda$showCustomPlaceABid$11(EditTextCaption editTextCaption, AlertDialog alertDialog, int i) {
         try {
-            int parseInt = Integer.parseInt(editTextCaption.getText().toString().trim());
-            sendBid(parseInt);
-            this.slider.setValue(parseInt);
+            int i2 = Integer.parseInt(editTextCaption.getText().toString().trim());
+            sendBid(i2);
+            this.slider.setValue(i2);
             alertDialog.dismiss();
         } catch (Throwable th) {
             AndroidUtilities.shakeView(editTextCaption);
@@ -1005,7 +1003,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         AndroidUtilities.showKeyboard(editTextCaption);
     }
 
-    public static class InfoCell extends FrameLayout {
+    private static class InfoCell extends FrameLayout {
         public final AnimatedTextView infoView;
         public final TextView titleView;
 
@@ -1032,7 +1030,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         }
     }
 
-    public static class BidderCell extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    private static class BidderCell extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private final BackupImageView backupImageView;
         private final AnimatedTextView bidTextView;
         private boolean drawDivider;

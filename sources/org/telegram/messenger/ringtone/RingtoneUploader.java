@@ -45,7 +45,7 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(uploadringtone, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        RingtoneUploader.this.lambda$didReceivedNotification$1(tLObject, tL_error);
+                        this.f$0.lambda$didReceivedNotification$1(tLObject, tL_error);
                     }
                 });
             }
@@ -56,7 +56,7 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                RingtoneUploader.this.lambda$didReceivedNotification$0(tLObject, tL_error);
+                this.f$0.lambda$didReceivedNotification$0(tLObject, tL_error);
             }
         });
     }
@@ -98,7 +98,7 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
             NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    RingtoneUploader.this.lambda$error$2(tL_error);
+                    this.f$0.lambda$error$2(tL_error);
                 }
             });
         }

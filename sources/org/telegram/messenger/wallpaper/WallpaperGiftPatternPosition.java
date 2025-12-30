@@ -17,14 +17,14 @@ public class WallpaperGiftPatternPosition {
         this.matrix = matrix;
     }
 
-    public static WallpaperGiftPatternPosition create(Attributes attributes, float f) {
+    public static WallpaperGiftPatternPosition create(Attributes attributes, float f) throws NumberFormatException {
         try {
-            float parseFloat = Float.parseFloat(attributes.getValue("x"));
-            float parseFloat2 = Float.parseFloat(attributes.getValue("y"));
-            RectF rectF = new RectF(parseFloat, parseFloat2, Float.parseFloat(attributes.getValue("width")) + parseFloat, Float.parseFloat(attributes.getValue("height")) + parseFloat2);
-            Matrix parseTransform = SvgHelper.parseTransform(attributes.getValue("transform"));
-            parseTransform.postScale(f, f);
-            return new WallpaperGiftPatternPosition(rectF, parseTransform);
+            float f2 = Float.parseFloat(attributes.getValue("x"));
+            float f3 = Float.parseFloat(attributes.getValue("y"));
+            RectF rectF = new RectF(f2, f3, Float.parseFloat(attributes.getValue("width")) + f2, Float.parseFloat(attributes.getValue("height")) + f3);
+            Matrix transform = SvgHelper.parseTransform(attributes.getValue("transform"));
+            transform.postScale(f, f);
+            return new WallpaperGiftPatternPosition(rectF, transform);
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -44,12 +44,12 @@ public class WallpaperGiftPatternPosition {
     }
 
     public static WallpaperGiftPatternPosition deserialize(InputSerializedData inputSerializedData) {
-        float readFloat = inputSerializedData.readFloat(true);
-        float readFloat2 = inputSerializedData.readFloat(true);
-        float readFloat3 = inputSerializedData.readFloat(true);
-        float readFloat4 = inputSerializedData.readFloat(true);
+        float f = inputSerializedData.readFloat(true);
+        float f2 = inputSerializedData.readFloat(true);
+        float f3 = inputSerializedData.readFloat(true);
+        float f4 = inputSerializedData.readFloat(true);
         float[] fArr = {inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true), inputSerializedData.readFloat(true)};
-        RectF rectF = new RectF(readFloat, readFloat2, readFloat3 + readFloat, readFloat4 + readFloat2);
+        RectF rectF = new RectF(f, f2, f3 + f, f4 + f2);
         Matrix matrix = new Matrix();
         matrix.setValues(fArr);
         return new WallpaperGiftPatternPosition(rectF, matrix);

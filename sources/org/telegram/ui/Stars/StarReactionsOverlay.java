@@ -82,13 +82,13 @@ public class StarReactionsOverlay extends View {
         this.hideCounterRunnable = new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.this.lambda$new$1(chatActivity);
+                this.f$0.lambda$new$1(chatActivity);
             }
         };
     }
@@ -153,7 +153,7 @@ public class StarReactionsOverlay extends View {
     }
 
     private void checkBalance() {
-        String str;
+        String forcedFirstName;
         if (getMessageObject() != null) {
             final MessageObject messageObject = getMessageObject();
             final StarsController starsController = StarsController.getInstance(this.chatActivity.getCurrentAccount());
@@ -164,15 +164,15 @@ public class StarReactionsOverlay extends View {
             StarsController.getInstance(this.chatActivity.getCurrentAccount()).undoPaidReaction();
             long dialogId = this.chatActivity.getDialogId();
             if (dialogId >= 0) {
-                str = UserObject.getForcedFirstName(this.chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
+                forcedFirstName = UserObject.getForcedFirstName(this.chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
             } else {
                 TLRPC.Chat chat = this.chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
-                str = chat == null ? "" : chat.title;
+                forcedFirstName = chat == null ? "" : chat.title;
             }
-            new StarsIntroActivity.StarsNeededSheet(this.chatActivity.getContext(), this.chatActivity.getResourceProvider(), pendingPaidReactions, 5, str, new Runnable() {
+            new StarsIntroActivity.StarsNeededSheet(this.chatActivity.getContext(), this.chatActivity.getResourceProvider(), pendingPaidReactions, 5, forcedFirstName, new Runnable() {
                 @Override
                 public final void run() {
-                    StarReactionsOverlay.this.lambda$checkBalance$2(starsController, messageObject, pendingPaidReactions);
+                    this.f$0.lambda$checkBalance$2(starsController, messageObject, pendingPaidReactions);
                 }
             }, 0L).show();
         }
@@ -204,7 +204,7 @@ public class StarReactionsOverlay extends View {
             ((ChatMessageCell) this.cell).setInvalidateListener(new Runnable() {
                 @Override
                 public final void run() {
-                    StarReactionsOverlay.this.invalidate();
+                    this.f$0.invalidate();
                 }
             });
         } else if (baseCell3 instanceof ChatActionCell) {
@@ -212,7 +212,7 @@ public class StarReactionsOverlay extends View {
             ((ChatActionCell) this.cell).setInvalidateListener(new Runnable() {
                 @Override
                 public final void run() {
-                    StarReactionsOverlay.this.invalidate();
+                    this.f$0.invalidate();
                 }
             });
         }
@@ -221,9 +221,9 @@ public class StarReactionsOverlay extends View {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        Integer num;
+        Integer numValueOf;
         float f;
-        float f2;
+        float fDp;
         BaseCell baseCell = this.cell;
         if (baseCell instanceof ChatMessageCell) {
             if (!((ChatMessageCell) baseCell).isCellAttachedToWindow()) {
@@ -243,7 +243,7 @@ public class StarReactionsOverlay extends View {
             setMessageCell(null);
             return;
         }
-        float lerp = AndroidUtilities.lerp(1.0f, 1.8f, this.focus);
+        float fLerp = AndroidUtilities.lerp(1.0f, 1.8f, this.focus);
         float clipTop = this.chatActivity.getClipTop();
         float clipBottom = this.chatActivity.getClipBottom();
         canvas.save();
@@ -260,18 +260,18 @@ public class StarReactionsOverlay extends View {
             int[] iArr3 = this.pos2;
             int i3 = (i2 - iArr3[0]) + reactionsLayoutInBubble.x + reactionButton.x;
             int i4 = (iArr2[1] - iArr3[1]) + reactionsLayoutInBubble.y + reactionButton.y;
-            float f3 = i3;
-            float f4 = i4;
-            this.reactionBounds.set(f3, f4, i3 + reactionButton.width, i4 + reactionButton.height);
-            AndroidUtilities.scaleRect(this.reactionBounds, lerp, (reactionButton.width * 0.1f) + f3, (reactionButton.height / 2.0f) + f4);
+            float f2 = i3;
+            float f3 = i4;
+            this.reactionBounds.set(f2, f3, i3 + reactionButton.width, i4 + reactionButton.height);
+            AndroidUtilities.scaleRect(this.reactionBounds, fLerp, (reactionButton.width * 0.1f) + f2, (reactionButton.height / 2.0f) + f3);
             this.shadowPaint.setColor(0);
             this.shadowPaint.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(3.0f), Theme.multAlpha(1426063360, this.focus));
             RectF rectF = this.reactionBounds;
             canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.reactionBounds.height() / 2.0f, this.shadowPaint);
-            canvas.scale(lerp, lerp, f3 + (reactionButton.width * 0.1f), f4 + (reactionButton.height / 2.0f));
-            num = Integer.valueOf(reactionButton.reaction.hashCode());
+            canvas.scale(fLerp, fLerp, f2 + (reactionButton.width * 0.1f), f3 + (reactionButton.height / 2.0f));
+            numValueOf = Integer.valueOf(reactionButton.reaction.hashCode());
         } else {
-            num = null;
+            numValueOf = null;
         }
         int i5 = this.pos[0];
         int[] iArr4 = this.pos2;
@@ -280,52 +280,52 @@ public class StarReactionsOverlay extends View {
         if (baseCell2 instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) baseCell2;
             chatMessageCell.setScrimReaction(null);
-            chatMessageCell.drawReactionsLayout(canvas, 1.0f, num);
+            chatMessageCell.drawReactionsLayout(canvas, 1.0f, numValueOf);
             chatMessageCell.drawReactionsLayoutOverlay(canvas, 1.0f);
-            chatMessageCell.setScrimReaction(num);
+            chatMessageCell.setScrimReaction(numValueOf);
         } else if (baseCell2 instanceof ChatActionCell) {
             ChatActionCell chatActionCell = (ChatActionCell) baseCell2;
             chatActionCell.setScrimReaction(null);
-            chatActionCell.drawReactionsLayout(canvas, true, num);
+            chatActionCell.drawReactionsLayout(canvas, true, numValueOf);
             chatActionCell.drawReactionsLayoutOverlay(canvas, true);
-            chatActionCell.setScrimReaction(num);
+            chatActionCell.setScrimReaction(numValueOf);
         }
         canvas.restore();
         canvas.restore();
         if (reactionButton != null) {
             this.clickBounds.set(this.reactionBounds);
             this.clickBounds.inset(-AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(42.0f));
-            int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
+            int iDp = (int) (AndroidUtilities.dp(90.0f) * fLerp);
             while (i < this.effects.size()) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) this.effects.get(i);
                 if (rLottieDrawable.getCurrentFrame() >= rLottieDrawable.getFramesCount()) {
                     this.effects.remove(i);
                     i--;
                 } else {
-                    float f5 = dp / 2.0f;
-                    rLottieDrawable.setBounds((int) ((this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp)) - f5), (int) (this.reactionBounds.centerY() - f5), (int) (this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp) + f5), (int) (this.reactionBounds.centerY() + f5));
+                    float f4 = iDp / 2.0f;
+                    rLottieDrawable.setBounds((int) ((this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * fLerp)) - f4), (int) (this.reactionBounds.centerY() - f4), (int) (this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * fLerp) + f4), (int) (this.reactionBounds.centerY() + f4));
                     rLottieDrawable.setAlpha((int) (this.focus * 255.0f));
                     rLottieDrawable.draw(canvas);
                 }
                 i++;
             }
-            float centerX = this.reactionBounds.centerX();
-            float dp2 = this.reactionBounds.top - AndroidUtilities.dp(36.0f);
+            float fCenterX = this.reactionBounds.centerX();
+            float fDp2 = this.reactionBounds.top - AndroidUtilities.dp(36.0f);
             canvas.save();
-            float f6 = this.counterAlpha.set(this.counterShown);
+            float f5 = this.counterAlpha.set(this.counterShown);
             if (this.counterShown) {
-                f2 = AndroidUtilities.dp(60.0f);
+                fDp = AndroidUtilities.dp(60.0f);
                 f = 1.0f;
             } else {
                 f = 1.0f;
-                f2 = -AndroidUtilities.dp(30.0f);
+                fDp = -AndroidUtilities.dp(30.0f);
             }
-            canvas.translate(0.0f, f2 * (f - f6));
-            float lerp2 = AndroidUtilities.lerp(this.counterShown ? 1.8f : 1.3f, f, f6);
-            canvas.scale(lerp2, lerp2, centerX, dp2);
-            this.counter.setAlpha((int) (255.0f * f6));
-            this.counter.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(3.5f), Theme.multAlpha(-1442840576, f6));
-            this.counter.setBounds(centerX - AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(48.0f), centerX + AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(24.0f));
+            canvas.translate(0.0f, fDp * (f - f5));
+            float fLerp2 = AndroidUtilities.lerp(this.counterShown ? 1.8f : 1.3f, f, f5);
+            canvas.scale(fLerp2, fLerp2, fCenterX, fDp2);
+            this.counter.setAlpha((int) (255.0f * f5));
+            this.counter.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(3.5f), Theme.multAlpha(-1442840576, f5));
+            this.counter.setBounds(fCenterX - AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(48.0f), fCenterX + AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(24.0f));
             this.counter.draw(canvas);
             canvas.restore();
         }
@@ -382,12 +382,12 @@ public class StarReactionsOverlay extends View {
             this.focusAnimator = null;
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.focus, f);
-        this.focusAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.focus, f);
+        this.focusAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StarReactionsOverlay.this.lambda$focusTo$3(valueAnimator2);
+                this.f$0.lambda$focusTo$3(valueAnimator2);
             }
         });
         this.focusAnimator.addListener(new AnimatorListenerAdapter() {
@@ -440,13 +440,12 @@ public class StarReactionsOverlay extends View {
         AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
         AndroidUtilities.runOnUIThread(this.hideCounterRunnable, 1500L);
         if (z2) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - this.lastRippleTime;
-            if (j < 100) {
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            if (jCurrentTimeMillis - this.lastRippleTime < 100) {
                 this.accumulatedRippleIntensity += 0.5f;
                 return;
             }
-            this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - (((float) (j - 100)) / 200.0f), 1.0f, 0.0f);
+            this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((r0 - 100) / 200.0f), 1.0f, 0.0f);
             if (getMeasuredWidth() == 0 && this.chatActivity.getLayoutContainer() != null) {
                 this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
             } else {
@@ -455,7 +454,7 @@ public class StarReactionsOverlay extends View {
             int[] iArr = this.pos2;
             LaunchActivity.makeRipple(iArr[0] + f, iArr[1] + f2, Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
             this.accumulatedRippleIntensity = 0.0f;
-            this.lastRippleTime = currentTimeMillis;
+            this.lastRippleTime = jCurrentTimeMillis;
         }
     }
 
@@ -468,7 +467,7 @@ public class StarReactionsOverlay extends View {
         focusTo(0.0f, new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.this.lambda$hide$4();
+                this.f$0.lambda$hide$4();
             }
         });
     }

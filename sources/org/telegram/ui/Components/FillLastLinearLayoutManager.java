@@ -65,41 +65,41 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
         RecyclerView.Adapter adapter;
         if (this.listHeight > 0 && (adapter = this.listView.getAdapter()) != null) {
             int itemCount = adapter.getItemCount() - 1;
-            int i = 0;
-            int i2 = 0;
-            for (int i3 = this.skipFirstItem; i3 < itemCount; i3++) {
-                int itemViewType = adapter.getItemViewType(i3);
-                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) this.heights.get(itemViewType, null);
-                if (viewHolder == null) {
-                    viewHolder = adapter.createViewHolder(this.listView, itemViewType);
-                    this.heights.put(itemViewType, viewHolder);
-                    if (viewHolder.itemView.getLayoutParams() == null) {
-                        viewHolder.itemView.setLayoutParams(generateDefaultLayoutParams());
+            int measuredHeight = 0;
+            int measuredHeight2 = 0;
+            for (int i = this.skipFirstItem; i < itemCount; i++) {
+                int itemViewType = adapter.getItemViewType(i);
+                RecyclerView.ViewHolder viewHolderCreateViewHolder = (RecyclerView.ViewHolder) this.heights.get(itemViewType, null);
+                if (viewHolderCreateViewHolder == null) {
+                    viewHolderCreateViewHolder = adapter.createViewHolder(this.listView, itemViewType);
+                    this.heights.put(itemViewType, viewHolderCreateViewHolder);
+                    if (viewHolderCreateViewHolder.itemView.getLayoutParams() == null) {
+                        viewHolderCreateViewHolder.itemView.setLayoutParams(generateDefaultLayoutParams());
                     }
                 }
                 if (this.bind) {
-                    adapter.onBindViewHolder(viewHolder, i3);
+                    adapter.onBindViewHolder(viewHolderCreateViewHolder, i);
                 }
-                RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) viewHolder.itemView.getLayoutParams();
-                viewHolder.itemView.measure(RecyclerView.LayoutManager.getChildMeasureSpec(this.listWidth, getWidthMode(), getPaddingLeft() + getPaddingRight() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, ((ViewGroup.MarginLayoutParams) layoutParams).width, canScrollHorizontally()), RecyclerView.LayoutManager.getChildMeasureSpec(this.listHeight, getHeightMode(), getPaddingTop() + getPaddingBottom() + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin, ((ViewGroup.MarginLayoutParams) layoutParams).height, canScrollVertically()));
-                i += viewHolder.itemView.getMeasuredHeight();
-                if (i3 == 0) {
-                    i2 = viewHolder.itemView.getMeasuredHeight();
+                RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) viewHolderCreateViewHolder.itemView.getLayoutParams();
+                viewHolderCreateViewHolder.itemView.measure(RecyclerView.LayoutManager.getChildMeasureSpec(this.listWidth, getWidthMode(), getPaddingLeft() + getPaddingRight() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, ((ViewGroup.MarginLayoutParams) layoutParams).width, canScrollHorizontally()), RecyclerView.LayoutManager.getChildMeasureSpec(this.listHeight, getHeightMode(), getPaddingTop() + getPaddingBottom() + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin, ((ViewGroup.MarginLayoutParams) layoutParams).height, canScrollVertically()));
+                measuredHeight += viewHolderCreateViewHolder.itemView.getMeasuredHeight();
+                if (i == 0) {
+                    measuredHeight2 = viewHolderCreateViewHolder.itemView.getMeasuredHeight();
                 }
                 if (this.fixedLastItemHeight) {
-                    if (i >= this.listHeight + i2) {
+                    if (measuredHeight >= this.listHeight + measuredHeight2) {
                         break;
                     }
                 } else {
-                    if (i >= this.listHeight) {
+                    if (measuredHeight >= this.listHeight) {
                         break;
                     }
                 }
             }
             if (this.fixedLastItemHeight) {
-                this.lastItemHeight = Math.max(this.minimumHeight, i2 + (((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom()));
+                this.lastItemHeight = Math.max(this.minimumHeight, measuredHeight2 + (((this.listHeight - measuredHeight) - this.additionalHeight) - this.listView.getPaddingBottom()));
             } else {
-                this.lastItemHeight = Math.max(this.minimumHeight, ((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom());
+                this.lastItemHeight = Math.max(this.minimumHeight, ((this.listHeight - measuredHeight) - this.additionalHeight) - this.listView.getPaddingBottom());
             }
         }
     }

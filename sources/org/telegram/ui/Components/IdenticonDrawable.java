@@ -33,9 +33,9 @@ public class IdenticonDrawable extends Drawable {
         byte[] bArr = encryptedChat.key_hash;
         this.data = bArr;
         if (bArr == null) {
-            byte[] calcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(encryptedChat.auth_key);
-            this.data = calcAuthKeyHash;
-            encryptedChat.key_hash = calcAuthKeyHash;
+            byte[] bArrCalcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(encryptedChat.auth_key);
+            this.data = bArrCalcAuthKeyHash;
+            encryptedChat.key_hash = bArrCalcAuthKeyHash;
         }
         invalidateSelf();
     }
@@ -47,34 +47,34 @@ public class IdenticonDrawable extends Drawable {
             return;
         }
         if (bArr.length == 16) {
-            float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
-            float f = 8.0f * floor;
-            float max = Math.max(0.0f, (getBounds().width() - f) / 2.0f);
-            float max2 = Math.max(0.0f, (getBounds().height() - f) / 2.0f);
+            float fFloor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+            float f = 8.0f * fFloor;
+            float fMax = Math.max(0.0f, (getBounds().width() - f) / 2.0f);
+            float fMax2 = Math.max(0.0f, (getBounds().height() - f) / 2.0f);
             int i = 0;
             for (int i2 = 0; i2 < 8; i2++) {
                 for (int i3 = 0; i3 < 8; i3++) {
                     int bits = getBits(i);
                     i += 2;
                     this.paint.setColor(this.colors[Math.abs(bits) % 4]);
-                    float f2 = max + (i3 * floor);
-                    float f3 = i2 * floor;
-                    canvas.drawRect(f2, f3 + max2, f2 + floor, f3 + floor + max2, this.paint);
+                    float f2 = fMax + (i3 * fFloor);
+                    float f3 = i2 * fFloor;
+                    canvas.drawRect(f2, f3 + fMax2, f2 + fFloor, f3 + fFloor + fMax2, this.paint);
                 }
             }
             return;
         }
-        float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
-        float f4 = 12.0f * floor2;
-        float max3 = Math.max(0.0f, (getBounds().width() - f4) / 2.0f);
-        float max4 = Math.max(0.0f, (getBounds().height() - f4) / 2.0f);
+        float fFloor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+        float f4 = 12.0f * fFloor2;
+        float fMax3 = Math.max(0.0f, (getBounds().width() - f4) / 2.0f);
+        float fMax4 = Math.max(0.0f, (getBounds().height() - f4) / 2.0f);
         int i4 = 0;
         for (int i5 = 0; i5 < 12; i5++) {
             for (int i6 = 0; i6 < 12; i6++) {
                 this.paint.setColor(this.colors[Math.abs(getBits(i4)) % 4]);
-                float f5 = max3 + (i6 * floor2);
-                float f6 = i5 * floor2;
-                canvas.drawRect(f5, f6 + max4, f5 + floor2, f6 + floor2 + max4, this.paint);
+                float f5 = fMax3 + (i6 * fFloor2);
+                float f6 = i5 * fFloor2;
+                canvas.drawRect(f5, f6 + fMax4, f5 + fFloor2, f6 + fFloor2 + fMax4, this.paint);
                 i4 += 2;
             }
         }

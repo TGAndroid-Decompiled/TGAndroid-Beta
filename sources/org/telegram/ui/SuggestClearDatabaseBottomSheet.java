@@ -65,7 +65,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SuggestClearDatabaseBottomSheet.this.lambda$new$1(baseFragment, view);
+                this.f$0.lambda$new$1(baseFragment, view);
             }
         });
         ScrollView scrollView = new ScrollView(parentActivity);
@@ -81,12 +81,12 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         builder.setPositiveButton(LocaleController.getString(R.string.CacheClear), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                SuggestClearDatabaseBottomSheet.this.lambda$new$0(baseFragment, alertDialog, i);
+                this.f$0.lambda$new$0(baseFragment, alertDialog, i);
             }
         });
-        AlertDialog create = builder.create();
-        baseFragment.showDialog(create);
-        TextView textView = (TextView) create.getButton(-1);
+        AlertDialog alertDialogCreate = builder.create();
+        baseFragment.showDialog(alertDialogCreate);
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
         if (textView != null) {
             textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }

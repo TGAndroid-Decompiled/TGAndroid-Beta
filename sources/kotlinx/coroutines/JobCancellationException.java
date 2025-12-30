@@ -34,9 +34,9 @@ public final class JobCancellationException extends CancellationException {
     public int hashCode() {
         String message = getMessage();
         Intrinsics.checkNotNull(message);
-        int hashCode = ((message.hashCode() * 31) + this.job.hashCode()) * 31;
+        int iHashCode = ((message.hashCode() * 31) + this.job.hashCode()) * 31;
         Throwable cause = getCause();
-        return hashCode + (cause != null ? cause.hashCode() : 0);
+        return iHashCode + (cause != null ? cause.hashCode() : 0);
     }
 
     @Override

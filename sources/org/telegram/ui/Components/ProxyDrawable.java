@@ -53,9 +53,9 @@ public class ProxyDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j = elapsedRealtime - this.lastUpdateTime;
-        this.lastUpdateTime = elapsedRealtime;
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long j = jElapsedRealtime - this.lastUpdateTime;
+        this.lastUpdateTime = jElapsedRealtime;
         if (!this.isEnabled) {
             setBounds(this.emptyDrawable);
             this.emptyDrawable.draw(canvas);
@@ -69,11 +69,11 @@ public class ProxyDrawable extends Drawable {
             }
             paint.setColor(Theme.getColor(i));
             this.outerPaint.setAlpha((int) ((1.0f - this.connectedAnimationProgress) * 255.0f));
-            this.radOffset = (int) (this.radOffset + (((float) (360 * j)) / 1000.0f));
-            int width = getBounds().width();
-            int height = getBounds().height();
-            int dp = AndroidUtilities.dp(4.0f);
-            this.cicleRect.set((width / 2) - dp, (height / 2) - dp, r0 + dp + dp, r1 + dp + dp);
+            this.radOffset = (int) (this.radOffset + ((360 * j) / 1000.0f));
+            int iWidth = getBounds().width();
+            int iHeight = getBounds().height();
+            int iDp = AndroidUtilities.dp(4.0f);
+            this.cicleRect.set((iWidth / 2) - iDp, (iHeight / 2) - iDp, r0 + iDp + iDp, r1 + iDp + iDp);
             canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
             invalidateSelf();
         }
@@ -86,7 +86,7 @@ public class ProxyDrawable extends Drawable {
         if (z) {
             float f = this.connectedAnimationProgress;
             if (f != 1.0f) {
-                float f2 = f + (((float) j) / 300.0f);
+                float f2 = f + (j / 300.0f);
                 this.connectedAnimationProgress = f2;
                 if (f2 > 1.0f) {
                     this.connectedAnimationProgress = 1.0f;
@@ -100,7 +100,7 @@ public class ProxyDrawable extends Drawable {
         }
         float f3 = this.connectedAnimationProgress;
         if (f3 != 0.0f) {
-            float f4 = f3 - (((float) j) / 300.0f);
+            float f4 = f3 - (j / 300.0f);
             this.connectedAnimationProgress = f4;
             if (f4 < 0.0f) {
                 this.connectedAnimationProgress = 0.0f;

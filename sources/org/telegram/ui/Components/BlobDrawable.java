@@ -71,7 +71,7 @@ public class BlobDrawable {
         this.liteFlag = i2;
     }
 
-    public void generateBlob(float[] fArr, float[] fArr2, int i) {
+    protected void generateBlob(float[] fArr, float[] fArr2, int i) {
         float f = (360.0f / this.N) * 0.05f;
         float f2 = this.maxRadius;
         float f3 = this.minRadius;
@@ -129,21 +129,21 @@ public class BlobDrawable {
                 float[] fArr5 = this.angleNext;
                 float f13 = f12 + (fArr5[i] * f5);
                 float f14 = (fArr4[i3] * f10) + (fArr5[i3] * f6);
-                float min = this.L * (Math.min(f9, f11) + ((Math.max(f9, f11) - Math.min(f9, f11)) / 2.0f)) * this.cubicBezierK;
+                float fMin = this.L * (Math.min(f9, f11) + ((Math.max(f9, f11) - Math.min(f9, f11)) / 2.0f)) * this.cubicBezierK;
                 this.m.reset();
                 this.m.setRotate(f13, f, f2);
                 float[] fArr6 = this.pointStart;
                 fArr6[0] = f;
                 float f15 = f2 - f9;
                 fArr6[1] = f15;
-                fArr6[2] = f + min;
+                fArr6[2] = f + fMin;
                 fArr6[3] = f15;
                 this.m.mapPoints(fArr6);
                 float[] fArr7 = this.pointEnd;
                 fArr7[0] = f;
                 float f16 = f2 - f11;
                 fArr7[1] = f16;
-                fArr7[2] = f - min;
+                fArr7[2] = f - fMin;
                 fArr7[3] = f16;
                 this.m.reset();
                 this.m.setRotate(f14, f, f2);
@@ -206,7 +206,7 @@ public class BlobDrawable {
         float f2 = this.amplitude;
         if (f != f2) {
             float f3 = this.animateAmplitudeDiff;
-            float f4 = f2 + (((float) j) * f3);
+            float f4 = f2 + (j * f3);
             this.amplitude = f4;
             if (f3 > 0.0f) {
                 if (f4 > f) {

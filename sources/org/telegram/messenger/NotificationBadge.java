@@ -312,27 +312,27 @@ public class NotificationBadge {
                 defaultBadger.executeBadge(i);
             } catch (Exception unused) {
             }
-            Uri parse = Uri.parse("content://com.sec.badge/apps?notify=true");
+            Uri uri = Uri.parse("content://com.sec.badge/apps?notify=true");
             ContentResolver contentResolver = ApplicationLoader.applicationContext.getContentResolver();
-            Cursor cursor = null;
+            Cursor cursorQuery = null;
             try {
-                cursor = contentResolver.query(parse, CONTENT_PROJECTION, "package=?", new String[]{NotificationBadge.componentName.getPackageName()}, null);
-                if (cursor != null) {
+                cursorQuery = contentResolver.query(uri, CONTENT_PROJECTION, "package=?", new String[]{NotificationBadge.componentName.getPackageName()}, null);
+                if (cursorQuery != null) {
                     String className = NotificationBadge.componentName.getClassName();
                     boolean z = false;
-                    while (cursor.moveToNext()) {
-                        contentResolver.update(parse, getContentValues(NotificationBadge.componentName, i, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
-                        if (className.equals(cursor.getString(cursor.getColumnIndex("class")))) {
+                    while (cursorQuery.moveToNext()) {
+                        contentResolver.update(uri, getContentValues(NotificationBadge.componentName, i, false), "_id=?", new String[]{String.valueOf(cursorQuery.getInt(0))});
+                        if (className.equals(cursorQuery.getString(cursorQuery.getColumnIndex("class")))) {
                             z = true;
                         }
                     }
                     if (!z) {
-                        contentResolver.insert(parse, getContentValues(NotificationBadge.componentName, i, true));
+                        contentResolver.insert(uri, getContentValues(NotificationBadge.componentName, i, true));
                     }
                 }
-                NotificationBadge.close(cursor);
+                NotificationBadge.close(cursorQuery);
             } catch (Throwable th) {
-                NotificationBadge.close(cursor);
+                NotificationBadge.close(cursorQuery);
                 throw th;
             }
         }
@@ -438,10 +438,10 @@ public class NotificationBadge {
         @Override
         public void executeBadge(int i) {
             try {
-                Object newInstance = Class.forName("android.app.MiuiNotification").newInstance();
-                Field declaredField = newInstance.getClass().getDeclaredField("messageCount");
+                Object objNewInstance = Class.forName("android.app.MiuiNotification").newInstance();
+                Field declaredField = objNewInstance.getClass().getDeclaredField("messageCount");
                 declaredField.setAccessible(true);
-                declaredField.set(newInstance, String.valueOf(i == 0 ? "" : Integer.valueOf(i)));
+                declaredField.set(objNewInstance, String.valueOf(i == 0 ? "" : Integer.valueOf(i)));
             } catch (Throwable unused) {
                 final Intent intent = new Intent("android.intent.action.APPLICATION_MESSAGE_UPDATE");
                 intent.putExtra("android.intent.extra.update_application_component_name", NotificationBadge.componentName.getPackageName() + "/" + NotificationBadge.componentName.getClassName());
@@ -473,7 +473,7 @@ public class NotificationBadge {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationBadge.ZukHomeBadger.this.lambda$executeBadge$0(bundle);
+                    this.f$0.lambda$executeBadge$0(bundle);
                 }
             });
         }
@@ -526,9 +526,9 @@ public class NotificationBadge {
         }
     }
 
-    private static boolean initBadger() {
-        Badger badger2;
-        Badger badger3;
+    private static boolean initBadger() throws IllegalAccessException, InstantiationException {
+        Badger badgerNewInstance;
+        Badger badgerNewInstance2;
         Context context = ApplicationLoader.applicationContext;
         Intent launchIntentForPackage = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
         if (launchIntentForPackage == null) {
@@ -537,21 +537,21 @@ public class NotificationBadge {
         componentName = launchIntentForPackage.getComponent();
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.HOME");
-        ResolveInfo resolveActivity = context.getPackageManager().resolveActivity(intent, 65536);
-        if (resolveActivity != null) {
-            String str = resolveActivity.activityInfo.packageName;
+        ResolveInfo resolveInfoResolveActivity = context.getPackageManager().resolveActivity(intent, 65536);
+        if (resolveInfoResolveActivity != null) {
+            String str = resolveInfoResolveActivity.activityInfo.packageName;
             Iterator<Class<? extends Badger>> it = BADGERS.iterator();
             while (true) {
                 if (!it.hasNext()) {
                     break;
                 }
                 try {
-                    badger3 = it.next().newInstance();
+                    badgerNewInstance2 = it.next().newInstance();
                 } catch (Exception unused) {
-                    badger3 = null;
+                    badgerNewInstance2 = null;
                 }
-                if (badger3 != null && badger3.getSupportLaunchers().contains(str)) {
-                    badger = badger3;
+                if (badgerNewInstance2 != null && badgerNewInstance2.getSupportLaunchers().contains(str)) {
+                    badger = badgerNewInstance2;
                     break;
                 }
             }
@@ -559,22 +559,22 @@ public class NotificationBadge {
                 return true;
             }
         }
-        List<ResolveInfo> queryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 65536);
-        if (queryIntentActivities != null) {
-            for (int i = 0; i < queryIntentActivities.size(); i++) {
-                String str2 = queryIntentActivities.get(i).activityInfo.packageName;
+        List<ResolveInfo> listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 65536);
+        if (listQueryIntentActivities != null) {
+            for (int i = 0; i < listQueryIntentActivities.size(); i++) {
+                String str2 = listQueryIntentActivities.get(i).activityInfo.packageName;
                 Iterator<Class<? extends Badger>> it2 = BADGERS.iterator();
                 while (true) {
                     if (!it2.hasNext()) {
                         break;
                     }
                     try {
-                        badger2 = it2.next().newInstance();
+                        badgerNewInstance = it2.next().newInstance();
                     } catch (Exception unused2) {
-                        badger2 = null;
+                        badgerNewInstance = null;
                     }
-                    if (badger2 != null && badger2.getSupportLaunchers().contains(str2)) {
-                        badger = badger2;
+                    if (badgerNewInstance != null && badgerNewInstance.getSupportLaunchers().contains(str2)) {
+                        badger = badgerNewInstance;
                         break;
                     }
                 }
@@ -601,8 +601,8 @@ public class NotificationBadge {
     }
 
     public static boolean canResolveBroadcast(Intent intent) {
-        List<ResolveInfo> queryBroadcastReceivers = ApplicationLoader.applicationContext.getPackageManager().queryBroadcastReceivers(intent, 0);
-        return queryBroadcastReceivers != null && queryBroadcastReceivers.size() > 0;
+        List<ResolveInfo> listQueryBroadcastReceivers = ApplicationLoader.applicationContext.getPackageManager().queryBroadcastReceivers(intent, 0);
+        return listQueryBroadcastReceivers != null && listQueryBroadcastReceivers.size() > 0;
     }
 
     public static void close(Cursor cursor) {

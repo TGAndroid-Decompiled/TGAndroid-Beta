@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -97,20 +98,20 @@ public class GroupCallUserCell extends FrameLayout {
 
     public void lambda$new$1() {
         int i;
-        int nextInt = Utilities.random.nextInt(100);
+        int iNextInt = Utilities.random.nextInt(100);
         int i2 = 120;
-        if (nextInt < 32) {
+        if (iNextInt < 32) {
             i = 0;
         } else {
             i = 240;
-            if (nextInt < 64) {
+            if (iNextInt < 64) {
                 i2 = 240;
                 i = 120;
             } else {
                 i2 = 420;
-                if (nextInt >= 97) {
+                if (iNextInt >= 97) {
                     i = 540;
-                    if (nextInt == 98) {
+                    if (iNextInt == 98) {
                         i2 = 540;
                         i = 420;
                     } else {
@@ -153,11 +154,11 @@ public class GroupCallUserCell extends FrameLayout {
             this.statusTextView[4].setAlpha(f2);
             SimpleTextView simpleTextView = this.statusTextView[4];
             boolean z = LocaleController.isRTL;
-            int dp = AndroidUtilities.dp(53.0f);
+            int iDp = AndroidUtilities.dp(53.0f);
             if (!z) {
-                dp = -dp;
+                iDp = -iDp;
             }
-            simpleTextView.setTranslationX(dp * f);
+            simpleTextView.setTranslationX(iDp * f);
         } else {
             this.fullAboutTextView.setVisibility(8);
             int i = 0;
@@ -207,7 +208,7 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    public static class VerifiedDrawable extends Drawable {
+    private static class VerifiedDrawable extends Drawable {
         private Drawable[] drawables;
 
         @Override
@@ -265,38 +266,38 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    public GroupCallUserCell(Context context) {
+    public GroupCallUserCell(Context context) throws Resources.NotFoundException {
         super(context);
         this.statusTextView = new SimpleTextView[5];
         this.shakeHandCallback = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.raiseHandCallback = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         };
         this.grayIconColor = Theme.key_voipgroup_mutedIcon;
         this.checkRaiseRunnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.updateRunnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.this.lambda$new$3();
+                this.f$0.lambda$new$3();
             }
         };
         this.updateVoiceRunnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.this.lambda$new$4();
+                this.f$0.lambda$new$4();
             }
         };
         Paint paint = new Paint();
@@ -320,7 +321,7 @@ public class GroupCallUserCell extends FrameLayout {
             }
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (GroupCallUserCell.this.avatarImageView.getImageReceiver().hasNotThumb() && GroupCallUserCell.this.avatarImageView.getAlpha() > 0.0f) {
                     this.paint.setAlpha((int) (GroupCallUserCell.this.avatarImageView.getImageReceiver().getCurrentAlpha() * 85.0f * GroupCallUserCell.this.avatarImageView.getAlpha()));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, this.paint);
@@ -453,7 +454,7 @@ public class GroupCallUserCell extends FrameLayout {
         this.muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallUserCell.this.lambda$new$5(view);
+                this.f$0.lambda$new$5(view);
             }
         });
         this.avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(29.0f));
@@ -537,12 +538,12 @@ public class GroupCallUserCell extends FrameLayout {
             TLRPC.User user = this.currentUser;
             if (user != null && user.verified) {
                 AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.rightDrawable;
-                Drawable drawable = this.verifiedDrawable;
-                if (drawable == null) {
-                    drawable = new VerifiedDrawable(getContext());
+                Drawable verifiedDrawable = this.verifiedDrawable;
+                if (verifiedDrawable == null) {
+                    verifiedDrawable = new VerifiedDrawable(getContext());
                 }
-                this.verifiedDrawable = drawable;
-                swapAnimatedEmojiDrawable.set(drawable, z);
+                this.verifiedDrawable = verifiedDrawable;
+                swapAnimatedEmojiDrawable.set(verifiedDrawable, z);
             } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
                 this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentUser.emoji_status), z);
             } else {
@@ -587,12 +588,12 @@ public class GroupCallUserCell extends FrameLayout {
                 TLRPC.Chat chat2 = this.currentChat;
                 if (chat2.verified) {
                     AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.rightDrawable;
-                    Drawable drawable2 = this.verifiedDrawable;
-                    if (drawable2 == null) {
-                        drawable2 = new VerifiedDrawable(getContext());
+                    Drawable verifiedDrawable2 = this.verifiedDrawable;
+                    if (verifiedDrawable2 == null) {
+                        verifiedDrawable2 = new VerifiedDrawable(getContext());
                     }
-                    this.verifiedDrawable = drawable2;
-                    swapAnimatedEmojiDrawable2.set(drawable2, z);
+                    this.verifiedDrawable = verifiedDrawable2;
+                    swapAnimatedEmojiDrawable2.set(verifiedDrawable2, z);
                 } else if (DialogObject.getEmojiStatusDocumentId(chat2.emoji_status) != 0) {
                     this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentChat.emoji_status), z);
                 } else {
@@ -669,7 +670,7 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
     }
 
@@ -719,7 +720,7 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public void applyStatus(int i) {
-        float dp;
+        float fDp;
         int i2 = 0;
         if (i == 0) {
             while (true) {
@@ -739,11 +740,11 @@ public class GroupCallUserCell extends FrameLayout {
                 }
                 SimpleTextView simpleTextView = simpleTextViewArr2[i2];
                 if (i2 == i) {
-                    dp = 0.0f;
+                    fDp = 0.0f;
                 } else {
-                    dp = AndroidUtilities.dp(i2 == 0 ? 2.0f : -2.0f);
+                    fDp = AndroidUtilities.dp(i2 == 0 ? 2.0f : -2.0f);
                 }
-                simpleTextView.setTranslationY(dp);
+                simpleTextView.setTranslationY(fDp);
                 this.statusTextView[i2].setAlpha(i2 == i ? 1.0f : 0.0f);
                 i2++;
             }

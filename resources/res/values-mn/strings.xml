@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Дараахтай хуваалцах</string>
     <string name="abc_shareactionprovider_share_with_application">%s-тай хуваалцах</string>
     <string name="abc_toolbar_collapse_description">Буулгах</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Нууц үг</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Passkey</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Нууц үг</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Passkey</string>
     <string name="call_notification_answer_action">Хариулах</string>
     <string name="call_notification_answer_video_action">Видео</string>
     <string name="call_notification_decline_action">Татгалзах</string>

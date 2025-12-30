@@ -74,14 +74,14 @@ public class StoriesVolumeControl extends View {
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
         float f = streamMaxVolume;
-        int max = (int) Math.max(1.0f, f / 15.0f);
+        int iMax = (int) Math.max(1.0f, f / 15.0f);
         if (z) {
-            int i = streamVolume + max;
+            int i = streamVolume + iMax;
             if (i <= streamMaxVolume) {
                 streamMaxVolume = i;
             }
         } else {
-            streamMaxVolume = streamVolume - max;
+            streamMaxVolume = streamVolume - iMax;
             if (streamMaxVolume < 0) {
                 streamMaxVolume = 0;
             }

@@ -13,16 +13,20 @@ import kotlin.jvm.functions.Function3;
 import kotlinx.coroutines.CancellableContinuation;
 import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.CancellableContinuationKt;
+import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.Waiter;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.selects.SelectInstance;
 
 public class MutexImpl extends SemaphoreImpl implements Mutex {
     private static final AtomicReferenceFieldUpdater owner$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(MutexImpl.class, Object.class, "owner$volatile");
     private final Function3 onSelectCancellationUnlockConstructor;
     private volatile Object owner$volatile;
+
+    public static final AtomicReferenceFieldUpdater getOwner$volatile$FU() {
+        return owner$volatile$FU;
+    }
 
     @Override
     public Object lock(Object obj, Continuation continuation) {
@@ -44,7 +48,7 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
             }
 
             public final Function1 invoke(SelectInstance selectInstance, final Object obj, Object obj2) {
-                final MutexImpl mutexImpl = MutexImpl.this;
+                final MutexImpl mutexImpl = this.this$0;
                 return new Function1() {
                     {
                         super(1);
@@ -57,15 +61,11 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
                     }
 
                     public final void invoke(Throwable th) {
-                        MutexImpl.this.unlock(obj);
+                        mutexImpl.unlock(obj);
                     }
                 };
             }
         };
-    }
-
-    public static final AtomicReferenceFieldUpdater access$getOwner$volatile$FU() {
-        return owner$volatile$FU;
     }
 
     @Override
@@ -74,11 +74,9 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
     }
 
     private final int holdsLockImpl(Object obj) {
-        Symbol symbol;
         while (isLocked()) {
             Object obj2 = owner$volatile$FU.get(this);
-            symbol = MutexKt.NO_OWNER;
-            if (obj2 != symbol) {
+            if (obj2 != MutexKt.NO_OWNER) {
                 return obj2 == obj ? 1 : 2;
             }
         }
@@ -86,19 +84,19 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
     }
 
     static Object lock$suspendImpl(MutexImpl mutexImpl, Object obj, Continuation continuation) {
-        Object lockSuspend;
-        return (!mutexImpl.tryLock(obj) && (lockSuspend = mutexImpl.lockSuspend(obj, continuation)) == IntrinsicsKt.getCOROUTINE_SUSPENDED()) ? lockSuspend : Unit.INSTANCE;
+        Object objLockSuspend;
+        return (!mutexImpl.tryLock(obj) && (objLockSuspend = mutexImpl.lockSuspend(obj, continuation)) == IntrinsicsKt.getCOROUTINE_SUSPENDED()) ? objLockSuspend : Unit.INSTANCE;
     }
 
     public boolean tryLock(Object obj) {
-        int tryLockImpl = tryLockImpl(obj);
-        if (tryLockImpl == 0) {
+        int iTryLockImpl = tryLockImpl(obj);
+        if (iTryLockImpl == 0) {
             return true;
         }
-        if (tryLockImpl == 1) {
+        if (iTryLockImpl == 1) {
             return false;
         }
-        if (tryLockImpl == 2) {
+        if (iTryLockImpl == 2) {
             throw new IllegalStateException(("This mutex is already locked by the specified owner: " + obj).toString());
         }
         throw new IllegalStateException("unexpected");
@@ -109,11 +107,11 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
             if (obj == null) {
                 return 1;
             }
-            int holdsLockImpl = holdsLockImpl(obj);
-            if (holdsLockImpl == 1) {
+            int iHoldsLockImpl = holdsLockImpl(obj);
+            if (iHoldsLockImpl == 1) {
                 return 2;
             }
-            if (holdsLockImpl == 2) {
+            if (iHoldsLockImpl == 2) {
                 return 1;
             }
         }
@@ -123,27 +121,23 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
 
     @Override
     public void unlock(Object obj) {
-        Symbol symbol;
-        Symbol symbol2;
         while (isLocked()) {
             Object obj2 = owner$volatile$FU.get(this);
-            symbol = MutexKt.NO_OWNER;
-            if (obj2 != symbol) {
-                if (obj2 != obj && obj != null) {
+            if (obj2 != MutexKt.NO_OWNER) {
+                if (obj2 == obj || obj == null) {
+                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(owner$volatile$FU, this, obj2, MutexKt.NO_OWNER)) {
+                        release();
+                        return;
+                    }
+                } else {
                     throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
-                }
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = owner$volatile$FU;
-                symbol2 = MutexKt.NO_OWNER;
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, obj2, symbol2)) {
-                    release();
-                    return;
                 }
             }
         }
         throw new IllegalStateException("This mutex is not locked");
     }
 
-    public final class CancellableContinuationWithOwner implements CancellableContinuation, Waiter {
+    private final class CancellableContinuationWithOwner implements CancellableContinuation, Waiter {
         public final CancellableContinuationImpl cont;
         public final Object owner;
 
@@ -183,6 +177,11 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
         }
 
         @Override
+        public void resumeUndispatched(CoroutineDispatcher coroutineDispatcher, Unit unit) {
+            this.cont.resumeUndispatched(coroutineDispatcher, unit);
+        }
+
+        @Override
         public void resumeWith(Object obj) {
             this.cont.resumeWith(obj);
         }
@@ -200,7 +199,7 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
         @Override
         public Object tryResume(Unit unit, Object obj, Function1 function1) {
             final MutexImpl mutexImpl = MutexImpl.this;
-            Object tryResume = this.cont.tryResume(unit, obj, new Function1() {
+            Object objTryResume = this.cont.tryResume(unit, obj, new Function1() {
                 {
                     super(1);
                 }
@@ -212,19 +211,19 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
                 }
 
                 public final void invoke(Throwable th) {
-                    MutexImpl.access$getOwner$volatile$FU().set(MutexImpl.this, this.owner);
-                    MutexImpl.this.unlock(this.owner);
+                    MutexImpl.getOwner$volatile$FU().set(mutexImpl, this.owner);
+                    mutexImpl.unlock(this.owner);
                 }
             });
-            if (tryResume != null) {
-                MutexImpl.access$getOwner$volatile$FU().set(MutexImpl.this, this.owner);
+            if (objTryResume != null) {
+                MutexImpl.getOwner$volatile$FU().set(MutexImpl.this, this.owner);
             }
-            return tryResume;
+            return objTryResume;
         }
 
         @Override
         public void resume(Unit unit, Function1 function1) {
-            MutexImpl.access$getOwner$volatile$FU().set(MutexImpl.this, this.owner);
+            MutexImpl.getOwner$volatile$FU().set(MutexImpl.this, this.owner);
             CancellableContinuationImpl cancellableContinuationImpl = this.cont;
             final MutexImpl mutexImpl = MutexImpl.this;
             cancellableContinuationImpl.resume(unit, new Function1() {
@@ -239,7 +238,7 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
                 }
 
                 public final void invoke(Throwable th) {
-                    MutexImpl.this.unlock(this.owner);
+                    mutexImpl.unlock(this.owner);
                 }
             });
         }

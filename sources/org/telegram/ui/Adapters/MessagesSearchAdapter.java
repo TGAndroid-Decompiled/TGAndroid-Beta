@@ -60,7 +60,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
     private Runnable loadStories = new Runnable() {
         @Override
         public final void run() {
-            MessagesSearchAdapter.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -83,18 +83,18 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (TextUtils.equals(this.storiesListQuery, str)) {
             return;
         }
-        String trim = str.trim();
+        String strTrim = str.trim();
         boolean z2 = false;
-        String str2 = null;
-        if (trim.charAt(0) == '$' || trim.charAt(0) == '#') {
-            int indexOf = trim.indexOf(64);
-            if (indexOf >= 0) {
-                String substring = trim.substring(0, indexOf);
-                str2 = trim.substring(indexOf + 1);
-                trim = substring;
+        String strSubstring = null;
+        if (strTrim.charAt(0) == '$' || strTrim.charAt(0) == '#') {
+            int iIndexOf = strTrim.indexOf(64);
+            if (iIndexOf >= 0) {
+                String strSubstring2 = strTrim.substring(0, iIndexOf);
+                strSubstring = strTrim.substring(iIndexOf + 1);
+                strTrim = strSubstring2;
             }
         } else {
-            trim = null;
+            strTrim = null;
         }
         boolean z3 = this.containsStories;
         AndroidUtilities.cancelRunOnUIThread(this.loadStories);
@@ -102,9 +102,9 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (searchStoriesList != null) {
             searchStoriesList.cancel();
         }
-        if (!TextUtils.isEmpty(trim)) {
+        if (!TextUtils.isEmpty(strTrim)) {
             this.storiesListQuery = str;
-            this.storiesList = new StoriesController.SearchStoriesList(this.currentAccount, str2, trim);
+            this.storiesList = new StoriesController.SearchStoriesList(this.currentAccount, strSubstring, strTrim);
             if (z) {
                 this.loadStories.run();
             } else {
@@ -130,35 +130,35 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
     @Override
     public void notifyDataSetChanged() {
         int itemCount = getItemCount();
-        int i = 0;
+        int iClamp = 0;
         this.containsStories = false;
         this.searchResultMessages.clear();
         this.messageIds.clear();
         ArrayList<MessageObject> foundMessageObjects = this.searchType == 0 ? MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects() : HashtagSearchController.getInstance(this.currentAccount).getMessages(this.searchType);
-        for (int i2 = 0; i2 < foundMessageObjects.size(); i2++) {
-            MessageObject messageObject = foundMessageObjects.get(i2);
+        for (int i = 0; i < foundMessageObjects.size(); i++) {
+            MessageObject messageObject = foundMessageObjects.get(i);
             if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject.getId()))) {
                 this.searchResultMessages.add(messageObject);
                 this.messageIds.add(Integer.valueOf(messageObject.getId()));
             }
         }
-        int i3 = this.flickerCount;
+        int i2 = this.flickerCount;
         this.loadedCount = this.searchResultMessages.size();
         if (this.searchType != 0) {
             if (!HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType) && this.loadedCount != 0) {
-                i = Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 3, 0);
+                iClamp = Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 3, 0);
             }
-            this.flickerCount = i;
+            this.flickerCount = iClamp;
         } else {
             if (!MediaDataController.getInstance(this.currentAccount).searchEndReached() && this.loadedCount != 0) {
-                i = Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 3, 0);
+                iClamp = Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 3, 0);
             }
-            this.flickerCount = i;
+            this.flickerCount = iClamp;
         }
         int itemCount2 = getItemCount();
         if (itemCount < itemCount2) {
-            if (i3 > 0) {
-                notifyItemRangeChanged(itemCount - i3, i3);
+            if (i2 > 0) {
+                notifyItemRangeChanged(itemCount - i2, i2);
             }
             notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
             return;
@@ -383,9 +383,9 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
-            this.transitionAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
+            this.transitionAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     StoriesView.this.transitValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -464,9 +464,9 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             }
 
             public static UItem asStoriesList(StoriesController.SearchStoriesList searchStoriesList) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = searchStoriesList;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = searchStoriesList;
+                return uItemOfFactory;
             }
         }
     }

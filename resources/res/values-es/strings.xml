@@ -1303,8 +1303,8 @@
     <string name="abc_shareactionprovider_share_with">Compartir con</string>
     <string name="abc_shareactionprovider_share_with_application">Compartir con %s</string>
     <string name="abc_toolbar_collapse_description">Ocultar</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Contraseña</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Llave de acceso</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Contraseña</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Llave de acceso</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Distribución deshabilitada</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB de %2$d MB</string>
     <string name="appcenter_distribute_downloading_mandatory_update">Descargando la actualización</string>

@@ -34,16 +34,16 @@ public class SpoilerEffectBitmapFactory {
     }
 
     private SpoilerEffectBitmapFactory() {
-        int dp = AndroidUtilities.dp(SharedConfig.getDevicePerformanceClass() == 2 ? 150.0f : 100.0f);
+        int iDp = AndroidUtilities.dp(SharedConfig.getDevicePerformanceClass() == 2 ? 150.0f : 100.0f);
         Point point = AndroidUtilities.displaySize;
-        int min = (int) Math.min(Math.min(point.x, point.y) * 0.5f, dp);
-        this.size = min;
-        if (min < AndroidUtilities.dp(80.0f)) {
+        int iMin = (int) Math.min(Math.min(point.x, point.y) * 0.5f, iDp);
+        this.size = iMin;
+        if (iMin < AndroidUtilities.dp(80.0f)) {
             this.size = AndroidUtilities.dp(80.0f);
         }
     }
 
-    public Paint getPaint() {
+    Paint getPaint() {
         if (this.shaderBitmap == null) {
             int i = this.size;
             this.shaderBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ALPHA_8);
@@ -56,7 +56,7 @@ public class SpoilerEffectBitmapFactory {
             paint.setShader(new BitmapShader(bitmap, tileMode, tileMode));
             float f = this.size;
             int i2 = (int) (f / 10.0f);
-            int dp = (int) ((f / AndroidUtilities.dp(200.0f)) * 60.0f);
+            int iDp = (int) ((f / AndroidUtilities.dp(200.0f)) * 60.0f);
             for (int i3 = 0; i3 < 10; i3++) {
                 for (int i4 = 0; i4 < 10; i4++) {
                     SpoilerEffect spoilerEffect = new SpoilerEffect();
@@ -65,7 +65,7 @@ public class SpoilerEffectBitmapFactory {
                     int i6 = i2 * i4;
                     spoilerEffect.setBounds(i5, i6 - AndroidUtilities.dp(5.0f), i5 + i2 + AndroidUtilities.dp(3.0f), i6 + i2 + AndroidUtilities.dp(5.0f));
                     spoilerEffect.drawPoints = true;
-                    spoilerEffect.setMaxParticlesCount(Math.min(SpoilerEffect.MAX_PARTICLES_PER_ENTITY * 5, dp));
+                    spoilerEffect.setMaxParticlesCount(Math.min(SpoilerEffect.MAX_PARTICLES_PER_ENTITY * 5, iDp));
                     spoilerEffect.setColor(-1);
                     this.shaderSpoilerEffects.add(spoilerEffect);
                 }
@@ -94,7 +94,7 @@ public class SpoilerEffectBitmapFactory {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SpoilerEffectBitmapFactory.this.lambda$checkUpdate$1(bitmap);
+                this.f$0.lambda$checkUpdate$1(bitmap);
             }
         });
     }
@@ -123,7 +123,7 @@ public class SpoilerEffectBitmapFactory {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SpoilerEffectBitmapFactory.this.lambda$checkUpdate$0(bitmap);
+                this.f$0.lambda$checkUpdate$0(bitmap);
             }
         });
     }

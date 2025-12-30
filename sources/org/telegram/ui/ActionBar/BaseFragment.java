@@ -93,7 +93,6 @@ public abstract class BaseFragment {
     }
 
     public interface PreviewDelegate {
-        void finishFragment();
     }
 
     public boolean allowFinishFragmentInsteadOfRemoveFromStack() {
@@ -127,7 +126,7 @@ public abstract class BaseFragment {
         return false;
     }
 
-    public Animator getCustomSlideTransition(boolean z, boolean z2, float f) {
+    protected Animator getCustomSlideTransition(boolean z, boolean z2, float f) {
         return null;
     }
 
@@ -139,7 +138,7 @@ public abstract class BaseFragment {
         return false;
     }
 
-    public boolean hideKeyboardOnShow() {
+    protected boolean hideKeyboardOnShow() {
         return true;
     }
 
@@ -168,7 +167,7 @@ public abstract class BaseFragment {
         return null;
     }
 
-    public void onDialogDismiss(Dialog dialog) {
+    protected void onDialogDismiss(Dialog dialog) {
     }
 
     public void onFragmentClosed() {
@@ -220,6 +219,9 @@ public abstract class BaseFragment {
     public void saveSelfArgs(Bundle bundle) {
     }
 
+    public void setPreviewDelegate(PreviewDelegate previewDelegate) {
+    }
+
     public void setPreviewOpenedProgress(float f) {
     }
 
@@ -229,7 +231,7 @@ public abstract class BaseFragment {
     public void setProgressToDrawerOpened(float f) {
     }
 
-    public boolean shouldOverrideSlideTransition(boolean z, boolean z2) {
+    protected boolean shouldOverrideSlideTransition(boolean z, boolean z2) {
         return false;
     }
 
@@ -242,7 +244,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1263getWindowView();
+        View mo1254getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -533,10 +535,10 @@ public abstract class BaseFragment {
             if (iNavigationLayout4 == null || this.actionBar != null) {
                 return;
             }
-            ActionBar createActionBar = createActionBar(iNavigationLayout4.getView().getContext());
-            this.actionBar = createActionBar;
-            if (createActionBar != null) {
-                createActionBar.parentFragment = this;
+            ActionBar actionBarCreateActionBar = createActionBar(iNavigationLayout4.getView().getContext());
+            this.actionBar = actionBarCreateActionBar;
+            if (actionBarCreateActionBar != null) {
+                actionBarCreateActionBar.parentFragment = this;
             }
         }
     }
@@ -566,12 +568,9 @@ public abstract class BaseFragment {
     }
 
     public void finishFragment() {
-        PreviewDelegate previewDelegate;
         Dialog dialog = this.parentDialog;
         if (dialog != null) {
             dialog.dismiss();
-        } else if (this.inPreviewMode && (previewDelegate = this.previewDelegate) != null) {
-            previewDelegate.finishFragment();
         } else {
             finishFragment(true);
         }
@@ -608,7 +607,7 @@ public abstract class BaseFragment {
         }
     }
 
-    public boolean isFinishing() {
+    protected boolean isFinishing() {
         return this.finishing;
     }
 
@@ -634,7 +633,7 @@ public abstract class BaseFragment {
         }
     }
 
-    public void resumeDelayedFragmentAnimation() {
+    protected void resumeDelayedFragmentAnimation() {
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout != null) {
             iNavigationLayout.resumeDelayedFragmentAnimation();
@@ -781,7 +780,7 @@ public abstract class BaseFragment {
         return getParentActivity();
     }
 
-    public void setParentActivityTitle(CharSequence charSequence) {
+    protected void setParentActivityTitle(CharSequence charSequence) {
         Activity parentActivity = getParentActivity();
         if (parentActivity != null) {
             parentActivity.setTitle(charSequence);
@@ -860,7 +859,7 @@ public abstract class BaseFragment {
         }
     }
 
-    public void updateSheetsVisibility() {
+    protected void updateSheetsVisibility() {
         if (this.sheetsStack == null) {
             return;
         }
@@ -917,7 +916,7 @@ public abstract class BaseFragment {
                 this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        BaseFragment.this.lambda$showDialog$0(onDismissListener, dialogInterface);
+                        this.f$0.lambda$showDialog$0(onDismissListener, dialogInterface);
                     }
                 });
                 this.visibleDialog.show();
@@ -1003,7 +1002,7 @@ public abstract class BaseFragment {
         return getAccountInstance().getDownloadController();
     }
 
-    public SharedPreferences getNotificationsSettings() {
+    protected SharedPreferences getNotificationsSettings() {
         return getAccountInstance().getNotificationsSettings();
     }
 
@@ -1037,15 +1036,13 @@ public abstract class BaseFragment {
         INavigationLayout[] iNavigationLayoutArr = {INavigationLayout.CC.newLayout(getParentActivity(), false, new Supplier() {
             @Override
             public final Object get() {
-                BottomSheet lambda$showAsSheet$1;
-                lambda$showAsSheet$1 = BaseFragment.lambda$showAsSheet$1(r1);
-                return lambda$showAsSheet$1;
+                return BaseFragment.lambda$showAsSheet$1(bottomSheetArr);
             }
         })};
         iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         baseFragment.onTransitionAnimationStart(true, false);
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, r13);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, bottomSheetArr);
         final BottomSheet[] bottomSheetArr = {anonymousClass1};
         if (bottomSheetParams != null) {
             anonymousClass1.setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
@@ -1061,7 +1058,7 @@ public abstract class BaseFragment {
         return bottomSheetArr[0];
     }
 
-    public class AnonymousClass1 extends BottomSheet {
+    class AnonymousClass1 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
         final BottomSheet[] val$bottomSheet;
         final BaseFragment val$fragment;
@@ -1092,7 +1089,7 @@ public abstract class BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    BaseFragment.AnonymousClass1.lambda$new$0(BaseFragment.this, bottomSheetParams, dialogInterface);
+                    BaseFragment.AnonymousClass1.lambda$new$0(baseFragment, bottomSheetParams, dialogInterface);
                 }
             });
         }
@@ -1265,10 +1262,6 @@ public abstract class BaseFragment {
         return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
     }
 
-    public void setPreviewDelegate(PreviewDelegate previewDelegate) {
-        this.previewDelegate = previewDelegate;
-    }
-
     public void resetFragment() {
         if (this.isFinished) {
             clearViews();
@@ -1286,8 +1279,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1263getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1263getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1254getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1254getWindowView());
                 }
             }
         }
@@ -1298,7 +1291,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1263getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1254getWindowView());
                 }
             }
         }
@@ -1308,7 +1301,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1263getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1254getWindowView()) {
                     return true;
                 }
             }
@@ -1342,6 +1335,21 @@ public abstract class BaseFragment {
 
     public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer(int r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer(int):org.telegram.ui.Stories.StoryViewer");
+    }
+
+    public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar == null || !actionBar.shouldAddToContainer()) {
+            return;
+        }
+        setTitleOverlayText(str, i, runnable);
+    }
+
+    public void setTitleOverlayText(String str, int i, Runnable runnable) {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null) {
+            actionBar.setTitleOverlayText(str, i, runnable);
+        }
     }
 
     public void removeSheet(AttachedSheet attachedSheet) {
@@ -1395,9 +1403,9 @@ public abstract class BaseFragment {
                 }
             }
         }
-        ArticleViewer makeSheet = ArticleViewer.makeSheet(this);
-        addSheet(makeSheet.sheet);
-        BottomSheetTabDialog.checkSheet(makeSheet.sheet);
-        return makeSheet;
+        ArticleViewer articleViewerMakeSheet = ArticleViewer.makeSheet(this);
+        addSheet(articleViewerMakeSheet.sheet);
+        BottomSheetTabDialog.checkSheet(articleViewerMakeSheet.sheet);
+        return articleViewerMakeSheet;
     }
 }

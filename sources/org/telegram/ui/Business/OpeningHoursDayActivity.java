@@ -76,12 +76,12 @@ public class OpeningHoursDayActivity extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OpeningHoursDayActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                OpeningHoursDayActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -159,13 +159,13 @@ public class OpeningHoursDayActivity extends BaseFragment {
                 if (is24()) {
                     this.periods.clear();
                 }
-                int clamp = Utilities.clamp(480, this.max - 1, this.min);
-                this.periods.add(new OpeningHoursActivity.Period(clamp, Utilities.clamp(1200, this.max, clamp + 1)));
+                int iClamp = Utilities.clamp(480, this.max - 1, this.min);
+                this.periods.add(new OpeningHoursActivity.Period(iClamp, Utilities.clamp(1200, this.max, iClamp + 1)));
             } else {
                 ArrayList arrayList = this.periods;
                 int i4 = ((OpeningHoursActivity.Period) arrayList.get(arrayList.size() - 1)).end;
-                int clamp2 = Utilities.clamp(i4 + 30, this.max - 1, this.min);
-                this.periods.add(new OpeningHoursActivity.Period(clamp2, Utilities.clamp((i4 + 1560) / 2, this.max, clamp2 + 1)));
+                int iClamp2 = Utilities.clamp(i4 + 30, this.max - 1, this.min);
+                this.periods.add(new OpeningHoursActivity.Period(iClamp2, Utilities.clamp((i4 + 1560) / 2, this.max, iClamp2 + 1)));
             }
             Runnable runnable2 = this.whenApplied;
             if (runnable2 != null) {
@@ -187,7 +187,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker), period2.start, period == null ? this.min : period.end + 1, period2.end - 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OpeningHoursDayActivity.this.lambda$onClick$0(view, period2, (Integer) obj);
+                    this.f$0.lambda$onClick$0(view, period2, (Integer) obj);
                 }
             });
             return;
@@ -196,7 +196,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker), period2.end, period2.start + 1, period3 == null ? this.max : period3.start - 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OpeningHoursDayActivity.this.lambda$onClick$1(view, period2, (Integer) obj);
+                    this.f$0.lambda$onClick$1(view, period2, (Integer) obj);
                 }
             });
             return;
@@ -215,11 +215,11 @@ public class OpeningHoursDayActivity extends BaseFragment {
     }
 
     public void lambda$onClick$0(View view, OpeningHoursActivity.Period period, Integer num) {
-        boolean showAddButton = showAddButton();
-        int intValue = num.intValue();
-        period.start = intValue;
-        ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(intValue), true);
-        if (showAddButton != showAddButton()) {
+        boolean zShowAddButton = showAddButton();
+        int iIntValue = num.intValue();
+        period.start = iIntValue;
+        ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(iIntValue), true);
+        if (zShowAddButton != showAddButton()) {
             this.listView.adapter.update(true);
         }
         Runnable runnable = this.whenApplied;
@@ -229,11 +229,11 @@ public class OpeningHoursDayActivity extends BaseFragment {
     }
 
     public void lambda$onClick$1(View view, OpeningHoursActivity.Period period, Integer num) {
-        boolean showAddButton = showAddButton();
-        int intValue = num.intValue();
-        period.end = intValue;
-        ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(intValue), true);
-        if (showAddButton != showAddButton()) {
+        boolean zShowAddButton = showAddButton();
+        int iIntValue = num.intValue();
+        period.end = iIntValue;
+        ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(iIntValue), true);
+        if (zShowAddButton != showAddButton()) {
             this.listView.adapter.update(true);
         }
         Runnable runnable = this.whenApplied;

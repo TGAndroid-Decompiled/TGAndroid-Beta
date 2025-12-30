@@ -7,6 +7,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.concurrent.ConcurrentMap$EL;
 import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -34,9 +35,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public Map getResponseHeaders() {
-        Map emptyMap;
-        emptyMap = Collections.emptyMap();
-        return emptyMap;
+        return Collections.emptyMap();
     }
 
     public FileStreamLoadOperation() {
@@ -63,9 +62,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     public long open(DataSpec dataSpec) {
         this.uri = dataSpec.uri;
         transferInitializing(dataSpec);
-        int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
-        this.currentAccount = intValue;
-        this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
+        int iIntValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
+        this.currentAccount = iIntValue;
+        this.parentObject = FileLoader.getInstance(iIntValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         this.document = tL_document;
         tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
@@ -131,7 +130,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r13, int r14, int r15) {
+    public int read(byte[] r13, int r14, int r15) throws java.lang.InterruptedException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 
@@ -141,7 +140,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public void close() {
+    public void close() throws IOException {
         FileLog.e("FileStreamLoadOperation " + this.document.id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {

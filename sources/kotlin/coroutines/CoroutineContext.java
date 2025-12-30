@@ -24,9 +24,7 @@ public interface CoroutineContext {
             return context == EmptyCoroutineContext.INSTANCE ? coroutineContext : (CoroutineContext) context.fold(coroutineContext, new Function2() {
                 @Override
                 public final Object invoke(Object obj, Object obj2) {
-                    CoroutineContext plus$lambda$0;
-                    plus$lambda$0 = CoroutineContext.DefaultImpls.plus$lambda$0((CoroutineContext) obj, (CoroutineContext.Element) obj2);
-                    return plus$lambda$0;
+                    return CoroutineContext.DefaultImpls.plus$lambda$0((CoroutineContext) obj, (CoroutineContext.Element) obj2);
                 }
             });
         }
@@ -35,21 +33,21 @@ public interface CoroutineContext {
             CombinedContext combinedContext;
             Intrinsics.checkNotNullParameter(acc, "acc");
             Intrinsics.checkNotNullParameter(element, "element");
-            CoroutineContext minusKey = acc.minusKey(element.getKey());
+            CoroutineContext coroutineContextMinusKey = acc.minusKey(element.getKey());
             EmptyCoroutineContext emptyCoroutineContext = EmptyCoroutineContext.INSTANCE;
-            if (minusKey == emptyCoroutineContext) {
+            if (coroutineContextMinusKey == emptyCoroutineContext) {
                 return element;
             }
             ContinuationInterceptor.Key key = ContinuationInterceptor.Key;
-            ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) minusKey.get(key);
+            ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) coroutineContextMinusKey.get(key);
             if (continuationInterceptor == null) {
-                combinedContext = new CombinedContext(minusKey, element);
+                combinedContext = new CombinedContext(coroutineContextMinusKey, element);
             } else {
-                CoroutineContext minusKey2 = minusKey.minusKey(key);
-                if (minusKey2 == emptyCoroutineContext) {
+                CoroutineContext coroutineContextMinusKey2 = coroutineContextMinusKey.minusKey(key);
+                if (coroutineContextMinusKey2 == emptyCoroutineContext) {
                     return new CombinedContext(element, continuationInterceptor);
                 }
-                combinedContext = new CombinedContext(new CombinedContext(minusKey2, element), continuationInterceptor);
+                combinedContext = new CombinedContext(new CombinedContext(coroutineContextMinusKey2, element), continuationInterceptor);
             }
             return combinedContext;
         }
@@ -57,9 +55,15 @@ public interface CoroutineContext {
 
     public interface Element extends CoroutineContext {
         @Override
+        Object fold(Object obj, Function2 function2);
+
+        @Override
         Element get(Key key);
 
         Key getKey();
+
+        @Override
+        CoroutineContext minusKey(Key key);
 
         public static final class DefaultImpls {
             public static CoroutineContext plus(Element element, CoroutineContext context) {

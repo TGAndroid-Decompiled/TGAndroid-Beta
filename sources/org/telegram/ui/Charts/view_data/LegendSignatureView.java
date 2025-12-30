@@ -204,7 +204,7 @@ public class LegendSignatureView extends FrameLayout {
                     holder.percentage.setTextColor(Theme.getColor(i10, this.resourcesProvider));
                     i3 = i8;
                     j2 = j4;
-                    float f2 = ((float) ((LineViewData) arrayList.get(i3)).line.y[i]) / ((float) j2);
+                    float f2 = ((LineViewData) arrayList.get(i3)).line.y[i] / j2;
                     if (f2 < 0.1f && f2 != 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f2 * 100.0f), "%"));
                     } else {
@@ -258,15 +258,15 @@ public class LegendSignatureView extends FrameLayout {
                 this.formatterTON.setMaximumFractionDigits(j <= 1000000000 ? 6 : 2);
                 return ChannelMonetizationLayout.replaceTON("TON " + this.formatterTON.format(j / 1.0E9d), textView.getPaint(), 0.82f, false);
             }
-            return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
+            return "≈" + BillingController.getInstance().formatCurrency((long) (j / f), "USD");
         }
         if (i == 2) {
             if (i2 == 0) {
                 return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.7f);
             }
-            return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
+            return "≈" + BillingController.getInstance().formatCurrency((long) (j / f), "USD");
         }
-        float f2 = (float) j;
+        float f2 = j;
         if (j < 10000) {
             return String.format("%d", Long.valueOf(j));
         }
@@ -303,7 +303,7 @@ public class LegendSignatureView extends FrameLayout {
         this.useWeek = z;
     }
 
-    public class Holder {
+    class Holder {
         TextView percentage;
         final LinearLayout root;
         final TextView signature;

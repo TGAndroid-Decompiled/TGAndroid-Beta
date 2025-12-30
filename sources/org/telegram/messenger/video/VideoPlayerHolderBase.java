@@ -15,7 +15,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.VideoPlayer;
 
@@ -81,13 +80,13 @@ public class VideoPlayerHolderBase {
     private final Runnable betterSeek = new Runnable() {
         @Override
         public final void run() {
-            VideoPlayerHolderBase.this.lambda$new$13();
+            this.f$0.lambda$new$13();
         }
     };
     private final Runnable updateSeek = new Runnable() {
         @Override
         public final void run() {
-            VideoPlayerHolderBase.this.lambda$new$14();
+            this.f$0.lambda$new$14();
         }
     };
 
@@ -147,7 +146,7 @@ public class VideoPlayerHolderBase {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$preparePlayer$0(z, f, uri);
+                this.f$0.lambda$preparePlayer$0(z, f, uri);
             }
         };
         this.initRunnable = runnable2;
@@ -178,7 +177,7 @@ public class VideoPlayerHolderBase {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$start$2(z3, f, uri, z2, z, j);
+                this.f$0.lambda$start$2(z3, f, uri, z2, z, j);
             }
         };
         this.initRunnable = runnable;
@@ -259,7 +258,7 @@ public class VideoPlayerHolderBase {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$start$1();
+                this.f$0.lambda$start$1();
             }
         });
     }
@@ -284,7 +283,7 @@ public class VideoPlayerHolderBase {
         this.videoPlayer.setIsStory();
     }
 
-    public class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
+    class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
         @Override
         public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
             VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
@@ -348,7 +347,7 @@ public class VideoPlayerHolderBase {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        VideoPlayerHolderBase.AnonymousClass2.this.lambda$onError$0(currentPosition);
+                        this.f$0.lambda$onError$0(currentPosition);
                     }
                 };
                 videoPlayerHolderBase.initRunnable = runnable;
@@ -358,7 +357,7 @@ public class VideoPlayerHolderBase {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.AnonymousClass2.this.lambda$onError$1();
+                    this.f$0.lambda$onError$1();
                 }
             });
         }
@@ -391,7 +390,7 @@ public class VideoPlayerHolderBase {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.AnonymousClass2.this.lambda$onRenderedFirstFrame$2();
+                    this.f$0.lambda$onRenderedFirstFrame$2();
                 }
             };
             if (VideoPlayerHolderBase.this.surface != null) {
@@ -435,7 +434,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$release$3(document, runnable);
+                this.f$0.lambda$release$3(document, runnable);
             }
         });
         Bitmap bitmap = this.playerStubBitmap;
@@ -473,7 +472,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$pause$4();
+                this.f$0.lambda$pause$4();
             }
         });
     }
@@ -509,7 +508,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$setSpeed$5(f);
+                this.f$0.lambda$setSpeed$5(f);
             }
         });
     }
@@ -527,7 +526,7 @@ public class VideoPlayerHolderBase {
             this.dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.this.lambda$play$6();
+                    this.f$0.lambda$play$6();
                 }
             });
         }
@@ -562,7 +561,7 @@ public class VideoPlayerHolderBase {
             this.dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.this.lambda$play$7(f);
+                    this.f$0.lambda$play$7(f);
                 }
             });
         }
@@ -602,7 +601,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$setAudioEnabled$8(z, z2);
+                this.f$0.lambda$setAudioEnabled$8(z, z2);
             }
         });
     }
@@ -612,7 +611,7 @@ public class VideoPlayerHolderBase {
         if (videoPlayer == null) {
             return;
         }
-        boolean isPlaying = videoPlayer.isPlaying();
+        boolean zIsPlaying = videoPlayer.isPlaying();
         if (z && !this.videoPlayer.createdWithAudioTrack()) {
             this.videoPlayer.pause();
             long currentPosition = this.videoPlayer.getCurrentPosition();
@@ -640,7 +639,7 @@ public class VideoPlayerHolderBase {
                 }
             }
             this.videoPlayer.seekTo(currentPosition + 50);
-            if (isPlaying && !z2) {
+            if (zIsPlaying && !z2) {
                 this.videoPlayer.setPlayWhenReady(true);
                 this.videoPlayer.play();
                 return;
@@ -659,9 +658,9 @@ public class VideoPlayerHolderBase {
             this.progress = 1.0f;
         } else {
             if (j != 0) {
-                f = ((float) this.currentPosition) / ((float) j);
+                f = this.currentPosition / j;
             } else {
-                f = ((float) this.currentPosition) / ((float) this.playerDuration);
+                f = this.currentPosition / this.playerDuration;
             }
             this.progress = f;
             if (!this.seeking) {
@@ -678,7 +677,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$loopBack$9();
+                this.f$0.lambda$loopBack$9();
             }
         });
     }
@@ -696,7 +695,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$setVolume$10(f);
+                this.f$0.lambda$setVolume$10(f);
             }
         });
     }
@@ -728,7 +727,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$seekTo$11(j);
+                this.f$0.lambda$seekTo$11(j);
             }
         });
     }
@@ -746,7 +745,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$seekTo$12(j, z, runnable);
+                this.f$0.lambda$seekTo$12(j, z, runnable);
             }
         });
     }
@@ -772,7 +771,7 @@ public class VideoPlayerHolderBase {
         if (this.videoPlayer == null) {
             return;
         }
-        long j = this.currentSeekThread * ((float) this.duration);
+        long j = (long) (this.currentSeekThread * this.duration);
         if (this.lastSeek <= -1) {
             this.lastSeek = j;
         }
@@ -803,9 +802,9 @@ public class VideoPlayerHolderBase {
             return this.currentSeek;
         }
         this.duration = j;
-        float clamp = Utilities.clamp(this.currentSeek + f, 1.0f, 0.0f);
-        this.currentSeek = clamp;
-        this.currentSeekThread = clamp;
+        float fClamp = Utilities.clamp(this.currentSeek + f, 1.0f, 0.0f);
+        this.currentSeek = fClamp;
+        this.currentSeekThread = fClamp;
         this.dispatchQueue.cancelRunnable(this.updateSeek);
         this.dispatchQueue.postRunnable(this.updateSeek);
         return this.currentSeek;

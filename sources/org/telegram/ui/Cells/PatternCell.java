@@ -21,7 +21,6 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
@@ -105,7 +104,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateSelected(false);
     }
@@ -176,8 +175,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        BlendMode blendMode;
+    protected void onDraw(Canvas canvas) {
         float intensity = this.delegate.getIntensity();
         this.imageReceiver.setBlendMode(null);
         int backgroundColor = this.delegate.getBackgroundColor();
@@ -209,9 +207,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
                     } else {
                         this.imageReceiver.setGradientBitmap(null);
                         if (Build.VERSION.SDK_INT >= 29) {
-                            ImageReceiver imageReceiver = this.imageReceiver;
-                            blendMode = BlendMode.SOFT_LIGHT;
-                            imageReceiver.setBlendMode(blendMode);
+                            this.imageReceiver.setBlendMode(BlendMode.SOFT_LIGHT);
                         } else {
                             this.imageReceiver.setColorFilter(new PorterDuffColorFilter(this.delegate.getPatternColor(), PorterDuff.Mode.SRC_IN));
                         }
@@ -279,7 +275,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
 
     @Override
     public void onProgressDownload(String str, long j, long j2) {
-        this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
+        this.radialProgress.setProgress(Math.min(1.0f, j / j2), true);
         TLRPC.TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC.TL_wallPaper tL_wallPaper = this.currentPattern;
         if ((!(tL_wallPaper == null && selectedPattern == null) && (selectedPattern == null || tL_wallPaper == null || tL_wallPaper.id != selectedPattern.id)) || this.radialProgress.getIcon() == 10) {

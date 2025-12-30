@@ -37,7 +37,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Paint.Shader;
 
 public class BlurringShader {
@@ -83,7 +82,7 @@ public class BlurringShader {
         this.invalidateViews = new Runnable() {
             @Override
             public final void run() {
-                BlurringShader.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.iMatrix = new Matrix();
@@ -138,11 +137,11 @@ public class BlurringShader {
         fArr[5] = -1.0f;
         fArr[6] = 1.0f;
         fArr[7] = -1.0f;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        this.posBuffer = asFloatBuffer;
-        asFloatBuffer.put(fArr);
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(32);
+        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer floatBufferAsFloatBuffer = byteBufferAllocateDirect.asFloatBuffer();
+        this.posBuffer = floatBufferAsFloatBuffer;
+        floatBufferAsFloatBuffer.put(fArr);
         this.posBuffer.position(0);
         for (int i2 = 0; i2 < 4; i2++) {
             int i3 = i2 * 2;
@@ -150,45 +149,45 @@ public class BlurringShader {
             int i4 = i3 + 1;
             fArr[i4] = fArr[i4] * ((r13 - i) / this.height);
         }
-        ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
-        allocateDirect2.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
-        this.padPosBuffer = asFloatBuffer2;
-        asFloatBuffer2.put(fArr);
+        ByteBuffer byteBufferAllocateDirect2 = ByteBuffer.allocateDirect(32);
+        byteBufferAllocateDirect2.order(ByteOrder.nativeOrder());
+        FloatBuffer floatBufferAsFloatBuffer2 = byteBufferAllocateDirect2.asFloatBuffer();
+        this.padPosBuffer = floatBufferAsFloatBuffer2;
+        floatBufferAsFloatBuffer2.put(fArr);
         this.padPosBuffer.position(0);
-        ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
-        allocateDirect3.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
-        this.uvBuffer = asFloatBuffer3;
-        asFloatBuffer3.put(new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+        ByteBuffer byteBufferAllocateDirect3 = ByteBuffer.allocateDirect(32);
+        byteBufferAllocateDirect3.order(ByteOrder.nativeOrder());
+        FloatBuffer floatBufferAsFloatBuffer3 = byteBufferAllocateDirect3.asFloatBuffer();
+        this.uvBuffer = floatBufferAsFloatBuffer3;
+        floatBufferAsFloatBuffer3.put(new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f});
         this.uvBuffer.position(0);
-        String readRes = AndroidUtilities.readRes(R.raw.blur_vrt);
-        String readRes2 = AndroidUtilities.readRes(R.raw.blur_frg);
-        if (readRes == null || readRes2 == null) {
+        String res = AndroidUtilities.readRes(R.raw.blur_vrt);
+        String res2 = AndroidUtilities.readRes(R.raw.blur_frg);
+        if (res == null || res2 == null) {
             return false;
         }
         for (int i5 = 0; i5 < 2; i5++) {
             if (i5 == 1) {
-                readRes2 = "#extension GL_OES_EGL_image_external : require\n" + readRes2.replace("sampler2D tex", "samplerExternalOES tex");
+                res2 = "#extension GL_OES_EGL_image_external : require\n" + res2.replace("sampler2D tex", "samplerExternalOES tex");
             }
-            int loadShader = FilterShaders.loadShader(35633, readRes);
-            int loadShader2 = FilterShaders.loadShader(35632, readRes2);
-            if (loadShader == 0 || loadShader2 == 0) {
+            int iLoadShader = FilterShaders.loadShader(35633, res);
+            int iLoadShader2 = FilterShaders.loadShader(35632, res2);
+            if (iLoadShader == 0 || iLoadShader2 == 0) {
                 return false;
             }
-            int glCreateProgram = GLES20.glCreateProgram();
-            GLES20.glAttachShader(glCreateProgram, loadShader);
-            GLES20.glAttachShader(glCreateProgram, loadShader2);
-            GLES20.glBindAttribLocation(glCreateProgram, 0, "p");
-            GLES20.glBindAttribLocation(glCreateProgram, 1, "inputuv");
-            GLES20.glLinkProgram(glCreateProgram);
+            int iGlCreateProgram = GLES20.glCreateProgram();
+            GLES20.glAttachShader(iGlCreateProgram, iLoadShader);
+            GLES20.glAttachShader(iGlCreateProgram, iLoadShader2);
+            GLES20.glBindAttribLocation(iGlCreateProgram, 0, "p");
+            GLES20.glBindAttribLocation(iGlCreateProgram, 1, "inputuv");
+            GLES20.glLinkProgram(iGlCreateProgram);
             int[] iArr = new int[1];
-            GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+            GLES20.glGetProgramiv(iGlCreateProgram, 35714, iArr, 0);
             if (iArr[0] == 0) {
-                GLES20.glDeleteProgram(glCreateProgram);
+                GLES20.glDeleteProgram(iGlCreateProgram);
                 return false;
             }
-            this.program[i5] = new Program(glCreateProgram);
+            this.program[i5] = new Program(iGlCreateProgram);
         }
         GLES20.glGenFramebuffers(3, this.framebuffer, 0);
         GLES20.glGenTextures(3, this.texture, 0);
@@ -413,32 +412,25 @@ public class BlurringShader {
         private final ThumbBlurer thumbBlurer = new ThumbBlurer(0, new Runnable() {
             @Override
             public final void run() {
-                BlurringShader.BlurManager.this.invalidateFallbackBlur();
+                this.f$0.invalidateFallbackBlur();
             }
         });
         private int i = 0;
 
         public void setRenderNode(View view, Object obj, int i) {
-            RenderEffect createBlurEffect;
-            int width;
-            int height;
-            RecordingCanvas beginRecording;
             this.renderNodeView = view;
             this.renderNode = obj;
             this.renderNodeBackgroundColor = i;
             if (obj != null && Build.VERSION.SDK_INT >= 31) {
-                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
-                RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("blurRenderNode");
-                createBlurEffect = RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP);
-                m2.setRenderEffect(createBlurEffect);
-                width = m.getWidth();
-                height = m.getHeight();
-                m2.setPosition(0, 0, width, height);
-                beginRecording = m2.beginRecording();
-                beginRecording.drawColor(i);
-                beginRecording.drawRenderNode(m);
-                m2.endRecording();
-                this.blurRenderNode = m2;
+                RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
+                RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("blurRenderNode");
+                renderNodeM2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
+                renderNodeM2.setPosition(0, 0, renderNodeM.getWidth(), renderNodeM.getHeight());
+                RecordingCanvas recordingCanvasBeginRecording = renderNodeM2.beginRecording();
+                recordingCanvasBeginRecording.drawColor(i);
+                recordingCanvasBeginRecording.drawRenderNode(renderNodeM);
+                renderNodeM2.endRecording();
+                this.blurRenderNode = renderNodeM2;
                 return;
             }
             this.blurRenderNode = null;
@@ -654,7 +646,7 @@ public class BlurringShader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$1(bitmap, i, i2, str, z);
+                    this.f$0.lambda$getBitmap$1(bitmap, i, i2, str, z);
                 }
             };
             this.generate = runnable;
@@ -669,21 +661,21 @@ public class BlurringShader {
                 return;
             }
             float width = bitmap.getWidth() / bitmap.getHeight();
-            int round = (int) Math.round(Math.sqrt(width * 324.0f));
-            int round2 = (int) Math.round(Math.sqrt(324.0f / width));
+            int iRound = (int) Math.round(Math.sqrt(width * 324.0f));
+            int iRound2 = (int) Math.round(Math.sqrt(324.0f / width));
             if (i == 90 || i == 270) {
-                i3 = round2;
-                i4 = round;
+                i3 = iRound2;
+                i4 = iRound;
             } else {
-                i4 = round2;
-                i3 = round;
+                i4 = iRound2;
+                i3 = iRound;
             }
             int i5 = this.padding * 2;
-            final Bitmap createBitmap = Bitmap.createBitmap(i5 + i3, i5 + i4, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
+            final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i5 + i3, i5 + i4, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             android.graphics.Rect rect = new android.graphics.Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
             int i6 = this.padding;
-            android.graphics.Rect rect2 = new android.graphics.Rect(i6, i6, i6 + round, i6 + round2);
+            android.graphics.Rect rect2 = new android.graphics.Rect(i6, i6, i6 + iRound, i6 + iRound2);
             float f = this.padding;
             canvas.translate((i3 / 2.0f) + f, f + (i4 / 2.0f));
             if (i2 == 1) {
@@ -693,25 +685,25 @@ public class BlurringShader {
             }
             canvas.rotate(i);
             float f2 = -this.padding;
-            canvas.translate(f2 - (round / 2.0f), f2 - (round2 / 2.0f));
+            canvas.translate(f2 - (iRound / 2.0f), f2 - (iRound2 / 2.0f));
             try {
                 canvas.drawBitmap(bitmap, rect, rect2, (Paint) null);
             } catch (Exception unused) {
             }
-            Utilities.stackBlurBitmap(createBitmap, 6);
+            Utilities.stackBlurBitmap(bitmapCreateBitmap, 6);
             int i7 = this.padding;
             if (i7 > 0) {
-                canvas.drawRect(0.0f, 0.0f, round + i7, i7, this.clearPaint);
+                canvas.drawRect(0.0f, 0.0f, iRound + i7, i7, this.clearPaint);
                 float f3 = this.padding;
-                canvas.drawRect(0.0f, f3, f3, r0 + round2, this.clearPaint);
+                canvas.drawRect(0.0f, f3, f3, r0 + iRound2, this.clearPaint);
                 int i8 = this.padding;
-                canvas.drawRect(i8 + round, i8, r2 + i8, i8 + round2, this.clearPaint);
-                canvas.drawRect(0.0f, round2 + this.padding, round + r0 + r0, r3 + r0, this.clearPaint);
+                canvas.drawRect(i8 + iRound, i8, r2 + i8, i8 + iRound2, this.clearPaint);
+                canvas.drawRect(0.0f, iRound2 + this.padding, iRound + r0 + r0, r3 + r0, this.clearPaint);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BlurringShader.ThumbBlurer.this.lambda$getBitmap$0(str, createBitmap, z, bitmap);
+                    this.f$0.lambda$getBitmap$0(str, bitmapCreateBitmap, z, bitmap);
                 }
             });
         }
@@ -887,8 +879,54 @@ public class BlurringShader {
             drawRect(canvas, f, f2, f3, true);
         }
 
-        public void drawRect(android.graphics.Canvas r6, float r7, float r8, float r9, boolean r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BlurringShader.StoryBlurDrawer.drawRect(android.graphics.Canvas, float, float, float, boolean):void");
+        public void drawRect(Canvas canvas, float f, float f2, float f3, boolean z) {
+            if (this.manager.hasRenderNode() && Build.VERSION.SDK_INT >= 31) {
+                if (canvas.isHardwareAccelerated()) {
+                    RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.manager.blurRenderNode);
+                    if (!renderNodeM.hasDisplayList()) {
+                        RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.manager.renderNode);
+                        renderNodeM.setPosition(0, 0, renderNodeM2.getWidth(), renderNodeM2.getHeight());
+                        RecordingCanvas recordingCanvasBeginRecording = renderNodeM.beginRecording();
+                        recordingCanvasBeginRecording.drawColor(getBackgroundColor());
+                        recordingCanvasBeginRecording.drawRenderNode(renderNodeM2);
+                        renderNodeM.endRecording();
+                    }
+                    if (!renderNodeM.hasDisplayList()) {
+                        canvas.drawColor(getBackgroundColor());
+                        return;
+                    }
+                    canvas.drawColor(getBackgroundColor());
+                    if (setupMatrix(renderNodeM.getWidth(), renderNodeM.getHeight(), true) && renderNodeM.hasDisplayList()) {
+                        this.matrix.postTranslate(-f, -f2);
+                        this.paint.setAlpha((int) (f3 * 255.0f));
+                        canvas.saveLayer(null, this.paint);
+                        canvas.concat(this.matrix);
+                        if (z) {
+                            if (this.clipPathWidth != renderNodeM.getWidth() || this.clipPathHeight != renderNodeM.getHeight()) {
+                                this.clipPath.rewind();
+                                RectF rectF = AndroidUtilities.rectTmp;
+                                int width = renderNodeM.getWidth();
+                                this.clipPathWidth = width;
+                                int height = renderNodeM.getHeight();
+                                this.clipPathHeight = height;
+                                rectF.set(0.0f, 0.0f, width, height);
+                                this.clipPath.addRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+                            }
+                            canvas.clipPath(this.clipPath);
+                        }
+                        canvas.drawRenderNode(renderNodeM);
+                        canvas.restore();
+                        return;
+                    }
+                    return;
+                }
+                canvas.drawColor(getBackgroundColor());
+                return;
+            }
+            Paint paint = getPaint(f3, f, f2);
+            if (paint != null) {
+                canvas.drawPaint(paint);
+            }
         }
 
         private void updateBounds() {
@@ -903,13 +941,13 @@ public class BlurringShader {
                 this.bitmapShader = bitmapShader;
                 this.paint.setShader(bitmapShader);
             }
-            float width = this.bounds.width() / this.lastBitmap.getWidth();
-            float height = this.bounds.height() / this.lastBitmap.getHeight();
+            float fWidth = this.bounds.width() / this.lastBitmap.getWidth();
+            float fHeight = this.bounds.height() / this.lastBitmap.getHeight();
             this.matrix.reset();
             Matrix matrix = this.matrix;
             RectF rectF = this.bounds;
             matrix.postTranslate(rectF.left, rectF.top);
-            this.matrix.preScale(width, height);
+            this.matrix.preScale(fWidth, fHeight);
             this.bitmapShader.setLocalMatrix(this.matrix);
         }
 
@@ -1004,12 +1042,12 @@ public class BlurringShader {
                 this.crossfadeAnimator = null;
             }
             this.oldPaintAlpha = 1.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.crossfadeAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.crossfadeAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    BlurringShader.StoryBlurDrawer.this.lambda$animateOldPaint$0(valueAnimator2);
+                    this.f$0.lambda$animateOldPaint$0(valueAnimator2);
                 }
             });
             this.crossfadeAnimator.start();
@@ -1050,8 +1088,8 @@ public class BlurringShader {
                     }
                 } while (!this.manager.parents.contains(view3));
                 if (view != view3) {
-                    int indexOf = this.manager.parents.indexOf(view3) + 1;
-                    if (indexOf == 0 && (view2 = (View) this.manager.parents.get(indexOf)) != null) {
+                    int iIndexOf = this.manager.parents.indexOf(view3) + 1;
+                    if (iIndexOf == 0 && (view2 = (View) this.manager.parents.get(iIndexOf)) != null) {
                         view3.getLocationOnScreen(this.loc1);
                         view2.getLocationOnScreen(this.loc2);
                         Matrix matrix = this.matrix;
@@ -1059,13 +1097,13 @@ public class BlurringShader {
                         int[] iArr = this.loc1;
                         matrix.preTranslate(i3 - iArr[0], r3[1] - iArr[1]);
                     }
-                    while (indexOf >= 0 && indexOf < this.manager.parents.size()) {
-                        View view4 = (View) this.manager.parents.get(indexOf);
+                    while (iIndexOf >= 0 && iIndexOf < this.manager.parents.size()) {
+                        View view4 = (View) this.manager.parents.get(iIndexOf);
                         if (view4 != null) {
                             this.matrix.preScale(view4.getScaleX(), view4.getScaleY(), view4.getPivotX(), view4.getPivotY());
                             this.matrix.preRotate(view4.getRotation(), view4.getPivotX(), view4.getPivotY());
                             this.matrix.preTranslate(view4.getX(), view4.getY());
-                            indexOf++;
+                            iIndexOf++;
                         }
                     }
                 }

@@ -37,7 +37,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.AvatarPreviewer;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -194,7 +193,7 @@ public class AvatarPreviewer {
 
         public static Data of(TLRPC.User user, TLRPC.UserFull userFull, MenuItem... menuItemArr) {
             ImageLocation imageLocation;
-            String str;
+            String attachFileName;
             TLRPC.UserProfilePhoto userProfilePhoto;
             TLRPC.Photo photo;
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(userFull.user, 0);
@@ -203,19 +202,19 @@ public class AvatarPreviewer {
             }
             ImageLocation imageLocation2 = forUserOrChat;
             ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(userFull.user, 1);
-            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
             BitmapDrawable bitmapDrawable = (user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.strippedBitmap;
             TLRPC.Photo photo2 = userFull.profile_photo;
             if (photo2 == null || photo2.video_sizes.isEmpty()) {
                 imageLocation = null;
-                str = null;
+                attachFileName = null;
             } else {
                 TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(userFull.profile_photo.video_sizes, 1000);
                 ImageLocation forPhoto = ImageLocation.getForPhoto(closestVideoSizeWithSize, userFull.profile_photo);
-                str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
+                attachFileName = FileLoader.getAttachFileName(closestVideoSizeWithSize);
                 imageLocation = forPhoto;
             }
-            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, userFull.user, menuItemArr, null);
+            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", attachFileName, bitmapDrawable, userFull.user, menuItemArr, null);
         }
 
         public static Data of(TLRPC.Chat chat, int i, MenuItem... menuItemArr) {
@@ -231,23 +230,23 @@ public class AvatarPreviewer {
         }
 
         public static Data of(TLRPC.Chat chat, TLRPC.ChatFull chatFull, MenuItem... menuItemArr) {
-            ImageLocation imageLocation;
-            String str;
+            ImageLocation forPhoto;
+            String attachFileName;
             TLRPC.ChatPhoto chatPhoto;
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(chat, 0);
             ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(chat, 1);
-            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
             BitmapDrawable bitmapDrawable = (chat == null || (chatPhoto = chat.photo) == null) ? null : chatPhoto.strippedBitmap;
             TLRPC.Photo photo = chatFull.chat_photo;
             if (photo == null || photo.video_sizes.isEmpty()) {
-                imageLocation = null;
-                str = null;
+                forPhoto = null;
+                attachFileName = null;
             } else {
                 TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(chatFull.chat_photo.video_sizes, 1000);
-                imageLocation = ImageLocation.getForPhoto(closestVideoSizeWithSize, chatFull.chat_photo);
-                str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
+                forPhoto = ImageLocation.getForPhoto(closestVideoSizeWithSize, chatFull.chat_photo);
+                attachFileName = FileLoader.getAttachFileName(closestVideoSizeWithSize);
             }
-            return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, chat, menuItemArr, null);
+            return new Data(forUserOrChat, forUserOrChat2, forPhoto, null, str, (forPhoto == null || forPhoto.imageType != 2) ? null : "g", attachFileName, bitmapDrawable, chat, menuItemArr, null);
         }
 
         private Data(ImageLocation imageLocation, ImageLocation imageLocation2, ImageLocation imageLocation3, String str, String str2, String str3, String str4, BitmapDrawable bitmapDrawable, Object obj, MenuItem[] menuItemArr, InfoLoadTask infoLoadTask) {
@@ -265,7 +264,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static class UserInfoLoadTask extends InfoLoadTask {
+    private static class UserInfoLoadTask extends InfoLoadTask {
         public UserInfoLoadTask(TLRPC.User user, int i) {
             super(user, i, NotificationCenter.userInfoDidLoad);
         }
@@ -283,7 +282,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static class ChatInfoLoadTask extends InfoLoadTask {
+    private static class ChatInfoLoadTask extends InfoLoadTask {
         public ChatInfoLoadTask(TLRPC.Chat chat, int i) {
             super(chat, i, NotificationCenter.chatInfoDidLoad);
         }
@@ -303,7 +302,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static abstract class InfoLoadTask {
+    private static abstract class InfoLoadTask {
         protected final Object argument;
         protected final int classGuid;
         private boolean loading;
@@ -354,7 +353,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static abstract class Layout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    static abstract class Layout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
         private final AvatarView avatarView;
         private View blurView;
         private final Callback callback;
@@ -383,7 +382,7 @@ public class AvatarPreviewer {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    AvatarPreviewer.Layout.this.lambda$new$0(view2);
+                    this.f$0.lambda$new$0(view2);
                 }
             });
             addView(this.blurView, LayoutHelper.createFrame(-1, -1.0f));
@@ -397,16 +396,16 @@ public class AvatarPreviewer {
                 protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                     int paddingLeft = ((i3 - i) - getPaddingLeft()) - getPaddingRight();
                     int paddingTop = ((i4 - i2) - getPaddingTop()) - getPaddingBottom();
-                    int min = Math.min(paddingLeft, paddingTop) - AndroidUtilities.dp(16.0f);
-                    int min2 = Math.min(AndroidUtilities.dp(60.0f), min);
-                    Layout.this.menu.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec((paddingTop - min2) - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE));
-                    int clamp = MathUtils.clamp((paddingTop - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f), min2, min);
-                    Layout.this.avatarView.measure(View.MeasureSpec.makeMeasureSpec(clamp, 1073741824), View.MeasureSpec.makeMeasureSpec(clamp, 1073741824));
-                    int measuredHeight = (((paddingTop - clamp) - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f)) / 2;
+                    int iMin = Math.min(paddingLeft, paddingTop) - AndroidUtilities.dp(16.0f);
+                    int iMin2 = Math.min(AndroidUtilities.dp(60.0f), iMin);
+                    Layout.this.menu.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec((paddingTop - iMin2) - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE));
+                    int iClamp = MathUtils.clamp((paddingTop - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f), iMin2, iMin);
+                    Layout.this.avatarView.measure(View.MeasureSpec.makeMeasureSpec(iClamp, 1073741824), View.MeasureSpec.makeMeasureSpec(iClamp, 1073741824));
+                    int measuredHeight = (((paddingTop - iClamp) - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f)) / 2;
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) Layout.this.avatarView.getLayoutParams();
                     FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) Layout.this.menu.getLayoutParams();
                     layoutParams.topMargin = AndroidUtilities.dp(8.0f) + measuredHeight;
-                    layoutParams2.topMargin = measuredHeight + AndroidUtilities.dp(8.0f) + clamp;
+                    layoutParams2.topMargin = measuredHeight + AndroidUtilities.dp(8.0f) + iClamp;
                     super.onLayout(z, i, i2, i3, i4);
                 }
             };
@@ -451,7 +450,7 @@ public class AvatarPreviewer {
                     this.avatarView.setProgress(1.0f);
                 }
             } else if (i == NotificationCenter.fileLoadProgressChanged && TextUtils.equals((String) objArr[0], this.videoFileName)) {
-                this.avatarView.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
+                this.avatarView.setProgress(Math.min(1.0f, ((Long) objArr[1]).longValue() / ((Long) objArr[2]).longValue()));
             }
         }
 
@@ -487,7 +486,7 @@ public class AvatarPreviewer {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AvatarPreviewer.Layout.this.prepareBlurBitmap();
+                    this.f$0.prepareBlurBitmap();
                 }
             });
         }
@@ -500,7 +499,7 @@ public class AvatarPreviewer {
             AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    AvatarPreviewer.Layout.this.lambda$prepareBlurBitmap$1((Bitmap) obj);
+                    this.f$0.lambda$prepareBlurBitmap$1((Bitmap) obj);
                 }
             }, 6.0f, 7, this, Collections.singletonList(this));
         }
@@ -521,7 +520,7 @@ public class AvatarPreviewer {
                 infoLoadTask.load(new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        AvatarPreviewer.Layout.this.lambda$setData$2(data, obj);
+                        this.f$0.lambda$setData$2(data, obj);
                     }
                 });
             }
@@ -532,12 +531,12 @@ public class AvatarPreviewer {
                 MenuItem[] menuItemArr = this.menuItems;
                 if (i < menuItemArr.length) {
                     final MenuItem menuItem = menuItemArr[i];
-                    ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(i == 0, i == this.menuItems.length - 1, this.menu, menuItem.iconResId, LocaleController.getString(menuItem.labelKey, menuItem.labelResId), false, this.resourcesProvider);
-                    addItem.setTag(Integer.valueOf(i));
-                    addItem.setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(i == 0, i == this.menuItems.length - 1, this.menu, menuItem.iconResId, LocaleController.getString(menuItem.labelKey, menuItem.labelResId), false, this.resourcesProvider);
+                    actionBarMenuSubItemAddItem.setTag(Integer.valueOf(i));
+                    actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AvatarPreviewer.Layout.this.lambda$setData$3(menuItem, view);
+                            this.f$0.lambda$setData$3(menuItem, view);
                         }
                     });
                     i++;
@@ -569,19 +568,19 @@ public class AvatarPreviewer {
                 return;
             }
             this.showing = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.setInterpolator(z ? this.openInterpolator : CubicBezierInterpolator.EASE_OUT_QUINT);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.setInterpolator(z ? this.openInterpolator : CubicBezierInterpolator.EASE_OUT_QUINT);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AvatarPreviewer.Layout.this.lambda$setShowing$4(z, valueAnimator);
+                    this.f$0.lambda$setShowing$4(z, valueAnimator);
                 }
             });
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AvatarPreviewer.Layout.this.lambda$setShowing$5(z, valueAnimator);
+                    this.f$0.lambda$setShowing$5(z, valueAnimator);
                 }
             });
             AnimatorSet animatorSet = this.openAnimator;
@@ -591,7 +590,7 @@ public class AvatarPreviewer {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.openAnimator = animatorSet2;
             animatorSet2.setDuration(z ? 190L : 150L);
-            this.openAnimator.playTogether(ofFloat, ofFloat2);
+            this.openAnimator.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2);
             this.openAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -606,29 +605,29 @@ public class AvatarPreviewer {
         }
 
         public void lambda$setShowing$4(boolean z, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             if (!z) {
-                floatValue = 1.0f - floatValue;
+                fFloatValue = 1.0f - fFloatValue;
             }
-            float clamp = MathUtils.clamp(floatValue, 0.0f, 1.0f);
-            float f = (0.3f * floatValue) + 0.7f;
+            float fClamp = MathUtils.clamp(fFloatValue, 0.0f, 1.0f);
+            float f = (0.3f * fFloatValue) + 0.7f;
             this.container.setScaleX(f);
             this.container.setScaleY(f);
-            this.container.setAlpha(clamp);
-            float f2 = 1.0f - floatValue;
+            this.container.setAlpha(fClamp);
+            float f2 = 1.0f - fFloatValue;
             this.avatarView.setTranslationY(AndroidUtilities.dp(40.0f) * f2);
             this.menu.setTranslationY((-AndroidUtilities.dp(70.0f)) * f2);
-            float f3 = (floatValue * 0.05f) + 0.95f;
+            float f3 = (fFloatValue * 0.05f) + 0.95f;
             this.menu.setScaleX(f3);
             this.menu.setScaleY(f3);
         }
 
         public void lambda$setShowing$5(boolean z, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             if (!z) {
-                floatValue = 1.0f - floatValue;
+                fFloatValue = 1.0f - fFloatValue;
             }
-            this.blurView.setAlpha(floatValue);
+            this.blurView.setAlpha(fFloatValue);
             invalidate();
         }
 
@@ -646,7 +645,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static class AvatarView extends FrameLayout {
+    static class AvatarView extends FrameLayout {
         private BackupImageView backupImageView;
         private ValueAnimator progressHideAnimator;
         private ValueAnimator progressShowAnimator;
@@ -712,9 +711,9 @@ public class AvatarPreviewer {
                         if (this.radialProgress.getProgress() < 1.0f) {
                             this.radialProgress.setProgress(1.0f, true);
                         }
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) this.progressShowAnimator.getAnimatedValue()).floatValue(), 0.0f);
-                        this.progressHideAnimator = ofFloat;
-                        ofFloat.addListener(new AnimatorListenerAdapter() {
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(((Float) this.progressShowAnimator.getAnimatedValue()).floatValue(), 0.0f);
+                        this.progressHideAnimator = valueAnimatorOfFloat;
+                        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 AvatarView.this.showProgress = false;
@@ -724,7 +723,7 @@ public class AvatarPreviewer {
                         this.progressHideAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                                AvatarPreviewer.AvatarView.this.lambda$dispatchDraw$0(valueAnimator2);
+                                this.f$0.lambda$dispatchDraw$0(valueAnimator2);
                             }
                         });
                         this.progressHideAnimator.setDuration(250L);
@@ -733,12 +732,12 @@ public class AvatarPreviewer {
                         this.showProgress = false;
                     }
                 } else if (this.progressShowAnimator == null) {
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    this.progressShowAnimator = ofFloat2;
-                    ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    this.progressShowAnimator = valueAnimatorOfFloat2;
+                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            AvatarPreviewer.AvatarView.this.lambda$dispatchDraw$1(valueAnimator2);
+                            this.f$0.lambda$dispatchDraw$1(valueAnimator2);
                         }
                     });
                     this.progressShowAnimator.setStartDelay(250L);

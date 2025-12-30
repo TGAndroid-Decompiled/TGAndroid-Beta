@@ -51,9 +51,9 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         this.smoothKeyboardAnimationEnabled = true;
         this.waitingKeyboard = true;
         AppGlobalConfig appGlobalConfig = MessagesController.getInstance(i).config;
-        long max = Math.max(appGlobalConfig.tonStarGiftResaleAmountMin.get(), 10000000L);
+        long jMax = Math.max(appGlobalConfig.tonStarGiftResaleAmountMin.get(), 10000000L);
         AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.TON;
-        this.inputAmountMinTON = AmountUtils$Amount.fromNano(max, amountUtils$Currency);
+        this.inputAmountMinTON = AmountUtils$Amount.fromNano(jMax, amountUtils$Currency);
         this.inputAmountMaxTON = AmountUtils$Amount.fromNano(appGlobalConfig.tonStarGiftResaleAmountMax.get(), amountUtils$Currency);
         long j = appGlobalConfig.starsStarGiftResaleAmountMin.get();
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
@@ -96,7 +96,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                SellGiftEnterPriceSheet.this.lambda$new$0(view, z);
+                this.f$0.lambda$new$0(view, z);
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -129,7 +129,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         textCheckbox2Cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SellGiftEnterPriceSheet.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         linearLayout3.addView(textCheckbox2Cell, LayoutHelper.createLinear(-1, -2, 55, 0, 16, 0, 16));
@@ -141,7 +141,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SellGiftEnterPriceSheet.this.lambda$new$2(callback, view);
+                this.f$0.lambda$new$2(callback, view);
             }
         });
         buttonWithCounterView.setText(LocaleController.getString(R.string.ResellGiftButton), false);
@@ -163,11 +163,11 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String obj;
-                int indexOf;
+                String string;
+                int iIndexOf;
                 boolean z = editable == null || editable.toString().isEmpty() || ".".equals(editable.toString());
-                if (!z && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-                    editable.delete(indexOf + 3, obj.length());
+                if (!z && (iIndexOf = (string = editable.toString()).indexOf(46)) >= 0 && (string.length() - iIndexOf) - 1 > 2) {
+                    editable.delete(iIndexOf + 3, string.length());
                 }
                 SellGiftEnterPriceSheet.this.setAmount(!z ? AmountUtils$Amount.fromDecimal(editable.toString(), SellGiftEnterPriceSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, SellGiftEnterPriceSheet.this.inputAmount.currency), false, false, true);
                 SellGiftEnterPriceSheet.this.starsCountEditOutline.animateSelection(SellGiftEnterPriceSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(SellGiftEnterPriceSheet.this.starsCountEditField.getText()));
@@ -232,9 +232,9 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
             checkRateText(z3);
         }
         if (z && z5) {
-            String asDecimalString = this.inputAmount.asDecimalString();
-            this.starsCountEditField.setText(asDecimalString);
-            this.starsCountEditField.setSelection(asDecimalString.length());
+            String strAsDecimalString = this.inputAmount.asDecimalString();
+            this.starsCountEditField.setText(strAsDecimalString);
+            this.starsCountEditField.setSelection(strAsDecimalString.length());
         }
     }
 
@@ -330,7 +330,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SellGiftEnterPriceSheet.this.lambda$show$3();
+                this.f$0.lambda$show$3();
             }
         }, 50L);
     }

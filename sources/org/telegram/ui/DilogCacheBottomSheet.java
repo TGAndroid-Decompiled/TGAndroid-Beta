@@ -101,9 +101,9 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public DilogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, final CacheModel cacheModel, final Delegate delegate) {
-        super(cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
         String string;
         int i;
+        super(cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
         int i2 = 1;
         this.clearViewData = new StorageDiagramView.ClearViewData[8];
         this.checkBoxes = new CheckBoxCell[8];
@@ -123,7 +123,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         linearLayout.setOrientation(1);
         StorageDiagramView storageDiagramView = new StorageDiagramView(getContext(), dialogFileEntities.dialogId) {
             @Override
-            public void onAvatarClick() {
+            protected void onAvatarClick() {
                 delegate.onAvatarClick();
             }
         };
@@ -174,7 +174,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        DilogCacheBottomSheet.this.lambda$new$0(cacheModel, view);
+                        this.f$0.lambda$new$0(cacheModel, view);
                     }
                 });
                 this.checkBoxes[i3] = checkBoxCell;
@@ -191,7 +191,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         this.circleDiagramView.setData(cacheModel, this.clearViewData);
         CachedMediaLayout cachedMediaLayout = new CachedMediaLayout(getContext(), cacheControlActivity) {
             @Override
-            public void onMeasure(int i5, int i6) {
+            protected void onMeasure(int i5, int i6) {
                 super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DilogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
             }
         };
@@ -244,10 +244,10 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
                 i++;
             } else {
                 CheckBoxCell checkBoxCell = (CheckBoxCell) view;
-                int intValue = ((Integer) checkBoxCell.getTag()).intValue();
-                this.clearViewData[intValue].setClear(!r1.clear);
-                checkBoxCell.setChecked(this.clearViewData[intValue].clear, true);
-                cacheModel.allFilesSelcetedByType(intValue, this.clearViewData[intValue].clear);
+                int iIntValue = ((Integer) checkBoxCell.getTag()).intValue();
+                this.clearViewData[iIntValue].setClear(!r1.clear);
+                checkBoxCell.setChecked(this.clearViewData[iIntValue].clear, true);
+                cacheModel.allFilesSelcetedByType(iIntValue, this.clearViewData[iIntValue].clear);
                 this.cachedMediaLayout.update();
                 this.button.setSize(true, this.circleDiagramView.updateDescription());
                 this.circleDiagramView.update(true);
@@ -319,7 +319,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         clearCacheButton.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DilogCacheBottomSheet.this.lambda$createButton$3(view);
+                this.f$0.lambda$createButton$3(view);
             }
         });
         StorageDiagramView storageDiagramView = this.circleDiagramView;
@@ -335,18 +335,18 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                DilogCacheBottomSheet.this.lambda$createButton$1(alertDialog, i);
+                this.f$0.lambda$createButton$1(alertDialog, i);
             }
         });
         builder.setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                DilogCacheBottomSheet.this.lambda$createButton$2(alertDialog, i);
+                this.f$0.lambda$createButton$2(alertDialog, i);
             }
         });
-        AlertDialog create = builder.create();
-        create.show();
-        create.redPositive();
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.show();
+        alertDialogCreate.redPositive();
     }
 
     public void lambda$createButton$1(AlertDialog alertDialog, int i) {

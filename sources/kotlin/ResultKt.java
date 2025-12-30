@@ -9,7 +9,7 @@ public abstract class ResultKt {
         return new Result.Failure(exception);
     }
 
-    public static final void throwOnFailure(Object obj) {
+    public static final void throwOnFailure(Object obj) throws Throwable {
         if (obj instanceof Result.Failure) {
             throw ((Result.Failure) obj).exception;
         }

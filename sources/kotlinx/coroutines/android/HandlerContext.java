@@ -3,10 +3,13 @@ package kotlinx.coroutines.android;
 import android.os.Handler;
 import android.os.Looper;
 import java.util.concurrent.CancellationException;
+import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt;
+import kotlinx.coroutines.CancellableContinuation;
 import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.DisposableHandle;
@@ -18,6 +21,35 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
     private final HandlerContext immediate;
     private final boolean invokeImmediately;
     private final String name;
+
+    @Override
+    public void scheduleResumeAfterDelay(long j, final CancellableContinuation cancellableContinuation) {
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                cancellableContinuation.resumeUndispatched(this, Unit.INSTANCE);
+            }
+        };
+        if (this.handler.postDelayed(runnable, RangesKt.coerceAtMost(j, 4611686018427387903L))) {
+            cancellableContinuation.invokeOnCancellation(new Function1() {
+                {
+                    super(1);
+                }
+
+                @Override
+                public Object invoke(Object obj) {
+                    invoke((Throwable) obj);
+                    return Unit.INSTANCE;
+                }
+
+                public final void invoke(Throwable th) {
+                    HandlerContext.this.handler.removeCallbacks(runnable);
+                }
+            });
+        } else {
+            cancelOnRejection(cancellableContinuation.getContext(), runnable);
+        }
+    }
 
     private HandlerContext(Handler handler, String str, boolean z) {
         super(null);
@@ -59,7 +91,7 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
             return new DisposableHandle() {
                 @Override
                 public final void dispose() {
-                    HandlerContext.invokeOnTimeout$lambda$2(HandlerContext.this, runnable);
+                    HandlerContext.invokeOnTimeout$lambda$2(this.f$0, runnable);
                 }
             };
         }
@@ -82,14 +114,14 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
         if (stringInternalImpl != null) {
             return stringInternalImpl;
         }
-        String str = this.name;
-        if (str == null) {
-            str = this.handler.toString();
+        String string = this.name;
+        if (string == null) {
+            string = this.handler.toString();
         }
         if (!this.invokeImmediately) {
-            return str;
+            return string;
         }
-        return str + ".immediate";
+        return string + ".immediate";
     }
 
     public boolean equals(Object obj) {

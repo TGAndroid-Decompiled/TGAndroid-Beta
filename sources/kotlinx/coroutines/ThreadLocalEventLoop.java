@@ -16,9 +16,9 @@ public final class ThreadLocalEventLoop {
         if (eventLoop != null) {
             return eventLoop;
         }
-        EventLoop createEventLoop = EventLoopKt.createEventLoop();
-        threadLocal.set(createEventLoop);
-        return createEventLoop;
+        EventLoop eventLoopCreateEventLoop = EventLoopKt.createEventLoop();
+        threadLocal.set(eventLoopCreateEventLoop);
+        return eventLoopCreateEventLoop;
     }
 
     public final EventLoop currentOrNull$kotlinx_coroutines_core() {

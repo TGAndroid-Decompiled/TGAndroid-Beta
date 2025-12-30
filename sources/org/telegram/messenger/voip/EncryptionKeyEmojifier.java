@@ -5,7 +5,7 @@ public class EncryptionKeyEmojifier {
     private static final int[] offsets = {0, 4, 8, 12, 16};
 
     private static int bytesToInt(byte[] bArr, int i) {
-        return (bArr[i + 3] & 255) | ((bArr[i] & Byte.MAX_VALUE) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8);
+        return (bArr[i + 3] & 255) | ((bArr[i] & 127) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8);
     }
 
     private static long bytesToLong(byte[] bArr, int i) {

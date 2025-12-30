@@ -32,20 +32,20 @@ public class Logging {
 
     private static native void nativeLog(int i, String str, String str2);
 
-    private static Logger createFallbackLogger() {
+    private static Logger createFallbackLogger() throws SecurityException {
         Logger logger = Logger.getLogger("org.webrtc.Logging");
         logger.setLevel(Level.ALL);
         return logger;
     }
 
-    public static void injectLoggable(Loggable loggable2, Severity severity) {
+    static void injectLoggable(Loggable loggable2, Severity severity) {
         if (loggable2 != null) {
             loggable = loggable2;
             loggableSeverity = severity;
         }
     }
 
-    public static void deleteInjectedLoggable() {
+    static void deleteInjectedLoggable() {
         loggable = null;
     }
 
@@ -83,13 +83,11 @@ public class Logging {
     }
 
     public static synchronized void enableLogToDebugOutput(Severity severity) {
-        synchronized (Logging.class) {
-            if (loggable != null) {
-                throw new IllegalStateException("Logging to native debug output not supported while Loggable is injected. Delete the Loggable before calling this method.");
-            }
-            nativeEnableLogToDebugOutput(severity.ordinal());
-            loggingEnabled = true;
+        if (loggable != null) {
+            throw new IllegalStateException("Logging to native debug output not supported while Loggable is injected. Delete the Loggable before calling this method.");
         }
+        nativeEnableLogToDebugOutput(severity.ordinal());
+        loggingEnabled = true;
     }
 
     public static void log(Severity severity, String str, String str2) {
@@ -108,12 +106,12 @@ public class Logging {
             nativeLog(severity.ordinal(), str, str2);
             return;
         }
-        int ordinal = severity.ordinal();
-        if (ordinal == 1) {
+        int iOrdinal = severity.ordinal();
+        if (iOrdinal == 1) {
             level = Level.INFO;
-        } else if (ordinal == 2) {
+        } else if (iOrdinal == 2) {
             level = Level.WARNING;
-        } else if (ordinal == 3) {
+        } else if (iOrdinal == 3) {
             level = Level.SEVERE;
         } else {
             level = Level.FINE;

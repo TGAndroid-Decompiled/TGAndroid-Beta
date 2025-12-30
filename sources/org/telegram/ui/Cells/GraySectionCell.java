@@ -57,9 +57,9 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         this.rightTextView.setTextColor(getThemedColor(i));
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         View view = this.rightTextView;
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f);
-        this.rightTextViewLayoutParams = createFrame;
-        addView(view, createFrame);
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f);
+        this.rightTextViewLayoutParams = layoutParamsCreateFrame;
+        addView(view, layoutParamsCreateFrame);
         ViewCompat.setAccessibilityHeading(this, true);
     }
 

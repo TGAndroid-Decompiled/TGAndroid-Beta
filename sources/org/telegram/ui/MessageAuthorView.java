@@ -59,7 +59,7 @@ public abstract class MessageAuthorView extends FrameLayout {
         ConnectionsManager.getInstance(i).sendRequest(tL_channels_getMessageAuthor, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MessageAuthorView.this.lambda$new$1(i, tLObject, tL_error);
+                this.f$0.lambda$new$1(i, tLObject, tL_error);
             }
         });
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
@@ -70,7 +70,7 @@ public abstract class MessageAuthorView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageAuthorView.this.lambda$new$0(tLObject, i);
+                this.f$0.lambda$new$0(tLObject, i);
             }
         });
     }
@@ -97,14 +97,14 @@ public abstract class MessageAuthorView extends FrameLayout {
         if (view != null && view.getWidth() > 0) {
             i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
         }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824);
         this.ignoreLayout = true;
         boolean z = this.flickerLoadingView.getVisibility() == 0;
         this.titleView.setVisibility(8);
         if (z) {
             this.flickerLoadingView.setVisibility(8);
         }
-        super.onMeasure(i, makeMeasureSpec);
+        super.onMeasure(i, iMakeMeasureSpec);
         if (z) {
             this.flickerLoadingView.getLayoutParams().width = getMeasuredWidth();
             this.flickerLoadingView.setVisibility(0);
@@ -112,7 +112,7 @@ public abstract class MessageAuthorView extends FrameLayout {
         this.titleView.setVisibility(0);
         this.titleView.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
         this.ignoreLayout = false;
-        super.onMeasure(i, makeMeasureSpec);
+        super.onMeasure(i, iMakeMeasureSpec);
     }
 
     private void updateView() {
@@ -123,7 +123,7 @@ public abstract class MessageAuthorView extends FrameLayout {
             this.titleView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.MessageAuthorSentBy, UserObject.getUserName(user)), new Runnable() {
                 @Override
                 public final void run() {
-                    MessageAuthorView.this.lambda$updateView$2(j);
+                    this.f$0.lambda$updateView$2(j);
                 }
             }));
         }

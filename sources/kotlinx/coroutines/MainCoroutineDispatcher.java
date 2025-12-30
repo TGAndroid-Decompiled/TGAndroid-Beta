@@ -3,18 +3,18 @@ package kotlinx.coroutines;
 public abstract class MainCoroutineDispatcher extends CoroutineDispatcher {
     public abstract MainCoroutineDispatcher getImmediate();
 
-    public final String toStringInternalImpl() {
-        MainCoroutineDispatcher mainCoroutineDispatcher;
+    protected final String toStringInternalImpl() {
+        MainCoroutineDispatcher immediate;
         MainCoroutineDispatcher main = Dispatchers.getMain();
         if (this == main) {
             return "Dispatchers.Main";
         }
         try {
-            mainCoroutineDispatcher = main.getImmediate();
+            immediate = main.getImmediate();
         } catch (UnsupportedOperationException unused) {
-            mainCoroutineDispatcher = null;
+            immediate = null;
         }
-        if (this == mainCoroutineDispatcher) {
+        if (this == immediate) {
             return "Dispatchers.Main.immediate";
         }
         return null;

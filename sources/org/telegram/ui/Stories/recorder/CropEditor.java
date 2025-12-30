@@ -137,10 +137,10 @@ public abstract class CropEditor extends FrameLayout {
 
             @Override
             public boolean rotate90Pressed() {
-                boolean rotate = CropEditor.this.cropView.rotate(-90.0f);
+                boolean zRotate = CropEditor.this.cropView.rotate(-90.0f);
                 CropEditor.this.cropView.maximize(true);
                 CropEditor.this.contentView.invalidate();
-                return rotate;
+                return zRotate;
             }
 
             @Override
@@ -165,7 +165,7 @@ public abstract class CropEditor extends FrameLayout {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropEditor.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         TextView textView2 = new TextView(context);
@@ -180,7 +180,7 @@ public abstract class CropEditor extends FrameLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropEditor.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -195,7 +195,7 @@ public abstract class CropEditor extends FrameLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropEditor.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
     }
@@ -329,7 +329,7 @@ public abstract class CropEditor extends FrameLayout {
         }
 
         public void drawImage(Canvas canvas, boolean z) {
-            boolean z2 = true;
+            boolean zIsMirrored = true;
             if (z) {
                 if (CropEditor.this.appearProgress >= 1.0f) {
                     return;
@@ -348,8 +348,8 @@ public abstract class CropEditor extends FrameLayout {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 AndroidUtilities.lerp(this.previewClipRect, rectF, CropEditor.this.appearProgress, this.previewClipRect);
-                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, CropEditor.this.appearProgress);
-                this.previewClipPath.addRoundRect(this.previewClipRect, lerp, lerp, Path.Direction.CW);
+                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, CropEditor.this.appearProgress);
+                this.previewClipPath.addRoundRect(this.previewClipRect, fLerp, fLerp, Path.Direction.CW);
                 canvas.clipPath(this.previewClipPath);
             }
             float unused = CropEditor.this.appearProgress;
@@ -366,19 +366,19 @@ public abstract class CropEditor extends FrameLayout {
                 AndroidUtilities.lerp(this.previewMatrix, this.identityMatrix, CropEditor.this.appearProgress, this.clipMatrix);
                 this.clipMatrix.preRotate(-CropEditor.this.entry.orientation);
                 if (this.clipMatrix.invert(this.invertedClipMatrix)) {
-                    boolean z3 = ((CropEditor.this.entry.orientation + (CropEditor.this.entry.crop != null ? CropEditor.this.entry.crop.transformRotation : 0)) / 90) % 2 == 1;
+                    boolean z2 = ((CropEditor.this.entry.orientation + (CropEditor.this.entry.crop != null ? CropEditor.this.entry.crop.transformRotation : 0)) / 90) % 2 == 1;
                     float contentWidth = CropEditor.this.previewView.getContentWidth();
                     float contentHeight = CropEditor.this.previewView.getContentHeight();
                     float f2 = CropEditor.this.entry.crop != null ? CropEditor.this.entry.crop.cropPw : 1.0f;
                     float f3 = CropEditor.this.entry.crop != null ? CropEditor.this.entry.crop.cropPh : 1.0f;
-                    float f4 = ((z3 ? contentHeight : contentWidth) * f2) / 2.0f;
-                    if (!z3) {
+                    float f4 = ((z2 ? contentHeight : contentWidth) * f2) / 2.0f;
+                    if (!z2) {
                         contentWidth = contentHeight;
                     }
                     float f5 = (contentWidth * f3) / 2.0f;
-                    float lerp2 = AndroidUtilities.lerp(1.0f, 4.0f, f);
+                    float fLerp2 = AndroidUtilities.lerp(1.0f, 4.0f, f);
                     canvas.concat(this.clipMatrix);
-                    canvas.clipRect((-f4) * lerp2, (-f5) * lerp2, f4 * lerp2, f5 * lerp2);
+                    canvas.clipRect((-f4) * fLerp2, (-f5) * fLerp2, f4 * fLerp2, f5 * fLerp2);
                     canvas.concat(this.invertedClipMatrix);
                 }
             }
@@ -387,11 +387,11 @@ public abstract class CropEditor extends FrameLayout {
             AnimatedFloat animatedFloat = CropEditor.this.animatedMirror;
             CropEditor cropEditor = CropEditor.this;
             if (!cropEditor.closing) {
-                z2 = cropEditor.cropView.isMirrored();
+                zIsMirrored = cropEditor.cropView.isMirrored();
             } else if (cropEditor.entry.crop == null || !CropEditor.this.entry.crop.mirrored) {
-                z2 = false;
+                zIsMirrored = false;
             }
-            float f6 = animatedFloat.set(z2);
+            float f6 = animatedFloat.set(zIsMirrored);
             float f7 = 1.0f - (f6 * 2.0f);
             this.cropMatrix.preScale(f7, 1.0f);
             this.previewMatrix.preScale(f7, 1.0f);

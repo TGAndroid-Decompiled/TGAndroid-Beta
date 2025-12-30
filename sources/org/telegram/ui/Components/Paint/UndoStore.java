@@ -63,7 +63,7 @@ public class UndoStore {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UndoStore.this.lambda$notifyOfHistoryChanges$0();
+                this.f$0.lambda$notifyOfHistoryChanges$0();
             }
         });
     }

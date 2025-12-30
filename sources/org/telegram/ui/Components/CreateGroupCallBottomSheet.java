@@ -25,7 +25,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.Components.CreateGroupCallBottomSheet;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.RecyclerListView;
 
@@ -54,9 +53,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
     }
 
     public CreateGroupCallBottomSheet(BaseFragment baseFragment, ArrayList arrayList, long j, JoinCallAlert.JoinCallAlertDelegate joinCallAlertDelegate) {
+        String string;
+        String string2;
         super(baseFragment, false, false);
-        String formatString;
-        String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         this.fragment = baseFragment;
         this.dialogId = j;
@@ -64,8 +63,8 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.chats = arrayList2;
         this.joinCallDelegate = joinCallAlertDelegate;
-        boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.isChannelOrGiga = isChannelOrGiga;
+        boolean zIsChannelOrGiga = ChatObject.isChannelOrGiga(chat);
+        this.isChannelOrGiga = zIsChannelOrGiga;
         this.selectedPeer = (TLRPC.Peer) arrayList2.get(0);
         this.needSelector = arrayList2.size() > 1;
         this.canRtmpStream = ChatObject.canManageCalls(chat);
@@ -85,16 +84,16 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView.setSingleLine(true);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        if (isChannelOrGiga) {
-            formatString = LocaleController.formatString(R.string.VoipChannelStartVoiceChat, new Object[0]);
+        if (zIsChannelOrGiga) {
+            string = LocaleController.formatString(R.string.VoipChannelStartVoiceChat, new Object[0]);
         } else {
-            formatString = LocaleController.formatString(R.string.VoipGroupStartVoiceChat, new Object[0]);
+            string = LocaleController.formatString(R.string.VoipGroupStartVoiceChat, new Object[0]);
         }
-        textView.setText(formatString);
+        textView.setText(string);
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        int dp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(8.0f);
         int i = Theme.key_featuredStickers_addButton;
-        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, Theme.getColor(i), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
         this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
@@ -102,12 +101,12 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView2.setSingleLine(true);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
-        if (isChannelOrGiga) {
-            formatString2 = LocaleController.formatString(R.string.VoipChannelScheduleVoiceChat, new Object[0]);
+        if (zIsChannelOrGiga) {
+            string2 = LocaleController.formatString(R.string.VoipChannelScheduleVoiceChat, new Object[0]);
         } else {
-            formatString2 = LocaleController.formatString(R.string.VoipGroupScheduleVoiceChat, new Object[0]);
+            string2 = LocaleController.formatString(R.string.VoipGroupScheduleVoiceChat, new Object[0]);
         }
-        textView2.setText(formatString2);
+        textView2.setText(string2);
         textView2.setLetterSpacing(0.025f);
         textView2.setTextColor(Theme.getColor(i));
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
@@ -115,13 +114,13 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallBottomSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallBottomSheet.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         RecyclerListView recyclerListView = this.recyclerListView;
@@ -130,7 +129,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                CreateGroupCallBottomSheet.this.lambda$new$2(view, i3);
+                this.f$0.lambda$new$2(view, i3);
             }
         });
         fixNavigationBar();
@@ -181,7 +180,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         return LocaleController.getString(R.string.StartVoipChatTitle);
     }
 
-    public class AnonymousClass2 extends RecyclerListView.SelectionAdapter {
+    class AnonymousClass2 extends RecyclerListView.SelectionAdapter {
         @Override
         public int getItemViewType(int i) {
             if (i == 0) {
@@ -207,41 +206,41 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View headerCell;
             Context context = viewGroup.getContext();
             if (i == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
                 textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, ((BottomSheet) CreateGroupCallBottomSheet.this).resourcesProvider));
                 textInfoPrivacyCell.setTopPadding(17);
                 textInfoPrivacyCell.setBottomPadding(17);
-                view = textInfoPrivacyCell;
+                headerCell = textInfoPrivacyCell;
             } else if (i == 2) {
-                view = new HeaderCell(context, 22);
+                headerCell = new HeaderCell(context, 22);
             } else if (i != 3) {
-                view = new TopCell(context, CreateGroupCallBottomSheet.this.isChannelOrGiga);
+                headerCell = new TopCell(context, CreateGroupCallBottomSheet.this.isChannelOrGiga);
             } else {
-                view = new GroupCreateUserCell(context, 1, 0, false);
+                headerCell = new GroupCreateUserCell(context, 1, 0, false);
             }
-            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(view);
+            headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(headerCell);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             TLObject chat;
-            String str;
+            String string;
             if (viewHolder.getItemViewType() == 3) {
                 TLRPC.Peer peer = (TLRPC.Peer) CreateGroupCallBottomSheet.this.chats.get(i - 3);
                 long peerId = MessageObject.getPeerId(peer);
                 if (peerId > 0) {
                     chat = MessagesController.getInstance(((BottomSheet) CreateGroupCallBottomSheet.this).currentAccount).getUser(Long.valueOf(peerId));
-                    str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
+                    string = LocaleController.getString(R.string.VoipGroupPersonalAccount);
                 } else {
                     chat = MessagesController.getInstance(((BottomSheet) CreateGroupCallBottomSheet.this).currentAccount).getChat(Long.valueOf(-peerId));
-                    str = null;
+                    string = null;
                 }
                 GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
-                groupCreateUserCell.setObject(chat, null, str, i != getItemCount() - 1);
+                groupCreateUserCell.setObject(chat, null, string, i != getItemCount() - 1);
                 groupCreateUserCell.setChecked(peer == CreateGroupCallBottomSheet.this.selectedPeer, false);
                 return;
             }
@@ -256,7 +255,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                 ((TextInfoPrivacyCell) viewHolder.itemView).setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.VoipChatStreamWithAnotherApp), Theme.key_windowBackgroundWhiteBlueHeader, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        CreateGroupCallBottomSheet.AnonymousClass2.this.lambda$onBindViewHolder$0();
+                        this.f$0.lambda$onBindViewHolder$0();
                     }
                 }), true, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f)));
             }
@@ -282,9 +281,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
 
     private static class TopCell extends LinearLayout {
         public TopCell(Context context, boolean z) {
+            String string;
+            String string2;
             super(context);
-            String formatString;
-            String formatString2;
             setOrientation(1);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             rLottieImageView.setAutoRepeat(true);
@@ -294,11 +293,11 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             if (z) {
-                formatString = LocaleController.formatString(R.string.StartVoipChannelTitle, new Object[0]);
+                string = LocaleController.formatString(R.string.StartVoipChannelTitle, new Object[0]);
             } else {
-                formatString = LocaleController.formatString(R.string.StartVoipChatTitle, new Object[0]);
+                string = LocaleController.formatString(R.string.StartVoipChatTitle, new Object[0]);
             }
-            textView.setText(formatString);
+            textView.setText(string);
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 14, 0, 7));
@@ -307,11 +306,11 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
             textView2.setGravity(1);
             textView2.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
             if (z) {
-                formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
+                string2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
             } else {
-                formatString2 = LocaleController.formatString(R.string.VoipGroupStart2, new Object[0]);
+                string2 = LocaleController.formatString(R.string.VoipGroupStart2, new Object[0]);
             }
-            textView2.setText(formatString2);
+            textView2.setText(string2);
             textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
             addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 28, 0, 28, 17));
         }

@@ -57,7 +57,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         VideoSink.CC.$default$setParentSink(this, videoSink);
     }
 
-    public static class FrameInfo {
+    private static class FrameInfo {
         final long decodeStartTimeMs;
         final int rotation;
 
@@ -67,7 +67,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
     }
 
-    public static class DecodedTextureMetadata {
+    private static class DecodedTextureMetadata {
         final Integer decodeTimeMs;
         final long presentationTimestampUs;
 
@@ -77,7 +77,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
     }
 
-    public AndroidVideoDecoder(MediaCodecWrapperFactory mediaCodecWrapperFactory, String str, VideoCodecMimeType videoCodecMimeType, int i, EglBase.Context context) {
+    AndroidVideoDecoder(MediaCodecWrapperFactory mediaCodecWrapperFactory, String str, VideoCodecMimeType videoCodecMimeType, int i, EglBase.Context context) {
         if (!isSupportedColorFormat(i)) {
             throw new IllegalArgumentException("Unsupported color format: " + i);
         }
@@ -118,16 +118,16 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         try {
             this.codec = this.mediaCodecWrapperFactory.createByCodecName(this.codecName);
             try {
-                MediaFormat createVideoFormat = MediaFormat.createVideoFormat(this.codecType.mimeType(), i, i2);
+                MediaFormat mediaFormatCreateVideoFormat = MediaFormat.createVideoFormat(this.codecType.mimeType(), i, i2);
                 if (this.sharedContext == null) {
-                    createVideoFormat.setInteger("color-format", this.colorFormat);
+                    mediaFormatCreateVideoFormat.setInteger("color-format", this.colorFormat);
                 }
-                this.codec.configure(createVideoFormat, this.surface, null, 0);
+                this.codec.configure(mediaFormatCreateVideoFormat, this.surface, null, 0);
                 this.codec.start();
                 this.running = true;
-                Thread createOutputThread = createOutputThread();
-                this.outputThread = createOutputThread;
-                createOutputThread.start();
+                Thread threadCreateOutputThread = createOutputThread();
+                this.outputThread = threadCreateOutputThread;
+                threadCreateOutputThread.start();
                 Logging.d("AndroidVideoDecoder", "initDecodeInternal done");
                 return VideoCodecStatus.OK;
             } catch (IllegalArgumentException e) {
@@ -151,7 +151,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     public VideoCodecStatus decode(EncodedImage encodedImage, VideoDecoder.DecodeInfo decodeInfo) {
         int i;
         int i2;
-        VideoCodecStatus reinitDecode;
+        VideoCodecStatus videoCodecStatusReinitDecode;
         this.decoderThreadChecker.checkIsOnValidThread();
         if (this.codec == null || this.callback == null) {
             StringBuilder sb = new StringBuilder();
@@ -167,8 +167,8 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             Logging.e("AndroidVideoDecoder", "decode() - no input data");
             return VideoCodecStatus.ERR_PARAMETER;
         }
-        int remaining = byteBuffer.remaining();
-        if (remaining == 0) {
+        int iRemaining = byteBuffer.remaining();
+        if (iRemaining == 0) {
             Logging.e("AndroidVideoDecoder", "decode() - input buffer empty");
             return VideoCodecStatus.ERR_PARAMETER;
         }
@@ -178,29 +178,29 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
         int i3 = encodedImage.encodedWidth;
         int i4 = encodedImage.encodedHeight;
-        if (i3 * i4 > 0 && ((i3 != i || i4 != i2) && (reinitDecode = reinitDecode(i3, i4)) != VideoCodecStatus.OK)) {
-            return reinitDecode;
+        if (i3 * i4 > 0 && ((i3 != i || i4 != i2) && (videoCodecStatusReinitDecode = reinitDecode(i3, i4)) != VideoCodecStatus.OK)) {
+            return videoCodecStatusReinitDecode;
         }
         if (this.keyFrameRequired && encodedImage.frameType != EncodedImage.FrameType.VideoFrameKey) {
             Logging.e("AndroidVideoDecoder", "decode() - key frame required first");
             return VideoCodecStatus.NO_OUTPUT;
         }
         try {
-            int dequeueInputBuffer = this.codec.dequeueInputBuffer(500000L);
-            if (dequeueInputBuffer < 0) {
+            int iDequeueInputBuffer = this.codec.dequeueInputBuffer(500000L);
+            if (iDequeueInputBuffer < 0) {
                 Logging.e("AndroidVideoDecoder", "decode() - no HW buffers available; decoder falling behind");
                 return VideoCodecStatus.ERROR;
             }
             try {
-                ByteBuffer inputBuffer = this.codec.getInputBuffer(dequeueInputBuffer);
-                if (inputBuffer.capacity() < remaining) {
+                ByteBuffer inputBuffer = this.codec.getInputBuffer(iDequeueInputBuffer);
+                if (inputBuffer.capacity() < iRemaining) {
                     Logging.e("AndroidVideoDecoder", "decode() - HW buffer too small");
                     return VideoCodecStatus.ERROR;
                 }
                 inputBuffer.put(encodedImage.buffer);
                 this.frameInfos.offer(new FrameInfo(SystemClock.elapsedRealtime(), encodedImage.rotation));
                 try {
-                    this.codec.queueInputBuffer(dequeueInputBuffer, 0, remaining, TimeUnit.NANOSECONDS.toMicros(encodedImage.captureTimeNs), 0);
+                    this.codec.queueInputBuffer(iDequeueInputBuffer, 0, iRemaining, TimeUnit.NANOSECONDS.toMicros(encodedImage.captureTimeNs), 0);
                     if (this.keyFrameRequired) {
                         this.keyFrameRequired = false;
                     }
@@ -211,7 +211,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                     return VideoCodecStatus.ERROR;
                 }
             } catch (IllegalStateException e2) {
-                Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e2);
+                Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + iDequeueInputBuffer + " failed", e2);
                 return VideoCodecStatus.ERROR;
             }
         } catch (IllegalStateException e3) {
@@ -228,7 +228,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     @Override
     public VideoCodecStatus release() {
         Logging.d("AndroidVideoDecoder", "release");
-        VideoCodecStatus releaseInternal = releaseInternal();
+        VideoCodecStatus videoCodecStatusReleaseInternal = releaseInternal();
         if (this.surface != null) {
             releaseSurface();
             this.surface = null;
@@ -241,7 +241,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
         this.callback = null;
         this.frameInfos.clear();
-        return releaseInternal;
+        return videoCodecStatusReleaseInternal;
     }
 
     private VideoCodecStatus releaseInternal() {
@@ -271,8 +271,8 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
 
     private VideoCodecStatus reinitDecode(int i, int i2) {
         this.decoderThreadChecker.checkIsOnValidThread();
-        VideoCodecStatus releaseInternal = releaseInternal();
-        return releaseInternal != VideoCodecStatus.OK ? releaseInternal : initDecodeInternal(i, i2);
+        VideoCodecStatus videoCodecStatusReleaseInternal = releaseInternal();
+        return videoCodecStatusReleaseInternal != VideoCodecStatus.OK ? videoCodecStatusReleaseInternal : initDecodeInternal(i, i2);
     }
 
     private Thread createOutputThread() {
@@ -289,33 +289,33 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     }
 
     protected void deliverDecodedFrame() {
-        Integer num;
+        Integer numValueOf;
         int i;
         this.outputThreadChecker.checkIsOnValidThread();
         try {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-            int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
-            if (dequeueOutputBuffer == -2) {
+            int iDequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
+            if (iDequeueOutputBuffer == -2) {
                 reformat(this.codec.getOutputFormat());
                 return;
             }
-            if (dequeueOutputBuffer < 0) {
-                Logging.v("AndroidVideoDecoder", "dequeueOutputBuffer returned " + dequeueOutputBuffer);
+            if (iDequeueOutputBuffer < 0) {
+                Logging.v("AndroidVideoDecoder", "dequeueOutputBuffer returned " + iDequeueOutputBuffer);
                 return;
             }
-            FrameInfo poll = this.frameInfos.poll();
-            if (poll != null) {
-                num = Integer.valueOf((int) (SystemClock.elapsedRealtime() - poll.decodeStartTimeMs));
-                i = poll.rotation;
+            FrameInfo frameInfoPoll = this.frameInfos.poll();
+            if (frameInfoPoll != null) {
+                numValueOf = Integer.valueOf((int) (SystemClock.elapsedRealtime() - frameInfoPoll.decodeStartTimeMs));
+                i = frameInfoPoll.rotation;
             } else {
-                num = null;
+                numValueOf = null;
                 i = 0;
             }
             this.hasDecodedFirstFrame = true;
             if (this.surfaceTextureHelper != null) {
-                deliverTextureFrame(dequeueOutputBuffer, bufferInfo, i, num);
+                deliverTextureFrame(iDequeueOutputBuffer, bufferInfo, i, numValueOf);
             } else {
-                deliverByteFrame(dequeueOutputBuffer, bufferInfo, i, num);
+                deliverByteFrame(iDequeueOutputBuffer, bufferInfo, i, numValueOf);
             }
         } catch (IllegalStateException e) {
             Logging.e("AndroidVideoDecoder", "deliverDecodedFrame failed", e);
@@ -366,7 +366,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         int i4;
         int i5;
         int i6;
-        VideoFrame.Buffer copyNV12ToI420Buffer;
+        VideoFrame.Buffer bufferCopyNV12ToI420Buffer;
         synchronized (this.dimensionLock) {
             i3 = this.width;
             i4 = this.height;
@@ -382,14 +382,14 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         ByteBuffer outputBuffer = this.codec.getOutputBuffer(i);
         outputBuffer.position(bufferInfo.offset);
         outputBuffer.limit(bufferInfo.offset + bufferInfo.size);
-        ByteBuffer slice = outputBuffer.slice();
+        ByteBuffer byteBufferSlice = outputBuffer.slice();
         if (this.colorFormat == 19) {
-            copyNV12ToI420Buffer = copyI420Buffer(slice, i8, i6, i3, i4);
+            bufferCopyNV12ToI420Buffer = copyI420Buffer(byteBufferSlice, i8, i6, i3, i4);
         } else {
-            copyNV12ToI420Buffer = copyNV12ToI420Buffer(slice, i8, i6, i3, i4);
+            bufferCopyNV12ToI420Buffer = copyNV12ToI420Buffer(byteBufferSlice, i8, i6, i3, i4);
         }
         this.codec.releaseOutputBuffer(i, false);
-        VideoFrame videoFrame = new VideoFrame(copyNV12ToI420Buffer, i2, bufferInfo.presentationTimeUs * 1000);
+        VideoFrame videoFrame = new VideoFrame(bufferCopyNV12ToI420Buffer, i2, bufferInfo.presentationTimeUs * 1000);
         this.callback.onDecodedFrame(videoFrame, num, null);
         videoFrame.release();
     }
@@ -411,37 +411,86 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         int i11 = i9 + i10;
         int i12 = i9 + ((i7 * i2) / 2);
         int i13 = i12 + i10;
-        VideoFrame.I420Buffer allocateI420Buffer = allocateI420Buffer(i3, i4);
+        VideoFrame.I420Buffer i420BufferAllocateI420Buffer = allocateI420Buffer(i3, i4);
         try {
             byteBuffer.limit(i8);
             byteBuffer.position(0);
-            copyPlane(byteBuffer.slice(), i, allocateI420Buffer.getDataY(), allocateI420Buffer.getStrideY(), i3, i4);
+            copyPlane(byteBuffer.slice(), i, i420BufferAllocateI420Buffer.getDataY(), i420BufferAllocateI420Buffer.getStrideY(), i3, i4);
             byteBuffer.limit(i11);
             byteBuffer.position(i9);
-            copyPlane(byteBuffer.slice(), i7, allocateI420Buffer.getDataU(), allocateI420Buffer.getStrideU(), i5, i6);
+            copyPlane(byteBuffer.slice(), i7, i420BufferAllocateI420Buffer.getDataU(), i420BufferAllocateI420Buffer.getStrideU(), i5, i6);
             if (i2 % 2 == 1) {
                 byteBuffer.position(i9 + ((i6 - 1) * i7));
-                ByteBuffer dataU = allocateI420Buffer.getDataU();
-                dataU.position(allocateI420Buffer.getStrideU() * i6);
+                ByteBuffer dataU = i420BufferAllocateI420Buffer.getDataU();
+                dataU.position(i420BufferAllocateI420Buffer.getStrideU() * i6);
                 dataU.put(byteBuffer);
             }
             byteBuffer.limit(i13);
             byteBuffer.position(i12);
-            copyPlane(byteBuffer.slice(), i7, allocateI420Buffer.getDataV(), allocateI420Buffer.getStrideV(), i5, i6);
+            copyPlane(byteBuffer.slice(), i7, i420BufferAllocateI420Buffer.getDataV(), i420BufferAllocateI420Buffer.getStrideV(), i5, i6);
             if (i2 % 2 == 1) {
                 byteBuffer.position(i12 + (i7 * (i6 - 1)));
-                ByteBuffer dataV = allocateI420Buffer.getDataV();
-                dataV.position(allocateI420Buffer.getStrideV() * i6);
+                ByteBuffer dataV = i420BufferAllocateI420Buffer.getDataV();
+                dataV.position(i420BufferAllocateI420Buffer.getStrideV() * i6);
                 dataV.put(byteBuffer);
             }
         } catch (Throwable th) {
             FileLog.e(th);
         }
-        return allocateI420Buffer;
+        return i420BufferAllocateI420Buffer;
     }
 
-    private void reformat(android.media.MediaFormat r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.AndroidVideoDecoder.reformat(android.media.MediaFormat):void");
+    private void reformat(MediaFormat mediaFormat) {
+        int integer;
+        int integer2;
+        this.outputThreadChecker.checkIsOnValidThread();
+        Logging.d("AndroidVideoDecoder", "Decoder format changed: " + mediaFormat);
+        if (mediaFormat.containsKey("crop-left") && mediaFormat.containsKey("crop-right") && mediaFormat.containsKey("crop-bottom") && mediaFormat.containsKey("crop-top")) {
+            integer = (mediaFormat.getInteger("crop-right") + 1) - mediaFormat.getInteger("crop-left");
+            integer2 = (mediaFormat.getInteger("crop-bottom") + 1) - mediaFormat.getInteger("crop-top");
+        } else {
+            integer = mediaFormat.getInteger("width");
+            integer2 = mediaFormat.getInteger("height");
+        }
+        synchronized (this.dimensionLock) {
+            try {
+                if (integer != this.width || integer2 != this.height) {
+                    if (this.hasDecodedFirstFrame) {
+                        stopOnOutputThread(new RuntimeException("Unexpected size change. Configured " + this.width + "*" + this.height + ". New " + integer + "*" + integer2));
+                        return;
+                    }
+                    if (integer > 0 && integer2 > 0) {
+                        this.width = integer;
+                        this.height = integer2;
+                    }
+                    Logging.w("AndroidVideoDecoder", "Unexpected format dimensions. Configured " + this.width + "*" + this.height + ". New " + integer + "*" + integer2 + ". Skip it");
+                    return;
+                }
+                if (this.surfaceTextureHelper == null && mediaFormat.containsKey("color-format")) {
+                    this.colorFormat = mediaFormat.getInteger("color-format");
+                    Logging.d("AndroidVideoDecoder", "Color: 0x" + Integer.toHexString(this.colorFormat));
+                    if (!isSupportedColorFormat(this.colorFormat)) {
+                        stopOnOutputThread(new IllegalStateException("Unsupported color format: " + this.colorFormat));
+                        return;
+                    }
+                }
+                synchronized (this.dimensionLock) {
+                    try {
+                        if (mediaFormat.containsKey("stride")) {
+                            this.stride = mediaFormat.getInteger("stride");
+                        }
+                        if (mediaFormat.containsKey("slice-height")) {
+                            this.sliceHeight = mediaFormat.getInteger("slice-height");
+                        }
+                        Logging.d("AndroidVideoDecoder", "Frame stride and slice height: " + this.stride + " x " + this.sliceHeight);
+                        this.stride = Math.max(this.width, this.stride);
+                        this.sliceHeight = Math.max(this.height, this.sliceHeight);
+                    } finally {
+                    }
+                }
+            } finally {
+            }
+        }
     }
 
     public void releaseCodecOnOutputThread() {

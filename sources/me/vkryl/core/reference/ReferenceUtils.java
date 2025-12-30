@@ -29,11 +29,11 @@ public abstract class ReferenceUtils {
         if (z) {
             return false;
         }
-        Reference newReference = referenceCreator.newReference(obj);
-        if (newReference == null) {
+        Reference referenceNewReference = referenceCreator.newReference(obj);
+        if (referenceNewReference == null) {
             throw new IllegalArgumentException();
         }
-        list.add(newReference);
+        list.add(referenceNewReference);
         return true;
     }
 

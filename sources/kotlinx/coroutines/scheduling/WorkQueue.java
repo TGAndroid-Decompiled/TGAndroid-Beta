@@ -66,14 +66,14 @@ public final class WorkQueue {
     }
 
     public final long trySteal(int i, Ref$ObjectRef ref$ObjectRef) {
-        Task stealWithExclusiveMode;
+        Task taskStealWithExclusiveMode;
         if (i == 3) {
-            stealWithExclusiveMode = pollBuffer();
+            taskStealWithExclusiveMode = pollBuffer();
         } else {
-            stealWithExclusiveMode = stealWithExclusiveMode(i);
+            taskStealWithExclusiveMode = stealWithExclusiveMode(i);
         }
-        if (stealWithExclusiveMode != null) {
-            ref$ObjectRef.element = stealWithExclusiveMode;
+        if (taskStealWithExclusiveMode != null) {
+            ref$ObjectRef.element = taskStealWithExclusiveMode;
             return -1L;
         }
         return tryStealLastScheduled(i, ref$ObjectRef);
@@ -88,9 +88,9 @@ public final class WorkQueue {
                 return null;
             }
             int i4 = i2 + 1;
-            Task tryExtractFromTheMiddle = tryExtractFromTheMiddle(i2, z);
-            if (tryExtractFromTheMiddle != null) {
-                return tryExtractFromTheMiddle;
+            Task taskTryExtractFromTheMiddle = tryExtractFromTheMiddle(i2, z);
+            if (taskTryExtractFromTheMiddle != null) {
+                return taskTryExtractFromTheMiddle;
             }
             i2 = i4;
         }
@@ -116,9 +116,9 @@ public final class WorkQueue {
                     return null;
                 }
                 i2--;
-                Task tryExtractFromTheMiddle = tryExtractFromTheMiddle(i2, z);
-                if (tryExtractFromTheMiddle != null) {
-                    return tryExtractFromTheMiddle;
+                Task taskTryExtractFromTheMiddle = tryExtractFromTheMiddle(i2, z);
+                if (taskTryExtractFromTheMiddle != null) {
+                    return taskTryExtractFromTheMiddle;
                 }
             }
             return null;
@@ -145,8 +145,8 @@ public final class WorkQueue {
         if (task != null) {
             globalQueue.addLast(task);
         }
-        do {
-        } while (pollTo(globalQueue));
+        while (pollTo(globalQueue)) {
+        }
     }
 
     private final long tryStealLastScheduled(int i, Ref$ObjectRef ref$ObjectRef) {
@@ -159,10 +159,10 @@ public final class WorkQueue {
             if (((task.taskContext.getTaskMode() != 1 ? 2 : 1) & i) == 0) {
                 return -2L;
             }
-            long nanoTime = TasksKt.schedulerTimeSource.nanoTime() - task.submissionTime;
+            long jNanoTime = TasksKt.schedulerTimeSource.nanoTime() - task.submissionTime;
             long j = TasksKt.WORK_STEALING_TIME_RESOLUTION_NS;
-            if (nanoTime < j) {
-                return j - nanoTime;
+            if (jNanoTime < j) {
+                return j - jNanoTime;
             }
         } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(lastScheduledTask$volatile$FU, this, task, null));
         ref$ObjectRef.element = task;
@@ -170,11 +170,11 @@ public final class WorkQueue {
     }
 
     private final boolean pollTo(GlobalQueue globalQueue) {
-        Task pollBuffer = pollBuffer();
-        if (pollBuffer == null) {
+        Task taskPollBuffer = pollBuffer();
+        if (taskPollBuffer == null) {
             return false;
         }
-        globalQueue.addLast(pollBuffer);
+        globalQueue.addLast(taskPollBuffer);
         return true;
     }
 

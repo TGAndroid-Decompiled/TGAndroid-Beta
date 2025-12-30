@@ -39,13 +39,13 @@ public class ConflatedBufferedChannel extends BufferedChannel {
 
     private final Object m325trySendDropLatestMj0NB7M(Object obj, boolean z) {
         Function1 function1;
-        UndeliveredElementException callUndeliveredElementCatchingException$default;
-        Object mo315trySendJP2dKIU = super.mo315trySendJP2dKIU(obj);
-        if (ChannelResult.m321isSuccessimpl(mo315trySendJP2dKIU) || ChannelResult.m320isClosedimpl(mo315trySendJP2dKIU)) {
-            return mo315trySendJP2dKIU;
+        UndeliveredElementException undeliveredElementExceptionCallUndeliveredElementCatchingException$default;
+        Object objMo315trySendJP2dKIU = super.mo315trySendJP2dKIU(obj);
+        if (ChannelResult.m321isSuccessimpl(objMo315trySendJP2dKIU) || ChannelResult.m320isClosedimpl(objMo315trySendJP2dKIU)) {
+            return objMo315trySendJP2dKIU;
         }
-        if (z && (function1 = this.onUndeliveredElement) != null && (callUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) != null) {
-            throw callUndeliveredElementCatchingException$default;
+        if (z && (function1 = this.onUndeliveredElement) != null && (undeliveredElementExceptionCallUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) != null) {
+            throw undeliveredElementExceptionCallUndeliveredElementCatchingException$default;
         }
         return ChannelResult.Companion.m324successJP2dKIU(Unit.INSTANCE);
     }

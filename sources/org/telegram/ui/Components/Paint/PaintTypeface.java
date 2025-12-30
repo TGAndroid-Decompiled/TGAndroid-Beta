@@ -5,7 +5,7 @@ import android.graphics.fonts.Font;
 import android.graphics.fonts.SystemFonts;
 import android.os.Build;
 import android.text.TextUtils;
-import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -43,63 +42,49 @@ public class PaintTypeface {
         PaintTypeface paintTypeface = new PaintTypeface("roboto", "PhotoEditorTypefaceRoboto", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$0;
-                lambda$static$0 = PaintTypeface.lambda$static$0();
-                return lambda$static$0;
+                return PaintTypeface.lambda$static$0();
             }
         }));
         ROBOTO_MEDIUM = paintTypeface;
         PaintTypeface paintTypeface2 = new PaintTypeface("italic", "PhotoEditorTypefaceItalic", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$1;
-                lambda$static$1 = PaintTypeface.lambda$static$1();
-                return lambda$static$1;
+                return PaintTypeface.lambda$static$1();
             }
         }));
         ROBOTO_ITALIC = paintTypeface2;
         PaintTypeface paintTypeface3 = new PaintTypeface("serif", "PhotoEditorTypefaceSerif", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$2;
-                lambda$static$2 = PaintTypeface.lambda$static$2();
-                return lambda$static$2;
+                return PaintTypeface.lambda$static$2();
             }
         }));
         ROBOTO_SERIF = paintTypeface3;
         PaintTypeface paintTypeface4 = new PaintTypeface("condensed", "PhotoEditorTypefaceCondensed", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$3;
-                lambda$static$3 = PaintTypeface.lambda$static$3();
-                return lambda$static$3;
+                return PaintTypeface.lambda$static$3();
             }
         }));
         ROBOTO_CONDENSED = paintTypeface4;
         PaintTypeface paintTypeface5 = new PaintTypeface("mono", "PhotoEditorTypefaceMono", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$4;
-                lambda$static$4 = PaintTypeface.lambda$static$4();
-                return lambda$static$4;
+                return PaintTypeface.lambda$static$4();
             }
         }));
         ROBOTO_MONO = paintTypeface5;
         PaintTypeface paintTypeface6 = new PaintTypeface("mw_bold", "PhotoEditorTypefaceMerriweather", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$5;
-                lambda$static$5 = PaintTypeface.lambda$static$5();
-                return lambda$static$5;
+                return PaintTypeface.lambda$static$5();
             }
         }));
         MW_BOLD = paintTypeface6;
         PaintTypeface paintTypeface7 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$static$6;
-                lambda$static$6 = PaintTypeface.lambda$static$6();
-                return lambda$static$6;
+                return PaintTypeface.lambda$static$6();
             }
         }));
         COURIER_NEW_BOLD = paintTypeface7;
@@ -135,7 +120,7 @@ public class PaintTypeface {
         return AndroidUtilities.getTypeface("fonts/courier_new_bold.ttf");
     }
 
-    public static class LazyTypeface {
+    static class LazyTypeface {
         private final LazyTypefaceLoader loader;
         private Typeface typeface;
 
@@ -172,18 +157,14 @@ public class PaintTypeface {
         this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$new$7;
-                lambda$new$7 = PaintTypeface.lambda$new$7(font);
-                return lambda$new$7;
+                return PaintTypeface.lambda$new$7(font);
             }
         });
         this.font = font;
     }
 
     public static Typeface lambda$new$7(Font font) {
-        File file;
-        file = font.getFile();
-        return Typeface.createFromFile(file);
+        return Typeface.createFromFile(font.getFile());
     }
 
     public String getKey() {
@@ -217,31 +198,27 @@ public class PaintTypeface {
     }
 
     public static void lambda$load$9() {
-        Set availableFonts;
-        File file;
-        FontData parseFont;
+        FontData font;
         final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
         if (Build.VERSION.SDK_INT >= 29) {
-            availableFonts = SystemFonts.getAvailableFonts();
-            Iterator it = availableFonts.iterator();
-            HashMap hashMap = new HashMap();
+            Iterator it = SystemFonts.getAvailableFonts().iterator();
+            HashMap map = new HashMap();
             while (it.hasNext()) {
-                Font m = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
-                file = m.getFile();
-                if (!file.getName().contains("Noto") && (parseFont = parseFont(m)) != null) {
-                    Family family = (Family) hashMap.get(parseFont.family);
+                Font fontM = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
+                if (!fontM.getFile().getName().contains("Noto") && (font = parseFont(fontM)) != null) {
+                    Family family = (Family) map.get(font.family);
                     if (family == null) {
                         family = new Family();
-                        String str = parseFont.family;
+                        String str = font.family;
                         family.family = str;
-                        hashMap.put(str, family);
+                        map.put(str, family);
                     }
-                    family.fonts.add(parseFont);
+                    family.fonts.add(font);
                 }
             }
             Iterator it2 = preferable.iterator();
             while (it2.hasNext()) {
-                Family family2 = (Family) hashMap.get((String) it2.next());
+                Family family2 = (Family) map.get((String) it2.next());
                 if (family2 != null) {
                     FontData bold = family2.getBold();
                     if (bold == null) {
@@ -289,7 +266,7 @@ public class PaintTypeface {
         return null;
     }
 
-    public static class Family {
+    static class Family {
         String family;
         ArrayList fonts = new ArrayList();
 
@@ -323,7 +300,7 @@ public class PaintTypeface {
         }
     }
 
-    public static class FontData {
+    static class FontData {
         String family;
         Font font;
         String subfamily;
@@ -339,7 +316,7 @@ public class PaintTypeface {
         }
     }
 
-    public static class NameRecord {
+    private static class NameRecord {
         final int encodingID;
         final int languageID;
         final int nameID;
@@ -356,7 +333,7 @@ public class PaintTypeface {
             this.stringOffset = randomAccessFile.readUnsignedShort();
         }
 
-        public String read(RandomAccessFile randomAccessFile, int i) {
+        public String read(RandomAccessFile randomAccessFile, int i) throws IOException {
             Charset charset;
             randomAccessFile.seek(i + this.stringOffset);
             byte[] bArr = new byte[this.nameLength];
@@ -377,7 +354,7 @@ public class PaintTypeface {
         return nameRecord.read(randomAccessFile, i);
     }
 
-    public static org.telegram.ui.Components.Paint.PaintTypeface.FontData parseFont(android.graphics.fonts.Font r9) {
+    public static org.telegram.ui.Components.Paint.PaintTypeface.FontData parseFont(android.graphics.fonts.Font r9) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.PaintTypeface.parseFont(android.graphics.fonts.Font):org.telegram.ui.Components.Paint.PaintTypeface$FontData");
     }
 }

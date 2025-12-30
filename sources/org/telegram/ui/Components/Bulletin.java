@@ -157,14 +157,6 @@ public class Bulletin {
         void onTextLoaded(CharSequence charSequence);
     }
 
-    Bulletin(AnonymousClass1 anonymousClass1) {
-        this();
-    }
-
-    static boolean access$800() {
-        return isTransitionsEnabled();
-    }
-
     public static Bulletin make(FrameLayout frameLayout, Layout layout, int i) {
         if (frameLayout == null) {
             return new EmptyBulletin();
@@ -220,9 +212,9 @@ public class Bulletin {
     }
 
     public static void hide(FrameLayout frameLayout, boolean z) {
-        Bulletin find = find(frameLayout);
-        if (find != null) {
-            find.hide(z && isTransitionsEnabled(), 0L);
+        Bulletin bulletinFind = find(frameLayout);
+        if (bulletinFind != null) {
+            bulletinFind.hide(z && isTransitionsEnabled(), 0L);
         }
     }
 
@@ -230,7 +222,7 @@ public class Bulletin {
         this.hideRunnable = new Runnable() {
             @Override
             public final void run() {
-                Bulletin.this.hide();
+                this.f$0.hide();
             }
         };
         this.loaded = true;
@@ -242,11 +234,11 @@ public class Bulletin {
         this.containerLayout = null;
     }
 
-    private Bulletin(BaseFragment baseFragment, FrameLayout frameLayout, Layout layout, int i) {
+    private Bulletin(BaseFragment baseFragment, final FrameLayout frameLayout, Layout layout, int i) {
         this.hideRunnable = new Runnable() {
             @Override
             public final void run() {
-                Bulletin.this.hide();
+                this.f$0.hide();
             }
         };
         this.loaded = true;
@@ -255,18 +247,11 @@ public class Bulletin {
         this.layout = layout;
         this.loaded = true ^ (layout instanceof LoadingLayout);
         this.parentLayout = new ParentLayout(layout) {
-            final FrameLayout val$containerLayout;
-
-            AnonymousClass1(Layout layout2, FrameLayout frameLayout2) {
-                super(layout2);
-                r3 = frameLayout2;
-            }
-
             @Override
             protected void onPressedStateChanged(boolean z) {
                 Bulletin.this.setCanHide(!z);
-                if (r3.getParent() != null) {
-                    r3.getParent().requestDisallowInterceptTouchEvent(z);
+                if (frameLayout.getParent() != null) {
+                    frameLayout.getParent().requestDisallowInterceptTouchEvent(z);
                 }
             }
 
@@ -276,30 +261,8 @@ public class Bulletin {
             }
         };
         this.containerFragment = baseFragment;
-        this.containerLayout = frameLayout2;
+        this.containerLayout = frameLayout;
         this.duration = i;
-    }
-
-    public class AnonymousClass1 extends ParentLayout {
-        final FrameLayout val$containerLayout;
-
-        AnonymousClass1(Layout layout2, FrameLayout frameLayout2) {
-            super(layout2);
-            r3 = frameLayout2;
-        }
-
-        @Override
-        protected void onPressedStateChanged(boolean z) {
-            Bulletin.this.setCanHide(!z);
-            if (r3.getParent() != null) {
-                r3.getParent().requestDisallowInterceptTouchEvent(z);
-            }
-        }
-
-        @Override
-        protected void onHide() {
-            Bulletin.this.hide();
-        }
     }
 
     public static Bulletin getVisibleBulletin() {
@@ -376,7 +339,7 @@ public class Bulletin {
             View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
                 @Override
                 public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                    Bulletin.this.lambda$show$2(z, view, i, i2, i3, i4, i5, i6, i7, i8);
+                    this.f$0.lambda$show$2(z, view, i, i2, i3, i4, i5, i6, i7, i8);
                 }
             };
             this.containerLayoutListener = onLayoutChangeListener;
@@ -386,9 +349,6 @@ public class Bulletin {
                 this.layout.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
                     @Override
                     public void onViewAttachedToWindow(View view) {
-                    }
-
-                    AnonymousClass3() {
                     }
 
                     @Override
@@ -416,13 +376,13 @@ public class Bulletin {
                     spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            Bulletin.this.lambda$show$0(dynamicAnimation, f, f2);
+                            this.f$0.lambda$show$0(dynamicAnimation, f, f2);
                         }
                     });
                     this.bottomOffsetSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                            Bulletin.this.lambda$show$1(dynamicAnimation, z2, f, f2);
+                            this.f$0.lambda$show$1(dynamicAnimation, z2, f, f2);
                         }
                     });
                 } else {
@@ -444,7 +404,7 @@ public class Bulletin {
         }
     }
 
-    public class AnonymousClass2 implements View.OnLayoutChangeListener {
+    class AnonymousClass2 implements View.OnLayoutChangeListener {
         final boolean val$top;
 
         AnonymousClass2(boolean z) {
@@ -465,7 +425,7 @@ public class Bulletin {
                 if (Bulletin.this.currentDelegate != null) {
                     Bulletin.this.currentDelegate.onShow(Bulletin.this);
                 }
-                if (!Bulletin.access$800() || Bulletin.this.skipShowAnimation) {
+                if (!Bulletin.isTransitionsEnabled() || Bulletin.this.skipShowAnimation) {
                     Bulletin.this.layout.delegate = Bulletin.this.currentDelegate;
                     if (Bulletin.this.currentDelegate != null && !this.val$top) {
                         Bulletin.this.currentDelegate.onBottomOffsetChange(Bulletin.this.layout.getHeight() - Bulletin.this.currentBottomOffset);
@@ -491,20 +451,20 @@ public class Bulletin {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.Layout.this.onEnterTransitionStart();
+                        layout2.onEnterTransitionStart();
                     }
                 };
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.AnonymousClass2.this.lambda$onLayoutChange$0();
+                        this.f$0.lambda$onLayoutChange$0();
                     }
                 };
                 final boolean z = this.val$top;
                 transition.animateEnter(layout, runnable, runnable2, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        Bulletin.AnonymousClass2.this.lambda$onLayoutChange$1(z, (Float) obj);
+                        this.f$0.lambda$onLayoutChange$1(z, (Float) obj);
                     }
                 }, Bulletin.this.currentBottomOffset);
             }
@@ -524,21 +484,6 @@ public class Bulletin {
                 return;
             }
             Bulletin.this.currentDelegate.onBottomOffsetChange(Bulletin.this.layout.getHeight() - f.floatValue());
-        }
-    }
-
-    public class AnonymousClass3 implements View.OnAttachStateChangeListener {
-        @Override
-        public void onViewAttachedToWindow(View view) {
-        }
-
-        AnonymousClass3() {
-        }
-
-        @Override
-        public void onViewDetachedFromWindow(View view) {
-            Bulletin.this.layout.removeOnAttachStateChangeListener(this);
-            Bulletin.this.hide(false, 0L);
         }
     }
 
@@ -610,17 +555,17 @@ public class Bulletin {
                     transition.animateExit(layout3, new Runnable() {
                         @Override
                         public final void run() {
-                            Bulletin.Layout.this.onExitTransitionStart();
+                            layout3.onExitTransitionStart();
                         }
                     }, new Runnable() {
                         @Override
                         public final void run() {
-                            Bulletin.this.lambda$hide$3();
+                            this.f$0.lambda$hide$3();
                         }
                     }, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            Bulletin.this.lambda$hide$4((Float) obj);
+                            this.f$0.lambda$hide$4((Float) obj);
                         }
                     }, i);
                     return;
@@ -638,7 +583,7 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.this.lambda$hide$5();
+                        this.f$0.lambda$hide$5();
                     }
                 });
             }
@@ -692,7 +637,7 @@ public class Bulletin {
         return this.layout;
     }
 
-    private static boolean isTransitionsEnabled() {
+    public static boolean isTransitionsEnabled() {
         return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
     }
 
@@ -759,7 +704,7 @@ public class Bulletin {
             addView(layout);
         }
 
-        public class AnonymousClass1 extends GestureDetector.SimpleOnGestureListener {
+        class AnonymousClass1 extends GestureDetector.SimpleOnGestureListener {
             final Layout val$layout;
 
             AnonymousClass1(Layout layout) {
@@ -807,14 +752,14 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.this.lambda$onFling$0(dynamicAnimation, z2, f3, f4);
+                            this.f$0.lambda$onFling$0(dynamicAnimation, z2, f3, f4);
                         }
                     });
                     final Layout layout = this.val$layout;
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.lambda$onFling$1(Bulletin.Layout.this, dynamicAnimation, f3, f4);
+                            Bulletin.ParentLayout.AnonymousClass1.lambda$onFling$1(layout, dynamicAnimation, f3, f4);
                         }
                     });
                 }
@@ -827,7 +772,7 @@ public class Bulletin {
                     springAnimation2.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.this.lambda$onFling$2(dynamicAnimation, z2, f3, f4);
+                            this.f$0.lambda$onFling$2(dynamicAnimation, z2, f3, f4);
                         }
                     });
                     springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
@@ -912,36 +857,8 @@ public class Bulletin {
     }
 
     public static abstract class Layout extends FrameLayout {
-        public static final FloatPropertyCompat IN_OUT_OFFSET_Y = new FloatPropertyCompat("offsetY") {
-            AnonymousClass1(String str) {
-                super(str);
-            }
-
-            @Override
-            public float getValue(Layout layout) {
-                return layout.inOutOffset;
-            }
-
-            @Override
-            public void setValue(Layout layout, float f) {
-                layout.setInOutOffset(f);
-            }
-        };
-        public static final Property<Layout, Float> IN_OUT_OFFSET_Y2 = new AnimationProperties.FloatProperty("offsetY") {
-            AnonymousClass2(String str) {
-                super(str);
-            }
-
-            @Override
-            public Float get(Layout layout) {
-                return Float.valueOf(layout.inOutOffset);
-            }
-
-            @Override
-            public void setValue(Layout layout, float f) {
-                layout.setInOutOffset(f);
-            }
-        };
+        public static final FloatPropertyCompat IN_OUT_OFFSET_Y;
+        public static final Property<Layout, Float> IN_OUT_OFFSET_Y2;
         Drawable background;
         private BlurVisibilityDrawable blurVisibilityDrawable;
         protected Bulletin bulletin;
@@ -1036,7 +953,7 @@ public class Bulletin {
             return this.background == drawable || super.verifyDrawable(drawable);
         }
 
-        public void setBackground(int i) {
+        protected void setBackground(int i) {
             setBackground(i, 10);
         }
 
@@ -1044,36 +961,30 @@ public class Bulletin {
             this.background = Theme.createRoundRectDrawable(AndroidUtilities.dp(i2), i);
         }
 
-        class AnonymousClass1 extends FloatPropertyCompat {
-            AnonymousClass1(String str) {
-                super(str);
-            }
+        static {
+            String str = "offsetY";
+            IN_OUT_OFFSET_Y = new FloatPropertyCompat(str) {
+                @Override
+                public float getValue(Layout layout) {
+                    return layout.inOutOffset;
+                }
 
-            @Override
-            public float getValue(Layout layout) {
-                return layout.inOutOffset;
-            }
+                @Override
+                public void setValue(Layout layout, float f) {
+                    layout.setInOutOffset(f);
+                }
+            };
+            IN_OUT_OFFSET_Y2 = new AnimationProperties.FloatProperty(str) {
+                @Override
+                public Float get(Layout layout) {
+                    return Float.valueOf(layout.inOutOffset);
+                }
 
-            @Override
-            public void setValue(Layout layout, float f) {
-                layout.setInOutOffset(f);
-            }
-        }
-
-        class AnonymousClass2 extends AnimationProperties.FloatProperty {
-            AnonymousClass2(String str) {
-                super(str);
-            }
-
-            @Override
-            public Float get(Layout layout) {
-                return Float.valueOf(layout.inOutOffset);
-            }
-
-            @Override
-            public void setValue(Layout layout, float f) {
-                layout.setInOutOffset(f);
-            }
+                @Override
+                public void setValue(Layout layout, float f) {
+                    layout.setInOutOffset(f);
+                }
+            };
         }
 
         @Override
@@ -1090,14 +1001,14 @@ public class Bulletin {
         }
 
         private void updateSize() {
-            boolean isWideScreen = isWideScreen();
-            int i = isWideScreen ? this.wideScreenWidth : -1;
-            if (isWideScreen) {
-                r2 = (this.top ? 48 : 80) | this.wideScreenGravity;
+            boolean zIsWideScreen = isWideScreen();
+            int i = zIsWideScreen ? this.wideScreenWidth : -1;
+            if (zIsWideScreen) {
+                i = (this.top ? 48 : 80) | this.wideScreenGravity;
             } else if (this.top) {
-                r2 = 48;
+                i = 48;
             }
-            setLayoutParams(LayoutHelper.createFrame(i, -2, r2));
+            setLayoutParams(LayoutHelper.createFrame(i, -2, i));
         }
 
         private boolean isWideScreen() {
@@ -1168,7 +1079,7 @@ public class Bulletin {
             }
         }
 
-        public void onShow() {
+        protected void onShow() {
             int size = this.callbacks.size();
             for (int i = 0; i < size; i++) {
                 this.callbacks.get(i).onShow(this);
@@ -1182,28 +1093,28 @@ public class Bulletin {
             }
         }
 
-        public void onEnterTransitionStart() {
+        protected void onEnterTransitionStart() {
             int size = this.callbacks.size();
             for (int i = 0; i < size; i++) {
                 this.callbacks.get(i).onEnterTransitionStart(this);
             }
         }
 
-        public void onEnterTransitionEnd() {
+        protected void onEnterTransitionEnd() {
             int size = this.callbacks.size();
             for (int i = 0; i < size; i++) {
                 this.callbacks.get(i).onEnterTransitionEnd(this);
             }
         }
 
-        public void onExitTransitionStart() {
+        protected void onExitTransitionStart() {
             int size = this.callbacks.size();
             for (int i = 0; i < size; i++) {
                 this.callbacks.get(i).onExitTransitionStart(this);
             }
         }
 
-        public void onExitTransitionEnd() {
+        protected void onExitTransitionEnd() {
             int size = this.callbacks.size();
             for (int i = 0; i < size; i++) {
                 this.callbacks.get(i).onExitTransitionEnd(this);
@@ -1219,15 +1130,15 @@ public class Bulletin {
         }
 
         public void updatePosition() {
-            float f = 0.0f;
+            float bottomOffset = 0.0f;
             if (this.delegate != null) {
                 if (this.top) {
-                    f = 0.0f - r0.getTopOffset(this.bulletin != null ? r2.tag : 0);
+                    bottomOffset = 0.0f - r0.getTopOffset(this.bulletin != null ? r2.tag : 0);
                 } else {
-                    f = 0.0f + getBottomOffset();
+                    bottomOffset = 0.0f + getBottomOffset();
                 }
             }
-            setTranslationY((-f) + (this.inOutOffset * (this.top ? -1 : 1)));
+            setTranslationY((-bottomOffset) + (this.inOutOffset * (this.top ? -1 : 1)));
         }
 
         public float getTopOffset() {
@@ -1261,27 +1172,19 @@ public class Bulletin {
             long duration = 255;
 
             @Override
-            public void animateEnter(final Layout layout, Runnable runnable, Runnable runnable2, final Consumer consumer, int i) {
+            public void animateEnter(final Layout layout, final Runnable runnable, final Runnable runnable2, final Consumer consumer, int i) {
                 layout.setInOutOffset(layout.getMeasuredHeight());
                 if (consumer != null) {
                     consumer.accept(Float.valueOf(layout.getTranslationY()));
                 }
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(layout, Layout.IN_OUT_OFFSET_Y2, 0.0f);
-                ofFloat.setDuration(this.duration);
-                ofFloat.setInterpolator(Easings.easeOutQuad);
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(layout, Layout.IN_OUT_OFFSET_Y2, 0.0f);
+                objectAnimatorOfFloat.setDuration(this.duration);
+                objectAnimatorOfFloat.setInterpolator(Easings.easeOutQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
-                        final Runnable val$endAction;
-                        final Runnable val$startAction;
-
-                        AnonymousClass1(Runnable runnable3, Runnable runnable22) {
-                            r2 = runnable3;
-                            r3 = runnable22;
-                        }
-
+                    objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationStart(Animator animator) {
-                            Runnable runnable3 = r2;
+                            Runnable runnable3 = runnable;
                             if (runnable3 != null) {
                                 runnable3.run();
                             }
@@ -1289,7 +1192,7 @@ public class Bulletin {
 
                         @Override
                         public void onAnimationEnd(Animator animator) {
-                            Runnable runnable3 = r3;
+                            Runnable runnable3 = runnable2;
                             if (runnable3 != null) {
                                 runnable3.run();
                             }
@@ -1297,40 +1200,14 @@ public class Bulletin {
                     });
                 }
                 if (consumer != null) {
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    objectAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            Bulletin.Layout.DefaultTransition.lambda$animateEnter$0(Consumer.this, layout, valueAnimator);
+                            Bulletin.Layout.DefaultTransition.lambda$animateEnter$0(consumer, layout, valueAnimator);
                         }
                     });
                 }
-                ofFloat.start();
-            }
-
-            class AnonymousClass1 extends AnimatorListenerAdapter {
-                final Runnable val$endAction;
-                final Runnable val$startAction;
-
-                AnonymousClass1(Runnable runnable3, Runnable runnable22) {
-                    r2 = runnable3;
-                    r3 = runnable22;
-                }
-
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    Runnable runnable3 = r2;
-                    if (runnable3 != null) {
-                        runnable3.run();
-                    }
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    Runnable runnable3 = r3;
-                    if (runnable3 != null) {
-                        runnable3.run();
-                    }
-                }
+                objectAnimatorOfFloat.start();
             }
 
             public static void lambda$animateEnter$0(Consumer consumer, Layout layout, ValueAnimator valueAnimator) {
@@ -1338,23 +1215,15 @@ public class Bulletin {
             }
 
             @Override
-            public void animateExit(final Layout layout, Runnable runnable, Runnable runnable2, final Consumer consumer, int i) {
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(layout, Layout.IN_OUT_OFFSET_Y2, layout.getHeight());
-                ofFloat.setDuration(175L);
-                ofFloat.setInterpolator(Easings.easeInQuad);
+            public void animateExit(final Layout layout, final Runnable runnable, final Runnable runnable2, final Consumer consumer, int i) {
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(layout, Layout.IN_OUT_OFFSET_Y2, layout.getHeight());
+                objectAnimatorOfFloat.setDuration(175L);
+                objectAnimatorOfFloat.setInterpolator(Easings.easeInQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
-                        final Runnable val$endAction;
-                        final Runnable val$startAction;
-
-                        AnonymousClass2(Runnable runnable3, Runnable runnable22) {
-                            r2 = runnable3;
-                            r3 = runnable22;
-                        }
-
+                    objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationStart(Animator animator) {
-                            Runnable runnable3 = r2;
+                            Runnable runnable3 = runnable;
                             if (runnable3 != null) {
                                 runnable3.run();
                             }
@@ -1362,7 +1231,7 @@ public class Bulletin {
 
                         @Override
                         public void onAnimationEnd(Animator animator) {
-                            Runnable runnable3 = r3;
+                            Runnable runnable3 = runnable2;
                             if (runnable3 != null) {
                                 runnable3.run();
                             }
@@ -1370,40 +1239,14 @@ public class Bulletin {
                     });
                 }
                 if (consumer != null) {
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    objectAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            Bulletin.Layout.DefaultTransition.lambda$animateExit$1(Consumer.this, layout, valueAnimator);
+                            Bulletin.Layout.DefaultTransition.lambda$animateExit$1(consumer, layout, valueAnimator);
                         }
                     });
                 }
-                ofFloat.start();
-            }
-
-            class AnonymousClass2 extends AnimatorListenerAdapter {
-                final Runnable val$endAction;
-                final Runnable val$startAction;
-
-                AnonymousClass2(Runnable runnable3, Runnable runnable22) {
-                    r2 = runnable3;
-                    r3 = runnable22;
-                }
-
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    Runnable runnable3 = r2;
-                    if (runnable3 != null) {
-                        runnable3.run();
-                    }
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    Runnable runnable3 = r3;
-                    if (runnable3 != null) {
-                        runnable3.run();
-                    }
-                }
+                objectAnimatorOfFloat.start();
             }
 
             public static void lambda$animateExit$1(Consumer consumer, Layout layout, ValueAnimator valueAnimator) {
@@ -1425,7 +1268,7 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateEnter$0(Bulletin.Layout.this, runnable2, dynamicAnimation, z, f, f2);
+                            Bulletin.Layout.SpringTransition.lambda$animateEnter$0(layout, runnable2, dynamicAnimation, z, f, f2);
                         }
                     });
                 }
@@ -1433,7 +1276,7 @@ public class Bulletin {
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateEnter$1(Consumer.this, layout, dynamicAnimation, f, f2);
+                            Bulletin.Layout.SpringTransition.lambda$animateEnter$1(consumer, layout, dynamicAnimation, f, f2);
                         }
                     });
                 }
@@ -1472,7 +1315,7 @@ public class Bulletin {
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateExit$3(Consumer.this, layout, dynamicAnimation, f, f2);
+                            Bulletin.Layout.SpringTransition.lambda$animateExit$3(consumer, layout, dynamicAnimation, f, f2);
                         }
                     });
                 }
@@ -1516,7 +1359,7 @@ public class Bulletin {
                     this.blurVisibilityDrawable = new BlurVisibilityDrawable(new BlurVisibilityDrawable.DrawRunnable() {
                         @Override
                         public final void draw(Canvas canvas2, int i) {
-                            Bulletin.Layout.this.dispatchDrawImplBlur(canvas2, i);
+                            this.f$0.dispatchDrawImplBlur(canvas2, i);
                         }
                     });
                 }
@@ -1531,7 +1374,7 @@ public class Bulletin {
             dispatchDrawImpl(canvas, false, 255);
         }
 
-        public void dispatchDrawImplBlur(Canvas canvas, int i) {
+        protected void dispatchDrawImplBlur(Canvas canvas, int i) {
             dispatchDrawImpl(canvas, true, i);
         }
 
@@ -1588,7 +1431,7 @@ public class Bulletin {
             super.dispatchDraw(canvas);
         }
 
-        public int getThemedColor(int i) {
+        protected int getThemedColor(int i) {
             return Theme.getColor(i, this.resourcesProvider);
         }
     }
@@ -1610,7 +1453,7 @@ public class Bulletin {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             this.childrenMeasuredWidth = 0;
             if (this.wrapWidth) {
                 i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
@@ -1793,7 +1636,7 @@ public class Bulletin {
         }
 
         @Override
-        public void onShow() {
+        protected void onShow() {
             super.onShow();
             this.imageView.playAnimation();
         }
@@ -1869,7 +1712,7 @@ public class Bulletin {
         }
 
         @Override
-        public void onShow() {
+        protected void onShow() {
             super.onShow();
             this.imageView.playAnimation();
         }
@@ -1926,7 +1769,7 @@ public class Bulletin {
             this.reactionsContainerLayout.setMessage(null, null, true);
         }
 
-        public class AnonymousClass1 extends ReactionsContainerLayout {
+        class AnonymousClass1 extends ReactionsContainerLayout {
             AnonymousClass1(int i, BaseFragment baseFragment, Context context, int i2, Theme.ResourcesProvider resourcesProvider) {
                 super(i, baseFragment, context, i2, resourcesProvider);
             }
@@ -1940,7 +1783,7 @@ public class Bulletin {
                 LottieLayoutWithReactions.this.reactionsContainerLayout.getReactionsWindow().windowView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        Bulletin.LottieLayoutWithReactions.AnonymousClass1.this.lambda$onShownCustomEmojiReactionDialog$0(view);
+                        this.f$0.lambda$onShownCustomEmojiReactionDialog$0(view);
                     }
                 });
             }
@@ -1963,7 +1806,7 @@ public class Bulletin {
             }
         }
 
-        public class AnonymousClass2 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        class AnonymousClass2 implements ReactionsContainerLayout.ReactionsContainerDelegate {
             @Override
             public boolean allowLongPress() {
                 return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
@@ -2000,10 +1843,10 @@ public class Bulletin {
                 boolean z3 = (LottieLayoutWithReactions.this.fragment instanceof ChatActivity) && ((ChatActivity) LottieLayoutWithReactions.this.fragment).getDialogId() == UserConfig.getInstance(LottieLayoutWithReactions.this.fragment.getCurrentAccount()).getClientUserId();
                 int i = 0;
                 for (int i2 = 0; i2 < LottieLayoutWithReactions.this.newMessagesByIds.size(); i2++) {
-                    int keyAt = LottieLayoutWithReactions.this.newMessagesByIds.keyAt(i2);
+                    int iKeyAt = LottieLayoutWithReactions.this.newMessagesByIds.keyAt(i2);
                     TLRPC.Message message = new TLRPC.Message();
                     message.dialog_id = LottieLayoutWithReactions.this.fragment.getUserConfig().getClientUserId();
-                    message.id = keyAt;
+                    message.id = iKeyAt;
                     MessageObject messageObject = new MessageObject(LottieLayoutWithReactions.this.fragment.getCurrentAccount(), message, false, false);
                     ArrayList<ReactionsLayoutInBubble.VisibleReaction> arrayList = new ArrayList<>();
                     arrayList.add(visibleReaction);
@@ -2019,13 +1862,13 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.this.lambda$showTaggedReactionToast$1(visibleReaction, z, i, i2);
+                        this.f$0.lambda$showTaggedReactionToast$1(visibleReaction, z, i, i2);
                     }
                 }, 300L);
             }
 
             public void lambda$showTaggedReactionToast$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
-                TLRPC.Document findDocument;
+                TLRPC.Document documentFindDocument;
                 final BaseFragment lastFragment = LaunchActivity.getLastFragment();
                 long j = visibleReaction.documentId;
                 if (j == 0) {
@@ -2033,15 +1876,15 @@ public class Bulletin {
                     if (tL_availableReaction == null) {
                         return;
                     } else {
-                        findDocument = tL_availableReaction.activate_animation;
+                        documentFindDocument = tL_availableReaction.activate_animation;
                     }
                 } else {
-                    findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
+                    documentFindDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
                 }
-                if (findDocument == null || lastFragment == null) {
+                if (documentFindDocument == null || lastFragment == null) {
                     return;
                 }
-                BulletinFactory.of(lastFragment).createMessagesTaggedBulletin(LottieLayoutWithReactions.this.messagesCount, findDocument, z ? new Runnable() {
+                BulletinFactory.of(lastFragment).createMessagesTaggedBulletin(LottieLayoutWithReactions.this.messagesCount, documentFindDocument, z ? new Runnable() {
                     @Override
                     public final void run() {
                         Bulletin.LottieLayoutWithReactions.AnonymousClass2.lambda$showTaggedReactionToast$0(i, i2, lastFragment);
@@ -2100,15 +1943,14 @@ public class Bulletin {
 
         public ProgressLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            AnonymousClass1 anonymousClass1 = new FrameLayout(context) {
+            FrameLayout frameLayout = new FrameLayout(context) {
                 private final AnimatedFloat animatedDone;
                 private final AnimatedFloat animatedProgress;
                 private final RectF rect;
                 private final long start;
                 private final Paint strokePaint;
 
-                AnonymousClass1(Context context2) {
-                    super(context2);
+                {
                     CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
                     this.animatedProgress = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
                     this.animatedDone = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
@@ -2130,29 +1972,29 @@ public class Bulletin {
                     float width = getWidth() / 2.0f;
                     float height = getHeight() / 2.0f;
                     this.rect.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), width + AndroidUtilities.dpf2(13.0f), height + AndroidUtilities.dpf2(13.0f));
-                    float currentTimeMillis = (((float) (System.currentTimeMillis() - this.start)) * 0.45f) % 5400.0f;
-                    float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+                    float fCurrentTimeMillis = ((System.currentTimeMillis() - this.start) * 0.45f) % 5400.0f;
+                    float fMax = Math.max(0.0f, ((1520.0f * fCurrentTimeMillis) / 5400.0f) - 20.0f);
                     for (int i = 0; i < 4; i++) {
                         FastOutSlowInInterpolator fastOutSlowInInterpolator = CircularProgressDrawable.interpolator;
-                        fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (i * 1350)) / 667.0f);
-                        max += fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (r7 + 667)) / 667.0f) * 250.0f;
+                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i * 1350)) / 667.0f);
+                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (r7 + 667)) / 667.0f) * 250.0f;
                     }
                     this.strokePaint.setColor(Theme.multAlpha(-1, (1.0f - f2) * 1.0f));
-                    canvas.drawArc(this.rect, (-90.0f) - max, Math.max(0.02f, f) * (-360.0f), false, this.strokePaint);
+                    canvas.drawArc(this.rect, (-90.0f) - fMax, Math.max(0.02f, f) * (-360.0f), false, this.strokePaint);
                     if (f < 1.0f && f2 < 1.0f) {
                         invalidate();
                     }
                     super.onDraw(canvas);
                 }
             };
-            this.progressView = anonymousClass1;
-            anonymousClass1.setWillNotDraw(false);
+            this.progressView = frameLayout;
+            frameLayout.setWillNotDraw(false);
             addView(this.progressView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-            BackupImageView backupImageView = new BackupImageView(context2);
+            BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
             this.progressView.addView(this.imageView, LayoutHelper.createFrame(28, 28, 17));
-            AnimatedTextView animatedTextView = new AnimatedTextView(context2);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.textView = animatedTextView;
             animatedTextView.setTypeface(Typeface.SANS_SERIF);
             this.textView.setTextSize(AndroidUtilities.dp(15.0f));
@@ -2160,52 +2002,6 @@ public class Bulletin {
             addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, 18.0f, 8388627, 56.0f, 0.0f, 8.0f, 0.0f));
             setTextColor(getThemedColor(Theme.key_undo_infoColor));
             setBackground(getThemedColor(Theme.key_undo_background));
-        }
-
-        public class AnonymousClass1 extends FrameLayout {
-            private final AnimatedFloat animatedDone;
-            private final AnimatedFloat animatedProgress;
-            private final RectF rect;
-            private final long start;
-            private final Paint strokePaint;
-
-            AnonymousClass1(Context context2) {
-                super(context2);
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.animatedProgress = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
-                this.animatedDone = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
-                Paint paint = new Paint(1);
-                this.strokePaint = paint;
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setColor(268435455);
-                paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-                paint.setStrokeCap(Paint.Cap.ROUND);
-                paint.setStrokeJoin(Paint.Join.ROUND);
-                this.rect = new RectF();
-                this.start = System.currentTimeMillis();
-            }
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                float f = this.animatedProgress.set(ProgressLayout.this.progress);
-                float f2 = this.animatedDone.set(ProgressLayout.this.progress >= 1.0f);
-                float width = getWidth() / 2.0f;
-                float height = getHeight() / 2.0f;
-                this.rect.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), width + AndroidUtilities.dpf2(13.0f), height + AndroidUtilities.dpf2(13.0f));
-                float currentTimeMillis = (((float) (System.currentTimeMillis() - this.start)) * 0.45f) % 5400.0f;
-                float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
-                for (int i = 0; i < 4; i++) {
-                    FastOutSlowInInterpolator fastOutSlowInInterpolator = CircularProgressDrawable.interpolator;
-                    fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (i * 1350)) / 667.0f);
-                    max += fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (r7 + 667)) / 667.0f) * 250.0f;
-                }
-                this.strokePaint.setColor(Theme.multAlpha(-1, (1.0f - f2) * 1.0f));
-                canvas.drawArc(this.rect, (-90.0f) - max, Math.max(0.02f, f) * (-360.0f), false, this.strokePaint);
-                if (f < 1.0f && f2 < 1.0f) {
-                    invalidate();
-                }
-                super.onDraw(canvas);
-            }
         }
 
         public void setTextColor(int i) {
@@ -2238,9 +2034,8 @@ public class Bulletin {
             this.imageView = rLottieImageView;
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
-            AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(context) {
-                AnonymousClass1(Context context2) {
-                    super(context2);
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
+                {
                     setDisablePaddingsOffset(true);
                 }
 
@@ -2249,8 +2044,8 @@ public class Bulletin {
                     super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 }
             };
-            this.textView = anonymousClass1;
-            NotificationCenter.listenEmojiLoading(anonymousClass1);
+            this.textView = linksTextView;
+            NotificationCenter.listenEmojiLoading(linksTextView);
             this.textView.setSingleLine();
             this.textView.setTypeface(Typeface.SANS_SERIF);
             this.textView.setTextSize(1, 15.0f);
@@ -2260,18 +2055,6 @@ public class Bulletin {
             this.textView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
             setTextColor(getThemedColor(Theme.key_undo_infoColor));
             setBackground(getThemedColor(Theme.key_undo_background));
-        }
-
-        public class AnonymousClass1 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass1(Context context2) {
-                super(context2);
-                setDisablePaddingsOffset(true);
-            }
-
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-            }
         }
 
         public LottieLayout(Context context, Theme.ResourcesProvider resourcesProvider, int i, int i2) {
@@ -2286,7 +2069,7 @@ public class Bulletin {
         }
 
         @Override
-        public void onShow() {
+        protected void onShow() {
             super.onShow();
             this.imageView.playAnimation();
         }
@@ -2369,18 +2152,14 @@ public class Bulletin {
             this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
             addView(this.avatarsImageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
             if (!z) {
-                AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(context) {
-                    AnonymousClass1(Context context2) {
-                        super(context2);
-                    }
-
+                LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                     }
                 };
-                this.textView = anonymousClass1;
-                NotificationCenter.listenEmojiLoading(anonymousClass1);
+                this.textView = linksTextView;
+                NotificationCenter.listenEmojiLoading(linksTextView);
                 this.textView.setTypeface(Typeface.SANS_SERIF);
                 this.textView.setTextSize(1, 15.0f);
                 this.textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -2392,18 +2171,14 @@ public class Bulletin {
                 this.linearLayout = linearLayout;
                 linearLayout.setOrientation(1);
                 addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-                AnonymousClass2 anonymousClass2 = new LinkSpanDrawable.LinksTextView(context2) {
-                    AnonymousClass2(Context context2) {
-                        super(context2);
-                    }
-
+                LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context) {
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                     }
                 };
-                this.textView = anonymousClass2;
-                NotificationCenter.listenEmojiLoading(anonymousClass2);
+                this.textView = linksTextView2;
+                NotificationCenter.listenEmojiLoading(linksTextView2);
                 TextView textView = this.textView;
                 Typeface typeface = Typeface.SANS_SERIF;
                 textView.setTypeface(typeface);
@@ -2414,9 +2189,9 @@ public class Bulletin {
                 textView2.setEllipsize(truncateAt);
                 this.textView.setMaxLines(1);
                 this.linearLayout.addView(this.textView);
-                LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context2);
-                this.subtitleView = linksTextView;
-                linksTextView.setTypeface(typeface);
+                LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
+                this.subtitleView = linksTextView3;
+                linksTextView3.setTypeface(typeface);
                 this.subtitleView.setTextSize(1, 12.0f);
                 this.subtitleView.setEllipsize(truncateAt);
                 this.subtitleView.setSingleLine(false);
@@ -2429,28 +2204,6 @@ public class Bulletin {
             setBackground(getThemedColor(Theme.key_undo_background));
         }
 
-        public class AnonymousClass1 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass1(Context context2) {
-                super(context2);
-            }
-
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-            }
-        }
-
-        public class AnonymousClass2 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass2(Context context2) {
-                super(context2);
-            }
-
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-            }
-        }
-
         public void setTextColor(int i) {
             this.textView.setTextColor(i);
             TextView textView = this.subtitleView;
@@ -2460,7 +2213,7 @@ public class Bulletin {
         }
 
         @Override
-        public void onShow() {
+        protected void onShow() {
             super.onShow();
         }
 
@@ -2545,7 +2298,7 @@ public class Bulletin {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    Bulletin.UndoButton.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         }
@@ -2668,11 +2421,11 @@ public class Bulletin {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r0) / 1000.0f) : 0;
+            int iCeil = this.timeLeft > 0 ? (int) Math.ceil(r0 / 1000.0f) : 0;
             this.rect.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-            if (this.prevSeconds != ceil) {
-                this.prevSeconds = ceil;
-                this.timeLeftString = String.valueOf(Math.max(0, ceil));
+            if (this.prevSeconds != iCeil) {
+                this.prevSeconds = iCeil;
+                this.timeLeftString = String.valueOf(Math.max(0, iCeil));
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
@@ -2717,11 +2470,11 @@ public class Bulletin {
                 }
                 canvas.restore();
             }
-            canvas.drawArc(this.rect, -90.0f, (((float) Math.max(0L, this.timeLeft)) / 5000.0f) * (-360.0f), false, this.progressPaint);
+            canvas.drawArc(this.rect, -90.0f, (Math.max(0L, this.timeLeft) / 5000.0f) * (-360.0f), false, this.progressPaint);
             if (this.lastUpdateTime != 0) {
-                long currentTimeMillis = System.currentTimeMillis();
-                this.timeLeft -= currentTimeMillis - this.lastUpdateTime;
-                this.lastUpdateTime = currentTimeMillis;
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                this.timeLeft -= jCurrentTimeMillis - this.lastUpdateTime;
+                this.lastUpdateTime = jCurrentTimeMillis;
             } else {
                 this.lastUpdateTime = System.currentTimeMillis();
             }
@@ -2741,7 +2494,7 @@ public class Bulletin {
             return new BulletinWindow(context, null).container;
         }
 
-        private BulletinWindow(Context context, Delegate delegate) {
+        private BulletinWindow(Context context, final Delegate delegate) {
             super(context);
             BulletinWindowLayout bulletinWindowLayout = new BulletinWindowLayout(context);
             this.container = bulletinWindowLayout;
@@ -2752,9 +2505,7 @@ public class Bulletin {
             bulletinWindowLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    WindowInsets lambda$new$0;
-                    lambda$new$0 = Bulletin.BulletinWindow.this.lambda$new$0(view, windowInsets);
-                    return lambda$new$0;
+                    return this.f$0.lambda$new$0(view, windowInsets);
                 }
             });
             if (i >= 30) {
@@ -2763,8 +2514,6 @@ public class Bulletin {
                 bulletinWindowLayout.setSystemUiVisibility(1280);
             }
             Bulletin.addDelegate(bulletinWindowLayout, new Delegate() {
-                final Delegate val$delegate;
-
                 @Override
                 public boolean allowLayoutChanges() {
                     return Delegate.CC.$default$allowLayoutChanges(this);
@@ -2790,13 +2539,9 @@ public class Bulletin {
                     Delegate.CC.$default$onShow(this, bulletin);
                 }
 
-                AnonymousClass1(Delegate delegate2) {
-                    r2 = delegate2;
-                }
-
                 @Override
                 public int getBottomOffset(int i2) {
-                    Delegate delegate2 = r2;
+                    Delegate delegate2 = delegate;
                     if (delegate2 == null) {
                         return 0;
                     }
@@ -2805,13 +2550,13 @@ public class Bulletin {
 
                 @Override
                 public int getTopOffset(int i2) {
-                    Delegate delegate2 = r2;
+                    Delegate delegate2 = delegate;
                     return delegate2 == null ? AndroidUtilities.statusBarHeight : delegate2.getTopOffset(i2);
                 }
 
                 @Override
                 public boolean clipWithGradient(int i2) {
-                    Delegate delegate2 = r2;
+                    Delegate delegate2 = delegate;
                     return delegate2 != null && delegate2.clipWithGradient(i2);
                 }
             });
@@ -2839,68 +2584,12 @@ public class Bulletin {
         }
 
         public WindowInsets lambda$new$0(View view, WindowInsets windowInsets) {
-            WindowInsets windowInsets2;
             applyInsets(windowInsets);
             view.requestLayout();
             if (Build.VERSION.SDK_INT >= 30) {
-                windowInsets2 = WindowInsets.CONSUMED;
-                return windowInsets2;
+                return WindowInsets.CONSUMED;
             }
             return windowInsets.consumeSystemWindowInsets();
-        }
-
-        public class AnonymousClass1 implements Delegate {
-            final Delegate val$delegate;
-
-            @Override
-            public boolean allowLayoutChanges() {
-                return Delegate.CC.$default$allowLayoutChanges(this);
-            }
-
-            @Override
-            public boolean bottomOffsetAnimated() {
-                return Delegate.CC.$default$bottomOffsetAnimated(this);
-            }
-
-            @Override
-            public void onBottomOffsetChange(float f) {
-                Delegate.CC.$default$onBottomOffsetChange(this, f);
-            }
-
-            @Override
-            public void onHide(Bulletin bulletin) {
-                Delegate.CC.$default$onHide(this, bulletin);
-            }
-
-            @Override
-            public void onShow(Bulletin bulletin) {
-                Delegate.CC.$default$onShow(this, bulletin);
-            }
-
-            AnonymousClass1(Delegate delegate2) {
-                r2 = delegate2;
-            }
-
-            @Override
-            public int getBottomOffset(int i2) {
-                Delegate delegate2 = r2;
-                if (delegate2 == null) {
-                    return 0;
-                }
-                return delegate2.getBottomOffset(i2);
-            }
-
-            @Override
-            public int getTopOffset(int i2) {
-                Delegate delegate2 = r2;
-                return delegate2 == null ? AndroidUtilities.statusBarHeight : delegate2.getTopOffset(i2);
-            }
-
-            @Override
-            public boolean clipWithGradient(int i2) {
-                Delegate delegate2 = r2;
-                return delegate2 != null && delegate2.clipWithGradient(i2);
-            }
         }
 
         @Override

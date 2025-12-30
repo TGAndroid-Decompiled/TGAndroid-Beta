@@ -125,8 +125,8 @@ public class BotAdView extends FrameLayout {
         }
         boolean z = true;
         this.invalidatedMeasure = true;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(messageObject.sponsoredTitle, this.titleView.getPaint().getFontMetricsInt(), false);
-        CharSequence replaceEmoji2 = Emoji.replaceEmoji(messageObject.messageText, this.textView.getPaint().getFontMetricsInt(), false);
+        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(messageObject.sponsoredTitle, this.titleView.getPaint().getFontMetricsInt(), false);
+        CharSequence charSequenceReplaceEmoji2 = Emoji.replaceEmoji(messageObject.messageText, this.textView.getPaint().getFontMetricsInt(), false);
         final String str = messageObject.sponsoredUrl;
         if (messageObject.sponsoredMedia != null) {
             this.imageView.setVisibility(0);
@@ -160,22 +160,22 @@ public class BotAdView extends FrameLayout {
         int i2 = Theme.key_featuredStickers_addButton;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(i2, this.resourcesProvider)), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) " \u2009");
-        spannableStringBuilder.append(replaceEmoji);
+        spannableStringBuilder.append(charSequenceReplaceEmoji);
         if (this.titleView.getPaint().measureText(spannableStringBuilder.toString()) > (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(44.660004f)) - this.removeView.getPaint().measureText(this.removeView.getText().toString())) - AndroidUtilities.dp(32.0f)) - AndroidUtilities.dp(z ? 58.0f : 0.0f)) {
             spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(i));
             spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(i2, this.resourcesProvider)), 0, spannableStringBuilder.length(), 33);
             this.channelTitleView.setVisibility(0);
-            this.channelTitleView.setText(replaceEmoji);
+            this.channelTitleView.setText(charSequenceReplaceEmoji);
         } else {
             this.channelTitleView.setVisibility(8);
         }
         this.titleView.setText(spannableStringBuilder);
-        this.textView.setText(replaceEmoji2);
+        this.textView.setText(charSequenceReplaceEmoji2);
         setLayoutParams(LayoutHelper.createFrame(-1, -2, 83));
         this.textView.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                BotAdView.this.lambda$set$1(chatActivity, messageObject, clickableSpan);
+                this.f$0.lambda$set$1(chatActivity, messageObject, clickableSpan);
             }
         });
         this.removeView.setOnClickListener(new View.OnClickListener() {
@@ -187,7 +187,7 @@ public class BotAdView extends FrameLayout {
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotAdView.this.lambda$set$3(chatActivity, messageObject, str, view);
+                this.f$0.lambda$set$3(chatActivity, messageObject, str, view);
             }
         });
         this.closeView.setOnClickListener(new View.OnClickListener() {

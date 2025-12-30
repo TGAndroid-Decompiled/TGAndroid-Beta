@@ -4,13 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.BatteryManager;
 import androidx.core.math.MathUtils;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 
@@ -59,7 +59,7 @@ public class LiteMode {
         return getValue(false);
     }
 
-    public static int getValue(boolean z) {
+    public static int getValue(boolean z) throws IOException {
         if (!loaded) {
             loadPreference();
         }
@@ -82,7 +82,20 @@ public class LiteMode {
     }
 
     public static int getBatteryLevel() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.getBatteryLevel():int");
+        long jCurrentTimeMillis;
+        if (lastBatteryLevelCached >= 0) {
+            jCurrentTimeMillis = System.currentTimeMillis();
+            if (jCurrentTimeMillis - lastBatteryLevelChecked > 12000) {
+            }
+            return lastBatteryLevelCached;
+        }
+        jCurrentTimeMillis = 0;
+        BatteryManager batteryManager = (BatteryManager) ApplicationLoader.applicationContext.getSystemService("batterymanager");
+        if (batteryManager != null) {
+            lastBatteryLevelCached = batteryManager.getIntProperty(4);
+            lastBatteryLevelChecked = jCurrentTimeMillis;
+        }
+        return lastBatteryLevelCached;
     }
 
     private static int preprocessFlag(int i) {
@@ -113,7 +126,7 @@ public class LiteMode {
         toggleFlag(i, !isEnabled(i));
     }
 
-    public static void toggleFlag(int i, boolean z) {
+    public static void toggleFlag(int i, boolean z) throws IOException {
         int value2;
         if (z) {
             value2 = i | getValue(true);
@@ -128,37 +141,8 @@ public class LiteMode {
         savePreference();
     }
 
-    public static void updatePresets(TLRPC.TL_jsonObject tL_jsonObject) {
-        for (int i = 0; i < tL_jsonObject.value.size(); i++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
-            if ("settings_mask".equals(tL_jsonObjectValue.key)) {
-                TLRPC.JSONValue jSONValue = tL_jsonObjectValue.value;
-                if (jSONValue instanceof TLRPC.TL_jsonArray) {
-                    ArrayList<TLRPC.JSONValue> arrayList = ((TLRPC.TL_jsonArray) jSONValue).value;
-                    try {
-                        PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
-                        PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
-                        PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                }
-            }
-            if ("battery_low".equals(tL_jsonObjectValue.key)) {
-                TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
-                if (jSONValue2 instanceof TLRPC.TL_jsonArray) {
-                    ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue2).value;
-                    try {
-                        BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
-                        BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
-                        BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                    }
-                }
-            }
-        }
-        loadPreference();
+    public static void updatePresets(org.telegram.tgnet.TLRPC.TL_jsonObject r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.updatePresets(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
     }
 
     public static void loadPreference() {
@@ -233,18 +217,18 @@ public class LiteMode {
         return powerSaverLevel;
     }
 
-    public static void setPowerSaverLevel(int i) {
+    public static void setPowerSaverLevel(int i) throws IOException {
         powerSaverLevel = MathUtils.clamp(i, 0, 100);
         savePreference();
         getValue(false);
     }
 
-    public static boolean isPowerSaverApplied() {
+    public static boolean isPowerSaverApplied() throws IOException {
         getValue(false);
         return lastPowerSaverApplied;
     }
 
-    private static void onPowerSaverApplied(final boolean z) {
+    private static void onPowerSaverApplied(final boolean z) throws IOException {
         if (z) {
             onFlagsUpdate(getValue(true), PRESET_POWER_SAVER);
         } else {
@@ -270,7 +254,7 @@ public class LiteMode {
         }
     }
 
-    private static void onFlagsUpdate(int i, int i2) {
+    private static void onFlagsUpdate(int i, int i2) throws IOException {
         int i3 = (~i) & i2;
         if ((i3 & 28700) > 0) {
             AnimatedEmojiDrawable.updateAll();

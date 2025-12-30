@@ -41,10 +41,10 @@ public class VoIpCoverView extends View {
         Paint paint = new Paint(1);
         this.saveLayerPaint = paint;
         this.bgRect = new Rect();
-        boolean isEnabled = LiteMode.isEnabled(512);
-        this.allowAnimations = isEnabled;
+        boolean zIsEnabled = LiteMode.isEnabled(512);
+        this.allowAnimations = zIsEnabled;
         this.backgroundProvider = voIPBackgroundProvider;
-        if (isEnabled) {
+        if (zIsEnabled) {
             this.voipCoverEmojiLeft = new VoipCoverEmoji[]{new VoipCoverEmoji(user, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(26.0f))};
             this.voipCoverEmojiRight = new VoipCoverEmoji[]{new VoipCoverEmoji(user, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(26.0f))};
             voIPBackgroundProvider.attach(this);
@@ -56,14 +56,14 @@ public class VoIpCoverView extends View {
     public void onConnected() {
         if (this.allowAnimations && !this.isConnected) {
             this.isConnected = true;
-            int dp = AndroidUtilities.dp(12.0f);
-            this.connectedDiffX = dp;
-            ValueAnimator ofInt = ValueAnimator.ofInt(0, dp);
-            this.positionAnimator = ofInt;
-            ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            int iDp = AndroidUtilities.dp(12.0f);
+            this.connectedDiffX = iDp;
+            ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, iDp);
+            this.positionAnimator = valueAnimatorOfInt;
+            valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIpCoverView.this.lambda$onConnected$0(valueAnimator);
+                    this.f$0.lambda$onConnected$0(valueAnimator);
                 }
             });
             this.positionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -73,24 +73,24 @@ public class VoIpCoverView extends View {
     }
 
     public void lambda$onConnected$0(ValueAnimator valueAnimator) {
-        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        this.diffX1 = intValue;
-        this.diffX2 = intValue;
-        this.diffX3 = intValue;
-        this.diffX4 = intValue;
-        this.diffX5 = intValue;
+        int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        this.diffX1 = iIntValue;
+        this.diffX2 = iIntValue;
+        this.diffX3 = iIntValue;
+        this.diffX4 = iIntValue;
+        this.diffX5 = iIntValue;
         invalidate();
     }
 
     public void onEmojiExpanded(boolean z) {
         if (this.allowAnimations && z != this.isEmojiExpanded) {
             this.isEmojiExpanded = z;
-            ValueAnimator ofFloat = z ? ValueAnimator.ofFloat(0.0f, 1.0f) : ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.positionAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = z ? ValueAnimator.ofFloat(0.0f, 1.0f) : ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.positionAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIpCoverView.this.lambda$onEmojiExpanded$1(valueAnimator);
+                    this.f$0.lambda$onEmojiExpanded$1(valueAnimator);
                 }
             });
             this.positionAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -100,17 +100,17 @@ public class VoIpCoverView extends View {
     }
 
     public void lambda$onEmojiExpanded$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.diffX1 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(56.0f), floatValue);
-        this.diffX2 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), floatValue);
-        this.diffX3 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(60.0f), floatValue);
-        this.diffX4 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), floatValue);
-        this.diffX5 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(64.0f), floatValue);
-        this.diffY1 = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
-        this.diffY2 = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
-        this.diffY3 = AndroidUtilities.lerp(0, 0, floatValue);
-        this.diffY4 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
-        this.diffY5 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.diffX1 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(56.0f), fFloatValue);
+        this.diffX2 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
+        this.diffX3 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(60.0f), fFloatValue);
+        this.diffX4 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
+        this.diffX5 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(64.0f), fFloatValue);
+        this.diffY1 = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), fFloatValue);
+        this.diffY2 = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), fFloatValue);
+        this.diffY3 = AndroidUtilities.lerp(0, 0, fFloatValue);
+        this.diffY4 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), fFloatValue);
+        this.diffY5 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), fFloatValue);
         invalidate();
     }
 

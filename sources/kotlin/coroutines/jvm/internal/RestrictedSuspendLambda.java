@@ -21,9 +21,9 @@ public abstract class RestrictedSuspendLambda extends RestrictedContinuationImpl
     @Override
     public String toString() {
         if (getCompletion() == null) {
-            String renderLambdaToString = Reflection.renderLambdaToString(this);
-            Intrinsics.checkNotNullExpressionValue(renderLambdaToString, "renderLambdaToString(...)");
-            return renderLambdaToString;
+            String strRenderLambdaToString = Reflection.renderLambdaToString(this);
+            Intrinsics.checkNotNullExpressionValue(strRenderLambdaToString, "renderLambdaToString(...)");
+            return strRenderLambdaToString;
         }
         return super.toString();
     }

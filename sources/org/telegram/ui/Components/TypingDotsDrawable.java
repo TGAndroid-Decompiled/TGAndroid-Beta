@@ -53,15 +53,15 @@ public class TypingDotsDrawable extends StatusDrawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 50) {
             j = 50;
         }
         for (int i = 0; i < 3; i++) {
             float[] fArr = this.elapsedTimes;
-            float f = fArr[i] + ((float) j);
+            float f = fArr[i] + j;
             fArr[i] = f;
             float[] fArr2 = this.startTimes;
             float f2 = f - fArr2[i];
@@ -104,16 +104,16 @@ public class TypingDotsDrawable extends StatusDrawable {
 
     @Override
     public void draw(Canvas canvas) {
-        int dp;
+        int iDp;
         int i;
         if (this.isChat) {
-            dp = AndroidUtilities.dp(8.5f);
+            iDp = AndroidUtilities.dp(8.5f);
             i = getBounds().top;
         } else {
-            dp = AndroidUtilities.dp(9.3f);
+            iDp = AndroidUtilities.dp(9.3f);
             i = getBounds().top;
         }
-        int i2 = dp + i;
+        int i2 = iDp + i;
         Paint paint = this.currentPaint;
         if (paint == null) {
             paint = Theme.chat_statusPaint;
@@ -134,7 +134,7 @@ public class TypingDotsDrawable extends StatusDrawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TypingDotsDrawable.this.checkUpdate();
+                        this.f$0.checkUpdate();
                     }
                 }, 100L);
             }

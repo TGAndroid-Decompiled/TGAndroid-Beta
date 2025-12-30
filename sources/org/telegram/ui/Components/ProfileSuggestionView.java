@@ -98,10 +98,10 @@ public class ProfileSuggestionView extends FrameLayout {
 
     public void updatePosition(float f, float f2) {
         this.currentHeight = f2;
-        float clamp01 = Utilities.clamp01(AndroidUtilities.ilerp(f2, 0.0f, getHeight()));
-        this.layout.setAlpha(clamp01);
-        this.layout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, clamp01));
-        this.layout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, clamp01));
+        float fClamp01 = Utilities.clamp01(AndroidUtilities.ilerp(f2, 0.0f, getHeight()));
+        this.layout.setAlpha(fClamp01);
+        this.layout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, fClamp01));
+        this.layout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, fClamp01));
         setTranslationY(f);
         invalidate();
     }
@@ -124,11 +124,11 @@ public class ProfileSuggestionView extends FrameLayout {
         if (this.clipHeight >= 0.0f || this.currentHeight < getHeight()) {
             float f = this.currentHeight;
             float f2 = this.clipHeight;
-            float min = Math.min(f, f2 >= 0.0f ? f2 - getY() : getHeight());
-            if (min <= 0.0f) {
+            float fMin = Math.min(f, f2 >= 0.0f ? f2 - getY() : getHeight());
+            if (fMin <= 0.0f) {
                 return;
             } else {
-                canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), min);
+                canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), fMin);
             }
         }
         super.dispatchDraw(canvas);

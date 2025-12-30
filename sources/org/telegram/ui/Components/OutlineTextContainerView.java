@@ -38,9 +38,7 @@ public class OutlineTextContainerView extends FrameLayout {
     private static final SimpleFloatPropertyCompat SELECTION_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("selectionProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((OutlineTextContainerView) obj).selectionProgress;
-            return f;
+            return ((OutlineTextContainerView) obj).selectionProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -51,9 +49,7 @@ public class OutlineTextContainerView extends FrameLayout {
     private static final SimpleFloatPropertyCompat TITLE_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("titleProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((OutlineTextContainerView) obj).titleProgress;
-            return f;
+            return ((OutlineTextContainerView) obj).titleProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -64,9 +60,7 @@ public class OutlineTextContainerView extends FrameLayout {
     private static final SimpleFloatPropertyCompat ERROR_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("errorProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((OutlineTextContainerView) obj).errorProgress;
-            return f;
+            return ((OutlineTextContainerView) obj).errorProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -159,10 +153,10 @@ public class OutlineTextContainerView extends FrameLayout {
     }
 
     public void updateColor() {
-        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteValueText, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.titleProgress : 0.0f);
+        int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteValueText, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.titleProgress : 0.0f);
         TextPaint textPaint = this.textPaint;
         int i = Theme.key_text_RedBold;
-        textPaint.setColor(ColorUtils.blendARGB(blendARGB, Theme.getColor(i, this.resourcesProvider), this.errorProgress));
+        textPaint.setColor(ColorUtils.blendARGB(iBlendARGB, Theme.getColor(i, this.resourcesProvider), this.errorProgress));
         setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.selectionProgress : 0.0f), Theme.getColor(i, this.resourcesProvider), this.errorProgress));
     }
 
@@ -229,7 +223,7 @@ public class OutlineTextContainerView extends FrameLayout {
         float f2 = z ? this.leftPadding * (1.0f - this.titleProgress) : 0.0f;
         float strokeWidth = this.outlinePaint.getStrokeWidth();
         float f3 = z ? 0.75f + ((1.0f - this.titleProgress) * 0.25f) : 0.75f;
-        float measureText = this.textPaint.measureText(this.mText) * f3;
+        float fMeasureText = this.textPaint.measureText(this.mText) * f3;
         canvas.save();
         this.rect.set(getPaddingLeft() + AndroidUtilities.dp(10.0f), getPaddingTop(), (getWidth() - AndroidUtilities.dp(18.0f)) - getPaddingRight(), getPaddingTop() + (strokeWidth * 2.0f));
         canvas.clipRect(this.rect, Region.Op.DIFFERENCE);
@@ -238,10 +232,10 @@ public class OutlineTextContainerView extends FrameLayout {
         canvas.restore();
         float paddingLeft = getPaddingLeft() + AndroidUtilities.dp(10.0f);
         float paddingTop2 = getPaddingTop() + strokeWidth;
-        float f4 = paddingLeft + (measureText / 2.0f);
-        canvas.drawLine(f4 + ((((paddingLeft + measureText) + AndroidUtilities.dp(10.0f)) - f4) * (z ? this.titleProgress : 1.0f)), paddingTop2, ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.dp(6.0f), paddingTop2, this.outlinePaint);
-        float dp = f4 + AndroidUtilities.dp(4.0f);
-        canvas.drawLine(paddingLeft, paddingTop2, dp + ((paddingLeft - dp) * (z ? this.titleProgress : 1.0f)), paddingTop2, this.outlinePaint);
+        float f4 = paddingLeft + (fMeasureText / 2.0f);
+        canvas.drawLine(f4 + ((((paddingLeft + fMeasureText) + AndroidUtilities.dp(10.0f)) - f4) * (z ? this.titleProgress : 1.0f)), paddingTop2, ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.dp(6.0f), paddingTop2, this.outlinePaint);
+        float fDp = f4 + AndroidUtilities.dp(4.0f);
+        canvas.drawLine(paddingLeft, paddingTop2, fDp + ((paddingLeft - fDp) * (z ? this.titleProgress : 1.0f)), paddingTop2, this.outlinePaint);
         canvas.save();
         canvas.scale(f3, f3, getPaddingLeft() + AndroidUtilities.dp(18.0f), f);
         canvas.drawText(this.mText, getPaddingLeft() + AndroidUtilities.dp(14.0f) + f2, f, this.textPaint);

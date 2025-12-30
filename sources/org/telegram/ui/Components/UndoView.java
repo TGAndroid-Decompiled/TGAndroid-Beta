@@ -207,7 +207,7 @@ public class UndoView extends FrameLayout {
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UndoView.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         ImageView imageView = new ImageView(context);
@@ -239,9 +239,7 @@ public class UndoView extends FrameLayout {
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$1;
-                lambda$new$1 = UndoView.lambda$new$1(view, motionEvent);
-                return lambda$new$1;
+                return UndoView.lambda$new$1(view, motionEvent);
             }
         });
         setVisibility(4);
@@ -312,11 +310,11 @@ public class UndoView extends FrameLayout {
             int i2 = this.currentAction;
             if (i2 == 0 || i2 == 1 || i2 == 26 || i2 == 27) {
                 for (int i3 = 0; i3 < this.currentDialogIds.size(); i3++) {
-                    long longValue = ((Long) this.currentDialogIds.get(i3)).longValue();
+                    long jLongValue = ((Long) this.currentDialogIds.get(i3)).longValue();
                     MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
                     int i4 = this.currentAction;
-                    messagesController.removeDialogAction(longValue, i4 == 0 || i4 == 26, z);
-                    onRemoveDialogAction(longValue, this.currentAction);
+                    messagesController.removeDialogAction(jLongValue, i4 == 0 || i4 == 26, z);
+                    onRemoveDialogAction(jLongValue, this.currentAction);
                 }
             }
             if (i != 0) {
@@ -384,7 +382,7 @@ public class UndoView extends FrameLayout {
         this.parentFragment.getConnectionsManager().sendRequest(tL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                UndoView.this.lambda$showWithAction$5(tLObject, tL_error);
+                this.f$0.lambda$showWithAction$5(tLObject, tL_error);
             }
         }, 2);
     }
@@ -393,7 +391,7 @@ public class UndoView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UndoView.this.lambda$showWithAction$4(tLObject);
+                this.f$0.lambda$showWithAction$4(tLObject);
             }
         });
     }
@@ -452,10 +450,10 @@ public class UndoView extends FrameLayout {
         }
         int i = this.currentAction;
         if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
-            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r10) / 1000.0f) : 0;
-            if (this.prevSeconds != ceil) {
-                this.prevSeconds = ceil;
-                this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
+            int iCeil = this.timeLeft > 0 ? (int) Math.ceil(r10 / 1000.0f) : 0;
+            if (this.prevSeconds != iCeil) {
+                this.prevSeconds = iCeil;
+                this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(1, iCeil)));
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
@@ -500,12 +498,12 @@ public class UndoView extends FrameLayout {
                 }
                 canvas.restore();
             }
-            canvas.drawArc(this.rect, -90.0f, (-360.0f) * (((float) this.timeLeft) / 5000.0f), false, this.progressPaint);
+            canvas.drawArc(this.rect, -90.0f, (-360.0f) * (this.timeLeft / 5000.0f), false, this.progressPaint);
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long j = this.timeLeft - (jElapsedRealtime - this.lastUpdateTime);
         this.timeLeft = j;
-        this.lastUpdateTime = elapsedRealtime;
+        this.lastUpdateTime = jElapsedRealtime;
         if (j <= 0) {
             hide(true, this.hideAnimationType);
         }

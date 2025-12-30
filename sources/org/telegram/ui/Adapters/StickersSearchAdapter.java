@@ -28,7 +28,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Adapters.StickersSearchAdapter;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.FeaturedStickerSetInfoCell;
 import org.telegram.ui.Cells.StickerEmojiCell;
@@ -95,7 +94,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
         return i;
     }
 
-    public class AnonymousClass1 implements Runnable {
+    class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
         }
 
@@ -118,7 +117,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.StickersSearchAdapter.AnonymousClass1.run():void");
         }
 
-        public void lambda$run$0(int i, HashMap hashMap, ArrayList arrayList, String str) {
+        public void lambda$run$0(int i, HashMap map, ArrayList arrayList, String str) {
             if (i != StickersSearchAdapter.this.emojiSearchId) {
                 return;
             }
@@ -126,7 +125,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             boolean z = false;
             for (int i2 = 0; i2 < size; i2++) {
                 String str2 = ((MediaDataController.KeywordResult) arrayList.get(i2)).emoji;
-                ArrayList arrayList2 = hashMap != null ? (ArrayList) hashMap.get(str2) : null;
+                ArrayList arrayList2 = map != null ? (ArrayList) map.get(str2) : null;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     clear();
                     if (!StickersSearchAdapter.this.emojiStickers.containsKey(arrayList2)) {
@@ -146,7 +145,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersSearchAdapter.AnonymousClass1.this.lambda$run$1(tL_messages_searchStickerSets, tLObject);
+                        this.f$0.lambda$run$1(tL_messages_searchStickerSets, tLObject);
                     }
                 });
             }
@@ -167,7 +166,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersSearchAdapter.AnonymousClass1.this.lambda$run$3(tL_messages_getStickers, tLObject, arrayList, longSparseArray);
+                    this.f$0.lambda$run$3(tL_messages_getStickers, tLObject, arrayList, longSparseArray);
                 }
             });
         }
@@ -268,7 +267,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        FrameLayout frameLayout;
+        FrameLayout emptyCell;
         if (i == 0) {
             StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, this.resourcesProvider) {
                 @Override
@@ -277,24 +276,24 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
             };
             stickerEmojiCell.getImageView().setLayerNum(3);
-            frameLayout = stickerEmojiCell;
+            emptyCell = stickerEmojiCell;
         } else if (i == 1) {
-            frameLayout = new EmptyCell(this.context);
+            emptyCell = new EmptyCell(this.context);
         } else if (i == 2) {
-            frameLayout = new StickerSetNameCell(this.context, false, true, this.resourcesProvider, false);
+            emptyCell = new StickerSetNameCell(this.context, false, true, this.resourcesProvider, false);
         } else if (i == 3) {
             FeaturedStickerSetInfoCell featuredStickerSetInfoCell = new FeaturedStickerSetInfoCell(this.context, 17, true, true, this.resourcesProvider);
             featuredStickerSetInfoCell.setAddOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StickersSearchAdapter.this.lambda$onCreateViewHolder$0(view);
+                    this.f$0.lambda$onCreateViewHolder$0(view);
                 }
             });
-            frameLayout = featuredStickerSetInfoCell;
+            emptyCell = featuredStickerSetInfoCell;
         } else if (i == 4) {
-            frameLayout = new View(this.context);
+            emptyCell = new View(this.context);
         } else if (i != 5) {
-            frameLayout = null;
+            emptyCell = null;
         } else {
             ?? linearLayout = new LinearLayout(this.context);
             linearLayout.setOrientation(1);
@@ -316,9 +315,9 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             linearLayout.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
             linearLayout.setMinimumHeight(AndroidUtilities.dp(112.0f));
             linearLayout.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f));
-            frameLayout = linearLayout;
+            emptyCell = linearLayout;
         }
-        return new RecyclerListView.Holder(frameLayout);
+        return new RecyclerListView.Holder(emptyCell);
     }
 
     @Override
@@ -409,9 +408,9 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             }
             i2++;
         }
-        int indexOfIgnoreCase = TextUtils.isEmpty(this.searchQuery) ? -1 : AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.title, this.searchQuery);
-        if (indexOfIgnoreCase >= 0) {
-            featuredStickerSetInfoCell.setStickerSet(stickerSetCovered, z5, z, indexOfIgnoreCase, this.searchQuery.length(), z2);
+        int iIndexOfIgnoreCase = TextUtils.isEmpty(this.searchQuery) ? -1 : AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.title, this.searchQuery);
+        if (iIndexOfIgnoreCase >= 0) {
+            featuredStickerSetInfoCell.setStickerSet(stickerSetCovered, z5, z, iIndexOfIgnoreCase, this.searchQuery.length(), z2);
         } else {
             featuredStickerSetInfoCell.setStickerSet(stickerSetCovered, z5, z, 0, 0, z2);
             if (!TextUtils.isEmpty(this.searchQuery) && AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.short_name, this.searchQuery) == 0) {
@@ -501,12 +500,12 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                         }
                     }
                     i = size;
-                    int ceil = (int) Math.ceil(i6 / this.delegate.getStickersPerRow());
-                    for (int i12 = 0; i12 < ceil; i12++) {
+                    int iCeil = (int) Math.ceil(i6 / this.delegate.getStickersPerRow());
+                    for (int i12 = 0; i12 < iCeil; i12++) {
                         this.rowStartPack.put(i4 + i12, Integer.valueOf(i6));
                     }
-                    this.totalItems += this.delegate.getStickersPerRow() * ceil;
-                    i4 += ceil;
+                    this.totalItems += this.delegate.getStickersPerRow() * iCeil;
+                    i4 += iCeil;
                     i3++;
                     size = i;
                 } else {
@@ -517,7 +516,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
             }
             if (!arrayList.isEmpty()) {
-                int ceil2 = (int) Math.ceil(arrayList.size() / this.delegate.getStickersPerRow());
+                int iCeil2 = (int) Math.ceil(arrayList.size() / this.delegate.getStickersPerRow());
                 this.cache.put(this.totalItems, stickerSetCovered);
                 if (i3 >= size2 && (stickerSetCovered instanceof TLRPC.StickerSetCovered)) {
                     this.positionsToSets.put(this.totalItems, stickerSetCovered);
@@ -537,11 +536,11 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                     }
                     i13 = i14;
                 }
-                int i16 = ceil2 + 1;
+                int i16 = iCeil2 + 1;
                 for (int i17 = 0; i17 < i16; i17++) {
                     this.rowStartPack.put(i4 + i17, stickerSetCovered);
                 }
-                this.totalItems += (ceil2 * this.delegate.getStickersPerRow()) + 1;
+                this.totalItems += (iCeil2 * this.delegate.getStickersPerRow()) + 1;
                 i4 += i16;
             }
             i3++;

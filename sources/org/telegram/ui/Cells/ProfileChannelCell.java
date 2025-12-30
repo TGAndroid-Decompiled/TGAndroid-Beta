@@ -29,7 +29,6 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
-import org.telegram.ui.Cells.ProfileChannelCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ClickableAnimatedTextView;
@@ -152,37 +151,37 @@ public abstract class ProfileChannelCell extends FrameLayout {
     }
 
     private void updatePosition() {
-        int dp = AndroidUtilities.dp((this.dialogCell.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 10.0f : 13.0f);
+        int iDp = AndroidUtilities.dp((this.dialogCell.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 10.0f : 13.0f);
         DialogCell dialogCell = this.dialogCell;
         if (((!dialogCell.useForceThreeLines && !SharedConfig.useThreeLinesLayout) || dialogCell.isForumCell()) && this.dialogCell.hasTags()) {
-            dp -= AndroidUtilities.dp(this.dialogCell.isForumCell() ? 8.0f : 9.0f);
+            iDp -= AndroidUtilities.dp(this.dialogCell.isForumCell() ? 8.0f : 9.0f);
         }
         if (this.dialogCell.nameLayout != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.subscribersView.getLayoutParams();
             int i = layoutParams.leftMargin;
             int i2 = layoutParams.topMargin;
-            layoutParams.topMargin = dp + ((FrameLayout.LayoutParams) this.dialogCell.getLayoutParams()).topMargin;
+            layoutParams.topMargin = iDp + ((FrameLayout.LayoutParams) this.dialogCell.getLayoutParams()).topMargin;
             DialogCell dialogCell2 = this.dialogCell;
-            int i3 = dialogCell2.nameAdditionalsForChannelSubscriber;
-            if (i3 == 0) {
+            int iDp2 = dialogCell2.nameAdditionalsForChannelSubscriber;
+            if (iDp2 == 0) {
                 if (!LocaleController.isRTL && dialogCell2.nameLayout.getLineLeft(0) <= 0.0f && AndroidUtilities.charSequenceContains(this.dialogCell.nameLayout.getText(), "…")) {
-                    i3 = AndroidUtilities.dp(-12.0f);
+                    iDp2 = AndroidUtilities.dp(-12.0f);
                 } else {
-                    i3 = AndroidUtilities.dp(4.0f);
+                    iDp2 = AndroidUtilities.dp(4.0f);
                 }
             }
             if (LocaleController.isRTL) {
-                layoutParams.leftMargin = (int) (((r0.nameLeft + this.dialogCell.nameLayoutTranslateX) - r0.namePaddingEnd) - i3);
+                layoutParams.leftMargin = (int) (((r0.nameLeft + this.dialogCell.nameLayoutTranslateX) - r0.namePaddingEnd) - iDp2);
             } else {
                 DialogCell dialogCell3 = this.dialogCell;
                 float lineRight = dialogCell3.channelShouldUseLineWidth ? dialogCell3.nameLayout.getLineRight(0) : dialogCell3.nameWidth;
-                layoutParams.leftMargin = (int) (r6.nameLeft + this.dialogCell.nameLayoutTranslateX + ((int) lineRight) + i3);
+                layoutParams.leftMargin = (int) (r6.nameLeft + this.dialogCell.nameLayoutTranslateX + ((int) lineRight) + iDp2);
             }
             this.subscribersView.setVisibility(0);
-            int i4 = layoutParams.leftMargin;
-            if (i4 != i || layoutParams.topMargin != i2) {
+            int i3 = layoutParams.leftMargin;
+            if (i3 != i || layoutParams.topMargin != i2) {
                 this.subscribersView.requestLayout();
-            } else if (i4 == 0) {
+            } else if (i3 == 0) {
                 this.subscribersView.postInvalidate();
             }
         }
@@ -215,7 +214,7 @@ public abstract class ProfileChannelCell extends FrameLayout {
     }
 
     public void set(TLRPC.Chat chat, MessageObject messageObject) {
-        String formatShortNumber;
+        String shortNumber;
         boolean z = this.set;
         boolean z2 = chat != null;
         this.subscribersView.cancelAnimation();
@@ -234,11 +233,11 @@ public abstract class ProfileChannelCell extends FrameLayout {
                 if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                     int i = chat.participants_count;
                     iArr[0] = i;
-                    formatShortNumber = String.valueOf(i);
+                    shortNumber = String.valueOf(i);
                 } else {
-                    formatShortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
+                    shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
                 }
-                this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), formatShortNumber), true);
+                this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
             } else {
                 this.subscribersView.setText(LocaleController.getString(R.string.PersonalChannel), true);
             }
@@ -306,69 +305,69 @@ public abstract class ProfileChannelCell extends FrameLayout {
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$3(i, messagesStorage, j, clientUserId, i2);
+                public final void run() throws Throwable {
+                    this.f$0.lambda$fetch$3(i, messagesStorage, j, clientUserId, i2);
                 }
             });
         }
 
-        public void lambda$fetch$3(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) {
-            TLRPC.Message message;
-            SQLiteCursor sQLiteCursor;
-            NativeByteBuffer byteBufferValue;
+        public void lambda$fetch$3(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) throws Throwable {
+            TLRPC.Message messageTLdeserialize;
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            NativeByteBuffer nativeByteBufferByteBufferValue;
             ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
-            SQLiteCursor sQLiteCursor2 = null;
-            r4 = null;
-            r4 = null;
-            final TLRPC.Message message2 = null;
-            sQLiteCursor2 = null;
+            SQLiteCursor sQLiteCursor = null;
+            message = null;
+            message = null;
+            final TLRPC.Message message = null;
+            sQLiteCursor = null;
             try {
                 try {
                     if (i <= 0) {
-                        sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j));
+                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j));
                     } else {
-                        sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
+                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
                     }
                     try {
                         try {
                             ArrayList<Long> arrayList3 = new ArrayList<>();
                             ArrayList arrayList4 = new ArrayList();
-                            if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
-                                message = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            if (sQLiteCursorQueryFinalized.next() && (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) != null) {
+                                messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
                                 try {
-                                    message.readAttachPath(byteBufferValue, j2);
-                                    byteBufferValue.reuse();
-                                    message.id = sQLiteCursor.intValue(1);
-                                    message.dialog_id = -j;
-                                    MessagesStorage.addUsersAndChatsFromMessage(message, arrayList3, arrayList4, null);
-                                    message2 = message;
+                                    messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
+                                    nativeByteBufferByteBufferValue.reuse();
+                                    messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(1);
+                                    messageTLdeserialize.dialog_id = -j;
+                                    MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList3, arrayList4, null);
+                                    message = messageTLdeserialize;
                                 } catch (Exception e) {
                                     e = e;
-                                    sQLiteCursor2 = sQLiteCursor;
+                                    sQLiteCursor = sQLiteCursorQueryFinalized;
                                     FileLog.e(e);
-                                    if (sQLiteCursor2 != null) {
-                                        sQLiteCursor = sQLiteCursor2;
-                                        message2 = message;
-                                        sQLiteCursor.dispose();
+                                    if (sQLiteCursor != null) {
+                                        sQLiteCursorQueryFinalized = sQLiteCursor;
+                                        message = messageTLdeserialize;
+                                        sQLiteCursorQueryFinalized.dispose();
                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                             @Override
                                             public final void run() {
-                                                ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                                                this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
                                             }
                                         });
                                     }
-                                    message2 = message;
+                                    message = messageTLdeserialize;
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                                            this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
                                         }
                                     });
                                 }
                             }
-                            sQLiteCursor.dispose();
-                            if (message2 != null) {
+                            sQLiteCursorQueryFinalized.dispose();
+                            if (message != null) {
                                 if (!arrayList3.isEmpty()) {
                                     messagesStorage.getUsersInternal(arrayList3, arrayList);
                                 }
@@ -378,25 +377,25 @@ public abstract class ProfileChannelCell extends FrameLayout {
                             }
                         } catch (Throwable th) {
                             th = th;
-                            sQLiteCursor2 = sQLiteCursor;
-                            if (sQLiteCursor2 != null) {
-                                sQLiteCursor2.dispose();
+                            sQLiteCursor = sQLiteCursorQueryFinalized;
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
                             }
                             throw th;
                         }
                     } catch (Exception e2) {
                         e = e2;
-                        message = message2;
+                        messageTLdeserialize = message;
                     }
                 } catch (Exception e3) {
                     e = e3;
-                    message = null;
+                    messageTLdeserialize = null;
                 }
-                sQLiteCursor.dispose();
+                sQLiteCursorQueryFinalized.dispose();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                        this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
                     }
                 });
             } catch (Throwable th2) {
@@ -419,7 +418,7 @@ public abstract class ProfileChannelCell extends FrameLayout {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tL_error);
+                        this.f$0.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tL_error);
                     }
                 });
             }
@@ -429,13 +428,13 @@ public abstract class ProfileChannelCell extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$0(tLObject, messagesStorage, j, i, i2);
+                    this.f$0.lambda$fetch$0(tLObject, messagesStorage, j, i, i2);
                 }
             });
         }
 
         public void lambda$fetch$0(TLObject tLObject, MessagesStorage messagesStorage, long j, int i, int i2) {
-            TLRPC.Message message;
+            TLRPC.Message next;
             if (tLObject instanceof TLRPC.messages_Messages) {
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                 MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
@@ -448,20 +447,20 @@ public abstract class ProfileChannelCell extends FrameLayout {
                 Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
                 while (true) {
                     if (!it.hasNext()) {
-                        message = null;
+                        next = null;
                         break;
                     } else {
-                        message = it.next();
-                        if (message.id == i2) {
+                        next = it.next();
+                        if (next.id == i2) {
                             break;
                         }
                     }
                 }
-                if (message != null) {
-                    if (message instanceof TLRPC.TL_messageEmpty) {
+                if (next != null) {
+                    if (next instanceof TLRPC.TL_messageEmpty) {
                         this.messageObject = null;
                     } else {
-                        this.messageObject = new MessageObject(this.currentAccount, message, true, true);
+                        this.messageObject = new MessageObject(this.currentAccount, next, true, true);
                     }
                     done(false);
                     return;
@@ -495,8 +494,8 @@ public abstract class ProfileChannelCell extends FrameLayout {
     }
 
     public void updateColors() {
-        int processColor = processColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider));
-        this.subscribersView.setTextColor(processColor);
-        this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(processColor, 0.1f)));
+        int iProcessColor = processColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider));
+        this.subscribersView.setTextColor(iProcessColor);
+        this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(iProcessColor, 0.1f)));
     }
 }

@@ -99,17 +99,17 @@ public abstract class AvatarPreviewPagerIndicator extends View implements Profil
         this.backgroundPaint = paint3;
         paint3.setColor(-16777216);
         paint3.setAlpha(66);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.animator = ofFloat;
-        ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.setDuration(250L);
+        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AvatarPreviewPagerIndicator.this.lambda$new$0(valueAnimator);
+                this.f$0.lambda$new$0(valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (AvatarPreviewPagerIndicator.this.isOverlaysVisible) {
@@ -180,7 +180,7 @@ public abstract class AvatarPreviewPagerIndicator extends View implements Profil
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r24) {
+    protected void onDraw(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.AvatarPreviewPagerIndicator.onDraw(android.graphics.Canvas):void");
     }
 

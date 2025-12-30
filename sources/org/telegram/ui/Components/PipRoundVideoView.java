@@ -165,12 +165,12 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 MessageObject playingMessageObject;
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 if (view == PipRoundVideoView.this.textureView && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
                     PipRoundVideoView.this.rect.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
                     canvas.drawArc(PipRoundVideoView.this.rect, -90.0f, playingMessageObject.audioProgress * 360.0f, false, Theme.chat_radialProgressPaint);
                 }
-                return drawChild;
+                return zDrawChild;
             }
         };
         this.aspectRatioFrameLayout = aspectRatioFrameLayout;
@@ -187,9 +187,9 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         this.windowView.setScaleX(0.8f);
         this.windowView.setScaleY(0.8f);
         this.textureView = new TextureView(activity);
-        float dpf2 = (AndroidUtilities.dpf2(120.0f) + AndroidUtilities.dpf2(2.0f)) / AndroidUtilities.dpf2(120.0f);
-        this.textureView.setScaleX(dpf2);
-        this.textureView.setScaleY(dpf2);
+        float fDpf2 = (AndroidUtilities.dpf2(120.0f) + AndroidUtilities.dpf2(2.0f)) / AndroidUtilities.dpf2(120.0f);
+        this.textureView.setScaleX(fDpf2);
+        this.textureView.setScaleY(fDpf2);
         this.aspectRatioFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1, -1.0f));
         ImageView imageView = new ImageView(activity);
         this.imageView = imageView;
@@ -229,7 +229,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
 
     private static int getSideCoord(boolean z, int i, float f, int i2) {
         int i3;
-        int round;
+        int iRound;
         if (z) {
             i3 = AndroidUtilities.displaySize.x;
         } else {
@@ -238,13 +238,13 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         int i4 = i3 - i2;
         if (i == 0) {
-            round = AndroidUtilities.dp(10.0f);
+            iRound = AndroidUtilities.dp(10.0f);
         } else if (i == 1) {
-            round = i4 - AndroidUtilities.dp(10.0f);
+            iRound = i4 - AndroidUtilities.dp(10.0f);
         } else {
-            round = Math.round((i4 - AndroidUtilities.dp(20.0f)) * f) + AndroidUtilities.dp(10.0f);
+            iRound = Math.round((i4 - AndroidUtilities.dp(20.0f)) * f) + AndroidUtilities.dp(10.0f);
         }
-        return !z ? round + ActionBar.getCurrentActionBarHeight() : round;
+        return !z ? iRound + ActionBar.getCurrentActionBarHeight() : iRound;
     }
 
     @Override

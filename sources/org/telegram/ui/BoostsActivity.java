@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -44,7 +45,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BoostsActivity;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
@@ -99,47 +99,47 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
-            View view;
+            View overviewCell;
             switch (i) {
                 case 0:
-                    view = new StatisticActivity.OverviewCell(BoostsActivity.this.getContext());
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = new StatisticActivity.OverviewCell(BoostsActivity.this.getContext());
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 1:
                 case 16:
                     View chartHeaderView = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.dp(16.0f));
-                    view = chartHeaderView;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = chartHeaderView;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 2:
                     shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor(Theme.key_windowBackgroundGray));
-                    view = shadowSectionCell;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = shadowSectionCell;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 3:
                     LinkActionView linkActionView = new LinkActionView(BoostsActivity.this.getContext(), BoostsActivity.this, null, 0L, false, false);
                     linkActionView.hideOptions();
                     linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
-                    view = linkActionView;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = linkActionView;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 4:
                 default:
                     throw new UnsupportedOperationException();
                 case 5:
-                    view = new GiftedUserCell(BoostsActivity.this.getContext(), 0, 0, false);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = new GiftedUserCell(BoostsActivity.this.getContext(), 0, 0, false);
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 6:
                     shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext(), 20, ((BaseFragment) BoostsActivity.this).resourceProvider);
-                    view = shadowSectionCell;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = shadowSectionCell;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 7:
-                    view = new FixedHeightEmptyCell(BoostsActivity.this.getContext(), 8);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = new FixedHeightEmptyCell(BoostsActivity.this.getContext(), 8);
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 8:
                     FrameLayout frameLayout = new FrameLayout(BoostsActivity.this.getContext()) {
                         @Override
@@ -153,9 +153,9 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
                     textView.setGravity(17);
                     frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
-                    view = frameLayout;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = frameLayout;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 9:
                     ManageChatTextCell manageChatTextCell = new ManageChatTextCell(BoostsActivity.this.getContext()) {
                         @Override
@@ -164,28 +164,28 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                         }
                     };
                     manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                    view = manageChatTextCell;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = manageChatTextCell;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 10:
                     TextCell textCell = new TextCell(BoostsActivity.this.getContext());
                     textCell.setTextAndIcon((CharSequence) LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
                     textCell.offsetFromImage = 64;
                     int i2 = Theme.key_windowBackgroundWhiteBlueText4;
                     textCell.setColors(i2, i2);
-                    view = textCell;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = textCell;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 11:
-                    view = new GiveawayCell(BoostsActivity.this.getContext(), 0, 0, false);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = new GiveawayCell(BoostsActivity.this.getContext(), 0, 0, false);
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 12:
                     View chartHeaderView2 = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView2.setPadding(chartHeaderView2.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView2.getRight(), AndroidUtilities.dp(8.0f));
-                    view = chartHeaderView2;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = chartHeaderView2;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 13:
                     BoostsActivity.this.boostsTabs = new ScrollSlidingTextTabStrip(BoostsActivity.this.getContext(), ((BaseFragment) BoostsActivity.this).resourceProvider);
                     BoostsActivity.this.boostsTabs.setColors(Theme.key_profile_tabSelectedLine, Theme.key_profile_tabSelectedText, Theme.key_profile_tabText, Theme.key_profile_tabSelector);
@@ -214,8 +214,8 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                         }
 
                         @Override
-                        public boolean showOptions(int i3, View view2) {
-                            return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i3, view2);
+                        public boolean showOptions(int i3, View view) {
+                            return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i3, view);
                         }
 
                         @Override
@@ -225,32 +225,32 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                         }
                     });
                     frameLayout2.addView(BoostsActivity.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
-                    view = frameLayout2;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = frameLayout2;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 14:
                     BoostsActivity boostsActivity = BoostsActivity.this;
-                    view = boostsActivity.getHeader(boostsActivity.getContext());
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    overviewCell = boostsActivity.getHeader(boostsActivity.getContext());
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
                 case 15:
-                    View view2 = new View(BoostsActivity.this.getContext()) {
+                    View view = new View(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             LinearLayoutManager linearLayoutManager = BoostsActivity.this.layoutManager;
                             super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, linearLayoutManager instanceof FillLastLinearLayoutManager ? ((FillLastLinearLayoutManager) linearLayoutManager).getLastItemHeight() : 0), 1073741824));
                         }
                     };
-                    view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                    view = view2;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(view);
+                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                    overviewCell = view;
+                    overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(overviewCell);
             }
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String formatString;
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+            String string;
             if (viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 14 || viewHolder.getItemViewType() == 15) {
                 return;
             }
@@ -286,11 +286,11 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 TLRPC.User user = MessagesController.getInstance(BoostsActivity.this.currentAccount).getUser(Long.valueOf(boost.user_id));
                 GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
                 if (boost.multiplier > 1) {
-                    formatString = LocaleController.formatString("BoostsExpireOn", R.string.BoostsExpireOn, LocaleController.formatDate(boost.expires));
+                    string = LocaleController.formatString("BoostsExpireOn", R.string.BoostsExpireOn, LocaleController.formatDate(boost.expires));
                 } else {
-                    formatString = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
+                    string = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
                 }
-                giftedUserCell.setData(user, ContactsController.formatName(user), formatString, 0, !((ItemInternal) BoostsActivity.this.items.get(i)).isLast);
+                giftedUserCell.setData(user, ContactsController.formatName(user), string, 0, !((ItemInternal) BoostsActivity.this.items.get(i)).isLast);
                 giftedUserCell.setStatus(boost);
                 giftedUserCell.setAvatarPadding(5);
                 return;
@@ -449,7 +449,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    BoostsActivity.this.lambda$loadStatistic$1((TL_stories.TL_premium_boostsStatus) obj);
+                    this.f$0.lambda$loadStatistic$1((TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
         } else {
@@ -462,7 +462,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.this.lambda$loadStatistic$0(tL_premium_boostsStatus);
+                this.f$0.lambda$loadStatistic$0(tL_premium_boostsStatus);
             }
         });
     }
@@ -489,7 +489,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         getMessagesController().getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                BoostsActivity.this.lambda$loadCanApplyBoosts$2((ChannelBoostsController.CanApplyBoost) obj);
+                this.f$0.lambda$loadCanApplyBoosts$2((ChannelBoostsController.CanApplyBoost) obj);
             }
         });
     }
@@ -506,28 +506,28 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         if (bool == null) {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    BoostsActivity.this.lambda$loadUsers$5();
+                public final void run() throws InterruptedException {
+                    this.f$0.lambda$loadUsers$5();
                 }
             });
         } else if (bool.booleanValue()) {
             loadOnlyGifts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    BoostsActivity.this.lambda$loadUsers$6();
+                    this.f$0.lambda$loadUsers$6();
                 }
             });
         } else {
             loadOnlyBoosts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    BoostsActivity.this.lambda$loadUsers$7();
+                    this.f$0.lambda$loadUsers$7();
                 }
             });
         }
     }
 
-    public void lambda$loadUsers$5() {
+    public void lambda$loadUsers$5() throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         loadOnlyBoosts(countDownLatch, null);
         loadOnlyGifts(countDownLatch, null);
@@ -538,7 +538,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.this.lambda$loadUsers$4();
+                this.f$0.lambda$loadUsers$4();
             }
         });
     }
@@ -547,7 +547,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.this.lambda$loadUsers$3();
+                this.f$0.lambda$loadUsers$3();
             }
         });
     }
@@ -575,7 +575,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BoostsActivity.this.lambda$loadOnlyBoosts$9(countDownLatch, runnable, tLObject, tL_error);
+                this.f$0.lambda$loadOnlyBoosts$9(countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
@@ -584,7 +584,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.this.lambda$loadOnlyBoosts$8(countDownLatch, tLObject, runnable);
+                this.f$0.lambda$loadOnlyBoosts$8(countDownLatch, tLObject, runnable);
             }
         });
     }
@@ -634,7 +634,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BoostsActivity.this.lambda$loadOnlyGifts$11(countDownLatch, runnable, tLObject, tL_error);
+                this.f$0.lambda$loadOnlyGifts$11(countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
@@ -643,7 +643,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.this.lambda$loadOnlyGifts$10(countDownLatch, tLObject, runnable);
+                this.f$0.lambda$loadOnlyGifts$10(countDownLatch, tLObject, runnable);
             }
         });
     }
@@ -688,7 +688,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.boostByChannelCreated) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
-            boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
+            boolean zBooleanValue = ((Boolean) objArr[1]).booleanValue();
             List fragmentStack = getParentLayout().getFragmentStack();
             BaseFragment baseFragment = fragmentStack.size() >= 2 ? (BaseFragment) fragmentStack.get(fragmentStack.size() - 2) : null;
             if (baseFragment instanceof ChatEditActivity) {
@@ -696,7 +696,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             }
             List fragmentStack2 = getParentLayout().getFragmentStack();
             BaseFragment baseFragment2 = fragmentStack2.size() >= 2 ? (BaseFragment) fragmentStack2.get(fragmentStack2.size() - 2) : null;
-            if (booleanValue) {
+            if (zBooleanValue) {
                 BaseFragment baseFragment3 = fragmentStack2.size() >= 3 ? (BaseFragment) fragmentStack2.get(fragmentStack2.size() - 3) : null;
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
@@ -738,7 +738,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         super.onFragmentDestroy();
     }
 
-    public class ItemInternal extends AdapterWithDiffUtils.Item {
+    private class ItemInternal extends AdapterWithDiffUtils.Item {
         TL_stories.Boost booster;
         boolean isLast;
         TL_stories.PrepaidGiveaway prepaidGiveaway;
@@ -827,7 +827,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             limitPreviewView.setDarkGradientProvider(new LimitPreviewView.DarkGradientProvider() {
                 @Override
                 public final Paint setDarkGradientLocation(float f, float f2) {
-                    return BoostsActivity.this.setDarkGradientLocation(f, f2);
+                    return this.f$0.setDarkGradientLocation(f, f2);
                 }
             });
         }
@@ -849,7 +849,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         }, new AnonymousClass5(getContext()));
     }
 
-    public class AnonymousClass5 extends FrameLayout {
+    class AnonymousClass5 extends FrameLayout {
         private final HeaderButtonView buttonView1;
         private final HeaderButtonView buttonView2;
         private final HeaderButtonView buttonView3;
@@ -857,11 +857,11 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AnonymousClass5(Context context) {
             super(context);
             setWillNotDraw(false);
-            HeaderButtonView headerButtonView = new HeaderButtonView(getContext());
+            HeaderButtonView headerButtonView = BoostsActivity.this.new HeaderButtonView(getContext());
             this.buttonView1 = headerButtonView;
-            HeaderButtonView headerButtonView2 = new HeaderButtonView(getContext());
+            HeaderButtonView headerButtonView2 = BoostsActivity.this.new HeaderButtonView(getContext());
             this.buttonView2 = headerButtonView2;
-            HeaderButtonView headerButtonView3 = new HeaderButtonView(getContext());
+            HeaderButtonView headerButtonView3 = BoostsActivity.this.new HeaderButtonView(getContext());
             this.buttonView3 = headerButtonView3;
             headerButtonView.setTextAndIcon(LocaleController.getString(R.string.BoostBtn), R.drawable.filled_boost_plus);
             headerButtonView2.setTextAndIcon(LocaleController.getString(R.string.GiveawayBtn), R.drawable.filled_gift_premium);
@@ -869,19 +869,19 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             headerButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BoostsActivity.AnonymousClass5.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             headerButtonView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BoostsActivity.AnonymousClass5.this.lambda$new$2(view);
+                    this.f$0.lambda$new$2(view);
                 }
             });
             headerButtonView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BoostsActivity.AnonymousClass5.this.lambda$new$3(view);
+                    this.f$0.lambda$new$3(view);
                 }
             });
             LinearLayout linearLayout = new LinearLayout(getContext());
@@ -906,7 +906,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             BoostPagerBottomSheet.getInstance().setOnHideListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    BoostsActivity.AnonymousClass5.this.lambda$new$1(dialogInterface);
+                    this.f$0.lambda$new$1(dialogInterface);
                 }
             });
         }
@@ -965,7 +965,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
 
     @Override
     public View createView(final Context context) {
-        View createView = super.createView(context);
+        View viewCreateView = super.createView(context);
         resetHeader(false);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setSupportsChangeAnimations(false);
@@ -974,13 +974,13 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                BoostsActivity.this.lambda$createView$12(context, view, i);
+                this.f$0.lambda$createView$12(context, view, i);
             }
         });
         createEmptyView(getContext());
         loadStatistic();
         updateRows(false);
-        return createView;
+        return viewCreateView;
     }
 
     public void lambda$createView$12(Context context, View view, int i) {

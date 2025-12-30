@@ -150,9 +150,9 @@ public class NativeInstance {
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
         Point point = AndroidUtilities.displaySize;
-        float min = Math.min(point.x, point.y);
+        float fMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
-        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, min / Math.max(point2.x, point2.y));
+        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, fMin / Math.max(point2.x, point2.y));
         return nativeInstance;
     }
 
@@ -223,7 +223,7 @@ public class NativeInstance {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NativeInstance.this.lambda$onNetworkStateUpdated$0(z, z2);
+                    this.f$0.lambda$onNetworkStateUpdated$0(z, z2);
                 }
             });
         }
@@ -240,7 +240,7 @@ public class NativeInstance {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NativeInstance.this.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
+                this.f$0.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
             }
         });
     }
@@ -256,7 +256,7 @@ public class NativeInstance {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NativeInstance.this.lambda$onParticipantDescriptionsRequired$2(j, iArr);
+                this.f$0.lambda$onParticipantDescriptionsRequired$2(j, iArr);
             }
         });
     }
@@ -274,7 +274,7 @@ public class NativeInstance {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NativeInstance.this.lambda$onEmitJoinPayload$3(i, str);
+                    this.f$0.lambda$onEmitJoinPayload$3(i, str);
                 }
             });
         } catch (Exception e) {
@@ -302,7 +302,7 @@ public class NativeInstance {
         }
     }
 
-    public Instance.FinalState stop() {
+    public Instance.FinalState stop() throws InterruptedException {
         this.stopBarrier = new CountDownLatch(1);
         stopNative();
         try {

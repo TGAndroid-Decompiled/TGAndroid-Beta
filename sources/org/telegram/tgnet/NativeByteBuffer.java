@@ -38,21 +38,21 @@ public class NativeByteBuffer extends AbstractSerializedData {
         if (j == 0) {
             return null;
         }
-        NativeByteBuffer poll = addressWrappers.get().poll();
-        if (poll == null) {
-            poll = new NativeByteBuffer(0, true);
+        NativeByteBuffer nativeByteBufferPoll = addressWrappers.get().poll();
+        if (nativeByteBufferPoll == null) {
+            nativeByteBufferPoll = new NativeByteBuffer(0, true);
         }
-        poll.address = j;
-        poll.reused = false;
-        ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(j);
-        poll.buffer = native_getJavaByteBuffer;
-        native_getJavaByteBuffer.limit(native_limit(j));
-        int native_position = native_position(j);
-        if (native_position <= poll.buffer.limit()) {
-            poll.buffer.position(native_position);
+        nativeByteBufferPoll.address = j;
+        nativeByteBufferPoll.reused = false;
+        ByteBuffer byteBufferNative_getJavaByteBuffer = native_getJavaByteBuffer(j);
+        nativeByteBufferPoll.buffer = byteBufferNative_getJavaByteBuffer;
+        byteBufferNative_getJavaByteBuffer.limit(native_limit(j));
+        int iNative_position = native_position(j);
+        if (iNative_position <= nativeByteBufferPoll.buffer.limit()) {
+            nativeByteBufferPoll.buffer.position(iNative_position);
         }
-        poll.buffer.order(ByteOrder.LITTLE_ENDIAN);
-        return poll;
+        nativeByteBufferPoll.buffer.order(ByteOrder.LITTLE_ENDIAN);
+        return nativeByteBufferPoll;
     }
 
     private NativeByteBuffer(int i, boolean z) {
@@ -60,12 +60,12 @@ public class NativeByteBuffer extends AbstractSerializedData {
 
     public NativeByteBuffer(int i) {
         if (i >= 0) {
-            long native_getFreeBuffer = native_getFreeBuffer(i);
-            this.address = native_getFreeBuffer;
-            if (native_getFreeBuffer != 0) {
-                ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(native_getFreeBuffer);
-                this.buffer = native_getJavaByteBuffer;
-                native_getJavaByteBuffer.position(0);
+            long jNative_getFreeBuffer = native_getFreeBuffer(i);
+            this.address = jNative_getFreeBuffer;
+            if (jNative_getFreeBuffer != 0) {
+                ByteBuffer byteBufferNative_getJavaByteBuffer = native_getJavaByteBuffer(jNative_getFreeBuffer);
+                this.buffer = byteBufferNative_getJavaByteBuffer;
+                byteBufferNative_getJavaByteBuffer.position(0);
                 this.buffer.limit(i);
                 this.buffer.order(ByteOrder.LITTLE_ENDIAN);
                 return;
@@ -339,28 +339,28 @@ public class NativeByteBuffer extends AbstractSerializedData {
     @Override
     public void writeByteBuffer(NativeByteBuffer nativeByteBuffer) {
         try {
-            int limit = nativeByteBuffer.limit();
-            if (limit <= 253) {
+            int iLimit = nativeByteBuffer.limit();
+            if (iLimit <= 253) {
                 if (this.justCalc) {
                     this.len++;
                 } else {
-                    this.buffer.put((byte) limit);
+                    this.buffer.put((byte) iLimit);
                 }
             } else if (this.justCalc) {
                 this.len += 4;
             } else {
                 this.buffer.put((byte) -2);
-                this.buffer.put((byte) limit);
-                this.buffer.put((byte) (limit >> 8));
-                this.buffer.put((byte) (limit >> 16));
+                this.buffer.put((byte) iLimit);
+                this.buffer.put((byte) (iLimit >> 8));
+                this.buffer.put((byte) (iLimit >> 16));
             }
             if (this.justCalc) {
-                this.len += limit;
+                this.len += iLimit;
             } else {
                 nativeByteBuffer.rewind();
                 this.buffer.put(nativeByteBuffer.buffer);
             }
-            for (int i = limit <= 253 ? 1 : 4; (limit + i) % 4 != 0; i++) {
+            for (int i = iLimit <= 253 ? 1 : 4; (iLimit + i) % 4 != 0; i++) {
                 if (this.justCalc) {
                     this.len++;
                 } else {
@@ -460,11 +460,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
 
     @Override
     public boolean readBool(boolean z) {
-        int readInt32 = readInt32(z);
-        if (readInt32 == -1720552011) {
+        int int32 = readInt32(z);
+        if (int32 == -1720552011) {
             return true;
         }
-        if (readInt32 == -1132882121) {
+        if (int32 == -1132882121) {
             return false;
         }
         if (z) {
@@ -612,11 +612,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 i = 1;
             }
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(intFromByte);
-            int limit = this.buffer.limit();
+            int iLimit = this.buffer.limit();
             ByteBuffer byteBuffer = this.buffer;
             byteBuffer.limit(byteBuffer.position() + intFromByte);
             nativeByteBuffer.buffer.put(this.buffer);
-            this.buffer.limit(limit);
+            this.buffer.limit(iLimit);
             nativeByteBuffer.buffer.position(0);
             while ((intFromByte + i) % 4 != 0) {
                 this.buffer.get();
@@ -666,7 +666,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         return this.buffer.remaining();
     }
 
-    protected void finalize() {
+    protected void finalize() throws Throwable {
         if (!this.reused) {
             reuse();
         }

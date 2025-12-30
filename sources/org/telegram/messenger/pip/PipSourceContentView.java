@@ -45,7 +45,7 @@ public class PipSourceContentView extends ViewGroup {
         this.state.draw(canvas, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PipSourceContentView.this.lambda$dispatchDraw$0((Canvas) obj);
+                this.f$0.lambda$dispatchDraw$0((Canvas) obj);
             }
         });
     }

@@ -63,17 +63,17 @@ public class ArrayUtils {
         return true;
     }
 
-    public static <T> T[] emptyArray(Class<T> cls) {
+    public static <T> T[] emptyArray(Class<T> cls) throws NegativeArraySizeException {
         if (cls == Object.class) {
             return (T[]) EMPTY;
         }
-        int identityHashCode = ((System.identityHashCode(cls) / 8) & Integer.MAX_VALUE) % 73;
-        Object obj = sCache[identityHashCode];
-        if (obj == null || obj.getClass().getComponentType() != cls) {
-            obj = Array.newInstance((Class<?>) cls, 0);
-            sCache[identityHashCode] = obj;
+        int iIdentityHashCode = ((System.identityHashCode(cls) / 8) & Integer.MAX_VALUE) % 73;
+        Object objNewInstance = sCache[iIdentityHashCode];
+        if (objNewInstance == null || objNewInstance.getClass().getComponentType() != cls) {
+            objNewInstance = Array.newInstance((Class<?>) cls, 0);
+            sCache[iIdentityHashCode] = objNewInstance;
         }
-        return (T[]) ((Object[]) obj);
+        return (T[]) ((Object[]) objNewInstance);
     }
 
     public static <T> boolean contains(T[] tArr, T t) {

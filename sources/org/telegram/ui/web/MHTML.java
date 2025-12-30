@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilterInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -19,17 +20,17 @@ public class MHTML {
     private final long[] filePos;
     public final HashMap headers;
 
-    public MHTML(File file) {
-        HashMap hashMap = new HashMap();
-        this.headers = hashMap;
+    public MHTML(File file) throws IOException {
+        HashMap map = new HashMap();
+        this.headers = map;
         this.entries = new ArrayList();
         this.entriesByLocation = new HashMap();
         this.filePos = new long[1];
         this.file = file;
         FileInputStream fileInputStream = new FileInputStream(file);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-        hashMap.putAll(parseHeaders(bufferedReader));
-        String prop = HeaderValue.getProp((HeaderValue) hashMap.get("content-type"), "boundary");
+        map.putAll(parseHeaders(bufferedReader));
+        String prop = HeaderValue.getProp((HeaderValue) map.get("content-type"), "boundary");
         this.boundary = prop;
         if (prop != null) {
             parseEntries(bufferedReader, fileInputStream);
@@ -37,17 +38,17 @@ public class MHTML {
         bufferedReader.close();
     }
 
-    private void parseEntries(BufferedReader bufferedReader, FileInputStream fileInputStream) {
+    private void parseEntries(BufferedReader bufferedReader, FileInputStream fileInputStream) throws IOException {
         int length = this.boundary.length() + 2;
         Entry entry = null;
         while (true) {
-            String readLine = bufferedReader.readLine();
-            if (readLine == null) {
+            String line = bufferedReader.readLine();
+            if (line == null) {
                 break;
             }
             long[] jArr = this.filePos;
-            jArr[0] = jArr[0] + readLine.getBytes().length + 2;
-            if (readLine.length() == length && readLine.substring(2).equals(this.boundary)) {
+            jArr[0] = jArr[0] + line.getBytes().length + 2;
+            if (line.length() == length && line.substring(2).equals(this.boundary)) {
                 if (entry != null) {
                     entry.end = (this.filePos[0] - length) - 2;
                     this.entries.add(entry);
@@ -66,72 +67,72 @@ public class MHTML {
         this.entriesByLocation.put(entry.getLocation(), entry);
     }
 
-    private HashMap parseHeaders(BufferedReader bufferedReader) {
+    private HashMap parseHeaders(BufferedReader bufferedReader) throws IOException {
         String str;
         StringBuilder sb;
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         loop0: while (true) {
             str = null;
             sb = null;
             while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
                     break loop0;
                 }
                 long[] jArr = this.filePos;
-                jArr[0] = jArr[0] + readLine.getBytes().length + 2;
-                String trim = readLine.trim();
-                if (trim.isEmpty()) {
+                jArr[0] = jArr[0] + line.getBytes().length + 2;
+                String strTrim = line.trim();
+                if (strTrim.isEmpty()) {
                     break loop0;
                 }
                 if (str != null && sb != null) {
-                    sb.append(trim);
-                    if (!trim.endsWith(";")) {
+                    sb.append(strTrim);
+                    if (!strTrim.endsWith(";")) {
                         break;
                     }
                 } else {
-                    int indexOf = trim.indexOf(58);
-                    if (indexOf >= 0) {
-                        String trim2 = trim.substring(0, indexOf).trim();
-                        String trim3 = trim.substring(indexOf + 1).trim();
-                        if (trim3.endsWith(";")) {
+                    int iIndexOf = strTrim.indexOf(58);
+                    if (iIndexOf >= 0) {
+                        String strTrim2 = strTrim.substring(0, iIndexOf).trim();
+                        String strTrim3 = strTrim.substring(iIndexOf + 1).trim();
+                        if (strTrim3.endsWith(";")) {
                             sb = new StringBuilder();
-                            sb.append(trim3);
-                            str = trim2;
+                            sb.append(strTrim3);
+                            str = strTrim2;
                         } else {
-                            appendHeader(trim2, trim3, hashMap);
+                            appendHeader(strTrim2, strTrim3, map);
                         }
                     }
                 }
             }
-            appendHeader(str, sb.toString(), hashMap);
+            appendHeader(str, sb.toString(), map);
         }
         if (str != null && sb != null) {
-            appendHeader(str, sb.toString(), hashMap);
+            appendHeader(str, sb.toString(), map);
         }
-        return hashMap;
+        return map;
     }
 
-    private static void appendHeader(String str, String str2, HashMap hashMap) {
+    private static void appendHeader(String str, String str2, HashMap map) {
         HeaderValue headerValue = new HeaderValue();
-        String[] split = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-        for (int i = 0; i < split.length; i++) {
-            String trim = split[i].trim();
-            if (!trim.isEmpty()) {
-                int indexOf = trim.indexOf(61);
-                if (i == 0 || indexOf < 0) {
-                    headerValue.value = trim;
+        String[] strArrSplit = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+        for (int i = 0; i < strArrSplit.length; i++) {
+            String strTrim = strArrSplit[i].trim();
+            if (!strTrim.isEmpty()) {
+                int iIndexOf = strTrim.indexOf(61);
+                if (i == 0 || iIndexOf < 0) {
+                    headerValue.value = strTrim;
                 } else {
-                    String trim2 = trim.substring(0, indexOf).trim();
-                    String trim3 = trim.substring(indexOf + 1).trim();
-                    if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
-                        trim3 = trim3.substring(1, trim3.length() - 1);
+                    String strTrim2 = strTrim.substring(0, iIndexOf).trim();
+                    String strTrim3 = strTrim.substring(iIndexOf + 1).trim();
+                    if (strTrim3.length() >= 2 && strTrim3.charAt(0) == '\"' && strTrim3.charAt(strTrim3.length() - 1) == '\"') {
+                        strTrim3 = strTrim3.substring(1, strTrim3.length() - 1);
                     }
-                    headerValue.props.put(trim2, trim3);
+                    headerValue.props.put(strTrim2, strTrim3);
                 }
             }
         }
-        hashMap.put(str.trim().toLowerCase(), headerValue);
+        map.put(str.trim().toLowerCase(), headerValue);
     }
 
     public static class Entry {
@@ -211,33 +212,33 @@ public class MHTML {
         }
 
         @Override
-        public int read() {
-            int read = ((FilterInputStream) this).in.read();
-            if (read != 61) {
-                return read;
+        public int read() throws IOException {
+            int i = ((FilterInputStream) this).in.read();
+            if (i != 61) {
+                return i;
             }
-            int read2 = ((FilterInputStream) this).in.read();
-            int read3 = ((FilterInputStream) this).in.read();
-            if (read2 == -1 || read3 == -1) {
+            int i2 = ((FilterInputStream) this).in.read();
+            int i3 = ((FilterInputStream) this).in.read();
+            if (i2 == -1 || i3 == -1) {
                 return -1;
             }
-            if (read2 == 13 && read3 == 10) {
+            if (i2 == 13 && i3 == 10) {
                 return read();
             }
-            return (read2 == 10 || read3 == 10) ? read3 : hexToByte(read2, read3);
+            return (i2 == 10 || i3 == 10) ? i3 : hexToByte(i2, i3);
         }
 
         @Override
-        public int read(byte[] bArr, int i, int i2) {
+        public int read(byte[] bArr, int i, int i2) throws IOException {
             int i3 = 0;
             int i4 = 0;
             while (true) {
                 if (i3 >= i2) {
                     break;
                 }
-                int read = read();
-                if (read != -1) {
-                    bArr[i + i3] = (byte) read;
+                int i5 = read();
+                if (i5 != -1) {
+                    bArr[i + i3] = (byte) i5;
                     i4++;
                     i3++;
                 } else if (i4 == 0) {
@@ -274,15 +275,15 @@ public class MHTML {
         }
 
         @Override
-        public int read(byte[] bArr, int i, int i2) {
-            long position = getChannel().position();
+        public int read(byte[] bArr, int i, int i2) throws IOException {
+            long jPosition = getChannel().position();
             long j = this.endOffset;
-            if (position >= j) {
+            if (jPosition >= j) {
                 return -1;
             }
-            long position2 = j - getChannel().position();
-            if (i2 > position2) {
-                i2 = (int) position2;
+            long jPosition2 = j - getChannel().position();
+            if (i2 > jPosition2) {
+                i2 = (int) jPosition2;
             }
             return super.read(bArr, i, i2);
         }

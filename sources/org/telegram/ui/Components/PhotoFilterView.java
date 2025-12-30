@@ -41,7 +41,6 @@ import org.telegram.ui.Cells.PhotoEditToolCell;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.PhotoEditorSeekBar;
-import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 
@@ -171,13 +170,13 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                     float f16 = f15 * f15;
                     float f17 = f16 * f15;
                     float f18 = ((f9 * 2.0f) + ((f11 - f7) * f15) + (((((f7 * 2.0f) - (f9 * 5.0f)) + (f11 * 4.0f)) - f13) * f16) + (((((f9 * 3.0f) - f7) - (f11 * 3.0f)) + f13) * f17)) * f6;
-                    float max = Math.max(0.0f, Math.min(1.0f, ((f10 * 2.0f) + ((f12 - f8) * f15) + (((((2.0f * f8) - (5.0f * f10)) + (4.0f * f12)) - f14) * f16) + (((((f10 * 3.0f) - f8) - (3.0f * f12)) + f14) * f17)) * f6));
+                    float fMax = Math.max(0.0f, Math.min(1.0f, ((f10 * 2.0f) + ((f12 - f8) * f15) + (((((2.0f * f8) - (5.0f * f10)) + (4.0f * f12)) - f14) * f16) + (((((f10 * 3.0f) - f8) - (3.0f * f12)) + f14) * f17)) * f6));
                     if (f18 > f7) {
                         arrayList2.add(Float.valueOf(f18));
-                        arrayList2.add(Float.valueOf(max));
+                        arrayList2.add(Float.valueOf(fMax));
                     }
                     if ((i8 - 1) % 2 == 0) {
-                        arrayList.add(Float.valueOf(max));
+                        arrayList.add(Float.valueOf(fMax));
                     }
                     i8++;
                     f6 = 0.5f;
@@ -221,21 +220,21 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            float readFloat = inputSerializedData.readFloat(z);
-            this.previousBlacksLevel = readFloat;
-            this.blacksLevel = readFloat;
-            float readFloat2 = inputSerializedData.readFloat(z);
-            this.previousShadowsLevel = readFloat2;
-            this.shadowsLevel = readFloat2;
-            float readFloat3 = inputSerializedData.readFloat(z);
-            this.previousMidtonesLevel = readFloat3;
-            this.midtonesLevel = readFloat3;
-            float readFloat4 = inputSerializedData.readFloat(z);
-            this.previousHighlightsLevel = readFloat4;
-            this.highlightsLevel = readFloat4;
-            float readFloat5 = inputSerializedData.readFloat(z);
-            this.previousWhitesLevel = readFloat5;
-            this.whitesLevel = readFloat5;
+            float f = inputSerializedData.readFloat(z);
+            this.previousBlacksLevel = f;
+            this.blacksLevel = f;
+            float f2 = inputSerializedData.readFloat(z);
+            this.previousShadowsLevel = f2;
+            this.shadowsLevel = f2;
+            float f3 = inputSerializedData.readFloat(z);
+            this.previousMidtonesLevel = f3;
+            this.midtonesLevel = f3;
+            float f4 = inputSerializedData.readFloat(z);
+            this.previousHighlightsLevel = f4;
+            this.highlightsLevel = f4;
+            float f5 = inputSerializedData.readFloat(z);
+            this.previousWhitesLevel = f5;
+            this.whitesLevel = f5;
         }
     }
 
@@ -248,9 +247,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         public CurvesValue blueCurve = new CurvesValue();
 
         public CurvesToolValue() {
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-            this.curveBuffer = allocateDirect;
-            allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+            ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(800);
+            this.curveBuffer = byteBufferAllocateDirect;
+            byteBufferAllocateDirect.order(ByteOrder.LITTLE_ENDIAN);
         }
 
         public void fillBuffer() {
@@ -300,7 +299,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         filterGLThread.setFilterGLThreadDelegate(this);
     }
 
-    public class AnonymousClass2 implements TextureView.SurfaceTextureListener {
+    class AnonymousClass2 implements TextureView.SurfaceTextureListener {
         final BlurringShader.BlurManager val$blurManager;
         final boolean val$ownLayout;
 
@@ -336,7 +335,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoFilterView.this.eglThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoFilterView.AnonymousClass2.this.lambda$onSurfaceTextureSizeChanged$0();
+                        this.f$0.lambda$onSurfaceTextureSizeChanged$0();
                     }
                 });
             }
@@ -403,11 +402,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     }
 
     public void lambda$new$6(View view) {
-        int intValue = ((Integer) view.getTag()).intValue();
-        this.curvesToolValue.activeType = intValue;
+        int iIntValue = ((Integer) view.getTag()).intValue();
+        this.curvesToolValue.activeType = iIntValue;
         int i = 0;
         while (i < 4) {
-            this.curveRadioButton[i].setChecked(i == intValue, true);
+            this.curveRadioButton[i].setChecked(i == iIntValue, true);
             i++;
         }
         this.curvesControl.invalidate();
@@ -468,10 +467,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private void updateSelectedBlurType() {
         int i = this.blurType;
         if (i == 0) {
-            Drawable mutate = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_off).mutate();
+            Drawable drawableMutate = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_off).mutate();
             int i2 = Theme.key_chat_editMediaButton;
-            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
-            this.blurOffButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+            this.blurOffButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate, (Drawable) null, (Drawable) null);
             this.blurOffButton.setTextColor(getThemedColor(i2));
             this.blurRadialButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_radial, 0, 0);
             this.blurRadialButton.setTextColor(-1);
@@ -480,10 +479,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         } else if (i == 1) {
             this.blurOffButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_off, 0, 0);
             this.blurOffButton.setTextColor(-1);
-            Drawable mutate2 = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_radial).mutate();
+            Drawable drawableMutate2 = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_radial).mutate();
             int i3 = Theme.key_chat_editMediaButton;
-            mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), PorterDuff.Mode.MULTIPLY));
-            this.blurRadialButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate2, (Drawable) null, (Drawable) null);
+            drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), PorterDuff.Mode.MULTIPLY));
+            this.blurRadialButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate2, (Drawable) null, (Drawable) null);
             this.blurRadialButton.setTextColor(getThemedColor(i3));
             this.blurLinearButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_linear, 0, 0);
             this.blurLinearButton.setTextColor(-1);
@@ -492,10 +491,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.blurOffButton.setTextColor(-1);
             this.blurRadialButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_radial, 0, 0);
             this.blurRadialButton.setTextColor(-1);
-            Drawable mutate3 = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_linear).mutate();
+            Drawable drawableMutate3 = this.blurOffButton.getContext().getResources().getDrawable(R.drawable.msg_blur_linear).mutate();
             int i4 = Theme.key_chat_editMediaButton;
-            mutate3.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.MULTIPLY));
-            this.blurLinearButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate3, (Drawable) null, (Drawable) null);
+            drawableMutate3.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.MULTIPLY));
+            this.blurLinearButton.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate3, (Drawable) null, (Drawable) null);
             this.blurLinearButton.setTextColor(getThemedColor(i4));
         }
         updateFiltersEmpty();
@@ -572,13 +571,13 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         private void updateAlphas() {
-            boolean canScrollVertically = canScrollVertically(-1);
-            boolean canScrollVertically2 = canScrollVertically(1);
-            if (canScrollVertically == this.top && canScrollVertically2 == this.bottom) {
+            boolean zCanScrollVertically = canScrollVertically(-1);
+            boolean zCanScrollVertically2 = canScrollVertically(1);
+            if (zCanScrollVertically == this.top && zCanScrollVertically2 == this.bottom) {
                 return;
             }
-            this.top = canScrollVertically;
-            this.bottom = canScrollVertically2;
+            this.top = zCanScrollVertically;
+            this.bottom = zCanScrollVertically2;
             invalidate();
         }
     }
@@ -698,11 +697,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private void fixLayout(int i, int i2) {
         float width;
         int height;
-        float ceil;
-        float f;
+        float fCeil;
+        float fCeil2;
         if (this.ownLayout) {
-            int dp = i - AndroidUtilities.dp(28.0f);
-            int dp2 = i2 - (AndroidUtilities.dp(214.0f) + (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0));
+            int iDp = i - AndroidUtilities.dp(28.0f);
+            int iDp2 = i2 - (AndroidUtilities.dp(214.0f) + (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0));
             Bitmap bitmap = this.bitmapToEdit;
             if (bitmap != null) {
                 int i3 = this.orientation % 360;
@@ -717,38 +716,38 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 width = this.textureView.getWidth();
                 height = this.textureView.getHeight();
             }
-            float f2 = dp;
-            float f3 = dp2;
-            if (f2 / width > f3 / height) {
-                f = (int) Math.ceil(width * r7);
-                ceil = f3;
+            float f = iDp;
+            float f2 = iDp2;
+            if (f / width > f2 / height) {
+                fCeil2 = (int) Math.ceil(width * r7);
+                fCeil = f2;
             } else {
-                ceil = (int) Math.ceil(r2 * r5);
-                f = f2;
+                fCeil = (int) Math.ceil(r2 * r5);
+                fCeil2 = f;
             }
-            int ceil2 = (int) Math.ceil(((f2 - f) / 2.0f) + AndroidUtilities.dp(14.0f));
-            int ceil3 = (int) Math.ceil(((f3 - ceil) / 2.0f) + AndroidUtilities.dp(14.0f) + (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0));
-            int i4 = (int) f;
-            int i5 = (int) ceil;
+            int iCeil = (int) Math.ceil(((f - fCeil2) / 2.0f) + AndroidUtilities.dp(14.0f));
+            int iCeil2 = (int) Math.ceil(((f2 - fCeil) / 2.0f) + AndroidUtilities.dp(14.0f) + (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0));
+            int i4 = (int) fCeil2;
+            int i5 = (int) fCeil;
             if (this.ownsTextureView) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textureView.getLayoutParams();
-                layoutParams.leftMargin = ceil2;
-                layoutParams.topMargin = ceil3;
+                layoutParams.leftMargin = iCeil;
+                layoutParams.topMargin = iCeil2;
                 layoutParams.width = i4;
                 layoutParams.height = i5;
             }
-            float f4 = i4;
-            float f5 = i5;
-            this.curvesControl.setActualArea(ceil2, ceil3 - (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0), f4, f5);
-            this.blurControl.setActualAreaSize(f4, f5);
-            ((FrameLayout.LayoutParams) this.blurControl.getLayoutParams()).height = AndroidUtilities.dp(38.0f) + dp2;
-            ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).height = dp2 + AndroidUtilities.dp(28.0f);
+            float f3 = i4;
+            float f4 = i5;
+            this.curvesControl.setActualArea(iCeil, iCeil2 - (!this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0), f3, f4);
+            this.blurControl.setActualAreaSize(f3, f4);
+            ((FrameLayout.LayoutParams) this.blurControl.getLayoutParams()).height = AndroidUtilities.dp(38.0f) + iDp2;
+            ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).height = iDp2 + AndroidUtilities.dp(28.0f);
             if (AndroidUtilities.isTablet()) {
-                int dp3 = AndroidUtilities.dp(86.0f) * 10;
+                int iDp3 = AndroidUtilities.dp(86.0f) * 10;
                 FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.recyclerListView.getLayoutParams();
-                if (dp3 < dp) {
-                    layoutParams2.width = dp3;
-                    layoutParams2.leftMargin = (dp - dp3) / 2;
+                if (iDp3 < iDp) {
+                    layoutParams2.width = iDp3;
+                    layoutParams2.leftMargin = (iDp - iDp3) / 2;
                 } else {
                     layoutParams2.width = -1;
                     layoutParams2.leftMargin = 0;
@@ -759,7 +758,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
-        boolean drawChild = super.drawChild(canvas, view, j);
+        boolean zDrawChild = super.drawChild(canvas, view, j);
         if (this.paintingOverlay != null && view == this.textureView) {
             canvas.save();
             canvas.translate(this.textureView.getLeft(), this.textureView.getTop());
@@ -781,7 +780,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.paintingOverlay.draw(canvas);
             canvas.restore();
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     @Override
@@ -990,7 +989,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 photoEditToolCell.setSeekBarDelegate(new PhotoEditorSeekBar.PhotoEditorSeekBarDelegate() {
                     @Override
                     public final void onProgressChanged(int i2, int i3) {
-                        PhotoFilterView.ToolsAdapter.this.lambda$onCreateViewHolder$0(i2, i3);
+                        this.f$0.lambda$onCreateViewHolder$0(i2, i3);
                     }
                 });
                 photoEditRadioCell = photoEditToolCell;
@@ -999,7 +998,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 photoEditRadioCell2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PhotoFilterView.ToolsAdapter.this.lambda$onCreateViewHolder$1(view);
+                        this.f$0.lambda$onCreateViewHolder$1(view);
                     }
                 });
                 photoEditRadioCell = photoEditRadioCell2;
@@ -1154,7 +1153,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.hide = new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoFilterView.EnhanceView.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             };
             this.requestFilterView = runnable;
@@ -1233,23 +1232,23 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                             return false;
                         }
                         float enhanceValue = photoFilterView2.getEnhanceValue();
-                        float clamp = Utilities.clamp((f / (AndroidUtilities.displaySize.x * 0.8f)) + enhanceValue, 1.0f, 0.0f);
-                        int round = Math.round(clamp * 100.0f);
-                        int round2 = Math.round(enhanceValue * 100.0f);
-                        int round3 = Math.round(this.lastVibrateValue * 100.0f);
-                        if (round != round2 && (round == 100 || round == 0)) {
+                        float fClamp = Utilities.clamp((f / (AndroidUtilities.displaySize.x * 0.8f)) + enhanceValue, 1.0f, 0.0f);
+                        int iRound = Math.round(fClamp * 100.0f);
+                        int iRound2 = Math.round(enhanceValue * 100.0f);
+                        int iRound3 = Math.round(this.lastVibrateValue * 100.0f);
+                        if (iRound != iRound2 && (iRound == 100 || iRound == 0)) {
                             try {
                                 performHapticFeedback(3, 1);
                             } catch (Exception unused) {
                             }
-                            this.lastVibrateValue = clamp;
+                            this.lastVibrateValue = fClamp;
                         } else {
-                            if (Math.abs(round - round3) > (SharedConfig.getDevicePerformanceClass() == 2 ? 5 : 10)) {
+                            if (Math.abs(iRound - iRound3) > (SharedConfig.getDevicePerformanceClass() == 2 ? 5 : 10)) {
                                 AndroidUtilities.vibrateCursor(this);
-                                this.lastVibrateValue = clamp;
+                                this.lastVibrateValue = fClamp;
                             }
                         }
-                        this.filterView.setEnhanceValue(clamp);
+                        this.filterView.setEnhanceValue(fClamp);
                         updateBottomText();
                     }
                     this.lastTouchX = x;

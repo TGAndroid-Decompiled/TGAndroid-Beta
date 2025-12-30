@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import j$.util.Comparator$CC;
 import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,7 +85,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         void onReady();
     }
 
-    public static final class StoryBoardFrame {
+    static final class StoryBoardFrame {
         public final int left;
         public final double pts;
         public final int top;
@@ -119,7 +120,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         this.storyBoardsReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                VideoSeekPreviewImage.this.lambda$new$0(imageReceiver2, z, z2, z3);
+                this.f$0.lambda$new$0(imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -141,15 +142,15 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             if (this.webView == null && this.storyBoardMap == null) {
                 return;
             }
-            int dp = AndroidUtilities.dp(150.0f);
+            int iDp = AndroidUtilities.dp(150.0f);
             PhotoViewerWebView photoViewerWebView = this.webView;
             if (photoViewerWebView != null) {
                 int youtubeStoryboardImageCount = photoViewerWebView.getYoutubeStoryboardImageCount((int) this.lastPosition);
                 float bitmapWidth = this.storyBoardsReceiver.getBitmapWidth() / Math.min(youtubeStoryboardImageCount, 5);
                 float bitmapHeight = this.storyBoardsReceiver.getBitmapHeight() / ((int) Math.ceil(youtubeStoryboardImageCount / 5.0f));
-                int min = Math.min(this.webView.getYoutubeStoryboardImageIndex((int) this.lastPosition), youtubeStoryboardImageCount - 1);
-                this.ytImageX = (int) ((min % 5) * bitmapWidth);
-                this.ytImageY = (int) ((min / 5) * bitmapHeight);
+                int iMin = Math.min(this.webView.getYoutubeStoryboardImageIndex((int) this.lastPosition), youtubeStoryboardImageCount - 1);
+                this.ytImageX = (int) ((iMin % 5) * bitmapWidth);
+                this.ytImageY = (int) ((iMin / 5) * bitmapHeight);
                 this.ytImageWidth = (int) bitmapWidth;
                 this.ytImageHeight = (int) bitmapHeight;
             } else {
@@ -180,17 +181,17 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             this.drawStoryBoard = true;
             float f = this.ytImageWidth / this.ytImageHeight;
             if (f > 1.0f) {
-                i = (int) (dp / f);
+                i = (int) (iDp / f);
             } else {
-                int i3 = (int) (dp * f);
-                i = dp;
-                dp = i3;
+                int i3 = (int) (iDp * f);
+                i = iDp;
+                iDp = i3;
             }
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() == 0 && layoutParams.width == dp && layoutParams.height == i) {
+            if (getVisibility() == 0 && layoutParams.width == iDp && layoutParams.height == i) {
                 return;
             }
-            layoutParams.width = dp;
+            layoutParams.width = iDp;
             layoutParams.height = i;
             setVisibility(0);
             requestLayout();
@@ -228,7 +229,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 this.currentPixel = i2;
             }
         }
-        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
+        this.frameTime = AndroidUtilities.formatShortDuration((int) (((long) (photoViewerWebView.getVideoDuration() * f)) / 1000));
         this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
         invalidate();
         if (this.progressRunnable != null) {
@@ -252,25 +253,25 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             this.pendingProgress = f;
             return;
         }
-        int max = Math.max(200, AndroidUtilities.dp(100.0f));
+        int iMax = Math.max(200, AndroidUtilities.dp(100.0f));
         final Bitmap frameAtTime = this.fileDrawable.getFrameAtTime(j, false);
         if (frameAtTime != null) {
             int width = frameAtTime.getWidth();
             int height = frameAtTime.getHeight();
             if (width > height) {
-                i = (int) (height / (width / max));
+                i = (int) (height / (width / iMax));
             } else {
-                int i2 = (int) (width / (height / max));
-                i = max;
-                max = i2;
+                int i2 = (int) (width / (height / iMax));
+                i = iMax;
+                iMax = i2;
             }
             try {
-                Bitmap createBitmap = Bitmaps.createBitmap(max, i, Bitmap.Config.ARGB_8888);
-                this.dstR.set(0.0f, 0.0f, max, i);
-                Canvas canvas = new Canvas(createBitmap);
+                Bitmap bitmapCreateBitmap = Bitmaps.createBitmap(iMax, i, Bitmap.Config.ARGB_8888);
+                this.dstR.set(0.0f, 0.0f, iMax, i);
+                Canvas canvas = new Canvas(bitmapCreateBitmap);
                 canvas.drawBitmap(frameAtTime, (android.graphics.Rect) null, this.dstR, this.paint);
                 canvas.setBitmap(null);
-                frameAtTime = createBitmap;
+                frameAtTime = bitmapCreateBitmap;
             } catch (Throwable unused) {
                 frameAtTime = null;
             }
@@ -278,7 +279,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$setProgress$1(frameAtTime);
+                this.f$0.lambda$setProgress$1(frameAtTime);
             }
         });
     }
@@ -301,17 +302,17 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             bitmapShader.setLocalMatrix(this.matrix);
             this.bitmapPaint.setShader(this.bitmapShader);
             invalidate();
-            int dp = AndroidUtilities.dp(150.0f);
+            int iDp = AndroidUtilities.dp(150.0f);
             float width = bitmap.getWidth() / bitmap.getHeight();
             if (width > 1.0f) {
-                i = (int) (dp / width);
+                i = (int) (iDp / width);
             } else {
-                dp = (int) (dp * width);
-                i = dp;
+                iDp = (int) (iDp * width);
+                i = iDp;
             }
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() != 0 || layoutParams.width != dp || layoutParams.height != i) {
-                layoutParams.width = dp;
+            if (getVisibility() != 0 || layoutParams.width != iDp || layoutParams.height != i) {
+                layoutParams.width = iDp;
                 layoutParams.height = i;
                 setVisibility(0);
                 requestLayout();
@@ -326,27 +327,27 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             return;
         }
         if (videoPlayer.getQualitiesCount() > 0) {
-            VideoPlayer.VideoUri videoUri = null;
+            VideoPlayer.VideoUri downloadUri = null;
             for (int i = 0; i < videoPlayer.getQualitiesCount(); i++) {
                 Iterator it = videoPlayer.getQuality(i).uris.iterator();
                 while (it.hasNext()) {
-                    VideoPlayer.VideoUri videoUri2 = (VideoPlayer.VideoUri) it.next();
-                    if (videoUri == null || ((!videoUri.isCached() && videoUri2.isCached()) || (videoUri.isCached() == videoUri2.isCached() && videoUri2.width * videoUri2.height < videoUri.width * videoUri.height))) {
-                        videoUri = videoUri2;
+                    VideoPlayer.VideoUri videoUri = (VideoPlayer.VideoUri) it.next();
+                    if (downloadUri == null || ((!downloadUri.isCached() && videoUri.isCached()) || (downloadUri.isCached() == videoUri.isCached() && videoUri.width * videoUri.height < downloadUri.width * downloadUri.height))) {
+                        downloadUri = videoUri;
                     }
                 }
             }
-            if (videoUri != null && !videoUri.isCached() && (currentQuality = videoPlayer.getCurrentQuality()) != null) {
-                videoUri = currentQuality.getDownloadUri();
+            if (downloadUri != null && !downloadUri.isCached() && (currentQuality = videoPlayer.getCurrentQuality()) != null) {
+                downloadUri = currentQuality.getDownloadUri();
             }
-            if (videoUri != null && !videoUri.isCached()) {
+            if (downloadUri != null && !downloadUri.isCached()) {
                 close();
                 return;
             } else {
-                if (videoUri != null) {
-                    videoUri.isCached();
+                if (downloadUri != null) {
+                    downloadUri.isCached();
                 }
-                open(messageObject, videoUri);
+                open(messageObject, downloadUri);
             }
         } else {
             Uri currentUri = videoPlayer.getCurrentUri();
@@ -355,13 +356,13 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             }
             open(messageObject, currentUri);
         }
-        TLRPC.Document findDocumentByMimeType = findDocumentByMimeType(messageObject, "application/x-tgstoryboardmap");
-        long j = findDocumentByMimeType == null ? 0L : findDocumentByMimeType.id;
+        TLRPC.Document documentFindDocumentByMimeType = findDocumentByMimeType(messageObject, "application/x-tgstoryboardmap");
+        long j = documentFindDocumentByMimeType == null ? 0L : documentFindDocumentByMimeType.id;
         if (this.storyBoardMapDocId != j) {
             this.storyBoardMapDocId = j;
             this.storyBoardMap = null;
-            if (findDocumentByMimeType != null) {
-                File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(findDocumentByMimeType);
+            if (documentFindDocumentByMimeType != null) {
+                File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(documentFindDocumentByMimeType);
                 if (pathToAttach != null && pathToAttach.exists()) {
                     this.downloadingStoryBoardMapFilename = null;
                     this.downloadingStoryboardMapDocument = null;
@@ -369,10 +370,10 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                     parseStoryBoardMap(pathToAttach);
                     return;
                 }
-                this.downloadingStoryBoardMapFilename = FileLoader.getAttachFileName(findDocumentByMimeType);
-                this.downloadingStoryboardMapDocument = findDocumentByMimeType;
+                this.downloadingStoryBoardMapFilename = FileLoader.getAttachFileName(documentFindDocumentByMimeType);
+                this.downloadingStoryboardMapDocument = documentFindDocumentByMimeType;
                 listen(messageObject.currentAccount);
-                FileLoader.getInstance(messageObject.currentAccount).loadFile(findDocumentByMimeType, messageObject, 2, 0);
+                FileLoader.getInstance(messageObject.currentAccount).loadFile(documentFindDocumentByMimeType, messageObject, 2, 0);
                 return;
             }
             this.downloadingStoryBoardMapFilename = null;
@@ -398,7 +399,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws IOException, NumberFormatException {
         if (i == NotificationCenter.fileLoaded) {
             if (((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
                 File pathToAttach = FileLoader.getInstance(i2).getPathToAttach(this.downloadingStoryboardMapDocument);
@@ -419,7 +420,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public void parseStoryBoardMap(File file) {
+    public void parseStoryBoardMap(File file) throws IOException, NumberFormatException {
         if (file == null) {
             this.storyBoardMap = null;
             return;
@@ -431,27 +432,25 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             int i = 0;
             int i2 = 0;
             while (true) {
-                String readLine = randomAccessFile.readLine();
-                if (readLine != null) {
-                    if (readLine.startsWith("file=mtproto:")) {
-                        j = Long.parseLong(readLine.substring(13));
-                    } else if (readLine.startsWith("frame_width=")) {
-                        i2 = Integer.parseInt(readLine.substring(12));
-                    } else if (readLine.startsWith("frame_height=")) {
-                        i = Integer.parseInt(readLine.substring(13));
+                String line = randomAccessFile.readLine();
+                if (line != null) {
+                    if (line.startsWith("file=mtproto:")) {
+                        j = Long.parseLong(line.substring(13));
+                    } else if (line.startsWith("frame_width=")) {
+                        i2 = Integer.parseInt(line.substring(12));
+                    } else if (line.startsWith("frame_height=")) {
+                        i = Integer.parseInt(line.substring(13));
                     } else {
-                        String[] split = readLine.split(",");
-                        if (split.length == 3) {
-                            arrayList.add(new StoryBoardFrame(Double.parseDouble(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2])));
+                        String[] strArrSplit = line.split(",");
+                        if (strArrSplit.length == 3) {
+                            arrayList.add(new StoryBoardFrame(Double.parseDouble(strArrSplit[0]), Integer.parseInt(strArrSplit[1]), Integer.parseInt(strArrSplit[2])));
                         }
                     }
                 } else {
                     Collections.sort(arrayList, Comparator$CC.comparingDouble(new ToDoubleFunction() {
                         @Override
                         public final double applyAsDouble(Object obj) {
-                            double d;
-                            d = ((VideoSeekPreviewImage.StoryBoardFrame) obj).pts;
-                            return d;
+                            return ((VideoSeekPreviewImage.StoryBoardFrame) obj).pts;
                         }
                     }));
                     this.storyBoardPictureDocId = j;
@@ -480,7 +479,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$5(videoUri, messageObject);
+                this.f$0.lambda$open$5(videoUri, messageObject);
             }
         };
         this.loadRunnable = runnable;
@@ -488,32 +487,32 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
     }
 
     public void lambda$open$5(VideoPlayer.VideoUri videoUri, MessageObject messageObject) {
-        Object obj;
+        Object parentObject;
         String absolutePath;
         if (videoUri.isCached()) {
             this.fileDrawable = new AnimatedFileDrawable(new File(videoUri.uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         } else {
-            int i = UserConfig.selectedAccount;
+            int iIntValue = UserConfig.selectedAccount;
             try {
-                i = Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("account")).intValue();
+                iIntValue = Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("account")).intValue();
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            int i2 = i;
+            int i = iIntValue;
             try {
-                obj = FileLoader.getInstance(i2).getParentObject(Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("rid")).intValue());
+                parentObject = FileLoader.getInstance(i).getParentObject(Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("rid")).intValue());
             } catch (Exception e2) {
                 FileLog.e(e2);
-                obj = null;
+                parentObject = null;
             }
-            Object obj2 = obj;
+            Object obj = parentObject;
             TLRPC.Document document = videoUri.document;
-            if (FileLoader.getInstance(i2).isLoadingFile(FileLoader.getAttachFileName(document))) {
+            if (FileLoader.getInstance(i).isLoadingFile(FileLoader.getAttachFileName(document))) {
                 absolutePath = new File(FileLoader.getDirectory(4), document.dc_id + "_" + document.id + ".temp").getAbsolutePath();
             } else {
-                absolutePath = FileLoader.getInstance(i2).getPathToAttach(document, false).getAbsolutePath();
+                absolutePath = FileLoader.getInstance(i).getPathToAttach(document, false).getAbsolutePath();
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, document.size, 1, document, null, obj2, 0L, i2, true, null);
+            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, document.size, 1, document, null, obj, 0L, i, true, null);
         }
         this.duration = this.fileDrawable.getDurationMs();
         float f = this.pendingProgress;
@@ -524,7 +523,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$4();
+                this.f$0.lambda$open$4();
             }
         });
     }
@@ -551,7 +550,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$7(uri, messageObject);
+                this.f$0.lambda$open$7(uri, messageObject);
             }
         };
         this.loadRunnable = runnable;
@@ -561,8 +560,8 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
     public void lambda$open$7(Uri uri, MessageObject messageObject) {
         String absolutePath;
         if ("tg".equals(uri.getScheme())) {
-            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
-            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
+            int iIntValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
+            Object parentObject = FileLoader.getInstance(iIntValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
             TLRPC.TL_document tL_document = new TLRPC.TL_document();
             tL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
             tL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
@@ -574,12 +573,12 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             tL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
             tL_document.attributes.add(tL_documentAttributeFilename);
             tL_document.attributes.add(new TLRPC.TL_documentAttributeVideo());
-            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tL_document))) {
+            if (FileLoader.getInstance(iIntValue).isLoadingFile(FileLoader.getAttachFileName(tL_document))) {
                 absolutePath = new File(FileLoader.getDirectory(4), tL_document.dc_id + "_" + tL_document.id + ".temp").getAbsolutePath();
             } else {
-                absolutePath = FileLoader.getInstance(intValue).getPathToAttach(tL_document, false).getAbsolutePath();
+                absolutePath = FileLoader.getInstance(iIntValue).getPathToAttach(tL_document, false).getAbsolutePath();
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tL_document.size, 1, tL_document, null, parentObject, 0L, intValue, true, null);
+            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tL_document.size, 1, tL_document, null, parentObject, 0L, iIntValue, true, null);
         } else {
             this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         }
@@ -592,7 +591,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$6();
+                this.f$0.lambda$open$6();
             }
         });
     }
@@ -707,7 +706,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$close$8();
+                this.f$0.lambda$close$8();
             }
         });
         setVisibility(4);

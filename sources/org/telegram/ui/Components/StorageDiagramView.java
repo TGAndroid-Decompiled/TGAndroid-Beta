@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.Layout;
@@ -24,8 +23,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Storage.CacheModel;
 
@@ -50,7 +47,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
     AnimatedTextView.AnimatedTextDrawable text2;
     ValueAnimator valueAnimator;
 
-    public abstract void onAvatarClick();
+    protected abstract void onAvatarClick();
 
     public StorageDiagramView(Context context) {
         super(context);
@@ -88,15 +85,15 @@ public abstract class StorageDiagramView extends View implements NotificationCen
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3;
+        int size;
         if (this.dialogId != null) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
-            i3 = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(110.0f)) / 2;
-            this.rectF.set(AndroidUtilities.dp(3.0f) + i3, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f) + i3, AndroidUtilities.dp(107.0f));
+            size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(110.0f)) / 2;
+            this.rectF.set(AndroidUtilities.dp(3.0f) + size, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f) + size, AndroidUtilities.dp(107.0f));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824));
             this.rectF.set(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f), AndroidUtilities.dp(107.0f));
-            i3 = 0;
+            size = 0;
         }
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -112,10 +109,10 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             this.text2.setTextSize(AndroidUtilities.dp(13.0f));
             int textSize = (int) this.text1.getTextSize();
             int textSize2 = (int) this.text2.getTextSize();
-            int dp = ((AndroidUtilities.dp(110.0f) - textSize) - textSize2) / 2;
-            int i4 = textSize + dp;
-            this.text1.setBounds(0, dp, getMeasuredWidth(), i4);
-            this.text2.setBounds(0, AndroidUtilities.dp(2.0f) + i4, getMeasuredWidth(), i4 + textSize2 + AndroidUtilities.dp(2.0f));
+            int iDp = ((AndroidUtilities.dp(110.0f) - textSize) - textSize2) / 2;
+            int i3 = textSize + iDp;
+            this.text1.setBounds(0, iDp, getMeasuredWidth(), i3);
+            this.text2.setBounds(0, AndroidUtilities.dp(2.0f) + i3, getMeasuredWidth(), i3 + textSize2 + AndroidUtilities.dp(2.0f));
             this.text1.setGravity(17);
             this.text2.setGravity(17);
         }
@@ -124,12 +121,12 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 this.dialogTextPaint = new TextPaint(1);
             }
             this.dialogTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
-            int size = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(60.0f);
-            this.dialogTextLayout = StaticLayoutEx.createStaticLayout2(this.dialogText, this.dialogTextPaint, size, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, size, 1);
+            int size2 = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(60.0f);
+            this.dialogTextLayout = StaticLayoutEx.createStaticLayout2(this.dialogText, this.dialogTextPaint, size2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, size2, 1);
         }
         ImageReceiver imageReceiver = this.avatarImageReceiver;
         if (imageReceiver != null) {
-            imageReceiver.setImageCoords(i3 + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
+            imageReceiver.setImageCoords(size + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
             this.avatarImageReceiver.setRoundRadius(AndroidUtilities.dp(45.0f));
         }
         updateDescription();
@@ -151,143 +148,8 @@ public abstract class StorageDiagramView extends View implements NotificationCen
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        double d;
-        int i;
-        if (this.data == null) {
-            return;
-        }
-        if (this.avatarImageReceiver != null) {
-            canvas.save();
-            if (isPressed()) {
-                float f = this.pressedProgress;
-                if (f != 1.0f) {
-                    float min = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f);
-                    this.pressedProgress = min;
-                    this.pressedProgress = Utilities.clamp(min, 1.0f, 0.0f);
-                    invalidate();
-                }
-            }
-            float f2 = ((1.0f - this.pressedProgress) * 0.15f) + 0.85f;
-            canvas.scale(f2, f2, this.avatarImageReceiver.getCenterX(), this.avatarImageReceiver.getCenterY());
-        }
-        if (this.enabledCount > 1) {
-            float f3 = this.singleProgress;
-            if (f3 > 0.0f) {
-                float f4 = (float) (f3 - 0.04d);
-                this.singleProgress = f4;
-                if (f4 < 0.0f) {
-                    this.singleProgress = 0.0f;
-                }
-            }
-        } else {
-            float f5 = this.singleProgress;
-            if (f5 < 1.0f) {
-                float f6 = (float) (f5 + 0.04d);
-                this.singleProgress = f6;
-                if (f6 > 1.0f) {
-                    this.singleProgress = 1.0f;
-                }
-            }
-        }
-        int i2 = 0;
-        float f7 = 0.0f;
-        while (true) {
-            ClearViewData[] clearViewDataArr = this.data;
-            d = 180.0d;
-            i = 255;
-            if (i2 >= clearViewDataArr.length) {
-                break;
-            }
-            ClearViewData clearViewData = clearViewDataArr[i2];
-            if (clearViewData != null) {
-                float f8 = this.drawingPercentage[i2];
-                if (f8 != 0.0f) {
-                    if (clearViewData.firstDraw) {
-                        float f9 = ((-360.0f) * f8) + ((1.0f - this.singleProgress) * 10.0f);
-                        float f10 = f9 > 0.0f ? 0.0f : f9;
-                        clearViewData.paint.setColor(Theme.getColor(clearViewData.colorKey));
-                        this.data[i2].paint.setAlpha(255);
-                        double width = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (f10 * ((3.141592653589793d * width) / 180.0d))) <= 1.0f) {
-                            double d2 = (-90.0f) - (360.0f * f7);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d2)) * width)), this.rectF.centerY() + ((float) (width * Math.sin(Math.toRadians(d2)))), this.data[i2].paint);
-                        } else {
-                            this.data[i2].paint.setStyle(Paint.Style.STROKE);
-                            canvas.drawArc(this.rectF, (-90.0f) - (360.0f * f7), f10, false, this.data[i2].paint);
-                        }
-                    }
-                    f7 += f8;
-                }
-            }
-            i2++;
-        }
-        int i3 = 0;
-        float f11 = 0.0f;
-        while (true) {
-            ClearViewData[] clearViewDataArr2 = this.data;
-            if (i3 >= clearViewDataArr2.length) {
-                break;
-            }
-            ClearViewData clearViewData2 = clearViewDataArr2[i3];
-            if (clearViewData2 != null) {
-                float f12 = this.drawingPercentage[i3];
-                if (f12 != 0.0f) {
-                    if (!clearViewData2.firstDraw) {
-                        float f13 = (f12 * (-360.0f)) + ((1.0f - this.singleProgress) * 10.0f);
-                        float f14 = f13 > 0.0f ? 0.0f : f13;
-                        clearViewData2.paint.setColor(Theme.getColor(clearViewData2.colorKey));
-                        this.data[i3].paint.setAlpha(i);
-                        double width2 = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (f14 * ((width2 * 3.141592653589793d) / d))) <= 1.0f) {
-                            double d3 = (-90.0f) - (f11 * 360.0f);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d3)) * width2)), this.rectF.centerY() + ((float) (width2 * Math.sin(Math.toRadians(d3)))), this.data[i3].paint);
-                        } else {
-                            this.data[i3].paint.setStyle(Paint.Style.STROKE);
-                            canvas.drawArc(this.rectF, (-90.0f) - (f11 * 360.0f), f14, false, this.data[i3].paint);
-                            f11 += f12;
-                            i3++;
-                            i = 255;
-                            d = 180.0d;
-                        }
-                    }
-                    f11 += f12;
-                    i3++;
-                    i = 255;
-                    d = 180.0d;
-                }
-            }
-            i3++;
-            i = 255;
-            d = 180.0d;
-        }
-        ImageReceiver imageReceiver = this.avatarImageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.draw(canvas);
-            canvas.restore();
-        }
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
-        if (animatedTextDrawable != null) {
-            int i4 = Theme.key_dialogTextBlack;
-            animatedTextDrawable.setTextColor(Theme.getColor(i4));
-            this.text2.setTextColor(Theme.getColor(i4));
-            if (this.dialogId != null) {
-                float currentWidth = this.text1.getCurrentWidth() + AndroidUtilities.dp(4.0f) + this.text2.getCurrentWidth();
-                float width3 = (getWidth() - currentWidth) / 2.0f;
-                this.text1.setBounds(0, AndroidUtilities.dp(115.0f), (int) (this.text1.getCurrentWidth() + width3), AndroidUtilities.dp(145.0f));
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
-                animatedTextDrawable2.setBounds((int) ((width3 + currentWidth) - animatedTextDrawable2.getCurrentWidth()), AndroidUtilities.dp(118.0f), getWidth(), AndroidUtilities.dp(148.0f));
-            }
-            this.text1.draw(canvas);
-            this.text2.draw(canvas);
-        }
-        if (this.dialogTextLayout != null) {
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(148.0f) - ((this.dialogTextLayout.getHeight() - AndroidUtilities.dp(13.0f)) / 2.0f));
-            this.dialogTextPaint.setColor(Theme.getColor(Theme.key_dialogTextBlack));
-            this.dialogTextLayout.draw(canvas);
-            canvas.restore();
-        }
+    protected void onDraw(android.graphics.Canvas r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StorageDiagramView.onDraw(android.graphics.Canvas):void");
     }
 
     public static class ClearViewData {
@@ -350,7 +212,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 if (selectedFilesSize2 <= 0) {
                     selectedFilesSize2 = clearViewData2.size;
                 }
-                float f3 = ((float) selectedFilesSize2) / ((float) j);
+                float f3 = selectedFilesSize2 / j;
                 if (f3 < 0.02777f) {
                     f3 = 0.02777f;
                 }
@@ -380,12 +242,12 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             valueAnimator.removeAllListeners();
             this.valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.valueAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StorageDiagramView.this.lambda$update$0(clearViewDataArr, valueAnimator2);
+                this.f$0.lambda$update$0(clearViewDataArr, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -411,9 +273,9 @@ public abstract class StorageDiagramView extends View implements NotificationCen
     }
 
     public void lambda$update$0(ClearViewData[] clearViewDataArr, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         for (int i = 0; i < clearViewDataArr.length; i++) {
-            this.drawingPercentage[i] = (this.startFromPercentage[i] * (1.0f - floatValue)) + (this.animateToPercentage[i] * floatValue);
+            this.drawingPercentage[i] = (this.startFromPercentage[i] * (1.0f - fFloatValue)) + (this.animateToPercentage[i] * fFloatValue);
         }
         invalidate();
     }
@@ -432,7 +294,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StorageDiagramView.this.onAvatarClick();
+                        this.f$0.onAvatarClick();
                     }
                 }, 80L);
             }
@@ -457,12 +319,12 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             }
             float f = this.pressedProgress;
             if (f != 0.0f) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                this.backAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                this.backAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StorageDiagramView.this.lambda$setPressed$1(valueAnimator2);
+                        this.f$0.lambda$setPressed$1(valueAnimator2);
                     }
                 });
                 this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -485,13 +347,13 @@ public abstract class StorageDiagramView extends View implements NotificationCen
     }
 
     public long updateDescription() {
-        long calculateSize = calculateSize();
-        String[] split = AndroidUtilities.formatFileSize(calculateSize).split(" ");
-        if (split.length > 1) {
-            this.text1.setText(calculateSize == 0 ? " " : split[0], true, false);
-            this.text2.setText(calculateSize != 0 ? split[1] : " ", true, false);
+        long jCalculateSize = calculateSize();
+        String[] strArrSplit = AndroidUtilities.formatFileSize(jCalculateSize).split(" ");
+        if (strArrSplit.length > 1) {
+            this.text1.setText(jCalculateSize == 0 ? " " : strArrSplit[0], true, false);
+            this.text2.setText(jCalculateSize != 0 ? strArrSplit[1] : " ", true, false);
         }
-        return calculateSize;
+        return jCalculateSize;
     }
 
     public long calculateSize() {

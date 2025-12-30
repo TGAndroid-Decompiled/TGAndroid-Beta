@@ -1,47 +1,35 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.AudioInfo;
 
 public class ID3v1Info extends AudioInfo {
-    public static boolean isID3v1StartPosition(InputStream inputStream) {
-        boolean z;
-        inputStream.mark(3);
-        try {
-            if (inputStream.read() == 84 && inputStream.read() == 65) {
-                if (inputStream.read() == 71) {
-                    z = true;
-                    return z;
-                }
-            }
-            z = false;
-            return z;
-        } finally {
-            inputStream.reset();
-        }
+    public static boolean isID3v1StartPosition(java.io.InputStream r2) throws java.io.IOException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v1Info.isID3v1StartPosition(java.io.InputStream):boolean");
     }
 
-    public ID3v1Info(InputStream inputStream) {
+    public ID3v1Info(InputStream inputStream) throws IOException {
         byte b;
         if (isID3v1StartPosition(inputStream)) {
             this.brand = "ID3";
             this.version = "1.0";
-            byte[] readBytes = readBytes(inputStream, 128);
-            this.title = extractString(readBytes, 3, 30);
-            this.artist = extractString(readBytes, 33, 30);
-            this.album = extractString(readBytes, 63, 30);
+            byte[] bytes = readBytes(inputStream, 128);
+            this.title = extractString(bytes, 3, 30);
+            this.artist = extractString(bytes, 33, 30);
+            this.album = extractString(bytes, 63, 30);
             try {
-                this.year = Short.parseShort(extractString(readBytes, 93, 4));
+                this.year = Short.parseShort(extractString(bytes, 93, 4));
             } catch (NumberFormatException unused) {
                 this.year = (short) 0;
             }
-            this.comment = extractString(readBytes, 97, 30);
-            ID3v1Genre genre = ID3v1Genre.getGenre(readBytes[127]);
+            this.comment = extractString(bytes, 97, 30);
+            ID3v1Genre genre = ID3v1Genre.getGenre(bytes[127]);
             if (genre != null) {
                 this.genre = genre.getDescription();
             }
-            if (readBytes[125] != 0 || (b = readBytes[126]) == 0) {
+            if (bytes[125] != 0 || (b = bytes[126]) == 0) {
                 return;
             }
             this.version = "1.1";
@@ -49,15 +37,15 @@ public class ID3v1Info extends AudioInfo {
         }
     }
 
-    byte[] readBytes(InputStream inputStream, int i) {
+    byte[] readBytes(InputStream inputStream, int i) throws IOException {
         byte[] bArr = new byte[i];
         int i2 = 0;
         while (i2 < i) {
-            int read = inputStream.read(bArr, i2, i - i2);
-            if (read <= 0) {
+            int i3 = inputStream.read(bArr, i2, i - i2);
+            if (i3 <= 0) {
                 throw new EOFException();
             }
-            i2 += read;
+            i2 += i3;
         }
         return bArr;
     }
@@ -65,8 +53,8 @@ public class ID3v1Info extends AudioInfo {
     String extractString(byte[] bArr, int i, int i2) {
         try {
             String str = new String(bArr, i, i2, "ISO-8859-1");
-            int indexOf = str.indexOf(0);
-            return indexOf < 0 ? str : str.substring(0, indexOf);
+            int iIndexOf = str.indexOf(0);
+            return iIndexOf < 0 ? str : str.substring(0, iIndexOf);
         } catch (Exception unused) {
             return "";
         }

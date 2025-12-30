@@ -64,7 +64,7 @@ public abstract class BotButtons extends FrameLayout {
         }
     }
 
-    public class Button {
+    private class Button {
         public final AnimatedFloat alpha;
         public final AnimatedColor backgroundColor;
         public final Paint backgroundPaint;
@@ -97,8 +97,8 @@ public abstract class BotButtons extends FrameLayout {
             this.backgroundPaint = new Paint(1);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.textDrawable = animatedTextDrawable;
-            Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(0, 9, 9);
-            this.ripple = createRadSelectorDrawable;
+            Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(0, 9, 9);
+            this.ripple = drawableCreateRadSelectorDrawable;
             CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable();
             this.progress = circularProgressDrawable;
             CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
@@ -109,7 +109,7 @@ public abstract class BotButtons extends FrameLayout {
             animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x * 4);
             animatedTextDrawable.setEllipsizeByGradient(true);
             circularProgressDrawable.setCallback(BotButtons.this);
-            createRadSelectorDrawable.setCallback(BotButtons.this);
+            drawableCreateRadSelectorDrawable.setCallback(BotButtons.this);
             cellFlickerDrawable.frameInside = true;
             cellFlickerDrawable.repeatProgress = 2.0f;
         }
@@ -125,14 +125,13 @@ public abstract class BotButtons extends FrameLayout {
         this.height = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
         this.background = new AnimatedColor(this, 0L, 320L, cubicBezierInterpolator);
         this.state = new ButtonsState();
-        this.buttons = r2;
+        this.buttons = new Button[]{new Button(), new Button()};
         setWillNotDraw(false);
         paint2.setColor(Theme.multAlpha(-16777216, 0.1f));
         ButtonsState buttonsState = this.state;
         int color = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
         buttonsState.backgroundColor = color;
         paint.setColor(color);
-        Button[] buttonArr = {new Button(), new Button()};
     }
 
     @Override
@@ -192,26 +191,26 @@ public abstract class BotButtons extends FrameLayout {
             } else {
                 f5 = button.w.get();
             }
-            float lerp = AndroidUtilities.lerp((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f, getWidth() - AndroidUtilities.dp(16.0f), f5);
-            float dp = AndroidUtilities.dp(44.0f);
-            float f7 = lerp / 2.0f;
-            float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f) + ((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f), f2) + f7;
-            float f8 = dp / 2.0f;
-            float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(58.0f), f4) + f8 + height;
-            button.bounds.set(lerp2 - f7, lerp3 - f8, f7 + lerp2, f8 + lerp3);
+            float fLerp = AndroidUtilities.lerp((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f, getWidth() - AndroidUtilities.dp(16.0f), f5);
+            float fDp = AndroidUtilities.dp(44.0f);
+            float f7 = fLerp / 2.0f;
+            float fLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f) + ((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f), f2) + f7;
+            float f8 = fDp / 2.0f;
+            float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(58.0f), f4) + f8 + height;
+            button.bounds.set(fLerp2 - f7, fLerp3 - f8, f7 + fLerp2, f8 + fLerp3);
             float f9 = button.progressAlpha.set(buttonState.progressVisible);
             float f10 = button.flickerAlpha.set(buttonState.shineEffect);
             canvas.save();
             float scale = button.bounce.getScale(0.02f) * AndroidUtilities.lerp(0.7f, 1.0f, f6);
-            canvas.scale(scale, scale, lerp2, lerp3);
+            canvas.scale(scale, scale, fLerp2, fLerp3);
             button.backgroundPaint.setColor(Theme.multAlpha(button.backgroundColor.set(buttonState.color), f6));
             String str2 = str;
             canvas.drawRoundRect(button.bounds, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), button.backgroundPaint);
             if (f9 < 1.0f) {
                 canvas.save();
                 float f11 = 1.0f - f9;
-                float lerp4 = AndroidUtilities.lerp(0.75f, 1.0f, f11);
-                canvas.scale(lerp4, lerp4, lerp2, lerp3);
+                float fLerp4 = AndroidUtilities.lerp(0.75f, 1.0f, f11);
+                canvas.scale(fLerp4, fLerp4, fLerp2, fLerp3);
                 canvas.translate(0.0f, AndroidUtilities.dp(-10.0f) * f9);
                 button.textDrawable.setTextColor(Theme.multAlpha(button.textColor.set(buttonState.textColor), f11 * f6));
                 button.textDrawable.setBounds(button.bounds);
@@ -221,8 +220,8 @@ public abstract class BotButtons extends FrameLayout {
             float f12 = 0.0f;
             if (f9 > 0.0f) {
                 canvas.save();
-                float lerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f9);
-                canvas.scale(lerp5, lerp5, lerp2, lerp3);
+                float fLerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f9);
+                canvas.scale(fLerp5, fLerp5, fLerp2, fLerp3);
                 canvas.translate(0.0f, AndroidUtilities.dp(10.0f) * (1.0f - f9));
                 button.progress.setColor(Theme.multAlpha(button.textColor.set(buttonState.textColor), f9 * f6));
                 CircularProgressDrawable circularProgressDrawable = button.progress;
@@ -238,9 +237,9 @@ public abstract class BotButtons extends FrameLayout {
             }
             if (button.rippleColor != Theme.multAlpha(buttonState.textColor, 0.15f)) {
                 Drawable drawable = button.ripple;
-                int multAlpha = Theme.multAlpha(buttonState.textColor, 0.15f);
-                button.rippleColor = multAlpha;
-                Theme.setSelectorDrawableColor(drawable, multAlpha, true);
+                int iMultAlpha = Theme.multAlpha(buttonState.textColor, 0.15f);
+                button.rippleColor = iMultAlpha;
+                Theme.setSelectorDrawableColor(drawable, iMultAlpha, true);
             }
             Drawable drawable2 = button.ripple;
             RectF rectF2 = button.bounds;
@@ -337,7 +336,7 @@ public abstract class BotButtons extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(109.0f) + 1, 1073741824));
     }
 

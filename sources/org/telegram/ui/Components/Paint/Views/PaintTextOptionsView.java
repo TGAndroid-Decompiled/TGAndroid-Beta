@@ -71,7 +71,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PaintTextOptionsView.this.lambda$new$0(view2);
+                this.f$0.lambda$new$0(view2);
             }
         });
         addView(this.colorClickableView, LayoutHelper.createFrame(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
@@ -88,7 +88,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.alignView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PaintTextOptionsView.this.lambda$new$1(view2);
+                this.f$0.lambda$new$1(view2);
             }
         });
         this.alignView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
@@ -100,7 +100,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.outlineView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PaintTextOptionsView.this.lambda$new$2(view2);
+                this.f$0.lambda$new$2(view2);
             }
         });
         addView(this.outlineView, LayoutHelper.createFrame(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
@@ -112,7 +112,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.plusView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PaintTextOptionsView.this.lambda$new$3(view2);
+                this.f$0.lambda$new$3(view2);
             }
         });
         this.plusView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
@@ -123,7 +123,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.typefaceCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PaintTextOptionsView.this.lambda$new$4(view2);
+                this.f$0.lambda$new$4(view2);
             }
         });
         addView(this.typefaceCell, LayoutHelper.createLinear(-2, -2, 0.0f, 21));
@@ -367,7 +367,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         }
     }
 
-    public static final class AlignFramePair {
+    private static final class AlignFramePair {
         private final int fromAlign;
         private final int fromFrame;
         private final int toAlign;

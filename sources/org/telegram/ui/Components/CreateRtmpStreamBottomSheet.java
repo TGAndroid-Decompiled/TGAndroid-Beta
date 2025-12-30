@@ -32,7 +32,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextDetailCell;
-import org.telegram.ui.Components.CreateRtmpStreamBottomSheet;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -62,8 +61,8 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
     }
 
     public CreateRtmpStreamBottomSheet(final Context context, final int i, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+        int iDp;
         super(context, null, false, false, false, resourcesProvider);
-        int i2;
         this.story = true;
         this.topPadding = 0.126f;
         this.joinCallDelegate = null;
@@ -78,7 +77,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    CreateRtmpStreamBottomSheet.this.lambda$new$2(callback, buttonWithCounterView, view);
+                    this.f$0.lambda$new$2(callback, buttonWithCounterView, view);
                 }
             });
             if (this.hasRevokeButton) {
@@ -89,7 +88,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
                 buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CreateRtmpStreamBottomSheet.this.lambda$new$6(context, resourcesProvider, buttonWithCounterView2, getgroupcallstreamrtmpurl, i, view);
+                        this.f$0.lambda$new$6(context, resourcesProvider, buttonWithCounterView2, getgroupcallstreamrtmpurl, i, view);
                     }
                 });
                 this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
@@ -102,13 +101,13 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         defaultItemAnimator.setDurations(350L);
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i3 = this.backgroundPaddingLeft;
+        int i2 = this.backgroundPaddingLeft;
         if (this.hasButton) {
-            i2 = AndroidUtilities.dp(this.hasRevokeButton ? 124.0f : 72.0f);
+            iDp = AndroidUtilities.dp(this.hasRevokeButton ? 124.0f : 72.0f);
         } else {
-            i2 = 0;
+            iDp = 0;
         }
-        recyclerListView.setPadding(i3, 0, i3, i2);
+        recyclerListView.setPadding(i2, 0, i2, iDp);
         fixNavigationBar();
         updateTitle();
         this.rtmpUrl = groupcallstreamrtmpurl.url;
@@ -126,12 +125,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         callback.run(new Browser.Progress(new Runnable() {
             @Override
             public final void run() {
-                ButtonWithCounterView.this.setLoading(true);
+                buttonWithCounterView.setLoading(true);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$1(buttonWithCounterView);
+                this.f$0.lambda$new$1(buttonWithCounterView);
             }
         }));
     }
@@ -145,7 +144,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle)).setMessage(LocaleController.getString(R.string.LiveStoryRTMPRevokeText)).setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$5(buttonWithCounterView, getgroupcallstreamrtmpurl, i, alertDialog, i2);
+                this.f$0.lambda$new$5(buttonWithCounterView, getgroupcallstreamrtmpurl, i, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -159,7 +158,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(i).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$4(buttonWithCounterView, tLObject, tL_error);
+                this.f$0.lambda$new$4(buttonWithCounterView, tLObject, tL_error);
             }
         });
     }
@@ -168,7 +167,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$3(buttonWithCounterView, tLObject);
+                this.f$0.lambda$new$3(buttonWithCounterView, tLObject);
             }
         });
     }
@@ -191,7 +190,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         this.joinCallDelegate = joinCallAlertDelegate;
         this.hasFewPeers = z;
         final Context context = this.containerView.getContext();
-        boolean isCreator = ChatObject.isCreator(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
+        boolean zIsCreator = ChatObject.isCreator(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         this.hasButton = true;
         TextView textView = new TextView(context);
         textView.setGravity(17);
@@ -202,14 +201,14 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         textView.setText(LocaleController.getString(R.string.VoipChannelStartStreaming));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, this.resourcesProvider));
         textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (isCreator ? 52 : 0) + 12));
+        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (zIsCreator ? 52 : 0) + 12));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$7(peer, view);
+                this.f$0.lambda$new$7(peer, view);
             }
         });
-        if (isCreator) {
+        if (zIsCreator) {
             final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, this.resourcesProvider);
             buttonWithCounterView.setColor(Theme.getColor(Theme.key_fill_RedNormal));
             buttonWithCounterView.text.setTypeface(AndroidUtilities.bold());
@@ -217,14 +216,14 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    CreateRtmpStreamBottomSheet.this.lambda$new$11(context, buttonWithCounterView, j, view);
+                    this.f$0.lambda$new$11(context, buttonWithCounterView, j, view);
                 }
             });
             this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         }
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp((isCreator ? 52 : 0) + 72));
+        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp((zIsCreator ? 52 : 0) + 72));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setSupportsChangeAnimations(false);
         defaultItemAnimator.setDelayAnimations(false);
@@ -239,7 +238,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$13(tLObject, tL_error);
+                this.f$0.lambda$new$13(tLObject, tL_error);
             }
         });
     }
@@ -253,7 +252,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         new AlertDialog.Builder(context, this.resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle)).setMessage(LocaleController.getString(R.string.LiveStoryRTMPRevokeText)).setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$10(buttonWithCounterView, j, alertDialog, i);
+                this.f$0.lambda$new$10(buttonWithCounterView, j, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -269,7 +268,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$9(buttonWithCounterView, tLObject, tL_error);
+                this.f$0.lambda$new$9(buttonWithCounterView, tLObject, tL_error);
             }
         });
     }
@@ -278,7 +277,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$8(buttonWithCounterView, tLObject);
+                this.f$0.lambda$new$8(buttonWithCounterView, tLObject);
             }
         });
     }
@@ -299,7 +298,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$12(tLObject);
+                this.f$0.lambda$new$12(tLObject);
             }
         });
     }
@@ -341,7 +340,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CreateRtmpStreamBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -353,18 +352,18 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
             this.topCell = new TopCell(getContext(), this.resourcesProvider);
         }
         arrayList.add(UItem.asCustom(this.topCell));
-        String str = null;
+        String string = null;
         arrayList.add(UItem.asShadow(null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.VoipChatStreamSettings)));
         arrayList.add(TextDetailCellFactory.of(this.rtmpUrl, LocaleController.getString(R.string.VoipChatStreamServerUrl), true));
         arrayList.add(TextDetailCellFactory.of(this.rtmpKeySpoiled, LocaleController.getString(R.string.VoipChatStreamKey), false));
         if (this.hasButton) {
-            str = LocaleController.getString(this.story ? R.string.VoipChatStreamWithAnotherAppDescriptionStory : R.string.VoipChatStreamWithAnotherAppDescription);
+            string = LocaleController.getString(this.story ? R.string.VoipChatStreamWithAnotherAppDescriptionStory : R.string.VoipChatStreamWithAnotherAppDescription);
         }
-        arrayList.add(UItem.asShadow(str));
+        arrayList.add(UItem.asShadow(string));
     }
 
-    public static class TopCell extends LinearLayout {
+    private static class TopCell extends LinearLayout {
         public TopCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             setOrientation(1);
@@ -398,13 +397,13 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         public TextDetailCell createView(final Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             final TextDetailCell textDetailCell = new TextDetailCell(context, resourcesProvider, true, false);
             textDetailCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-            Drawable mutate = ContextCompat.getDrawable(context, R.drawable.msg_copy).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            textDetailCell.setImage(mutate);
+            Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.msg_copy).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            textDetailCell.setImage(drawableMutate);
             textDetailCell.setImageClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    CreateRtmpStreamBottomSheet.TextDetailCellFactory.this.lambda$createView$0(context, textDetailCell, view);
+                    this.f$0.lambda$createView$0(context, textDetailCell, view);
                 }
             });
             return textDetailCell;
@@ -426,12 +425,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         }
 
         public static UItem of(CharSequence charSequence, CharSequence charSequence2, boolean z) {
-            UItem ofFactory = UItem.ofFactory(TextDetailCellFactory.class);
-            ofFactory.text = charSequence;
-            ofFactory.textValue = charSequence2;
-            ofFactory.hideDivider = !z;
-            ofFactory.enabled = false;
-            return ofFactory;
+            UItem uItemOfFactory = UItem.ofFactory(TextDetailCellFactory.class);
+            uItemOfFactory.text = charSequence;
+            uItemOfFactory.textValue = charSequence2;
+            uItemOfFactory.hideDivider = !z;
+            uItemOfFactory.enabled = false;
+            return uItemOfFactory;
         }
 
         private void copyRtmpValue(Context context, String str) {

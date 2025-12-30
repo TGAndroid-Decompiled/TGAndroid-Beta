@@ -40,7 +40,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         this.locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
-                GoogleLocationProvider.lambda$getLastLocation$0(Consumer.this, task);
+                GoogleLocationProvider.lambda$getLastLocation$0(consumer, task);
             }
         });
     }
@@ -77,7 +77,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         this.settingsClient.checkLocationSettings(new LocationSettingsRequest.Builder().addLocationRequest(((GoogleLocationRequest) iLocationRequest).request).build()).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
-                GoogleLocationProvider.lambda$checkLocationSettings$1(Consumer.this, task);
+                GoogleLocationProvider.lambda$checkLocationSettings$1(consumer, task);
             }
         });
     }
@@ -114,7 +114,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         }).addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public final void onConnectionFailed(ConnectionResult connectionResult) {
-                ILocationServiceProvider.IAPIOnConnectionFailedListener.this.onConnectionFailed();
+                iAPIOnConnectionFailedListener.onConnectionFailed();
             }
         }).build());
     }

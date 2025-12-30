@@ -61,7 +61,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
     private float viewTop;
     private float width;
 
-    public class Row {
+    private class Row {
         public boolean avatars;
         public final RectF bounds = new RectF();
         public Text key;
@@ -86,15 +86,15 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         return row;
     }
 
-    public static String displayDate(String str) {
-        String[] split = str.split("\\.");
-        if (split.length != 2) {
+    public static String displayDate(String str) throws NumberFormatException {
+        String[] strArrSplit = str.split("\\.");
+        if (strArrSplit.length != 2) {
             return str;
         }
-        int parseInt = Integer.parseInt(split[0]);
-        int parseInt2 = Integer.parseInt(split[1]);
+        int i = Integer.parseInt(strArrSplit[0]);
+        int i2 = Integer.parseInt(strArrSplit[1]);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(parseInt2, parseInt - 1, 1, 0, 0, 0);
+        calendar.set(i2, i - 1, 1, 0, 0, 0);
         calendar.set(14, 0);
         return LocaleController.formatYearMont(calendar.getTimeInMillis() / 1000, true);
     }
@@ -110,17 +110,17 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         this.groupsAvatars = avatarsDrawable;
         this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
-        Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(822083583, 8, 8);
-        this.groupsRipple = createRadSelectorDrawable;
-        createRadSelectorDrawable.setCallback(this);
+        Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(822083583, 8, 8);
+        this.groupsRipple = drawableCreateRadSelectorDrawable;
+        drawableCreateRadSelectorDrawable.setCallback(this);
         avatarsDrawable.width = AndroidUtilities.dp(50.0f);
         avatarsDrawable.height = AndroidUtilities.dp(13.0f);
         avatarsDrawable.drawStoriesCircle = false;
         avatarsDrawable.setSize(AndroidUtilities.dp(13.0f));
         avatarsDrawable.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.msg_mini_forumarrow).mutate();
-        this.groupsArrow = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.msg_mini_forumarrow).mutate();
+        this.groupsArrow = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
@@ -158,9 +158,9 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         if (userFull != null) {
             MessagesController.CommonChatsList commonChats = MessagesController.getInstance(this.currentAccount).getCommonChats(j);
             this.commonChats = commonChats;
-            int max = Math.max(userFull.common_chats_count, commonChats.getCount());
-            if (max > 0) {
-                this.groupsRow = addRow(LocaleController.getString(R.string.ContactInfoCommonGroups), LocaleController.formatPluralString("Groups", max, new Object[0]), true);
+            int iMax = Math.max(userFull.common_chats_count, commonChats.getCount());
+            if (iMax > 0) {
+                this.groupsRow = addRow(LocaleController.getString(R.string.ContactInfoCommonGroups), LocaleController.formatPluralString("Groups", iMax, new Object[0]), true);
                 this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
                 for (int i2 = 0; i2 < Math.min(3, this.commonChats.chats.size()); i2++) {
                     this.groupsAvatars.setObject(i2, this.currentAccount, this.commonChats.chats.get(i2));
@@ -192,29 +192,29 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             this.footer = new Text(spannableStringBuilder2, 12.0f);
             spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(botverification.icon, this.footer.getFontMetricsInt()), 0, 1, 33);
             spannableStringBuilder2.append((CharSequence) botverification.description);
-            Text multiline = new Text(spannableStringBuilder2, 12.0f).align(Layout.Alignment.ALIGN_CENTER).multiline(5);
+            Text textMultiline = new Text(spannableStringBuilder2, 12.0f).align(Layout.Alignment.ALIGN_CENTER).multiline(5);
             Point point = AndroidUtilities.displaySize;
-            this.footer = multiline.setMaxWidth(Math.min(point.x, point.y) * 0.5f).supportAnimatedEmojis(this);
+            this.footer = textMultiline.setMaxWidth(Math.min(point.x, point.y) * 0.5f).supportAnimatedEmojis(this);
             this.height += AndroidUtilities.dp(12.0f) + this.footer.getHeight() + AndroidUtilities.dp(15.33f);
         } else {
             this.footer = null;
             this.height += AndroidUtilities.dp(14.0f);
         }
-        float max2 = Math.max(this.width, this.title.getWidth());
-        this.width = max2;
-        float max3 = Math.max(max2, this.subtitle.getWidth());
-        this.width = max3;
-        float max4 = Math.max(max3, this.rowsWidth);
-        this.width = max4;
-        this.width = Math.min(max4 + AndroidUtilities.dp(32.0f), i);
+        float fMax = Math.max(this.width, this.title.getWidth());
+        this.width = fMax;
+        float fMax2 = Math.max(fMax, this.subtitle.getWidth());
+        this.width = fMax2;
+        float fMax3 = Math.max(fMax2, this.rowsWidth);
+        this.width = fMax3;
+        this.width = Math.min(fMax3 + AndroidUtilities.dp(32.0f), i);
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userInfoDidLoad) {
-            long longValue = ((Long) objArr[0]).longValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
             long j = this.dialogId;
-            if (longValue == j) {
+            if (jLongValue == j) {
                 set(j, MessagesController.getInstance(this.currentAccount).getPeerSettings(this.dialogId));
                 return;
             }
@@ -284,10 +284,10 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
         this.title.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.title.getWidth() / 2.0f), this.title.getHeight() / 2.0f, -1, 1.0f);
         canvas.translate(0.0f, this.title.getHeight() + AndroidUtilities.dp(3.0f));
-        float dp = height + AndroidUtilities.dp(14.0f) + this.title.getHeight() + AndroidUtilities.dp(3.0f);
+        float fDp = height + AndroidUtilities.dp(14.0f) + this.title.getHeight() + AndroidUtilities.dp(3.0f);
         this.subtitle.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.subtitle.getWidth() / 2.0f), this.subtitle.getHeight() / 2.0f, -1, 0.7f);
         canvas.translate(0.0f, this.subtitle.getHeight() + AndroidUtilities.dp(11.0f));
-        float height2 = dp + this.subtitle.getHeight() + AndroidUtilities.dp(11.0f);
+        float height2 = fDp + this.subtitle.getHeight() + AndroidUtilities.dp(11.0f);
         int i = 0;
         while (i < this.rows.size()) {
             if (i > 0) {
@@ -296,10 +296,10 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             }
             canvas.save();
             Row row = (Row) this.rows.get(i);
-            float dp2 = (((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
-            float dp3 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
+            float fDp2 = (((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
+            float fDp3 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
             int i2 = i;
-            row.key.ellipsize((dp3 - dp2) - AndroidUtilities.dp(7.66f)).draw(canvas, dp2, row.key.getHeight() / 2.0f, -1, 0.7f);
+            row.key.ellipsize((fDp3 - fDp2) - AndroidUtilities.dp(7.66f)).draw(canvas, fDp2, row.key.getHeight() / 2.0f, -1, 0.7f);
             row.bounds.set((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height2, (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height2);
             if (this.groupsRow == row) {
                 this.groupsBounds.set(row.bounds);
@@ -313,7 +313,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
                     this.groupsRipple.draw(canvas);
                 }
             }
-            row.value.ellipsize((((this.width / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - dp3).draw(canvas, dp3, row.value.getHeight() / 2.0f, -1, 1.0f);
+            row.value.ellipsize((((this.width / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - fDp3).draw(canvas, fDp3, row.value.getHeight() / 2.0f, -1, 1.0f);
             if (row.avatars) {
                 canvas.save();
                 canvas.translate((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));

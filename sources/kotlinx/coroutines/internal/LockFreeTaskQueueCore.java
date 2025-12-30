@@ -61,33 +61,8 @@ public final class LockFreeTaskQueueCore {
         return true;
     }
 
-    public final int addLast(Object obj) {
-        AtomicLongFieldUpdater atomicLongFieldUpdater = _state$volatile$FU;
-        while (true) {
-            long j = atomicLongFieldUpdater.get(this);
-            if ((3458764513820540928L & j) != 0) {
-                return Companion.addFailReason(j);
-            }
-            int i = (int) (1073741823 & j);
-            int i2 = (int) ((1152921503533105152L & j) >> 30);
-            int i3 = this.mask;
-            if (((i2 + 2) & i3) == (i & i3)) {
-                return 1;
-            }
-            if (!this.singleConsumer && getArray().get(i2 & i3) != null) {
-                int i4 = this.capacity;
-                if (i4 < 1024 || ((i2 - i) & 1073741823) > (i4 >> 1)) {
-                    break;
-                }
-            } else if (_state$volatile$FU.compareAndSet(this, j, Companion.updateTail(j, (i2 + 1) & 1073741823))) {
-                getArray().set(i2 & i3, obj);
-                LockFreeTaskQueueCore lockFreeTaskQueueCore = this;
-                while ((_state$volatile$FU.get(lockFreeTaskQueueCore) & 1152921504606846976L) != 0 && (lockFreeTaskQueueCore = lockFreeTaskQueueCore.next().fillPlaceholder(i2, obj)) != null) {
-                }
-                return 0;
-            }
-        }
-        return 1;
+    public final int addLast(java.lang.Object r13) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LockFreeTaskQueueCore.addLast(java.lang.Object):int");
     }
 
     private final LockFreeTaskQueueCore fillPlaceholder(int i, Object obj) {
@@ -127,10 +102,10 @@ public final class LockFreeTaskQueueCore {
                     return obj;
                 }
                 if (this.singleConsumer) {
-                    LockFreeTaskQueueCore lockFreeTaskQueueCore = this;
+                    LockFreeTaskQueueCore lockFreeTaskQueueCoreRemoveSlowPath = this;
                     do {
-                        lockFreeTaskQueueCore = lockFreeTaskQueueCore.removeSlowPath(i, i4);
-                    } while (lockFreeTaskQueueCore != null);
+                        lockFreeTaskQueueCoreRemoveSlowPath = lockFreeTaskQueueCoreRemoveSlowPath.removeSlowPath(i, i4);
+                    } while (lockFreeTaskQueueCoreRemoveSlowPath != null);
                     return obj;
                 }
             }
@@ -188,11 +163,11 @@ public final class LockFreeTaskQueueCore {
         while (true) {
             int i3 = this.mask;
             if ((i & i3) != (i3 & i2)) {
-                Object obj = getArray().get(this.mask & i);
-                if (obj == null) {
-                    obj = new Placeholder(i);
+                Object placeholder = getArray().get(this.mask & i);
+                if (placeholder == null) {
+                    placeholder = new Placeholder(i);
                 }
-                lockFreeTaskQueueCore.getArray().set(lockFreeTaskQueueCore.mask & i, obj);
+                lockFreeTaskQueueCore.getArray().set(lockFreeTaskQueueCore.mask & i, placeholder);
                 i++;
             } else {
                 _state$volatile$FU.set(lockFreeTaskQueueCore, Companion.wo(j, 1152921504606846976L));

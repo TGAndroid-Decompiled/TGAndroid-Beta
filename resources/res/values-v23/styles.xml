@@ -34,8 +34,8 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.Button.Colored</item>
     </style>
     <style name="Base.Widget.AppCompat.EditText" parent="@android:style/Widget.Material.EditText">
-        <item name="android:breakStrategy">simple</item>
-        <item name="android:hyphenationFrequency">none</item>
+        <item name="android:breakStrategy">0</item>
+        <item name="android:hyphenationFrequency">0</item>
     </style>
     <style name="Base.Widget.AppCompat.RatingBar.Indicator" parent="@android:style/Widget.Material.RatingBar.Indicator">
     </style>
@@ -44,10 +44,10 @@
     <style name="Base.Widget.AppCompat.Spinner.Underlined" parent="@android:style/Widget.Material.Spinner.Underlined">
     </style>
     <style name="Base.Widget.AppCompat.TextView" parent="@android:style/Widget.Material.TextView">
-        <item name="android:breakStrategy">high_quality</item>
-        <item name="android:hyphenationFrequency">none</item>
+        <item name="android:breakStrategy">1</item>
+        <item name="android:hyphenationFrequency">0</item>
     </style>
     <style name="MyTextViewStyle" parent="@android:style/Widget.Material.Light.TextView">
-        <item name="android:hyphenationFrequency">none</item>
+        <item name="android:hyphenationFrequency">0</item>
     </style>
 </resources>

@@ -74,11 +74,11 @@ public class AccountSelectCell extends FrameLayout {
     }
 
     private int width() {
-        float dp = AndroidUtilities.dp(196.0f);
-        float dp2 = AndroidUtilities.dp((this.checkImageView != null ? 50 : 0) + 69);
-        float measureText = this.textView.getTextPaint().measureText(this.textView.getText().toString());
+        float fDp = AndroidUtilities.dp(196.0f);
+        float fDp2 = AndroidUtilities.dp((this.checkImageView != null ? 50 : 0) + 69);
+        float fMeasureText = this.textView.getTextPaint().measureText(this.textView.getText().toString());
         TextView textView = this.infoTextView;
-        return (int) Math.max(dp, dp2 + Math.max(measureText, textView != null ? textView.getPaint().measureText(this.infoTextView.getText().toString()) : 0.0f));
+        return (int) Math.max(fDp, fDp2 + Math.max(fMeasureText, textView != null ? textView.getPaint().measureText(this.infoTextView.getText().toString()) : 0.0f));
     }
 
     @Override

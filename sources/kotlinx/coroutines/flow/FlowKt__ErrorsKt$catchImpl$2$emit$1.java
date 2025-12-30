@@ -2,16 +2,17 @@ package kotlinx.coroutines.flow;
 
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.jvm.internal.ContinuationImpl;
+import kotlinx.coroutines.flow.FlowKt__ErrorsKt;
 
-public final class FlowKt__ErrorsKt$catchImpl$2$emit$1 extends ContinuationImpl {
+final class FlowKt__ErrorsKt$catchImpl$2$emit$1 extends ContinuationImpl {
     Object L$0;
     int label;
     Object result;
-    final FlowKt__ErrorsKt$catchImpl$2 this$0;
+    final FlowKt__ErrorsKt.AnonymousClass2 this$0;
 
-    public FlowKt__ErrorsKt$catchImpl$2$emit$1(FlowKt__ErrorsKt$catchImpl$2 flowKt__ErrorsKt$catchImpl$2, Continuation continuation) {
+    FlowKt__ErrorsKt$catchImpl$2$emit$1(FlowKt__ErrorsKt.AnonymousClass2 anonymousClass2, Continuation continuation) {
         super(continuation);
-        this.this$0 = flowKt__ErrorsKt$catchImpl$2;
+        this.this$0 = anonymousClass2;
     }
 
     @Override

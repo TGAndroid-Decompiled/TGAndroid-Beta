@@ -73,7 +73,7 @@ public class TLObject {
         return nativeByteBuffer.length();
     }
 
-    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
+    protected static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
         if (t == null) {
             TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i, z);
             return null;

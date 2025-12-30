@@ -8,7 +8,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -34,7 +33,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseIntArray;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -53,17 +51,16 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import com.google.zxing.qrcode.QRCodeWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
@@ -71,7 +68,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
@@ -87,7 +83,6 @@ import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
@@ -133,7 +128,7 @@ public class QrActivity extends BaseFragment {
     private ThemeListViewController themesViewController;
     private long userId;
 
-    public interface OnItemSelectedListener {
+    interface OnItemSelectedListener {
         void onItemSelected(EmojiThemes emojiThemes, int i);
     }
 
@@ -164,13 +159,13 @@ public class QrActivity extends BaseFragment {
     public QrActivity(Bundle bundle) {
         super(bundle);
         this.resourcesProvider = new ThemeResourcesProvider();
-        EmojiThemes createHomeQrTheme = EmojiThemes.createHomeQrTheme(this.currentAccount);
-        this.homeTheme = createHomeQrTheme;
+        EmojiThemes emojiThemesCreateHomeQrTheme = EmojiThemes.createHomeQrTheme(this.currentAccount);
+        this.homeTheme = emojiThemesCreateHomeQrTheme;
         this.logoRect = new Rect();
         this.emojiThemeDarkIcons = new ArrayMap();
         this.prevQrColors = null;
         this.currMotionDrawable = new MotionBackgroundDrawable();
-        this.currentTheme = createHomeQrTheme;
+        this.currentTheme = emojiThemesCreateHomeQrTheme;
         this.selectedPosition = -1;
     }
 
@@ -182,258 +177,8 @@ public class QrActivity extends BaseFragment {
     }
 
     @Override
-    public View createView(Context context) {
-        TLRPC.Chat chat;
-        String publicUsername;
-        String str;
-        AvatarDrawable avatarDrawable;
-        ImageLocation forChat;
-        boolean z;
-        ImageLocation forChat2;
-        String str2;
-        boolean z2;
-        this.isCurrentThemeDark = Theme.getActiveTheme().isDark();
-        boolean z3 = false;
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setBackground(null);
-        this.actionBar.setItemsColor(-1, false);
-        FrameLayout frameLayout = new FrameLayout(context) {
-            private boolean prevIsPortrait;
-
-            @Override
-            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                super.dispatchTouchEvent(motionEvent);
-                return true;
-            }
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
-                boolean z4 = size < size2;
-                QrActivity.this.avatarImageView.setVisibility(z4 ? 0 : 8);
-                super.onMeasure(i, i2);
-                if (z4) {
-                    QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(330.0f), 1073741824));
-                } else {
-                    QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(273.0f), 1073741824), i2);
-                    QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(310.0f), 1073741824));
-                }
-                if (this.prevIsPortrait != z4) {
-                    QrActivity.this.qrView.onSizeChanged(QrActivity.this.qrView.getMeasuredWidth(), QrActivity.this.qrView.getMeasuredHeight(), 0, 0);
-                }
-                this.prevIsPortrait = z4;
-            }
-
-            @Override
-            protected void onLayout(boolean z4, int i, int i2, int i3, int i4) {
-                boolean z5 = getWidth() < getHeight();
-                QrActivity.this.backgroundView.layout(0, 0, getWidth(), getHeight());
-                int measuredHeight = QrActivity.this.themeLayout.getVisibility() == 0 ? QrActivity.this.themeLayout.getMeasuredHeight() : 0;
-                int width = z5 ? (getWidth() - QrActivity.this.qrView.getMeasuredWidth()) / 2 : ((getWidth() - QrActivity.this.themeLayout.getMeasuredWidth()) - QrActivity.this.qrView.getMeasuredWidth()) / 2;
-                int height = z5 ? ((((getHeight() - measuredHeight) - QrActivity.this.qrView.getMeasuredHeight()) - AndroidUtilities.dp(48.0f)) / 2) + AndroidUtilities.dp(52.0f) : (getHeight() - QrActivity.this.qrView.getMeasuredHeight()) / 2;
-                QrActivity.this.qrView.layout(width, height, QrActivity.this.qrView.getMeasuredWidth() + width, QrActivity.this.qrView.getMeasuredHeight() + height);
-                if (z5) {
-                    int width2 = (getWidth() - QrActivity.this.avatarImageView.getMeasuredWidth()) / 2;
-                    int dp = height - AndroidUtilities.dp(48.0f);
-                    QrActivity.this.avatarImageView.layout(width2, dp, QrActivity.this.avatarImageView.getMeasuredWidth() + width2, QrActivity.this.avatarImageView.getMeasuredHeight() + dp);
-                }
-                if (QrActivity.this.themeLayout.getVisibility() == 0) {
-                    if (z5) {
-                        int width3 = (getWidth() - QrActivity.this.themeLayout.getMeasuredWidth()) / 2;
-                        QrActivity.this.themeLayout.layout(width3, i4 - measuredHeight, QrActivity.this.themeLayout.getMeasuredWidth() + width3, i4);
-                    } else {
-                        int height2 = (getHeight() - QrActivity.this.themeLayout.getMeasuredHeight()) / 2;
-                        QrActivity.this.themeLayout.layout(i3 - QrActivity.this.themeLayout.getMeasuredWidth(), height2, i3, QrActivity.this.themeLayout.getMeasuredHeight() + height2);
-                    }
-                }
-                QrActivity.this.logoImageView.layout(QrActivity.this.logoRect.left + width, QrActivity.this.logoRect.top + height, width + QrActivity.this.logoRect.right, height + QrActivity.this.logoRect.bottom);
-                int dp2 = AndroidUtilities.dp(z5 ? 14.0f : 17.0f);
-                int dp3 = AndroidUtilities.statusBarHeight + AndroidUtilities.dp(z5 ? 10.0f : 5.0f);
-                QrActivity.this.closeImageView.layout(dp2, dp3, QrActivity.this.closeImageView.getMeasuredWidth() + dp2, QrActivity.this.closeImageView.getMeasuredHeight() + dp3);
-            }
-        };
-        View view = new View(context) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                canvas.drawColor(QrActivity.this.isCurrentThemeDark ? -15590870 : -6569073);
-                if (QrActivity.this.prevMotionDrawable != null) {
-                    QrActivity.this.prevMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
-                }
-                QrActivity.this.currMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
-                if (QrActivity.this.prevMotionDrawable != null) {
-                    QrActivity.this.prevMotionDrawable.drawBackground(canvas);
-                }
-                QrActivity.this.currMotionDrawable.drawBackground(canvas);
-                if (QrActivity.this.prevMotionDrawable != null) {
-                    QrActivity.this.prevMotionDrawable.drawPattern(canvas);
-                }
-                QrActivity.this.currMotionDrawable.drawPattern(canvas);
-                super.onDraw(canvas);
-            }
-        };
-        this.backgroundView = view;
-        frameLayout.addView(view);
-        if (this.userId != 0) {
-            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.userId));
-            if (user != null) {
-                publicUsername = UserObject.getPublicUsername(user);
-                if (publicUsername == null) {
-                    str = UserObject.getUserName(user);
-                    if (phoneIsPublic()) {
-                        publicUsername = user.phone;
-                        if (publicUsername != null && !publicUsername.startsWith("+")) {
-                            publicUsername = "+" + publicUsername;
-                        }
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                        z = true;
-                        avatarDrawable = new AvatarDrawable(user);
-                        forChat = ImageLocation.getForUser(user, 1);
-                        forChat2 = ImageLocation.getForUser(user, 0);
-                        z3 = z2;
-                    }
-                } else {
-                    str = null;
-                    z2 = false;
-                }
-                z = false;
-                avatarDrawable = new AvatarDrawable(user);
-                forChat = ImageLocation.getForUser(user, 1);
-                forChat2 = ImageLocation.getForUser(user, 0);
-                z3 = z2;
-            }
-            publicUsername = null;
-            str = null;
-            forChat2 = null;
-            forChat = null;
-            avatarDrawable = null;
-            z = false;
-        } else {
-            if (this.chatId != 0 && (chat = getMessagesController().getChat(Long.valueOf(this.chatId))) != null) {
-                publicUsername = ChatObject.getPublicUsername(chat);
-                str = null;
-                avatarDrawable = new AvatarDrawable(chat);
-                forChat = ImageLocation.getForChat(chat, 1);
-                z = false;
-                forChat2 = ImageLocation.getForChat(chat, 0);
-            }
-            publicUsername = null;
-            str = null;
-            forChat2 = null;
-            forChat = null;
-            avatarDrawable = null;
-            z = false;
-        }
-        QrView qrView = new QrView(context);
-        this.qrView = qrView;
-        qrView.setColors(-9324972, -13856649, -6636738, -9915042);
-        if (publicUsername != null) {
-            str2 = "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + publicUsername;
-        } else {
-            str2 = null;
-        }
-        QrView qrView2 = this.qrView;
-        if (str != null) {
-            publicUsername = str;
-        }
-        qrView2.setData(str2, publicUsername, z3, z);
-        this.qrView.setCenterChangedListener(new QrView.QrCenterChangedListener() {
-            @Override
-            public final void onCenterChanged(int i, int i2, int i3, int i4) {
-                QrActivity.this.lambda$createView$0(i, i2, i3, i4);
-            }
-        });
-        frameLayout.addView(this.qrView);
-        RLottieImageView rLottieImageView = new RLottieImageView(context);
-        this.logoImageView = rLottieImageView;
-        rLottieImageView.setAutoRepeat(true);
-        this.logoImageView.setAnimation(R.raw.qr_code_logo_2, 60, 60);
-        this.logoImageView.playAnimation();
-        frameLayout.addView(this.logoImageView);
-        BackupImageView backupImageView = new BackupImageView(context);
-        this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.dp(42.0f));
-        this.avatarImageView.setSize(AndroidUtilities.dp(84.0f), AndroidUtilities.dp(84.0f));
-        frameLayout.addView(this.avatarImageView, LayoutHelper.createFrame(84, 84, 51));
-        this.avatarImageView.setImage(forChat2, "84_84", forChat, "50_50", avatarDrawable, (Bitmap) null, (String) null, 0, (Object) null);
-        ImageView imageView = new ImageView(context);
-        this.closeImageView = imageView;
-        imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(34.0f), 671088640, 687865855));
-        this.closeImageView.setImageResource(R.drawable.ic_ab_back);
-        this.closeImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.closeImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                QrActivity.this.lambda$createView$1(view2);
-            }
-        });
-        frameLayout.addView(this.closeImageView, LayoutHelper.createFrame(34, 34.0f));
-        this.emojiThemeIcon = Bitmap.createBitmap(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(this.emojiThemeIcon);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight());
-        Paint paint = new Paint(1);
-        paint.setColor(-1);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        canvas.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), R.drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - r3.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - r3.getHeight()) * 0.5f, paint);
-        canvas.setBitmap(null);
-        ThemeListViewController themeListViewController = new ThemeListViewController(this, getParentActivity().getWindow()) {
-            @Override
-            protected void setDarkTheme(boolean z4) {
-                super.setDarkTheme(z4);
-                QrActivity.this.isCurrentThemeDark = z4;
-                QrActivity qrActivity = QrActivity.this;
-                qrActivity.onItemSelected(qrActivity.currentTheme, QrActivity.this.selectedPosition, false);
-            }
-        };
-        this.themesViewController = themeListViewController;
-        this.themeLayout = themeListViewController.rootLayout;
-        themeListViewController.onCreate();
-        this.themesViewController.setItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public final void onItemSelected(EmojiThemes emojiThemes, int i) {
-                QrActivity.this.lambda$createView$2(emojiThemes, i);
-            }
-        });
-        this.themesViewController.titleView.setText(LocaleController.getString(R.string.QrCode));
-        this.themesViewController.progressView.setViewType(17);
-        this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                QrActivity.this.lambda$createView$3(view2);
-            }
-        });
-        LinearLayout linearLayout = this.themesViewController.scanButtonWrap;
-        if (linearLayout != null) {
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    QrActivity.this.lambda$createView$4(view2);
-                }
-            });
-        }
-        frameLayout.addView(this.themeLayout, LayoutHelper.createFrame(-1, -2, 80));
-        this.currMotionDrawable.setIndeterminateAnimation(true);
-        this.fragmentView = frameLayout;
-        Utilities.themeQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                QrActivity.this.lambda$createView$6();
-            }
-        }, 25L);
-        this.fragmentView.postDelayed(new Runnable() {
-            @Override
-            public final void run() {
-                QrActivity.this.lambda$createView$7();
-            }
-        }, firstOpen ? 250L : 0L);
-        this.prevSystemUiVisibility = getParentActivity().getWindow().getDecorView().getSystemUiVisibility();
-        applyScreenSettings();
-        return this.fragmentView;
+    public android.view.View createView(android.content.Context r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.createView(android.content.Context):android.view.View");
     }
 
     public void lambda$createView$0(int i, int i2, int i3, int i4) {
@@ -449,24 +194,20 @@ public class QrActivity extends BaseFragment {
         onItemSelected(emojiThemes, i, true);
     }
 
-    public void lambda$createView$3(View view) {
+    public void lambda$createView$3(View view) throws IOException {
         this.themesViewController.shareButton.setClickable(false);
         performShare();
     }
 
     public void lambda$createView$4(View view) {
-        int checkSelfPermission;
         if (getParentActivity() == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkSelfPermission = getParentActivity().checkSelfPermission("android.permission.CAMERA");
-            if (checkSelfPermission != 0) {
-                getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                return;
-            }
+        if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+            getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+        } else {
+            openCameraScanActivity();
         }
-        openCameraScanActivity();
     }
 
     public void lambda$createView$6() {
@@ -478,7 +219,7 @@ public class QrActivity extends BaseFragment {
         view.postDelayed(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.this.lambda$createView$5();
+                this.f$0.lambda$createView$5();
             }
         }, 17L);
     }
@@ -636,10 +377,10 @@ public class QrActivity extends BaseFragment {
 
     public Bitmap getEmojiThemeIcon(EmojiThemes emojiThemes, boolean z) {
         if (z) {
-            Bitmap bitmap = (Bitmap) this.emojiThemeDarkIcons.get(emojiThemes.emoji);
-            if (bitmap == null) {
-                bitmap = Bitmap.createBitmap(this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight(), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
+            Bitmap bitmapCreateBitmap = (Bitmap) this.emojiThemeDarkIcons.get(emojiThemes.emoji);
+            if (bitmapCreateBitmap == null) {
+                bitmapCreateBitmap = Bitmap.createBitmap(this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmapCreateBitmap);
                 int[] iArr = (int[]) qrColorsMap.get(emojiThemes.emoji + "n");
                 if (iArr != null) {
                     if (this.tempMotionDrawable == null) {
@@ -651,9 +392,9 @@ public class QrActivity extends BaseFragment {
                 }
                 canvas.drawBitmap(this.emojiThemeIcon, 0.0f, 0.0f, (Paint) null);
                 canvas.setBitmap(null);
-                this.emojiThemeDarkIcons.put(emojiThemes.emoji, bitmap);
+                this.emojiThemeDarkIcons.put(emojiThemes.emoji, bitmapCreateBitmap);
             }
-            return bitmap;
+            return bitmapCreateBitmap;
         }
         return this.emojiThemeIcon;
     }
@@ -666,12 +407,12 @@ public class QrActivity extends BaseFragment {
                 valueAnimator.cancel();
             }
             if (z) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.patternIntensityAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.patternIntensityAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        QrActivity.this.lambda$onPatternLoaded$8(valueAnimator2);
+                        this.f$0.lambda$onPatternLoaded$8(valueAnimator2);
                     }
                 });
                 this.patternIntensityAnimator.setDuration(250L);
@@ -687,7 +428,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public void onItemSelected(EmojiThemes emojiThemes, int i, final boolean z) {
-        float f;
+        float fMax;
         this.selectedPosition = i;
         final EmojiThemes emojiThemes2 = this.currentTheme;
         final boolean z2 = this.isCurrentThemeDark;
@@ -695,10 +436,10 @@ public class QrActivity extends BaseFragment {
         EmojiThemes.ThemeItem themeItem = emojiThemes.getThemeItem(z2 ? 1 : 0);
         ValueAnimator valueAnimator = this.patternAlphaAnimator;
         if (valueAnimator != null) {
-            f = Math.max(0.5f, 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue()) * 1.0f;
+            fMax = Math.max(0.5f, 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue()) * 1.0f;
             this.patternAlphaAnimator.cancel();
         } else {
-            f = 1.0f;
+            fMax = 1.0f;
         }
         MotionBackgroundDrawable motionBackgroundDrawable = this.currMotionDrawable;
         this.prevMotionDrawable = motionBackgroundDrawable;
@@ -719,11 +460,11 @@ public class QrActivity extends BaseFragment {
         TLRPC.WallPaper wallpaper = this.currentTheme.getWallpaper(z2 ? 1 : 0);
         if (wallpaper != null) {
             this.currMotionDrawable.setPatternBitmap(wallpaper.settings.intensity);
-            final long elapsedRealtime = SystemClock.elapsedRealtime();
+            final long jElapsedRealtime = SystemClock.elapsedRealtime();
             this.currentTheme.loadWallpaper(z2 ? 1 : 0, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
-                    QrActivity.this.lambda$onItemSelected$9(z2, elapsedRealtime, (Pair) obj);
+                    this.f$0.lambda$onItemSelected$9(z2, jElapsedRealtime, (Pair) obj);
                 }
 
                 @Override
@@ -740,7 +481,7 @@ public class QrActivity extends BaseFragment {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.this.lambda$onItemSelected$11();
+                    this.f$0.lambda$onItemSelected$11();
                 }
             }, 35L);
         }
@@ -759,12 +500,12 @@ public class QrActivity extends BaseFragment {
             }
             this.currMotionDrawable.setAlpha(255);
             this.currMotionDrawable.setBackgroundAlpha(0.0f);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.patternAlphaAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.patternAlphaAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    QrActivity.this.lambda$onItemSelected$12(iArr, valueAnimator2);
+                    this.f$0.lambda$onItemSelected$12(iArr, valueAnimator2);
                 }
             });
             this.patternAlphaAnimator.addListener(new AnimatorListenerAdapter() {
@@ -784,13 +525,13 @@ public class QrActivity extends BaseFragment {
                 @Override
                 public void onAnimationCancel(Animator animator) {
                     super.onAnimationCancel(animator);
-                    float floatValue = ((Float) ((ValueAnimator) animator).getAnimatedValue()).floatValue();
+                    float fFloatValue = ((Float) ((ValueAnimator) animator).getAnimatedValue()).floatValue();
                     if (iArr != null) {
-                        System.arraycopy(new int[]{ColorUtils.blendARGB(QrActivity.this.prevQrColors[0], iArr[0], floatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[1], iArr[1], floatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[2], iArr[2], floatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[3], iArr[3], floatValue)}, 0, QrActivity.this.prevQrColors, 0, 4);
+                        System.arraycopy(new int[]{ColorUtils.blendARGB(QrActivity.this.prevQrColors[0], iArr[0], fFloatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[1], iArr[1], fFloatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[2], iArr[2], fFloatValue), ColorUtils.blendARGB(QrActivity.this.prevQrColors[3], iArr[3], fFloatValue)}, 0, QrActivity.this.prevQrColors, 0, 4);
                     }
                 }
             });
-            this.patternAlphaAnimator.setDuration((int) (f * 250.0f));
+            this.patternAlphaAnimator.setDuration((int) (fMax * 250.0f));
             this.patternAlphaAnimator.start();
         } else {
             if (iArr != null) {
@@ -804,11 +545,11 @@ public class QrActivity extends BaseFragment {
         themeAnimationSettings.applyTheme = false;
         themeAnimationSettings.onlyTopFragment = true;
         themeAnimationSettings.resourcesProvider = getResourceProvider();
-        themeAnimationSettings.duration = (int) (f * 250.0f);
+        themeAnimationSettings.duration = (int) (fMax * 250.0f);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.this.lambda$onItemSelected$14(z, emojiThemes2, themeAnimationSettings);
+                this.f$0.lambda$onItemSelected$14(z, emojiThemes2, themeAnimationSettings);
             }
         });
     }
@@ -818,9 +559,9 @@ public class QrActivity extends BaseFragment {
         if (pair == null || themeId == 0) {
             return;
         }
-        long longValue = ((Long) pair.first).longValue();
+        long jLongValue = ((Long) pair.first).longValue();
         Bitmap bitmap = ((WallpaperBitmapHolder) pair.second).bitmap;
-        if (longValue != themeId || bitmap == null) {
+        if (jLongValue != themeId || bitmap == null) {
             return;
         }
         onPatternLoaded(bitmap, this.currMotionDrawable.getIntensity(), SystemClock.elapsedRealtime() - j > 150);
@@ -831,7 +572,7 @@ public class QrActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.this.lambda$onItemSelected$10(bitmap);
+                this.f$0.lambda$onItemSelected$10(bitmap);
             }
         });
     }
@@ -841,16 +582,16 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$onItemSelected$12(int[] iArr, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         MotionBackgroundDrawable motionBackgroundDrawable = this.prevMotionDrawable;
         if (motionBackgroundDrawable != null) {
             motionBackgroundDrawable.setBackgroundAlpha(1.0f);
-            this.prevMotionDrawable.setPatternAlpha(1.0f - floatValue);
+            this.prevMotionDrawable.setPatternAlpha(1.0f - fFloatValue);
         }
-        this.currMotionDrawable.setBackgroundAlpha(floatValue);
-        this.currMotionDrawable.setPatternAlpha(floatValue);
+        this.currMotionDrawable.setBackgroundAlpha(fFloatValue);
+        this.currMotionDrawable.setPatternAlpha(fFloatValue);
         if (iArr != null) {
-            this.qrView.setColors(ColorUtils.blendARGB(this.prevQrColors[0], iArr[0], floatValue), ColorUtils.blendARGB(this.prevQrColors[1], iArr[1], floatValue), ColorUtils.blendARGB(this.prevQrColors[2], iArr[2], floatValue), ColorUtils.blendARGB(this.prevQrColors[3], iArr[3], floatValue));
+            this.qrView.setColors(ColorUtils.blendARGB(this.prevQrColors[0], iArr[0], fFloatValue), ColorUtils.blendARGB(this.prevQrColors[1], iArr[1], fFloatValue), ColorUtils.blendARGB(this.prevQrColors[2], iArr[2], fFloatValue), ColorUtils.blendARGB(this.prevQrColors[3], iArr[3], fFloatValue));
         }
         this.backgroundView.invalidate();
     }
@@ -864,7 +605,7 @@ public class QrActivity extends BaseFragment {
         themeAnimationSettings.afterStartDescriptionsAddedRunnable = new Runnable() {
             @Override
             public final void run() {
-                QrActivity.this.lambda$onItemSelected$13();
+                this.f$0.lambda$onItemSelected$13();
             }
         };
         this.parentLayout.animateThemedValues(themeAnimationSettings, null);
@@ -878,17 +619,17 @@ public class QrActivity extends BaseFragment {
         this.resourcesProvider.initColors(this.currentTheme, this.isCurrentThemeDark);
     }
 
-    private void performShare() {
+    private void performShare() throws IOException {
         Point point = AndroidUtilities.displaySize;
-        int min = Math.min(point.x, point.y);
+        int iMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
-        int max = Math.max(point2.x, point2.y);
-        float f = min;
-        if ((max * 1.0f) / f > 1.92f) {
-            max = (int) (f * 1.92f);
+        int iMax = Math.max(point2.x, point2.y);
+        float f = iMin;
+        if ((iMax * 1.0f) / f > 1.92f) {
+            iMax = (int) (f * 1.92f);
         }
-        Bitmap createBitmap = Bitmap.createBitmap(min, max, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iMin, iMax, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         this.themeLayout.setVisibility(8);
         this.closeImageView.setVisibility(8);
         this.logoImageView.setVisibility(8);
@@ -897,8 +638,8 @@ public class QrActivity extends BaseFragment {
         if (qrView != null) {
             qrView.setForShare(true);
         }
-        this.fragmentView.measure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(max, 1073741824));
-        this.fragmentView.layout(0, 0, min, max);
+        this.fragmentView.measure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(iMax, 1073741824));
+        this.fragmentView.layout(0, 0, iMin, iMax);
         this.fragmentView.draw(canvas);
         animatedDrawable.setBounds(this.logoImageView.getLeft(), this.logoImageView.getTop(), this.logoImageView.getRight(), this.logoImageView.getBottom());
         animatedDrawable.drawFrame(canvas, 33);
@@ -912,7 +653,7 @@ public class QrActivity extends BaseFragment {
         if (qrView2 != null) {
             qrView2.setForShare(false);
         }
-        Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(createBitmap, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
+        Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(bitmapCreateBitmap, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
         if (bitmapShareUri != null) {
             try {
                 getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString(R.string.InviteByQRCode)), 500);
@@ -923,7 +664,7 @@ public class QrActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.this.lambda$performShare$15();
+                this.f$0.lambda$performShare$15();
             }
         }, 500L);
     }
@@ -936,7 +677,7 @@ public class QrActivity extends BaseFragment {
         themeListViewController.shareButton.setClickable(true);
     }
 
-    public class AnonymousClass6 implements CameraScanActivity.CameraScanActivityDelegate {
+    class AnonymousClass6 implements CameraScanActivity.CameraScanActivityDelegate {
         @Override
         public void didFindMrzInfo(MrzRecognizer.Result result) {
             CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
@@ -962,12 +703,12 @@ public class QrActivity extends BaseFragment {
 
         @Override
         public void didFindQr(String str) {
-            String extractUsername = Browser.extractUsername(str);
-            if (!TextUtils.isEmpty(extractUsername)) {
-                MessagesController.getInstance(((BaseFragment) QrActivity.this).currentAccount).getUserNameResolver().resolve(extractUsername, new Consumer() {
+            String strExtractUsername = Browser.extractUsername(str);
+            if (!TextUtils.isEmpty(strExtractUsername)) {
+                MessagesController.getInstance(((BaseFragment) QrActivity.this).currentAccount).getUserNameResolver().resolve(strExtractUsername, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        QrActivity.AnonymousClass6.this.lambda$didFindQr$1((Long) obj);
+                        this.f$0.lambda$didFindQr$1((Long) obj);
                     }
                 });
             } else {
@@ -1018,7 +759,7 @@ public class QrActivity extends BaseFragment {
                 new AlertDialog.Builder(getParentActivity()).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        QrActivity.this.lambda$onRequestPermissionsResultFragment$16(alertDialog, i2);
+                        this.f$0.lambda$onRequestPermissionsResultFragment$16(alertDialog, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
             }
@@ -1042,7 +783,7 @@ public class QrActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                QrActivity.this.lambda$getThemeDescriptions$17();
+                this.f$0.lambda$getThemeDescriptions$17();
             }
 
             @Override
@@ -1070,7 +811,7 @@ public class QrActivity extends BaseFragment {
         setNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray));
     }
 
-    public class ThemeResourcesProvider implements Theme.ResourcesProvider {
+    private class ThemeResourcesProvider implements Theme.ResourcesProvider {
         private SparseIntArray colors;
 
         @Override
@@ -1080,23 +821,17 @@ public class QrActivity extends BaseFragment {
 
         @Override
         public ColorFilter getAnimatedEmojiColorFilter() {
-            ColorFilter colorFilter;
-            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-            return colorFilter;
+            return Theme.chat_animatedEmojiTextColorFilter;
         }
 
         @Override
         public int getColorOrDefault(int i) {
-            int color;
-            color = getColor(i);
-            return color;
+            return getColor(i);
         }
 
         @Override
         public int getCurrentColor(int i) {
-            int color;
-            color = getColor(i);
-            return color;
+            return getColor(i);
         }
 
         @Override
@@ -1106,9 +841,7 @@ public class QrActivity extends BaseFragment {
 
         @Override
         public Paint getPaint(String str) {
-            Paint themePaint;
-            themePaint = Theme.getThemePaint(str);
-            return themePaint;
+            return Theme.getThemePaint(str);
         }
 
         @Override
@@ -1118,9 +851,7 @@ public class QrActivity extends BaseFragment {
 
         @Override
         public boolean isDark() {
-            boolean isCurrentThemeDark;
-            isCurrentThemeDark = Theme.isCurrentThemeDark();
-            return isCurrentThemeDark;
+            return Theme.isCurrentThemeDark();
         }
 
         @Override
@@ -1142,7 +873,7 @@ public class QrActivity extends BaseFragment {
         }
     }
 
-    public static class QrView extends View {
+    static class QrView extends View {
         private Bitmap backgroundBitmap;
         private final Paint bitmapGradientPaint;
         private QrCenterChangedListener centerChangedListener;
@@ -1195,7 +926,7 @@ public class QrActivity extends BaseFragment {
             this.checkTimerToken = new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.this.lambda$new$5();
+                    this.f$0.lambda$new$5();
                 }
             };
             this.firstPrepare = true;
@@ -1266,9 +997,9 @@ public class QrActivity extends BaseFragment {
             }
             Paint paint = new Paint(1);
             paint.setColor(-1);
-            float dp = AndroidUtilities.dp(4.0f);
+            float fDp = AndroidUtilities.dp(4.0f);
             float f = SHADOW_SIZE;
-            paint.setShadowLayer(dp, 0.0f, f, 251658240);
+            paint.setShadowLayer(fDp, 0.0f, f, 251658240);
             this.backgroundBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(this.backgroundBitmap);
             float f2 = i;
@@ -1279,16 +1010,16 @@ public class QrActivity extends BaseFragment {
                 Utilities.themeQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        QrActivity.QrView.this.lambda$onSizeChanged$0(i, i2);
+                        this.f$0.lambda$onSizeChanged$0(i, i2);
                     }
                 });
             }
-            float max = Math.max((getWidth() * 1.0f) / this.gradientDrawable.getBitmap().getWidth(), (getHeight() * 1.0f) / this.gradientDrawable.getBitmap().getHeight());
+            float fMax = Math.max((getWidth() * 1.0f) / this.gradientDrawable.getBitmap().getWidth(), (getHeight() * 1.0f) / this.gradientDrawable.getBitmap().getHeight());
             Matrix matrix = new Matrix();
-            matrix.setScale(max, max);
+            matrix.setScale(fMax, fMax);
             this.gradientShader.setLocalMatrix(matrix);
             Matrix matrix2 = new Matrix();
-            matrix2.setScale(max, max);
+            matrix2.setScale(fMax, fMax);
             matrix2.postTranslate(f2 / 2.0f, getWidth() + AndroidUtilities.dp(6.0f));
             this.gradientTextShader.setLocalMatrix(matrix2);
         }
@@ -1320,13 +1051,13 @@ public class QrActivity extends BaseFragment {
                 float f = i2;
                 float f2 = width2;
                 float width4 = ((getWidth() / 2.0f) + f) - f2;
-                float round = ((Math.round((r9 / 4.65f) / r6) * width) / 2) * 0.75f;
-                canvas.drawCircle(width3, width4, round, this.bitmapGradientPaint);
+                float fRound = ((Math.round((r9 / 4.65f) / r6) * width) / 2) * 0.75f;
+                canvas.drawCircle(width3, width4, fRound, this.bitmapGradientPaint);
                 QRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
                 if (this.logoCenterSet || (qrCenterChangedListener = this.centerChangedListener) == null) {
                     return;
                 }
-                qrCenterChangedListener.onCenterChanged((int) (width3 - round), (int) (width4 - round), (int) (width3 + round), (int) (width4 + round));
+                qrCenterChangedListener.onCenterChanged((int) (width3 - fRound), (int) (width4 - fRound), (int) (width3 + fRound), (int) (width4 + fRound));
                 this.logoCenterSet = true;
             }
         }
@@ -1361,7 +1092,7 @@ public class QrActivity extends BaseFragment {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.this.lambda$setData$1(width, height);
+                    this.f$0.lambda$setData$1(width, height);
                 }
             });
             invalidate();
@@ -1388,7 +1119,7 @@ public class QrActivity extends BaseFragment {
                         Utilities.themeQueue.postRunnable(new Runnable() {
                             @Override
                             public final void run() {
-                                QrActivity.QrView.this.lambda$new$2(width, height);
+                                this.f$0.lambda$new$2(width, height);
                             }
                         });
                         this.timerTextDrawable.setText("");
@@ -1396,19 +1127,19 @@ public class QrActivity extends BaseFragment {
                     MessagesController.getInstance(UserConfig.selectedAccount).requestContactToken(this.linkExpires == 0 ? 750L : 1750L, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            QrActivity.QrView.this.lambda$new$4((TLRPC.TL_exportedContactToken) obj);
+                            this.f$0.lambda$new$4((TLRPC.TL_exportedContactToken) obj);
                         }
                     });
                 }
                 int i = this.linkExpires;
                 if (i > 0 && this.link != null) {
-                    long max = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
-                    int i2 = (int) (max % 60);
-                    int min = Math.min(99, (int) (max / 60));
+                    long jMax = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
+                    int i2 = (int) (jMax % 60);
+                    int iMin = Math.min(99, (int) (jMax / 60));
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(min < 10 ? "0" : "");
-                    sb.append(min);
+                    sb.append(iMin < 10 ? "0" : "");
+                    sb.append(iMin);
                     sb.append(":");
                     sb.append(i2 < 10 ? "0" : "");
                     sb.append(i2);
@@ -1424,7 +1155,7 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.this.lambda$new$3(tL_exportedContactToken);
+                    this.f$0.lambda$new$3(tL_exportedContactToken);
                 }
             });
         }
@@ -1518,7 +1249,7 @@ public class QrActivity extends BaseFragment {
         }
     }
 
-    public class ThemeListViewController implements NotificationCenter.NotificationCenterDelegate {
+    class ThemeListViewController implements NotificationCenter.NotificationCenterDelegate {
         public final ChatThemeBottomSheet.Adapter adapter;
         private final Drawable backgroundDrawable;
         private final View bottomShadow;
@@ -1557,15 +1288,15 @@ public class QrActivity extends BaseFragment {
             Activity parentActivity = baseFragment.getParentActivity();
             this.scroller = new LinearSmoothScroller(parentActivity) {
                 @Override
-                public int calculateTimeForScrolling(int i) {
+                protected int calculateTimeForScrolling(int i) {
                     return super.calculateTimeForScrolling(i) * 6;
                 }
             };
-            Drawable mutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-            this.backgroundDrawable = mutate;
+            Drawable drawableMutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+            this.backgroundDrawable = drawableMutate;
             int themedColor = baseFragment.getThemedColor(Theme.key_dialogBackground);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
                 private final Rect backgroundPadding;
                 final BaseFragment val$fragment;
@@ -1585,10 +1316,10 @@ public class QrActivity extends BaseFragment {
                 protected void onMeasure(int i, int i2) {
                     Point point = AndroidUtilities.displaySize;
                     boolean z = point.x < point.y;
-                    int dp = AndroidUtilities.dp(12.0f);
+                    int iDp = AndroidUtilities.dp(12.0f);
                     if (z) {
                         ThemeListViewController.this.recyclerView.setLayoutParams(LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 44.0f, 0.0f, 0.0f));
-                        ThemeListViewController.this.recyclerView.setPadding(dp, 0, dp, 0);
+                        ThemeListViewController.this.recyclerView.setPadding(iDp, 0, iDp, 0);
                         ThemeListViewController themeListViewController = ThemeListViewController.this;
                         if (themeListViewController.scanButtonWrap != null) {
                             themeListViewController.shareButton.setLayoutParams(LayoutHelper.createFrame(-1, 48.0f, 8388611, 16.0f, 162.0f, 16.0f, 72.0f));
@@ -1597,7 +1328,7 @@ public class QrActivity extends BaseFragment {
                             themeListViewController.shareButton.setLayoutParams(LayoutHelper.createFrame(-1, 48.0f, 8388611, 16.0f, 162.0f, 16.0f, 16.0f));
                         }
                     } else {
-                        ThemeListViewController.this.recyclerView.setPadding(dp, dp / 2, dp, dp);
+                        ThemeListViewController.this.recyclerView.setPadding(iDp, iDp / 2, iDp, iDp);
                         ThemeListViewController themeListViewController2 = ThemeListViewController.this;
                         if (themeListViewController2.scanButtonWrap != null) {
                             themeListViewController2.recyclerView.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f, 8388611, 0.0f, 44.0f, 0.0f, 136.0f));
@@ -1665,9 +1396,9 @@ public class QrActivity extends BaseFragment {
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int i = Theme.key_featuredStickers_addButton;
             int themedColor2 = baseFragment.getThemedColor(i);
-            int dp = AndroidUtilities.dp(28.0f);
+            int iDp = AndroidUtilities.dp(28.0f);
             int i2 = R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, dp, dp, false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, iDp, iDp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -1690,7 +1421,7 @@ public class QrActivity extends BaseFragment {
             rLottieImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    QrActivity.ThemeListViewController.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             rLottieImageView.setAlpha(0.0f);
@@ -1717,7 +1448,7 @@ public class QrActivity extends BaseFragment {
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i3) {
-                    QrActivity.ThemeListViewController.this.onItemClicked(view, i3);
+                    this.f$0.onItemClicked(view, i3);
                 }
             });
             recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1835,7 +1566,7 @@ public class QrActivity extends BaseFragment {
             this.layoutManager.scrollToPositionWithOffset(Math.min(i, this.adapter.items.size() - 1), 0);
         }
 
-        public void onItemClicked(View view, final int i) {
+        protected void onItemClicked(View view, final int i) {
             if (this.adapter.items.get(i) == this.selectedItem || this.changeDayNightView != null) {
                 return;
             }
@@ -1845,7 +1576,7 @@ public class QrActivity extends BaseFragment {
             this.rootLayout.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.ThemeListViewController.this.lambda$onItemClicked$1(i);
+                    this.f$0.lambda$onItemClicked$1(i);
                 }
             }, 100L);
             for (int i2 = 0; i2 < this.recyclerView.getChildCount(); i2++) {
@@ -1864,17 +1595,17 @@ public class QrActivity extends BaseFragment {
         }
 
         public void lambda$onItemClicked$1(int i) {
-            int i2;
+            int iMax;
             RecyclerView.LayoutManager layoutManager = this.recyclerView.getLayoutManager();
             if (layoutManager != null) {
                 if (!this.prevIsPortrait) {
-                    i2 = i;
+                    iMax = i;
                 } else if (i > this.prevSelectedPosition) {
-                    i2 = Math.min(i + 1, this.adapter.items.size() - 1);
+                    iMax = Math.min(i + 1, this.adapter.items.size() - 1);
                 } else {
-                    i2 = Math.max(i - 1, 0);
+                    iMax = Math.max(i - 1, 0);
                 }
-                this.scroller.setTargetPosition(i2);
+                this.scroller.setTargetPosition(iMax);
                 layoutManager.startSmoothScroll(this.scroller);
             }
             this.prevSelectedPosition = i;
@@ -1887,8 +1618,8 @@ public class QrActivity extends BaseFragment {
             }
             FrameLayout frameLayout = (FrameLayout) this.fragment.getParentActivity().getWindow().getDecorView();
             FrameLayout frameLayout2 = (FrameLayout) this.window.getDecorView();
-            final Bitmap createBitmap = Bitmap.createBitmap(frameLayout2.getWidth(), frameLayout2.getHeight(), Bitmap.Config.ARGB_8888);
-            final Canvas canvas = new Canvas(createBitmap);
+            final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(frameLayout2.getWidth(), frameLayout2.getHeight(), Bitmap.Config.ARGB_8888);
+            final Canvas canvas = new Canvas(bitmapCreateBitmap);
             this.darkThemeView.setAlpha(0.0f);
             frameLayout.draw(canvas);
             frameLayout2.draw(canvas);
@@ -1904,20 +1635,20 @@ public class QrActivity extends BaseFragment {
             final float f2 = iArr[1];
             final float measuredWidth = f + (this.darkThemeView.getMeasuredWidth() / 2.0f);
             final float measuredHeight = f2 + (this.darkThemeView.getMeasuredHeight() / 2.0f);
-            final float max = Math.max(createBitmap.getHeight(), createBitmap.getWidth()) * 0.9f;
+            final float fMax = Math.max(bitmapCreateBitmap.getHeight(), bitmapCreateBitmap.getWidth()) * 0.9f;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
+            paint2.setShader(new BitmapShader(bitmapCreateBitmap, tileMode, tileMode));
             this.changeDayNightView = new View(this.fragment.getParentActivity()) {
                 @Override
                 protected void onDraw(Canvas canvas2) {
                     super.onDraw(canvas2);
                     if (!z) {
-                        canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
+                        canvas2.drawCircle(measuredWidth, measuredHeight, fMax * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
                     } else {
                         if (ThemeListViewController.this.changeDayNightViewProgress > 0.0f) {
-                            canvas.drawCircle(measuredWidth, measuredHeight, max * ThemeListViewController.this.changeDayNightViewProgress, paint);
+                            canvas.drawCircle(measuredWidth, measuredHeight, fMax * ThemeListViewController.this.changeDayNightViewProgress, paint);
                         }
-                        canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
+                        canvas2.drawBitmap(bitmapCreateBitmap, 0.0f, 0.0f, paint2);
                     }
                     canvas2.save();
                     canvas2.translate(f, f2);
@@ -1926,12 +1657,12 @@ public class QrActivity extends BaseFragment {
                 }
             };
             this.changeDayNightViewProgress = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.changeDayNightViewAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.changeDayNightViewAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    QrActivity.ThemeListViewController.this.lambda$setupLightDarkTheme$2(valueAnimator2);
+                    this.f$0.lambda$setupLightDarkTheme$2(valueAnimator2);
                 }
             });
             this.changeDayNightViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1954,7 +1685,7 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.ThemeListViewController.this.lambda$setupLightDarkTheme$3(z);
+                    this.f$0.lambda$setupLightDarkTheme$3(z);
                 }
             });
         }

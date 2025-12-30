@@ -98,7 +98,7 @@ public abstract class PhotoUtilities {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$setImageAsAvatar$3(TLRPC.InputFile.this, inputFile2, d, videoSize, i, photoSize2, photoSize, runnable, iNavigationLayout, imageUpdater);
+                PhotoUtilities.lambda$setImageAsAvatar$3(inputFile, inputFile2, d, videoSize, i, photoSize2, photoSize, runnable, iNavigationLayout, imageUpdater);
             }
         });
     }
@@ -132,7 +132,7 @@ public abstract class PhotoUtilities {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$setImageAsAvatar$1(TLObject.this, i, photoSize, photoSize2, runnable, iNavigationLayout);
+                PhotoUtilities.lambda$setImageAsAvatar$1(tLObject, i, photoSize, photoSize2, runnable, iNavigationLayout);
             }
         });
     }
@@ -232,7 +232,7 @@ public abstract class PhotoUtilities {
 
             @Override
             public final void didUploadPhoto(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize2) {
-                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$8(ChatActivity.this, fileLocationArr, fileLocationArr2, clientUserId, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize2);
+                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$8(chatActivity, fileLocationArr, fileLocationArr2, clientUserId, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize2);
             }
 
             @Override
@@ -261,7 +261,7 @@ public abstract class PhotoUtilities {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$6(TLRPC.TL_error.this, chatActivity, tLObject, fileLocationArr, str, fileLocationArr2, j);
+                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$6(tL_error, chatActivity, tLObject, fileLocationArr, str, fileLocationArr2, j);
             }
         });
     }
@@ -334,7 +334,7 @@ public abstract class PhotoUtilities {
             chatActivity.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$7(ChatActivity.this, fileLocationArr, str, fileLocationArr2, j, tLObject, tL_error);
+                    PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$7(chatActivity, fileLocationArr, str, fileLocationArr2, j, tLObject, tL_error);
                 }
             });
             return;

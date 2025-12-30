@@ -40,25 +40,25 @@ public abstract class Render {
         boolean z;
         int i;
         double distanceTo = point.getDistanceTo(point2);
-        Point substract = point2.substract(point);
+        Point pointSubstract = point2.substract(point);
         Point point3 = new Point(1.0d, 1.0d, 0.0d);
-        float atan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(substract.y, substract.x);
+        float fAtan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(pointSubstract.y, pointSubstract.x);
         float f = (float) ((((renderState.baseWeight * point2.z) * renderState.scale) * 1.0d) / renderState.viewportScale);
-        double max = Math.max(1.0f, renderState.spacing * f);
+        double dMax = Math.max(1.0f, renderState.spacing * f);
         if (distanceTo > 0.0d) {
-            point3 = substract.multiplyByScalar(1.0d / distanceTo);
+            point3 = pointSubstract.multiplyByScalar(1.0d / distanceTo);
         }
         Point point4 = point3;
-        float min = Math.min(1.0f, renderState.alpha * 1.15f);
+        float fMin = Math.min(1.0f, renderState.alpha * 1.15f);
         boolean z2 = point.edge;
         boolean z3 = point2.edge;
-        int ceil = (int) Math.ceil((distanceTo - renderState.remainder) / max);
+        int iCeil = (int) Math.ceil((distanceTo - renderState.remainder) / dMax);
         int count = renderState.getCount();
-        renderState.appendValuesCount(ceil);
+        renderState.appendValuesCount(iCeil);
         renderState.setPosition(count);
-        Point add = point.add(point4.multiplyByScalar(renderState.remainder));
+        Point pointAdd = point.add(point4.multiplyByScalar(renderState.remainder));
         double d = renderState.remainder;
-        boolean z4 = true;
+        boolean zAddPoint = true;
         while (true) {
             if (d > distanceTo) {
                 z = z3;
@@ -67,18 +67,18 @@ public abstract class Render {
             }
             i = 1;
             z = z3;
-            z4 = renderState.addPoint(add.toPointF(), f, atan2, z2 ? min : renderState.alpha, -1);
-            if (!z4) {
+            zAddPoint = renderState.addPoint(pointAdd.toPointF(), f, fAtan2, z2 ? fMin : renderState.alpha, -1);
+            if (!zAddPoint) {
                 break;
             }
-            add = add.add(point4.multiplyByScalar(max));
-            d += max;
+            pointAdd = pointAdd.add(point4.multiplyByScalar(dMax));
+            d += dMax;
             z2 = false;
             z3 = z;
         }
-        if (z4 && z) {
+        if (zAddPoint && z) {
             renderState.appendValuesCount(i);
-            renderState.addPoint(point2.toPointF(), f, atan2, min, -1);
+            renderState.addPoint(point2.toPointF(), f, fAtan2, fMin, -1);
         }
         renderState.remainder = d - distanceTo;
     }
@@ -103,81 +103,81 @@ public abstract class Render {
             return rectF;
         }
         int i = count - 1;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(((count * 4) + (i * 2)) * 20);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        asFloatBuffer.position(0);
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(((count * 4) + (i * 2)) * 20);
+        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer floatBufferAsFloatBuffer = byteBufferAllocateDirect.asFloatBuffer();
+        floatBufferAsFloatBuffer.position(0);
         renderState.setPosition(0);
         int i2 = 0;
         int i3 = 0;
         while (i2 < count) {
-            float read = renderState.read();
-            float read2 = renderState.read();
-            float read3 = renderState.read();
-            float read4 = renderState.read();
-            float read5 = renderState.read();
-            RectF rectF2 = new RectF(read - read3, read2 - read3, read + read3, read2 + read3);
-            float f2 = rectF2.left;
-            float f3 = rectF2.top;
-            float f4 = rectF2.right;
-            float f5 = rectF2.bottom;
+            float f2 = renderState.read();
+            float f3 = renderState.read();
+            float f4 = renderState.read();
+            float f5 = renderState.read();
+            float f6 = renderState.read();
+            RectF rectF2 = new RectF(f2 - f4, f3 - f4, f2 + f4, f3 + f4);
+            float f7 = rectF2.left;
+            float f8 = rectF2.top;
+            float f9 = rectF2.right;
+            float f10 = rectF2.bottom;
             float[] fArr = new float[8];
-            fArr[c2] = f2;
-            fArr[1] = f3;
-            fArr[2] = f4;
-            fArr[3] = f3;
-            fArr[4] = f2;
-            fArr[5] = f5;
-            fArr[6] = f4;
-            fArr[7] = f5;
-            float centerX = rectF2.centerX();
-            float centerY = rectF2.centerY();
+            fArr[c2] = f7;
+            fArr[1] = f8;
+            fArr[2] = f9;
+            fArr[3] = f8;
+            fArr[4] = f7;
+            fArr[5] = f10;
+            fArr[6] = f9;
+            fArr[7] = f10;
+            float fCenterX = rectF2.centerX();
+            float fCenterY = rectF2.centerY();
             Matrix matrix = new Matrix();
-            matrix.setRotate((float) Math.toDegrees(read4), centerX, centerY);
+            matrix.setRotate((float) Math.toDegrees(f5), fCenterX, fCenterY);
             matrix.mapPoints(fArr);
             matrix.mapRect(rectF2);
             Utils.RectFIntegral(rectF2);
             rectF.union(rectF2);
             if (i3 != 0) {
-                asFloatBuffer.put(fArr[0]);
+                floatBufferAsFloatBuffer.put(fArr[0]);
                 c = 1;
-                asFloatBuffer.put(fArr[1]);
+                floatBufferAsFloatBuffer.put(fArr[1]);
                 f = 0.0f;
-                asFloatBuffer.put(0.0f);
-                asFloatBuffer.put(0.0f);
-                asFloatBuffer.put(read5);
+                floatBufferAsFloatBuffer.put(0.0f);
+                floatBufferAsFloatBuffer.put(0.0f);
+                floatBufferAsFloatBuffer.put(f6);
                 i3++;
             } else {
                 c = 1;
                 f = 0.0f;
             }
-            asFloatBuffer.put(fArr[0]);
-            asFloatBuffer.put(fArr[c]);
-            asFloatBuffer.put(f);
-            asFloatBuffer.put(f);
-            asFloatBuffer.put(read5);
-            asFloatBuffer.put(fArr[2]);
-            asFloatBuffer.put(fArr[3]);
-            asFloatBuffer.put(1.0f);
-            asFloatBuffer.put(f);
-            asFloatBuffer.put(read5);
-            asFloatBuffer.put(fArr[4]);
-            asFloatBuffer.put(fArr[5]);
-            asFloatBuffer.put(f);
-            asFloatBuffer.put(1.0f);
-            asFloatBuffer.put(read5);
-            asFloatBuffer.put(fArr[6]);
-            asFloatBuffer.put(fArr[7]);
-            asFloatBuffer.put(1.0f);
-            asFloatBuffer.put(1.0f);
-            asFloatBuffer.put(read5);
+            floatBufferAsFloatBuffer.put(fArr[0]);
+            floatBufferAsFloatBuffer.put(fArr[c]);
+            floatBufferAsFloatBuffer.put(f);
+            floatBufferAsFloatBuffer.put(f);
+            floatBufferAsFloatBuffer.put(f6);
+            floatBufferAsFloatBuffer.put(fArr[2]);
+            floatBufferAsFloatBuffer.put(fArr[3]);
+            floatBufferAsFloatBuffer.put(1.0f);
+            floatBufferAsFloatBuffer.put(f);
+            floatBufferAsFloatBuffer.put(f6);
+            floatBufferAsFloatBuffer.put(fArr[4]);
+            floatBufferAsFloatBuffer.put(fArr[5]);
+            floatBufferAsFloatBuffer.put(f);
+            floatBufferAsFloatBuffer.put(1.0f);
+            floatBufferAsFloatBuffer.put(f6);
+            floatBufferAsFloatBuffer.put(fArr[6]);
+            floatBufferAsFloatBuffer.put(fArr[7]);
+            floatBufferAsFloatBuffer.put(1.0f);
+            floatBufferAsFloatBuffer.put(1.0f);
+            floatBufferAsFloatBuffer.put(f6);
             int i4 = i3 + 4;
             if (i2 != i) {
-                asFloatBuffer.put(fArr[6]);
-                asFloatBuffer.put(fArr[7]);
-                asFloatBuffer.put(1.0f);
-                asFloatBuffer.put(1.0f);
-                asFloatBuffer.put(read5);
+                floatBufferAsFloatBuffer.put(fArr[6]);
+                floatBufferAsFloatBuffer.put(fArr[7]);
+                floatBufferAsFloatBuffer.put(1.0f);
+                floatBufferAsFloatBuffer.put(1.0f);
+                floatBufferAsFloatBuffer.put(f6);
                 i3 += 5;
             } else {
                 i3 = i4;
@@ -185,14 +185,14 @@ public abstract class Render {
             i2++;
             c2 = 0;
         }
-        asFloatBuffer.position(0);
-        GLES20.glVertexAttribPointer(0, 2, 5126, false, 20, (Buffer) asFloatBuffer.slice());
+        floatBufferAsFloatBuffer.position(0);
+        GLES20.glVertexAttribPointer(0, 2, 5126, false, 20, (Buffer) floatBufferAsFloatBuffer.slice());
         GLES20.glEnableVertexAttribArray(0);
-        asFloatBuffer.position(2);
-        GLES20.glVertexAttribPointer(1, 2, 5126, true, 20, (Buffer) asFloatBuffer.slice());
+        floatBufferAsFloatBuffer.position(2);
+        GLES20.glVertexAttribPointer(1, 2, 5126, true, 20, (Buffer) floatBufferAsFloatBuffer.slice());
         GLES20.glEnableVertexAttribArray(1);
-        asFloatBuffer.position(4);
-        GLES20.glVertexAttribPointer(2, 1, 5126, true, 20, (Buffer) asFloatBuffer.slice());
+        floatBufferAsFloatBuffer.position(4);
+        GLES20.glVertexAttribPointer(2, 1, 5126, true, 20, (Buffer) floatBufferAsFloatBuffer.slice());
         GLES20.glEnableVertexAttribArray(2);
         GLES20.glDrawArrays(5, 0, i3);
         return rectF;

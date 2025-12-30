@@ -40,13 +40,13 @@ public class GallerySheet extends BottomSheet {
         galleryListView.setOnBackClickListener(new Runnable() {
             @Override
             public final void run() {
-                GallerySheet.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         galleryListView.setOnSelectListener(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GallerySheet.this.lambda$new$1(obj, (Bitmap) obj2);
+                this.f$0.lambda$new$1(obj, (Bitmap) obj2);
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
@@ -79,14 +79,14 @@ public class GallerySheet extends BottomSheet {
         animate(false, new Runnable() {
             @Override
             public final void run() {
-                GallerySheet.this.lambda$dismiss$2();
+                this.f$0.lambda$dismiss$2();
             }
         });
         super.lambda$new$0();
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return !this.listView.actionBarShown;
     }
 
@@ -111,18 +111,18 @@ public class GallerySheet extends BottomSheet {
             this.galleryOpenCloseSpringAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    GallerySheet.this.lambda$animate$3(height, runnable, dynamicAnimation, z2, f, f2);
+                    this.f$0.lambda$animate$3(height, runnable, dynamicAnimation, z2, f, f2);
                 }
             });
             this.galleryOpenCloseSpringAnimator.start();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
-        this.galleryOpenCloseAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(translationY, height);
+        this.galleryOpenCloseAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                GallerySheet.this.lambda$animate$4(valueAnimator);
+                this.f$0.lambda$animate$4(valueAnimator);
             }
         });
         this.galleryOpenCloseAnimator.addListener(new AnimatorListenerAdapter() {

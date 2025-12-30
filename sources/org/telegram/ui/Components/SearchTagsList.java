@@ -74,7 +74,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
 
     protected abstract boolean setFilter(ReactionsLayoutInBubble.VisibleReaction visibleReaction);
 
-    public static class Item {
+    static class Item {
         int count;
         String name;
         int nameHash;
@@ -137,7 +137,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SearchTagsList.this.lambda$createPremiumLayout$0(view);
+                this.f$0.lambda$createPremiumLayout$0(view);
             }
         });
         this.premiumLayout.setOrientation(0);
@@ -160,12 +160,12 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 super.onLayout(z, i, i2, i3, i4);
                 int width = getWidth();
-                int i5 = 0;
-                for (int i6 = 0; i6 < SearchTagsList.this.getChildCount(); i6++) {
-                    width = Math.min(width, SearchTagsList.this.getChildAt(i6).getLeft());
-                    i5 = Math.max(i5, SearchTagsList.this.getChildAt(i6).getRight());
+                int iMax = 0;
+                for (int i5 = 0; i5 < SearchTagsList.this.getChildCount(); i5++) {
+                    width = Math.min(width, SearchTagsList.this.getChildAt(i5).getLeft());
+                    iMax = Math.max(iMax, SearchTagsList.this.getChildAt(i5).getRight());
                 }
-                setPivotX((width + i5) / 2.0f);
+                setPivotX((width + iMax) / 2.0f);
             }
         };
         int i = Theme.key_windowBackgroundWhiteBlueText2;
@@ -173,11 +173,11 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         textView.setTextSize(1, 12.0f);
         textView.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
         int i2 = Theme.key_chat_messageLinkIn;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        mutate.setColorFilter(new PorterDuffColorFilter(i2, mode));
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(i2, mode));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawableMutate);
         coloredImageSpan.setTranslateY(0.0f);
         coloredImageSpan.setTranslateX(0.0f);
         coloredImageSpan.setScale(0.94f, 0.94f);
@@ -193,9 +193,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         textView2.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.AddTagsToYourSavedMessages2));
         SpannableString spannableString2 = new SpannableString(">");
-        Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        mutate2.setColorFilter(new PorterDuffColorFilter(i2, mode));
-        ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(mutate2);
+        Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(i2, mode));
+        ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(drawableMutate2);
         coloredImageSpan2.setScale(0.76f, 0.76f);
         coloredImageSpan2.setTranslateX(-AndroidUtilities.dp(1.0f));
         coloredImageSpan2.setTranslateY(AndroidUtilities.dp(1.0f));
@@ -250,15 +250,13 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                SearchTagsList.this.lambda$new$2(i, baseFragment, view, i2);
+                this.f$0.lambda$new$2(i, baseFragment, view, i2);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                boolean lambda$new$4;
-                lambda$new$4 = SearchTagsList.this.lambda$new$4(i, baseFragment, resourcesProvider, view, i2);
-                return lambda$new$4;
+                return this.f$0.lambda$new$4(i, baseFragment, resourcesProvider, view, i2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
@@ -308,8 +306,8 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             new PremiumFeatureBottomSheet(baseFragment, 24, true).show();
             return;
         }
-        long hash = ((Item) this.items.get(i2)).hash();
-        if (setFilter(this.chosen == hash ? null : ((Item) this.items.get(i2)).reaction)) {
+        long jHash = ((Item) this.items.get(i2)).hash();
+        if (setFilter(this.chosen == jHash ? null : ((Item) this.items.get(i2)).reaction)) {
             int i3 = 0;
             while (i3 < this.listView.getChildCount()) {
                 if (this.listView.getChildAt(i3) == view) {
@@ -328,10 +326,10 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
                     SearchTagsList.lambda$new$1((View) obj);
                 }
             });
-            if (this.chosen == hash) {
+            if (this.chosen == jHash) {
                 this.chosen = 0L;
             } else {
-                this.chosen = hash;
+                this.chosen = jHash;
                 ((TagButton) view).setChosen(true, true);
             }
         }
@@ -359,7 +357,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         ItemOptions.makeOptions(baseFragment, view).setGravity(3).add(R.drawable.menu_tag_rename, LocaleController.getString(TextUtils.isEmpty(item.name) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag), new Runnable() {
             @Override
             public final void run() {
-                SearchTagsList.this.lambda$new$3(i, item, resourcesProvider);
+                this.f$0.lambda$new$3(i, item, resourcesProvider);
             }
         }).show();
         return true;
@@ -379,9 +377,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             return false;
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.premiumLayout.getAlpha()) * 255.0f), 31);
-        boolean drawChild = super.drawChild(canvas, view, j);
+        boolean zDrawChild = super.drawChild(canvas, view, j);
         canvas.restore();
-        return drawChild;
+        return zDrawChild;
     }
 
     public static boolean onBackPressedRenameTagAlert(boolean z) {
@@ -401,8 +399,8 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         Object builder;
         ?? r1;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        Activity findActivity = AndroidUtilities.findActivity(context);
-        final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
+        Activity activityFindActivity = AndroidUtilities.findActivity(context);
+        final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
         boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final ?? r14 = new AlertDialog[1];
         if (z2) {
@@ -433,7 +431,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            protected void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 super.onTextChanged(charSequence, i2, i3, i4);
                 if (this.limit != null) {
                     this.limitCount = 12 - charSequence.length();
@@ -448,7 +446,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
@@ -456,7 +454,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             }
 
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
             }
         };
@@ -467,12 +465,12 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
                 if (i2 != 6) {
                     return false;
                 }
-                String obj = EditTextBoldCursor.this.getText().toString();
-                if (obj.length() > 12) {
-                    AndroidUtilities.shakeView(EditTextBoldCursor.this);
+                String string = editTextBoldCursor.getText().toString();
+                if (string.length() > 12) {
+                    AndroidUtilities.shakeView(editTextBoldCursor);
                     return true;
                 }
-                MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction), obj);
+                MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction), string);
                 AlertDialog alertDialog = r14[0];
                 if (alertDialog != null) {
                     alertDialog.dismiss();
@@ -517,7 +515,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         r15.setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                SearchTagsList.lambda$openRenameTagAlert$5(EditTextBoldCursor.this, i, reaction, alertDialog, i3);
+                SearchTagsList.lambda$openRenameTagAlert$5(editTextBoldCursor, i, reaction, alertDialog, i3);
             }
         });
         r15.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -527,10 +525,10 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             }
         });
         if (z2) {
-            AlertDialog create = r15.create();
-            currentDialog = create;
-            r14[0] = create;
-            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog alertDialogCreate = r15.create();
+            currentDialog = alertDialogCreate;
+            r14[0] = alertDialogCreate;
+            alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     SearchTagsList.lambda$openRenameTagAlert$7(currentFocus, dialogInterface);
@@ -539,25 +537,25 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    SearchTagsList.lambda$openRenameTagAlert$8(EditTextBoldCursor.this, dialogInterface);
+                    SearchTagsList.lambda$openRenameTagAlert$8(editTextBoldCursor, dialogInterface);
                 }
             });
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
-            AlertDialog create2 = r15.create();
+            AlertDialog alertDialogCreate2 = r15.create();
             r1 = 0;
-            r14[0] = create2;
-            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            r14[0] = alertDialogCreate2;
+            alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                    AndroidUtilities.hideKeyboard(editTextBoldCursor);
                 }
             });
             r14[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    SearchTagsList.lambda$openRenameTagAlert$10(EditTextBoldCursor.this, dialogInterface);
+                    SearchTagsList.lambda$openRenameTagAlert$10(editTextBoldCursor, dialogInterface);
                 }
             });
             r14[0].show();
@@ -567,11 +565,11 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
     }
 
     public static void lambda$openRenameTagAlert$5(EditTextBoldCursor editTextBoldCursor, int i, TLRPC.Reaction reaction, AlertDialog alertDialog, int i2) {
-        String obj = editTextBoldCursor.getText().toString();
-        if (obj.length() > 12) {
+        String string = editTextBoldCursor.getText().toString();
+        if (string.length() > 12) {
             AndroidUtilities.shakeView(editTextBoldCursor);
         } else {
-            MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction), obj);
+            MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction), string);
             alertDialog.dismiss();
         }
     }
@@ -624,8 +622,8 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.savedReactionTagsUpdate) {
-            long longValue = ((Long) objArr[0]).longValue();
-            if (longValue == 0 || longValue == this.topicId) {
+            long jLongValue = ((Long) objArr[0]).longValue();
+            if (jLongValue == 0 || jLongValue == this.topicId) {
                 updateTags(true);
                 return;
             }
@@ -649,16 +647,16 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
             z2 = false;
             for (int i = 0; i < savedReactionTags.tags.size(); i++) {
                 TLRPC.TL_savedReactionTag tL_savedReactionTag = savedReactionTags.tags.get(i);
-                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_savedReactionTag.reaction);
-                if (!hashSet.contains(Long.valueOf(fromTL.hash))) {
+                ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_savedReactionTag.reaction);
+                if (!hashSet.contains(Long.valueOf(visibleReactionFromTL.hash))) {
                     long j = this.topicId;
                     if (j == 0 || tL_savedReactionTag.count > 0) {
-                        Item item = Item.get(fromTL, tL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tL_savedReactionTag.reaction) : tL_savedReactionTag.title);
+                        Item item = Item.get(visibleReactionFromTL, tL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tL_savedReactionTag.reaction) : tL_savedReactionTag.title);
                         if (item.hash() == this.chosen) {
                             z2 = true;
                         }
                         this.items.add(item);
-                        hashSet.add(Long.valueOf(fromTL.hash));
+                        hashSet.add(Long.valueOf(visibleReactionFromTL.hash));
                     }
                 }
             }
@@ -694,9 +692,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         } else {
             this.adapter.notifyDataSetChanged();
         }
-        boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-        this.shownPremiumLayout = !isPremium;
-        if (!isPremium) {
+        boolean zIsPremium = UserConfig.getInstance(this.currentAccount).isPremium();
+        this.shownPremiumLayout = !zIsPremium;
+        if (!zIsPremium) {
             createPremiumLayout();
             if (z) {
                 return;
@@ -712,7 +710,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
                 linearLayout.animate().alpha(0.0f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        SearchTagsList.this.lambda$updateTags$12();
+                        this.f$0.lambda$updateTags$12();
                     }
                 }).start();
             } else {
@@ -762,12 +760,12 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         if (z) {
             setVisibility(0);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
-        this.actionBarTagsAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
+        this.actionBarTagsAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                SearchTagsList.this.lambda$show$13(valueAnimator2);
+                this.f$0.lambda$show$13(valueAnimator2);
             }
         });
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -791,9 +789,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
     }
 
     public void lambda$show$13(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBarTagsT = floatValue;
-        setShown(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.actionBarTagsT = fFloatValue;
+        setShown(fFloatValue);
         onShownUpdate(false);
     }
 
@@ -817,7 +815,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         canvas.save();
         if (this.showWithCut) {
             canvas.clipRect(0, 0, getWidth(), getCurrentHeight());
@@ -829,7 +827,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         canvas.restore();
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             return true;
@@ -841,7 +839,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             SearchTagsList searchTagsList = SearchTagsList.this;
-            return new RecyclerListView.Holder(new TagButton(searchTagsList.getContext()));
+            return new RecyclerListView.Holder(searchTagsList.new TagButton(searchTagsList.getContext()));
         }
 
         @Override
@@ -870,7 +868,7 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         }
     }
 
-    public class TagButton extends View {
+    private class TagButton extends View {
         private boolean attached;
         private boolean chosen;
         private ReactionsLayoutInBubble.VisibleReaction lastReaction;
@@ -904,9 +902,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
                     @Override
                     protected void updateColors(float f) {
                         this.lastDrawnTextColor = ColorUtils.blendARGB(this.fromTextColor, Theme.getColor(TagButton.this.chosen ? Theme.key_chat_inReactionButtonTextSelected : Theme.key_actionBarActionModeReactionText, SearchTagsList.this.resourcesProvider), f);
-                        int blendARGB = ColorUtils.blendARGB(this.fromBackgroundColor, Theme.getColor(TagButton.this.chosen ? Theme.key_chat_inReactionButtonBackground : Theme.key_actionBarActionModeReaction, SearchTagsList.this.resourcesProvider), f);
-                        this.lastDrawnBackgroundColor = blendARGB;
-                        this.lastDrawnTextColor = Theme.blendOver(blendARGB, this.lastDrawnTextColor);
+                        int iBlendARGB = ColorUtils.blendARGB(this.fromBackgroundColor, Theme.getColor(TagButton.this.chosen ? Theme.key_chat_inReactionButtonBackground : Theme.key_actionBarActionModeReaction, SearchTagsList.this.resourcesProvider), f);
+                        this.lastDrawnBackgroundColor = iBlendARGB;
+                        this.lastDrawnTextColor = Theme.blendOver(iBlendARGB, this.lastDrawnTextColor);
                         this.lastDrawnTagDotColor = ColorUtils.blendARGB(this.fromTagDotColor, TagButton.this.chosen ? 1526726655 : Theme.getColor(Theme.key_actionBarActionModeReactionDot, SearchTagsList.this.resourcesProvider), f);
                     }
 
@@ -1000,9 +998,9 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int dp = AndroidUtilities.dp(8.67f);
+            int iDp = AndroidUtilities.dp(8.67f);
             ReactionsLayoutInBubble.ReactionButton reactionButton = this.reactionButton;
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp + (reactionButton != null ? reactionButton.width : AndroidUtilities.dp(44.33f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(iDp + (reactionButton != null ? reactionButton.width : AndroidUtilities.dp(44.33f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
         }
 
         @Override

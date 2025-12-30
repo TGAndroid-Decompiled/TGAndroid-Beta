@@ -32,9 +32,9 @@ public class TL_payments {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.revoked = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.revoked = (int32 & 2) != 0;
             this.url = inputSerializedData.readString(z);
             this.date = inputSerializedData.readInt32(z);
             this.bot_id = inputSerializedData.readInt64(z);

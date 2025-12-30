@@ -8,8 +8,8 @@ public class SurroundAudioRemixer implements AudioRemixer {
         if (i2 != 1 && i2 != 2) {
             throw new IllegalArgumentException("Output must be 2 or 1 channels");
         }
-        int min = Math.min(shortBuffer.remaining() / i, shortBuffer2.remaining() / i2);
-        for (int i3 = 0; i3 < min; i3++) {
+        int iMin = Math.min(shortBuffer.remaining() / i, shortBuffer2.remaining() / i2);
+        for (int i3 = 0; i3 < iMin; i3++) {
             short s = shortBuffer.get();
             short s2 = shortBuffer.get();
             shortBuffer.position(shortBuffer.position() + 4);

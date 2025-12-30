@@ -1,5 +1,6 @@
 package kotlin.collections;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,7 +12,7 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt;
 
 public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
-    public static final boolean contains(Object[] objArr, Object obj) {
+    public static boolean contains(Object[] objArr, Object obj) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         return indexOf(objArr, obj) >= 0;
     }
@@ -252,7 +253,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return (Set) toCollection(objArr, new LinkedHashSet(MapsKt.mapCapacity(objArr.length)));
     }
 
-    public static final Appendable joinTo(Object[] objArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(Object[] objArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");
@@ -278,7 +279,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return buffer;
     }
 
-    public static final Appendable joinTo(short[] sArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(short[] sArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(sArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");
@@ -308,7 +309,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return buffer;
     }
 
-    public static final Appendable joinTo(int[] iArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(int[] iArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(iArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");
@@ -338,7 +339,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return buffer;
     }
 
-    public static final Appendable joinTo(long[] jArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(long[] jArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(jArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");
@@ -368,7 +369,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return buffer;
     }
 
-    public static final Appendable joinTo(float[] fArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(float[] fArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(fArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");
@@ -398,7 +399,7 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         return buffer;
     }
 
-    public static final Appendable joinTo(double[] dArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(double[] dArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(dArr, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");

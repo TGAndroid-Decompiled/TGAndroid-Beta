@@ -3,6 +3,7 @@ package org.telegram.ui.web;
 import android.util.LongSparseArray;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -29,7 +30,7 @@ public abstract class BrowserHistory {
         public String url;
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
+        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeInt64(this.time);
             String str = this.url;
@@ -77,8 +78,8 @@ public abstract class BrowserHistory {
             File historyFile = getHistoryFile();
             if (historyFile.exists()) {
                 SerializedData serializedData = new SerializedData(historyFile);
-                long readInt64 = serializedData.readInt64(true);
-                for (long j = 0; j < readInt64; j++) {
+                long int64 = serializedData.readInt64(true);
+                for (long j = 0; j < int64; j++) {
                     Entry entry = new Entry();
                     entry.readParams(serializedData, true);
                     arrayList.add(entry);
@@ -168,13 +169,13 @@ public abstract class BrowserHistory {
     public static void saveHistory() {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 BrowserHistory.lambda$saveHistory$2();
             }
         });
     }
 
-    public static void lambda$saveHistory$2() {
+    public static void lambda$saveHistory$2() throws IOException {
         try {
             File historyFile = getHistoryFile();
             if (!historyFile.exists()) {

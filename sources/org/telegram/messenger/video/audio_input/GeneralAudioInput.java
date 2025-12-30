@@ -1,5 +1,6 @@
 package org.telegram.messenger.video.audio_input;
 
+import android.media.MediaCodec;
 import java.nio.ShortBuffer;
 import org.telegram.messenger.video.AudioBufferConverter;
 import org.telegram.messenger.video.AudioConversions;
@@ -70,7 +71,7 @@ public class GeneralAudioInput extends AudioInput {
     }
 
     @Override
-    public short getNext() {
+    public short getNext() throws MediaCodec.CryptoException {
         if (!hasRemaining()) {
             throw new RuntimeException("Audio input has no remaining value.");
         }
@@ -90,13 +91,13 @@ public class GeneralAudioInput extends AudioInput {
         return s;
     }
 
-    private void decode() {
+    private void decode() throws MediaCodec.CryptoException {
         ShortBuffer shortBuffer = this.buffer;
         if (shortBuffer == null || shortBuffer.remaining() <= 0) {
-            AudioDecoder.DecodedBufferData decode = this.decoder.decode();
-            if (decode.index >= 0) {
-                this.buffer = this.audioBufferConverter.convert(decode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
-                this.decoder.releaseOutputBuffer(decode.index);
+            AudioDecoder.DecodedBufferData decodedBufferDataDecode = this.decoder.decode();
+            if (decodedBufferDataDecode.index >= 0) {
+                this.buffer = this.audioBufferConverter.convert(decodedBufferDataDecode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
+                this.decoder.releaseOutputBuffer(decodedBufferDataDecode.index);
                 return;
             }
             this.buffer = null;

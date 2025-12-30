@@ -49,12 +49,12 @@ public abstract class AbstractIterator implements Iterator {
         return this.state == 1;
     }
 
-    public final void setNext(Object obj) {
+    protected final void setNext(Object obj) {
         this.nextValue = obj;
         this.state = 1;
     }
 
-    public final void done() {
+    protected final void done() {
         this.state = 2;
     }
 }

@@ -117,29 +117,29 @@ public class LogoutActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                LogoutActivity.this.lambda$createView$0(view, i, f, f2);
+                this.f$0.lambda$createView$0(view, i, f, f2);
             }
         });
         return this.fragmentView;
     }
 
     public void lambda$createView$0(View view, int i, float f, float f2) {
-        Integer num = null;
+        Integer numValueOf = null;
         if (i == this.addAccountRow) {
             int i2 = 0;
             for (int i3 = 3; i3 >= 0; i3--) {
                 if (!UserConfig.getInstance(i3).isClientActivated()) {
                     i2++;
-                    if (num == null) {
-                        num = Integer.valueOf(i3);
+                    if (numValueOf == null) {
+                        numValueOf = Integer.valueOf(i3);
                     }
                 }
             }
             if (!UserConfig.hasPremiumOnAccounts()) {
                 i2--;
             }
-            if (i2 > 0 && num != null) {
-                presentFragment(new LoginActivity(num.intValue()));
+            if (i2 > 0 && numValueOf != null) {
+                presentFragment(new LoginActivity(numValueOf.intValue()));
                 return;
             } else {
                 if (UserConfig.hasPremiumOnAccounts()) {
@@ -183,12 +183,12 @@ public class LogoutActivity extends BaseFragment {
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        AlertDialog create = builder.create();
-        TextView textView = (TextView) create.getButton(-1);
+        AlertDialog alertDialogCreate = builder.create();
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
         if (textView != null) {
             textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
-        return create;
+        return alertDialogCreate;
     }
 
     public static void lambda$makeLogOutDialog$1(int i, AlertDialog alertDialog, int i2) {
@@ -196,7 +196,7 @@ public class LogoutActivity extends BaseFragment {
     }
 
     @Override
-    public void onDialogDismiss(Dialog dialog) {
+    protected void onDialogDismiss(Dialog dialog) {
         DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
     }
 

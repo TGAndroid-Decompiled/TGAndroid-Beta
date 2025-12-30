@@ -83,7 +83,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                ArchiveSettingsActivity.this.lambda$createView$1(view, i);
+                this.f$0.lambda$createView$1(view, i);
             }
         });
         getContactsController().loadGlobalPrivacySetting();
@@ -123,7 +123,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
                 simpleLayout.textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.UnlockPremium), Theme.key_undo_cancelColor, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        ArchiveSettingsActivity.this.lambda$createView$0();
+                        this.f$0.lambda$createView$0();
                     }
                 }));
                 simpleLayout.textView.setSingleLine(false);
@@ -174,7 +174,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public static class ItemInner extends AdapterWithDiffUtils.Item {
+    private static class ItemInner extends AdapterWithDiffUtils.Item {
         public int id;
         public CharSequence text;
 
@@ -196,7 +196,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public class ListAdapter extends AdapterWithDiffUtils {
+    private class ListAdapter extends AdapterWithDiffUtils {
         private ListAdapter() {
         }
 

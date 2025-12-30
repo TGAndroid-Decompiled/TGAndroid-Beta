@@ -52,16 +52,16 @@ public class AmountUtils$Amount {
             return sb.toString();
         }
         sb.append('.');
-        String l = Long.toString(decimals);
-        int tenPow = getTenPow(this.currency) - l.length();
+        String string = Long.toString(decimals);
+        int tenPow = getTenPow(this.currency) - string.length();
         for (int i = 0; i < tenPow; i++) {
             sb.append('0');
         }
-        int length = l.length();
-        while (length > 0 && l.charAt(length - 1) == '0') {
+        int length = string.length();
+        while (length > 0 && string.charAt(length - 1) == '0') {
             length--;
         }
-        sb.append((CharSequence) l, 0, length);
+        sb.append((CharSequence) string, 0, length);
         return sb.toString();
     }
 
@@ -75,17 +75,17 @@ public class AmountUtils$Amount {
 
     public String formatAsDecimalSpaced() {
         if (isRound()) {
-            int ordinal = this.currency.ordinal();
-            if (ordinal == 0) {
+            int iOrdinal = this.currency.ordinal();
+            if (iOrdinal == 0) {
                 return LocaleController.formatPluralStringSpaced("StarsCount", (int) asDecimal());
             }
-            if (ordinal == 1) {
+            if (iOrdinal == 1) {
                 return LocaleController.formatPluralStringSpaced("TonCount", (int) asDecimal());
             }
             return "";
         }
-        int ordinal2 = this.currency.ordinal();
-        return ordinal2 != 0 ? ordinal2 != 1 ? "" : LocaleController.formatString(R.string.TonCountX, asDecimalString()) : LocaleController.formatString(R.string.StarsCountX, asDecimalString());
+        int iOrdinal2 = this.currency.ordinal();
+        return iOrdinal2 != 0 ? iOrdinal2 != 1 ? "" : LocaleController.formatString(R.string.TonCountX, asDecimalString()) : LocaleController.formatString(R.string.StarsCountX, asDecimalString());
     }
 
     public boolean equals(Object obj) {
@@ -103,7 +103,7 @@ public class AmountUtils$Amount {
     }
 
     public AmountUtils$Amount round(int i) {
-        long asNano = asNano();
+        long jAsNano = asNano();
         long tenPow = getTenPow(this.currency) - i;
         if (tenPow <= 0) {
             return this;
@@ -112,7 +112,7 @@ public class AmountUtils$Amount {
         for (int i2 = 0; i2 < tenPow; i2++) {
             j *= 10;
         }
-        return fromNano((asNano / j) * j, this.currency);
+        return fromNano((jAsNano / j) * j, this.currency);
     }
 
     public static AmountUtils$Amount fromUsd(double d, AmountUtils$Currency amountUtils$Currency) {
@@ -183,11 +183,11 @@ public class AmountUtils$Amount {
 
     public static AmountUtils$Amount fromDecimal(String str, AmountUtils$Currency amountUtils$Currency) {
         try {
-            BigDecimal multiply = new BigDecimal(str).multiply(BigDecimal.valueOf(getDecimals(amountUtils$Currency)));
-            if (multiply.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0) {
+            BigDecimal bigDecimalMultiply = new BigDecimal(str).multiply(BigDecimal.valueOf(getDecimals(amountUtils$Currency)));
+            if (bigDecimalMultiply.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0) {
                 return null;
             }
-            return fromNano(multiply.longValue(), amountUtils$Currency);
+            return fromNano(bigDecimalMultiply.longValue(), amountUtils$Currency);
         } catch (NumberFormatException unused) {
             return null;
         }
@@ -206,8 +206,8 @@ public class AmountUtils$Amount {
     }
 
     public static AmountUtils$Amount ofSafe(TL_stars.StarsAmount starsAmount) {
-        AmountUtils$Amount of = of(starsAmount);
-        return of != null ? of : fromNano(0L, AmountUtils$Currency.STARS);
+        AmountUtils$Amount amountUtils$AmountOf = of(starsAmount);
+        return amountUtils$AmountOf != null ? amountUtils$AmountOf : fromNano(0L, AmountUtils$Currency.STARS);
     }
 
     public static boolean equals(TL_stars.StarsAmount starsAmount, TL_stars.StarsAmount starsAmount2) {

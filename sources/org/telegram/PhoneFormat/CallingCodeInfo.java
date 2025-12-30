@@ -10,7 +10,7 @@ public class CallingCodeInfo {
     public ArrayList intlPrefixes = new ArrayList();
     public ArrayList ruleSets = new ArrayList();
 
-    public String matchingAccessCode(String str) {
+    String matchingAccessCode(String str) {
         Iterator it = this.intlPrefixes.iterator();
         while (it.hasNext()) {
             String str2 = (String) it.next();
@@ -32,38 +32,38 @@ public class CallingCodeInfo {
         return null;
     }
 
-    public String format(String str) {
+    String format(String str) {
+        String strSubstring;
         String str2;
-        String str3;
-        String str4 = null;
+        String str3 = null;
         if (str.startsWith(this.callingCode)) {
-            str3 = this.callingCode;
-            str2 = str.substring(str3.length());
+            str2 = this.callingCode;
+            strSubstring = str.substring(str2.length());
         } else {
-            String matchingTrunkCode = matchingTrunkCode(str);
-            if (matchingTrunkCode != null) {
-                str2 = str.substring(matchingTrunkCode.length());
-                str4 = matchingTrunkCode;
-                str3 = null;
+            String strMatchingTrunkCode = matchingTrunkCode(str);
+            if (strMatchingTrunkCode != null) {
+                strSubstring = str.substring(strMatchingTrunkCode.length());
+                str3 = strMatchingTrunkCode;
+                str2 = null;
             } else {
-                str2 = str;
-                str3 = null;
+                strSubstring = str;
+                str2 = null;
             }
         }
         Iterator it = this.ruleSets.iterator();
         while (it.hasNext()) {
-            String format = ((RuleSet) it.next()).format(str2, str3, str4, true);
-            if (format != null) {
-                return format;
+            String str4 = ((RuleSet) it.next()).format(strSubstring, str2, str3, true);
+            if (str4 != null) {
+                return str4;
             }
         }
         Iterator it2 = this.ruleSets.iterator();
         while (it2.hasNext()) {
-            String format2 = ((RuleSet) it2.next()).format(str2, str3, str4, false);
-            if (format2 != null) {
-                return format2;
+            String str5 = ((RuleSet) it2.next()).format(strSubstring, str2, str3, false);
+            if (str5 != null) {
+                return str5;
             }
         }
-        return (str3 == null || str2.length() == 0) ? str : String.format("%s %s", str3, str2);
+        return (str2 == null || strSubstring.length() == 0) ? str : String.format("%s %s", str2, strSubstring);
     }
 }

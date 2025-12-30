@@ -9,17 +9,17 @@ public final class CustomTabsSession {
     private final Object mLock = new Object();
     private final ICustomTabsService mService;
 
-    public CustomTabsSession(ICustomTabsService iCustomTabsService, ICustomTabsCallback iCustomTabsCallback, ComponentName componentName) {
+    CustomTabsSession(ICustomTabsService iCustomTabsService, ICustomTabsCallback iCustomTabsCallback, ComponentName componentName) {
         this.mService = iCustomTabsService;
         this.mCallback = iCustomTabsCallback;
         this.mComponentName = componentName;
     }
 
-    public IBinder getBinder() {
+    IBinder getBinder() {
         return this.mCallback.asBinder();
     }
 
-    public ComponentName getComponentName() {
+    ComponentName getComponentName() {
         return this.mComponentName;
     }
 }

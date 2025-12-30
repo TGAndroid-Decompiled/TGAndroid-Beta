@@ -71,9 +71,9 @@ public class ReactionWidgetEntityView extends EntityView {
         this.progressToNext.set(1.0f, true);
         List<TLRPC.TL_availableReaction> reactionsList = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsList();
         ReactionImageHolder reactionImageHolder = this.reactionHolder;
-        ReactionsLayoutInBubble.VisibleReaction fromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(findHeartReaction(reactionsList));
-        this.currentReaction = fromEmojicon;
-        reactionImageHolder.setVisibleReaction(fromEmojicon);
+        ReactionsLayoutInBubble.VisibleReaction visibleReactionFromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(findHeartReaction(reactionsList));
+        this.currentReaction = visibleReactionFromEmojicon;
+        reactionImageHolder.setVisibleReaction(visibleReactionFromEmojicon);
         updatePosition();
     }
 
@@ -87,7 +87,7 @@ public class ReactionWidgetEntityView extends EntityView {
     }
 
     @Override
-    public void updatePosition() {
+    protected void updatePosition() {
         Size size = this.baseSize;
         float f = size.width / 2.0f;
         float f2 = size.height / 2.0f;
@@ -125,8 +125,8 @@ public class ReactionWidgetEntityView extends EntityView {
         storyReactionWidgetBackground3.setBounds(padding, padding, ((int) size2.width) - padding, ((int) size2.height) - padding);
         this.storyReactionWidgetBackground.draw(canvas);
         Rect rect = AndroidUtilities.rectTmp2;
-        float width = (this.storyReactionWidgetBackground.getBounds().width() * 0.61f) / 2.0f;
-        rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - width), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - width), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + width), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + width));
+        float fWidth = (this.storyReactionWidgetBackground.getBounds().width() * 0.61f) / 2.0f;
+        rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + fWidth));
         float f3 = this.progressToNext.set(1.0f);
         this.reactionHolder.setBounds(rect);
         this.nextReactionHolder.setBounds(rect);
@@ -216,14 +216,14 @@ public class ReactionWidgetEntityView extends EntityView {
             return;
         }
         final boolean[] zArr = {false};
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ReactionWidgetEntityView.this.lambda$mirror$0(zArr, valueAnimator);
+                this.f$0.lambda$mirror$0(zArr, valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 boolean[] zArr2 = zArr;
@@ -236,15 +236,15 @@ public class ReactionWidgetEntityView extends EntityView {
                 ReactionWidgetEntityView.this.drawScale = 1.0f;
             }
         });
-        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        ofFloat.setDuration(350L);
-        ofFloat.start();
+        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        valueAnimatorOfFloat.setDuration(350L);
+        valueAnimatorOfFloat.start();
     }
 
     public void lambda$mirror$0(boolean[] zArr, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (floatValue < 0.5f) {
-            float f = floatValue / 0.5f;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (fFloatValue < 0.5f) {
+            float f = fFloatValue / 0.5f;
             setRotationY(90.0f * f);
             this.drawScale = ((1.0f - f) * 0.3f) + 0.7f;
             invalidate();
@@ -254,7 +254,7 @@ public class ReactionWidgetEntityView extends EntityView {
             zArr[0] = true;
             this.storyReactionWidgetBackground.setMirror(this.mirror, false);
         }
-        float f2 = (floatValue - 0.5f) / 0.5f;
+        float f2 = (fFloatValue - 0.5f) / 0.5f;
         setRotationY((1.0f - f2) * (-90.0f));
         this.drawScale = (f2 * 0.3f) + 0.7f;
         invalidate();
@@ -294,15 +294,15 @@ public class ReactionWidgetEntityView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDp2 = AndroidUtilities.dp(19.5f);
+            float f3 = fDp + fDp2;
             float f4 = f3 * 2.0f;
             float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+            if (f > f3 - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + fDp2 && f2 < measuredHeight + fDp2) {
                 return 1;
             }
-            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
+            if (f > ((getMeasuredWidth() - f4) + f3) - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + (getMeasuredWidth() - f4) + fDp2 && f2 < measuredHeight + fDp2) {
                 return 2;
             }
             float measuredWidth = getMeasuredWidth() / 2.0f;
@@ -320,19 +320,19 @@ public class ReactionWidgetEntityView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
-            float dp = AndroidUtilities.dp(1.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2) - dp2;
-            float f = dp2 + (2.0f * measuredWidth);
-            this.arcRect.set(dp2, dp2, f, f);
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDpf2 = AndroidUtilities.dpf2(5.66f);
+            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2) - fDp2;
+            float f = fDp2 + (2.0f * measuredWidth);
+            this.arcRect.set(fDp2, fDp2, f, f);
             canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
             canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + dp2;
-            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
-            canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            float f2 = measuredWidth + fDp2;
+            canvas.drawCircle(fDp2, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(fDp2, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.drawCircle(f, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(f, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.restoreToCount(saveCount);
         }
     }

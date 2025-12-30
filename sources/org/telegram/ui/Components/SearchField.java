@@ -38,21 +38,21 @@ public abstract class SearchField extends FrameLayout {
     }
 
     public SearchField(Context context, boolean z, float f, Theme.ResourcesProvider resourcesProvider) {
+        FrameLayout.LayoutParams layoutParamsCreateFrame;
+        FrameLayout.LayoutParams layoutParamsCreateFrame2;
+        FrameLayout.LayoutParams layoutParamsCreateFrame3;
+        FrameLayout.LayoutParams layoutParamsCreateFrame4;
         super(context);
-        FrameLayout.LayoutParams createFrame;
-        FrameLayout.LayoutParams createFrame2;
-        FrameLayout.LayoutParams createFrame3;
-        FrameLayout.LayoutParams createFrame4;
         this.resourcesProvider = resourcesProvider;
         View view = new View(context);
         this.searchBackground = view;
         view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), getThemedColor(Theme.key_dialogSearchBackground)));
         if (z) {
-            createFrame = LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, f, 11.0f, f, 0.0f);
         } else {
-            createFrame = LayoutHelper.createFrame(-1, 36.0f, 51, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 36.0f, 51, f, 11.0f, f, 0.0f);
         }
-        addView(this.searchBackground, createFrame);
+        addView(this.searchBackground, layoutParamsCreateFrame);
         ImageView imageView = new ImageView(context);
         this.searchIconImageView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -60,11 +60,11 @@ public abstract class SearchField extends FrameLayout {
         this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
         this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
         if (z) {
-            createFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f + 2.0f, 11.0f, 0.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f + 2.0f, 11.0f, 0.0f, 0.0f);
         } else {
-            createFrame2 = LayoutHelper.createFrame(36, 36.0f, 51, f + 2.0f, 11.0f, 0.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrame(36, 36.0f, 51, f + 2.0f, 11.0f, 0.0f, 0.0f);
         }
-        addView(this.searchIconImageView, createFrame2);
+        addView(this.searchIconImageView, layoutParamsCreateFrame2);
         ImageView imageView2 = new ImageView(context);
         this.clearSearchImageView = imageView2;
         imageView2.setScaleType(scaleType);
@@ -82,15 +82,15 @@ public abstract class SearchField extends FrameLayout {
         this.clearSearchImageView.setScaleY(0.1f);
         this.clearSearchImageView.setAlpha(0.0f);
         if (z) {
-            createFrame3 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f, 11.0f, f, 0.0f);
         } else {
-            createFrame3 = LayoutHelper.createFrame(36, 36.0f, 53, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrame(36, 36.0f, 53, f, 11.0f, f, 0.0f);
         }
-        addView(this.clearSearchImageView, createFrame3);
+        addView(this.clearSearchImageView, layoutParamsCreateFrame3);
         this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SearchField.this.lambda$new$0(view2);
+                this.f$0.lambda$new$0(view2);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -127,12 +127,12 @@ public abstract class SearchField extends FrameLayout {
         this.searchEditText.setCursorWidth(1.5f);
         if (z) {
             float f2 = f + 2.0f;
-            createFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f2 + 38.0f, 9.0f, f2 + 30.0f, 0.0f);
+            layoutParamsCreateFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f2 + 38.0f, 9.0f, f2 + 30.0f, 0.0f);
         } else {
             float f3 = f + 2.0f;
-            createFrame4 = LayoutHelper.createFrame(-1, 40.0f, 51, f3 + 38.0f, 9.0f, f3 + 30.0f, 0.0f);
+            layoutParamsCreateFrame4 = LayoutHelper.createFrame(-1, 40.0f, 51, f3 + 38.0f, 9.0f, f3 + 30.0f, 0.0f);
         }
-        addView(this.searchEditText, createFrame4);
+        addView(this.searchEditText, layoutParamsCreateFrame4);
         this.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -155,9 +155,7 @@ public abstract class SearchField extends FrameLayout {
         this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                boolean lambda$new$1;
-                lambda$new$1 = SearchField.this.lambda$new$1(textView, i, keyEvent);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(textView, i, keyEvent);
             }
         });
     }

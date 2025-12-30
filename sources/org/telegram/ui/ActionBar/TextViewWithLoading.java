@@ -58,10 +58,10 @@ public abstract class TextViewWithLoading extends TextView {
         if (f > 0.0f) {
             int width = getWidth() / 2;
             int height = getHeight() / 2;
-            int dp = width - ((int) (AndroidUtilities.dp(6.0f) * (1.0f - f)));
+            int iDp = width - ((int) (AndroidUtilities.dp(6.0f) * (1.0f - f)));
             this.spinner.setAlpha((int) (f * 255.0f));
             CircularProgressDrawable circularProgressDrawable = this.spinner;
-            circularProgressDrawable.setBounds(dp - (circularProgressDrawable.getIntrinsicWidth() / 2), height - (this.spinner.getIntrinsicWidth() / 2), dp + (this.spinner.getIntrinsicWidth() / 2), height + (this.spinner.getIntrinsicHeight() / 2));
+            circularProgressDrawable.setBounds(iDp - (circularProgressDrawable.getIntrinsicWidth() / 2), height - (this.spinner.getIntrinsicWidth() / 2), iDp + (this.spinner.getIntrinsicWidth() / 2), height + (this.spinner.getIntrinsicHeight() / 2));
             this.spinner.draw(canvas);
             invalidate();
         }

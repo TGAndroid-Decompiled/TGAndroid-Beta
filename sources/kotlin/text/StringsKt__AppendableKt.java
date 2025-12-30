@@ -1,10 +1,11 @@
 package kotlin.text;
 
+import java.io.IOException;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class StringsKt__AppendableKt {
-    public static void appendElement(Appendable appendable, Object obj, Function1 function1) {
+    public static void appendElement(Appendable appendable, Object obj, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(appendable, "<this>");
         if (function1 != null) {
             appendable.append((CharSequence) function1.invoke(obj));

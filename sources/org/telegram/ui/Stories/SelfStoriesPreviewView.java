@@ -139,11 +139,11 @@ public abstract class SelfStoriesPreviewView extends View {
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         this.childPadding = AndroidUtilities.dp(8.0f);
-        int dp = (int) (AndroidUtilities.dp(180.0f) / 1.2f);
-        this.viewH = dp;
-        int i3 = (int) ((dp / 16.0f) * 9.0f);
+        int iDp = (int) (AndroidUtilities.dp(180.0f) / 1.2f);
+        this.viewH = iDp;
+        int i3 = (int) ((iDp / 16.0f) * 9.0f);
         this.viewW = i3;
-        float dp2 = i3 - AndroidUtilities.dp(8.0f);
+        float fDp = i3 - AndroidUtilities.dp(8.0f);
         this.topPadding = ((AndroidUtilities.dp(180.0f) - this.viewH) / 2.0f) + AndroidUtilities.dp(20.0f);
         updateScrollParams();
         if (this.scrollToPositionInLayout >= 0 && getMeasuredWidth() > 0) {
@@ -151,8 +151,8 @@ public abstract class SelfStoriesPreviewView extends View {
             scrollToPosition(this.scrollToPositionInLayout, false, false);
             this.scrollToPositionInLayout = -1;
         }
-        if (this.textWidth != dp2) {
-            this.textWidth = dp2;
+        if (this.textWidth != fDp) {
+            this.textWidth = fDp;
             for (int i4 = 0; i4 < this.lastDrawnImageReceivers.size(); i4++) {
                 ((ImageHolder) this.lastDrawnImageReceivers.get(i4)).onBind(((ImageHolder) this.lastDrawnImageReceivers.get(i4)).position);
             }
@@ -167,102 +167,8 @@ public abstract class SelfStoriesPreviewView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        int i;
-        super.onDraw(canvas);
-        if (this.scroller.computeScrollOffset()) {
-            this.scrollX = this.scroller.getCurrX();
-            invalidate();
-            this.checkScroll = true;
-        } else if (this.checkScroll) {
-            scrollToClosest();
-        }
-        float f6 = 2.0f;
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        this.imageReceiversTmp.clear();
-        this.imageReceiversTmp.addAll(this.lastDrawnImageReceivers);
-        this.lastDrawnImageReceivers.clear();
-        int i2 = -1;
-        float f7 = 2.1474836E9f;
-        int i3 = 0;
-        int i4 = -1;
-        while (i3 < this.storyItems.size()) {
-            float f8 = -this.scrollX;
-            float f9 = f8 + ((this.childPadding + r10) * i3);
-            float f10 = ((this.viewW / f6) + f9) - measuredWidth;
-            float abs = Math.abs(f10);
-            if (abs < this.viewW) {
-                f = 1.0f - (Math.abs(f10) / this.viewW);
-                f2 = (0.2f * f) + 1.0f;
-            } else {
-                f = 0.0f;
-                f2 = 1.0f;
-            }
-            if (i4 == i2 || abs < f7) {
-                i4 = i3;
-                f7 = abs;
-            }
-            if (f10 < 0.0f) {
-                f3 = f9 - ((this.viewW * 0.1f) * (1.0f - f));
-            } else {
-                f3 = f9 + (this.viewW * 0.1f * (1.0f - f));
-            }
-            if (f3 > getMeasuredWidth() || this.viewW + f3 < 0.0f) {
-                f4 = measuredWidth;
-                f5 = f7;
-            } else {
-                ImageHolder findOrCreateImageReceiver = findOrCreateImageReceiver(i3, this.imageReceiversTmp);
-                float f11 = this.viewW;
-                float f12 = f11 * f2;
-                float f13 = this.viewH;
-                float f14 = f2 * f13;
-                float f15 = f3 - ((f12 - f11) / f6);
-                float f16 = this.topPadding - ((f14 - f13) / f6);
-                if (this.progressToOpen == 0.0f || i3 == (i = this.lastClosestPosition)) {
-                    f4 = measuredWidth;
-                    f5 = f7;
-                    findOrCreateImageReceiver.receiver.setImageCoords(f15, f16, f12, f14);
-                } else {
-                    f4 = measuredWidth;
-                    f5 = f7;
-                    findOrCreateImageReceiver.receiver.setImageCoords(AndroidUtilities.lerp((i3 - i) * getMeasuredWidth(), f15, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromY, f16, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromW, f12, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromH, f14, this.progressToOpen));
-                }
-                if (this.progressToOpen == 1.0f || i3 != this.lastClosestPosition) {
-                    findOrCreateImageReceiver.receiver.draw(canvas);
-                    if (findOrCreateImageReceiver.layout != null) {
-                        int i5 = (int) (((f * 0.3f) + 0.7f) * 255.0f);
-                        this.gradientDrawable.setAlpha(i5);
-                        this.gradientDrawable.setBounds((int) findOrCreateImageReceiver.receiver.getImageX(), (int) (findOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(24.0f)), (int) findOrCreateImageReceiver.receiver.getImageX2(), ((int) findOrCreateImageReceiver.receiver.getImageY2()) + 2);
-                        this.gradientDrawable.draw(canvas);
-                        canvas.save();
-                        canvas.translate(findOrCreateImageReceiver.receiver.getCenterX() - (this.textWidth / 2.0f), (findOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(8.0f)) - findOrCreateImageReceiver.layout.getHeight());
-                        findOrCreateImageReceiver.paint.setAlpha(i5);
-                        findOrCreateImageReceiver.layout.draw(canvas);
-                        canvas.restore();
-                        this.lastDrawnImageReceivers.add(findOrCreateImageReceiver);
-                    }
-                }
-                this.lastDrawnImageReceivers.add(findOrCreateImageReceiver);
-            }
-            i3++;
-            measuredWidth = f4;
-            f7 = f5;
-            f6 = 2.0f;
-            i2 = -1;
-        }
-        if (this.scrollAnimator == null && this.lastClosestPosition != i4) {
-            this.lastClosestPosition = i4;
-            onClosestPositionChanged(i4);
-        }
-        for (int i6 = 0; i6 < this.imageReceiversTmp.size(); i6++) {
-            ((ImageHolder) this.imageReceiversTmp.get(i6)).onDetach();
-        }
-        this.imageReceiversTmp.clear();
+    protected void onDraw(android.graphics.Canvas r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.SelfStoriesPreviewView.onDraw(android.graphics.Canvas):void");
     }
 
     private void scrollToClosest() {
@@ -308,9 +214,9 @@ public abstract class SelfStoriesPreviewView extends View {
             if (f == f2) {
                 return;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.scrollAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f2, f);
+            this.scrollAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     SelfStoriesPreviewView.this.scrollX = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -460,9 +366,9 @@ public abstract class SelfStoriesPreviewView extends View {
             TextPaint textPaint = this.paint;
             int i = (int) (SelfStoriesPreviewView.this.textWidth + 1.0f);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, i, alignment, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 1);
-            this.layout = createStaticLayout;
-            if (createStaticLayout.getLineCount() > 1) {
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, i, alignment, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 1);
+            this.layout = staticLayoutCreateStaticLayout;
+            if (staticLayoutCreateStaticLayout.getLineCount() > 1) {
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
                 SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, this.storyItem.storyItem.views, true);
                 this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), alignment, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 2);

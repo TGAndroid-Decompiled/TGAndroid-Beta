@@ -1,13 +1,19 @@
 package kotlinx.coroutines;
 
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import kotlin.coroutines.Continuation;
 
 public final class CancelledContinuation extends CompletedExceptionally {
     private static final AtomicIntegerFieldUpdater _resumed$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(CancelledContinuation.class, "_resumed$volatile");
     private volatile int _resumed$volatile;
 
-    public CancelledContinuation(kotlin.coroutines.Continuation r3, java.lang.Throwable r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.CancelledContinuation.<init>(kotlin.coroutines.Continuation, java.lang.Throwable, boolean):void");
+    public CancelledContinuation(Continuation continuation, Throwable th, boolean z) {
+        if (th == null) {
+            th = new CancellationException("Continuation " + continuation + " was cancelled normally");
+        }
+        super(th, z);
+        this._resumed$volatile = 0;
     }
 
     public final boolean makeResumed() {

@@ -45,9 +45,9 @@ public class ShareLocationDrawable extends Drawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 16) {
             j = 16;
         }
@@ -56,7 +56,7 @@ public class ShareLocationDrawable extends Drawable {
             if (fArr[i] >= 1.0f) {
                 fArr[i] = 0.0f;
             }
-            float f = fArr[i] + (((float) j) / 1300.0f);
+            float f = fArr[i] + (j / 1300.0f);
             fArr[i] = f;
             if (f > 1.0f) {
                 fArr[i] = 1.0f;

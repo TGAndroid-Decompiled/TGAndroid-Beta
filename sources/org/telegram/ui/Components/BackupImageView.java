@@ -44,14 +44,14 @@ public class BackupImageView extends View {
         this.width = -1;
         this.height = -1;
         this.applyAttach = true;
-        ImageReceiver createImageReciever = createImageReciever();
-        this.imageReceiver = createImageReciever;
-        createImageReciever.setCrossfadeByScale(0.0f);
+        ImageReceiver imageReceiverCreateImageReciever = createImageReciever();
+        this.imageReceiver = imageReceiverCreateImageReciever;
+        imageReceiverCreateImageReciever.setCrossfadeByScale(0.0f);
         this.imageReceiver.setAllowLoadingOnAttachedOnly(true);
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                BackupImageView.this.lambda$new$0(imageReceiver, z, z2, z3);
+                this.f$0.lambda$new$0(imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -196,15 +196,15 @@ public class BackupImageView extends View {
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Bitmap bitmap, String str3, int i, Object obj) {
         BackupImageView backupImageView;
-        Drawable drawable2;
+        Drawable bitmapDrawable;
         if (bitmap != null) {
             backupImageView = this;
-            drawable2 = new BitmapDrawable((Resources) null, bitmap);
+            bitmapDrawable = new BitmapDrawable((Resources) null, bitmap);
         } else {
             backupImageView = this;
-            drawable2 = drawable;
+            bitmapDrawable = drawable;
         }
-        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, drawable2, i, str3, obj, 0);
+        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
         onNewImageSet();
     }
 
@@ -289,7 +289,7 @@ public class BackupImageView extends View {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
         if (this.applyAttach) {
@@ -305,7 +305,7 @@ public class BackupImageView extends View {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
         if (this.applyAttach) {
@@ -321,7 +321,7 @@ public class BackupImageView extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         int i;
         ColorFilter colorFilter;
         AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -397,9 +397,9 @@ public class BackupImageView extends View {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofInt = ValueAnimator.ofInt(getRoundRadius()[0], i);
-            this.roundRadiusAnimator = ofInt;
-            ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(getRoundRadius()[0], i);
+            this.roundRadiusAnimator = valueAnimatorOfInt;
+            valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     BackupImageView.this.setRoundRadius(((Integer) valueAnimator2.getAnimatedValue()).intValue());
@@ -446,11 +446,11 @@ public class BackupImageView extends View {
             measuredHeight = i;
         }
         float currentWidth = this.blurText.getCurrentWidth() + AndroidUtilities.dp(18.0f);
-        float dp = AndroidUtilities.dp(28.0f);
+        float fDp = AndroidUtilities.dp(28.0f);
         float f2 = (measuredWidth - currentWidth) / 2.0f;
         float f3 = measuredHeight / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        float f4 = dp / 2.0f;
+        float f4 = fDp / 2.0f;
         rectF.set(f2, f3 - f4, currentWidth + f2, f3 + f4);
         this.blurTextClipPath.addRoundRect(rectF, f4, f4, Path.Direction.CW);
         canvas.save();
@@ -469,7 +469,7 @@ public class BackupImageView extends View {
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
+    protected boolean verifyDrawable(Drawable drawable) {
         return drawable == this.imageReceiver.getDrawable() || drawable == this.imageReceiver.getImageDrawable() || super.verifyDrawable(drawable);
     }
 }

@@ -165,7 +165,7 @@ public class PremiumTierCell extends ViewGroup {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         if (this.isDrawingGradient) {
             Paint paint = this.paint;
             PremiumTierCell premiumTierCell = this.globalGradientView;
@@ -203,22 +203,22 @@ public class PremiumTierCell extends ViewGroup {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(58.0f);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824);
-        this.checkBox.measure(makeMeasureSpec, makeMeasureSpec);
-        this.pricePerMonthView.measure(View.MeasureSpec.makeMeasureSpec(size - this.checkBox.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        this.titleView.measure(View.MeasureSpec.makeMeasureSpec((size - this.checkBox.getMeasuredWidth()) - this.pricePerMonthView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        int iDp = AndroidUtilities.dp(58.0f);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824);
+        this.checkBox.measure(iMakeMeasureSpec, iMakeMeasureSpec);
+        this.pricePerMonthView.measure(View.MeasureSpec.makeMeasureSpec(size - this.checkBox.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
+        this.titleView.measure(View.MeasureSpec.makeMeasureSpec((size - this.checkBox.getMeasuredWidth()) - this.pricePerMonthView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         if (this.discountView.getVisibility() == 0) {
-            this.discountView.measure(View.MeasureSpec.makeMeasureSpec((size - this.checkBox.getMeasuredWidth()) - this.pricePerMonthView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+            this.discountView.measure(View.MeasureSpec.makeMeasureSpec((size - this.checkBox.getMeasuredWidth()) - this.pricePerMonthView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         } else {
             this.discountView.measure(View.MeasureSpec.makeMeasureSpec(0, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
         }
-        this.pricePerYearStrikeView.measure(View.MeasureSpec.makeMeasureSpec(size - this.checkBox.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        this.pricePerYearView.measure(View.MeasureSpec.makeMeasureSpec(((size - this.checkBox.getMeasuredWidth()) - (this.pricePerYearStrikeView.getVisibility() == 0 ? this.pricePerYearStrikeView.getMeasuredWidth() : 0)) - AndroidUtilities.dp(6.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        this.pricePerYearStrikeView.measure(View.MeasureSpec.makeMeasureSpec(size - this.checkBox.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
+        this.pricePerYearView.measure(View.MeasureSpec.makeMeasureSpec(((size - this.checkBox.getMeasuredWidth()) - (this.pricePerYearStrikeView.getVisibility() == 0 ? this.pricePerYearStrikeView.getMeasuredWidth() : 0)) - AndroidUtilities.dp(6.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         if (this.pricePerYearView.getVisibility() != 0) {
-            dp -= AndroidUtilities.dp(8.0f);
+            iDp -= AndroidUtilities.dp(8.0f);
         }
-        setMeasuredDimension(size, dp);
+        setMeasuredDimension(size, iDp);
     }
 
     public PremiumPreviewFragment.SubscriptionTier getTier() {
@@ -230,7 +230,7 @@ public class PremiumTierCell extends ViewGroup {
     }
 
     public void bind(PremiumPreviewFragment.SubscriptionTier subscriptionTier, boolean z) {
-        String formatPluralString;
+        String pluralString;
         this.tier = subscriptionTier;
         this.hasDivider = z;
         int months = subscriptionTier.getMonths();
@@ -241,11 +241,11 @@ public class PremiumTierCell extends ViewGroup {
         } else if (months != 12) {
             TextView textView = this.titleView;
             if (subscriptionTier.getMonths() > 12 && subscriptionTier.getMonths() % 12 == 0) {
-                formatPluralString = LocaleController.formatPluralString("PremiumTierAnnualYears", subscriptionTier.getMonths() / 12, new Object[0]);
+                pluralString = LocaleController.formatPluralString("PremiumTierAnnualYears", subscriptionTier.getMonths() / 12, new Object[0]);
             } else {
-                formatPluralString = LocaleController.formatPluralString("Months", subscriptionTier.getMonths(), new Object[0]);
+                pluralString = LocaleController.formatPluralString("Months", subscriptionTier.getMonths(), new Object[0]);
             }
-            textView.setText(formatPluralString);
+            textView.setText(pluralString);
         } else {
             this.titleView.setText(LocaleController.getString(R.string.PremiumTierAnnual));
         }
@@ -287,22 +287,22 @@ public class PremiumTierCell extends ViewGroup {
             premiumTierCell.updateGradient();
             return;
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.lastUpdateTime - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long jAbs = Math.abs(this.lastUpdateTime - jElapsedRealtime);
+        if (jAbs > 17) {
+            jAbs = 16;
         }
-        if (abs < 4) {
-            abs = 0;
+        if (jAbs < 4) {
+            jAbs = 0;
         }
-        int i = this.parentWidth;
-        if (i == 0) {
-            i = getMeasuredWidth();
+        int measuredWidth = this.parentWidth;
+        if (measuredWidth == 0) {
+            measuredWidth = getMeasuredWidth();
         }
-        this.lastUpdateTime = elapsedRealtime;
-        int i2 = (int) (this.totalTranslation + (((float) (abs * i)) / 400.0f));
-        this.totalTranslation = i2;
-        if (i2 >= i * 4) {
+        this.lastUpdateTime = jElapsedRealtime;
+        int i = (int) (this.totalTranslation + ((jAbs * measuredWidth) / 400.0f));
+        this.totalTranslation = i;
+        if (i >= measuredWidth * 4) {
             this.totalTranslation = (-this.gradientWidth) * 2;
         }
         this.matrix.setTranslate(this.totalTranslation + this.parentXOffset, 0.0f);
@@ -325,9 +325,9 @@ public class PremiumTierCell extends ViewGroup {
         }
         this.color0 = color;
         this.color1 = color2;
-        int dp = AndroidUtilities.dp(200.0f);
-        this.gradientWidth = dp;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color2, color, color, color2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        int iDp = AndroidUtilities.dp(200.0f);
+        this.gradientWidth = iDp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, iDp, 0.0f, new int[]{color2, color, color, color2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         this.gradient = linearGradient;
         this.paint.setShader(linearGradient);
     }

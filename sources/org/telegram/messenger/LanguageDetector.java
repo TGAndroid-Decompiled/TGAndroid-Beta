@@ -4,7 +4,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.common.sdkinternal.MlKitContext;
 import com.google.mlkit.nl.languageid.LanguageIdentification;
-import org.telegram.messenger.LanguageDetector;
 
 public class LanguageDetector {
 
@@ -55,12 +54,12 @@ public class LanguageDetector {
         LanguageIdentification.getClient().identifyLanguage(str).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public final void onSuccess(Object obj) {
-                LanguageDetector.lambda$detectLanguage$0(LanguageDetector.StringCallback.this, (String) obj);
+                LanguageDetector.lambda$detectLanguage$0(stringCallback, (String) obj);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                LanguageDetector.lambda$detectLanguage$1(LanguageDetector.ExceptionCallback.this, exc);
+                LanguageDetector.lambda$detectLanguage$1(exceptionCallback, exc);
             }
         });
     }

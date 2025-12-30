@@ -56,17 +56,17 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
 
     public static int loadShader(int i, String str) {
         int[] iArr = new int[1];
-        int glCreateShader = GLES20.glCreateShader(i);
-        if (glCreateShader == 0) {
+        int iGlCreateShader = GLES20.glCreateShader(i);
+        if (iGlCreateShader == 0) {
             return 0;
         }
-        GLES20.glShaderSource(glCreateShader, str);
-        GLES20.glCompileShader(glCreateShader);
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        GLES20.glShaderSource(iGlCreateShader, str);
+        GLES20.glCompileShader(iGlCreateShader);
+        GLES20.glGetShaderiv(iGlCreateShader, 35713, iArr, 0);
         if (iArr[0] != 0) {
-            return glCreateShader;
+            return iGlCreateShader;
         }
-        throw new RuntimeException("Could not compile program: " + GLES20.glGetShaderInfoLog(glCreateShader) + " " + str);
+        throw new RuntimeException("Could not compile program: " + GLES20.glGetShaderInfoLog(iGlCreateShader) + " " + str);
     }
 
     @Override

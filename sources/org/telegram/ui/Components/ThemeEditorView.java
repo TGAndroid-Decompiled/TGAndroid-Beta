@@ -132,11 +132,11 @@ public class ThemeEditorView {
         private int topBeforeSwitch;
 
         @Override
-        public boolean canDismissWithSwipe() {
+        protected boolean canDismissWithSwipe() {
             return false;
         }
 
-        public class SearchField extends FrameLayout {
+        class SearchField extends FrameLayout {
             private ImageView clearSearchImageView;
             private EditTextBoldCursor searchEditText;
 
@@ -170,16 +170,16 @@ public class ThemeEditorView {
                 this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ThemeEditorView.EditorAlert.SearchField.this.lambda$new$0(view2);
+                        this.f$0.lambda$new$0(view2);
                     }
                 });
                 EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
                     @Override
                     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                        obtain.setLocation(obtain.getRawX(), obtain.getRawY() - ((BottomSheet) EditorAlert.this).containerView.getTranslationY());
-                        EditorAlert.this.listView.dispatchTouchEvent(obtain);
-                        obtain.recycle();
+                        MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                        motionEventObtain.setLocation(motionEventObtain.getRawX(), motionEventObtain.getRawY() - ((BottomSheet) EditorAlert.this).containerView.getTranslationY());
+                        EditorAlert.this.listView.dispatchTouchEvent(motionEventObtain);
+                        motionEventObtain.recycle();
                         return super.dispatchTouchEvent(motionEvent);
                     }
                 };
@@ -213,8 +213,8 @@ public class ThemeEditorView {
                         if (z != (SearchField.this.clearSearchImageView.getAlpha() != 0.0f)) {
                             SearchField.this.clearSearchImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).start();
                         }
-                        String obj = SearchField.this.searchEditText.getText().toString();
-                        if (obj.length() != 0) {
+                        String string = SearchField.this.searchEditText.getText().toString();
+                        if (string.length() != 0) {
                             if (EditorAlert.this.searchEmptyView != null) {
                                 EditorAlert.this.searchEmptyView.setText(LocaleController.getString(R.string.NoResult));
                             }
@@ -229,16 +229,14 @@ public class ThemeEditorView {
                             }
                         }
                         if (EditorAlert.this.searchAdapter != null) {
-                            EditorAlert.this.searchAdapter.searchDialogs(obj);
+                            EditorAlert.this.searchAdapter.searchDialogs(string);
                         }
                     }
                 });
                 this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                        boolean lambda$new$1;
-                        lambda$new$1 = ThemeEditorView.EditorAlert.SearchField.this.lambda$new$1(textView, i, keyEvent);
-                        return lambda$new$1;
+                        return this.f$0.lambda$new$1(textView, i, keyEvent);
                     }
                 });
             }
@@ -270,7 +268,7 @@ public class ThemeEditorView {
             }
         }
 
-        public class ColorPicker extends FrameLayout {
+        class ColorPicker extends FrameLayout {
             private float alpha;
             private LinearGradient alphaGradient;
             private boolean alphaPressed;
@@ -356,9 +354,7 @@ public class ThemeEditorView {
                     this.colorEditText[i].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                            boolean lambda$new$0;
-                            lambda$new$0 = ThemeEditorView.EditorAlert.ColorPicker.lambda$new$0(textView, i2, keyEvent);
-                            return lambda$new$0;
+                            return ThemeEditorView.EditorAlert.ColorPicker.lambda$new$0(textView, i2, keyEvent);
                         }
                     });
                     i++;
@@ -375,9 +371,9 @@ public class ThemeEditorView {
 
             @Override
             protected void onMeasure(int i, int i2) {
-                int min = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                int iMin = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
                 measureChild(this.linearLayout, i, i2);
-                setMeasuredDimension(min, min);
+                setMeasuredDimension(iMin, iMin);
             }
 
             @Override
@@ -402,37 +398,37 @@ public class ThemeEditorView {
                 int i3 = this.colorWheelRadius;
                 int i4 = width + i3 + this.paramValueSliderWidth;
                 int i5 = height - i3;
-                int dp = AndroidUtilities.dp(9.0f);
+                int iDp = AndroidUtilities.dp(9.0f);
                 int i6 = this.colorWheelRadius * 2;
                 if (this.colorGradient == null) {
-                    this.colorGradient = new LinearGradient(i4, i5, i4 + dp, i5 + i6, new int[]{-16777216, Color.HSVToColor(this.hsvTemp)}, (float[]) null, Shader.TileMode.CLAMP);
+                    this.colorGradient = new LinearGradient(i4, i5, i4 + iDp, i5 + i6, new int[]{-16777216, Color.HSVToColor(this.hsvTemp)}, (float[]) null, Shader.TileMode.CLAMP);
                 }
                 this.valueSliderPaint.setShader(this.colorGradient);
                 float f4 = i5;
                 float f5 = i5 + i6;
-                canvas.drawRect(i4, f4, i4 + dp, f5, this.valueSliderPaint);
-                int i7 = dp / 2;
+                canvas.drawRect(i4, f4, i4 + iDp, f5, this.valueSliderPaint);
+                int i7 = iDp / 2;
                 float[] fArr3 = this.colorHSV;
                 float f6 = i6;
                 drawPointerArrow(canvas, i4 + i7, (int) ((fArr3[2] * f6) + f4), Color.HSVToColor(fArr3));
                 int i8 = i4 + (this.paramValueSliderWidth * 2);
                 if (this.alphaGradient == null) {
-                    int HSVToColor = Color.HSVToColor(this.hsvTemp);
+                    int iHSVToColor = Color.HSVToColor(this.hsvTemp);
                     f = f5;
                     f2 = f4;
-                    this.alphaGradient = new LinearGradient(i8, f4, i8 + dp, f, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
+                    this.alphaGradient = new LinearGradient(i8, f4, i8 + iDp, f, new int[]{iHSVToColor, iHSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
                 } else {
                     f = f5;
                     f2 = f4;
                 }
                 this.valueSliderPaint.setShader(this.alphaGradient);
-                canvas.drawRect(i8, f2, dp + i8, f, this.valueSliderPaint);
+                canvas.drawRect(i8, f2, iDp + i8, f, this.valueSliderPaint);
                 drawPointerArrow(canvas, i8 + i7, (int) (f2 + ((1.0f - this.alpha) * f6)), (Color.HSVToColor(this.colorHSV) & 16777215) | (((int) (this.alpha * 255.0f)) << 24));
             }
 
             private void drawPointerArrow(Canvas canvas, int i, int i2, int i3) {
-                int dp = AndroidUtilities.dp(13.0f);
-                this.circleDrawable.setBounds(i - dp, i2 - dp, i + dp, dp + i2);
+                int iDp = AndroidUtilities.dp(13.0f);
+                this.circleDrawable.setBounds(i - iDp, i2 - iDp, i + iDp, iDp + i2);
                 this.circleDrawable.draw(canvas);
                 this.circlePaint.setColor(-1);
                 float f = i;
@@ -444,16 +440,16 @@ public class ThemeEditorView {
 
             @Override
             protected void onSizeChanged(int i, int i2, int i3, int i4) {
-                int max = Math.max(1, ((i / 2) - (this.paramValueSliderWidth * 2)) - AndroidUtilities.dp(20.0f));
-                this.colorWheelRadius = max;
-                int i5 = max * 2;
+                int iMax = Math.max(1, ((i / 2) - (this.paramValueSliderWidth * 2)) - AndroidUtilities.dp(20.0f));
+                this.colorWheelRadius = iMax;
+                int i5 = iMax * 2;
                 this.colorWheelBitmap = createColorWheelBitmap(i5, i5);
                 this.colorGradient = null;
                 this.alphaGradient = null;
             }
 
             private Bitmap createColorWheelBitmap(int i, int i2) {
-                Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
                 int[] iArr = new int[13];
                 float[] fArr = {0.0f, 1.0f, 1.0f};
                 for (int i3 = 0; i3 < 13; i3++) {
@@ -464,8 +460,8 @@ public class ThemeEditorView {
                 float f = i / 2;
                 float f2 = i2 / 2;
                 this.colorWheelPaint.setShader(new ComposeShader(new SweepGradient(f, f2, iArr, (float[]) null), new RadialGradient(f, f2, this.colorWheelRadius, -1, 16777215, Shader.TileMode.CLAMP), PorterDuff.Mode.SRC_OVER));
-                new Canvas(createBitmap).drawCircle(f, f2, this.colorWheelRadius, this.colorWheelPaint);
-                return createBitmap;
+                new Canvas(bitmapCreateBitmap).drawCircle(f, f2, this.colorWheelRadius, this.colorWheelPaint);
+                return bitmapCreateBitmap;
             }
 
             private void startColorChange(boolean z) {
@@ -489,16 +485,16 @@ public class ThemeEditorView {
             }
 
             public void setColor(int i) {
-                int red = Color.red(i);
-                int green = Color.green(i);
-                int blue = Color.blue(i);
-                int alpha = Color.alpha(i);
+                int iRed = Color.red(i);
+                int iGreen = Color.green(i);
+                int iBlue = Color.blue(i);
+                int iAlpha = Color.alpha(i);
                 if (!EditorAlert.this.ignoreTextChange) {
                     EditorAlert.this.ignoreTextChange = true;
-                    this.colorEditText[0].setText("" + red);
-                    this.colorEditText[1].setText("" + green);
-                    this.colorEditText[2].setText("" + blue);
-                    this.colorEditText[3].setText("" + alpha);
+                    this.colorEditText[0].setText("" + iRed);
+                    this.colorEditText[1].setText("" + iGreen);
+                    this.colorEditText[2].setText("" + iBlue);
+                    this.colorEditText[3].setText("" + iAlpha);
                     for (int i2 = 0; i2 < 4; i2++) {
                         EditTextBoldCursor editTextBoldCursor = this.colorEditText[i2];
                         editTextBoldCursor.setSelection(editTextBoldCursor.length());
@@ -507,7 +503,7 @@ public class ThemeEditorView {
                 }
                 this.alphaGradient = null;
                 this.colorGradient = null;
-                this.alpha = alpha / 255.0f;
+                this.alpha = iAlpha / 255.0f;
                 Color.colorToHSV(i, this.colorHSV);
                 invalidate();
             }
@@ -550,11 +546,11 @@ public class ThemeEditorView {
                         setPadding(((BottomSheet) EditorAlert.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, ((BottomSheet) EditorAlert.this).backgroundPaddingLeft, 0);
                         this.ignoreLayout = false;
                     }
-                    int dp = ((size2 - AndroidUtilities.statusBarHeight) + AndroidUtilities.dp(8.0f)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
-                    if (EditorAlert.this.listView.getPaddingTop() != dp) {
+                    int iDp = ((size2 - AndroidUtilities.statusBarHeight) + AndroidUtilities.dp(8.0f)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
+                    if (EditorAlert.this.listView.getPaddingTop() != iDp) {
                         this.ignoreLayout = true;
                         EditorAlert.this.listView.getPaddingTop();
-                        EditorAlert.this.listView.setPadding(0, dp, 0, AndroidUtilities.dp(48.0f));
+                        EditorAlert.this.listView.setPadding(0, iDp, 0, AndroidUtilities.dp(48.0f));
                         if (EditorAlert.this.colorPicker.getVisibility() == 0) {
                             EditorAlert editorAlert = EditorAlert.this;
                             editorAlert.setScrollOffsetY(editorAlert.listView.getPaddingTop());
@@ -635,8 +631,8 @@ public class ThemeEditorView {
             this.listView.setLayoutAnimation(null);
             this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(View view, int i2) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$0(view, i2);
+                public final void onItemClick(View view, int i2) throws Throwable {
+                    this.f$0.lambda$new$0(view, i2);
                 }
             });
             this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -685,7 +681,7 @@ public class ThemeEditorView {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$1(view);
+                    this.f$0.lambda$new$1(view);
                 }
             });
             TextView textView2 = new TextView(context);
@@ -699,8 +695,8 @@ public class ThemeEditorView {
             this.bottomSaveLayout.addView(textView2, LayoutHelper.createFrame(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$2(view);
+                public final void onClick(View view) throws Throwable {
+                    this.f$0.lambda$new$2(view);
                 }
             });
             FrameLayout frameLayout4 = new FrameLayout(context);
@@ -719,8 +715,8 @@ public class ThemeEditorView {
             this.bottomLayout.addView(textView3, LayoutHelper.createFrame(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$3(view);
+                public final void onClick(View view) throws Throwable {
+                    this.f$0.lambda$new$3(view);
                 }
             });
             LinearLayout linearLayout = new LinearLayout(context);
@@ -737,8 +733,8 @@ public class ThemeEditorView {
             linearLayout.addView(textView4, LayoutHelper.createFrame(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$4(view);
+                public final void onClick(View view) throws Throwable {
+                    this.f$0.lambda$new$4(view);
                 }
             });
             TextView textView5 = new TextView(context);
@@ -752,13 +748,13 @@ public class ThemeEditorView {
             linearLayout.addView(textView5, LayoutHelper.createFrame(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    ThemeEditorView.EditorAlert.this.lambda$new$5(view);
+                public final void onClick(View view) throws Throwable {
+                    this.f$0.lambda$new$5(view);
                 }
             });
         }
 
-        public void lambda$new$0(View view, int i) {
+        public void lambda$new$0(View view, int i) throws Throwable {
             if (i == 0) {
                 return;
             }
@@ -788,28 +784,28 @@ public class ThemeEditorView {
             lambda$new$0();
         }
 
-        public void lambda$new$2(View view) {
+        public void lambda$new$2(View view) throws Throwable {
             Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, true, false, false);
             setOnDismissListener((DialogInterface.OnDismissListener) null);
             lambda$new$0();
             ThemeEditorView.this.close();
         }
 
-        public void lambda$new$3(View view) {
+        public void lambda$new$3(View view) throws Throwable {
             for (int i = 0; i < ThemeEditorView.this.currentThemeDesription.size(); i++) {
                 ((ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i)).setPreviousColor();
             }
             setColorPickerVisible(false);
         }
 
-        public void lambda$new$4(View view) {
+        public void lambda$new$4(View view) throws Throwable {
             for (int i = 0; i < ThemeEditorView.this.currentThemeDesription.size(); i++) {
                 ((ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i)).setDefaultColor();
             }
             setColorPickerVisible(false);
         }
 
-        public void lambda$new$5(View view) {
+        public void lambda$new$5(View view) throws Throwable {
             setColorPickerVisible(false);
         }
 
@@ -859,7 +855,7 @@ public class ThemeEditorView {
             }
         }
 
-        public void setColorPickerVisible(boolean z) {
+        public void setColorPickerVisible(boolean z) throws Throwable {
             if (!z) {
                 if (ThemeEditorView.this.parentActivity != null) {
                     ((LaunchActivity) ThemeEditorView.this.parentActivity).rebuildAllFragments(false);
@@ -876,12 +872,12 @@ public class ThemeEditorView {
                 AnimatorSet animatorSet = new AnimatorSet();
                 ColorPicker colorPicker = this.colorPicker;
                 Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(colorPicker, (Property<ColorPicker, Float>) property, 0.0f);
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) property, 0.0f);
-                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.listView, (Property<RecyclerListView, Float>) property, 1.0f);
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this.frameLayout, (Property<FrameLayout, Float>) property, 1.0f);
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(colorPicker, (Property<ColorPicker, Float>) property, 0.0f);
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) property, 0.0f);
+                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(this.listView, (Property<RecyclerListView, Float>) property, 1.0f);
+                ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(this.frameLayout, (Property<FrameLayout, Float>) property, 1.0f);
                 View view = this.shadow[0];
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ObjectAnimator.ofFloat(view, (Property<View, Float>) property, view.getTag() == null ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.searchEmptyView, (Property<EmptyTextProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.bottomSaveLayout, (Property<FrameLayout, Float>) property, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.previousScrollPosition));
+                animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, objectAnimatorOfFloat4, ObjectAnimator.ofFloat(view, (Property<View, Float>) property, view.getTag() == null ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.searchEmptyView, (Property<EmptyTextProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.bottomSaveLayout, (Property<FrameLayout, Float>) property, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.previousScrollPosition));
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(ThemeEditorView.this.decelerateInterpolator);
                 animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -927,7 +923,7 @@ public class ThemeEditorView {
             if (this.listView.getChildCount() == 0) {
                 return -1000;
             }
-            int i = 0;
+            int top = 0;
             View childAt = this.listView.getChildAt(0);
             RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
             if (holder == null) {
@@ -935,9 +931,9 @@ public class ThemeEditorView {
             }
             int paddingTop = this.listView.getPaddingTop();
             if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-                i = childAt.getTop();
+                top = childAt.getTop();
             }
-            return paddingTop - i;
+            return paddingTop - top;
         }
 
         public void updateLayout() {
@@ -1001,32 +997,32 @@ public class ThemeEditorView {
                     return "";
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                String trim = str.trim();
-                String lowerCase = trim.toLowerCase();
+                String strTrim = str.trim();
+                String lowerCase = strTrim.toLowerCase();
                 int i = 0;
                 while (true) {
-                    int indexOf = lowerCase.indexOf(str2, i);
-                    if (indexOf == -1) {
+                    int iIndexOf = lowerCase.indexOf(str2, i);
+                    if (iIndexOf == -1) {
                         break;
                     }
-                    int length = str2.length() + indexOf;
-                    if (i != 0 && i != indexOf + 1) {
-                        spannableStringBuilder.append((CharSequence) trim.substring(i, indexOf));
-                    } else if (i == 0 && indexOf != 0) {
-                        spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
+                    int length = str2.length() + iIndexOf;
+                    if (i != 0 && i != iIndexOf + 1) {
+                        spannableStringBuilder.append((CharSequence) strTrim.substring(i, iIndexOf));
+                    } else if (i == 0 && iIndexOf != 0) {
+                        spannableStringBuilder.append((CharSequence) strTrim.substring(0, iIndexOf));
                     }
-                    String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-                    if (substring.startsWith(" ")) {
+                    String strSubstring = strTrim.substring(iIndexOf, Math.min(strTrim.length(), length));
+                    if (strSubstring.startsWith(" ")) {
                         spannableStringBuilder.append((CharSequence) " ");
                     }
-                    String trim2 = substring.trim();
+                    String strTrim2 = strSubstring.trim();
                     int length2 = spannableStringBuilder.length();
-                    spannableStringBuilder.append((CharSequence) trim2);
-                    spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
+                    spannableStringBuilder.append((CharSequence) strTrim2);
+                    spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, strTrim2.length() + length2, 33);
                     i = length;
                 }
-                if (i != -1 && i < trim.length()) {
-                    spannableStringBuilder.append((CharSequence) trim.substring(i));
+                if (i != -1 && i < strTrim.length()) {
+                    spannableStringBuilder.append((CharSequence) strTrim.substring(i));
                 }
                 return spannableStringBuilder;
             }
@@ -1079,7 +1075,7 @@ public class ThemeEditorView {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ThemeEditorView.EditorAlert.SearchAdapter.this.lambda$updateSearchResults$0(i, arrayList, arrayList2);
+                        this.f$0.lambda$updateSearchResults$0(i, arrayList, arrayList2);
                     }
                 });
             }
@@ -1130,7 +1126,7 @@ public class ThemeEditorView {
                     this.searchRunnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ThemeEditorView.EditorAlert.SearchAdapter.this.lambda$searchDialogs$1(str, i);
+                            this.f$0.lambda$searchDialogs$1(str, i);
                         }
                     };
                     Utilities.searchQueue.postRunnable(this.searchRunnable, 300L);
@@ -1175,7 +1171,7 @@ public class ThemeEditorView {
             }
         }
 
-        public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private class ListAdapter extends RecyclerListView.SelectionAdapter {
             private Context context;
             private ArrayList items = new ArrayList();
 
@@ -1191,22 +1187,22 @@ public class ThemeEditorView {
 
             public ListAdapter(Context context, ArrayList arrayList) {
                 this.context = context;
-                HashMap hashMap = new HashMap();
+                HashMap map = new HashMap();
                 int size = arrayList.size();
                 for (int i = 0; i < size; i++) {
                     ThemeDescription themeDescription = (ThemeDescription) arrayList.get(i);
                     int currentKey = themeDescription.getCurrentKey();
-                    ArrayList arrayList2 = (ArrayList) hashMap.get(Integer.valueOf(currentKey));
+                    ArrayList arrayList2 = (ArrayList) map.get(Integer.valueOf(currentKey));
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList();
-                        hashMap.put(Integer.valueOf(currentKey), arrayList2);
+                        map.put(Integer.valueOf(currentKey), arrayList2);
                         this.items.add(arrayList2);
                     }
                     arrayList2.add(themeDescription);
                 }
                 if (Build.VERSION.SDK_INT >= 26) {
                     int i2 = Theme.key_windowBackgroundGray;
-                    if (hashMap.containsKey(Integer.valueOf(i2))) {
+                    if (map.containsKey(Integer.valueOf(i2))) {
                         return;
                     }
                     ArrayList arrayList3 = new ArrayList();
@@ -1284,12 +1280,12 @@ public class ThemeEditorView {
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
             this.wallpaperUpdater = new WallpaperUpdater(activity, null, new WallpaperUpdater.WallpaperUpdaterDelegate() {
                 @Override
-                public void didSelectWallpaper(File file, Bitmap bitmap, boolean z) {
+                public void didSelectWallpaper(File file, Bitmap bitmap, boolean z) throws Throwable {
                     Theme.setThemeWallpaper(ThemeEditorView.this.themeInfo, bitmap, file);
                 }
 
                 @Override
-                public void needOpenColorPicker() {
+                public void needOpenColorPicker() throws Throwable {
                     for (int i4 = 0; i4 < ThemeEditorView.this.currentThemeDesription.size(); i4++) {
                         ThemeDescription themeDescription = (ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i4);
                         themeDescription.startEditing();
@@ -1308,7 +1304,7 @@ public class ThemeEditorView {
         }
     }
 
-    public class AnonymousClass1 extends FrameLayout {
+    class AnonymousClass1 extends FrameLayout {
         private boolean dragging;
         private float startX;
         private float startY;
@@ -1347,7 +1343,7 @@ public class ThemeEditorView {
 
     private static int getSideCoord(boolean z, int i, float f, int i2) {
         int i3;
-        int round;
+        int iRound;
         if (z) {
             i3 = AndroidUtilities.displaySize.x;
         } else {
@@ -1356,13 +1352,13 @@ public class ThemeEditorView {
         }
         int i4 = i3 - i2;
         if (i == 0) {
-            round = AndroidUtilities.dp(10.0f);
+            iRound = AndroidUtilities.dp(10.0f);
         } else if (i == 1) {
-            round = i4 - AndroidUtilities.dp(10.0f);
+            iRound = i4 - AndroidUtilities.dp(10.0f);
         } else {
-            round = Math.round((i4 - AndroidUtilities.dp(20.0f)) * f) + AndroidUtilities.dp(10.0f);
+            iRound = Math.round((i4 - AndroidUtilities.dp(20.0f)) * f) + AndroidUtilities.dp(10.0f);
         }
-        return !z ? round + ActionBar.getCurrentActionBarHeight() : round;
+        return !z ? iRound + ActionBar.getCurrentActionBarHeight() : iRound;
     }
 
     public void hide() {

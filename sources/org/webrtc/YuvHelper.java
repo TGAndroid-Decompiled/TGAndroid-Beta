@@ -25,13 +25,13 @@ public class YuvHelper {
         }
         byteBuffer4.limit(i11);
         byteBuffer4.position(0);
-        ByteBuffer slice = byteBuffer4.slice();
+        ByteBuffer byteBufferSlice = byteBuffer4.slice();
         byteBuffer4.limit(i13);
         byteBuffer4.position(i12);
-        ByteBuffer slice2 = byteBuffer4.slice();
+        ByteBuffer byteBufferSlice2 = byteBuffer4.slice();
         byteBuffer4.limit(i15);
         byteBuffer4.position(i14);
-        I420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i6, slice2, i8, byteBuffer4.slice(), i8, i4, i5);
+        I420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBufferSlice, i6, byteBufferSlice2, i8, byteBuffer4.slice(), i8, i4, i5);
     }
 
     public static void I420Copy(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5) {
@@ -52,10 +52,10 @@ public class YuvHelper {
         }
         byteBuffer4.limit(i9);
         byteBuffer4.position(0);
-        ByteBuffer slice = byteBuffer4.slice();
+        ByteBuffer byteBufferSlice = byteBuffer4.slice();
         byteBuffer4.limit(i11);
         byteBuffer4.position(i10);
-        I420ToNV12(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i6, byteBuffer4.slice(), i8 * 2, i4, i5);
+        I420ToNV12(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBufferSlice, i6, byteBuffer4.slice(), i8 * 2, i4, i5);
     }
 
     public static void I420ToNV12(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5) {
@@ -79,11 +79,11 @@ public class YuvHelper {
             throw new IllegalArgumentException("Expected destination buffer capacity to be at least " + i14 + " was " + byteBuffer4.capacity());
         }
         byteBuffer4.position(0);
-        ByteBuffer slice = byteBuffer4.slice();
+        ByteBuffer byteBufferSlice = byteBuffer4.slice();
         byteBuffer4.position(i12);
-        ByteBuffer slice2 = byteBuffer4.slice();
+        ByteBuffer byteBufferSlice2 = byteBuffer4.slice();
         byteBuffer4.position(i13 + i12);
-        nativeI420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i8, slice2, i11, byteBuffer4.slice(), i11, i4, i5, i6);
+        nativeI420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBufferSlice, i8, byteBufferSlice2, i11, byteBuffer4.slice(), i11, i4, i5, i6);
     }
 
     public static void copyPlane(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, int i3, int i4) {

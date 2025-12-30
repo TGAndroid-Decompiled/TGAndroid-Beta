@@ -67,7 +67,7 @@ public class ReactionsEffectOverlay {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int, boolean):void");
     }
 
-    public class AnonymousClass1 extends FrameLayout {
+    class AnonymousClass1 extends FrameLayout {
         final int val$animationType;
         final View val$cell;
         final ChatActivity val$chatActivity;
@@ -229,7 +229,7 @@ public class ReactionsEffectOverlay {
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
+        protected void onDraw(Canvas canvas) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
             if (animatedEmojiDrawable != null) {
                 animatedEmojiDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
@@ -260,7 +260,7 @@ public class ReactionsEffectOverlay {
         }
 
         @Override
-        public void onAttachedToWindow() {
+        protected void onAttachedToWindow() {
             super.onAttachedToWindow();
             this.attached = true;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -274,7 +274,7 @@ public class ReactionsEffectOverlay {
         }
 
         @Override
-        public void onDetachedFromWindow() {
+        protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             this.attached = false;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -314,9 +314,9 @@ public class ReactionsEffectOverlay {
     }
 
     public static int sizeForBigReaction() {
-        int dp = AndroidUtilities.dp(350.0f);
+        int iDp = AndroidUtilities.dp(350.0f);
         Point point = AndroidUtilities.displaySize;
-        return (int) (Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.7f) / AndroidUtilities.density);
+        return (int) (Math.round(Math.min(iDp, Math.min(point.x, point.y)) * 0.7f) / AndroidUtilities.density);
     }
 
     public static int sizeForAroundReaction() {

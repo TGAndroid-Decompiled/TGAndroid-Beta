@@ -22,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -43,7 +45,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.PhotoViewerWebView;
 import org.telegram.ui.PhotoViewer;
 
 public abstract class PhotoViewerWebView extends FrameLayout {
@@ -89,7 +90,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         }
     }
 
-    public class YoutubeProxy {
+    class YoutubeProxy {
         private YoutubeProxy() {
         }
 
@@ -98,7 +99,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.YoutubeProxy.this.lambda$onPlayerLoaded$0();
+                    this.f$0.lambda$onPlayerLoaded$0();
                 }
             });
         }
@@ -118,12 +119,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         }
 
         @JavascriptInterface
-        public void onPlayerError(String str) {
-            final int parseInt = Integer.parseInt(str);
+        public void onPlayerError(String str) throws NumberFormatException {
+            final int i = Integer.parseInt(str);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.YoutubeProxy.this.lambda$onPlayerError$2(parseInt);
+                    this.f$0.lambda$onPlayerError$2(i);
                 }
             });
         }
@@ -173,7 +174,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
                 PhotoViewerWebView.this.errorButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PhotoViewerWebView.YoutubeProxy.this.lambda$onPlayerError$1(view);
+                        this.f$0.lambda$onPlayerError$1(view);
                     }
                 });
                 return;
@@ -186,38 +187,38 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         }
 
         @JavascriptInterface
-        public void onPlayerStateChange(String str) {
-            int parseInt = Integer.parseInt(str);
+        public void onPlayerStateChange(String str) throws NumberFormatException {
+            int i = Integer.parseInt(str);
             boolean z = PhotoViewerWebView.this.isPlaying;
             final boolean z2 = false;
-            final int i = 1;
-            PhotoViewerWebView.this.isPlaying = parseInt == 1 || parseInt == 3;
+            final int i2 = 1;
+            PhotoViewerWebView.this.isPlaying = i == 1 || i == 3;
             PhotoViewerWebView.this.checkPlayingPoll(z);
-            if (parseInt != 0) {
-                if (parseInt == 1) {
+            if (i != 0) {
+                if (i == 1) {
                     z2 = true;
-                } else if (parseInt != 2) {
-                    if (parseInt == 3) {
+                } else if (i != 2) {
+                    if (i == 3) {
                         z2 = true;
-                        i = 2;
+                        i2 = 2;
                     }
                 }
-                i = 3;
+                i2 = 3;
             } else {
-                i = 4;
+                i2 = 4;
             }
-            if (i == 3 && PhotoViewerWebView.this.progressBarBlackBackground.getVisibility() != 4) {
+            if (i2 == 3 && PhotoViewerWebView.this.progressBarBlackBackground.getVisibility() != 4) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoViewerWebView.YoutubeProxy.this.lambda$onPlayerStateChange$3();
+                        this.f$0.lambda$onPlayerStateChange$3();
                     }
                 }, 300L);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.YoutubeProxy.this.lambda$onPlayerStateChange$4(z2, i);
+                    this.f$0.lambda$onPlayerStateChange$4(z2, i2);
                 }
             });
         }
@@ -258,7 +259,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         this.progressRunnable = new Runnable() {
             @Override
             public final void run() {
-                PhotoViewerWebView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.photoViewer = photoViewer;
@@ -338,7 +339,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         addView(this.progressBar, LayoutHelper.createFrame(-2, -2, 17));
     }
 
-    public class AnonymousClass2 extends WebViewClient {
+    class AnonymousClass2 extends WebViewClient {
         AnonymousClass2() {
         }
 
@@ -356,22 +357,22 @@ public abstract class PhotoViewerWebView extends FrameLayout {
 
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView webView, final WebResourceRequest webResourceRequest) {
-            final String uri = webResourceRequest.getUrl().toString();
-            if (!PhotoViewerWebView.this.isYouTube || !uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+            final String string = webResourceRequest.getUrl().toString();
+            if (!PhotoViewerWebView.this.isYouTube || !string.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
                 return null;
             }
             Utilities.externalNetworkQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    PhotoViewerWebView.AnonymousClass2.this.lambda$shouldInterceptRequest$0(uri, webResourceRequest);
+                public final void run() throws JSONException, IOException {
+                    this.f$0.lambda$shouldInterceptRequest$0(string, webResourceRequest);
                 }
             });
             return null;
         }
 
-        public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) {
-            JSONObject optJSONObject;
-            String optString;
+        public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) throws JSONException, IOException {
+            JSONObject jSONObjectOptJSONObject;
+            String strOptString;
             try {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -386,23 +387,23 @@ public abstract class PhotoViewerWebView extends FrameLayout {
                 byte[] bArr = new byte[10240];
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 while (true) {
-                    int read = inputStream.read(bArr);
-                    if (read == -1) {
+                    int i = inputStream.read(bArr);
+                    if (i == -1) {
                         break;
                     } else {
-                        byteArrayOutputStream.write(bArr, 0, read);
+                        byteArrayOutputStream.write(bArr, 0, i);
                     }
                 }
                 byteArrayOutputStream.close();
                 inputStream.close();
-                JSONObject optJSONObject2 = new JSONObject(byteArrayOutputStream.toString("UTF-8")).optJSONObject("storyboards");
-                if (optJSONObject2 == null || (optJSONObject = optJSONObject2.optJSONObject("playerStoryboardSpecRenderer")) == null || (optString = optJSONObject.optString("spec")) == null) {
+                JSONObject jSONObjectOptJSONObject2 = new JSONObject(byteArrayOutputStream.toString("UTF-8")).optJSONObject("storyboards");
+                if (jSONObjectOptJSONObject2 == null || (jSONObjectOptJSONObject = jSONObjectOptJSONObject2.optJSONObject("playerStoryboardSpecRenderer")) == null || (strOptString = jSONObjectOptJSONObject.optString("spec")) == null) {
                     return;
                 }
                 if (PhotoViewerWebView.this.videoDuration == 0) {
-                    PhotoViewerWebView.this.youtubeStoryboardsSpecUrl = optString;
+                    PhotoViewerWebView.this.youtubeStoryboardsSpecUrl = strOptString;
                 } else {
-                    PhotoViewerWebView.this.processYoutubeStoryboards(optString);
+                    PhotoViewerWebView.this.processYoutubeStoryboards(strOptString);
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -425,61 +426,61 @@ public abstract class PhotoViewerWebView extends FrameLayout {
 
     public void processYoutubeStoryboards(String str) {
         String str2;
-        double ceil;
+        double dCeil;
         int videoDuration = getVideoDuration() / 1000;
         this.youtubeStoryboards.clear();
         if (videoDuration <= 15) {
             return;
         }
-        String[] split = str.split("\\|");
-        String str3 = split[0].split("\\$")[0] + "2/";
-        String str4 = split[0].split("\\$N")[1];
-        if (split.length == 3) {
-            str2 = split[2].split("M#")[1];
-        } else if (split.length == 2) {
-            str2 = split[1].split("t#")[1];
+        String[] strArrSplit = str.split("\\|");
+        String str3 = strArrSplit[0].split("\\$")[0] + "2/";
+        String str4 = strArrSplit[0].split("\\$N")[1];
+        if (strArrSplit.length == 3) {
+            str2 = strArrSplit[2].split("M#")[1];
+        } else if (strArrSplit.length == 2) {
+            str2 = strArrSplit[1].split("t#")[1];
         } else {
-            str2 = split[3].split("M#")[1];
+            str2 = strArrSplit[3].split("M#")[1];
         }
         if (videoDuration <= 100) {
-            ceil = Math.ceil(videoDuration / 25.0f);
+            dCeil = Math.ceil(videoDuration / 25.0f);
         } else if (videoDuration <= 250) {
-            ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
+            dCeil = Math.ceil((videoDuration / 2.0f) / 25.0f);
         } else if (videoDuration <= 500) {
-            ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
+            dCeil = Math.ceil((videoDuration / 4.0f) / 25.0f);
         } else if (videoDuration <= 1000) {
-            ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
+            dCeil = Math.ceil((videoDuration / 5.0f) / 25.0f);
         } else {
-            ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
+            dCeil = Math.ceil((videoDuration / 10.0f) / 25.0f);
         }
-        int i = (int) ceil;
+        int i = (int) dCeil;
         for (int i2 = 0; i2 < i; i2++) {
             this.youtubeStoryboards.add(String.format(Locale.ROOT, "%sM%d%s&sigh=%s", str3, Integer.valueOf(i2), str4, str2));
         }
     }
 
     public int getYoutubeStoryboardImageCount(int i) {
-        double ceil;
-        int indexOf = this.youtubeStoryboards.indexOf(getYoutubeStoryboard(i));
-        if (indexOf == -1) {
+        double dCeil;
+        int iIndexOf = this.youtubeStoryboards.indexOf(getYoutubeStoryboard(i));
+        if (iIndexOf == -1) {
             return 0;
         }
-        if (indexOf != this.youtubeStoryboards.size() - 1) {
+        if (iIndexOf != this.youtubeStoryboards.size() - 1) {
             return 25;
         }
         int videoDuration = getVideoDuration() / 1000;
         if (videoDuration <= 100) {
-            ceil = Math.ceil(videoDuration);
+            dCeil = Math.ceil(videoDuration);
         } else if (videoDuration <= 250) {
-            ceil = Math.ceil(videoDuration / 2.0f);
+            dCeil = Math.ceil(videoDuration / 2.0f);
         } else if (videoDuration <= 500) {
-            ceil = Math.ceil(videoDuration / 4.0f);
+            dCeil = Math.ceil(videoDuration / 4.0f);
         } else if (videoDuration <= 1000) {
-            ceil = Math.ceil(videoDuration / 5.0f);
+            dCeil = Math.ceil(videoDuration / 5.0f);
         } else {
-            ceil = Math.ceil(videoDuration / 10.0f);
+            dCeil = Math.ceil(videoDuration / 10.0f);
         }
-        return Math.min(25, (((int) ceil) - ((this.youtubeStoryboards.size() - 1) * 25)) + 1);
+        return Math.min(25, (((int) dCeil) - ((this.youtubeStoryboards.size() - 1) * 25)) + 1);
     }
 
     public java.lang.String getYoutubeStoryboard(int r5) {
@@ -544,20 +545,20 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.this.lambda$seekTo$1(j, z);
+                    this.f$0.lambda$seekTo$1(j, z);
                 }
             }, 100L);
             return;
         }
-        runJsCode("seekTo(" + Math.round(((float) j) / 1000.0f) + ", " + z + ");");
+        runJsCode("seekTo(" + Math.round(j / 1000.0f) + ", " + z + ");");
     }
 
     public void lambda$seekTo$1(long j, boolean z) {
-        runJsCode("seekTo(" + Math.round(((float) j) / 1000.0f) + ", " + z + ");");
+        runJsCode("seekTo(" + Math.round(j / 1000.0f) + ", " + z + ");");
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoViewerWebView.this.playVideo();
+                this.f$0.playVideo();
             }
         }, 100L);
     }
@@ -592,11 +593,11 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             int size2 = View.MeasureSpec.getSize(i2);
             float f = i3;
             float f2 = i5;
-            float min = Math.min(size / f, size2 / f2);
+            float fMin = Math.min(size / f, size2 / f2);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.webView.getLayoutParams();
-            int i6 = (int) (f * min);
+            int i6 = (int) (f * fMin);
             layoutParams.width = i6;
-            int i7 = (int) (f2 * min);
+            int i7 = (int) (f2 * fMin);
             layoutParams.height = i7;
             layoutParams.topMargin = (size2 - i7) / 2;
             layoutParams.leftMargin = (size - i6) / 2;
@@ -613,8 +614,8 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     }
 
     public boolean openInPip() {
-        boolean isInAppOnly = isInAppOnly();
-        if ((!isInAppOnly && !checkInlinePermissions()) || this.progressBar.getVisibility() == 0) {
+        boolean zIsInAppOnly = isInAppOnly();
+        if ((!zIsInAppOnly && !checkInlinePermissions()) || this.progressBar.getVisibility() == 0) {
             return false;
         }
         if (PipVideoOverlay.isVisible()) {
@@ -622,7 +623,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.this.openInPip();
+                    this.f$0.openInPip();
                 }
             }, 300L);
             return true;
@@ -631,7 +632,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         Activity activity = (Activity) getContext();
         WebView webView = this.webView;
         TLRPC.WebPage webPage = this.currentWebpage;
-        if (PipVideoOverlay.show(isInAppOnly, activity, this, webView, webPage.embed_width, webPage.embed_height, false)) {
+        if (PipVideoOverlay.show(zIsInAppOnly, activity, this, webView, webPage.embed_width, webPage.embed_height, false)) {
             PipVideoOverlay.setPhotoViewer(PhotoViewer.getInstance());
         }
         return true;
@@ -683,12 +684,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     }
 
     public boolean checkInlinePermissions() {
-        boolean canDrawOverlays;
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        canDrawOverlays = Settings.canDrawOverlays(getContext());
-        if (canDrawOverlays) {
+        if (Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(getContext())) {
             return true;
         }
         AlertsCreator.createDrawOverlayPermissionDialog((Activity) getContext(), null);

@@ -41,40 +41,26 @@ public class WebRtcAudioManager {
     private native void nativeCacheAudioParameters(int i, int i2, int i3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, int i4, int i5, long j);
 
     public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z) {
-        synchronized (WebRtcAudioManager.class) {
-            blacklistDeviceForOpenSLESUsageIsOverridden = true;
-            blacklistDeviceForOpenSLESUsage = z;
-        }
+        blacklistDeviceForOpenSLESUsageIsOverridden = true;
+        blacklistDeviceForOpenSLESUsage = z;
     }
 
     public static synchronized void setStereoOutput(boolean z) {
-        synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z + ')');
-            useStereoOutput = z;
-        }
+        Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z + ')');
+        useStereoOutput = z;
     }
 
     public static synchronized void setStereoInput(boolean z) {
-        synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z + ')');
-            useStereoInput = z;
-        }
+        Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z + ')');
+        useStereoInput = z;
     }
 
     public static synchronized boolean getStereoOutput() {
-        boolean z;
-        synchronized (WebRtcAudioManager.class) {
-            z = useStereoOutput;
-        }
-        return z;
+        return useStereoOutput;
     }
 
     public static synchronized boolean getStereoInput() {
-        boolean z;
-        synchronized (WebRtcAudioManager.class) {
-            z = useStereoInput;
-        }
-        return z;
+        return useStereoInput;
     }
 
     private static class VolumeLogger {
@@ -93,7 +79,7 @@ public class WebRtcAudioManager {
             timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
         }
 
-        public class LogVolumeTask extends TimerTask {
+        private class LogVolumeTask extends TimerTask {
             private final int maxRingVolume;
             private final int maxVoiceCallVolume;
 
@@ -158,13 +144,13 @@ public class WebRtcAudioManager {
     }
 
     private boolean isDeviceBlacklistedForOpenSLESUsage() {
-        boolean deviceIsBlacklistedForOpenSLESUsage;
+        boolean zDeviceIsBlacklistedForOpenSLESUsage;
         if (blacklistDeviceForOpenSLESUsageIsOverridden) {
-            deviceIsBlacklistedForOpenSLESUsage = blacklistDeviceForOpenSLESUsage;
+            zDeviceIsBlacklistedForOpenSLESUsage = blacklistDeviceForOpenSLESUsage;
         } else {
-            deviceIsBlacklistedForOpenSLESUsage = WebRtcAudioUtils.deviceIsBlacklistedForOpenSLESUsage();
+            zDeviceIsBlacklistedForOpenSLESUsage = WebRtcAudioUtils.deviceIsBlacklistedForOpenSLESUsage();
         }
-        if (!deviceIsBlacklistedForOpenSLESUsage) {
+        if (!zDeviceIsBlacklistedForOpenSLESUsage) {
             return true;
         }
         Logging.d("WebRtcAudioManager", Build.MODEL + " is blacklisted for OpenSL ES usage!");

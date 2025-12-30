@@ -127,7 +127,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         this.prepareBlur = new Runnable() {
             @Override
             public final void run() {
-                ActionBarMenuSlider.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.resourcesProvider = resourcesProvider;
@@ -189,24 +189,24 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
             valueAnimator.cancel();
             this.valueAnimator = null;
         }
-        final float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
+        final float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
         if (!z) {
-            this.value = clamp;
+            this.value = fClamp;
             invalidate();
         } else {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.value, clamp);
-            this.valueAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.value, fClamp);
+            this.valueAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ActionBarMenuSlider.this.lambda$setValue$0(valueAnimator2);
+                    this.f$0.lambda$setValue$0(valueAnimator2);
                 }
             });
             this.valueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     ActionBarMenuSlider.this.valueAnimator = null;
-                    ActionBarMenuSlider.this.value = clamp;
+                    ActionBarMenuSlider.this.value = fClamp;
                     ActionBarMenuSlider.this.invalidate();
                 }
             });
@@ -214,17 +214,17 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
             this.valueAnimator.setDuration(220L);
             this.valueAnimator.start();
         }
-        String leftStringValue = getLeftStringValue(clamp);
+        String leftStringValue = getLeftStringValue(fClamp);
         if (leftStringValue != null && !TextUtils.equals(this.leftTextDrawable.getText(), leftStringValue)) {
             this.leftTextDrawable.cancelAnimation();
             this.leftTextDrawable.setText(leftStringValue, true);
         }
-        String rightStringValue = getRightStringValue(clamp);
+        String rightStringValue = getRightStringValue(fClamp);
         if (rightStringValue != null && !TextUtils.equals(this.rightTextDrawable.getText(), rightStringValue)) {
             this.rightTextDrawable.cancelAnimation();
             this.rightTextDrawable.setText(rightStringValue, true);
         }
-        this.fillPaint.setColor(getColorValue(clamp));
+        this.fillPaint.setColor(getColorValue(fClamp));
     }
 
     public void lambda$setValue$0(ValueAnimator valueAnimator) {
@@ -260,8 +260,8 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
 
     public void setDrawShadow(boolean z) {
         this.drawShadow = z;
-        int dp = z ? AndroidUtilities.dp(8.0f) : 0;
-        setPadding(dp, dp, dp, dp);
+        int iDp = z ? AndroidUtilities.dp(8.0f) : 0;
+        setPadding(iDp, iDp, iDp, iDp);
         invalidate();
     }
 
@@ -280,7 +280,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ActionBarMenuSlider.this.lambda$new$1((Bitmap) obj);
+                this.f$0.lambda$new$1((Bitmap) obj);
             }
         }, 8.0f);
     }
@@ -332,7 +332,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws InterruptedException {
         super.onLayout(z, i, i2, i3, i4);
         getLocationOnScreen(this.location);
         Matrix matrix = this.blurBitmapMatrix;
@@ -370,9 +370,9 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
                         matrix.reset();
                     }
                     Matrix matrix2 = this.pseudoBlurMatrix;
-                    int width = (int) rectF.width();
-                    this.pseudoBlurWidth = width;
-                    matrix2.postScale(width, 1.0f);
+                    int iWidth = (int) rectF.width();
+                    this.pseudoBlurWidth = iWidth;
+                    matrix2.postScale(iWidth, 1.0f);
                     this.pseudoBlurGradient.setLocalMatrix(this.pseudoBlurMatrix);
                 }
                 this.pseudoBlurPaint.setAlpha((int) ((1.0f - f) * 255.0f));
@@ -427,27 +427,27 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
     }
 
     private void drawText(Canvas canvas, boolean z) {
-        ColorFilter colorFilter;
+        ColorFilter porterDuffColorFilter;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.leftTextDrawable;
-        ColorFilter colorFilter2 = null;
+        ColorFilter porterDuffColorFilter2 = null;
         if (z) {
-            colorFilter = this.whiteColorFilter;
-            if (colorFilter == null) {
-                colorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-                this.whiteColorFilter = colorFilter;
+            porterDuffColorFilter = this.whiteColorFilter;
+            if (porterDuffColorFilter == null) {
+                porterDuffColorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+                this.whiteColorFilter = porterDuffColorFilter;
             }
         } else {
-            colorFilter = null;
+            porterDuffColorFilter = null;
         }
-        animatedTextDrawable.setColorFilter(colorFilter);
+        animatedTextDrawable.setColorFilter(porterDuffColorFilter);
         this.leftTextDrawable.setBounds(getPaddingLeft() + AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2, (getMeasuredWidth() - getPaddingRight()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2);
         this.leftTextDrawable.draw(canvas);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.rightTextDrawable;
-        if (z && (colorFilter2 = this.whiteColorFilter) == null) {
-            colorFilter2 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-            this.whiteColorFilter = colorFilter2;
+        if (z && (porterDuffColorFilter2 = this.whiteColorFilter) == null) {
+            porterDuffColorFilter2 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+            this.whiteColorFilter = porterDuffColorFilter2;
         }
-        animatedTextDrawable2.setColorFilter(colorFilter2);
+        animatedTextDrawable2.setColorFilter(porterDuffColorFilter2);
         this.rightTextDrawable.setBounds(getPaddingLeft() + AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2, (getMeasuredWidth() - getPaddingRight()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2);
         this.rightTextDrawable.draw(canvas);
     }
@@ -466,9 +466,9 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         return new Pair(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
     }
 
-    private void updatePseudoBlurColors() {
+    private void updatePseudoBlurColors() throws InterruptedException {
         int color;
-        int i;
+        int iIntValue;
         Bitmap bitmap;
         if (this.blurIsInChat) {
             Drawable cachedWallpaper = Theme.getCachedWallpaper();
@@ -482,15 +482,15 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
                 }
                 Pair bitmapGradientColors = getBitmapGradientColors(bitmap);
                 if (bitmapGradientColors != null) {
-                    int intValue = ((Integer) bitmapGradientColors.first).intValue();
-                    i = ((Integer) bitmapGradientColors.second).intValue();
-                    color = intValue;
-                    if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == i) {
+                    int iIntValue2 = ((Integer) bitmapGradientColors.first).intValue();
+                    iIntValue = ((Integer) bitmapGradientColors.second).intValue();
+                    color = iIntValue2;
+                    if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == iIntValue) {
                         return;
                     }
                     this.pseudoBlurColor1 = color;
-                    this.pseudoBlurColor2 = i;
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.pseudoBlurColor2 = iIntValue;
+                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, iIntValue}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                     this.pseudoBlurGradient = linearGradient;
                     this.pseudoBlurPaint.setShader(linearGradient);
                 }
@@ -502,12 +502,12 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
                 color = Theme.blendOver(color, Theme.multAlpha(-16777216, 0.18f));
             }
         }
-        i = color;
+        iIntValue = color;
         if (this.pseudoBlurGradient == null) {
         }
         this.pseudoBlurColor1 = color;
-        this.pseudoBlurColor2 = i;
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.pseudoBlurColor2 = iIntValue;
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, iIntValue}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.pseudoBlurGradient = linearGradient2;
         this.pseudoBlurPaint.setShader(linearGradient2);
     }
@@ -547,21 +547,21 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
                     return true;
                 }
             }
-            float max = this.fromValue + ((x - this.fromX) / Math.max(1, (getWidth() - getPaddingLeft()) - getPaddingRight()));
+            float fMax = this.fromValue + ((x - this.fromX) / Math.max(1, (getWidth() - getPaddingLeft()) - getPaddingRight()));
             if (this.stops != null) {
                 while (true) {
                     float[] fArr2 = this.stops;
                     if (i >= fArr2.length) {
                         break;
                     }
-                    if (Math.abs(max - fArr2[i]) < 0.05f) {
-                        max = this.stops[i];
+                    if (Math.abs(fMax - fArr2[i]) < 0.05f) {
+                        fMax = this.stops[i];
                         break;
                     }
                     i++;
                 }
             }
-            updateValue(max, !this.dragging);
+            updateValue(fMax, !this.dragging);
         }
         return true;
     }
@@ -582,7 +582,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
             setImportantForAccessibility(1);
             FloatSeekBarAccessibilityDelegate floatSeekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate(false) {
                 @Override
-                public float getDelta() {
+                protected float getDelta() {
                     return 0.2f;
                 }
 

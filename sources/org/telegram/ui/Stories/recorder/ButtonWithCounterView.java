@@ -86,6 +86,11 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this(context, true, resourcesProvider);
     }
 
+    public ButtonWithCounterView setRound() {
+        setRoundRadius(24);
+        return this;
+    }
+
     public void setRoundRadius(int i) {
         this.radiusDp = i;
         if (this.filled) {
@@ -183,9 +188,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.text.setTextColor(i);
         View view = this.rippleView;
-        int multAlpha = Theme.multAlpha(i, 0.1f);
+        int iMultAlpha = Theme.multAlpha(i, 0.1f);
         int i2 = this.radiusDp;
-        view.setBackground(Theme.createRadSelectorDrawable(multAlpha, i2, i2));
+        view.setBackground(Theme.createRadSelectorDrawable(iMultAlpha, i2, i2));
     }
 
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
@@ -202,9 +207,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             view.setBackground(Theme.createRadSelectorDrawable(color, i, i));
         } else {
             View view2 = this.rippleView;
-            int multAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
+            int iMultAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
             int i2 = this.radiusDp;
-            view2.setBackground(Theme.createRadSelectorDrawable(multAlpha, i2, i2));
+            view2.setBackground(Theme.createRadSelectorDrawable(iMultAlpha, i2, i2));
         }
         this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
@@ -221,9 +226,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             return;
         }
         View view = this.rippleView;
-        int multAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
+        int iMultAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
         int i2 = this.radiusDp;
-        view.setBackground(Theme.createRadSelectorDrawable(multAlpha, i2, i2));
+        view.setBackground(Theme.createRadSelectorDrawable(iMultAlpha, i2, i2));
     }
 
     public void setCountFilled(boolean z) {
@@ -248,7 +253,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ButtonWithCounterView.this.lambda$setTimer$0(runnable);
+                this.f$0.lambda$setTimer$0(runnable);
             }
         };
         this.tick = runnable2;
@@ -271,6 +276,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public boolean isTimerActive() {
         return this.timerSeconds > 0;
+    }
+
+    public void setText(CharSequence charSequence) {
+        setText(charSequence, false);
     }
 
     public void setText(CharSequence charSequence, boolean z) {
@@ -307,12 +316,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         invalidate();
         if (this.subTextVisible && !z2) {
             cleanSubTextVisibleAnimator();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.subTextT, 0.0f);
-            this.subTextVisibleAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.subTextT, 0.0f);
+            this.subTextVisibleAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ButtonWithCounterView.this.lambda$setSubText$1(valueAnimator);
+                    this.f$0.lambda$setSubText$1(valueAnimator);
                 }
             });
             this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -333,12 +342,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.subTextVisible = true;
         cleanSubTextVisibleAnimator();
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.subTextT, 1.0f);
-        this.subTextVisibleAnimator = ofFloat2;
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.subTextT, 1.0f);
+        this.subTextVisibleAnimator = valueAnimatorOfFloat2;
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ButtonWithCounterView.this.lambda$setSubText$2(valueAnimator);
+                this.f$0.lambda$setSubText$2(valueAnimator);
             }
         });
         this.subTextVisibleAnimator.setDuration(200L);
@@ -371,12 +380,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             }
             float f = this.loadingT;
             this.loading = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-            this.loadingAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+            this.loadingAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setLoading$3(valueAnimator2);
+                    this.f$0.lambda$setLoading$3(valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -412,12 +421,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimator.cancel();
             this.countAnimator = null;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.countAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.countAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ButtonWithCounterView.this.lambda$animateCount$4(valueAnimator2);
+                this.f$0.lambda$animateCount$4(valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -439,9 +448,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public void withCounterIcon() {
         this.withCounterIcon = true;
-        Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.mini_boost_button).mutate();
-        this.counterDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+        Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.mini_boost_button).mutate();
+        this.counterDrawable = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
     }
 
     public void setShowZero(boolean z) {
@@ -472,12 +481,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             }
             float f = this.enabledT;
             this.enabled = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-            this.enabledAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+            this.enabledAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setEnabled$5(valueAnimator2);
+                    this.f$0.lambda$setEnabled$5(valueAnimator2);
                 }
             });
             this.enabledAnimator.start();
@@ -501,7 +510,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         boolean z;
         this.rippleView.draw(canvas);
         if (this.flickeringLoading) {
@@ -534,8 +543,8 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             if (this.loadingDrawable == null) {
                 this.loadingDrawable = new CircularProgressDrawable(this.text.getTextColor());
             }
-            int dp = (int) ((1.0f - this.loadingT) * AndroidUtilities.dp(24.0f));
-            this.loadingDrawable.setBounds(0, dp, getWidth(), getHeight() + dp);
+            int iDp = (int) ((1.0f - this.loadingT) * AndroidUtilities.dp(24.0f));
+            this.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
             this.loadingDrawable.setAlpha((int) (this.loadingT * 255.0f));
             this.loadingDrawable.draw(canvas);
             invalidate();
@@ -552,27 +561,27 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             }
             float currentWidth = this.text.getCurrentWidth();
             float f2 = this.countAlphaAnimated.set(this.countAlpha);
-            float dp2 = this.withCounterIcon ? AndroidUtilities.dp(12.0f) : 0.0f;
-            float calculateCounterWidth = currentWidth + dp2 + calculateCounterWidth(AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth(), f2);
+            float fDp = this.withCounterIcon ? AndroidUtilities.dp(12.0f) : 0.0f;
+            float fCalculateCounterWidth = currentWidth + fDp + calculateCounterWidth(AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth(), f2);
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - calculateCounterWidth) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            rect.set((int) (((getMeasuredWidth() - fCalculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - fCalculateCounterWidth) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
             rect.offset(0, (int) ((-AndroidUtilities.dp(7.0f)) * this.subTextT));
             this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
             if (this.subTextVisible) {
-                calculateCounterWidth = this.subText.getCurrentWidth();
-                rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - calculateCounterWidth) + getWidth()) / 2.0f) + calculateCounterWidth), (int) (((getMeasuredHeight() + this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+                fCalculateCounterWidth = this.subText.getCurrentWidth();
+                rect.set((int) (((getMeasuredWidth() - fCalculateCounterWidth) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - fCalculateCounterWidth) + getWidth()) / 2.0f) + fCalculateCounterWidth), (int) (((getMeasuredHeight() + this.subText.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
                 rect.offset(0, AndroidUtilities.dp(11.0f));
                 canvas.save();
-                float lerp = AndroidUtilities.lerp(0.1f, 1.0f, this.subTextT);
-                canvas.scale(lerp, lerp, rect.centerX(), rect.bottom);
+                float fLerp = AndroidUtilities.lerp(0.1f, 1.0f, this.subTextT);
+                canvas.scale(fLerp, fLerp, rect.centerX(), rect.bottom);
                 this.subText.setAlpha((int) ((1.0f - this.loadingT) * 200.0f * this.subTextT * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
                 this.subText.setBounds(rect);
                 this.subText.draw(canvas);
                 canvas.restore();
             }
-            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 8) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - fCalculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - fCalculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 8) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + fDp)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {
@@ -582,8 +591,8 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             }
             if (this.countFilled) {
                 this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
-                float dp3 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
-                canvas.drawRoundRect(rectF, dp3, dp3, this.paint);
+                float fDp2 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
+                canvas.drawRoundRect(rectF, fDp2, fDp2, this.paint);
             }
             rect.offset(-AndroidUtilities.dp((this.countText.getText() != null ? this.countText.getText().length() : 0) > 1 ? 0.3f : 0.0f), -AndroidUtilities.dp(0.4f));
             this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
@@ -593,7 +602,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 this.counterDrawable.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * 1.0f));
                 this.counterDrawable.setBounds(AndroidUtilities.dp(1.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, AndroidUtilities.dp(1.0f) + rect.left + this.counterDrawable.getIntrinsicWidth(), AndroidUtilities.dp(2.0f) + rect.top + this.counterDrawable.getIntrinsicHeight());
                 this.counterDrawable.draw(canvas);
-                canvas.translate(dp2 / 2.0f, 0.0f);
+                canvas.translate(fDp / 2.0f, 0.0f);
             }
             this.countText.draw(canvas);
             canvas.restore();
@@ -630,7 +639,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         if (this.wrapWidth) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824), i2);
         } else {

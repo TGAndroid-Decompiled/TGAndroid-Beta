@@ -23,19 +23,6 @@ public final class VerticalPositionAutoAnimator {
         this.floatingButtonAnimator.addUpdateListener(onAnimationUpdateListener);
     }
 
-    public void setOffsetY(float f) {
-        this.offsetY = f;
-        if (this.floatingButtonAnimator.isRunning()) {
-            this.floatingButtonAnimator.getSpring().setFinalPosition(f);
-        } else {
-            this.floatingButtonView.setTranslationY(f);
-        }
-    }
-
-    public float getOffsetY() {
-        return this.offsetY;
-    }
-
     private VerticalPositionAutoAnimator(View view, float f) {
         this.floatingButtonView = view;
         AnimatorLayoutChangeListener animatorLayoutChangeListener = new AnimatorLayoutChangeListener(view, f);

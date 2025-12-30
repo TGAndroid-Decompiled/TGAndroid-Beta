@@ -55,23 +55,23 @@ public class HeaderCell extends FrameLayout {
         linearLayout.setOrientation(1);
         GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1) {
             @Override
-            public void onAttachedToWindow() {
+            protected void onAttachedToWindow() {
                 super.onAttachedToWindow();
                 setPaused(false);
             }
 
             @Override
-            public void onDetachedFromWindow() {
+            protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 setPaused(true);
             }
         };
         this.iconTextureView = gLIconTextureView;
-        Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         int i = Theme.key_premiumGradient2;
         canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.5f));
-        gLIconTextureView.setBackgroundBitmap(createBitmap);
+        gLIconTextureView.setBackgroundBitmap(bitmapCreateBitmap);
         GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
         gLIconRenderer.colorKey1 = i;
         gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
@@ -79,19 +79,19 @@ public class HeaderCell extends FrameLayout {
         linearLayout.addView(gLIconTextureView, LayoutHelper.createLinear(160, 160, 1));
         StarParticlesView starParticlesView = new StarParticlesView(context) {
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
                 this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
             }
 
             @Override
-            public void onAttachedToWindow() {
+            protected void onAttachedToWindow() {
                 super.onAttachedToWindow();
                 HeaderCell.this.starParticlesView.setPaused(false);
             }
 
             @Override
-            public void onDetachedFromWindow() {
+            protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 HeaderCell.this.starParticlesView.setPaused(true);
             }
@@ -107,9 +107,7 @@ public class HeaderCell extends FrameLayout {
         drawable.getPaint = new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                Paint lambda$new$0;
-                lambda$new$0 = HeaderCell.this.lambda$new$0((Integer) obj);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0((Integer) obj);
             }
         };
         starParticlesView.drawable.init();
@@ -147,8 +145,8 @@ public class HeaderCell extends FrameLayout {
         setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                float dp = AndroidUtilities.dp(12.0f);
-                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + dp), dp);
+                float fDp = AndroidUtilities.dp(12.0f);
+                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + fDp), fDp);
             }
         });
         setClipToOutline(true);
@@ -178,12 +176,12 @@ public class HeaderCell extends FrameLayout {
 
     public void setGiftLinkToUserText(long j, final Utilities.Callback callback) {
         this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
+        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
         final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
-        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
+        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
             @Override
             public final void run() {
-                Utilities.Callback.this.run(user);
+                callback.run(user);
             }
         }, this.resourcesProvider)));
     }
@@ -216,7 +214,7 @@ public class HeaderCell extends FrameLayout {
         this.goldenAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HeaderCell.this.lambda$setStars$2(fArr, f, f3, z, valueAnimator2);
+                this.f$0.lambda$setStars$2(fArr, f, f3, z, valueAnimator2);
             }
         });
         this.goldenAnimator.addListener(new AnimatorListenerAdapter() {
@@ -239,10 +237,10 @@ public class HeaderCell extends FrameLayout {
     }
 
     public void lambda$setStars$2(float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f3 = floatValue - fArr[0];
-        fArr[0] = floatValue;
-        this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float f3 = fFloatValue - fArr[0];
+        fArr[0] = fFloatValue;
+        this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, fFloatValue);
         GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
         gLIconRenderer.angleX3 += f3 * 360.0f * (z ? 1 : -1);
         gLIconRenderer.updateColors();
@@ -252,8 +250,8 @@ public class HeaderCell extends FrameLayout {
     public void updatePaints(float f) {
         int color = Theme.getColor(Theme.key_premiumGradient1, this.resourcesProvider);
         int color2 = Theme.getColor(Theme.key_premiumGradient2, this.resourcesProvider);
-        int blendARGB = ColorUtils.blendARGB(color, -371690, f);
-        int blendARGB2 = ColorUtils.blendARGB(color2, -14281, f);
+        int iBlendARGB = ColorUtils.blendARGB(color, -371690, f);
+        int iBlendARGB2 = ColorUtils.blendARGB(color2, -14281, f);
         int i = 0;
         while (true) {
             Paint[] paintArr = this.paints;
@@ -261,7 +259,7 @@ public class HeaderCell extends FrameLayout {
                 return;
             }
             paintArr[i] = new Paint(1);
-            this.paints[i].setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(blendARGB, blendARGB2, i / (this.paints.length - 1)), PorterDuff.Mode.SRC_IN));
+            this.paints[i].setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(iBlendARGB, iBlendARGB2, i / (this.paints.length - 1)), PorterDuff.Mode.SRC_IN));
             i++;
         }
     }

@@ -10,7 +10,6 @@ import j$.util.Objects;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.messenger.CaptchaController;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class CaptchaController {
@@ -70,7 +69,7 @@ public class CaptchaController {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    CaptchaController.lambda$request$3(CaptchaController.Request.this, exc);
+                    CaptchaController.lambda$request$3(request2, exc);
                 }
             });
         }
@@ -85,7 +84,7 @@ public class CaptchaController {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                CaptchaController.lambda$request$1(CaptchaController.Request.this, exc);
+                CaptchaController.lambda$request$1(request, exc);
             }
         });
     }
@@ -111,39 +110,12 @@ public class CaptchaController {
 
     private static RecaptchaAction getAction(String str) {
         str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1849137896:
-                if (str.equals("SIGNUP")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -902467304:
-                if (str.equals("signup")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 72611657:
-                if (str.equals("LOGIN")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 103149417:
-                if (str.equals("login")) {
-                    c = 3;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-            case 1:
+        switch (str) {
+            case "SIGNUP":
+            case "signup":
                 return RecaptchaAction.SIGNUP;
-            case 2:
-            case 3:
+            case "LOGIN":
+            case "login":
                 return RecaptchaAction.LOGIN;
             default:
                 return RecaptchaAction.custom(str);

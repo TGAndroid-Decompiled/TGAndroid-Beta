@@ -134,8 +134,8 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                     canvas2 = canvas;
                 }
                 Rect rect = AndroidUtilities.rectTmp2;
-                float height = (this.storyReactionWidgetBackground.getBounds().height() * 0.61f) / 2.0f;
-                rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - height), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - height), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + height), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + height));
+                float fHeight = (this.storyReactionWidgetBackground.getBounds().height() * 0.61f) / 2.0f;
+                rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + fHeight));
                 this.storyReactionWidgetBackground.updateShadowLayer(1.0f);
                 this.storyReactionWidgetBackground.draw(canvas2);
                 this.imageHolder.setBounds(rect);
@@ -198,8 +198,8 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             float f5 = (float) ((d4 * mediaAreaCoordinates.h) / 100.0d);
             canvas.save();
             canvas.translate(f2, f3);
-            float min = Math.min(f4 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), f5 / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
-            canvas.scale(min, min);
+            float fMin = Math.min(f4 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), f5 / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
+            canvas.scale(fMin, fMin);
             double d5 = this.mediaArea.coordinates.rotation;
             if (d5 != 0.0d) {
                 canvas.rotate((float) d5);

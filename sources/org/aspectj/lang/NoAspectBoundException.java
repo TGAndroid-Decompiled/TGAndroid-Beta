@@ -3,8 +3,17 @@ package org.aspectj.lang;
 public class NoAspectBoundException extends RuntimeException {
     Throwable cause;
 
-    public NoAspectBoundException(java.lang.String r3, java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.aspectj.lang.NoAspectBoundException.<init>(java.lang.String, java.lang.Throwable):void");
+    public NoAspectBoundException(String str, Throwable th) {
+        if (th != null) {
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("Exception while initializing ");
+            stringBuffer.append(str);
+            stringBuffer.append(": ");
+            stringBuffer.append(th);
+            str = stringBuffer.toString();
+        }
+        super(str);
+        this.cause = th;
     }
 
     @Override

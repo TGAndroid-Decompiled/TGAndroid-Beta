@@ -35,7 +35,7 @@ public class QRScanner {
     private final Runnable process = new Runnable() {
         @Override
         public final void run() {
-            QRScanner.this.lambda$new$3();
+            this.f$0.lambda$new$3();
         }
     };
     private final String prefix = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
@@ -45,7 +45,7 @@ public class QRScanner {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QRScanner.this.lambda$new$0(context);
+                this.f$0.lambda$new$0(context);
             }
         });
     }
@@ -84,7 +84,7 @@ public class QRScanner {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        QRScanner.this.lambda$setPaused$1();
+                        this.f$0.lambda$setPaused$1();
                     }
                 });
                 return;
@@ -110,25 +110,25 @@ public class QRScanner {
             if (width > 720 || height > 720) {
                 float f = width;
                 float f2 = height;
-                float min = Math.min(720.0f / f, 720.0f / f2);
-                width = (int) (f * min);
-                height = (int) (f2 * min);
+                float fMin = Math.min(720.0f / f, 720.0f / f2);
+                width = (int) (f * fMin);
+                height = (int) (f2 * fMin);
             }
-            int max = Math.max(1, width);
-            int max2 = Math.max(1, height);
+            int iMax = Math.max(1, width);
+            int iMax2 = Math.max(1, height);
             Bitmap bitmap = this.cacheBitmap;
-            if (bitmap == null || max != bitmap.getWidth() || max2 != this.cacheBitmap.getHeight()) {
-                this.cacheBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+            if (bitmap == null || iMax != bitmap.getWidth() || iMax2 != this.cacheBitmap.getHeight()) {
+                this.cacheBitmap = Bitmap.createBitmap(iMax, iMax2, Bitmap.Config.ARGB_8888);
             }
             textureView.getBitmap(this.cacheBitmap);
-            final Detected detect = detect(this.cacheBitmap);
+            final Detected detectedDetect = detect(this.cacheBitmap);
             Detected detected = this.lastDetected;
-            if ((detected != null) != (detect != null) || (detect != null && detected != null && !detect.equals(detected))) {
-                this.lastDetected = detect;
+            if ((detected != null) != (detectedDetect != null) || (detectedDetect != null && detected != null && !detectedDetect.equals(detected))) {
+                this.lastDetected = detectedDetect;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        QRScanner.this.lambda$new$2(detect);
+                        this.f$0.lambda$new$2(detectedDetect);
                     }
                 });
             }
@@ -149,15 +149,15 @@ public class QRScanner {
         if (bitmap != null && (barcodeDetector = (BarcodeDetector) this.detector.get()) != null && barcodeDetector.isOperational()) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            SparseArray detect = barcodeDetector.detect(new Frame.Builder().setBitmap(bitmap).build());
-            for (int i = 0; i < detect.size(); i++) {
-                Barcode barcode = (Barcode) detect.valueAt(i);
+            SparseArray sparseArrayDetect = barcodeDetector.detect(new Frame.Builder().setBitmap(bitmap).build());
+            for (int i = 0; i < sparseArrayDetect.size(); i++) {
+                Barcode barcode = (Barcode) sparseArrayDetect.valueAt(i);
                 String str = barcode.rawValue;
                 if (str != null) {
-                    String trim = str.trim();
-                    if (!trim.startsWith(this.prefix)) {
-                        if (!trim.startsWith("https://" + this.prefix)) {
-                            if (!trim.startsWith("http://" + this.prefix)) {
+                    String strTrim = str.trim();
+                    if (!strTrim.startsWith(this.prefix)) {
+                        if (!strTrim.startsWith("https://" + this.prefix)) {
+                            if (!strTrim.startsWith("http://" + this.prefix)) {
                             }
                         }
                     }
@@ -166,7 +166,7 @@ public class QRScanner {
                         Point point = barcode.cornerPoints[i2];
                         pointFArr[i2] = new PointF(point.x / width, point.y / height);
                     }
-                    return new Detected(trim, pointFArr);
+                    return new Detected(strTrim, pointFArr);
                 }
             }
         }
@@ -191,24 +191,24 @@ public class QRScanner {
         public final PointF[] points;
 
         private Detected(String str, PointF[] pointFArr) {
-            float f;
+            float length;
             this.link = str;
             this.points = pointFArr;
-            float f2 = 0.0f;
+            float f = 0.0f;
             if (pointFArr != null) {
-                float f3 = 0.0f;
+                float f2 = 0.0f;
                 for (PointF pointF : pointFArr) {
-                    f3 += pointF.x;
-                    f2 += pointF.y;
+                    f2 += pointF.x;
+                    f += pointF.y;
                 }
-                float length = f3 / pointFArr.length;
-                f = f2 / pointFArr.length;
-                f2 = length;
+                float length2 = f2 / pointFArr.length;
+                length = f / pointFArr.length;
+                f = length2;
             } else {
-                f = 0.0f;
+                length = 0.0f;
             }
-            this.cx = f2;
-            this.cy = f;
+            this.cx = f;
+            this.cy = length;
         }
 
         public boolean equals(Detected detected) {
@@ -276,39 +276,39 @@ public class QRScanner {
             }
             float f = this.animatedQr.set(this.hasQrResult);
             float f2 = this.animatedQrCX.set(this.qrResult.cx);
-            float width = rectF.left + (rectF.width() * f2);
+            float fWidth = rectF.left + (rectF.width() * f2);
             float f3 = this.animatedQrCY.set(this.qrResult.cy);
-            float height = rectF.top + (rectF.height() * f3);
-            float lerp = AndroidUtilities.lerp(0.5f, 1.1f, f);
+            float fHeight = rectF.top + (rectF.height() * f3);
+            float fLerp = AndroidUtilities.lerp(0.5f, 1.1f, f);
             canvas.save();
-            canvas.scale(lerp, lerp, width, height);
+            canvas.scale(fLerp, fLerp, fWidth, fHeight);
             if (f > 0.0f) {
                 this.qrPath.rewind();
-                int min = Math.min(4, this.qrResult.points.length);
+                int iMin = Math.min(4, this.qrResult.points.length);
                 int i = 0;
-                while (i < min) {
+                while (i < iMin) {
                     int i2 = i - 1;
                     if (i2 < 0) {
-                        i2 = min - 1;
+                        i2 = iMin - 1;
                     }
                     int i3 = i + 1;
-                    int i4 = i3 >= min ? 0 : i3;
+                    int i4 = i3 >= iMin ? 0 : i3;
                     Detected detected2 = this.qrResult;
                     PointF[] pointFArr = detected2.points;
                     PointF pointF = pointFArr[i2];
                     PointF pointF2 = pointFArr[i];
                     PointF pointF3 = pointFArr[i4];
-                    int i5 = min;
-                    float width2 = rectF.left + ((this.animatedQPX[i2].set(pointF.x - detected2.cx) + f2) * rectF.width());
-                    float height2 = rectF.top + ((this.animatedQPY[i2].set(pointF.y - this.qrResult.cy) + f3) * rectF.height());
-                    float width3 = rectF.left + ((this.animatedQPX[i].set(pointF2.x - this.qrResult.cx) + f2) * rectF.width());
-                    float height3 = rectF.top + ((this.animatedQPY[i].set(pointF2.y - this.qrResult.cy) + f3) * rectF.height());
-                    float width4 = rectF.left + ((this.animatedQPX[i4].set(pointF3.x - this.qrResult.cx) + f2) * rectF.width());
-                    float height4 = (rectF.top + ((this.animatedQPY[i4].set(pointF3.y - this.qrResult.cy) + f3) * rectF.height())) - height3;
-                    this.qrPath.moveTo(((width2 - width3) * 0.18f) + width3, ((height2 - height3) * 0.18f) + height3);
-                    this.qrPath.lineTo(width3, height3);
-                    this.qrPath.lineTo(width3 + ((width4 - width3) * 0.18f), height3 + (height4 * 0.18f));
-                    min = i5;
+                    int i5 = iMin;
+                    float fWidth2 = rectF.left + ((this.animatedQPX[i2].set(pointF.x - detected2.cx) + f2) * rectF.width());
+                    float fHeight2 = rectF.top + ((this.animatedQPY[i2].set(pointF.y - this.qrResult.cy) + f3) * rectF.height());
+                    float fWidth3 = rectF.left + ((this.animatedQPX[i].set(pointF2.x - this.qrResult.cx) + f2) * rectF.width());
+                    float fHeight3 = rectF.top + ((this.animatedQPY[i].set(pointF2.y - this.qrResult.cy) + f3) * rectF.height());
+                    float fWidth4 = rectF.left + ((this.animatedQPX[i4].set(pointF3.x - this.qrResult.cx) + f2) * rectF.width());
+                    float fHeight4 = (rectF.top + ((this.animatedQPY[i4].set(pointF3.y - this.qrResult.cy) + f3) * rectF.height())) - fHeight3;
+                    this.qrPath.moveTo(((fWidth2 - fWidth3) * 0.18f) + fWidth3, ((fHeight2 - fHeight3) * 0.18f) + fHeight3);
+                    this.qrPath.lineTo(fWidth3, fHeight3);
+                    this.qrPath.lineTo(fWidth3 + ((fWidth4 - fWidth3) * 0.18f), fHeight3 + (fHeight4 * 0.18f));
+                    iMin = i5;
                     i = i3;
                 }
                 this.qrPaint.setAlpha((int) (f * 255.0f));

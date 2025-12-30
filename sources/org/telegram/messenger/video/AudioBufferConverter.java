@@ -22,14 +22,14 @@ public class AudioBufferConverter {
     public ShortBuffer convert(ShortBuffer shortBuffer, int i, int i2, int i3, int i4) {
         checkChannels(i2, i4);
         int remixedSize = this.mRemixer.getRemixedSize(shortBuffer.remaining(), i2, i4);
-        ShortBuffer createBuffer = createBuffer(remixedSize);
-        this.mRemixer.remix(shortBuffer, i2, createBuffer, i4);
-        createBuffer.rewind();
-        ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil((remixedSize * i3) / i)) + 10);
-        this.mResampler.resample(createBuffer, i, createBuffer2, i3, i4);
-        createBuffer2.limit(createBuffer2.position());
-        createBuffer2.rewind();
-        return createBuffer2;
+        ShortBuffer shortBufferCreateBuffer = createBuffer(remixedSize);
+        this.mRemixer.remix(shortBuffer, i2, shortBufferCreateBuffer, i4);
+        shortBufferCreateBuffer.rewind();
+        ShortBuffer shortBufferCreateBuffer2 = createBuffer(((int) Math.ceil((remixedSize * i3) / i)) + 10);
+        this.mResampler.resample(shortBufferCreateBuffer, i, shortBufferCreateBuffer2, i3, i4);
+        shortBufferCreateBuffer2.limit(shortBufferCreateBuffer2.position());
+        shortBufferCreateBuffer2.rewind();
+        return shortBufferCreateBuffer2;
     }
 
     private void checkChannels(int i, int i2) {
@@ -46,9 +46,9 @@ public class AudioBufferConverter {
     }
 
     private ShortBuffer createBuffer(int i) {
-        ShortBuffer asShortBuffer = ByteBuffer.allocateDirect(i * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
-        asShortBuffer.clear();
-        asShortBuffer.limit(i);
-        return asShortBuffer;
+        ShortBuffer shortBufferAsShortBuffer = ByteBuffer.allocateDirect(i * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+        shortBufferAsShortBuffer.clear();
+        shortBufferAsShortBuffer.limit(i);
+        return shortBufferAsShortBuffer;
     }
 }

@@ -39,7 +39,7 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
         return this.finishedFilePath;
     }
 
-    public int read(int i, int i2) {
+    public int read(int i, int i2) throws InterruptedException {
         long j;
         long j2;
         synchronized (this.sync) {
@@ -83,11 +83,11 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
                                 }
                                 this.countDownLatch = new CountDownLatch(1);
                                 if (this.loadOperation.isPaused() || this.lastOffset != j || this.preview) {
-                                    FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j, this.preview, this.loadingPriority);
+                                    FileLoadOperation fileLoadOperationLoadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j, this.preview, this.loadingPriority);
                                     FileLoadOperation fileLoadOperation = this.loadOperation;
-                                    if (fileLoadOperation != loadStreamFile) {
+                                    if (fileLoadOperation != fileLoadOperationLoadStreamFile) {
                                         fileLoadOperation.removeStreamListener(this);
-                                        this.loadOperation = loadStreamFile;
+                                        this.loadOperation = fileLoadOperationLoadStreamFile;
                                     }
                                     this.lastOffset = j + j2;
                                 }

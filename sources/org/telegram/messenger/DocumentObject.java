@@ -2,10 +2,12 @@ package org.telegram.messenger;
 
 import android.graphics.Paint;
 import android.graphics.Path;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.xml.sax.SAXException;
 
 public class DocumentObject {
 
@@ -126,7 +128,7 @@ public class DocumentObject {
     public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         int i3;
-        SvgHelper.SvgDrawable svgDrawable = null;
+        SvgHelper.SvgDrawable drawableByPath = null;
         if (document == null) {
             return null;
         }
@@ -149,17 +151,17 @@ public class DocumentObject {
                 }
                 i2 = 512;
                 i3 = 512;
-                if (i2 != 0 && i3 != 0 && (svgDrawable = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
-                    svgDrawable.setupGradient(i, resourcesProvider, f, false);
+                if (i2 != 0 && i3 != 0 && (drawableByPath = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
+                    drawableByPath.setupGradient(i, resourcesProvider, f, false);
                 }
             } else {
                 i4++;
             }
         }
-        return svgDrawable;
+        return drawableByPath;
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(int i, int i2, float f) {
+    public static SvgHelper.SvgDrawable getSvgThumb(int i, int i2, float f) throws SAXException, IOException {
         SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(i, -65536);
         if (drawable != null) {
             drawable.setupGradient(i2, f, false);

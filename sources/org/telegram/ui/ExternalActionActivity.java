@@ -52,8 +52,8 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     private boolean passcodeSaveIntentIsRestore;
     private int passcodeSaveIntentState;
     private PasscodeView passcodeView;
-    private static ArrayList mainFragmentsStack = new ArrayList();
-    private static ArrayList layerFragmentsStack = new ArrayList();
+    private static final ArrayList mainFragmentsStack = new ArrayList();
+    private static final ArrayList layerFragmentsStack = new ArrayList();
 
     public static void lambda$onCreate$1(View view) {
     }
@@ -70,9 +70,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
 
     @Override
     public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        boolean needPresentFragment;
-        needPresentFragment = needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
-        return needPresentFragment;
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
     }
 
     @Override
@@ -96,7 +94,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
-        if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
+        if (!SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
                 AndroidUtilities.logFlagSecure();
@@ -105,7 +103,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             }
         }
         super.onCreate(bundle);
-        if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.appLocked) {
+        if (!SharedConfig.passcodeHash.isEmpty() && SharedConfig.appLocked) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
@@ -114,8 +112,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         this.actionBarLayout = INavigationLayout.CC.newLayout(this, false);
         DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
         this.drawerLayoutContainer = drawerLayoutContainer;
-        drawerLayoutContainer.setAllowOpenDrawer(false, false);
-        setContentView(this.drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
         if (AndroidUtilities.isTablet()) {
             getWindow().setSoftInputMode(16);
             RelativeLayout relativeLayout = new RelativeLayout(this);
@@ -141,9 +138,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             frameLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    boolean lambda$onCreate$0;
-                    lambda$onCreate$0 = ExternalActionActivity.this.lambda$onCreate$0(view, motionEvent);
-                    return lambda$onCreate$0;
+                    return this.f$0.lambda$onCreate$0(view, motionEvent);
                 }
             });
             frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -152,9 +147,9 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     ExternalActionActivity.lambda$onCreate$1(view);
                 }
             });
-            INavigationLayout newLayout = INavigationLayout.CC.newLayout(this, false);
-            this.layersActionBarLayout = newLayout;
-            newLayout.setRemoveActionBarExtraHeight(true);
+            INavigationLayout iNavigationLayoutNewLayout = INavigationLayout.CC.newLayout(this, false);
+            this.layersActionBarLayout = iNavigationLayoutNewLayout;
+            iNavigationLayoutNewLayout.setRemoveActionBarExtraHeight(true);
             this.layersActionBarLayout.setBackgroundView(frameLayout);
             this.layersActionBarLayout.setUseAlphaAnimations(true);
             this.layersActionBarLayout.getView().setBackgroundResource(R.drawable.boxshadow);
@@ -216,7 +211,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         return false;
     }
 
-    public void showPasscodeActivity() {
+    public void showPasscodeActivity() throws NumberFormatException {
         if (this.passcodeView == null) {
             return;
         }
@@ -230,11 +225,10 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         }
         this.passcodeView.onShow(true, false);
         SharedConfig.isWaitingForPasscodeEnter = true;
-        this.drawerLayoutContainer.setAllowOpenDrawer(false, false);
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
             public final void didAcceptedPassword(PasscodeView passcodeView) {
-                ExternalActionActivity.this.lambda$showPasscodeActivity$2(passcodeView);
+                this.f$0.lambda$showPasscodeActivity$2(passcodeView);
             }
         });
     }
@@ -246,7 +240,6 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             handleIntent(intent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
             this.passcodeSaveIntent = null;
         }
-        this.drawerLayoutContainer.setAllowOpenDrawer(true, false);
         this.actionBarLayout.showLastFragment();
         if (AndroidUtilities.isTablet()) {
             this.layersActionBarLayout.showLastFragment();
@@ -267,7 +260,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         }
     }
 
-    public boolean checkPasscode(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
+    protected boolean checkPasscode(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws NumberFormatException {
         if (z3 || !(AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             return true;
         }
@@ -315,18 +308,18 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     return true;
                 }
                 if (activatedAccountsCount >= 2) {
-                    AlertDialog createAccountSelectDialog = AlertsCreator.createAccountSelectDialog(this, new AlertsCreator.AccountSelectDelegate() {
+                    AlertDialog alertDialogCreateAccountSelectDialog = AlertsCreator.createAccountSelectDialog(this, new AlertsCreator.AccountSelectDelegate() {
                         @Override
                         public final void didSelectAccount(int i3) {
-                            ExternalActionActivity.this.lambda$handleIntent$3(i, intent, z, z2, z3, i3);
+                            this.f$0.lambda$handleIntent$3(i, intent, z, z2, z3, i3);
                         }
                     });
-                    createAccountSelectDialog.show();
-                    createAccountSelectDialog.setCanceledOnTouchOutside(false);
-                    createAccountSelectDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    alertDialogCreateAccountSelectDialog.show();
+                    alertDialogCreateAccountSelectDialog.setCanceledOnTouchOutside(false);
+                    alertDialogCreateAccountSelectDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            ExternalActionActivity.this.lambda$handleIntent$4(dialogInterface);
+                            this.f$0.lambda$handleIntent$4(dialogInterface);
                         }
                     });
                     return true;
@@ -355,7 +348,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(getauthorizationform, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ExternalActionActivity.this.lambda$handleIntent$10(iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
+                    this.f$0.lambda$handleIntent$10(iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
                 }
             }, 10);
         } else {
@@ -400,14 +393,14 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    ExternalActionActivity.this.lambda$handleIntent$7(alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
+                    this.f$0.lambda$handleIntent$7(alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ExternalActionActivity.this.lambda$handleIntent$9(alertDialog, tL_error);
+                    this.f$0.lambda$handleIntent$9(alertDialog, tL_error);
                 }
             });
         }
@@ -417,7 +410,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ExternalActionActivity.this.lambda$handleIntent$6(alertDialog, tLObject, i, authorizationform, getauthorizationform, str, str2);
+                this.f$0.lambda$handleIntent$6(alertDialog, tLObject, i, authorizationform, getauthorizationform, str, str2);
             }
         });
     }
@@ -451,24 +444,23 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         try {
             alertDialog.dismiss();
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
-                if (showUpdateAppAlert != null) {
-                    showUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                AlertDialog alertDialogShowUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
+                if (alertDialogShowUpdateAppAlert != null) {
+                    alertDialogShowUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            ExternalActionActivity.this.lambda$handleIntent$8(tL_error, dialogInterface);
+                            this.f$0.lambda$handleIntent$8(tL_error, dialogInterface);
                         }
                     });
                 } else {
                     setResult(1, new Intent().putExtra("error", tL_error.text));
                     finish();
                 }
-            } else {
-                if (!"BOT_INVALID".equals(tL_error.text) && !"PUBLIC_KEY_REQUIRED".equals(tL_error.text) && !"PUBLIC_KEY_INVALID".equals(tL_error.text) && !"SCOPE_EMPTY".equals(tL_error.text) && !"PAYLOAD_EMPTY".equals(tL_error.text)) {
-                    setResult(0);
-                    finish();
-                }
+            } else if ("BOT_INVALID".equals(tL_error.text) || "PUBLIC_KEY_REQUIRED".equals(tL_error.text) || "PUBLIC_KEY_INVALID".equals(tL_error.text) || "SCOPE_EMPTY".equals(tL_error.text) || "PAYLOAD_EMPTY".equals(tL_error.text)) {
                 setResult(1, new Intent().putExtra("error", tL_error.text));
+                finish();
+            } else {
+                setResult(0);
                 finish();
             }
         } catch (Exception e) {
@@ -521,12 +513,12 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             layoutParams.topMargin = i + (((AndroidUtilities.displaySize.y - layoutParams.height) - i) / 2);
             this.layersActionBarLayout.getView().setLayoutParams(layoutParams);
             if (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2) {
-                int i2 = (AndroidUtilities.displaySize.x / 100) * 35;
-                if (i2 < AndroidUtilities.dp(320.0f)) {
-                    i2 = AndroidUtilities.dp(320.0f);
+                int iDp = (AndroidUtilities.displaySize.x / 100) * 35;
+                if (iDp < AndroidUtilities.dp(320.0f)) {
+                    iDp = AndroidUtilities.dp(320.0f);
                 }
                 RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) this.actionBarLayout.getView().getLayoutParams();
-                layoutParams2.width = i2;
+                layoutParams2.width = iDp;
                 layoutParams2.height = -1;
                 this.actionBarLayout.getView().setLayoutParams(layoutParams2);
                 if (AndroidUtilities.isSmallTablet() && this.actionBarLayout.getFragmentStack().size() == 2) {
@@ -582,7 +574,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() throws NumberFormatException {
         super.onResume();
         this.actionBarLayout.onResume();
         if (AndroidUtilities.isTablet()) {
@@ -611,11 +603,11 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             AndroidUtilities.cancelRunOnUIThread(runnable);
             this.lockRunnable = null;
         }
-        if (SharedConfig.passcodeHash.length() != 0) {
+        if (!SharedConfig.passcodeHash.isEmpty()) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable2 = new Runnable() {
                 @Override
-                public void run() {
+                public void run() throws NumberFormatException {
                     if (ExternalActionActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
@@ -644,7 +636,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         SharedConfig.saveConfig();
     }
 
-    private void onPasscodeResume() {
+    private void onPasscodeResume() throws NumberFormatException {
         Runnable runnable = this.lockRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -668,17 +660,13 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() throws NumberFormatException {
         if (this.passcodeView.getVisibility() == 0) {
             finish();
             return;
         }
         if (PhotoViewer.getInstance().isVisible()) {
             PhotoViewer.getInstance().closePhoto(true, false);
-            return;
-        }
-        if (this.drawerLayoutContainer.isDrawerOpened()) {
-            this.drawerLayoutContainer.closeDrawer(false);
             return;
         }
         if (AndroidUtilities.isTablet()) {

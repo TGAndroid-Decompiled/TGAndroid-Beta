@@ -73,13 +73,13 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         linearLayout.setOrientation(0);
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (PremiumButtonView.this.loadingT > 0.0f) {
                     if (PremiumButtonView.this.loadingDrawable == null) {
                         PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
                     }
-                    int dp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
-                    PremiumButtonView.this.loadingDrawable.setBounds(0, dp, getWidth(), getHeight() + dp);
+                    int iDp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
+                    PremiumButtonView.this.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
                     PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
                     PremiumButtonView.this.loadingDrawable.draw(canvas);
                     invalidate();
@@ -117,13 +117,13 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         if (z) {
             AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true) {
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     if (PremiumButtonView.this.loadingT > 0.0f) {
                         if (PremiumButtonView.this.loadingDrawable == null) {
                             PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
                         }
-                        int dp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
-                        PremiumButtonView.this.loadingDrawable.setBounds(0, dp, getWidth(), getHeight() + dp);
+                        int iDp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
+                        PremiumButtonView.this.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
                         PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
                         PremiumButtonView.this.loadingDrawable.draw(canvas);
                         invalidate();
@@ -182,12 +182,12 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             }
             float f = this.loadingT;
             this.loading = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-            this.loadingAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+            this.loadingAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PremiumButtonView.this.lambda$setLoading$0(valueAnimator2);
+                    this.f$0.lambda$setLoading$0(valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -302,9 +302,9 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             updateOverlayProgress();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.overlayProgress, this.showOverlay ? 1.0f : 0.0f);
-        this.overlayAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.overlayProgress, this.showOverlay ? 1.0f : 0.0f);
+        this.overlayAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 PremiumButtonView.this.overlayProgress = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -346,7 +346,7 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         cellFlickerDrawable.setOnRestartCallback(new Runnable() {
             @Override
             public final void run() {
-                PremiumButtonView.this.lambda$setIcon$1();
+                this.f$0.lambda$setIcon$1();
             }
         });
         invalidate();

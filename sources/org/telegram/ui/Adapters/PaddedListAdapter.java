@@ -70,9 +70,9 @@ public class PaddedListAdapter extends RecyclerListView.SelectionAdapter {
     public int getPadding(int i) {
         Integer num = this.padding;
         if (num != null) {
-            int intValue = num.intValue();
-            this.lastPadding = intValue;
-            return intValue;
+            int iIntValue = num.intValue();
+            this.lastPadding = iIntValue;
+            return iIntValue;
         }
         this.lastPadding = 0;
         return 0;

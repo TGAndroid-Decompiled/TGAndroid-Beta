@@ -26,11 +26,11 @@ public class MP4Atom extends MP4Box {
         return (getChild() != null ? getChild().getRemaining() : 0L) < getRemaining();
     }
 
-    public MP4Atom nextChildUpTo(String str) {
+    public MP4Atom nextChildUpTo(String str) throws IOException {
         while (getRemaining() > 0) {
-            MP4Atom nextChild = nextChild();
-            if (nextChild.getType().matches(str)) {
-                return nextChild;
+            MP4Atom mP4AtomNextChild = nextChild();
+            if (mP4AtomNextChild.getType().matches(str)) {
+                return mP4AtomNextChild;
             }
         }
         throw new IOException("atom type mismatch, not found: " + str);
@@ -56,7 +56,7 @@ public class MP4Atom extends MP4Box {
         return this.data.readLong();
     }
 
-    public byte[] readBytes(int i) {
+    public byte[] readBytes(int i) throws IOException {
         byte[] bArr = new byte[i];
         this.data.readFully(bArr);
         return bArr;
@@ -66,18 +66,18 @@ public class MP4Atom extends MP4Box {
         return readBytes((int) getRemaining());
     }
 
-    public BigDecimal readShortFixedPoint() {
+    public BigDecimal readShortFixedPoint() throws IOException {
         return new BigDecimal(String.valueOf((int) this.data.readByte()) + "" + String.valueOf(this.data.readUnsignedByte()));
     }
 
-    public BigDecimal readIntegerFixedPoint() {
+    public BigDecimal readIntegerFixedPoint() throws IOException {
         return new BigDecimal(String.valueOf((int) this.data.readShort()) + "" + String.valueOf(this.data.readUnsignedShort()));
     }
 
     public String readString(int i, String str) {
         String str2 = new String(readBytes(i), str);
-        int indexOf = str2.indexOf(0);
-        return indexOf < 0 ? str2 : str2.substring(0, indexOf);
+        int iIndexOf = str2.indexOf(0);
+        return iIndexOf < 0 ? str2 : str2.substring(0, iIndexOf);
     }
 
     public String readString(String str) {
@@ -87,15 +87,15 @@ public class MP4Atom extends MP4Box {
     public void skip(int i) {
         int i2 = 0;
         while (i2 < i) {
-            int skipBytes = this.data.skipBytes(i - i2);
-            if (skipBytes <= 0) {
+            int iSkipBytes = this.data.skipBytes(i - i2);
+            if (iSkipBytes <= 0) {
                 throw new EOFException();
             }
-            i2 += skipBytes;
+            i2 += iSkipBytes;
         }
     }
 
-    public void skip() {
+    public void skip() throws EOFException {
         while (getRemaining() > 0) {
             if (((RangeInputStream) getInput()).skip(getRemaining()) == 0) {
                 throw new EOFException("Cannot skip atom");

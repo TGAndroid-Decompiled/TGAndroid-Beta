@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.internal.AbstractSharedFlowKt;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot;
 import kotlinx.coroutines.internal.Concurrent_commonKt;
 
-public final class StateFlowSlot extends AbstractSharedFlowSlot {
+final class StateFlowSlot extends AbstractSharedFlowSlot {
     private final AtomicReference _state = new AtomicReference(null);
 
     @Override
@@ -21,7 +21,7 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
         if (Concurrent_commonKt.getValue(this._state) != null) {
             return false;
         }
-        Concurrent_commonKt.setValue(this._state, StateFlowKt.access$getNONE$p());
+        Concurrent_commonKt.setValue(this._state, StateFlowKt.NONE);
         return true;
     }
 
@@ -35,14 +35,14 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
         AtomicReference atomicReference = this._state;
         while (true) {
             Object value = Concurrent_commonKt.getValue(atomicReference);
-            if (value == null || value == StateFlowKt.access$getPENDING$p()) {
+            if (value == null || value == StateFlowKt.PENDING) {
                 return;
             }
-            if (value == StateFlowKt.access$getNONE$p()) {
-                if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.access$getPENDING$p())) {
+            if (value == StateFlowKt.NONE) {
+                if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.PENDING)) {
                     return;
                 }
-            } else if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.access$getNONE$p())) {
+            } else if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.NONE)) {
                 Result.Companion companion = Result.Companion;
                 ((CancellableContinuationImpl) value).resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
                 return;
@@ -51,15 +51,15 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
     }
 
     public final boolean takePending() {
-        Object andSet = this._state.getAndSet(StateFlowKt.access$getNONE$p());
+        Object andSet = this._state.getAndSet(StateFlowKt.NONE);
         Intrinsics.checkNotNull(andSet);
-        return andSet == StateFlowKt.access$getPENDING$p();
+        return andSet == StateFlowKt.PENDING;
     }
 
     public final Object awaitPending(Continuation continuation) {
         CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
         cancellableContinuationImpl.initCancellability();
-        if (!AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, StateFlowKt.access$getNONE$p(), cancellableContinuationImpl)) {
+        if (!AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, StateFlowKt.NONE, cancellableContinuationImpl)) {
             Result.Companion companion = Result.Companion;
             cancellableContinuationImpl.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
         }

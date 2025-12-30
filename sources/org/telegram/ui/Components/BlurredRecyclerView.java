@@ -9,6 +9,7 @@ import org.telegram.messenger.SharedConfig;
 
 public class BlurredRecyclerView extends RecyclerListView {
     public int additionalClipBottom;
+    public boolean alwaysDrawChild;
     public int blurTopPadding;
     public int bottomPadding;
     boolean globalIgnoreLayout;
@@ -19,7 +20,7 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         this.globalIgnoreLayout = true;
         updateTopPadding();
         super.setPadding(getPaddingLeft(), this.topPadding + this.blurTopPadding, getPaddingRight(), getPaddingBottom());
@@ -28,7 +29,7 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateTopPadding();
     }
@@ -55,7 +56,7 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         int i = this.blurTopPadding;
         if (i != 0) {
             canvas.clipRect(0, i, getMeasuredWidth(), getMeasuredHeight() + this.additionalClipBottom);
@@ -67,10 +68,10 @@ public class BlurredRecyclerView extends RecyclerListView {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j) {
-        if (view.getY() + view.getMeasuredHeight() < this.blurTopPadding) {
-            return true;
+        if (view.getY() + view.getMeasuredHeight() >= this.blurTopPadding || this.alwaysDrawChild) {
+            return super.drawChild(canvas, view, j);
         }
-        return super.drawChild(canvas, view, j);
+        return true;
     }
 
     @Override

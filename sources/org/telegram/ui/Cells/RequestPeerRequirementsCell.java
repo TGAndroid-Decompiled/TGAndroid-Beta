@@ -218,16 +218,16 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         if (arrayList.isEmpty()) {
             return;
         }
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
-        valueOf.append((CharSequence) " ");
+        SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(charSequence);
+        spannableStringBuilderValueOf.append((CharSequence) " ");
         for (int i = 0; i < arrayList.size(); i++) {
             if (i > 0) {
-                valueOf.append((CharSequence) ", ");
+                spannableStringBuilderValueOf.append((CharSequence) ", ");
             }
-            valueOf.append((CharSequence) ((Requirement) arrayList.get(i)).text.toString().toLowerCase());
+            spannableStringBuilderValueOf.append((CharSequence) ((Requirement) arrayList.get(i)).text.toString().toLowerCase());
         }
-        valueOf.append((CharSequence) ".");
-        this.requirements.add(Requirement.make(valueOf));
+        spannableStringBuilderValueOf.append((CharSequence) ".");
+        this.requirements.add(Requirement.make(spannableStringBuilderValueOf));
     }
 
     private void checkAdminRights(TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z, int i, int i2) {

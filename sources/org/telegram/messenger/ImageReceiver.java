@@ -303,8 +303,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 this.drawable = null;
                 return;
             }
-            boolean decrementUseCount = ImageLoader.getInstance().decrementUseCount(this.key);
-            if (!ImageLoader.getInstance().isInMemCache(this.key, false) && decrementUseCount) {
+            boolean zDecrementUseCount = ImageLoader.getInstance().decrementUseCount(this.key);
+            if (!ImageLoader.getInstance().isInMemCache(this.key, false) && zDecrementUseCount) {
                 Bitmap bitmap2 = this.bitmap;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
@@ -327,7 +327,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public static class SetImageBackup {
+    private static class SetImageBackup {
         public int cacheType;
         public String ext;
         public String imageFilter;
@@ -473,36 +473,35 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 key = key + "." + ImageLoader.getHttpUrlExtension(forUserOrChat.path, "jpg");
             } else {
                 TLRPC.PhotoSize photoSize = forUserOrChat.photoSize;
-                if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
-                    if (forUserOrChat.location != null) {
+                if ((photoSize instanceof TLRPC.TL_photoStrippedSize) || (photoSize instanceof TLRPC.TL_photoPathSize)) {
+                    key = key + ".jpg";
+                } else if (forUserOrChat.location != null) {
+                    key = key + ".jpg";
+                } else {
+                    WebFile webFile = forUserOrChat.webFile;
+                    if (webFile != null) {
+                        key = key + "." + ImageLoader.getHttpUrlExtension(forUserOrChat.webFile.url, FileLoader.getMimeTypePart(webFile.mime_type));
+                    } else if (forUserOrChat.secureDocument != null) {
                         key = key + ".jpg";
                     } else {
-                        WebFile webFile = forUserOrChat.webFile;
-                        if (webFile != null) {
-                            key = key + "." + ImageLoader.getHttpUrlExtension(forUserOrChat.webFile.url, FileLoader.getMimeTypePart(webFile.mime_type));
-                        } else if (forUserOrChat.secureDocument != null) {
-                            key = key + ".jpg";
-                        } else {
-                            TLRPC.Document document = forUserOrChat.document;
-                            if (document != null) {
-                                String documentFileName = FileLoader.getDocumentFileName(document);
-                                int lastIndexOf = documentFileName.lastIndexOf(46);
-                                String str = "";
-                                String substring = lastIndexOf == -1 ? "" : documentFileName.substring(lastIndexOf);
-                                if (substring.length() <= 1) {
-                                    if ("video/mp4".equals(forUserOrChat.document.mime_type)) {
-                                        str = ".mp4";
-                                    } else if ("video/x-matroska".equals(forUserOrChat.document.mime_type)) {
-                                        str = ".mkv";
-                                    }
-                                    substring = str;
+                        TLRPC.Document document = forUserOrChat.document;
+                        if (document != null) {
+                            String documentFileName = FileLoader.getDocumentFileName(document);
+                            int iLastIndexOf = documentFileName.lastIndexOf(46);
+                            String str = "";
+                            String strSubstring = iLastIndexOf == -1 ? "" : documentFileName.substring(iLastIndexOf);
+                            if (strSubstring.length() <= 1) {
+                                if ("video/mp4".equals(forUserOrChat.document.mime_type)) {
+                                    str = ".mp4";
+                                } else if ("video/x-matroska".equals(forUserOrChat.document.mime_type)) {
+                                    str = ".mkv";
                                 }
-                                key = key + substring;
+                                strSubstring = str;
                             }
+                            key = key + strSubstring;
                         }
                     }
                 }
-                key = key + ".jpg";
             }
             File file = new File(FileLoader.getDirectory(4), key);
             if (file.exists()) {
@@ -1323,16 +1322,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (f != 1.0f) {
             if (!z) {
                 if (backgroundThreadDrawHolder != null) {
-                    long currentTimeMillis = System.currentTimeMillis();
+                    long jCurrentTimeMillis = System.currentTimeMillis();
                     long j = this.lastUpdateAlphaTime;
-                    long j2 = currentTimeMillis - j;
+                    long j2 = jCurrentTimeMillis - j;
                     if (j == 0) {
                         j2 = 16;
                     }
                     if (j2 > 30 && AndroidUtilities.screenRefreshRate > 60.0f) {
                         j2 = 30;
                     }
-                    this.currentAlpha += ((float) j2) / this.crossfadeDuration;
+                    this.currentAlpha += j2 / this.crossfadeDuration;
                 } else {
                     this.currentAlpha = f + (16.0f / this.crossfadeDuration);
                 }
@@ -1349,7 +1348,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ImageReceiver.this.invalidate();
+                        this.f$0.invalidate();
                     }
                 });
             } else {
@@ -1730,16 +1729,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public float getImageAspectRatio() {
-        float width;
-        float height;
+        float fWidth;
+        float fHeight;
         if (this.imageOrientation % 180 != 0) {
-            width = this.drawRegion.height();
-            height = this.drawRegion.width();
+            fWidth = this.drawRegion.height();
+            fHeight = this.drawRegion.width();
         } else {
-            width = this.drawRegion.width();
-            height = this.drawRegion.height();
+            fWidth = this.drawRegion.width();
+            fHeight = this.drawRegion.height();
         }
-        return width / height;
+        return fWidth / fHeight;
     }
 
     public String getExt() {
@@ -1876,8 +1875,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (this.useRoundRadius != z) {
             this.useRoundRadius = z;
             if (!z && this.emptyRoundRadius == null) {
-                this.emptyRoundRadius = r3;
-                int[] iArr = {0, 0, 0, 0};
+                this.emptyRoundRadius = new int[]{0, 0, 0, 0};
             }
             Drawable drawable = this.currentImageDrawable;
             if (drawable != null && this.imageShader == null) {
@@ -2121,7 +2119,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return null;
     }
 
-    public int getTag(int i) {
+    protected int getTag(int i) {
         if (i == 1) {
             return this.thumbTag;
         }
@@ -2131,7 +2129,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return this.imageTag;
     }
 
-    public void setTag(int i, int i2) {
+    protected void setTag(int i, int i2) {
         if (i2 == 1) {
             this.thumbTag = i;
         } else if (i2 == 3) {
@@ -2149,7 +2147,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return this.param;
     }
 
-    public boolean setImageBitmapByKey(android.graphics.drawable.Drawable r8, java.lang.String r9, int r10, boolean r11, int r12) {
+    protected boolean setImageBitmapByKey(android.graphics.drawable.Drawable r8, java.lang.String r9, int r10, boolean r11, int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.setImageBitmapByKey(android.graphics.drawable.Drawable, java.lang.String, int, boolean, int):boolean");
     }
 
@@ -2191,19 +2189,19 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (str2 != null && ((str == null || !str.equals(str2)) && drawable != null)) {
             if (drawable instanceof RLottieDrawable) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
-                boolean decrementUseCount = ImageLoader.getInstance().decrementUseCount(str2);
-                if (!ImageLoader.getInstance().isInMemCache(str2, true) && decrementUseCount) {
+                boolean zDecrementUseCount = ImageLoader.getInstance().decrementUseCount(str2);
+                if (!ImageLoader.getInstance().isInMemCache(str2, true) && zDecrementUseCount) {
                     rLottieDrawable.recycle(false);
                 }
             } else if (drawable instanceof AnimatedFileDrawable) {
                 AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
                 if (animatedFileDrawable.isWebmSticker) {
-                    boolean decrementUseCount2 = ImageLoader.getInstance().decrementUseCount(str2);
+                    boolean zDecrementUseCount2 = ImageLoader.getInstance().decrementUseCount(str2);
                     if (ImageLoader.getInstance().isInMemCache(str2, true)) {
-                        if (decrementUseCount2) {
+                        if (zDecrementUseCount2) {
                             animatedFileDrawable.stop();
                         }
-                    } else if (decrementUseCount2) {
+                    } else if (zDecrementUseCount2) {
                         animatedFileDrawable.recycle();
                     }
                 } else if (animatedFileDrawable.getParents().isEmpty()) {
@@ -2211,8 +2209,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 }
             } else if (drawable instanceof BitmapDrawable) {
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                boolean decrementUseCount3 = ImageLoader.getInstance().decrementUseCount(str2);
-                if (!ImageLoader.getInstance().isInMemCache(str2, false) && decrementUseCount3) {
+                boolean zDecrementUseCount3 = ImageLoader.getInstance().decrementUseCount(str2);
+                if (!ImageLoader.getInstance().isInMemCache(str2, false) && zDecrementUseCount3) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(bitmap);
                     AndroidUtilities.recycleBitmaps(arrayList);
@@ -2290,9 +2288,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (this.currentLayerNum >= num.intValue()) {
                 return;
             }
-            int intValue = num.intValue() | this.currentOpenedLayerFlags;
-            this.currentOpenedLayerFlags = intValue;
-            if (intValue != 0) {
+            int iIntValue = num.intValue() | this.currentOpenedLayerFlags;
+            this.currentOpenedLayerFlags = iIntValue;
+            if (iIntValue != 0) {
                 RLottieDrawable lottieAnimation = getLottieAnimation();
                 if (lottieAnimation != null && lottieAnimation.isHeavyDrawable()) {
                     lottieAnimation.stop();

@@ -90,7 +90,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                CacheChatsExceptionsFragment.this.lambda$createView$3(view, i, f, f2);
+                this.f$0.lambda$createView$3(view, i, f, f2);
             }
         });
         frameLayout.addView(this.recyclerListView);
@@ -122,9 +122,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
-                    boolean lambda$createView$0;
-                    lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
-                    return lambda$createView$0;
+                    return this.f$0.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
                 }
 
                 @Override
@@ -143,20 +141,20 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
-                    CacheChatsExceptionsFragment.this.lambda$createView$1(keepMediaException, i3, i4);
+                    this.f$0.lambda$createView$1(keepMediaException, i3, i4);
                 }
             });
             return;
         }
         if (((Item) this.items.get(i)).viewType == 4) {
-            AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
+            AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
-                    CacheChatsExceptionsFragment.this.lambda$createView$2();
+                    this.f$0.lambda$createView$2();
                 }
             }, null).create();
-            create.show();
-            create.redPositive();
+            alertDialogCreate.show();
+            alertDialogCreate.redPositive();
         }
     }
 
@@ -237,7 +235,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheChatsExceptionsFragment.this.lambda$showPopupFor$5(keepMediaException);
+                this.f$0.lambda$showPopupFor$5(keepMediaException);
             }
         }, 150L);
     }
@@ -256,15 +254,15 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 break;
             }
         }
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(i);
-        if (findViewHolderForAdapterPosition != null) {
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(i);
+        if (viewHolderFindViewHolderForAdapterPosition != null) {
             KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, getContext());
             keepMediaPopupView.updateForDialog(true);
-            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, findViewHolderForAdapterPosition.itemView, r2.getMeasuredWidth() / 2.0f, findViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
+            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, viewHolderFindViewHolderForAdapterPosition.itemView, r2.getMeasuredWidth() / 2.0f, viewHolderFindViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
-                    CacheChatsExceptionsFragment.this.lambda$showPopupFor$4(keepMediaException, i3, i4);
+                    this.f$0.lambda$showPopupFor$4(keepMediaException, i3, i4);
                 }
             });
         }
@@ -330,45 +328,45 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         updateRows();
     }
 
-    public class Adapter extends AdapterWithDiffUtils {
+    private class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View shadowSectionCell;
             View view;
-            View view2;
             if (i == 1) {
                 TextCell textCell = new TextCell(viewGroup.getContext());
                 textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                 textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCell;
+                shadowSectionCell = textCell;
             } else if (i == 2) {
                 View userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
                 userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = userCell;
+                shadowSectionCell = userCell;
             } else if (i == 3) {
-                view = new ShadowSectionCell(viewGroup.getContext());
+                shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
                 TextCell textCell2 = new TextCell(viewGroup.getContext());
                 textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell2.setColors(-1, Theme.key_text_RedRegular);
                 textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCell2;
+                shadowSectionCell = textCell2;
             } else {
-                view2 = null;
-                view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(view2);
+                view = null;
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(view);
             }
-            view2 = view;
-            view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(view2);
+            view = shadowSectionCell;
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String str;
+            String name;
             if (((Item) CacheChatsExceptionsFragment.this.items.get(i)).viewType == 2) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 CacheByChatsController.KeepMediaException keepMediaException = ((Item) CacheChatsExceptionsFragment.this.items.get(i)).exception;
@@ -376,16 +374,16 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 if (userOrChat instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) userOrChat;
                     if (user.self) {
-                        str = LocaleController.getString(R.string.SavedMessages);
+                        name = LocaleController.getString(R.string.SavedMessages);
                     } else {
-                        str = ContactsController.formatName(user.first_name, user.last_name);
+                        name = ContactsController.formatName(user.first_name, user.last_name);
                     }
                 } else {
-                    str = userOrChat instanceof TLRPC.Chat ? ((TLRPC.Chat) userOrChat).title : null;
+                    name = userOrChat instanceof TLRPC.Chat ? ((TLRPC.Chat) userOrChat).title : null;
                 }
-                String str2 = str;
+                String str = name;
                 userCell.setSelfAsSavedMessages(true);
-                userCell.setData(userOrChat, str2, CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia), 0, i == CacheChatsExceptionsFragment.this.items.size() - 1 || ((Item) CacheChatsExceptionsFragment.this.items.get(i + 1)).viewType == 2);
+                userCell.setData(userOrChat, str, CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia), 0, i == CacheChatsExceptionsFragment.this.items.size() - 1 || ((Item) CacheChatsExceptionsFragment.this.items.get(i + 1)).viewType == 2);
             }
         }
 
@@ -405,7 +403,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         }
     }
 
-    public class Item extends AdapterWithDiffUtils.Item {
+    private class Item extends AdapterWithDiffUtils.Item {
         final CacheByChatsController.KeepMediaException exception;
 
         private Item(int i, CacheByChatsController.KeepMediaException keepMediaException) {

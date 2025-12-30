@@ -111,12 +111,12 @@ public class CellFlickerDrawable {
             if (view != null) {
                 view.invalidate();
             }
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             long j = this.lastUpdateTime;
             if (j != 0) {
-                long j2 = currentTimeMillis - j;
+                long j2 = jCurrentTimeMillis - j;
                 if (j2 > 10) {
-                    float f = this.progress + ((((float) j2) / 1200.0f) * this.animationSpeedScale);
+                    float f = this.progress + ((j2 / 1200.0f) * this.animationSpeedScale);
                     this.progress = f;
                     if (f > this.repeatProgress) {
                         this.progress = 0.0f;
@@ -125,10 +125,10 @@ public class CellFlickerDrawable {
                             runnable.run();
                         }
                     }
-                    this.lastUpdateTime = currentTimeMillis;
+                    this.lastUpdateTime = jCurrentTimeMillis;
                 }
             } else {
-                this.lastUpdateTime = currentTimeMillis;
+                this.lastUpdateTime = jCurrentTimeMillis;
             }
         }
         int i = this.parentWidth;
@@ -140,12 +140,12 @@ public class CellFlickerDrawable {
     }
 
     public void draw(Canvas canvas, GroupCallMiniTextureView groupCallMiniTextureView) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         long j = this.lastUpdateTime;
         if (j != 0) {
-            long j2 = currentTimeMillis - j;
+            long j2 = jCurrentTimeMillis - j;
             if (j2 > 10) {
-                float f = this.progress + (((float) j2) / 500.0f);
+                float f = this.progress + (j2 / 500.0f);
                 this.progress = f;
                 if (f > 4.0f) {
                     this.progress = 0.0f;
@@ -154,10 +154,10 @@ public class CellFlickerDrawable {
                         runnable.run();
                     }
                 }
-                this.lastUpdateTime = currentTimeMillis;
+                this.lastUpdateTime = jCurrentTimeMillis;
             }
         } else {
-            this.lastUpdateTime = currentTimeMillis;
+            this.lastUpdateTime = jCurrentTimeMillis;
         }
         float f2 = this.progress;
         if (f2 > 1.0f) {

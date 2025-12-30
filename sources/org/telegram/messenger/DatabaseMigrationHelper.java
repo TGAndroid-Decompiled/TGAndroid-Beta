@@ -12,8 +12,8 @@ public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) {
         SQLiteDatabase sQLiteDatabase;
         MessagesStorage messagesStorage2;
-        SQLiteCursor sQLiteCursor;
-        SQLiteCursor sQLiteCursor2;
+        SQLiteCursor sQLiteCursorQueryFinalized;
+        SQLiteCursor sQLiteCursorQueryFinalized2;
         SQLiteDatabase sQLiteDatabase2;
         int i2;
         NativeByteBuffer nativeByteBuffer;
@@ -22,12 +22,12 @@ public class DatabaseMigrationHelper {
         int i5;
         NativeByteBuffer nativeByteBuffer2;
         NativeByteBuffer nativeByteBuffer3;
-        SQLiteCursor sQLiteCursor3;
-        SQLiteCursor sQLiteCursor4;
-        SQLiteCursor sQLiteCursor5;
-        SQLiteCursor sQLiteCursor6;
-        SQLiteCursor sQLiteCursor7;
-        SQLiteCursor sQLiteCursor8;
+        SQLiteCursor sQLiteCursorQueryFinalized3;
+        SQLiteCursor sQLiteCursorQueryFinalized4;
+        SQLiteCursor sQLiteCursorQueryFinalized5;
+        SQLiteCursor sQLiteCursorQueryFinalized6;
+        SQLiteCursor sQLiteCursorQueryFinalized7;
+        SQLiteCursor sQLiteCursorQueryFinalized8;
         SQLiteDatabase database = messagesStorage.getDatabase();
         int i6 = 4;
         int i7 = i;
@@ -61,24 +61,24 @@ public class DatabaseMigrationHelper {
             database.executeFast("CREATE TABLE IF NOT EXISTS enc_tasks_v2(mid INTEGER PRIMARY KEY, date INTEGER)").stepThis().dispose();
             database.executeFast("CREATE INDEX IF NOT EXISTS date_idx_enc_tasks_v2 ON enc_tasks_v2(date);").stepThis().dispose();
             database.beginTransaction();
-            SQLiteCursor queryFinalized = database.queryFinalized("SELECT date, data FROM enc_tasks WHERE 1", new Object[0]);
-            SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO enc_tasks_v2 VALUES(?, ?)");
-            if (queryFinalized.next()) {
-                int intValue = queryFinalized.intValue(0);
-                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(1);
-                if (byteBufferValue != null) {
-                    int limit = byteBufferValue.limit();
-                    for (int i12 = 0; i12 < limit / 4; i12++) {
-                        executeFast.requery();
-                        executeFast.bindInteger(1, byteBufferValue.readInt32(false));
-                        executeFast.bindInteger(2, intValue);
-                        executeFast.step();
+            SQLiteCursor sQLiteCursorQueryFinalized9 = database.queryFinalized("SELECT date, data FROM enc_tasks WHERE 1", new Object[0]);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO enc_tasks_v2 VALUES(?, ?)");
+            if (sQLiteCursorQueryFinalized9.next()) {
+                int iIntValue = sQLiteCursorQueryFinalized9.intValue(0);
+                NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized9.byteBufferValue(1);
+                if (nativeByteBufferByteBufferValue != null) {
+                    int iLimit = nativeByteBufferByteBufferValue.limit();
+                    for (int i12 = 0; i12 < iLimit / 4; i12++) {
+                        sQLitePreparedStatementExecuteFast.requery();
+                        sQLitePreparedStatementExecuteFast.bindInteger(1, nativeByteBufferByteBufferValue.readInt32(false));
+                        sQLitePreparedStatementExecuteFast.bindInteger(2, iIntValue);
+                        sQLitePreparedStatementExecuteFast.step();
                     }
-                    byteBufferValue.reuse();
+                    nativeByteBufferByteBufferValue.reuse();
                 }
             }
-            executeFast.dispose();
-            queryFinalized.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
+            sQLiteCursorQueryFinalized9.dispose();
             database.commitTransaction();
             database.executeFast("DROP INDEX IF EXISTS date_idx_enc_tasks;").stepThis().dispose();
             database.executeFast("DROP TABLE IF EXISTS enc_tasks;").stepThis().dispose();
@@ -167,33 +167,33 @@ public class DatabaseMigrationHelper {
         }
         if (i7 == 21) {
             database.executeFast("CREATE TABLE IF NOT EXISTS chat_settings_v2(uid INTEGER PRIMARY KEY, info BLOB)").stepThis().dispose();
-            SQLiteCursor queryFinalized2 = database.queryFinalized("SELECT uid, participants FROM chat_settings WHERE uid < 0", new Object[0]);
-            SQLitePreparedStatement executeFast2 = database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?)");
-            while (queryFinalized2.next()) {
-                long intValue2 = queryFinalized2.intValue(0);
-                NativeByteBuffer byteBufferValue2 = queryFinalized2.byteBufferValue(1);
-                if (byteBufferValue2 != null) {
-                    TLRPC.ChatParticipants TLdeserialize = TLRPC.ChatParticipants.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
-                    byteBufferValue2.reuse();
-                    if (TLdeserialize != null) {
+            SQLiteCursor sQLiteCursorQueryFinalized10 = database.queryFinalized("SELECT uid, participants FROM chat_settings WHERE uid < 0", new Object[0]);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?)");
+            while (sQLiteCursorQueryFinalized10.next()) {
+                long jIntValue = sQLiteCursorQueryFinalized10.intValue(0);
+                NativeByteBuffer nativeByteBufferByteBufferValue2 = sQLiteCursorQueryFinalized10.byteBufferValue(1);
+                if (nativeByteBufferByteBufferValue2 != null) {
+                    TLRPC.ChatParticipants chatParticipantsTLdeserialize = TLRPC.ChatParticipants.TLdeserialize(nativeByteBufferByteBufferValue2, nativeByteBufferByteBufferValue2.readInt32(false), false);
+                    nativeByteBufferByteBufferValue2.reuse();
+                    if (chatParticipantsTLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.id = intValue2;
+                        tL_chatFull.id = jIntValue;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
-                        tL_chatFull.participants = TLdeserialize;
+                        tL_chatFull.participants = chatParticipantsTLdeserialize;
                         NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(tL_chatFull.getObjectSize());
                         tL_chatFull.serializeToStream(nativeByteBuffer4);
-                        executeFast2.requery();
-                        executeFast2.bindLong(1, intValue2);
-                        executeFast2.bindByteBuffer(2, nativeByteBuffer4);
-                        executeFast2.step();
+                        sQLitePreparedStatementExecuteFast2.requery();
+                        sQLitePreparedStatementExecuteFast2.bindLong(1, jIntValue);
+                        sQLitePreparedStatementExecuteFast2.bindByteBuffer(2, nativeByteBuffer4);
+                        sQLitePreparedStatementExecuteFast2.step();
                         nativeByteBuffer4.reuse();
                     }
                 }
             }
-            executeFast2.dispose();
-            queryFinalized2.dispose();
+            sQLitePreparedStatementExecuteFast2.dispose();
+            sQLiteCursorQueryFinalized10.dispose();
             database.executeFast("DROP TABLE IF EXISTS chat_settings;").stepThis().dispose();
             database.executeFast("ALTER TABLE dialogs ADD COLUMN last_mid_i INTEGER default 0").stepThis().dispose();
             database.executeFast("ALTER TABLE dialogs ADD COLUMN unread_count_i INTEGER default 0").stepThis().dispose();
@@ -509,20 +509,20 @@ public class DatabaseMigrationHelper {
             database.executeFast("CREATE TABLE IF NOT EXISTS enc_tasks_v3(mid INTEGER, date INTEGER, media INTEGER, PRIMARY KEY(mid, media))").stepThis().dispose();
             database.executeFast("CREATE INDEX IF NOT EXISTS date_idx_enc_tasks_v3 ON enc_tasks_v3(date);").stepThis().dispose();
             database.beginTransaction();
-            SQLiteCursor queryFinalized3 = database.queryFinalized("SELECT mid, date, media FROM enc_tasks_v2 WHERE 1", new Object[0]);
-            SQLitePreparedStatement executeFast3 = database.executeFast("REPLACE INTO enc_tasks_v3 VALUES(?, ?, ?)");
-            if (queryFinalized3.next()) {
-                long longValue = queryFinalized3.longValue(0);
-                int intValue3 = queryFinalized3.intValue(1);
-                int intValue4 = queryFinalized3.intValue(2);
-                executeFast3.requery();
-                executeFast3.bindLong(1, longValue);
-                executeFast3.bindInteger(2, intValue3);
-                executeFast3.bindInteger(3, intValue4);
-                executeFast3.step();
+            SQLiteCursor sQLiteCursorQueryFinalized11 = database.queryFinalized("SELECT mid, date, media FROM enc_tasks_v2 WHERE 1", new Object[0]);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast3 = database.executeFast("REPLACE INTO enc_tasks_v3 VALUES(?, ?, ?)");
+            if (sQLiteCursorQueryFinalized11.next()) {
+                long jLongValue = sQLiteCursorQueryFinalized11.longValue(0);
+                int iIntValue2 = sQLiteCursorQueryFinalized11.intValue(1);
+                int iIntValue3 = sQLiteCursorQueryFinalized11.intValue(2);
+                sQLitePreparedStatementExecuteFast3.requery();
+                sQLitePreparedStatementExecuteFast3.bindLong(1, jLongValue);
+                sQLitePreparedStatementExecuteFast3.bindInteger(2, iIntValue2);
+                sQLitePreparedStatementExecuteFast3.bindInteger(3, iIntValue3);
+                sQLitePreparedStatementExecuteFast3.step();
             }
-            executeFast3.dispose();
-            queryFinalized3.dispose();
+            sQLitePreparedStatementExecuteFast3.dispose();
+            sQLiteCursorQueryFinalized11.dispose();
             database.commitTransaction();
             database.executeFast("DROP INDEX IF EXISTS date_idx_enc_tasks_v2;").stepThis().dispose();
             database.executeFast("DROP TABLE IF EXISTS enc_tasks_v2;").stepThis().dispose();
@@ -538,46 +538,46 @@ public class DatabaseMigrationHelper {
             database.executeFast("DROP INDEX IF EXISTS bot_keyboard_idx_mid;").stepThis().dispose();
             database.beginTransaction();
             try {
-                sQLiteCursor8 = database.queryFinalized("SELECT mid, uid, send_state, date, data, ttl, replydata FROM scheduled_messages_v2 WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized8 = database.queryFinalized("SELECT mid, uid, send_state, date, data, ttl, replydata FROM scheduled_messages_v2 WHERE 1", new Object[0]);
             } catch (Exception e) {
                 FileLog.e(e);
-                sQLiteCursor8 = null;
+                sQLiteCursorQueryFinalized8 = null;
             }
-            if (sQLiteCursor8 != null) {
-                SQLitePreparedStatement executeFast4 = database.executeFast("REPLACE INTO scheduled_messages_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
-                while (sQLiteCursor8.next()) {
-                    NativeByteBuffer byteBufferValue3 = sQLiteCursor8.byteBufferValue(i6);
-                    if (byteBufferValue3 != null) {
-                        int intValue5 = sQLiteCursor8.intValue(i11);
-                        long longValue2 = sQLiteCursor8.longValue(1);
-                        int intValue6 = sQLiteCursor8.intValue(2);
-                        int intValue7 = sQLiteCursor8.intValue(3);
-                        int intValue8 = sQLiteCursor8.intValue(i14);
-                        NativeByteBuffer byteBufferValue4 = sQLiteCursor8.byteBufferValue(6);
-                        executeFast4.requery();
-                        executeFast4.bindInteger(1, intValue5);
-                        executeFast4.bindLong(2, longValue2);
-                        executeFast4.bindInteger(3, intValue6);
-                        executeFast4.bindByteBuffer(4, byteBufferValue3);
-                        executeFast4.bindInteger(5, intValue7);
-                        executeFast4.bindInteger(6, intValue8);
-                        if (byteBufferValue4 != null) {
-                            executeFast4.bindByteBuffer(7, byteBufferValue4);
+            if (sQLiteCursorQueryFinalized8 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast4 = database.executeFast("REPLACE INTO scheduled_messages_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
+                while (sQLiteCursorQueryFinalized8.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue3 = sQLiteCursorQueryFinalized8.byteBufferValue(i6);
+                    if (nativeByteBufferByteBufferValue3 != null) {
+                        int iIntValue4 = sQLiteCursorQueryFinalized8.intValue(i11);
+                        long jLongValue2 = sQLiteCursorQueryFinalized8.longValue(1);
+                        int iIntValue5 = sQLiteCursorQueryFinalized8.intValue(2);
+                        int iIntValue6 = sQLiteCursorQueryFinalized8.intValue(3);
+                        int iIntValue7 = sQLiteCursorQueryFinalized8.intValue(i14);
+                        NativeByteBuffer nativeByteBufferByteBufferValue4 = sQLiteCursorQueryFinalized8.byteBufferValue(6);
+                        sQLitePreparedStatementExecuteFast4.requery();
+                        sQLitePreparedStatementExecuteFast4.bindInteger(1, iIntValue4);
+                        sQLitePreparedStatementExecuteFast4.bindLong(2, jLongValue2);
+                        sQLitePreparedStatementExecuteFast4.bindInteger(3, iIntValue5);
+                        sQLitePreparedStatementExecuteFast4.bindByteBuffer(4, nativeByteBufferByteBufferValue3);
+                        sQLitePreparedStatementExecuteFast4.bindInteger(5, iIntValue6);
+                        sQLitePreparedStatementExecuteFast4.bindInteger(6, iIntValue7);
+                        if (nativeByteBufferByteBufferValue4 != null) {
+                            sQLitePreparedStatementExecuteFast4.bindByteBuffer(7, nativeByteBufferByteBufferValue4);
                         } else {
-                            executeFast4.bindNull(7);
+                            sQLitePreparedStatementExecuteFast4.bindNull(7);
                         }
-                        executeFast4.step();
-                        if (byteBufferValue4 != null) {
-                            byteBufferValue4.reuse();
+                        sQLitePreparedStatementExecuteFast4.step();
+                        if (nativeByteBufferByteBufferValue4 != null) {
+                            nativeByteBufferByteBufferValue4.reuse();
                         }
-                        byteBufferValue3.reuse();
+                        nativeByteBufferByteBufferValue3.reuse();
                         i6 = 4;
                         i11 = 0;
                         i14 = 5;
                     }
                 }
-                sQLiteCursor8.dispose();
-                executeFast4.dispose();
+                sQLiteCursorQueryFinalized8.dispose();
+                sQLitePreparedStatementExecuteFast4.dispose();
             }
             database.executeFast("DROP INDEX IF EXISTS send_state_idx_scheduled_messages;").stepThis().dispose();
             database.executeFast("DROP INDEX IF EXISTS uid_date_idx_scheduled_messages;").stepThis().dispose();
@@ -591,35 +591,35 @@ public class DatabaseMigrationHelper {
             database.executeFast("CREATE INDEX IF NOT EXISTS uid_mid_type_date_idx_media_v3 ON media_v3(uid, mid, type, date);").stepThis().dispose();
             database.beginTransaction();
             try {
-                sQLiteCursor7 = database.queryFinalized("SELECT mid, uid, date, type, data FROM media_v2 WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized7 = database.queryFinalized("SELECT mid, uid, date, type, data FROM media_v2 WHERE 1", new Object[0]);
             } catch (Exception e2) {
                 FileLog.e(e2);
-                sQLiteCursor7 = null;
+                sQLiteCursorQueryFinalized7 = null;
             }
-            if (sQLiteCursor7 != null) {
-                SQLitePreparedStatement executeFast5 = database.executeFast("REPLACE INTO media_v3 VALUES(?, ?, ?, ?, ?)");
-                while (sQLiteCursor7.next()) {
-                    NativeByteBuffer byteBufferValue5 = sQLiteCursor7.byteBufferValue(4);
-                    if (byteBufferValue5 != null) {
-                        int intValue9 = sQLiteCursor7.intValue(0);
-                        long longValue3 = sQLiteCursor7.longValue(1);
-                        if (((int) longValue3) == 0) {
-                            longValue3 = DialogObject.makeEncryptedDialogId((int) (longValue3 >> 32));
+            if (sQLiteCursorQueryFinalized7 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast5 = database.executeFast("REPLACE INTO media_v3 VALUES(?, ?, ?, ?, ?)");
+                while (sQLiteCursorQueryFinalized7.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue5 = sQLiteCursorQueryFinalized7.byteBufferValue(4);
+                    if (nativeByteBufferByteBufferValue5 != null) {
+                        int iIntValue8 = sQLiteCursorQueryFinalized7.intValue(0);
+                        long jLongValue3 = sQLiteCursorQueryFinalized7.longValue(1);
+                        if (((int) jLongValue3) == 0) {
+                            jLongValue3 = DialogObject.makeEncryptedDialogId((int) (jLongValue3 >> 32));
                         }
-                        int intValue10 = sQLiteCursor7.intValue(2);
-                        int intValue11 = sQLiteCursor7.intValue(3);
-                        executeFast5.requery();
-                        executeFast5.bindInteger(1, intValue9);
-                        executeFast5.bindLong(2, longValue3);
-                        executeFast5.bindInteger(3, intValue10);
-                        executeFast5.bindInteger(4, intValue11);
-                        executeFast5.bindByteBuffer(5, byteBufferValue5);
-                        executeFast5.step();
-                        byteBufferValue5.reuse();
+                        int iIntValue9 = sQLiteCursorQueryFinalized7.intValue(2);
+                        int iIntValue10 = sQLiteCursorQueryFinalized7.intValue(3);
+                        sQLitePreparedStatementExecuteFast5.requery();
+                        sQLitePreparedStatementExecuteFast5.bindInteger(1, iIntValue8);
+                        sQLitePreparedStatementExecuteFast5.bindLong(2, jLongValue3);
+                        sQLitePreparedStatementExecuteFast5.bindInteger(3, iIntValue9);
+                        sQLitePreparedStatementExecuteFast5.bindInteger(4, iIntValue10);
+                        sQLitePreparedStatementExecuteFast5.bindByteBuffer(5, nativeByteBufferByteBufferValue5);
+                        sQLitePreparedStatementExecuteFast5.step();
+                        nativeByteBufferByteBufferValue5.reuse();
                     }
                 }
-                sQLiteCursor7.dispose();
-                executeFast5.dispose();
+                sQLiteCursorQueryFinalized7.dispose();
+                sQLitePreparedStatementExecuteFast5.dispose();
             }
             database.executeFast("DROP INDEX IF EXISTS uid_mid_type_date_idx_media;").stepThis().dispose();
             database.executeFast("DROP TABLE IF EXISTS media_v2;").stepThis().dispose();
@@ -637,102 +637,102 @@ public class DatabaseMigrationHelper {
             database.executeFast("CREATE TABLE IF NOT EXISTS webpage_pending_v2(id INTEGER, mid INTEGER, uid INTEGER, PRIMARY KEY (id, mid, uid));").stepThis().dispose();
             database.beginTransaction();
             try {
-                sQLiteCursor3 = database.queryFinalized("SELECT r.random_id, r.mid, m.uid FROM randoms as r INNER JOIN messages as m ON r.mid = m.mid WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized3 = database.queryFinalized("SELECT r.random_id, r.mid, m.uid FROM randoms as r INNER JOIN messages as m ON r.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e3) {
                 FileLog.e(e3);
-                sQLiteCursor3 = null;
+                sQLiteCursorQueryFinalized3 = null;
             }
-            if (sQLiteCursor3 != null) {
-                SQLitePreparedStatement executeFast6 = database.executeFast("REPLACE INTO randoms_v2 VALUES(?, ?, ?)");
-                while (sQLiteCursor3.next()) {
-                    long longValue4 = sQLiteCursor3.longValue(0);
-                    int intValue12 = sQLiteCursor3.intValue(1);
-                    long longValue5 = sQLiteCursor3.longValue(2);
-                    if (((int) longValue5) == 0) {
-                        longValue5 = DialogObject.makeEncryptedDialogId((int) (longValue5 >> 32));
+            if (sQLiteCursorQueryFinalized3 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast6 = database.executeFast("REPLACE INTO randoms_v2 VALUES(?, ?, ?)");
+                while (sQLiteCursorQueryFinalized3.next()) {
+                    long jLongValue4 = sQLiteCursorQueryFinalized3.longValue(0);
+                    int iIntValue11 = sQLiteCursorQueryFinalized3.intValue(1);
+                    long jLongValue5 = sQLiteCursorQueryFinalized3.longValue(2);
+                    if (((int) jLongValue5) == 0) {
+                        jLongValue5 = DialogObject.makeEncryptedDialogId((int) (jLongValue5 >> 32));
                     }
-                    executeFast6.requery();
-                    executeFast6.bindLong(1, longValue4);
-                    executeFast6.bindInteger(2, intValue12);
-                    executeFast6.bindLong(3, longValue5);
-                    executeFast6.step();
+                    sQLitePreparedStatementExecuteFast6.requery();
+                    sQLitePreparedStatementExecuteFast6.bindLong(1, jLongValue4);
+                    sQLitePreparedStatementExecuteFast6.bindInteger(2, iIntValue11);
+                    sQLitePreparedStatementExecuteFast6.bindLong(3, jLongValue5);
+                    sQLitePreparedStatementExecuteFast6.step();
                 }
-                sQLiteCursor3.dispose();
-                executeFast6.dispose();
+                sQLiteCursorQueryFinalized3.dispose();
+                sQLitePreparedStatementExecuteFast6.dispose();
             }
             try {
-                sQLiteCursor4 = database.queryFinalized("SELECT p.mid, m.uid, p.id FROM polls as p INNER JOIN messages as m ON p.mid = m.mid WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized4 = database.queryFinalized("SELECT p.mid, m.uid, p.id FROM polls as p INNER JOIN messages as m ON p.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e4) {
                 FileLog.e(e4);
-                sQLiteCursor4 = null;
+                sQLiteCursorQueryFinalized4 = null;
             }
-            if (sQLiteCursor4 != null) {
-                SQLitePreparedStatement executeFast7 = database.executeFast("REPLACE INTO polls_v2 VALUES(?, ?, ?)");
-                while (sQLiteCursor4.next()) {
-                    int intValue13 = sQLiteCursor4.intValue(0);
-                    long longValue6 = sQLiteCursor4.longValue(1);
-                    long longValue7 = sQLiteCursor4.longValue(2);
-                    if (((int) longValue6) == 0) {
-                        longValue6 = DialogObject.makeEncryptedDialogId((int) (longValue6 >> 32));
+            if (sQLiteCursorQueryFinalized4 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast7 = database.executeFast("REPLACE INTO polls_v2 VALUES(?, ?, ?)");
+                while (sQLiteCursorQueryFinalized4.next()) {
+                    int iIntValue12 = sQLiteCursorQueryFinalized4.intValue(0);
+                    long jLongValue6 = sQLiteCursorQueryFinalized4.longValue(1);
+                    long jLongValue7 = sQLiteCursorQueryFinalized4.longValue(2);
+                    if (((int) jLongValue6) == 0) {
+                        jLongValue6 = DialogObject.makeEncryptedDialogId((int) (jLongValue6 >> 32));
                     }
-                    executeFast7.requery();
-                    executeFast7.bindInteger(1, intValue13);
-                    executeFast7.bindLong(2, longValue6);
-                    executeFast7.bindLong(3, longValue7);
-                    executeFast7.step();
+                    sQLitePreparedStatementExecuteFast7.requery();
+                    sQLitePreparedStatementExecuteFast7.bindInteger(1, iIntValue12);
+                    sQLitePreparedStatementExecuteFast7.bindLong(2, jLongValue6);
+                    sQLitePreparedStatementExecuteFast7.bindLong(3, jLongValue7);
+                    sQLitePreparedStatementExecuteFast7.step();
                 }
-                sQLiteCursor4.dispose();
-                executeFast7.dispose();
+                sQLiteCursorQueryFinalized4.dispose();
+                sQLitePreparedStatementExecuteFast7.dispose();
             }
             try {
-                sQLiteCursor5 = database.queryFinalized("SELECT wp.id, wp.mid, m.uid FROM webpage_pending as wp INNER JOIN messages as m ON wp.mid = m.mid WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized5 = database.queryFinalized("SELECT wp.id, wp.mid, m.uid FROM webpage_pending as wp INNER JOIN messages as m ON wp.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e5) {
                 FileLog.e(e5);
-                sQLiteCursor5 = null;
+                sQLiteCursorQueryFinalized5 = null;
             }
-            if (sQLiteCursor5 != null) {
-                SQLitePreparedStatement executeFast8 = database.executeFast("REPLACE INTO webpage_pending_v2 VALUES(?, ?, ?)");
-                while (sQLiteCursor5.next()) {
-                    long longValue8 = sQLiteCursor5.longValue(0);
-                    int intValue14 = sQLiteCursor5.intValue(1);
-                    long longValue9 = sQLiteCursor5.longValue(2);
-                    if (((int) longValue9) == 0) {
-                        longValue9 = DialogObject.makeEncryptedDialogId((int) (longValue9 >> 32));
+            if (sQLiteCursorQueryFinalized5 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast8 = database.executeFast("REPLACE INTO webpage_pending_v2 VALUES(?, ?, ?)");
+                while (sQLiteCursorQueryFinalized5.next()) {
+                    long jLongValue8 = sQLiteCursorQueryFinalized5.longValue(0);
+                    int iIntValue13 = sQLiteCursorQueryFinalized5.intValue(1);
+                    long jLongValue9 = sQLiteCursorQueryFinalized5.longValue(2);
+                    if (((int) jLongValue9) == 0) {
+                        jLongValue9 = DialogObject.makeEncryptedDialogId((int) (jLongValue9 >> 32));
                     }
-                    executeFast8.requery();
-                    executeFast8.bindLong(1, longValue8);
-                    executeFast8.bindInteger(2, intValue14);
-                    executeFast8.bindLong(3, longValue9);
-                    executeFast8.step();
+                    sQLitePreparedStatementExecuteFast8.requery();
+                    sQLitePreparedStatementExecuteFast8.bindLong(1, jLongValue8);
+                    sQLitePreparedStatementExecuteFast8.bindInteger(2, iIntValue13);
+                    sQLitePreparedStatementExecuteFast8.bindLong(3, jLongValue9);
+                    sQLitePreparedStatementExecuteFast8.step();
                 }
-                sQLiteCursor5.dispose();
-                executeFast8.dispose();
+                sQLiteCursorQueryFinalized5.dispose();
+                sQLitePreparedStatementExecuteFast8.dispose();
             }
             try {
-                sQLiteCursor6 = database.queryFinalized("SELECT et.mid, m.uid, et.date, et.media FROM enc_tasks_v3 as et INNER JOIN messages as m ON et.mid = m.mid WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized6 = database.queryFinalized("SELECT et.mid, m.uid, et.date, et.media FROM enc_tasks_v3 as et INNER JOIN messages as m ON et.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e6) {
                 FileLog.e(e6);
-                sQLiteCursor6 = null;
+                sQLiteCursorQueryFinalized6 = null;
             }
-            if (sQLiteCursor6 != null) {
-                SQLitePreparedStatement executeFast9 = database.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
-                while (sQLiteCursor6.next()) {
-                    int intValue15 = sQLiteCursor6.intValue(0);
-                    long longValue10 = sQLiteCursor6.longValue(1);
-                    int intValue16 = sQLiteCursor6.intValue(2);
-                    int intValue17 = sQLiteCursor6.intValue(3);
-                    if (((int) longValue10) == 0) {
-                        longValue10 = DialogObject.makeEncryptedDialogId((int) (longValue10 >> 32));
+            if (sQLiteCursorQueryFinalized6 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast9 = database.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
+                while (sQLiteCursorQueryFinalized6.next()) {
+                    int iIntValue14 = sQLiteCursorQueryFinalized6.intValue(0);
+                    long jLongValue10 = sQLiteCursorQueryFinalized6.longValue(1);
+                    int iIntValue15 = sQLiteCursorQueryFinalized6.intValue(2);
+                    int iIntValue16 = sQLiteCursorQueryFinalized6.intValue(3);
+                    if (((int) jLongValue10) == 0) {
+                        jLongValue10 = DialogObject.makeEncryptedDialogId((int) (jLongValue10 >> 32));
                     }
-                    executeFast9.requery();
-                    executeFast9.bindInteger(1, intValue15);
-                    executeFast9.bindLong(2, longValue10);
-                    executeFast9.bindInteger(3, intValue16);
-                    executeFast9.bindInteger(4, intValue17);
-                    executeFast9.step();
+                    sQLitePreparedStatementExecuteFast9.requery();
+                    sQLitePreparedStatementExecuteFast9.bindInteger(1, iIntValue14);
+                    sQLitePreparedStatementExecuteFast9.bindLong(2, jLongValue10);
+                    sQLitePreparedStatementExecuteFast9.bindInteger(3, iIntValue15);
+                    sQLitePreparedStatementExecuteFast9.bindInteger(4, iIntValue16);
+                    sQLitePreparedStatementExecuteFast9.step();
                 }
-                sQLiteCursor6.dispose();
-                executeFast9.dispose();
+                sQLiteCursorQueryFinalized6.dispose();
+                sQLitePreparedStatementExecuteFast9.dispose();
             }
             database.executeFast("DROP INDEX IF EXISTS mid_idx_randoms;").stepThis().dispose();
             database.executeFast("DROP TABLE IF EXISTS randoms;").stepThis().dispose();
@@ -756,108 +756,108 @@ public class DatabaseMigrationHelper {
             database.executeFast("CREATE INDEX IF NOT EXISTS is_channel_idx_messages_v2 ON messages_v2(mid, is_channel);").stepThis().dispose();
             database.beginTransaction();
             try {
-                sQLiteCursor2 = database.queryFinalized("SELECT mid, uid, read_state, send_state, date, data, out, ttl, media, replydata, imp, mention, forwards, replies_data, thread_reply_id FROM messages WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized2 = database.queryFinalized("SELECT mid, uid, read_state, send_state, date, data, out, ttl, media, replydata, imp, mention, forwards, replies_data, thread_reply_id FROM messages WHERE 1", new Object[0]);
             } catch (Exception e7) {
                 FileLog.e(e7);
-                sQLiteCursor2 = null;
+                sQLiteCursorQueryFinalized2 = null;
             }
-            if (sQLiteCursor2 != null) {
-                SQLitePreparedStatement executeFast10 = database.executeFast("REPLACE INTO messages_v2 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                while (sQLiteCursor2.next()) {
-                    NativeByteBuffer byteBufferValue6 = sQLiteCursor2.byteBufferValue(5);
-                    if (byteBufferValue6 != null) {
-                        long intValue18 = sQLiteCursor2.intValue(0);
-                        long longValue11 = sQLiteCursor2.longValue(i10);
-                        if (((int) longValue11) == 0) {
-                            longValue11 = DialogObject.makeEncryptedDialogId((int) (longValue11 >> 32));
+            if (sQLiteCursorQueryFinalized2 != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast10 = database.executeFast("REPLACE INTO messages_v2 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                while (sQLiteCursorQueryFinalized2.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue6 = sQLiteCursorQueryFinalized2.byteBufferValue(5);
+                    if (nativeByteBufferByteBufferValue6 != null) {
+                        long jIntValue2 = sQLiteCursorQueryFinalized2.intValue(0);
+                        long jLongValue11 = sQLiteCursorQueryFinalized2.longValue(i10);
+                        if (((int) jLongValue11) == 0) {
+                            jLongValue11 = DialogObject.makeEncryptedDialogId((int) (jLongValue11 >> 32));
                         }
-                        int intValue19 = sQLiteCursor2.intValue(i9);
-                        int intValue20 = sQLiteCursor2.intValue(i13);
-                        int intValue21 = sQLiteCursor2.intValue(4);
-                        int intValue22 = sQLiteCursor2.intValue(i8);
-                        int intValue23 = sQLiteCursor2.intValue(7);
-                        int intValue24 = sQLiteCursor2.intValue(8);
-                        NativeByteBuffer byteBufferValue7 = sQLiteCursor2.byteBufferValue(9);
-                        int intValue25 = sQLiteCursor2.intValue(10);
+                        int iIntValue17 = sQLiteCursorQueryFinalized2.intValue(i9);
+                        int iIntValue18 = sQLiteCursorQueryFinalized2.intValue(i13);
+                        int iIntValue19 = sQLiteCursorQueryFinalized2.intValue(4);
+                        int iIntValue20 = sQLiteCursorQueryFinalized2.intValue(i8);
+                        int iIntValue21 = sQLiteCursorQueryFinalized2.intValue(7);
+                        int iIntValue22 = sQLiteCursorQueryFinalized2.intValue(8);
+                        NativeByteBuffer nativeByteBufferByteBufferValue7 = sQLiteCursorQueryFinalized2.byteBufferValue(9);
+                        int iIntValue23 = sQLiteCursorQueryFinalized2.intValue(10);
                         SQLiteDatabase sQLiteDatabase3 = database;
-                        int intValue26 = sQLiteCursor2.intValue(11);
-                        int intValue27 = sQLiteCursor2.intValue(12);
-                        NativeByteBuffer byteBufferValue8 = sQLiteCursor2.byteBufferValue(13);
-                        int intValue28 = sQLiteCursor2.intValue(14);
-                        SQLiteCursor sQLiteCursor9 = sQLiteCursor2;
-                        int i15 = (int) (longValue11 >> 32);
-                        if (intValue23 < 0) {
-                            TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
-                            i3 = intValue22;
+                        int iIntValue24 = sQLiteCursorQueryFinalized2.intValue(11);
+                        int iIntValue25 = sQLiteCursorQueryFinalized2.intValue(12);
+                        NativeByteBuffer nativeByteBufferByteBufferValue8 = sQLiteCursorQueryFinalized2.byteBufferValue(13);
+                        int iIntValue26 = sQLiteCursorQueryFinalized2.intValue(14);
+                        SQLiteCursor sQLiteCursor = sQLiteCursorQueryFinalized2;
+                        int i15 = (int) (jLongValue11 >> 32);
+                        if (iIntValue21 < 0) {
+                            TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue6, nativeByteBufferByteBufferValue6.readInt32(false), false);
+                            i3 = iIntValue20;
                             i4 = i15;
-                            if (TLdeserialize2 != null) {
-                                i2 = intValue28;
-                                TLdeserialize2.readAttachPath(byteBufferValue6, messagesStorage.getUserConfig().clientUserId);
-                                if (TLdeserialize2.params == null) {
-                                    HashMap<String, String> hashMap = new HashMap<>();
-                                    TLdeserialize2.params = hashMap;
+                            if (messageTLdeserialize != null) {
+                                i2 = iIntValue26;
+                                messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue6, messagesStorage.getUserConfig().clientUserId);
+                                if (messageTLdeserialize.params == null) {
+                                    HashMap<String, String> map = new HashMap<>();
+                                    messageTLdeserialize.params = map;
                                     StringBuilder sb = new StringBuilder();
-                                    nativeByteBuffer = byteBufferValue7;
+                                    nativeByteBuffer = nativeByteBufferByteBufferValue7;
                                     sb.append("");
-                                    sb.append(intValue23);
-                                    hashMap.put("fwd_peer", sb.toString());
+                                    sb.append(iIntValue21);
+                                    map.put("fwd_peer", sb.toString());
                                 } else {
-                                    nativeByteBuffer = byteBufferValue7;
+                                    nativeByteBuffer = nativeByteBufferByteBufferValue7;
                                 }
-                                byteBufferValue6.reuse();
-                                byteBufferValue6 = new NativeByteBuffer(TLdeserialize2.getObjectSize());
-                                TLdeserialize2.serializeToStream(byteBufferValue6);
+                                nativeByteBufferByteBufferValue6.reuse();
+                                nativeByteBufferByteBufferValue6 = new NativeByteBuffer(messageTLdeserialize.getObjectSize());
+                                messageTLdeserialize.serializeToStream(nativeByteBufferByteBufferValue6);
                             } else {
-                                i2 = intValue28;
-                                nativeByteBuffer = byteBufferValue7;
+                                i2 = iIntValue26;
+                                nativeByteBuffer = nativeByteBufferByteBufferValue7;
                             }
                             i5 = 0;
                         } else {
-                            i2 = intValue28;
-                            nativeByteBuffer = byteBufferValue7;
-                            i3 = intValue22;
+                            i2 = iIntValue26;
+                            nativeByteBuffer = nativeByteBufferByteBufferValue7;
+                            i3 = iIntValue20;
                             i4 = i15;
-                            i5 = intValue23;
+                            i5 = iIntValue21;
                         }
-                        executeFast10.requery();
-                        executeFast10.bindInteger(1, (int) intValue18);
-                        executeFast10.bindLong(2, longValue11);
-                        executeFast10.bindInteger(3, intValue19);
-                        executeFast10.bindInteger(4, intValue20);
-                        executeFast10.bindInteger(5, intValue21);
-                        executeFast10.bindByteBuffer(6, byteBufferValue6);
-                        executeFast10.bindInteger(7, i3);
-                        executeFast10.bindInteger(8, i5);
-                        executeFast10.bindInteger(9, intValue24);
+                        sQLitePreparedStatementExecuteFast10.requery();
+                        sQLitePreparedStatementExecuteFast10.bindInteger(1, (int) jIntValue2);
+                        sQLitePreparedStatementExecuteFast10.bindLong(2, jLongValue11);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(3, iIntValue17);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(4, iIntValue18);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(5, iIntValue19);
+                        sQLitePreparedStatementExecuteFast10.bindByteBuffer(6, nativeByteBufferByteBufferValue6);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(7, i3);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(8, i5);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(9, iIntValue22);
                         if (nativeByteBuffer != null) {
                             nativeByteBuffer2 = nativeByteBuffer;
-                            executeFast10.bindByteBuffer(10, nativeByteBuffer2);
+                            sQLitePreparedStatementExecuteFast10.bindByteBuffer(10, nativeByteBuffer2);
                         } else {
                             nativeByteBuffer2 = nativeByteBuffer;
-                            executeFast10.bindNull(10);
+                            sQLitePreparedStatementExecuteFast10.bindNull(10);
                         }
-                        executeFast10.bindInteger(11, intValue25);
-                        executeFast10.bindInteger(12, intValue26);
-                        executeFast10.bindInteger(13, intValue27);
-                        if (byteBufferValue8 != null) {
-                            nativeByteBuffer3 = byteBufferValue8;
-                            executeFast10.bindByteBuffer(14, nativeByteBuffer3);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(11, iIntValue23);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(12, iIntValue24);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(13, iIntValue25);
+                        if (nativeByteBufferByteBufferValue8 != null) {
+                            nativeByteBuffer3 = nativeByteBufferByteBufferValue8;
+                            sQLitePreparedStatementExecuteFast10.bindByteBuffer(14, nativeByteBuffer3);
                         } else {
-                            nativeByteBuffer3 = byteBufferValue8;
-                            executeFast10.bindNull(14);
+                            nativeByteBuffer3 = nativeByteBufferByteBufferValue8;
+                            sQLitePreparedStatementExecuteFast10.bindNull(14);
                         }
-                        executeFast10.bindInteger(15, i2);
-                        executeFast10.bindInteger(16, i4 > 0 ? 1 : 0);
-                        executeFast10.step();
+                        sQLitePreparedStatementExecuteFast10.bindInteger(15, i2);
+                        sQLitePreparedStatementExecuteFast10.bindInteger(16, i4 > 0 ? 1 : 0);
+                        sQLitePreparedStatementExecuteFast10.step();
                         if (nativeByteBuffer2 != null) {
                             nativeByteBuffer2.reuse();
                         }
                         if (nativeByteBuffer3 != null) {
                             nativeByteBuffer3.reuse();
                         }
-                        byteBufferValue6.reuse();
+                        nativeByteBufferByteBufferValue6.reuse();
                         database = sQLiteDatabase3;
-                        sQLiteCursor2 = sQLiteCursor9;
+                        sQLiteCursorQueryFinalized2 = sQLiteCursor;
                         i8 = 6;
                         i9 = 2;
                         i10 = 1;
@@ -865,21 +865,21 @@ public class DatabaseMigrationHelper {
                     }
                 }
                 sQLiteDatabase2 = database;
-                sQLiteCursor2.dispose();
-                executeFast10.dispose();
+                sQLiteCursorQueryFinalized2.dispose();
+                sQLitePreparedStatementExecuteFast10.dispose();
             } else {
                 sQLiteDatabase2 = database;
             }
             int i16 = 0;
             sQLiteDatabase = sQLiteDatabase2;
-            SQLiteCursor queryFinalized4 = sQLiteDatabase.queryFinalized("SELECT did, last_mid, last_mid_i FROM dialogs WHERE 1", new Object[0]);
-            SQLitePreparedStatement executeFast11 = sQLiteDatabase.executeFast("UPDATE dialogs SET last_mid = ?, last_mid_i = ? WHERE did = ?");
+            SQLiteCursor sQLiteCursorQueryFinalized12 = sQLiteDatabase.queryFinalized("SELECT did, last_mid, last_mid_i FROM dialogs WHERE 1", new Object[0]);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast11 = sQLiteDatabase.executeFast("UPDATE dialogs SET last_mid = ?, last_mid_i = ? WHERE did = ?");
             ArrayList arrayList = null;
             ArrayList arrayList2 = null;
-            while (queryFinalized4.next()) {
-                long longValue12 = queryFinalized4.longValue(i16);
-                int i17 = (int) longValue12;
-                int i18 = (int) (longValue12 >> 32);
+            while (sQLiteCursorQueryFinalized12.next()) {
+                long jLongValue12 = sQLiteCursorQueryFinalized12.longValue(i16);
+                int i17 = (int) jLongValue12;
+                int i18 = (int) (jLongValue12 >> 32);
                 if (i17 == 0) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();
@@ -891,68 +891,68 @@ public class DatabaseMigrationHelper {
                     }
                     arrayList2.add(Integer.valueOf(i17));
                 }
-                executeFast11.requery();
-                executeFast11.bindInteger(1, queryFinalized4.intValue(1));
-                executeFast11.bindInteger(2, queryFinalized4.intValue(2));
-                executeFast11.bindLong(3, longValue12);
-                executeFast11.step();
+                sQLitePreparedStatementExecuteFast11.requery();
+                sQLitePreparedStatementExecuteFast11.bindInteger(1, sQLiteCursorQueryFinalized12.intValue(1));
+                sQLitePreparedStatementExecuteFast11.bindInteger(2, sQLiteCursorQueryFinalized12.intValue(2));
+                sQLitePreparedStatementExecuteFast11.bindLong(3, jLongValue12);
+                sQLitePreparedStatementExecuteFast11.step();
                 i16 = 0;
             }
-            executeFast11.dispose();
-            queryFinalized4.dispose();
+            sQLitePreparedStatementExecuteFast11.dispose();
+            sQLiteCursorQueryFinalized12.dispose();
             int i19 = 0;
-            SQLiteCursor queryFinalized5 = sQLiteDatabase.queryFinalized("SELECT uid, mid FROM unread_push_messages WHERE 1", new Object[0]);
-            SQLitePreparedStatement executeFast12 = sQLiteDatabase.executeFast("UPDATE unread_push_messages SET mid = ? WHERE uid = ? AND mid = ?");
-            while (queryFinalized5.next()) {
-                long longValue13 = queryFinalized5.longValue(i19);
-                int intValue29 = queryFinalized5.intValue(1);
-                executeFast12.requery();
-                executeFast12.bindInteger(1, intValue29);
-                executeFast12.bindLong(2, longValue13);
-                executeFast12.bindInteger(3, intValue29);
-                executeFast12.step();
+            SQLiteCursor sQLiteCursorQueryFinalized13 = sQLiteDatabase.queryFinalized("SELECT uid, mid FROM unread_push_messages WHERE 1", new Object[0]);
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast12 = sQLiteDatabase.executeFast("UPDATE unread_push_messages SET mid = ? WHERE uid = ? AND mid = ?");
+            while (sQLiteCursorQueryFinalized13.next()) {
+                long jLongValue13 = sQLiteCursorQueryFinalized13.longValue(i19);
+                int iIntValue27 = sQLiteCursorQueryFinalized13.intValue(1);
+                sQLitePreparedStatementExecuteFast12.requery();
+                sQLitePreparedStatementExecuteFast12.bindInteger(1, iIntValue27);
+                sQLitePreparedStatementExecuteFast12.bindLong(2, jLongValue13);
+                sQLitePreparedStatementExecuteFast12.bindInteger(3, iIntValue27);
+                sQLitePreparedStatementExecuteFast12.step();
                 i19 = 0;
             }
-            executeFast12.dispose();
-            queryFinalized5.dispose();
+            sQLitePreparedStatementExecuteFast12.dispose();
+            sQLiteCursorQueryFinalized13.dispose();
             if (arrayList != null) {
-                SQLitePreparedStatement executeFast13 = sQLiteDatabase.executeFast("UPDATE dialogs SET did = ? WHERE did = ?");
-                SQLitePreparedStatement executeFast14 = sQLiteDatabase.executeFast("UPDATE dialog_filter_pin_v2 SET peer = ? WHERE peer = ?");
-                SQLitePreparedStatement executeFast15 = sQLiteDatabase.executeFast("UPDATE dialog_filter_ep SET peer = ? WHERE peer = ?");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast13 = sQLiteDatabase.executeFast("UPDATE dialogs SET did = ? WHERE did = ?");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast14 = sQLiteDatabase.executeFast("UPDATE dialog_filter_pin_v2 SET peer = ? WHERE peer = ?");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast15 = sQLiteDatabase.executeFast("UPDATE dialog_filter_ep SET peer = ? WHERE peer = ?");
                 int size = arrayList.size();
                 for (int i20 = 0; i20 < size; i20++) {
-                    long intValue30 = ((Integer) arrayList.get(i20)).intValue();
-                    long makeEncryptedDialogId = DialogObject.makeEncryptedDialogId(intValue30);
-                    long j = intValue30 << 32;
-                    executeFast13.requery();
-                    executeFast13.bindLong(1, makeEncryptedDialogId);
-                    executeFast13.bindLong(2, j);
-                    executeFast13.step();
-                    executeFast14.requery();
-                    executeFast14.bindLong(1, makeEncryptedDialogId);
-                    executeFast14.bindLong(2, j);
-                    executeFast14.step();
-                    executeFast15.requery();
-                    executeFast15.bindLong(1, makeEncryptedDialogId);
-                    executeFast15.bindLong(2, j);
-                    executeFast15.step();
+                    long jIntValue3 = ((Integer) arrayList.get(i20)).intValue();
+                    long jMakeEncryptedDialogId = DialogObject.makeEncryptedDialogId(jIntValue3);
+                    long j = jIntValue3 << 32;
+                    sQLitePreparedStatementExecuteFast13.requery();
+                    sQLitePreparedStatementExecuteFast13.bindLong(1, jMakeEncryptedDialogId);
+                    sQLitePreparedStatementExecuteFast13.bindLong(2, j);
+                    sQLitePreparedStatementExecuteFast13.step();
+                    sQLitePreparedStatementExecuteFast14.requery();
+                    sQLitePreparedStatementExecuteFast14.bindLong(1, jMakeEncryptedDialogId);
+                    sQLitePreparedStatementExecuteFast14.bindLong(2, j);
+                    sQLitePreparedStatementExecuteFast14.step();
+                    sQLitePreparedStatementExecuteFast15.requery();
+                    sQLitePreparedStatementExecuteFast15.bindLong(1, jMakeEncryptedDialogId);
+                    sQLitePreparedStatementExecuteFast15.bindLong(2, j);
+                    sQLitePreparedStatementExecuteFast15.step();
                 }
-                executeFast13.dispose();
-                executeFast14.dispose();
-                executeFast15.dispose();
+                sQLitePreparedStatementExecuteFast13.dispose();
+                sQLitePreparedStatementExecuteFast14.dispose();
+                sQLitePreparedStatementExecuteFast15.dispose();
             }
             if (arrayList2 != null) {
-                SQLitePreparedStatement executeFast16 = sQLiteDatabase.executeFast("UPDATE dialogs SET did = ? WHERE did = ?");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast16 = sQLiteDatabase.executeFast("UPDATE dialogs SET did = ? WHERE did = ?");
                 int size2 = arrayList2.size();
                 for (int i21 = 0; i21 < size2; i21++) {
-                    int intValue31 = ((Integer) arrayList2.get(i21)).intValue();
-                    long makeFolderDialogId = DialogObject.makeFolderDialogId(intValue31);
-                    executeFast16.requery();
-                    executeFast16.bindLong(1, makeFolderDialogId);
-                    executeFast16.bindLong(2, intValue31 | 8589934592L);
-                    executeFast16.step();
+                    int iIntValue28 = ((Integer) arrayList2.get(i21)).intValue();
+                    long jMakeFolderDialogId = DialogObject.makeFolderDialogId(iIntValue28);
+                    sQLitePreparedStatementExecuteFast16.requery();
+                    sQLitePreparedStatementExecuteFast16.bindLong(1, jMakeFolderDialogId);
+                    sQLitePreparedStatementExecuteFast16.bindLong(2, iIntValue28 | 8589934592L);
+                    sQLitePreparedStatementExecuteFast16.step();
                 }
-                executeFast16.dispose();
+                sQLitePreparedStatementExecuteFast16.dispose();
             }
             sQLiteDatabase.executeFast("DROP INDEX IF EXISTS uid_mid_read_out_idx_messages;").stepThis().dispose();
             sQLiteDatabase.executeFast("DROP INDEX IF EXISTS uid_date_mid_idx_messages;").stepThis().dispose();
@@ -971,35 +971,35 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE TABLE IF NOT EXISTS media_v4(mid INTEGER, uid INTEGER, date INTEGER, type INTEGER, data BLOB, PRIMARY KEY(mid, uid, type))").stepThis().dispose();
             sQLiteDatabase.beginTransaction();
             try {
-                sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT mid, uid, date, type, data FROM media_v3 WHERE 1", new Object[0]);
+                sQLiteCursorQueryFinalized = sQLiteDatabase.queryFinalized("SELECT mid, uid, date, type, data FROM media_v3 WHERE 1", new Object[0]);
             } catch (Exception e8) {
                 FileLog.e(e8);
-                sQLiteCursor = null;
+                sQLiteCursorQueryFinalized = null;
             }
-            if (sQLiteCursor != null) {
-                SQLitePreparedStatement executeFast17 = sQLiteDatabase.executeFast("REPLACE INTO media_v4 VALUES(?, ?, ?, ?, ?)");
-                while (sQLiteCursor.next()) {
-                    NativeByteBuffer byteBufferValue9 = sQLiteCursor.byteBufferValue(4);
-                    if (byteBufferValue9 != null) {
-                        int intValue32 = sQLiteCursor.intValue(0);
-                        long longValue14 = sQLiteCursor.longValue(1);
-                        if (((int) longValue14) == 0) {
-                            longValue14 = DialogObject.makeEncryptedDialogId((int) (longValue14 >> 32));
+            if (sQLiteCursorQueryFinalized != null) {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast17 = sQLiteDatabase.executeFast("REPLACE INTO media_v4 VALUES(?, ?, ?, ?, ?)");
+                while (sQLiteCursorQueryFinalized.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue9 = sQLiteCursorQueryFinalized.byteBufferValue(4);
+                    if (nativeByteBufferByteBufferValue9 != null) {
+                        int iIntValue29 = sQLiteCursorQueryFinalized.intValue(0);
+                        long jLongValue14 = sQLiteCursorQueryFinalized.longValue(1);
+                        if (((int) jLongValue14) == 0) {
+                            jLongValue14 = DialogObject.makeEncryptedDialogId((int) (jLongValue14 >> 32));
                         }
-                        int intValue33 = sQLiteCursor.intValue(2);
-                        int intValue34 = sQLiteCursor.intValue(3);
-                        executeFast17.requery();
-                        executeFast17.bindInteger(1, intValue32);
-                        executeFast17.bindLong(2, longValue14);
-                        executeFast17.bindInteger(3, intValue33);
-                        executeFast17.bindInteger(4, intValue34);
-                        executeFast17.bindByteBuffer(5, byteBufferValue9);
-                        executeFast17.step();
-                        byteBufferValue9.reuse();
+                        int iIntValue30 = sQLiteCursorQueryFinalized.intValue(2);
+                        int iIntValue31 = sQLiteCursorQueryFinalized.intValue(3);
+                        sQLitePreparedStatementExecuteFast17.requery();
+                        sQLitePreparedStatementExecuteFast17.bindInteger(1, iIntValue29);
+                        sQLitePreparedStatementExecuteFast17.bindLong(2, jLongValue14);
+                        sQLitePreparedStatementExecuteFast17.bindInteger(3, iIntValue30);
+                        sQLitePreparedStatementExecuteFast17.bindInteger(4, iIntValue31);
+                        sQLitePreparedStatementExecuteFast17.bindByteBuffer(5, nativeByteBufferByteBufferValue9);
+                        sQLitePreparedStatementExecuteFast17.step();
+                        nativeByteBufferByteBufferValue9.reuse();
                     }
                 }
-                sQLiteCursor.dispose();
-                executeFast17.dispose();
+                sQLiteCursorQueryFinalized.dispose();
+                sQLitePreparedStatementExecuteFast17.dispose();
             }
             sQLiteDatabase.commitTransaction();
             sQLiteDatabase.executeFast("DROP TABLE IF EXISTS media_v3;").stepThis().dispose();

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -67,8 +68,6 @@ public abstract class VoIPHelper {
     }
 
     public static void startCall(TLRPC.User user, boolean z, boolean z2, final Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {
-        int checkSelfPermission;
-        int checkSelfPermission2;
         if (accountInstance != null ? accountInstance.getMessagesController().isFrozen() : MessagesController.getInstance(UserConfig.selectedAccount).isFrozen()) {
             AccountFrozenAlert.show(accountInstance == null ? UserConfig.selectedAccount : accountInstance.getCurrentAccount());
             return;
@@ -101,15 +100,11 @@ public abstract class VoIPHelper {
         }
         if (Build.VERSION.SDK_INT >= 23) {
             ArrayList arrayList = new ArrayList();
-            checkSelfPermission = activity.checkSelfPermission("android.permission.RECORD_AUDIO");
-            if (checkSelfPermission != 0) {
+            if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                 arrayList.add("android.permission.RECORD_AUDIO");
             }
-            if (z) {
-                checkSelfPermission2 = activity.checkSelfPermission("android.permission.CAMERA");
-                if (checkSelfPermission2 != 0) {
-                    arrayList.add("android.permission.CAMERA");
-                }
+            if (z && activity.checkSelfPermission("android.permission.CAMERA") != 0) {
+                arrayList.add("android.permission.CAMERA");
             }
             if (arrayList.isEmpty()) {
                 initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
@@ -155,10 +150,10 @@ public abstract class VoIPHelper {
         initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
-    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) {
-        String str2;
+    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException {
+        String name;
         int i;
-        String str3;
+        String name2;
         if (activity != null) {
             if (user == null && chat == null) {
                 return;
@@ -195,17 +190,17 @@ public abstract class VoIPHelper {
                         } else {
                             i = R.string.VoipOngoingConferenceChatAlert2;
                         }
-                        str2 = sb.toString();
+                        name = sb.toString();
                     } else if (callerId > 0) {
                         TLRPC.User user2 = sharedInstance.getUser();
-                        str2 = ContactsController.formatName(user2.first_name, user2.last_name);
+                        name = ContactsController.formatName(user2.first_name, user2.last_name);
                         if (j > 0) {
                             i = R.string.VoipOngoingAlert;
                         } else {
                             i = R.string.VoipOngoingAlert2;
                         }
                     } else {
-                        str2 = sharedInstance.getChat().title;
+                        name = sharedInstance.getChat().title;
                         if (j > 0) {
                             i = R.string.VoipOngoingChatAlert2;
                         } else {
@@ -213,14 +208,14 @@ public abstract class VoIPHelper {
                         }
                     }
                     if (user != null) {
-                        str3 = ContactsController.formatName(user.first_name, user.last_name);
+                        name2 = ContactsController.formatName(user.first_name, user.last_name);
                     } else {
-                        str3 = chat.title;
+                        name2 = chat.title;
                     }
-                    new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, str2, str3))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
+                    new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, name, name2))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
-                        public final void onClick(AlertDialog alertDialog, int i4) {
-                            VoIPHelper.lambda$initiateCall$3(TLRPC.User.this, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i4);
+                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException {
+                            VoIPHelper.lambda$initiateCall$3(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i4);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
                     return;
@@ -241,12 +236,12 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) {
+    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPHelper.lambda$initiateCall$2(TLRPC.User.this, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
+                    VoIPHelper.lambda$initiateCall$2(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
                 }
             });
         } else {
@@ -263,18 +258,18 @@ public abstract class VoIPHelper {
         doInitiateCall(user, chat, str, inputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
     }
 
-    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) {
+    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) throws InterruptedException {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -318,7 +313,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }
@@ -358,7 +353,7 @@ public abstract class VoIPHelper {
                 new AlertDialog.Builder(activity).setTitle(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat)).setMessage(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert)).setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        VoIPHelper.doInitiateCall(TLRPC.User.this, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
+                        VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
                 return;
@@ -456,30 +451,20 @@ public abstract class VoIPHelper {
     }
 
     public static void permissionDenied(final Activity activity, final Runnable runnable, int i) {
-        boolean shouldShowRequestPermissionRationale;
-        boolean shouldShowRequestPermissionRationale2;
         boolean z = i == 102;
-        shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO");
-        if (shouldShowRequestPermissionRationale) {
-            if (!z) {
-                return;
-            }
-            shouldShowRequestPermissionRationale2 = activity.shouldShowRequestPermissionRationale("android.permission.CAMERA");
-            if (shouldShowRequestPermissionRationale2) {
-                return;
-            }
+        if (!activity.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO") || (z && !activity.shouldShowRequestPermissionRationale("android.permission.CAMERA"))) {
+            new AlertDialog.Builder(activity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.VoipNeedMicCameraPermissionWithHint : R.string.VoipNeedMicPermissionWithHint))).setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i2) {
+                    VoIPHelper.lambda$permissionDenied$8(activity, alertDialog, i2);
+                }
+            }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    VoIPHelper.lambda$permissionDenied$9(runnable, dialogInterface);
+                }
+            }).setTopAnimation(z ? R.raw.permission_request_camera : R.raw.permission_request_microphone, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
         }
-        new AlertDialog.Builder(activity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.VoipNeedMicCameraPermissionWithHint : R.string.VoipNeedMicPermissionWithHint))).setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                VoIPHelper.lambda$permissionDenied$8(activity, alertDialog, i2);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                VoIPHelper.lambda$permissionDenied$9(runnable, dialogInterface);
-            }
-        }).setTopAnimation(z ? R.raw.permission_request_camera : R.raw.permission_request_microphone, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
     }
 
     public static void lambda$permissionDenied$8(Activity activity, AlertDialog alertDialog, int i) {
@@ -507,9 +492,9 @@ public abstract class VoIPHelper {
         if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
             Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
             while (it.hasNext()) {
-                String[] split = it.next().split(" ");
-                if (split.length >= 2) {
-                    if (split[0].equals(tL_messageActionPhoneCall.call_id + "")) {
+                String[] strArrSplit = it.next().split(" ");
+                if (strArrSplit.length >= 2) {
+                    if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
                         return true;
                     }
                 }
@@ -542,14 +527,14 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
+    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) throws NumberFormatException {
         Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
         while (it.hasNext()) {
-            String[] split = it.next().split(" ");
-            if (split.length >= 2) {
-                if (split[0].equals(tL_messageActionPhoneCall.call_id + "")) {
+            String[] strArrSplit = it.next().split(" ");
+            if (strArrSplit.length >= 2) {
+                if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
                     try {
-                        showRateAlert(context, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), UserConfig.selectedAccount, true);
+                        showRateAlert(context, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(strArrSplit[1]), UserConfig.selectedAccount, true);
                         return;
                     } catch (Exception unused) {
                         return;
@@ -565,8 +550,8 @@ public abstract class VoIPHelper {
         final int[] iArr = {0};
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        int dp = AndroidUtilities.dp(16.0f);
-        linearLayout.setPadding(dp, dp, dp, 0);
+        int iDp = AndroidUtilities.dp(16.0f);
+        linearLayout.setPadding(iDp, iDp, iDp, 0);
         final TextView textView = new TextView(context);
         textView.setTextSize(2, 16.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
@@ -664,7 +649,7 @@ public abstract class VoIPHelper {
         if (!logFile.exists()) {
             zArr[0] = false;
         }
-        final AlertDialog create = new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.CallMessageReportProblem)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.Send), new AlertDialog.OnButtonClickListener() {
+        final AlertDialog alertDialogCreate = new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.CallMessageReportProblem)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.Send), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
                 VoIPHelper.lambda$showRateAlert$13(alertDialog, i3);
@@ -676,16 +661,16 @@ public abstract class VoIPHelper {
             }
         }).create();
         if (BuildVars.LOGS_ENABLED && logFile.exists()) {
-            create.setNeutralButton("Send log", new AlertDialog.OnButtonClickListener() {
+            alertDialogCreate.setNeutralButton("Send log", new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
                     VoIPHelper.lambda$showRateAlert$15(context, logFile, alertDialog, i3);
                 }
             });
         }
-        create.show();
-        create.getWindow().setSoftInputMode(3);
-        final View button = create.getButton(-1);
+        alertDialogCreate.show();
+        alertDialogCreate.getWindow().setSoftInputMode(3);
+        final View button = alertDialogCreate.getButton(-1);
         button.setEnabled(false);
         betterRatingView.setOnRatingChangeListener(new BetterRatingView.OnRatingChangeListener() {
             @Override
@@ -696,7 +681,7 @@ public abstract class VoIPHelper {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VoIPHelper.lambda$showRateAlert$18(BetterRatingView.this, iArr, linearLayout2, editTextBoldCursor, zArr, j2, j, z2, i, logFile, context, create, textView, checkBoxCell2, textView2, button, view);
+                VoIPHelper.lambda$showRateAlert$18(betterRatingView, iArr, linearLayout2, editTextBoldCursor, zArr, j2, j, z2, i, logFile, context, alertDialogCreate, textView, checkBoxCell2, textView2, button, view);
             }
         });
     }
@@ -844,32 +829,32 @@ public abstract class VoIPHelper {
 
     public static void lambda$showCallDebugSettings$19(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
         boolean z = sharedPreferences.getBoolean("dbg_force_tcp_in_calls", false);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         boolean z2 = !z;
-        edit.putBoolean("dbg_force_tcp_in_calls", z2);
-        edit.commit();
+        editorEdit.putBoolean("dbg_force_tcp_in_calls", z2);
+        editorEdit.commit();
         textCheckCell.setChecked(z2);
     }
 
     public static void lambda$showCallDebugSettings$20(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
         boolean z = sharedPreferences.getBoolean("dbg_dump_call_stats", false);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         boolean z2 = !z;
-        edit.putBoolean("dbg_dump_call_stats", z2);
-        edit.commit();
+        editorEdit.putBoolean("dbg_dump_call_stats", z2);
+        editorEdit.commit();
         textCheckCell.setChecked(z2);
     }
 
     public static void lambda$showCallDebugSettings$21(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
         boolean z = sharedPreferences.getBoolean("dbg_force_connection_service", false);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         boolean z2 = !z;
-        edit.putBoolean("dbg_force_connection_service", z2);
-        edit.commit();
+        editorEdit.putBoolean("dbg_force_connection_service", z2);
+        editorEdit.commit();
         textCheckCell.setChecked(z2);
     }
 
-    public static int getDataSavingDefault() {
+    public static int getDataSavingDefault() throws IOException {
         boolean z = DownloadController.getInstance(0).lowPreset.lessCallData;
         boolean z2 = DownloadController.getInstance(0).mediumPreset.lessCallData;
         boolean z3 = DownloadController.getInstance(0).highPreset.lessCallData;
@@ -897,10 +882,10 @@ public abstract class VoIPHelper {
     }
 
     public static String getLogFilePath(String str, boolean z) {
-        File[] listFiles;
+        File[] fileArrListFiles;
         File logsDir = getLogsDir();
-        if (!BuildVars.DEBUG_VERSION && (listFiles = logsDir.listFiles()) != null) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(listFiles));
+        if (!BuildVars.DEBUG_VERSION && (fileArrListFiles = logsDir.listFiles()) != null) {
+            ArrayList arrayList = new ArrayList(Arrays.asList(fileArrListFiles));
             while (arrayList.size() > 20) {
                 File file = (File) arrayList.get(0);
                 Iterator it = arrayList.iterator();
@@ -927,7 +912,7 @@ public abstract class VoIPHelper {
         JoinCallAlert.checkFewUsers(baseFragment.getParentActivity(), -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
             @Override
             public final void run(boolean z2) {
-                VoIPHelper.lambda$showGroupCallAlert$22(TLRPC.Chat.this, inputPeer, baseFragment, accountInstance, z2);
+                VoIPHelper.lambda$showGroupCallAlert$22(chat, inputPeer, baseFragment, accountInstance, z2);
             }
         });
     }

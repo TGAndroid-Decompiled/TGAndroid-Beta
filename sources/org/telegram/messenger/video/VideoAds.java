@@ -79,11 +79,11 @@ public class VideoAds {
     private final Runnable showRunnable = new Runnable() {
         @Override
         public final void run() {
-            VideoAds.this.show();
+            this.f$0.show();
         }
     };
 
-    public static class VideoAdsLocation {
+    private static class VideoAdsLocation {
         int currentAccount;
         long dialogId;
 
@@ -112,9 +112,9 @@ public class VideoAds {
         VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i, j);
         VideoAds videoAds = cached.get(videoAdsLocation);
         if (videoAds == null || ((videoAds.msg_id != i2 || System.currentTimeMillis() - videoAds.lastTime > 180000) && videoAds.ads.isEmpty())) {
-            HashMap<VideoAdsLocation, VideoAds> hashMap = cached;
+            HashMap<VideoAdsLocation, VideoAds> map = cached;
             VideoAds videoAds2 = new VideoAds(i, j, i2, bulletinFactory);
-            hashMap.put(videoAdsLocation, videoAds2);
+            map.put(videoAdsLocation, videoAds2);
             videoAds = videoAds2;
         }
         videoAds.init(bulletinFactory);
@@ -181,7 +181,7 @@ public class VideoAds {
         this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VideoAds.this.lambda$load$1(tLObject, tL_error);
+                this.f$0.lambda$load$1(tLObject, tL_error);
             }
         });
     }
@@ -190,7 +190,7 @@ public class VideoAds {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoAds.this.lambda$load$0(tLObject);
+                this.f$0.lambda$load$0(tLObject);
             }
         });
     }
@@ -240,8 +240,8 @@ public class VideoAds {
             return;
         }
         final TLRPC.TL_sponsoredMessage tL_sponsoredMessage = this.ads.get(0);
-        final long currentTimeMillis = System.currentTimeMillis() - this.currentBulletinPassedTime;
-        this.bulletinShowTime = currentTimeMillis;
+        final long jCurrentTimeMillis = System.currentTimeMillis() - this.currentBulletinPassedTime;
+        this.bulletinShowTime = jCurrentTimeMillis;
         Bulletin bulletin = this.bulletin;
         if (bulletin != null) {
             bulletin.hide();
@@ -291,17 +291,17 @@ public class VideoAds {
         adLayout.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VideoAds.this.lambda$show$2(closeDrawable, view);
+                this.f$0.lambda$show$2(closeDrawable, view);
             }
         });
-        final Bulletin create = this.bulletinFactory.create(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
-        this.bulletin = create;
-        create.setCanHideOnShow = false;
-        create.setCanHide(false);
+        final Bulletin bulletinCreate = this.bulletinFactory.create(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
+        this.bulletin = bulletinCreate;
+        bulletinCreate.setCanHideOnShow = false;
+        bulletinCreate.setCanHide(false);
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoAds.this.lambda$show$3(create, tL_sponsoredMessage);
+                this.f$0.lambda$show$3(bulletinCreate, tL_sponsoredMessage);
             }
         };
         final long[] jArr = new long[1];
@@ -310,7 +310,7 @@ public class VideoAds {
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                VideoAds.this.lambda$show$4(create, zArr, closeDrawable, jArr2, runnable, jArr, currentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
+                this.f$0.lambda$show$4(bulletinCreate, zArr, closeDrawable, jArr2, runnable, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, tL_sponsoredMessage.min_display_duration * 1000);
@@ -320,19 +320,19 @@ public class VideoAds {
         bulletin2.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
-                VideoAds.this.lambda$show$5(create, zArr2);
+                this.f$0.lambda$show$5(bulletinCreate, zArr2);
             }
         });
         adLayout.titleTextView.setRightDrawableOnClick(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VideoAds.this.lambda$show$17(create, tL_sponsoredMessage, context, resourcesProvider, adLayout, callback, view);
+                this.f$0.lambda$show$17(bulletinCreate, tL_sponsoredMessage, context, resourcesProvider, adLayout, callback, view);
             }
         });
         this.bulletin.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VideoAds.this.lambda$show$18(tL_sponsoredMessage, view);
+                this.f$0.lambda$show$18(tL_sponsoredMessage, view);
             }
         });
         this.bulletin.show();
@@ -375,9 +375,9 @@ public class VideoAds {
         if (bulletin2 == null || bulletin2 != bulletin || bool.booleanValue() == zArr[0]) {
             return;
         }
-        boolean booleanValue = bool.booleanValue();
-        zArr[0] = booleanValue;
-        closeDrawable.setPaused(booleanValue);
+        boolean zBooleanValue = bool.booleanValue();
+        zArr[0] = zBooleanValue;
+        closeDrawable.setPaused(zBooleanValue);
         if (zArr[0]) {
             this.bulletin.setCanHide(false);
             jArr[0] = System.currentTimeMillis();
@@ -386,9 +386,9 @@ public class VideoAds {
         }
         AndroidUtilities.cancelRunOnUIThread(runnable);
         jArr2[0] = jArr2[0] + (System.currentTimeMillis() - jArr[0]);
-        long currentTimeMillis = (System.currentTimeMillis() - j) - jArr2[0];
-        long j2 = (tL_sponsoredMessage.min_display_duration * 1000) - currentTimeMillis;
-        long j3 = (tL_sponsoredMessage.max_display_duration * 1000) - currentTimeMillis;
+        long jCurrentTimeMillis = (System.currentTimeMillis() - j) - jArr2[0];
+        long j2 = (tL_sponsoredMessage.min_display_duration * 1000) - jCurrentTimeMillis;
+        long j3 = (tL_sponsoredMessage.max_display_duration * 1000) - jCurrentTimeMillis;
         if (j3 <= 0) {
             Bulletin bulletin3 = this.bulletin;
             if (bulletin3 != null) {
@@ -476,14 +476,14 @@ public class VideoAds {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoAds.this.showPremium();
+                this.f$0.showPremium();
             }
         };
         Objects.requireNonNull(itemOptions);
         ReportBottomSheet.openSponsored(i, context, j, tL_sponsoredMessage, bulletinFactory, darkBlueThemeResourcesProvider, runnable, new Runnable() {
             @Override
             public final void run() {
-                ItemOptions.this.dismiss();
+                itemOptions.dismiss();
             }
         });
     }
@@ -562,9 +562,9 @@ public class VideoAds {
 
         public AdOptionsDrawable(Context context, int i) {
             this.color = i;
-            Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
-            this.icon = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
+            this.icon = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
 
         @Override
@@ -649,36 +649,36 @@ public class VideoAds {
 
         @Override
         public void draw(Canvas canvas) {
-            float centerX = getBounds().centerX();
-            float centerY = getBounds().centerY();
-            long currentTimeMillis = ((this.paused ? this.pausedTime : System.currentTimeMillis()) - this.minusTime) - this.startTime;
-            long max = Math.max(0L, this.min_display_duration - currentTimeMillis);
+            float fCenterX = getBounds().centerX();
+            float fCenterY = getBounds().centerY();
+            long jCurrentTimeMillis = ((this.paused ? this.pausedTime : System.currentTimeMillis()) - this.minusTime) - this.startTime;
+            long jMax = Math.max(0L, this.min_display_duration - jCurrentTimeMillis);
             long j = this.min_display_duration;
-            float f = ((float) max) / ((float) j);
-            float f2 = this.showTimerAnimated.set(currentTimeMillis < j);
-            String str = "" + ((int) Math.ceil(max / 1000.0d));
+            float f = jMax / j;
+            float f2 = this.showTimerAnimated.set(jCurrentTimeMillis < j);
+            String str = "" + ((int) Math.ceil(jMax / 1000.0d));
             float f3 = this.timerScaleAnimated.set(str.length() >= 3 ? 0.825f : str.length() >= 2 ? 0.875f : 1.0f);
             canvas.save();
-            canvas.scale(f3, f3, centerX, centerY);
+            canvas.scale(f3, f3, fCenterX, fCenterY);
             this.timer.setText(str);
-            this.timer.setBounds(centerX - 1.0f, centerY - 1.0f, centerX + 1.0f, centerY + 1.0f);
+            this.timer.setBounds(fCenterX - 1.0f, fCenterY - 1.0f, fCenterX + 1.0f, fCenterY + 1.0f);
             this.timer.setAlpha((int) (this.alpha * f2));
             this.timer.draw(canvas);
             canvas.restore();
             this.paint.setAlpha((int) (this.alpha * f2));
             this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(centerX - AndroidUtilities.dp(9.0f), centerY - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + centerX, AndroidUtilities.dp(9.0f) + centerY);
+            rectF.set(fCenterX - AndroidUtilities.dp(9.0f), fCenterY - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + fCenterX, AndroidUtilities.dp(9.0f) + fCenterY);
             canvas.drawArc(rectF, -90.0f, f * (-360.0f), false, this.paint);
             float f4 = this.showCrossAnimated.set((1.0f - f) * 360.0f > 75.0f);
-            float lerp = AndroidUtilities.lerp(centerX, AndroidUtilities.dp(8.0f) + centerX, f2);
-            float lerp2 = AndroidUtilities.lerp(centerY, centerY - AndroidUtilities.dp(8.0f), f2);
-            float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), f2) * AndroidUtilities.lerp(0.35f, 1.0f, f4);
+            float fLerp = AndroidUtilities.lerp(fCenterX, AndroidUtilities.dp(8.0f) + fCenterX, f2);
+            float fLerp2 = AndroidUtilities.lerp(fCenterY, fCenterY - AndroidUtilities.dp(8.0f), f2);
+            float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), f2) * AndroidUtilities.lerp(0.35f, 1.0f, f4);
             this.paint.setAlpha((int) (this.alpha * f4));
-            float f5 = lerp - lerp3;
-            float f6 = lerp2 - lerp3;
-            float f7 = lerp + lerp3;
-            float f8 = lerp2 + lerp3;
+            float f5 = fLerp - fLerp3;
+            float f6 = fLerp2 - fLerp3;
+            float f7 = fLerp + fLerp3;
+            float f8 = fLerp2 + fLerp3;
             canvas.drawLine(f5, f6, f7, f8, this.paint);
             canvas.drawLine(f5, f8, f7, f6, this.paint);
             if (f2 > 0.0f) {
@@ -744,15 +744,15 @@ public class VideoAds {
 
             @Override
             public Activity getParentActivity() {
-                Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-                return findActivity == null ? LaunchActivity.instance : findActivity;
+                Activity activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+                return activityFindActivity == null ? LaunchActivity.instance : activityFindActivity;
             }
         }, 3, true);
         this.premiumSheet = premiumFeatureBottomSheet2;
         premiumFeatureBottomSheet2.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                VideoAds.this.lambda$showPremium$19(premiumFeatureBottomSheet2);
+                this.f$0.lambda$showPremium$19(premiumFeatureBottomSheet2);
             }
         });
         premiumFeatureBottomSheet2.show();
@@ -809,7 +809,7 @@ public class VideoAds {
         }
 
         @Override
-        public void onShow() {
+        protected void onShow() {
             super.onShow();
         }
 

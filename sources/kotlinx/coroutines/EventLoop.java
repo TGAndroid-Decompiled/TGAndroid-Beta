@@ -19,7 +19,7 @@ public abstract class EventLoop extends CoroutineDispatcher {
 
     public abstract void shutdown();
 
-    public long getNextTime() {
+    protected long getNextTime() {
         ArrayDeque arrayDeque = this.unconfinedQueue;
         return (arrayDeque == null || arrayDeque.isEmpty()) ? Long.MAX_VALUE : 0L;
     }
@@ -84,9 +84,9 @@ public abstract class EventLoop extends CoroutineDispatcher {
     }
 
     public final void decrementUseCount(boolean z) {
-        long delta = this.useCount - delta(z);
-        this.useCount = delta;
-        if (delta <= 0 && this.shared) {
+        long jDelta = this.useCount - delta(z);
+        this.useCount = jDelta;
+        if (jDelta <= 0 && this.shared) {
             shutdown();
         }
     }

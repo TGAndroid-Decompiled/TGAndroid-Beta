@@ -2,19 +2,16 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -25,24 +22,25 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,6 +53,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -92,8 +91,6 @@ import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.Components.AvatarDrawable;
-import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
@@ -107,6 +104,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.InviteMembersBottomSheet;
 import org.telegram.ui.Components.JoinGroupAlert;
 import org.telegram.ui.Components.LayoutHelper;
@@ -114,7 +112,6 @@ import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
@@ -125,17 +122,23 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UnreadCounterTextView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.GroupCreateActivity;
-import org.telegram.ui.RightSlidingDialogContainer;
+import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.TopicsFragment;
 
-public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, RightSlidingDialogContainer.BaseFragmentWithFullscreen {
+public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, MainTabsActivity.TabFragmentDelegate {
     private static HashSet settingsPreloaded = new HashSet();
     Adapter adapter;
     private ActionBarMenuSubItem addMemberSubMenu;
+    private int additionFloatingButtonOffset;
+    private int additionNavigationBarHeight;
     private boolean allowSwipeDuringCurrentTouch;
     boolean animateSearchWithScale;
     boolean animatedUpdateEnabled;
@@ -168,12 +171,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private View emptyView;
     HashSet excludeTopics;
     private boolean finishDialogRightSlidingPreviewOnTransitionEnd;
-    private RLottieImageView floatingButton;
-    FrameLayout floatingButtonContainer;
-    private float floatingButtonHideProgress;
-    private float floatingButtonTranslation;
-    private boolean floatingHidden;
-    private final AccelerateDecelerateInterpolator floatingInterpolator;
+    FragmentFloatingButton floatingButton;
     ArrayList forumTopics;
     private boolean forumTopicsListFrozen;
     FragmentContextView fragmentContextView;
@@ -184,6 +182,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private int hiddenCount;
     private boolean hiddenShown;
     private ActionBarMenuItem hideItem;
+    private IBlur3Capture iBlur3Capture;
+    private boolean iBlur3Invalidated;
+    private final RectF iBlur3PositionActionBar;
+    private final RectF iBlur3PositionMainTabs;
+    private final ArrayList iBlur3Positions;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
     private boolean ignoreDiffUtil;
     boolean isSlideBackTransition;
     private DefaultItemAnimator itemAnimator;
@@ -198,6 +203,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private ArrayList movingDialogFilters;
     private boolean mute;
     private ActionBarMenuItem muteItem;
+    private int navigationBarHeight;
     private final AnimationNotificationsLocker notificationsLocker;
     OnTopicSelectedListener onTopicSelectedListener;
     private boolean openAnimationEnded;
@@ -209,8 +215,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private final boolean openedForSelect;
     private ActionBarMenuItem other;
     ActionBarMenuItem otherItem;
-    private AvatarDrawable parentAvatarDrawable;
-    private BackupImageView parentAvatarImageView;
     public DialogsActivity parentDialogsActivity;
     private ChatActivityMemberRequestsDelegate pendingRequestsDelegate;
     private ActionBarMenuItem pinItem;
@@ -224,6 +228,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private ActionBarMenuSubItem restartTopic;
     private RecyclerAnimationScrollHelper scrollHelper;
     private boolean scrollToTop;
+    private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
     private float searchAnimationProgress;
     ValueAnimator searchAnimator;
     private MessagesSearchContainer searchContainer;
@@ -251,16 +256,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         void onTopicSelected(TLRPC.TL_forumTopic tL_forumTopic);
     }
 
-    public static boolean lambda$chekActionMode$21(View view, MotionEvent motionEvent) {
+    public static boolean lambda$chekActionMode$19(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$onDialogAnimationFinished$8() {
+    public static void lambda$onDialogAnimationFinished$7() {
     }
 
     @Override
     public boolean allowFinishFragmentInsteadOfRemoveFromStack() {
         return false;
+    }
+
+    @Override
+    public boolean canParentTabsSlide(MotionEvent motionEvent, boolean z) {
+        return MainTabsActivity.TabFragmentDelegate.CC.$default$canParentTabsSlide(this, motionEvent, z);
     }
 
     @Override
@@ -284,6 +294,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean openedWithLivestream() {
         return ChatActivityInterface.CC.$default$openedWithLivestream(this);
     }
@@ -298,11 +313,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         return ChatActivityInterface.CC.$default$shouldShowImport(this);
     }
 
-    @Override
-    public View getFullscreenView() {
-        return this.fullscreenView;
-    }
-
     public TopicsFragment(Bundle bundle) {
         super(bundle);
         this.forumTopics = new ArrayList();
@@ -310,8 +320,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.adapter = new Adapter();
         this.hiddenCount = 0;
         this.hiddenShown = true;
-        this.floatingHidden = false;
-        this.floatingInterpolator = new AccelerateDecelerateInterpolator();
         this.animatedUpdateEnabled = true;
         this.bottomPannelVisible = true;
         this.searchAnimationProgress = 0.0f;
@@ -320,6 +328,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.topicsDidLoaded});
         this.slideFragmentProgress = 1.0f;
         this.movingDialogFilters = new ArrayList();
+        ArrayList arrayList = new ArrayList();
+        this.iBlur3Positions = arrayList;
+        RectF rectF = new RectF();
+        this.iBlur3PositionActionBar = rectF;
+        RectF rectF2 = new RectF();
+        this.iBlur3PositionMainTabs = rectF2;
+        arrayList.add(rectF);
+        arrayList.add(rectF2);
         this.chatId = this.arguments.getLong("chat_id", 0L);
         this.openedForSelect = this.arguments.getBoolean("for_select", false);
         this.openedForForward = this.arguments.getBoolean("forward_to", false);
@@ -331,6 +347,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.topicsController = getMessagesController().getTopicsController();
         SharedPreferences preferences = getUserConfig().getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + r2, false);
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor();
+            this.iBlur3SourceGlassFrosted = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlass = new BlurredBackgroundSourceRenderNode(null);
+        } else {
+            this.scrollableViewNoiseSuppressor = null;
+            this.iBlur3SourceGlassFrosted = null;
+            this.iBlur3SourceGlass = null;
+        }
     }
 
     private void checkGroupCallJoin(boolean z) {
@@ -382,7 +407,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     @Override
     public View createView(Context context) {
-        int i;
+        this.additionNavigationBarHeight = this.parentDialogsActivity != null ? AndroidUtilities.dp(72.0f) : 0;
+        this.additionFloatingButtonOffset = this.parentDialogsActivity != null ? AndroidUtilities.dp(64.0f) : 0;
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             private Paint actionBarPaint;
 
@@ -417,24 +443,24 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
 
             @Override
-            protected void onMeasure(int i2, int i3) {
-                int size = View.MeasureSpec.getSize(i2);
-                int size2 = View.MeasureSpec.getSize(i3);
-                int i4 = 0;
-                for (int i5 = 0; i5 < getChildCount(); i5++) {
-                    View childAt = getChildAt(i5);
+            protected void onMeasure(int i, int i2) {
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                int measuredHeight = 0;
+                for (int i3 = 0; i3 < getChildCount(); i3++) {
+                    View childAt = getChildAt(i3);
                     if (childAt instanceof ActionBar) {
-                        childAt.measure(i2, View.MeasureSpec.makeMeasureSpec(0, 0));
-                        i4 = childAt.getMeasuredHeight();
+                        childAt.measure(i, View.MeasureSpec.makeMeasureSpec(0, 0));
+                        measuredHeight = childAt.getMeasuredHeight();
                     }
                 }
-                for (int i6 = 0; i6 < getChildCount(); i6++) {
-                    View childAt2 = getChildAt(i6);
+                for (int i4 = 0; i4 < getChildCount(); i4++) {
+                    View childAt2 = getChildAt(i4);
                     if (!(childAt2 instanceof ActionBar)) {
                         if (childAt2.getFitsSystemWindows()) {
-                            measureChildWithMargins(childAt2, i2, 0, i3, 0);
+                            measureChildWithMargins(childAt2, i, 0, i2, 0);
                         } else {
-                            measureChildWithMargins(childAt2, i2, 0, i3, i4);
+                            measureChildWithMargins(childAt2, i, 0, i2, measuredHeight);
                         }
                     }
                 }
@@ -442,28 +468,44 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
 
             @Override
-            public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+            protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.AnonymousClass1.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
-            public void drawList(Canvas canvas, boolean z, ArrayList arrayList) {
-                for (int i2 = 0; i2 < TopicsFragment.this.recyclerListView.getChildCount(); i2++) {
-                    View childAt = TopicsFragment.this.recyclerListView.getChildAt(i2);
+            protected void drawList(Canvas canvas, boolean z, ArrayList arrayList) {
+                for (int i = 0; i < TopicsFragment.this.recyclerListView.getChildCount(); i++) {
+                    View childAt = TopicsFragment.this.recyclerListView.getChildAt(i);
                     if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
-                        int save = canvas.save();
+                        int iSave = canvas.save();
                         canvas.translate(TopicsFragment.this.recyclerListView.getX() + childAt.getX(), getY() + TopicsFragment.this.recyclerListView.getY() + childAt.getY());
                         if (arrayList != null && (childAt instanceof SizeNotifierFrameLayout.IViewWithInvalidateCallback)) {
                             arrayList.add((SizeNotifierFrameLayout.IViewWithInvalidateCallback) childAt);
                         }
                         childAt.draw(canvas);
-                        canvas.restoreToCount(save);
+                        canvas.restoreToCount(iSave);
                     }
                 }
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
+                if (Build.VERSION.SDK_INT >= 31 && TopicsFragment.this.scrollableViewNoiseSuppressor != null) {
+                    TopicsFragment.this.blur3_InvalidateBlur();
+                    DialogsActivity dialogsActivity = TopicsFragment.this.parentDialogsActivity;
+                    int measuredWidth = dialogsActivity != null ? dialogsActivity.fragmentView.getMeasuredWidth() : getMeasuredWidth();
+                    DialogsActivity dialogsActivity2 = TopicsFragment.this.parentDialogsActivity;
+                    int measuredHeight = dialogsActivity2 != null ? dialogsActivity2.fragmentView.getMeasuredHeight() : getMeasuredHeight();
+                    if (TopicsFragment.this.iBlur3SourceGlassFrosted != null && !TopicsFragment.this.iBlur3SourceGlassFrosted.inRecording() && (TopicsFragment.this.iBlur3SourceGlassFrosted.needUpdateDisplayList(measuredWidth, measuredHeight) || TopicsFragment.this.iBlur3Invalidated)) {
+                        TopicsFragment.this.scrollableViewNoiseSuppressor.draw(TopicsFragment.this.iBlur3SourceGlassFrosted.beginRecording(measuredWidth, measuredHeight), -3);
+                        TopicsFragment.this.iBlur3SourceGlassFrosted.endRecording();
+                    }
+                    if (TopicsFragment.this.iBlur3SourceGlass != null && !TopicsFragment.this.iBlur3SourceGlass.inRecording() && (TopicsFragment.this.iBlur3SourceGlass.needUpdateDisplayList(measuredWidth, measuredHeight) || TopicsFragment.this.iBlur3Invalidated)) {
+                        TopicsFragment.this.scrollableViewNoiseSuppressor.draw(TopicsFragment.this.iBlur3SourceGlass.beginRecording(measuredWidth, measuredHeight), -2);
+                        TopicsFragment.this.iBlur3SourceGlass.endRecording();
+                    }
+                    TopicsFragment.this.iBlur3Invalidated = false;
+                }
                 super.dispatchDraw(canvas);
                 if (TopicsFragment.this.isInPreviewMode()) {
                     this.actionBarPaint.setColor(TopicsFragment.this.getThemedColor(Theme.key_windowBackgroundWhite));
@@ -471,12 +513,31 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.statusBarHeight, this.actionBarPaint);
                     canvas.drawLine(0.0f, 0.0f, 0.0f, getHeight(), Theme.dividerPaint);
                 }
+                TopicsFragment topicsFragment = TopicsFragment.this;
+                if (topicsFragment.parentDialogsActivity == null) {
+                    AndroidUtilities.drawNavigationBarProtection(canvas, this, topicsFragment.getThemedColor(Theme.key_windowBackgroundWhite));
+                }
+            }
+
+            @Override
+            public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z) {
+                if (Build.VERSION.SDK_INT < 29 || !SharedConfig.chatBlurEnabled() || TopicsFragment.this.iBlur3SourceGlassFrosted == null) {
+                    canvas.drawRect(rect, paint);
+                    return;
+                }
+                canvas.save();
+                canvas.translate(0.0f, -f);
+                TopicsFragment.this.iBlur3SourceGlassFrosted.draw(canvas, rect.left, rect.top + f, rect.right, rect.bottom + f);
+                canvas.restore();
+                int alpha = paint.getAlpha();
+                paint.setAlpha(178);
+                canvas.drawRect(rect, paint);
+                paint.setAlpha(alpha);
             }
         };
         this.contentView = sizeNotifierFrameLayout;
         this.fragmentView = sizeNotifierFrameLayout;
-        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        this.contentView.needBlur = !this.inPreviewMode;
+        sizeNotifierFrameLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         this.actionBar.setAddToContainer(false);
         this.actionBar.setCastShadows(false);
         this.actionBar.setClipContent(true);
@@ -490,21 +551,16 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.this.lambda$createView$0(view);
+                this.f$0.lambda$createView$0(view);
             }
         });
-        ActionBarMenu createMenu = this.actionBar.createMenu();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
+        this.searchItem = actionBarMenuItemAddItem;
         if (this.parentDialogsActivity != null) {
-            ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_search);
-            this.searchItem = addItem;
-            addItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    TopicsFragment.this.lambda$createView$1(view);
-                }
-            });
+            actionBarMenuItemAddItem.setVisibility(8);
         } else {
-            ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            actionBarMenuItemAddItem.setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
                 public void onSearchFilterCleared(FiltersView.MediaFilterData mediaFilterData) {
                 }
@@ -527,28 +583,27 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.this.searchContainer.setSearchString(editText.getText().toString());
                 }
             });
-            this.searchItem = actionBarMenuItemSearchListener;
-            actionBarMenuItemSearchListener.setSearchPaddingStart(56);
+            this.searchItem.setSearchPaddingStart(56);
             this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.Search));
             EditTextBoldCursor searchField = this.searchItem.getSearchField();
-            searchField.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            searchField.setHintTextColor(Theme.getColor(Theme.key_player_time));
-            searchField.setCursorColor(Theme.getColor(Theme.key_chat_messagePanelCursor));
+            searchField.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            searchField.setHintTextColor(getThemedColor(Theme.key_player_time));
+            searchField.setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
         }
-        ActionBarMenuItem addItem2 = createMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
-        this.other = addItem2;
-        addItem2.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
+        ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
+        this.other = actionBarMenuItemAddItem2;
+        actionBarMenuItemAddItem2.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
         this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;
-        int i2 = R.raw.boosts;
-        this.boostGroupSubmenu = actionBarMenuItem.addSubItem(14, 0, new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f)), LocaleController.getString(R.string.BoostingBoostGroupMenu), true, false);
+        int i = R.raw.boosts;
+        this.boostGroupSubmenu = actionBarMenuItem.addSubItem(14, 0, new RLottieDrawable(i, "" + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f)), LocaleController.getString(R.string.BoostingBoostGroupMenu), true, false);
         ActionBarMenuItem actionBarMenuItem2 = this.other;
-        int i3 = R.drawable.msg_topic_create;
-        int i4 = R.string.CreateTopic;
-        this.createTopicSubmenu = actionBarMenuItem2.addSubItem(3, i3, LocaleController.getString(i4));
+        int i2 = R.drawable.msg_topic_create;
+        int i3 = R.string.CreateTopic;
+        this.createTopicSubmenu = actionBarMenuItem2.addSubItem(3, i2, LocaleController.getString(i3));
         this.reportSubmenu = this.other.addSubItem(15, R.drawable.msg_report, LocaleController.getString(R.string.ReportChat));
         this.deleteChatSubmenu = this.other.addSubItem(11, R.drawable.msg_leave, LocaleController.getString(R.string.LeaveMegaMenu), this.themeDelegate);
-        ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, this, false);
+        ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, this, false, this.resourceProvider);
         this.avatarContainer = chatAvatarContainer;
         chatAvatarContainer.getAvatarImageView().setRoundRadius(AndroidUtilities.dp(16.0f));
         this.avatarContainer.setOccupyStatusBar((AndroidUtilities.isTablet() || this.inPreviewMode) ? false : true);
@@ -563,10 +618,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             });
         }
-        this.recyclerListView = new TopicsRecyclerView(context) {
+        TopicsRecyclerView topicsRecyclerView = new TopicsRecyclerView(context) {
             @Override
-            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
-                super.onLayout(z, i5, i6, i7, i8);
+            protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+                super.onLayout(z, i4, i5, i6, i7);
                 TopicsFragment.this.checkForLoadMore();
             }
 
@@ -579,10 +634,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 return (arrayList == null || arrayList.size() != 1 || TopicsFragment.this.forumTopics.get(0) == null || ((Item) TopicsFragment.this.forumTopics.get(0)).topic == null || ((Item) TopicsFragment.this.forumTopics.get(0)).topic.id != 1) ? getAdapter().getItemCount() <= 1 : getAdapter().getItemCount() <= 2;
             }
         };
+        this.recyclerListView = topicsRecyclerView;
+        DialogsActivity dialogsActivity = this.parentDialogsActivity;
+        ViewGroup viewGroup = dialogsActivity != null ? (ViewGroup) dialogsActivity.getFragmentView() : this.contentView;
+        final TopicsRecyclerView topicsRecyclerView2 = this.recyclerListView;
+        Objects.requireNonNull(topicsRecyclerView2);
+        this.iBlur3Capture = new ViewGroupPartRenderer(topicsRecyclerView, viewGroup, new ViewGroupPartRenderer.DrawChildMethod() {
+            @Override
+            public final boolean drawChild(Canvas canvas, View view, long j) {
+                return topicsRecyclerView2.drawChild(canvas, view, j);
+            }
+        });
         SpannableString spannableString = new SpannableString("#");
-        ForumUtilities.GeneralTopicDrawable createGeneralTopicDrawable = ForumUtilities.createGeneralTopicDrawable(getContext(), 0.85f, -1, false);
-        createGeneralTopicDrawable.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
-        spannableString.setSpan(new ImageSpan(createGeneralTopicDrawable, 2), 0, 1, 33);
+        ForumUtilities.GeneralTopicDrawable generalTopicDrawableCreateGeneralTopicDrawable = ForumUtilities.createGeneralTopicDrawable(getContext(), 0.85f, -1, false);
+        generalTopicDrawableCreateGeneralTopicDrawable.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
+        spannableString.setSpan(new ImageSpan(generalTopicDrawableCreateGeneralTopicDrawable, 2), 0, 1, 33);
         PullForegroundDrawable pullForegroundDrawable = new PullForegroundDrawable(AndroidUtilities.replaceCharSequence("#", LocaleController.getString(R.string.AccSwipeForGeneral), spannableString), AndroidUtilities.replaceCharSequence("#", LocaleController.getString(R.string.AccReleaseForGeneral), spannableString)) {
             @Override
             protected float getViewOffset() {
@@ -591,20 +657,20 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         };
         this.pullForegroundDrawable = pullForegroundDrawable;
         pullForegroundDrawable.doNotShow();
-        int i5 = this.hiddenShown ? 2 : 0;
-        this.pullViewState = i5;
-        this.pullForegroundDrawable.setWillDraw(i5 != 0);
+        int i4 = this.hiddenShown ? 2 : 0;
+        this.pullViewState = i4;
+        this.pullForegroundDrawable.setWillDraw(i4 != 0);
         AnonymousClass7 anonymousClass7 = new AnonymousClass7();
         this.recyclerListView.setHideIfEmpty(false);
         anonymousClass7.setSupportsChangeAnimations(false);
         anonymousClass7.setDelayAnimations(false);
-        TopicsRecyclerView topicsRecyclerView = this.recyclerListView;
+        TopicsRecyclerView topicsRecyclerView3 = this.recyclerListView;
         this.itemAnimator = anonymousClass7;
-        topicsRecyclerView.setItemAnimator(anonymousClass7);
+        topicsRecyclerView3.setItemAnimator(anonymousClass7);
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
-                super.onScrolled(recyclerView, i6, i7);
+            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+                super.onScrolled(recyclerView, i5, i6);
                 TopicsFragment.this.checkForLoadMore();
             }
         });
@@ -614,16 +680,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.recyclerListView.setItemsEnterAnimator(recyclerItemsEnterAnimator);
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i6) {
-                TopicsFragment.this.lambda$createView$2(view, i6);
+            public final void onItemClick(View view, int i5) {
+                this.f$0.lambda$createView$1(view, i5);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
             @Override
-            public final boolean onItemClick(View view, int i6, float f, float f2) {
-                boolean lambda$createView$3;
-                lambda$createView$3 = TopicsFragment.this.lambda$createView$3(view, i6, f, f2);
-                return lambda$createView$3;
+            public final boolean onItemClick(View view, int i5, float f, float f2) {
+                return this.f$0.lambda$createView$2(view, i5, f, f2);
             }
 
             @Override
@@ -638,15 +702,19 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         });
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
-                super.onScrolled(recyclerView, i6, i7);
-                TopicsFragment.this.contentView.invalidateBlur();
+            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+                super.onScrolled(recyclerView, i5, i6);
+                if (Build.VERSION.SDK_INT < 31 || TopicsFragment.this.scrollableViewNoiseSuppressor == null) {
+                    return;
+                }
+                TopicsFragment.this.scrollableViewNoiseSuppressor.onScrolled(i5, i6);
+                TopicsFragment.this.blur3_InvalidateBlur();
             }
         });
-        TopicsRecyclerView topicsRecyclerView2 = this.recyclerListView;
+        TopicsRecyclerView topicsRecyclerView4 = this.recyclerListView;
         AnonymousClass10 anonymousClass10 = new AnonymousClass10(context);
         this.layoutManager = anonymousClass10;
-        topicsRecyclerView2.setLayoutManager(anonymousClass10);
+        topicsRecyclerView4.setLayoutManager(anonymousClass10);
         this.scrollHelper = new RecyclerAnimationScrollHelper(this.recyclerListView, this.layoutManager);
         this.recyclerListView.setAdapter(this.adapter);
         this.recyclerListView.setClipToPadding(false);
@@ -655,20 +723,20 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int prevTop;
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
+            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
                 boolean z;
-                int findFirstVisibleItemPosition = TopicsFragment.this.layoutManager.findFirstVisibleItemPosition();
-                if (findFirstVisibleItemPosition != -1) {
-                    RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                    int top = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : 0;
-                    int i8 = this.prevPosition;
-                    if (i8 == findFirstVisibleItemPosition) {
-                        int i9 = this.prevTop;
-                        int i10 = i9 - top;
-                        z = top < i9;
-                        Math.abs(i10);
+                int iFindFirstVisibleItemPosition = TopicsFragment.this.layoutManager.findFirstVisibleItemPosition();
+                if (iFindFirstVisibleItemPosition != -1) {
+                    RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = recyclerView.findViewHolderForAdapterPosition(iFindFirstVisibleItemPosition);
+                    int top = viewHolderFindViewHolderForAdapterPosition != null ? viewHolderFindViewHolderForAdapterPosition.itemView.getTop() : 0;
+                    int i7 = this.prevPosition;
+                    if (i7 == iFindFirstVisibleItemPosition) {
+                        int i8 = this.prevTop;
+                        int i9 = i8 - top;
+                        z = top < i8;
+                        Math.abs(i9);
                     } else {
-                        z = findFirstVisibleItemPosition > i8;
+                        z = iFindFirstVisibleItemPosition > i7;
                     }
                     TopicsFragment topicsFragment = TopicsFragment.this;
                     topicsFragment.hideFloatingButton(z || !topicsFragment.canShowCreateTopic, true);
@@ -687,39 +755,19 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         itemTouchHelper.attachToRecyclerView(this.recyclerListView);
         this.contentView.addView(this.recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
         ((ViewGroup.MarginLayoutParams) this.recyclerListView.getLayoutParams()).topMargin = -AndroidUtilities.dp(100.0f);
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.floatingButtonContainer = frameLayout;
-        frameLayout.setVisibility(0);
-        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.contentView;
-        FrameLayout frameLayout2 = this.floatingButtonContainer;
-        float f = 56;
-        boolean z = LocaleController.isRTL;
-        sizeNotifierFrameLayout2.addView(frameLayout2, LayoutHelper.createFrame(56, f, (z ? 3 : 5) | 80, z ? 14.0f : 0.0f, 0.0f, z ? 0.0f : 14.0f, 14.0f));
-        this.floatingButtonContainer.setOnClickListener(new View.OnClickListener() {
+        FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(getContext(), this.resourceProvider);
+        this.floatingButton = fragmentFloatingButton;
+        this.contentView.addView(fragmentFloatingButton, FragmentFloatingButton.createDefaultLayoutParams());
+        this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.this.lambda$createView$4(view);
+                this.f$0.lambda$createView$3(view);
             }
         });
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        FrameLayout frameLayout3 = this.floatingButtonContainer;
-        Property property = View.TRANSLATION_Z;
-        stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonContainer, (Property<FrameLayout, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
-        this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-            }
-        });
-        this.floatingButtonContainer.setBackground(createSimpleSelectorCircleDrawable);
-        RLottieImageView rLottieImageView = new RLottieImageView(context);
-        this.floatingButton = rLottieImageView;
-        rLottieImageView.setImageResource(R.drawable.ic_chatlist_add_2);
-        this.floatingButtonContainer.setContentDescription(LocaleController.getString(i4));
-        this.floatingButtonContainer.addView(this.floatingButton, LayoutHelper.createFrame(24, 24, 17));
+        this.floatingButton.imageView.setImageResource(R.drawable.ic_chatlist_add_2);
+        this.floatingButton.imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        this.floatingButton.imageView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        this.floatingButton.setContentDescription(LocaleController.getString(i3));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         flickerLoadingView.setViewType(24);
         flickerLoadingView.setVisibility(8);
@@ -730,14 +778,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             boolean showProgressInternal;
 
             @Override
-            public void showProgress(boolean z2, boolean z3) {
-                super.showProgress(z2, z3);
-                this.showProgressInternal = z2;
-                if (z3) {
-                    emptyViewContainer.textView.animate().alpha(z2 ? 0.0f : 1.0f).start();
+            public void showProgress(boolean z, boolean z2) {
+                super.showProgress(z, z2);
+                this.showProgressInternal = z;
+                if (z2) {
+                    emptyViewContainer.textView.animate().alpha(z ? 0.0f : 1.0f).start();
                 } else {
                     emptyViewContainer.textView.animate().cancel();
-                    emptyViewContainer.textView.setAlpha(z2 ? 0.0f : 1.0f);
+                    emptyViewContainer.textView.setAlpha(z ? 0.0f : 1.0f);
                 }
             }
         };
@@ -765,7 +813,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.bottomOverlayChatText = unreadCounterTextView;
         this.bottomOverlayContainer.addView(unreadCounterTextView);
         this.contentView.addView(this.bottomOverlayContainer, LayoutHelper.createFrame(-1, 51, 80));
-        this.bottomOverlayChatText.setOnClickListener(new AnonymousClass16());
+        this.bottomOverlayChatText.setOnClickListener(new AnonymousClass15());
         RadialProgressView radialProgressView = new RadialProgressView(context, this.themeDelegate);
         this.bottomOverlayProgress = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(22.0f));
@@ -775,22 +823,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.closeReportSpam = imageView;
         imageView.setImageResource(R.drawable.miniplayer_close);
         this.closeReportSpam.setContentDescription(LocaleController.getString(R.string.Close));
-        int i6 = Build.VERSION.SDK_INT;
         ImageView imageView2 = this.closeReportSpam;
-        int i7 = Theme.key_chat_topPanelClose;
-        imageView2.setBackground(Theme.AdaptiveRipple.circle(getThemedColor(i7)));
-        this.closeReportSpam.setColorFilter(new PorterDuffColorFilter(getThemedColor(i7), PorterDuff.Mode.MULTIPLY));
+        int i5 = Theme.key_chat_topPanelClose;
+        imageView2.setBackground(Theme.AdaptiveRipple.circle(getThemedColor(i5)));
+        this.closeReportSpam.setColorFilter(new PorterDuffColorFilter(getThemedColor(i5), PorterDuff.Mode.MULTIPLY));
         this.closeReportSpam.setScaleType(ImageView.ScaleType.CENTER);
         this.bottomOverlayContainer.addView(this.closeReportSpam, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 6.0f, 2.0f, 0.0f));
         this.closeReportSpam.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.this.lambda$createView$5(view);
+                this.f$0.lambda$createView$4(view);
             }
         });
         this.closeReportSpam.setVisibility(8);
         updateChatInfo();
-        FrameLayout frameLayout4 = new FrameLayout(context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 if (view == TopicsFragment.this.searchTabsView && TopicsFragment.this.isInPreviewMode()) {
@@ -799,60 +846,57 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 return super.drawChild(canvas, view, j);
             }
         };
-        this.fullscreenView = frameLayout4;
+        this.fullscreenView = frameLayout;
         if (this.parentDialogsActivity == null) {
-            this.contentView.addView(frameLayout4, LayoutHelper.createFrame(-1, -1, 119));
+            this.contentView.addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
         }
         MessagesSearchContainer messagesSearchContainer = new MessagesSearchContainer(context);
         this.searchContainer = messagesSearchContainer;
         messagesSearchContainer.setVisibility(8);
         this.fullscreenView.addView(this.searchContainer, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 44.0f, 0.0f, 0.0f));
         MessagesSearchContainer messagesSearchContainer2 = this.searchContainer;
-        int i8 = Theme.key_windowBackgroundWhite;
-        messagesSearchContainer2.setBackgroundColor(Theme.getColor(i8));
+        int i6 = Theme.key_windowBackgroundWhite;
+        messagesSearchContainer2.setBackgroundColor(getThemedColor(i6));
         this.actionBar.setDrawBlurBackground(this.contentView);
         getMessagesStorage().loadChatInfo(this.chatId, true, null, true, false, 0);
-        FrameLayout frameLayout5 = new FrameLayout(context);
-        this.topView = frameLayout5;
-        this.contentView.addView(frameLayout5, LayoutHelper.createFrame(-1, 200, 48));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.topView = frameLayout2;
+        this.contentView.addView(frameLayout2, LayoutHelper.createFrame(-1, 200, 48));
         TLRPC.Chat currentChat = getCurrentChat();
         if (currentChat != null) {
             ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, this.contentView, currentChat, new ChatActivityMemberRequestsDelegate.Callback() {
                 @Override
                 public final void onEnterOffsetChanged() {
-                    TopicsFragment.this.updateTopView();
+                    this.f$0.updateTopView();
                 }
             });
             this.pendingRequestsDelegate = chatActivityMemberRequestsDelegate;
             chatActivityMemberRequestsDelegate.setChatInfo(this.chatFull, false);
             this.topView.addView(this.pendingRequestsDelegate.getView(), -1, this.pendingRequestsDelegate.getViewHeight());
         }
-        if (this.inPreviewMode) {
-            i = -1;
-        } else {
+        if (!this.inPreviewMode) {
             FragmentContextView fragmentContextView = new FragmentContextView(context, this, false, this.themeDelegate) {
                 @Override
-                public void setTopPadding(float f2) {
-                    this.topPadding = f2;
+                public void setTopPadding(float f) {
+                    this.topPadding = f;
                     TopicsFragment.this.updateTopView();
                 }
             };
             this.fragmentContextView = fragmentContextView;
-            i = -1;
             this.topView.addView(fragmentContextView, LayoutHelper.createFrame(-1, 38, 51));
         }
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(i, -2.0f);
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -2.0f);
         if (this.inPreviewMode) {
-            createFrame.topMargin = AndroidUtilities.statusBarHeight;
+            layoutParamsCreateFrame.topMargin = AndroidUtilities.statusBarHeight;
         }
         if (!isInPreviewMode()) {
-            this.contentView.addView(this.actionBar, createFrame);
+            this.contentView.addView(this.actionBar, layoutParamsCreateFrame);
         }
         checkForLoadMore();
         View view = new View(context) {
             @Override
-            public void setAlpha(float f2) {
-                super.setAlpha(f2);
+            public void setAlpha(float f) {
+                super.setAlpha(f);
                 View view2 = TopicsFragment.this.fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
@@ -860,15 +904,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         };
         this.blurredView = view;
-        if (i6 >= 23) {
-            view.setForeground(new ColorDrawable(ColorUtils.setAlphaComponent(getThemedColor(i8), 100)));
+        if (Build.VERSION.SDK_INT >= 23) {
+            view.setForeground(new ColorDrawable(ColorUtils.setAlphaComponent(getThemedColor(i6), 100)));
         }
         this.blurredView.setFocusable(false);
         this.blurredView.setImportantForAccessibility(2);
         this.blurredView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TopicsFragment.this.lambda$createView$6(view2);
+                this.f$0.lambda$createView$5(view2);
             }
         });
         this.blurredView.setFitsSystemWindows(true);
@@ -881,9 +925,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
                 BaseFragment baseFragment = (BaseFragment) it.next();
                 if (baseFragment instanceof DialogsActivity) {
-                    DialogsActivity dialogsActivity = (DialogsActivity) baseFragment;
-                    if (dialogsActivity.isMainDialogList()) {
-                        MessagesStorage.TopicKey openedDialogId = dialogsActivity.getOpenedDialogId();
+                    DialogsActivity dialogsActivity2 = (DialogsActivity) baseFragment;
+                    if (dialogsActivity2.isMainDialogList()) {
+                        MessagesStorage.TopicKey openedDialogId = dialogsActivity2.getOpenedDialogId();
                         if (openedDialogId.dialogId == (-this.chatId)) {
                             this.selectedTopicForTablet = openedDialogId.topicId;
                             break;
@@ -901,14 +945,20 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             getMessagesController().getBoostsController().getBoostsStats(-this.chatId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    TopicsFragment.this.lambda$createView$7((TL_stories.TL_premium_boostsStatus) obj);
+                    this.f$0.lambda$createView$6((TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
         }
+        ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
+                return this.f$0.onApplyWindowInsets(view2, windowInsetsCompat);
+            }
+        });
         return this.fragmentView;
     }
 
-    public class AnonymousClass2 extends ActionBar.ActionBarMenuOnItemClick {
+    class AnonymousClass2 extends ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
         public static void lambda$onItemClick$0() {
@@ -973,7 +1023,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                         inviteMembersBottomSheet.setDelegate(new GroupCreateActivity.ContactsAddActivityDelegate() {
                             @Override
                             public final void didSelectUsers(ArrayList arrayList, int i4) {
-                                TopicsFragment.AnonymousClass2.this.lambda$onItemClick$2(j, arrayList, i4);
+                                this.f$0.lambda$onItemClick$2(j, arrayList, i4);
                             }
 
                             @Override
@@ -986,12 +1036,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     }
                     break;
                 case 3:
-                    final TopicCreateFragment create = TopicCreateFragment.create(TopicsFragment.this.chatId, 0L);
-                    TopicsFragment.this.presentFragment(create);
+                    final TopicCreateFragment topicCreateFragmentCreate = TopicCreateFragment.create(TopicsFragment.this.chatId, 0L);
+                    TopicsFragment.this.presentFragment(topicCreateFragmentCreate);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            TopicCreateFragment.this.showKeyboard();
+                            topicCreateFragmentCreate.showKeyboard();
                         }
                     }, 200L);
                     break;
@@ -1009,10 +1059,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 case 6:
                     Iterator it = TopicsFragment.this.selectedTopics.iterator();
                     while (it.hasNext()) {
-                        int intValue = ((Integer) it.next()).intValue();
+                        int iIntValue = ((Integer) it.next()).intValue();
                         NotificationsController notificationsController = TopicsFragment.this.getNotificationsController();
                         TopicsFragment topicsFragment3 = TopicsFragment.this;
-                        notificationsController.muteDialog(-topicsFragment3.chatId, intValue, topicsFragment3.mute);
+                        notificationsController.muteDialog(-topicsFragment3.chatId, iIntValue, topicsFragment3.mute);
                     }
                     TopicsFragment.this.clearSelectedTopics();
                     break;
@@ -1021,22 +1071,22 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     topicsFragment4.deleteTopics(topicsFragment4.selectedTopics, new Runnable() {
                         @Override
                         public final void run() {
-                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$5();
+                            this.f$0.lambda$onItemClick$5();
                         }
                     });
                     break;
                 case 8:
                     ArrayList arrayList = new ArrayList(TopicsFragment.this.selectedTopics);
                     for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                        TLRPC.TL_forumTopic findTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, ((Integer) arrayList.get(i4)).intValue());
-                        if (findTopic != null) {
-                            TopicsFragment.this.getMessagesController().markMentionsAsRead(-TopicsFragment.this.chatId, findTopic.id);
+                        TLRPC.TL_forumTopic tL_forumTopicFindTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, ((Integer) arrayList.get(i4)).intValue());
+                        if (tL_forumTopicFindTopic != null) {
+                            TopicsFragment.this.getMessagesController().markMentionsAsRead(-TopicsFragment.this.chatId, tL_forumTopicFindTopic.id);
                             MessagesController messagesController = TopicsFragment.this.getMessagesController();
                             long j3 = -TopicsFragment.this.chatId;
-                            int i5 = findTopic.top_message;
-                            TLRPC.Message message = findTopic.topMessage;
-                            messagesController.markDialogAsRead(j3, i5, 0, message != null ? message.date : 0, false, findTopic.id, 0, true, 0);
-                            TopicsFragment.this.getMessagesStorage().updateRepliesMaxReadId(TopicsFragment.this.chatId, findTopic.id, findTopic.top_message, 0, true);
+                            int i5 = tL_forumTopicFindTopic.top_message;
+                            TLRPC.Message message = tL_forumTopicFindTopic.topMessage;
+                            messagesController.markDialogAsRead(j3, i5, 0, message != null ? message.date : 0, false, tL_forumTopicFindTopic.id, 0, true, 0);
+                            TopicsFragment.this.getMessagesStorage().updateRepliesMaxReadId(TopicsFragment.this.chatId, tL_forumTopicFindTopic.id, tL_forumTopicFindTopic.top_message, 0, true);
                         }
                     }
                     TopicsFragment.this.clearSelectedTopics();
@@ -1055,7 +1105,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     AlertsCreator.createClearOrDeleteDialogAlert(TopicsFragment.this, false, chat, null, false, true, false, new MessagesStorage.BooleanCallback() {
                         @Override
                         public final void run(boolean z) {
-                            TopicsFragment.AnonymousClass2.this.lambda$onItemClick$4(chat, z);
+                            this.f$0.lambda$onItemClick$4(chat, z);
                         }
                     }, TopicsFragment.this.themeDelegate);
                     break;
@@ -1134,7 +1184,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }, null, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        TopicsFragment.AnonymousClass2.this.lambda$onItemClick$1(tL_messages_invitedUsers, iArr, size, arrayList, j, (TLRPC.TL_messages_invitedUsers) obj);
+                        this.f$0.lambda$onItemClick$1(tL_messages_invitedUsers, iArr, size, arrayList, j, (TLRPC.TL_messages_invitedUsers) obj);
                     }
                 });
             }
@@ -1177,11 +1227,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         openProfile(false);
     }
 
-    public void lambda$createView$1(View view) {
-        openParentSearch();
-    }
-
-    public class AnonymousClass7 extends DefaultItemAnimator {
+    class AnonymousClass7 extends DefaultItemAnimator {
         Runnable finishRunnable;
         int scrollAnimationIndex;
 
@@ -1201,7 +1247,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onAllAnimationsDone() {
+        protected void onAllAnimationsDone() {
             super.onAllAnimationsDone();
             Runnable runnable = this.finishRunnable;
             if (runnable != null) {
@@ -1211,7 +1257,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.AnonymousClass7.this.lambda$onAllAnimationsDone$0();
+                    this.f$0.lambda$onAllAnimationsDone$0();
                 }
             };
             this.finishRunnable = runnable2;
@@ -1236,7 +1282,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.AnonymousClass7.this.lambda$endAnimations$1();
+                    this.f$0.lambda$endAnimations$1();
                 }
             };
             this.finishRunnable = runnable2;
@@ -1266,7 +1312,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$2(View view, int i) {
+    public void lambda$createView$1(View view, int i) {
         if (getParentLayout() == null || getParentLayout().isInPreviewMode() || !(view instanceof TopicDialogCell)) {
             return;
         }
@@ -1308,7 +1354,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
     }
 
-    public boolean lambda$createView$3(View view, int i, float f, float f2) {
+    public boolean lambda$createView$2(View view, int i, float f, float f2) {
         if (this.openedForSelect || getParentLayout() == null || getParentLayout().isInPreviewMode()) {
             return false;
         }
@@ -1329,7 +1375,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         return true;
     }
 
-    public class AnonymousClass10 extends LinearLayoutManager {
+    class AnonymousClass10 extends LinearLayoutManager {
         private boolean fixOffset;
 
         AnonymousClass10(Context context) {
@@ -1384,7 +1430,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsFragment.AnonymousClass10.this.lambda$onLayoutChildren$0();
+                        this.f$0.lambda$onLayoutChildren$0();
                     }
                 });
             }
@@ -1395,12 +1441,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$4(View view) {
+    public void lambda$createView$3(View view) {
         presentFragment(TopicCreateFragment.create(this.chatId, 0L));
     }
 
-    public class AnonymousClass16 implements View.OnClickListener {
-        AnonymousClass16() {
+    class AnonymousClass15 implements View.OnClickListener {
+        AnonymousClass15() {
         }
 
         @Override
@@ -1412,7 +1458,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 AlertsCreator.showBlockReportSpamAlert(topicsFragment, -topicsFragment.chatId, null, topicsFragment.getCurrentChat(), null, false, TopicsFragment.this.chatFull, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i) {
-                        TopicsFragment.AnonymousClass16.this.lambda$onClick$0(i);
+                        this.f$0.lambda$onClick$0(i);
                     }
                 }, TopicsFragment.this.getResourceProvider());
             }
@@ -1427,16 +1473,16 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$5(View view) {
+    public void lambda$createView$4(View view) {
         getMessagesController().hidePeerSettingsBar(-this.chatId, null, getCurrentChat());
         updateChatInfo();
     }
 
-    public void lambda$createView$6(View view) {
+    public void lambda$createView$5(View view) {
         finishPreviewFragment();
     }
 
-    public void lambda$createView$7(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public void lambda$createView$6(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         this.boostsStatus = tL_premium_boostsStatus;
     }
 
@@ -1454,9 +1500,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             return;
         }
         String string = LocaleController.getString(R.string.General);
-        TLRPC.TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, 1L);
-        if (findTopic != null) {
-            string = findTopic.title;
+        TLRPC.TL_forumTopic tL_forumTopicFindTopic = getMessagesController().getTopicsController().findTopic(this.chatId, 1L);
+        if (tL_forumTopicFindTopic != null) {
+            string = tL_forumTopicFindTopic.title;
         }
         this.topicsEmptyView.subtitle.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoTopicsDescriptionUser", R.string.NoTopicsDescriptionUser, string)));
     }
@@ -1467,15 +1513,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             return;
         }
         radialProgressView.setProgressColor(getThemedColor(Theme.key_chat_fieldOverlayText));
-        this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
+        this.floatingButton.updateColors();
         FrameLayout frameLayout = this.bottomOverlayContainer;
         int i = Theme.key_windowBackgroundWhite;
-        frameLayout.setBackgroundColor(Theme.getColor(i));
-        this.actionBar.setActionModeColor(Theme.getColor(i));
+        frameLayout.setBackgroundColor(getThemedColor(i));
+        this.actionBar.setActionModeColor(getThemedColor(i));
         if (!this.inPreviewMode) {
-            this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefault));
+            this.actionBar.setBackgroundColor(getThemedColor(Theme.key_actionBarDefault));
         }
-        this.searchContainer.setBackgroundColor(Theme.getColor(i));
+        this.searchContainer.setBackgroundColor(getThemedColor(i));
     }
 
     public void openProfile(boolean z) {
@@ -1501,40 +1547,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         presentFragment(chatActivity);
     }
 
-    private void openParentSearch() {
-        DialogsActivity dialogsActivity = this.parentDialogsActivity;
-        if (dialogsActivity == null || dialogsActivity.getSearchItem() == null) {
-            return;
-        }
-        if (this.parentAvatarImageView == null) {
-            this.parentAvatarImageView = new BackupImageView(getContext());
-            this.parentAvatarDrawable = new AvatarDrawable();
-            this.parentAvatarImageView.setRoundRadius(AndroidUtilities.dp(16.0f));
-            this.parentAvatarDrawable.setInfo(this.currentAccount, getCurrentChat());
-            this.parentAvatarImageView.setForUserOrChat(getCurrentChat(), this.parentAvatarDrawable);
-        }
-        this.parentDialogsActivity.getSearchItem().setSearchPaddingStart(52);
-        this.parentDialogsActivity.getActionBar().setSearchAvatarImageView(this.parentAvatarImageView);
-        this.parentDialogsActivity.getActionBar().onSearchFieldVisibilityChanged(this.parentDialogsActivity.getSearchItem().toggleSearch(true));
-    }
-
     public void updateTopView() {
-        float f;
+        float viewEnterOffset;
         FragmentContextView fragmentContextView = this.fragmentContextView;
         if (fragmentContextView != null) {
-            f = Math.max(0.0f, fragmentContextView.getTopPadding()) + 0.0f;
-            this.fragmentContextView.setTranslationY(f);
+            viewEnterOffset = Math.max(0.0f, fragmentContextView.getTopPadding()) + 0.0f;
+            this.fragmentContextView.setTranslationY(viewEnterOffset);
         } else {
-            f = 0.0f;
+            viewEnterOffset = 0.0f;
         }
         ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.pendingRequestsDelegate;
         View view = chatActivityMemberRequestsDelegate != null ? chatActivityMemberRequestsDelegate.getView() : null;
         if (view != null) {
-            view.setTranslationY(this.pendingRequestsDelegate.getViewEnterOffset() + f);
-            f += this.pendingRequestsDelegate.getViewEnterOffset() + this.pendingRequestsDelegate.getViewHeight();
+            view.setTranslationY(this.pendingRequestsDelegate.getViewEnterOffset() + viewEnterOffset);
+            viewEnterOffset += this.pendingRequestsDelegate.getViewEnterOffset() + this.pendingRequestsDelegate.getViewHeight();
         }
-        this.recyclerListView.setTranslationY(Math.max(0.0f, f));
-        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(this.bottomPannelVisible ? 51.0f : 0.0f) + ((int) f));
+        this.recyclerListView.setTranslationY(Math.max(0.0f, viewEnterOffset));
+        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(this.bottomPannelVisible ? 51.0f : 0.0f) + this.navigationBarHeight + this.additionNavigationBarHeight + ((int) viewEnterOffset));
     }
 
     public void setTransitionPadding(int i) {
@@ -1542,7 +1571,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         updateFloatingButtonOffset();
     }
 
-    public class TopicsRecyclerView extends BlurredRecyclerView {
+    class TopicsRecyclerView extends BlurredRecyclerView {
         private boolean firstLayout;
         private boolean ignoreLayout;
         Paint paint;
@@ -1554,19 +1583,20 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.firstLayout = true;
             this.paint = new Paint();
             this.rectF = new RectF();
+            this.alwaysDrawChild = true;
             this.useLayoutPositionOnClick = true;
             this.additionalClipBottom = AndroidUtilities.dp(200.0f);
         }
 
         public void setViewsOffset(float f) {
-            View findViewByPosition;
+            View viewFindViewByPosition;
             this.viewOffset = f;
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
                 getChildAt(i).setTranslationY(f);
             }
-            if (this.selectorPosition != -1 && (findViewByPosition = getLayoutManager().findViewByPosition(this.selectorPosition)) != null) {
-                this.selectorRect.set(findViewByPosition.getLeft(), (int) (findViewByPosition.getTop() + f), findViewByPosition.getRight(), (int) (findViewByPosition.getBottom() + f));
+            if (this.selectorPosition != -1 && (viewFindViewByPosition = getLayoutManager().findViewByPosition(this.selectorPosition)) != null) {
+                this.selectorRect.set(viewFindViewByPosition.getLeft(), (int) (viewFindViewByPosition.getTop() + f), viewFindViewByPosition.getRight(), (int) (viewFindViewByPosition.getBottom() + f));
                 this.selectorDrawable.setBounds(this.selectorRect);
             }
             invalidate();
@@ -1609,7 +1639,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             if (TopicsFragment.this.generalTopicViewMoving != null) {
                 canvas.save();
                 canvas.translate(TopicsFragment.this.generalTopicViewMoving.getLeft(), TopicsFragment.this.generalTopicViewMoving.getY());
@@ -1618,7 +1648,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             super.dispatchDraw(canvas);
             if (drawMovingViewsOverlayed()) {
-                this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                this.paint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 for (int i = 0; i < getChildCount(); i++) {
                     View childAt = getChildAt(i);
                     if (((childAt instanceof DialogCell) && ((DialogCell) childAt).isMoving()) || ((childAt instanceof DialogsAdapter.LastEmptyView) && ((DialogsAdapter.LastEmptyView) childAt).moving)) {
@@ -1651,7 +1681,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onDetachedFromWindow() {
+        protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
         }
 
@@ -1672,7 +1702,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             if (this.firstLayout && TopicsFragment.this.getMessagesController().dialogsLoaded) {
                 if (TopicsFragment.this.hiddenCount > 0) {
                     this.ignoreLayout = true;
@@ -1685,7 +1715,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if ((TopicsFragment.this.dialogRemoveFinished == 0 && TopicsFragment.this.dialogInsertFinished == 0 && TopicsFragment.this.dialogChangeFinished == 0) || TopicsFragment.this.itemAnimator.isRunning()) {
                 return;
@@ -1731,7 +1761,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             LinearLayoutManager linearLayoutManager;
-            int findFirstVisibleItemPosition;
+            int iFindFirstVisibleItemPosition;
             if (this.fastScrollAnimationRunning || TopicsFragment.this.waitingForScrollFinished || TopicsFragment.this.dialogRemoveFinished != 0 || TopicsFragment.this.dialogInsertFinished != 0 || TopicsFragment.this.dialogChangeFinished != 0 || (TopicsFragment.this.getParentLayout() != null && TopicsFragment.this.getParentLayout().isInPreviewMode())) {
                 return false;
             }
@@ -1748,21 +1778,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     }
                 }
             }
-            boolean onTouchEvent = super.onTouchEvent(motionEvent);
-            if ((action == 1 || action == 3) && TopicsFragment.this.pullViewState == 2 && TopicsFragment.this.hiddenCount > 0 && (findFirstVisibleItemPosition = (linearLayoutManager = (LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition()) == 0) {
+            boolean zOnTouchEvent = super.onTouchEvent(motionEvent);
+            if ((action == 1 || action == 3) && TopicsFragment.this.pullViewState == 2 && TopicsFragment.this.hiddenCount > 0 && (iFindFirstVisibleItemPosition = (linearLayoutManager = (LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition()) == 0) {
                 int paddingTop = getPaddingTop();
-                View findViewByPosition = linearLayoutManager.findViewByPosition(findFirstVisibleItemPosition);
-                int dp = (int) (AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f) * 0.85f);
-                int top = (findViewByPosition.getTop() - paddingTop) + findViewByPosition.getMeasuredHeight();
-                long currentTimeMillis = System.currentTimeMillis() - TopicsFragment.this.startArchivePullingTime;
-                if (top < dp || currentTimeMillis < 200) {
+                View viewFindViewByPosition = linearLayoutManager.findViewByPosition(iFindFirstVisibleItemPosition);
+                int iDp = (int) (AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f) * 0.85f);
+                int top = (viewFindViewByPosition.getTop() - paddingTop) + viewFindViewByPosition.getMeasuredHeight();
+                long jCurrentTimeMillis = System.currentTimeMillis() - TopicsFragment.this.startArchivePullingTime;
+                if (top < iDp || jCurrentTimeMillis < 200) {
                     TopicsFragment.this.disableActionBarScrolling = true;
                     smoothScrollBy(0, top, CubicBezierInterpolator.EASE_OUT_QUINT);
                     TopicsFragment.this.pullViewState = 2;
                 } else if (TopicsFragment.this.pullViewState != 1) {
                     if (getViewOffset() == 0.0f) {
                         TopicsFragment.this.disableActionBarScrolling = true;
-                        smoothScrollBy(0, findViewByPosition.getTop() - paddingTop, CubicBezierInterpolator.EASE_OUT_QUINT);
+                        smoothScrollBy(0, viewFindViewByPosition.getTop() - paddingTop, CubicBezierInterpolator.EASE_OUT_QUINT);
                     }
                     if (!TopicsFragment.this.canShowHiddenArchive) {
                         TopicsFragment.this.canShowHiddenArchive = true;
@@ -1774,31 +1804,31 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                             TopicsFragment.this.pullForegroundDrawable.colorize(true);
                         }
                     }
-                    ((DialogCell) findViewByPosition).startOutAnimation();
+                    ((DialogCell) viewFindViewByPosition).startOutAnimation();
                     TopicsFragment.this.pullViewState = 1;
                 }
                 if (getViewOffset() != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(getViewOffset(), 0.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getViewOffset(), 0.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            TopicsFragment.TopicsRecyclerView.this.lambda$onTouchEvent$0(valueAnimator);
+                            this.f$0.lambda$onTouchEvent$0(valueAnimator);
                         }
                     });
-                    ofFloat.setDuration(Math.max(100L, 350.0f - ((getViewOffset() / PullForegroundDrawable.getMaxOverscroll()) * 120.0f)));
-                    ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    valueAnimatorOfFloat.setDuration(Math.max(100L, (long) (350.0f - ((getViewOffset() / PullForegroundDrawable.getMaxOverscroll()) * 120.0f))));
+                    valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                     setScrollEnabled(false);
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
                             TopicsRecyclerView.this.setScrollEnabled(true);
                         }
                     });
-                    ofFloat.start();
+                    valueAnimatorOfFloat.start();
                 }
             }
-            return onTouchEvent;
+            return zOnTouchEvent;
         }
 
         public void lambda$onTouchEvent$0(ValueAnimator valueAnimator) {
@@ -1821,7 +1851,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public boolean allowSelectChildAtPosition(View view) {
+        protected boolean allowSelectChildAtPosition(View view) {
             return !(view instanceof HeaderCell) || view.isClickable();
         }
     }
@@ -1833,7 +1863,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.lambda$onDialogAnimationFinished$8();
+                TopicsFragment.lambda$onDialogAnimationFinished$7();
             }
         });
     }
@@ -1850,7 +1880,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                TopicsFragment.this.lambda$deleteTopics$11(hashSet, arrayList, runnable, alertDialog, i);
+                this.f$0.lambda$deleteTopics$10(hashSet, arrayList, runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -1859,15 +1889,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 alertDialog.dismiss();
             }
         });
-        AlertDialog create = builder.create();
-        create.show();
-        TextView textView = (TextView) create.getButton(-1);
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.show();
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            textView.setTextColor(getThemedColor(Theme.key_text_RedBold));
         }
     }
 
-    public void lambda$deleteTopics$11(HashSet hashSet, final ArrayList arrayList, final Runnable runnable, AlertDialog alertDialog, int i) {
+    public void lambda$deleteTopics$10(HashSet hashSet, final ArrayList arrayList, final Runnable runnable, AlertDialog alertDialog, int i) {
         HashSet hashSet2 = new HashSet();
         this.excludeTopics = hashSet2;
         hashSet2.addAll(hashSet);
@@ -1875,24 +1905,24 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         BulletinFactory.of(this).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.this.lambda$deleteTopics$9();
+                this.f$0.lambda$deleteTopics$8();
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.this.lambda$deleteTopics$10(arrayList, runnable);
+                this.f$0.lambda$deleteTopics$9(arrayList, runnable);
             }
         }).show();
         clearSelectedTopics();
         alertDialog.dismiss();
     }
 
-    public void lambda$deleteTopics$9() {
+    public void lambda$deleteTopics$8() {
         this.excludeTopics = null;
         updateTopicsList(true, false);
     }
 
-    public void lambda$deleteTopics$10(ArrayList arrayList, Runnable runnable) {
+    public void lambda$deleteTopics$9(ArrayList arrayList, Runnable runnable) {
         this.topicsController.deleteTopics(this.chatId, arrayList);
         runnable.run();
     }
@@ -1904,8 +1934,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         final ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr = {new ActionBarPopupWindow.ActionBarPopupWindowLayout(getParentActivity(), R.drawable.popup_fixed_alert, getResourceProvider(), 1)};
         final TLRPC.TL_forumTopic tL_forumTopic = dialogCell.forumTopic;
-        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = new ChatNotificationsPopupWrapper(getContext(), this.currentAccount, actionBarPopupWindowLayoutArr[0].getSwipeBack(), false, false, new AnonymousClass20(tL_forumTopic), getResourceProvider());
-        final int addViewToSwipeBack = actionBarPopupWindowLayoutArr[0].addViewToSwipeBack(chatNotificationsPopupWrapper.windowLayout);
+        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = new ChatNotificationsPopupWrapper(getContext(), this.currentAccount, actionBarPopupWindowLayoutArr[0].getSwipeBack(), false, false, new AnonymousClass19(tL_forumTopic), getResourceProvider());
+        final int iAddViewToSwipeBack = actionBarPopupWindowLayoutArr[0].addViewToSwipeBack(chatNotificationsPopupWrapper.windowLayout);
         chatNotificationsPopupWrapper.type = 1;
         chatNotificationsPopupWrapper.lambda$update$11(-this.chatId, tL_forumTopic.id, null);
         if (ChatObject.canManageTopics(getCurrentChat())) {
@@ -1919,7 +1949,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TopicsFragment.this.lambda$showChatPreview$13(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$12(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem);
@@ -1934,7 +1964,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.this.lambda$showChatPreview$14(tL_forumTopic, actionBarPopupWindowLayoutArr, addViewToSwipeBack, view);
+                this.f$0.lambda$showChatPreview$13(tL_forumTopic, actionBarPopupWindowLayoutArr, iAddViewToSwipeBack, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem2);
@@ -1949,7 +1979,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TopicsFragment.this.lambda$showChatPreview$15(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$14(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem3);
@@ -1963,22 +1993,22 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TopicsFragment.this.lambda$showChatPreview$17(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$15(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem4);
         }
-        boolean isMonoForum = getMessagesController().isMonoForum(-this.chatId);
+        boolean zIsMonoForum = getMessagesController().isMonoForum(-this.chatId);
         prepareBlurBitmap();
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", this.chatId);
         ChatActivity chatActivity = new ChatActivity(bundle);
-        ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-this.chatId, isMonoForum ? DialogObject.getPeerDialogId(dialogCell.forumTopic.from_id) : r14.id));
+        ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-this.chatId, zIsMonoForum ? DialogObject.getPeerDialogId(dialogCell.forumTopic.from_id) : r14.id));
         presentFragmentAsPreviewWithMenu(chatActivity, actionBarPopupWindowLayoutArr[0]);
         return false;
     }
 
-    public class AnonymousClass20 implements ChatNotificationsPopupWrapper.Callback {
+    class AnonymousClass19 implements ChatNotificationsPopupWrapper.Callback {
         final TLRPC.TL_forumTopic val$topic;
 
         @Override
@@ -1986,7 +2016,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             ChatNotificationsPopupWrapper.Callback.CC.$default$openExceptions(this);
         }
 
-        AnonymousClass20(TLRPC.TL_forumTopic tL_forumTopic) {
+        AnonymousClass19(TLRPC.TL_forumTopic tL_forumTopic) {
             this.val$topic = tL_forumTopic;
         }
 
@@ -2036,7 +2066,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.AnonymousClass20.this.lambda$showCustomize$0(tL_forumTopic);
+                    this.f$0.lambda$showCustomize$0(tL_forumTopic);
                 }
             }, 500L);
         }
@@ -2052,23 +2082,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         @Override
         public void toggleMute() {
             TopicsFragment.this.finishPreviewFragment();
-            boolean isDialogMuted = TopicsFragment.this.getMessagesController().isDialogMuted(-TopicsFragment.this.chatId, this.val$topic.id);
-            TopicsFragment.this.getNotificationsController().muteDialog(-TopicsFragment.this.chatId, this.val$topic.id, !isDialogMuted);
+            boolean zIsDialogMuted = TopicsFragment.this.getMessagesController().isDialogMuted(-TopicsFragment.this.chatId, this.val$topic.id);
+            TopicsFragment.this.getNotificationsController().muteDialog(-TopicsFragment.this.chatId, this.val$topic.id, !zIsDialogMuted);
             if (BulletinFactory.canShowBulletin(TopicsFragment.this)) {
                 TopicsFragment topicsFragment = TopicsFragment.this;
-                BulletinFactory.createMuteBulletin(topicsFragment, !isDialogMuted ? 3 : 4, !isDialogMuted ? Integer.MAX_VALUE : 0, topicsFragment.getResourceProvider()).show();
+                BulletinFactory.createMuteBulletin(topicsFragment, !zIsDialogMuted ? 3 : 4, !zIsDialogMuted ? Integer.MAX_VALUE : 0, topicsFragment.getResourceProvider()).show();
             }
         }
     }
 
-    public void lambda$showChatPreview$13(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$12(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         this.scrollToTop = true;
         this.updateAnimated = true;
         this.topicsController.pinTopic(this.chatId, tL_forumTopic.id, !tL_forumTopic.pinned, this);
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$14(TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
+    public void lambda$showChatPreview$13(TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
         if (getMessagesController().isDialogMuted(-this.chatId, tL_forumTopic.id)) {
             getNotificationsController().muteDialog(-this.chatId, tL_forumTopic.id, false);
             finishPreviewFragment();
@@ -2081,25 +2111,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         actionBarPopupWindowLayoutArr[0].getSwipeBack().openForeground(i);
     }
 
-    public void lambda$showChatPreview$15(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$14(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         this.updateAnimated = true;
         this.topicsController.toggleCloseTopic(this.chatId, tL_forumTopic.id, !tL_forumTopic.closed);
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$17(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$15(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         HashSet hashSet = new HashSet();
         hashSet.add(Integer.valueOf(tL_forumTopic.id));
         deleteTopics(hashSet, new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.this.lambda$showChatPreview$16();
+                this.f$0.finishPreviewFragment();
             }
         });
-    }
-
-    public void lambda$showChatPreview$16() {
-        finishPreviewFragment();
     }
 
     private void checkLoading() {
@@ -2123,10 +2149,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchAnimator.cancel();
         }
         if (this.searchTabsView == null) {
-            ViewPagerFixed.TabsView createTabsView = this.searchContainer.createTabsView(false, 8);
-            this.searchTabsView = createTabsView;
+            ViewPagerFixed.TabsView tabsViewCreateTabsView = this.searchContainer.createTabsView(false, 8);
+            this.searchTabsView = tabsViewCreateTabsView;
             if (this.parentDialogsActivity != null) {
-                createTabsView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                tabsViewCreateTabsView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
             }
             this.fullscreenView.addView(this.searchTabsView, LayoutHelper.createFrame(-1, 44.0f));
         }
@@ -2140,7 +2166,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                TopicsFragment.this.lambda$animateToSearchView$18(valueAnimator2);
+                this.f$0.lambda$animateToSearchView$16(valueAnimator2);
             }
         });
         this.searchContainer.setVisibility(0);
@@ -2170,7 +2196,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
     }
 
-    public void lambda$animateToSearchView$18(ValueAnimator valueAnimator) {
+    public void lambda$animateToSearchView$16(ValueAnimator valueAnimator) {
         updateSearchProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -2186,14 +2212,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     public void updateSearchProgress(float f) {
         this.searchAnimationProgress = f;
-        int color = Theme.getColor(Theme.key_actionBarDefaultIcon);
+        int themedColor = getThemedColor(Theme.key_actionBarDefaultIcon);
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_actionBarActionModeDefaultIcon;
-        actionBar.setItemsColor(ColorUtils.blendARGB(color, Theme.getColor(i), this.searchAnimationProgress), false);
-        this.actionBar.setItemsColor(ColorUtils.blendARGB(Theme.getColor(i), Theme.getColor(i), this.searchAnimationProgress), true);
-        this.actionBar.setItemsBackgroundColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_actionBarDefaultSelector), Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), this.searchAnimationProgress), false);
+        actionBar.setItemsColor(ColorUtils.blendARGB(themedColor, getThemedColor(i), this.searchAnimationProgress), false);
+        this.actionBar.setItemsColor(ColorUtils.blendARGB(getThemedColor(i), getThemedColor(i), this.searchAnimationProgress), true);
+        this.actionBar.setItemsBackgroundColor(ColorUtils.blendARGB(getThemedColor(Theme.key_actionBarDefaultSelector), getThemedColor(Theme.key_actionBarActionModeDefaultSelector), this.searchAnimationProgress), false);
         if (!this.inPreviewMode) {
-            this.actionBar.setBackgroundColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_actionBarDefault), Theme.getColor(Theme.key_windowBackgroundWhite), this.searchAnimationProgress));
+            this.actionBar.setBackgroundColor(ColorUtils.blendARGB(getThemedColor(Theme.key_actionBarDefault), getThemedColor(Theme.key_windowBackgroundWhite), this.searchAnimationProgress));
         }
         float f2 = 1.0f - f;
         this.avatarContainer.getTitleTextView().setAlpha(f2);
@@ -2221,26 +2247,24 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         getMessagesController().addUserToChat(this.chatId, getUserConfig().getCurrentUser(), 0, null, this, false, new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.this.lambda$joinToGroup$19();
+                this.f$0.lambda$joinToGroup$17();
             }
         }, new MessagesController.ErrorDelegate() {
             @Override
             public final boolean run(TLRPC.TL_error tL_error) {
-                boolean lambda$joinToGroup$20;
-                lambda$joinToGroup$20 = TopicsFragment.this.lambda$joinToGroup$20(tL_error);
-                return lambda$joinToGroup$20;
+                return this.f$0.lambda$joinToGroup$18(tL_error);
             }
         });
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
         updateChatInfo();
     }
 
-    public void lambda$joinToGroup$19() {
+    public void lambda$joinToGroup$17() {
         this.joinRequested = false;
         updateChatInfo(true);
     }
 
-    public boolean lambda$joinToGroup$20(TLRPC.TL_error tL_error) {
+    public boolean lambda$joinToGroup$18(TLRPC.TL_error tL_error) {
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
@@ -2257,112 +2281,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         updateReordering();
     }
 
-    private void toggleSelection(View view) {
-        TopicDialogCell topicDialogCell;
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (!(view instanceof TopicDialogCell) || (tL_forumTopic = (topicDialogCell = (TopicDialogCell) view).forumTopic) == null) {
-            return;
-        }
-        int i = tL_forumTopic.id;
-        if (!this.selectedTopics.remove(Integer.valueOf(i))) {
-            this.selectedTopics.add(Integer.valueOf(i));
-        }
-        topicDialogCell.setChecked(this.selectedTopics.contains(Integer.valueOf(i)), true);
-        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-        if (this.selectedTopics.size() > 0) {
-            chekActionMode();
-            if (this.inPreviewMode) {
-                ((View) this.fragmentView.getParent()).invalidate();
-            }
-            this.actionBar.showActionMode(true);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-            Iterator it = this.selectedTopics.iterator();
-            int i2 = 0;
-            int i3 = 0;
-            int i4 = 0;
-            int i5 = 0;
-            while (it.hasNext()) {
-                long intValue = ((Integer) it.next()).intValue();
-                TLRPC.TL_forumTopic findTopic = this.topicsController.findTopic(this.chatId, intValue);
-                if (findTopic != null) {
-                    if (findTopic.unread_count != 0) {
-                        i2++;
-                    }
-                    if (ChatObject.canManageTopics(chat) && !findTopic.hidden) {
-                        if (findTopic.pinned) {
-                            i5++;
-                        } else {
-                            i4++;
-                        }
-                    }
-                }
-                if (getMessagesController().isDialogMuted(-this.chatId, intValue)) {
-                    i3++;
-                }
-            }
-            if (i2 > 0) {
-                this.readItem.setVisibility(0);
-                this.readItem.setTextAndIcon(LocaleController.getString(R.string.MarkAsRead), R.drawable.msg_markread);
-            } else {
-                this.readItem.setVisibility(8);
-            }
-            if (i3 != 0) {
-                this.mute = false;
-                this.muteItem.setIcon(R.drawable.msg_unmute);
-                this.muteItem.setContentDescription(LocaleController.getString(R.string.ChatsUnmute));
-            } else {
-                this.mute = true;
-                this.muteItem.setIcon(R.drawable.msg_mute);
-                this.muteItem.setContentDescription(LocaleController.getString(R.string.ChatsMute));
-            }
-            this.pinItem.setVisibility((i4 == 1 && i5 == 0) ? 0 : 8);
-            this.unpinItem.setVisibility((i5 == 1 && i4 == 0) ? 0 : 8);
-            this.selectedDialogsCountTextView.setNumber(this.selectedTopics.size(), true);
-            Iterator it2 = this.selectedTopics.iterator();
-            int i6 = 0;
-            int i7 = 0;
-            int i8 = 0;
-            int i9 = 0;
-            int i10 = 0;
-            while (it2.hasNext()) {
-                int i11 = i6;
-                TLRPC.TL_forumTopic findTopic2 = this.topicsController.findTopic(this.chatId, ((Integer) it2.next()).intValue());
-                if (findTopic2 != null) {
-                    if (ChatObject.canDeleteTopic(this.currentAccount, chat, findTopic2)) {
-                        i8++;
-                    }
-                    if (ChatObject.canManageTopic(this.currentAccount, chat, findTopic2)) {
-                        if (findTopic2.id == 1) {
-                            if (findTopic2.hidden) {
-                                i10++;
-                            } else {
-                                i9++;
-                            }
-                        }
-                        if (!findTopic2.hidden) {
-                            if (findTopic2.closed) {
-                                i6 = i11 + 1;
-                            } else {
-                                i7++;
-                            }
-                        }
-                    }
-                }
-                i6 = i11;
-            }
-            int i12 = i6;
-            this.closeTopic.setVisibility((i12 != 0 || i7 <= 0) ? 8 : 0);
-            this.closeTopic.setText(LocaleController.getString(i7 > 1 ? R.string.CloseTopics : R.string.CloseTopic));
-            this.restartTopic.setVisibility((i7 != 0 || i12 <= 0) ? 8 : 0);
-            this.restartTopic.setText(LocaleController.getString(i12 > 1 ? R.string.RestartTopics : R.string.RestartTopic));
-            this.deleteItem.setVisibility(i8 == this.selectedTopics.size() ? 0 : 8);
-            this.hideItem.setVisibility((i9 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
-            this.showItem.setVisibility((i10 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
-            this.otherItem.checkHideMenuItem();
-            updateReordering();
-            return;
-        }
-        this.actionBar.hideActionMode();
+    private void toggleSelection(android.view.View r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.toggleSelection(android.view.View):void");
     }
 
     public void updateReordering() {
@@ -2390,38 +2310,36 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (this.actionBar.actionModeIsExist(null)) {
             return;
         }
-        ActionBarMenu createActionMode = this.actionBar.createActionMode(false, null);
+        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode(false, null);
         if (this.inPreviewMode) {
-            createActionMode.setBackgroundColor(0);
-            createActionMode.drawBlur = false;
+            actionBarMenuCreateActionMode.setBackgroundColor(0);
+            actionBarMenuCreateActionMode.drawBlur = false;
         }
-        NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
+        NumberTextView numberTextView = new NumberTextView(actionBarMenuCreateActionMode.getContext());
         this.selectedDialogsCountTextView = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.bold());
-        this.selectedDialogsCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
-        createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
+        this.selectedDialogsCountTextView.setTextColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon));
+        actionBarMenuCreateActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$chekActionMode$21;
-                lambda$chekActionMode$21 = TopicsFragment.lambda$chekActionMode$21(view, motionEvent);
-                return lambda$chekActionMode$21;
+                return TopicsFragment.lambda$chekActionMode$19(view, motionEvent);
             }
         });
-        this.pinItem = createActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));
-        this.unpinItem = createActionMode.addItemWithWidth(5, R.drawable.msg_unpin, AndroidUtilities.dp(54.0f));
-        this.muteItem = createActionMode.addItemWithWidth(6, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
-        this.deleteItem = createActionMode.addItemWithWidth(7, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
-        ActionBarMenuItem addItemWithWidth = createActionMode.addItemWithWidth(12, R.drawable.msg_archive_hide, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Hide));
-        this.hideItem = addItemWithWidth;
-        addItemWithWidth.setVisibility(8);
-        ActionBarMenuItem addItemWithWidth2 = createActionMode.addItemWithWidth(13, R.drawable.msg_archive_show, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Show));
-        this.showItem = addItemWithWidth2;
-        addItemWithWidth2.setVisibility(8);
-        ActionBarMenuItem addItemWithWidth3 = createActionMode.addItemWithWidth(0, R.drawable.ic_ab_other, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrMoreOptions));
-        this.otherItem = addItemWithWidth3;
-        this.readItem = addItemWithWidth3.addSubItem(8, R.drawable.msg_markread, LocaleController.getString(R.string.MarkAsRead));
+        this.pinItem = actionBarMenuCreateActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));
+        this.unpinItem = actionBarMenuCreateActionMode.addItemWithWidth(5, R.drawable.msg_unpin, AndroidUtilities.dp(54.0f));
+        this.muteItem = actionBarMenuCreateActionMode.addItemWithWidth(6, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
+        this.deleteItem = actionBarMenuCreateActionMode.addItemWithWidth(7, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth = actionBarMenuCreateActionMode.addItemWithWidth(12, R.drawable.msg_archive_hide, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Hide));
+        this.hideItem = actionBarMenuItemAddItemWithWidth;
+        actionBarMenuItemAddItemWithWidth.setVisibility(8);
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth2 = actionBarMenuCreateActionMode.addItemWithWidth(13, R.drawable.msg_archive_show, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Show));
+        this.showItem = actionBarMenuItemAddItemWithWidth2;
+        actionBarMenuItemAddItemWithWidth2.setVisibility(8);
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth3 = actionBarMenuCreateActionMode.addItemWithWidth(0, R.drawable.ic_ab_other, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrMoreOptions));
+        this.otherItem = actionBarMenuItemAddItemWithWidth3;
+        this.readItem = actionBarMenuItemAddItemWithWidth3.addSubItem(8, R.drawable.msg_markread, LocaleController.getString(R.string.MarkAsRead));
         this.closeTopic = this.otherItem.addSubItem(9, R.drawable.msg_topic_close, LocaleController.getString(R.string.CloseTopic));
         this.restartTopic = this.otherItem.addSubItem(10, R.drawable.msg_topic_restart, LocaleController.getString(R.string.RestartTopic));
     }
@@ -2615,7 +2533,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             return;
         }
         dialogsActivity.getActionBar().setSearchAvatarImageView(null);
-        this.parentDialogsActivity.getSearchItem().setSearchPaddingStart(0);
         this.parentDialogsActivity.rightSlidingDialogContainer.enabled = true;
     }
 
@@ -2703,15 +2620,15 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 checkLoading();
             }
         } else if (i == NotificationCenter.updateInterfaces) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            if (intValue == MessagesController.UPDATE_MASK_CHAT) {
+            int iIntValue = ((Integer) objArr[0]).intValue();
+            if (iIntValue == MessagesController.UPDATE_MASK_CHAT) {
                 updateChatInfo();
             }
-            if ((intValue & MessagesController.UPDATE_MASK_SELECT_DIALOG) > 0) {
+            if ((iIntValue & MessagesController.UPDATE_MASK_SELECT_DIALOG) > 0) {
                 getMessagesController().getTopicsController().sortTopics(this.chatId, false);
-                boolean canScrollVertically = this.recyclerListView.canScrollVertically(-1);
+                boolean zCanScrollVertically = this.recyclerListView.canScrollVertically(-1);
                 updateTopicsList(true, false);
-                if (!canScrollVertically) {
+                if (!zCanScrollVertically) {
                     this.layoutManager.scrollToPosition(0);
                 }
             }
@@ -2734,10 +2651,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             removeSelfFromStack(true);
         }
         if (i == NotificationCenter.openedChatChanged && getParentActivity() != null && this.inPreviewMode && AndroidUtilities.isTablet()) {
-            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
-            long longValue = ((Long) objArr[0]).longValue();
-            long longValue2 = ((Long) objArr[1]).longValue();
-            if (longValue != (-this.chatId) || booleanValue) {
+            boolean zBooleanValue = ((Boolean) objArr[2]).booleanValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
+            long jLongValue2 = ((Long) objArr[1]).longValue();
+            if (jLongValue != (-this.chatId) || zBooleanValue) {
                 if (this.selectedTopicForTablet != 0) {
                     this.selectedTopicForTablet = 0L;
                     updateTopicsList(false, false);
@@ -2745,8 +2662,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
                 return;
             }
-            if (this.selectedTopicForTablet != longValue2) {
-                this.selectedTopicForTablet = longValue2;
+            if (this.selectedTopicForTablet != jLongValue2) {
+                this.selectedTopicForTablet = jLongValue2;
                 updateTopicsList(false, false);
             }
         }
@@ -2757,8 +2674,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (this.topicsController.endIsReached(this.chatId) || (linearLayoutManager = this.layoutManager) == null) {
             return;
         }
-        int findLastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
-        if (this.forumTopics.isEmpty() || findLastVisibleItemPosition >= this.adapter.getItemCount() - 5) {
+        int iFindLastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+        if (this.forumTopics.isEmpty() || iFindLastVisibleItemPosition >= this.adapter.getItemCount() - 5) {
             this.topicsController.loadTopics(this.chatId);
         }
         checkLoading();
@@ -2791,7 +2708,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.dialogsActivity = dialogsActivity;
     }
 
-    public class Adapter extends AdapterWithDiffUtils {
+    private class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
         }
 
@@ -2810,7 +2727,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             if (i == 0) {
-                TopicDialogCell topicDialogCell = new TopicDialogCell(null, viewGroup.getContext(), true, false);
+                TopicDialogCell topicDialogCell = TopicsFragment.this.new TopicDialogCell(null, viewGroup.getContext(), true, false);
                 topicDialogCell.inPreviewMode = ((BaseFragment) TopicsFragment.this).inPreviewMode;
                 topicDialogCell.setArchivedPullAnimation(TopicsFragment.this.pullForegroundDrawable);
                 return new RecyclerListView.Holder(topicDialogCell);
@@ -2822,38 +2739,38 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         int i4;
-                        int dp;
+                        int iDp;
                         int size = View.MeasureSpec.getSize(i2);
-                        int dp2 = AndroidUtilities.dp(64.0f);
+                        int iDp2 = AndroidUtilities.dp(64.0f);
                         int i5 = 0;
                         int i6 = 0;
                         for (int i7 = 0; i7 < Adapter.this.getArray().size(); i7++) {
                             if (Adapter.this.getArray().get(i7) != null && ((Item) Adapter.this.getArray().get(i7)).topic != null) {
                                 String str = ((Item) Adapter.this.getArray().get(i7)).topic.title;
-                                Boolean bool = (Boolean) this.precalcEllipsized.get(str);
-                                if (bool == null) {
-                                    int dp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 4);
+                                Boolean boolValueOf = (Boolean) this.precalcEllipsized.get(str);
+                                if (boolValueOf == null) {
+                                    int iDp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 4);
                                     if (LocaleController.isRTL) {
-                                        i4 = size - dp3;
-                                        dp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 13);
+                                        i4 = size - iDp3;
+                                        iDp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 13);
                                     } else {
-                                        i4 = size - dp3;
-                                        dp = AndroidUtilities.dp(22.0f);
+                                        i4 = size - iDp3;
+                                        iDp = AndroidUtilities.dp(22.0f);
                                     }
-                                    bool = Boolean.valueOf(Theme.dialogs_namePaint[0].measureText(str) <= ((float) ((i4 - dp) - ((int) Math.ceil((double) Theme.dialogs_timePaint.measureText("00:00"))))));
-                                    this.precalcEllipsized.put(str, bool);
+                                    boolValueOf = Boolean.valueOf(Theme.dialogs_namePaint[0].measureText(str) <= ((float) ((i4 - iDp) - ((int) Math.ceil((double) Theme.dialogs_timePaint.measureText("00:00"))))));
+                                    this.precalcEllipsized.put(str, boolValueOf);
                                 }
-                                int dp4 = AndroidUtilities.dp((!bool.booleanValue() ? 20 : 0) + 64);
+                                int iDp4 = AndroidUtilities.dp((!boolValueOf.booleanValue() ? 20 : 0) + 64);
                                 if (((Item) Adapter.this.getArray().get(i7)).topic.id == 1) {
-                                    dp2 = dp4;
+                                    iDp2 = iDp4;
                                 }
                                 if (((Item) Adapter.this.getArray().get(i7)).topic.hidden) {
                                     i5++;
                                 }
-                                i6 += dp4;
+                                i6 += iDp4;
                             }
                         }
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, i5 > 0 ? (((TopicsFragment.this.recyclerListView.getMeasuredHeight() - TopicsFragment.this.recyclerListView.getPaddingTop()) - TopicsFragment.this.recyclerListView.getPaddingBottom()) - i6) + dp2 : 0), 1073741824));
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, i5 > 0 ? (((TopicsFragment.this.recyclerListView.getMeasuredHeight() - TopicsFragment.this.recyclerListView.getPaddingTop()) - TopicsFragment.this.recyclerListView.getPaddingBottom()) - i6) + iDp2 : 0), 1073741824));
                     }
                 });
             }
@@ -2865,8 +2782,64 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r19, int r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.Adapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            boolean z;
+            int i2;
+            TopicDialogCell topicDialogCell;
+            boolean z2;
+            if (viewHolder.getItemViewType() == 0) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((Item) getArray().get(i)).topic;
+                int i3 = i + 1;
+                TLRPC.TL_forumTopic tL_forumTopic2 = i3 < getArray().size() ? ((Item) getArray().get(i3)).topic : null;
+                TopicDialogCell topicDialogCell2 = (TopicDialogCell) viewHolder.itemView;
+                TLRPC.Message message = tL_forumTopic.topMessage;
+                TLRPC.TL_forumTopic tL_forumTopic3 = topicDialogCell2.forumTopic;
+                int i4 = tL_forumTopic3 == null ? 0 : tL_forumTopic3.id;
+                int i5 = tL_forumTopic.id;
+                boolean z3 = i4 == i5 && topicDialogCell2.position == i && TopicsFragment.this.animatedUpdateEnabled;
+                if (message != null) {
+                    MessageObject messageObject = new MessageObject(((BaseFragment) TopicsFragment.this).currentAccount, message, false, false);
+                    if (TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
+                        topicDialogCell2.isMonoForumTopicDialog = true;
+                        topicDialogCell2.drawAvatar = true;
+                        topicDialogCell2.forumTopic = tL_forumTopic;
+                        topicDialogCell2.messagePaddingStart = 72;
+                        topicDialogCell2.chekBoxPaddingTop = 42.0f;
+                        topicDialogCell2.heightDefault = 72;
+                        topicDialogCell2.heightThreeLines = 78;
+                        topicDialogCell2.setDialog(DialogObject.getPeerDialogId(tL_forumTopic.from_id), messageObject, message.date, false, false);
+                        topicDialogCell2.isSavedDialogCell = true;
+                        topicDialogCell2.useSeparator = i3 < getItemCount();
+                        z = z3;
+                        i2 = i5;
+                        topicDialogCell = topicDialogCell2;
+                        z2 = true;
+                    } else {
+                        TopicsFragment topicsFragment = TopicsFragment.this;
+                        z = z3;
+                        z2 = true;
+                        i2 = i5;
+                        topicDialogCell = topicDialogCell2;
+                        topicDialogCell2.setForumTopic(tL_forumTopic, -topicsFragment.chatId, messageObject, topicsFragment.isInPreviewMode(), z);
+                        topicDialogCell.drawDivider = i != TopicsFragment.this.forumTopics.size() - 1 || TopicsFragment.this.recyclerListView.emptyViewIsVisible();
+                        boolean z4 = tL_forumTopic.pinned;
+                        topicDialogCell.fullSeparator = z4 && (tL_forumTopic2 == null || !tL_forumTopic2.pinned);
+                        topicDialogCell.setPinForced(z4 && !tL_forumTopic.hidden);
+                        topicDialogCell.position = i;
+                    }
+                } else {
+                    z = z3;
+                    i2 = i5;
+                    topicDialogCell = topicDialogCell2;
+                    z2 = true;
+                }
+                if (!TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
+                    topicDialogCell.setTopicIcon(tL_forumTopic);
+                }
+                topicDialogCell.setChecked(TopicsFragment.this.selectedTopics.contains(Integer.valueOf(i2)), z);
+                topicDialogCell.setDialogSelected(TopicsFragment.this.selectedTopicForTablet == ((long) i2));
+                topicDialogCell.onReorderStateChanged(TopicsFragment.this.reordering, z2);
+            }
         }
 
         @Override
@@ -2923,7 +2896,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
+        protected void onDraw(Canvas canvas) {
             PullForegroundDrawable pullForegroundDrawable;
             CheckBox2 checkBox2;
             if (TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
@@ -2942,30 +2915,30 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             canvas.save();
             canvas.translate(this.translationX, 0.0f);
             if (this.drawDivider) {
-                int dp = this.fullSeparator ? 0 : AndroidUtilities.dp(this.messagePaddingStart);
+                int iDp = this.fullSeparator ? 0 : AndroidUtilities.dp(this.messagePaddingStart);
                 if (LocaleController.isRTL) {
-                    canvas.drawLine(0.0f - this.translationX, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, Theme.dividerPaint);
+                    canvas.drawLine(0.0f - this.translationX, getMeasuredHeight() - 1, getMeasuredWidth() - iDp, getMeasuredHeight() - 1, Theme.dividerPaint);
                 } else {
-                    canvas.drawLine(dp - this.translationX, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                    canvas.drawLine(iDp - this.translationX, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
                 }
             }
             if ((!this.isGeneral || (pullForegroundDrawable = this.archivedChatsDrawable) == null || pullForegroundDrawable.outProgress != 0.0f) && (this.animatedEmojiDrawable != null || this.forumIcon != null)) {
-                int dp2 = AndroidUtilities.dp(10.0f);
-                int dp3 = AndroidUtilities.dp(10.0f);
-                int dp4 = AndroidUtilities.dp(28.0f);
+                int iDp2 = AndroidUtilities.dp(10.0f);
+                int iDp3 = AndroidUtilities.dp(10.0f);
+                int iDp4 = AndroidUtilities.dp(28.0f);
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
                 if (animatedEmojiDrawable != null) {
                     if (LocaleController.isRTL) {
-                        animatedEmojiDrawable.setBounds((getWidth() - dp2) - dp4, dp3, getWidth() - dp2, dp4 + dp3);
+                        animatedEmojiDrawable.setBounds((getWidth() - iDp2) - iDp4, iDp3, getWidth() - iDp2, iDp4 + iDp3);
                     } else {
-                        animatedEmojiDrawable.setBounds(dp2, dp3, dp2 + dp4, dp4 + dp3);
+                        animatedEmojiDrawable.setBounds(iDp2, iDp3, iDp2 + iDp4, iDp4 + iDp3);
                     }
                     this.animatedEmojiDrawable.draw(canvas);
                 } else {
                     if (LocaleController.isRTL) {
-                        this.forumIcon.setBounds((getWidth() - dp2) - dp4, dp3, getWidth() - dp2, dp4 + dp3);
+                        this.forumIcon.setBounds((getWidth() - iDp2) - iDp4, iDp3, getWidth() - iDp2, iDp4 + iDp3);
                     } else {
-                        this.forumIcon.setBounds(dp2, dp3, dp2 + dp4, dp4 + dp3);
+                        this.forumIcon.setBounds(iDp2, iDp3, iDp2 + iDp4, iDp4 + iDp3);
                     }
                     this.forumIcon.draw(canvas);
                 }
@@ -2980,7 +2953,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onAttachedToWindow() {
+        protected void onAttachedToWindow() {
             super.onAttachedToWindow();
             this.attached = true;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -2990,7 +2963,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onDetachedFromWindow() {
+        protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             this.attached = false;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -3081,12 +3054,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             this.hidden = Boolean.valueOf(z);
             if (z2) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.hiddenT, z ? 1.0f : 0.0f);
-                this.hiddenAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.hiddenT, z ? 1.0f : 0.0f);
+                this.hiddenAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        TopicsFragment.TopicDialogCell.this.lambda$updateHidden$0(valueAnimator2);
+                        this.f$0.lambda$updateHidden$0(valueAnimator2);
                     }
                 });
                 this.hiddenAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -3124,39 +3097,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void hideFloatingButton(boolean z, boolean z2) {
-        if (this.floatingHidden == z) {
-            return;
-        }
-        this.floatingHidden = z;
-        if (this.fragmentBeginToShow && z2) {
-            AnimatorSet animatorSet = new AnimatorSet();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.floatingButtonHideProgress, this.floatingHidden ? 1.0f : 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    TopicsFragment.this.lambda$hideFloatingButton$22(valueAnimator);
-                }
-            });
-            animatorSet.playTogether(ofFloat);
-            animatorSet.setDuration(300L);
-            animatorSet.setInterpolator(this.floatingInterpolator);
-            animatorSet.start();
-        } else {
-            this.floatingButtonHideProgress = z ? 1.0f : 0.0f;
-            updateFloatingButtonOffset();
-        }
-        this.floatingButtonContainer.setClickable(!z);
-    }
-
-    public void lambda$hideFloatingButton$22(ValueAnimator valueAnimator) {
-        this.floatingButtonHideProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateFloatingButtonOffset();
+        this.floatingButton.setButtonVisible(!z, this.fragmentBeginToShow && z2);
     }
 
     private void updateFloatingButtonOffset() {
-        float dp = (AndroidUtilities.dp(100.0f) * this.floatingButtonHideProgress) - this.transitionPadding;
-        this.floatingButtonTranslation = dp;
-        this.floatingButtonContainer.setTranslationY(dp);
+        this.floatingButton.setTranslationY(((-this.transitionPadding) - this.navigationBarHeight) - this.additionFloatingButtonOffset);
     }
 
     @Override
@@ -3173,8 +3118,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         TextView textView;
 
         public EmptyViewContainer(Context context) {
-            super(context);
             SpannableStringBuilder spannableStringBuilder;
+            super(context);
             this.textView = new TextView(context);
             if (LocaleController.isRTL) {
                 spannableStringBuilder = new SpannableStringBuilder("  ");
@@ -3188,7 +3133,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.textView.setText(spannableStringBuilder);
             this.textView.setTextSize(1, 14.0f);
             this.textView.setLayerType(2, null);
-            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, TopicsFragment.this.getResourceProvider()));
+            this.textView.setTextColor(TopicsFragment.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
             TextView textView = this.textView;
             boolean z = LocaleController.isRTL;
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, 81, z ? 72.0f : 32.0f, 0.0f, z ? 32.0f : 72.0f, 32.0f));
@@ -3219,14 +3164,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     @Override
     public boolean isLightStatusBar() {
-        int color = Theme.getColor(this.searching ? Theme.key_windowBackgroundWhite : Theme.key_actionBarDefault);
+        int themedColor = getThemedColor(this.searching ? Theme.key_windowBackgroundWhite : Theme.key_actionBarDefault);
         if (this.actionBar.isActionModeShowed()) {
-            color = Theme.getColor(Theme.key_actionBarActionModeDefault);
+            themedColor = getThemedColor(Theme.key_actionBarActionModeDefault);
         }
-        return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
+        return ColorUtils.calculateLuminance(themedColor) > 0.699999988079071d;
     }
 
-    public class MessagesSearchContainer extends ViewPagerFixed implements FilteredSearchView.UiCallback {
+    class MessagesSearchContainer extends ViewPagerFixed implements FilteredSearchView.UiCallback {
         boolean canLoadMore;
         SearchViewPager.ChatPreviewDelegate chatPreviewDelegate;
         StickerEmptyView emptyView;
@@ -3294,7 +3239,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.recyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    TopicsFragment.MessagesSearchContainer.this.lambda$new$0(view, i);
+                    this.f$0.lambda$new$0(view, i);
                 }
             });
             this.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -3303,9 +3248,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     super.onScrolled(recyclerView, i, i2);
                     MessagesSearchContainer messagesSearchContainer = MessagesSearchContainer.this;
                     if (messagesSearchContainer.canLoadMore) {
-                        int findLastVisibleItemPosition = messagesSearchContainer.layoutManager.findLastVisibleItemPosition() + 5;
+                        int iFindLastVisibleItemPosition = messagesSearchContainer.layoutManager.findLastVisibleItemPosition() + 5;
                         MessagesSearchContainer messagesSearchContainer2 = MessagesSearchContainer.this;
-                        if (findLastVisibleItemPosition >= messagesSearchContainer2.rowCount) {
+                        if (iFindLastVisibleItemPosition >= messagesSearchContainer2.rowCount) {
                             messagesSearchContainer2.loadMessages(messagesSearchContainer2.searchString);
                         }
                     }
@@ -3354,7 +3299,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         }
 
-        public class Item {
+        class Item {
             int filterIndex;
             private final int type;
 
@@ -3363,7 +3308,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         }
 
-        public class ViewPagerAdapter extends ViewPagerFixed.Adapter {
+        private class ViewPagerAdapter extends ViewPagerFixed.Adapter {
             ArrayList items;
 
             public ViewPagerAdapter() {
@@ -3553,7 +3498,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.MessagesSearchContainer.this.lambda$searchMessages$1(str);
+                    this.f$0.lambda$searchMessages$1(str);
                 }
             };
             this.searchRunnable = runnable2;
@@ -3603,7 +3548,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             ConnectionsManager.getInstance(((BaseFragment) TopicsFragment.this).currentAccount).sendRequest(tL_messages_search, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    TopicsFragment.MessagesSearchContainer.this.lambda$loadMessages$3(str, tLObject, tL_error);
+                    this.f$0.lambda$loadMessages$3(str, tLObject, tL_error);
                 }
             });
         }
@@ -3612,7 +3557,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.MessagesSearchContainer.this.lambda$loadMessages$2(str, tLObject);
+                    this.f$0.lambda$loadMessages$2(str, tLObject);
                 }
             });
         }
@@ -3676,26 +3621,26 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchAdapter.notifyDataSetChanged();
         }
 
-        public class SearchAdapter extends RecyclerListView.SelectionAdapter {
+        private class SearchAdapter extends RecyclerListView.SelectionAdapter {
             private SearchAdapter() {
             }
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                FrameLayout frameLayout;
+                FrameLayout graySectionCell;
                 if (i == 1) {
-                    frameLayout = new GraySectionCell(viewGroup.getContext());
+                    graySectionCell = new GraySectionCell(viewGroup.getContext());
                 } else if (i == 2) {
-                    frameLayout = new TopicSearchCell(viewGroup.getContext());
+                    graySectionCell = new TopicSearchCell(viewGroup.getContext());
                 } else if (i == 3) {
-                    ?? topicDialogCell = new TopicDialogCell(null, viewGroup.getContext(), false, true);
+                    ?? topicDialogCell = TopicsFragment.this.new TopicDialogCell(null, viewGroup.getContext(), false, true);
                     topicDialogCell.inPreviewMode = ((BaseFragment) TopicsFragment.this).inPreviewMode;
-                    frameLayout = topicDialogCell;
+                    graySectionCell = topicDialogCell;
                 } else {
                     throw new RuntimeException("unsupported view type");
                 }
-                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(frameLayout);
+                graySectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(graySectionCell);
             }
 
             @Override
@@ -3726,13 +3671,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     if (topicId == 0) {
                         topicId = 1;
                     }
-                    TLRPC.TL_forumTopic findTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, topicId);
-                    if (findTopic == null) {
+                    TLRPC.TL_forumTopic tL_forumTopicFindTopic = TopicsFragment.this.topicsController.findTopic(TopicsFragment.this.chatId, topicId);
+                    if (tL_forumTopicFindTopic == null) {
                         FileLog.d("cant find topic " + topicId);
                         return;
                     }
-                    topicDialogCell.setForumTopic(findTopic, messageObject.getDialogId(), messageObject, false, false);
-                    topicDialogCell.setTopicIcon(findTopic);
+                    topicDialogCell.setForumTopic(tL_forumTopicFindTopic, messageObject.getDialogId(), messageObject, false, false);
+                    topicDialogCell.setTopicIcon(tL_forumTopicFindTopic);
                 }
             }
 
@@ -3942,7 +3887,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (dialogsActivity2 == null || (rightSlidingDialogContainer = dialogsActivity2.rightSlidingDialogContainer) == null || !rightSlidingDialogContainer.hasFragment()) {
                 return;
             }
-            this.parentDialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
+            this.parentDialogsActivity.rightSlidingDialogContainer.finishPreview();
         }
     }
 
@@ -3969,12 +3914,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         int measuredWidth = (int) (this.fragmentView.getMeasuredWidth() / 6.0f);
         int measuredHeight = (int) (this.fragmentView.getMeasuredHeight() / 6.0f);
-        Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.scale(0.16666667f, 0.16666667f);
         this.parentLayout.getView().draw(canvas);
-        Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
-        this.blurredView.setBackground(new BitmapDrawable(createBitmap));
+        Utilities.stackBlurBitmap(bitmapCreateBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
+        this.blurredView.setBackground(new BitmapDrawable(bitmapCreateBitmap));
         this.blurredView.setAlpha(0.0f);
         if (this.blurredView.getParent() != null) {
             ((ViewGroup) this.blurredView.getParent()).removeView(this.blurredView);
@@ -4012,7 +3957,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public class Item extends AdapterWithDiffUtils.Item {
+    private class Item extends AdapterWithDiffUtils.Item {
         TLRPC.TL_forumTopic topic;
 
         public Item(int i, TLRPC.TL_forumTopic tL_forumTopic) {
@@ -4049,7 +3994,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (chatAvatarContainer != null) {
             chatAvatarContainer.setAlpha(f);
             this.other.setAlpha(f);
-            this.actionBar.getBackButton().setAlpha(f != 1.0f ? 0.0f : 1.0f);
+            this.actionBar.getBackButton().setAlpha(f);
         }
     }
 
@@ -4068,7 +4013,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                TopicsFragment.this.lambda$getThemeDescriptions$23();
+                this.f$0.lambda$getThemeDescriptions$20();
             }
 
             @Override
@@ -4093,7 +4038,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$23() {
+    public void lambda$getThemeDescriptions$20() {
         ViewGroup viewGroup;
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
@@ -4118,15 +4063,54 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
-            actionBar.setPopupBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground), true);
-            this.actionBar.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem), false, true);
-            this.actionBar.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), true, true);
-            this.actionBar.setPopupItemsSelectorColor(Theme.getColor(Theme.key_dialogButtonSelector), true);
+            actionBar.setPopupBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), true);
+            this.actionBar.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem), false, true);
+            this.actionBar.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), true, true);
+            this.actionBar.setPopupItemsSelectorColor(getThemedColor(Theme.key_dialogButtonSelector), true);
         }
         View view = this.blurredView;
         if (view != null && Build.VERSION.SDK_INT >= 23) {
             view.setForeground(new ColorDrawable(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundWhite), 100)));
         }
         updateColors();
+    }
+
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+        updateFloatingButtonOffset();
+        updateTopView();
+        return WindowInsetsCompat.CONSUMED;
+    }
+
+    public void blur3_InvalidateBlur() {
+        if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
+            return;
+        }
+        int iDp = AndroidUtilities.dp(48.0f);
+        int iDp2 = AndroidUtilities.dp(48.0f);
+        DialogsActivity dialogsActivity = this.parentDialogsActivity;
+        View view = dialogsActivity != null ? dialogsActivity.fragmentView : this.fragmentView;
+        ActionBar actionBar = dialogsActivity != null ? dialogsActivity.getActionBar() : this.actionBar;
+        int measuredHeight = (view.getMeasuredHeight() - this.navigationBarHeight) - AndroidUtilities.dp(8.0f);
+        int iDp3 = measuredHeight - AndroidUtilities.dp(56.0f);
+        this.iBlur3PositionActionBar.set(0.0f, -iDp, view.getMeasuredWidth(), actionBar.getMeasuredHeight() + iDp + iDp2);
+        this.iBlur3PositionMainTabs.set(0.0f, iDp3, view.getMeasuredWidth(), measuredHeight);
+        this.iBlur3PositionMainTabs.inset(0.0f, LiteMode.isEnabled(262144) ? 0.0f : -AndroidUtilities.dp(48.0f));
+        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, this.parentDialogsActivity != null ? 2 : 1);
+        this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, view.getMeasuredWidth(), view.getMeasuredHeight());
+    }
+
+    @Override
+    public BlurredBackgroundSourceRenderNode getGlassSource() {
+        return this.iBlur3SourceGlass;
+    }
+
+    public BlurredBackgroundSourceRenderNode getFrostedGlassSource() {
+        return this.iBlur3SourceGlassFrosted;
+    }
+
+    @Override
+    public void onParentScrollToTop() {
+        this.recyclerListView.smoothScrollToPosition(0);
     }
 }

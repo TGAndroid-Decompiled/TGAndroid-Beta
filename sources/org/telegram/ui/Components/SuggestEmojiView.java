@@ -46,7 +46,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.ContentPreviewViewer;
 
 public class SuggestEmojiView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -110,7 +109,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         return 2;
     }
 
-    public class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
+    class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
         public void addToFavoriteSelected(String str) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
@@ -291,9 +290,9 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         public void copyEmoji(TLRPC.Document document) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
-            valueOf.setSpan(new AnimatedEmojiSpan(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-            if (!AndroidUtilities.addToClipboard(valueOf) || SuggestEmojiView.this.enterView == null) {
+            SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
+            spannableStringBuilderValueOf.setSpan(new AnimatedEmojiSpan(document, (Paint.FontMetricsInt) null), 0, spannableStringBuilderValueOf.length(), 33);
+            if (!AndroidUtilities.addToClipboard(spannableStringBuilderValueOf) || SuggestEmojiView.this.enterView == null) {
                 return;
             }
             BulletinFactory.of(SuggestEmojiView.this.enterView.getParentFragment()).createCopyBulletin(LocaleController.getString(R.string.EmojiCopied)).show();
@@ -311,9 +310,9 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         public void setAsEmojiStatus(TLRPC.Document document, Integer num) {
-            TLRPC.EmojiStatus emojiStatus;
+            TLRPC.EmojiStatus tL_emojiStatusEmpty;
             if (document == null) {
-                emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+                tL_emojiStatusEmpty = new TLRPC.TL_emojiStatusEmpty();
             } else {
                 TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
                 tL_emojiStatus.document_id = document.id;
@@ -321,15 +320,15 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                     tL_emojiStatus.flags |= 1;
                     tL_emojiStatus.until = num.intValue();
                 }
-                emojiStatus = tL_emojiStatus;
+                tL_emojiStatusEmpty = tL_emojiStatus;
             }
             TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-            final TLRPC.EmojiStatus tL_emojiStatusEmpty = currentUser == null ? new TLRPC.TL_emojiStatusEmpty() : currentUser.emoji_status;
-            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(emojiStatus);
+            final TLRPC.EmojiStatus tL_emojiStatusEmpty2 = currentUser == null ? new TLRPC.TL_emojiStatusEmpty() : currentUser.emoji_status;
+            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(tL_emojiStatusEmpty);
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SuggestEmojiView.AnonymousClass1.this.lambda$setAsEmojiStatus$0(tL_emojiStatusEmpty);
+                    this.f$0.lambda$setAsEmojiStatus$0(tL_emojiStatusEmpty2);
                 }
             };
             BaseFragment parentFragment = SuggestEmojiView.this.enterView == null ? null : SuggestEmojiView.this.enterView.getParentFragment();
@@ -456,16 +455,16 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             @Override
             public void onScrolled(int i, int i2) {
                 super.onScrolled(i, i2);
-                boolean canScrollHorizontally = canScrollHorizontally(-1);
-                boolean canScrollHorizontally2 = canScrollHorizontally(1);
-                if (this.left == canScrollHorizontally && this.right == canScrollHorizontally2) {
+                boolean zCanScrollHorizontally = canScrollHorizontally(-1);
+                boolean zCanScrollHorizontally2 = canScrollHorizontally(1);
+                if (this.left == zCanScrollHorizontally && this.right == zCanScrollHorizontally2) {
                     return;
                 }
                 if (SuggestEmojiView.this.containerView != null) {
                     SuggestEmojiView.this.containerView.invalidate();
                 }
-                this.left = canScrollHorizontally;
-                this.right = canScrollHorizontally2;
+                this.left = zCanScrollHorizontally;
+                this.right = zCanScrollHorizontally2;
             }
 
             @Override
@@ -489,16 +488,14 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         final RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                SuggestEmojiView.this.lambda$createListView$1(view, i);
+                this.f$0.lambda$createListView$1(view, i);
             }
         };
         recyclerListView2.setOnItemClickListener(onItemClickListener);
         this.listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createListView$2;
-                lambda$createListView$2 = SuggestEmojiView.this.lambda$createListView$2(onItemClickListener, view, motionEvent);
-                return lambda$createListView$2;
+                return this.f$0.lambda$createListView$2(onItemClickListener, view, motionEvent);
             }
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, 52.0f));
@@ -600,7 +597,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                SuggestEmojiView.this.update();
+                this.f$0.update();
             }
         };
         this.updateRunnable = runnable2;
@@ -641,13 +638,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 int spanStart = spanned.getSpanStart(emojiSpan);
                 int spanEnd = spanned.getSpanEnd(emojiSpan);
                 if (selectionStart == spanEnd) {
-                    String substring = fieldText.toString().substring(spanStart, spanEnd);
+                    String strSubstring = fieldText.toString().substring(spanStart, spanEnd);
                     this.show = true;
                     createListView();
                     this.arrowToSpan = emojiSpan;
                     this.arrowToEnd = null;
                     this.arrowToStart = null;
-                    searchAnimated(substring);
+                    searchAnimated(strSubstring);
                     FrameLayout frameLayout3 = this.containerView;
                     if (frameLayout3 != null) {
                         frameLayout3.invalidate();
@@ -684,12 +681,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     }
 
     private String[] detectKeyboardLangThrottleFirstWithDelay() {
-        long currentTimeMillis = System.currentTimeMillis();
-        if (this.lastLang == null || Math.abs(currentTimeMillis - this.lastLangChangedTime) > 360) {
-            this.lastLangChangedTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (this.lastLang == null || Math.abs(jCurrentTimeMillis - this.lastLangChangedTime) > 360) {
+            this.lastLangChangedTime = jCurrentTimeMillis;
             return AndroidUtilities.getCurrentKeyboardLanguage();
         }
-        this.lastLangChangedTime = currentTimeMillis;
+        this.lastLangChangedTime = jCurrentTimeMillis;
         return this.lastLang;
     }
 
@@ -713,12 +710,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             MediaDataController.getInstance(this.currentAccount).cancelSearchStickers(this.loadingKey);
             this.loadingKey = null;
         }
-        final String[] detectKeyboardLangThrottleFirstWithDelay = detectKeyboardLangThrottleFirstWithDelay();
+        final String[] strArrDetectKeyboardLangThrottleFirstWithDelay = detectKeyboardLangThrottleFirstWithDelay();
         String[] strArr = this.lastLang;
-        if (strArr == null || !Arrays.equals(detectKeyboardLangThrottleFirstWithDelay, strArr)) {
-            MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(detectKeyboardLangThrottleFirstWithDelay);
+        if (strArr == null || !Arrays.equals(strArrDetectKeyboardLangThrottleFirstWithDelay, strArr)) {
+            MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(strArrDetectKeyboardLangThrottleFirstWithDelay);
         }
-        this.lastLang = detectKeyboardLangThrottleFirstWithDelay;
+        this.lastLang = strArrDetectKeyboardLangThrottleFirstWithDelay;
         Runnable runnable = this.searchRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -727,7 +724,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         this.searchRunnable = new Runnable() {
             @Override
             public final void run() {
-                SuggestEmojiView.this.lambda$searchKeywords$4(detectKeyboardLangThrottleFirstWithDelay, str, i);
+                this.f$0.lambda$searchKeywords$4(strArrDetectKeyboardLangThrottleFirstWithDelay, str, i);
             }
         };
         ArrayList arrayList2 = this.keywordResults;
@@ -744,7 +741,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         MediaDataController.getInstance(this.currentAccount).getEmojiSuggestions(strArr, str, true, new MediaDataController.KeywordResultCallback() {
             @Override
             public final void run(ArrayList arrayList2, String str2) {
-                SuggestEmojiView.this.lambda$searchKeywords$3(i, str, hashSet, arrayList, arrayList2, str2);
+                this.f$0.lambda$searchKeywords$3(i, str, hashSet, arrayList, arrayList2, str2);
             }
         }, SharedConfig.suggestAnimatedEmoji && UserConfig.getInstance(this.currentAccount).isPremium());
     }
@@ -819,7 +816,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         this.searchRunnable = new Runnable() {
             @Override
             public final void run() {
-                SuggestEmojiView.this.lambda$searchAnimated$6(str, i);
+                this.f$0.lambda$searchAnimated$6(str, i);
             }
         };
         ArrayList arrayList2 = this.keywordResults;
@@ -836,7 +833,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         MediaDataController.getInstance(this.currentAccount).fillWithAnimatedEmoji(arrayList, 15, false, false, false, new Runnable() {
             @Override
             public final void run() {
-                SuggestEmojiView.this.lambda$searchAnimated$5(i, str, arrayList);
+                this.f$0.lambda$searchAnimated$5(i, str, arrayList);
             }
         });
     }
@@ -868,7 +865,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    private CharSequence makeEmoji(String str) {
+    private CharSequence makeEmoji(String str) throws NumberFormatException {
         AnimatedEmojiSpan animatedEmojiSpan;
         Paint.FontMetricsInt fontMetricsInt = this.enterView.getEditField() != null ? this.enterView.getEditField().getPaint().getFontMetricsInt() : null;
         if (fontMetricsInt == null) {
@@ -878,13 +875,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         if (str != null && str.startsWith("animated_")) {
             try {
-                long parseLong = Long.parseLong(str.substring(9));
-                TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, parseLong);
-                SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(findDocument));
-                if (findDocument == null) {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(parseLong, fontMetricsInt);
+                long j = Long.parseLong(str.substring(9));
+                TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, j);
+                SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(documentFindDocument));
+                if (documentFindDocument == null) {
+                    animatedEmojiSpan = new AnimatedEmojiSpan(j, fontMetricsInt);
                 } else {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(findDocument, fontMetricsInt);
+                    animatedEmojiSpan = new AnimatedEmojiSpan(documentFindDocument, fontMetricsInt);
                 }
                 spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                 return spannableString;
@@ -897,26 +894,26 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
     private void onClick(String str) {
         AnchorViewDelegate anchorViewDelegate;
-        int intValue;
-        int intValue2;
-        CharSequence makeEmoji;
+        int iIntValue;
+        int iIntValue2;
+        CharSequence charSequenceMakeEmoji;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         if (this.show && (anchorViewDelegate = this.enterView) != null && (anchorViewDelegate.getFieldText() instanceof Spanned)) {
             if (this.arrowToSpan != null) {
-                intValue = ((Spanned) this.enterView.getFieldText()).getSpanStart(this.arrowToSpan);
-                intValue2 = ((Spanned) this.enterView.getFieldText()).getSpanEnd(this.arrowToSpan);
+                iIntValue = ((Spanned) this.enterView.getFieldText()).getSpanStart(this.arrowToSpan);
+                iIntValue2 = ((Spanned) this.enterView.getFieldText()).getSpanEnd(this.arrowToSpan);
             } else {
                 Integer num = this.arrowToStart;
                 if (num == null || this.arrowToEnd == null) {
                     return;
                 }
-                intValue = num.intValue();
-                intValue2 = this.arrowToEnd.intValue();
+                iIntValue = num.intValue();
+                iIntValue2 = this.arrowToEnd.intValue();
                 this.arrowToEnd = null;
                 this.arrowToStart = null;
             }
             Editable editText = this.enterView.getEditText();
-            if (editText == null || intValue < 0 || intValue2 < 0 || intValue > editText.length() || intValue2 > editText.length()) {
+            if (editText == null || iIntValue < 0 || iIntValue2 < 0 || iIntValue > editText.length() || iIntValue2 > editText.length()) {
                 return;
             }
             if (this.arrowToSpan != null) {
@@ -925,26 +922,26 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 }
                 this.arrowToSpan = null;
             }
-            String obj = editText.toString();
-            String substring = obj.substring(intValue, intValue2);
-            int length = substring.length();
+            String string = editText.toString();
+            String strSubstring = string.substring(iIntValue, iIntValue2);
+            int length = strSubstring.length();
             while (true) {
-                intValue2 -= length;
-                if (intValue2 < 0) {
+                iIntValue2 -= length;
+                if (iIntValue2 < 0) {
                     break;
                 }
-                int i = intValue2 + length;
-                if (!obj.substring(intValue2, i).equals(substring) || (makeEmoji = makeEmoji(str)) == null || ((animatedEmojiSpanArr = (AnimatedEmojiSpan[]) editText.getSpans(intValue2, i, AnimatedEmojiSpan.class)) != null && animatedEmojiSpanArr.length > 0)) {
+                int i = iIntValue2 + length;
+                if (!string.substring(iIntValue2, i).equals(strSubstring) || (charSequenceMakeEmoji = makeEmoji(str)) == null || ((animatedEmojiSpanArr = (AnimatedEmojiSpan[]) editText.getSpans(iIntValue2, i, AnimatedEmojiSpan.class)) != null && animatedEmojiSpanArr.length > 0)) {
                     break;
                 }
-                Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) editText.getSpans(intValue2, i, Emoji.EmojiSpan.class);
+                Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) editText.getSpans(iIntValue2, i, Emoji.EmojiSpan.class);
                 if (emojiSpanArr != null) {
                     for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                         editText.removeSpan(emojiSpan);
                     }
                 }
-                editText.replace(intValue2, i, "");
-                editText.insert(intValue2, makeEmoji);
+                editText.replace(iIntValue2, i, "");
+                editText.insert(iIntValue2, charSequenceMakeEmoji);
             }
             try {
                 performHapticFeedback(3, 1);
@@ -1003,46 +1000,46 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         float f7 = f5 / 4.0f;
         float f8 = f5 / 2.0f;
-        int max = (int) Math.max((this.arrowX - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f);
-        if (this.listView.getPaddingLeft() != max) {
-            int paddingLeft = this.listView.getPaddingLeft() - max;
-            this.listView.setPadding(max, 0, 0, 0);
+        int iMax = (int) Math.max((this.arrowX - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f);
+        if (this.listView.getPaddingLeft() != iMax) {
+            int paddingLeft = this.listView.getPaddingLeft() - iMax;
+            this.listView.setPadding(iMax, 0, 0, 0);
             this.listView.scrollBy(paddingLeft, 0);
         }
-        this.listView.setTranslationX(((int) Math.max((f3 - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f)) - max);
+        this.listView.setTranslationX(((int) Math.max((f3 - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f)) - iMax);
         float paddingLeft2 = (f6 - f8) + this.listView.getPaddingLeft() + this.listView.getTranslationX();
         float top = this.listView.getTop() + this.listView.getTranslationY() + this.listView.getPaddingTop() + (this.direction == 0 ? 0 : AndroidUtilities.dp(6.66f));
-        float min = Math.min(f6 + f8 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
+        float fMin = Math.min(f6 + f8 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
         float bottom = (this.listView.getBottom() + this.listView.getTranslationY()) - (this.direction == 0 ? AndroidUtilities.dp(6.66f) : 0);
-        float min2 = Math.min(AndroidUtilities.dp(9.0f), f8) * 2.0f;
+        float fMin2 = Math.min(AndroidUtilities.dp(9.0f), f8) * 2.0f;
         int i2 = this.direction;
         if (i2 == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
-            float f9 = bottom - min2;
-            float f10 = paddingLeft2 + min2;
+            float f9 = bottom - fMin2;
+            float f10 = paddingLeft2 + fMin2;
             rectF.set(paddingLeft2, f9, f10, bottom);
             this.path.arcTo(rectF, 90.0f, 90.0f);
-            float f11 = top + min2;
+            float f11 = top + fMin2;
             rectF.set(paddingLeft2, top, f10, f11);
             this.path.arcTo(rectF, -180.0f, 90.0f);
-            float f12 = min - min2;
-            rectF.set(f12, top, min, f11);
+            float f12 = fMin - fMin2;
+            rectF.set(f12, top, fMin, f11);
             this.path.arcTo(rectF, -90.0f, 90.0f);
-            rectF.set(f12, f9, min, bottom);
+            rectF.set(f12, f9, fMin, bottom);
             this.path.arcTo(rectF, 0.0f, 90.0f);
             this.path.lineTo(AndroidUtilities.dp(8.66f) + f3, bottom);
             this.path.lineTo(f3, AndroidUtilities.dp(6.66f) + bottom);
             this.path.lineTo(f3 - AndroidUtilities.dp(8.66f), bottom);
         } else if (i2 == 1) {
             RectF rectF2 = AndroidUtilities.rectTmp;
-            float f13 = min - min2;
-            float f14 = top + min2;
-            rectF2.set(f13, top, min, f14);
+            float f13 = fMin - fMin2;
+            float f14 = top + fMin2;
+            rectF2.set(f13, top, fMin, f14);
             this.path.arcTo(rectF2, -90.0f, 90.0f);
-            float f15 = bottom - min2;
-            rectF2.set(f13, f15, min, bottom);
+            float f15 = bottom - fMin2;
+            rectF2.set(f13, f15, fMin, bottom);
             this.path.arcTo(rectF2, 0.0f, 90.0f);
-            float f16 = min2 + paddingLeft2;
+            float f16 = fMin2 + paddingLeft2;
             rectF2.set(paddingLeft2, f15, f16, bottom);
             this.path.arcTo(rectF2, 90.0f, 90.0f);
             rectF2.set(paddingLeft2, top, f16, f14);
@@ -1061,12 +1058,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         if (f < 1.0f) {
             this.circlePath.rewind();
-            float dp = this.direction == 0 ? AndroidUtilities.dp(6.66f) + bottom : top - AndroidUtilities.dp(6.66f);
+            float fDp = this.direction == 0 ? AndroidUtilities.dp(6.66f) + bottom : top - AndroidUtilities.dp(6.66f);
             double d = f3 - paddingLeft2;
-            double d2 = dp - top;
-            double d3 = f3 - min;
-            double d4 = dp - bottom;
-            this.circlePath.addCircle(f3, dp, ((float) Math.sqrt(Math.max(Math.max(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), Math.max(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))))) * f, Path.Direction.CW);
+            double d2 = fDp - top;
+            double d3 = f3 - fMin;
+            double d4 = fDp - bottom;
+            this.circlePath.addCircle(f3, fDp, ((float) Math.sqrt(Math.max(Math.max(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), Math.max(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))))) * f, Path.Direction.CW);
             canvas.save();
             canvas2 = canvas;
             canvas2.clipPath(this.circlePath);
@@ -1083,7 +1080,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         float f3 = f / 2.0f;
         float paddingLeft = (f2 - f3) + this.listView.getPaddingLeft() + this.listView.getTranslationX();
         float top = this.listView.getTop() + this.listView.getPaddingTop();
-        float min = Math.min(f2 + f3 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
+        float fMin = Math.min(f2 + f3 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
         float bottom = this.listView.getBottom();
         float f4 = this.leftGradientAlpha.set(this.listView.canScrollHorizontally(-1) ? 1.0f : 0.0f);
         if (f4 > 0.0f) {
@@ -1094,7 +1091,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         float f5 = this.rightGradientAlpha.set(this.listView.canScrollHorizontally(1) ? 1.0f : 0.0f);
         if (f5 > 0.0f) {
-            int i2 = (int) min;
+            int i2 = (int) fMin;
             Theme.chat_gradientLeftDrawable.setBounds(i2 - AndroidUtilities.dp(32.0f), (int) top, i2, (int) bottom);
             Theme.chat_gradientLeftDrawable.setAlpha((int) (f5 * 255.0f));
             Theme.chat_gradientLeftDrawable.draw(canvas);
@@ -1182,14 +1179,14 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
         }
 
-        public void setEmoji(String str, int i) {
+        public void setEmoji(String str, int i) throws NumberFormatException {
             this.emoji = str;
             if (str != null && str.startsWith("animated_")) {
                 try {
-                    long parseLong = Long.parseLong(str.substring(9));
+                    long j = Long.parseLong(str.substring(9));
                     Drawable drawable = this.drawable;
-                    if (!(drawable instanceof AnimatedEmojiDrawable) || ((AnimatedEmojiDrawable) drawable).getDocumentId() != parseLong) {
-                        setImageDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, SuggestEmojiView.this.emojiCacheType(), parseLong));
+                    if (!(drawable instanceof AnimatedEmojiDrawable) || ((AnimatedEmojiDrawable) drawable).getDocumentId() != j) {
+                        setImageDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, SuggestEmojiView.this.emojiCacheType(), j));
                     }
                 } catch (Exception unused) {
                     setImageDrawable(null);
@@ -1270,7 +1267,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         SuggestEmojiView suggestEmojiView;
 
         @Override
@@ -1292,11 +1289,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new EmojiImageView(this.suggestEmojiView.getContext()));
+            return new RecyclerListView.Holder(SuggestEmojiView.this.new EmojiImageView(this.suggestEmojiView.getContext()));
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
             ((EmojiImageView) viewHolder.itemView).setEmoji(this.suggestEmojiView.keywordResults == null ? null : ((MediaDataController.KeywordResult) this.suggestEmojiView.keywordResults.get(i)).emoji, this.suggestEmojiView.getDirection());
         }
 

@@ -80,35 +80,35 @@ public class StorageUsageView extends FrameLayout {
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
                 int childCount = getChildCount();
-                int i3 = 0;
-                int i4 = 0;
-                int i5 = 0;
-                for (int i6 = 0; i6 < childCount; i6++) {
-                    if (getChildAt(i6).getVisibility() != 8) {
-                        if (getChildAt(i6).getMeasuredWidth() + i4 > View.MeasureSpec.getSize(i)) {
-                            i5 += getChildAt(i6).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                            i4 = 0;
+                int measuredHeight = 0;
+                int measuredWidth = 0;
+                int measuredHeight2 = 0;
+                for (int i3 = 0; i3 < childCount; i3++) {
+                    if (getChildAt(i3).getVisibility() != 8) {
+                        if (getChildAt(i3).getMeasuredWidth() + measuredWidth > View.MeasureSpec.getSize(i)) {
+                            measuredHeight2 += getChildAt(i3).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                            measuredWidth = 0;
                         }
-                        i4 += getChildAt(i6).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
-                        i3 = getChildAt(i6).getMeasuredHeight() + i5;
+                        measuredWidth += getChildAt(i3).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
+                        measuredHeight = getChildAt(i3).getMeasuredHeight() + measuredHeight2;
                     }
                 }
-                setMeasuredDimension(getMeasuredWidth(), i3);
+                setMeasuredDimension(getMeasuredWidth(), measuredHeight);
             }
 
             @Override
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 int childCount = getChildCount();
-                int i5 = 0;
-                int i6 = 0;
-                for (int i7 = 0; i7 < childCount; i7++) {
-                    if (getChildAt(i7).getVisibility() != 8) {
-                        if (getChildAt(i7).getMeasuredWidth() + i5 > getMeasuredWidth()) {
-                            i6 += getChildAt(i7).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                            i5 = 0;
+                int measuredWidth = 0;
+                int measuredHeight = 0;
+                for (int i5 = 0; i5 < childCount; i5++) {
+                    if (getChildAt(i5).getVisibility() != 8) {
+                        if (getChildAt(i5).getMeasuredWidth() + measuredWidth > getMeasuredWidth()) {
+                            measuredHeight += getChildAt(i5).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                            measuredWidth = 0;
                         }
-                        getChildAt(i7).layout(i5, i6, getChildAt(i7).getMeasuredWidth() + i5, getChildAt(i7).getMeasuredHeight() + i6);
-                        i5 += getChildAt(i7).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
+                        getChildAt(i5).layout(measuredWidth, measuredHeight, getChildAt(i5).getMeasuredWidth() + measuredWidth, getChildAt(i5).getMeasuredHeight() + measuredHeight);
+                        measuredWidth += getChildAt(i5).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
                     }
                 }
             }
@@ -120,12 +120,12 @@ public class StorageUsageView extends FrameLayout {
         int i = Theme.key_windowBackgroundWhiteGrayText;
         textView.setTextColor(Theme.getColor(i));
         String string = LocaleController.getString("CalculatingSize", R.string.CalculatingSize);
-        int indexOf = string.indexOf("...");
-        if (indexOf >= 0) {
+        int iIndexOf = string.indexOf("...");
+        if (iIndexOf >= 0) {
             SpannableString spannableString = new SpannableString(string);
             EllipsizeSpanAnimator ellipsizeSpanAnimator = new EllipsizeSpanAnimator(this.calculatingTextView);
             this.ellipsizeSpanAnimator = ellipsizeSpanAnimator;
-            ellipsizeSpanAnimator.wrap(spannableString, indexOf);
+            ellipsizeSpanAnimator.wrap(spannableString, iIndexOf);
             this.calculatingTextView.setText(spannableString);
         } else {
             this.calculatingTextView.setText(string);
@@ -214,20 +214,20 @@ public class StorageUsageView extends FrameLayout {
             }
             this.freeSizeTextView.setVisibility(0);
             this.totlaSizeTextView.setVisibility(0);
-            float f = (float) j4;
-            float f2 = ((float) (j2 + j)) / f;
-            float f3 = ((float) j5) / f;
+            float f = j4;
+            float f2 = (j2 + j) / f;
+            float f3 = j5 / f;
             if (this.progress != f2) {
                 ValueAnimator valueAnimator = this.valueAnimator;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f2);
-                this.valueAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.progress, f2);
+                this.valueAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StorageUsageView.this.lambda$setStorageUsage$0(valueAnimator2);
+                        this.f$0.lambda$setStorageUsage$0(valueAnimator2);
                     }
                 });
                 this.valueAnimator.start();
@@ -237,12 +237,12 @@ public class StorageUsageView extends FrameLayout {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.progress2, f3);
-                this.valueAnimator2 = ofFloat2;
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.progress2, f3);
+                this.valueAnimator2 = valueAnimatorOfFloat2;
+                valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        StorageUsageView.this.lambda$setStorageUsage$1(valueAnimator3);
+                        this.f$0.lambda$setStorageUsage$1(valueAnimator3);
                     }
                 });
                 this.valueAnimator2.start();
@@ -283,7 +283,7 @@ public class StorageUsageView extends FrameLayout {
         this.divider.setBackgroundColor(Theme.getColor(Theme.key_divider));
     }
 
-    public class ProgressView extends View {
+    private class ProgressView extends View {
         public ProgressView(Context context) {
             super(context);
         }
@@ -337,11 +337,11 @@ public class StorageUsageView extends FrameLayout {
                 StorageUsageView.this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
                 StorageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(3.0f), null);
             }
-            int dp = AndroidUtilities.dp(24.0f);
+            int iDp = AndroidUtilities.dp(24.0f);
             if (!StorageUsageView.this.calculating) {
-                int dp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
-                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
-                canvas.drawRect(dp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
+                int iDp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
+                canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
+                canvas.drawRect(iDp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), iDp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
             }
             if (StorageUsageView.this.calculating) {
                 return;
@@ -350,9 +350,9 @@ public class StorageUsageView extends FrameLayout {
             if (measuredWidth < AndroidUtilities.dp(1.0f)) {
                 measuredWidth = AndroidUtilities.dp(1.0f);
             }
-            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
-            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
-            canvas.drawRect(dp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
+            int iDp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
+            canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
+            canvas.drawRect(iDp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), iDp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
         }
     }
 

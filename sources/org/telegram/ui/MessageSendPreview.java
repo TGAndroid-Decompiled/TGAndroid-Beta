@@ -75,7 +75,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.EmojiAnimationsOverlay;
-import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
@@ -141,7 +140,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private SpoilerEffect2 spoilerEffect2;
     private final FrameLayout windowView;
 
-    public void onEffectChange(long j) {
+    protected void onEffectChange(long j) {
     }
 
     public void updateColors() {
@@ -204,7 +203,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageSendPreview.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         frameLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new AnonymousClass2());
@@ -216,29 +215,17 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets windowInsets2;
-                Insets insets;
-                int i2;
-                int i3;
-                int i4;
-                int i5;
-                int i6 = Build.VERSION.SDK_INT;
-                if (i6 < 30) {
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 < 30) {
                     MessageSendPreview.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                 } else {
-                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    Rect rect = MessageSendPreview.this.insets;
-                    i2 = insets.left;
-                    i3 = insets.top;
-                    i4 = insets.right;
-                    i5 = insets.bottom;
-                    rect.set(i2, i3, i4, i5);
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    MessageSendPreview.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
                 }
                 MessageSendPreview.this.containerView.setPadding(MessageSendPreview.this.insets.left, MessageSendPreview.this.insets.top, MessageSendPreview.this.insets.right, MessageSendPreview.this.insets.bottom);
                 MessageSendPreview.this.windowView.requestLayout();
-                if (i6 >= 30) {
-                    windowInsets2 = WindowInsets.CONSUMED;
-                    return windowInsets2;
+                if (i2 >= 30) {
+                    return WindowInsets.CONSUMED;
                 }
                 return windowInsets.consumeSystemWindowInsets();
             }
@@ -257,18 +244,18 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (AndroidUtilities.dp(MessageSendPreview.this.messageObjects.isEmpty() ? -6.0f : 48.0f) + (MessageSendPreview.this.optionsView == null ? 0 : MessageSendPreview.this.optionsView.getMeasuredHeight()))) - AndroidUtilities.dp(8.0f)) - MessageSendPreview.this.insets.top), Integer.MIN_VALUE));
-                int max = Math.max(MessageSendPreview.this.sendButtonWidth, -((MessageSendPreview.this.sendButtonInitialPosition[0] + AndroidUtilities.dp(7.0f)) - getMeasuredWidth()));
-                float max2 = Math.max(1, getMeasuredWidth() - max) / Math.max(1, ((getMeasuredWidth() - max) - AndroidUtilities.dp(8.0f)) + Math.max(0, MessageSendPreview.this.messageObjectsWidth - ((getMeasuredWidth() - max) - AndroidUtilities.dp((MessageSendPreview.this.groupedMessagesMap.isEmpty() ? 0 : 40) + 8))));
+                int iMax = Math.max(MessageSendPreview.this.sendButtonWidth, -((MessageSendPreview.this.sendButtonInitialPosition[0] + AndroidUtilities.dp(7.0f)) - getMeasuredWidth()));
+                float fMax = Math.max(1, getMeasuredWidth() - iMax) / Math.max(1, ((getMeasuredWidth() - iMax) - AndroidUtilities.dp(8.0f)) + Math.max(0, MessageSendPreview.this.messageObjectsWidth - ((getMeasuredWidth() - iMax) - AndroidUtilities.dp((MessageSendPreview.this.groupedMessagesMap.isEmpty() ? 0 : 40) + 8))));
                 setPivotX(getMeasuredWidth());
                 setPivotY(getMeasuredHeight());
-                setScaleX(max2);
-                setScaleY(max2);
+                setScaleX(fMax);
+                setScaleY(fMax);
             }
 
             @Override
-            public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 for (int i6 = 0; i6 < getChildCount(); i6++) {
                     View childAt = getChildAt(i6);
                     if (childAt.getTop() != 0 && (childAt instanceof MessageCell)) {
@@ -282,7 +269,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.saveLayerAlpha(0.0f, getScrollY() + 1, getWidth(), (getScrollY() + getHeight()) - 1, 255, 31);
                 canvas.save();
                 drawChatBackgroundElements(canvas);
@@ -322,7 +309,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     canvas.restore();
                 }
                 canvas.restore();
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 canvas.save();
                 canvas.translate(chatMessageCell.getX(), chatMessageCell.getY() + chatMessageCell.getPaddingTop());
                 canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getPivotX(), chatMessageCell.getPivotY());
@@ -343,137 +330,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 chatMessageCell.getTransitionParams().recordDrawingStatePreview();
                 canvas.restore();
                 chatMessageCell.setInvalidatesParent(false);
-                return drawChild;
+                return zDrawChild;
             }
 
-            private void drawChatBackgroundElements(Canvas canvas) {
-                boolean z;
-                int i2;
-                MessageObject.GroupedMessages currentMessagesGroup;
-                MessageObject.GroupedMessages currentMessagesGroup2;
-                int childCount = getChildCount();
-                ?? r3 = 0;
-                MessageObject.GroupedMessages groupedMessages = null;
-                for (int i3 = 0; i3 < childCount; i3++) {
-                    View childAt = getChildAt(i3);
-                    if ((childAt instanceof ChatMessageCell) && ((currentMessagesGroup2 = ((ChatMessageCell) childAt).getCurrentMessagesGroup()) == null || currentMessagesGroup2 != groupedMessages)) {
-                        groupedMessages = currentMessagesGroup2;
-                    }
-                }
-                int i4 = 0;
-                while (i4 < 3) {
-                    this.drawingGroups.clear();
-                    if (i4 != 2 || MessageSendPreview.this.chatListView.isFastScrollAnimationRunning()) {
-                        int i5 = 0;
-                        while (true) {
-                            z = true;
-                            if (i5 >= childCount) {
-                                break;
-                            }
-                            View childAt2 = MessageSendPreview.this.chatListView.getChildAt(i5);
-                            if (childAt2 instanceof ChatMessageCell) {
-                                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt2;
-                                if (childAt2.getY() <= MessageSendPreview.this.chatListView.getHeight() && childAt2.getY() + childAt2.getHeight() >= 0.0f && (currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup()) != null && ((i4 != 0 || currentMessagesGroup.messages.size() != 1) && ((i4 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i4 != 0 || !chatMessageCell.getMessageObject().deleted) && ((i4 != 1 || chatMessageCell.getMessageObject().deleted) && ((i4 != 2 || chatMessageCell.willRemovedAfterAnimation()) && (i4 == 2 || !chatMessageCell.willRemovedAfterAnimation()))))))) {
-                                    if (!this.drawingGroups.contains(currentMessagesGroup)) {
-                                        MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                                        transitionParams.left = r3;
-                                        transitionParams.top = r3;
-                                        transitionParams.right = r3;
-                                        transitionParams.bottom = r3;
-                                        transitionParams.pinnedBotton = r3;
-                                        transitionParams.pinnedTop = r3;
-                                        transitionParams.cell = chatMessageCell;
-                                        this.drawingGroups.add(currentMessagesGroup);
-                                    }
-                                    currentMessagesGroup.transitionParams.pinnedTop = chatMessageCell.isPinnedTop();
-                                    currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell.isPinnedBottom();
-                                    int x = (int) (chatMessageCell.getX() + chatMessageCell.getBackgroundDrawableLeft());
-                                    int x2 = (int) (chatMessageCell.getX() + chatMessageCell.getBackgroundDrawableRight());
-                                    int y = (int) (chatMessageCell.getY() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop());
-                                    int y2 = (int) (chatMessageCell.getY() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom());
-                                    if ((chatMessageCell.getCurrentPosition().flags & 4) == 0) {
-                                        y -= AndroidUtilities.dp(10.0f);
-                                    }
-                                    if ((chatMessageCell.getCurrentPosition().flags & 8) == 0) {
-                                        y2 += AndroidUtilities.dp(10.0f);
-                                    }
-                                    if (chatMessageCell.willRemovedAfterAnimation()) {
-                                        currentMessagesGroup.transitionParams.cell = chatMessageCell;
-                                    }
-                                    MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
-                                    int i6 = transitionParams2.top;
-                                    if (i6 == 0 || y < i6) {
-                                        transitionParams2.top = y;
-                                    }
-                                    int i7 = transitionParams2.bottom;
-                                    if (i7 == 0 || y2 > i7) {
-                                        transitionParams2.bottom = y2;
-                                    }
-                                    int i8 = transitionParams2.left;
-                                    if (i8 == 0 || x < i8) {
-                                        transitionParams2.left = x;
-                                    }
-                                    int i9 = transitionParams2.right;
-                                    if (i9 == 0 || x2 > i9) {
-                                        transitionParams2.right = x2;
-                                    }
-                                }
-                            }
-                            i5++;
-                        }
-                        int i10 = 0;
-                        while (i10 < this.drawingGroups.size()) {
-                            MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) this.drawingGroups.get(i10);
-                            if (groupedMessages2 == null) {
-                                i2 = i4;
-                            } else {
-                                float nonAnimationTranslationX = groupedMessages2.transitionParams.cell.getNonAnimationTranslationX(z);
-                                MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages2.transitionParams;
-                                float f = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
-                                float f2 = transitionParams3.top + transitionParams3.offsetTop;
-                                float f3 = transitionParams3.right + nonAnimationTranslationX + transitionParams3.offsetRight;
-                                float f4 = transitionParams3.bottom + transitionParams3.offsetBottom;
-                                if (f2 < (-AndroidUtilities.dp(20.0f))) {
-                                    f2 = -AndroidUtilities.dp(20.0f);
-                                }
-                                if (f4 > MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f)) {
-                                    f4 = MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f);
-                                }
-                                boolean z2 = (groupedMessages2.transitionParams.cell.getScaleX() == 1.0f && groupedMessages2.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
-                                if (z2) {
-                                    canvas.save();
-                                    canvas.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), f + ((f3 - f) / 2.0f), f2 + ((f4 - f2) / 2.0f));
-                                }
-                                MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
-                                i2 = i4;
-                                transitionParams4.cell.drawBackground(canvas, (int) f, (int) f2, (int) f3, (int) f4, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
-                                MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages2.transitionParams;
-                                transitionParams5.cell = null;
-                                transitionParams5.drawCaptionLayout = groupedMessages2.hasCaption;
-                                if (z2) {
-                                    canvas.restore();
-                                    for (int i11 = 0; i11 < childCount; i11++) {
-                                        View childAt3 = MessageSendPreview.this.chatListView.getChildAt(i11);
-                                        if (childAt3 instanceof ChatMessageCell) {
-                                            ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt3;
-                                            if (chatMessageCell2.getCurrentMessagesGroup() == groupedMessages2) {
-                                                int left = chatMessageCell2.getLeft();
-                                                int top = chatMessageCell2.getTop();
-                                                childAt3.setPivotX((f - left) + ((f3 - f) / 2.0f));
-                                                childAt3.setPivotY((f2 - top) + ((f4 - f2) / 2.0f));
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            i10++;
-                            i4 = i2;
-                            z = true;
-                        }
-                    }
-                    i4++;
-                    r3 = 0;
-                }
+            private void drawChatBackgroundElements(android.graphics.Canvas r29) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass5.drawChatBackgroundElements(android.graphics.Canvas):void");
             }
 
             private void drawChatForegroundElements(Canvas canvas) {
@@ -552,15 +413,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                             float f = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
                             float f2 = transitionParams3.top + transitionParams3.offsetTop;
                             float f3 = transitionParams3.right + nonAnimationTranslationX + transitionParams3.offsetRight;
-                            float f4 = transitionParams3.bottom + transitionParams3.offsetBottom;
+                            float measuredHeight = transitionParams3.bottom + transitionParams3.offsetBottom;
                             if (f2 < (-AndroidUtilities.dp(20.0f))) {
                                 f2 = -AndroidUtilities.dp(20.0f);
                             }
-                            float f5 = f2;
-                            if (f4 > MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f)) {
-                                f4 = MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f);
+                            float f4 = f2;
+                            if (measuredHeight > MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f)) {
+                                measuredHeight = MessageSendPreview.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f);
                             }
-                            MessageSendPreview.this.drawStarsPrice(canvas, f, f5, f3, f4);
+                            MessageSendPreview.this.drawStarsPrice(canvas, f, f4, f3, measuredHeight);
                             groupedMessages2.transitionParams.cell = null;
                         }
                     }
@@ -571,13 +432,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         recyclerListView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageSendPreview.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                MessageSendPreview.this.lambda$new$2(view, i2);
+                this.f$0.lambda$new$2(view, i2);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -598,25 +459,25 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             @Override
             public int computeVerticalScrollExtent(RecyclerView.State state) {
                 this.computingScroll = true;
-                int computeVerticalScrollExtent = super.computeVerticalScrollExtent(state);
+                int iComputeVerticalScrollExtent = super.computeVerticalScrollExtent(state);
                 this.computingScroll = false;
-                return computeVerticalScrollExtent;
+                return iComputeVerticalScrollExtent;
             }
 
             @Override
             public int computeVerticalScrollOffset(RecyclerView.State state) {
                 this.computingScroll = true;
-                int computeVerticalScrollOffset = super.computeVerticalScrollOffset(state);
+                int iComputeVerticalScrollOffset = super.computeVerticalScrollOffset(state);
                 this.computingScroll = false;
-                return computeVerticalScrollOffset;
+                return iComputeVerticalScrollOffset;
             }
 
             @Override
             public int computeVerticalScrollRange(RecyclerView.State state) {
                 this.computingScroll = true;
-                int computeVerticalScrollRange = super.computeVerticalScrollRange(state);
+                int iComputeVerticalScrollRange = super.computeVerticalScrollRange(state);
                 this.computingScroll = false;
-                return computeVerticalScrollRange;
+                return iComputeVerticalScrollRange;
             }
 
             @Override
@@ -676,17 +537,17 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     return;
                 }
                 Point point = AndroidUtilities.displaySize;
-                float max = Math.max(point.x, point.y) * 0.5f;
+                float fMax = Math.max(point.x, point.y) * 0.5f;
                 int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
                 int i3 = 0;
                 while (true) {
                     if (i3 >= currentPosition.siblingHeights.length) {
                         break;
                     }
-                    extraInsetHeight += (int) Math.ceil(r3[i3] * max);
+                    extraInsetHeight += (int) Math.ceil(r3[i3] * fMax);
                     i3++;
                 }
-                int round = extraInsetHeight + ((currentPosition.maxY - currentPosition.minY) * Math.round(AndroidUtilities.density * 7.0f));
+                int iRound = extraInsetHeight + ((currentPosition.maxY - currentPosition.minY) * Math.round(AndroidUtilities.density * 7.0f));
                 int size = currentMessagesGroup.posArray.size();
                 while (true) {
                     if (i2 < size) {
@@ -694,7 +555,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                         byte b = groupedMessagePosition.minY;
                         byte b2 = currentPosition.minY;
                         if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
-                            round -= ((int) Math.ceil(max * groupedMessagePosition.ph)) - AndroidUtilities.dp(4.0f);
+                            iRound -= ((int) Math.ceil(fMax * groupedMessagePosition.ph)) - AndroidUtilities.dp(4.0f);
                             break;
                         }
                         i2++;
@@ -702,14 +563,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                         break;
                     }
                 }
-                rect.bottom = -round;
+                rect.bottom = -iRound;
             }
         });
         RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
                 MessageSendPreview messageSendPreview = MessageSendPreview.this;
-                MessageCell messageCell = new MessageCell(context, messageSendPreview.currentAccount, true, null, resourcesProvider);
+                MessageCell messageCell = messageSendPreview.new MessageCell(context, messageSendPreview.currentAccount, true, null, resourcesProvider);
                 messageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
                     public boolean canDrawOutboundsContent() {
@@ -723,9 +584,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
                     @Override
                     public boolean canPerformReply() {
-                        boolean canPerformActions;
-                        canPerformActions = canPerformActions();
-                        return canPerformActions;
+                        return canPerformActions();
                     }
 
                     @Override
@@ -901,6 +760,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell, f, f2);
+                    }
+
+                    @Override
+                    public void didPressSummarize(ChatMessageCell chatMessageCell, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell, z);
                     }
 
                     @Override
@@ -1165,7 +1029,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         onBackPressed();
     }
 
-    public class AnonymousClass2 implements ViewTreeObserver.OnGlobalFocusChangeListener {
+    class AnonymousClass2 implements ViewTreeObserver.OnGlobalFocusChangeListener {
         AnonymousClass2() {
         }
 
@@ -1178,7 +1042,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageSendPreview.AnonymousClass2.this.lambda$onGlobalFocusChanged$1(view2);
+                    this.f$0.lambda$onGlobalFocusChanged$1(view2);
                 }
             }, 200L);
         }
@@ -1188,7 +1052,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageSendPreview.AnonymousClass2.this.lambda$onGlobalFocusChanged$0(view);
+                    this.f$0.lambda$onGlobalFocusChanged$0(view);
                 }
             }, 100L);
         }
@@ -1203,7 +1067,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
     }
 
-    public class AnonymousClass3 extends SizeNotifierFrameLayout {
+    class AnonymousClass3 extends SizeNotifierFrameLayout {
         private Paint backgroundPaint;
         int chatListViewTy;
         private GradientClip clip;
@@ -1226,7 +1090,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void dispatchDraw(final android.graphics.Canvas r30) {
+        protected void dispatchDraw(final android.graphics.Canvas r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass3.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1262,7 +1126,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         onBackPressed();
     }
 
-    public class AnonymousClass7 extends ChatListItemAnimator {
+    class AnonymousClass7 extends ChatListItemAnimator {
         Runnable finishRunnable;
 
         @Override
@@ -1286,7 +1150,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void onAllAnimationsDone() {
+        protected void onAllAnimationsDone() {
             super.onAllAnimationsDone();
             Runnable runnable = this.finishRunnable;
             if (runnable != null) {
@@ -1296,7 +1160,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    MessageSendPreview.AnonymousClass7.this.lambda$onAllAnimationsDone$0();
+                    this.f$0.lambda$onAllAnimationsDone$0();
                 }
             };
             this.finishRunnable = runnable2;
@@ -1320,7 +1184,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    MessageSendPreview.AnonymousClass7.this.lambda$endAnimations$1();
+                    this.f$0.lambda$endAnimations$1();
                 }
             };
             this.finishRunnable = runnable2;
@@ -1377,7 +1241,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if (!this.transitionParams.animateBackgroundBoundsInner || i2 == 0 || this.top == Integer.MAX_VALUE || i4 == 0 || this.bottom == Integer.MAX_VALUE) {
                 return;
@@ -1570,12 +1434,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         new KeyboardNotifier(this.windowView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MessageSendPreview.this.lambda$allowEffectSelector$3((Integer) obj);
+                this.f$0.lambda$allowEffectSelector$3((Integer) obj);
             }
         });
     }
 
-    public class AnonymousClass16 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    class AnonymousClass16 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         final BaseFragment val$fragment;
 
         @Override
@@ -1697,16 +1561,16 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         iArr2[0] = width;
         iArr2[1] = iArr[1];
         int measuredHeight = (this.chatListView.getMeasuredHeight() - this.sendButton.getHeight()) + (this.effectSelector != null ? AndroidUtilities.dp(320.0f) : 0);
-        int dp = this.insets.top + AndroidUtilities.dp(8.0f);
-        int dp2 = AndroidUtilities.dp(this.messageObjects.isEmpty() ? -6.0f : 48.0f);
+        int iDp = this.insets.top + AndroidUtilities.dp(8.0f);
+        int iDp2 = AndroidUtilities.dp(this.messageObjects.isEmpty() ? -6.0f : 48.0f);
         View view = this.optionsView;
-        int measuredHeight2 = dp2 + (view == null ? 0 : view.getMeasuredHeight());
+        int measuredHeight2 = iDp2 + (view == null ? 0 : view.getMeasuredHeight());
         int measuredHeight3 = (this.containerView.getMeasuredHeight() - AndroidUtilities.dp(8.0f)) - this.insets.bottom;
         if (iArr[1] + measuredHeight2 > measuredHeight3) {
             iArr[1] = measuredHeight3 - measuredHeight2;
         }
-        if (iArr[1] - measuredHeight < dp) {
-            iArr[1] = dp + measuredHeight;
+        if (iArr[1] - measuredHeight < iDp) {
+            iArr[1] = iDp + measuredHeight;
         }
         if (iArr[1] + this.anchorSendButton.getHeight() + measuredHeight2 > measuredHeight3) {
             iArr[1] = (measuredHeight3 - measuredHeight2) - this.anchorSendButton.getHeight();
@@ -1730,9 +1594,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             RectF rectF = this.cameraRect;
             if (rectF != null) {
                 FrameLayout frameLayout2 = this.effectSelectorContainer;
-                float max = Math.max(this.insets.top, rectF.top - frameLayout2.getMeasuredWidth());
-                this.effectSelectorContainerY = max;
-                frameLayout2.setY(max);
+                float fMax = Math.max(this.insets.top, rectF.top - frameLayout2.getMeasuredWidth());
+                this.effectSelectorContainerY = fMax;
+                frameLayout2.setY(fMax);
                 ReactionsContainerLayout reactionsContainerLayout = this.effectSelector;
                 if (reactionsContainerLayout != null) {
                     reactionsContainerLayout.setY(Math.max(this.insets.top, (this.cameraRect.top - AndroidUtilities.dp(24.0f)) - this.effectSelector.getMeasuredHeight()));
@@ -1742,9 +1606,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
             float height = (iArr[1] + this.sendButton.getHeight()) - this.chatListView.getMeasuredHeight();
             FrameLayout frameLayout3 = this.effectSelectorContainer;
-            float max2 = Math.max(this.insets.top, height - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
-            this.effectSelectorContainerY = max2;
-            frameLayout3.setY(max2);
+            float fMax2 = Math.max(this.insets.top, height - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
+            this.effectSelectorContainerY = fMax2;
+            frameLayout3.setY(fMax2);
             ReactionsContainerLayout reactionsContainerLayout2 = this.effectSelector;
             if (reactionsContainerLayout2 != null) {
                 reactionsContainerLayout2.setY(Math.max(0.0f, (height - reactionsContainerLayout2.getMeasuredHeight()) - this.effectSelectorContainerY));
@@ -1786,7 +1650,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
     }
 
-    public static class VisiblePart {
+    private static class VisiblePart {
         private int blurredViewBottomOffset;
         private int blurredViewTopOffset;
         private int childPosition;
@@ -1866,7 +1730,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                MessageSendPreview.this.lambda$dismissInto$5();
+                this.f$0.lambda$dismissInto$5();
             }
         });
         this.windowView.invalidate();
@@ -1882,7 +1746,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSendPreview.this.lambda$dismissInto$4();
+                this.f$0.lambda$dismissInto$4();
             }
         });
     }
@@ -1927,7 +1791,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                MessageSendPreview.this.lambda$dismiss$7();
+                this.f$0.lambda$dismiss$7();
             }
         });
         this.windowView.invalidate();
@@ -1943,7 +1807,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSendPreview.this.lambda$dismiss$6();
+                this.f$0.lambda$dismiss$6();
             }
         });
     }
@@ -1971,12 +1835,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.chatListView.invalidate();
         this.firstOpenFrame = true;
         this.firstOpenFrame2 = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                MessageSendPreview.this.lambda$animateOpenTo$8(z2, valueAnimator2);
+                this.f$0.lambda$animateOpenTo$8(z2, valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2028,9 +1892,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
     public void lambda$animateOpenTo$8(boolean z, ValueAnimator valueAnimator) {
         View view;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.openProgress = floatValue;
-        this.effectsView.setAlpha(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.openProgress = fFloatValue;
+        this.effectsView.setAlpha(fFloatValue);
         this.chatListView.setAlpha(this.openProgress);
         if (!z && (view = this.optionsView) != null) {
             view.setAlpha(this.openProgress);
@@ -2051,7 +1915,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MessageSendPreview.this.lambda$prepareBlur$9(alpha, view, (Bitmap) obj);
+                this.f$0.lambda$prepareBlur$9(alpha, view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -2147,19 +2011,19 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             i++;
         }
         ChatMessageCell chatMessageCell2 = chatMessageCell;
-        int i2 = -1;
-        for (int i3 = 0; i3 < this.messageObjects.size(); i3++) {
-            if (this.messageObjects.get(i3) == messageObject) {
-                i2 = (this.messageObjects.size() - 1) - i3;
+        int size = -1;
+        for (int i2 = 0; i2 < this.messageObjects.size(); i2++) {
+            if (this.messageObjects.get(i2) == messageObject) {
+                size = (this.messageObjects.size() - 1) - i2;
             }
         }
         if (chatMessageCell2 == null) {
-            this.chatListView.getAdapter().notifyItemChanged(i2);
+            this.chatListView.getAdapter().notifyItemChanged(size);
             return;
         }
         messageObject.forceUpdate = true;
         chatMessageCell2.setMessageObject(messageObject, chatMessageCell2.getCurrentMessagesGroup(), chatMessageCell2.isPinnedBottom(), chatMessageCell2.isPinnedTop(), chatMessageCell2.isFirstInChat());
-        this.chatListView.getAdapter().notifyItemChanged(i2);
+        this.chatListView.getAdapter().notifyItemChanged(size);
     }
 
     private int getWidthForMessage(MessageObject messageObject) {
@@ -2203,12 +2067,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
         float f5 = (f + f3) / 2.0f;
         float f6 = (f2 + f4) / 2.0f;
-        float dp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
-        float dp2 = AndroidUtilities.dp(32.0f);
+        float fDp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
+        float fDp2 = AndroidUtilities.dp(32.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = dp / 2.0f;
+        float f7 = fDp / 2.0f;
         float f8 = f5 - f7;
-        float f9 = dp2 / 2.0f;
+        float f9 = fDp2 / 2.0f;
         rectF.set(f8, f6 - f9, f5 + f7, f6 + f9);
         canvas.save();
         canvas.drawRoundRect(rectF, f9, f9, this.buttonBgPaint);

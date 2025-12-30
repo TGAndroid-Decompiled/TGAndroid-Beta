@@ -163,7 +163,7 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int top = (int) (this.textView.getTop() * 0.7f);
         int i3 = (int) ((r3 - top) * 0.7f);

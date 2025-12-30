@@ -129,7 +129,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         selectorHeaderCell.setOnCloseClickListener(new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         selectorHeaderCell.setText(getTitle());
@@ -149,7 +149,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         selectorSearchCell.setOnSearchTextChange(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SelectorBottomSheet.this.onSearch((String) obj);
+                this.f$0.onSearch((String) obj);
             }
         });
         this.sectionCell = new GraySectionCell(getContext(), this.resourcesProvider);
@@ -171,7 +171,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SelectorBottomSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
@@ -203,7 +203,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void onItemClick(View view, int i6, float f, float f2) {
-                SelectorBottomSheet.this.lambda$new$5(view, i6, f, f2);
+                this.f$0.lambda$new$5(view, i6, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -243,12 +243,12 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 this.selectedIds.remove(Long.valueOf(j));
             } else {
                 this.selectedIds.add(Long.valueOf(j));
-                HashMap hashMap = this.allSelectedObjects;
-                Long valueOf = Long.valueOf(j);
+                HashMap map = this.allSelectedObjects;
+                Long lValueOf = Long.valueOf(j);
                 if (user == null) {
                     user = chat;
                 }
-                hashMap.put(valueOf, user);
+                map.put(lValueOf, user);
             }
             if ((this.selectedIds.size() == 11 && this.type == 1) || (this.selectedIds.size() == BoostRepository.giveawayAddPeersMax() + 1 && this.type == 2)) {
                 this.selectedIds.remove(Long.valueOf(j));
@@ -258,7 +258,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
                 @Override
                 public final void run() {
-                    SelectorBottomSheet.this.lambda$new$1();
+                    this.f$0.lambda$new$1();
                 }
             }, null);
             updateList(true, false);
@@ -266,12 +266,12 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 BoostDialogs.showPrivateChannelAlert(chat, getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
                     @Override
                     public final void run() {
-                        SelectorBottomSheet.this.lambda$new$3(j);
+                        this.f$0.lambda$new$3(j);
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        SelectorBottomSheet.this.clearSearchAfterSelectChannel();
+                        this.f$0.clearSearchAfterSelectChannel();
                     }
                 });
             } else if (chat != null) {
@@ -279,21 +279,21 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
         if (view instanceof SelectorCountryCell) {
-            long hashCode = ((SelectorCountryCell) view).getCountry().default_name.hashCode();
-            if (this.selectedIds.contains(Long.valueOf(hashCode))) {
-                this.selectedIds.remove(Long.valueOf(hashCode));
+            long jHashCode = ((SelectorCountryCell) view).getCountry().default_name.hashCode();
+            if (this.selectedIds.contains(Long.valueOf(jHashCode))) {
+                this.selectedIds.remove(Long.valueOf(jHashCode));
             } else {
-                this.selectedIds.add(Long.valueOf(hashCode));
+                this.selectedIds.add(Long.valueOf(jHashCode));
             }
             if (this.selectedIds.size() == BoostRepository.giveawayCountriesMax() + 1 && this.type == 3) {
-                this.selectedIds.remove(Long.valueOf(hashCode));
+                this.selectedIds.remove(Long.valueOf(jHashCode));
                 showMaximumUsersToast();
                 return;
             }
             this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
                 @Override
                 public final void run() {
-                    SelectorBottomSheet.this.lambda$new$4();
+                    this.f$0.lambda$new$4();
                 }
             }, this.countriesList);
             if (isSearching()) {
@@ -316,7 +316,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         }, null);
         updateList(true, false);
@@ -432,14 +432,14 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             BoostRepository.loadChatParticipants(this.currentChat.id, 0, str, 0, 50, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$7(z, (List) obj);
+                    this.f$0.lambda$loadData$7(z, (List) obj);
                 }
             });
         } else if (i == 2) {
             BoostRepository.searchChats(this.currentChat.id, 0, str, 50, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$6((List) obj);
+                    this.f$0.lambda$loadData$6((List) obj);
                 }
             });
         } else {
@@ -449,7 +449,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             BoostRepository.loadCountries(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$9(z, (Pair) obj);
+                    this.f$0.lambda$loadData$9(z, (Pair) obj);
                 }
             });
         }
@@ -462,7 +462,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             Map.EL.forEach(this.countriesMap, new BiConsumer() {
                 @Override
                 public final void accept(Object obj, Object obj2) {
-                    SelectorBottomSheet.this.lambda$loadData$8((String) obj, (List) obj2);
+                    this.f$0.lambda$loadData$8((String) obj, (List) obj2);
                 }
 
                 public BiConsumer andThen(BiConsumer biConsumer) {
@@ -487,12 +487,12 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         BoostDialogs.showUnsavedChanges(this.type, getContext(), this.resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.this.lambda$hasChanges$10();
+                this.f$0.lambda$hasChanges$10();
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.this.lambda$hasChanges$11();
+                this.f$0.lambda$hasChanges$11();
             }
         });
         return true;
@@ -550,21 +550,21 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 TLObject tLObject = (TLObject) it.next();
-                long j = tLObject instanceof TLRPC.TL_inputPeerChat ? -((TLRPC.TL_inputPeerChat) tLObject).chat_id : 0L;
+                long jHashCode = tLObject instanceof TLRPC.TL_inputPeerChat ? -((TLRPC.TL_inputPeerChat) tLObject).chat_id : 0L;
                 if (tLObject instanceof TLRPC.TL_inputPeerChannel) {
-                    j = -((TLRPC.TL_inputPeerChannel) tLObject).channel_id;
+                    jHashCode = -((TLRPC.TL_inputPeerChannel) tLObject).channel_id;
                 }
                 if (tLObject instanceof TLRPC.Chat) {
-                    j = -((TLRPC.Chat) tLObject).id;
+                    jHashCode = -((TLRPC.Chat) tLObject).id;
                 }
                 if (tLObject instanceof TLRPC.User) {
-                    j = ((TLRPC.User) tLObject).id;
+                    jHashCode = ((TLRPC.User) tLObject).id;
                 }
                 if (tLObject instanceof TLRPC.TL_help_country) {
-                    j = ((TLRPC.TL_help_country) tLObject).default_name.hashCode();
+                    jHashCode = ((TLRPC.TL_help_country) tLObject).default_name.hashCode();
                 }
-                this.selectedIds.add(Long.valueOf(j));
-                this.allSelectedObjects.put(Long.valueOf(j), tLObject);
+                this.selectedIds.add(Long.valueOf(jHashCode));
+                this.allSelectedObjects.put(Long.valueOf(jHashCode), tLObject);
             }
         }
         this.openedIds.addAll(this.selectedIds);
@@ -573,7 +573,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.searchField.updateSpans(false, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.this.lambda$prepare$12();
+                this.f$0.lambda$prepare$12();
             }
         }, this.countriesList);
         updateSection();
@@ -588,21 +588,21 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void updateSection() {
-        String formatPluralStringComma;
+        String pluralStringComma;
         int i = this.type;
         if (i == 1) {
-            formatPluralStringComma = LocaleController.formatPluralStringComma(ChatObject.isChannelAndNotMegaGroup(this.currentChat) ? "Subscribers" : "Members", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
+            pluralStringComma = LocaleController.formatPluralStringComma(ChatObject.isChannelAndNotMegaGroup(this.currentChat) ? "Subscribers" : "Members", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
             this.sectionCell.setLayerHeight(32);
         } else if (i == 2) {
-            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
+            pluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
             this.sectionCell.setLayerHeight(32);
         } else if (i == 3) {
-            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
+            pluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
             this.sectionCell.setLayerHeight(1);
         } else {
-            formatPluralStringComma = "";
+            pluralStringComma = "";
         }
-        this.sectionCell.setText(formatPluralStringComma);
+        this.sectionCell.setText(pluralStringComma);
     }
 
     private void showMaximumUsersToast() {
@@ -627,27 +627,8 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         updateActionButton(z);
     }
 
-    private void updateCheckboxes(boolean z) {
-        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
-            View childAt = this.recyclerListView.getChildAt(i);
-            if (childAt instanceof SelectorUserCell) {
-                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
-                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
-                    SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(childAdapterPosition);
-                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                    selectorUserCell.setChecked(item.checked, z);
-                    TLRPC.Chat chat = item.chat;
-                    if (chat != null) {
-                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(chat) > 200 ? 0.3f : 1.0f, z);
-                    } else {
-                        selectorUserCell.setCheckboxAlpha(1.0f, z);
-                    }
-                }
-            }
-            if (childAt instanceof SelectorCountryCell) {
-                ((SelectorCountryCell) childAt).setChecked(this.selectedIds.contains(Long.valueOf(r1.getCountry().default_name.hashCode())), true);
-            }
-        }
+    private void updateCheckboxes(boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.updateCheckboxes(boolean):void");
     }
 
     @Override
@@ -661,12 +642,12 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
 
     private void drawFilledStatusBar(Canvas canvas, int i) {
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-        int max = Math.max(0, i);
-        int lerp = AndroidUtilities.lerp(max, 0, this.statusBarT.set(max < AndroidUtilities.statusBarHeight));
+        int iMax = Math.max(0, i);
+        int iLerp = AndroidUtilities.lerp(iMax, 0, this.statusBarT.set(iMax < AndroidUtilities.statusBarHeight));
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, this.containerView.getHeight() + AndroidUtilities.dp(14.0f));
-        float dp = AndroidUtilities.dp(14.0f) * (1.0f - this.statusBarT.get());
-        canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
+        rectF.set(this.backgroundPaddingLeft, iLerp, this.containerView.getWidth() - this.backgroundPaddingLeft, this.containerView.getHeight() + AndroidUtilities.dp(14.0f));
+        float fDp = AndroidUtilities.dp(14.0f) * (1.0f - this.statusBarT.get());
+        canvas.drawRoundRect(rectF, fDp, fDp, this.backgroundPaint);
     }
 
     private void updateActionButton(boolean z) {
@@ -718,7 +699,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SelectorBottomSheet.this.lambda$updateSectionCell$13(view);
+                    this.f$0.lambda$updateSectionCell$13(view);
                 }
             });
         } else if (z) {
@@ -739,7 +720,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void updateItems(boolean z, boolean z2) {
-        int i;
+        int iDp;
         SelectorAdapter selectorAdapter;
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
@@ -749,35 +730,35 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
         this.items.add(SelectorAdapter.Item.asCustom(this.sectionCell));
         if (this.type == 3) {
-            i = 0;
+            iDp = 0;
             for (String str : this.countriesLetters) {
                 ArrayList arrayList = new ArrayList();
                 for (TLRPC.TL_help_country tL_help_country : (List) this.countriesMap.get(str)) {
                     if (!isSearching() || matchLocal(tL_help_country, AndroidUtilities.translitSafe(this.query).toLowerCase())) {
-                        i += AndroidUtilities.dp(44.0f);
+                        iDp += AndroidUtilities.dp(44.0f);
                         arrayList.add(SelectorAdapter.Item.asCountry(tL_help_country, this.selectedIds.contains(Long.valueOf(tL_help_country.default_name.hashCode()))));
                     }
                 }
                 if (!arrayList.isEmpty()) {
-                    i += AndroidUtilities.dp(32.0f);
+                    iDp += AndroidUtilities.dp(32.0f);
                     this.items.add(SelectorAdapter.Item.asLetter(str.toUpperCase()));
                     this.items.addAll(arrayList);
                 }
             }
         } else {
-            i = 0;
+            iDp = 0;
         }
         Iterator it = this.peers.iterator();
         while (it.hasNext()) {
             TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) it.next();
-            i += AndroidUtilities.dp(56.0f);
+            iDp += AndroidUtilities.dp(56.0f);
             this.items.add(SelectorAdapter.Item.asPeer(inputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(inputPeer)))));
         }
         if (this.items.isEmpty()) {
             this.items.add(SelectorAdapter.Item.asNoUsers());
-            i += AndroidUtilities.dp(150.0f);
+            iDp += AndroidUtilities.dp(150.0f);
         }
-        this.items.add(SelectorAdapter.Item.asPad(Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - i)));
+        this.items.add(SelectorAdapter.Item.asPad(Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - iDp)));
         updateSectionCell(z);
         if (!z2 || (selectorAdapter = this.selectorAdapter) == null) {
             return;

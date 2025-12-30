@@ -21,9 +21,9 @@ public class ChatActivityBlurredRoundPageDownButton extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void addButtonView(ChatActivityBlurredRoundButton chatActivityBlurredRoundButton) {
+    public void addButtonView(ChatActivityBlurredRoundButton chatActivityBlurredRoundButton, int i) {
         this.buttonView = chatActivityBlurredRoundButton;
-        addView(chatActivityBlurredRoundButton, LayoutHelper.createFrame(56, 56, 80));
+        addView(chatActivityBlurredRoundButton, LayoutHelper.createFrame(i, i, 80));
         chatActivityBlurredRoundButton.setIconPadding(AndroidUtilities.dp(2.0f));
     }
 
@@ -71,9 +71,9 @@ public class ChatActivityBlurredRoundPageDownButton extends FrameLayout {
         }
     }
 
-    public static ChatActivityBlurredRoundPageDownButton create(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, int i) {
+    public static ChatActivityBlurredRoundPageDownButton create(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, int i3) {
         ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButton = new ChatActivityBlurredRoundPageDownButton(context, resourcesProvider);
-        chatActivityBlurredRoundPageDownButton.addButtonView(ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider, i));
+        chatActivityBlurredRoundPageDownButton.addButtonView(ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider, i3, i2), i);
         ScaleStateListAnimator.apply(chatActivityBlurredRoundPageDownButton, 0.13f, 2.0f);
         return chatActivityBlurredRoundPageDownButton;
     }

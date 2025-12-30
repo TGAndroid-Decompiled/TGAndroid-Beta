@@ -62,7 +62,6 @@ import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.PollCreateActivity;
-import org.telegram.ui.TodoItemMenu;
 
 public class TodoItemMenu extends Dialog {
     private Bitmap blurBitmap;
@@ -163,7 +162,7 @@ public class TodoItemMenu extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TodoItemMenu.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -172,9 +171,9 @@ public class TodoItemMenu extends Dialog {
                 if (view == TodoItemMenu.this.myCell || view == TodoItemMenu.this.myTaskCell) {
                     canvas.save();
                     canvas.clipRect(0.0f, AndroidUtilities.lerp(TodoItemMenu.this.clipTop, 0.0f, TodoItemMenu.this.openProgress), getWidth(), AndroidUtilities.lerp(TodoItemMenu.this.clipBottom, getHeight(), TodoItemMenu.this.openProgress));
-                    boolean drawChild = super.drawChild(canvas, view, j);
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
                     canvas.restore();
-                    return drawChild;
+                    return zDrawChild;
                 }
                 return super.drawChild(canvas, view, j);
             }
@@ -229,7 +228,7 @@ public class TodoItemMenu extends Dialog {
         tabsView2.setOnTabClick(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ViewPagerFixed.this.scrollToPosition(((Integer) obj).intValue());
+                viewPagerFixed2.scrollToPosition(((Integer) obj).intValue());
             }
         });
         TextView textView = new TextView(context);
@@ -243,29 +242,17 @@ public class TodoItemMenu extends Dialog {
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets windowInsets2;
-                Insets insets;
-                int i;
-                int i2;
-                int i3;
-                int i4;
-                int i5 = Build.VERSION.SDK_INT;
-                if (i5 < 30) {
+                int i = Build.VERSION.SDK_INT;
+                if (i < 30) {
                     TodoItemMenu.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                 } else {
-                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    Rect rect = TodoItemMenu.this.insets;
-                    i = insets.left;
-                    i2 = insets.top;
-                    i3 = insets.right;
-                    i4 = insets.bottom;
-                    rect.set(i, i2, i3, i4);
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    TodoItemMenu.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
                 }
                 TodoItemMenu.this.containerView.setPadding(TodoItemMenu.this.insets.left, TodoItemMenu.this.insets.top, TodoItemMenu.this.insets.right, TodoItemMenu.this.insets.bottom);
                 TodoItemMenu.this.windowView.requestLayout();
-                if (i5 >= 30) {
-                    windowInsets2 = WindowInsets.CONSUMED;
-                    return windowInsets2;
+                if (i >= 30) {
+                    return WindowInsets.CONSUMED;
                 }
                 return windowInsets.consumeSystemWindowInsets();
             }
@@ -276,7 +263,7 @@ public class TodoItemMenu extends Dialog {
         dismiss();
     }
 
-    public class AnonymousClass4 extends ViewPagerFixed.Adapter {
+    class AnonymousClass4 extends ViewPagerFixed.Adapter {
         final Context val$context;
 
         @Override
@@ -298,7 +285,7 @@ public class TodoItemMenu extends Dialog {
             frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TodoItemMenu.AnonymousClass4.this.lambda$createView$0(view);
+                    this.f$0.lambda$createView$0(view);
                 }
             });
             return frameLayout;
@@ -364,7 +351,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -385,6 +372,13 @@ public class TodoItemMenu extends Dialog {
                 protected void onMeasure(int i4, int i5) {
                     setMeasuredDimension(width, height);
                 }
+
+                @Override
+                public void drawOverlays(Canvas canvas) {
+                    this.firstVisiblePollButton = 0;
+                    this.lastVisiblePollButton = this.pollButtons.size() - 1;
+                    super.drawOverlays(canvas);
+                }
             };
             this.myTaskCell = chatMessageCell2;
             this.cell.copyParamsTo(chatMessageCell2);
@@ -402,9 +396,7 @@ public class TodoItemMenu extends Dialog {
 
                 @Override
                 public boolean canPerformReply() {
-                    boolean canPerformActions;
-                    canPerformActions = canPerformActions();
-                    return canPerformActions;
+                    return canPerformActions();
                 }
 
                 @Override
@@ -580,6 +572,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressSponsoredInfo(ChatMessageCell chatMessageCell3, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell3, f, f2);
+                }
+
+                @Override
+                public void didPressSummarize(ChatMessageCell chatMessageCell3, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell3, z);
                 }
 
                 @Override
@@ -780,6 +777,13 @@ public class TodoItemMenu extends Dialog {
                 protected void onMeasure(int i4, int i5) {
                     setMeasuredDimension(width, height);
                 }
+
+                @Override
+                public void drawOverlays(Canvas canvas) {
+                    this.firstVisiblePollButton = 0;
+                    this.lastVisiblePollButton = this.pollButtons.size() - 1;
+                    super.drawOverlays(canvas);
+                }
             };
             this.myCell = chatMessageCell5;
             this.cell.copyVisiblePartTo(chatMessageCell5);
@@ -798,9 +802,7 @@ public class TodoItemMenu extends Dialog {
 
                 @Override
                 public boolean canPerformReply() {
-                    boolean canPerformActions;
-                    canPerformActions = canPerformActions();
-                    return canPerformActions;
+                    return canPerformActions();
                 }
 
                 @Override
@@ -976,6 +978,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressSponsoredInfo(ChatMessageCell chatMessageCell6, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell6, f, f2);
+                }
+
+                @Override
+                public void didPressSummarize(ChatMessageCell chatMessageCell6, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell6, z);
                 }
 
                 @Override
@@ -1172,7 +1179,7 @@ public class TodoItemMenu extends Dialog {
         this.tabsView.bringToFront();
         this.viewPager.onTabAnimationUpdate(false);
         TLRPC.TodoCompletion todoCompletion = null;
-        ItemOptions makeOptions = ItemOptions.makeOptions(this.containerView, this.resourcesProvider, (View) null);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, this.resourcesProvider, (View) null);
         final TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) MessageObject.getMedia(this.messageObject);
         final int i4 = 0;
         while (true) {
@@ -1200,29 +1207,29 @@ public class TodoItemMenu extends Dialog {
         }
         if (this.messageObject.canCompleteTodo()) {
             if (todoCompletion != null) {
-                makeOptions.addText(LocaleController.formatTodoCompletedDate(todoCompletion.date), 14);
-                makeOptions.addGap();
-                makeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.TodoUncheck), new Runnable() {
+                itemOptionsMakeOptions.addText(LocaleController.formatTodoCompletedDate(todoCompletion.date), 14);
+                itemOptionsMakeOptions.addGap();
+                itemOptionsMakeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.TodoUncheck), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$1(chatActivity, i);
+                        this.f$0.lambda$setCell$1(chatActivity, i);
                     }
                 });
             } else {
-                makeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.TodoCheck), new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.TodoCheck), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$2(chatActivity, i);
+                        this.f$0.lambda$setCell$2(chatActivity, i);
                     }
                 });
             }
         }
         if (todoItem != null) {
             if (chatActivity != null) {
-                makeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.TodoItemQuote), new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.TodoItemQuote), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$3(chatActivity, todoItem);
+                        this.f$0.lambda$setCell$3(chatActivity, todoItem);
                     }
                 });
             }
@@ -1241,39 +1248,39 @@ public class TodoItemMenu extends Dialog {
                 sb.append(this.messageObject.getId());
                 sb.append("?task=");
                 sb.append(todoItem.id);
-                final String sb2 = sb.toString();
-                makeOptions.add(R.drawable.msg_link, LocaleController.getString(R.string.CopyLink), new Runnable() {
+                final String string = sb.toString();
+                itemOptionsMakeOptions.add(R.drawable.msg_link, LocaleController.getString(R.string.CopyLink), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$4(sb2);
+                        this.f$0.lambda$setCell$4(string);
                     }
                 });
             }
-            makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+            itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$setCell$5(todoItem);
+                    this.f$0.lambda$setCell$5(todoItem);
                 }
             });
         }
         if (this.messageObject.canEditMessage(chatActivity.currentChat)) {
-            makeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.TodoEditItem), new Runnable() {
+            itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.TodoEditItem), new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$setCell$7(chatActivity, i4);
+                    this.f$0.lambda$setCell$7(chatActivity, i4);
                 }
             });
             if (tL_messageMediaToDo.todo.list.size() > 1) {
-                makeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
+                itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
+                        this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
             }
         }
-        makeOptions.setupSelectors();
-        ViewGroup layout = makeOptions.getLayout();
+        itemOptionsMakeOptions.setupSelectors();
+        ViewGroup layout = itemOptionsMakeOptions.getLayout();
         this.taskOptionsView = layout;
         layout.setPivotX(0.0f);
         this.taskOptionsView.setPivotY(0.0f);
@@ -1321,15 +1328,15 @@ public class TodoItemMenu extends Dialog {
         pollCreateActivity.setEditing(MessageObject.getMedia(this.messageObject), false, i);
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
-            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i2) {
-                TodoItemMenu.this.lambda$setCell$6(chatActivity, messageMedia, hashMap, z, i2);
+            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i2) {
+                this.f$0.lambda$setCell$6(chatActivity, messageMedia, map, z, i2);
             }
         });
         chatActivity.presentFragment(pollCreateActivity);
         dismiss(false);
     }
 
-    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i) {
+    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) {
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
             TLRPC.MessageMedia messageMedia2 = this.messageObject.messageOwner.media;
             if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
@@ -1465,8 +1472,8 @@ public class TodoItemMenu extends Dialog {
 
     public void updateTranslation() {
         float positionAnimated = this.viewPager.getPositionAnimated();
-        float lerp = AndroidUtilities.lerp(0, -this.viewPager.getWidth(), positionAnimated);
-        float lerp2 = AndroidUtilities.lerp(this.viewPager.getWidth(), 0, positionAnimated);
+        float fLerp = AndroidUtilities.lerp(0, -this.viewPager.getWidth(), positionAnimated);
+        float fLerp2 = AndroidUtilities.lerp(this.viewPager.getWidth(), 0, positionAnimated);
         if (this.hasTranslation) {
             View view = this.messageOptionsView;
             if (view instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
@@ -1486,56 +1493,56 @@ public class TodoItemMenu extends Dialog {
                 }
             }
         }
-        this.myCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx1, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp2);
+        this.myCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx1, this.dismissingWithAlpha ? 1.0f : this.openProgress) + fLerp2);
         this.myCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty1, this.dismissingWithAlpha ? 1.0f : this.openProgress));
         View view2 = this.messageOptionsView;
         if (view2 != null) {
             if (this.isOut) {
-                view2.setTranslationX(((((this.dtx1 + lerp2) + this.myCell.getLeft()) + this.myCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.messageOptionsView.getLeft());
+                view2.setTranslationX(((((this.dtx1 + fLerp2) + this.myCell.getLeft()) + this.myCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.messageOptionsView.getLeft());
             } else {
-                view2.setTranslationX((((this.dtx1 + lerp2) + (this.myCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myCell.getLeft()) - this.messageOptionsView.getLeft());
+                view2.setTranslationX((((this.dtx1 + fLerp2) + (this.myCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myCell.getLeft()) - this.messageOptionsView.getLeft());
             }
-            this.messageOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.messageOptionsView.getX() - lerp2);
+            this.messageOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.messageOptionsView.getX() - fLerp2);
             this.messageOptionsView.setTranslationY(((this.myCell.getY() + this.myCell.getHeight()) - this.messageOptionsView.getTop()) - this.menuContainer.getTop());
             this.messageOptionsView.setAlpha(this.openProgress);
-            float lerp3 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
-            this.messageOptionsView.setScaleX(lerp3);
-            this.messageOptionsView.setScaleY(lerp3);
+            float fLerp3 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
+            this.messageOptionsView.setScaleX(fLerp3);
+            this.messageOptionsView.setScaleY(fLerp3);
         }
-        this.myTaskCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx2, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp);
+        this.myTaskCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx2, this.dismissingWithAlpha ? 1.0f : this.openProgress) + fLerp);
         this.myTaskCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty2, this.dismissingWithAlpha ? 1.0f : this.openProgress));
         if (this.taskOptionsView != null) {
             int todoIndex = this.myTaskCell.getTodoIndex(this.taskId);
             this.myTaskCell.getPollButtonTop(todoIndex);
             float pollButtonBottom = this.myTaskCell.getPollButtonBottom(todoIndex);
             if (this.isOut) {
-                this.taskOptionsView.setTranslationX(((((this.dtx2 + lerp) + this.myTaskCell.getLeft()) + this.myTaskCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.taskOptionsView.getLeft());
+                this.taskOptionsView.setTranslationX(((((this.dtx2 + fLerp) + this.myTaskCell.getLeft()) + this.myTaskCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.taskOptionsView.getLeft());
             } else {
-                this.taskOptionsView.setTranslationX((((this.dtx2 + lerp) + (this.myTaskCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myTaskCell.getLeft()) - this.taskOptionsView.getLeft());
+                this.taskOptionsView.setTranslationX((((this.dtx2 + fLerp) + (this.myTaskCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myTaskCell.getLeft()) - this.taskOptionsView.getLeft());
             }
-            this.taskOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.taskOptionsView.getX() - lerp2);
+            this.taskOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.taskOptionsView.getX() - fLerp2);
             this.taskOptionsView.setTranslationY(((this.myTaskCell.getY() + ((int) pollButtonBottom)) - this.taskOptionsView.getTop()) - this.menuContainer.getTop());
             this.taskOptionsView.setAlpha(this.openProgress);
-            float lerp4 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
-            this.taskOptionsView.setScaleX(lerp4);
-            this.taskOptionsView.setScaleY(lerp4);
+            float fLerp4 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
+            this.taskOptionsView.setScaleX(fLerp4);
+            this.taskOptionsView.setScaleY(fLerp4);
         }
         if (this.dismissingWithAlpha) {
             this.myCell.setAlpha(this.openProgress);
             this.myTaskCell.setAlpha(this.openProgress);
         }
         if (this.reactionsView != null) {
-            float max = lerp2 + Math.max(0.0f, ((this.myCell.getBoundsRight() + this.myCell.getBoundsLeft()) / 2.0f) - (this.reactionsView.getWidth() * 0.8f));
-            this.reactionsView.setTranslationX(max);
+            float fMax = fLerp2 + Math.max(0.0f, ((this.myCell.getBoundsRight() + this.myCell.getBoundsLeft()) / 2.0f) - (this.reactionsView.getWidth() * 0.8f));
+            this.reactionsView.setTranslationX(fMax);
             this.reactionsView.setTranslationY(Math.max(0.0f, ((this.myCell.getY() - this.reactionsView.getHeight()) + AndroidUtilities.dp(22.0f)) - this.menuContainer.getTop()));
             this.reactionsView.setAlpha(this.openProgress);
             View windowView = this.reactionsView.getWindowView();
             if (windowView != null) {
-                windowView.setTranslationX(max);
+                windowView.setTranslationX(fMax);
                 windowView.setAlpha(this.openProgress);
             }
         }
-        this.hintTextView.setTranslationX(lerp);
+        this.hintTextView.setTranslationX(fLerp);
         this.hintTextView.setAlpha(this.openProgress);
         this.tabsView.setSelectedTab(positionAnimated);
         this.tabsView.setAlpha(this.openProgress);
@@ -1548,7 +1555,7 @@ public class TodoItemMenu extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                TodoItemMenu.this.lambda$prepareBlur$13(view, (Bitmap) obj);
+                this.f$0.lambda$prepareBlur$13(view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -1620,7 +1627,7 @@ public class TodoItemMenu extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                TodoItemMenu.this.lambda$dismiss$15(z2);
+                this.f$0.lambda$dismiss$15(z2);
             }
         });
         this.windowView.invalidate();
@@ -1634,7 +1641,7 @@ public class TodoItemMenu extends Dialog {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TodoItemMenu.this.lambda$dismiss$14();
+                this.f$0.lambda$dismiss$14();
             }
         });
         ChatMessageCell chatMessageCell = this.cell;
@@ -1669,12 +1676,12 @@ public class TodoItemMenu extends Dialog {
             valueAnimator2.cancel();
         }
         setupTranslation();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                TodoItemMenu.this.lambda$animateOpenTo$16(valueAnimator3);
+                this.f$0.lambda$animateOpenTo$16(valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1696,12 +1703,12 @@ public class TodoItemMenu extends Dialog {
         valueAnimator3.setInterpolator(cubicBezierInterpolator);
         this.openAnimator.setDuration(j);
         this.openAnimator.start();
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
-        this.open2Animator = ofFloat2;
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
+        this.open2Animator = valueAnimatorOfFloat2;
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                TodoItemMenu.this.lambda$animateOpenTo$17(valueAnimator4);
+                this.f$0.lambda$animateOpenTo$17(valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -1710,7 +1717,7 @@ public class TodoItemMenu extends Dialog {
                 TodoItemMenu.this.openProgress2 = z ? 1.0f : 0.0f;
             }
         });
-        this.open2Animator.setDuration(((float) j) * 1.5f);
+        this.open2Animator.setDuration((long) (j * 1.5f));
         this.open2Animator.setInterpolator(cubicBezierInterpolator);
         this.open2Animator.start();
     }

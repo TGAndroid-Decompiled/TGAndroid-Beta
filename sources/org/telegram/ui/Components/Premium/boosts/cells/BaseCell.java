@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -91,7 +92,7 @@ public abstract class BaseCell extends FrameLayout {
         radioButton.setVisibility(8);
     }
 
-    public void updateLayouts() {
+    protected void updateLayouts() {
         float f;
         float f2;
         float f3;
@@ -147,7 +148,7 @@ public abstract class BaseCell extends FrameLayout {
         }
     }
 
-    public CharSequence withArrow(CharSequence charSequence) {
+    protected CharSequence withArrow(CharSequence charSequence) throws Resources.NotFoundException {
         SpannableString spannableString = new SpannableString(">");
         Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawable, 2);
@@ -185,7 +186,7 @@ public abstract class BaseCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(getFullHeight()), 1073741824));
     }
 
@@ -198,11 +199,11 @@ public abstract class BaseCell extends FrameLayout {
             if (this.imageView.getVisibility() == 8) {
                 i -= 40;
             }
-            int dividerPadding = i + dividerPadding();
+            int iDividerPadding = i + dividerPadding();
             if (LocaleController.isRTL) {
-                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(dividerPadding), getHeight(), this.dividerPaint);
+                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(iDividerPadding), getHeight(), this.dividerPaint);
             } else {
-                canvas.drawRect(AndroidUtilities.dp(dividerPadding), getHeight() - 1, getWidth(), getHeight(), this.dividerPaint);
+                canvas.drawRect(AndroidUtilities.dp(iDividerPadding), getHeight() - 1, getWidth(), getHeight(), this.dividerPaint);
             }
         }
     }

@@ -78,35 +78,35 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             }
 
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) throws NumberFormatException {
+                View availableReactionCell;
                 if (i == 0) {
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ReactionsDoubleTapManageActivity.this).parentLayout, 2);
                     themePreviewMessagesCell.setImportantForAccessibility(4);
                     themePreviewMessagesCell.fragment = ReactionsDoubleTapManageActivity.this;
-                    view = themePreviewMessagesCell;
+                    availableReactionCell = themePreviewMessagesCell;
                 } else if (i == 2) {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
                     textInfoPrivacyCell.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    view = textInfoPrivacyCell;
+                    availableReactionCell = textInfoPrivacyCell;
                 } else if (i == 3) {
-                    SetDefaultReactionCell setDefaultReactionCell = new SetDefaultReactionCell(context);
+                    SetDefaultReactionCell setDefaultReactionCell = ReactionsDoubleTapManageActivity.this.new SetDefaultReactionCell(context);
                     setDefaultReactionCell.update(false);
-                    view = setDefaultReactionCell;
+                    availableReactionCell = setDefaultReactionCell;
                 } else if (i == 4) {
-                    View view2 = new View(context) {
+                    View view = new View(context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
                         }
                     };
-                    view2.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    view = view2;
+                    view.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    availableReactionCell = view;
                 } else {
-                    view = new AvailableReactionCell(context, true, true);
+                    availableReactionCell = new AvailableReactionCell(context, true, true);
                 }
-                return new RecyclerListView.Holder(view);
+                return new RecyclerListView.Holder(availableReactionCell);
             }
 
             @Override
@@ -145,7 +145,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                ReactionsDoubleTapManageActivity.this.lambda$createView$0(view, i);
+                this.f$0.lambda$createView$0(view, i);
             }
         });
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, -1));
@@ -173,7 +173,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         }
     }
 
-    public class SetDefaultReactionCell extends FrameLayout {
+    private class SetDefaultReactionCell extends FrameLayout {
         private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable imageDrawable;
         private TextView textView;
 
@@ -189,7 +189,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(24.0f));
         }
 
-        public void update(boolean z) {
+        public void update(boolean z) throws NumberFormatException {
             String doubleTapReaction = MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction();
             if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
                 try {
@@ -268,7 +268,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         return SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ReactionsDoubleTapManageActivity.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override

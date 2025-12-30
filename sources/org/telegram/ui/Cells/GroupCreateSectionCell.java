@@ -1,6 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -18,7 +19,7 @@ public class GroupCreateSectionCell extends FrameLayout {
     private Drawable drawable;
     private TextView textView;
 
-    public GroupCreateSectionCell(Context context) {
+    public GroupCreateSectionCell(Context context) throws Resources.NotFoundException {
         super(context);
         setBackgroundColor(Theme.getColor(Theme.key_graySection));
         Drawable drawable = getResources().getDrawable(R.drawable.shadowdown);

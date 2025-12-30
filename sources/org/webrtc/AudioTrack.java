@@ -11,7 +11,7 @@ public class AudioTrack extends MediaStreamTrack {
         nativeSetVolume(getNativeAudioTrack(), d);
     }
 
-    public long getNativeAudioTrack() {
+    long getNativeAudioTrack() {
         return getNativeMediaStreamTrack();
     }
 }

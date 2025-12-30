@@ -32,7 +32,7 @@ public class VideoFileRenderer implements VideoSink {
         VideoSink.CC.$default$setParentSink(this, videoSink);
     }
 
-    public VideoFileRenderer(String str, int i, int i2, final EglBase.Context context) {
+    public VideoFileRenderer(String str, int i, int i2, final EglBase.Context context) throws IOException {
         if (i % 2 == 1 || i2 % 2 == 1) {
             throw new IllegalArgumentException("Does not support uneven width or height");
         }
@@ -71,7 +71,7 @@ public class VideoFileRenderer implements VideoSink {
         this.renderThreadHandler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoFileRenderer.this.lambda$onFrame$0(videoFrame);
+                this.f$0.lambda$onFrame$0(videoFrame);
             }
         });
     }
@@ -89,19 +89,19 @@ public class VideoFileRenderer implements VideoSink {
         } else {
             width2 = (int) (width2 * (f / width));
         }
-        VideoFrame.Buffer cropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i, i2);
+        VideoFrame.Buffer bufferCropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i, i2);
         videoFrame.release();
-        final VideoFrame.I420Buffer i420 = cropAndScale.toI420();
-        cropAndScale.release();
+        final VideoFrame.I420Buffer i420 = bufferCropAndScale.toI420();
+        bufferCropAndScale.release();
         this.fileThreadHandler.post(new Runnable() {
             @Override
-            public final void run() {
-                VideoFileRenderer.this.lambda$renderFrameOnRenderThread$1(i420, videoFrame);
+            public final void run() throws IOException {
+                this.f$0.lambda$renderFrameOnRenderThread$1(i420, videoFrame);
             }
         });
     }
 
-    public void lambda$renderFrameOnRenderThread$1(VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
+    public void lambda$renderFrameOnRenderThread$1(VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) throws IOException {
         YuvHelper.I420Rotate(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), this.outputFrameBuffer, i420Buffer.getWidth(), i420Buffer.getHeight(), videoFrame.getRotation());
         i420Buffer.release();
         try {
@@ -113,19 +113,19 @@ public class VideoFileRenderer implements VideoSink {
         }
     }
 
-    public void release() {
+    public void release() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         this.renderThreadHandler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoFileRenderer.this.lambda$release$2(countDownLatch);
+                this.f$0.lambda$release$2(countDownLatch);
             }
         });
         ThreadUtils.awaitUninterruptibly(countDownLatch);
         this.fileThreadHandler.post(new Runnable() {
             @Override
-            public final void run() {
-                VideoFileRenderer.this.lambda$release$3();
+            public final void run() throws IOException {
+                this.f$0.lambda$release$3();
             }
         });
         try {
@@ -143,7 +143,7 @@ public class VideoFileRenderer implements VideoSink {
         countDownLatch.countDown();
     }
 
-    public void lambda$release$3() {
+    public void lambda$release$3() throws IOException {
         try {
             this.videoOutFile.close();
             Logging.d("VideoFileRenderer", "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");

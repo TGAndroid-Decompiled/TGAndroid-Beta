@@ -15,13 +15,13 @@ public abstract class CancellableContinuationKt {
         if (!(continuation instanceof DispatchedContinuation)) {
             return new CancellableContinuationImpl(continuation, 1);
         }
-        CancellableContinuationImpl claimReusableCancellableContinuation$kotlinx_coroutines_core = ((DispatchedContinuation) continuation).claimReusableCancellableContinuation$kotlinx_coroutines_core();
-        if (claimReusableCancellableContinuation$kotlinx_coroutines_core != null) {
-            if (!claimReusableCancellableContinuation$kotlinx_coroutines_core.resetStateReusable()) {
-                claimReusableCancellableContinuation$kotlinx_coroutines_core = null;
+        CancellableContinuationImpl cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core = ((DispatchedContinuation) continuation).claimReusableCancellableContinuation$kotlinx_coroutines_core();
+        if (cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core != null) {
+            if (!cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core.resetStateReusable()) {
+                cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core = null;
             }
-            if (claimReusableCancellableContinuation$kotlinx_coroutines_core != null) {
-                return claimReusableCancellableContinuation$kotlinx_coroutines_core;
+            if (cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core != null) {
+                return cancellableContinuationImplClaimReusableCancellableContinuation$kotlinx_coroutines_core;
             }
         }
         return new CancellableContinuationImpl(continuation, 2);

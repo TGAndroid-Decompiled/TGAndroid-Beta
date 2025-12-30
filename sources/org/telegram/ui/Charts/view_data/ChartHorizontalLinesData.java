@@ -57,7 +57,7 @@ public class ChartHorizontalLinesData {
         if (j > 100) {
             j = round(j);
         }
-        return ((long) Math.ceil(((float) j) / 5.0f)) * 5;
+        return ((long) Math.ceil(j / 5.0f)) * 5;
     }
 
     private static long round(long j) {

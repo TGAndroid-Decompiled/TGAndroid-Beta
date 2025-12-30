@@ -36,35 +36,35 @@ public class NotchInfoUtils {
             if (string.isEmpty()) {
                 return null;
             }
-            String trim = string.trim();
+            String strTrim = string.trim();
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int i2 = displayMetrics.widthPixels;
             float f2 = displayMetrics.density;
-            if (trim.endsWith("@right")) {
+            if (strTrim.endsWith("@right")) {
                 f = i2;
-                trim = trim.substring(0, trim.length() - 6).trim();
+                strTrim = strTrim.substring(0, strTrim.length() - 6).trim();
                 i = 5;
-            } else if (trim.endsWith("@left")) {
-                trim = trim.substring(0, trim.length() - 5).trim();
+            } else if (strTrim.endsWith("@left")) {
+                strTrim = strTrim.substring(0, strTrim.length() - 5).trim();
                 f = 0.0f;
                 i = 3;
             } else {
                 f = i2 / 2.0f;
                 i = 17;
             }
-            boolean endsWith = trim.endsWith("@dp");
-            if (endsWith) {
-                trim = trim.substring(0, trim.length() - 3);
+            boolean zEndsWith = strTrim.endsWith("@dp");
+            if (zEndsWith) {
+                strTrim = strTrim.substring(0, strTrim.length() - 3);
             }
-            if (trim.contains("@bottom")) {
-                trim = trim.split("@bottom", 2)[0].trim();
+            if (strTrim.contains("@bottom")) {
+                strTrim = strTrim.split("@bottom", 2)[0].trim();
             }
             try {
-                PathParser.PathDataNode[] createNodesFromPathData = PathParser.createNodesFromPathData(trim);
+                PathParser.PathDataNode[] pathDataNodeArrCreateNodesFromPathData = PathParser.createNodesFromPathData(strTrim);
                 Path path = new Path();
-                PathParser.PathDataNode.nodesToPath(createNodesFromPathData, path);
+                PathParser.PathDataNode.nodesToPath(pathDataNodeArrCreateNodesFromPathData, path);
                 Matrix matrix = new Matrix();
-                if (endsWith) {
+                if (zEndsWith) {
                     matrix.postScale(f2, f2);
                 }
                 matrix.postTranslate(f, 0.0f);
@@ -79,8 +79,8 @@ public class NotchInfoUtils {
                 }
                 int i3 = (i != 17 || rectF.left >= ((float) displayMetrics2.widthPixels) / 4.0f) ? i : 3;
                 notchInfo.gravity = (i3 != 17 || rectF.right <= (((float) displayMetrics2.widthPixels) / 4.0f) * 3.0f) ? i3 : 5;
-                notchInfo.rawPath = trim;
-                notchInfo.isAccurate = trim.contains("C") || trim.contains("S") || trim.contains("Q");
+                notchInfo.rawPath = strTrim;
+                notchInfo.isAccurate = strTrim.contains("C") || strTrim.contains("S") || strTrim.contains("Q");
                 notchInfo.isLikelyCircle = rectF.width() <= ((float) AndroidUtilities.dp(32.0f)) || rectF.width() <= rectF.height();
                 return notchInfo;
             } catch (Throwable th) {

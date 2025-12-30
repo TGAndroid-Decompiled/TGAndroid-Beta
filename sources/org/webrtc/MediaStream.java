@@ -109,7 +109,7 @@ public class MediaStream {
         removeMediaStreamTrack(this.videoTracks, j);
     }
 
-    public long getNativeMediaStream() {
+    long getNativeMediaStream() {
         checkMediaStreamExists();
         return this.nativeStream;
     }

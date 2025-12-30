@@ -45,17 +45,17 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         super.onDeleted(context, iArr);
         ApplicationLoader.postInitApplication();
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         for (int i = 0; i < iArr.length; i++) {
             int i2 = sharedPreferences.getInt("account" + iArr[i], -1);
             if (i2 >= 0) {
                 AccountInstance.getInstance(i2).getMessagesStorage().clearWidgetDialogs(iArr[i]);
             }
-            edit.remove("account" + iArr[i]);
-            edit.remove("type" + iArr[i]);
-            edit.remove("deleted" + iArr[i]);
+            editorEdit.remove("account" + iArr[i]);
+            editorEdit.remove("type" + iArr[i]);
+            editorEdit.remove("deleted" + iArr[i]);
         }
-        edit.commit();
+        editorEdit.commit();
     }
 
     public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i) {
@@ -69,9 +69,9 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         if (!sharedPreferences.getBoolean("deleted" + i, false)) {
             int i3 = sharedPreferences.getInt("account" + i, -1);
             if (i3 == -1) {
-                SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt("account" + i, UserConfig.selectedAccount);
-                edit.putInt("type" + i, 0).commit();
+                SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                editorEdit.putInt("account" + i, UserConfig.selectedAccount);
+                editorEdit.putInt("type" + i, 0).commit();
             }
             ArrayList<Long> arrayList = new ArrayList<>();
             if (i3 >= 0) {

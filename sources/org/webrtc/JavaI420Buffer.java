@@ -48,15 +48,15 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         if (!byteBuffer.isDirect() || !byteBuffer2.isDirect() || !byteBuffer3.isDirect()) {
             throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
         }
-        ByteBuffer slice = byteBuffer.slice();
-        ByteBuffer slice2 = byteBuffer2.slice();
-        ByteBuffer slice3 = byteBuffer3.slice();
+        ByteBuffer byteBufferSlice = byteBuffer.slice();
+        ByteBuffer byteBufferSlice2 = byteBuffer2.slice();
+        ByteBuffer byteBufferSlice3 = byteBuffer3.slice();
         int i6 = (i + 1) / 2;
         int i7 = (i2 + 1) / 2;
-        checkCapacity(slice, i, i2, i3);
-        checkCapacity(slice2, i6, i7, i4);
-        checkCapacity(slice3, i6, i7, i5);
-        return new JavaI420Buffer(i, i2, slice, i3, slice2, i4, slice3, i5, runnable);
+        checkCapacity(byteBufferSlice, i, i2, i3);
+        checkCapacity(byteBufferSlice2, i6, i7, i4);
+        checkCapacity(byteBufferSlice3, i6, i7, i5);
+        return new JavaI420Buffer(i, i2, byteBufferSlice, i3, byteBufferSlice2, i4, byteBufferSlice3, i5, runnable);
     }
 
     public static JavaI420Buffer allocate(int i, int i2) {
@@ -65,19 +65,19 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         int i5 = i * i2;
         int i6 = i4 * i3;
         int i7 = i5 + i6;
-        final ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer((i4 * 2 * i3) + i5);
-        nativeAllocateByteBuffer.position(0);
-        nativeAllocateByteBuffer.limit(i5);
-        ByteBuffer slice = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i5);
-        nativeAllocateByteBuffer.limit(i7);
-        ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i7);
-        nativeAllocateByteBuffer.limit(i7 + i6);
-        return new JavaI420Buffer(i, i2, slice, i, slice2, i4, nativeAllocateByteBuffer.slice(), i4, new Runnable() {
+        final ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer((i4 * 2 * i3) + i5);
+        byteBufferNativeAllocateByteBuffer.position(0);
+        byteBufferNativeAllocateByteBuffer.limit(i5);
+        ByteBuffer byteBufferSlice = byteBufferNativeAllocateByteBuffer.slice();
+        byteBufferNativeAllocateByteBuffer.position(i5);
+        byteBufferNativeAllocateByteBuffer.limit(i7);
+        ByteBuffer byteBufferSlice2 = byteBufferNativeAllocateByteBuffer.slice();
+        byteBufferNativeAllocateByteBuffer.position(i7);
+        byteBufferNativeAllocateByteBuffer.limit(i7 + i6);
+        return new JavaI420Buffer(i, i2, byteBufferSlice, i, byteBufferSlice2, i4, byteBufferNativeAllocateByteBuffer.slice(), i4, new Runnable() {
             @Override
             public final void run() {
-                JniCommon.nativeFreeByteBuffer(nativeAllocateByteBuffer);
+                JniCommon.nativeFreeByteBuffer(byteBufferNativeAllocateByteBuffer);
             }
         });
     }
@@ -157,12 +157,12 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
             return wrap(i5, i6, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new Runnable() {
                 @Override
                 public final void run() {
-                    VideoFrame.I420Buffer.this.release();
+                    i420Buffer.release();
                 }
             });
         }
-        JavaI420Buffer allocate = allocate(i5, i6);
-        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i, i2, i3, i4, allocate.getDataY(), allocate.getStrideY(), allocate.getDataU(), allocate.getStrideU(), allocate.getDataV(), allocate.getStrideV(), i5, i6);
-        return allocate;
+        JavaI420Buffer javaI420BufferAllocate = allocate(i5, i6);
+        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i, i2, i3, i4, javaI420BufferAllocate.getDataY(), javaI420BufferAllocate.getStrideY(), javaI420BufferAllocate.getDataU(), javaI420BufferAllocate.getStrideU(), javaI420BufferAllocate.getDataV(), javaI420BufferAllocate.getStrideV(), i5, i6);
+        return javaI420BufferAllocate;
     }
 }

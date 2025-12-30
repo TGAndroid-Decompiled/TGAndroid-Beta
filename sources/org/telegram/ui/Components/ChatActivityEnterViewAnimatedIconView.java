@@ -11,6 +11,7 @@ import org.telegram.ui.Cells.ShareDialogCell$RepostStoryDrawable$$ExternalSynthe
 public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     private TransitState animatingState;
     private State currentState;
+    private final int sizeDp;
     private Map stateMap;
 
     public enum State {
@@ -23,6 +24,10 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     }
 
     public ChatActivityEnterViewAnimatedIconView(Context context) {
+        this(context, 32);
+    }
+
+    public ChatActivityEnterViewAnimatedIconView(Context context, int i) {
         super(context);
         this.stateMap = new HashMap() {
             @Override
@@ -31,10 +36,11 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
                 if (rLottieDrawable != null) {
                     return rLottieDrawable;
                 }
-                int i = ((TransitState) obj).resource;
-                return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
+                int i2 = ((TransitState) obj).resource;
+                return new RLottieDrawable(i2, String.valueOf(i2), AndroidUtilities.dp(ChatActivityEnterViewAnimatedIconView.this.sizeDp), AndroidUtilities.dp(ChatActivityEnterViewAnimatedIconView.this.sizeDp));
             }
         };
+        this.sizeDp = i;
     }
 
     public void setState(State state, boolean z) {
@@ -46,7 +52,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         if (!z || state2 == null || getState(state2, state) == null) {
             RLottieDrawable rLottieDrawable = (RLottieDrawable) this.stateMap.get(getAnyState(this.currentState));
             rLottieDrawable.stop();
-            rLottieDrawable.setProgress(0.0f, false);
+            rLottieDrawable.setProgress(state != State.VOICE ? 0.0f : 0.5f, false);
             setAnimation(rLottieDrawable);
         } else {
             TransitState state3 = getState(state2, this.currentState);
@@ -56,22 +62,30 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             this.animatingState = state3;
             RLottieDrawable rLottieDrawable2 = (RLottieDrawable) this.stateMap.get(state3);
             rLottieDrawable2.stop();
-            rLottieDrawable2.setProgress(0.0f, false);
+            if (state3 == TransitState.VIDEO_TO_VOICE) {
+                rLottieDrawable2.setCustomEndFrame(30);
+                rLottieDrawable2.setProgress(0.0f, false);
+            } else if (state3 == TransitState.VOICE_TO_VIDEO) {
+                rLottieDrawable2.setCustomEndFrame(60);
+                rLottieDrawable2.setProgress(0.5f, false);
+            } else {
+                rLottieDrawable2.setProgress(0.0f, false);
+            }
             rLottieDrawable2.setAutoRepeat(0);
             rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterViewAnimatedIconView.this.lambda$setState$0();
+                    this.f$0.lambda$setState$0();
                 }
             });
             setAnimation(rLottieDrawable2);
             AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable2));
         }
-        int ordinal = state.ordinal();
-        if (ordinal == 0) {
+        int iOrdinal = state.ordinal();
+        if (iOrdinal == 0) {
             setContentDescription(LocaleController.getString(R.string.AccDescrVoiceMessage));
         } else {
-            if (ordinal != 1) {
+            if (iOrdinal != 1) {
                 return;
             }
             setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
@@ -80,6 +94,10 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
 
     public void lambda$setState$0() {
         this.animatingState = null;
+    }
+
+    public State getCurrentState() {
+        return this.currentState;
     }
 
     private TransitState getAnyState(State state) {
@@ -100,7 +118,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         return null;
     }
 
-    public static final class TransitState {
+    private static final class TransitState {
         private static final TransitState[] $VALUES;
         public static final TransitState GIF_TO_KEYBOARD;
         public static final TransitState GIF_TO_SMILE;
@@ -133,13 +151,14 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         static {
             State state = State.VOICE;
             State state2 = State.VIDEO;
-            VOICE_TO_VIDEO = new TransitState("VOICE_TO_VIDEO", 0, state, state2, R.raw.voice_to_video);
+            int i = R.raw.voice_and_video;
+            VOICE_TO_VIDEO = new TransitState("VOICE_TO_VIDEO", 0, state, state2, i);
             State state3 = State.STICKER;
             State state4 = State.KEYBOARD;
             STICKER_TO_KEYBOARD = new TransitState("STICKER_TO_KEYBOARD", 1, state3, state4, R.raw.sticker_to_keyboard);
             State state5 = State.SMILE;
             SMILE_TO_KEYBOARD = new TransitState("SMILE_TO_KEYBOARD", 2, state5, state4, R.raw.smile_to_keyboard);
-            VIDEO_TO_VOICE = new TransitState("VIDEO_TO_VOICE", 3, state2, state, R.raw.video_to_voice);
+            VIDEO_TO_VOICE = new TransitState("VIDEO_TO_VOICE", 3, state2, state, i);
             KEYBOARD_TO_STICKER = new TransitState("KEYBOARD_TO_STICKER", 4, state4, state3, R.raw.keyboard_to_sticker);
             State state6 = State.GIF;
             KEYBOARD_TO_GIF = new TransitState("KEYBOARD_TO_GIF", 5, state4, state6, R.raw.keyboard_to_gif);

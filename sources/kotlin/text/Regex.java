@@ -14,8 +14,11 @@ public final class Regex implements Serializable {
         this.nativePattern = nativePattern;
     }
 
-    public Regex(java.lang.String r2) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlin.text.Regex.<init>(java.lang.String):void");
+    public Regex(String pattern) {
+        Intrinsics.checkNotNullParameter(pattern, "pattern");
+        Pattern patternCompile = Pattern.compile(pattern);
+        Intrinsics.checkNotNullExpressionValue(patternCompile, "compile(...)");
+        this(patternCompile);
     }
 
     public final boolean matches(CharSequence input) {
@@ -26,15 +29,15 @@ public final class Regex implements Serializable {
     public final String replace(CharSequence input, String replacement) {
         Intrinsics.checkNotNullParameter(input, "input");
         Intrinsics.checkNotNullParameter(replacement, "replacement");
-        String replaceAll = this.nativePattern.matcher(input).replaceAll(replacement);
-        Intrinsics.checkNotNullExpressionValue(replaceAll, "replaceAll(...)");
-        return replaceAll;
+        String strReplaceAll = this.nativePattern.matcher(input).replaceAll(replacement);
+        Intrinsics.checkNotNullExpressionValue(strReplaceAll, "replaceAll(...)");
+        return strReplaceAll;
     }
 
     public String toString() {
-        String pattern = this.nativePattern.toString();
-        Intrinsics.checkNotNullExpressionValue(pattern, "toString(...)");
-        return pattern;
+        String string = this.nativePattern.toString();
+        Intrinsics.checkNotNullExpressionValue(string, "toString(...)");
+        return string;
     }
 
     public static final class Companion {

@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -24,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -53,7 +56,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bots.BotDownloads;
 
 public class BotDownloads {
     public final long botId;
@@ -67,13 +69,13 @@ public class BotDownloads {
 
     public static BotDownloads get(Context context, int i, long j) {
         Pair pair = new Pair(Integer.valueOf(i), Long.valueOf(j));
-        HashMap hashMap = instances;
-        BotDownloads botDownloads = (BotDownloads) hashMap.get(pair);
+        HashMap map = instances;
+        BotDownloads botDownloads = (BotDownloads) map.get(pair);
         if (botDownloads != null) {
             return botDownloads;
         }
         BotDownloads botDownloads2 = new BotDownloads(context, i, j);
-        hashMap.put(pair, botDownloads2);
+        map.put(pair, botDownloads2);
         return botDownloads2;
     }
 
@@ -164,15 +166,15 @@ public class BotDownloads {
     }
 
     public void save() {
-        SharedPreferences.Editor edit = this.context.getSharedPreferences("botdownloads_" + this.currentAccount, 0).edit();
-        edit.clear();
+        SharedPreferences.Editor editorEdit = this.context.getSharedPreferences("botdownloads_" + this.currentAccount, 0).edit();
+        editorEdit.clear();
         HashSet hashSet = new HashSet();
         Iterator it = this.files.iterator();
         while (it.hasNext()) {
             hashSet.add(((FileDownload) it.next()).toJSON().toString());
         }
-        edit.putStringSet("" + this.botId, hashSet);
-        edit.apply();
+        editorEdit.putStringSet("" + this.botId, hashSet);
+        editorEdit.apply();
     }
 
     public void postNotify() {
@@ -194,7 +196,7 @@ public class BotDownloads {
         private final Runnable updateProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                BotDownloads.FileDownload.this.updateProgress();
+                this.f$0.updateProgress();
             }
         };
         public String url;
@@ -223,14 +225,14 @@ public class BotDownloads {
             this.size = jSONObject.optLong("size");
             this.done = jSONObject.optBoolean("done");
             this.mime = jSONObject.optString("mime");
-            String optString = jSONObject.optString("path");
-            if (TextUtils.isEmpty(optString)) {
+            String strOptString = jSONObject.optString("path");
+            if (TextUtils.isEmpty(strOptString)) {
                 return;
             }
-            this.file = new File(optString);
+            this.file = new File(strOptString);
         }
 
-        public JSONObject toJSON() {
+        public JSONObject toJSON() throws JSONException {
             JSONObject jSONObject = new JSONObject();
             try {
                 jSONObject.put("url", this.url);
@@ -247,7 +249,54 @@ public class BotDownloads {
         }
 
         public void updateProgress() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotDownloads.FileDownload.updateProgress():void");
+            if (this.done || this.cancelled) {
+                return;
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
+            this.last_progress_time = System.currentTimeMillis();
+            DownloadManager.Query query = new DownloadManager.Query();
+            query.setFilterById(this.id.longValue());
+            Cursor cursorQuery = null;
+            try {
+                try {
+                    cursorQuery = BotDownloads.this.downloadManager.query(query);
+                    if (cursorQuery.moveToFirst()) {
+                        int i = cursorQuery.getInt(cursorQuery.getColumnIndex("status"));
+                        if (i == 8) {
+                            File file = new File(Uri.parse(cursorQuery.getString(cursorQuery.getColumnIndex("local_uri"))).getPath());
+                            this.file = file;
+                            this.done = true;
+                            long length = file.length();
+                            this.size = length;
+                            if (length <= 0) {
+                                cancel();
+                            }
+                            BotDownloads.this.save();
+                        } else if (i == 16) {
+                            cancel();
+                            cursorQuery.close();
+                            return;
+                        } else {
+                            this.loaded_size = cursorQuery.getLong(cursorQuery.getColumnIndex("bytes_so_far"));
+                            this.size = cursorQuery.getLong(cursorQuery.getColumnIndex("total_size"));
+                            AndroidUtilities.runOnUIThread(this.updateProgressRunnable, 160L);
+                        }
+                    } else if (!this.done) {
+                        cancel();
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    if (0 != 0) {
+                    }
+                }
+                cursorQuery.close();
+                BotDownloads.this.postNotify();
+            } catch (Throwable th) {
+                if (0 != 0) {
+                    cursorQuery.close();
+                }
+                throw th;
+            }
         }
 
         public Pair getProgress() {
@@ -292,8 +341,7 @@ public class BotDownloads {
                 long size;
 
                 @Override
-                public String doInBackground(String... strArr) {
-                    long contentLengthLong;
+                public String doInBackground(String... strArr) throws IOException {
                     try {
                         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                         httpURLConnection.setRequestMethod("GET");
@@ -306,8 +354,7 @@ public class BotDownloads {
                         httpURLConnection.setDoInput(false);
                         httpURLConnection.getResponseCode();
                         if (Build.VERSION.SDK_INT >= 24) {
-                            contentLengthLong = httpURLConnection.getContentLengthLong();
-                            this.size = contentLengthLong;
+                            this.size = httpURLConnection.getContentLengthLong();
                         } else {
                             this.size = httpURLConnection.getContentLength();
                         }
@@ -378,7 +425,7 @@ public class BotDownloads {
         getMimeAndSize(str, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotDownloads.lambda$showAlert$0(AnimatedTextView.this, (String) obj, (Long) obj2);
+                BotDownloads.lambda$showAlert$0(animatedTextView, (String) obj, (Long) obj2);
             }
         });
         animatedTextView.setTextColor(Theme.getColor(i));
@@ -398,15 +445,15 @@ public class BotDownloads {
                 BotDownloads.lambda$showAlert$2(zArr, callback, alertDialog, i2);
             }
         });
-        AlertDialog create = builder.create();
-        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 BotDownloads.lambda$showAlert$3(zArr, callback, dialogInterface);
             }
         });
-        create.show();
-        return create;
+        alertDialogCreate.show();
+        return alertDialogCreate;
     }
 
     public static void lambda$showAlert$0(AnimatedTextView animatedTextView, String str, Long l) {
@@ -456,326 +503,83 @@ public class BotDownloads {
         if (str == null || str.isEmpty()) {
             return "";
         }
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -2008589971:
-                if (str.equals("application/epub+zip")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -1719571662:
-                if (str.equals("application/vnd.oasis.opendocument.text")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -1664118616:
-                if (str.equals("video/3gpp")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case -1578389996:
-                if (str.equals("application/vnd.ms-fontobject")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case -1348237359:
-                if (str.equals("application/x-cdf")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case -1348236892:
-                if (str.equals("application/x-csh")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case -1079884372:
-                if (str.equals("video/x-msvideo")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case -1073633483:
-                if (str.equals("application/vnd.openxmlformats-officedocument.presentationml.presentation")) {
-                    c = 7;
-                    break;
-                }
-                break;
-            case -1071817359:
-                if (str.equals("application/vnd.ms-powerpoint")) {
-                    c = '\b';
-                    break;
-                }
-                break;
-            case -1050893613:
-                if (str.equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-                    c = '\t';
-                    break;
-                }
-                break;
-            case -1007601745:
-                if (str.equals("audio/x-midi")) {
-                    c = '\n';
-                    break;
-                }
-                break;
-            case -958424608:
-                if (str.equals("text/calendar")) {
-                    c = 11;
-                    break;
-                }
-                break;
-            case -816908365:
-                if (str.equals("application/x-httpd-php")) {
-                    c = '\f';
-                    break;
-                }
-                break;
-            case -648684635:
-                if (str.equals("audio/3gpp2")) {
-                    c = '\r';
-                    break;
-                }
-                break;
-            case -433129473:
-                if (str.equals("application/vnd.apple.installer+xml")) {
-                    c = 14;
-                    break;
-                }
-                break;
-            case -366307023:
-                if (str.equals("application/vnd.ms-excel")) {
-                    c = 15;
-                    break;
-                }
-                break;
-            case -48069494:
-                if (str.equals("video/3gpp2")) {
-                    c = 16;
-                    break;
-                }
-                break;
-            case -43923783:
-                if (str.equals("application/gzip")) {
-                    c = 17;
-                    break;
-                }
-                break;
-            case -43491031:
-                if (str.equals("application/x-sh")) {
-                    c = 18;
-                    break;
-                }
-                break;
-            case 187091926:
-                if (str.equals("audio/ogg")) {
-                    c = 19;
-                    break;
-                }
-                break;
-            case 817335912:
-                if (str.equals("text/plain")) {
-                    c = 20;
-                    break;
-                }
-                break;
-            case 859118878:
-                if (str.equals("application/x-abiword")) {
-                    c = 21;
-                    break;
-                }
-                break;
-            case 886992732:
-                if (str.equals("application/ld+json")) {
-                    c = 22;
-                    break;
-                }
-                break;
-            case 904647503:
-                if (str.equals("application/msword")) {
-                    c = 23;
-                    break;
-                }
-                break;
-            case 1154306387:
-                if (str.equals("application/x-bzip")) {
-                    c = 24;
-                    break;
-                }
-                break;
-            case 1154455342:
-                if (str.equals("application/x-gzip")) {
-                    c = 25;
-                    break;
-                }
-                break;
-            case 1178484637:
-                if (str.equals("application/octet-stream")) {
-                    c = 26;
-                    break;
-                }
-                break;
-            case 1423759679:
-                if (str.equals("application/x-bzip2")) {
-                    c = 27;
-                    break;
-                }
-                break;
-            case 1436962847:
-                if (str.equals("application/vnd.oasis.opendocument.presentation")) {
-                    c = 28;
-                    break;
-                }
-                break;
-            case 1454024983:
-                if (str.equals("application/x-7z-compressed")) {
-                    c = 29;
-                    break;
-                }
-                break;
-            case 1455492626:
-                if (str.equals("application/x-freearc")) {
-                    c = 30;
-                    break;
-                }
-                break;
-            case 1503095341:
-                if (str.equals("audio/3gpp")) {
-                    c = 31;
-                    break;
-                }
-                break;
-            case 1504831518:
-                if (str.equals("audio/mpeg")) {
-                    c = ' ';
-                    break;
-                }
-                break;
-            case 1509238306:
-                if (str.equals("application/vnd.rar")) {
-                    c = '!';
-                    break;
-                }
-                break;
-            case 1578362927:
-                if (str.equals("image/vnd.microsoft.icon")) {
-                    c = '\"';
-                    break;
-                }
-                break;
-            case 1643664935:
-                if (str.equals("application/vnd.oasis.opendocument.spreadsheet")) {
-                    c = '#';
-                    break;
-                }
-                break;
-            case 1672200517:
-                if (str.equals("application/vnd.amazon.ebook")) {
-                    c = '$';
-                    break;
-                }
-                break;
-            case 1993842850:
-                if (str.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-                    c = '%';
-                    break;
-                }
-                break;
-            case 2049276534:
-                if (str.equals("application/java-archive")) {
-                    c = '&';
-                    break;
-                }
-                break;
-            case 2132236175:
-                if (str.equals("text/javascript")) {
-                    c = '\'';
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
+        switch (str) {
+            case "application/epub+zip":
                 return "epub";
-            case 1:
+            case "application/vnd.oasis.opendocument.text":
                 return "odt";
-            case 2:
-            case 31:
+            case "video/3gpp":
+            case "audio/3gpp":
                 return "3gp";
-            case 3:
+            case "application/vnd.ms-fontobject":
                 return "eot";
-            case 4:
+            case "application/x-cdf":
                 return "cda";
-            case 5:
+            case "application/x-csh":
                 return "csh";
-            case 6:
+            case "video/x-msvideo":
                 return "avi";
-            case 7:
+            case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
                 return "pptx";
-            case '\b':
+            case "application/vnd.ms-powerpoint":
                 return "ppt";
-            case '\t':
+            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
                 return "docx";
-            case '\n':
+            case "audio/x-midi":
                 return "midi";
-            case 11:
+            case "text/calendar":
                 return "ics";
-            case '\f':
+            case "application/x-httpd-php":
                 return "php";
-            case '\r':
-            case 16:
+            case "audio/3gpp2":
+            case "video/3gpp2":
                 return "3g2";
-            case 14:
+            case "application/vnd.apple.installer+xml":
                 return "mpkg";
-            case 15:
+            case "application/vnd.ms-excel":
                 return "xls";
-            case 17:
-            case 25:
+            case "application/gzip":
+            case "application/x-gzip":
                 return "gz";
-            case 18:
+            case "application/x-sh":
                 return "sh";
-            case 19:
+            case "audio/ogg":
                 return "opus";
-            case 20:
+            case "text/plain":
                 return "txt";
-            case 21:
+            case "application/x-abiword":
                 return "abw";
-            case 22:
+            case "application/ld+json":
                 return "jsonld";
-            case 23:
+            case "application/msword":
                 return "doc";
-            case 24:
+            case "application/x-bzip":
                 return "bz";
-            case 26:
+            case "application/octet-stream":
                 return "bin";
-            case 27:
+            case "application/x-bzip2":
                 return "bz2";
-            case 28:
+            case "application/vnd.oasis.opendocument.presentation":
                 return "odp";
-            case 29:
+            case "application/x-7z-compressed":
                 return "7z";
-            case 30:
+            case "application/x-freearc":
                 return "arc";
-            case ' ':
+            case "audio/mpeg":
                 return "mp3";
-            case '!':
+            case "application/vnd.rar":
                 return "rar";
-            case '\"':
+            case "image/vnd.microsoft.icon":
                 return "ico";
-            case '#':
+            case "application/vnd.oasis.opendocument.spreadsheet":
                 return "ods";
-            case '$':
+            case "application/vnd.amazon.ebook":
                 return "azw";
-            case '%':
+            case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
                 return "xlsx";
-            case '&':
+            case "application/java-archive":
                 return "jar";
-            case '\'':
+            case "text/javascript":
                 return "js";
             default:
                 if (str.contains("/")) {
@@ -887,7 +691,7 @@ public class BotDownloads {
                 Bulletin.UndoButton undoAction = new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString(R.string.BotFileDownloadCancel)).setUndoAction(new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.this.lambda$setButton$0();
+                        this.f$0.lambda$setButton$0();
                     }
                 });
                 if (getBulletin() != null) {
@@ -900,7 +704,7 @@ public class BotDownloads {
                 Bulletin.UndoButton undoAction2 = new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString(R.string.BotFileDownloadOpen)).setUndoAction(new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.this.lambda$setButton$1();
+                        this.f$0.lambda$setButton$1();
                     }
                 });
                 if (getBulletin() != null) {
@@ -938,11 +742,11 @@ public class BotDownloads {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
         }
 
-        public static class StatusDrawable extends Drawable {
+        private static class StatusDrawable extends Drawable {
             private AnimatedFloat animatedDone;
             private AnimatedFloat animatedHasPercent;
             private AnimatedFloat animatedProgress;
@@ -978,7 +782,7 @@ public class BotDownloads {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.StatusDrawable.this.invalidateSelf();
+                        this.f$0.invalidateSelf();
                     }
                 };
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -986,13 +790,13 @@ public class BotDownloads {
                 this.animatedProgress = new AnimatedFloat(new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.StatusDrawable.this.invalidateSelf();
+                        this.f$0.invalidateSelf();
                     }
                 }, 0L, 320L, cubicBezierInterpolator);
                 this.animatedDone = new AnimatedFloat(new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.StatusDrawable.this.invalidateSelf();
+                        this.f$0.invalidateSelf();
                     }
                 }, 0L, 320L, cubicBezierInterpolator);
                 this.view = view;
@@ -1023,7 +827,7 @@ public class BotDownloads {
                 boolean z = pair != null && ((Long) pair.second).longValue() > 0;
                 this.hasPercent = z;
                 if (z) {
-                    this.progress = Utilities.clamp(((float) ((Long) pair.first).longValue()) / ((float) ((Long) pair.second).longValue()), 1.0f, 0.0f);
+                    this.progress = Utilities.clamp(((Long) pair.first).longValue() / ((Long) pair.second).longValue(), 1.0f, 0.0f);
                 }
                 invalidateSelf();
             }
@@ -1048,38 +852,38 @@ public class BotDownloads {
             @Override
             public void draw(Canvas canvas) {
                 Rect bounds = getBounds();
-                int centerX = bounds.centerX();
-                int centerY = bounds.centerY();
+                int iCenterX = bounds.centerX();
+                int iCenterY = bounds.centerY();
                 float f = this.animatedDone.set(this.done);
                 if (f < 1.0f) {
                     float f2 = 1.0f - f;
                     float f3 = (f2 * 0.4f) + 0.6f;
                     canvas.save();
-                    float f4 = centerX;
-                    float f5 = centerY;
+                    float f4 = iCenterX;
+                    float f5 = iCenterY;
                     canvas.scale(f3, f3, f4, f5);
                     Drawable drawable = this.doc;
-                    drawable.setBounds(centerX - (drawable.getIntrinsicWidth() / 2), centerY - (this.doc.getIntrinsicHeight() / 2), (this.doc.getIntrinsicWidth() / 2) + centerX, (this.doc.getIntrinsicHeight() / 2) + centerY);
+                    drawable.setBounds(iCenterX - (drawable.getIntrinsicWidth() / 2), iCenterY - (this.doc.getIntrinsicHeight() / 2), (this.doc.getIntrinsicWidth() / 2) + iCenterX, (this.doc.getIntrinsicHeight() / 2) + iCenterY);
                     this.doc.setAlpha((int) (f2 * 255.0f));
                     this.doc.draw(canvas);
-                    float dp = AndroidUtilities.dp(14.0f);
+                    float fDp = AndroidUtilities.dp(14.0f);
                     this.strokePaint.setColor(Theme.multAlpha(-1, 0.2f * f2));
-                    canvas.drawCircle(f4, f5, dp, this.strokePaint);
+                    canvas.drawCircle(f4, f5, fDp, this.strokePaint);
                     float f6 = f2 * 1.0f;
                     this.strokePaint.setColor(Theme.multAlpha(-1, f6));
-                    this.rect.set(f4 - dp, f5 - dp, f4 + dp, f5 + dp);
+                    this.rect.set(f4 - fDp, f5 - fDp, f4 + fDp, f5 + fDp);
                     float f7 = this.animatedHasPercent.set(this.hasPercent);
                     this.strokePaint.setColor(Theme.multAlpha(-1, f2 * 0.15f * (1.0f - f7)));
-                    canvas.drawArc(this.rect, (-(((((float) ((System.currentTimeMillis() - this.start) % 600)) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, this.strokePaint);
-                    float currentTimeMillis = (((float) (System.currentTimeMillis() - this.start)) * 0.45f) % 5400.0f;
-                    float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+                    canvas.drawArc(this.rect, (-(((((System.currentTimeMillis() - this.start) % 600) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, this.strokePaint);
+                    float fCurrentTimeMillis = ((System.currentTimeMillis() - this.start) * 0.45f) % 5400.0f;
+                    float fMax = Math.max(0.0f, ((1520.0f * fCurrentTimeMillis) / 5400.0f) - 20.0f);
                     for (int i = 0; i < 4; i++) {
                         FastOutSlowInInterpolator fastOutSlowInInterpolator = CircularProgressDrawable.interpolator;
-                        fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (i * 1350)) / 667.0f);
-                        max += fastOutSlowInInterpolator.getInterpolation((currentTimeMillis - (r5 + 667)) / 667.0f) * 250.0f;
+                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i * 1350)) / 667.0f);
+                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (r5 + 667)) / 667.0f) * 250.0f;
                     }
                     this.strokePaint.setColor(Theme.multAlpha(-1, f6));
-                    canvas.drawArc(this.rect, (-90.0f) - max, Math.max(0.02f, this.animatedProgress.set(this.progress)) * (-360.0f) * f7, false, this.strokePaint);
+                    canvas.drawArc(this.rect, (-90.0f) - fMax, Math.max(0.02f, this.animatedProgress.set(this.progress)) * (-360.0f) * f7, false, this.strokePaint);
                     invalidateSelf();
                     canvas.restore();
                 }
@@ -1087,11 +891,11 @@ public class BotDownloads {
                     float f8 = (f * 0.4f) + 0.6f;
                     if (this.cancelled) {
                         canvas.save();
-                        canvas.scale(f8, f8, centerX, centerY);
+                        canvas.scale(f8, f8, iCenterX, iCenterY);
                     }
                     RLottieDrawable rLottieDrawable = this.doneDrawable;
                     if (rLottieDrawable != null) {
-                        rLottieDrawable.setBounds(centerX - (rLottieDrawable.getIntrinsicWidth() / 2), centerY - (this.doneDrawable.getIntrinsicHeight() / 2), centerX + (this.doneDrawable.getIntrinsicWidth() / 2), centerY + (this.doneDrawable.getIntrinsicHeight() / 2));
+                        rLottieDrawable.setBounds(iCenterX - (rLottieDrawable.getIntrinsicWidth() / 2), iCenterY - (this.doneDrawable.getIntrinsicHeight() / 2), iCenterX + (this.doneDrawable.getIntrinsicWidth() / 2), iCenterY + (this.doneDrawable.getIntrinsicHeight() / 2));
                         this.doneDrawable.setAlpha((int) (f * 255.0f));
                         this.doneDrawable.draw(canvas);
                     }
@@ -1112,7 +916,7 @@ public class BotDownloads {
             }
         }
 
-        public static class BackgroundDrawable extends Drawable {
+        private static class BackgroundDrawable extends Drawable {
             private boolean arrow;
             private int arrowMargin;
             private final AnimatedFloat arrowProgress;
@@ -1141,7 +945,7 @@ public class BotDownloads {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.BackgroundDrawable.this.invalidateSelf();
+                        this.f$0.invalidateSelf();
                     }
                 };
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -1149,7 +953,7 @@ public class BotDownloads {
                 this.arrowX = new AnimatedFloat(new Runnable() {
                     @Override
                     public final void run() {
-                        BotDownloads.DownloadBulletin.BackgroundDrawable.this.invalidateSelf();
+                        this.f$0.invalidateSelf();
                     }
                 }, 0L, 320L, cubicBezierInterpolator);
                 this.r = i;
@@ -1181,10 +985,10 @@ public class BotDownloads {
                 float f = this.r;
                 canvas.drawRoundRect(rectF, f, f, this.paint);
                 float f2 = this.arrowProgress.set(this.arrow);
-                float dp = (this.rect.right + AndroidUtilities.dp(8.0f)) - this.arrowX.set(this.arrowMargin);
+                float fDp = (this.rect.right + AndroidUtilities.dp(8.0f)) - this.arrowX.set(this.arrowMargin);
                 if (f2 > 0.0f) {
                     canvas.save();
-                    canvas.translate(dp, AndroidUtilities.dp(8.0f) + (AndroidUtilities.dp(6.16f) * (1.0f - f2)));
+                    canvas.translate(fDp, AndroidUtilities.dp(8.0f) + (AndroidUtilities.dp(6.16f) * (1.0f - f2)));
                     canvas.drawPath(this.path, this.paint);
                     canvas.restore();
                 }

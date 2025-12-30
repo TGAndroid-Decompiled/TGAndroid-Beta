@@ -42,7 +42,6 @@ import org.telegram.ui.Components.BitmapShaderTools;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
-import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
 import org.webrtc.RendererCommon;
 
 public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implements VoIPService.StateListener {
@@ -126,8 +125,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     public PrivateVideoPreviewDialogNew(Context context, final float f, final float f2) {
-        super(context);
         String string;
+        super(context);
         this.visibleCameraPage = 1;
         this.previousPage = -1;
         this.openProgress1 = 0.0f;
@@ -230,19 +229,19 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 this.gradientPaint[PrivateVideoPreviewDialogNew.this.strangeCurrentPage].setAlpha(255);
-                float dp = AndroidUtilities.dp(8.0f) + ((int) ((AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f)) * (1.0f - PrivateVideoPreviewDialogNew.this.openProgress1)));
-                canvas.drawRoundRect(rectF, dp, dp, this.gradientPaint[PrivateVideoPreviewDialogNew.this.strangeCurrentPage]);
+                float fDp = AndroidUtilities.dp(8.0f) + ((int) ((AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f)) * (1.0f - PrivateVideoPreviewDialogNew.this.openProgress1)));
+                canvas.drawRoundRect(rectF, fDp, fDp, this.gradientPaint[PrivateVideoPreviewDialogNew.this.strangeCurrentPage]);
                 if (PrivateVideoPreviewDialogNew.this.pageOffset > 0.0f) {
                     int i = PrivateVideoPreviewDialogNew.this.strangeCurrentPage + 1;
                     Paint[] paintArr = this.gradientPaint;
                     if (i < paintArr.length) {
                         paintArr[PrivateVideoPreviewDialogNew.this.strangeCurrentPage + 1].setAlpha((int) (PrivateVideoPreviewDialogNew.this.pageOffset * 255.0f));
-                        canvas.drawRoundRect(rectF, dp, dp, this.gradientPaint[PrivateVideoPreviewDialogNew.this.strangeCurrentPage + 1]);
+                        canvas.drawRoundRect(rectF, fDp, fDp, this.gradientPaint[PrivateVideoPreviewDialogNew.this.strangeCurrentPage + 1]);
                     }
                 }
                 if (PrivateVideoPreviewDialogNew.this.openProgress1 < 1.0f) {
                     this.whitePaint.setAlpha((int) ((1.0f - PrivateVideoPreviewDialogNew.this.openProgress1) * 255.0f));
-                    canvas.drawRoundRect(rectF, dp, dp, this.whitePaint);
+                    canvas.drawRoundRect(rectF, fDp, fDp, this.whitePaint);
                 }
                 super.onDraw(canvas);
                 if (PrivateVideoPreviewDialogNew.this.positiveButtonDrawText) {
@@ -270,7 +269,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PrivateVideoPreviewDialogNew.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         addView(this.positiveButton, LayoutHelper.createFrame(52, 52.0f, 81, 0.0f, 0.0f, 0.0f, 80.0f));
@@ -325,7 +324,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PrivateVideoPreviewDialogNew.this.lambda$new$1(i2, view);
+                    this.f$0.lambda$new$1(i2, view);
                 }
             });
         }
@@ -345,14 +344,14 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             sharedInstance.setLocalSink(this.textureView.renderer, false);
         }
         createPages(this.viewPager);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PrivateVideoPreviewDialogNew.this.lambda$new$2(f, f2, valueAnimator);
+                this.f$0.lambda$new$2(f, f2, valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (PrivateVideoPreviewDialogNew.this.isDismissed) {
@@ -361,22 +360,22 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 PrivateVideoPreviewDialogNew.this.afterOpened();
             }
         });
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PrivateVideoPreviewDialogNew.this.lambda$new$3(valueAnimator);
+                this.f$0.lambda$new$3(valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        ofFloat.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
         long j = 320;
-        ofFloat.setDuration(j);
-        ofFloat.start();
-        ofFloat2.setInterpolator(cubicBezierInterpolator);
-        ofFloat2.setDuration(j);
-        ofFloat2.setStartDelay(32);
-        ofFloat2.start();
+        valueAnimatorOfFloat.setDuration(j);
+        valueAnimatorOfFloat.start();
+        valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat2.setDuration(j);
+        valueAnimatorOfFloat2.setStartDelay(32);
+        valueAnimatorOfFloat2.start();
         this.titlesLayout.setAlpha(0.0f);
         this.titlesLayout.setScaleY(0.8f);
         this.titlesLayout.setScaleX(0.8f);
@@ -388,7 +387,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         setCurrentPage(1, false);
     }
 
-    public class AnonymousClass1 extends GestureDetector.SimpleOnGestureListener {
+    class AnonymousClass1 extends GestureDetector.SimpleOnGestureListener {
         private boolean lockDragging;
         private boolean startDragging;
 
@@ -410,7 +409,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        PrivateVideoPreviewDialogNew.AnonymousClass1.this.lambda$onScroll$0(x);
+                        this.f$0.lambda$onScroll$0(x);
                     }
                 };
                 if (PrivateVideoPreviewDialogNew.this.scrollAnimator != null) {
@@ -457,11 +456,11 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$new$2(float f, float f2, ValueAnimator valueAnimator) {
         this.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float dp = f + AndroidUtilities.dp(28.0f);
-        float dp2 = f2 + AndroidUtilities.dp(52.0f);
+        float fDp = f + AndroidUtilities.dp(28.0f);
+        float fDp2 = f2 + AndroidUtilities.dp(52.0f);
         float f3 = this.openProgress1;
-        this.openTranslationX = dp - (dp * f3);
-        this.openTranslationY = dp2 - (f3 * dp2);
+        this.openTranslationX = fDp - (fDp * f3);
+        this.openTranslationY = fDp2 - (f3 * fDp2);
         invalidate();
     }
 
@@ -472,19 +471,19 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     private void showStub(boolean z, boolean z2) {
-        Bitmap bitmap;
+        Bitmap bitmapDecodeFile;
         ImageView imageView = (ImageView) this.viewPager.findViewWithTag("image_stab");
         if (!z) {
             imageView.setVisibility(8);
             return;
         }
         try {
-            bitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
+            bitmapDecodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
         } catch (Throwable unused) {
-            bitmap = null;
+            bitmapDecodeFile = null;
         }
-        if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
-            imageView.setImageBitmap(bitmap);
+        if (bitmapDecodeFile != null && bitmapDecodeFile.getPixel(0, 0) != 0) {
+            imageView.setImageBitmap(bitmapDecodeFile);
         } else {
             imageView.setImageResource(R.drawable.icplaceholder);
         }
@@ -545,7 +544,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             this.scrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PrivateVideoPreviewDialogNew.this.lambda$setCurrentPage$4(valueAnimator);
+                    this.f$0.lambda$setCurrentPage$4(valueAnimator);
                 }
             });
             this.scrollAnimator.addListener(new AnimatorListenerAdapter() {
@@ -609,21 +608,21 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             Point point = AndroidUtilities.displaySize;
             int i = point.x;
             int i2 = point.y + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight;
-            float dp = AndroidUtilities.dp(28.0f) - (AndroidUtilities.dp(28.0f) * this.openProgress1);
+            float fDp = AndroidUtilities.dp(28.0f) - (AndroidUtilities.dp(28.0f) * this.openProgress1);
             this.clipPath.reset();
             Path path = this.clipPath;
-            float dp2 = this.startLocationX + AndroidUtilities.dp(33.5f);
-            float dp3 = this.startLocationY + AndroidUtilities.dp(26.6f);
-            float dp4 = AndroidUtilities.dp(26.0f);
+            float fDp2 = this.startLocationX + AndroidUtilities.dp(33.5f);
+            float fDp3 = this.startLocationY + AndroidUtilities.dp(26.6f);
+            float fDp4 = AndroidUtilities.dp(26.0f);
             Path.Direction direction = Path.Direction.CW;
-            path.addCircle(dp2, dp3, dp4, direction);
-            int dp5 = AndroidUtilities.dp(52.0f);
-            int dp6 = AndroidUtilities.dp(52.0f);
-            int lerp = AndroidUtilities.lerp(dp5, i, this.openProgress1);
-            int lerp2 = AndroidUtilities.lerp(dp6, i2, this.openProgress1);
-            float dp7 = this.openTranslationX - ((1.0f - this.openProgress1) * AndroidUtilities.dp(20.0f));
-            float dp8 = this.openTranslationY - ((1.0f - this.openProgress1) * AndroidUtilities.dp(51.0f));
-            this.clipPath.addRoundRect(dp7, dp8, dp7 + lerp, dp8 + lerp2, dp, dp, direction);
+            path.addCircle(fDp2, fDp3, fDp4, direction);
+            int iDp = AndroidUtilities.dp(52.0f);
+            int iDp2 = AndroidUtilities.dp(52.0f);
+            int iLerp = AndroidUtilities.lerp(iDp, i, this.openProgress1);
+            int iLerp2 = AndroidUtilities.lerp(iDp2, i2, this.openProgress1);
+            float fDp5 = this.openTranslationX - ((1.0f - this.openProgress1) * AndroidUtilities.dp(20.0f));
+            float fDp6 = this.openTranslationY - ((1.0f - this.openProgress1) * AndroidUtilities.dp(51.0f));
+            this.clipPath.addRoundRect(fDp5, fDp6, fDp5 + iLerp, fDp6 + iLerp2, fDp, fDp, direction);
             canvas.clipPath(this.clipPath);
         }
         if (this.closeProgress > 0.0f) {
@@ -651,17 +650,17 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         saveLastCameraBitmap();
         onDismiss(z, z2);
         if (isHasVideoOnMainScreen() && z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PrivateVideoPreviewDialogNew.this.lambda$dismiss$5(valueAnimator);
+                    this.f$0.lambda$dismiss$5(valueAnimator);
                 }
             });
-            ofFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            ofFloat.setStartDelay(60L);
-            ofFloat.setDuration(350L);
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            valueAnimatorOfFloat.setStartDelay(60L);
+            valueAnimatorOfFloat.setDuration(350L);
+            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     super.onAnimationEnd(animator);
@@ -670,7 +669,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                     }
                 }
             });
-            ofFloat.start();
+            valueAnimatorOfFloat.start();
             this.positiveButton.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
             this.actionBar.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
             this.titlesLayout.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
@@ -685,14 +684,14 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 }
             });
         } else {
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(1.0f, 0.0f);
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PrivateVideoPreviewDialogNew.this.lambda$dismiss$6(valueAnimator);
+                    this.f$0.lambda$dismiss$6(valueAnimator);
                 }
             });
-            ofFloat2.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (PrivateVideoPreviewDialogNew.this.getParent() != null) {
@@ -700,28 +699,28 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                     }
                 }
             });
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
+            valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PrivateVideoPreviewDialogNew.this.lambda$dismiss$7(valueAnimator);
+                    this.f$0.lambda$dismiss$7(valueAnimator);
                 }
             });
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-            ofFloat2.setInterpolator(cubicBezierInterpolator);
+            valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
             long j = 320;
-            ofFloat2.setDuration(j);
-            ofFloat2.start();
-            ofFloat3.setInterpolator(cubicBezierInterpolator);
-            ofFloat3.setDuration(j);
-            ofFloat3.start();
+            valueAnimatorOfFloat2.setDuration(j);
+            valueAnimatorOfFloat2.start();
+            valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
+            valueAnimatorOfFloat3.setDuration(j);
+            valueAnimatorOfFloat3.start();
             this.titlesLayout.setAlpha(1.0f);
             this.titlesLayout.setScaleY(1.0f);
             this.titlesLayout.setScaleX(1.0f);
             this.titlesLayout.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
             float f = 320;
-            this.positiveButton.animate().translationY(AndroidUtilities.dp(53.0f)).translationX((this.startLocationX - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f)).setDuration(0.6f * f).start();
-            animate().alpha(0.0f).setDuration(0.25f * f).setStartDelay(f * 0.75f).start();
+            this.positiveButton.animate().translationY(AndroidUtilities.dp(53.0f)).translationX((this.startLocationX - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f)).setDuration((long) (0.6f * f)).start();
+            animate().alpha(0.0f).setDuration((long) (0.25f * f)).setStartDelay((long) (f * 0.75f)).start();
         }
         invalidate();
     }
@@ -733,11 +732,11 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$dismiss$6(ValueAnimator valueAnimator) {
         this.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float dp = this.startLocationX + AndroidUtilities.dp(28.0f);
-        float dp2 = this.startLocationY + AndroidUtilities.dp(52.0f);
+        float fDp = this.startLocationX + AndroidUtilities.dp(28.0f);
+        float fDp2 = this.startLocationY + AndroidUtilities.dp(52.0f);
         float f = this.openProgress1;
-        this.openTranslationX = dp - (dp * f);
-        this.openTranslationY = dp2 - (f * dp2);
+        this.openTranslationX = fDp - (fDp * f);
+        this.openTranslationY = fDp2 - (f * fDp2);
         invalidate();
     }
 
@@ -833,20 +832,20 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             try {
                 Bitmap bitmap = this.textureView.renderer.getBitmap();
                 if (bitmap != null) {
-                    Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.textureView.renderer.getMatrix(), true);
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.textureView.renderer.getMatrix(), true);
                     bitmap.recycle();
-                    Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 80, (int) (createBitmap.getHeight() / (createBitmap.getWidth() / 80.0f)), true);
-                    if (createScaledBitmap != null) {
-                        if (createScaledBitmap != createBitmap) {
-                            createBitmap.recycle();
+                    Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmapCreateBitmap, 80, (int) (bitmapCreateBitmap.getHeight() / (bitmapCreateBitmap.getWidth() / 80.0f)), true);
+                    if (bitmapCreateScaledBitmap != null) {
+                        if (bitmapCreateScaledBitmap != bitmapCreateBitmap) {
+                            bitmapCreateBitmap.recycle();
                         }
-                        Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
+                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7, 1, bitmapCreateScaledBitmap.getWidth(), bitmapCreateScaledBitmap.getHeight(), bitmapCreateScaledBitmap.getRowBytes());
                         FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg"));
-                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
+                        bitmapCreateScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
                         fileOutputStream.close();
-                        View findViewWithTag = this.viewPager.findViewWithTag("image_stab");
-                        if (findViewWithTag instanceof ImageView) {
-                            ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
+                        View viewFindViewWithTag = this.viewPager.findViewWithTag("image_stab");
+                        if (viewFindViewWithTag instanceof ImageView) {
+                            ((ImageView) viewFindViewWithTag).setImageBitmap(bitmapCreateScaledBitmap);
                         }
                     }
                 }

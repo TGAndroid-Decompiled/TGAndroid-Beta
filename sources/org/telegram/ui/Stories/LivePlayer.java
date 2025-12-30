@@ -36,7 +36,6 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.Stories.LivePlayer;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
@@ -122,7 +121,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         PermissionRequest.ensureAllPermissions(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                LivePlayer.this.lambda$continueStreaming$0((Boolean) obj);
+                this.f$0.lambda$continueStreaming$0((Boolean) obj);
             }
         });
     }
@@ -181,7 +180,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         init();
     }
 
-    public class AnonymousClass1 extends VoIPService.ProxyVideoSink {
+    class AnonymousClass1 extends VoIPService.ProxyVideoSink {
         AnonymousClass1() {
         }
 
@@ -192,7 +191,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.AnonymousClass1.this.lambda$onFrame$0();
+                        this.f$0.lambda$onFrame$0();
                     }
                 });
             }
@@ -230,10 +229,10 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         if (this.destroyed) {
             return;
         }
-        NativeInstance makeGroup = NativeInstance.makeGroup(VoIPHelper.getLogFilePath("live_" + this.inputCall.id), 0L, false, SharedConfig.noiseSupression, new NativeInstance.PayloadCallback() {
+        NativeInstance nativeInstanceMakeGroup = NativeInstance.makeGroup(VoIPHelper.getLogFilePath("live_" + this.inputCall.id), 0L, false, SharedConfig.noiseSupression, new NativeInstance.PayloadCallback() {
             @Override
             public final void run(int i, String str) {
-                LivePlayer.this.lambda$init$10(i, str);
+                this.f$0.lambda$init$10(i, str);
             }
         }, new NativeInstance.AudioLevelsCallback() {
             @Override
@@ -243,26 +242,26 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }, new NativeInstance.VideoSourcesCallback() {
             @Override
             public final void run(long j, int[] iArr) {
-                LivePlayer.this.lambda$init$13(j, iArr);
+                this.f$0.lambda$init$13(j, iArr);
             }
         }, new NativeInstance.RequestBroadcastPartCallback() {
             @Override
             public final void run(long j, long j2, int i, int i2) {
-                LivePlayer.this.lambda$init$18(j, j2, i, i2);
+                this.f$0.lambda$init$18(j, j2, i, i2);
             }
         }, new NativeInstance.RequestBroadcastPartCallback() {
             @Override
             public final void run(long j, long j2, int i, int i2) {
-                LivePlayer.this.lambda$init$20(j, j2, i, i2);
+                this.f$0.lambda$init$20(j, j2, i, i2);
             }
         }, new NativeInstance.RequestCurrentTimeCallback() {
             @Override
             public final void run(long j) {
-                LivePlayer.this.lambda$init$23(j);
+                this.f$0.lambda$init$23(j);
             }
         }, false);
-        this.instance = makeGroup;
-        makeGroup.setOnStateUpdatedListener(new AnonymousClass2());
+        this.instance = nativeInstanceMakeGroup;
+        nativeInstanceMakeGroup.setOnStateUpdatedListener(new AnonymousClass2());
         this.instance.resetGroupInstance(false, false);
     }
 
@@ -282,7 +281,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.this.lambda$init$9(tLObject, tL_error);
+                this.f$0.lambda$init$9(tLObject, tL_error);
             }
         });
     }
@@ -296,11 +295,11 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             while (it.hasNext()) {
                 this.call = ((TLRPC.TL_updateGroupCall) it.next()).call;
             }
-            final ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCallMessage.class);
+            final ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCallMessage.class);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$init$1(findUpdatesAndRemove);
+                    this.f$0.lambda$init$1(arrayListFindUpdatesAndRemove);
                 }
             });
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
@@ -339,7 +338,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        LivePlayer.this.lambda$init$2(tLObject, tLObject2, tL_error2);
+                        this.f$0.lambda$init$2(tLObject, tLObject2, tL_error2);
                     }
                 });
                 return;
@@ -363,7 +362,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LivePlayer.this.lambda$init$7();
+                                this.f$0.lambda$init$7();
                             }
                         });
                     }
@@ -373,7 +372,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamchannels, new RequestDelegateTimestamp() {
                         @Override
                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2, long j) {
-                            LivePlayer.this.lambda$init$4(tLObject2, tL_error2, j);
+                            this.f$0.lambda$init$4(tLObject2, tL_error2, j);
                         }
                     }, 65536, 2, getCallStreamDatacenterId());
                 } else {
@@ -383,7 +382,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcall, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                            LivePlayer.this.lambda$init$6(tLObject2, tL_error2);
+                            this.f$0.lambda$init$6(tLObject2, tL_error2);
                         }
                     });
                 }
@@ -391,7 +390,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$init$8();
+                    this.f$0.lambda$init$8();
                 }
             });
             return;
@@ -428,7 +427,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$init$3();
+                    this.f$0.lambda$init$3();
                 }
             });
         }
@@ -483,7 +482,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.this.lambda$init$5();
+                        this.f$0.lambda$init$5();
                     }
                 });
             }
@@ -516,7 +515,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupparticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.this.lambda$init$12(iArr, j, tLObject, tL_error);
+                this.f$0.lambda$init$12(iArr, j, tLObject, tL_error);
             }
         });
     }
@@ -561,7 +560,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         sb2.append(", video_quality = ");
         sb2.append(i2);
         FileLog.d(sb2.toString());
-        final long currentTimeMillis = System.currentTimeMillis();
+        final long jCurrentTimeMillis = System.currentTimeMillis();
         TLRPC.TL_upload_getFile tL_upload_getFile = new TLRPC.TL_upload_getFile();
         tL_upload_getFile.limit = 131072;
         TLRPC.TL_inputGroupCallStream tL_inputGroupCallStream = new TLRPC.TL_inputGroupCallStream();
@@ -588,17 +587,17 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             sb.append("_");
             sb.append(i2);
         }
-        final String sb3 = sb.toString();
-        final int sendRequest = AccountInstance.getInstance(this.currentAccount).getConnectionsManager().sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
+        final String string = sb.toString();
+        final int iSendRequest = AccountInstance.getInstance(this.currentAccount).getConnectionsManager().sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-                LivePlayer.this.lambda$init$16(sb3, currentTimeMillis, j, j2, i, i2, tLObject, tL_error, j3);
+                this.f$0.lambda$init$16(string, jCurrentTimeMillis, j, j2, i, i2, tLObject, tL_error, j3);
             }
         }, 2, 2, getCallStreamDatacenterId());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$init$17(sb3, sendRequest);
+                this.f$0.lambda$init$17(string, iSendRequest);
             }
         });
     }
@@ -610,7 +609,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$init$14(str);
+                this.f$0.lambda$init$14(str);
             }
         });
         if (tLObject != null) {
@@ -643,7 +642,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$init$15();
+                    this.f$0.lambda$init$15();
                 }
             });
             StringBuilder sb2 = new StringBuilder();
@@ -715,7 +714,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$init$19(i, j, i2);
+                this.f$0.lambda$init$19(i, j, i2);
             }
         });
     }
@@ -745,7 +744,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamchannels, new RequestDelegateTimestamp() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j2) {
-                    LivePlayer.this.lambda$init$22(j, tLObject, tL_error, j2);
+                    this.f$0.lambda$init$22(j, tLObject, tL_error, j2);
                 }
             }, 65536, 2, getCallStreamDatacenterId());
             return;
@@ -762,12 +761,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
-            r13 = groupcallstreamchannels.channels.isEmpty() ? 0L : groupcallstreamchannels.channels.get(0).last_timestamp_ms;
+            j = groupcallstreamchannels.channels.isEmpty() ? 0L : groupcallstreamchannels.channels.get(0).last_timestamp_ms;
             if (groupcallstreamchannels.channels.isEmpty()) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.this.lambda$init$21();
+                        this.f$0.lambda$init$21();
                     }
                 });
             }
@@ -792,7 +791,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
         NativeInstance nativeInstance = this.instance;
         if (nativeInstance != null) {
-            nativeInstance.onRequestTimeComplete(j, r13);
+            nativeInstance.onRequestTimeComplete(j, j);
         }
     }
 
@@ -800,20 +799,20 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         setEmptyStream(true);
     }
 
-    public class AnonymousClass2 implements Instance.OnStateUpdatedListener {
+    class AnonymousClass2 implements Instance.OnStateUpdatedListener {
         AnonymousClass2() {
         }
 
         @Override
         public void onStateUpdated(int i, boolean z) {
-            boolean isConnected = LivePlayer.this.isConnected();
+            boolean zIsConnected = LivePlayer.this.isConnected();
             LivePlayer.this.connectionState = i;
             FileLog.d("[LivePlayer] connectionState = " + i);
-            if (isConnected != LivePlayer.this.isConnected()) {
+            if (zIsConnected != LivePlayer.this.isConnected()) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.AnonymousClass2.this.lambda$onStateUpdated$0();
+                        this.f$0.lambda$onStateUpdated$0();
                     }
                 });
             }
@@ -830,15 +829,15 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     }
 
     public void setVolume(float f) {
-        float clamp01 = Utilities.clamp01(f);
+        float fClamp01 = Utilities.clamp01(f);
         if (LiveStoryPipOverlay.isVisible(this)) {
-            clamp01 = 1.0f;
+            fClamp01 = 1.0f;
         }
-        FileLog.d("setVolume(" + clamp01 + ")");
-        if (Math.abs(clamp01 - this.volume) < 0.01f) {
+        FileLog.d("setVolume(" + fClamp01 + ")");
+        if (Math.abs(fClamp01 - this.volume) < 0.01f) {
             return;
         }
-        this.volume = clamp01;
+        this.volume = fClamp01;
         updateVolumes();
     }
 
@@ -887,9 +886,9 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.storyGroupCallUpdated) {
-            long longValue = ((Long) objArr[0]).longValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
             TLRPC.GroupCall groupCall = (TLRPC.GroupCall) objArr[1];
-            if (this.dialogId == longValue) {
+            if (this.dialogId == jLongValue) {
                 this.call = TlUtils.applyGroupCallUpdate(this.call, groupCall);
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(groupCall.id));
             }
@@ -925,7 +924,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    LivePlayer.this.lambda$destroy$24(tLObject, tL_error);
+                    this.f$0.lambda$destroy$24(tLObject, tL_error);
                 }
             });
         }
@@ -1051,7 +1050,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         Runnable runnable4 = new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$setPolling$25();
+                this.f$0.lambda$setPolling$25();
             }
         };
         this.pollRunnable = runnable4;
@@ -1063,7 +1062,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         Runnable runnable6 = new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$setPolling$26();
+                this.f$0.lambda$setPolling$26();
             }
         };
         this.poll2Runnable = runnable6;
@@ -1084,7 +1083,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.this.lambda$poll2$29(tLObject, tL_error);
+                this.f$0.lambda$poll2$29(tLObject, tL_error);
             }
         });
     }
@@ -1093,7 +1092,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$poll2$28(tLObject, tL_error);
+                this.f$0.lambda$poll2$28(tLObject, tL_error);
             }
         });
     }
@@ -1119,7 +1118,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$poll2$27();
+                    this.f$0.lambda$poll2$27();
                 }
             };
             this.poll2Runnable = runnable2;
@@ -1138,7 +1137,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(checkgroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.this.lambda$poll$33(tLObject, tL_error);
+                this.f$0.lambda$poll$33(tLObject, tL_error);
             }
         });
     }
@@ -1147,7 +1146,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.this.lambda$poll$32(tLObject, tL_error);
+                this.f$0.lambda$poll$32(tLObject, tL_error);
             }
         });
     }
@@ -1180,7 +1179,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.this.lambda$poll$30();
+                        this.f$0.lambda$poll$30();
                     }
                 });
             } else if ("GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
@@ -1195,7 +1194,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$poll$31();
+                    this.f$0.lambda$poll$31();
                 }
             };
             this.pollRunnable = runnable2;
@@ -1278,7 +1277,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardgroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.this.lambda$end$34(tLObject, tL_error);
+                this.f$0.lambda$end$34(tLObject, tL_error);
             }
         });
         destroy();

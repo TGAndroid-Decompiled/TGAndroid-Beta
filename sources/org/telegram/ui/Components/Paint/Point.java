@@ -35,27 +35,27 @@ public class Point {
         return this.x == point.x && this.y == point.y && this.z == point.z;
     }
 
-    public Point multiplySum(Point point, double d) {
+    Point multiplySum(Point point, double d) {
         return new Point((this.x + point.x) * d, (this.y + point.y) * d, (this.z + point.z) * d);
     }
 
-    public Point add(Point point) {
+    Point add(Point point) {
         return new Point(this.x + point.x, this.y + point.y, this.z + point.z);
     }
 
-    public Point substract(Point point) {
+    Point substract(Point point) {
         return new Point(this.x - point.x, this.y - point.y, this.z - point.z);
     }
 
-    public Point multiplyByScalar(double d) {
+    Point multiplyByScalar(double d) {
         return new Point(this.x * d, this.y * d, this.z * d);
     }
 
-    public float getDistanceTo(Point point) {
+    float getDistanceTo(Point point) {
         return (float) Math.sqrt(Math.pow(this.x - point.x, 2.0d) + Math.pow(this.y - point.y, 2.0d) + Math.pow(this.z - point.z, 2.0d));
     }
 
-    public PointF toPointF() {
+    PointF toPointF() {
         return new PointF((float) this.x, (float) this.y);
     }
 }

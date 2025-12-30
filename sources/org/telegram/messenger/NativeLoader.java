@@ -1,6 +1,9 @@
 package org.telegram.messenger;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.os.Build;
+import java.io.File;
 
 public class NativeLoader {
     private static final String LIB_NAME = "tmessages.49";
@@ -12,11 +15,27 @@ public class NativeLoader {
 
     private static native void init(String str, boolean z);
 
-    private static java.io.File getNativeLibraryDir(android.content.Context r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.getNativeLibraryDir(android.content.Context):java.io.File");
+    private static File getNativeLibraryDir(Context context) {
+        File file;
+        if (context != null) {
+            try {
+                file = new File((String) ApplicationInfo.class.getField("nativeLibraryDir").get(context.getApplicationInfo()));
+            } catch (Throwable th) {
+                th.printStackTrace();
+            }
+        } else {
+            file = null;
+        }
+        if (file == null) {
+            file = new File(context.getApplicationInfo().dataDir, "lib");
+        }
+        if (file.isDirectory()) {
+            return file;
+        }
+        return null;
     }
 
-    private static boolean loadFromZip(android.content.Context r5, java.io.File r6, java.io.File r7, java.lang.String r8) {
+    private static boolean loadFromZip(android.content.Context r5, java.io.File r6, java.io.File r7, java.lang.String r8) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.loadFromZip(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
     }
 
@@ -41,14 +60,17 @@ public class NativeLoader {
             str2 = "armeabi-v7a";
         } else if (str.equalsIgnoreCase("armeabi")) {
             str2 = "armeabi";
-        } else if (str.equalsIgnoreCase("x86")) {
-            str2 = "x86";
-        } else if (!str.equalsIgnoreCase("mips")) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("Unsupported arch: " + str);
+        } else {
+            if (!str.equalsIgnoreCase("x86")) {
+                if (!str.equalsIgnoreCase("mips")) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.e("Unsupported arch: " + str);
+                    }
+                }
+                String property = System.getProperty("os.arch");
+                return (property == null && property.contains("686")) ? "x86" : str3;
             }
-            String property = System.getProperty("os.arch");
-            return (property == null && property.contains("686")) ? "x86" : str3;
+            str2 = "x86";
         }
         str3 = str2;
         String property2 = System.getProperty("os.arch");

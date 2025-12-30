@@ -45,30 +45,30 @@ public class SunDate {
     }
 
     private static void sunposAtDay(double d, double[] dArr, double[] dArr2) {
-        double revolution = revolution((0.9856002585d * d) + 356.047d);
+        double dRevolution = revolution((0.9856002585d * d) + 356.047d);
         double d2 = (4.70935E-5d * d) + 282.9404d;
         double d3 = 0.016709d - (d * 1.151E-9d);
-        double sind = (57.29577951308232d * d3 * sind(revolution) * ((cosd(revolution) * d3) + 1.0d)) + revolution;
-        double cosd = cosd(sind) - d3;
-        double sqrt = Math.sqrt(1.0d - (d3 * d3)) * sind(sind);
-        dArr2[0] = Math.sqrt((cosd * cosd) + (sqrt * sqrt));
-        double atan2d = atan2d(sqrt, cosd) + d2;
-        dArr[0] = atan2d;
-        if (atan2d >= 360.0d) {
-            dArr[0] = atan2d - 360.0d;
+        double dSind = (57.29577951308232d * d3 * sind(dRevolution) * ((cosd(dRevolution) * d3) + 1.0d)) + dRevolution;
+        double dCosd = cosd(dSind) - d3;
+        double dSqrt = Math.sqrt(1.0d - (d3 * d3)) * sind(dSind);
+        dArr2[0] = Math.sqrt((dCosd * dCosd) + (dSqrt * dSqrt));
+        double dAtan2d = atan2d(dSqrt, dCosd) + d2;
+        dArr[0] = dAtan2d;
+        if (dAtan2d >= 360.0d) {
+            dArr[0] = dAtan2d - 360.0d;
         }
     }
 
     private static void sun_RA_decAtDay(double d, double[] dArr, double[] dArr2, double[] dArr3) {
         double[] dArr4 = new double[1];
         sunposAtDay(d, dArr4, dArr3);
-        double cosd = dArr3[0] * cosd(dArr4[0]);
-        double sind = dArr3[0] * sind(dArr4[0]);
+        double dCosd = dArr3[0] * cosd(dArr4[0]);
+        double dSind = dArr3[0] * sind(dArr4[0]);
         double d2 = 23.4393d - (d * 3.563E-7d);
-        double cosd2 = cosd(d2) * sind;
-        double sind2 = sind * sind(d2);
-        dArr[0] = atan2d(cosd2, cosd);
-        dArr2[0] = atan2d(sind2, Math.sqrt((cosd * cosd) + (cosd2 * cosd2)));
+        double dCosd2 = cosd(d2) * dSind;
+        double dSind2 = dSind * sind(d2);
+        dArr[0] = atan2d(dCosd2, dCosd);
+        dArr2[0] = atan2d(dSind2, Math.sqrt((dCosd * dCosd) + (dCosd2 * dCosd2)));
     }
 
     private static int sunRiseSetHelperForYear(int i, int i2, int i3, double d, double d2, double d3, int i4, double[] dArr) {
@@ -76,23 +76,23 @@ public class SunDate {
         double[] dArr2 = new double[1];
         double[] dArr3 = new double[1];
         double[] dArr4 = new double[1];
-        double days_since_2000_Jan_0 = (days_since_2000_Jan_0(i, i2, i3) + 0.5d) - (d / 360.0d);
-        double revolution = revolution(GMST0(days_since_2000_Jan_0) + 180.0d + d);
-        sun_RA_decAtDay(days_since_2000_Jan_0, dArr2, dArr3, dArr4);
-        double d4 = 12.0d;
-        double rev180 = 12.0d - (rev180(revolution - dArr2[0]) / 15.0d);
-        double sind = (sind(i4 != 0 ? d3 - (0.2666d / dArr4[0]) : d3) - (sind(d2) * sind(dArr3[0]))) / (cosd(d2) * cosd(dArr3[0]));
-        if (sind >= 1.0d) {
+        double dDays_since_2000_Jan_0 = (days_since_2000_Jan_0(i, i2, i3) + 0.5d) - (d / 360.0d);
+        double dRevolution = revolution(GMST0(dDays_since_2000_Jan_0) + 180.0d + d);
+        sun_RA_decAtDay(dDays_since_2000_Jan_0, dArr2, dArr3, dArr4);
+        double dAcosd = 12.0d;
+        double dRev180 = 12.0d - (rev180(dRevolution - dArr2[0]) / 15.0d);
+        double dSind = (sind(i4 != 0 ? d3 - (0.2666d / dArr4[0]) : d3) - (sind(d2) * sind(dArr3[0]))) / (cosd(d2) * cosd(dArr3[0]));
+        if (dSind >= 1.0d) {
             i5 = -1;
-            d4 = 0.0d;
-        } else if (sind <= -1.0d) {
+            dAcosd = 0.0d;
+        } else if (dSind <= -1.0d) {
             i5 = 1;
         } else {
-            d4 = acosd(sind) / 15.0d;
+            dAcosd = acosd(dSind) / 15.0d;
             i5 = 0;
         }
-        dArr[0] = rev180 - d4;
-        dArr[1] = rev180 + d4;
+        dArr[0] = dRev180 - dAcosd;
+        dArr[1] = dRev180 + dAcosd;
         return i5;
     }
 

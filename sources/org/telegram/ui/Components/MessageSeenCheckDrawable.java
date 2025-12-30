@@ -51,17 +51,17 @@ public class MessageSeenCheckDrawable {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
         this.lastDensity = AndroidUtilities.density;
-        Drawable mutate = context.getResources().getDrawable(this.resId).mutate();
-        this.drawable = mutate;
+        Drawable drawableMutate = context.getResources().getDrawable(this.resId).mutate();
+        this.drawable = drawableMutate;
         int color2 = Theme.getColor(this.colorKey, resourcesProvider);
         this.lastColor = color2;
-        mutate.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
         int i = this.w;
         int intrinsicWidth = i <= 0 ? this.drawable.getIntrinsicWidth() : AndroidUtilities.dp(i);
         int i2 = this.h;
         int intrinsicHeight = i2 <= 0 ? this.drawable.getIntrinsicHeight() : AndroidUtilities.dp(i2);
-        int dp = AndroidUtilities.dp(this.oy);
-        this.drawable.setBounds(0, dp, intrinsicWidth, intrinsicHeight + dp);
+        int iDp = AndroidUtilities.dp(this.oy);
+        this.drawable.setBounds(0, iDp, intrinsicWidth, intrinsicHeight + iDp);
         spannableStringBuilder.setSpan(new ImageSpan(this.drawable, 2), 0, 1, 33);
         spannableStringBuilder.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(2.0f)), 1, 2, 33);
         this.lastSpanned = spannableStringBuilder;

@@ -1,5 +1,6 @@
 package kotlin.internal;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.Intrinsics;
@@ -57,7 +58,7 @@ public abstract class PlatformImplementations {
         }
     }
 
-    public void addSuppressed(Throwable cause, Throwable exception) {
+    public void addSuppressed(Throwable cause, Throwable exception) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Intrinsics.checkNotNullParameter(cause, "cause");
         Intrinsics.checkNotNullParameter(exception, "exception");
         Method method = ReflectThrowable.addSuppressed;

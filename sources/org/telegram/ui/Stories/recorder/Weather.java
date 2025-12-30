@@ -90,7 +90,7 @@ public abstract class Weather {
         getUserLocation(z, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$fetch$2(Utilities.Callback.this, z, (Location) obj);
+                Weather.lambda$fetch$2(callback, z, (Location) obj);
             }
         });
     }
@@ -100,31 +100,31 @@ public abstract class Weather {
             callback.run(null);
             return;
         }
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null || activity.isFinishing()) {
+        if (activityFindActivity == null || activityFindActivity.isFinishing()) {
             callback.run(null);
             return;
         }
-        final AlertDialog alertDialog = z ? new AlertDialog(activity, 3, new DarkThemeResourceProvider()) : null;
+        final AlertDialog alertDialog = z ? new AlertDialog(activityFindActivity, 3, new DarkThemeResourceProvider()) : null;
         if (z) {
             alertDialog.showDelayed(200L);
         }
-        final Runnable fetch = fetch(location.getLatitude(), location.getLongitude(), new Utilities.Callback() {
+        final Runnable runnableFetch = fetch(location.getLatitude(), location.getLongitude(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 Weather.lambda$fetch$0(z, alertDialog, callback, (Weather.State) obj);
             }
         });
-        if (!z || fetch == null) {
+        if (!z || runnableFetch == null) {
             return;
         }
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                fetch.run();
+                runnableFetch.run();
             }
         });
     }
@@ -160,7 +160,7 @@ public abstract class Weather {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                Weather.lambda$fetch$5(MessagesController.this, userArr, d, d2, iArr, connectionsManager, callback, str);
+                Weather.lambda$fetch$5(messagesController, userArr, d, d2, iArr, connectionsManager, callback, str);
             }
         };
         if (userArr[0] == null) {
@@ -205,13 +205,13 @@ public abstract class Weather {
     public static void lambda$fetch$4(final int[] iArr, final Utilities.Callback callback, final double d, final double d2, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 Weather.lambda$fetch$3(iArr, tLObject, callback, d, d2, str);
             }
         });
     }
 
-    public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) {
+    public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) throws NumberFormatException {
         iArr[0] = 0;
         if (tLObject instanceof TLRPC.messages_BotResults) {
             TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
@@ -219,12 +219,12 @@ public abstract class Weather {
                 TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(0);
                 String str2 = botInlineResult.title;
                 try {
-                    float parseFloat = Float.parseFloat(botInlineResult.description);
+                    float f = Float.parseFloat(botInlineResult.description);
                     State state = new State();
                     state.lat = d;
                     state.lng = d2;
                     state.emoji = str2;
-                    state.temperature = parseFloat;
+                    state.temperature = f;
                     cacheKey = str;
                     cacheValue = state;
                     callback.run(state);
@@ -278,7 +278,7 @@ public abstract class Weather {
         PermissionRequest.ensureEitherPermission(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$getUserLocation$11(Utilities.Callback.this, z, (Boolean) obj);
+                Weather.lambda$getUserLocation$11(callback, z, (Boolean) obj);
             }
         });
     }
@@ -290,14 +290,14 @@ public abstract class Weather {
         }
         final LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
         List<String> providers = locationManager.getProviders(true);
-        Location location = null;
+        Location lastKnownLocation = null;
         for (int size = providers.size() - 1; size >= 0; size--) {
-            location = locationManager.getLastKnownLocation(providers.get(size));
-            if (location != null) {
+            lastKnownLocation = locationManager.getLastKnownLocation(providers.get(size));
+            if (lastKnownLocation != null) {
                 break;
             }
         }
-        if (location == null && z) {
+        if (lastKnownLocation == null && z) {
             if (!locationManager.isProviderEnabled("gps")) {
                 final Context context = LaunchActivity.instance;
                 if (context == null) {
@@ -326,8 +326,8 @@ public abstract class Weather {
                     final LocationListener[] locationListenerArr = {null};
                     LocationListener locationListener = new LocationListener() {
                         @Override
-                        public final void onLocationChanged(Location location2) {
-                            Weather.lambda$getUserLocation$10(locationListenerArr, locationManager, callbackArr, location2);
+                        public final void onLocationChanged(Location location) {
+                            Weather.lambda$getUserLocation$10(locationListenerArr, locationManager, callbackArr, location);
                         }
                     };
                     locationListenerArr[0] = locationListener;
@@ -340,7 +340,7 @@ public abstract class Weather {
                 }
             }
         }
-        callback.run(location);
+        callback.run(lastKnownLocation);
     }
 
     public static void lambda$getUserLocation$9(Context context, AlertDialog alertDialog, int i) {

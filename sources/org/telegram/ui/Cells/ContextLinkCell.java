@@ -381,9 +381,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         int i = this.documentAttachType;
         boolean z = true;
         if (i == 3 || i == 5) {
-            boolean contains = this.letterDrawable.getBounds().contains(x, y);
+            boolean zContains = this.letterDrawable.getBounds().contains(x, y);
             if (motionEvent.getAction() == 0) {
-                if (contains) {
+                if (zContains) {
                     this.buttonPressed = true;
                     this.radialProgress.setPressed(true, false);
                     invalidate();
@@ -397,7 +397,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 } else if (motionEvent.getAction() == 3) {
                     this.buttonPressed = false;
                     invalidate();
-                } else if (motionEvent.getAction() == 2 && !contains) {
+                } else if (motionEvent.getAction() == 2 && !zContains) {
                     this.buttonPressed = false;
                     invalidate();
                 }
@@ -406,7 +406,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             z = false;
         } else {
             TLRPC.BotInlineResult botInlineResult = this.inlineResult;
-            if (botInlineResult != null && (webDocument = botInlineResult.content) != null && !TextUtils.isEmpty(webDocument.url)) {
+            if (botInlineResult == null || (webDocument = botInlineResult.content) == null || TextUtils.isEmpty(webDocument.url)) {
+                z = false;
+            } else {
                 if (motionEvent.getAction() == 0) {
                     if (this.letterDrawable.getBounds().contains(x, y)) {
                         this.buttonPressed = true;
@@ -422,8 +424,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                         this.buttonPressed = false;
                     }
                 }
+                z = false;
             }
-            z = false;
         }
         return !z ? super.onTouchEvent(motionEvent) : z;
     }
@@ -568,12 +570,12 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 this.linkImageView.setVisible(!PhotoViewer.isShowingImage(r0), false);
             }
             canvas.save();
-            float f = this.imageScale;
+            float scale = this.imageScale;
             ButtonBounce buttonBounce = this.buttonBounce;
             if (buttonBounce != null) {
-                f *= buttonBounce.getScale(0.1f);
+                scale *= buttonBounce.getScale(0.1f);
             }
-            canvas.scale(f, f, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+            canvas.scale(scale, scale, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
             this.linkImageView.draw(canvas);
             canvas.restore();
         }
@@ -611,7 +613,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     }
 
     public void updateButtonState(boolean z, boolean z2) {
-        boolean isLoadingHttpFile;
+        boolean zIsLoadingHttpFile;
         String str = this.fileName;
         if (str == null && !this.resolvingFileName) {
             this.resolvingFileName = true;
@@ -627,18 +629,18 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             return;
         }
         if (this.documentAttach != null) {
-            isLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
+            zIsLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
         } else {
-            isLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
+            zIsLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
         }
-        if (isLoadingHttpFile || !this.fileExist) {
+        if (zIsLoadingHttpFile || !this.fileExist) {
             DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
             int i2 = this.documentAttachType;
             if (i2 != 5 && i2 != 3) {
                 this.buttonState = 1;
                 Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
                 this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, false);
-            } else if (!isLoadingHttpFile) {
+            } else if (!zIsLoadingHttpFile) {
                 this.buttonState = 2;
             } else {
                 this.buttonState = 4;
@@ -653,8 +655,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
             int i3 = this.documentAttachType;
             if (i3 == 5 || i3 == 3) {
-                boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-                if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                boolean zIsPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                if (!zIsPlayingMessage || (zIsPlayingMessage && MediaController.getInstance().isMessagePaused())) {
                     this.buttonState = 0;
                 } else {
                     this.buttonState = 1;
@@ -668,7 +670,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         invalidate();
     }
 
-    public class AnonymousClass1 implements Runnable {
+    class AnonymousClass1 implements Runnable {
         final boolean val$ifSame;
         final int val$localId;
 
@@ -679,7 +681,90 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ContextLinkCell.AnonymousClass1.run():void");
+            File file;
+            final File file2;
+            final String str;
+            String attachFileName;
+            File pathToAttach;
+            File file3;
+            String string = null;
+            if (ContextLinkCell.this.documentAttachType == 5 || ContextLinkCell.this.documentAttachType == 3) {
+                if (ContextLinkCell.this.documentAttach != null) {
+                    string = FileLoader.getAttachFileName(ContextLinkCell.this.documentAttach);
+                    file = FileLoader.getInstance(ContextLinkCell.this.currentAccount).getPathToAttach(ContextLinkCell.this.documentAttach);
+                } else {
+                    if (ContextLinkCell.this.inlineResult.content instanceof TLRPC.TL_webDocument) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(Utilities.MD5(ContextLinkCell.this.inlineResult.content.url));
+                        sb.append(".");
+                        sb.append(ImageLoader.getHttpUrlExtension(ContextLinkCell.this.inlineResult.content.url, ContextLinkCell.this.documentAttachType == 5 ? "mp3" : "ogg"));
+                        string = sb.toString();
+                        file = new File(FileLoader.getDirectory(4), string);
+                    }
+                    str = null;
+                    file2 = null;
+                }
+                file2 = file;
+                str = string;
+            } else if (!ContextLinkCell.this.mediaWebpage) {
+                str = null;
+                file2 = null;
+            } else if (ContextLinkCell.this.inlineResult != null) {
+                if (ContextLinkCell.this.inlineResult.document instanceof TLRPC.TL_document) {
+                    attachFileName = FileLoader.getAttachFileName(ContextLinkCell.this.inlineResult.document);
+                    pathToAttach = FileLoader.getInstance(ContextLinkCell.this.currentAccount).getPathToAttach(ContextLinkCell.this.inlineResult.document);
+                } else if (!(ContextLinkCell.this.inlineResult.photo instanceof TLRPC.TL_photo)) {
+                    if (!(ContextLinkCell.this.inlineResult.content instanceof TLRPC.TL_webDocument)) {
+                        if (ContextLinkCell.this.inlineResult.thumb instanceof TLRPC.TL_webDocument) {
+                            attachFileName = Utilities.MD5(ContextLinkCell.this.inlineResult.thumb.url) + "." + ImageLoader.getHttpUrlExtension(ContextLinkCell.this.inlineResult.thumb.url, FileLoader.getMimeTypePart(ContextLinkCell.this.inlineResult.thumb.mime_type));
+                            file3 = new File(FileLoader.getDirectory(4), attachFileName);
+                        }
+                        attachFileName = null;
+                        pathToAttach = null;
+                    } else {
+                        attachFileName = Utilities.MD5(ContextLinkCell.this.inlineResult.content.url) + "." + ImageLoader.getHttpUrlExtension(ContextLinkCell.this.inlineResult.content.url, FileLoader.getMimeTypePart(ContextLinkCell.this.inlineResult.content.mime_type));
+                        file3 = new File(FileLoader.getDirectory(4), attachFileName);
+                        if (ContextLinkCell.this.documentAttachType == 2 && (ContextLinkCell.this.inlineResult.thumb instanceof TLRPC.TL_webDocument) && "video/mp4".equals(ContextLinkCell.this.inlineResult.thumb.mime_type)) {
+                            pathToAttach = file3;
+                            attachFileName = null;
+                        }
+                    }
+                    pathToAttach = file3;
+                } else {
+                    ContextLinkCell contextLinkCell = ContextLinkCell.this;
+                    contextLinkCell.currentPhotoObject = FileLoader.getClosestPhotoSizeWithSize(contextLinkCell.inlineResult.photo.sizes, AndroidUtilities.getPhotoSize(), true);
+                    attachFileName = FileLoader.getAttachFileName(ContextLinkCell.this.currentPhotoObject);
+                    pathToAttach = FileLoader.getInstance(ContextLinkCell.this.currentAccount).getPathToAttach(ContextLinkCell.this.currentPhotoObject);
+                }
+                if (ContextLinkCell.this.documentAttach == null && ContextLinkCell.this.documentAttachType == 2 && MessageObject.getDocumentVideoThumb(ContextLinkCell.this.documentAttach) != null) {
+                    file2 = pathToAttach;
+                    str = string;
+                } else {
+                    str = attachFileName;
+                    file2 = pathToAttach;
+                }
+            } else {
+                if (ContextLinkCell.this.documentAttach != null) {
+                    attachFileName = FileLoader.getAttachFileName(ContextLinkCell.this.documentAttach);
+                    pathToAttach = FileLoader.getInstance(ContextLinkCell.this.currentAccount).getPathToAttach(ContextLinkCell.this.documentAttach);
+                } else {
+                    attachFileName = null;
+                    pathToAttach = null;
+                }
+                if (ContextLinkCell.this.documentAttach == null) {
+                }
+                str = attachFileName;
+                file2 = pathToAttach;
+            }
+            final boolean z = !TextUtils.isEmpty(str) && file2.exists();
+            final int i = this.val$localId;
+            final boolean z2 = this.val$ifSame;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$run$0(i, str, file2, z, z2);
+                }
+            });
         }
 
         public void lambda$run$0(int i, String str, File file, boolean z, boolean z2) {
@@ -719,7 +804,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     @Override
     public void onProgressDownload(String str, long j, long j2) {
-        this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
+        this.radialProgress.setProgress(Math.min(1.0f, j / j2), true);
         int i = this.documentAttachType;
         if (i == 3 || i == 5) {
             if (this.buttonState != 4) {

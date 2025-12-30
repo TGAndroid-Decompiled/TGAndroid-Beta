@@ -9,6 +9,8 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 
 class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
+    MediaCodecWrapperFactoryImpl() {
+    }
 
     private static class MediaCodecWrapperImpl implements MediaCodecWrapper {
         private final MediaCodec mediaCodec;
@@ -48,7 +50,7 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
+        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) throws MediaCodec.CryptoException {
             this.mediaCodec.queueInputBuffer(i, i2, i3, j, i4);
         }
 

@@ -38,6 +38,7 @@ import androidx.core.math.MathUtils;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -67,6 +68,7 @@ import org.telegram.ui.Components.GroupCallPip;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.bots.BotWebViewSheet;
 
@@ -176,22 +178,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean addFragmentToStack(BaseFragment baseFragment) {
-        return INavigationLayout.CC.$default$addFragmentToStack(this, baseFragment);
+        return addFragmentToStack(baseFragment, -1);
     }
 
     @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
-        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2);
+        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), null);
     }
 
     @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2, Runnable runnable) {
-        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2, runnable);
+        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), runnable);
     }
 
     @Override
     public void closeLastFragment() {
-        INavigationLayout.CC.$default$closeLastFragment(this);
+        closeLastFragment(true);
     }
 
     @Override
@@ -201,7 +203,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void drawHeaderShadow(Canvas canvas, int i) {
-        INavigationLayout.CC.$default$drawHeaderShadow(this, canvas, i);
+        drawHeaderShadow(canvas, 255, i);
     }
 
     @Override
@@ -256,32 +258,32 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment) {
-        return INavigationLayout.CC.$default$presentFragment(this, baseFragment);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment));
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z) {
-        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z));
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4) {
-        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4));
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4, actionBarPopupWindowLayout);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4).setMenuView(actionBarPopupWindowLayout));
     }
 
     @Override
     public boolean presentFragmentAsPreview(BaseFragment baseFragment) {
-        return INavigationLayout.CC.$default$presentFragmentAsPreview(this, baseFragment);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true));
     }
 
     @Override
     public boolean presentFragmentAsPreviewWithMenu(BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        return INavigationLayout.CC.$default$presentFragmentAsPreviewWithMenu(this, baseFragment, actionBarPopupWindowLayout);
+        return presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true).setMenuView(actionBarPopupWindowLayout));
     }
 
     @Override
@@ -296,7 +298,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void removeFragmentFromStack(BaseFragment baseFragment) {
-        INavigationLayout.CC.$default$removeFragmentFromStack(this, baseFragment);
+        removeFragmentFromStack(baseFragment, false);
     }
 
     static float access$1616(ActionBarLayout actionBarLayout, float f) {
@@ -357,42 +359,42 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         @Override
         protected boolean drawChild(Canvas canvas, View view, long j) {
-            int i;
-            int i2;
+            int measuredHeight;
+            int y;
             BaseFragment baseFragment = !ActionBarLayout.this.fragmentsStack.isEmpty() ? (BaseFragment) ActionBarLayout.this.fragmentsStack.get(ActionBarLayout.this.fragmentsStack.size() - 1) : null;
             if (ActionBarLayout.this.sheetFragment != null && ActionBarLayout.this.sheetFragment.sheetsStack != null && !ActionBarLayout.this.sheetFragment.sheetsStack.isEmpty()) {
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1263getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1254getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
                 return super.drawChild(canvas, view, j);
             }
             int childCount = getChildCount();
-            int i3 = 0;
+            int i = 0;
             while (true) {
-                if (i3 >= childCount) {
+                if (i >= childCount) {
                     break;
                 }
-                View childAt = getChildAt(i3);
+                View childAt = getChildAt(i);
                 if (childAt == view || !(childAt instanceof ActionBar) || childAt.getVisibility() != 0) {
-                    i3++;
+                    i++;
                 } else if (((ActionBar) childAt).getCastShadows()) {
-                    i = childAt.getMeasuredHeight();
-                    i2 = (int) childAt.getY();
+                    measuredHeight = childAt.getMeasuredHeight();
+                    y = (int) childAt.getY();
                 }
             }
-            i = 0;
-            i2 = 0;
-            boolean drawChild = super.drawChild(canvas, view, j);
-            if (i != 0 && ActionBarLayout.headerShadowDrawable != null) {
-                int i4 = i2 + i;
-                ActionBarLayout.headerShadowDrawable.setBounds(0, i4, getMeasuredWidth(), ActionBarLayout.headerShadowDrawable.getIntrinsicHeight() + i4);
+            measuredHeight = 0;
+            y = 0;
+            boolean zDrawChild = super.drawChild(canvas, view, j);
+            if (measuredHeight != 0 && ActionBarLayout.headerShadowDrawable != null) {
+                int i2 = y + measuredHeight;
+                ActionBarLayout.headerShadowDrawable.setBounds(0, i2, getMeasuredWidth(), ActionBarLayout.headerShadowDrawable.getIntrinsicHeight() + i2);
                 ActionBarLayout.headerShadowDrawable.draw(canvas);
             }
-            return drawChild;
+            return zDrawChild;
         }
 
         @Override
@@ -401,8 +403,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
-            int i3;
+        protected void onMeasure(int i, int i2) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+            int measuredHeight;
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
             boolean z = size2 > size;
@@ -415,34 +417,34 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             getWindowVisibleDisplayFrame(this.rect);
             rootView.getHeight();
             if (this.rect.top != 0) {
-                int i4 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
+                int i3 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
             }
             AndroidUtilities.getViewInset(rootView);
-            int i5 = this.rect.bottom;
+            int i4 = this.rect.bottom;
             if (ActionBarLayout.this.bottomSheetTabs != null) {
                 ActionBarLayout.this.bottomSheetTabs.updateCurrentAccount();
             }
-            int i6 = 0;
+            int i5 = 0;
             while (true) {
-                if (i6 >= childCount) {
-                    i3 = 0;
+                if (i5 >= childCount) {
+                    measuredHeight = 0;
                     break;
                 }
-                View childAt = getChildAt(i6);
+                View childAt = getChildAt(i5);
                 if (childAt instanceof ActionBar) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    i3 = childAt.getMeasuredHeight();
+                    measuredHeight = childAt.getMeasuredHeight();
                     break;
                 }
-                i6++;
+                i5++;
             }
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt2 = getChildAt(i7);
+            for (int i6 = 0; i6 < childCount; i6++) {
+                View childAt2 = getChildAt(i6);
                 if (!(childAt2 instanceof ActionBar)) {
                     if (childAt2.getTag(-15654349) != null || childAt2.getFitsSystemWindows() || (childAt2 instanceof BaseFragment.AttachedSheetWindow)) {
                         measureChildWithMargins(childAt2, i, 0, i2, this.isSupportEdgeToEdge ? ActionBarLayout.this.navigationBarInsetHeight : 0);
                     } else {
-                        measureChildWithMargins(childAt2, i, 0, i2, i3);
+                        measureChildWithMargins(childAt2, i, 0, i2, measuredHeight);
                     }
                 }
             }
@@ -451,32 +453,32 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         @Override
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int i5;
+            int measuredHeight;
             int childCount = getChildCount();
-            int i6 = 0;
+            int i5 = 0;
             while (true) {
-                if (i6 >= childCount) {
-                    i5 = 0;
+                if (i5 >= childCount) {
+                    measuredHeight = 0;
                     break;
                 }
-                View childAt = getChildAt(i6);
+                View childAt = getChildAt(i5);
                 if (childAt instanceof ActionBar) {
-                    i5 = childAt.getMeasuredHeight();
-                    childAt.layout(0, 0, childAt.getMeasuredWidth(), i5);
+                    measuredHeight = childAt.getMeasuredHeight();
+                    childAt.layout(0, 0, childAt.getMeasuredWidth(), measuredHeight);
                     break;
                 }
-                i6++;
+                i5++;
             }
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt2 = getChildAt(i7);
+            for (int i6 = 0; i6 < childCount; i6++) {
+                View childAt2 = getChildAt(i6);
                 if (!(childAt2 instanceof ActionBar)) {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt2.getLayoutParams();
                     if (childAt2.getTag(-15654349) != null || childAt2.getFitsSystemWindows() || (childAt2 instanceof BaseFragment.AttachedSheetWindow)) {
-                        int i8 = layoutParams.leftMargin;
-                        childAt2.layout(i8, layoutParams.topMargin, childAt2.getMeasuredWidth() + i8, layoutParams.topMargin + childAt2.getMeasuredHeight());
+                        int i7 = layoutParams.leftMargin;
+                        childAt2.layout(i7, layoutParams.topMargin, childAt2.getMeasuredWidth() + i7, layoutParams.topMargin + childAt2.getMeasuredHeight());
                     } else {
-                        int i9 = layoutParams.leftMargin;
-                        childAt2.layout(i9, layoutParams.topMargin + i5, childAt2.getMeasuredWidth() + i9, layoutParams.topMargin + i5 + childAt2.getMeasuredHeight());
+                        int i8 = layoutParams.leftMargin;
+                        childAt2.layout(i8, layoutParams.topMargin + measuredHeight, childAt2.getMeasuredWidth() + i8, layoutParams.topMargin + measuredHeight + childAt2.getMeasuredHeight());
                     }
                 }
             }
@@ -503,21 +505,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         @Override
-        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            motionEvent.getAction();
-            boolean z = ActionBarLayout.this.inPreviewMode && ActionBarLayout.this.previewMenu == null;
-            if ((!z && !ActionBarLayout.this.transitionAnimationPreviewMode) || (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5)) {
-                if (z) {
-                    try {
-                        if (this != ActionBarLayout.this.containerView) {
-                        }
-                    } catch (Throwable th) {
-                        FileLog.e(th);
-                    }
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            }
-            return false;
+        public boolean dispatchTouchEvent(android.view.MotionEvent r6) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.LayoutContainer.dispatchTouchEvent(android.view.MotionEvent):boolean");
         }
 
         @Override
@@ -548,7 +537,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
     }
 
-    @Override
     public boolean allowSwipe() {
         EmptyBaseFragment emptyBaseFragment = this.sheetFragment;
         return emptyBaseFragment == null || emptyBaseFragment.getLastSheet() == null || !this.sheetFragment.getLastSheet().isShown();
@@ -565,7 +553,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (this.sheetFragment == null) {
             EmptyBaseFragment emptyBaseFragment = new EmptyBaseFragment() {
                 @Override
-                public void updateSheetsVisibility() {
+                protected void updateSheetsVisibility() {
                     super.updateSheetsVisibility();
                     ActionBarLayout.this.invalidate();
                 }
@@ -573,13 +561,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.sheetFragment = emptyBaseFragment;
             emptyBaseFragment.setParentLayout(this);
             EmptyBaseFragment emptyBaseFragment2 = this.sheetFragment;
-            View view = emptyBaseFragment2.fragmentView;
-            if (view == null) {
-                view = emptyBaseFragment2.createView(this.parentActivity);
+            View viewCreateView = emptyBaseFragment2.fragmentView;
+            if (viewCreateView == null) {
+                viewCreateView = emptyBaseFragment2.createView(this.parentActivity);
             }
-            if (view.getParent() != this.sheetContainer) {
-                AndroidUtilities.removeFromParent(view);
-                this.sheetContainer.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+            if (viewCreateView.getParent() != this.sheetContainer) {
+                AndroidUtilities.removeFromParent(viewCreateView);
+                this.sheetContainer.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
                 this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.isSupportEdgeToEdge());
             }
             this.sheetFragment.onResume();
@@ -610,7 +598,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.debugBlackScreenRunnable = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.this.lambda$new$9();
+                this.f$0.lambda$new$9();
             }
         };
         this.parentActivity = (Activity) context;
@@ -623,9 +611,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                WindowInsetsCompat onApplyWindowInsets;
-                onApplyWindowInsets = ActionBarLayout.this.onApplyWindowInsets(view, windowInsetsCompat);
-                return onApplyWindowInsets;
+                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
             }
         });
     }
@@ -642,12 +628,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             bottomSheetTabs.stopListening(new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarLayout.this.invalidate();
+                    this.f$0.invalidate();
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarLayout.this.relayout();
+                    this.f$0.relayout();
                 }
             });
             AndroidUtilities.removeFromParent(this.bottomSheetTabs);
@@ -660,12 +646,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.bottomSheetTabs.listen(new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarLayout.this.invalidate();
+                    this.f$0.invalidate();
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarLayout.this.relayout();
+                    this.f$0.relayout();
                 }
             });
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(76.0f));
@@ -715,13 +701,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (emptyBaseFragment != null) {
             emptyBaseFragment.setParentLayout(this);
             EmptyBaseFragment emptyBaseFragment2 = this.sheetFragment;
-            View view = emptyBaseFragment2.fragmentView;
-            if (view == null) {
-                view = emptyBaseFragment2.createView(this.parentActivity);
+            View viewCreateView = emptyBaseFragment2.fragmentView;
+            if (viewCreateView == null) {
+                viewCreateView = emptyBaseFragment2.createView(this.parentActivity);
             }
-            if (view.getParent() != this.sheetContainer) {
-                AndroidUtilities.removeFromParent(view);
-                this.sheetContainer.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+            if (viewCreateView.getParent() != this.sheetContainer) {
+                AndroidUtilities.removeFromParent(viewCreateView);
+                this.sheetContainer.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
                 this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.isSupportEdgeToEdge());
             }
             this.sheetFragment.onResume();
@@ -744,12 +730,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public void updateTitleOverlay() {
-        ActionBar actionBar;
         BaseFragment lastFragment = getLastFragment();
-        if (lastFragment == null || (actionBar = lastFragment.actionBar) == null) {
-            return;
+        if (lastFragment != null) {
+            lastFragment.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         }
-        actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
     }
 
     @Override
@@ -779,9 +763,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             baseFragment = (BaseFragment) list.get(list.size() - 1);
         }
         if (baseFragment != null && !baseFragment.isSupportEdgeToEdge() && storyViewerAttached()) {
-            int measureKeyboardHeight = measureKeyboardHeight();
-            baseFragment.setKeyboardHeightFromParent(measureKeyboardHeight);
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) + measureKeyboardHeight, 1073741824));
+            int iMeasureKeyboardHeight = measureKeyboardHeight();
+            baseFragment.setKeyboardHeightFromParent(iMeasureKeyboardHeight);
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) + iMeasureKeyboardHeight, 1073741824));
             return;
         }
         INavigationLayout.INavigationLayoutDelegate iNavigationLayoutDelegate = this.delegate;
@@ -845,11 +829,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 2);
         baseFragment.onSlideProgress(false, measuredWidth);
         BaseFragment baseFragment2 = (BaseFragment) this.fragmentsStack.get(r1.size() - 1);
-        float clamp = MathUtils.clamp(measuredWidth * 2.0f, 0.0f, 1.0f);
+        float fClamp = MathUtils.clamp(measuredWidth * 2.0f, 0.0f, 1.0f);
         if (!baseFragment2.isBeginToShow() || (navigationBarColor = baseFragment2.getNavigationBarColor()) == (navigationBarColor2 = baseFragment.getNavigationBarColor())) {
             return;
         }
-        baseFragment2.setNavigationBarColor(ColorUtils.blendARGB(navigationBarColor, navigationBarColor2, clamp));
+        baseFragment2.setNavigationBarColor(ColorUtils.blendARGB(navigationBarColor, navigationBarColor2, fClamp));
     }
 
     public float getInnerTranslationX() {
@@ -934,7 +918,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         invalidate();
     }
 
-    @Override
     public float getCurrentPreviewFragmentAlpha() {
         if (!this.inPreviewMode && !this.transitionAnimationPreviewMode && !this.previewOpenAnimationInProgress) {
             return 0.0f;
@@ -943,43 +926,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return ((baseFragment == null || !baseFragment.inPreviewMode) ? this.containerView : this.containerViewBack).getAlpha();
     }
 
-    @Override
-    public void drawCurrentPreviewFragment(Canvas canvas, Drawable drawable) {
-        View childAt;
-        if (this.inPreviewMode || this.transitionAnimationPreviewMode || this.previewOpenAnimationInProgress) {
-            BaseFragment baseFragment = this.oldFragment;
-            LayoutContainer layoutContainer = (baseFragment == null || !baseFragment.inPreviewMode) ? this.containerView : this.containerViewBack;
-            drawPreviewDrawables(canvas, layoutContainer);
-            if (layoutContainer.getAlpha() < 1.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (layoutContainer.getAlpha() * 255.0f), 31);
-            } else {
-                canvas.save();
-            }
-            canvas.concat(layoutContainer.getMatrix());
-            layoutContainer.draw(canvas);
-            if (drawable != null && (childAt = layoutContainer.getChildAt(0)) != null) {
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) childAt.getLayoutParams();
-                Rect rect = new Rect();
-                childAt.getLocalVisibleRect(rect);
-                rect.offset(marginLayoutParams.leftMargin, marginLayoutParams.topMargin);
-                rect.top += AndroidUtilities.statusBarHeight - 1;
-                drawable.setAlpha((int) (layoutContainer.getAlpha() * 255.0f));
-                drawable.setBounds(rect);
-                drawable.draw(canvas);
-            }
-            canvas.restore();
-        }
-    }
-
     private void drawPreviewDrawables(Canvas canvas, ViewGroup viewGroup) {
         if (viewGroup.getChildAt(0) != null) {
             this.previewBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.previewBackgroundDrawable.draw(canvas);
             if (this.previewMenu == null) {
-                int dp = AndroidUtilities.dp(32.0f);
-                int measuredWidth = (getMeasuredWidth() - dp) / 2;
+                int iDp = AndroidUtilities.dp(32.0f);
+                int measuredWidth = (getMeasuredWidth() - iDp) / 2;
                 int top = (int) ((r1.getTop() + viewGroup.getTranslationY()) - AndroidUtilities.dp(12.0f));
-                Theme.moveUpDrawable.setBounds(measuredWidth, top, dp + measuredWidth, (dp / 2) + top);
+                Theme.moveUpDrawable.setBounds(measuredWidth, top, iDp + measuredWidth, (iDp / 2) + top);
                 Theme.moveUpDrawable.draw(canvas);
             }
         }
@@ -1060,25 +1015,25 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         layoutContainer.setVisibility(0);
         this.beginTrackingSent = false;
         BaseFragment baseFragment = (BaseFragment) this.fragmentsStack.get(r2.size() - 2);
-        View view = baseFragment.fragmentView;
-        if (view == null) {
-            view = baseFragment.createView(this.parentActivity);
+        View viewCreateView = baseFragment.fragmentView;
+        if (viewCreateView == null) {
+            viewCreateView = baseFragment.createView(this.parentActivity);
         }
-        ViewGroup viewGroup = (ViewGroup) view.getParent();
+        ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
         if (viewGroup != null) {
             baseFragment.onRemoveFromParent();
-            viewGroup.removeView(view);
+            viewGroup.removeView(viewCreateView);
         }
-        this.containerViewBack.addView(view);
+        this.containerViewBack.addView(viewCreateView);
         this.containerViewBack.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = -1;
         layoutParams.leftMargin = 0;
         layoutParams.rightMargin = 0;
         layoutParams.bottomMargin = 0;
         layoutParams.topMargin = 0;
-        view.setLayoutParams(layoutParams);
+        viewCreateView.setLayoutParams(layoutParams);
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             AndroidUtilities.removeFromParent(baseFragment.actionBar);
@@ -1086,11 +1041,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment.actionBar.setOccupyStatusBar(false);
             }
             this.containerViewBack.addView(baseFragment.actionBar);
-            baseFragment.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         }
+        baseFragment.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         baseFragment.attachSheets(this.containerViewBack);
-        if (!baseFragment.hasOwnBackground && view.getBackground() == null) {
-            view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
+            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         baseFragment.onResume();
         if (this.themeAnimatorSet != null) {
@@ -1127,10 +1082,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
-                int max = Math.max(0, (int) (motionEvent.getX() - this.startedTrackingX));
-                int abs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
+                int iMax = Math.max(0, (int) (motionEvent.getX() - this.startedTrackingX));
+                int iAbs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
                 this.velocityTracker.addMovement(motionEvent);
-                if (!this.transitionAnimationInProgress && !this.inPreviewMode && this.maybeStartTracking && !this.startedTracking && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs) {
+                if (!this.transitionAnimationInProgress && !this.inPreviewMode && this.maybeStartTracking && !this.startedTracking && iMax >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(iMax) / 3 > iAbs) {
                     List list2 = this.fragmentsStack;
                     if (((BaseFragment) list2.get(list2.size() - 1)).canBeginSlide() && findScrollingChild(this, motionEvent.getX(), motionEvent.getY()) == null) {
                         this.startedTrackingX = (int) motionEvent.getX();
@@ -1148,11 +1103,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         this.beginTrackingSent = true;
                     }
                     if (newBackTransitions()) {
-                        float f = max;
+                        float f = iMax;
                         this.containerView.setTranslationX((f / getWidth()) * AndroidUtilities.dp(56.0f) * 5);
                         setInnerTranslationX((f / getWidth()) * AndroidUtilities.dp(56.0f) * 5);
                     } else {
-                        float f2 = max;
+                        float f2 = iMax;
                         this.containerView.setTranslationX(f2);
                         setInnerTranslationX(f2);
                     }
@@ -1251,10 +1206,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     public void onBackProgress(float f) {
         if (this.predictiveBackInProgress) {
-            float dp = AndroidUtilities.dp(56.0f) * f;
+            float fDp = AndroidUtilities.dp(56.0f) * f;
             this.predictiveBackHasProgress = f > 0.0f;
-            this.containerView.setTranslationX(this.predictiveBackLeft ? dp : -dp);
-            setInnerTranslationX(dp);
+            this.containerView.setTranslationX(this.predictiveBackLeft ? fDp : -fDp);
+            setInnerTranslationX(fDp);
         }
     }
 
@@ -1290,21 +1245,21 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         float x = this.containerView.getX();
         AnimatorSet animatorSet = new AnimatorSet();
-        boolean shouldOverrideSlideTransition = baseFragment.shouldOverrideSlideTransition(false, z);
+        boolean zShouldOverrideSlideTransition = baseFragment.shouldOverrideSlideTransition(false, z);
         if (!z) {
             x = Math.abs(this.containerView.getMeasuredWidth() - x);
-            int max = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 380 : 50);
-            if (!shouldOverrideSlideTransition) {
-                long j = max;
+            int iMax = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 380 : 50);
+            if (!zShouldOverrideSlideTransition) {
+                long j = iMax;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, ((this.predictiveBackLeft || !this.predictiveBackInProgress) ? 1 : -1) * (r6.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0))).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
                 if (newBackTransitions()) {
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 }
             }
         } else {
-            int max2 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 320 : 120);
-            if (!shouldOverrideSlideTransition) {
-                long j2 = max2;
+            int iMax2 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 320 : 120);
+            if (!zShouldOverrideSlideTransition) {
+                long j2 = iMax2;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, 0.0f).setDuration(j2), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j2));
                 if (newBackTransitions()) {
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -1365,7 +1320,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
     }
 
-    public void onAnimationEndCheck(boolean z) {
+    public void onAnimationEndCheck(boolean z) throws IOException {
         onCloseAnimationEnd();
         onOpenAnimationEnd();
         Runnable runnable = this.waitingForKeyboardCloseRunnable;
@@ -1402,8 +1357,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return (BaseFragment) this.fragmentsStack.get(r0.size() - 1);
     }
 
+    public BaseFragment getLastFragmentIncludeMainTabs() {
+        BaseFragment lastFragment = getLastFragment();
+        return lastFragment instanceof MainTabsActivity ? ((MainTabsActivity) lastFragment).getCurrentVisibleFragment() : lastFragment;
+    }
+
     @Override
-    public boolean checkTransitionAnimation() {
+    public boolean checkTransitionAnimation() throws IOException {
         if (this.transitionAnimationPreviewMode) {
             return false;
         }
@@ -1472,7 +1432,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         Runnable runnable = new Runnable() {
             @Override
-            public void run() {
+            public void run() throws IOException {
                 float interpolation;
                 if (ActionBarLayout.this.animationRunnable != this) {
                     return;
@@ -1481,15 +1441,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (z2) {
                     ActionBarLayout.this.transitionAnimationStartTime = System.currentTimeMillis();
                 }
-                long nanoTime = System.nanoTime() / 1000000;
-                long j = nanoTime - ActionBarLayout.this.lastFrameTime;
+                long jNanoTime = System.nanoTime() / 1000000;
+                long j = jNanoTime - ActionBarLayout.this.lastFrameTime;
                 if (j > 40 && z2) {
                     j = 0;
                 } else if (j > 18) {
                     j = 18;
                 }
-                ActionBarLayout.this.lastFrameTime = nanoTime;
-                ActionBarLayout.access$1616(ActionBarLayout.this, ((float) j) / ((z3 && z) ? 190.0f : 150.0f));
+                ActionBarLayout.this.lastFrameTime = jNanoTime;
+                ActionBarLayout.access$1616(ActionBarLayout.this, j / ((z3 && z) ? 190.0f : 150.0f));
                 if (ActionBarLayout.this.animationProgress > 1.0f) {
                     ActionBarLayout.this.animationProgress = 1.0f;
                 }
@@ -1499,25 +1459,25 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (ActionBarLayout.this.oldFragment != null) {
                     ActionBarLayout.this.oldFragment.onTransitionAnimationProgress(false, ActionBarLayout.this.animationProgress);
                 }
-                Integer valueOf = ActionBarLayout.this.oldFragment != null ? Integer.valueOf(ActionBarLayout.this.oldFragment.getNavigationBarColor()) : null;
-                Integer valueOf2 = ActionBarLayout.this.newFragment != null ? Integer.valueOf(ActionBarLayout.this.newFragment.getNavigationBarColor()) : null;
-                if (ActionBarLayout.this.oldFragment != null && ActionBarLayout.this.oldFragment.isSupportEdgeToEdge() && valueOf2 != null) {
-                    valueOf = valueOf2;
+                Integer numValueOf = ActionBarLayout.this.oldFragment != null ? Integer.valueOf(ActionBarLayout.this.oldFragment.getNavigationBarColor()) : null;
+                Integer numValueOf2 = ActionBarLayout.this.newFragment != null ? Integer.valueOf(ActionBarLayout.this.newFragment.getNavigationBarColor()) : null;
+                if (ActionBarLayout.this.oldFragment != null && ActionBarLayout.this.oldFragment.isSupportEdgeToEdge() && numValueOf2 != null) {
+                    numValueOf = numValueOf2;
                 }
-                if (ActionBarLayout.this.newFragment != null && ActionBarLayout.this.newFragment.isSupportEdgeToEdge() && valueOf != null) {
-                    valueOf2 = valueOf;
+                if (ActionBarLayout.this.newFragment != null && ActionBarLayout.this.newFragment.isSupportEdgeToEdge() && numValueOf != null) {
+                    numValueOf2 = numValueOf;
                 }
-                if (ActionBarLayout.this.newFragment != null && valueOf != null && valueOf2 != null) {
-                    int blendARGB = ColorUtils.blendARGB(valueOf.intValue(), valueOf2.intValue(), MathUtils.clamp(ActionBarLayout.this.animationProgress * 4.0f, 0.0f, 1.0f));
+                if (ActionBarLayout.this.newFragment != null && numValueOf != null && numValueOf2 != null) {
+                    int iBlendARGB = ColorUtils.blendARGB(numValueOf.intValue(), numValueOf2.intValue(), MathUtils.clamp(ActionBarLayout.this.animationProgress * 4.0f, 0.0f, 1.0f));
                     if (ActionBarLayout.this.sheetFragment != null && ActionBarLayout.this.sheetFragment.sheetsStack != null) {
                         for (int i = 0; i < ActionBarLayout.this.sheetFragment.sheetsStack.size(); i++) {
                             BaseFragment.AttachedSheet attachedSheet = ActionBarLayout.this.sheetFragment.sheetsStack.get(i);
                             if (attachedSheet.attachedToParent()) {
-                                blendARGB = attachedSheet.getNavigationBarColor(blendARGB);
+                                iBlendARGB = attachedSheet.getNavigationBarColor(iBlendARGB);
                             }
                         }
                     }
-                    ActionBarLayout.this.newFragment.setNavigationBarColor(blendARGB);
+                    ActionBarLayout.this.newFragment.setNavigationBarColor(iBlendARGB);
                 }
                 if (!z3) {
                     interpolation = ActionBarLayout.this.decelerateInterpolator.getInterpolation(ActionBarLayout.this.animationProgress);
@@ -1525,8 +1485,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     interpolation = z ? ActionBarLayout.this.overshootInterpolator.getInterpolation(ActionBarLayout.this.animationProgress) : CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(ActionBarLayout.this.animationProgress);
                 }
                 if (z) {
-                    float clamp = MathUtils.clamp(interpolation, 0.0f, 1.0f);
-                    ActionBarLayout.this.containerView.setAlpha(clamp);
+                    float fClamp = MathUtils.clamp(interpolation, 0.0f, 1.0f);
+                    ActionBarLayout.this.containerView.setAlpha(fClamp);
                     if (z3) {
                         float f = (0.3f * interpolation) + 0.7f;
                         ActionBarLayout.this.containerView.setScaleX(f);
@@ -1539,8 +1499,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                             ActionBarLayout.this.previewMenu.setScaleX(f3);
                             ActionBarLayout.this.previewMenu.setScaleY(f3);
                         }
-                        ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * clamp));
-                        Theme.moveUpDrawable.setAlpha((int) (clamp * 255.0f));
+                        ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * fClamp));
+                        Theme.moveUpDrawable.setAlpha((int) (fClamp * 255.0f));
                         ActionBarLayout.this.containerView.invalidate();
                         ActionBarLayout.this.invalidate();
                     } else {
@@ -1548,15 +1508,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                 } else {
                     float f4 = 1.0f - interpolation;
-                    float clamp2 = MathUtils.clamp(f4, 0.0f, 1.0f);
-                    ActionBarLayout.this.containerViewBack.setAlpha(clamp2);
+                    float fClamp2 = MathUtils.clamp(f4, 0.0f, 1.0f);
+                    ActionBarLayout.this.containerViewBack.setAlpha(fClamp2);
                     if (z3) {
                         float f5 = (f4 * 0.1f) + 0.9f;
                         ActionBarLayout.this.containerViewBack.setScaleX(f5);
                         ActionBarLayout.this.containerViewBack.setScaleY(f5);
-                        ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * clamp2));
+                        ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * fClamp2));
                         if (ActionBarLayout.this.previewMenu == null) {
-                            Theme.moveUpDrawable.setAlpha((int) (clamp2 * 255.0f));
+                            Theme.moveUpDrawable.setAlpha((int) (fClamp2 * 255.0f));
                         }
                         ActionBarLayout.this.containerView.invalidate();
                         ActionBarLayout.this.invalidate();
@@ -1601,7 +1561,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     public boolean presentFragment(INavigationLayout.NavigationParams navigationParams) {
         INavigationLayout.INavigationLayoutDelegate iNavigationLayoutDelegate;
         final BaseFragment baseFragment;
-        int i;
+        int measuredHeight;
         boolean z;
         LaunchActivity launchActivity;
         final BaseFragment baseFragment2 = navigationParams.fragment;
@@ -1613,7 +1573,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (baseFragment2 == null || checkTransitionAnimation() || !(((iNavigationLayoutDelegate = this.delegate) == null || !z4 || iNavigationLayoutDelegate.needPresentFragment(this, navigationParams)) && baseFragment2.onFragmentCreate())) {
             return false;
         }
-        final boolean isSupportEdgeToEdge = baseFragment2.isSupportEdgeToEdge();
+        final boolean zIsSupportEdgeToEdge = baseFragment2.isSupportEdgeToEdge();
         BaseFragment lastFragment = getLastFragment();
         Dialog visibleDialog = lastFragment != null ? lastFragment.getVisibleDialog() : null;
         if (visibleDialog == null && (launchActivity = LaunchActivity.instance) != null && launchActivity.getVisibleDialog() != null) {
@@ -1663,63 +1623,63 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             baseFragment = (BaseFragment) list.get(list.size() - 1);
         }
         baseFragment2.setParentLayout(this);
-        View view = baseFragment2.fragmentView;
-        if (view == null) {
-            view = baseFragment2.createView(this.parentActivity);
+        View viewCreateView = baseFragment2.fragmentView;
+        if (viewCreateView == null) {
+            viewCreateView = baseFragment2.createView(this.parentActivity);
         } else {
-            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment2.onRemoveFromParent();
-                viewGroup.removeView(view);
+                viewGroup.removeView(viewCreateView);
             }
         }
-        this.containerViewBack.addView(view);
-        this.containerViewBack.setShouldHandleBottomInsets(!z5 && isSupportEdgeToEdge);
+        this.containerViewBack.addView(viewCreateView);
+        this.containerViewBack.setShouldHandleBottomInsets(!z5 && zIsSupportEdgeToEdge);
         if (actionBarPopupWindowLayout != null) {
             this.containerViewBack.addView(actionBarPopupWindowLayout);
             actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
-            i = actionBarPopupWindowLayout.getMeasuredHeight() + AndroidUtilities.dp(24.0f);
+            measuredHeight = actionBarPopupWindowLayout.getMeasuredHeight() + AndroidUtilities.dp(24.0f);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) actionBarPopupWindowLayout.getLayoutParams();
             layoutParams.width = -2;
             layoutParams.height = -2;
-            layoutParams.topMargin = ((getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - i) - AndroidUtilities.dp(6.0f);
+            layoutParams.topMargin = ((getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - measuredHeight) - AndroidUtilities.dp(6.0f);
             actionBarPopupWindowLayout.setLayoutParams(layoutParams);
         } else {
-            i = 0;
+            measuredHeight = 0;
         }
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) view.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
         layoutParams2.width = -1;
         layoutParams2.height = -1;
         if (z5) {
             int previewHeight = baseFragment2.getPreviewHeight();
-            int i2 = AndroidUtilities.statusBarHeight;
-            if (previewHeight > 0 && previewHeight < getMeasuredHeight() - i2) {
+            int i = AndroidUtilities.statusBarHeight;
+            if (previewHeight > 0 && previewHeight < getMeasuredHeight() - i) {
                 layoutParams2.height = previewHeight;
-                layoutParams2.topMargin = i2 + (((getMeasuredHeight() - i2) - previewHeight) / 2);
+                layoutParams2.topMargin = i + (((getMeasuredHeight() - i) - previewHeight) / 2);
             } else {
-                int dp = AndroidUtilities.dp(actionBarPopupWindowLayout != null ? 0.0f : 24.0f);
-                layoutParams2.bottomMargin = dp;
-                layoutParams2.topMargin = dp;
-                int i3 = AndroidUtilities.statusBarHeight;
-                int i4 = dp + i3;
-                layoutParams2.topMargin = i4;
-                if (isSupportEdgeToEdge) {
-                    layoutParams2.topMargin = i4 + i3;
+                int iDp = AndroidUtilities.dp(actionBarPopupWindowLayout != null ? 0.0f : 24.0f);
+                layoutParams2.bottomMargin = iDp;
+                layoutParams2.topMargin = iDp;
+                int i2 = AndroidUtilities.statusBarHeight;
+                int i3 = iDp + i2;
+                layoutParams2.topMargin = i3;
+                if (zIsSupportEdgeToEdge) {
+                    layoutParams2.topMargin = i3 + i2;
                 }
             }
             if (actionBarPopupWindowLayout != null) {
-                layoutParams2.bottomMargin += i + AndroidUtilities.dp(8.0f);
+                layoutParams2.bottomMargin += measuredHeight + AndroidUtilities.dp(8.0f);
             }
-            int dp2 = AndroidUtilities.dp(8.0f);
-            layoutParams2.leftMargin = dp2;
-            layoutParams2.rightMargin = dp2;
+            int iDp2 = AndroidUtilities.dp(8.0f);
+            layoutParams2.leftMargin = iDp2;
+            layoutParams2.rightMargin = iDp2;
         } else {
             layoutParams2.leftMargin = 0;
             layoutParams2.rightMargin = 0;
             layoutParams2.bottomMargin = 0;
             layoutParams2.topMargin = 0;
         }
-        view.setLayoutParams(layoutParams2);
+        viewCreateView.setLayoutParams(layoutParams2);
         ActionBar actionBar = baseFragment2.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             if (this.removeActionBarExtraHeight) {
@@ -1727,15 +1687,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             AndroidUtilities.removeFromParent(baseFragment2.actionBar);
             this.containerViewBack.addView(baseFragment2.actionBar);
-            baseFragment2.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         }
+        baseFragment2.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         baseFragment2.attachSheets(this.containerViewBack);
         this.fragmentsStack.add(baseFragment2);
         onFragmentStackChanged("presentFragment");
         baseFragment2.onResume();
         this.currentActionBar = baseFragment2.actionBar;
-        if (!baseFragment2.hasOwnBackground && view.getBackground() == null) {
-            view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment2.hasOwnBackground && viewCreateView.getBackground() == null) {
+            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         LayoutContainer layoutContainer = this.containerView;
         LayoutContainer layoutContainer2 = this.containerViewBack;
@@ -1745,14 +1705,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         setInnerTranslationX(0.0f);
         this.containerView.setTranslationY(0.0f);
         if (z5) {
-            view.setOutlineProvider(new ViewOutlineProvider() {
+            viewCreateView.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                public void getOutline(View view2, Outline outline) {
-                    outline.setRoundRect(0, isSupportEdgeToEdge ? 0 : AndroidUtilities.statusBarHeight, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0, zIsSupportEdgeToEdge ? 0 : AndroidUtilities.statusBarHeight, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
                 }
             });
-            view.setClipToOutline(true);
-            view.setElevation(AndroidUtilities.dp(4.0f));
+            viewCreateView.setClipToOutline(true);
+            viewCreateView.setElevation(AndroidUtilities.dp(4.0f));
             if (this.previewBackgroundDrawable == null) {
                 this.previewBackgroundDrawable = new ColorDrawable(771751936);
             }
@@ -1766,9 +1726,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         if (!z6) {
             presentFragmentInternalRemoveOld(z2, baseFragment);
-            View view2 = this.backgroundView;
-            if (view2 != null) {
-                view2.setVisibility(0);
+            View view = this.backgroundView;
+            if (view != null) {
+                view.setVisibility(0);
             }
         }
         if (this.themeAnimatorSet != null) {
@@ -1783,15 +1743,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarLayout.lambda$presentFragment$0(BaseFragment.this, baseFragment2);
+                        ActionBarLayout.lambda$presentFragment$0(baseFragment, baseFragment2);
                     }
                 };
                 ArrayList arrayList = new ArrayList();
                 Property property = View.ALPHA;
                 arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) property, 0.0f, 1.0f));
-                View view3 = this.backgroundView;
-                if (view3 != null) {
-                    view3.setVisibility(0);
+                View view2 = this.backgroundView;
+                if (view2 != null) {
+                    view2.setVisibility(0);
                     arrayList.add(ObjectAnimator.ofFloat(this.backgroundView, (Property<View, Float>) property, 0.0f, 1.0f));
                 }
                 if (baseFragment != null) {
@@ -1805,7 +1765,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.currentAnimation.setDuration(200L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animator) {
+                    public void onAnimationEnd(Animator animator) throws IOException {
                         ActionBarLayout.this.onAnimationEndCheck(false);
                     }
                 });
@@ -1819,12 +1779,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarLayout.this.lambda$presentFragment$1(z5, actionBarPopupWindowLayout, z2, baseFragment3, baseFragment2);
+                        this.f$0.lambda$presentFragment$1(z5, actionBarPopupWindowLayout, z2, baseFragment3, baseFragment2);
                     }
                 };
-                boolean needDelayOpenAnimation = baseFragment2.needDelayOpenAnimation();
-                final boolean z7 = !needDelayOpenAnimation;
-                if (needDelayOpenAnimation) {
+                boolean zNeedDelayOpenAnimation = baseFragment2.needDelayOpenAnimation();
+                final boolean z7 = !zNeedDelayOpenAnimation;
+                if (zNeedDelayOpenAnimation) {
                     z = false;
                 } else {
                     z = false;
@@ -1836,17 +1796,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.delayedAnimationResumed = z;
                 this.oldFragment = baseFragment;
                 this.newFragment = baseFragment2;
-                AnimatorSet onCustomTransitionAnimation = !z5 ? baseFragment2.onCustomTransitionAnimation(true, new Runnable() {
+                AnimatorSet animatorSetOnCustomTransitionAnimation = !z5 ? baseFragment2.onCustomTransitionAnimation(true, new Runnable() {
                     @Override
-                    public final void run() {
-                        ActionBarLayout.this.lambda$presentFragment$2();
+                    public final void run() throws IOException {
+                        this.f$0.lambda$presentFragment$2();
                     }
                 }) : null;
-                if (onCustomTransitionAnimation != null) {
+                if (animatorSetOnCustomTransitionAnimation != null) {
                     if (!z5 && ((this.containerView.isKeyboardVisible || this.containerViewBack.isKeyboardVisible) && baseFragment != null)) {
                         baseFragment.saveKeyboardPositionBeforeTransition();
                     }
-                    this.currentAnimation = onCustomTransitionAnimation;
+                    this.currentAnimation = animatorSetOnCustomTransitionAnimation;
                 } else {
                     this.containerView.setAlpha(0.0f);
                     if (z5) {
@@ -1931,9 +1891,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             return true;
         }
-        View view4 = this.backgroundView;
-        if (view4 != null) {
-            view4.setAlpha(1.0f);
+        View view3 = this.backgroundView;
+        if (view3 != null) {
+            view3.setAlpha(1.0f);
             this.backgroundView.setVisibility(0);
         }
         if (baseFragment != null) {
@@ -1972,7 +1932,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         baseFragment2.onBecomeFullyVisible();
     }
 
-    public void lambda$presentFragment$2() {
+    public void lambda$presentFragment$2() throws IOException {
         onAnimationEndCheck(false);
     }
 
@@ -2051,20 +2011,20 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     private void attachView(BaseFragment baseFragment) {
-        View view = baseFragment.fragmentView;
-        if (view == null) {
-            view = baseFragment.createView(this.parentActivity);
+        View viewCreateView = baseFragment.fragmentView;
+        if (viewCreateView == null) {
+            viewCreateView = baseFragment.createView(this.parentActivity);
         } else {
-            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment.onRemoveFromParent();
-                viewGroup.removeView(view);
+                viewGroup.removeView(viewCreateView);
             }
         }
-        if (!baseFragment.hasOwnBackground && view.getBackground() == null) {
-            view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
+            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
-        this.containerView.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+        this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
@@ -2076,27 +2036,27 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 viewGroup2.removeView(baseFragment.actionBar);
             }
             this.containerView.addView(baseFragment.actionBar);
-            baseFragment.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         }
+        baseFragment.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         baseFragment.attachSheets(this.containerView);
     }
 
     private void attachViewTo(BaseFragment baseFragment, int i) {
-        View view = baseFragment.fragmentView;
-        if (view == null) {
-            view = baseFragment.createView(this.parentActivity);
+        View viewCreateView = baseFragment.fragmentView;
+        if (viewCreateView == null) {
+            viewCreateView = baseFragment.createView(this.parentActivity);
         } else {
-            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment.onRemoveFromParent();
-                viewGroup.removeView(view);
+                viewGroup.removeView(viewCreateView);
             }
         }
-        if (!baseFragment.hasOwnBackground && view.getBackground() == null) {
-            view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
+            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         LayoutContainer layoutContainer = this.containerView;
-        layoutContainer.addView(view, Utilities.clamp(i, layoutContainer.getChildCount(), 0), LayoutHelper.createFrame(-1, -1.0f));
+        layoutContainer.addView(viewCreateView, Utilities.clamp(i, layoutContainer.getChildCount(), 0), LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
@@ -2108,8 +2068,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 viewGroup2.removeView(baseFragment.actionBar);
             }
             this.containerView.addView(baseFragment.actionBar);
-            baseFragment.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         }
+        baseFragment.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         baseFragment.attachSheets(this.containerView);
     }
 
@@ -2130,8 +2090,21 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public void movePreviewFragment(float r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.movePreviewFragment(float):void");
+    public void movePreviewFragment(float f) {
+        if (this.inPreviewMode && this.previewMenu == null && !this.transitionAnimationPreviewMode) {
+            float translationY = this.containerView.getTranslationY();
+            float f2 = -f;
+            if (f2 > 0.0f) {
+                f2 = 0.0f;
+            } else if (f2 < (-AndroidUtilities.dp(60.0f))) {
+                expandPreviewFragment();
+                f2 = 0.0f;
+            }
+            if (translationY != f2) {
+                this.containerView.setTranslationY(f2);
+                invalidate();
+            }
+        }
     }
 
     @Override
@@ -2214,7 +2187,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             boolean z3 = !z2 && (this.inPreviewMode || this.transitionAnimationPreviewMode || (z && MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)));
             List list = this.fragmentsStack;
             final BaseFragment baseFragment2 = (BaseFragment) list.get(list.size() - 1);
-            AnimatorSet animatorSet = null;
+            AnimatorSet animatorSetOnCustomTransitionAnimation = null;
             if (this.fragmentsStack.size() > 1) {
                 List list2 = this.fragmentsStack;
                 baseFragment = (BaseFragment) list2.get(list2.size() - 2);
@@ -2227,31 +2200,31 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.containerView = this.containerViewBack;
                 this.containerViewBack = layoutContainer;
                 baseFragment.setParentLayout(this);
-                View view = baseFragment.fragmentView;
-                if (view == null) {
-                    view = baseFragment.createView(this.parentActivity);
+                View viewCreateView = baseFragment.fragmentView;
+                if (viewCreateView == null) {
+                    viewCreateView = baseFragment.createView(this.parentActivity);
                 }
                 if (!this.inPreviewMode) {
                     this.containerView.setVisibility(0);
-                    ViewGroup viewGroup = (ViewGroup) view.getParent();
+                    ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
                     if (viewGroup != null) {
                         baseFragment.onRemoveFromParent();
                         try {
-                            viewGroup.removeView(view);
+                            viewGroup.removeView(viewCreateView);
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
                     }
-                    this.containerView.addView(view);
+                    this.containerView.addView(viewCreateView);
                     this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
                     layoutParams.width = -1;
                     layoutParams.height = -1;
                     layoutParams.leftMargin = 0;
                     layoutParams.rightMargin = 0;
                     layoutParams.bottomMargin = 0;
                     layoutParams.topMargin = 0;
-                    view.setLayoutParams(layoutParams);
+                    viewCreateView.setLayoutParams(layoutParams);
                     ActionBar actionBar = baseFragment.actionBar;
                     if (actionBar != null && actionBar.shouldAddToContainer()) {
                         if (this.removeActionBarExtraHeight) {
@@ -2259,8 +2232,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         }
                         AndroidUtilities.removeFromParent(baseFragment.actionBar);
                         this.containerView.addView(baseFragment.actionBar);
-                        baseFragment.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
                     }
+                    baseFragment.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
                     baseFragment.attachSheets(this.containerView);
                 }
                 this.newFragment = baseFragment;
@@ -2272,8 +2245,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.presentingFragmentDescriptions = baseFragment.getThemeDescriptions();
                 }
                 this.currentActionBar = baseFragment.actionBar;
-                if (!baseFragment.hasOwnBackground && view.getBackground() == null) {
-                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
+                    viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 }
                 if (z3) {
                     this.transitionAnimationStartTime = System.currentTimeMillis();
@@ -2283,18 +2256,18 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.onCloseAnimationEndRunnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ActionBarLayout.this.lambda$closeLastFragment$3(baseFragment2, baseFragment);
+                            this.f$0.lambda$closeLastFragment$3(baseFragment2, baseFragment);
                         }
                     };
                     if (!this.inPreviewMode && !this.transitionAnimationPreviewMode) {
-                        animatorSet = baseFragment2.onCustomTransitionAnimation(false, new Runnable() {
+                        animatorSetOnCustomTransitionAnimation = baseFragment2.onCustomTransitionAnimation(false, new Runnable() {
                             @Override
-                            public final void run() {
-                                ActionBarLayout.this.lambda$closeLastFragment$4();
+                            public final void run() throws IOException {
+                                this.f$0.lambda$closeLastFragment$4();
                             }
                         });
                     }
-                    if (animatorSet == null) {
+                    if (animatorSetOnCustomTransitionAnimation == null) {
                         if (!this.inPreviewMode && (this.containerView.isKeyboardVisible || this.containerViewBack.isKeyboardVisible)) {
                             Runnable runnable = new Runnable() {
                                 @Override
@@ -2312,7 +2285,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                             startLayoutAnimation(false, true, this.inPreviewMode || this.transitionAnimationPreviewMode);
                         }
                     } else {
-                        this.currentAnimation = animatorSet;
+                        this.currentAnimation = animatorSetOnCustomTransitionAnimation;
                         if (Bulletin.getVisibleBulletin() != null && Bulletin.getVisibleBulletin().isShowing()) {
                             Bulletin.getVisibleBulletin().hide();
                         }
@@ -2331,19 +2304,19 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onCloseAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarLayout.this.lambda$closeLastFragment$5(baseFragment2);
+                        this.f$0.lambda$closeLastFragment$5(baseFragment2);
                     }
                 };
                 ArrayList arrayList = new ArrayList();
                 Property property = View.ALPHA;
                 arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) property, 1.0f, 0.0f));
-                View view2 = this.backgroundView;
-                if (view2 != null) {
-                    arrayList.add(ObjectAnimator.ofFloat(view2, (Property<View, Float>) property, 1.0f, 0.0f));
+                View view = this.backgroundView;
+                if (view != null) {
+                    arrayList.add(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, 1.0f, 0.0f));
                 }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                this.currentAnimation = animatorSet2;
-                animatorSet2.playTogether(arrayList);
+                AnimatorSet animatorSet = new AnimatorSet();
+                this.currentAnimation = animatorSet;
+                animatorSet.playTogether(arrayList);
                 this.currentAnimation.setInterpolator(this.accelerateDecelerateInterpolator);
                 this.currentAnimation.setDuration(200L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
@@ -2353,7 +2326,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
 
                     @Override
-                    public void onAnimationEnd(Animator animator) {
+                    public void onAnimationEnd(Animator animator) throws IOException {
                         ActionBarLayout.this.onAnimationEndCheck(false);
                     }
                 });
@@ -2361,9 +2334,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             } else {
                 removeFragmentFromStackInternal(baseFragment2, false);
                 setVisibility(8);
-                View view3 = this.backgroundView;
-                if (view3 != null) {
-                    view3.setVisibility(8);
+                View view2 = this.backgroundView;
+                if (view2 != null) {
+                    view2.setVisibility(8);
                 }
             }
             baseFragment2.onFragmentClosed();
@@ -2392,7 +2365,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         baseFragment2.onBecomeFullyVisible();
     }
 
-    public void lambda$closeLastFragment$4() {
+    public void lambda$closeLastFragment$4() throws IOException {
         onAnimationEndCheck(false);
     }
 
@@ -2402,10 +2375,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         View view = this.backgroundView;
         if (view != null) {
             view.setVisibility(8);
-        }
-        DrawerLayoutContainer drawerLayoutContainer = this.drawerLayoutContainer;
-        if (drawerLayoutContainer != null) {
-            drawerLayoutContainer.setAllowOpenDrawer(true, false);
         }
     }
 
@@ -2431,17 +2400,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             BaseFragment baseFragment2 = (BaseFragment) this.fragmentsStack.get(i);
             baseFragment2.setParentLayout(this);
-            View view2 = baseFragment2.fragmentView;
-            if (view2 == null) {
-                view2 = baseFragment2.createView(this.parentActivity);
+            View viewCreateView = baseFragment2.fragmentView;
+            if (viewCreateView == null) {
+                viewCreateView = baseFragment2.createView(this.parentActivity);
             } else {
-                ViewGroup viewGroup3 = (ViewGroup) view2.getParent();
+                ViewGroup viewGroup3 = (ViewGroup) viewCreateView.getParent();
                 if (viewGroup3 != null) {
                     baseFragment2.onRemoveFromParent();
-                    viewGroup3.removeView(view2);
+                    viewGroup3.removeView(viewCreateView);
                 }
             }
-            this.containerView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
+            this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
             this.containerView.setShouldHandleBottomInsets(baseFragment2.isSupportEdgeToEdge());
             ActionBar actionBar2 = baseFragment2.actionBar;
             if (actionBar2 != null && actionBar2.shouldAddToContainer()) {
@@ -2450,15 +2419,16 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 }
                 AndroidUtilities.removeFromParent(baseFragment2.actionBar);
                 this.containerView.addView(baseFragment2.actionBar);
-                baseFragment2.actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
             }
+            baseFragment2.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
             baseFragment2.attachSheets(this.containerView);
             baseFragment2.onResume();
+            baseFragment2.onBecomeFullyVisible();
             this.currentActionBar = baseFragment2.actionBar;
-            if (baseFragment2.hasOwnBackground || view2.getBackground() != null) {
+            if (baseFragment2.hasOwnBackground || viewCreateView.getBackground() != null) {
                 return;
             }
-            view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
     }
 
@@ -2493,7 +2463,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public void removeFragmentFromStack(org.telegram.ui.ActionBar.BaseFragment r4, boolean r5) {
+    public void removeFragmentFromStack(org.telegram.ui.ActionBar.BaseFragment r4, boolean r5) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.removeFragmentFromStack(org.telegram.ui.ActionBar.BaseFragment, boolean):void");
     }
 
@@ -2507,7 +2477,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             view.animate().alpha(0.0f).setDuration(180L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarLayout.this.lambda$removeAllFragments$6();
+                    this.f$0.lambda$removeAllFragments$6();
                 }
             }).start();
         }
@@ -2527,18 +2497,18 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             int size2 = arrayList.size();
             int i2 = 0;
             while (i2 < size2) {
-                int red = Color.red(iArr2[i2]);
-                int green = Color.green(iArr2[i2]);
-                int blue = Color.blue(iArr2[i2]);
-                int alpha = Color.alpha(iArr2[i2]);
-                int red2 = Color.red(iArr[i2]);
-                int green2 = Color.green(iArr[i2]);
-                int blue2 = Color.blue(iArr[i2]);
+                int iRed = Color.red(iArr2[i2]);
+                int iGreen = Color.green(iArr2[i2]);
+                int iBlue = Color.blue(iArr2[i2]);
+                int iAlpha = Color.alpha(iArr2[i2]);
+                int iRed2 = Color.red(iArr[i2]);
+                int iGreen2 = Color.green(iArr[i2]);
+                int iBlue2 = Color.blue(iArr[i2]);
                 int i3 = size;
-                int argb = Color.argb(Math.min(255, (int) (Color.alpha(iArr[i2]) + ((alpha - r2) * f))), Math.min(255, (int) (red2 + ((red - red2) * f))), Math.min(255, (int) (green2 + ((green - green2) * f))), Math.min(255, (int) (blue2 + ((blue - blue2) * f))));
+                int iArgb = Color.argb(Math.min(255, (int) (Color.alpha(iArr[i2]) + ((iAlpha - r2) * f))), Math.min(255, (int) (iRed2 + ((iRed - iRed2) * f))), Math.min(255, (int) (iGreen2 + ((iGreen - iGreen2) * f))), Math.min(255, (int) (iBlue2 + ((iBlue - iBlue2) * f))));
                 ThemeDescription themeDescription = (ThemeDescription) arrayList.get(i2);
-                themeDescription.setAnimatedColor(argb);
-                themeDescription.setColor(argb, false, false);
+                themeDescription.setAnimatedColor(iArgb);
+                themeDescription.setColor(iArgb, false, false);
                 i2++;
                 iArr = iArr;
                 size = i3;
@@ -2606,7 +2576,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public void animateThemedValues(final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, final Runnable runnable) {
+    public void animateThemedValues(final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, final Runnable runnable) throws IOException {
         Theme.ThemeInfo themeInfo;
         if (this.transitionAnimationInProgress || this.startedTracking) {
             this.animateThemeAfterAnimation = true;
@@ -2629,7 +2599,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.this.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
+                this.f$0.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
             }
         };
         if (size >= 1 && themeAnimationSettings.applyTheme && themeAnimationSettings.applyTrulyTheme) {
@@ -2656,19 +2626,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
-        BaseFragment baseFragment;
+        BaseFragment lastFragment;
         Runnable runnable2;
         boolean z = false;
         for (int i2 = 0; i2 < i; i2++) {
             if (i2 == 0) {
-                baseFragment = getLastFragment();
-            } else {
-                if ((this.inPreviewMode || this.transitionAnimationPreviewMode) && this.fragmentsStack.size() > 1) {
-                    List list = this.fragmentsStack;
-                    baseFragment = (BaseFragment) list.get(list.size() - 2);
-                }
+                lastFragment = getLastFragment();
+            } else if ((this.inPreviewMode || this.transitionAnimationPreviewMode) && this.fragmentsStack.size() > 1) {
+                List list = this.fragmentsStack;
+                lastFragment = (BaseFragment) list.get(list.size() - 2);
             }
-            if (baseFragment != null) {
+            if (lastFragment != null) {
                 if (themeAnimationSettings.resourcesProvider != null) {
                     if (this.messageDrawableOutStart == null) {
                         Theme.MessageDrawable messageDrawable = new Theme.MessageDrawable(0, true, false, this.startColorsProvider);
@@ -2680,9 +2648,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                     this.startColorsProvider.saveColors(themeAnimationSettings.resourcesProvider);
                 }
-                ArrayList<ThemeDescription> themeDescriptions = baseFragment.getThemeDescriptions();
+                ArrayList<ThemeDescription> themeDescriptions = lastFragment.getThemeDescriptions();
                 addStartDescriptions(themeDescriptions);
-                Dialog dialog = baseFragment.visibleDialog;
+                Dialog dialog = lastFragment.visibleDialog;
                 if (dialog instanceof BottomSheet) {
                     addStartDescriptions(((BottomSheet) dialog).getThemeDescriptions());
                 } else if (dialog instanceof AlertDialog) {
@@ -2692,7 +2660,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     runnable2.run();
                 }
                 addEndDescriptions(themeDescriptions);
-                Dialog dialog2 = baseFragment.visibleDialog;
+                Dialog dialog2 = lastFragment.visibleDialog;
                 if (dialog2 instanceof BottomSheet) {
                     addEndDescriptions(((BottomSheet) dialog2).getThemeDescriptions());
                 } else if (dialog2 instanceof AlertDialog) {
@@ -2705,9 +2673,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (!themeAnimationSettings.onlyTopFragment) {
                 int size = this.fragmentsStack.size() - ((this.inPreviewMode || this.transitionAnimationPreviewMode) ? 2 : 1);
                 for (int i3 = 0; i3 < size; i3++) {
-                    BaseFragment baseFragment2 = (BaseFragment) this.fragmentsStack.get(i3);
-                    baseFragment2.clearViews();
-                    baseFragment2.setParentLayout(this);
+                    BaseFragment baseFragment = (BaseFragment) this.fragmentsStack.get(i3);
+                    baseFragment.clearViews();
+                    baseFragment.setParentLayout(this);
                 }
             }
             if (themeAnimationSettings.instant) {
@@ -2852,7 +2820,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.inActionMode = false;
     }
 
-    private void onCloseAnimationEnd() {
+    private void onCloseAnimationEnd() throws IOException {
         if (!this.transitionAnimationInProgress || this.onCloseAnimationEndRunnable == null) {
             return;
         }
@@ -2876,7 +2844,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         checkNeedRebuild();
     }
 
-    private void checkNeedRebuild() {
+    private void checkNeedRebuild() throws IOException {
         if (this.rebuildAfterAnimation) {
             rebuildAllFragmentViews(this.rebuildLastAfterAnimation, this.showLastAfterAnimation);
             this.rebuildAfterAnimation = false;
@@ -2893,7 +2861,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
     }
 
-    private void onOpenAnimationEnd() {
+    private void onOpenAnimationEnd() throws IOException {
         Runnable runnable;
         if (!this.transitionAnimationInProgress || (runnable = this.onOpenAnimationEndRunnable) == null) {
             return;
@@ -2910,7 +2878,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int i) {
+    public void startActivityForResult(Intent intent, int i) throws IOException {
         if (this.parentActivity == null) {
             return;
         }
@@ -2982,10 +2950,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.titleOverlayTextId = i;
         this.overlayAction = runnable;
         for (int i2 = 0; i2 < this.fragmentsStack.size(); i2++) {
-            ActionBar actionBar = ((BaseFragment) this.fragmentsStack.get(i2)).actionBar;
-            if (actionBar != null) {
-                actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, runnable);
-            }
+            ((BaseFragment) this.fragmentsStack.get(i2)).setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, runnable);
         }
     }
 
@@ -3034,7 +2999,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public static View findScrollingChild(ViewGroup viewGroup, float f, float f2) {
-        View findScrollingChild;
+        View viewFindScrollingChild;
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = viewGroup.getChildAt(i);
@@ -3047,8 +3012,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     if (childAt.canScrollHorizontally(-1)) {
                         return childAt;
                     }
-                    if ((childAt instanceof ViewGroup) && (findScrollingChild = findScrollingChild((ViewGroup) childAt, f - rect.left, f2 - rect.top)) != null) {
-                        return findScrollingChild;
+                    if ((childAt instanceof ViewGroup) && (viewFindScrollingChild = findScrollingChild((ViewGroup) childAt, f - rect.left, f2 - rect.top)) != null) {
+                        return viewFindScrollingChild;
                     }
                 }
             }
@@ -3202,9 +3167,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ViewCompat.dispatchApplyWindowInsets(view, windowInsetsCompat.inset(0, 0, 0, marginLayoutParams2.bottomMargin));
                 return;
             }
-            int max = Math.max(i3, insets2.bottom);
-            if (marginLayoutParams2.bottomMargin != max) {
-                marginLayoutParams2.bottomMargin = max;
+            int iMax = Math.max(i3, insets2.bottom);
+            if (marginLayoutParams2.bottomMargin != iMax) {
+                marginLayoutParams2.bottomMargin = iMax;
                 view.requestLayout();
             }
             ViewCompat.dispatchApplyWindowInsets(view, WindowInsetsCompat.CONSUMED);

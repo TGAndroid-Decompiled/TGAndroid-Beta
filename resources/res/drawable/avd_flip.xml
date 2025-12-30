@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/res_0x7f080000_avd_flip__0">
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/_avd_flip__0_res_0x7f080000">
     <target
         android:name="path_2"
-        android:animation="@drawable/res_0x7f080001_avd_flip__1"/>
+        android:animation="@drawable/_avd_flip__1_res_0x7f080001"/>
     <target
         android:name="path_4"
-        android:animation="@drawable/res_0x7f080002_avd_flip__2"/>
+        android:animation="@drawable/_avd_flip__2_res_0x7f080002"/>
     <target
         android:name="group_1"
-        android:animation="@drawable/res_0x7f080003_avd_flip__3"/>
+        android:animation="@drawable/_avd_flip__3_res_0x7f080003"/>
     <target
         android:name="group"
-        android:animation="@drawable/res_0x7f080004_avd_flip__4"/>
+        android:animation="@drawable/_avd_flip__4_res_0x7f080004"/>
 </animated-vector>

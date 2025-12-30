@@ -66,9 +66,9 @@ public class Texture {
         }
         if (!this.bitmap.isRecycled() && Build.VERSION.SDK_INT <= 28) {
             int pixel = this.bitmap.getPixel(0, 0);
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(4);
-            allocateDirect.putInt(((-16711936) & pixel) | ((pixel & 255) << 16) | ((pixel >> 16) & 255)).position(0);
-            GLES20.glTexSubImage2D(3553, 0, 0, 0, 1, 1, 6408, 5121, allocateDirect);
+            ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(4);
+            byteBufferAllocateDirect.putInt(((-16711936) & pixel) | ((pixel & 255) << 16) | ((pixel >> 16) & 255)).position(0);
+            GLES20.glTexSubImage2D(3553, 0, 0, 0, 1, 1, 6408, 5121, byteBufferAllocateDirect);
         }
         Utils.HasGLError();
         return this.texture;

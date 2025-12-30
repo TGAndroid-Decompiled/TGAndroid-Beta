@@ -38,11 +38,11 @@ public class VideoPlayerRewinder {
                 VideoPlayerRewinder.this.rewindLastTime = System.currentTimeMillis();
                 return;
             }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - VideoPlayerRewinder.this.rewindLastTime;
-            VideoPlayerRewinder.this.rewindLastTime = currentTimeMillis;
-            float max = Math.max(0.0f, (-VideoPlayerRewinder.this.getRewindSpeed()) * VideoPlayerRewinder.this.playSpeed);
-            VideoPlayerRewinder.access$522(VideoPlayerRewinder.this, ((float) j) * max);
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - VideoPlayerRewinder.this.rewindLastTime;
+            VideoPlayerRewinder.this.rewindLastTime = jCurrentTimeMillis;
+            float fMax = Math.max(0.0f, (-VideoPlayerRewinder.this.getRewindSpeed()) * VideoPlayerRewinder.this.playSpeed);
+            VideoPlayerRewinder.access$522(VideoPlayerRewinder.this, (long) (j * fMax));
             VideoPlayerRewinder videoPlayerRewinder = VideoPlayerRewinder.this;
             videoPlayerRewinder.rewindBackSeekPlayerPosition = Utilities.clamp(videoPlayerRewinder.rewindBackSeekPlayerPosition, duration, 0L);
             VideoPlayerRewinder videoPlayerRewinder2 = VideoPlayerRewinder.this;
@@ -50,16 +50,14 @@ public class VideoPlayerRewinder {
                 VideoPlayerRewinder videoPlayerRewinder3 = VideoPlayerRewinder.this;
                 videoPlayerRewinder3.rewindLastUpdatePlayerTime = videoPlayerRewinder3.rewindLastTime;
                 if (VideoPlayerRewinder.this.framesRewinder != null) {
-                    VideoPlayerRewinder.this.framesRewinder.seek(VideoPlayerRewinder.this.rewindBackSeekPlayerPosition, Math.abs(max));
+                    VideoPlayerRewinder.this.framesRewinder.seek(VideoPlayerRewinder.this.rewindBackSeekPlayerPosition, Math.abs(fMax));
                 } else {
                     VideoPlayerRewinder videoPlayerRewinder4 = VideoPlayerRewinder.this;
                     videoPlayerRewinder4.seekTo(videoPlayerRewinder4.rewindBackSeekPlayerPosition, false);
                 }
             }
-            long j2 = VideoPlayerRewinder.this.rewindBackSeekPlayerPosition - VideoPlayerRewinder.this.startRewindFrom;
-            float duration2 = ((float) VideoPlayerRewinder.this.rewindBackSeekPlayerPosition) / ((float) VideoPlayerRewinder.this.getDuration());
             VideoPlayerRewinder videoPlayerRewinder5 = VideoPlayerRewinder.this;
-            videoPlayerRewinder5.updateRewindProgressUi(j2, duration2, videoPlayerRewinder5.rewindByBackSeek);
+            videoPlayerRewinder5.updateRewindProgressUi(VideoPlayerRewinder.this.rewindBackSeekPlayerPosition - VideoPlayerRewinder.this.startRewindFrom, VideoPlayerRewinder.this.rewindBackSeekPlayerPosition / VideoPlayerRewinder.this.getDuration(), videoPlayerRewinder5.rewindByBackSeek);
             if (VideoPlayerRewinder.this.rewindBackSeekPlayerPosition == 0 || VideoPlayerRewinder.this.rewindBackSeekPlayerPosition >= duration) {
                 VideoPlayerRewinder videoPlayerRewinder6 = VideoPlayerRewinder.this;
                 if (videoPlayerRewinder6.rewindByBackSeek) {
@@ -200,7 +198,7 @@ public class VideoPlayerRewinder {
                     videoPlayer2.seekTo(j, false, new Runnable() {
                         @Override
                         public final void run() {
-                            VideoPlayerRewinder.this.lambda$updateRewindSpeed$0();
+                            this.f$0.lambda$updateRewindSpeed$0();
                         }
                     });
                 }
@@ -240,7 +238,7 @@ public class VideoPlayerRewinder {
                         videoPlayer.seekTo(this.rewindBackSeekPlayerPosition, false, new Runnable() {
                             @Override
                             public final void run() {
-                                VideoPlayerRewinder.this.lambda$cancelRewind$1();
+                                this.f$0.lambda$cancelRewind$1();
                             }
                         });
                         z = true;
@@ -370,6 +368,6 @@ public class VideoPlayerRewinder {
     }
 
     public float getVideoProgress() {
-        return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
+        return this.rewindBackSeekPlayerPosition / getDuration();
     }
 }

@@ -70,7 +70,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
 
     @Override
     public void setTitle(boolean z) {
-        String formatString;
+        String string;
         ((PremiumPreviewBottomSheet) this).titleView[0].setTextSize(1, 20.0f);
         this.subtitleView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
         this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -79,15 +79,15 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = this.selectedUsers.size();
         if (size == 1) {
-            formatString = LocaleController.formatString(R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString(R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
+            string = LocaleController.formatString(R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString(R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
         } else if (size == 2) {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
+            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
         } else if (size == 3) {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
+            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         } else {
-            formatString = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
+            string = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         }
-        this.subtitleView.setText(AndroidUtilities.replaceTags(formatString));
+        this.subtitleView.setText(AndroidUtilities.replaceTags(string));
         this.subtitleView.append("\n");
         this.subtitleView.append("\n");
         if (this.selectedUsers.size() == 1) {
@@ -97,7 +97,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         }
     }
 
-    public static class AvatarHolderView extends FrameLayout {
+    static class AvatarHolderView extends FrameLayout {
         private final Paint bgPaint;
         public boolean drawCycle;
         AvatarDrawable fromAvatarDrawable;
@@ -171,7 +171,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         }
     }
 
-    public static class AdditionalCounterView extends View {
+    static class AdditionalCounterView extends View {
         int count;
         TextPaint paint;
 
@@ -205,7 +205,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         actionBtnCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumPreviewGiftSentBottomSheet.this.lambda$init$0(view);
+                this.f$0.lambda$init$0(view);
             }
         });
         actionBtnCell.setCloseStyle(true);
@@ -227,8 +227,8 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
             view.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view2, Outline outline) {
-                    float dp = AndroidUtilities.dp(12.0f);
-                    outline.setRoundRect(0, 0, view2.getWidth(), (int) (view2.getHeight() + dp), dp);
+                    float fDp = AndroidUtilities.dp(12.0f);
+                    outline.setRoundRect(0, 0, view2.getWidth(), (int) (view2.getHeight() + fDp), fDp);
                 }
             });
             view.setClipToOutline(true);

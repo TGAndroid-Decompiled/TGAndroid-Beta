@@ -18,9 +18,7 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
     public static final SimpleFloatPropertyCompat PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("progress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((ChatActivityBotWebViewButton) obj).progress;
-            return f;
+            return ((ChatActivityBotWebViewButton) obj).progress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -87,12 +85,12 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
     public void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - AndroidUtilities.dp(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.menuButtonWidth) - AndroidUtilities.dp(4.0f), getHeight()) * this.progress;
-        float dp = AndroidUtilities.dp(16.0f) + max;
+        float fMax = Math.max((getWidth() - this.menuButtonWidth) - AndroidUtilities.dp(4.0f), getHeight()) * this.progress;
+        float fDp = AndroidUtilities.dp(16.0f) + fMax;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.menuButtonWidth + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
+        rectF.set(AndroidUtilities.dp(14.0f) - fMax, (AndroidUtilities.dp(4.0f) + height) - fMax, AndroidUtilities.dp(6.0f) + this.menuButtonWidth + fMax, (getHeight() - AndroidUtilities.dp(12.0f)) + fMax);
         this.path.rewind();
-        this.path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        this.path.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
         canvas.clipPath(this.path);
         canvas.drawColor(this.backgroundColor);
         canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.progress) / 0.5f)) * 255.0f), 31);

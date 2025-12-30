@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -25,7 +26,7 @@ public class InstantCameraVideoEncoderOverlayHelper {
     private int logoFrame = 0;
     private final int[] glFrameBuffers = new int[1];
 
-    public InstantCameraVideoEncoderOverlayHelper(int i, int i2) {
+    public InstantCameraVideoEncoderOverlayHelper(int i, int i2) throws IOException {
         float[] fArr;
         int i3;
         float[] fArr2;
@@ -54,14 +55,14 @@ public class InstantCameraVideoEncoderOverlayHelper {
             GLES20.glTexParameteri(3553, 10243, 33071);
             int i9 = 4;
             if (i7 == 4) {
-                int round = Math.round(i * 0.2f);
-                int round2 = Math.round((i * 28) / 1536.0f);
-                int i10 = (round - round2) - round2;
+                int iRound = Math.round(i * 0.2f);
+                int iRound2 = Math.round((i * 28) / 1536.0f);
+                int i10 = (iRound - iRound2) - iRound2;
                 Object obj2 = null;
-                long createWithJson = RLottieDrawable.createWithJson(AndroidUtilities.readRes(R.raw.plane_logo_plain), "logo_plane", new int[3], null);
-                Bitmap createBitmap = Bitmap.createBitmap(round, round, Bitmap.Config.ARGB_8888);
-                Bitmap createBitmap2 = Bitmap.createBitmap(i10 * 8, i10 * 4, Bitmap.Config.ALPHA_8);
-                Canvas canvas2 = new Canvas(createBitmap2);
+                long jCreateWithJson = RLottieDrawable.createWithJson(AndroidUtilities.readRes(R.raw.plane_logo_plain), "logo_plane", new int[3], null);
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iRound, iRound, Bitmap.Config.ARGB_8888);
+                Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(i10 * 8, i10 * 4, Bitmap.Config.ALPHA_8);
+                Canvas canvas2 = new Canvas(bitmapCreateBitmap2);
                 int i11 = 0;
                 while (i11 < 8) {
                     int i12 = 0;
@@ -71,8 +72,8 @@ public class InstantCameraVideoEncoderOverlayHelper {
                             fArr2 = fArr3;
                             i3 = i11;
                             canvas = canvas2;
-                            bitmap = createBitmap;
-                            i4 = round;
+                            bitmap = bitmapCreateBitmap;
+                            i4 = iRound;
                             obj = obj2;
                             i5 = i10;
                         } else {
@@ -80,51 +81,51 @@ public class InstantCameraVideoEncoderOverlayHelper {
                             float[] fArr5 = fArr3;
                             fArr2 = fArr3;
                             canvas = canvas2;
-                            Bitmap bitmap2 = createBitmap;
-                            i4 = round;
+                            Bitmap bitmap2 = bitmapCreateBitmap;
+                            i4 = iRound;
                             i5 = i10;
                             setTextureCords(fArr5, (i13 * 8) + 16, i11 / 8.0f, i12 / 4.0f, (i11 + 1) / 8.0f, (i12 + 1) / 4.0f);
-                            RLottieDrawable.getFrame(createWithJson, i13 * 2, bitmap2, i4, i4, bitmap2.getRowBytes(), true);
+                            RLottieDrawable.getFrame(jCreateWithJson, i13 * 2, bitmap2, i4, i4, bitmap2.getRowBytes(), true);
                             bitmap = bitmap2;
                             obj = null;
-                            canvas.drawBitmap(bitmap, (i5 * i3) - round2, (i5 * i12) - round2, (Paint) null);
+                            canvas.drawBitmap(bitmap, (i5 * i3) - iRound2, (i5 * i12) - iRound2, (Paint) null);
                         }
                         i12++;
                         i10 = i5;
                         canvas2 = canvas;
                         obj2 = obj;
-                        round = i4;
-                        createBitmap = bitmap;
+                        iRound = i4;
+                        bitmapCreateBitmap = bitmap;
                         i11 = i3;
                         fArr3 = fArr2;
                         i9 = 4;
                     }
                     i11++;
                     obj2 = obj2;
-                    createBitmap = createBitmap;
+                    bitmapCreateBitmap = bitmapCreateBitmap;
                     fArr3 = fArr3;
                     i9 = 4;
                 }
                 fArr = fArr3;
                 float f = ((i10 / this.videoWidth) * 2.0f) - 1.0f;
                 setVertexCords(fArr4, 24, -1.0f, f, f, -1.0f);
-                GLUtils.texImage2D(3553, 0, createBitmap2, 0);
-                createBitmap2.recycle();
-                createBitmap.recycle();
-                RLottieDrawable.destroy(createWithJson);
+                GLUtils.texImage2D(3553, 0, bitmapCreateBitmap2, 0);
+                bitmapCreateBitmap2.recycle();
+                bitmapCreateBitmap.recycle();
+                RLottieDrawable.destroy(jCreateWithJson);
             } else {
                 fArr = fArr3;
                 if (i7 == 3) {
-                    int round3 = Math.round((i * 372.0f) / 1536.0f);
-                    float f2 = (round3 / this.videoWidth) * 2.0f;
+                    int iRound3 = Math.round((i * 372.0f) / 1536.0f);
+                    float f2 = (iRound3 / this.videoWidth) * 2.0f;
                     setVertexCords(fArr4, 12, 1.0f - f2, f2 - 1.0f, 1.0f, -1.0f);
                     Bitmap bitmapFromRaw = AndroidUtilities.getBitmapFromRaw(R.raw.round_blur_overlay_text);
                     if (bitmapFromRaw != null) {
-                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmapFromRaw, round3, round3, true);
-                        Bitmap extractAlpha = createScaledBitmap.extractAlpha();
-                        GLUtils.texImage2D(3553, 0, extractAlpha, 0);
-                        extractAlpha.recycle();
-                        createScaledBitmap.recycle();
+                        Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmapFromRaw, iRound3, iRound3, true);
+                        Bitmap bitmapExtractAlpha = bitmapCreateScaledBitmap.extractAlpha();
+                        GLUtils.texImage2D(3553, 0, bitmapExtractAlpha, 0);
+                        bitmapExtractAlpha.recycle();
+                        bitmapCreateScaledBitmap.recycle();
                         bitmapFromRaw.recycle();
                     }
                 } else {
@@ -137,12 +138,12 @@ public class InstantCameraVideoEncoderOverlayHelper {
         }
         GLES20.glBindTexture(3553, i6);
         GLES20.glGenFramebuffers(1, this.glFrameBuffers, i6);
-        FloatBuffer asFloatBuffer = ByteBuffer.allocateDirect(144).order(ByteOrder.nativeOrder()).asFloatBuffer();
-        this.attributeVertexBuffer = asFloatBuffer;
-        asFloatBuffer.put(fArr4).position(i6);
-        FloatBuffer asFloatBuffer2 = ByteBuffer.allocateDirect(928).order(ByteOrder.nativeOrder()).asFloatBuffer();
-        this.attributeTextureBuffer = asFloatBuffer2;
-        asFloatBuffer2.put(fArr3).position(i6);
+        FloatBuffer floatBufferAsFloatBuffer = ByteBuffer.allocateDirect(144).order(ByteOrder.nativeOrder()).asFloatBuffer();
+        this.attributeVertexBuffer = floatBufferAsFloatBuffer;
+        floatBufferAsFloatBuffer.put(fArr4).position(i6);
+        FloatBuffer floatBufferAsFloatBuffer2 = ByteBuffer.allocateDirect(928).order(ByteOrder.nativeOrder()).asFloatBuffer();
+        this.attributeTextureBuffer = floatBufferAsFloatBuffer2;
+        floatBufferAsFloatBuffer2.put(fArr3).position(i6);
     }
 
     public void bind() {
@@ -293,15 +294,15 @@ public class InstantCameraVideoEncoderOverlayHelper {
         final int vertexShader;
 
         public Program(int i) {
-            int createShader = InstantCameraVideoEncoderOverlayHelper.createShader(35633, R.raw.round_blur_vert);
-            this.vertexShader = createShader;
-            int createShader2 = InstantCameraVideoEncoderOverlayHelper.createShader(35632, i);
-            this.fragmentShader = createShader2;
-            int createProgram = InstantCameraVideoEncoderOverlayHelper.createProgram(createShader, createShader2);
-            this.program = createProgram;
-            this.attributePositionHandle = GLES20.glGetAttribLocation(createProgram, "aPosition");
-            this.attributeTextureHandle = GLES20.glGetAttribLocation(createProgram, "aTextureCoord");
-            this.uniformTextureHandle = GLES20.glGetUniformLocation(createProgram, "sTexture");
+            int iCreateShader = InstantCameraVideoEncoderOverlayHelper.createShader(35633, R.raw.round_blur_vert);
+            this.vertexShader = iCreateShader;
+            int iCreateShader2 = InstantCameraVideoEncoderOverlayHelper.createShader(35632, i);
+            this.fragmentShader = iCreateShader2;
+            int iCreateProgram = InstantCameraVideoEncoderOverlayHelper.createProgram(iCreateShader, iCreateShader2);
+            this.program = iCreateProgram;
+            this.attributePositionHandle = GLES20.glGetAttribLocation(iCreateProgram, "aPosition");
+            this.attributeTextureHandle = GLES20.glGetAttribLocation(iCreateProgram, "aTextureCoord");
+            this.uniformTextureHandle = GLES20.glGetUniformLocation(iCreateProgram, "sTexture");
         }
 
         public void destroy() {
@@ -312,33 +313,33 @@ public class InstantCameraVideoEncoderOverlayHelper {
     }
 
     public static int createShader(int i, int i2) {
-        int glCreateShader = GLES20.glCreateShader(i);
-        if (glCreateShader == 0) {
+        int iGlCreateShader = GLES20.glCreateShader(i);
+        if (iGlCreateShader == 0) {
             return 0;
         }
-        GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(i2));
-        GLES20.glCompileShader(glCreateShader);
+        GLES20.glShaderSource(iGlCreateShader, AndroidUtilities.readRes(i2));
+        GLES20.glCompileShader(iGlCreateShader);
         int[] iArr = new int[1];
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        GLES20.glGetShaderiv(iGlCreateShader, 35713, iArr, 0);
         if (iArr[0] != 0) {
-            return glCreateShader;
+            return iGlCreateShader;
         }
-        FileLog.e("GlUtils: compile shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-        GLES20.glDeleteShader(glCreateShader);
+        FileLog.e("GlUtils: compile shader error: " + GLES20.glGetShaderInfoLog(iGlCreateShader));
+        GLES20.glDeleteShader(iGlCreateShader);
         return 0;
     }
 
     public static int createProgram(int i, int i2) {
-        int glCreateProgram = GLES20.glCreateProgram();
-        GLES20.glAttachShader(glCreateProgram, i);
-        GLES20.glAttachShader(glCreateProgram, i2);
-        GLES20.glLinkProgram(glCreateProgram);
+        int iGlCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(iGlCreateProgram, i);
+        GLES20.glAttachShader(iGlCreateProgram, i2);
+        GLES20.glLinkProgram(iGlCreateProgram);
         int[] iArr = new int[1];
-        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        GLES20.glGetProgramiv(iGlCreateProgram, 35714, iArr, 0);
         if (iArr[0] != 0) {
-            return glCreateProgram;
+            return iGlCreateProgram;
         }
-        GLES20.glDeleteProgram(glCreateProgram);
+        GLES20.glDeleteProgram(iGlCreateProgram);
         return 0;
     }
 

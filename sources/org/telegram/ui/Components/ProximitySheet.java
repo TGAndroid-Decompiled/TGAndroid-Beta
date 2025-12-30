@@ -31,7 +31,6 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.NumberPicker;
-import org.telegram.ui.Components.ProximitySheet;
 
 public class ProximitySheet extends FrameLayout {
     private int backgroundPaddingLeft;
@@ -92,9 +91,9 @@ public class ProximitySheet extends FrameLayout {
         this.onDismissCallback = runnable;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         android.graphics.Rect rect = new android.graphics.Rect();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
-        mutate.getPadding(rect);
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        drawableMutate.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
@@ -103,7 +102,7 @@ public class ProximitySheet extends FrameLayout {
             }
         };
         this.containerView = frameLayout;
-        frameLayout.setBackgroundDrawable(mutate);
+        frameLayout.setBackgroundDrawable(drawableMutate);
         this.containerView.setPadding(this.backgroundPaddingLeft, (AndroidUtilities.dp(8.0f) + rect.top) - 1, this.backgroundPaddingLeft, 0);
         this.containerView.setVisibility(4);
         addView(this.containerView, 0, LayoutHelper.createFrame(-1, -2, 80));
@@ -159,9 +158,7 @@ public class ProximitySheet extends FrameLayout {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = ProximitySheet.lambda$new$0(view, motionEvent);
-                return lambda$new$0;
+                return ProximitySheet.lambda$new$0(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -181,9 +178,7 @@ public class ProximitySheet extends FrameLayout {
         this.kmPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                String lambda$new$1;
-                lambda$new$1 = ProximitySheet.this.lambda$new$1(i);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(i);
             }
         });
         this.kmPicker.setMinValue(0);
@@ -193,7 +188,7 @@ public class ProximitySheet extends FrameLayout {
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker3, int i, int i2) {
-                ProximitySheet.this.lambda$new$2(numberPicker3, i, i2);
+                this.f$0.lambda$new$2(numberPicker3, i, i2);
             }
         };
         this.kmPicker.setOnValueChangedListener(onValueChangeListener);
@@ -205,9 +200,7 @@ public class ProximitySheet extends FrameLayout {
         this.mPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                String lambda$new$3;
-                lambda$new$3 = ProximitySheet.this.lambda$new$3(i);
-                return lambda$new$3;
+                return this.f$0.lambda$new$3(i);
             }
         });
         this.mPicker.setOnValueChangedListener(onValueChangeListener);
@@ -225,7 +218,7 @@ public class ProximitySheet extends FrameLayout {
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ProximitySheet.this.lambda$new$4(onradiuspickerchange2, view);
+                this.f$0.lambda$new$4(onradiuspickerchange2, view);
             }
         });
         this.infoTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -294,12 +287,12 @@ public class ProximitySheet extends FrameLayout {
 
     public void updateText(boolean z, boolean z2) {
         float value = getValue();
-        String formatDistance = LocaleController.formatDistance(value, 2, Boolean.valueOf(this.useImperialSystem));
+        String distance = LocaleController.formatDistance(value, 2, Boolean.valueOf(this.useImperialSystem));
         if (this.onRadiusChange.run(z, (int) value) || this.currentUser == null) {
             if (this.currentUser == null) {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, formatDistance));
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, distance));
             } else {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", R.string.LocationNotifiationButtonUser, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(r13)))))), TextUtils.TruncateAt.END), formatDistance));
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", R.string.LocationNotifiationButtonUser, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(r13)))))), TextUtils.TruncateAt.END), distance));
             }
             if (this.buttonTextView.getTag() != null) {
                 this.buttonTextView.setTag(null);
@@ -309,7 +302,7 @@ public class ProximitySheet extends FrameLayout {
             }
             return;
         }
-        this.infoTextView.setText(LocaleController.formatString("LocationNotifiationCloser", R.string.LocationNotifiationCloser, formatDistance));
+        this.infoTextView.setText(LocaleController.formatString("LocationNotifiationCloser", R.string.LocationNotifiationCloser, distance));
         if (this.buttonTextView.getTag() == null) {
             this.buttonTextView.setTag(1);
             this.buttonTextView.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
@@ -374,10 +367,10 @@ public class ProximitySheet extends FrameLayout {
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
-                float abs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
+                float fAbs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
                 float y2 = ((int) motionEvent.getY()) - this.startedTrackingY;
                 this.velocityTracker.addMovement(motionEvent);
-                if (this.maybeStartTracking && !this.startedTracking && y2 > 0.0f && y2 / 3.0f > Math.abs(abs) && Math.abs(y2) >= this.touchSlop) {
+                if (this.maybeStartTracking && !this.startedTracking && y2 > 0.0f && y2 / 3.0f > Math.abs(fAbs) && Math.abs(y2) >= this.touchSlop) {
                     this.startedTrackingY = (int) motionEvent.getY();
                     this.maybeStartTracking = false;
                     this.startedTracking = true;
@@ -541,7 +534,7 @@ public class ProximitySheet extends FrameLayout {
         this.currentSheetAnimation.start();
     }
 
-    public class AnonymousClass6 extends AnimatorListenerAdapter {
+    class AnonymousClass6 extends AnimatorListenerAdapter {
         AnonymousClass6() {
         }
 
@@ -553,7 +546,7 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProximitySheet.AnonymousClass6.this.lambda$onAnimationEnd$0();
+                        this.f$0.lambda$onAnimationEnd$0();
                     }
                 });
             }

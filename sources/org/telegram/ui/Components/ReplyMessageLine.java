@@ -170,9 +170,9 @@ public class ReplyMessageLine {
     }
 
     private int resolveCollectionColor(MessageObject messageObject, TLRPC.TL_peerColorCollectible tL_peerColorCollectible, Theme.ResourcesProvider resourcesProvider) {
-        boolean isDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
-        int i = (!isDark || (tL_peerColorCollectible.flags & 1) == 0) ? tL_peerColorCollectible.accent_color : tL_peerColorCollectible.dark_accent_color;
-        ArrayList<Integer> arrayList = (!isDark || (tL_peerColorCollectible.flags & 2) == 0) ? tL_peerColorCollectible.colors : tL_peerColorCollectible.dark_colors;
+        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
+        int i = (!zIsDark || (tL_peerColorCollectible.flags & 1) == 0) ? tL_peerColorCollectible.accent_color : tL_peerColorCollectible.dark_accent_color;
+        ArrayList<Integer> arrayList = (!zIsDark || (tL_peerColorCollectible.flags & 2) == 0) ? tL_peerColorCollectible.colors : tL_peerColorCollectible.dark_colors;
         if (arrayList == null || arrayList.isEmpty()) {
             return 0;
         }
@@ -291,11 +291,11 @@ public class ReplyMessageLine {
     }
 
     private void incrementLoadingT() {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         float f = this.loadingStateT.set(this.loading);
-        this.loadingT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
-        this.loadingTranslationT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
-        this.lastLoadingTTime = currentTimeMillis;
+        this.loadingT += Math.min(30L, jCurrentTimeMillis - this.lastLoadingTTime) * f;
+        this.loadingTranslationT += Math.min(30L, jCurrentTimeMillis - this.lastLoadingTTime) * f;
+        this.lastLoadingTTime = jCurrentTimeMillis;
     }
 
     public void drawLine(Canvas canvas, RectF rectF) {
@@ -304,21 +304,21 @@ public class ReplyMessageLine {
 
     public void drawLine(Canvas canvas, RectF rectF, float f) {
         boolean z;
-        float height;
-        int m;
+        float fHeight;
+        int iM;
         canvas.save();
         this.clipPath.rewind();
-        int floor = (int) Math.floor(SharedConfig.bubbleRadius / (this.sponsored ? 2.0f : 3.0f));
+        int iFloor = (int) Math.floor(SharedConfig.bubbleRadius / (this.sponsored ? 2.0f : 3.0f));
         RectF rectF2 = this.rectF;
         float f2 = rectF.left;
-        rectF2.set(f2, rectF.top, Math.max(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(floor * 2)) + f2, rectF.bottom);
+        rectF2.set(f2, rectF.top, Math.max(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(iFloor * 2)) + f2, rectF.bottom);
         Path path = this.clipPath;
         RectF rectF3 = this.rectF;
-        float f3 = floor;
-        float dp = AndroidUtilities.dp(f3);
-        float dp2 = AndroidUtilities.dp(f3);
+        float f3 = iFloor;
+        float fDp = AndroidUtilities.dp(f3);
+        float fDp2 = AndroidUtilities.dp(f3);
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF3, dp, dp2, direction);
+        path.addRoundRect(rectF3, fDp, fDp2, direction);
         canvas.clipPath(this.clipPath);
         float f4 = rectF.left;
         canvas.clipRect(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
@@ -335,8 +335,8 @@ public class ReplyMessageLine {
             canvas.drawPaint(this.color1Paint);
             this.color1Paint.setAlpha(alpha);
             incrementLoadingT();
-            float pow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
-            this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f5)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f5)));
+            float fPow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
+            this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(fPow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f5)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((fPow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f5)));
             this.lineClipPath.rewind();
             this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), direction);
             canvas.clipPath(this.lineClipPath);
@@ -351,13 +351,13 @@ public class ReplyMessageLine {
             incrementLoadingT();
             float f7 = this.color3Alpha.set(this.hasColor3);
             if (this.hasColor3) {
-                height = rectF.height();
-                m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(18.99f));
+                fHeight = rectF.height();
+                iM = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(18.99f));
             } else {
-                height = rectF.height();
-                m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(12.66f));
+                fHeight = rectF.height();
+                iM = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(12.66f));
             }
-            canvas.translate(0.0f, -(((((this.loadingTranslationT + this.switchStateT.set(this.switchedCount * 425)) + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (height - m)));
+            canvas.translate(0.0f, -(((((this.loadingTranslationT + this.switchStateT.set(this.switchedCount * 425)) + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (fHeight - iM)));
             checkColorPathes(rectF.height() * 2.0f);
             int alpha2 = this.color2Paint.getAlpha();
             this.color2Paint.setAlpha((int) (alpha2 * f6));
@@ -381,25 +381,25 @@ public class ReplyMessageLine {
 
     public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4, boolean z, boolean z2) {
         float[] fArr = this.radii;
-        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
-        fArr[1] = max;
-        fArr[0] = max;
+        float fMax = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
+        fArr[1] = fMax;
+        fArr[0] = fMax;
         float[] fArr2 = this.radii;
-        float dp = AndroidUtilities.dp(f2);
-        fArr2[3] = dp;
-        fArr2[2] = dp;
+        float fDp = AndroidUtilities.dp(f2);
+        fArr2[3] = fDp;
+        fArr2[2] = fDp;
         float[] fArr3 = this.radii;
-        float dp2 = AndroidUtilities.dp(f3);
-        fArr3[5] = dp2;
-        fArr3[4] = dp2;
+        float fDp2 = AndroidUtilities.dp(f3);
+        fArr3[5] = fDp2;
+        fArr3[4] = fDp2;
         float[] fArr4 = this.radii;
-        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
-        fArr4[7] = max2;
-        fArr4[6] = max2;
+        float fMax2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
+        fArr4[7] = fMax2;
+        fArr4[6] = fMax2;
         drawBackground(canvas, rectF, f4, z, z2);
     }
 
-    public static class IconCoords {
+    private static class IconCoords {
         public float a;
         public boolean q;
         public float s;
@@ -448,11 +448,11 @@ public class ReplyMessageLine {
         canvas.save();
         canvas.clipRect(rectF);
         canvas.translate(this.emojiOffsetX, this.emojiOffsetY);
-        float max = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
+        float fMax = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
         if (z) {
-            max -= AndroidUtilities.dp(12.0f);
+            fMax -= AndroidUtilities.dp(12.0f);
         }
-        float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
+        float fMin = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.sticker;
         if (swapAnimatedEmojiDrawable2 != null) {
             swapAnimatedEmojiDrawable2.setAlpha((int) (f * 255.0f));
@@ -467,10 +467,10 @@ public class ReplyMessageLine {
                 IconCoords iconCoords = iconCoordsArr[i];
                 if (!iconCoords.q || z) {
                     swapAnimatedEmojiDrawable.setAlpha((int) ((swapAnimatedEmojiDrawable == this.sticker ? 1.0f : 0.3f) * 255.0f * iconCoords.a * this.emojiAlpha));
-                    float dp = max - AndroidUtilities.dp(iconCoords.x);
-                    float dp2 = AndroidUtilities.dp(iconCoords.y) + min;
-                    float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;
-                    swapAnimatedEmojiDrawable.setBounds((int) (dp - dp3), (int) (dp2 - dp3), (int) (dp + dp3), (int) (dp2 + dp3));
+                    float fDp = fMax - AndroidUtilities.dp(iconCoords.x);
+                    float fDp2 = AndroidUtilities.dp(iconCoords.y) + fMin;
+                    float fDp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;
+                    swapAnimatedEmojiDrawable.setBounds((int) (fDp - fDp3), (int) (fDp2 - fDp3), (int) (fDp + fDp3), (int) (fDp2 + fDp3));
                     swapAnimatedEmojiDrawable.draw(canvas);
                 }
                 i++;
@@ -500,21 +500,21 @@ public class ReplyMessageLine {
     public void drawLoadingBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {
         LoadingDrawable loadingDrawable;
         float[] fArr = this.radii;
-        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
-        fArr[1] = max;
-        fArr[0] = max;
+        float fMax = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
+        fArr[1] = fMax;
+        fArr[0] = fMax;
         float[] fArr2 = this.radii;
-        float dp = AndroidUtilities.dp(f2);
-        fArr2[3] = dp;
-        fArr2[2] = dp;
+        float fDp = AndroidUtilities.dp(f2);
+        fArr2[3] = fDp;
+        fArr2[2] = fDp;
         float[] fArr3 = this.radii;
-        float dp2 = AndroidUtilities.dp(f3);
-        fArr3[5] = dp2;
-        fArr3[4] = dp2;
+        float fDp2 = AndroidUtilities.dp(f3);
+        fArr3[5] = fDp2;
+        fArr3[4] = fDp2;
         float[] fArr4 = this.radii;
-        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
-        fArr4[7] = max2;
-        fArr4[6] = max2;
+        float fMax2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
+        fArr4[7] = fMax2;
+        fArr4[6] = fMax2;
         if (this.loading || ((loadingDrawable = this.backgroundLoadingDrawable) != null && loadingDrawable.isDisappearing())) {
             if (this.backgroundLoadingDrawable == null) {
                 LoadingDrawable loadingDrawable2 = new LoadingDrawable();
@@ -540,35 +540,35 @@ public class ReplyMessageLine {
 
     private void checkColorPathes(float f) {
         if (Math.abs(this.lastHeight - f) > 3.0f || this.lastHasColor3 != this.hasColor3) {
-            float dpf2 = AndroidUtilities.dpf2(3.0f);
-            float dpf22 = AndroidUtilities.dpf2(6.33f);
-            float dpf23 = AndroidUtilities.dpf2(3.0f);
-            float dpf24 = AndroidUtilities.dpf2(3.33f);
-            float f2 = dpf24 + dpf23;
+            float fDpf2 = AndroidUtilities.dpf2(3.0f);
+            float fDpf22 = AndroidUtilities.dpf2(6.33f);
+            float fDpf23 = AndroidUtilities.dpf2(3.0f);
+            float fDpf24 = AndroidUtilities.dpf2(3.33f);
+            float f2 = fDpf24 + fDpf23;
             this.color2Path.rewind();
             float f3 = f2;
             while (f3 < f) {
-                float f4 = dpf2 + 1.0f;
+                float f4 = fDpf2 + 1.0f;
                 this.color2Path.moveTo(f4, f3 - 1.0f);
-                float f5 = f3 + dpf22;
+                float f5 = f3 + fDpf22;
                 this.color2Path.lineTo(f4, f5);
-                this.color2Path.lineTo(0.0f, f5 + dpf23);
-                this.color2Path.lineTo(0.0f, f3 + dpf23);
+                this.color2Path.lineTo(0.0f, f5 + fDpf23);
+                this.color2Path.lineTo(0.0f, f3 + fDpf23);
                 this.color2Path.close();
-                f3 += dpf22 + dpf23 + dpf24;
+                f3 += fDpf22 + fDpf23 + fDpf24;
                 if (this.hasColor3) {
-                    f3 += dpf22;
+                    f3 += fDpf22;
                 }
             }
             if (this.hasColor3) {
                 this.color3Path.rewind();
-                for (float f6 = f2 + dpf22; f6 < f; f6 += dpf22 + dpf23 + dpf24 + dpf22) {
-                    float f7 = dpf2 + 1.0f;
+                for (float f6 = f2 + fDpf22; f6 < f; f6 += fDpf22 + fDpf23 + fDpf24 + fDpf22) {
+                    float f7 = fDpf2 + 1.0f;
                     this.color3Path.moveTo(f7, f6 - 1.0f);
-                    float f8 = f6 + dpf22;
+                    float f8 = f6 + fDpf22;
                     this.color3Path.lineTo(f7, f8);
-                    this.color3Path.lineTo(0.0f, f8 + dpf23);
-                    this.color3Path.lineTo(0.0f, f6 + dpf23);
+                    this.color3Path.lineTo(0.0f, f8 + fDpf23);
+                    this.color3Path.lineTo(0.0f, f6 + fDpf23);
                     this.color3Path.close();
                 }
             }

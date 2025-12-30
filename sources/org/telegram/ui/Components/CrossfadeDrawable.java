@@ -126,15 +126,15 @@ public class CrossfadeDrawable extends Drawable {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(getProgress(), f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getProgress(), f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CrossfadeDrawable.this.lambda$animateToProgress$0(valueAnimator2);
+                this.f$0.lambda$animateToProgress$0(valueAnimator2);
             }
         });
-        this.animator.setDuration(Math.abs(getProgress() - f) * 200.0f);
+        this.animator.setDuration((long) (Math.abs(getProgress() - f) * 200.0f));
         this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.animator.start();
     }

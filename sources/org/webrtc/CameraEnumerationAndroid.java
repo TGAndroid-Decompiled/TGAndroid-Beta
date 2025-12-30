@@ -135,7 +135,7 @@ public class CameraEnumerationAndroid {
         });
     }
 
-    public static void reportCameraResolution(Histogram histogram, Size size) {
+    static void reportCameraResolution(Histogram histogram, Size size) {
         histogram.addSample(COMMON_RESOLUTIONS.indexOf(size) + 1);
     }
 }

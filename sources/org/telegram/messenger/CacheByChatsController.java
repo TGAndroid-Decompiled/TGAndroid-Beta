@@ -86,16 +86,16 @@ public class CacheByChatsController {
         if (TextUtils.isEmpty(string)) {
             return arrayList;
         }
-        ByteBuffer wrap = ByteBuffer.wrap(Utilities.hexToBytes(string));
-        int i2 = wrap.getInt();
+        ByteBuffer byteBufferWrap = ByteBuffer.wrap(Utilities.hexToBytes(string));
+        int i2 = byteBufferWrap.getInt();
         for (int i3 = 0; i3 < i2; i3++) {
-            KeepMediaException keepMediaException = new KeepMediaException(wrap.getLong(), wrap.getInt());
+            KeepMediaException keepMediaException = new KeepMediaException(byteBufferWrap.getLong(), byteBufferWrap.getInt());
             if (!hashSet.contains(Long.valueOf(keepMediaException.dialogId))) {
                 hashSet.add(Long.valueOf(keepMediaException.dialogId));
                 arrayList.add(keepMediaException);
             }
         }
-        wrap.clear();
+        byteBufferWrap.clear();
         return arrayList;
     }
 
@@ -106,14 +106,14 @@ public class CacheByChatsController {
             return;
         }
         int size = arrayList.size();
-        ByteBuffer allocate = ByteBuffer.allocate((size * 12) + 4);
-        allocate.putInt(size);
+        ByteBuffer byteBufferAllocate = ByteBuffer.allocate((size * 12) + 4);
+        byteBufferAllocate.putInt(size);
         for (int i2 = 0; i2 < size; i2++) {
-            allocate.putLong(arrayList.get(i2).dialogId);
-            allocate.putInt(arrayList.get(i2).keepMedia);
+            byteBufferAllocate.putLong(arrayList.get(i2).dialogId);
+            byteBufferAllocate.putInt(arrayList.get(i2).keepMedia);
         }
-        UserConfig.getInstance(this.currentAccount).getPreferences().edit().putString(str, Utilities.bytesToHex(allocate.array())).apply();
-        allocate.clear();
+        UserConfig.getInstance(this.currentAccount).getPreferences().edit().putString(str, Utilities.bytesToHex(byteBufferAllocate.array())).apply();
+        byteBufferAllocate.clear();
     }
 
     public int getKeepMedia(int i) {
@@ -140,15 +140,15 @@ public class CacheByChatsController {
 
     public void lookupFiles(ArrayList<? extends KeepMediaFile> arrayList) {
         int i;
-        LongSparseArray<ArrayList<KeepMediaFile>> lookupFiles = FileLoader.getInstance(this.currentAccount).getFileDatabase().lookupFiles(arrayList);
+        LongSparseArray<ArrayList<KeepMediaFile>> longSparseArrayLookupFiles = FileLoader.getInstance(this.currentAccount).getFileDatabase().lookupFiles(arrayList);
         LongSparseArray<KeepMediaException> keepMediaExceptionsByDialogs = getKeepMediaExceptionsByDialogs();
-        for (int i2 = 0; i2 < lookupFiles.size(); i2++) {
-            long keyAt = lookupFiles.keyAt(i2);
-            ArrayList<KeepMediaFile> valueAt = lookupFiles.valueAt(i2);
-            if (keyAt >= 0) {
+        for (int i2 = 0; i2 < longSparseArrayLookupFiles.size(); i2++) {
+            long jKeyAt = longSparseArrayLookupFiles.keyAt(i2);
+            ArrayList<KeepMediaFile> arrayListValueAt = longSparseArrayLookupFiles.valueAt(i2);
+            if (jKeyAt >= 0) {
                 i = 0;
             } else {
-                long j = -keyAt;
+                long j = -jKeyAt;
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                 if (chat == null) {
                     chat = MessagesStorage.getInstance(this.currentAccount).getChatSync(j);
@@ -159,9 +159,9 @@ public class CacheByChatsController {
                     i = ChatObject.isChannel(chat) ? 2 : 1;
                 }
             }
-            KeepMediaException keepMediaException = keepMediaExceptionsByDialogs.get(keyAt);
-            for (int i3 = 0; i3 < valueAt.size(); i3++) {
-                KeepMediaFile keepMediaFile = valueAt.get(i3);
+            KeepMediaException keepMediaException = keepMediaExceptionsByDialogs.get(jKeyAt);
+            for (int i3 = 0; i3 < arrayListValueAt.size(); i3++) {
+                KeepMediaFile keepMediaFile = arrayListValueAt.get(i3);
                 if (i >= 0) {
                     keepMediaFile.dialogType = i;
                 }

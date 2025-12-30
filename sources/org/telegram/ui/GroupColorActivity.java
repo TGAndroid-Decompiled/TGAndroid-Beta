@@ -25,7 +25,6 @@ import org.telegram.ui.ChannelColorActivity;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.GroupColorActivity;
 
 public class GroupColorActivity extends ChannelColorActivity {
     private boolean isLoading;
@@ -180,16 +179,16 @@ public class GroupColorActivity extends ChannelColorActivity {
 
     @Override
     public View createView(Context context) {
-        View createView = super.createView(context);
+        View viewCreateView = super.createView(context);
         updateColors();
         this.actionBar.setAddToContainer(false);
         this.actionBar.setTitle("");
-        ((ViewGroup) createView).addView(this.actionBar);
-        createView.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1(createView));
-        return createView;
+        ((ViewGroup) viewCreateView).addView(this.actionBar);
+        viewCreateView.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1(viewCreateView));
+        return viewCreateView;
     }
 
-    public class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
+    class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
         final View val$view;
 
         AnonymousClass1(View view) {
@@ -203,7 +202,7 @@ public class GroupColorActivity extends ChannelColorActivity {
             GroupColorActivity.this.profilePreview.infoLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GroupColorActivity.AnonymousClass1.this.lambda$onGlobalLayout$0(view);
+                    this.f$0.lambda$onGlobalLayout$0(view);
                 }
             });
         }
@@ -223,7 +222,7 @@ public class GroupColorActivity extends ChannelColorActivity {
     protected void createListView() {
         RecyclerListView recyclerListView = new RecyclerListView(getContext(), this.resourceProvider) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 if (GroupColorActivity.this.profilePreview == null || GroupColorActivity.this.profilePreviewPercent < 1.0f) {
                     return;
@@ -243,11 +242,11 @@ public class GroupColorActivity extends ChannelColorActivity {
                 float top = GroupColorActivity.this.profilePreview.getTop() * (-1);
                 float f = measuredHeight;
                 GroupColorActivity.this.profilePreviewPercent = Math.max(Math.min(1.0f, top / f), 0.0f);
-                float min = Math.min(GroupColorActivity.this.profilePreviewPercent * 2.0f, 1.0f);
-                float min2 = Math.min(Math.max(GroupColorActivity.this.profilePreviewPercent - 0.45f, 0.0f) * 2.0f, 1.0f);
-                GroupColorActivity.this.profilePreview.profileView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
-                GroupColorActivity.this.profilePreview.infoLayout.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, min));
-                GroupColorActivity.this.profilePreview.title.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, min2));
+                float fMin = Math.min(GroupColorActivity.this.profilePreviewPercent * 2.0f, 1.0f);
+                float fMin2 = Math.min(Math.max(GroupColorActivity.this.profilePreviewPercent - 0.45f, 0.0f) * 2.0f, 1.0f);
+                GroupColorActivity.this.profilePreview.profileView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fMin));
+                GroupColorActivity.this.profilePreview.infoLayout.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fMin));
+                GroupColorActivity.this.profilePreview.title.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fMin2));
                 if (GroupColorActivity.this.profilePreviewPercent >= 1.0f) {
                     GroupColorActivity.this.profilePreview.setTranslationY(top - f);
                 } else {
@@ -257,24 +256,24 @@ public class GroupColorActivity extends ChannelColorActivity {
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-                View findViewByPosition;
+                View viewFindViewByPosition;
                 super.onScrollStateChanged(recyclerView, i);
                 if (i == 0) {
                     if (GroupColorActivity.this.profilePreviewPercent >= 0.5f && GroupColorActivity.this.profilePreviewPercent < 1.0f) {
                         int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
                         RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
-                        if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
+                        if (layoutManager == null || (viewFindViewByPosition = layoutManager.findViewByPosition(0)) == null) {
                             return;
                         }
-                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
+                        GroupColorActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition.getBottom() - bottom);
                         return;
                     }
                     if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
-                        View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                        if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
+                        View viewFindViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                        if (viewFindViewByPosition2 == null || viewFindViewByPosition2.getTop() >= 0) {
                             return;
                         }
-                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
+                        GroupColorActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition2.getTop());
                     }
                 }
             }
@@ -290,7 +289,7 @@ public class GroupColorActivity extends ChannelColorActivity {
         MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                GroupColorActivity.this.lambda$openBoostDialog$0(i, (ChannelBoostsController.CanApplyBoost) obj);
+                this.f$0.lambda$openBoostDialog$0(i, (ChannelBoostsController.CanApplyBoost) obj);
             }
         });
     }

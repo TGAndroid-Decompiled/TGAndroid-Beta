@@ -52,9 +52,7 @@ public class DialogsEmptyCell extends LinearLayout {
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = DialogsEmptyCell.lambda$new$0(view, motionEvent);
-                return lambda$new$0;
+                return DialogsEmptyCell.lambda$new$0(view, motionEvent);
             }
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -64,7 +62,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsEmptyCell.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         TextView textView = new TextView(context);
@@ -79,9 +77,7 @@ public class DialogsEmptyCell extends LinearLayout {
         textViewSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public final View makeView() {
-                View lambda$new$2;
-                lambda$new$2 = DialogsEmptyCell.lambda$new$2(context);
-                return lambda$new$2;
+                return DialogsEmptyCell.lambda$new$2(context);
             }
         });
         this.subtitleView.setInAnimation(context, R.anim.alpha_in);
@@ -186,7 +182,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                DialogsEmptyCell.this.lambda$startUtyanExpandAnimation$3(valueAnimator2);
+                this.f$0.lambda$startUtyanExpandAnimation$3(valueAnimator2);
             }
         });
         this.utyanAnimator.addListener(new AnimatorListenerAdapter() {
@@ -231,7 +227,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                DialogsEmptyCell.this.lambda$startUtyanCollapseAnimation$4(valueAnimator2);
+                this.f$0.lambda$startUtyanCollapseAnimation$4(valueAnimator2);
             }
         });
         this.utyanAnimator.addListener(new AnimatorListenerAdapter() {
@@ -271,15 +267,15 @@ public class DialogsEmptyCell extends LinearLayout {
 
     public void updateLayout() {
         int i;
-        int i2 = 0;
+        int currentActionBarHeight = 0;
         if ((getParent() instanceof View) && (((i = this.currentType) == 2 || i == 3) && ((View) getParent()).getPaddingTop() != 0)) {
-            i2 = 0 - (getTop() / 2);
+            currentActionBarHeight = 0 - (getTop() / 2);
         }
-        int i3 = this.currentType;
-        if (i3 == 0 || i3 == 1) {
-            i2 = (int) (i2 - (((int) (ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
+        int i2 = this.currentType;
+        if (i2 == 0 || i2 == 1) {
+            currentActionBarHeight = (int) (currentActionBarHeight - (((int) (ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
         }
-        float f = i2;
+        float f = currentActionBarHeight;
         this.imageView.setTranslationY(f);
         this.titleView.setTranslationY(f);
         this.subtitleView.setTranslationY(f);

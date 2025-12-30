@@ -78,17 +78,17 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
         String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
         int i = Theme.key_chat_messageLinkIn;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
+        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
         SpannableString spannableString = new SpannableString(">");
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate);
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawableMutate);
         coloredImageSpan.setColorKey(i);
         coloredImageSpan.setSize(AndroidUtilities.dp(18.0f));
         coloredImageSpan.setWidth(AndroidUtilities.dp(11.0f));
         coloredImageSpan.setTranslateX(-AndroidUtilities.dp(5.0f));
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
+        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", spannableStringBuilderReplaceSingleTag, spannableString));
     }
 
     private FrameLayout makeHint(int i, CharSequence charSequence, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {

@@ -65,7 +65,7 @@ public class RecordedAudioPlayerView extends View {
         this.progressUpdate = new Runnable() {
             @Override
             public final void run() {
-                RecordedAudioPlayerView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.backgroundRect = new RectF();
@@ -177,11 +177,11 @@ public class RecordedAudioPlayerView extends View {
         if (this.destroyed) {
             z = false;
         }
-        VideoPlayer videoPlayer = this.player;
-        if (videoPlayer != null) {
-            float currentPosition = ((float) videoPlayer.getCurrentPosition()) / ((float) this.player.getDuration());
-            if (currentPosition < this.left || currentPosition > this.right) {
-                this.player.seekTo(r1 * ((float) r0.getDuration()));
+        if (this.player != null) {
+            float currentPosition = r0.getCurrentPosition() / this.player.getDuration();
+            float f = this.left;
+            if (currentPosition < f || currentPosition > this.right) {
+                this.player.seekTo((long) (f * r0.getDuration()));
             }
             this.player.setPlayWhenReady(z);
         }
@@ -195,15 +195,16 @@ public class RecordedAudioPlayerView extends View {
     public void lambda$new$0() {
         VideoPlayer videoPlayer = this.player;
         if (videoPlayer != null) {
-            boolean isPlaying = videoPlayer.isPlaying();
-            float currentPosition = ((float) this.player.getCurrentPosition()) / ((float) this.player.getDuration());
-            if (currentPosition < this.left) {
-                this.player.seekTo(r2 * ((float) r1.getDuration()));
+            boolean zIsPlaying = videoPlayer.isPlaying();
+            float currentPosition = this.player.getCurrentPosition() / this.player.getDuration();
+            float f = this.left;
+            if (currentPosition < f) {
+                this.player.seekTo((long) (f * r1.getDuration()));
             } else if (currentPosition > this.right) {
-                isPlaying = false;
+                zIsPlaying = false;
                 setPlaying(false);
             }
-            if (isPlaying) {
+            if (zIsPlaying) {
                 AndroidUtilities.runOnUIThread(this.progressUpdate, 16L);
             }
         }
@@ -215,24 +216,24 @@ public class RecordedAudioPlayerView extends View {
         if (this.lastWaveformWidth == measuredWidth) {
             return;
         }
-        int dp = measuredWidth / AndroidUtilities.dp(3.0f);
-        int dp2 = AndroidUtilities.dp(2.0f);
-        int dp3 = AndroidUtilities.dp(12.0f);
-        byte b = Byte.MAX_VALUE;
-        byte b2 = Byte.MIN_VALUE;
-        for (int i = 0; i < dp; i++) {
+        int iDp = measuredWidth / AndroidUtilities.dp(3.0f);
+        int iDp2 = AndroidUtilities.dp(2.0f);
+        int iDp3 = AndroidUtilities.dp(12.0f);
+        byte bMin = 127;
+        byte bMax = -128;
+        for (int i = 0; i < iDp; i++) {
             byte[] bArr = this.waveformData;
-            byte b3 = bArr == null ? (byte) 0 : bArr[(int) ((i / dp) * bArr.length)];
-            b = (byte) Math.min((int) b, (int) b3);
-            b2 = (byte) Math.max((int) b2, (int) b3);
+            byte b = bArr == null ? (byte) 0 : bArr[(int) ((i / iDp) * bArr.length)];
+            bMin = (byte) Math.min((int) bMin, (int) b);
+            bMax = (byte) Math.max((int) bMax, (int) b);
         }
         this.waveformPath.rewind();
-        for (int i2 = 0; i2 < dp; i2++) {
+        for (int i2 = 0; i2 < iDp; i2++) {
             byte[] bArr2 = this.waveformData;
-            float lerp = AndroidUtilities.lerp(dp2, dp3, Utilities.clamp01(AndroidUtilities.ilerp((int) (bArr2 == null ? (byte) 0 : bArr2[(int) ((i2 / dp) * bArr2.length)]), (int) b, (int) b2)));
-            float dp4 = AndroidUtilities.dp(3.0f) * i2;
+            float fLerp = AndroidUtilities.lerp(iDp2, iDp3, Utilities.clamp01(AndroidUtilities.ilerp((int) (bArr2 == null ? (byte) 0 : bArr2[(int) ((i2 / iDp) * bArr2.length)]), (int) bMin, (int) bMax)));
+            float fDp = AndroidUtilities.dp(3.0f) * i2;
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(dp4, (-lerp) / 2.0f, AndroidUtilities.dp(2.0f) + dp4, lerp / 2.0f);
+            rectF.set(fDp, (-fLerp) / 2.0f, AndroidUtilities.dp(2.0f) + fDp, fLerp / 2.0f);
             this.waveformPath.addRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Path.Direction.CW);
         }
         this.lastWaveformWidth = measuredWidth;
@@ -259,33 +260,33 @@ public class RecordedAudioPlayerView extends View {
     }
 
     public long getAudioLeftMs() {
-        return this.left * ((float) getDuration());
+        return (long) (this.left * getDuration());
     }
 
     public long getAudioRightMs() {
-        return this.right * ((float) getDuration());
+        return (long) (this.right * getDuration());
     }
 
     public double getNewDuration() {
-        return ((this.right - this.left) * ((float) getDuration())) / 1000.0d;
+        return ((this.right - this.left) * getDuration()) / 1000.0d;
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        float dp = AndroidUtilities.dp(32.0f);
-        this.backgroundRect.set(0.0f, (getMeasuredHeight() - dp) / 2.0f, getMeasuredWidth(), (getMeasuredHeight() + dp) / 2.0f);
+        float fDp = AndroidUtilities.dp(32.0f);
+        this.backgroundRect.set(0.0f, (getMeasuredHeight() - fDp) / 2.0f, getMeasuredWidth(), (getMeasuredHeight() + fDp) / 2.0f);
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        float dp = AndroidUtilities.dp(32.0f);
-        this.backgroundRect.set(0.0f, (getHeight() - dp) / 2.0f, getWidth(), (getHeight() + dp) / 2.0f);
+        float fDp = AndroidUtilities.dp(32.0f);
+        this.backgroundRect.set(0.0f, (getHeight() - fDp) / 2.0f, getWidth(), (getHeight() + fDp) / 2.0f);
     }
 
     public void drawIn(Canvas canvas, RectF rectF, float f) {
-        float clamp;
+        float fClamp;
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_recordedVoiceBackground, this.resourcesProvider));
         this.darkerBackgroundPaint.setColor(Theme.getColor(Theme.key_chat_recordedVoiceDarkerBackground, this.resourcesProvider));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text;
@@ -296,35 +297,34 @@ public class RecordedAudioPlayerView extends View {
         int i2 = Theme.key_chat_recordedVoiceProgress;
         paint.setColor(Theme.getColor(i2, this.resourcesProvider));
         this.handlePaint.setColor(Theme.getColor(i, this.resourcesProvider));
-        int lerp = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.left));
-        int lerp2 = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.right));
+        int iLerp = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.left));
+        int iLerp2 = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.right));
         checkWaveform();
         canvas.save();
         this.clipPath.rewind();
         this.clipPath.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
         canvas.clipPath(this.clipPath);
-        canvas.drawRect(rectF.left, rectF.top, lerp - AndroidUtilities.dp(1.33f), rectF.bottom, this.darkerBackgroundPaint);
-        canvas.drawRect(AndroidUtilities.dp(1.33f) + lerp2, rectF.top, rectF.right, rectF.bottom, this.darkerBackgroundPaint);
+        canvas.drawRect(rectF.left, rectF.top, iLerp - AndroidUtilities.dp(1.33f), rectF.bottom, this.darkerBackgroundPaint);
+        canvas.drawRect(AndroidUtilities.dp(1.33f) + iLerp2, rectF.top, rectF.right, rectF.bottom, this.darkerBackgroundPaint);
         canvas.save();
         canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
         this.waveformPaint.setColor(Theme.multAlpha(Theme.getColor(i2, this.resourcesProvider), 0.3f));
         canvas.drawPath(this.waveformPath, this.waveformPaint);
         canvas.restore();
-        float f2 = lerp;
-        float f3 = lerp2;
+        float f2 = iLerp;
+        float f3 = iLerp2;
         canvas.drawRect(f2, rectF.top, f3, rectF.bottom, this.backgroundPaint);
         if (this.progressPressed) {
-            clamp = this.holdProgress;
+            fClamp = this.holdProgress;
         } else {
-            VideoPlayer videoPlayer = this.player;
-            clamp = Utilities.clamp(videoPlayer != null ? ((float) videoPlayer.getCurrentPosition()) / ((float) this.player.getDuration()) : 1.0f, this.right, this.left);
+            fClamp = Utilities.clamp(this.player != null ? r1.getCurrentPosition() / this.player.getDuration() : 1.0f, this.right, this.left);
         }
-        float clamp2 = Utilities.clamp(AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(13.0f), rectF.right - AndroidUtilities.dp(14.0f), clamp), f3, f2);
-        if (clamp2 < f3) {
+        float fClamp2 = Utilities.clamp(AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(13.0f), rectF.right - AndroidUtilities.dp(14.0f), fClamp), f3, f2);
+        if (fClamp2 < f3) {
             canvas.save();
-            canvas.clipRect(clamp2, rectF.top, f3, rectF.bottom);
+            canvas.clipRect(fClamp2, rectF.top, f3, rectF.bottom);
             canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
-            if (!this.wasPlaying || clamp >= this.left || this.progressPressed) {
+            if (!this.wasPlaying || fClamp >= this.left || this.progressPressed) {
                 this.waveformPaint.setColor(Theme.getColor(i2, this.resourcesProvider));
             } else {
                 this.waveformPaint.setColor(Theme.getColor(i, this.resourcesProvider));
@@ -332,9 +332,9 @@ public class RecordedAudioPlayerView extends View {
             canvas.drawPath(this.waveformPath, this.waveformPaint);
             canvas.restore();
         }
-        if (clamp2 > f2) {
+        if (fClamp2 > f2) {
             canvas.save();
-            canvas.clipRect(f2, rectF.top, clamp2, rectF.bottom);
+            canvas.clipRect(f2, rectF.top, fClamp2, rectF.bottom);
             canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
             if (isPlaying() || this.wasPlaying || this.progressPressed) {
                 this.waveformPaint.setColor(Theme.getColor(i, this.resourcesProvider));
@@ -344,22 +344,22 @@ public class RecordedAudioPlayerView extends View {
             canvas.drawPath(this.waveformPath, this.waveformPaint);
             canvas.restore();
         }
-        this.handleRect.set(lerp - AndroidUtilities.dp(7.0f), rectF.centerY() - AndroidUtilities.dp(5.33f), lerp - AndroidUtilities.dp(5.33f), rectF.centerY() + AndroidUtilities.dp(5.33f));
+        this.handleRect.set(iLerp - AndroidUtilities.dp(7.0f), rectF.centerY() - AndroidUtilities.dp(5.33f), iLerp - AndroidUtilities.dp(5.33f), rectF.centerY() + AndroidUtilities.dp(5.33f));
         RectF rectF2 = this.handleRect;
         canvas.drawRoundRect(rectF2, rectF2.width() / 2.0f, this.handleRect.width() / 2.0f, this.handlePaint);
-        this.handleRect.set(AndroidUtilities.dp(5.33f) + lerp2, rectF.centerY() - AndroidUtilities.dp(5.33f), AndroidUtilities.dp(7.0f) + lerp2, rectF.centerY() + AndroidUtilities.dp(5.33f));
+        this.handleRect.set(AndroidUtilities.dp(5.33f) + iLerp2, rectF.centerY() - AndroidUtilities.dp(5.33f), AndroidUtilities.dp(7.0f) + iLerp2, rectF.centerY() + AndroidUtilities.dp(5.33f));
         RectF rectF3 = this.handleRect;
         canvas.drawRoundRect(rectF3, rectF3.width() / 2.0f, this.handleRect.width() / 2.0f, this.handlePaint);
-        this.leftHandleClickRect.set(lerp - AndroidUtilities.dp(24.0f), 0.0f, AndroidUtilities.dp(6.0f) + lerp, getHeight());
-        this.rightHandleClickRect.set(lerp2 - AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(24.0f) + lerp2, getHeight());
+        this.leftHandleClickRect.set(iLerp - AndroidUtilities.dp(24.0f), 0.0f, AndroidUtilities.dp(6.0f) + iLerp, getHeight());
+        this.rightHandleClickRect.set(iLerp2 - AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(24.0f) + iLerp2, getHeight());
         float f4 = this.showBadge.set(!this.progressPressed);
         if (f4 > 0.0f) {
-            float dp = (int) (AndroidUtilities.dp(30.0f) + this.text.getCurrentWidth());
-            float f5 = this.showDuration.set(dp <= ((float) ((lerp2 - lerp) - AndroidUtilities.dp(8.0f))));
-            float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(24.0f), dp, f5);
-            float f6 = lerp + lerp2;
-            float dp2 = AndroidUtilities.dp(20.0f) / 2.0f;
-            this.badgeRect.set((f6 - lerp3) / 2.0f, rectF.centerY() - dp2, (f6 + lerp3) / 2.0f, rectF.centerY() + dp2);
+            float fDp = (int) (AndroidUtilities.dp(30.0f) + this.text.getCurrentWidth());
+            float f5 = this.showDuration.set(fDp <= ((float) ((iLerp2 - iLerp) - AndroidUtilities.dp(8.0f))));
+            float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(24.0f), fDp, f5);
+            float f6 = iLerp + iLerp2;
+            float fDp2 = AndroidUtilities.dp(20.0f) / 2.0f;
+            this.badgeRect.set((f6 - fLerp) / 2.0f, rectF.centerY() - fDp2, (f6 + fLerp) / 2.0f, rectF.centerY() + fDp2);
             int alpha = this.darkerBackgroundPaint.getAlpha();
             this.darkerBackgroundPaint.setAlpha((int) (alpha * f4));
             RectF rectF4 = this.badgeRect;
@@ -368,9 +368,9 @@ public class RecordedAudioPlayerView extends View {
             this.badgeClickRect.set(this.badgeRect);
             this.badgeClickRect.inset(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f));
             canvas.save();
-            int dp3 = AndroidUtilities.dp(12.0f);
-            canvas.translate(AndroidUtilities.lerp(this.badgeRect.centerX() - (dp3 / 2.0f), this.badgeRect.left + AndroidUtilities.dp(6.0f), f5), this.badgeRect.centerY());
-            this.playPauseDrawable.setBounds(0, (-dp3) / 2, dp3, dp3 / 2);
+            int iDp = AndroidUtilities.dp(12.0f);
+            canvas.translate(AndroidUtilities.lerp(this.badgeRect.centerX() - (iDp / 2.0f), this.badgeRect.left + AndroidUtilities.dp(6.0f), f5), this.badgeRect.centerY());
+            this.playPauseDrawable.setBounds(0, (-iDp) / 2, iDp, iDp / 2);
             this.playPauseDrawable.setAlpha((int) (f4 * 255.0f));
             this.playPauseDrawable.draw(canvas);
             canvas.restore();
@@ -413,12 +413,12 @@ public class RecordedAudioPlayerView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean contains = this.badgeClickRect.contains(motionEvent.getX(), motionEvent.getY());
-        boolean z = !contains && this.leftHandleClickRect.contains(motionEvent.getX(), motionEvent.getY());
-        boolean z2 = !contains && this.rightHandleClickRect.contains(motionEvent.getX(), motionEvent.getY());
-        boolean z3 = (contains || z || z2 || motionEvent.getX() <= this.leftHandleClickRect.right || motionEvent.getX() >= this.rightHandleClickRect.left) ? false : true;
+        boolean zContains = this.badgeClickRect.contains(motionEvent.getX(), motionEvent.getY());
+        boolean z = !zContains && this.leftHandleClickRect.contains(motionEvent.getX(), motionEvent.getY());
+        boolean z2 = !zContains && this.rightHandleClickRect.contains(motionEvent.getX(), motionEvent.getY());
+        boolean z3 = (zContains || z || z2 || motionEvent.getX() <= this.leftHandleClickRect.right || motionEvent.getX() >= this.rightHandleClickRect.left) ? false : true;
         if (motionEvent.getAction() == 0) {
-            this.playPressed = contains;
+            this.playPressed = zContains;
             this.leftPressed = z;
             this.rightPressed = z2;
             if (z || z2) {
@@ -428,8 +428,7 @@ public class RecordedAudioPlayerView extends View {
             this.progressPressed = z3;
             if (z3) {
                 this.progressPressedWasPlaying = isPlaying();
-                VideoPlayer videoPlayer = this.player;
-                this.holdProgress = videoPlayer != null ? ((float) videoPlayer.getCurrentPosition()) / ((float) this.player.getDuration()) : 1.0f;
+                this.holdProgress = this.player != null ? r0.getCurrentPosition() / this.player.getDuration() : 1.0f;
                 setPlaying(false);
             }
             if (getParent() != null && (this.playPressed || this.leftPressed || this.rightPressed || this.progressPressed)) {
@@ -443,10 +442,11 @@ public class RecordedAudioPlayerView extends View {
                 this.right = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), this.backgroundRect.left + AndroidUtilities.dp(11.33f), this.backgroundRect.right - AndroidUtilities.dp(11.33f)), 1.0f, Utilities.clamp01(this.left + Math.max(1.0f / this.duration, AndroidUtilities.dp(30.0f) / (this.backgroundRect.width() - AndroidUtilities.dp(22.66f)))));
                 invalidate();
             } else if (this.progressPressed) {
-                VideoPlayer videoPlayer2 = this.player;
-                if (videoPlayer2 != null) {
-                    this.holdProgress = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), this.backgroundRect.left + AndroidUtilities.dp(11.33f), this.backgroundRect.right - AndroidUtilities.dp(11.33f)), this.right, this.left);
-                    videoPlayer2.seekTo(r3 * ((float) this.player.getDuration()));
+                VideoPlayer videoPlayer = this.player;
+                if (videoPlayer != null) {
+                    float fClamp = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), this.backgroundRect.left + AndroidUtilities.dp(11.33f), this.backgroundRect.right - AndroidUtilities.dp(11.33f)), this.right, this.left);
+                    this.holdProgress = fClamp;
+                    videoPlayer.seekTo((long) (fClamp * this.player.getDuration()));
                 }
                 invalidate();
             }
@@ -455,15 +455,15 @@ public class RecordedAudioPlayerView extends View {
             if (motionEvent.getAction() == 1 && this.playPressed) {
                 setPlaying(!isPlaying());
             } else if (this.leftPressed && this.wasPlaying) {
-                VideoPlayer videoPlayer3 = this.player;
-                if (videoPlayer3 != null) {
-                    videoPlayer3.seekTo(this.left * ((float) videoPlayer3.getDuration()));
+                VideoPlayer videoPlayer2 = this.player;
+                if (videoPlayer2 != null) {
+                    videoPlayer2.seekTo((long) (this.left * videoPlayer2.getDuration()));
                 }
                 setPlaying(true);
             } else if (this.rightPressed && this.wasPlaying) {
-                VideoPlayer videoPlayer4 = this.player;
-                if (videoPlayer4 != null) {
-                    videoPlayer4.seekTo(Math.max(this.left * ((float) videoPlayer4.getDuration()), (this.right * ((float) this.player.getDuration())) - 1500));
+                VideoPlayer videoPlayer3 = this.player;
+                if (videoPlayer3 != null) {
+                    videoPlayer3.seekTo(Math.max((long) (this.left * videoPlayer3.getDuration()), ((long) (this.right * this.player.getDuration())) - 1500));
                 }
                 setPlaying(true);
             } else if (this.progressPressed && !isPlaying()) {

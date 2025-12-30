@@ -31,13 +31,13 @@ public class LockFreeTaskQueue {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _cur$volatile$FU;
         while (true) {
             LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) atomicReferenceFieldUpdater.get(this);
-            int addLast = lockFreeTaskQueueCore.addLast(obj);
-            if (addLast == 0) {
+            int iAddLast = lockFreeTaskQueueCore.addLast(obj);
+            if (iAddLast == 0) {
                 return true;
             }
-            if (addLast == 1) {
+            if (iAddLast == 1) {
                 AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$volatile$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
-            } else if (addLast == 2) {
+            } else if (iAddLast == 2) {
                 return false;
             }
         }
@@ -47,9 +47,9 @@ public class LockFreeTaskQueue {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _cur$volatile$FU;
         while (true) {
             LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) atomicReferenceFieldUpdater.get(this);
-            Object removeFirstOrNull = lockFreeTaskQueueCore.removeFirstOrNull();
-            if (removeFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
-                return removeFirstOrNull;
+            Object objRemoveFirstOrNull = lockFreeTaskQueueCore.removeFirstOrNull();
+            if (objRemoveFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
+                return objRemoveFirstOrNull;
             }
             AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$volatile$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
         }

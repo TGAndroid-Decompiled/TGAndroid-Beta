@@ -15,13 +15,13 @@ public abstract class UniversalFragment extends BaseFragment {
     private int savedScrollOffset;
     private int savedScrollPosition = -1;
 
-    public abstract void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter);
+    protected abstract void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter);
 
     protected abstract CharSequence getTitle();
 
-    public abstract void onClick(UItem uItem, View view, int i, float f, float f2);
+    protected abstract void onClick(UItem uItem, View view, int i, float f, float f2);
 
-    public abstract boolean onLongClick(UItem uItem, View view, int i, float f, float f2);
+    protected abstract boolean onLongClick(UItem uItem, View view, int i, float f, float f2);
 
     @Override
     public View createView(Context context) {
@@ -46,26 +46,26 @@ public abstract class UniversalFragment extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                UniversalFragment.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                UniversalFragment.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                return Boolean.valueOf(UniversalFragment.this.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
+                return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         }) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
             }
 
             @Override
-            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 super.onLayout(z, i, i2, i3, i4);
                 UniversalFragment.this.savedScrollPosition = -1;
             }
@@ -82,26 +82,26 @@ public abstract class UniversalFragment extends BaseFragment {
             return;
         }
         View view = null;
-        int i = Integer.MAX_VALUE;
-        int i2 = -1;
-        for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
+        int top = Integer.MAX_VALUE;
+        int i = -1;
+        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
             UniversalRecyclerView universalRecyclerView2 = this.listView;
-            int childAdapterPosition = universalRecyclerView2.getChildAdapterPosition(universalRecyclerView2.getChildAt(i3));
-            View childAt = this.listView.getChildAt(i3);
-            if (childAdapterPosition != -1 && childAt.getTop() < i) {
-                i = childAt.getTop();
-                i2 = childAdapterPosition;
+            int childAdapterPosition = universalRecyclerView2.getChildAdapterPosition(universalRecyclerView2.getChildAt(i2));
+            View childAt = this.listView.getChildAt(i2);
+            if (childAdapterPosition != -1 && childAt.getTop() < top) {
+                top = childAt.getTop();
+                i = childAdapterPosition;
                 view = childAt;
             }
         }
         if (view != null) {
-            this.savedScrollPosition = i2;
-            int top = view.getTop();
-            this.savedScrollOffset = top;
-            if (this.savedScrollPosition == 0 && top > AndroidUtilities.dp(88.0f)) {
+            this.savedScrollPosition = i;
+            int top2 = view.getTop();
+            this.savedScrollOffset = top2;
+            if (this.savedScrollPosition == 0 && top2 > AndroidUtilities.dp(88.0f)) {
                 this.savedScrollOffset = AndroidUtilities.dp(88.0f);
             }
-            this.listView.layoutManager.scrollToPositionWithOffset(i2, view.getTop() - this.listView.getPaddingTop());
+            this.listView.layoutManager.scrollToPositionWithOffset(i, view.getTop() - this.listView.getPaddingTop());
         }
     }
 

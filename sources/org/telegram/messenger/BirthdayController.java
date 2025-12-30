@@ -57,16 +57,16 @@ public class BirthdayController {
         if (string != null) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-                final TL_birthdays TLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                if (TLdeserialize != null && !TLdeserialize.contacts.isEmpty()) {
+                final TL_birthdays tL_birthdaysTLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (tL_birthdaysTLdeserialize != null && !tL_birthdaysTLdeserialize.contacts.isEmpty()) {
                     final ArrayList arrayList = new ArrayList();
-                    for (int i2 = 0; i2 < TLdeserialize.contacts.size(); i2++) {
-                        arrayList.add(Long.valueOf(TLdeserialize.contacts.get(i2).contact_id));
+                    for (int i2 = 0; i2 < tL_birthdaysTLdeserialize.contacts.size(); i2++) {
+                        arrayList.add(Long.valueOf(tL_birthdaysTLdeserialize.contacts.get(i2).contact_id));
                     }
                     MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                         @Override
-                        public final void run() {
-                            BirthdayController.this.lambda$new$1(i, arrayList, TLdeserialize);
+                        public final void run() throws InterruptedException {
+                            this.f$0.lambda$new$1(i, arrayList, tL_birthdaysTLdeserialize);
                         }
                     });
                 }
@@ -77,12 +77,12 @@ public class BirthdayController {
         this.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
     }
 
-    public void lambda$new$1(int i, ArrayList arrayList, final TL_birthdays tL_birthdays) {
+    public void lambda$new$1(int i, ArrayList arrayList, final TL_birthdays tL_birthdays) throws InterruptedException {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BirthdayController.this.lambda$new$0(tL_birthdays, users);
+                this.f$0.lambda$new$0(tL_birthdays, users);
             }
         });
     }
@@ -98,12 +98,12 @@ public class BirthdayController {
         if (this.loading) {
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         long j = this.lastCheckDate;
         boolean z = false;
         boolean z2 = j == 0;
         if (!z2) {
-            z2 = currentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
+            z2 = jCurrentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
         }
         if (z2) {
             z = z2;
@@ -111,7 +111,7 @@ public class BirthdayController {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(this.lastCheckDate);
             Calendar calendar2 = Calendar.getInstance();
-            calendar2.setTimeInMillis(currentTimeMillis);
+            calendar2.setTimeInMillis(jCurrentTimeMillis);
             if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
                 z = true;
             }
@@ -121,7 +121,7 @@ public class BirthdayController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BirthdayController.this.lambda$check$3(tLObject, tL_error);
+                    this.f$0.lambda$check$3(tLObject, tL_error);
                 }
             });
         }
@@ -131,7 +131,7 @@ public class BirthdayController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BirthdayController.this.lambda$check$2(tLObject);
+                this.f$0.lambda$check$2(tLObject);
             }
         });
     }
@@ -143,14 +143,14 @@ public class BirthdayController {
             this.state = BirthdayState.from(contactbirthdays);
             MessagesController.getInstance(this.currentAccount).putUsers(contactbirthdays.users, false);
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
-            SharedPreferences.Editor edit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
-            edit.putLong("bday_check", this.lastCheckDate);
+            SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
+            editorEdit.putLong("bday_check", this.lastCheckDate);
             TL_birthdays tL_birthdays = new TL_birthdays();
             tL_birthdays.contacts = contactbirthdays.contacts;
             SerializedData serializedData = new SerializedData(tL_birthdays.getObjectSize());
             tL_birthdays.serializeToStream(serializedData);
-            edit.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
-            edit.apply();
+            editorEdit.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
+            editorEdit.apply();
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
             this.loading = false;
         }
@@ -180,9 +180,9 @@ public class BirthdayController {
             return;
         }
         this.hiddenDays.add(this.state.todayKey);
-        SharedPreferences.Editor edit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
-        edit.putStringSet("bday_hidden", this.hiddenDays);
-        edit.apply();
+        SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
+        editorEdit.putStringSet("bday_hidden", this.hiddenDays);
+        editorEdit.apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
     }
 
@@ -287,7 +287,7 @@ public class BirthdayController {
         }
     }
 
-    public static class TL_birthdays extends TLObject {
+    static class TL_birthdays extends TLObject {
         public static final int constructor = 290452237;
         public ArrayList<TL_account.TL_contactBirthday> contacts;
 
@@ -301,14 +301,14 @@ public class BirthdayController {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            if (readInt32 != 481674261) {
+            int int32 = inputSerializedData.readInt32(z);
+            if (int32 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(int32)));
                 }
             } else {
-                int readInt322 = inputSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
+                int int322 = inputSerializedData.readInt32(z);
+                for (int i = 0; i < int322; i++) {
                     this.contacts.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z));
                 }
             }

@@ -49,7 +49,7 @@ public class SQLiteCursor {
         return columnIntValue(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public double doubleValue(int i) {
+    public double doubleValue(int i) throws SQLiteException {
         checkRow();
         return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
     }
@@ -71,22 +71,22 @@ public class SQLiteCursor {
 
     public NativeByteBuffer byteBufferValue(int i) {
         checkRow();
-        long columnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i);
-        if (columnByteBufferValue != 0) {
-            return NativeByteBuffer.wrap(columnByteBufferValue);
+        long jColumnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i);
+        if (jColumnByteBufferValue != 0) {
+            return NativeByteBuffer.wrap(jColumnByteBufferValue);
         }
         return null;
     }
 
-    public int getTypeOf(int i) {
+    public int getTypeOf(int i) throws SQLiteException {
         checkRow();
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
     public boolean next() {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
-        int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
-        if (step == -1) {
+        int iStep = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
+        if (iStep == -1) {
             int i = 6;
             while (true) {
                 int i2 = i - 1;
@@ -98,20 +98,20 @@ public class SQLiteCursor {
                         FileLog.d("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);
-                    step = this.preparedStatement.step();
+                    iStep = this.preparedStatement.step();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                if (step == 0) {
+                if (iStep == 0) {
                     break;
                 }
                 i = i2;
             }
-            if (step == -1) {
+            if (iStep == -1) {
                 throw new SQLiteException("sqlite busy");
             }
         }
-        boolean z = step == 0;
+        boolean z = iStep == 0;
         this.inRow = z;
         return z;
     }
@@ -128,7 +128,7 @@ public class SQLiteCursor {
         this.preparedStatement.dispose();
     }
 
-    void checkRow() {
+    void checkRow() throws SQLiteException {
         if (!this.inRow) {
             throw new SQLiteException("You must call next before");
         }

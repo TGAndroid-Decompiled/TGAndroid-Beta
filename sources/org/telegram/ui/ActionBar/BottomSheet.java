@@ -49,7 +49,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimationProperties;
@@ -57,6 +56,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ViewPagerActivity;
 
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private static final boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
@@ -198,7 +198,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return false;
     }
 
-    public void mainContainerDispatchDraw(Canvas canvas) {
+    protected void mainContainerDispatchDraw(Canvas canvas) {
     }
 
     public void onConfigurationChanged(Configuration configuration) {
@@ -223,14 +223,14 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return false;
     }
 
-    public boolean onCustomOpenAnimation() {
+    protected boolean onCustomOpenAnimation() {
         return false;
     }
 
     public void onDismissAnimationStart() {
     }
 
-    public void onInsetsChanged() {
+    protected void onInsetsChanged() {
     }
 
     public void onOpenAnimationEnd() {
@@ -246,7 +246,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     protected void onScrollUpEnd(float f) {
     }
 
-    public void onSmoothContainerViewLayout(float f) {
+    protected void onSmoothContainerViewLayout(float f) {
     }
 
     protected void onSwipeStarts() {
@@ -427,14 +427,14 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
             this.maybeStartTracking = false;
             this.currentAnimation = new AnimatorSet();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BottomSheet.ContainerView.this.lambda$checkDismiss$0(valueAnimator);
+                    this.f$0.lambda$checkDismiss$0(valueAnimator);
                 }
             });
-            this.currentAnimation.playTogether(ObjectAnimator.ofFloat(BottomSheet.this.containerView, "translationY", 0.0f), ofFloat);
+            this.currentAnimation.playTogether(ObjectAnimator.ofFloat(BottomSheet.this.containerView, "translationY", 0.0f), valueAnimatorOfFloat);
             this.currentAnimation.setDuration((int) ((Math.max(0.0f, r2) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 250.0f));
             this.currentAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.currentAnimation.addListener(new AnimatorListenerAdapter() {
@@ -506,16 +506,16 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     float xVelocity = this.velocityTracker.getXVelocity();
                     float yVelocity = this.velocityTracker.getYVelocity();
                     if (this.swipeBackX < BottomSheet.this.containerView.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
-                        float max = Math.max(this.swipeBackX, 0.0f);
-                        this.swipeBackX = max;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(max, 0.0f);
-                        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        float fMax = Math.max(this.swipeBackX, 0.0f);
+                        this.swipeBackX = fMax;
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fMax, 0.0f);
+                        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                BottomSheet.ContainerView.this.lambda$processTouchEvent$1(valueAnimator);
+                                this.f$0.lambda$processTouchEvent$1(valueAnimator);
                             }
                         });
-                        ofFloat.addListener(new AnimatorListenerAdapter() {
+                        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 ContainerView.this.swipeBackX = 0.0f;
@@ -523,18 +523,18 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                                 BottomSheet.this.container.invalidate();
                             }
                         });
-                        ofFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                        ofFloat.setDuration(220L);
-                        ofFloat.start();
+                        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                        valueAnimatorOfFloat.setDuration(220L);
+                        valueAnimatorOfFloat.start();
                     } else {
-                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.swipeBackX, getMeasuredWidth());
-                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.swipeBackX, getMeasuredWidth());
+                        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                BottomSheet.ContainerView.this.lambda$processTouchEvent$2(valueAnimator);
+                                this.f$0.lambda$processTouchEvent$2(valueAnimator);
                             }
                         });
-                        ofFloat2.addListener(new AnimatorListenerAdapter() {
+                        valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 BottomSheet.this.skipDismissAnimation = true;
@@ -544,19 +544,19 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                             }
                         });
                         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                        ofFloat2.setInterpolator(cubicBezierInterpolator);
-                        ofFloat2.setDuration(320L);
-                        ofFloat2.start();
-                        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
-                        ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
+                        valueAnimatorOfFloat2.setDuration(320L);
+                        valueAnimatorOfFloat2.start();
+                        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                BottomSheet.ContainerView.this.lambda$processTouchEvent$3(valueAnimator);
+                                this.f$0.lambda$processTouchEvent$3(valueAnimator);
                             }
                         });
-                        ofFloat3.setInterpolator(cubicBezierInterpolator);
-                        ofFloat3.setDuration(320L);
-                        ofFloat3.start();
+                        valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
+                        valueAnimatorOfFloat3.setDuration(320L);
+                        valueAnimatorOfFloat3.start();
                     }
                     this.maybeStartTracking = false;
                     this.startedTracking = false;
@@ -583,11 +583,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
-                float abs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
+                float fAbs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
                 float y3 = ((int) motionEvent.getY()) - this.startedTrackingY;
-                boolean onScrollUp = BottomSheet.this.onScrollUp(this.y + y3);
+                boolean zOnScrollUp = BottomSheet.this.onScrollUp(this.y + y3);
                 this.velocityTracker.addMovement(motionEvent);
-                if (!BottomSheet.this.disableScroll && this.maybeStartTracking && !this.startedTracking && y3 > 0.0f && y3 / 3.0f > Math.abs(abs) && Math.abs(y3) >= BottomSheet.this.touchSlop) {
+                if (!BottomSheet.this.disableScroll && this.maybeStartTracking && !this.startedTracking && y3 > 0.0f && y3 / 3.0f > Math.abs(fAbs) && Math.abs(y3) >= BottomSheet.this.touchSlop) {
                     this.startedTrackingY = (int) motionEvent.getY();
                     this.maybeStartTracking = false;
                     this.startedTracking = true;
@@ -595,7 +595,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 } else if (this.startedTracking) {
                     float f2 = this.y + y3;
                     this.y = f2;
-                    if (!onScrollUp) {
+                    if (!zOnScrollUp) {
                         this.y = Math.max(f2, 0.0f);
                     }
                     BottomSheet.this.containerView.setTranslationY(Math.max(this.y, 0.0f));
@@ -628,23 +628,23 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         public void lambda$processTouchEvent$1(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.swipeBackX = floatValue;
-            BottomSheet.this.containerView.setTranslationX(floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.swipeBackX = fFloatValue;
+            BottomSheet.this.containerView.setTranslationX(fFloatValue);
             BottomSheet.this.container.invalidate();
         }
 
         public void lambda$processTouchEvent$2(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.swipeBackX = floatValue;
-            BottomSheet.this.containerView.setTranslationX(floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.swipeBackX = fFloatValue;
+            BottomSheet.this.containerView.setTranslationX(fFloatValue);
             BottomSheet.this.container.invalidate();
         }
 
         public void lambda$processTouchEvent$3(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             BottomSheet bottomSheet = BottomSheet.this;
-            bottomSheet.backDrawable.setAlpha(bottomSheet.dimBehind ? (int) (bottomSheet.dimBehindAlpha * floatValue) : 0);
+            bottomSheet.backDrawable.setAlpha(bottomSheet.dimBehind ? (int) (bottomSheet.dimBehindAlpha * fFloatValue) : 0);
         }
 
         @Override
@@ -707,7 +707,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         public void drawNavigationBar(Canvas canvas, float f) {
-            float max;
+            float fMax;
             int i = Build.VERSION.SDK_INT;
             if (i >= 26) {
                 BottomSheet bottomSheet = BottomSheet.this;
@@ -732,12 +732,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 if (bottomSheet4.scrollNavBar || (i >= 29 && bottomSheet4.getAdditionalMandatoryOffsets() > 0)) {
                     BottomSheet bottomSheet5 = BottomSheet.this;
                     if (bottomSheet5.drawDoubleNavigationBar) {
-                        max = Math.max(0.0f, Math.min(bottomInset - bottomSheet5.currentPanTranslationY, BottomSheet.this.containerView.getTranslationY()));
+                        fMax = Math.max(0.0f, Math.min(bottomInset - bottomSheet5.currentPanTranslationY, BottomSheet.this.containerView.getTranslationY()));
                     } else {
-                        max = Math.max(0.0f, BottomSheet.this.getBottomInset() - (bottomSheet5.containerView.getMeasuredHeight() - BottomSheet.this.containerView.getTranslationY()));
+                        fMax = Math.max(0.0f, BottomSheet.this.getBottomInset() - (bottomSheet5.containerView.getMeasuredHeight() - BottomSheet.this.containerView.getTranslationY()));
                     }
                 } else {
-                    max = 0.0f;
+                    fMax = 0.0f;
                 }
                 int alpha = this.backgroundPaint.getAlpha();
                 if (BottomSheet.this.transitionFromRight) {
@@ -747,7 +747,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 if (f < 1.0f) {
                     this.backgroundPaint.setAlpha((int) (alpha * f));
                 }
-                canvas.drawRect(BottomSheet.this.backgroundPaddingLeft + x, ((getMeasuredHeight() - bottomInset) + max) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + max, this.backgroundPaint);
+                canvas.drawRect(BottomSheet.this.backgroundPaddingLeft + x, ((getMeasuredHeight() - bottomInset) + fMax) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + fMax, this.backgroundPaint);
                 this.backgroundPaint.setAlpha(alpha);
                 if (BottomSheet.this.overlayDrawNavBarColor != 0) {
                     this.backgroundPaint.setColor(BottomSheet.this.overlayDrawNavBarColor);
@@ -756,7 +756,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     if (f < 1.0f) {
                         this.backgroundPaint.setAlpha((int) (alpha2 * f * navigationBarThirdButtonsFactor));
                     } else {
-                        f2 = max;
+                        f2 = fMax;
                     }
                     if (this.backgroundPaint.getAlpha() > 0) {
                         canvas.drawRect(x + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f2) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f2, this.backgroundPaint);
@@ -777,7 +777,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                BottomSheet.this.lambda$setHideSystemVerticalInsets$0(valueAnimator);
+                this.f$0.lambda$setHideSystemVerticalInsets$0(valueAnimator);
             }
         });
         duration.start();
@@ -791,26 +791,17 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     public int getAdditionalMandatoryOffsets() {
         WindowInsets windowInsets;
-        Insets systemGestureInsets;
-        int i;
-        int i2;
-        int i3;
         if (!this.calcMandatoryInsets || (windowInsets = this.lastInsets) == null) {
             return 0;
         }
-        systemGestureInsets = windowInsets.getSystemGestureInsets();
+        Insets systemGestureInsets = windowInsets.getSystemGestureInsets();
         if (this.keyboardVisible || !this.drawNavigationBar || systemGestureInsets == null) {
             return 0;
         }
-        i = systemGestureInsets.left;
-        if (i == 0) {
-            i3 = systemGestureInsets.right;
-            if (i3 == 0) {
-                return 0;
-            }
+        if (systemGestureInsets.left == 0 && systemGestureInsets.right == 0) {
+            return 0;
         }
-        i2 = systemGestureInsets.bottom;
-        return i2;
+        return systemGestureInsets.bottom;
     }
 
     public boolean isKeyboardVisible() {
@@ -1039,11 +1030,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Rect rect = new Rect();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.shadowDrawable = mutate;
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = drawableMutate;
         int themedColor = getThemedColor(i);
         this.internalBackgroundColor = themedColor;
-        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
         this.backgroundPaddingTop = rect.top;
@@ -1137,9 +1128,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.container.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    WindowInsets lambda$new$1;
-                    lambda$new$1 = BottomSheet.this.lambda$new$1(view, windowInsets);
-                    return lambda$new$1;
+                    return this.f$0.lambda$new$1(view, windowInsets);
                 }
             });
         }
@@ -1152,7 +1141,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public WindowInsets lambda$new$1(View view, WindowInsets windowInsets) {
-        WindowInsets windowInsets2;
         int systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
         if ((systemWindowInsetTop != 0 || AndroidUtilities.isInMultiwindow) && this.statusBarHeight != systemWindowInsetTop) {
             this.statusBarHeight = systemWindowInsetTop;
@@ -1161,8 +1149,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         view.requestLayout();
         onInsetsChanged();
         if (Build.VERSION.SDK_INT >= 30) {
-            windowInsets2 = WindowInsets.CONSUMED;
-            return windowInsets2;
+            return WindowInsets.CONSUMED;
         }
         return windowInsets.consumeSystemWindowInsets();
     }
@@ -1181,7 +1168,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         onCreateInternal();
     }
@@ -1199,7 +1186,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BottomSheet.this.lambda$onCreateInternal$2();
+                        this.f$0.lambda$onCreateInternal$2();
                     }
                 }, 80L);
             } else {
@@ -1297,9 +1284,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.titleView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    boolean lambda$onCreateInternal$3;
-                    lambda$onCreateInternal$3 = BottomSheet.lambda$onCreateInternal$3(view, motionEvent);
-                    return lambda$onCreateInternal$3;
+                    return BottomSheet.lambda$onCreateInternal$3(view, motionEvent);
                 }
             });
         } else {
@@ -1339,7 +1324,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     bottomSheetCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            BottomSheet.this.lambda$onCreateInternal$4(view2);
+                            this.f$0.lambda$onCreateInternal$4(view2);
                         }
                     });
                     this.itemViews.add(bottomSheetCell);
@@ -1381,7 +1366,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
     }
 
@@ -1498,7 +1483,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return this.canDismissWithSwipe;
     }
 
@@ -1536,7 +1521,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return this.canDismissWithTouchOutside;
     }
 
-    public boolean isTouchOutside(float f, float f2) {
+    protected boolean isTouchOutside(float f, float f2) {
         return f2 < ((float) this.containerView.getTop()) || f < ((float) this.containerView.getLeft()) || f > ((float) this.containerView.getRight());
     }
 
@@ -1591,12 +1576,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.navigationBarAlpha, 1.0f);
-        this.navigationBarAnimation = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.navigationBarAlpha, 1.0f);
+        this.navigationBarAnimation = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BottomSheet.this.lambda$startOpenAnimation$5(valueAnimator2);
+                this.f$0.lambda$startOpenAnimation$5(valueAnimator2);
             }
         });
         this.currentSheetAnimation = new AnimatorSet();
@@ -1755,30 +1740,30 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         int currentTextColor = getItemViews().get(this.selectedPos.intValue()).getTextView().getCurrentTextColor();
         int currentTextColor2 = getItemViews().get(i).getTextView().getCurrentTextColor();
-        ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
-        ofArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
+        valueAnimatorOfArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                BottomSheet.this.lambda$dismissWithButtonClick$6(valueAnimator);
+                this.f$0.lambda$dismissWithButtonClick$6(valueAnimator);
             }
         });
-        ofArgb.setDuration(130L);
+        valueAnimatorOfArgb.setDuration(130L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        ofArgb.setInterpolator(cubicBezierInterpolator);
-        ofArgb.start();
-        ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
-        ofArgb2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfArgb.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfArgb.start();
+        ValueAnimator valueAnimatorOfArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
+        valueAnimatorOfArgb2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                BottomSheet.this.lambda$dismissWithButtonClick$7(i, valueAnimator);
+                this.f$0.lambda$dismissWithButtonClick$7(i, valueAnimator);
             }
         });
-        ofArgb2.setDuration(130L);
-        ofArgb2.setInterpolator(cubicBezierInterpolator);
-        ofArgb2.start();
+        valueAnimatorOfArgb2.setDuration(130L);
+        valueAnimatorOfArgb2.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfArgb2.start();
     }
 
-    public class AnonymousClass7 extends AnimatorListenerAdapter {
+    class AnonymousClass7 extends AnimatorListenerAdapter {
         final int val$item;
 
         AnonymousClass7(int i) {
@@ -1798,7 +1783,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BottomSheet.AnonymousClass7.this.lambda$onAnimationEnd$0();
+                        this.f$0.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -1829,13 +1814,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void lambda$dismissWithButtonClick$6(ValueAnimator valueAnimator) {
-        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        setItemColor(this.selectedPos.intValue(), intValue, intValue);
+        int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        setItemColor(this.selectedPos.intValue(), iIntValue, iIntValue);
     }
 
     public void lambda$dismissWithButtonClick$7(int i, ValueAnimator valueAnimator) {
-        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        setItemColor(i, intValue, intValue);
+        int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        setItemColor(i, iIntValue, iIntValue);
     }
 
     @Override
@@ -1859,7 +1844,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1263getWindowView() {
+    public View mo1254getWindowView() {
         return this.container;
     }
 
@@ -1889,7 +1874,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    public class AnonymousClass8 extends AnimatorListenerAdapter {
+    class AnonymousClass8 extends AnimatorListenerAdapter {
         AnonymousClass8() {
         }
 
@@ -1903,7 +1888,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BottomSheet.AnonymousClass8.this.lambda$onAnimationEnd$0();
+                        this.f$0.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -1947,16 +1932,16 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     @Override
     public int getNavigationBarColor(int i) {
-        float f;
+        float fClamp01;
         ViewGroup viewGroup;
         if (!attachedToParent() || (viewGroup = this.containerView) == null) {
-            f = 0.0f;
+            fClamp01 = 0.0f;
         } else if (this.transitionFromRight) {
-            f = viewGroup.getAlpha();
+            fClamp01 = viewGroup.getAlpha();
         } else {
-            f = Utilities.clamp01(1.0f - (this.containerView.getTranslationY() / (((getContainerViewHeight() + this.keyboardHeight) + AndroidUtilities.dp(10.0f)) + (this.scrollNavBar ? Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())) : 0))));
+            fClamp01 = Utilities.clamp01(1.0f - (this.containerView.getTranslationY() / (((getContainerViewHeight() + this.keyboardHeight) + AndroidUtilities.dp(10.0f)) + (this.scrollNavBar ? Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())) : 0))));
         }
-        return ColorUtils.blendARGB(i, this.navBarColor, f);
+        return ColorUtils.blendARGB(i, this.navBarColor, fClamp01);
     }
 
     @Override
@@ -2143,7 +2128,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            AndroidUtilities.setLightNavigationBar(mo1263getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1254getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2199,7 +2184,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void makeAttached(BaseFragment baseFragment) {
-        if (AndroidUtilities.isTablet()) {
+        if (AndroidUtilities.isTablet() || (baseFragment instanceof ViewPagerActivity)) {
             return;
         }
         this.attachedFragment = baseFragment;

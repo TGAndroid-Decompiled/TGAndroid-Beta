@@ -14,7 +14,7 @@ final class SafeFlow extends AbstractFlow {
 
     @Override
     public Object collectSafely(FlowCollector flowCollector, Continuation continuation) {
-        Object invoke = this.block.invoke(flowCollector, continuation);
-        return invoke == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? invoke : Unit.INSTANCE;
+        Object objInvoke = this.block.invoke(flowCollector, continuation);
+        return objInvoke == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? objInvoke : Unit.INSTANCE;
     }
 }

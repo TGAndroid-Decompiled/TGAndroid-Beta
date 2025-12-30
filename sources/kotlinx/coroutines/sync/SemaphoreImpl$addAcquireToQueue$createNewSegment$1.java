@@ -16,8 +16,6 @@ class SemaphoreImpl$addAcquireToQueue$createNewSegment$1 extends FunctionReferen
     }
 
     public final SemaphoreSegment invoke(long j, SemaphoreSegment semaphoreSegment) {
-        SemaphoreSegment createSegment;
-        createSegment = SemaphoreKt.createSegment(j, semaphoreSegment);
-        return createSegment;
+        return SemaphoreKt.createSegment(j, semaphoreSegment);
     }
 }

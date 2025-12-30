@@ -11,7 +11,7 @@ public class DoubleLinearChartData extends ChartData {
     }
 
     @Override
-    public void measure() {
+    protected void measure() {
         super.measure();
         int size = this.lines.size();
         long j = 0;
@@ -23,11 +23,10 @@ public class DoubleLinearChartData extends ChartData {
         }
         this.linesK = new float[size];
         for (int i2 = 0; i2 < size; i2++) {
-            long j3 = ((ChartData.Line) this.lines.get(i2)).maxValue;
-            if (j == j3) {
+            if (j == ((ChartData.Line) this.lines.get(i2)).maxValue) {
                 this.linesK[i2] = 1.0f;
             } else {
-                this.linesK[i2] = (float) (j / j3);
+                this.linesK[i2] = j / r4;
             }
         }
     }

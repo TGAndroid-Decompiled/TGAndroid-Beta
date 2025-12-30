@@ -56,54 +56,54 @@ public class StackLinearChartData extends ChartData {
     }
 
     public StackLinearChartData(ChartData chartData, long j) {
-        int binarySearch = Arrays.binarySearch(chartData.x, j);
-        int i = binarySearch - 4;
-        int i2 = binarySearch + 4;
-        if (i < 0) {
-            i2 += -i;
-            i = 0;
+        int iBinarySearch = Arrays.binarySearch(chartData.x, j);
+        int length = iBinarySearch - 4;
+        int length2 = iBinarySearch + 4;
+        if (length < 0) {
+            length2 += -length;
+            length = 0;
         }
         long[] jArr = chartData.x;
-        if (i2 > jArr.length - 1) {
-            i -= i2 - jArr.length;
-            i2 = jArr.length - 1;
+        if (length2 > jArr.length - 1) {
+            length -= length2 - jArr.length;
+            length2 = jArr.length - 1;
         }
-        i = i < 0 ? 0 : i;
-        int i3 = (i2 - i) + 1;
-        this.x = new long[i3];
-        this.xPercentage = new float[i3];
+        length = length < 0 ? 0 : length;
+        int i = (length2 - length) + 1;
+        this.x = new long[i];
+        this.xPercentage = new float[i];
         this.lines = new ArrayList();
-        for (int i4 = 0; i4 < chartData.lines.size(); i4++) {
+        for (int i2 = 0; i2 < chartData.lines.size(); i2++) {
             ChartData.Line line = new ChartData.Line();
-            line.y = new long[i3];
-            line.id = ((ChartData.Line) chartData.lines.get(i4)).id;
-            line.name = ((ChartData.Line) chartData.lines.get(i4)).name;
-            line.colorKey = ((ChartData.Line) chartData.lines.get(i4)).colorKey;
-            line.color = ((ChartData.Line) chartData.lines.get(i4)).color;
-            line.colorDark = ((ChartData.Line) chartData.lines.get(i4)).colorDark;
+            line.y = new long[i];
+            line.id = ((ChartData.Line) chartData.lines.get(i2)).id;
+            line.name = ((ChartData.Line) chartData.lines.get(i2)).name;
+            line.colorKey = ((ChartData.Line) chartData.lines.get(i2)).colorKey;
+            line.color = ((ChartData.Line) chartData.lines.get(i2)).color;
+            line.colorDark = ((ChartData.Line) chartData.lines.get(i2)).colorDark;
             this.lines.add(line);
         }
-        int i5 = 0;
-        while (i <= i2) {
-            this.x[i5] = chartData.x[i];
-            for (int i6 = 0; i6 < this.lines.size(); i6++) {
-                ((ChartData.Line) this.lines.get(i6)).y[i5] = ((ChartData.Line) chartData.lines.get(i6)).y[i];
+        int i3 = 0;
+        while (length <= length2) {
+            this.x[i3] = chartData.x[length];
+            for (int i4 = 0; i4 < this.lines.size(); i4++) {
+                ((ChartData.Line) this.lines.get(i4)).y[i3] = ((ChartData.Line) chartData.lines.get(i4)).y[length];
             }
-            i5++;
-            i++;
+            i3++;
+            length++;
         }
         this.timeStep = 86400000L;
         measure();
     }
 
     @Override
-    public void measure() {
+    protected void measure() {
         super.measure();
         this.simplifiedSize = 0;
         int length = this.xPercentage.length;
         int size = this.lines.size();
-        int max = Math.max(1, Math.round(length / 140.0f));
-        int i = length / max;
+        int iMax = Math.max(1, Math.round(length / 140.0f));
+        int i = length / iMax;
         this.simplifiedY = (long[][]) Array.newInstance((Class<?>) Long.TYPE, size, i);
         long[] jArr = new long[size];
         for (int i2 = 0; i2 < length; i2++) {
@@ -113,7 +113,7 @@ public class StackLinearChartData extends ChartData {
                     jArr[i3] = j;
                 }
             }
-            if (i2 % max == 0) {
+            if (i2 % iMax == 0) {
                 for (int i4 = 0; i4 < size; i4++) {
                     this.simplifiedY[i4][this.simplifiedSize] = jArr[i4];
                     jArr[i4] = 0;

@@ -140,9 +140,9 @@ public class CheckBox2 extends View {
                 this.iconDrawable = null;
                 return;
             }
-            Drawable mutate = ContextCompat.getDrawable(getContext(), i).mutate();
-            this.iconDrawable = mutate;
-            mutate.setColorFilter(Theme.getColor(Theme.key_switch2Track), PorterDuff.Mode.MULTIPLY);
+            Drawable drawableMutate = ContextCompat.getDrawable(getContext(), i).mutate();
+            this.iconDrawable = drawableMutate;
+            drawableMutate.setColorFilter(Theme.getColor(Theme.key_switch2Track), PorterDuff.Mode.MULTIPLY);
         }
     }
 

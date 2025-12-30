@@ -45,9 +45,9 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
         }
         this.blocks = arrayList;
         recalcSpeed();
-        boolean isAtAbsoluteEnd = isAtAbsoluteEnd();
-        this.finished = isAtAbsoluteEnd;
-        if (!isAtAbsoluteEnd && !this.running) {
+        boolean zIsAtAbsoluteEnd = isAtAbsoluteEnd();
+        this.finished = zIsAtAbsoluteEnd;
+        if (!zIsAtAbsoluteEnd && !this.running) {
             start();
         }
         View view = this.invalidateTarget;
@@ -91,12 +91,12 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     }
 
     public boolean needDraw(MessageObject.TextLayoutBlock textLayoutBlock) {
-        int indexOf = indexOf(textLayoutBlock);
-        if (indexOf < 0 || this.blocks.isEmpty()) {
+        int iIndexOf = indexOf(textLayoutBlock);
+        if (iIndexOf < 0 || this.blocks.isEmpty()) {
             return false;
         }
         int i = this.curBlockIdx;
-        return indexOf < i || indexOf <= i;
+        return iIndexOf < i || iIndexOf <= i;
     }
 
     public boolean isFadeBlock(MessageObject.TextLayoutBlock textLayoutBlock) {
@@ -107,9 +107,8 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     @Override
     public void doFrame(long j) {
         if (this.running) {
-            long j2 = this.lastFrameNs;
-            if (j2 != 0) {
-                advance(((float) (j - j2)) * 1.0E-9f);
+            if (this.lastFrameNs != 0) {
+                advance((j - r0) * 1.0E-9f);
             }
             this.lastFrameNs = j;
             View view = this.invalidateTarget;
@@ -155,14 +154,14 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
                     this.curLineIdx = lineCount;
                     this.xPosition = lineWidth(staticLayout, lineCount);
                 }
-                float lineWidth = lineWidth(staticLayout, this.curLineIdx);
-                if (lineWidth <= 0.001f) {
+                float fLineWidth = lineWidth(staticLayout, this.curLineIdx);
+                if (fLineWidth <= 0.001f) {
                     if (nextLineOrBlock(staticLayout)) {
                         break;
                     }
                 } else {
                     float f3 = this.xPosition;
-                    float f4 = lineWidth - f3;
+                    float f4 = fLineWidth - f3;
                     if (f4 <= 0.001f) {
                         if (nextLineOrBlock(staticLayout)) {
                             break;
@@ -174,7 +173,7 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
                         float f5 = f3 + f4;
                         this.xPosition = f5;
                         f2 -= f4;
-                        if (lineWidth - f5 <= 0.001f && !nextLineOrBlock(staticLayout)) {
+                        if (fLineWidth - f5 <= 0.001f && !nextLineOrBlock(staticLayout)) {
                             f2 = 0.0f;
                         }
                     }
@@ -199,40 +198,17 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     }
 
     private void recalcSpeed() {
-        float computeRemainingPixels = computeRemainingPixels();
-        float dp = AndroidUtilities.dp(40.0f);
-        if (computeRemainingPixels <= 0.001f) {
-            this.speedPxPerSec = dp;
+        float fComputeRemainingPixels = computeRemainingPixels();
+        float fDp = AndroidUtilities.dp(40.0f);
+        if (fComputeRemainingPixels <= 0.001f) {
+            this.speedPxPerSec = fDp;
         } else {
-            this.speedPxPerSec = Math.max(dp, computeRemainingPixels / 1.05f);
+            this.speedPxPerSec = Math.max(fDp, fComputeRemainingPixels / 1.05f);
         }
     }
 
     private float computeRemainingPixels() {
-        float f = 0.0f;
-        if (this.blocks.isEmpty()) {
-            return 0.0f;
-        }
-        int i = this.curBlockIdx;
-        while (i < this.blocks.size()) {
-            StaticLayout staticLayout = ((MessageObject.TextLayoutBlock) this.blocks.get(i)).textLayout;
-            if (staticLayout != null) {
-                int min = i == this.curBlockIdx ? Math.min(Math.max(this.curLineIdx, 0), Math.max(0, staticLayout.getLineCount() - 1)) : 0;
-                for (int i2 = min; i2 < staticLayout.getLineCount(); i2++) {
-                    float lineWidth = lineWidth(staticLayout, i2);
-                    if (lineWidth > 0.001f) {
-                        if (i == this.curBlockIdx && i2 == min) {
-                            lineWidth -= this.xPosition;
-                            if (lineWidth <= 0.001f) {
-                            }
-                        }
-                        f += lineWidth;
-                    }
-                }
-            }
-            i++;
-        }
-        return f;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MultiLayoutTypingAnimator.computeRemainingPixels():float");
     }
 
     private boolean isAtAbsoluteEnd() {
@@ -278,12 +254,10 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     }
 
     static {
-        BlendMode blendMode;
         Paint paint = new Paint(1);
         MASK_PAINT = paint;
         if (Build.VERSION.SDK_INT >= 29) {
-            blendMode = BlendMode.DST_IN;
-            paint.setBlendMode(blendMode);
+            paint.setBlendMode(BlendMode.DST_IN);
         } else {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         }
@@ -312,45 +286,45 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
         }
         float lineLeft = layout.getLineLeft(i);
         float lineRight = layout.getLineRight(i);
-        float min = Math.min(lineLeft, lineRight);
-        float max = Math.max(lineLeft, lineRight);
-        if (max <= min) {
+        float fMin = Math.min(lineLeft, lineRight);
+        float fMax = Math.max(lineLeft, lineRight);
+        if (fMax <= fMin) {
             return;
         }
         int paragraphDirection = layout.getParagraphDirection(i);
-        float f2 = max - min;
-        float clamp = MathUtils.clamp(f, 0.0f, f2);
-        float f3 = clamp / f2;
-        if (clamp <= 0.0f) {
+        float f2 = fMax - fMin;
+        float fClamp = MathUtils.clamp(f, 0.0f, f2);
+        float f3 = fClamp / f2;
+        if (fClamp <= 0.0f) {
             return;
         }
-        if (clamp >= f2) {
+        if (fClamp >= f2) {
             canvas.save();
             canvas.clipRect(0.0f, lineTop, width, lineBottom);
             layout.draw(canvas);
             canvas.restore();
             return;
         }
-        float lerp = AndroidUtilities.lerp(-AndroidUtilities.dp(50.0f), f2, f3);
+        float fLerp = AndroidUtilities.lerp(-AndroidUtilities.dp(50.0f), f2, f3);
         AndroidUtilities.dp(50.0f);
         float f4 = lineTop;
         float f5 = lineBottom;
-        int saveLayer = canvas.saveLayer(min, f4, max, f5, null);
+        int iSaveLayer = canvas.saveLayer(fMin, f4, fMax, f5, null);
         canvas.save();
-        canvas.clipRect(min, f4, max, f5);
+        canvas.clipRect(fMin, f4, fMax, f5);
         layout.draw(canvas);
         canvas.restore();
         Matrix matrix = GRAD_MTX;
         matrix.reset();
         if (paragraphDirection >= 0) {
             matrix.setScale(AndroidUtilities.dp(50.0f), 1.0f);
-            matrix.postTranslate(lerp, 0.0f);
+            matrix.postTranslate(fLerp, 0.0f);
         } else {
             matrix.setScale(-AndroidUtilities.dp(50.0f), 1.0f);
-            matrix.postTranslate(f2 - lerp, 0.0f);
+            matrix.postTranslate(f2 - fLerp, 0.0f);
         }
         GRADIENT.setLocalMatrix(matrix);
-        canvas.drawRect(min, f4, max, f5, MASK_PAINT);
-        canvas.restoreToCount(saveLayer);
+        canvas.drawRect(fMin, f4, fMax, f5, MASK_PAINT);
+        canvas.restoreToCount(iSaveLayer);
     }
 }

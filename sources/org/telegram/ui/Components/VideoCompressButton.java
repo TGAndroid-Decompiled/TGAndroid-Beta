@@ -108,13 +108,13 @@ public class VideoCompressButton extends View {
         int i = (int) f;
         this.strokePaint.setAlpha(i);
         this.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
-        float max = Math.max(AndroidUtilities.dpf2(21.33f), AndroidUtilities.dpf2(6.0f) + this.textDrawable.getCurrentWidth());
-        float dpf2 = AndroidUtilities.dpf2(17.33f);
+        float fMax = Math.max(AndroidUtilities.dpf2(21.33f), AndroidUtilities.dpf2(6.0f) + this.textDrawable.getCurrentWidth());
+        float fDpf2 = AndroidUtilities.dpf2(17.33f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - max) / 2.0f, (getHeight() - dpf2) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + dpf2) / 2.0f);
+        rectF.set((getWidth() - fMax) / 2.0f, (getHeight() - fDpf2) / 2.0f, (getWidth() + fMax) / 2.0f, (getHeight() + fDpf2) / 2.0f);
         canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), this.strokePaint);
         android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, (int) ((getHeight() - dpf2) / 2.0f), getWidth(), (int) ((getHeight() + dpf2) / 2.0f));
+        rect.set(0, (int) ((getHeight() - fDpf2) / 2.0f), getWidth(), (int) ((getHeight() + fDpf2) / 2.0f));
         this.textDrawable.setBounds(rect);
         this.textDrawable.setAlpha(i);
         this.textDrawable.draw(canvas);

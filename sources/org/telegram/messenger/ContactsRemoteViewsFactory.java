@@ -83,11 +83,11 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     @Override
     public RemoteViews getViewAt(int i) {
-        String str;
+        String firstName;
         TLRPC.Chat chat;
         TLRPC.User user;
         TLRPC.FileLocation fileLocation;
-        Bitmap decodeFile;
+        Bitmap bitmapDecodeFile;
         int i2;
         AvatarDrawable avatarDrawable;
         TLRPC.UserProfilePhoto userProfilePhoto;
@@ -120,13 +120,13 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 if (DialogObject.isUserDialog(l.longValue())) {
                     user = this.accountInstance.getMessagesController().getUser(l);
                     if (UserObject.isUserSelf(user)) {
-                        str = LocaleController.getString(R.string.SavedMessages);
+                        firstName = LocaleController.getString(R.string.SavedMessages);
                     } else if (UserObject.isReplyUser(user)) {
-                        str = LocaleController.getString(R.string.RepliesTitle);
+                        firstName = LocaleController.getString(R.string.RepliesTitle);
                     } else if (UserObject.isDeleted(user)) {
-                        str = LocaleController.getString(R.string.HiddenName);
+                        firstName = LocaleController.getString(R.string.HiddenName);
                     } else {
-                        str = UserObject.getFirstName(user);
+                        firstName = UserObject.getFirstName(user);
                     }
                     if (UserObject.isReplyUser(user) || UserObject.isUserSelf(user) || user == null || (userProfilePhoto = user.photo) == null || (fileLocation = userProfilePhoto.photo_small) == null || fileLocation.volume_id == 0 || fileLocation.local_id == 0) {
                         chat = null;
@@ -137,34 +137,34 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 } else {
                     TLRPC.Chat chat2 = this.accountInstance.getMessagesController().getChat(Long.valueOf(-l.longValue()));
                     if (chat2 != null) {
-                        str = chat2.title;
+                        firstName = chat2.title;
                         TLRPC.ChatPhoto chatPhoto = chat2.photo;
                         if (chatPhoto != null && (fileLocation = chatPhoto.photo_small) != null && fileLocation.volume_id != 0 && fileLocation.local_id != 0) {
                             chat = chat2;
                             user = null;
                         }
                     } else {
-                        str = "";
+                        firstName = "";
                     }
                     chat = chat2;
                     user = null;
                     fileLocation = null;
                 }
-                remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_text1 : R.id.contacts_widget_item_text2, str);
+                remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_text1 : R.id.contacts_widget_item_text2, firstName);
                 if (fileLocation != null) {
                     try {
-                        decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(fileLocation, true).toString());
+                        bitmapDecodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(fileLocation, true).toString());
                     } catch (Throwable th) {
                         FileLog.e(th);
                     }
                 } else {
-                    decodeFile = null;
+                    bitmapDecodeFile = null;
                 }
-                int dp = AndroidUtilities.dp(48.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
-                createBitmap.eraseColor(0);
-                Canvas canvas = new Canvas(createBitmap);
-                if (decodeFile == null) {
+                int iDp = AndroidUtilities.dp(48.0f);
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iDp, iDp, Bitmap.Config.ARGB_8888);
+                bitmapCreateBitmap.eraseColor(0);
+                Canvas canvas = new Canvas(bitmapCreateBitmap);
+                if (bitmapDecodeFile == null) {
                     if (user != null) {
                         avatarDrawable = new AvatarDrawable(user);
                         if (UserObject.isReplyUser(user)) {
@@ -177,25 +177,25 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                         avatarDrawable2.setInfo(this.accountInstance.getCurrentAccount(), chat);
                         avatarDrawable = avatarDrawable2;
                     }
-                    avatarDrawable.setBounds(0, 0, dp, dp);
+                    avatarDrawable.setBounds(0, 0, iDp, iDp);
                     avatarDrawable.draw(canvas);
                 } else {
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+                    BitmapShader bitmapShader = new BitmapShader(bitmapDecodeFile, tileMode, tileMode);
                     if (this.roundPaint == null) {
                         this.roundPaint = new Paint(1);
                         this.bitmapRect = new RectF();
                     }
-                    float width = dp / decodeFile.getWidth();
+                    float width = iDp / bitmapDecodeFile.getWidth();
                     canvas.save();
                     canvas.scale(width, width);
                     this.roundPaint.setShader(bitmapShader);
-                    this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
-                    canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
+                    this.bitmapRect.set(0.0f, 0.0f, bitmapDecodeFile.getWidth(), bitmapDecodeFile.getHeight());
+                    canvas.drawRoundRect(this.bitmapRect, bitmapDecodeFile.getWidth(), bitmapDecodeFile.getHeight(), this.roundPaint);
                     canvas.restore();
                 }
                 canvas.setBitmap(null);
-                remoteViews3.setImageViewBitmap(i3 == 0 ? R.id.contacts_widget_item_avatar1 : R.id.contacts_widget_item_avatar2, createBitmap);
+                remoteViews3.setImageViewBitmap(i3 == 0 ? R.id.contacts_widget_item_avatar1 : R.id.contacts_widget_item_avatar2, bitmapCreateBitmap);
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.dialogs.get(l.longValue());
                 if (dialog != null && (i2 = dialog.unread_count) > 0) {
                     remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_badge1 : R.id.contacts_widget_item_badge2, i2 > 99 ? String.format("%d+", 99) : String.format("%d", Integer.valueOf(i2)));
@@ -220,7 +220,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     }
 
     @Override
-    public void onDataSetChanged() {
+    public void onDataSetChanged() throws InterruptedException {
         this.dids.clear();
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {

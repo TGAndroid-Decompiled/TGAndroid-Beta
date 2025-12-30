@@ -1,6 +1,7 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.util.PositionInputStream;
 
@@ -12,25 +13,25 @@ public class MP3Input extends PositionInputStream {
         this.exceptionsCount = 0;
     }
 
-    public final void readFully(byte[] bArr, int i, int i2) {
+    public final void readFully(byte[] bArr, int i, int i2) throws IOException {
         int i3 = 0;
         while (i3 < i2) {
-            int read = read(bArr, i + i3, i2 - i3);
-            if (read <= 0) {
+            int i4 = read(bArr, i + i3, i2 - i3);
+            if (i4 <= 0) {
                 throw new EOFException();
             }
-            i3 += read;
+            i3 += i4;
         }
     }
 
-    public void skipFully(long j) {
+    public void skipFully(long j) throws IOException {
         long j2 = 0;
         while (j2 < j) {
-            long skip = skip(j - j2);
-            if (skip <= 0) {
+            long jSkip = skip(j - j2);
+            if (jSkip <= 0) {
                 throw new EOFException();
             }
-            j2 += skip;
+            j2 += jSkip;
         }
     }
 

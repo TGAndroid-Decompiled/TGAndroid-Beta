@@ -31,7 +31,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
     private final ViewPagerFixed viewPager;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -75,9 +75,9 @@ public class BoostPagerBottomSheet extends BottomSheet {
             protected void onLayout(boolean z3, int i, int i2, int i3, int i4) {
                 super.onLayout(z3, i, i2, i3, i4);
                 if (this.isKeyboardVisible != BoostPagerBottomSheet.this.isKeyboardVisible()) {
-                    boolean isKeyboardVisible = BoostPagerBottomSheet.this.isKeyboardVisible();
-                    this.isKeyboardVisible = isKeyboardVisible;
-                    if (isKeyboardVisible) {
+                    boolean zIsKeyboardVisible = BoostPagerBottomSheet.this.isKeyboardVisible();
+                    this.isKeyboardVisible = zIsKeyboardVisible;
+                    if (zIsKeyboardVisible) {
                         selectorBottomSheet.scrollToTop(true);
                     }
                 }
@@ -113,9 +113,9 @@ public class BoostPagerBottomSheet extends BottomSheet {
                 if (this.isScrolling) {
                     int top = boostViaGiftsBottomSheet.getTop() + AndroidUtilities.dp(10.0f);
                     int top2 = selectorBottomSheet.getTop();
-                    int abs = Math.abs(top - top2);
+                    int iAbs = Math.abs(top - top2);
                     if (BoostPagerBottomSheet.this.viewPager.getCurrentPosition() == 0) {
-                        positionAnimated = abs * BoostPagerBottomSheet.this.viewPager.getPositionAnimated();
+                        positionAnimated = iAbs * BoostPagerBottomSheet.this.viewPager.getPositionAnimated();
                         if (top < top2) {
                             f2 = top;
                             f3 = f2 + positionAnimated;
@@ -124,7 +124,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
                             f3 = f - positionAnimated;
                         }
                     } else {
-                        positionAnimated = abs * (1.0f - BoostPagerBottomSheet.this.viewPager.getPositionAnimated());
+                        positionAnimated = iAbs * (1.0f - BoostPagerBottomSheet.this.viewPager.getPositionAnimated());
                         if (top2 < top) {
                             f2 = top2;
                             f3 = f2 + positionAnimated;
@@ -134,13 +134,13 @@ public class BoostPagerBottomSheet extends BottomSheet {
                         }
                     }
                     int i = (int) f3;
-                    float dp = AndroidUtilities.dp(14.0f);
+                    float fDp = AndroidUtilities.dp(14.0f);
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, i, getWidth(), getHeight() + AndroidUtilities.dp(8.0f));
-                    canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
+                    canvas.drawRoundRect(rectF, fDp, fDp, this.backgroundPaint);
                     canvas.save();
                     this.path.rewind();
-                    this.path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+                    this.path.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
                     canvas.clipPath(this.path);
                     super.dispatchDraw(canvas);
                     canvas.restore();
@@ -153,7 +153,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
 
             @Override
-            public float getAvailableTranslationX() {
+            protected float getAvailableTranslationX() {
                 if (this.isTablet || BoostPagerBottomSheet.this.isLandscapeOrientation) {
                     return getMeasuredWidth();
                 }
@@ -161,7 +161,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
 
             @Override
-            public boolean canScroll(MotionEvent motionEvent) {
+            protected boolean canScroll(MotionEvent motionEvent) {
                 return BoostPagerBottomSheet.this.viewPager.getCurrentPosition() == 1;
             }
         };
@@ -196,7 +196,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         boostViaGiftsBottomSheet.setOnCloseClick(new Runnable() {
             @Override
             public final void run() {
-                BoostPagerBottomSheet.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         boostViaGiftsBottomSheet.setActionListener(new BoostViaGiftsBottomSheet.ActionListener() {
@@ -245,7 +245,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         selectorBottomSheet.setOnCloseClick(new Runnable() {
             @Override
             public final void run() {
-                BoostPagerBottomSheet.this.onBackPressed();
+                this.f$0.onBackPressed();
             }
         });
         loadData(z2);

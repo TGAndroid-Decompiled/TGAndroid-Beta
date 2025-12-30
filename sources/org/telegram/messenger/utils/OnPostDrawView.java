@@ -30,7 +30,7 @@ public class OnPostDrawView extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(LayoutHelper.measureSpecExactly(0), LayoutHelper.measureSpecExactly(0));
+        super.onMeasure(LayoutHelper.measureSpecExactly(1), LayoutHelper.measureSpecExactly(1));
     }
 
     @Override
@@ -42,9 +42,9 @@ public class OnPostDrawView extends View {
 
     public void bringToFrontIfNeeded() {
         ViewGroup viewGroup;
-        int indexOfChild;
+        int iIndexOfChild;
         ViewParent parent = getParent();
-        if (!(parent instanceof ViewGroup) || (indexOfChild = (viewGroup = (ViewGroup) parent).indexOfChild(this)) < 0 || indexOfChild == viewGroup.getChildCount() - 1) {
+        if (!(parent instanceof ViewGroup) || (iIndexOfChild = (viewGroup = (ViewGroup) parent).indexOfChild(this)) < 0 || iIndexOfChild == viewGroup.getChildCount() - 1) {
             return;
         }
         viewGroup.bringChildToFront(this);

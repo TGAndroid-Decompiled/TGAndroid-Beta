@@ -37,9 +37,9 @@ public class InviteTextCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(72.0f);
+        int iDp = AndroidUtilities.dp(72.0f);
         this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         setMeasuredDimension(size, AndroidUtilities.dp(72.0f));
     }
 
@@ -48,13 +48,13 @@ public class InviteTextCell extends FrameLayout {
         int i5 = i4 - i2;
         int i6 = i3 - i;
         int textHeight = (i5 - this.textView.getTextHeight()) / 2;
-        int dp = AndroidUtilities.dp(!LocaleController.isRTL ? 71.0f : 24.0f);
+        int iDp = AndroidUtilities.dp(!LocaleController.isRTL ? 71.0f : 24.0f);
         SimpleTextView simpleTextView = this.textView;
-        simpleTextView.layout(dp, textHeight, simpleTextView.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight);
+        simpleTextView.layout(iDp, textHeight, simpleTextView.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight);
         int measuredHeight = (i5 - this.imageView.getMeasuredHeight()) / 2;
-        int dp2 = !LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+        int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
         ImageView imageView = this.imageView;
-        imageView.layout(dp2, measuredHeight, imageView.getMeasuredWidth() + dp2, this.imageView.getMeasuredHeight() + measuredHeight);
+        imageView.layout(iDp2, measuredHeight, imageView.getMeasuredWidth() + iDp2, this.imageView.getMeasuredHeight() + measuredHeight);
     }
 
     public void setTextColor(int i) {

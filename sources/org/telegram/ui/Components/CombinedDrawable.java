@@ -141,16 +141,16 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
                     this.icon.setBounds(bounds2);
                 }
             } else if (this.iconWidth != 0) {
-                int centerX = (getBounds().centerX() - (this.iconWidth / 2)) + this.left + this.offsetX;
-                int centerY = getBounds().centerY();
+                int iCenterX = (getBounds().centerX() - (this.iconWidth / 2)) + this.left + this.offsetX;
+                int iCenterY = getBounds().centerY();
                 int i5 = this.iconHeight;
-                int i6 = (centerY - (i5 / 2)) + this.top + this.offsetY;
-                this.icon.setBounds(centerX, i6, this.iconWidth + centerX, i5 + i6);
+                int i6 = (iCenterY - (i5 / 2)) + this.top + this.offsetY;
+                this.icon.setBounds(iCenterX, i6, this.iconWidth + iCenterX, i5 + i6);
             } else {
-                int centerX2 = (getBounds().centerX() - (this.icon.getIntrinsicWidth() / 2)) + this.left;
-                int centerY2 = (getBounds().centerY() - (this.icon.getIntrinsicHeight() / 2)) + this.top;
+                int iCenterX2 = (getBounds().centerX() - (this.icon.getIntrinsicWidth() / 2)) + this.left;
+                int iCenterY2 = (getBounds().centerY() - (this.icon.getIntrinsicHeight() / 2)) + this.top;
                 Drawable drawable3 = this.icon;
-                drawable3.setBounds(centerX2, centerY2, drawable3.getIntrinsicWidth() + centerX2, this.icon.getIntrinsicHeight() + centerY2);
+                drawable3.setBounds(iCenterX2, iCenterY2, drawable3.getIntrinsicWidth() + iCenterX2, this.icon.getIntrinsicHeight() + iCenterY2);
             }
             this.icon.draw(canvas);
         }

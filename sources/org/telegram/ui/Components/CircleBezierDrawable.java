@@ -49,7 +49,7 @@ public class CircleBezierDrawable {
         float f5 = this.radiusDiff / 2.0f;
         float f6 = (f3 - f4) - f5;
         float f7 = f3 + f5 + f4;
-        float max = this.L * Math.max(f6, f7) * this.cubicBezierK;
+        float fMax = this.L * Math.max(f6, f7) * this.cubicBezierK;
         this.path.reset();
         int i = 0;
         while (i < this.N) {
@@ -63,7 +63,7 @@ public class CircleBezierDrawable {
             fArr2[0] = f;
             float f11 = f2 - f10;
             fArr2[1] = f11;
-            fArr2[2] = f + max + (f9 * fArr[i] * this.L);
+            fArr2[2] = f + fMax + (f9 * fArr[i] * this.L);
             fArr2[3] = f11;
             this.m.mapPoints(fArr2);
             int i2 = i + 1;
@@ -76,7 +76,7 @@ public class CircleBezierDrawable {
             fArr4[0] = f;
             float f15 = f2 - f14;
             fArr4[1] = f15;
-            fArr4[2] = (f - max) + (f13 * fArr3[i3] * this.L);
+            fArr4[2] = (f - fMax) + (f13 * fArr3[i3] * this.L);
             fArr4[3] = f15;
             this.m.reset();
             this.m.setRotate((360.0f / this.N) * i3, f, f2);

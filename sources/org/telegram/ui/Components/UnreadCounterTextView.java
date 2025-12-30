@@ -83,12 +83,12 @@ public class UnreadCounterTextView extends View {
             valueAnimator.cancel();
         }
         this.replaceProgress = 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.replaceAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.replaceAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                UnreadCounterTextView.this.lambda$setText$0(valueAnimator2);
+                this.f$0.lambda$setText$0(valueAnimator2);
             }
         });
         this.replaceAnimator.setDuration(150L);
@@ -163,9 +163,9 @@ public class UnreadCounterTextView extends View {
             } else {
                 this.currentCounterString = AndroidUtilities.formatWholeNumber(i, 0);
                 this.textWidth = (int) Math.ceil(this.textPaint.measureText(r3));
-                int max = Math.max(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f) + this.textWidth);
-                if (this.circleWidth != max) {
-                    this.circleWidth = max;
+                int iMax = Math.max(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f) + this.textWidth);
+                if (this.circleWidth != iMax) {
+                    this.circleWidth = iMax;
                 }
             }
             invalidate();
@@ -197,20 +197,20 @@ public class UnreadCounterTextView extends View {
             int measuredWidth = getMeasuredWidth();
             int measuredWidth2 = (getMeasuredWidth() - measuredWidth) / 2;
             if (this.rippleColor != Theme.getColor(this.textColorKey, getResourceProvider()) || this.selectableBackground == null) {
-                int dp = AndroidUtilities.dp(60.0f);
+                int iDp = AndroidUtilities.dp(60.0f);
                 int color4 = Theme.getColor(this.textColorKey, getResourceProvider());
                 this.rippleColor = color4;
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(dp, 0, ColorUtils.setAlphaComponent(color4, 26));
-                this.selectableBackground = createSimpleSelectorCircleDrawable;
-                createSimpleSelectorCircleDrawable.setCallback(this);
+                Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(iDp, 0, ColorUtils.setAlphaComponent(color4, 26));
+                this.selectableBackground = drawableCreateSimpleSelectorCircleDrawable;
+                drawableCreateSimpleSelectorCircleDrawable.setCallback(this);
             }
-            int dp2 = getLeft() + measuredWidth2 <= 0 ? measuredWidth2 - AndroidUtilities.dp(20.0f) : measuredWidth2;
-            int i = measuredWidth2 + measuredWidth;
-            if (i > ((View) getParent()).getMeasuredWidth()) {
-                i += AndroidUtilities.dp(20.0f);
+            int iDp2 = getLeft() + measuredWidth2 <= 0 ? measuredWidth2 - AndroidUtilities.dp(20.0f) : measuredWidth2;
+            int iDp3 = measuredWidth2 + measuredWidth;
+            if (iDp3 > ((View) getParent()).getMeasuredWidth()) {
+                iDp3 += AndroidUtilities.dp(20.0f);
             }
-            int i2 = measuredWidth / 2;
-            this.selectableBackground.setBounds(dp2, (getMeasuredHeight() / 2) - i2, i, (getMeasuredHeight() / 2) + i2);
+            int i = measuredWidth / 2;
+            this.selectableBackground.setBounds(iDp2, (getMeasuredHeight() / 2) - i, iDp3, (getMeasuredHeight() / 2) + i);
             this.selectableBackground.draw(canvas);
         }
         if (this.textLayout != null) {
@@ -259,8 +259,8 @@ public class UnreadCounterTextView extends View {
         if (this.currentCounterString == null || staticLayout == null) {
             return;
         }
-        int ceil = (int) Math.ceil(staticLayout.getLineWidth(0));
-        this.rect.set(((((getMeasuredWidth() - ceil) / 2) + ceil) - (this.circleWidth / 2)) + AndroidUtilities.dp(6.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(10.0f), r1 + this.circleWidth, (getMeasuredHeight() / 2) + AndroidUtilities.dp(10.0f));
+        int iCeil = (int) Math.ceil(staticLayout.getLineWidth(0));
+        this.rect.set(((((getMeasuredWidth() - iCeil) / 2) + iCeil) - (this.circleWidth / 2)) + AndroidUtilities.dp(6.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(10.0f), r1 + this.circleWidth, (getMeasuredHeight() / 2) + AndroidUtilities.dp(10.0f));
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
         canvas.drawText(this.currentCounterString, this.rect.centerX() - (this.textWidth / 2.0f), this.rect.top + AndroidUtilities.dp(14.5f), this.textPaint);
     }

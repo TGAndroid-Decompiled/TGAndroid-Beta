@@ -38,7 +38,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                SponsoredMessageInfoView.this.lambda$new$0(runnable, clickableSpan);
+                this.f$0.lambda$new$0(runnable, clickableSpan);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
@@ -49,7 +49,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView2.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                SponsoredMessageInfoView.this.lambda$new$1(runnable, clickableSpan);
+                this.f$0.lambda$new$1(runnable, clickableSpan);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
@@ -60,7 +60,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView3.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                SponsoredMessageInfoView.this.lambda$new$2(runnable, clickableSpan);
+                this.f$0.lambda$new$2(runnable, clickableSpan);
             }
         });
         final Paint paint = new Paint(1);

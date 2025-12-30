@@ -71,8 +71,8 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     public ReactedUsersListView(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, MessageObject messageObject, TLRPC.ReactionCount reactionCount, boolean z, final boolean z2) {
-        super(context);
         TLRPC.Reaction reaction;
+        super(context);
         this.userReactions = new ArrayList();
         this.peerReactionMap = new LongSparseArray();
         this.canLoadMore = true;
@@ -86,7 +86,7 @@ public class ReactedUsersListView extends FrameLayout {
         this.predictiveCount = reactionCount == null ? 6 : reactionCount.count;
         this.listView = new RecyclerListView(context, resourcesProvider) {
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 MessageContainsEmojiButton messageContainsEmojiButton = ReactedUsersListView.this.messageContainsEmojiButton;
                 if (messageContainsEmojiButton != null) {
                     messageContainsEmojiButton.measure(i2, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 0));
@@ -150,7 +150,7 @@ public class ReactedUsersListView extends FrameLayout {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                ReactedUsersListView.this.lambda$new$0(view, i2);
+                this.f$0.lambda$new$0(view, i2);
             }
         });
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -262,9 +262,7 @@ public class ReactedUsersListView extends FrameLayout {
         Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                int lambda$setSeenUsers$1;
-                lambda$setSeenUsers$1 = ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
-                return lambda$setSeenUsers$1;
+                return ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
             }
         }));
         this.adapter.notifyDataSetChanged();
@@ -309,7 +307,7 @@ public class ReactedUsersListView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedUsersListView.this.lambda$load$6(tLObject, tL_error);
+                this.f$0.lambda$load$6(tLObject, tL_error);
             }
         }, 64);
     }
@@ -318,7 +316,7 @@ public class ReactedUsersListView extends FrameLayout {
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                ReactedUsersListView.this.lambda$load$4(tLObject);
+                this.f$0.lambda$load$4(tLObject);
             }
         });
     }
@@ -327,7 +325,7 @@ public class ReactedUsersListView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReactedUsersListView.this.lambda$load$5(tLObject);
+                this.f$0.lambda$load$5(tLObject);
             }
         });
     }
@@ -353,9 +351,9 @@ public class ReactedUsersListView extends FrameLayout {
                     }
                     i2++;
                 }
-                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messages_messageReactionsList.reactions.get(i).reaction);
-                if (fromTL.documentId != 0) {
-                    hashSet.add(fromTL);
+                ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messages_messageReactionsList.reactions.get(i).reaction);
+                if (visibleReactionFromTL.documentId != 0) {
+                    hashSet.add(visibleReactionFromTL);
                 }
                 arrayList.add(tL_messages_messageReactionsList.reactions.get(i));
                 this.peerReactionMap.put(peerId, arrayList);
@@ -368,9 +366,7 @@ public class ReactedUsersListView extends FrameLayout {
             Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
                 public final int applyAsInt(Object obj) {
-                    int lambda$load$2;
-                    lambda$load$2 = ReactedUsersListView.lambda$load$2((TLRPC.MessagePeerReaction) obj);
-                    return lambda$load$2;
+                    return ReactedUsersListView.lambda$load$2((TLRPC.MessagePeerReaction) obj);
                 }
             }));
             this.adapter.notifyDataSetChanged();
@@ -380,7 +376,7 @@ public class ReactedUsersListView extends FrameLayout {
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ReactedUsersListView.this.lambda$load$3(valueAnimator);
+                        this.f$0.lambda$load$3(valueAnimator);
                     }
                 });
                 duration.addListener(new AnimatorListenerAdapter() {
@@ -413,9 +409,9 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     public void lambda$load$3(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.listView.setAlpha(floatValue);
-        this.loadingView.setAlpha(1.0f - floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.listView.setAlpha(fFloatValue);
+        this.loadingView.setAlpha(1.0f - fFloatValue);
     }
 
     public void updateCustomReactionsButton() {
@@ -444,15 +440,15 @@ public class ReactedUsersListView extends FrameLayout {
             if (size == 0) {
                 size = this.predictiveCount;
             }
-            int dp = AndroidUtilities.dp(size * 50);
+            int iDp = AndroidUtilities.dp(size * 50);
             MessageContainsEmojiButton messageContainsEmojiButton = this.messageContainsEmojiButton;
             if (messageContainsEmojiButton != null) {
-                dp += messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                iDp += messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
             }
             if (this.listView.getMeasuredHeight() != 0) {
-                dp = Math.min(this.listView.getMeasuredHeight(), dp);
+                iDp = Math.min(this.listView.getMeasuredHeight(), iDp);
             }
-            this.onHeightChangedListener.onHeightChanged(this, dp);
+            this.onHeightChangedListener.onHeightChanged(this, iDp);
         }
     }
 
@@ -484,24 +480,24 @@ public class ReactedUsersListView extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int i3;
+            int iDp;
             RecyclerListView recyclerListView = null;
             if (this.hasHeader) {
-                i3 = 0;
+                iDp = 0;
             } else {
-                i3 = 0;
-                for (int i4 = 0; i4 < getChildCount(); i4++) {
-                    if (getChildAt(i4) instanceof ReactedUsersListView) {
-                        recyclerListView = ((ReactedUsersListView) getChildAt(i4)).listView;
+                iDp = 0;
+                for (int i3 = 0; i3 < getChildCount(); i3++) {
+                    if (getChildAt(i3) instanceof ReactedUsersListView) {
+                        recyclerListView = ((ReactedUsersListView) getChildAt(i3)).listView;
                         if (recyclerListView.getAdapter().getItemCount() == recyclerListView.getChildCount()) {
                             int childCount = recyclerListView.getChildCount();
-                            for (int i5 = 0; i5 < childCount; i5++) {
-                                recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i2);
-                                if (recyclerListView.getChildAt(i5).getMeasuredWidth() > i3) {
-                                    i3 = recyclerListView.getChildAt(i5).getMeasuredWidth();
+                            for (int i4 = 0; i4 < childCount; i4++) {
+                                recyclerListView.getChildAt(i4).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i2);
+                                if (recyclerListView.getChildAt(i4).getMeasuredWidth() > iDp) {
+                                    iDp = recyclerListView.getChildAt(i4).getMeasuredWidth();
                                 }
                             }
-                            i3 += AndroidUtilities.dp(16.0f);
+                            iDp += AndroidUtilities.dp(16.0f);
                         }
                     }
                 }
@@ -516,15 +512,15 @@ public class ReactedUsersListView extends FrameLayout {
             if (size < 0) {
                 size = 0;
             }
-            if (i3 == 0 || i3 >= size) {
-                i3 = size;
+            if (iDp == 0 || iDp >= size) {
+                iDp = size;
             }
             if (recyclerListView != null) {
-                for (int i6 = 0; i6 < recyclerListView.getChildCount(); i6++) {
-                    recyclerListView.getChildAt(i6).measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
+                for (int i5 = 0; i5 < recyclerListView.getChildCount(); i5++) {
+                    recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), i2);
                 }
             }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), i2);
         }
     }
 

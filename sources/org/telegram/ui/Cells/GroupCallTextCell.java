@@ -78,48 +78,48 @@ public abstract class GroupCallTextCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(48.0f);
+        int iDp = AndroidUtilities.dp(48.0f);
         this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         this.textView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - this.valueTextView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         if (this.imageView.getVisibility() == 0) {
-            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         }
         if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         }
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0));
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int dp;
+        int iDp;
         int i5 = i4 - i2;
         int i6 = i3 - i;
         int textHeight = (i5 - this.valueTextView.getTextHeight()) / 2;
-        int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : 0;
+        int iDp2 = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : 0;
         SimpleTextView simpleTextView = this.valueTextView;
-        simpleTextView.layout(dp2, textHeight, simpleTextView.getMeasuredWidth() + dp2, this.valueTextView.getMeasuredHeight() + textHeight);
+        simpleTextView.layout(iDp2, textHeight, simpleTextView.getMeasuredWidth() + iDp2, this.valueTextView.getMeasuredHeight() + textHeight);
         int textHeight2 = (i5 - this.textView.getTextHeight()) / 2;
         if (LocaleController.isRTL) {
-            dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
+            iDp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
         } else {
-            dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
+            iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? this.offsetFromImage : this.leftPadding);
         }
         SimpleTextView simpleTextView2 = this.textView;
-        simpleTextView2.layout(dp, textHeight2, simpleTextView2.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight2);
+        simpleTextView2.layout(iDp, textHeight2, simpleTextView2.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight2);
         if (this.imageView.getVisibility() == 0) {
-            int dp3 = AndroidUtilities.dp(5.0f);
-            int dp4 = !LocaleController.isRTL ? AndroidUtilities.dp(this.imageLeft) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageLeft);
+            int iDp3 = AndroidUtilities.dp(5.0f);
+            int iDp4 = !LocaleController.isRTL ? AndroidUtilities.dp(this.imageLeft) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageLeft);
             ImageView imageView = this.imageView;
-            imageView.layout(dp4, dp3, imageView.getMeasuredWidth() + dp4, this.imageView.getMeasuredHeight() + dp3);
+            imageView.layout(iDp4, iDp3, imageView.getMeasuredWidth() + iDp4, this.imageView.getMeasuredHeight() + iDp3);
         }
         if (this.valueImageView.getVisibility() == 0) {
             int measuredHeight = (i5 - this.valueImageView.getMeasuredHeight()) / 2;
-            int dp5 = LocaleController.isRTL ? AndroidUtilities.dp(23.0f) : (i6 - this.valueImageView.getMeasuredWidth()) - AndroidUtilities.dp(23.0f);
+            int iDp5 = LocaleController.isRTL ? AndroidUtilities.dp(23.0f) : (i6 - this.valueImageView.getMeasuredWidth()) - AndroidUtilities.dp(23.0f);
             ImageView imageView2 = this.valueImageView;
-            imageView2.layout(dp5, measuredHeight, imageView2.getMeasuredWidth() + dp5, this.valueImageView.getMeasuredHeight() + measuredHeight);
+            imageView2.layout(iDp5, measuredHeight, imageView2.getMeasuredWidth() + iDp5, this.valueImageView.getMeasuredHeight() + measuredHeight);
         }
     }
 
@@ -152,22 +152,22 @@ public abstract class GroupCallTextCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float dp;
-        int i;
+        float fDp;
+        int iDp;
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                dp = 0.0f;
+                fDp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
+                fDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
+                iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
             } else {
-                i = 0;
+                iDp = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, this.dividerPaint);
+            canvas.drawLine(fDp, measuredHeight, measuredWidth - iDp, getMeasuredHeight() - 1, this.dividerPaint);
         }
     }
 

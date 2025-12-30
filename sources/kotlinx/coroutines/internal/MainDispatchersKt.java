@@ -17,7 +17,7 @@ public abstract class MainDispatchersKt {
         return mainCoroutineDispatcher.getImmediate() instanceof MissingMainCoroutineDispatcher;
     }
 
-    public static MissingMainCoroutineDispatcher createMissingDispatcher$default(Throwable th, String str, int i, Object obj) {
+    static MissingMainCoroutineDispatcher createMissingDispatcher$default(Throwable th, String str, int i, Object obj) {
         if ((i & 1) != 0) {
             th = null;
         }
@@ -27,7 +27,7 @@ public abstract class MainDispatchersKt {
         return createMissingDispatcher(th, str);
     }
 
-    private static final MissingMainCoroutineDispatcher createMissingDispatcher(Throwable th, String str) {
+    private static final MissingMainCoroutineDispatcher createMissingDispatcher(Throwable th, String str) throws Throwable {
         if (th != null) {
             throw th;
         }

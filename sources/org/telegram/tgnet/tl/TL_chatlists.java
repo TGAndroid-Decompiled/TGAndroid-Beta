@@ -70,9 +70,9 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.revoked = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.revoked = (int32 & 1) != 0;
             this.title = inputSerializedData.readString(z);
             this.url = inputSerializedData.readString(z);
             this.peers = Vector.deserialize(inputSerializedData, new TLRPC$TL_contacts_found$$ExternalSyntheticLambda0(), z);
@@ -175,9 +175,9 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.title_noanimate = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.title_noanimate = (int32 & 2) != 0;
             this.title = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z);

@@ -29,16 +29,12 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public int getColorOrDefault(int i) {
-        int color;
-        color = getColor(i);
-        return color;
+        return getColor(i);
     }
 
     @Override
     public int getCurrentColor(int i) {
-        int color;
-        color = getColor(i);
-        return color;
+        return getColor(i);
     }
 
     @Override
@@ -48,9 +44,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public boolean isDark() {
-        boolean isCurrentThemeDark;
-        isCurrentThemeDark = Theme.isCurrentThemeDark();
-        return isCurrentThemeDark;
+        return Theme.isCurrentThemeDark();
     }
 
     @Override
@@ -217,9 +211,9 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public int getColor(int i) {
-        int indexOfKey = this.sparseIntArray.indexOfKey(i);
-        if (indexOfKey >= 0) {
-            return this.sparseIntArray.valueAt(indexOfKey);
+        int iIndexOfKey = this.sparseIntArray.indexOfKey(i);
+        if (iIndexOfKey >= 0) {
+            return this.sparseIntArray.valueAt(iIndexOfKey);
         }
         if (!this.debugUnknownKeys.contains(Integer.valueOf(i))) {
             this.debugUnknownKeys.add(Integer.valueOf(i));

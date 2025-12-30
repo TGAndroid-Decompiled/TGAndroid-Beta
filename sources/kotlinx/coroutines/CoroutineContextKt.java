@@ -14,8 +14,8 @@ public abstract class CoroutineContextKt {
     }
 
     public static final CoroutineContext newCoroutineContext(CoroutineScope coroutineScope, CoroutineContext coroutineContext) {
-        CoroutineContext foldCopies = foldCopies(coroutineScope.getCoroutineContext(), coroutineContext, true);
-        return (foldCopies == Dispatchers.getDefault() || foldCopies.get(ContinuationInterceptor.Key) != null) ? foldCopies : foldCopies.plus(Dispatchers.getDefault());
+        CoroutineContext coroutineContextFoldCopies = foldCopies(coroutineScope.getCoroutineContext(), coroutineContext, true);
+        return (coroutineContextFoldCopies == Dispatchers.getDefault() || coroutineContextFoldCopies.get(ContinuationInterceptor.Key) != null) ? coroutineContextFoldCopies : coroutineContextFoldCopies.plus(Dispatchers.getDefault());
     }
 
     public static final CoroutineContext newCoroutineContext(CoroutineContext coroutineContext, CoroutineContext coroutineContext2) {
@@ -36,9 +36,9 @@ public abstract class CoroutineContextKt {
     }
 
     private static final CoroutineContext foldCopies(CoroutineContext coroutineContext, CoroutineContext coroutineContext2, final boolean z) {
-        boolean hasCopyableElements = hasCopyableElements(coroutineContext);
-        boolean hasCopyableElements2 = hasCopyableElements(coroutineContext2);
-        if (!hasCopyableElements && !hasCopyableElements2) {
+        boolean zHasCopyableElements = hasCopyableElements(coroutineContext);
+        boolean zHasCopyableElements2 = hasCopyableElements(coroutineContext2);
+        if (!zHasCopyableElements && !zHasCopyableElements2) {
             return coroutineContext.plus(coroutineContext2);
         }
         final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
@@ -54,7 +54,7 @@ public abstract class CoroutineContextKt {
                 return coroutineContext4.plus(element);
             }
         });
-        if (hasCopyableElements2) {
+        if (zHasCopyableElements2) {
             ref$ObjectRef.element = ((CoroutineContext) ref$ObjectRef.element).fold(emptyCoroutineContext, new Function2() {
                 @Override
                 public final CoroutineContext invoke(CoroutineContext coroutineContext4, CoroutineContext.Element element) {
@@ -69,11 +69,11 @@ public abstract class CoroutineContextKt {
         if (!(continuation instanceof CoroutineStackFrame) || coroutineContext.get(UndispatchedMarker.INSTANCE) == null) {
             return null;
         }
-        UndispatchedCoroutine undispatchedCompletion = undispatchedCompletion((CoroutineStackFrame) continuation);
-        if (undispatchedCompletion != null) {
-            undispatchedCompletion.saveThreadContext(coroutineContext, obj);
+        UndispatchedCoroutine undispatchedCoroutineUndispatchedCompletion = undispatchedCompletion((CoroutineStackFrame) continuation);
+        if (undispatchedCoroutineUndispatchedCompletion != null) {
+            undispatchedCoroutineUndispatchedCompletion.saveThreadContext(coroutineContext, obj);
         }
-        return undispatchedCompletion;
+        return undispatchedCoroutineUndispatchedCompletion;
     }
 
     public static final UndispatchedCoroutine undispatchedCompletion(CoroutineStackFrame coroutineStackFrame) {

@@ -1,19 +1,34 @@
 package org.telegram.messenger.voip;
 
 import android.app.KeyguardManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Vibrator;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import com.google.android.gms.cast.framework.media.internal.zzo$$ExternalSyntheticApiModelOutline2;
+import com.google.android.search.verification.client.SearchActionVerificationClientService$$ExternalSyntheticApiModelOutline2;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.messenger.voip.VoIPServiceState;
@@ -23,6 +38,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.PermissionRequest;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFragment;
 import org.telegram.ui.VoIPPermissionActivity;
 
@@ -125,8 +141,106 @@ public class VoIPPreNotificationService {
         return currentState;
     }
 
-    private static android.app.Notification makeNotification(android.content.Context r16, int r17, long r18, long r20, boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.makeNotification(android.content.Context, int, long, long, boolean):android.app.Notification");
+    private static Notification makeNotification(Context context, int i, long j, long j2, boolean z) {
+        boolean z2;
+        int i2;
+        int i3;
+        if (Build.VERSION.SDK_INT < 33) {
+            return null;
+        }
+        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
+        Intent action = new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip");
+        Notification.Builder contentIntent = new Notification.Builder(context).setContentTitle(LocaleController.getString(z ? R.string.VoipInVideoCallBranding : R.string.VoipInCallBranding)).setSmallIcon(R.drawable.ic_call).setContentIntent(PendingIntent.getActivity(context, 0, action, 301989888));
+        SharedPreferences globalNotificationsSettings = MessagesController.getGlobalNotificationsSettings();
+        int i4 = globalNotificationsSettings.getInt("calls_notification_channel", 0);
+        NotificationChannel notificationChannel = notificationManager.getNotificationChannel("incoming_calls2" + i4);
+        if (notificationChannel != null) {
+            notificationManager.deleteNotificationChannel(notificationChannel.getId());
+        }
+        NotificationChannel notificationChannel2 = notificationManager.getNotificationChannel("incoming_calls3" + i4);
+        if (notificationChannel2 != null) {
+            notificationManager.deleteNotificationChannel(notificationChannel2.getId());
+        }
+        NotificationChannel notificationChannel3 = notificationManager.getNotificationChannel("incoming_calls4" + i4);
+        if (notificationChannel3 == null) {
+            z2 = true;
+        } else if (notificationChannel3.getImportance() < 4 || notificationChannel3.getSound() != null) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("User messed up the notification channel; deleting it and creating a proper one");
+            }
+            notificationManager.deleteNotificationChannel("incoming_calls4" + i4);
+            i4++;
+            globalNotificationsSettings.edit().putInt("calls_notification_channel", i4).commit();
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (z2) {
+            AudioAttributes audioAttributesBuild = new AudioAttributes.Builder().setContentType(4).setLegacyStreamType(2).setUsage(2).build();
+            SearchActionVerificationClientService$$ExternalSyntheticApiModelOutline2.m();
+            NotificationChannel notificationChannelM = zzo$$ExternalSyntheticApiModelOutline2.m("incoming_calls4" + i4, LocaleController.getString(R.string.IncomingCallsSystemSetting), 4);
+            try {
+                notificationChannelM.setSound(null, audioAttributesBuild);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            notificationChannelM.setDescription(LocaleController.getString(R.string.IncomingCallsSystemSettingDescription));
+            notificationChannelM.enableVibration(false);
+            notificationChannelM.enableLights(false);
+            notificationChannelM.setBypassDnd(true);
+            try {
+                notificationManager.createNotificationChannel(notificationChannelM);
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return null;
+            }
+        }
+        contentIntent.setChannelId("incoming_calls4" + i4);
+        Intent intent = new Intent(context, (Class<?>) VoIPActionsReceiver.class);
+        intent.setAction(context.getPackageName() + ".DECLINE_CALL");
+        intent.putExtra("call_id", j2);
+        String string = LocaleController.getString(R.string.VoipDeclineCall);
+        int i5 = Build.VERSION.SDK_INT;
+        if (i5 < 24 || i5 >= 31) {
+            i2 = 0;
+        } else {
+            SpannableString spannableString = new SpannableString(string);
+            i2 = 0;
+            spannableString.setSpan(new ForegroundColorSpan(-769226), 0, spannableString.length(), 0);
+        }
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, i2, intent, 301989888);
+        Intent intent2 = new Intent(context, (Class<?>) VoIPActionsReceiver.class);
+        intent2.setAction(context.getPackageName() + ".ANSWER_CALL");
+        intent2.putExtra("call_id", j2);
+        String string2 = LocaleController.getString(R.string.VoipAnswerCall);
+        if (i5 < 24 || i5 >= 31) {
+            i3 = 0;
+        } else {
+            SpannableString spannableString2 = new SpannableString(string2);
+            i3 = 0;
+            spannableString2.setSpan(new ForegroundColorSpan(-16733696), 0, spannableString2.length(), 0);
+        }
+        PendingIntent activity = PendingIntent.getActivity(context, i3, new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip_answer"), 301989888);
+        contentIntent.setPriority(2);
+        contentIntent.setShowWhen(i3);
+        contentIntent.setColor(-13851168);
+        contentIntent.setVibrate(new long[i3]);
+        contentIntent.setCategory("call");
+        contentIntent.setFullScreenIntent(PendingIntent.getActivity(context, i3, action, 33554432), true);
+        if (user != null && !TextUtils.isEmpty(user.phone)) {
+            contentIntent.addPerson("tel:" + user.phone);
+        }
+        Intent intent3 = new Intent(ApplicationLoader.applicationContext, (Class<?>) VoIPActionsReceiver.class);
+        intent3.setAction(context.getPackageName() + ".HIDE_CALL");
+        contentIntent.setDeleteIntent(PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 0, intent3, 167772160));
+        Bitmap roundAvatarBitmap = VoIPService.getRoundAvatarBitmap(context, i, user);
+        String name = ContactsController.formatName(user);
+        if (TextUtils.isEmpty(name)) {
+            name = "___";
+        }
+        contentIntent.setStyle(Notification.CallStyle.forIncomingCall(VoIPGroupNotification$$ExternalSyntheticApiModelOutline7.m().setName(name).setIcon(Icon.createWithAdaptiveBitmap(roundAvatarBitmap)).build(), broadcast, activity));
+        return contentIntent.build();
     }
 
     public static void startRinging(android.content.Context r11, int r12, long r13) {
@@ -161,7 +275,7 @@ public class VoIPPreNotificationService {
         }
     }
 
-    public static void show(final Context context, final Intent intent, final TL_phone.PhoneCall phoneCall) {
+    public static void show(final Context context, final Intent intent, final TL_phone.PhoneCall phoneCall) throws IOException {
         FileLog.d("VoIPPreNotification.show()");
         if (phoneCall == null || intent == null) {
             dismiss(context, false);
@@ -193,7 +307,7 @@ public class VoIPPreNotificationService {
         startRinging(context, i, j);
     }
 
-    private static void acknowledge(final Context context, int i, TL_phone.PhoneCall phoneCall, final Runnable runnable) {
+    private static void acknowledge(final Context context, int i, TL_phone.PhoneCall phoneCall, final Runnable runnable) throws IOException {
         if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.w("Call " + phoneCall.id + " was discarded before the voip pre notification started, stopping");
@@ -236,13 +350,13 @@ public class VoIPPreNotificationService {
     public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                VoIPPreNotificationService.lambda$acknowledge$2(TLObject.this, tL_error, context, runnable);
+            public final void run() throws IOException {
+                VoIPPreNotificationService.lambda$acknowledge$2(tLObject, tL_error, context, runnable);
             }
         });
     }
 
-    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) {
+    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) throws IOException {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
         }

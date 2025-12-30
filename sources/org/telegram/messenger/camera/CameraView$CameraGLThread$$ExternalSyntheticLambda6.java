@@ -12,6 +12,6 @@ public final class CameraView$CameraGLThread$$ExternalSyntheticLambda6 implement
 
     @Override
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        CameraView.CameraGLThread.$r8$lambda$c9N2brSxUQXk2KZc5rbPTyqweZQ(this.f$0, surfaceTexture);
+        this.f$0.updTex(surfaceTexture);
     }
 }

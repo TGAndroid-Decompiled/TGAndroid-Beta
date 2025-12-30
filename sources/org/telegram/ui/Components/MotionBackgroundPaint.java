@@ -28,7 +28,6 @@ public class MotionBackgroundPaint {
     private final RectF tmpRectF;
 
     public MotionBackgroundPaint() {
-        BlendMode blendMode;
         Paint paint = new Paint();
         this.paint = paint;
         this.gradientShader = new BitmapShaderState(Shader.TileMode.CLAMP);
@@ -36,8 +35,7 @@ public class MotionBackgroundPaint {
         this.tmpMatrix = new Matrix();
         this.tmpRectF = new RectF();
         if (Build.VERSION.SDK_INT >= 29) {
-            blendMode = BlendMode.SRC;
-            paint.setBlendMode(blendMode);
+            paint.setBlendMode(BlendMode.SRC);
         } else {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         }
@@ -46,20 +44,19 @@ public class MotionBackgroundPaint {
 
     public Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2, int i3) {
         int i4;
-        int i5;
+        int alphaComponent;
         boolean z;
-        BlendMode blendMode;
         if (i3 >= 0) {
-            i5 = ColorUtils.setAlphaComponent(i, ((Color.alpha(i) * i2) * i3) / 25500);
+            alphaComponent = ColorUtils.setAlphaComponent(i, ((Color.alpha(i) * i2) * i3) / 25500);
             i4 = 255;
         } else {
             i4 = (i2 * (-i3)) / 100;
-            i5 = -16777216;
+            alphaComponent = -16777216;
         }
         boolean z2 = true;
-        if (this.colorShaderLastColor != i5 || this.colorShader == null) {
-            this.colorShaderLastColor = i5;
-            this.colorShader = new ColorShader(i5);
+        if (this.colorShaderLastColor != alphaComponent || this.colorShader == null) {
+            this.colorShaderLastColor = alphaComponent;
+            this.colorShader = new ColorShader(alphaComponent);
             z = true;
         } else {
             z = false;
@@ -75,10 +72,7 @@ public class MotionBackgroundPaint {
                 if (Build.VERSION.SDK_INT >= 29) {
                     Paint paint = this.paint;
                     MotionBackgroundPaint$$ExternalSyntheticApiModelOutline1.m();
-                    BitmapShader bitmapShader = this.gradientShader.shader;
-                    ComposeShader composeShader = new ComposeShader(this.colorShader, this.patternShader.shader, PorterDuff.Mode.DST_IN);
-                    blendMode = BlendMode.SOFT_LIGHT;
-                    paint.setShader(MotionBackgroundPaint$$ExternalSyntheticApiModelOutline0.m(bitmapShader, composeShader, blendMode));
+                    paint.setShader(MotionBackgroundPaint$$ExternalSyntheticApiModelOutline0.m(this.gradientShader.shader, new ComposeShader(this.colorShader, this.patternShader.shader, PorterDuff.Mode.DST_IN), BlendMode.SOFT_LIGHT));
                 } else {
                     this.paint.setShader(new ComposeShader(this.gradientShader.shader, new ComposeShader(this.colorShader, this.patternShader.shader, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
                 }

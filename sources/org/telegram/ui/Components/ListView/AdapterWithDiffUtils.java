@@ -19,7 +19,7 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
         public boolean selectable;
         public int viewType;
 
-        public boolean contentsEquals(Item item) {
+        protected boolean contentsEquals(Item item) {
             return false;
         }
 
@@ -43,7 +43,7 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
         }
     }
 
-    public class DiffUtilsCallback extends DiffUtil.Callback {
+    private class DiffUtilsCallback extends DiffUtil.Callback {
         ArrayList newItems;
         ArrayList oldItems;
 

@@ -4,17 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Property;
@@ -22,8 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
@@ -55,7 +49,6 @@ import org.telegram.ui.Cells.GroupCreateSectionCell;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.InviteMembersBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UsersAlertBase;
 import org.telegram.ui.GroupCreateActivity;
@@ -70,13 +63,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     private int copyLinkRow;
     private AnimatorSet currentAnimation;
     private GroupCreateSpan currentDeletingSpan;
-    private AnimatorSet currentDoneButtonAnimation;
     private GroupCreateActivity.ContactsAddActivityDelegate delegate;
     private InviteMembersBottomSheetDelegate dialogsDelegate;
     private ArrayList dialogsServerOnly;
     private int emptyRow;
     boolean enterEventSent;
-    private final ImageView floatingButton;
+    private final FragmentFloatingButton floatingButton;
     private LongSparseArray ignoreUsers;
     TLRPC.TL_chatInviteExported invite;
     private int lastRow;
@@ -158,7 +150,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                InviteMembersBottomSheet.this.lambda$new$0(j, baseFragment, longSparseArray, context, view, i3);
+                this.f$0.lambda$new$0(j, baseFragment, longSparseArray, context, view, i3);
             }
         });
         this.listView.setItemAnimator(new ItemAnimator());
@@ -181,34 +173,18 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         scrollView.setClipChildren(false);
         scrollView.addView(spansContainer);
         this.containerView.addView(scrollView);
-        ImageView imageView = new ImageView(context);
-        this.floatingButton = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setBackgroundDrawable(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground)));
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageResource(R.drawable.floating_check);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        imageView.setStateListAnimator(stateListAnimator);
-        imageView.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-            }
-        });
-        imageView.setOnClickListener(new View.OnClickListener() {
+        FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, resourcesProvider);
+        this.floatingButton = fragmentFloatingButton;
+        fragmentFloatingButton.setImageResource(R.drawable.floating_check);
+        fragmentFloatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                InviteMembersBottomSheet.this.lambda$new$2(context, j, view);
+                this.f$0.lambda$new$2(context, j, view);
             }
         });
-        imageView.setVisibility(4);
-        imageView.setScaleX(0.0f);
-        imageView.setScaleY(0.0f);
-        imageView.setAlpha(0.0f);
-        imageView.setContentDescription(LocaleController.getString(R.string.Next));
-        this.containerView.addView(imageView, LayoutHelper.createFrame(56, 56, 85, 14.0f, 14.0f, 14.0f, 14.0f));
+        fragmentFloatingButton.setButtonVisible(false, false);
+        fragmentFloatingButton.setContentDescription(LocaleController.getString(R.string.Next));
+        this.containerView.addView(fragmentFloatingButton, FragmentFloatingButton.createDefaultLayoutParams());
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).leftMargin = AndroidUtilities.dp(4.0f);
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
@@ -219,8 +195,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     public void lambda$new$2(Context context, long j, View view) {
-        Activity findActivity;
-        if ((this.dialogsDelegate == null && this.selectedContacts.size() == 0) || (findActivity = AndroidUtilities.findActivity(context)) == null) {
+        Activity activityFindActivity;
+        if ((this.dialogsDelegate == null && this.selectedContacts.isEmpty()) || (activityFindActivity = AndroidUtilities.findActivity(context)) == null) {
             return;
         }
         if (this.dialogsDelegate != null) {
@@ -232,7 +208,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             lambda$new$0();
             return;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(findActivity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activityFindActivity);
         builder.setTitle(LocaleController.formatPluralString("AddManyMembersAlertTitle", this.selectedContacts.size(), new Object[0]));
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
@@ -249,10 +225,10 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
         if (this.selectedContacts.size() > 5) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddManyMembersAlertNamesText", this.selectedContacts.size(), chat.title)));
-            String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
-            int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), indexOf, format.length() + indexOf, 33);
+            String str = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
+            int iIndexOf = TextUtils.indexOf(spannableStringBuilder, str);
+            if (iIndexOf >= 0) {
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, str.length() + iIndexOf, 33);
             }
             builder.setMessage(spannableStringBuilder);
         } else {
@@ -261,7 +237,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         builder.setPositiveButton(LocaleController.getString(R.string.Add), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                InviteMembersBottomSheet.this.lambda$new$1(alertDialog, i3);
+                this.f$0.lambda$new$1(alertDialog, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -296,32 +272,33 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     public void spansCountChanged(boolean z) {
-        final boolean z2 = this.selectedContacts.size() > 0;
-        if (this.spanEnter != z2) {
+        boolean z2 = true;
+        final boolean z3 = this.selectedContacts.size() > 0;
+        if (this.spanEnter != z3) {
             ValueAnimator valueAnimator = this.spansEnterAnimator;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
                 this.spansEnterAnimator.cancel();
             }
-            this.spanEnter = z2;
-            if (z2) {
+            this.spanEnter = z3;
+            if (z3) {
                 this.spansScrollView.setVisibility(0);
             }
             if (z) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.spansEnterProgress, z2 ? 1.0f : 0.0f);
-                this.spansEnterAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.spansEnterProgress, z3 ? 1.0f : 0.0f);
+                this.spansEnterAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        InviteMembersBottomSheet.this.lambda$spansCountChanged$3(valueAnimator2);
+                        this.f$0.lambda$spansCountChanged$3(valueAnimator2);
                     }
                 });
                 this.spansEnterAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        InviteMembersBottomSheet.this.spansEnterProgress = z2 ? 1.0f : 0.0f;
+                        InviteMembersBottomSheet.this.spansEnterProgress = z3 ? 1.0f : 0.0f;
                         ((BottomSheet) InviteMembersBottomSheet.this).containerView.invalidate();
-                        if (z2) {
+                        if (z3) {
                             return;
                         }
                         InviteMembersBottomSheet.this.spansScrollView.setVisibility(8);
@@ -329,55 +306,18 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 });
                 this.spansEnterAnimator.setDuration(150L);
                 this.spansEnterAnimator.start();
-                if (!this.spanEnter && this.dialogsDelegate == null) {
-                    AnimatorSet animatorSet = this.currentDoneButtonAnimation;
-                    if (animatorSet != null) {
-                        animatorSet.cancel();
-                    }
-                    AnimatorSet animatorSet2 = new AnimatorSet();
-                    this.currentDoneButtonAnimation = animatorSet2;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.SCALE_Y, 0.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.ALPHA, 0.0f));
-                    this.currentDoneButtonAnimation.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            InviteMembersBottomSheet.this.floatingButton.setVisibility(4);
-                        }
-                    });
-                    this.currentDoneButtonAnimation.setDuration(180L);
-                    this.currentDoneButtonAnimation.start();
-                    return;
+            } else {
+                this.spansEnterProgress = z3 ? 1.0f : 0.0f;
+                this.containerView.invalidate();
+                if (!z3) {
+                    this.spansScrollView.setVisibility(8);
                 }
-                AnimatorSet animatorSet3 = this.currentDoneButtonAnimation;
-                if (animatorSet3 != null) {
-                    animatorSet3.cancel();
-                }
-                this.currentDoneButtonAnimation = new AnimatorSet();
-                this.floatingButton.setVisibility(0);
-                this.currentDoneButtonAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) View.ALPHA, 1.0f));
-                this.currentDoneButtonAnimation.setDuration(180L);
-                this.currentDoneButtonAnimation.start();
-                return;
             }
-            this.spansEnterProgress = z2 ? 1.0f : 0.0f;
-            this.containerView.invalidate();
-            if (!z2) {
-                this.spansScrollView.setVisibility(8);
-            }
-            AnimatorSet animatorSet4 = this.currentDoneButtonAnimation;
-            if (animatorSet4 != null) {
-                animatorSet4.cancel();
-            }
+            FragmentFloatingButton fragmentFloatingButton = this.floatingButton;
             if (!this.spanEnter && this.dialogsDelegate == null) {
-                this.floatingButton.setScaleY(0.0f);
-                this.floatingButton.setScaleX(0.0f);
-                this.floatingButton.setAlpha(0.0f);
-                this.floatingButton.setVisibility(4);
-                return;
+                z2 = false;
             }
-            this.floatingButton.setScaleY(1.0f);
-            this.floatingButton.setScaleX(1.0f);
-            this.floatingButton.setAlpha(1.0f);
-            this.floatingButton.setVisibility(0);
+            fragmentFloatingButton.setButtonVisible(z2, z);
         }
     }
 
@@ -446,30 +386,30 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private ListAdapter() {
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View groupCreateUserCell;
             Context context = viewGroup.getContext();
             if (i != 2) {
                 int i2 = 0;
                 if (i == 3) {
-                    view = new GroupCreateUserCell(context, 1, 0, InviteMembersBottomSheet.this.dialogsDelegate != null);
+                    groupCreateUserCell = new GroupCreateUserCell(context, 1, 0, InviteMembersBottomSheet.this.dialogsDelegate != null);
                 } else if (i == 4) {
-                    view = new View(context);
+                    groupCreateUserCell = new View(context);
                 } else if (i != 5) {
                     ManageChatTextCell manageChatTextCell = new ManageChatTextCell(context);
                     manageChatTextCell.setText(LocaleController.getString(R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, true);
                     int i3 = Theme.key_dialogTextBlue2;
                     manageChatTextCell.setColors(i3, i3);
-                    view = manageChatTextCell;
+                    groupCreateUserCell = manageChatTextCell;
                 } else {
                     StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, i2) {
                         @Override
-                        public void onAttachedToWindow() {
+                        protected void onAttachedToWindow() {
                             super.onAttachedToWindow();
                             this.stickerView.getImageReceiver().startAnimation();
                         }
@@ -482,17 +422,17 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                         stickerEmptyView.title.setText(LocaleController.getString(R.string.NoContacts));
                     }
                     stickerEmptyView.setAnimateLayoutChange(true);
-                    view = stickerEmptyView;
+                    groupCreateUserCell = stickerEmptyView;
                 }
             } else {
-                view = new View(context) {
+                groupCreateUserCell = new View(context) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + InviteMembersBottomSheet.this.additionalHeight, 1073741824));
                     }
                 };
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(groupCreateUserCell);
         }
 
         public TLObject getObject(int i) {
@@ -568,7 +508,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
     }
 
-    public class SearchAdapter extends RecyclerListView.SelectionAdapter {
+    class SearchAdapter extends RecyclerListView.SelectionAdapter {
         private int currentItemsCount;
         private final SearchAdapterHelper searchAdapterHelper;
         private ArrayList searchResult = new ArrayList();
@@ -596,12 +536,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
                 @Override
                 public final void onDataSetChanged(int i) {
-                    InviteMembersBottomSheet.SearchAdapter.this.lambda$new$0(i);
+                    this.f$0.lambda$new$0(i);
                 }
 
                 @Override
-                public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
-                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
+                public void onSetHashtags(ArrayList arrayList, HashMap map) {
+                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, map);
                 }
             });
         }
@@ -674,7 +614,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.SearchAdapter.this.lambda$updateSearchResults$1(arrayList, arrayList2);
+                    this.f$0.lambda$updateSearchResults$1(arrayList, arrayList2);
                 }
             });
         }
@@ -714,7 +654,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        InviteMembersBottomSheet.SearchAdapter.this.lambda$searchDialogs$4(str);
+                        this.f$0.lambda$searchDialogs$4(str);
                     }
                 };
                 this.searchRunnable = runnable;
@@ -733,7 +673,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.SearchAdapter.this.lambda$searchDialogs$3(str);
+                    this.f$0.lambda$searchDialogs$3(str);
                 }
             });
         }
@@ -744,7 +684,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.SearchAdapter.this.lambda$searchDialogs$2(str);
+                    this.f$0.lambda$searchDialogs$2(str);
                 }
             };
             this.searchRunnable = runnable;
@@ -766,22 +706,22 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         if (motionEvent.getAction() != 1 || Math.abs(this.scrollOffsetY - this.y) >= this.touchSlop || this.enterEventSent) {
             return;
         }
-        Activity findActivity = AndroidUtilities.findActivity(getContext());
-        if (findActivity instanceof LaunchActivity) {
-            LaunchActivity launchActivity = (LaunchActivity) findActivity;
+        Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+        if (activityFindActivity instanceof LaunchActivity) {
+            LaunchActivity launchActivity = (LaunchActivity) activityFindActivity;
             baseFragment = (BaseFragment) launchActivity.getActionBarLayout().getFragmentStack().get(launchActivity.getActionBarLayout().getFragmentStack().size() - 1);
         } else {
             baseFragment = null;
         }
         if (baseFragment instanceof ChatActivity) {
-            boolean needEnterText = ((ChatActivity) baseFragment).needEnterText();
+            boolean zNeedEnterText = ((ChatActivity) baseFragment).needEnterText();
             this.enterEventSent = true;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.this.lambda$onSearchViewTouched$5(editTextBoldCursor);
+                    this.f$0.lambda$onSearchViewTouched$5(editTextBoldCursor);
                 }
-            }, needEnterText ? 200L : 0L);
+            }, zNeedEnterText ? 200L : 0L);
         } else {
             this.enterEventSent = true;
             setFocusable(true);
@@ -789,7 +729,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+                    AndroidUtilities.showKeyboard(editTextBoldCursor);
                 }
             });
         }
@@ -801,12 +741,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
             }
         });
     }
 
-    public class SpansContainer extends ViewGroup {
+    class SpansContainer extends ViewGroup {
         boolean addAnimation;
         private int animationIndex;
         private boolean animationStarted;
@@ -821,98 +761,98 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
         @Override
         protected void onMeasure(int i, int i2) {
-            RecyclerView.ViewHolder findViewHolderForAdapterPosition;
+            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            int dp = size - AndroidUtilities.dp(26.0f);
-            int dp2 = AndroidUtilities.dp(10.0f);
-            int dp3 = AndroidUtilities.dp(10.0f);
-            int i3 = 0;
-            int i4 = 0;
-            for (int i5 = 0; i5 < childCount; i5++) {
-                View childAt = getChildAt(i5);
+            int iDp = size - AndroidUtilities.dp(26.0f);
+            int iDp2 = AndroidUtilities.dp(10.0f);
+            int iDp3 = AndroidUtilities.dp(10.0f);
+            int measuredWidth = 0;
+            int measuredWidth2 = 0;
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = getChildAt(i3);
                 if (childAt instanceof GroupCreateSpan) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > dp) {
-                        dp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                        i3 = 0;
+                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i4 > dp) {
-                        dp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                        i4 = 0;
+                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
+                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth2 = 0;
                     }
-                    int dp4 = AndroidUtilities.dp(13.0f) + i3;
+                    int iDp4 = AndroidUtilities.dp(13.0f) + measuredWidth;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i4);
-                            childAt.setTranslationY(dp3);
+                            childAt.setTranslationX(AndroidUtilities.dp(13.0f) + measuredWidth2);
+                            childAt.setTranslationY(iDp3);
                         } else if (view != null) {
-                            float f = dp4;
+                            float f = iDp4;
                             if (childAt.getTranslationX() != f) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
                             }
-                            float f2 = dp2;
+                            float f2 = iDp2;
                             if (childAt.getTranslationY() != f2) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f2));
                             }
                         } else {
-                            childAt.setTranslationX(dp4);
-                            childAt.setTranslationY(dp2);
+                            childAt.setTranslationX(iDp4);
+                            childAt.setTranslationY(iDp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                     }
-                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                 }
             }
-            int dp5 = dp3 + AndroidUtilities.dp(42.0f);
-            final int dp6 = dp2 + AndroidUtilities.dp(42.0f);
-            int min = InviteMembersBottomSheet.this.dialogsDelegate != null ? InviteMembersBottomSheet.this.spanEnter ? Math.min(InviteMembersBottomSheet.this.maxSize, dp6) : 0 : Math.max(0, Math.min(InviteMembersBottomSheet.this.maxSize, dp6) - AndroidUtilities.dp(52.0f));
-            int i6 = InviteMembersBottomSheet.this.searchAdditionalHeight;
+            int iDp5 = iDp3 + AndroidUtilities.dp(42.0f);
+            final int iDp6 = iDp2 + AndroidUtilities.dp(42.0f);
+            int iMin = InviteMembersBottomSheet.this.dialogsDelegate != null ? InviteMembersBottomSheet.this.spanEnter ? Math.min(InviteMembersBottomSheet.this.maxSize, iDp6) : 0 : Math.max(0, Math.min(InviteMembersBottomSheet.this.maxSize, iDp6) - AndroidUtilities.dp(52.0f));
+            int i4 = InviteMembersBottomSheet.this.searchAdditionalHeight;
             InviteMembersBottomSheet inviteMembersBottomSheet = InviteMembersBottomSheet.this;
             inviteMembersBottomSheet.searchAdditionalHeight = (inviteMembersBottomSheet.dialogsDelegate != null || InviteMembersBottomSheet.this.selectedContacts.size() <= 0) ? 0 : AndroidUtilities.dp(56.0f);
-            if (min != InviteMembersBottomSheet.this.additionalHeight || i6 != InviteMembersBottomSheet.this.searchAdditionalHeight) {
-                InviteMembersBottomSheet.this.additionalHeight = min;
-                if (InviteMembersBottomSheet.this.listView.getAdapter() != null && InviteMembersBottomSheet.this.listView.getAdapter().getItemCount() > 0 && (findViewHolderForAdapterPosition = InviteMembersBottomSheet.this.listView.findViewHolderForAdapterPosition(0)) != null) {
+            if (iMin != InviteMembersBottomSheet.this.additionalHeight || i4 != InviteMembersBottomSheet.this.searchAdditionalHeight) {
+                InviteMembersBottomSheet.this.additionalHeight = iMin;
+                if (InviteMembersBottomSheet.this.listView.getAdapter() != null && InviteMembersBottomSheet.this.listView.getAdapter().getItemCount() > 0 && (viewHolderFindViewHolderForAdapterPosition = InviteMembersBottomSheet.this.listView.findViewHolderForAdapterPosition(0)) != null) {
                     InviteMembersBottomSheet.this.listView.getAdapter().notifyItemChanged(0);
-                    InviteMembersBottomSheet.this.layoutManager.scrollToPositionWithOffset(0, findViewHolderForAdapterPosition.itemView.getTop() - InviteMembersBottomSheet.this.listView.getPaddingTop());
+                    InviteMembersBottomSheet.this.layoutManager.scrollToPositionWithOffset(0, viewHolderFindViewHolderForAdapterPosition.itemView.getTop() - InviteMembersBottomSheet.this.listView.getPaddingTop());
                     if (InviteMembersBottomSheet.this.listView.getItemAnimator() != null) {
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 InviteMembersBottomSheet.this.listView.updateSelector();
                             }
                         });
-                        ofFloat.setDuration(InviteMembersBottomSheet.this.listView.getItemAnimator().getChangeDuration()).start();
+                        valueAnimatorOfFloat.setDuration(InviteMembersBottomSheet.this.listView.getItemAnimator().getChangeDuration()).start();
                     }
                 }
             }
-            int min2 = Math.min(InviteMembersBottomSheet.this.maxSize, dp6);
-            if (InviteMembersBottomSheet.this.scrollViewH != min2) {
-                ValueAnimator ofInt = ValueAnimator.ofInt(InviteMembersBottomSheet.this.scrollViewH, min2);
-                ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            int iMin2 = Math.min(InviteMembersBottomSheet.this.maxSize, iDp6);
+            if (InviteMembersBottomSheet.this.scrollViewH != iMin2) {
+                ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(InviteMembersBottomSheet.this.scrollViewH, iMin2);
+                valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$0(valueAnimator);
+                        this.f$0.lambda$onMeasure$0(valueAnimator);
                     }
                 });
-                this.animators.add(ofInt);
+                this.animators.add(valueAnimatorOfInt);
             }
-            if (this.addAnimation && dp6 > InviteMembersBottomSheet.this.maxSize) {
+            if (this.addAnimation && iDp6 > InviteMembersBottomSheet.this.maxSize) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$1(dp6);
+                        this.f$0.lambda$onMeasure$1(iDp6);
                     }
                 });
-            } else if (!this.addAnimation && InviteMembersBottomSheet.this.spansScrollView.getScrollY() + InviteMembersBottomSheet.this.spansScrollView.getMeasuredHeight() > dp6) {
+            } else if (!this.addAnimation && InviteMembersBottomSheet.this.spansScrollView.getScrollY() + InviteMembersBottomSheet.this.spansScrollView.getMeasuredHeight() > iDp6) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$2(dp6);
+                        this.f$0.lambda$onMeasure$2(iDp6);
                     }
                 });
             }
@@ -929,10 +869,10 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 this.animationStarted = true;
             }
             if (InviteMembersBottomSheet.this.currentAnimation == null) {
-                InviteMembersBottomSheet.this.scrollViewH = min2;
+                InviteMembersBottomSheet.this.scrollViewH = iMin2;
                 ((BottomSheet) InviteMembersBottomSheet.this).containerView.invalidate();
             }
-            setMeasuredDimension(size, Math.max(dp6, dp5));
+            setMeasuredDimension(size, Math.max(iDp6, iDp5));
             InviteMembersBottomSheet.this.listView.setTranslationY(0.0f);
         }
 
@@ -1077,9 +1017,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                     canvas.drawColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
                     this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_divider), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
                     canvas.drawRect(0.0f, view.getY() + InviteMembersBottomSheet.this.scrollViewH, getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f, this.paint);
-                    boolean drawChild = super.drawChild(canvas, view, j);
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
                     canvas.restore();
-                    return drawChild;
+                    return zDrawChild;
                 }
                 return super.drawChild(canvas, view, j);
             }
@@ -1116,9 +1056,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     public void dismissInternal() {
         super.dismissInternal();
         if (this.enterEventSent) {
-            Activity findActivity = AndroidUtilities.findActivity(getContext());
-            if (findActivity instanceof LaunchActivity) {
-                LaunchActivity launchActivity = (LaunchActivity) findActivity;
+            Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+            if (activityFindActivity instanceof LaunchActivity) {
+                LaunchActivity launchActivity = (LaunchActivity) activityFindActivity;
                 BaseFragment baseFragment = (BaseFragment) launchActivity.getActionBarLayout().getFragmentStack().get(launchActivity.getActionBarLayout().getFragmentStack().size() - 1);
                 if (baseFragment instanceof ChatActivity) {
                     ((ChatActivity) baseFragment).onEditTextDialogClose(true, true);
@@ -1138,7 +1078,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                InviteMembersBottomSheet.this.lambda$generateLink$8(tLObject, tL_error);
+                this.f$0.lambda$generateLink$8(tLObject, tL_error);
             }
         });
     }
@@ -1147,7 +1087,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                InviteMembersBottomSheet.this.lambda$generateLink$7(tL_error, tLObject);
+                this.f$0.lambda$generateLink$7(tL_error, tLObject);
             }
         });
     }

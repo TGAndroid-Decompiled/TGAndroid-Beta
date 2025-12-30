@@ -29,7 +29,6 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.LinkSpanDrawable;
 
 public class LinkSpanDrawable {
     private static final ArrayList pathCache = new ArrayList();
@@ -76,8 +75,9 @@ public class LinkSpanDrawable {
         this.mTouchX = f;
         this.mTouchY = f2;
         long tapTimeout = ViewConfiguration.getTapTimeout();
-        this.mLongPressDuration = ViewConfiguration.getLongPressTimeout();
-        this.mDuration = Math.min(((float) tapTimeout) * 1.8f, ((float) r5) * 0.8f);
+        long longPressTimeout = ViewConfiguration.getLongPressTimeout();
+        this.mLongPressDuration = longPressTimeout;
+        this.mDuration = (long) Math.min(tapTimeout * 1.8f, longPressTimeout * 0.8f);
         this.mSupportsLongPress = false;
     }
 
@@ -129,8 +129,8 @@ public class LinkSpanDrawable {
 
     public boolean draw(Canvas canvas) {
         float f;
-        int dp = this.isLite ? 0 : AndroidUtilities.dp(4.0f);
-        boolean z = this.cornerRadius != dp;
+        int iDp = this.isLite ? 0 : AndroidUtilities.dp(4.0f);
+        boolean z = this.cornerRadius != iDp;
         if (this.mSelectionPaint == null) {
             Paint paint = new Paint(1);
             this.mSelectionPaint = paint;
@@ -146,8 +146,8 @@ public class LinkSpanDrawable {
             this.mRippleAlpha = Color.alpha(this.color);
         }
         if (z) {
-            this.cornerRadius = dp;
-            if (dp <= 0) {
+            this.cornerRadius = iDp;
+            if (iDp <= 0) {
                 this.mSelectionPaint.setPathEffect(null);
                 this.mRipplePaint.setPathEffect(null);
             } else {
@@ -181,22 +181,21 @@ public class LinkSpanDrawable {
             }
             return false;
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
         if (this.mStart < 0) {
-            this.mStart = elapsedRealtime;
+            this.mStart = jElapsedRealtime;
         }
-        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.mStart)) / ((float) this.mDuration)));
-        long j = this.mReleaseStart;
-        float min = j < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j)) / 100.0f));
+        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(Math.min(1.0f, (jElapsedRealtime - this.mStart) / this.mDuration));
+        float fMin = this.mReleaseStart < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((jElapsedRealtime - 75) - r12) / 100.0f));
         if (this.mSupportsLongPress) {
-            long j2 = elapsedRealtime - this.mStart;
-            long j3 = this.mDuration * 2;
-            float max = Math.max(0.0f, ((float) (j2 - j3)) / ((float) (this.mLongPressDuration - j3)));
-            f = (max > 1.0f ? 1.0f - (((float) ((elapsedRealtime - this.mStart) - this.mLongPressDuration)) / ((float) this.mDuration)) : max * 0.5f) * (1.0f - min);
+            long j = jElapsedRealtime - this.mStart;
+            long j2 = this.mDuration * 2;
+            float fMax = Math.max(0.0f, (j - j2) / (this.mLongPressDuration - j2));
+            f = (fMax > 1.0f ? 1.0f - (((jElapsedRealtime - this.mStart) - this.mLongPressDuration) / this.mDuration) : fMax * 0.5f) * (1.0f - fMin);
         } else {
             f = 1.0f;
         }
-        float f2 = 1.0f - min;
+        float f2 = 1.0f - fMin;
         this.mSelectionPaint.setAlpha((int) (this.mSelectionAlpha * 0.2f * Math.min(1.0f, interpolation * 5.0f) * f2));
         float f3 = 1.0f - f;
         this.mSelectionPaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.dp(5.0f));
@@ -221,7 +220,7 @@ public class LinkSpanDrawable {
                 canvas.drawPath((Path) this.mPathes.get(i5), this.mRipplePaint);
             }
         }
-        return interpolation < 1.0f || this.mReleaseStart >= 0 || (this.mSupportsLongPress && elapsedRealtime - this.mStart < this.mLongPressDuration + this.mDuration);
+        return interpolation < 1.0f || this.mReleaseStart >= 0 || (this.mSupportsLongPress && jElapsedRealtime - this.mStart < this.mLongPressDuration + this.mDuration);
     }
 
     public static class LinkCollector {
@@ -319,7 +318,7 @@ public class LinkSpanDrawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LinkSpanDrawable.LinkCollector.this.lambda$removeLink$0(linkSpanDrawable);
+                        this.f$0.lambda$removeLink$0(linkSpanDrawable);
                     }
                 }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
             }
@@ -342,7 +341,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.LinkCollector.this.lambda$removeLink$1(linkSpanDrawable);
+                            this.f$0.lambda$removeLink$1(linkSpanDrawable);
                         }
                     }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
                     return;
@@ -385,7 +384,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.LinkCollector.this.lambda$removeLoadingAt$2(loadingDrawable);
+                            this.f$0.lambda$removeLoadingAt$2(loadingDrawable);
                         }
                     }, loadingDrawable.timeToDisappear());
                     return;
@@ -545,12 +544,12 @@ public class LinkSpanDrawable {
             if (this.currentLinkLoading != characterStyle) {
                 this.links.clearLoading(true);
                 this.currentLinkLoading = characterStyle;
-                LoadingDrawable makeLoading = LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
-                if (makeLoading != null) {
-                    int processColor = processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider));
-                    makeLoading.setColors(Theme.multAlpha(processColor, 0.8f), Theme.multAlpha(processColor, 1.3f), Theme.multAlpha(processColor, 1.0f), Theme.multAlpha(processColor, 4.0f));
-                    makeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-                    this.links.addLoading(makeLoading);
+                LoadingDrawable loadingDrawableMakeLoading = LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
+                if (loadingDrawableMakeLoading != null) {
+                    int iProcessColor = processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider));
+                    loadingDrawableMakeLoading.setColors(Theme.multAlpha(iProcessColor, 0.8f), Theme.multAlpha(iProcessColor, 1.3f), Theme.multAlpha(iProcessColor, 1.0f), Theme.multAlpha(iProcessColor, 4.0f));
+                    loadingDrawableMakeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    this.links.addLoading(loadingDrawableMakeLoading);
                 }
             }
         }
@@ -635,22 +634,22 @@ public class LinkSpanDrawable {
         public boolean onTouchEvent(MotionEvent motionEvent) {
             if (this.links != null) {
                 Layout layout = getLayout();
-                final ClickableSpan hit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
-                if (hit != null && motionEvent.getAction() == 0) {
-                    final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+                final ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
+                if (clickableSpanHit != null && motionEvent.getAction() == 0) {
+                    final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                     linkSpanDrawable.setColor(overrideColor());
                     this.pressedLink = linkSpanDrawable;
                     this.links.addLink(linkSpanDrawable);
                     SpannableString spannableString = new SpannableString(layout.getText());
                     int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
                     int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
-                    LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
-                    obtainNewPath.setCurrentLayout(layout, spanStart, getPaddingTop());
-                    layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+                    LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                    linkPathObtainNewPath.setCurrentLayout(layout, spanStart, getPaddingTop());
+                    layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.LinksTextView.this.lambda$onTouchEvent$0(linkSpanDrawable, hit);
+                            this.f$0.lambda$onTouchEvent$0(linkSpanDrawable, clickableSpanHit);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -658,7 +657,7 @@ public class LinkSpanDrawable {
                 if (motionEvent.getAction() == 1) {
                     this.links.clear();
                     LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                    if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == hit) {
+                    if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
                         OnLinkPress onLinkPress = this.onPressListener;
                         if (onLinkPress != null) {
                             onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
@@ -689,7 +688,7 @@ public class LinkSpanDrawable {
         }
 
         @Override
-        public void onDraw(android.graphics.Canvas r16) {
+        protected void onDraw(android.graphics.Canvas r16) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -712,7 +711,7 @@ public class LinkSpanDrawable {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             int i3 = this.maxWidth;
             if (i3 > 0) {
                 i = View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i));
@@ -794,23 +793,23 @@ public class LinkSpanDrawable {
         public boolean onTouchEvent(MotionEvent motionEvent) {
             if (this.links != null) {
                 Layout layout = getLayout();
-                ClickableSpan hit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
-                if (hit != null && motionEvent.getAction() == 0) {
-                    LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+                ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
+                if (clickableSpanHit != null && motionEvent.getAction() == 0) {
+                    LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                     this.pressedLink = linkSpanDrawable;
                     this.links.addLink(linkSpanDrawable);
                     SpannableString spannableString = new SpannableString(layout.getText());
                     int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
                     int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
-                    LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
-                    obtainNewPath.setCurrentLayout(layout, spanStart, 0.0f);
-                    layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+                    LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                    linkPathObtainNewPath.setCurrentLayout(layout, spanStart, 0.0f);
+                    layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
                     return true;
                 }
                 if (motionEvent.getAction() == 1) {
                     this.links.clear();
                     LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                    if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == hit) {
+                    if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
                         if (this.pressedLink.getSpan() instanceof ClickableSpan) {
                             ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
                         }
@@ -874,13 +873,13 @@ public class LinkSpanDrawable {
                     linkSpanDrawable.setColor(getLinkColor());
                     this.pressedLink = linkSpanDrawable;
                     this.links.addLink(linkSpanDrawable);
-                    LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
-                    obtainNewPath.setCurrentLayout(null, 0, 0.0f, 0.0f);
-                    obtainNewPath.addRect(0.0f, 0.0f, getPaddingLeft() + getTextWidth() + getPaddingRight(), getHeight(), Path.Direction.CW);
+                    LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                    linkPathObtainNewPath.setCurrentLayout(null, 0, 0.0f, 0.0f);
+                    linkPathObtainNewPath.addRect(0.0f, 0.0f, getPaddingLeft() + getTextWidth() + getPaddingRight(), getHeight(), Path.Direction.CW);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.ClickableSmallTextView.this.lambda$onTouchEvent$0(linkSpanDrawable);
+                            this.f$0.lambda$onTouchEvent$0(linkSpanDrawable);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;

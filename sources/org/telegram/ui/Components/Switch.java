@@ -198,9 +198,9 @@ public class Switch extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(200L);
         this.checkAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -211,9 +211,9 @@ public class Switch extends View {
     }
 
     private void animateIcon(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
-        this.iconAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
+        this.iconAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(200L);
         this.iconAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -254,12 +254,12 @@ public class Switch extends View {
 
     public void setIcon(int i) {
         if (i != 0) {
-            Drawable mutate = getResources().getDrawable(i).mutate();
-            this.iconDrawable = mutate;
-            if (mutate != null) {
+            Drawable drawableMutate = getResources().getDrawable(i).mutate();
+            this.iconDrawable = drawableMutate;
+            if (drawableMutate != null) {
                 int color = Theme.getColor(this.isChecked ? this.trackCheckedColorKey : this.trackColorKey, this.resourcesProvider);
                 this.lastIconColor = color;
-                mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             }
         } else {
             this.iconDrawable = null;

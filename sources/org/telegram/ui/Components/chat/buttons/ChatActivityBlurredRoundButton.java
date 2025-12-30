@@ -60,6 +60,10 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
     }
 
     public void setIcon(int i) {
+        setIcon(i, 48);
+    }
+
+    public void setIcon(int i, int i2) {
         if (this.imageView == null) {
             if (i == 0) {
                 return;
@@ -67,7 +71,7 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
             ImageView imageView = new ImageView(getContext());
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.imageView, LayoutHelper.createFrame(48, 48, 17));
+            addView(this.imageView, LayoutHelper.createFrame(i2, i2, 17));
             checkUi_IconViewVisibility();
         }
         this.imageView.setImageResource(i);
@@ -86,18 +90,16 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
     }
 
     public void setIconColor(int i) {
-        BlendMode blendMode;
         ImageView imageView = this.imageView;
         if (imageView == null) {
             return;
         }
         if (Build.VERSION.SDK_INT >= 29) {
             ChatActivityBlurredRoundButton$$ExternalSyntheticApiModelOutline1.m();
-            blendMode = BlendMode.SRC_IN;
-            imageView.setColorFilter(ChatActivityBlurredRoundButton$$ExternalSyntheticApiModelOutline0.m(i, blendMode));
-            return;
+            imageView.setColorFilter(ChatActivityBlurredRoundButton$$ExternalSyntheticApiModelOutline0.m(i, BlendMode.SRC_IN));
+        } else {
+            imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
-        imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
@@ -148,12 +150,22 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
         }
     }
 
-    public static ChatActivityBlurredRoundButton create(Context context, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, Theme.ResourcesProvider resourcesProvider, int i) {
+    public static ChatActivityBlurredRoundButton create(Context context, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, Theme.ResourcesProvider resourcesProvider) {
         int color = Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider);
         ChatActivityBlurredRoundButton chatActivityBlurredRoundButton = new ChatActivityBlurredRoundButton(context);
         chatActivityBlurredRoundButton.resourcesProvider = resourcesProvider;
         chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider));
-        chatActivityBlurredRoundButton.setIcon(i);
+        chatActivityBlurredRoundButton.setIconColor(color);
+        chatActivityBlurredRoundButton.setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(22.0f), 0, Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(6.0f)));
+        return chatActivityBlurredRoundButton;
+    }
+
+    public static ChatActivityBlurredRoundButton create(Context context, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, Theme.ResourcesProvider resourcesProvider, int i, int i2) {
+        int color = Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider);
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButton = new ChatActivityBlurredRoundButton(context);
+        chatActivityBlurredRoundButton.resourcesProvider = resourcesProvider;
+        chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider));
+        chatActivityBlurredRoundButton.setIcon(i, i2);
         chatActivityBlurredRoundButton.setIconColor(color);
         chatActivityBlurredRoundButton.setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(22.0f), 0, Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(6.0f)));
         return chatActivityBlurredRoundButton;
@@ -173,10 +185,10 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
 
     private void checkUi_IconViewVisibility() {
         float floatValue = 1.0f - this.animatorLoadingVisibility.getFloatValue();
-        float lerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
+        float fLerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
         ImageView imageView = this.imageView;
         if (imageView != null) {
-            imageView.setAlpha(lerp);
+            imageView.setAlpha(fLerp);
             this.imageView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
             this.imageView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue) * this.buttonScaleY);
             this.imageView.setVisibility(floatValue > 0.0f ? 0 : 8);
@@ -185,10 +197,10 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
 
     private void checkUi_LoadingViewVisibility() {
         float floatValue = this.animatorLoadingVisibility.getFloatValue();
-        float lerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
+        float fLerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
         ImageView imageView = this.loadingIndicatorView;
         if (imageView != null) {
-            imageView.setAlpha(lerp);
+            imageView.setAlpha(fLerp);
             this.loadingIndicatorView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
             this.loadingIndicatorView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
             int i = floatValue > 0.0f ? 0 : 8;

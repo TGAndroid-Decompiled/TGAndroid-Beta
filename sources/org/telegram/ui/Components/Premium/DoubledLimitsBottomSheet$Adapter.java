@@ -135,13 +135,13 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
 
     public void measureGradient(Context context, int i, int i2) {
         DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
-        int i3 = 0;
-        for (int i4 = 0; i4 < this.limits.size(); i4++) {
-            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i4));
+        int measuredHeight = 0;
+        for (int i3 = 0; i3 < this.limits.size(); i3++) {
+            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i3));
             doubledLimitsBottomSheet$LimitCell.measure(View.MeasureSpec.makeMeasureSpec(i, 1073741824), View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-            ((DoubledLimitsBottomSheet$Limit) this.limits.get(i4)).yOffset = i3;
-            i3 += doubledLimitsBottomSheet$LimitCell.getMeasuredHeight();
+            ((DoubledLimitsBottomSheet$Limit) this.limits.get(i3)).yOffset = measuredHeight;
+            measuredHeight += doubledLimitsBottomSheet$LimitCell.getMeasuredHeight();
         }
-        this.totalGradientHeight = i3;
+        this.totalGradientHeight = measuredHeight;
     }
 }

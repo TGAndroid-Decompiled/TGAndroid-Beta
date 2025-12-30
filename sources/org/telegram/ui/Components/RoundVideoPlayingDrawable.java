@@ -44,13 +44,13 @@ public class RoundVideoPlayingDrawable extends Drawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 50) {
             j = 50;
         }
-        float f = (float) j;
+        float f = j;
         float f2 = this.progress1 + ((f / 300.0f) * this.progress1Direction);
         this.progress1 = f2;
         if (f2 > 1.0f) {

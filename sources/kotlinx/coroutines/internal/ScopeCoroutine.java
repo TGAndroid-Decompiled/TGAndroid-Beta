@@ -30,7 +30,7 @@ public class ScopeCoroutine extends AbstractCoroutine implements CoroutineStackF
     }
 
     @Override
-    public void afterCompletion(Object obj) {
+    protected void afterCompletion(Object obj) {
         DispatchedContinuationKt.resumeCancellableWith$default(IntrinsicsKt.intercepted(this.uCont), CompletionStateKt.recoverResult(obj, this.uCont), null, 2, null);
     }
 

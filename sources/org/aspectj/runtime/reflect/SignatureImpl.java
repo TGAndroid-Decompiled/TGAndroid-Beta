@@ -16,7 +16,7 @@ abstract class SignatureImpl implements Signature {
     static String[] EMPTY_STRING_ARRAY = new String[0];
     static Class[] EMPTY_CLASS_ARRAY = new Class[0];
 
-    public interface Cache {
+    private interface Cache {
         String get(int i);
 
         void set(int i, String str);
@@ -24,14 +24,36 @@ abstract class SignatureImpl implements Signature {
 
     protected abstract String createToString(StringMaker stringMaker);
 
-    public SignatureImpl(int i, String str, Class cls) {
+    SignatureImpl(int i, String str, Class cls) {
         this.modifiers = i;
         this.name = str;
         this.declaringType = cls;
     }
 
-    public java.lang.String toString(org.aspectj.runtime.reflect.StringMaker r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.aspectj.runtime.reflect.SignatureImpl.toString(org.aspectj.runtime.reflect.StringMaker):java.lang.String");
+    String toString(StringMaker stringMaker) {
+        String strCreateToString;
+        if (useCache) {
+            Cache cache = this.stringCache;
+            if (cache == null) {
+                try {
+                    this.stringCache = new CacheImpl();
+                } catch (Throwable unused) {
+                    useCache = false;
+                }
+                strCreateToString = null;
+            } else {
+                strCreateToString = cache.get(stringMaker.cacheOffset);
+            }
+        } else {
+            strCreateToString = null;
+        }
+        if (strCreateToString == null) {
+            strCreateToString = createToString(stringMaker);
+        }
+        if (useCache) {
+            this.stringCache.set(stringMaker.cacheOffset, strCreateToString);
+        }
+        return strCreateToString;
     }
 
     public final String toString() {
@@ -74,42 +96,42 @@ abstract class SignatureImpl implements Signature {
     }
 
     String extractString(int i) {
-        int indexOf = this.stringRep.indexOf(45);
+        int iIndexOf = this.stringRep.indexOf(45);
         int i2 = 0;
         while (true) {
             int i3 = i - 1;
             if (i <= 0) {
                 break;
             }
-            i2 = indexOf + 1;
-            indexOf = this.stringRep.indexOf(45, i2);
+            i2 = iIndexOf + 1;
+            iIndexOf = this.stringRep.indexOf(45, i2);
             i = i3;
         }
-        if (indexOf == -1) {
-            indexOf = this.stringRep.length();
+        if (iIndexOf == -1) {
+            iIndexOf = this.stringRep.length();
         }
-        return this.stringRep.substring(i2, indexOf);
+        return this.stringRep.substring(i2, iIndexOf);
     }
 
     int extractInt(int i) {
         return Integer.parseInt(extractString(i), 16);
     }
 
-    public Class extractType(int i) {
+    Class extractType(int i) {
         return Factory.makeClass(extractString(i), getLookupClassLoader());
     }
 
-    public Class[] extractTypes(int i) {
+    Class[] extractTypes(int i) {
         StringTokenizer stringTokenizer = new StringTokenizer(extractString(i), ":");
-        int countTokens = stringTokenizer.countTokens();
-        Class[] clsArr = new Class[countTokens];
-        for (int i2 = 0; i2 < countTokens; i2++) {
+        int iCountTokens = stringTokenizer.countTokens();
+        Class[] clsArr = new Class[iCountTokens];
+        for (int i2 = 0; i2 < iCountTokens; i2++) {
             clsArr[i2] = Factory.makeClass(stringTokenizer.nextToken(), getLookupClassLoader());
         }
         return clsArr;
     }
 
-    public static final class CacheImpl implements Cache {
+    private static final class CacheImpl implements Cache {
         private SoftReference toStringCacheRef;
 
         public CacheImpl() {
@@ -118,20 +140,20 @@ abstract class SignatureImpl implements Signature {
 
         @Override
         public String get(int i) {
-            String[] array = array();
-            if (array == null) {
+            String[] strArrArray = array();
+            if (strArrArray == null) {
                 return null;
             }
-            return array[i];
+            return strArrArray[i];
         }
 
         @Override
         public void set(int i, String str) {
-            String[] array = array();
-            if (array == null) {
-                array = makeCache();
+            String[] strArrArray = array();
+            if (strArrArray == null) {
+                strArrArray = makeCache();
             }
-            array[i] = str;
+            strArrArray[i] = str;
         }
 
         private String[] array() {

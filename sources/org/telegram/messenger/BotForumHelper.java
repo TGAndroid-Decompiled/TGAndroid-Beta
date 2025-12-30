@@ -74,7 +74,7 @@ public class BotForumHelper extends BaseController {
         botDraftMessage.selfDestruct = new Runnable() {
             @Override
             public final void run() {
-                BotForumHelper.this.lambda$onBotForumDraftUpdate$0(j, i, j2);
+                this.f$0.lambda$onBotForumDraftUpdate$0(j, i, j2);
             }
         };
         botDraftMessage.text = tL_textWithEntities;
@@ -90,14 +90,14 @@ public class BotForumHelper extends BaseController {
             return null;
         }
         for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
-            BotDraftMessage valueAt = longSparseArray.valueAt(i3);
-            if (str.startsWith(valueAt.text.text)) {
-                if (valueAt.selfDestruct != null) {
-                    AndroidUtilities.cancelRunOnUIThread(valueAt.selfDestruct);
+            BotDraftMessage botDraftMessageValueAt = longSparseArray.valueAt(i3);
+            if (str.startsWith(botDraftMessageValueAt.text.text)) {
+                if (botDraftMessageValueAt.selfDestruct != null) {
+                    AndroidUtilities.cancelRunOnUIThread(botDraftMessageValueAt.selfDestruct);
                 }
-                this.botTextDraftsByRandomIds.remove(j, j2, valueAt.randomId);
+                this.botTextDraftsByRandomIds.remove(j, j2, botDraftMessageValueAt.randomId);
                 FileLog.d("[BotForum] onDraftNewMessage " + j + " " + i);
-                return valueAt.messageObject;
+                return botDraftMessageValueAt.messageObject;
             }
         }
         return null;
@@ -105,14 +105,14 @@ public class BotForumHelper extends BaseController {
 
     public void lambda$onBotForumDraftUpdate$0(long j, int i, long j2) {
         long j3 = i;
-        BotDraftMessage remove = this.botTextDraftsByRandomIds.remove(j, j3, j2);
-        if (remove == null) {
+        BotDraftMessage botDraftMessageRemove = this.botTextDraftsByRandomIds.remove(j, j3, j2);
+        if (botDraftMessageRemove == null) {
             return;
         }
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftDelete, new BotForumTextDraftDeleteNotification(j, j3, remove.localMessageId));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftDelete, new BotForumTextDraftDeleteNotification(j, j3, botDraftMessageRemove.localMessageId));
     }
 
-    public static class BotDraftMessage {
+    private static class BotDraftMessage {
         public final int localMessageId;
         private MessageObject messageObject;
         public final long randomId;
@@ -163,7 +163,7 @@ public class BotForumHelper extends BaseController {
             performSendBotTopicCreate(inputPeerFromSendMessageRequest, messageFromSendMessageRequest, nextRandomId, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i2) {
-                    BotForumHelper.this.lambda$beforeSendingFinalRequest$2(tLObject, jArr, peerDialogId, runnable, i2);
+                    this.f$0.lambda$beforeSendingFinalRequest$2(tLObject, jArr, peerDialogId, runnable, i2);
                 }
             });
             return false;
@@ -184,7 +184,7 @@ public class BotForumHelper extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BotForumHelper.this.lambda$beforeSendingFinalRequest$1(jArr, j, i, runnable);
+                this.f$0.lambda$beforeSendingFinalRequest$1(jArr, j, i, runnable);
             }
         });
     }
@@ -214,7 +214,7 @@ public class BotForumHelper extends BaseController {
         getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotForumHelper.this.lambda$performSendBotTopicCreate$3(peerDialogId, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$performSendBotTopicCreate$3(peerDialogId, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }

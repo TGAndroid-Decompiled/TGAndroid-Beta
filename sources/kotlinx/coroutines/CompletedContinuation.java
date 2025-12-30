@@ -50,15 +50,15 @@ final class CompletedContinuation {
 
     public int hashCode() {
         Object obj = this.result;
-        int hashCode = (obj == null ? 0 : obj.hashCode()) * 31;
+        int iHashCode = (obj == null ? 0 : obj.hashCode()) * 31;
         CancelHandler cancelHandler = this.cancelHandler;
-        int hashCode2 = (hashCode + (cancelHandler == null ? 0 : cancelHandler.hashCode())) * 31;
+        int iHashCode2 = (iHashCode + (cancelHandler == null ? 0 : cancelHandler.hashCode())) * 31;
         Function1 function1 = this.onCancellation;
-        int hashCode3 = (hashCode2 + (function1 == null ? 0 : function1.hashCode())) * 31;
+        int iHashCode3 = (iHashCode2 + (function1 == null ? 0 : function1.hashCode())) * 31;
         Object obj2 = this.idempotentResume;
-        int hashCode4 = (hashCode3 + (obj2 == null ? 0 : obj2.hashCode())) * 31;
+        int iHashCode4 = (iHashCode3 + (obj2 == null ? 0 : obj2.hashCode())) * 31;
         Throwable th = this.cancelCause;
-        return hashCode4 + (th != null ? th.hashCode() : 0);
+        return iHashCode4 + (th != null ? th.hashCode() : 0);
     }
 
     public String toString() {

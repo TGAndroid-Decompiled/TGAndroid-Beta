@@ -115,10 +115,10 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         tL_messages_prolongWebView.query_id = this.queryId;
         tL_messages_prolongWebView.silent = this.silent;
         if (this.replyToMsgId != 0) {
-            TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
-            tL_messages_prolongWebView.reply_to = createReplyInput;
+            TLRPC.InputReplyTo inputReplyToCreateReplyInput = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
+            tL_messages_prolongWebView.reply_to = inputReplyToCreateReplyInput;
             if (this.monoforumTopicId != 0) {
-                createReplyInput.monoforum_peer_id = MessagesController.getInstance(this.currentAccount).getInputPeer(this.monoforumTopicId);
+                inputReplyToCreateReplyInput.monoforum_peer_id = MessagesController.getInstance(this.currentAccount).getInputPeer(this.monoforumTopicId);
                 tL_messages_prolongWebView.reply_to.flags |= 32;
             }
             tL_messages_prolongWebView.flags |= 1;
@@ -135,7 +135,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_prolongWebView, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$1(tLObject, tL_error);
+                this.f$0.lambda$new$1(tLObject, tL_error);
             }
         });
     }
@@ -144,7 +144,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$0(tL_error);
+                this.f$0.lambda$new$0(tL_error);
             }
         });
     }
@@ -214,19 +214,19 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         this.pollRunnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
-        ActionBarMenuItem addItem = this.parentAlert.actionBar.createMenu().addItem(0, R.drawable.ic_ab_other);
-        this.otherItem = addItem;
-        addItem.addSubItem(R.id.menu_open_bot, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot));
-        ActionBarMenuSubItem addSubItem = this.otherItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
-        this.settingsItem = addSubItem;
-        addSubItem.setVisibility(8);
+        ActionBarMenuItem actionBarMenuItemAddItem = this.parentAlert.actionBar.createMenu().addItem(0, R.drawable.ic_ab_other);
+        this.otherItem = actionBarMenuItemAddItem;
+        actionBarMenuItemAddItem.addSubItem(R.id.menu_open_bot, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot));
+        ActionBarMenuSubItem actionBarMenuSubItemAddSubItem = this.otherItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
+        this.settingsItem = actionBarMenuSubItemAddSubItem;
+        actionBarMenuSubItemAddSubItem.setVisibility(8);
         this.otherItem.addSubItem(R.id.menu_reload_page, R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage));
-        ActionBarMenuSubItem addSubItem2 = this.otherItem.addSubItem(R.id.menu_add_to_home_screen_bot, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut));
-        this.addToHomeScreenItem = addSubItem2;
-        addSubItem2.setVisibility(8);
+        ActionBarMenuSubItem actionBarMenuSubItemAddSubItem2 = this.otherItem.addSubItem(R.id.menu_add_to_home_screen_bot, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut));
+        this.addToHomeScreenItem = actionBarMenuSubItemAddSubItem2;
+        actionBarMenuSubItemAddSubItem2.setVisibility(8);
         this.otherItem.addSubItem(R.id.menu_tos_bot, R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS));
         this.otherItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         this.webViewContainer = new BotWebViewContainer(context, resourcesProvider, getThemedColor(Theme.key_dialogBackground), true) {
@@ -256,27 +256,25 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         this.swipeContainer.setScrollListener(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$3();
+                this.f$0.lambda$new$3();
             }
         });
         this.swipeContainer.setScrollEndListener(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$4();
+                this.f$0.lambda$new$4();
             }
         });
         this.swipeContainer.setDelegate(new WebViewSwipeContainer.Delegate() {
             @Override
             public final void onDismiss(boolean z) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$5(z);
+                this.f$0.lambda$new$5(z);
             }
         });
         this.swipeContainer.setIsKeyboardVisible(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                Boolean lambda$new$6;
-                lambda$new$6 = ChatAttachAlertBotWebViewLayout.this.lambda$new$6((Void) obj);
-                return lambda$new$6;
+                return this.f$0.lambda$new$6((Void) obj);
             }
         });
         addView(this.swipeContainer, LayoutHelper.createFrame(-1, -1.0f));
@@ -286,7 +284,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         this.webViewContainer.setWebViewProgressListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$8((Float) obj);
+                this.f$0.lambda$new$8((Float) obj);
             }
         });
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
@@ -321,7 +319,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatAttachAlertBotWebViewLayout.this.lambda$new$7(valueAnimator);
+                    this.f$0.lambda$new$7(valueAnimator);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {
@@ -356,14 +354,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     public boolean onCheckDismissByUser() {
         if (this.needCloseConfirmation) {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
-            AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new AlertDialog.OnButtonClickListener() {
+            AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatAttachAlertBotWebViewLayout.this.lambda$onCheckDismissByUser$9(alertDialog, i);
+                    this.f$0.lambda$onCheckDismissByUser$9(alertDialog, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
-            create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getThemedColor(Theme.key_text_RedBold));
+            alertDialogCreate.show();
+            ((TextView) alertDialogCreate.getButton(-1)).setTextColor(getThemedColor(Theme.key_text_RedBold));
             return false;
         }
         this.parentAlert.lambda$new$0();
@@ -438,7 +436,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             } else {
                 z2 = false;
             }
-            int measureKeyboardHeight = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() + i;
+            int iMeasureKeyboardHeight = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() + i;
             setMeasuredDimension(getMeasuredWidth(), i);
             this.ignoreMeasure = true;
             this.swipeContainer.setSwipeOffsetAnimationDisallowed(true);
@@ -452,14 +450,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             }
             if (this.webViewContainer.getWebView() != null) {
                 int scrollY = this.webViewContainer.getWebView().getScrollY();
-                final int i2 = (measureKeyboardHeight - i) + scrollY;
+                final int i2 = (iMeasureKeyboardHeight - i) + scrollY;
                 ValueAnimator duration = ValueAnimator.ofInt(scrollY, i2).setDuration(250L);
                 this.webViewScrollAnimator = duration;
                 duration.setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR);
                 this.webViewScrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChatAttachAlertBotWebViewLayout.this.lambda$onPanTransitionStart$10(valueAnimator2);
+                        this.f$0.lambda$onPanTransitionStart$10(valueAnimator2);
                     }
                 });
                 this.webViewScrollAnimator.addListener(new AnimatorListenerAdapter() {
@@ -479,9 +477,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void lambda$onPanTransitionStart$10(ValueAnimator valueAnimator) {
-        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (this.webViewContainer.getWebView() != null) {
-            this.webViewContainer.getWebView().setScrollY(intValue);
+            this.webViewContainer.getWebView().setScrollY(iIntValue);
         }
     }
 
@@ -526,7 +524,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$onShown$11();
+                this.f$0.lambda$onShown$11();
             }
         });
     }
@@ -542,7 +540,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertBotWebViewLayout.this.requestEnableKeyboard();
+                    this.f$0.requestEnableKeyboard();
                 }
             }, 250L);
         } else {
@@ -607,10 +605,10 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             tL_messages_requestWebView.flags |= 8;
         }
         if (i2 != 0) {
-            TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(i).createReplyInput(i2);
-            tL_messages_requestWebView.reply_to = createReplyInput;
+            TLRPC.InputReplyTo inputReplyToCreateReplyInput = SendMessagesHelper.getInstance(i).createReplyInput(i2);
+            tL_messages_requestWebView.reply_to = inputReplyToCreateReplyInput;
             if (j3 != 0) {
-                createReplyInput.monoforum_peer_id = MessagesController.getInstance(i).getInputPeer(j3);
+                inputReplyToCreateReplyInput.monoforum_peer_id = MessagesController.getInstance(i).getInputPeer(j3);
                 tL_messages_requestWebView.reply_to.flags |= 32;
             }
             tL_messages_requestWebView.flags |= 1;
@@ -620,17 +618,17 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(i).getInputPeer(j3);
             tL_messages_requestWebView.flags |= 1;
         }
-        JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider);
-        if (makeThemeParams != null) {
+        JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider);
+        if (jSONObjectMakeThemeParams != null) {
             TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
             tL_messages_requestWebView.theme_params = tL_dataJSON;
-            tL_dataJSON.data = makeThemeParams.toString();
+            tL_dataJSON.data = jSONObjectMakeThemeParams.toString();
             tL_messages_requestWebView.flags |= 4;
         }
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_requestWebView, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$requestWebView$13(i, tLObject, tL_error);
+                this.f$0.lambda$requestWebView$13(i, tLObject, tL_error);
             }
         });
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.webViewResultSent);
@@ -640,7 +638,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$requestWebView$12(tLObject, i);
+                this.f$0.lambda$requestWebView$12(tLObject, i);
             }
         });
     }
@@ -658,9 +656,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     public void onDestroy() {
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        ActionBarMenu createMenu = this.parentAlert.actionBar.createMenu();
+        ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
         this.otherItem.removeAllSubItems();
-        createMenu.removeView(this.otherItem);
+        actionBarMenuCreateMenu.removeView(this.otherItem);
         this.webViewContainer.destroyWebView();
         this.destroyed = true;
         AndroidUtilities.cancelRunOnUIThread(this.pollRunnable);
@@ -761,36 +759,36 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void showJustAddedBulletin() {
-        TLRPC.TL_attachMenuBot tL_attachMenuBot;
-        final String formatString;
+        TLRPC.TL_attachMenuBot next;
+        final String string;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tL_attachMenuBot = null;
+                next = null;
                 break;
             } else {
-                tL_attachMenuBot = it.next();
-                if (tL_attachMenuBot.bot_id == this.botId) {
+                next = it.next();
+                if (next.bot_id == this.botId) {
                     break;
                 }
             }
         }
-        if (tL_attachMenuBot == null) {
+        if (next == null) {
             return;
         }
-        boolean z = tL_attachMenuBot.show_in_side_menu;
-        if (z && tL_attachMenuBot.show_in_attach_menu) {
-            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name);
+        boolean z = next.show_in_side_menu;
+        if (z && next.show_in_attach_menu) {
+            string = LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name);
         } else if (z) {
-            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name);
+            string = LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name);
         } else {
-            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
+            string = LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$showJustAddedBulletin$14(formatString);
+                this.f$0.lambda$showJustAddedBulletin$14(string);
             }
         }, 200L);
     }
@@ -865,22 +863,22 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            Canvas canvas2;
+            Canvas canvasBeginRecording;
             if (canvas.isHardwareAccelerated()) {
                 Object obj = this.renderNode;
                 if (obj != null) {
-                    RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
-                    m.setPosition(0, 0, getWidth(), getHeight());
-                    canvas2 = m.beginRecording();
+                    RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
+                    renderNodeM.setPosition(0, 0, getWidth(), getHeight());
+                    canvasBeginRecording = renderNodeM.beginRecording();
                 } else {
-                    canvas2 = canvas;
+                    canvasBeginRecording = canvas;
                 }
-                super.dispatchDraw(canvas2);
+                super.dispatchDraw(canvasBeginRecording);
                 Object obj2 = this.renderNode;
                 if (obj2 != null) {
-                    RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj2);
-                    m2.endRecording();
-                    canvas.drawRenderNode(m2);
+                    RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj2);
+                    renderNodeM2.endRecording();
+                    canvas.drawRenderNode(renderNodeM2);
                     return;
                 }
                 return;
@@ -947,9 +945,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             this.isKeyboardVisible = new GenericProvider() {
                 @Override
                 public final Object provide(Object obj) {
-                    Boolean lambda$new$0;
-                    lambda$new$0 = ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.lambda$new$0((Void) obj);
-                    return lambda$new$0;
+                    return ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.lambda$new$0((Void) obj);
                 }
             };
             this.allowSwipes = true;
@@ -960,44 +956,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             this.gestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
-                public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                    if (!WebViewSwipeContainer.this.isSwipeDisallowed && WebViewSwipeContainer.this.allowSwipes && (!WebViewSwipeContainer.this.fullsize || WebViewSwipeContainer.this.allowFullSizeSwipe)) {
-                        WebViewSwipeContainer webViewSwipeContainer = WebViewSwipeContainer.this;
-                        if (!webViewSwipeContainer.shouldWaitWebViewScroll || webViewSwipeContainer.allowingScroll(false)) {
-                            float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
-                            float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                            if (f2 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && (WebViewSwipeContainer.this.webView == null || WebViewSwipeContainer.this.webView.getScrollY() == 0))) {
-                                WebViewSwipeContainer.this.flingInProgress = true;
-                                if (WebViewSwipeContainer.this.swipeOffsetY >= WebViewSwipeContainer.this.swipeStickyRange || WebViewSwipeContainer.this.fullsize) {
-                                    if (WebViewSwipeContainer.this.fullsize && WebViewSwipeContainer.this.allowFullSizeSwipe) {
-                                        float f3 = WebViewSwipeContainer.this.drawnSwipeOffsetY;
-                                        WebViewSwipeContainer webViewSwipeContainer2 = WebViewSwipeContainer.this;
-                                        if (f3 == (-webViewSwipeContainer2.offsetY) + webViewSwipeContainer2.topActionBarOffsetY || (webViewSwipeContainer2.swipeOffsetY <= (-WebViewSwipeContainer.this.swipeStickyRange) && f2 < AndroidUtilities.dp(1200.0f))) {
-                                            WebViewSwipeContainer webViewSwipeContainer3 = WebViewSwipeContainer.this;
-                                            webViewSwipeContainer3.stickTo((-webViewSwipeContainer3.offsetY) + webViewSwipeContainer3.topActionBarOffsetY);
-                                        }
-                                    }
-                                    if (WebViewSwipeContainer.this.delegate != null) {
-                                        WebViewSwipeContainer.this.delegate.onDismiss(false);
-                                    }
-                                } else {
-                                    WebViewSwipeContainer.this.stickTo(0.0f);
-                                }
-                                return true;
-                            }
-                            if (f2 <= -700.0f) {
-                                float f4 = WebViewSwipeContainer.this.swipeOffsetY;
-                                WebViewSwipeContainer webViewSwipeContainer4 = WebViewSwipeContainer.this;
-                                if (f4 > (-webViewSwipeContainer4.offsetY) + webViewSwipeContainer4.topActionBarOffsetY) {
-                                    webViewSwipeContainer4.flingInProgress = true;
-                                    WebViewSwipeContainer webViewSwipeContainer5 = WebViewSwipeContainer.this;
-                                    webViewSwipeContainer5.stickTo((-webViewSwipeContainer5.offsetY) + webViewSwipeContainer5.topActionBarOffsetY);
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    return false;
+                public boolean onFling(android.view.MotionEvent r5, android.view.MotionEvent r6, float r7, float r8) {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.AnonymousClass1.onFling(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
                 }
 
                 @Override
@@ -1083,12 +1043,12 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 SpringAnimation springAnimation3 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(f2)).setSpring(new SpringForce(f).setStiffness(1400.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f4, float f5) {
-                        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.this.lambda$setOffsetY$1(f3, f2, z, f, dynamicAnimation, f4, f5);
+                        this.f$0.lambda$setOffsetY$1(f3, f2, z, f, dynamicAnimation, f4, f5);
                     }
                 })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f4, float f5) {
-                        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.this.lambda$setOffsetY$2(f, dynamicAnimation, z2, f4, f5);
+                        this.f$0.lambda$setOffsetY$2(f, dynamicAnimation, z2, f4, f5);
                     }
                 });
                 this.offsetYAnimator = springAnimation3;
@@ -1134,13 +1094,13 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             AndroidUtilities.cancelRunOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.this.updateDrawn();
+                    this.f$0.updateDrawn();
                 }
             });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.this.updateDrawn();
+                    this.f$0.updateDrawn();
                 }
             });
             Runnable runnable = this.scrollListener;
@@ -1179,9 +1139,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             }
             float f2 = this.sy + f;
             this.sy = f2;
-            float abs = Math.abs(f2);
+            float fAbs = Math.abs(f2);
             float f3 = this.minscroll;
-            if (abs <= f3) {
+            if (fAbs <= f3) {
                 return 0.0f;
             }
             this.scrolledOut = true;
@@ -1191,8 +1151,6 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            float rawX;
-            float rawY;
             if (this.isScrolling && motionEvent.getActionIndex() != 0) {
                 return false;
             }
@@ -1207,17 +1165,15 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                     this.allowedScrollY = false;
                 }
             }
-            MotionEvent obtain = MotionEvent.obtain(motionEvent);
+            MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
             int actionIndex = motionEvent.getActionIndex();
             if (Build.VERSION.SDK_INT >= 29) {
-                rawX = motionEvent.getRawX(actionIndex);
-                rawY = motionEvent.getRawY(actionIndex);
-                obtain.setLocation(rawX, rawY);
+                motionEventObtain.setLocation(motionEvent.getRawX(actionIndex), motionEvent.getRawY(actionIndex));
             } else {
-                obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
+                motionEventObtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
-            boolean onTouchEvent = this.gestureDetector.onTouchEvent(obtain);
-            obtain.recycle();
+            boolean zOnTouchEvent = this.gestureDetector.onTouchEvent(motionEventObtain);
+            motionEventObtain.recycle();
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 boolean z = this.isScrolling;
                 this.isSwipeDisallowed = false;
@@ -1238,9 +1194,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                                 stickTo(0.0f);
                             }
                         } else {
-                            float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), this.pressDownX, this.pressDownY);
+                            float fDistance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), this.pressDownX, this.pressDownY);
                             long eventTime = motionEvent.getEventTime() - this.pressDownTime;
-                            if (this.delegate != null && (eventTime > 250 || distance > AndroidUtilities.dp(200.0f))) {
+                            if (this.delegate != null && (eventTime > 250 || fDistance > AndroidUtilities.dp(200.0f))) {
                                 this.delegate.onDismiss(!z);
                             } else if (this.stickToEdges) {
                                 stickTo((-this.offsetY) + this.topActionBarOffsetY);
@@ -1249,8 +1205,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                     }
                 }
             }
-            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-            return !(dispatchTouchEvent || onTouchEvent || motionEvent.getAction() != 0) || dispatchTouchEvent || onTouchEvent;
+            boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+            return !(zDispatchTouchEvent || zOnTouchEvent || motionEvent.getAction() != 0) || zDispatchTouchEvent || zOnTouchEvent;
         }
 
         public void stickTo(float f) {
@@ -1300,7 +1256,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             SpringAnimation springAnimation4 = (SpringAnimation) new SpringAnimation(this, SWIPE_OFFSET_Y, f).setSpring(new SpringForce(f).setStiffness(1200.0f).setDampingRatio(1.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f2, float f3) {
-                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.this.lambda$stickTo$3(runnable, dynamicAnimation, z2, f2, f3);
+                    this.f$0.lambda$stickTo$3(runnable, dynamicAnimation, z2, f2, f3);
                 }
             });
             this.scrollAnimator = springAnimation4;
@@ -1346,9 +1302,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", new SimpleFloatPropertyCompat.Getter() {
                 @Override
                 public final float get(Object obj) {
-                    float f;
-                    f = ((ChatAttachAlertBotWebViewLayout.WebProgressView) obj).loadProgress;
-                    return f;
+                    return ((ChatAttachAlertBotWebViewLayout.WebProgressView) obj).loadProgress;
                 }
             }, new SimpleFloatPropertyCompat.Setter() {
                 @Override

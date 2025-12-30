@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.opengl.GLES20;
 import androidx.core.graphics.ColorUtils;
+import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -19,13 +20,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
+import java.util.zip.DataFormatException;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Brush;
-import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Size;
 
 public class Painting {
@@ -96,9 +97,9 @@ public class Painting {
         Size size2 = this.size;
         this.projection = GLMatrix.LoadOrtho(0.0f, size2.width, 0.0f, size2.height, -1.0f, 1.0f);
         if (this.vertexBuffer == null) {
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-            this.vertexBuffer = allocateDirect;
-            allocateDirect.order(ByteOrder.nativeOrder());
+            ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(32);
+            this.vertexBuffer = byteBufferAllocateDirect;
+            byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
         }
         this.vertexBuffer.putFloat(0.0f);
         this.vertexBuffer.putFloat(0.0f);
@@ -110,9 +111,9 @@ public class Painting {
         this.vertexBuffer.putFloat(this.size.height);
         this.vertexBuffer.rewind();
         if (this.textureBuffer == null) {
-            ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
-            this.textureBuffer = allocateDirect2;
-            allocateDirect2.order(ByteOrder.nativeOrder());
+            ByteBuffer byteBufferAllocateDirect2 = ByteBuffer.allocateDirect(32);
+            this.textureBuffer = byteBufferAllocateDirect2;
+            byteBufferAllocateDirect2.order(ByteOrder.nativeOrder());
             this.textureBuffer.putFloat(0.0f);
             this.textureBuffer.putFloat(0.0f);
             this.textureBuffer.putFloat(1.0f);
@@ -178,7 +179,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$setHelperShape$2(shape);
+                this.f$0.lambda$setHelperShape$2(shape);
             }
         });
     }
@@ -194,12 +195,12 @@ public class Painting {
                 valueAnimator.cancel();
                 this.helperAnimator = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.helperAlpha, this.helperShown ? 1.0f : 0.0f);
-            this.helperAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.helperAlpha, this.helperShown ? 1.0f : 0.0f);
+            this.helperAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    Painting.this.lambda$setHelperShape$1(valueAnimator2);
+                    this.f$0.lambda$setHelperShape$1(valueAnimator2);
                 }
             });
             this.helperAnimator.addListener(new AnonymousClass1());
@@ -229,7 +230,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$setHelperShape$0(valueAnimator);
+                this.f$0.lambda$setHelperShape$0(valueAnimator);
             }
         });
     }
@@ -242,7 +243,7 @@ public class Painting {
         }
     }
 
-    public class AnonymousClass1 extends AnimatorListenerAdapter {
+    class AnonymousClass1 extends AnimatorListenerAdapter {
         AnonymousClass1() {
         }
 
@@ -252,7 +253,7 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    Painting.AnonymousClass1.this.lambda$onAnimationEnd$0();
+                    this.f$0.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -272,12 +273,12 @@ public class Painting {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.helperApplyAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.helperApplyAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                Painting.this.lambda$applyHelperShape$4(valueAnimator2);
+                this.f$0.lambda$applyHelperShape$4(valueAnimator2);
             }
         });
         this.helperApplyAnimator.addListener(new AnonymousClass2());
@@ -292,7 +293,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$applyHelperShape$3(valueAnimator);
+                this.f$0.lambda$applyHelperShape$3(valueAnimator);
             }
         });
     }
@@ -305,7 +306,7 @@ public class Painting {
         }
     }
 
-    public class AnonymousClass2 extends AnimatorListenerAdapter {
+    class AnonymousClass2 extends AnimatorListenerAdapter {
         AnonymousClass2() {
         }
 
@@ -313,13 +314,13 @@ public class Painting {
         public void onAnimationEnd(Animator animator) {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
-                public final void run() {
-                    Painting.AnonymousClass2.this.lambda$onAnimationEnd$0();
+                public final void run() throws DataFormatException, IOException {
+                    this.f$0.lambda$onAnimationEnd$0();
                 }
             });
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public void lambda$onAnimationEnd$0() throws DataFormatException, IOException {
             if (Painting.this.helperShape == null) {
                 Painting.this.helperApplyAnimator = null;
                 return;
@@ -328,12 +329,12 @@ public class Painting {
             Painting painting = Painting.this;
             painting.paintStrokeInternal(painting.activePath, false, false);
             Painting painting2 = Painting.this;
-            Slice commitPathInternal = painting2.commitPathInternal(painting2.activePath, currentColor, new RectF(Painting.this.activeStrokeBounds));
+            Slice sliceCommitPathInternal = painting2.commitPathInternal(painting2.activePath, currentColor, new RectF(Painting.this.activeStrokeBounds));
             Painting.this.clearStrokeInternal();
             Shape shape = Painting.this.helperShape;
             shape.getBounds(Painting.this.activeStrokeBounds = new RectF());
             Painting.this.restoreSliceInternal(Painting.this.commitShapeInternal(shape, currentColor, new RectF(Painting.this.activeStrokeBounds)), false);
-            Painting.this.restoreSliceInternal(commitPathInternal, false);
+            Painting.this.restoreSliceInternal(sliceCommitPathInternal, false);
             Painting.this.commitShapeInternal(shape, currentColor, null);
             Painting.this.helperShape = null;
             Painting.this.helperApplyAlpha = 0.0f;
@@ -348,7 +349,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$paintShape$5(shape, runnable);
+                this.f$0.lambda$paintShape$5(shape, runnable);
             }
         });
     }
@@ -375,7 +376,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$paintStroke$6(path, z, z2, runnable);
+                this.f$0.lambda$paintStroke$6(path, z, z2, runnable);
             }
         });
     }
@@ -388,7 +389,7 @@ public class Painting {
     }
 
     public void paintStrokeInternal(Path path, boolean z, boolean z2) {
-        RectF rectF;
+        RectF rectFRenderPath;
         this.activePath = path;
         if (path == null) {
             return;
@@ -426,20 +427,20 @@ public class Painting {
             } else {
                 this.renderState.viewportScale = 1.0f;
             }
-            rectF = Render.RenderPath(path, this.renderState, z2);
+            rectFRenderPath = Render.RenderPath(path, this.renderState, z2);
         } else {
-            rectF = null;
+            rectFRenderPath = null;
         }
         GLES20.glBindFramebuffer(36160, 0);
         PaintingDelegate paintingDelegate = this.delegate;
         if (paintingDelegate != null) {
             paintingDelegate.contentChanged();
         }
-        RectF rectF2 = this.activeStrokeBounds;
-        if (rectF2 != null) {
-            rectF2.union(rectF);
+        RectF rectF = this.activeStrokeBounds;
+        if (rectF != null) {
+            rectF.union(rectFRenderPath);
         } else {
-            this.activeStrokeBounds = rectF;
+            this.activeStrokeBounds = rectFRenderPath;
         }
     }
 
@@ -450,7 +451,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$commitShape$7(shape, i);
+                this.f$0.lambda$commitShape$7(shape, i);
             }
         });
     }
@@ -474,7 +475,7 @@ public class Painting {
             rectF2 = rectF;
             z = true;
         }
-        Slice registerUndo = registerUndo(rectF2, z);
+        Slice sliceRegisterUndo = registerUndo(rectF2, z);
         beginSuppressingChanges();
         GLES20.glBindFramebuffer(36160, getReusableFramebuffer());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, getTexture(), 0);
@@ -535,7 +536,7 @@ public class Painting {
         this.helperShape = null;
         this.activePath = null;
         this.activeShape = null;
-        return registerUndo;
+        return sliceRegisterUndo;
     }
 
     public void commitPath(Path path, int i) {
@@ -549,7 +550,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$commitPath$8(path, i, z, runnable);
+                this.f$0.lambda$commitPath$8(path, i, z, runnable);
             }
         });
     }
@@ -565,38 +566,38 @@ public class Painting {
     }
 
     public Slice commitPathInternal(Path path, int i, RectF rectF) {
-        Slice registerUndo;
+        Slice sliceRegisterUndo;
         PaintingDelegate paintingDelegate;
         boolean z;
-        Brush brush = this.brush;
+        Brush eraser = this.brush;
         if (path != null) {
-            brush = path.getBrush();
+            eraser = path.getBrush();
         }
-        if (this.blurManager != null && (((z = brush instanceof Brush.Blurer)) || (brush instanceof Brush.Eraser))) {
-            registerUndo = registerDoubleUndo(rectF, this.hasBlur);
+        if (this.blurManager != null && (((z = eraser instanceof Brush.Blurer)) || (eraser instanceof Brush.Eraser))) {
+            sliceRegisterUndo = registerDoubleUndo(rectF, this.hasBlur);
             this.hasBlur = z;
         } else {
-            registerUndo = registerUndo(rectF, false);
+            sliceRegisterUndo = registerUndo(rectF, false);
         }
         beginSuppressingChanges();
-        int i2 = (this.blurManager == null || !((brush instanceof Brush.Blurer) || (brush instanceof Brush.Eraser))) ? 1 : 2;
+        int i2 = (this.blurManager == null || !((eraser instanceof Brush.Blurer) || (eraser instanceof Brush.Eraser))) ? 1 : 2;
         int i3 = 0;
         while (true) {
-            Object obj = null;
+            Object textureLock = null;
             if (i3 < i2) {
                 GLES20.glBindFramebuffer(36160, getReusableFramebuffer());
                 int texture = getTexture();
-                if (this.blurManager != null && (((brush instanceof Brush.Blurer) && i3 == 0) || ((brush instanceof Brush.Eraser) && i3 == 1))) {
+                if (this.blurManager != null && (((eraser instanceof Brush.Blurer) && i3 == 0) || ((eraser instanceof Brush.Eraser) && i3 == 1))) {
                     Texture texture2 = this.bitmapBlurTexture;
                     texture = texture2 != null ? texture2.texture() : 0;
                 }
-                if (i3 == 1 && (brush instanceof Brush.Blurer)) {
-                    brush = new Brush.Eraser();
+                if (i3 == 1 && (eraser instanceof Brush.Blurer)) {
+                    eraser = new Brush.Eraser();
                 }
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, texture, 0);
                 Size size = this.size;
                 GLES20.glViewport(0, 0, (int) size.width, (int) size.height);
-                Shader shader = (Shader) this.shaders.get(brush.getShaderName(1));
+                Shader shader = (Shader) this.shaders.get(eraser.getShaderName(1));
                 if (shader == null) {
                     return null;
                 }
@@ -604,18 +605,18 @@ public class Painting {
                 GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.projection));
                 GLES20.glUniform1i(shader.getUniform("texture"), 0);
                 GLES20.glUniform1i(shader.getUniform("mask"), 1);
-                Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(i, (int) (Color.alpha(i) * brush.getOverrideAlpha())));
+                Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(i, (int) (Color.alpha(i) * eraser.getOverrideAlpha())));
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, texture);
                 GLES20.glTexParameteri(3553, 10241, 9729);
                 GLES20.glActiveTexture(33985);
                 GLES20.glBindTexture(3553, getPaintTexture());
-                if (brush instanceof Brush.Blurer) {
+                if (eraser instanceof Brush.Blurer) {
                     GLES20.glUniform1i(shader.getUniform("blured"), 2);
                     GLES20.glActiveTexture(33986);
                     BlurringShader.BlurManager blurManager = this.blurManager;
                     if (blurManager != null) {
-                        obj = blurManager.getTextureLock();
+                        textureLock = blurManager.getTextureLock();
                         GLES20.glBindTexture(3553, this.blurManager.getTexture());
                     } else {
                         GLES20.glBindTexture(3553, this.bluredTexture.texture());
@@ -626,8 +627,8 @@ public class Painting {
                 GLES20.glEnableVertexAttribArray(0);
                 GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.textureBuffer);
                 GLES20.glEnableVertexAttribArray(1);
-                if (obj != null) {
-                    synchronized (obj) {
+                if (textureLock != null) {
+                    synchronized (textureLock) {
                         GLES20.glDrawArrays(5, 0, 4);
                     }
                 } else {
@@ -645,7 +646,7 @@ public class Painting {
                 this.renderState.reset();
                 this.activePath = null;
                 this.activeShape = null;
-                return registerUndo;
+                return sliceRegisterUndo;
             }
         }
     }
@@ -658,7 +659,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$clearStroke$9(runnable);
+                this.f$0.lambda$clearStroke$9(runnable);
             }
         });
     }
@@ -674,7 +675,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$clearShape$10();
+                this.f$0.lambda$clearShape$10();
             }
         });
     }
@@ -716,7 +717,7 @@ public class Painting {
         this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$registerUndo$11(slice);
+                this.f$0.lambda$registerUndo$11(slice);
             }
         });
         return slice;
@@ -731,7 +732,7 @@ public class Painting {
         this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$registerDoubleUndo$12(slice, slice2, z);
+                this.f$0.lambda$registerDoubleUndo$12(slice, slice2, z);
             }
         });
         return slice;
@@ -746,17 +747,17 @@ public class Painting {
     public void lambda$registerUndo$11(final Slice slice) {
         this.renderView.performInContext(new Runnable() {
             @Override
-            public final void run() {
-                Painting.this.lambda$restoreSlice$13(slice);
+            public final void run() throws DataFormatException, IOException {
+                this.f$0.lambda$restoreSlice$13(slice);
             }
         });
     }
 
-    public void lambda$restoreSlice$13(Slice slice) {
+    public void lambda$restoreSlice$13(Slice slice) throws DataFormatException, IOException {
         restoreSliceInternal(slice, true);
     }
 
-    public void restoreSliceInternal(Slice slice, boolean z) {
+    public void restoreSliceInternal(Slice slice, boolean z) throws DataFormatException, IOException {
         PaintingDelegate paintingDelegate;
         Texture texture;
         if (slice == null) {
@@ -886,8 +887,70 @@ public class Painting {
         Utils.HasGLError();
     }
 
-    private void renderBlitPath(int r18, org.telegram.ui.Components.Paint.Path r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Painting.renderBlitPath(int, org.telegram.ui.Components.Paint.Path, float):void");
+    private void renderBlitPath(int i, Path path, float f) {
+        Object textureLock;
+        if (path == null) {
+            return;
+        }
+        Brush brush = path.getBrush();
+        if (brush == null) {
+            brush = this.brush;
+        }
+        boolean z = this.masking && ((brush instanceof Brush.Radial) || (brush instanceof Brush.Eraser));
+        Map map = this.shaders;
+        StringBuilder sb = new StringBuilder();
+        sb.append(brush.getShaderName(0));
+        sb.append(z ? "_masking" : "");
+        Shader shader = (Shader) map.get(sb.toString());
+        if (shader == null) {
+            return;
+        }
+        GLES20.glUseProgram(shader.program);
+        GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
+        GLES20.glUniform1i(shader.getUniform("texture"), 0);
+        GLES20.glUniform1i(shader.getUniform("mask"), 1);
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(path.getColor(), (int) (Color.alpha(r6) * brush.getOverrideAlpha() * f)));
+        GLES20.glActiveTexture(33984);
+        GLES20.glBindTexture(3553, getTexture());
+        GLES20.glActiveTexture(33985);
+        GLES20.glBindTexture(3553, i);
+        if (z) {
+            GLES20.glUniform1i(shader.getUniform("otexture"), 2);
+            GLES20.glUniform1f(shader.getUniform("preview"), 0.4f);
+            GLES20.glActiveTexture(33986);
+            GLES20.glBindTexture(3553, this.originalBitmapTexture.texture());
+        }
+        if (brush instanceof Brush.Blurer) {
+            GLES20.glUniform1i(shader.getUniform("blured"), 2);
+            GLES20.glActiveTexture(33986);
+            BlurringShader.BlurManager blurManager = this.blurManager;
+            if (blurManager != null) {
+                textureLock = blurManager.getTextureLock();
+                GLES20.glBindTexture(3553, this.blurManager.getTexture());
+            } else {
+                Texture texture = this.bluredTexture;
+                if (texture != null) {
+                    GLES20.glBindTexture(3553, texture.texture());
+                }
+                textureLock = null;
+            }
+        } else {
+            textureLock = null;
+        }
+        Object obj = textureLock;
+        GLES20.glBlendFunc(1, 771);
+        GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
+        GLES20.glEnableVertexAttribArray(0);
+        GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+        GLES20.glEnableVertexAttribArray(1);
+        if (obj != null) {
+            synchronized (obj) {
+                GLES20.glDrawArrays(5, 0, 4);
+            }
+        } else {
+            GLES20.glDrawArrays(5, 0, 4);
+        }
+        Utils.HasGLError();
     }
 
     private void renderBlit(int i, float f) {
@@ -928,8 +991,8 @@ public class Painting {
         Texture texture2;
         int i = (int) rectF.left;
         int i2 = (int) rectF.top;
-        int width = (int) rectF.width();
-        int height = (int) rectF.height();
+        int iWidth = (int) rectF.width();
+        int iHeight = (int) rectF.height();
         GLES20.glGenFramebuffers(1, this.buffers, 0);
         int i3 = this.buffers[0];
         GLES20.glBindFramebuffer(36160, i3);
@@ -940,7 +1003,7 @@ public class Painting {
         GLES20.glTexParameteri(3553, 10243, 33071);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9728);
-        GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, null);
+        GLES20.glTexImage2D(3553, 0, 6408, iWidth, iHeight, 0, 6408, 5121, null);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, i4, 0);
         Size size = this.size;
         GLES20.glViewport(0, 0, (int) size.width, (int) size.height);
@@ -960,8 +1023,8 @@ public class Painting {
         GLES20.glUseProgram(shader2.program);
         Matrix matrix = new Matrix();
         matrix.preTranslate(-i, -i2);
-        float[] MultiplyMat4f = GLMatrix.MultiplyMat4f(this.projection, GLMatrix.LoadGraphicsMatrix(matrix));
-        GLES20.glUniformMatrix4fv(shader2.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(MultiplyMat4f));
+        float[] fArrMultiplyMat4f = GLMatrix.MultiplyMat4f(this.projection, GLMatrix.LoadGraphicsMatrix(matrix));
+        GLES20.glUniformMatrix4fv(shader2.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(fArrMultiplyMat4f));
         if (!z && this.masking) {
             GLES20.glUniform1i(shader2.getUniform("texture"), 1);
             GLES20.glUniform1i(shader2.getUniform("mask"), 0);
@@ -985,7 +1048,7 @@ public class Painting {
         GLES20.glDrawArrays(5, 0, 4);
         if (z3 && !z2 && (shader = (Shader) this.shaders.get("videoBlur")) != null && this.blurManager != null) {
             GLES20.glUseProgram(shader.program);
-            GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(MultiplyMat4f));
+            GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(fArrMultiplyMat4f));
             GLES20.glUniform1f(shader.getUniform("flipy"), 0.0f);
             GLES20.glUniform1i(shader.getUniform("texture"), 0);
             GLES20.glActiveTexture(33984);
@@ -1007,14 +1070,14 @@ public class Painting {
                 GLES20.glDrawArrays(5, 0, 4);
             }
         }
-        this.dataBuffer.limit(width * height * 4);
-        GLES20.glReadPixels(0, 0, width, height, 6408, 5121, this.dataBuffer);
+        this.dataBuffer.limit(iWidth * iHeight * 4);
+        GLES20.glReadPixels(0, 0, iWidth, iHeight, 6408, 5121, this.dataBuffer);
         if (z) {
             paintingData = new PaintingData(null, this.dataBuffer);
         } else {
-            Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            createBitmap.copyPixelsFromBuffer(this.dataBuffer);
-            paintingData = new PaintingData(createBitmap, null);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iWidth, iHeight, Bitmap.Config.ARGB_8888);
+            bitmapCreateBitmap.copyPixelsFromBuffer(this.dataBuffer);
+            paintingData = new PaintingData(bitmapCreateBitmap, null);
         }
         this.dataBuffer.rewind();
         int[] iArr = this.buffers;
@@ -1082,7 +1145,7 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                Painting.this.lambda$onPause$14(runnable);
+                this.f$0.lambda$onPause$14(runnable);
             }
         });
     }

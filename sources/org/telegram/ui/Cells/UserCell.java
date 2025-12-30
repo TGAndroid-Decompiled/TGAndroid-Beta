@@ -48,6 +48,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     protected AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable botVerification;
+    private boolean callCellStyle;
     private CheckBox2 checkBox;
     private ImageView checkBox3;
     private CheckBoxSquare checkBoxBig;
@@ -67,6 +68,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private int lastStatus;
     protected SimpleTextView nameTextView;
     public boolean needDivider;
+    private final int padding;
     private Drawable premiumDrawable;
     protected Theme.ResourcesProvider resourcesProvider;
     private boolean selfAsSavedMessages;
@@ -102,10 +104,10 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public UserCell(Context context, int i, int i2, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
+        int iCeil;
         int i3;
-        int i4;
         float f;
+        super(context);
         this.currentAccount = UserConfig.selectedAccount;
         this.storyParams = new StoriesUtilities.AvatarStoryParams(false) {
             @Override
@@ -127,16 +129,17 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             View view = this.addButton;
             boolean z3 = LocaleController.isRTL;
             addView(view, LayoutHelper.createFrame(-2, 28.0f, (z3 ? 3 : 5) | 48, z3 ? 14.0f : 0.0f, 15.0f, z3 ? 0.0f : 14.0f, 0.0f));
-            i3 = (int) Math.ceil((this.addButton.getPaint().measureText(this.addButton.getText().toString()) + AndroidUtilities.dp(48.0f)) / AndroidUtilities.density);
+            iCeil = (int) Math.ceil((this.addButton.getPaint().measureText(this.addButton.getText().toString()) + AndroidUtilities.dp(48.0f)) / AndroidUtilities.density);
         } else {
-            i3 = 0;
+            iCeil = 0;
         }
+        this.padding = i;
         this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
         this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (UserCell.this.storiable) {
                     UserCell.this.storyParams.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     UserCell userCell = UserCell.this;
@@ -168,19 +171,19 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view3 = this.nameTextView;
         boolean z5 = LocaleController.isRTL;
-        int i5 = (z5 ? 5 : 3) | 48;
+        int i4 = (z5 ? 5 : 3) | 48;
         if (z5) {
-            i4 = (i2 == 2 ? 18 : 0) + 28 + i3;
+            i3 = (i2 == 2 ? 18 : 0) + 28 + iCeil;
         } else {
-            i4 = i + 64;
+            i3 = i + 64;
         }
-        float f2 = i4;
+        float f2 = i3;
         if (z5) {
             f = i + 64;
         } else {
-            f = (i2 != 2 ? 0 : 18) + 28 + i3;
+            f = (i2 != 2 ? 0 : 18) + 28 + iCeil;
         }
-        addView(view3, LayoutHelper.createFrame(-1, 20.0f, i5, f2, 10.0f, f, 0.0f));
+        addView(view3, LayoutHelper.createFrame(-1, 20.0f, i4, f2, 10.0f, f, 0.0f));
         this.botVerification = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.dp(20.0f));
         this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.dp(20.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
@@ -189,7 +192,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.statusTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view4 = this.statusTextView;
         boolean z6 = LocaleController.isRTL;
-        addView(view4, LayoutHelper.createFrame(-1, 20.0f, (z6 ? 5 : 3) | 48, z6 ? i3 + 28 : i + 64, 32.0f, z6 ? i + 64 : i3 + 28, 0.0f));
+        addView(view4, LayoutHelper.createFrame(-1, 20.0f, (z6 ? 5 : 3) | 48, z6 ? iCeil + 28 : i + 64, 32.0f, z6 ? i + 64 : iCeil + 28, 0.0f));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -240,7 +243,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public void setAvatarPadding(int i) {
-        int i2;
+        setAvatarPadding(i, 0);
+    }
+
+    public void setAvatarPadding(int i, int i2) {
+        int i3;
         float f;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.avatarImageView.getLayoutParams();
         layoutParams.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 7);
@@ -248,25 +255,25 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.avatarImageView.setLayoutParams(layoutParams);
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.nameTextView.getLayoutParams();
         if (LocaleController.isRTL) {
-            i2 = (this.checkBoxBig != null ? 18 : 0) + 28;
+            i3 = (this.checkBoxBig != null ? 18 : 0) + 28;
         } else {
-            i2 = i + 64;
+            i3 = i + 64 + i2;
         }
-        layoutParams2.leftMargin = AndroidUtilities.dp(i2);
+        layoutParams2.leftMargin = AndroidUtilities.dp(i3);
         if (LocaleController.isRTL) {
-            f = i + 64;
+            f = i + 64 + i2;
         } else {
             f = (this.checkBoxBig != null ? 18 : 0) + 28;
         }
         layoutParams2.rightMargin = AndroidUtilities.dp(f);
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.statusTextView.getLayoutParams();
-        layoutParams3.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : i + 64);
-        layoutParams3.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 64 : 28.0f);
+        layoutParams3.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : i + 64 + i2);
+        layoutParams3.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 64 + i2 : 28.0f);
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
             FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) checkBox2.getLayoutParams();
-            layoutParams4.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 37);
-            layoutParams4.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 37 : 0.0f);
+            layoutParams4.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 37 + i2);
+            layoutParams4.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 37 + i2 : 0.0f);
         }
     }
 
@@ -470,9 +477,30 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         }
     }
 
+    public void setCallCellStyle(int i) {
+        this.callCellStyle = true;
+        this.nameTextView.setTextSize(15);
+        SimpleTextView simpleTextView = this.nameTextView;
+        boolean z = LocaleController.isRTL;
+        simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z ? 5 : 3) | 48, z ? 30.0f : i + 66, 10.0f, z ? i + 66 : 30.0f, 0.0f));
+        this.statusTextView.setTextSize(13);
+        SimpleTextView simpleTextView2 = this.statusTextView;
+        boolean z2 = LocaleController.isRTL;
+        simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? 30.0f : i + 66, 32.0f, z2 ? i + 66 : 30.0f, 0.0f));
+        this.avatarImageView.setRoundRadius(AndroidUtilities.dp(22.0f));
+        BackupImageView backupImageView = this.avatarImageView;
+        boolean z3 = LocaleController.isRTL;
+        backupImageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : i + 8, 6.0f, z3 ? i + 8 : 0.0f, 0.0f));
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            boolean z4 = LocaleController.isRTL;
+            checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : i + 37, 32.0f, z4 ? i + 37 : 0.0f, 0.0f));
+        }
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.callCellStyle ? 56.0f : 58.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     @Override
@@ -488,7 +516,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         TLRPC.User user;
         TLRPC.Chat chat;
         TLRPC.FileLocation fileLocation;
-        String str;
+        String strRemoveRTL;
         long botVerificationIcon;
         TLRPC.UserStatus userStatus;
         TextView textView;
@@ -524,14 +552,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
             if (z || this.currentName != null || this.lastName == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
-                str = null;
+                strRemoveRTL = null;
             } else {
                 if (user != null) {
-                    str = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(user)));
+                    strRemoveRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(user)));
                 } else {
-                    str = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(chat == null ? "" : chat.title));
+                    strRemoveRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(chat == null ? "" : chat.title));
                 }
-                if (!str.equals(this.lastName)) {
+                if (!strRemoveRTL.equals(this.lastName)) {
                     z = true;
                 }
             }
@@ -539,104 +567,41 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 return;
             }
         } else {
-            str = null;
+            strRemoveRTL = null;
         }
         if (this.currentObject instanceof String) {
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(19.0f);
-            String str2 = (String) this.currentObject;
-            str2.hashCode();
-            char c = 65535;
-            switch (str2.hashCode()) {
-                case -1716307998:
-                    if (str2.equals("archived")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case -1237460524:
-                    if (str2.equals("groups")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case -1197490811:
-                    if (str2.equals("non_contacts")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-                case -567451565:
-                    if (str2.equals("contacts")) {
-                        c = 3;
-                        break;
-                    }
-                    break;
-                case -268161860:
-                    if (str2.equals("new_chats")) {
-                        c = 4;
-                        break;
-                    }
-                    break;
-                case 3029900:
-                    if (str2.equals("bots")) {
-                        c = 5;
-                        break;
-                    }
-                    break;
-                case 3496342:
-                    if (str2.equals("read")) {
-                        c = 6;
-                        break;
-                    }
-                    break;
-                case 104264043:
-                    if (str2.equals("muted")) {
-                        c = 7;
-                        break;
-                    }
-                    break;
-                case 151051367:
-                    if (str2.equals("existing_chats")) {
-                        c = '\b';
-                        break;
-                    }
-                    break;
-                case 1432626128:
-                    if (str2.equals("channels")) {
-                        c = '\t';
-                        break;
-                    }
-                    break;
-            }
-            switch (c) {
-                case 0:
+            String str = (String) this.currentObject;
+            str.hashCode();
+            switch (str) {
+                case "archived":
                     this.avatarDrawable.setAvatarType(11);
                     break;
-                case 1:
+                case "groups":
                     this.avatarDrawable.setAvatarType(6);
                     break;
-                case 2:
+                case "non_contacts":
                     this.avatarDrawable.setAvatarType(5);
                     break;
-                case 3:
+                case "contacts":
                     this.avatarDrawable.setAvatarType(4);
                     break;
-                case 4:
+                case "new_chats":
                     this.avatarDrawable.setAvatarType(24);
                     break;
-                case 5:
+                case "bots":
                     this.avatarDrawable.setAvatarType(8);
                     break;
-                case 6:
+                case "read":
                     this.avatarDrawable.setAvatarType(10);
                     break;
-                case 7:
+                case "muted":
                     this.avatarDrawable.setAvatarType(9);
                     break;
-                case '\b':
+                case "existing_chats":
                     this.avatarDrawable.setAvatarType(23);
                     break;
-                case '\t':
+                case "channels":
                     this.avatarDrawable.setAvatarType(7);
                     break;
             }
@@ -677,23 +642,23 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.nameTextView.setText(charSequence2);
         } else {
             if (user != null) {
-                this.lastName = str == null ? UserObject.getUserName(user) : AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(str));
+                this.lastName = strRemoveRTL == null ? UserObject.getUserName(user) : AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(strRemoveRTL));
             } else if (chat != null) {
-                if (str == null) {
-                    str = chat.title;
+                if (strRemoveRTL == null) {
+                    strRemoveRTL = chat.title;
                 }
-                this.lastName = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(str));
+                this.lastName = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(strRemoveRTL));
             } else {
                 this.lastName = "";
             }
-            CharSequence charSequence3 = this.lastName;
-            if (charSequence3 != null) {
+            CharSequence charSequenceReplaceEmoji = this.lastName;
+            if (charSequenceReplaceEmoji != null) {
                 try {
-                    charSequence3 = Emoji.replaceEmoji(charSequence3, this.nameTextView.getPaint().getFontMetricsInt(), false);
+                    charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequenceReplaceEmoji, this.nameTextView.getPaint().getFontMetricsInt(), false);
                 } catch (Exception unused) {
                 }
             }
-            this.nameTextView.setText(charSequence3);
+            this.nameTextView.setText(charSequenceReplaceEmoji);
         }
         if (user != null) {
             botVerificationIcon = DialogObject.getBotVerificationIcon(user);

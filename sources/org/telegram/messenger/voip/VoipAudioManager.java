@@ -11,7 +11,7 @@ public class VoipAudioManager {
     private VoipAudioManager() {
     }
 
-    public static final class InstanceHolder {
+    private static final class InstanceHolder {
         static final VoipAudioManager instance = new VoipAudioManager();
 
         private InstanceHolder() {
@@ -45,19 +45,19 @@ public class VoipAudioManager {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoipAudioManager.this.lambda$isBluetoothAndSpeakerOnAsync$2(callback2);
+                this.f$0.lambda$isBluetoothAndSpeakerOnAsync$2(callback2);
             }
         });
     }
 
     public void lambda$isBluetoothAndSpeakerOnAsync$2(final Utilities.Callback2 callback2) {
         AudioManager audioManager = getAudioManager();
-        final boolean isBluetoothScoOn = audioManager.isBluetoothScoOn();
-        final boolean isSpeakerphoneOn = audioManager.isSpeakerphoneOn();
+        final boolean zIsBluetoothScoOn = audioManager.isBluetoothScoOn();
+        final boolean zIsSpeakerphoneOn = audioManager.isSpeakerphoneOn();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2.this, isBluetoothScoOn, isSpeakerphoneOn);
+                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$1(callback2, zIsBluetoothScoOn, zIsSpeakerphoneOn);
             }
         });
     }

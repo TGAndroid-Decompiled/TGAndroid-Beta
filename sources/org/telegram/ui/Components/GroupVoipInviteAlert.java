@@ -1,7 +1,9 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,6 @@ import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
-import org.telegram.ui.Components.GroupVoipInviteAlert;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class GroupVoipInviteAlert extends UsersAlertBase {
@@ -103,7 +104,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                GroupVoipInviteAlert.this.lambda$new$0(view, i2);
+                this.f$0.lambda$new$0(view, i2);
             }
         });
         SearchAdapter searchAdapter = new SearchAdapter(context);
@@ -219,9 +220,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             Collections.sort(this.contacts, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$fillContacts$1;
-                    lambda$fillContacts$1 = GroupVoipInviteAlert.lambda$fillContacts$1(MessagesController.this, currentTime, (TLObject) obj, (TLObject) obj2);
-                    return lambda$fillContacts$1;
+                    return GroupVoipInviteAlert.lambda$fillContacts$1(messagesController, currentTime, (TLObject) obj, (TLObject) obj2);
                 }
             });
         }
@@ -278,9 +277,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         final TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
         tL_channels_getParticipants.channel = MessagesController.getInputChannel(this.currentChat);
         TLRPC.ChatFull chatFull = this.info;
-        if (chatFull != null && chatFull.participants_count <= 200) {
-            tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
-        } else if (!this.contactsEndReached) {
+        if ((chatFull == null || chatFull.participants_count > 200) && !this.contactsEndReached) {
             this.delayResults = 2;
             tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsContacts();
             this.contactsEndReached = true;
@@ -294,7 +291,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupVoipInviteAlert.this.lambda$loadChatParticipants$4(tL_channels_getParticipants, tLObject, tL_error);
+                this.f$0.lambda$loadChatParticipants$4(tL_channels_getParticipants, tLObject, tL_error);
             }
         });
     }
@@ -303,7 +300,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupVoipInviteAlert.this.lambda$loadChatParticipants$3(tL_error, tLObject, tL_channels_getParticipants);
+                this.f$0.lambda$loadChatParticipants$3(tL_error, tLObject, tL_channels_getParticipants);
             }
         });
     }
@@ -367,9 +364,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                     Collections.sort(arrayList, new Comparator() {
                         @Override
                         public final int compare(Object obj, Object obj2) {
-                            int lambda$loadChatParticipants$2;
-                            lambda$loadChatParticipants$2 = GroupVoipInviteAlert.this.lambda$loadChatParticipants$2(currentTime, (TLObject) obj, (TLObject) obj2);
-                            return lambda$loadChatParticipants$2;
+                            return this.f$0.lambda$loadChatParticipants$2(currentTime, (TLObject) obj, (TLObject) obj2);
                         }
                     });
                 }
@@ -437,7 +432,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         return -1;
     }
 
-    public class SearchAdapter extends RecyclerListView.SelectionAdapter {
+    class SearchAdapter extends RecyclerListView.SelectionAdapter {
         private int emptyRow;
         private int globalStartRow;
         private int groupStartRow;
@@ -465,8 +460,8 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 }
 
                 @Override
-                public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
-                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
+                public void onSetHashtags(ArrayList arrayList, HashMap map) {
+                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, map);
                 }
 
                 @Override
@@ -512,7 +507,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        GroupVoipInviteAlert.SearchAdapter.this.lambda$searchUsers$0(str, i);
+                        this.f$0.lambda$searchUsers$0(str, i);
                     }
                 };
                 this.searchRunnable = runnable2;
@@ -541,7 +536,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupVoipInviteAlert.SearchAdapter.this.lambda$processSearch$2(str, i);
+                    this.f$0.lambda$processSearch$2(str, i);
                 }
             });
         }
@@ -556,7 +551,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        GroupVoipInviteAlert.SearchAdapter.this.lambda$processSearch$1(str, i, arrayList);
+                        this.f$0.lambda$processSearch$1(str, i, arrayList);
                     }
                 });
             } else {
@@ -573,7 +568,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupVoipInviteAlert.SearchAdapter.this.lambda$updateSearchResults$3(i, arrayList);
+                    this.f$0.lambda$updateSearchResults$3(i, arrayList);
                 }
             });
         }
@@ -649,32 +644,117 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            ManageChatUserCell manageChatUserCell;
+            ManageChatUserCell view;
             if (i == 0) {
-                ManageChatUserCell manageChatUserCell2 = new ManageChatUserCell(this.mContext, 2, 2, false);
-                manageChatUserCell2.setCustomRightImage(R.drawable.msg_invited);
-                manageChatUserCell2.setNameColor(Theme.getColor(Theme.key_voipgroup_nameText));
-                manageChatUserCell2.setStatusColors(Theme.getColor(Theme.key_voipgroup_lastSeenTextUnscrolled), Theme.getColor(Theme.key_voipgroup_listeningText));
-                manageChatUserCell2.setDividerColor(Theme.key_voipgroup_listViewBackground);
-                manageChatUserCell = manageChatUserCell2;
+                ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 2, 2, false);
+                manageChatUserCell.setCustomRightImage(R.drawable.msg_invited);
+                manageChatUserCell.setNameColor(Theme.getColor(Theme.key_voipgroup_nameText));
+                manageChatUserCell.setStatusColors(Theme.getColor(Theme.key_voipgroup_lastSeenTextUnscrolled), Theme.getColor(Theme.key_voipgroup_listeningText));
+                manageChatUserCell.setDividerColor(Theme.key_voipgroup_listViewBackground);
+                view = manageChatUserCell;
             } else if (i == 1) {
                 ?? graySectionCell = new GraySectionCell(this.mContext);
                 graySectionCell.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBarUnscrolled));
                 graySectionCell.setTextColor(Theme.key_voipgroup_searchPlaceholder);
-                manageChatUserCell = graySectionCell;
+                view = graySectionCell;
             } else if (i == 2) {
-                ?? view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
-                manageChatUserCell = view;
+                ?? view2 = new View(this.mContext);
+                view2.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+                view = view2;
             } else {
-                manageChatUserCell = new View(this.mContext);
+                view = new View(this.mContext);
             }
-            return new RecyclerListView.Holder(manageChatUserCell);
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupVoipInviteAlert.SearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            TLRPC.User user;
+            String lastFoundChannel;
+            boolean z;
+            int size;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType != 0) {
+                if (itemViewType != 1) {
+                    return;
+                }
+                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+                if (i == this.groupStartRow) {
+                    graySectionCell.setText(LocaleController.getString(R.string.ChannelMembers));
+                    return;
+                } else {
+                    if (i == this.globalStartRow) {
+                        graySectionCell.setText(LocaleController.getString(R.string.GlobalSearch));
+                        return;
+                    }
+                    return;
+                }
+            }
+            TLObject item = getItem(i);
+            if (item instanceof TLRPC.User) {
+                user = (TLRPC.User) item;
+            } else if (item instanceof TLRPC.ChannelParticipant) {
+                user = MessagesController.getInstance(((BottomSheet) GroupVoipInviteAlert.this).currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) item).peer)));
+            } else if (!(item instanceof TLRPC.ChatParticipant)) {
+                return;
+            } else {
+                user = MessagesController.getInstance(((BottomSheet) GroupVoipInviteAlert.this).currentAccount).getUser(Long.valueOf(((TLRPC.ChatParticipant) item).user_id));
+            }
+            String publicUsername = UserObject.getPublicUsername(user);
+            int size2 = this.searchAdapterHelper.getGroupSearch().size();
+            SpannableStringBuilder spannableStringBuilder = null;
+            if (size2 == 0) {
+                lastFoundChannel = null;
+                z = false;
+            } else {
+                int i2 = size2 + 1;
+                if (i2 > i) {
+                    lastFoundChannel = this.searchAdapterHelper.getLastFoundChannel();
+                    z = true;
+                } else {
+                    i -= i2;
+                    lastFoundChannel = null;
+                    z = false;
+                }
+            }
+            if (z || publicUsername == null || (size = this.searchAdapterHelper.getGlobalSearch().size()) == 0 || size + 1 <= i) {
+                publicUsername = null;
+            } else {
+                String lastFoundUsername = this.searchAdapterHelper.getLastFoundUsername();
+                if (lastFoundUsername.startsWith("@")) {
+                    lastFoundUsername = lastFoundUsername.substring(1);
+                }
+                try {
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                    spannableStringBuilder2.append((CharSequence) "@");
+                    spannableStringBuilder2.append((CharSequence) publicUsername);
+                    int iIndexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(publicUsername, lastFoundUsername);
+                    if (iIndexOfIgnoreCase != -1) {
+                        int length = lastFoundUsername.length();
+                        if (iIndexOfIgnoreCase == 0) {
+                            length++;
+                        } else {
+                            iIndexOfIgnoreCase++;
+                        }
+                        spannableStringBuilder2.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_voipgroup_listeningText)), iIndexOfIgnoreCase, length + iIndexOfIgnoreCase, 33);
+                    }
+                    publicUsername = spannableStringBuilder2;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            if (lastFoundChannel != null) {
+                String userName = UserObject.getUserName(user);
+                spannableStringBuilder = new SpannableStringBuilder(userName);
+                int iIndexOfIgnoreCase2 = AndroidUtilities.indexOfIgnoreCase(userName, lastFoundChannel);
+                if (iIndexOfIgnoreCase2 != -1) {
+                    spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_voipgroup_listeningText)), iIndexOfIgnoreCase2, lastFoundChannel.length() + iIndexOfIgnoreCase2, 33);
+                }
+            }
+            ManageChatUserCell manageChatUserCell = (ManageChatUserCell) viewHolder.itemView;
+            manageChatUserCell.setTag(Integer.valueOf(i));
+            manageChatUserCell.setCustomImageVisible(GroupVoipInviteAlert.this.invitedUsers.contains(Long.valueOf(user.id)));
+            manageChatUserCell.setData(user, spannableStringBuilder, publicUsername, false);
         }
 
         @Override
@@ -722,30 +802,30 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             ManageChatUserCell manageChatUserCell;
-            ManageChatUserCell manageChatUserCell2;
+            ManageChatUserCell view;
             if (i == 0) {
-                ManageChatUserCell manageChatUserCell3 = new ManageChatUserCell(this.mContext, 6, 2, false);
-                manageChatUserCell3.setCustomRightImage(R.drawable.msg_invited);
-                manageChatUserCell3.setNameColor(Theme.getColor(Theme.key_voipgroup_nameText));
-                manageChatUserCell3.setStatusColors(Theme.getColor(Theme.key_voipgroup_lastSeenTextUnscrolled), Theme.getColor(Theme.key_voipgroup_listeningText));
-                manageChatUserCell3.setDividerColor(Theme.key_voipgroup_actionBar);
-                manageChatUserCell = manageChatUserCell3;
+                ManageChatUserCell manageChatUserCell2 = new ManageChatUserCell(this.mContext, 6, 2, false);
+                manageChatUserCell2.setCustomRightImage(R.drawable.msg_invited);
+                manageChatUserCell2.setNameColor(Theme.getColor(Theme.key_voipgroup_nameText));
+                manageChatUserCell2.setStatusColors(Theme.getColor(Theme.key_voipgroup_lastSeenTextUnscrolled), Theme.getColor(Theme.key_voipgroup_listeningText));
+                manageChatUserCell2.setDividerColor(Theme.key_voipgroup_actionBar);
+                manageChatUserCell = manageChatUserCell2;
             } else {
                 if (i == 1) {
                     ?? manageChatTextCell = new ManageChatTextCell(this.mContext);
                     int i2 = Theme.key_voipgroup_listeningText;
                     manageChatTextCell.setColors(i2, i2);
                     manageChatTextCell.setDividerColor(Theme.key_voipgroup_actionBar);
-                    manageChatUserCell2 = manageChatTextCell;
+                    view = manageChatTextCell;
                 } else if (i == 2) {
                     ?? graySectionCell = new GraySectionCell(this.mContext);
                     graySectionCell.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBarUnscrolled));
                     graySectionCell.setTextColor(Theme.key_voipgroup_searchPlaceholder);
-                    manageChatUserCell2 = graySectionCell;
+                    view = graySectionCell;
                 } else if (i == 3) {
-                    ?? view = new View(this.mContext);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
-                    manageChatUserCell2 = view;
+                    ?? view2 = new View(this.mContext);
+                    view2.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+                    view = view2;
                 } else if (i == 5) {
                     ?? flickerLoadingView = new FlickerLoadingView(this.mContext);
                     flickerLoadingView.setViewType(6);
@@ -753,17 +833,17 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                     flickerLoadingView.setColors(Theme.key_voipgroup_inviteMembersBackground, Theme.key_voipgroup_searchBackground, Theme.key_voipgroup_actionBarUnscrolled);
                     manageChatUserCell = flickerLoadingView;
                 } else {
-                    manageChatUserCell2 = new View(this.mContext);
+                    view = new View(this.mContext);
                 }
-                return new RecyclerListView.Holder(manageChatUserCell2);
+                return new RecyclerListView.Holder(view);
             }
-            manageChatUserCell2 = manageChatUserCell;
-            return new RecyclerListView.Holder(manageChatUserCell2);
+            view = manageChatUserCell;
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            long j;
+            long peerId;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 ManageChatUserCell manageChatUserCell = (ManageChatUserCell) viewHolder.itemView;
@@ -771,15 +851,15 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 TLObject item = getItem(i);
                 int i2 = (i < GroupVoipInviteAlert.this.participantsStartRow || i >= GroupVoipInviteAlert.this.participantsEndRow) ? GroupVoipInviteAlert.this.contactsEndRow : GroupVoipInviteAlert.this.participantsEndRow;
                 if (item instanceof TLRPC.TL_contact) {
-                    j = ((TLRPC.TL_contact) item).user_id;
+                    peerId = ((TLRPC.TL_contact) item).user_id;
                 } else if (item instanceof TLRPC.User) {
-                    j = ((TLRPC.User) item).id;
+                    peerId = ((TLRPC.User) item).id;
                 } else if (item instanceof TLRPC.ChannelParticipant) {
-                    j = MessageObject.getPeerId(((TLRPC.ChannelParticipant) item).peer);
+                    peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) item).peer);
                 } else {
-                    j = ((TLRPC.ChatParticipant) item).user_id;
+                    peerId = ((TLRPC.ChatParticipant) item).user_id;
                 }
-                TLRPC.User user = MessagesController.getInstance(((BottomSheet) GroupVoipInviteAlert.this).currentAccount).getUser(Long.valueOf(j));
+                TLRPC.User user = MessagesController.getInstance(((BottomSheet) GroupVoipInviteAlert.this).currentAccount).getUser(Long.valueOf(peerId));
                 if (user != null) {
                     manageChatUserCell.setCustomImageVisible(GroupVoipInviteAlert.this.invitedUsers.contains(Long.valueOf(user.id)));
                     manageChatUserCell.setData(user, null, null, i != i2 - 1);

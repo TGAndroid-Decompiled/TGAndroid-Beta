@@ -125,14 +125,14 @@ public class Icon3D {
         } else {
             str = "shaders/fragment3.glsl";
         }
-        int loadShader = GLIconRenderer.loadShader(35633, preprocessShader(loadFromAsset(context, "shaders/vertex2.glsl")));
-        int loadShader2 = GLIconRenderer.loadShader(35632, preprocessShader(loadFromAsset(context, str)));
-        int glCreateProgram = GLES20.glCreateProgram();
-        GLES20.glAttachShader(glCreateProgram, loadShader);
-        GLES20.glAttachShader(glCreateProgram, loadShader2);
-        GLES20.glLinkProgram(glCreateProgram);
-        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-        this.mProgramObject = glCreateProgram;
+        int iLoadShader = GLIconRenderer.loadShader(35633, preprocessShader(loadFromAsset(context, "shaders/vertex2.glsl")));
+        int iLoadShader2 = GLIconRenderer.loadShader(35632, preprocessShader(loadFromAsset(context, str)));
+        int iGlCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(iGlCreateProgram, iLoadShader);
+        GLES20.glAttachShader(iGlCreateProgram, iLoadShader2);
+        GLES20.glLinkProgram(iGlCreateProgram);
+        GLES20.glGetProgramiv(iGlCreateProgram, 35714, iArr, 0);
+        this.mProgramObject = iGlCreateProgram;
         init(context);
     }
 
@@ -332,32 +332,32 @@ public class Icon3D {
         GLES20.glDrawArrays(4, 0, this.trianglesCount[i] / 3);
     }
 
-    private String preprocessShader(String str) {
+    private String preprocessShader(String str) throws NumberFormatException {
         Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher.find()) {
-            String group = matcher.group(1);
-            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
+            String strGroup = matcher.group(1);
+            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(strGroup.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(strGroup.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(strGroup.substring(4, 6), 16) / 255.0d)));
         }
         matcher.appendTail(stringBuffer);
         return stringBuffer.toString();
     }
 
-    public String loadFromAsset(Context context, String str) {
+    public String loadFromAsset(Context context, String str) throws IOException {
         StringBuilder sb = new StringBuilder();
         try {
-            InputStream open = context.getAssets().open(str);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
+            InputStream inputStreamOpen = context.getAssets().open(str);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStreamOpen, StandardCharsets.UTF_8));
             while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
                     break;
                 }
-                sb.append(readLine);
+                sb.append(line);
                 sb.append("\n");
             }
             bufferedReader.close();
-            open.close();
+            inputStreamOpen.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

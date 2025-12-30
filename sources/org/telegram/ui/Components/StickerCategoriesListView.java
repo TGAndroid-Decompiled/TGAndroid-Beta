@@ -149,14 +149,14 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                StickerCategoriesListView.this.lambda$new$1(view, i3);
+                this.f$0.lambda$new$1(view, i3);
             }
         });
-        final long currentTimeMillis = System.currentTimeMillis();
+        final long jCurrentTimeMillis = System.currentTimeMillis();
         fetcher.fetch(UserConfig.selectedAccount, Integer.valueOf(i), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerCategoriesListView.this.lambda$new$3(emojiCategoryArr, currentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
+                this.f$0.lambda$new$3(emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
             }
         });
     }
@@ -166,7 +166,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerCategoriesListView.this.lambda$new$2(emojiCategoryArr, tL_messages_emojiGroups, j);
+                    this.f$0.lambda$new$2(emojiCategoryArr, tL_messages_emojiGroups, j);
                 }
             });
         }
@@ -198,11 +198,11 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         EmojiCategory[] emojiCategoryArr;
         if (i >= 1 && (emojiCategoryArr = this.categories) != null) {
             EmojiCategory emojiCategory = emojiCategoryArr[i - 1];
-            int dp = AndroidUtilities.dp(64.0f);
-            if (getMeasuredWidth() - view.getRight() < dp) {
-                smoothScrollBy(dp - (getMeasuredWidth() - view.getRight()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
-            } else if (view.getLeft() < dp) {
-                smoothScrollBy(-(dp - view.getLeft()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
+            int iDp = AndroidUtilities.dp(64.0f);
+            if (getMeasuredWidth() - view.getRight() < iDp) {
+                smoothScrollBy(iDp - (getMeasuredWidth() - view.getRight()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
+            } else if (view.getLeft() < iDp) {
+                smoothScrollBy(-(iDp - view.getLeft()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
             }
             Utilities.Callback callback = this.onCategoryClick;
             if (callback != null) {
@@ -227,12 +227,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
     }
 
     public void scrollToSelected() {
-        final int max = ((-getScrollToStartWidth()) - Math.max(0, this.dontOccupyWidth)) + (this.selectedCategoryIndex * AndroidUtilities.dp(34.0f));
-        scrollBy(max, 0);
+        final int iMax = ((-getScrollToStartWidth()) - Math.max(0, this.dontOccupyWidth)) + (this.selectedCategoryIndex * AndroidUtilities.dp(34.0f));
+        scrollBy(iMax, 0);
         post(new Runnable() {
             @Override
             public final void run() {
-                StickerCategoriesListView.this.lambda$scrollToSelected$4(max);
+                this.f$0.lambda$scrollToSelected$4(iMax);
             }
         });
     }
@@ -255,9 +255,9 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     i++;
                 }
             }
-            selectCategory(i);
+        } else {
+            i = -1;
         }
-        i = -1;
         selectCategory(i);
     }
 
@@ -289,7 +289,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateCategoriesShown(this.categoriesShouldShow, false);
     }
@@ -318,12 +318,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             this.categoriesShownAnimator = null;
         }
         if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.categoriesShownT, r5 != 0 ? 1.0f : 0.0f);
-            this.categoriesShownAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.categoriesShownT, r5 != 0 ? 1.0f : 0.0f);
+            this.categoriesShownAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StickerCategoriesListView.this.lambda$updateCategoriesShown$5(valueAnimator2);
+                    this.f$0.lambda$updateCategoriesShown$5(valueAnimator2);
                 }
             });
             this.categoriesShownAnimator.addListener(new AnimatorListenerAdapter() {
@@ -351,13 +351,13 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         for (int i = 0; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
             if (childAt instanceof CategoryButton) {
-                float cascade = AndroidUtilities.cascade(f, (getChildCount() - 1) - getChildAdapterPosition(childAt), getChildCount() - 1, 3.0f);
-                if (cascade > 0.0f && childAt.getAlpha() <= 0.0f) {
+                float fCascade = AndroidUtilities.cascade(f, (getChildCount() - 1) - getChildAdapterPosition(childAt), getChildCount() - 1, 3.0f);
+                if (fCascade > 0.0f && childAt.getAlpha() <= 0.0f) {
                     ((CategoryButton) childAt).play(false);
                 }
-                childAt.setAlpha(cascade);
-                childAt.setScaleX(cascade);
-                childAt.setScaleY(cascade);
+                childAt.setAlpha(fCascade);
+                childAt.setScaleX(fCascade);
+                childAt.setScaleY(fCascade);
             }
         }
         invalidate();
@@ -398,31 +398,31 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             this.backgroundPaint = new Paint(1);
         }
         this.backgroundPaint.setColor(i);
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
-        this.leftBoundDrawable = mutate;
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
+        this.leftBoundDrawable = drawableMutate;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(i, mode));
-        Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
-        this.rightBoundDrawable = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(i, mode));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(i, mode));
+        Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
+        this.rightBoundDrawable = drawableMutate2;
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
     @Override
     public void draw(Canvas canvas) {
         Drawable drawable;
         if (this.backgroundPaint != null) {
-            int i = Integer.MAX_VALUE;
-            int i2 = Integer.MIN_VALUE;
-            for (int i3 = 0; i3 < getChildCount(); i3++) {
-                View childAt = getChildAt(i3);
+            int iMin = Integer.MAX_VALUE;
+            int iMax = Integer.MIN_VALUE;
+            for (int i = 0; i < getChildCount(); i++) {
+                View childAt = getChildAt(i);
                 if (childAt instanceof CategoryButton) {
-                    i = Math.min(i, childAt.getLeft());
-                    i2 = Math.max(i2, childAt.getRight());
+                    iMin = Math.min(iMin, childAt.getLeft());
+                    iMax = Math.max(iMax, childAt.getRight());
                 }
             }
-            if (i < i2) {
-                int width = (int) (i + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                int width2 = (int) (i2 + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+            if (iMin < iMax) {
+                int width = (int) (iMin + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+                int width2 = (int) (iMax + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
                 canvas.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
                 if (width2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
                     drawable.setAlpha(255);
@@ -454,17 +454,17 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         }
         float f3 = f2 + 1.0f;
         double d = f3;
-        int max = Math.max(1, (int) Math.floor(d));
-        int max2 = Math.max(1, (int) Math.ceil(d));
+        int iMax = Math.max(1, (int) Math.floor(d));
+        int iMax2 = Math.max(1, (int) Math.ceil(d));
         View view = null;
         View view2 = null;
         for (int i2 = 0; i2 < getChildCount(); i2++) {
             View childAt = getChildAt(i2);
             int childAdapterPosition = getChildAdapterPosition(childAt);
-            if (childAdapterPosition == max) {
+            if (childAdapterPosition == iMax) {
                 view = childAt;
             }
-            if (childAdapterPosition == max2) {
+            if (childAdapterPosition == iMax2) {
                 view2 = childAt;
             }
             if (view != null && view2 != null) {
@@ -474,7 +474,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         int alpha = this.selectedPaint.getAlpha();
         this.selectedPaint.setAlpha((int) (alpha * f));
         if (view != null && view2 != null) {
-            float f4 = max == max2 ? 0.5f : (f3 - max) / (max2 - max);
+            float f4 = iMax == iMax2 ? 0.5f : (f3 - iMax) / (iMax2 - iMax);
             getChildBounds(view, this.rect1);
             getChildBounds(view2, this.rect2);
             AndroidUtilities.lerp(this.rect1, this.rect2, f4, this.rect3);
@@ -493,15 +493,15 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            View findChildViewUnder = findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-            if (!(findChildViewUnder instanceof CategoryButton) || findChildViewUnder.getAlpha() < 0.5f) {
+            View viewFindChildViewUnder = findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+            if (!(viewFindChildViewUnder instanceof CategoryButton) || viewFindChildViewUnder.getAlpha() < 0.5f) {
                 return false;
             }
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         private int lastItemCount;
 
         @Override
@@ -530,7 +530,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 };
             } else {
                 StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
-                categoryButton = new CategoryButton(stickerCategoriesListView.getContext());
+                categoryButton = stickerCategoriesListView.new CategoryButton(stickerCategoriesListView.getContext());
             }
             return new RecyclerListView.Holder(categoryButton);
         }
@@ -581,7 +581,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
     }
 
-    public class CategoryButton extends RLottieImageView {
+    class CategoryButton extends RLottieImageView {
         ValueAnimator backAnimator;
         private int imageColor;
         private int index;
@@ -612,19 +612,19 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             if (emojiCategory.remote) {
                 setImageResource(0);
                 clearAnimationDrawable();
-                final boolean isTabIconsAnimationEnabled = StickerCategoriesListView.this.isTabIconsAnimationEnabled(true);
+                final boolean zIsTabIconsAnimationEnabled = StickerCategoriesListView.this.isTabIconsAnimationEnabled(true);
                 this.loaded = false;
                 this.loadProgress = 1.0f;
                 AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(emojiCategory.documentId, new AnimatedEmojiDrawable.ReceivedDocument() {
                     @Override
                     public final void run(TLRPC.Document document) {
-                        StickerCategoriesListView.CategoryButton.this.lambda$set$0(isTabIconsAnimationEnabled, document);
+                        this.f$0.lambda$set$0(zIsTabIconsAnimationEnabled, document);
                     }
                 });
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerCategoriesListView.CategoryButton.this.lambda$set$1();
+                        this.f$0.lambda$set$1();
                     }
                 }, 60L);
             } else if (emojiCategory.animated) {
@@ -663,12 +663,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     valueAnimator.cancel();
                     this.loadAnimator = null;
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.loadProgress, 1.0f);
-                this.loadAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadProgress, 1.0f);
+                this.loadAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StickerCategoriesListView.CategoryButton.this.lambda$onLoaded$2(valueAnimator2);
+                        this.f$0.lambda$onLoaded$2(valueAnimator2);
                     }
                 });
                 this.loadAnimator.addListener(new AnimatorListenerAdapter() {
@@ -699,12 +699,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     this.selectedAnimator = null;
                 }
                 if (z2) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectedT, z ? 1.0f : 0.0f);
-                    this.selectedAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectedT, z ? 1.0f : 0.0f);
+                    this.selectedAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            StickerCategoriesListView.CategoryButton.this.lambda$setSelected$3(valueAnimator2);
+                            this.f$0.lambda$setSelected$3(valueAnimator2);
                         }
                     });
                     this.selectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -815,12 +815,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 }
                 float f = this.pressedProgress;
                 if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.backAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.backAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            StickerCategoriesListView.CategoryButton.this.lambda$setPressed$4(valueAnimator2);
+                            this.f$0.lambda$setPressed$4(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -869,7 +869,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         }
     }
 
-    public static class EmojiGroupFetcher extends CacheFetcher {
+    static class EmojiGroupFetcher extends CacheFetcher {
         private EmojiGroupFetcher() {
         }
 
@@ -896,7 +896,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_getEmojiGroups, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getRemote$0(Utilities.Callback4.this, tLObject, tL_error);
+                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getRemote$0(callback4, tLObject, tL_error);
                 }
             });
         }
@@ -916,13 +916,13 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         public void getLocal(final int i, final Integer num, final Utilities.Callback2 callback2) {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Throwable {
                     StickerCategoriesListView.EmojiGroupFetcher.lambda$getLocal$1(i, num, callback2);
                 }
             });
         }
 
-        public static void lambda$getLocal$1(int r7, java.lang.Integer r8, org.telegram.messenger.Utilities.Callback2 r9) {
+        public static void lambda$getLocal$1(int r7, java.lang.Integer r8, org.telegram.messenger.Utilities.Callback2 r9) throws java.lang.Throwable {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerCategoriesListView.EmojiGroupFetcher.lambda$getLocal$1(int, java.lang.Integer, org.telegram.messenger.Utilities$Callback2):void");
         }
 
@@ -943,15 +943,15 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     if (tL_messages_emojiGroups == null) {
                         database.executeFast("DELETE FROM emoji_groups WHERE type = " + num).stepThis().dispose();
                     } else {
-                        SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO emoji_groups VALUES(?, ?)");
-                        executeFast.requery();
+                        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO emoji_groups VALUES(?, ?)");
+                        sQLitePreparedStatementExecuteFast.requery();
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_emojiGroups.getObjectSize());
                         tL_messages_emojiGroups.serializeToStream(nativeByteBuffer);
-                        executeFast.bindInteger(1, num.intValue());
-                        executeFast.bindByteBuffer(2, nativeByteBuffer);
-                        executeFast.step();
+                        sQLitePreparedStatementExecuteFast.bindInteger(1, num.intValue());
+                        sQLitePreparedStatementExecuteFast.bindByteBuffer(2, nativeByteBuffer);
+                        sQLitePreparedStatementExecuteFast.step();
                         nativeByteBuffer.reuse();
-                        executeFast.dispose();
+                        sQLitePreparedStatementExecuteFast.dispose();
                     }
                 }
             } catch (Exception e) {
@@ -960,7 +960,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         }
     }
 
-    private static class EmojiSearch extends CacheFetcher {
+    static class EmojiSearch extends CacheFetcher {
         private EmojiSearch() {
         }
 
@@ -972,7 +972,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchCustomEmoji, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiSearch.lambda$getRemote$0(Utilities.Callback4.this, tLObject, tL_error);
+                    StickerCategoriesListView.EmojiSearch.lambda$getRemote$0(callback4, tLObject, tL_error);
                 }
             });
         }

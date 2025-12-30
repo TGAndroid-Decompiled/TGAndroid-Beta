@@ -48,9 +48,9 @@ public class GlTextureFrameBuffer {
         GlUtil.checkNoGLES2Error("GlTextureFrameBuffer setSize");
         GLES20.glBindFramebuffer(36160, this.frameBufferId);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.textureId, 0);
-        int glCheckFramebufferStatus = GLES20.glCheckFramebufferStatus(36160);
-        if (glCheckFramebufferStatus != 36053) {
-            throw new IllegalStateException("Framebuffer not complete, status: " + glCheckFramebufferStatus);
+        int iGlCheckFramebufferStatus = GLES20.glCheckFramebufferStatus(36160);
+        if (iGlCheckFramebufferStatus != 36053) {
+            throw new IllegalStateException("Framebuffer not complete, status: " + iGlCheckFramebufferStatus);
         }
         GLES20.glBindFramebuffer(36160, 0);
     }

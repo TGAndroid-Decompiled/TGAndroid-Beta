@@ -42,7 +42,7 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
     }
 
     private void prepareLayout(float f) {
-        int min;
+        int iMin;
         boolean z;
         float f2 = f == 0.0f ? 100.0f : f;
         this.itemSpans.clear();
@@ -54,7 +54,7 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         if (flowItemCount == 0) {
             return;
         }
-        int dp = AndroidUtilities.dp(100.0f);
+        int iDp = AndroidUtilities.dp(100.0f);
         int spanCount = getSpanCount();
         int i2 = (this.lastRowFullWidth ? 1 : 0) + flowItemCount;
         int i3 = spanCount;
@@ -67,14 +67,14 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
                 this.itemsToRow.put(i, this.rowsCount);
                 this.rowsCount++;
             } else {
-                Size sizeForItem = i4 < flowItemCount ? sizeForItem(i4) : null;
-                if (sizeForItem == null) {
+                Size sizeSizeForItem = i4 < flowItemCount ? sizeForItem(i4) : null;
+                if (sizeSizeForItem == null) {
                     z = i5 != 0;
-                    min = spanCount;
+                    iMin = spanCount;
                 } else {
-                    min = Math.min(spanCount, (int) Math.floor(spanCount * (((sizeForItem.width / sizeForItem.height) * dp) / f2)));
-                    boolean z2 = i3 < min || (min > 33 && i3 < min + (-15));
-                    if (sizeForItem.full) {
+                    iMin = Math.min(spanCount, (int) Math.floor(spanCount * (((sizeSizeForItem.width / sizeSizeForItem.height) * iDp) / f2)));
+                    boolean z2 = i3 < iMin || (iMin > 33 && i3 < iMin + (-15));
+                    if (sizeSizeForItem.full) {
                         this.itemSpans.put(i4, i3);
                         this.rowsCount++;
                     } else {
@@ -109,8 +109,8 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
                     this.rowsCount++;
                     i3 = spanCount;
                     i5 = 0;
-                } else if (i3 < min) {
-                    min = i3;
+                } else if (i3 < iMin) {
+                    iMin = i3;
                 }
                 if (this.rowsCount == 0) {
                     this.firstRowMax = Math.max(this.firstRowMax, i4);
@@ -119,8 +119,8 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
                     this.itemsToRow.put(i4, this.rowsCount);
                 }
                 i5++;
-                i3 -= min;
-                this.itemSpans.put(i4, min);
+                i3 -= iMin;
+                this.itemSpans.put(i4, iMin);
                 i4++;
                 i = 0;
             }
@@ -136,7 +136,7 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         return fixSize(getSizeForItem(i));
     }
 
-    public Size fixSize(Size size) {
+    protected Size fixSize(Size size) {
         if (size == null) {
             return null;
         }
@@ -150,9 +150,9 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         float f2 = size.height;
         float f3 = f / f2;
         if (f3 > 4.0f || f3 < 0.2f) {
-            float max = Math.max(f, f2);
-            size.width = max;
-            size.height = max;
+            float fMax = Math.max(f, f2);
+            size.width = fMax;
+            size.height = fMax;
         }
         return size;
     }
@@ -184,7 +184,7 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         return i <= this.firstRowMax;
     }
 
-    public int getFlowItemCount() {
+    protected int getFlowItemCount() {
         return getItemCount();
     }
 

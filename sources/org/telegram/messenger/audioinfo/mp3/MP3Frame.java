@@ -14,7 +14,7 @@ public class MP3Frame {
             int i3 = 1 << (i2 - 1);
             do {
                 short s = this.crc;
-                if (((32768 & s) == 0) ^ ((i & i3) == 0)) {
+                if (((Short.MIN_VALUE & s) == 0) ^ ((i & i3) == 0)) {
                     this.crc = (short) (((short) (s << 1)) ^ 32773);
                 } else {
                     this.crc = (short) (s << 1);
@@ -51,7 +51,7 @@ public class MP3Frame {
             return 36;
         }
 
-        public Header(int i, int i2, int i3) {
+        public Header(int i, int i2, int i3) throws MP3Exception {
             int i4 = (i >> 3) & 3;
             this.version = i4;
             if (i4 == 1) {
@@ -79,12 +79,12 @@ public class MP3Frame {
             this.padding = (i2 >> 1) & 1;
             int i8 = i & 1;
             this.protection = i8;
-            int i9 = i8 != 0 ? 4 : 6;
-            i9 = i5 == 1 ? i9 + getSideInfoSize() : i9;
-            if (getFrameSize() >= i9) {
+            int sideInfoSize = i8 != 0 ? 4 : 6;
+            sideInfoSize = i5 == 1 ? sideInfoSize + getSideInfoSize() : sideInfoSize;
+            if (getFrameSize() >= sideInfoSize) {
                 return;
             }
-            throw new MP3Exception("Frame size must be at least " + i9);
+            throw new MP3Exception("Frame size must be at least " + sideInfoSize);
         }
 
         public int getVersion() {
@@ -141,12 +141,12 @@ public class MP3Frame {
         }
     }
 
-    public MP3Frame(Header header, byte[] bArr) {
+    MP3Frame(Header header, byte[] bArr) {
         this.header = header;
         this.bytes = bArr;
     }
 
-    public boolean isChecksumError() {
+    boolean isChecksumError() {
         if (this.header.getProtection() != 0 || this.header.getLayer() != 1) {
             return false;
         }

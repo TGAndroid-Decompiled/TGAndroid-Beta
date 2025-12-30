@@ -69,14 +69,14 @@ public class AnimatedEmojiEffect {
                 }
             }
         } else {
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             if (this.particles.size() < 12) {
-                long j = currentTimeMillis - this.startTime;
-                if (j < 1500 && j > 200 && currentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
+                long j = jCurrentTimeMillis - this.startTime;
+                if (j < 1500 && j > 200 && jCurrentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
                     Particle particle2 = new Particle();
                     particle2.generate();
                     this.particles.add(particle2);
-                    this.lastGenerateTime = currentTimeMillis;
+                    this.lastGenerateTime = jCurrentTimeMillis;
                 }
             }
         }
@@ -126,9 +126,9 @@ public class AnimatedEmojiEffect {
             return;
         }
         imageReceiver.onAttachedToWindow();
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(this.animatedEmojiDrawable.getDocument(), null);
-        if (findAnimatedEmojiEmoticon == null || (tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(findAnimatedEmojiEmoticon)) == null || (document = tL_availableReaction.around_animation) == null) {
+        TLRPC.TL_messages_stickerSet stickerSetByName = null;
+        String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(this.animatedEmojiDrawable.getDocument(), null);
+        if (strFindAnimatedEmojiEmoticon == null || (tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(strFindAnimatedEmojiEmoticon)) == null || (document = tL_availableReaction.around_animation) == null) {
             z = false;
         } else {
             if (this.longAnimation) {
@@ -148,12 +148,12 @@ public class AnimatedEmojiEffect {
         }
         if (!z) {
             String str = UserConfig.getInstance(this.currentAccount).genericAnimationsStickerPack;
-            if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str)) == null) {
-                tL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str);
+            if (str != null && (stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str)) == null) {
+                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str);
             }
-            if (tL_messages_stickerSet != null) {
+            if (stickerSetByName != null) {
                 if (this.animationIndex < 0) {
-                    this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
+                    this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % stickerSetByName.documents.size());
                 }
                 if (this.longAnimation) {
                     ImageReceiver imageReceiver3 = this.effectImageReceiver;
@@ -164,9 +164,9 @@ public class AnimatedEmojiEffect {
                     sb2.append(" ");
                     imageReceiver3.setUniqKeyPrefix(sb2.toString());
                     int filterWidth2 = EmojiAnimationsOverlay.getFilterWidth();
-                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.animationIndex)), filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(stickerSetByName.documents.get(this.animationIndex)), filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, stickerSetByName.documents.get(this.animationIndex), 0);
                 } else {
-                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(stickerSetByName.documents.get(this.animationIndex)), "60_60", null, null, stickerSetByName.documents.get(this.animationIndex), 0);
                 }
                 z = true;
             }
@@ -191,7 +191,7 @@ public class AnimatedEmojiEffect {
         }
     }
 
-    public class Particle {
+    private class Particle {
         long duration;
         float fromSize;
         float fromX;
@@ -210,54 +210,54 @@ public class AnimatedEmojiEffect {
         public void generate() {
             float f = 0.0f;
             this.progress = 0.0f;
-            float randX = randX();
-            float randY = randY();
+            float fRandX = randX();
+            float fRandY = randY();
             for (int i = 0; i < 20; i++) {
-                float randX2 = randX();
-                float randY2 = randY();
+                float fRandX2 = randX();
+                float fRandY2 = randY();
                 float f2 = 2.1474836E9f;
                 for (int i2 = 0; i2 < AnimatedEmojiEffect.this.particles.size(); i2++) {
-                    float f3 = ((Particle) AnimatedEmojiEffect.this.particles.get(i2)).toX - randX2;
-                    float f4 = ((Particle) AnimatedEmojiEffect.this.particles.get(i2)).toY1 - randY2;
+                    float f3 = ((Particle) AnimatedEmojiEffect.this.particles.get(i2)).toX - fRandX2;
+                    float f4 = ((Particle) AnimatedEmojiEffect.this.particles.get(i2)).toY1 - fRandY2;
                     float f5 = (f3 * f3) + (f4 * f4);
                     if (f5 < f2) {
                         f2 = f5;
                     }
                 }
                 if (f2 > f) {
-                    randX = randX2;
-                    randY = randY2;
+                    fRandX = fRandX2;
+                    fRandY = fRandY2;
                     f = f2;
                 }
             }
             float f6 = AnimatedEmojiEffect.this.longAnimation ? 0.8f : 0.5f;
-            this.toX = randX;
-            if (randX > r0.bounds.width() * f6) {
+            this.toX = fRandX;
+            if (fRandX > r0.bounds.width() * f6) {
                 this.fromX = AnimatedEmojiEffect.this.bounds.width() * f6;
             } else {
-                float width = AnimatedEmojiEffect.this.bounds.width() * f6;
-                this.fromX = width;
-                if (this.toX > width) {
-                    this.toX = width - 0.1f;
+                float fWidth = AnimatedEmojiEffect.this.bounds.width() * f6;
+                this.fromX = fWidth;
+                if (this.toX > fWidth) {
+                    this.toX = fWidth - 0.1f;
                 }
             }
             this.fromY = (AnimatedEmojiEffect.this.bounds.height() * 0.45f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
             if (AnimatedEmojiEffect.this.longAnimation) {
-                float width2 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
-                this.fromSize = width2;
-                this.toSize = width2 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 1.5f) + 1.5f);
+                float fWidth2 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+                this.fromSize = fWidth2;
+                this.toSize = fWidth2 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 1.5f) + 1.5f);
                 this.toY1 = (this.fromSize / 2.0f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.toY2 = AnimatedEmojiEffect.this.bounds.height() + this.fromSize;
                 this.duration = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
             } else {
-                float width3 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
-                this.fromSize = width3;
-                this.toSize = width3 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 0.5f) + 1.5f);
-                this.toY1 = randY;
-                this.toY2 = randY + AnimatedEmojiEffect.this.bounds.height();
+                float fWidth3 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+                this.fromSize = fWidth3;
+                this.toSize = fWidth3 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 0.5f) + 1.5f);
+                this.toY1 = fRandY;
+                this.toY2 = fRandY + AnimatedEmojiEffect.this.bounds.height();
                 this.duration = 1800L;
             }
-            this.duration = ((float) this.duration) / 1.75f;
+            this.duration = (long) (this.duration / 1.75f);
             this.mirror = Utilities.fastRandom.nextBoolean();
             this.randomRotation = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
         }

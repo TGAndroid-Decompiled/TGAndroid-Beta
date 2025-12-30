@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
@@ -69,7 +70,7 @@ public class FileUploadOperation {
         void didFinishUploadingFile(FileUploadOperation fileUploadOperation, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2);
     }
 
-    public static class UploadCachedResult {
+    private static class UploadCachedResult {
         private long bytesOffset;
         private byte[] iv;
 
@@ -106,13 +107,13 @@ public class FileUploadOperation {
         AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$start$0();
+            public final void run() throws Exception {
+                this.f$0.lambda$start$0();
             }
         });
     }
 
-    public void lambda$start$0() {
+    public void lambda$start$0() throws Exception {
         this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
         this.slowNetwork = ApplicationLoader.isConnectionSlow();
         if (BuildVars.LOGS_ENABLED) {
@@ -124,25 +125,25 @@ public class FileUploadOperation {
         }
     }
 
-    public void onNetworkChanged(final boolean z) {
+    protected void onNetworkChanged(final boolean z) {
         if (this.state != 1) {
             return;
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$onNetworkChanged$1(z);
+            public final void run() throws Exception {
+                this.f$0.lambda$onNetworkChanged$1(z);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$onNetworkChanged$2();
+                this.f$0.lambda$onNetworkChanged$2();
             }
         });
     }
 
-    public void lambda$onNetworkChanged$1(boolean z) {
+    public void lambda$onNetworkChanged$1(boolean z) throws Exception {
         if (this.slowNetwork != z) {
             this.slowNetwork = z;
             if (BuildVars.LOGS_ENABLED) {
@@ -192,7 +193,7 @@ public class FileUploadOperation {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$cancel$3();
+                this.f$0.lambda$cancel$3();
             }
         });
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
@@ -206,7 +207,7 @@ public class FileUploadOperation {
         }
     }
 
-    private void cleanup() {
+    private void cleanup() throws IOException {
         if (this.preferences == null) {
             this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
         }
@@ -223,31 +224,31 @@ public class FileUploadOperation {
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
 
-    public void checkNewDataAvailable(final long j, final long j2, final Float f) {
+    protected void checkNewDataAvailable(final long j, final long j2, final Float f) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$checkNewDataAvailable$4(f, j2, j);
+            public final void run() throws Exception {
+                this.f$0.lambda$checkNewDataAvailable$4(f, j2, j);
             }
         });
     }
 
-    public void lambda$checkNewDataAvailable$4(java.lang.Float r7, long r8, long r10) {
+    public void lambda$checkNewDataAvailable$4(java.lang.Float r7, long r8, long r10) throws java.lang.Exception {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$checkNewDataAvailable$4(java.lang.Float, long, long):void");
     }
 
     private void storeFileUploadInfo() {
-        SharedPreferences.Editor edit = this.preferences.edit();
-        edit.putInt(this.fileKey + "_time", this.uploadStartTime);
-        edit.putLong(this.fileKey + "_size", this.totalFileSize);
-        edit.putLong(this.fileKey + "_id", this.currentFileId);
-        edit.remove(this.fileKey + "_uploaded");
+        SharedPreferences.Editor editorEdit = this.preferences.edit();
+        editorEdit.putInt(this.fileKey + "_time", this.uploadStartTime);
+        editorEdit.putLong(this.fileKey + "_size", this.totalFileSize);
+        editorEdit.putLong(this.fileKey + "_id", this.currentFileId);
+        editorEdit.remove(this.fileKey + "_uploaded");
         if (this.isEncrypted) {
-            edit.putString(this.fileKey + "_iv", Utilities.bytesToHex(this.iv));
-            edit.putString(this.fileKey + "_ivc", Utilities.bytesToHex(this.ivChange));
-            edit.putString(this.fileKey + "_key", Utilities.bytesToHex(this.key));
+            editorEdit.putString(this.fileKey + "_iv", Utilities.bytesToHex(this.iv));
+            editorEdit.putString(this.fileKey + "_ivc", Utilities.bytesToHex(this.ivChange));
+            editorEdit.putString(this.fileKey + "_key", Utilities.bytesToHex(this.key));
         }
-        edit.commit();
+        editorEdit.commit();
     }
 
     private void calcTotalPartsCount() {
@@ -273,12 +274,12 @@ public class FileUploadOperation {
         this.forceSmallFile = true;
     }
 
-    private void startUploadRequest() {
+    private void startUploadRequest() throws java.lang.Exception {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.startUploadRequest():void");
     }
 
-    public void lambda$startUploadRequest$6(int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
-        long j2;
+    public void lambda$startUploadRequest$6(int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC.TL_error tL_error) throws Exception {
+        long jMax;
         TLRPC.InputEncryptedFile tL_inputEncryptedFileUploaded;
         TLRPC.InputFile tL_inputFile;
         byte[] bArr2 = bArr;
@@ -311,7 +312,7 @@ public class FileUploadOperation {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$startUploadRequest$5(iArr);
+                this.f$0.lambda$startUploadRequest$5(iArr);
             }
         });
         if (tLObject instanceof TLRPC.TL_boolTrue) {
@@ -319,13 +320,13 @@ public class FileUploadOperation {
                 return;
             }
             this.uploadedBytesCount += i4;
-            long j3 = this.estimatedSize;
-            if (j3 != 0) {
-                j2 = Math.max(this.availableSize, j3);
+            long j2 = this.estimatedSize;
+            if (j2 != 0) {
+                jMax = Math.max(this.availableSize, j2);
             } else {
-                j2 = this.totalFileSize;
+                jMax = this.totalFileSize;
             }
-            this.delegate.didChangedUploadProgress(this, this.uploadedBytesCount, j2);
+            this.delegate.didChangedUploadProgress(this, this.uploadedBytesCount, jMax);
             int i7 = this.currentUploadRequetsCount - 1;
             this.currentUploadRequetsCount = i7;
             if (this.isLastPart && i7 == 0 && this.state == 1) {
@@ -389,25 +390,25 @@ public class FileUploadOperation {
                     int i9 = this.lastSavedPartNum;
                     if (i5 == i9) {
                         this.lastSavedPartNum = i9 + 1;
-                        long j4 = j;
+                        long j3 = j;
                         while (true) {
                             UploadCachedResult uploadCachedResult = this.cachedResults.get(this.lastSavedPartNum);
                             if (uploadCachedResult == null) {
                                 break;
                             }
-                            j4 = uploadCachedResult.bytesOffset;
+                            j3 = uploadCachedResult.bytesOffset;
                             bArr2 = uploadCachedResult.iv;
                             this.cachedResults.remove(this.lastSavedPartNum);
                             this.lastSavedPartNum++;
                         }
                         boolean z = this.isBigFile;
-                        if ((z && j4 % 1048576 == 0) || (!z && this.saveInfoTimes == 0)) {
-                            SharedPreferences.Editor edit = this.preferences.edit();
-                            edit.putLong(this.fileKey + "_uploaded", j4);
+                        if ((z && j3 % 1048576 == 0) || (!z && this.saveInfoTimes == 0)) {
+                            SharedPreferences.Editor editorEdit = this.preferences.edit();
+                            editorEdit.putLong(this.fileKey + "_uploaded", j3);
                             if (this.isEncrypted) {
-                                edit.putString(this.fileKey + "_ivc", Utilities.bytesToHex(bArr2));
+                                editorEdit.putString(this.fileKey + "_ivc", Utilities.bytesToHex(bArr2));
                             }
-                            edit.commit();
+                            editorEdit.commit();
                         }
                     } else {
                         UploadCachedResult uploadCachedResult2 = new UploadCachedResult();
@@ -437,13 +438,13 @@ public class FileUploadOperation {
     public void lambda$startUploadRequest$8() {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$startUploadRequest$7();
+            public final void run() throws Exception {
+                this.f$0.lambda$startUploadRequest$7();
             }
         });
     }
 
-    public void lambda$startUploadRequest$7() {
+    public void lambda$startUploadRequest$7() throws Exception {
         if (this.currentUploadRequetsCount < this.maxRequestsCount) {
             startUploadRequest();
         }

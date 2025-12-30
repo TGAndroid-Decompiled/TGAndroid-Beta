@@ -22,7 +22,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.AutoDeleteMessagesActivity;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.RadioCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
@@ -141,7 +140,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         return this.fragmentView;
     }
 
-    public class AnonymousClass2 implements Runnable {
+    class AnonymousClass2 implements Runnable {
         AnonymousClass2() {
         }
 
@@ -152,7 +151,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             usersSelectActivity.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
                 @Override
                 public final void didSelectChats(ArrayList arrayList, int i) {
-                    AutoDeleteMessagesActivity.AnonymousClass2.this.lambda$run$1(arrayList, i);
+                    this.f$0.lambda$run$1(arrayList, i);
                 }
             });
             AutoDeleteMessagesActivity.this.presentFragment(usersSelectActivity);
@@ -162,7 +161,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AutoDeleteMessagesActivity.AnonymousClass2.this.lambda$run$0(arrayList);
+                    this.f$0.lambda$run$0(arrayList);
                 }
             }, 100L);
         }
@@ -188,13 +187,13 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             ((RadioCellInternal) this.arrayList.get(i)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AutoDeleteMessagesActivity.this.lambda$updateItems$2(view);
+                    this.f$0.lambda$updateItems$2(view);
                 }
             });
         }
     }
 
-    public class AnonymousClass3 implements AlertsCreator.ScheduleDatePickerDelegate {
+    class AnonymousClass3 implements AlertsCreator.ScheduleDatePickerDelegate {
         AnonymousClass3() {
         }
 
@@ -203,7 +202,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AutoDeleteMessagesActivity.AnonymousClass3.this.lambda$didSelectDate$0(i);
+                    this.f$0.lambda$didSelectDate$0(i);
                 }
             }, 50L);
         }
@@ -232,7 +231,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    AutoDeleteMessagesActivity.this.lambda$updateItems$1(view, alertDialog, i2);
+                    this.f$0.lambda$updateItems$1(view, alertDialog, i2);
                 }
             });
             builder.show();
@@ -317,7 +316,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         BulletinFactory.of(this).createSimpleBulletin(R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutoDeleteGlobalTimerEnabled", R.string.AutoDeleteGlobalTimerEnabled, LocaleController.formatTTLString(i * 60)))).show();
     }
 
-    public class RadioCellInternal extends RadioCell {
+    private class RadioCellInternal extends RadioCell {
         boolean custom;
         int time;
 

@@ -175,24 +175,24 @@ public abstract class FilterTabsView extends FrameLayout {
         }
 
         public int getWidth(boolean z) {
-            int i;
-            int ceil = (int) Math.ceil(HintView2.measureCorrectly(this.title, FilterTabsView.this.textPaint));
-            this.titleWidth = ceil;
+            int tabCounter;
+            int iCeil = (int) Math.ceil(HintView2.measureCorrectly(this.title, FilterTabsView.this.textPaint));
+            this.titleWidth = iCeil;
             if (z) {
-                i = FilterTabsView.this.delegate.getTabCounter(this.id);
-                if (i < 0) {
-                    i = 0;
+                tabCounter = FilterTabsView.this.delegate.getTabCounter(this.id);
+                if (tabCounter < 0) {
+                    tabCounter = 0;
                 }
                 if (z) {
-                    this.counter = i;
+                    this.counter = tabCounter;
                 }
             } else {
-                i = this.counter;
+                tabCounter = this.counter;
             }
-            if (i > 0) {
-                ceil += Math.max(AndroidUtilities.dp(10.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(i))))) + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(6.0f);
+            if (tabCounter > 0) {
+                iCeil += Math.max(AndroidUtilities.dp(2.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(tabCounter))))) + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(4.0f);
             }
-            return Math.max(AndroidUtilities.dp(40.0f), ceil);
+            return Math.max(AndroidUtilities.dp(24.0f), iCeil);
         }
 
         public boolean setTitle(String str, ArrayList arrayList, boolean z) {
@@ -201,9 +201,9 @@ public abstract class FilterTabsView extends FrameLayout {
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             this.title = spannableStringBuilder;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, FilterTabsView.this.textPaint.getFontMetricsInt(), false);
-            this.title = replaceEmoji;
-            this.title = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, FilterTabsView.this.textPaint.getFontMetricsInt());
+            CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, FilterTabsView.this.textPaint.getFontMetricsInt(), false);
+            this.title = charSequenceReplaceEmoji;
+            this.title = MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, arrayList, FilterTabsView.this.textPaint.getFontMetricsInt());
             this.noanimate = z;
             return true;
         }
@@ -318,7 +318,7 @@ public abstract class FilterTabsView extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(32.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
+            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(21.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
         }
 
         @Override
@@ -339,61 +339,61 @@ public abstract class FilterTabsView extends FrameLayout {
         public boolean animateChange() {
             boolean z;
             String str;
-            int i;
+            int iMax;
             CharSequence charSequence;
             CharSequence charSequence2;
             boolean z2;
-            int i2 = this.currentTab.counter;
-            int i3 = this.lastTabCount;
-            if (i2 != i3) {
+            int i = this.currentTab.counter;
+            int i2 = this.lastTabCount;
+            if (i != i2) {
                 this.animateTabCounter = true;
-                this.animateFromTabCount = i3;
+                this.animateFromTabCount = i2;
                 this.animateFromCountWidth = this.lastCountWidth;
                 this.animateFromCounterWidth = this.lastCounterWidth;
-                if (i3 > 0 && i2 > 0) {
-                    String valueOf = String.valueOf(i3);
-                    String valueOf2 = String.valueOf(this.currentTab.counter);
-                    if (valueOf.length() == valueOf2.length()) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(valueOf2);
-                        for (int i4 = 0; i4 < valueOf.length(); i4++) {
-                            if (valueOf.charAt(i4) == valueOf2.charAt(i4)) {
-                                int i5 = i4 + 1;
-                                spannableStringBuilder.setSpan(new EmptyStubSpan(), i4, i5, 0);
-                                spannableStringBuilder2.setSpan(new EmptyStubSpan(), i4, i5, 0);
+                if (i2 > 0 && i > 0) {
+                    String strValueOf = String.valueOf(i2);
+                    String strValueOf2 = String.valueOf(this.currentTab.counter);
+                    if (strValueOf.length() == strValueOf2.length()) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(strValueOf);
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(strValueOf2);
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(strValueOf2);
+                        for (int i3 = 0; i3 < strValueOf.length(); i3++) {
+                            if (strValueOf.charAt(i3) == strValueOf2.charAt(i3)) {
+                                int i4 = i3 + 1;
+                                spannableStringBuilder.setSpan(new EmptyStubSpan(), i3, i4, 0);
+                                spannableStringBuilder2.setSpan(new EmptyStubSpan(), i3, i4, 0);
                             } else {
-                                spannableStringBuilder3.setSpan(new EmptyStubSpan(), i4, i4 + 1, 0);
+                                spannableStringBuilder3.setSpan(new EmptyStubSpan(), i3, i3 + 1, 0);
                             }
                         }
-                        int ceil = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf));
+                        int iCeil = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(strValueOf));
                         TextPaint textPaint = FilterTabsView.this.textCounterPaint;
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-                        this.outCounter = new StaticLayout(spannableStringBuilder, textPaint, ceil, alignment, 1.0f, 0.0f, false);
-                        this.stableCounter = new StaticLayout(spannableStringBuilder3, FilterTabsView.this.textCounterPaint, ceil, alignment, 1.0f, 0.0f, false);
-                        this.inCounter = new StaticLayout(spannableStringBuilder2, FilterTabsView.this.textCounterPaint, ceil, alignment, 1.0f, 0.0f, false);
+                        this.outCounter = new StaticLayout(spannableStringBuilder, textPaint, iCeil, alignment, 1.0f, 0.0f, false);
+                        this.stableCounter = new StaticLayout(spannableStringBuilder3, FilterTabsView.this.textCounterPaint, iCeil, alignment, 1.0f, 0.0f, false);
+                        this.inCounter = new StaticLayout(spannableStringBuilder2, FilterTabsView.this.textCounterPaint, iCeil, alignment, 1.0f, 0.0f, false);
                     } else {
-                        int ceil2 = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf));
+                        int iCeil2 = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(strValueOf));
                         TextPaint textPaint2 = FilterTabsView.this.textCounterPaint;
                         Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
-                        this.outCounter = new StaticLayout(valueOf, textPaint2, ceil2, alignment2, 1.0f, 0.0f, false);
-                        this.inCounter = new StaticLayout(valueOf2, FilterTabsView.this.textCounterPaint, (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf2)), alignment2, 1.0f, 0.0f, false);
+                        this.outCounter = new StaticLayout(strValueOf, textPaint2, iCeil2, alignment2, 1.0f, 0.0f, false);
+                        this.inCounter = new StaticLayout(strValueOf2, FilterTabsView.this.textCounterPaint, (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(strValueOf2)), alignment2, 1.0f, 0.0f, false);
                     }
                 }
                 z = true;
             } else {
                 z = false;
             }
-            int i6 = this.currentTab.counter;
-            if (i6 > 0) {
-                str = String.format("%d", Integer.valueOf(i6));
-                i = Math.max(AndroidUtilities.dp(10.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(str))) + AndroidUtilities.dp(10.0f);
+            int i5 = this.currentTab.counter;
+            if (i5 > 0) {
+                str = String.format("%d", Integer.valueOf(i5));
+                iMax = Math.max(AndroidUtilities.dp(10.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(str))) + AndroidUtilities.dp(10.0f);
             } else {
                 str = null;
-                i = 0;
+                iMax = 0;
             }
-            int dp = this.currentTab.titleWidth + (i != 0 ? i + AndroidUtilities.dp((str != null ? 1.0f : FilterTabsView.this.editingStartAnimationProgress) * 6.0f) : 0);
-            float measuredWidth = (getMeasuredWidth() - dp) / 2;
+            int iDp = this.currentTab.titleWidth + (iMax != 0 ? iMax + AndroidUtilities.dp((str != null ? 1.0f : FilterTabsView.this.editingStartAnimationProgress) * 6.0f) : 0);
+            float measuredWidth = (getMeasuredWidth() - iDp) / 2;
             float f = this.lastTextX;
             if (measuredWidth != f) {
                 this.animateTextX = true;
@@ -411,22 +411,22 @@ public abstract class FilterTabsView extends FrameLayout {
                     charSequence2 = this.lastTitle;
                     z2 = false;
                 }
-                int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(charSequence, charSequence2);
-                if (charSequenceIndexOf >= 0) {
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, FilterTabsView.this.textPaint.getFontMetricsInt(), false);
-                    SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(replaceEmoji);
-                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(replaceEmoji);
-                    if (charSequenceIndexOf != 0) {
-                        spannableStringBuilder5.setSpan(new EmptyStubSpan(), 0, charSequenceIndexOf, 0);
+                int iCharSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(charSequence, charSequence2);
+                if (iCharSequenceIndexOf >= 0) {
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequence, FilterTabsView.this.textPaint.getFontMetricsInt(), false);
+                    SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(charSequenceReplaceEmoji);
+                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(charSequenceReplaceEmoji);
+                    if (iCharSequenceIndexOf != 0) {
+                        spannableStringBuilder5.setSpan(new EmptyStubSpan(), 0, iCharSequenceIndexOf, 0);
                     }
-                    if (charSequence2.length() + charSequenceIndexOf != charSequence.length()) {
-                        spannableStringBuilder5.setSpan(new EmptyStubSpan(), charSequence2.length() + charSequenceIndexOf, charSequence.length(), 0);
+                    if (charSequence2.length() + iCharSequenceIndexOf != charSequence.length()) {
+                        spannableStringBuilder5.setSpan(new EmptyStubSpan(), charSequence2.length() + iCharSequenceIndexOf, charSequence.length(), 0);
                     }
-                    spannableStringBuilder4.setSpan(new EmptyStubSpan(), charSequenceIndexOf, charSequence2.length() + charSequenceIndexOf, 0);
+                    spannableStringBuilder4.setSpan(new EmptyStubSpan(), iCharSequenceIndexOf, charSequence2.length() + iCharSequenceIndexOf, 0);
                     TextPaint textPaint3 = FilterTabsView.this.textPaint;
-                    int dp2 = AndroidUtilities.dp(400.0f);
+                    int iDp2 = AndroidUtilities.dp(400.0f);
                     Layout.Alignment alignment3 = Layout.Alignment.ALIGN_NORMAL;
-                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint3, dp2, alignment3, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint3, iDp2, alignment3, 1.0f, 0.0f, false);
                     this.titleAnimateInLayout = staticLayout;
                     if (this.attached) {
                         this.titleAnimateInLayoutEmojis = AnimatedEmojiSpan.update(this.currentTab.noanimate ? 26 : 0, this, this.titleAnimateInLayoutEmojis, staticLayout);
@@ -438,16 +438,16 @@ public abstract class FilterTabsView extends FrameLayout {
                     }
                     this.animateTextChange = true;
                     this.animateTextChangeOut = z2;
-                    this.titleXOffset = charSequenceIndexOf != 0 ? -this.titleAnimateStableLayout.getPrimaryHorizontal(charSequenceIndexOf) : 0.0f;
+                    this.titleXOffset = iCharSequenceIndexOf != 0 ? -this.titleAnimateStableLayout.getPrimaryHorizontal(iCharSequenceIndexOf) : 0.0f;
                     this.animateFromTitleWidth = this.lastTitleWidth;
                     this.titleAnimateOutLayout = null;
                     AnimatedEmojiSpan.release(this, this.titleAnimateOutLayoutEmojis);
                 } else {
                     CharSequence charSequence4 = this.currentTab.title;
                     TextPaint textPaint4 = FilterTabsView.this.textPaint;
-                    int dp3 = AndroidUtilities.dp(400.0f);
+                    int iDp3 = AndroidUtilities.dp(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
-                    StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint4, dp3, alignment4, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint4, iDp3, alignment4, 1.0f, 0.0f, false);
                     this.titleAnimateInLayout = staticLayout3;
                     if (this.attached) {
                         this.titleAnimateInLayoutEmojis = AnimatedEmojiSpan.update(this.currentTab.noanimate ? 26 : 0, this, this.titleAnimateInLayoutEmojis, staticLayout3);
@@ -465,7 +465,7 @@ public abstract class FilterTabsView extends FrameLayout {
                 }
                 z = true;
             }
-            if (dp == this.lastTabWidth && getMeasuredWidth() == this.lastWidth) {
+            if (iDp == this.lastTabWidth && getMeasuredWidth() == this.lastWidth) {
                 return z;
             }
             this.animateTabWidth = true;
@@ -510,14 +510,14 @@ public abstract class FilterTabsView extends FrameLayout {
                 return;
             }
             AnimatorSet animatorSet = new AnimatorSet();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f));
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f));
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    FilterTabsView.TabView.this.lambda$shakeLockIcon$0(valueAnimator);
+                    this.f$0.lambda$shakeLockIcon$0(valueAnimator);
                 }
             });
-            animatorSet.playTogether(ofFloat);
+            animatorSet.playTogether(valueAnimatorOfFloat);
             animatorSet.setDuration(50L);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -572,11 +572,11 @@ public abstract class FilterTabsView extends FrameLayout {
             @Override
             public void run() {
                 if (FilterTabsView.this.animatingIndicator) {
-                    long elapsedRealtime = SystemClock.elapsedRealtime() - FilterTabsView.this.lastAnimationTime;
-                    if (elapsedRealtime > 17) {
-                        elapsedRealtime = 17;
+                    long jElapsedRealtime = SystemClock.elapsedRealtime() - FilterTabsView.this.lastAnimationTime;
+                    if (jElapsedRealtime > 17) {
+                        jElapsedRealtime = 17;
                     }
-                    FilterTabsView.access$2716(FilterTabsView.this, ((float) elapsedRealtime) / 200.0f);
+                    FilterTabsView.access$2716(FilterTabsView.this, jElapsedRealtime / 200.0f);
                     FilterTabsView filterTabsView = FilterTabsView.this;
                     filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime > 1.0f) {
@@ -610,16 +610,16 @@ public abstract class FilterTabsView extends FrameLayout {
             }
         };
         this.resourcesProvider = resourcesProvider;
-        textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint2.setTextSize(AndroidUtilities.dpf2(11.0f));
         textPaint2.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint3.setStyle(Paint.Style.STROKE);
         textPaint3.setStrokeCap(Paint.Cap.ROUND);
         textPaint3.setStrokeWidth(AndroidUtilities.dp(1.5f));
         this.selectorDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
-        float dpf2 = AndroidUtilities.dpf2(3.0f);
-        this.selectorDrawable.setCornerRadii(new float[]{dpf2, dpf2, dpf2, dpf2, 0.0f, 0.0f, 0.0f, 0.0f});
+        float fDpf2 = AndroidUtilities.dpf2(13.0f);
+        this.selectorDrawable.setCornerRadii(new float[]{fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2});
         this.selectorDrawable.setColor(Theme.getColor(this.tabLineColorKey, resourcesProvider));
         setHorizontalScrollBarEnabled(false);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
@@ -630,16 +630,16 @@ public abstract class FilterTabsView extends FrameLayout {
             }
 
             @Override
-            public boolean allowSelectChildAtPosition(View view) {
+            protected boolean allowSelectChildAtPosition(View view) {
                 return FilterTabsView.this.isEnabled() && FilterTabsView.this.delegate.canPerformActions();
             }
 
             @Override
-            public boolean canHighlightChildAt(View view, float f, float f2) {
+            protected boolean canHighlightChildAt(View view, float f, float f2) {
                 if (FilterTabsView.this.isEditing) {
                     TabView tabView = (TabView) view;
-                    float dp = AndroidUtilities.dp(6.0f);
-                    if (tabView.rect.left - dp < f && tabView.rect.right + dp > f) {
+                    float fDp = AndroidUtilities.dp(6.0f);
+                    if (tabView.rect.left - fDp < f && tabView.rect.right + fDp > f) {
                         return false;
                     }
                 }
@@ -652,9 +652,9 @@ public abstract class FilterTabsView extends FrameLayout {
         this.itemAnimator = anonymousClass4;
         anonymousClass4.setDelayAnimations(false);
         this.listView.setItemAnimator(this.itemAnimator);
-        this.listView.setSelectorType(8);
+        this.listView.setSelectorType(9);
         this.listView.setSelectorRadius(6);
-        this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey));
+        this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey, resourcesProvider));
         RecyclerListView recyclerListView2 = this.listView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, 0 == true ? 1 : 0) {
             @Override
@@ -667,16 +667,16 @@ public abstract class FilterTabsView extends FrameLayout {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     protected void onTargetFound(View view, RecyclerView.State state2, RecyclerView.SmoothScroller.Action action) {
-                        int calculateDxToMakeVisible = calculateDxToMakeVisible(view, getHorizontalSnapPreference());
-                        if (calculateDxToMakeVisible > 0 || (calculateDxToMakeVisible == 0 && view.getLeft() - AndroidUtilities.dp(21.0f) < 0)) {
-                            calculateDxToMakeVisible += AndroidUtilities.dp(60.0f);
-                        } else if (calculateDxToMakeVisible < 0 || (calculateDxToMakeVisible == 0 && view.getRight() + AndroidUtilities.dp(21.0f) > FilterTabsView.this.getMeasuredWidth())) {
-                            calculateDxToMakeVisible -= AndroidUtilities.dp(60.0f);
+                        int iCalculateDxToMakeVisible = calculateDxToMakeVisible(view, getHorizontalSnapPreference());
+                        if (iCalculateDxToMakeVisible > 0 || (iCalculateDxToMakeVisible == 0 && view.getLeft() - AndroidUtilities.dp(21.0f) < 0)) {
+                            iCalculateDxToMakeVisible += AndroidUtilities.dp(60.0f);
+                        } else if (iCalculateDxToMakeVisible < 0 || (iCalculateDxToMakeVisible == 0 && view.getRight() + AndroidUtilities.dp(21.0f) > FilterTabsView.this.getMeasuredWidth())) {
+                            iCalculateDxToMakeVisible -= AndroidUtilities.dp(60.0f);
                         }
-                        int calculateDyToMakeVisible = calculateDyToMakeVisible(view, getVerticalSnapPreference());
-                        int max = Math.max(180, calculateTimeForDeceleration((int) Math.sqrt((calculateDxToMakeVisible * calculateDxToMakeVisible) + (calculateDyToMakeVisible * calculateDyToMakeVisible))));
-                        if (max > 0) {
-                            action.update(-calculateDxToMakeVisible, -calculateDyToMakeVisible, max, this.mDecelerateInterpolator);
+                        int iCalculateDyToMakeVisible = calculateDyToMakeVisible(view, getVerticalSnapPreference());
+                        int iMax = Math.max(180, calculateTimeForDeceleration((int) Math.sqrt((iCalculateDxToMakeVisible * iCalculateDxToMakeVisible) + (iCalculateDyToMakeVisible * iCalculateDyToMakeVisible))));
+                        if (iMax > 0) {
+                            action.update(-iCalculateDxToMakeVisible, -iCalculateDyToMakeVisible, iMax, this.mDecelerateInterpolator);
                         }
                     }
                 };
@@ -695,7 +695,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.listView);
-        this.listView.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
+        this.listView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         this.listView.setClipToPadding(false);
         this.listView.setDrawSelectorBehind(true);
         ListAdapter listAdapter = new ListAdapter(context);
@@ -715,15 +715,13 @@ public abstract class FilterTabsView extends FrameLayout {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                FilterTabsView.this.lambda$new$0(view, i, f, f2);
+                this.f$0.lambda$new$0(view, i, f, f2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i) {
-                boolean lambda$new$1;
-                lambda$new$1 = FilterTabsView.this.lambda$new$1(view, i);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(view, i);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -735,26 +733,26 @@ public abstract class FilterTabsView extends FrameLayout {
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    public class AnonymousClass4 extends DefaultItemAnimator {
+    class AnonymousClass4 extends DefaultItemAnimator {
         AnonymousClass4() {
         }
 
         @Override
         public void runPendingAnimations() {
-            boolean isEmpty = this.mPendingRemovals.isEmpty();
-            boolean isEmpty2 = this.mPendingMoves.isEmpty();
-            boolean isEmpty3 = this.mPendingChanges.isEmpty();
-            boolean isEmpty4 = this.mPendingAdditions.isEmpty();
-            if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            boolean zIsEmpty = this.mPendingRemovals.isEmpty();
+            boolean zIsEmpty2 = this.mPendingMoves.isEmpty();
+            boolean zIsEmpty3 = this.mPendingChanges.isEmpty();
+            boolean zIsEmpty4 = this.mPendingAdditions.isEmpty();
+            if (!zIsEmpty || !zIsEmpty2 || !zIsEmpty4 || !zIsEmpty3) {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.1f);
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        FilterTabsView.AnonymousClass4.this.lambda$runPendingAnimations$0(valueAnimator);
+                        this.f$0.lambda$runPendingAnimations$0(valueAnimator);
                     }
                 });
-                ofFloat.setDuration(getMoveDuration());
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(getMoveDuration());
+                valueAnimatorOfFloat.start();
             }
             super.runPendingAnimations();
         }
@@ -780,13 +778,13 @@ public abstract class FilterTabsView extends FrameLayout {
                     view.setTranslationY(-i6);
                 }
                 TabView tabView = (TabView) viewHolder.itemView;
-                boolean animateChange = tabView.animateChange();
-                if (animateChange) {
+                boolean zAnimateChange = tabView.animateChange();
+                if (zAnimateChange) {
                     tabView.changeProgress = 0.0f;
                     tabView.animateChange = true;
                     FilterTabsView.this.invalidate();
                 }
-                if (i5 == 0 && i6 == 0 && !animateChange) {
+                if (i5 == 0 && i6 == 0 && !zAnimateChange) {
                     dispatchMoveFinished(viewHolder);
                     return false;
                 }
@@ -797,7 +795,7 @@ public abstract class FilterTabsView extends FrameLayout {
         }
 
         @Override
-        public void animateMoveImpl(RecyclerView.ViewHolder viewHolder, DefaultItemAnimator.MoveInfo moveInfo) {
+        protected void animateMoveImpl(RecyclerView.ViewHolder viewHolder, DefaultItemAnimator.MoveInfo moveInfo) {
             super.animateMoveImpl(viewHolder, moveInfo);
             View view = viewHolder.itemView;
             if (view instanceof TabView) {
@@ -809,22 +807,22 @@ public abstract class FilterTabsView extends FrameLayout {
                         tabView.changeAnimator.removeAllUpdateListeners();
                         tabView.changeAnimator.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterTabsView.AnonymousClass4.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
+                            FilterTabsView.AnonymousClass4.lambda$animateMoveImpl$1(tabView, valueAnimator2);
                         }
                     });
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             tabView.clearTransitionParams();
                         }
                     });
-                    tabView.changeAnimator = ofFloat;
-                    ofFloat.setDuration(getMoveDuration());
-                    ofFloat.start();
+                    tabView.changeAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.setDuration(getMoveDuration());
+                    valueAnimatorOfFloat.start();
                 }
             }
         }
@@ -869,8 +867,8 @@ public abstract class FilterTabsView extends FrameLayout {
                 }
             }
             if (i != 0) {
-                float dp = AndroidUtilities.dp(6.0f);
-                if (tabView.rect.left - dp >= f || tabView.rect.right + dp <= f) {
+                float fDp = AndroidUtilities.dp(6.0f);
+                if (tabView.rect.left - fDp >= f || tabView.rect.right + fDp <= f) {
                     return;
                 }
                 this.delegate.onDeletePressed(tabView.currentTab.id);
@@ -1004,7 +1002,7 @@ public abstract class FilterTabsView extends FrameLayout {
         Tab tab = new Tab(i, text(str, arrayList), z);
         tab.isDefault = z2;
         tab.isLocked = z3;
-        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(32.0f);
+        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(21.0f);
         this.tabs.add(tab);
     }
 
@@ -1034,7 +1032,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.aUnactiveTextColorKey = i3;
         this.aBackgroundColorKey = i5;
         this.selectorColorKey = i4;
-        this.listView.setSelectorDrawableColor(Theme.getColor(i4));
+        this.listView.setSelectorDrawableColor(Theme.getColor(i4, this.resourcesProvider));
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.colorChangeAnimator = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<FilterTabsView, Float>) this.COLORS, 0.0f, 1.0f));
@@ -1067,6 +1065,10 @@ public abstract class FilterTabsView extends FrameLayout {
         return this.positionToId.get(0, 0);
     }
 
+    public int getLastTabId() {
+        return this.positionToId.get(getTabsCount() - 1, 0);
+    }
+
     public int getSelectorColorKey() {
         return this.selectorColorKey;
     }
@@ -1074,13 +1076,13 @@ public abstract class FilterTabsView extends FrameLayout {
     public void updateTabsWidths() {
         this.positionToX.clear();
         this.positionToWidth.clear();
-        int dp = AndroidUtilities.dp(7.0f);
+        int iDp = AndroidUtilities.dp(7.0f);
         int size = this.tabs.size();
         for (int i = 0; i < size; i++) {
             int width = ((Tab) this.tabs.get(i)).getWidth(false);
             this.positionToWidth.put(i, width);
-            this.positionToX.put(i, (this.additionalTabWidth / 2) + dp);
-            dp += width + AndroidUtilities.dp(32.0f) + this.additionalTabWidth;
+            this.positionToX.put(i, (this.additionalTabWidth / 2) + iDp);
+            iDp += width + AndroidUtilities.dp(21.0f) + this.additionalTabWidth;
         }
     }
 
@@ -1093,20 +1095,16 @@ public abstract class FilterTabsView extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
-            Tab findDefaultTab = findDefaultTab();
-            if (findDefaultTab != null) {
+            Tab tabFindDefaultTab = findDefaultTab();
+            if (tabFindDefaultTab != null) {
                 int i3 = R.string.FilterAllChats;
-                findDefaultTab.setTitle(LocaleController.getString(i3), null, false);
-                int width = findDefaultTab.getWidth(false);
-                if (this.allTabsWidth > size) {
-                    i3 = R.string.FilterAllChatsShort;
-                }
-                findDefaultTab.setTitle(LocaleController.getString(i3), null, false);
-                int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
+                tabFindDefaultTab.setTitle(LocaleController.getString(i3), null, false);
+                tabFindDefaultTab.getWidth(false);
+                tabFindDefaultTab.setTitle(this.allTabsWidth > size ? LocaleController.getString(R.string.FilterAllChatsShort) : LocaleController.getString(i3), null, false);
+                tabFindDefaultTab.getWidth(false);
                 int i4 = this.additionalTabWidth;
-                int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
-                this.additionalTabWidth = size2;
-                if (i4 != size2) {
+                this.additionalTabWidth = 0;
+                if (i4 != 0) {
                     this.ignoreLayout = true;
                     RecyclerView.ItemAnimator itemAnimator = this.listView.getItemAnimator();
                     this.listView.setItemAnimator(null);
@@ -1251,12 +1249,12 @@ public abstract class FilterTabsView extends FrameLayout {
             findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
             int size = this.tabs.size();
             for (int i3 = 0; i3 < size; i3++) {
-                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(32.0f);
+                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(21.0f);
             }
         }
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override
@@ -1285,7 +1283,7 @@ public abstract class FilterTabsView extends FrameLayout {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new TabView(this.mContext));
+            return new RecyclerListView.Holder(FilterTabsView.this.new TabView(this.mContext));
         }
 
         @Override
@@ -1353,9 +1351,9 @@ public abstract class FilterTabsView extends FrameLayout {
             for (int i4 = i - 1; i4 >= 0; i4--) {
                 FilterTabsView.this.positionToStableId.put(i4 + 1, FilterTabsView.this.positionToStableId.get(i4));
             }
-            MessagesController.DialogFilter remove = dialogFilters.remove(i);
-            remove.order = 0;
-            dialogFilters.add(0, remove);
+            MessagesController.DialogFilter dialogFilterRemove = dialogFilters.remove(i);
+            dialogFilterRemove.order = 0;
+            dialogFilters.add(0, dialogFilterRemove);
             FilterTabsView.this.positionToStableId.put(0, i2);
             FilterTabsView.this.tabs.add(0, (Tab) FilterTabsView.this.tabs.remove(i));
             ((Tab) FilterTabsView.this.tabs.get(0)).id = i3;
@@ -1387,7 +1385,7 @@ public abstract class FilterTabsView extends FrameLayout {
         private Runnable resetDefaultPosition = new Runnable() {
             @Override
             public final void run() {
-                FilterTabsView.TouchHelperCallback.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
 
@@ -1460,16 +1458,16 @@ public abstract class FilterTabsView extends FrameLayout {
     }
 
     public boolean currentTabIsDefault() {
-        Tab findDefaultTab = findDefaultTab();
-        return findDefaultTab != null && findDefaultTab.id == this.selectedTabId;
+        Tab tabFindDefaultTab = findDefaultTab();
+        return tabFindDefaultTab != null && tabFindDefaultTab.id == this.selectedTabId;
     }
 
     public int getDefaultTabId() {
-        Tab findDefaultTab = findDefaultTab();
-        if (findDefaultTab == null) {
+        Tab tabFindDefaultTab = findDefaultTab();
+        if (tabFindDefaultTab == null) {
             return -1;
         }
-        return findDefaultTab.id;
+        return tabFindDefaultTab.id;
     }
 
     public boolean isEmpty() {

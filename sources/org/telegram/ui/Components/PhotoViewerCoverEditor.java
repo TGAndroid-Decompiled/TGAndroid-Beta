@@ -11,7 +11,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.PhotoViewerCoverEditor;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.GallerySheet;
@@ -63,7 +62,7 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         editCoverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PhotoViewerCoverEditor.this.lambda$new$1(context, resourcesProvider, view);
+                this.f$0.lambda$new$1(context, resourcesProvider, view);
             }
         });
         addView(this.openGalleryButton, LayoutHelper.createFrame(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 134.0f));
@@ -77,7 +76,7 @@ public class PhotoViewerCoverEditor extends FrameLayout {
             gallerySheet.setOnDismissListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerCoverEditor.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             });
             this.gallerySheet.setOnGalleryImage(this.onGalleryListener);
@@ -89,11 +88,11 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         this.gallerySheet = null;
     }
 
-    public class AnonymousClass2 implements TimelineView.TimelineDelegate {
+    class AnonymousClass2 implements TimelineView.TimelineDelegate {
         private Runnable betterSeek = new Runnable() {
             @Override
             public final void run() {
-                PhotoViewerCoverEditor.AnonymousClass2.this.lambda$$0();
+                this.f$0.lambda$$0();
             }
         };
 
@@ -209,8 +208,8 @@ public class PhotoViewerCoverEditor extends FrameLayout {
             if (PhotoViewerCoverEditor.this.videoPlayer == null) {
                 return;
             }
-            float max = 2.8f / ((float) Math.max(60L, PhotoViewerCoverEditor.this.videoPlayer.getDuration()));
-            PhotoViewerCoverEditor.this.time = (f + (max * (f / (1.0f - max)))) * ((float) r0);
+            float fMax = 2.8f / Math.max(60L, r0);
+            PhotoViewerCoverEditor.this.time = (long) ((f + (fMax * (f / (1.0f - fMax)))) * PhotoViewerCoverEditor.this.videoPlayer.getDuration());
             PhotoViewerCoverEditor.this.videoPlayer.seekTo(PhotoViewerCoverEditor.this.time, !z);
             if (z) {
                 return;
@@ -239,10 +238,10 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         }
         this.timelineView.setVideo(false, videoPlayer.getCurrentUri().getPath(), videoPlayer.getDuration(), videoPlayer.player.getVolume());
         long duration = videoPlayer.getDuration();
-        float max = 2.8f / ((float) Math.max(60L, duration));
-        float max2 = (((float) this.time) / ((float) Math.max(1L, videoPlayer.getDuration()))) * (1.0f - max);
-        this.timelineView.setVideoLeft(max2);
-        this.timelineView.setVideoRight(max2 + max);
+        float fMax = 2.8f / Math.max(60L, duration);
+        float fMax2 = (this.time / Math.max(1L, videoPlayer.getDuration())) * (1.0f - fMax);
+        this.timelineView.setVideoLeft(fMax2);
+        this.timelineView.setVideoRight(fMax2 + fMax);
         this.timelineView.setCoverVideo(0L, duration);
         this.timelineView.normalizeScrollByVideo();
     }

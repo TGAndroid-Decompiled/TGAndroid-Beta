@@ -41,7 +41,7 @@ public abstract class ChatActivityContainer extends FrameLayout {
         initChatActivity();
     }
 
-    public void initChatActivity() {
+    protected void initChatActivity() {
         if (this.chatActivity.onFragmentCreate()) {
             ChatActivity chatActivity = this.chatActivity;
             this.fragmentView = chatActivity.fragmentView;

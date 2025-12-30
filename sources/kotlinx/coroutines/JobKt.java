@@ -1,15 +1,12 @@
 package kotlinx.coroutines;
 
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.Future;
 import kotlin.coroutines.CoroutineContext;
 
 public abstract class JobKt {
     public static final CompletableJob Job(Job job) {
         return JobKt__JobKt.Job(job);
-    }
-
-    public static CompletableJob Job$default(Job job, int i, Object obj) {
-        return JobKt__JobKt.Job$default(job, i, obj);
     }
 
     public static final void cancel(CoroutineContext coroutineContext, CancellationException cancellationException) {
@@ -18,6 +15,10 @@ public abstract class JobKt {
 
     public static final void cancelChildren(CoroutineContext coroutineContext, CancellationException cancellationException) {
         JobKt__JobKt.cancelChildren(coroutineContext, cancellationException);
+    }
+
+    public static final void cancelFutureOnCancellation(CancellableContinuation cancellableContinuation, Future future) {
+        JobKt__FutureKt.cancelFutureOnCancellation(cancellableContinuation, future);
     }
 
     public static final DisposableHandle disposeOnCompletion(Job job, DisposableHandle disposableHandle) {
@@ -38,9 +39,5 @@ public abstract class JobKt {
 
     public static final DisposableHandle invokeOnCompletion(Job job, boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler) {
         return JobKt__JobKt.invokeOnCompletion(job, z, z2, internalCompletionHandler);
-    }
-
-    public static DisposableHandle invokeOnCompletion$default(Job job, boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler, int i, Object obj) {
-        return JobKt__JobKt.invokeOnCompletion$default(job, z, z2, internalCompletionHandler, i, obj);
     }
 }

@@ -34,7 +34,7 @@ public class LocationSharingService extends Service implements NotificationCente
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                LocationSharingService.this.lambda$onCreate$1();
+                this.f$0.lambda$onCreate$1();
             }
         };
         this.runnable = runnable;
@@ -78,7 +78,7 @@ public class LocationSharingService extends Service implements NotificationCente
         handler.post(new Runnable() {
             @Override
             public final void run() {
-                LocationSharingService.this.lambda$didReceivedNotification$2();
+                this.f$0.lambda$didReceivedNotification$2();
             }
         });
     }
@@ -103,7 +103,7 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     private void updateNotification(boolean z) {
-        String formatPluralString;
+        String pluralString;
         String string;
         if (this.builder == null) {
             return;
@@ -114,24 +114,24 @@ public class LocationSharingService extends Service implements NotificationCente
             long dialogId = sharingLocationInfo.messageObject.getDialogId();
             int i = sharingLocationInfo.messageObject.currentAccount;
             if (DialogObject.isUserDialog(dialogId)) {
-                formatPluralString = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(dialogId)));
+                pluralString = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(dialogId)));
                 string = LocaleController.getString(R.string.AttachLiveLocationIsSharing);
             } else {
                 TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId));
                 if (chat != null) {
-                    formatPluralString = chat.title;
+                    pluralString = chat.title;
                 } else {
-                    formatPluralString = "";
+                    pluralString = "";
                 }
                 string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChat);
             }
         } else {
-            formatPluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
+            pluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
             string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChats);
         }
-        String format = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), formatPluralString);
-        this.builder.setTicker(format);
-        this.builder.setContentText(format);
+        String str = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), pluralString);
+        this.builder.setTicker(str);
+        this.builder.setContentText(str);
         if (z) {
             NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(6, this.builder.build());
         }

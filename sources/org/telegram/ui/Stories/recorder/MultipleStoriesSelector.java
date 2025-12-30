@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -43,7 +44,6 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.Stories.recorder.MultipleStoriesSelector;
 
 public abstract class MultipleStoriesSelector extends FrameLayout {
     private AnimatedFloat animatedHint;
@@ -86,7 +86,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.hideHint = new Runnable() {
             @Override
             public final void run() {
-                MultipleStoriesSelector.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.buttonBounce = new ButtonBounce(this);
@@ -116,12 +116,12 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, UserConfig.selectedAccount, 0, false, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                MultipleStoriesSelector.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                MultipleStoriesSelector.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null, resourcesProvider, -1, 0);
         this.listView = anonymousClass1;
@@ -134,7 +134,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         anonymousClass1.listenReorder(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                MultipleStoriesSelector.this.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
             }
         }, true);
         showList(false, false);
@@ -145,7 +145,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         paint.setColor(-1);
     }
 
-    public class AnonymousClass1 extends UniversalRecyclerView {
+    class AnonymousClass1 extends UniversalRecyclerView {
         AnonymousClass1(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider, int i3, int i4) {
             super(context, i, i2, z, callback2, callback5, callback5Return, resourcesProvider, i3, i4);
         }
@@ -160,7 +160,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             AndroidUtilities.forEachViews((RecyclerView) MultipleStoriesSelector.this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    MultipleStoriesSelector.AnonymousClass1.this.lambda$swappedElements$0((View) obj);
+                    this.f$0.lambda$swappedElements$0((View) obj);
                 }
             });
         }
@@ -192,7 +192,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                MultipleStoriesSelector.this.lambda$updateItemsAnimated$0((View) obj);
+                this.f$0.lambda$updateItemsAnimated$0((View) obj);
             }
         });
     }
@@ -215,11 +215,11 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         int i = 0;
         for (int i2 = 0; i2 < this.selectedOrder.size(); i2++) {
             Integer num = (Integer) this.selectedOrder.get(i2);
-            final int intValue = num.intValue();
-            arrayList.add(EntryView.Factory.asStoryEntry(intValue, i, (StoryEntry) this.stories.get(intValue)).setChecked(this.selectedStory == intValue).setCollapsed(this.selectedStories.contains(num)).setClickCallback(new View.OnClickListener() {
+            final int iIntValue = num.intValue();
+            arrayList.add(EntryView.Factory.asStoryEntry(iIntValue, i, (StoryEntry) this.stories.get(iIntValue)).setChecked(this.selectedStory == iIntValue).setCollapsed(this.selectedStories.contains(num)).setClickCallback(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MultipleStoriesSelector.this.lambda$fillItems$1(intValue, view);
+                    this.f$0.lambda$fillItems$1(iIntValue, view);
                 }
             }));
             if (this.selectedStories.contains(num)) {
@@ -283,7 +283,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                MultipleStoriesSelector.this.lambda$setSelected$3(i, (View) obj);
+                this.f$0.lambda$setSelected$3(i, (View) obj);
             }
         });
     }
@@ -352,41 +352,41 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         if (this.hint != null) {
             float f = this.animatedHint.set(this.hintShown);
             if (f > 0.0f) {
-                float lerp = AndroidUtilities.lerp(0.6f, 1.0f, f);
-                float dp = AndroidUtilities.dp(11.0f) + this.hint.getWidth() + AndroidUtilities.dp(11.0f);
-                float dp2 = AndroidUtilities.dp(32.0f);
+                float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, f);
+                float fDp = AndroidUtilities.dp(11.0f) + this.hint.getWidth() + AndroidUtilities.dp(11.0f);
+                float fDp2 = AndroidUtilities.dp(32.0f);
                 RectF rectF2 = this.hintBounds;
                 RectF rectF3 = this.buttonBounds;
-                float f2 = rectF3.right - dp;
-                float dp3 = (rectF3.top - AndroidUtilities.dp(9.66f)) - dp2;
+                float f2 = rectF3.right - fDp;
+                float fDp3 = (rectF3.top - AndroidUtilities.dp(9.66f)) - fDp2;
                 RectF rectF4 = this.buttonBounds;
-                rectF2.set(f2, dp3, rectF4.right, rectF4.top - AndroidUtilities.dp(9.66f));
+                rectF2.set(f2, fDp3, rectF4.right, rectF4.top - AndroidUtilities.dp(9.66f));
                 RectF rectF5 = this.hintBounds;
-                float width = rectF5.right - (rectF5.width() * lerp);
+                float fWidth = rectF5.right - (rectF5.width() * fLerp);
                 RectF rectF6 = this.hintBounds;
-                float height = rectF6.bottom - (rectF6.height() * lerp);
+                float fHeight = rectF6.bottom - (rectF6.height() * fLerp);
                 RectF rectF7 = this.hintBounds;
-                rectF5.set(width, height, rectF7.right, rectF7.bottom);
+                rectF5.set(fWidth, fHeight, rectF7.right, rectF7.bottom);
                 this.hintBounds.offset(0.0f, AndroidUtilities.dp(4.0f) * (1.0f - f));
                 this.hintClipPath.rewind();
-                float dp4 = AndroidUtilities.dp(8.0f);
+                float fDp4 = AndroidUtilities.dp(8.0f);
                 RectF rectF8 = this.hintArc;
                 RectF rectF9 = this.hintBounds;
                 float f3 = rectF9.left;
                 float f4 = rectF9.top;
-                rectF8.set(f3, f4, f3 + dp4, f4 + dp4);
+                rectF8.set(f3, f4, f3 + fDp4, f4 + fDp4);
                 this.hintClipPath.arcTo(this.hintArc, 180.0f, 90.0f, false);
                 RectF rectF10 = this.hintArc;
                 RectF rectF11 = this.hintBounds;
                 float f5 = rectF11.right;
                 float f6 = rectF11.top;
-                rectF10.set(f5 - dp4, f6, f5, f6 + dp4);
+                rectF10.set(f5 - fDp4, f6, f5, f6 + fDp4);
                 this.hintClipPath.arcTo(this.hintArc, 270.0f, 90.0f, false);
                 RectF rectF12 = this.hintArc;
                 RectF rectF13 = this.hintBounds;
                 float f7 = rectF13.right;
                 float f8 = rectF13.bottom;
-                rectF12.set(f7 - dp4, f8 - dp4, f7, f8);
+                rectF12.set(f7 - fDp4, f8 - fDp4, f7, f8);
                 this.hintClipPath.arcTo(this.hintArc, 0.0f, 90.0f, false);
                 this.hintClipPath.lineTo(this.hintBounds.right - AndroidUtilities.dp(8.0f), this.hintBounds.bottom);
                 this.hintClipPath.lineTo(this.hintBounds.right - AndroidUtilities.dp(14.5f), this.hintBounds.bottom + AndroidUtilities.dp(5.66f));
@@ -395,18 +395,18 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 RectF rectF15 = this.hintBounds;
                 float f9 = rectF15.left;
                 float f10 = rectF15.bottom;
-                rectF14.set(f9, f10 - dp4, f9 + dp4, f10);
+                rectF14.set(f9, f10 - fDp4, f9 + fDp4, f10);
                 this.hintClipPath.arcTo(this.hintArc, 90.0f, 90.0f, false);
                 this.hintClipPath.close();
                 this.hintBounds.bottom += AndroidUtilities.dp(5.66f);
                 canvas.save();
                 canvas.clipPath(this.hintClipPath);
-                drawBlur(canvas, this.hintBounds, dp4, f);
+                drawBlur(canvas, this.hintBounds, fDp4, f);
                 canvas.restore();
                 canvas.save();
                 RectF rectF16 = this.hintBounds;
-                canvas.scale(lerp, lerp, rectF16.right, rectF16.bottom);
-                this.hint.draw(canvas, AndroidUtilities.dp(11.0f) + (this.buttonBounds.right - dp), (this.buttonBounds.top - AndroidUtilities.dp(9.66f)) - (dp2 / 2.0f), -1, f);
+                canvas.scale(fLerp, fLerp, rectF16.right, rectF16.bottom);
+                this.hint.draw(canvas, AndroidUtilities.dp(11.0f) + (this.buttonBounds.right - fDp), (this.buttonBounds.top - AndroidUtilities.dp(9.66f)) - (fDp2 / 2.0f), -1, f);
                 canvas.restore();
             }
         }
@@ -424,24 +424,24 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             this.clipPath.addRoundRect(this.listBounds, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
             canvas.save();
             canvas.clipPath(this.clipPath);
-            boolean drawChild = super.drawChild(canvas, view, j);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
             canvas.restore();
-            return drawChild;
+            return zDrawChild;
         }
         return super.drawChild(canvas, view, j);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = this.buttonBounds.contains(motionEvent.getX(), motionEvent.getY());
+        boolean zContains = this.buttonBounds.contains(motionEvent.getX(), motionEvent.getY());
         if (motionEvent.getAction() == 0) {
-            this.buttonBounce.setPressed(contains);
-            if (this.listShown && !contains && !this.listBounds.contains(motionEvent.getX(), motionEvent.getY())) {
+            this.buttonBounce.setPressed(zContains);
+            if (this.listShown && !zContains && !this.listBounds.contains(motionEvent.getX(), motionEvent.getY())) {
                 showList(false, true);
                 return true;
             }
         } else if (motionEvent.getAction() == 2) {
-            if (!contains) {
+            if (!zContains) {
                 this.buttonBounce.setPressed(false);
             }
         } else if (motionEvent.getAction() == 1) {
@@ -474,7 +474,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    MultipleStoriesSelector.this.lambda$showList$4(valueAnimator);
+                    this.f$0.lambda$showList$4(valueAnimator);
                 }
             }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(360L).start();
         } else {
@@ -644,9 +644,9 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             return this.checkboxBounce.isPressed() || super.onTouchEvent(motionEvent);
         }
 
-        public void set(int i, int i2, final StoryEntry storyEntry) {
+        public void set(int i, int i2, final StoryEntry storyEntry) throws NumberFormatException, IOException {
             String str;
-            Uri withAppendedId;
+            Uri uriWithAppendedId;
             if (this.lastId != i) {
                 this.lastEntryPath = null;
                 this.imageReceiver.clearImage();
@@ -662,36 +662,36 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        MultipleStoriesSelector.EntryView.this.lambda$set$1(storyEntry);
+                        this.f$0.lambda$set$1(storyEntry);
                     }
                 });
                 return;
             }
             if (storyEntry.isVideo) {
-                Bitmap bitmap = storyEntry.blurredVideoThumb;
-                if (bitmap == null) {
-                    bitmap = null;
+                Bitmap bitmapLoadThumbnail = storyEntry.blurredVideoThumb;
+                if (bitmapLoadThumbnail == null) {
+                    bitmapLoadThumbnail = null;
                 }
-                if (bitmap == null && (str = storyEntry.thumbPath) != null && str.startsWith("vthumb://")) {
+                if (bitmapLoadThumbnail == null && (str = storyEntry.thumbPath) != null && str.startsWith("vthumb://")) {
                     if (TextUtils.equals(this.lastEntryPath, storyEntry.thumbPath)) {
                         return;
                     }
                     String str2 = storyEntry.thumbPath;
                     this.lastEntryPath = str2;
-                    long parseLong = Long.parseLong(str2.substring(9));
-                    if (bitmap == null && Build.VERSION.SDK_INT >= 29) {
+                    long j = Long.parseLong(str2.substring(9));
+                    if (bitmapLoadThumbnail == null && Build.VERSION.SDK_INT >= 29) {
                         try {
                             if (storyEntry.isVideo) {
-                                withAppendedId = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, parseLong);
+                                uriWithAppendedId = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, j);
                             } else {
-                                withAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, parseLong);
+                                uriWithAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, j);
                             }
-                            bitmap = getContext().getContentResolver().loadThumbnail(withAppendedId, new Size(AndroidUtilities.dp(94.0f), AndroidUtilities.dp(112.0f)), null);
+                            bitmapLoadThumbnail = getContext().getContentResolver().loadThumbnail(uriWithAppendedId, new Size(AndroidUtilities.dp(94.0f), AndroidUtilities.dp(112.0f)), null);
                         } catch (Exception unused) {
                         }
                     }
                 }
-                this.imageReceiver.setImageBitmap(bitmap);
+                this.imageReceiver.setImageBitmap(bitmapLoadThumbnail);
                 return;
             }
             File file2 = storyEntry.file;
@@ -702,7 +702,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MultipleStoriesSelector.EntryView.this.lambda$set$3(storyEntry);
+                    this.f$0.lambda$set$3(storyEntry);
                 }
             });
         }
@@ -715,11 +715,11 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             options.inDither = true;
             options.inJustDecodeBounds = false;
-            final Bitmap decodeFile = BitmapFactory.decodeFile(storyEntry.draftThumbFile.getPath(), options);
+            final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(storyEntry.draftThumbFile.getPath(), options);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MultipleStoriesSelector.EntryView.this.lambda$set$0(decodeFile);
+                    this.f$0.lambda$set$0(bitmapDecodeFile);
                 }
             });
         }
@@ -736,11 +736,11 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             options.inDither = true;
             options.inJustDecodeBounds = false;
-            final Bitmap decodeFile = BitmapFactory.decodeFile(storyEntry.file.getPath(), options);
+            final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(storyEntry.file.getPath(), options);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MultipleStoriesSelector.EntryView.this.lambda$set$2(decodeFile);
+                    this.f$0.lambda$set$2(bitmapDecodeFile);
                 }
             });
         }
@@ -803,7 +803,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) throws NumberFormatException, IOException {
                 EntryView entryView = (EntryView) view;
                 entryView.set(uItem.id, uItem.intValue, (StoryEntry) uItem.object);
                 entryView.setSelected(uItem.checked, false);
@@ -812,11 +812,11 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }
 
             public static UItem asStoryEntry(int i, int i2, StoryEntry storyEntry) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.object = storyEntry;
-                ofFactory.intValue = i2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.object = storyEntry;
+                uItemOfFactory.intValue = i2;
+                return uItemOfFactory;
             }
         }
     }

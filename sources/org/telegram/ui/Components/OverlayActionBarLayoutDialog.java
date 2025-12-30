@@ -38,9 +38,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
 
     @Override
     public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        boolean needPresentFragment;
-        needPresentFragment = needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
-        return needPresentFragment;
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
     }
 
     @Override
@@ -60,9 +58,9 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     public OverlayActionBarLayoutDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.resourcesProvider = resourcesProvider;
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(context, false);
-        this.actionBarLayout = newLayout;
-        newLayout.setFragmentStack(new ArrayList());
+        INavigationLayout iNavigationLayoutNewLayout = INavigationLayout.CC.newLayout(context, false);
+        this.actionBarLayout = iNavigationLayoutNewLayout;
+        iNavigationLayoutNewLayout.setFragmentStack(new ArrayList());
         this.actionBarLayout.presentFragment(new INavigationLayout.NavigationParams(new EmptyFragment()).setNoAnimation(true));
         this.actionBarLayout.setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -74,7 +72,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
             this.frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OverlayActionBarLayoutDialog.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             this.actionBarLayout.setRemoveActionBarExtraHeight(true);
@@ -152,9 +150,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         this.frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets lambda$onCreate$1;
-                lambda$onCreate$1 = OverlayActionBarLayoutDialog.lambda$onCreate$1(view, windowInsets);
-                return lambda$onCreate$1;
+                return OverlayActionBarLayoutDialog.lambda$onCreate$1(view, windowInsets);
             }
         });
         if (i >= 26) {

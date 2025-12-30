@@ -16,30 +16,30 @@ public abstract class StringsKt__StringsJVMKt extends StringsKt__StringNumberCon
         Intrinsics.checkNotNullParameter(oldValue, "oldValue");
         Intrinsics.checkNotNullParameter(newValue, "newValue");
         int i = 0;
-        int indexOf = StringsKt__StringsKt.indexOf(str, oldValue, 0, z);
-        if (indexOf < 0) {
+        int iIndexOf = StringsKt__StringsKt.indexOf(str, oldValue, 0, z);
+        if (iIndexOf < 0) {
             return str;
         }
         int length = oldValue.length();
-        int coerceAtLeast = RangesKt.coerceAtLeast(length, 1);
+        int iCoerceAtLeast = RangesKt.coerceAtLeast(length, 1);
         int length2 = (str.length() - length) + newValue.length();
         if (length2 < 0) {
             throw new OutOfMemoryError();
         }
         StringBuilder sb = new StringBuilder(length2);
         do {
-            sb.append((CharSequence) str, i, indexOf);
+            sb.append((CharSequence) str, i, iIndexOf);
             sb.append(newValue);
-            i = indexOf + length;
-            if (indexOf >= str.length()) {
+            i = iIndexOf + length;
+            if (iIndexOf >= str.length()) {
                 break;
             }
-            indexOf = StringsKt__StringsKt.indexOf(str, oldValue, indexOf + coerceAtLeast, z);
-        } while (indexOf > 0);
+            iIndexOf = StringsKt__StringsKt.indexOf(str, oldValue, iIndexOf + iCoerceAtLeast, z);
+        } while (iIndexOf > 0);
         sb.append((CharSequence) str, i, str.length());
-        String sb2 = sb.toString();
-        Intrinsics.checkNotNullExpressionValue(sb2, "toString(...)");
-        return sb2;
+        String string = sb.toString();
+        Intrinsics.checkNotNullExpressionValue(string, "toString(...)");
+        return string;
     }
 
     public static byte[] encodeToByteArray(String str) {

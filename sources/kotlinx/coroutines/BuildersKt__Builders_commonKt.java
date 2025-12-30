@@ -26,11 +26,11 @@ public abstract class BuildersKt__Builders_commonKt {
 
     public static final Job launch(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
         StandaloneCoroutine standaloneCoroutine;
-        CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
+        CoroutineContext coroutineContextNewCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
         if (coroutineStart.isLazy()) {
-            standaloneCoroutine = new LazyStandaloneCoroutine(newCoroutineContext, function2);
+            standaloneCoroutine = new LazyStandaloneCoroutine(coroutineContextNewCoroutineContext, function2);
         } else {
-            standaloneCoroutine = new StandaloneCoroutine(newCoroutineContext, true);
+            standaloneCoroutine = new StandaloneCoroutine(coroutineContextNewCoroutineContext, true);
         }
         standaloneCoroutine.start(coroutineStart, standaloneCoroutine, function2);
         return standaloneCoroutine;
@@ -48,40 +48,40 @@ public abstract class BuildersKt__Builders_commonKt {
 
     public static final Deferred async(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
         DeferredCoroutine deferredCoroutine;
-        CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
+        CoroutineContext coroutineContextNewCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
         if (coroutineStart.isLazy()) {
-            deferredCoroutine = new LazyDeferredCoroutine(newCoroutineContext, function2);
+            deferredCoroutine = new LazyDeferredCoroutine(coroutineContextNewCoroutineContext, function2);
         } else {
-            deferredCoroutine = new DeferredCoroutine(newCoroutineContext, true);
+            deferredCoroutine = new DeferredCoroutine(coroutineContextNewCoroutineContext, true);
         }
         deferredCoroutine.start(coroutineStart, deferredCoroutine, function2);
         return deferredCoroutine;
     }
 
-    public static final Object withContext(CoroutineContext coroutineContext, Function2 function2, Continuation continuation) {
+    public static final Object withContext(CoroutineContext coroutineContext, Function2 function2, Continuation continuation) throws Throwable {
         Object result$kotlinx_coroutines_core;
         CoroutineContext context = continuation.getContext();
-        CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(context, coroutineContext);
-        JobKt.ensureActive(newCoroutineContext);
-        if (newCoroutineContext == context) {
-            ScopeCoroutine scopeCoroutine = new ScopeCoroutine(newCoroutineContext, continuation);
+        CoroutineContext coroutineContextNewCoroutineContext = CoroutineContextKt.newCoroutineContext(context, coroutineContext);
+        JobKt.ensureActive(coroutineContextNewCoroutineContext);
+        if (coroutineContextNewCoroutineContext == context) {
+            ScopeCoroutine scopeCoroutine = new ScopeCoroutine(coroutineContextNewCoroutineContext, continuation);
             result$kotlinx_coroutines_core = UndispatchedKt.startUndispatchedOrReturn(scopeCoroutine, scopeCoroutine, function2);
         } else {
             ContinuationInterceptor.Key key = ContinuationInterceptor.Key;
-            if (Intrinsics.areEqual(newCoroutineContext.get(key), context.get(key))) {
-                UndispatchedCoroutine undispatchedCoroutine = new UndispatchedCoroutine(newCoroutineContext, continuation);
+            if (Intrinsics.areEqual(coroutineContextNewCoroutineContext.get(key), context.get(key))) {
+                UndispatchedCoroutine undispatchedCoroutine = new UndispatchedCoroutine(coroutineContextNewCoroutineContext, continuation);
                 CoroutineContext context2 = undispatchedCoroutine.getContext();
-                Object updateThreadContext = ThreadContextKt.updateThreadContext(context2, null);
+                Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context2, null);
                 try {
-                    Object startUndispatchedOrReturn = UndispatchedKt.startUndispatchedOrReturn(undispatchedCoroutine, undispatchedCoroutine, function2);
-                    ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
-                    result$kotlinx_coroutines_core = startUndispatchedOrReturn;
+                    Object objStartUndispatchedOrReturn = UndispatchedKt.startUndispatchedOrReturn(undispatchedCoroutine, undispatchedCoroutine, function2);
+                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
+                    result$kotlinx_coroutines_core = objStartUndispatchedOrReturn;
                 } catch (Throwable th) {
-                    ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
+                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
                     throw th;
                 }
             } else {
-                DispatchedCoroutine dispatchedCoroutine = new DispatchedCoroutine(newCoroutineContext, continuation);
+                DispatchedCoroutine dispatchedCoroutine = new DispatchedCoroutine(coroutineContextNewCoroutineContext, continuation);
                 CancellableKt.startCoroutineCancellable$default(function2, dispatchedCoroutine, dispatchedCoroutine, null, 4, null);
                 result$kotlinx_coroutines_core = dispatchedCoroutine.getResult$kotlinx_coroutines_core();
             }

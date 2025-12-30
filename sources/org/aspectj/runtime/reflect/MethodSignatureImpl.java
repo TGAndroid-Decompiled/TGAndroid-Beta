@@ -2,10 +2,10 @@ package org.aspectj.runtime.reflect;
 
 import org.aspectj.lang.reflect.MethodSignature;
 
-public class MethodSignatureImpl extends CodeSignatureImpl implements MethodSignature {
+class MethodSignatureImpl extends CodeSignatureImpl implements MethodSignature {
     Class returnType;
 
-    public MethodSignatureImpl(int i, String str, Class cls, Class[] clsArr, String[] strArr, Class[] clsArr2, Class cls2) {
+    MethodSignatureImpl(int i, String str, Class cls, Class[] clsArr, String[] strArr, Class[] clsArr2, Class cls2) {
         super(i, str, cls, clsArr, strArr, clsArr2);
         this.returnType = cls2;
     }

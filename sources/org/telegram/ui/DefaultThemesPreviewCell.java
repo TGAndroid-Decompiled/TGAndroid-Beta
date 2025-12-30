@@ -52,8 +52,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     private Boolean wasPortrait;
 
     public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) {
-        super(context);
         LinearLayoutManager linearLayoutManager;
+        super(context);
         this.layoutManager = null;
         this.selectedPosition = -1;
         this.wasPortrait = null;
@@ -86,7 +86,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                DefaultThemesPreviewCell.this.lambda$new$0(baseFragment, view, i3);
+                this.f$0.lambda$new$0(baseFragment, view, i3);
             }
         });
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext(), null);
@@ -125,7 +125,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             this.browseThemesCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    DefaultThemesPreviewCell.lambda$new$1(BaseFragment.this, view);
+                    DefaultThemesPreviewCell.lambda$new$1(baseFragment, view);
                 }
             });
             if (!Theme.isCurrentThemeDay()) {
@@ -139,9 +139,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         if (!MediaDataController.getInstance(baseFragment.getCurrentAccount()).defaultEmojiThemes.isEmpty()) {
             ArrayList arrayList = new ArrayList(MediaDataController.getInstance(baseFragment.getCurrentAccount()).defaultEmojiThemes);
             if (this.currentType == 0) {
-                EmojiThemes createPreviewCustom = EmojiThemes.createPreviewCustom(baseFragment.getCurrentAccount());
-                createPreviewCustom.loadPreviewColors(baseFragment.getCurrentAccount());
-                ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(createPreviewCustom);
+                EmojiThemes emojiThemesCreatePreviewCustom = EmojiThemes.createPreviewCustom(baseFragment.getCurrentAccount());
+                emojiThemesCreatePreviewCustom.loadPreviewColors(baseFragment.getCurrentAccount());
+                ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(emojiThemesCreatePreviewCustom);
                 chatThemeItem.themeIndex = Theme.isCurrentThemeDay() ? 0 : 2;
                 arrayList.add(chatThemeItem);
             }
@@ -165,11 +165,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             TLRPC.TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.themeIndex);
             Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(chatThemeItem.chatTheme.getSettingsIndex(this.themeIndex))));
             if (theme != null) {
-                Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) theme.accentsByThemeId.get(tlTheme.id);
-                if (themeAccent == null) {
-                    themeAccent = theme.createNewAccent(tlTheme, baseFragment.getCurrentAccount());
+                Theme.ThemeAccent themeAccentCreateNewAccent = (Theme.ThemeAccent) theme.accentsByThemeId.get(tlTheme.id);
+                if (themeAccentCreateNewAccent == null) {
+                    themeAccentCreateNewAccent = theme.createNewAccent(tlTheme, baseFragment.getCurrentAccount());
                 }
-                accentId = themeAccent.id;
+                accentId = themeAccentCreateNewAccent.id;
                 theme.setCurrentAccentId(accentId);
             }
             themeInfo = theme;
@@ -190,14 +190,14 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
         ((ThemeSmallPreviewView) view).playEmojiAnimation();
         if (themeInfo != null) {
-            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            edit.putString((this.currentType == 1 || themeInfo.isDark()) ? "lastDarkTheme" : "lastDayTheme", themeInfo.getKey());
-            edit.commit();
+            SharedPreferences.Editor editorEdit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
+            editorEdit.putString((this.currentType == 1 || themeInfo.isDark()) ? "lastDarkTheme" : "lastDayTheme", themeInfo.getKey());
+            editorEdit.commit();
         }
         Theme.turnOffAutoNight(baseFragment);
     }
 
-    public class AnonymousClass2 implements View.OnClickListener {
+    class AnonymousClass2 implements View.OnClickListener {
         final Context val$context;
         final BaseFragment val$parentFragment;
 
@@ -216,22 +216,22 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             DefaultThemesPreviewCell.this.updateSelectedPosition();
             final int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4);
             DefaultThemesPreviewCell.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     DefaultThemesPreviewCell.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(i, color, ((Float) valueAnimator.getAnimatedValue()).floatValue()), PorterDuff.Mode.SRC_IN));
                 }
             });
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     DefaultThemesPreviewCell.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
                     super.onAnimationEnd(animator);
                 }
             });
-            ofFloat.setDuration(350L);
-            ofFloat.start();
+            valueAnimatorOfFloat.setDuration(350L);
+            valueAnimatorOfFloat.start();
             final int color2 = Theme.getColor(Theme.key_windowBackgroundGray);
             final Activity activity = context instanceof Activity ? (Activity) context : null;
             if ((activity != null ? activity.getWindow() : null) != null) {

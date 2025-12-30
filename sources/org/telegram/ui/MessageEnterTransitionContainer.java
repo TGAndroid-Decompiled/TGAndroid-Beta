@@ -26,20 +26,20 @@ public class MessageEnterTransitionContainer extends View {
         this.hideRunnable = new Runnable() {
             @Override
             public final void run() {
-                MessageEnterTransitionContainer.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.parent = viewGroup;
         this.currentAccount = i;
     }
 
-    public void addTransition(Transition transition) {
+    void addTransition(Transition transition) {
         this.transitions.add(transition);
         checkVisibility();
         this.parent.invalidate();
     }
 
-    public void removeTransition(Transition transition) {
+    void removeTransition(Transition transition) {
         this.transitions.remove(transition);
         checkVisibility();
         this.parent.invalidate();

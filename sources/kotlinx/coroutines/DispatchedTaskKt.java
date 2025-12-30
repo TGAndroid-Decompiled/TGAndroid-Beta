@@ -37,41 +37,41 @@ public abstract class DispatchedTaskKt {
 
     public static final void resume(DispatchedTask dispatchedTask, Continuation continuation, boolean z) {
         Object successfulResult$kotlinx_coroutines_core;
-        boolean clearThreadContext;
-        Object takeState$kotlinx_coroutines_core = dispatchedTask.takeState$kotlinx_coroutines_core();
-        Throwable exceptionalResult$kotlinx_coroutines_core = dispatchedTask.getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+        boolean zClearThreadContext;
+        Object objTakeState$kotlinx_coroutines_core = dispatchedTask.takeState$kotlinx_coroutines_core();
+        Throwable exceptionalResult$kotlinx_coroutines_core = dispatchedTask.getExceptionalResult$kotlinx_coroutines_core(objTakeState$kotlinx_coroutines_core);
         if (exceptionalResult$kotlinx_coroutines_core != null) {
             Result.Companion companion = Result.Companion;
             successfulResult$kotlinx_coroutines_core = ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core);
         } else {
             Result.Companion companion2 = Result.Companion;
-            successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+            successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(objTakeState$kotlinx_coroutines_core);
         }
-        Object m275constructorimpl = Result.m275constructorimpl(successfulResult$kotlinx_coroutines_core);
+        Object objM275constructorimpl = Result.m275constructorimpl(successfulResult$kotlinx_coroutines_core);
         if (z) {
             Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<T of kotlinx.coroutines.DispatchedTaskKt.resume>");
             DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
             Continuation continuation2 = dispatchedContinuation.continuation;
             Object obj = dispatchedContinuation.countOrElement;
             CoroutineContext context = continuation2.getContext();
-            Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
-            UndispatchedCoroutine updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
+            Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
+            UndispatchedCoroutine undispatchedCoroutineUpdateUndispatchedCompletion = objUpdateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, objUpdateThreadContext) : null;
             try {
-                dispatchedContinuation.continuation.resumeWith(m275constructorimpl);
+                dispatchedContinuation.continuation.resumeWith(objM275constructorimpl);
                 Unit unit = Unit.INSTANCE;
-                if (updateUndispatchedCompletion != null) {
-                    if (!clearThreadContext) {
+                if (undispatchedCoroutineUpdateUndispatchedCompletion != null) {
+                    if (!zClearThreadContext) {
                         return;
                     }
                 }
                 return;
             } finally {
-                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                if (undispatchedCoroutineUpdateUndispatchedCompletion == null || undispatchedCoroutineUpdateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
                 }
             }
         }
-        continuation.resumeWith(m275constructorimpl);
+        continuation.resumeWith(objM275constructorimpl);
     }
 
     private static final void resumeUnconfined(DispatchedTask dispatchedTask) {

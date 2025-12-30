@@ -66,9 +66,7 @@ public abstract class BotVerifySheet {
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-                boolean lambda$openVerify$1;
-                lambda$openVerify$1 = BotVerifySheet.lambda$openVerify$1(DialogsActivity.this, i, j, botverifiersettings, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
-                return lambda$openVerify$1;
+                return BotVerifySheet.lambda$openVerify$1(dialogsActivity, i, j, botverifiersettings, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
             }
 
             @Override
@@ -87,14 +85,14 @@ public abstract class BotVerifySheet {
         openSheet(dialogsActivity.getContext(), i, j, j2, botverifiersettings, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BotVerifySheet.lambda$openVerify$0(TopicsFragment.this, dialogsActivity, j2, i, (Boolean) obj);
+                BotVerifySheet.lambda$openVerify$0(topicsFragment, dialogsActivity, j2, i, (Boolean) obj);
             }
         });
         return true;
     }
 
     public static void lambda$openVerify$0(TopicsFragment topicsFragment, DialogsActivity dialogsActivity, long j, int i, Boolean bool) {
-        String str;
+        String forcedFirstName;
         TLRPC.Chat chat;
         if (topicsFragment != null) {
             topicsFragment.finishFragment();
@@ -108,19 +106,19 @@ public abstract class BotVerifySheet {
         }
         if (j >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-            str = UserObject.getForcedFirstName(user);
+            forcedFirstName = UserObject.getForcedFirstName(user);
             chat = user;
         } else {
             TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
             if (chat2 == null) {
-                str = "";
+                forcedFirstName = "";
                 chat = chat2;
             } else {
-                str = chat2.title;
+                forcedFirstName = chat2.title;
                 chat = chat2;
             }
         }
-        BulletinFactory.of(safeLastFragment).createUsersBulletin(chat, AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, str))).show(false);
+        BulletinFactory.of(safeLastFragment).createUsersBulletin(chat, AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, forcedFirstName))).show(false);
     }
 
     public static void openSheet(Context context, final int i, final long j, final long j2, final TL_bots.botVerifierSettings botverifiersettings, final Utilities.Callback callback) {
@@ -226,7 +224,7 @@ public abstract class BotVerifySheet {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                BotVerifySheet.lambda$openSheet$2(OutlineTextContainerView.this, editTextBoldCursor, view, z);
+                BotVerifySheet.lambda$openSheet$2(outlineTextContainerView, editTextBoldCursor, view, z);
             }
         });
         outlineTextContainerView.attachEditText(editTextBoldCursor);
@@ -246,21 +244,21 @@ public abstract class BotVerifySheet {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                CharSequence text = EditTextBoldCursor.this.getText();
+                CharSequence text = editTextBoldCursor.getText();
                 if (!this.ignoreEditText) {
                     int length = text.length();
                     int i5 = i4;
                     if (length > i5) {
                         this.ignoreEditText = true;
-                        EditTextBoldCursor editTextBoldCursor2 = EditTextBoldCursor.this;
+                        EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                         text = text.subSequence(0, i5);
                         editTextBoldCursor2.setText(text);
-                        EditTextBoldCursor editTextBoldCursor3 = EditTextBoldCursor.this;
+                        EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursor;
                         editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
                         this.ignoreEditText = false;
                     }
                 }
-                outlineTextContainerView.animateSelection(EditTextBoldCursor.this.isFocused(), !TextUtils.isEmpty(text));
+                outlineTextContainerView.animateSelection(editTextBoldCursor.isFocused(), !TextUtils.isEmpty(text));
             }
         });
         if (!TextUtils.isEmpty(botverifiersettings.custom_description)) {
@@ -289,16 +287,16 @@ public abstract class BotVerifySheet {
         buttonWithCounterView.setText(textView.getText(), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(i2, 48));
         builder.setCustomView(linearLayout);
-        final BottomSheet create = builder.create();
+        final BottomSheet bottomSheetCreate = builder.create();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotVerifySheet.lambda$openSheet$5(ButtonWithCounterView.this, botverifiersettings, editTextBoldCursor, i4, outlineTextContainerView, i, j, j2, create, callback, view);
+                BotVerifySheet.lambda$openSheet$5(buttonWithCounterView, botverifiersettings, editTextBoldCursor, i4, outlineTextContainerView, i, j, j2, bottomSheetCreate, callback, view);
             }
         });
-        create.smoothKeyboardAnimationEnabled = true;
-        create.smoothKeyboardByBottom = true;
-        create.show();
+        bottomSheetCreate.smoothKeyboardAnimationEnabled = true;
+        bottomSheetCreate.smoothKeyboardByBottom = true;
+        bottomSheetCreate.show();
     }
 
     public static void lambda$openSheet$2(OutlineTextContainerView outlineTextContainerView, EditTextBoldCursor editTextBoldCursor, View view, boolean z) {
@@ -331,7 +329,7 @@ public abstract class BotVerifySheet {
         ConnectionsManager.getInstance(i2).sendRequest(setcustomverification, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotVerifySheet.lambda$openSheet$4(ButtonWithCounterView.this, bottomSheet, callback, tLObject, tL_error);
+                BotVerifySheet.lambda$openSheet$4(buttonWithCounterView, bottomSheet, callback, tLObject, tL_error);
             }
         });
     }
@@ -340,7 +338,7 @@ public abstract class BotVerifySheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotVerifySheet.lambda$openSheet$3(ButtonWithCounterView.this, tLObject, bottomSheet, callback);
+                BotVerifySheet.lambda$openSheet$3(buttonWithCounterView, tLObject, bottomSheet, callback);
             }
         });
     }
@@ -354,22 +352,22 @@ public abstract class BotVerifySheet {
     }
 
     public static void openRemoveVerify(Context context, final int i, final long j, final long j2, TL_bots.botVerifierSettings botverifiersettings, final Utilities.Callback callback) {
-        String str;
+        String forcedFirstName;
         TLRPC.Chat chat;
         if (context == null) {
             return;
         }
         if (j2 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j2));
-            str = UserObject.getForcedFirstName(user);
+            forcedFirstName = UserObject.getForcedFirstName(user);
             chat = user;
         } else {
             TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
             if (chat2 == null) {
-                str = "";
+                forcedFirstName = "";
                 chat = chat2;
             } else {
-                str = chat2.title;
+                forcedFirstName = chat2.title;
                 chat = chat2;
             }
         }
@@ -390,7 +388,7 @@ public abstract class BotVerifySheet {
         simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         simpleTextView.setTextSize(13);
         simpleTextView.setEllipsizeByGradient(true);
-        simpleTextView.setText(str);
+        simpleTextView.setText(forcedFirstName);
         simpleTextView.setWidthWrapContent(true);
         frameLayout2.addView(simpleTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 57.0f, 0.0f, 10.0f, 0.0f));
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));

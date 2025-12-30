@@ -24,22 +24,23 @@ import org.telegram.ui.Components.URLSpanReplacement;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 public abstract class CopyUtilities {
     public static Spannable fromHTML(String str) {
         try {
-            Spanned fromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new HTMLTagHandler())) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new HTMLTagHandler()));
-            if (fromHtml == null) {
+            Spanned spannedFromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new HTMLTagHandler())) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new HTMLTagHandler()));
+            if (spannedFromHtml == null) {
                 return null;
             }
-            Object[] spans = fromHtml.getSpans(0, fromHtml.length(), Object.class);
+            Object[] spans = spannedFromHtml.getSpans(0, spannedFromHtml.length(), Object.class);
             ArrayList arrayList = new ArrayList(spans.length);
             ArrayList arrayList2 = new ArrayList();
             ArrayList arrayList3 = new ArrayList();
             for (Object obj : spans) {
-                int spanStart = fromHtml.getSpanStart(obj);
-                int spanEnd = fromHtml.getSpanEnd(obj);
+                int spanStart = spannedFromHtml.getSpanStart(obj);
+                int spanEnd = spannedFromHtml.getSpanEnd(obj);
                 if (obj instanceof StyleSpan) {
                     int style = ((StyleSpan) obj).getStyle();
                     if ((style & 1) > 0) {
@@ -74,15 +75,15 @@ public abstract class CopyUtilities {
                     arrayList.add(setEntityStartEnd(tL_messageEntityCustomEmoji, spanStart, spanEnd));
                 }
             }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(spannedFromHtml.toString());
             MediaDataController.addTextStyleRuns((ArrayList<TLRPC.MessageEntity>) arrayList, spannableStringBuilder, spannableStringBuilder);
             for (Object obj2 : spans) {
                 if (obj2 instanceof URLSpan) {
-                    int spanStart2 = fromHtml.getSpanStart(obj2);
-                    int spanEnd2 = fromHtml.getSpanEnd(obj2);
-                    String charSequence = fromHtml.subSequence(spanStart2, spanEnd2).toString();
+                    int spanStart2 = spannedFromHtml.getSpanStart(obj2);
+                    int spanEnd2 = spannedFromHtml.getSpanEnd(obj2);
+                    String string = spannedFromHtml.subSequence(spanStart2, spanEnd2).toString();
                     String url = ((URLSpan) obj2).getURL();
-                    if (charSequence.equals(url)) {
+                    if (string.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
                         spannableStringBuilder.setSpan(new URLSpanReplacement(url), spanStart2, spanEnd2, 33);
@@ -92,13 +93,13 @@ public abstract class CopyUtilities {
             MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, null);
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 ParsedSpan parsedSpan2 = (ParsedSpan) arrayList2.get(i2);
-                int spanStart3 = fromHtml.getSpanStart(parsedSpan2);
-                int spanEnd3 = fromHtml.getSpanEnd(parsedSpan2);
+                int spanStart3 = spannedFromHtml.getSpanStart(parsedSpan2);
+                int spanEnd3 = spannedFromHtml.getSpanEnd(parsedSpan2);
                 spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, parsedSpan2.lng, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
                 ParsedSpan parsedSpan3 = (ParsedSpan) arrayList3.get(i3);
-                QuoteSpan.putQuoteToEditable(spannableStringBuilder, fromHtml.getSpanStart(parsedSpan3), fromHtml.getSpanEnd(parsedSpan3), parsedSpan3.type == 3);
+                QuoteSpan.putQuoteToEditable(spannableStringBuilder, spannedFromHtml.getSpanStart(parsedSpan3), spannedFromHtml.getSpanEnd(parsedSpan3), parsedSpan3.type == 3);
             }
             return spannableStringBuilder;
         } catch (Exception e) {
@@ -149,17 +150,17 @@ public abstract class CopyUtilities {
         }
 
         @Override
-        public void startElement(String str, String str2, String str3, Attributes attributes) {
-            boolean handleTag = this.handler.handleTag(true, str2, this.text, attributes);
-            this.tagStatus.addLast(Boolean.valueOf(handleTag));
-            if (handleTag) {
+        public void startElement(String str, String str2, String str3, Attributes attributes) throws SAXException {
+            boolean zHandleTag = this.handler.handleTag(true, str2, this.text, attributes);
+            this.tagStatus.addLast(Boolean.valueOf(zHandleTag));
+            if (zHandleTag) {
                 return;
             }
             this.wrapped.startElement(str, str2, str3, attributes);
         }
 
         @Override
-        public void endElement(String str, String str2, String str3) {
+        public void endElement(String str, String str2, String str3) throws SAXException {
             if (!((Boolean) this.tagStatus.removeLast()).booleanValue()) {
                 this.wrapped.endElement(str, str2, str3);
             }
@@ -172,47 +173,47 @@ public abstract class CopyUtilities {
         }
 
         @Override
-        public void startDocument() {
+        public void startDocument() throws SAXException {
             this.wrapped.startDocument();
         }
 
         @Override
-        public void endDocument() {
+        public void endDocument() throws SAXException {
             this.wrapped.endDocument();
         }
 
         @Override
-        public void startPrefixMapping(String str, String str2) {
+        public void startPrefixMapping(String str, String str2) throws SAXException {
             this.wrapped.startPrefixMapping(str, str2);
         }
 
         @Override
-        public void endPrefixMapping(String str) {
+        public void endPrefixMapping(String str) throws SAXException {
             this.wrapped.endPrefixMapping(str);
         }
 
         @Override
-        public void characters(char[] cArr, int i, int i2) {
+        public void characters(char[] cArr, int i, int i2) throws SAXException {
             this.wrapped.characters(cArr, i, i2);
         }
 
         @Override
-        public void ignorableWhitespace(char[] cArr, int i, int i2) {
+        public void ignorableWhitespace(char[] cArr, int i, int i2) throws SAXException {
             this.wrapped.ignorableWhitespace(cArr, i, i2);
         }
 
         @Override
-        public void processingInstruction(String str, String str2) {
+        public void processingInstruction(String str, String str2) throws SAXException {
             this.wrapped.processingInstruction(str, str2);
         }
 
         @Override
-        public void skippedEntity(String str) {
+        public void skippedEntity(String str) throws SAXException {
             this.wrapped.skippedEntity(str);
         }
     }
 
-    public static class HTMLTagHandler implements HTMLTagAttributesHandler.TagHandler {
+    private static class HTMLTagHandler implements HTMLTagAttributesHandler.TagHandler {
         private HTMLTagHandler() {
         }
 
@@ -332,7 +333,7 @@ public abstract class CopyUtilities {
         }
     }
 
-    public static class ParsedSpan {
+    private static class ParsedSpan {
         final String lng;
         final int type;
 

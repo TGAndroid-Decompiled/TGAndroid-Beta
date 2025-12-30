@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
@@ -99,7 +100,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
-    public SerializedData(File file) {
+    public SerializedData(File file) throws IOException {
         this.isOut = true;
         this.justCalc = false;
         FileInputStream fileInputStream = new FileInputStream(file);
@@ -120,7 +121,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
-    private void writeInt32(int i, DataOutputStream dataOutputStream) {
+    private void writeInt32(int i, DataOutputStream dataOutputStream) throws IOException {
         for (int i2 = 0; i2 < 4; i2++) {
             try {
                 dataOutputStream.write(i >> (i2 * 8));
@@ -144,7 +145,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
-    private void writeInt64(long j, DataOutputStream dataOutputStream) {
+    private void writeInt64(long j, DataOutputStream dataOutputStream) throws IOException {
         for (int i = 0; i < 8; i++) {
             try {
                 dataOutputStream.write((int) (j >> (i * 8)));
@@ -171,7 +172,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeBytes(byte[] bArr) {
+    public void writeBytes(byte[] bArr) throws IOException {
         try {
             if (!this.justCalc) {
                 this.out.write(bArr);
@@ -187,7 +188,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeBytes(byte[] bArr, int i, int i2) {
+    public void writeBytes(byte[] bArr, int i, int i2) throws IOException {
         try {
             if (!this.justCalc) {
                 this.out.write(bArr, i, i2);
@@ -219,7 +220,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeByte(byte b) {
+    public void writeByte(byte b) throws IOException {
         try {
             if (!this.justCalc) {
                 this.out.writeByte(b);
@@ -284,7 +285,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeByteArray(byte[] bArr, int i, int i2) {
+    public void writeByteArray(byte[] bArr, int i, int i2) throws IOException {
         try {
             if (i2 <= 253) {
                 if (this.justCalc) {
@@ -363,7 +364,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void skip(int i) {
+    public void skip(int i) throws IOException {
         if (i == 0) {
             return;
         }
@@ -390,11 +391,11 @@ public class SerializedData extends AbstractSerializedData {
 
     @Override
     public boolean readBool(boolean z) {
-        int readInt32 = readInt32(z);
-        if (readInt32 == -1720552011) {
+        int int32 = readInt32(z);
+        if (int32 == -1720552011) {
             return true;
         }
-        if (readInt32 == -1132882121) {
+        if (int32 == -1132882121) {
             return false;
         }
         if (z) {
@@ -409,9 +410,9 @@ public class SerializedData extends AbstractSerializedData {
     @Override
     public byte readByte(boolean z) {
         try {
-            byte readByte = this.in.readByte();
+            byte b = this.in.readByte();
             this.len++;
-            return readByte;
+            return b;
         } catch (Exception e) {
             if (z) {
                 throw new RuntimeException("read byte error", e);
@@ -426,7 +427,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void readBytes(byte[] bArr, boolean z) {
+    public void readBytes(byte[] bArr, boolean z) throws IOException {
         try {
             this.in.read(bArr);
             this.len += bArr.length;
@@ -442,29 +443,29 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte[] readData(int i, boolean z) {
+    public byte[] readData(int i, boolean z) throws IOException {
         byte[] bArr = new byte[i];
         readBytes(bArr, z);
         return bArr;
     }
 
     @Override
-    public String readString(boolean z) {
+    public String readString(boolean z) throws IOException {
         int i;
         try {
-            int read = this.in.read();
+            int i2 = this.in.read();
             this.len++;
-            if (read >= 254) {
-                read = this.in.read() | (this.in.read() << 8) | (this.in.read() << 16);
+            if (i2 >= 254) {
+                i2 = this.in.read() | (this.in.read() << 8) | (this.in.read() << 16);
                 this.len += 3;
                 i = 4;
             } else {
                 i = 1;
             }
-            byte[] bArr = new byte[read];
+            byte[] bArr = new byte[i2];
             this.in.read(bArr);
             this.len++;
-            while ((read + i) % 4 != 0) {
+            while ((i2 + i) % 4 != 0) {
                 this.in.read();
                 this.len++;
                 i++;
@@ -484,22 +485,22 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte[] readByteArray(boolean z) {
+    public byte[] readByteArray(boolean z) throws IOException {
         int i;
         try {
-            int read = this.in.read();
+            int i2 = this.in.read();
             this.len++;
-            if (read >= 254) {
-                read = this.in.read() | (this.in.read() << 8) | (this.in.read() << 16);
+            if (i2 >= 254) {
+                i2 = this.in.read() | (this.in.read() << 8) | (this.in.read() << 16);
                 this.len += 3;
                 i = 4;
             } else {
                 i = 1;
             }
-            byte[] bArr = new byte[read];
+            byte[] bArr = new byte[i2];
             this.in.read(bArr);
             this.len++;
-            while ((read + i) % 4 != 0) {
+            while ((i2 + i) % 4 != 0) {
                 this.in.read();
                 this.len++;
                 i++;

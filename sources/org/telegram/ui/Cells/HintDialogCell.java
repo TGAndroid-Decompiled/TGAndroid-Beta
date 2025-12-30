@@ -100,7 +100,7 @@ public class HintDialogCell extends FrameLayout {
             this.checkBox.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
                 @Override
                 public final void setProgress(float f) {
-                    HintDialogCell.this.lambda$new$0(f);
+                    this.f$0.lambda$new$0(f);
                 }
             });
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
@@ -124,7 +124,7 @@ public class HintDialogCell extends FrameLayout {
         NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                HintDialogCell.this.lambda$showPremiumBlocked$1((Object[]) obj);
+                this.f$0.lambda$showPremiumBlocked$1((Object[]) obj);
             }
         });
     }
@@ -134,12 +134,12 @@ public class HintDialogCell extends FrameLayout {
     }
 
     private void updatePremiumBlocked(boolean z) {
-        TL_account.RequirementToContact isUserContactBlocked = (!this.showPremiumBlocked || this.currentUser == null) ? null : MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.currentUser.id);
-        if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(isUserContactBlocked)) {
+        TL_account.RequirementToContact requirementToContactIsUserContactBlocked = (!this.showPremiumBlocked || this.currentUser == null) ? null : MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.currentUser.id);
+        if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked)) {
             return;
         }
-        this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
-        this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+        this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
+        this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
         if (!z) {
             this.premiumBlockedT.set(this.premiumBlocked, true);
             this.starsBlockedT.set(this.starsPriceBlocked > 0, true);

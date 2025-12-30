@@ -9,9 +9,7 @@ public abstract class RectFMergeBounding {
     private static final Comparator RECT_COMPARATOR = new Comparator() {
         @Override
         public final int compare(Object obj, Object obj2) {
-            int lambda$static$0;
-            lambda$static$0 = RectFMergeBounding.lambda$static$0((RectF) obj, (RectF) obj2);
-            return lambda$static$0;
+            return RectFMergeBounding.lambda$static$0((RectF) obj, (RectF) obj2);
         }
     };
 

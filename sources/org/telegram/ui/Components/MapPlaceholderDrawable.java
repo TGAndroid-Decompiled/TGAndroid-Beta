@@ -55,21 +55,21 @@ public class MapPlaceholderDrawable extends Drawable {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawRect(getBounds(), this.paint);
-        int dp = AndroidUtilities.dp(9.0f);
-        int width = getBounds().width() / dp;
-        int height = getBounds().height() / dp;
+        int iDp = AndroidUtilities.dp(9.0f);
+        int iWidth = getBounds().width() / iDp;
+        int iHeight = getBounds().height() / iDp;
         int i = getBounds().left;
         int i2 = getBounds().top;
         int i3 = 0;
         int i4 = 0;
-        while (i4 < width) {
+        while (i4 < iWidth) {
             i4++;
-            float f = (dp * i4) + i;
+            float f = (iDp * i4) + i;
             canvas.drawLine(f, i2, f, getBounds().height() + i2, this.linePaint);
         }
-        while (i3 < height) {
+        while (i3 < iHeight) {
             i3++;
-            float f2 = (dp * i3) + i2;
+            float f2 = (iDp * i3) + i2;
             canvas.drawLine(i, f2, getBounds().width() + i, f2, this.linePaint);
         }
     }

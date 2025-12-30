@@ -40,7 +40,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.UserInfoActivity;
 
 public class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private EditTextCell bioEdit;
@@ -65,7 +64,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     private int shiftDp = -4;
 
     @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
 
@@ -133,7 +132,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         this.bioInfo = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfo), new Runnable() {
             @Override
             public final void run() {
-                UserInfoActivity.this.lambda$createView$0();
+                this.f$0.lambda$createView$0();
             }
         });
         super.createView(context);
@@ -149,10 +148,10 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i2 = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i2)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i2)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         setValue();
@@ -164,7 +163,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     }
 
     @Override
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         ArrayList<TLRPC.PrivacyRule> privacyRules;
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileName)));
         arrayList.add(UItem.asCustom(this.firstNameEdit));
@@ -206,7 +205,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string3, new Runnable() {
                 @Override
                 public final void run() {
-                    UserInfoActivity.this.lambda$fillItems$1();
+                    this.f$0.lambda$fillItems$1();
                 }
             }), true);
         }
@@ -244,13 +243,13 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     }
 
     @Override
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+    protected void onClick(UItem uItem, View view, int i, float f, float f2) {
         int i2 = uItem.id;
         if (i2 == 1) {
             showDialog(AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), this.birthday, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    UserInfoActivity.this.lambda$onClick$2((TL_account.TL_birthday) obj);
+                    this.f$0.lambda$onClick$2((TL_account.TL_birthday) obj);
                 }
             }, null, false, getResourceProvider()).create());
             return;
@@ -270,7 +269,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             presentFragment(new ChooseChannelFragment(adminedChannelsFetcher, chat == null ? 0L : chat.id, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    UserInfoActivity.this.lambda$onClick$3((TLRPC.Chat) obj);
+                    this.f$0.lambda$onClick$3((TLRPC.Chat) obj);
                 }
             }));
         } else if (i2 == 5) {
@@ -324,7 +323,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         this.channels.subscribe(new Runnable() {
             @Override
             public final void run() {
-                UserInfoActivity.this.lambda$onResume$4();
+                this.f$0.lambda$onResume$4();
             }
         });
         this.channels.fetch();
@@ -352,19 +351,19 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
             return;
         }
-        TLRPC.User user = userFull.user;
-        if (user == null) {
-            user = getUserConfig().getCurrentUser();
+        TLRPC.User currentUser = userFull.user;
+        if (currentUser == null) {
+            currentUser = getUserConfig().getCurrentUser();
         }
-        if (user == null) {
+        if (currentUser == null) {
             return;
         }
         EditTextCell editTextCell = this.firstNameEdit;
-        String str = user.first_name;
+        String str = currentUser.first_name;
         this.currentFirstName = str;
         editTextCell.setText(str);
         EditTextCell editTextCell2 = this.lastNameEdit;
-        String str2 = user.last_name;
+        String str2 = currentUser.last_name;
         this.currentLastName = str2;
         editTextCell2.setText(str2);
         EditTextCell editTextCell3 = this.bioEdit;
@@ -426,15 +425,15 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
     public void processDone(boolean z) {
@@ -459,18 +458,18 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         if (!TextUtils.isEmpty(this.firstNameEdit.getText()) && (!TextUtils.equals(this.currentFirstName, this.firstNameEdit.getText().toString()) || !TextUtils.equals(this.currentLastName, this.lastNameEdit.getText().toString()) || !TextUtils.equals(this.currentBio, this.bioEdit.getText().toString()))) {
             TL_account.updateProfile updateprofile = new TL_account.updateProfile();
             updateprofile.flags |= 1;
-            String charSequence = this.firstNameEdit.getText().toString();
-            currentUser.first_name = charSequence;
-            updateprofile.first_name = charSequence;
+            String string = this.firstNameEdit.getText().toString();
+            currentUser.first_name = string;
+            updateprofile.first_name = string;
             updateprofile.flags |= 2;
-            String charSequence2 = this.lastNameEdit.getText().toString();
-            currentUser.last_name = charSequence2;
-            updateprofile.last_name = charSequence2;
+            String string2 = this.lastNameEdit.getText().toString();
+            currentUser.last_name = string2;
+            updateprofile.last_name = string2;
             updateprofile.flags |= 4;
-            String charSequence3 = this.bioEdit.getText().toString();
-            userFull.about = charSequence3;
-            updateprofile.about = charSequence3;
-            userFull.flags = TextUtils.isEmpty(charSequence3) ? userFull.flags & (-3) : userFull.flags | 2;
+            String string3 = this.bioEdit.getText().toString();
+            userFull.about = string3;
+            updateprofile.about = string3;
+            userFull.flags = TextUtils.isEmpty(string3) ? userFull.flags & (-3) : userFull.flags | 2;
             arrayList.add(updateprofile);
         }
         final TL_account.TL_birthday tL_birthday = userFull.birthday;
@@ -521,7 +520,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    UserInfoActivity.this.lambda$processDone$6(tLObject, tL_birthday, userFull, iArr, arrayList, tLObject2, tL_error);
+                    this.f$0.lambda$processDone$6(tLObject, tL_birthday, userFull, iArr, arrayList, tLObject2, tL_error);
                 }
             }, 1024);
         }
@@ -535,7 +534,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserInfoActivity.this.lambda$processDone$5(tL_error, tLObject, tL_birthday, userFull, tLObject2, iArr, arrayList);
+                this.f$0.lambda$processDone$5(tL_error, tLObject, tL_birthday, userFull, tLObject2, iArr, arrayList);
             }
         });
     }
@@ -604,7 +603,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getAdminedPublicChannels, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    UserInfoActivity.AdminedChannelsFetcher.this.lambda$fetch$1(tLObject, tL_error);
+                    this.f$0.lambda$fetch$1(tLObject, tL_error);
                 }
             });
         }
@@ -613,7 +612,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserInfoActivity.AdminedChannelsFetcher.this.lambda$fetch$0(tLObject);
+                    this.f$0.lambda$fetch$0(tLObject);
                 }
             });
         }
@@ -642,7 +641,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         }
     }
 
-    public static class ChooseChannelFragment extends UniversalFragment {
+    static class ChooseChannelFragment extends UniversalFragment {
         private AdminedChannelsFetcher channels;
         private boolean invalidateAfterPause = false;
         private String query;
@@ -651,7 +650,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         private Utilities.Callback whenSelected;
 
         @Override
-        public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
             return false;
         }
 
@@ -662,7 +661,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             adminedChannelsFetcher.subscribe(new Runnable() {
                 @Override
                 public final void run() {
-                    UserInfoActivity.ChooseChannelFragment.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             });
         }
@@ -714,7 +713,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         }
 
         @Override
-        public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
             if (TextUtils.isEmpty(this.query)) {
                 arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileChannelSelect)));
             }
@@ -729,12 +728,12 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     i++;
                     if (!TextUtils.isEmpty(this.query)) {
                         String lowerCase = this.query.toLowerCase();
-                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
                         String lowerCase2 = chat.title.toLowerCase();
-                        String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                        String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
                         if (!lowerCase2.startsWith(lowerCase)) {
-                            if (!lowerCase2.contains(" " + lowerCase) && !translitSafe2.startsWith(translitSafe)) {
-                                if (!translitSafe2.contains(" " + translitSafe)) {
+                            if (!lowerCase2.contains(" " + lowerCase) && !strTranslitSafe2.startsWith(strTranslitSafe)) {
+                                if (!strTranslitSafe2.contains(" " + strTranslitSafe)) {
                                 }
                             }
                         }
@@ -760,7 +759,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 this.channels.subscribe(new Runnable() {
                     @Override
                     public final void run() {
-                        UserInfoActivity.ChooseChannelFragment.this.lambda$onResume$1();
+                        this.f$0.lambda$onResume$1();
                     }
                 });
                 this.invalidateAfterPause = false;
@@ -775,7 +774,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         }
 
         @Override
-        public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        protected void onClick(UItem uItem, View view, int i, float f, float f2) {
             int i2 = uItem.id;
             if (i2 == 1) {
                 this.whenSelected.run(null);

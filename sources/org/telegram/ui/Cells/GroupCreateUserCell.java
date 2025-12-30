@@ -232,8 +232,8 @@ public class GroupCreateUserCell extends FrameLayout {
 
             @Override
             public void draw(Canvas canvas) {
-                PremiumGradient.PremiumGradientTools.this.gradientMatrix(getBounds());
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, PremiumGradient.PremiumGradientTools.this.paint);
+                premiumGradientTools.gradientMatrix(getBounds());
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, premiumGradientTools.paint);
             }
         }, context.getResources().getDrawable(R.drawable.msg_settings_premium), 0, 0);
         if (z) {
@@ -273,12 +273,12 @@ public class GroupCreateUserCell extends FrameLayout {
             valueAnimator.cancel();
         }
         if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.animator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.animator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    GroupCreateUserCell.this.lambda$setChecked$1(valueAnimator2);
+                    this.f$0.lambda$setChecked$1(valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -299,15 +299,15 @@ public class GroupCreateUserCell extends FrameLayout {
     }
 
     public void lambda$setChecked$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f = 0.18f * floatValue;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float f = 0.18f * fFloatValue;
         float f2 = this.isChecked ? 1.0f - f : 0.82f + f;
         this.avatarImageView.setScaleX(f2);
         this.avatarImageView.setScaleY(f2);
         if (!this.isChecked) {
-            floatValue = 1.0f - floatValue;
+            fFloatValue = 1.0f - fFloatValue;
         }
-        this.checkProgress = floatValue;
+        this.checkProgress = fFloatValue;
         invalidate();
     }
 
@@ -337,9 +337,9 @@ public class GroupCreateUserCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
         Object obj = this.currentObject;
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((!(obj instanceof String) || "premium".equalsIgnoreCase((String) obj) || "miniapps".equalsIgnoreCase((String) this.currentObject)) ? 58.0f : 50.0f), 1073741824));
+        super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((!(obj instanceof String) || "premium".equalsIgnoreCase((String) obj) || "miniapps".equalsIgnoreCase((String) this.currentObject)) ? 58.0f : 50.0f), 1073741824));
     }
 
     public void recycle() {
@@ -350,7 +350,7 @@ public class GroupCreateUserCell extends FrameLayout {
         String str;
         String str2;
         TLRPC.FileLocation fileLocation;
-        String str3;
+        String userName;
         TLRPC.UserStatus userStatus;
         TLRPC.FileLocation fileLocation2;
         Object obj = this.currentObject;
@@ -362,9 +362,9 @@ public class GroupCreateUserCell extends FrameLayout {
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(15.0f);
             ViewGroup.LayoutParams layoutParams = this.avatarImageView.getLayoutParams();
             ViewGroup.LayoutParams layoutParams2 = this.avatarImageView.getLayoutParams();
-            int dp = AndroidUtilities.dp(38.0f);
-            layoutParams2.height = dp;
-            layoutParams.width = dp;
+            int iDp = AndroidUtilities.dp(38.0f);
+            layoutParams2.height = iDp;
+            layoutParams.width = iDp;
             CheckBox2 checkBox2 = this.checkBox;
             if (checkBox2 != null) {
                 ((FrameLayout.LayoutParams) checkBox2.getLayoutParams()).topMargin = AndroidUtilities.dp(25.0f);
@@ -374,100 +374,37 @@ public class GroupCreateUserCell extends FrameLayout {
                     ((FrameLayout.LayoutParams) this.checkBox.getLayoutParams()).leftMargin = AndroidUtilities.dp(32.0f);
                 }
             }
-            String str4 = (String) this.currentObject;
-            str4.hashCode();
-            char c = 65535;
-            switch (str4.hashCode()) {
-                case -1716307998:
-                    if (str4.equals("archived")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case -1237460524:
-                    if (str4.equals("groups")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case -1197490811:
-                    if (str4.equals("non_contacts")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-                case -567451565:
-                    if (str4.equals("contacts")) {
-                        c = 3;
-                        break;
-                    }
-                    break;
-                case -268161860:
-                    if (str4.equals("new_chats")) {
-                        c = 4;
-                        break;
-                    }
-                    break;
-                case 3029900:
-                    if (str4.equals("bots")) {
-                        c = 5;
-                        break;
-                    }
-                    break;
-                case 3496342:
-                    if (str4.equals("read")) {
-                        c = 6;
-                        break;
-                    }
-                    break;
-                case 104264043:
-                    if (str4.equals("muted")) {
-                        c = 7;
-                        break;
-                    }
-                    break;
-                case 151051367:
-                    if (str4.equals("existing_chats")) {
-                        c = '\b';
-                        break;
-                    }
-                    break;
-                case 1432626128:
-                    if (str4.equals("channels")) {
-                        c = '\t';
-                        break;
-                    }
-                    break;
-            }
-            switch (c) {
-                case 0:
+            String str3 = (String) this.currentObject;
+            str3.hashCode();
+            switch (str3) {
+                case "archived":
                     this.avatarDrawable.setAvatarType(11);
                     break;
-                case 1:
+                case "groups":
                     this.avatarDrawable.setAvatarType(6);
                     break;
-                case 2:
+                case "non_contacts":
                     this.avatarDrawable.setAvatarType(5);
                     break;
-                case 3:
+                case "contacts":
                     this.avatarDrawable.setAvatarType(4);
                     break;
-                case 4:
+                case "new_chats":
                     this.avatarDrawable.setAvatarType(24);
                     break;
-                case 5:
+                case "bots":
                     this.avatarDrawable.setAvatarType(8);
                     break;
-                case 6:
+                case "read":
                     this.avatarDrawable.setAvatarType(10);
                     break;
-                case 7:
+                case "muted":
                     this.avatarDrawable.setAvatarType(9);
                     break;
-                case '\b':
+                case "existing_chats":
                     this.avatarDrawable.setAvatarType(23);
                     break;
-                case '\t':
+                case "channels":
                     this.avatarDrawable.setAvatarType(7);
                     break;
             }
@@ -484,9 +421,9 @@ public class GroupCreateUserCell extends FrameLayout {
             }
             ViewGroup.LayoutParams layoutParams3 = this.avatarImageView.getLayoutParams();
             ViewGroup.LayoutParams layoutParams4 = this.avatarImageView.getLayoutParams();
-            int dp2 = AndroidUtilities.dp(46.0f);
-            layoutParams4.height = dp2;
-            layoutParams3.width = dp2;
+            int iDp2 = AndroidUtilities.dp(46.0f);
+            layoutParams4.height = iDp2;
+            layoutParams3.width = iDp2;
             CheckBox2 checkBox22 = this.checkBox;
             if (checkBox22 != null) {
                 ((FrameLayout.LayoutParams) checkBox22.getLayoutParams()).topMargin = AndroidUtilities.dp(29.0f) + this.padding;
@@ -518,10 +455,10 @@ public class GroupCreateUserCell extends FrameLayout {
                         }
                     }
                     if (z || this.currentName != null || this.lastName == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
-                        str3 = null;
+                        userName = null;
                     } else {
-                        str3 = UserObject.getUserName(user);
-                        if (!str3.equals(this.lastName)) {
+                        userName = UserObject.getUserName(user);
+                        if (!userName.equals(this.lastName)) {
                             z = true;
                         }
                     }
@@ -529,7 +466,7 @@ public class GroupCreateUserCell extends FrameLayout {
                         return;
                     }
                 } else {
-                    str3 = null;
+                    userName = null;
                 }
                 this.avatarDrawable.setInfo(this.currentAccount, user);
                 TLRPC.UserStatus userStatus3 = user.status;
@@ -539,11 +476,11 @@ public class GroupCreateUserCell extends FrameLayout {
                     this.lastName = null;
                     this.nameTextView.setText(charSequence2, true);
                 } else {
-                    if (str3 == null) {
-                        str3 = UserObject.getUserName(user);
+                    if (userName == null) {
+                        userName = UserObject.getUserName(user);
                     }
-                    this.lastName = str3;
-                    this.nameTextView.setText(str3);
+                    this.lastName = userName;
+                    this.nameTextView.setText(userName);
                 }
                 if (this.currentStatus == null) {
                     if (user.bot) {
@@ -674,13 +611,13 @@ public class GroupCreateUserCell extends FrameLayout {
             canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.dp(18.0f) + (AndroidUtilities.dp(4.0f) * this.checkProgress), this.paint);
         }
         if (this.drawDivider) {
-            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
+            int iDp = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
             if (this.forceDarkTheme) {
                 Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar, this.resourcesProvider));
-                canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
+                canvas.drawRect(iDp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
             } else {
-                canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.getThemePaint("paintDivider", this.resourcesProvider));
+                canvas.drawRect(iDp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.getThemePaint("paintDivider", this.resourcesProvider));
             }
         }
     }
@@ -711,9 +648,9 @@ public class GroupCreateUserCell extends FrameLayout {
             }
             canvas.drawCircle(x, y, AndroidUtilities.dp(10.0f) * f, paint);
             if (this.lockDrawable == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
-                this.lockDrawable = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                this.lockDrawable = drawableMutate;
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             }
             this.lockDrawable.setBounds((int) (x - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
             this.lockDrawable.setAlpha((int) (f * 255.0f));

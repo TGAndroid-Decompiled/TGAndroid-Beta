@@ -21,7 +21,6 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
-import org.telegram.ui.Components.Premium.boosts.GiftInfoBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.GiftInfoAdapter;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
@@ -112,9 +111,9 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         if (!scheme.equals("tg")) {
             return false;
         }
-        String uri = data.toString();
+        String string = data.toString();
         String lastPathSegment2 = data.getLastPathSegment();
-        if ((!uri.startsWith("tg:giftcode") && !uri.startsWith("tg://giftcode")) || lastPathSegment2 == null) {
+        if ((!string.startsWith("tg:giftcode") && !string.startsWith("tg://giftcode")) || lastPathSegment2 == null) {
             return false;
         }
         show(LaunchActivity.getLastFragment(), lastPathSegment2, progress);
@@ -184,7 +183,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         return this.isUnused ? LocaleController.getString(R.string.BoostingGiftLink) : LocaleController.getString(R.string.BoostingUsedGiftLink);
     }
 
-    public class AnonymousClass2 extends GiftInfoAdapter {
+    class AnonymousClass2 extends GiftInfoAdapter {
         AnonymousClass2(Theme.ResourcesProvider resourcesProvider) {
             super(resourcesProvider);
         }
@@ -199,7 +198,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GiftInfoBottomSheet.AnonymousClass2.this.lambda$afterCodeApplied$0();
+                    this.f$0.lambda$afterCodeApplied$0();
                 }
             }, 200L);
         }
@@ -209,7 +208,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public void onObjectClicked(TLObject tLObject) {
+        protected void onObjectClicked(TLObject tLObject) {
             dismiss();
             if (tLObject instanceof TLRPC.Chat) {
                 GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC.Chat) tLObject).id));
@@ -226,7 +225,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public void onHiddenLinkClicked() {
+        protected void onHiddenLinkClicked() {
             String string;
             if ((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) {
                 string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);

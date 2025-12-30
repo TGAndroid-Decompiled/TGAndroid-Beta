@@ -76,16 +76,16 @@ public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
     public Canvas beginRecording(int i, int i2, float f) {
         float f2 = i;
         float f3 = f2 / f;
-        int round = Math.round(f3);
-        int round2 = Math.round(f3);
+        int iRound = Math.round(f3);
+        int iRound2 = Math.round(f3);
         Bitmap bitmap = this.bitmapInternal;
-        if (bitmap == null || bitmap.isRecycled() || this.bitmapInternal.getWidth() != round2 || this.bitmapInternal.getHeight() != round2) {
-            this.bitmapInternal = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+        if (bitmap == null || bitmap.isRecycled() || this.bitmapInternal.getWidth() != iRound2 || this.bitmapInternal.getHeight() != iRound2) {
+            this.bitmapInternal = Bitmap.createBitmap(iRound, iRound2, Bitmap.Config.ARGB_8888);
         } else {
             this.bitmapInternal.eraseColor(0);
         }
         Canvas canvas = new Canvas(this.bitmapInternal);
-        canvas.scale(f2 / round, i2 / round2);
+        canvas.scale(f2 / iRound, i2 / iRound2);
         return canvas;
     }
 
@@ -123,8 +123,8 @@ public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
         float f2 = i;
         float f3 = i6;
         float f4 = i2;
-        float max = Math.max(f / f2, f3 / f4);
-        matrix.setScale(max, max);
-        matrix.postTranslate((f - (f2 * max)) * 0.5f, ((f3 - (f4 * max)) * 0.5f) + i5);
+        float fMax = Math.max(f / f2, f3 / f4);
+        matrix.setScale(fMax, fMax);
+        matrix.postTranslate((f - (f2 * fMax)) * 0.5f, ((f3 - (f4 * fMax)) * 0.5f) + i5);
     }
 }

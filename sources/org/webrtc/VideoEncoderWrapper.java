@@ -2,7 +2,7 @@ package org.webrtc;
 
 import org.webrtc.VideoEncoder;
 
-public class VideoEncoderWrapper {
+class VideoEncoderWrapper {
     public static native void nativeOnEncodedFrame(long j, EncodedImage encodedImage);
 
     VideoEncoderWrapper() {

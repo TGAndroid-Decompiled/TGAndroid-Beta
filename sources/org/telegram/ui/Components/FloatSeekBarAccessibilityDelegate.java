@@ -8,7 +8,7 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 public abstract class FloatSeekBarAccessibilityDelegate extends SeekBarAccessibilityDelegate {
     private final boolean setPercentsEnabled;
 
-    public float getDelta() {
+    protected float getDelta() {
         return 0.05f;
     }
 
@@ -36,9 +36,9 @@ public abstract class FloatSeekBarAccessibilityDelegate extends SeekBarAccessibi
     public void onInitializeAccessibilityNodeInfoInternal(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfoInternal(view, accessibilityNodeInfo);
         if (this.setPercentsEnabled) {
-            AccessibilityNodeInfoCompat wrap = AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo);
-            wrap.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SET_PROGRESS);
-            wrap.setRangeInfo(AccessibilityNodeInfoCompat.RangeInfoCompat.obtain(1, getMinValue(), getMaxValue(), getProgress()));
+            AccessibilityNodeInfoCompat accessibilityNodeInfoCompatWrap = AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo);
+            accessibilityNodeInfoCompatWrap.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SET_PROGRESS);
+            accessibilityNodeInfoCompatWrap.setRangeInfo(AccessibilityNodeInfoCompat.RangeInfoCompat.obtain(1, getMinValue(), getMaxValue(), getProgress()));
         }
     }
 

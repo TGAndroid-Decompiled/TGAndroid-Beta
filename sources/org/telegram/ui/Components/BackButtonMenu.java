@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -80,9 +81,7 @@ public abstract class BackButtonMenu {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$getStackedHistoryForTopic$1;
-                lambda$getStackedHistoryForTopic$1 = BackButtonMenu.lambda$getStackedHistoryForTopic$1((BackButtonMenu.PulledDialog) obj, (BackButtonMenu.PulledDialog) obj2);
-                return lambda$getStackedHistoryForTopic$1;
+                return BackButtonMenu.lambda$getStackedHistoryForTopic$1((BackButtonMenu.PulledDialog) obj, (BackButtonMenu.PulledDialog) obj2);
             }
         });
         return arrayList;
@@ -131,8 +130,99 @@ public abstract class BackButtonMenu {
         }
     }
 
-    public static java.util.ArrayList getStackedHistoryDialogs(org.telegram.ui.ActionBar.BaseFragment r17, long r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BackButtonMenu.getStackedHistoryDialogs(org.telegram.ui.ActionBar.BaseFragment, long):java.util.ArrayList");
+    public static ArrayList getStackedHistoryDialogs(BaseFragment baseFragment, long j) {
+        INavigationLayout parentLayout;
+        TLRPC.Chat currentChat;
+        TLRPC.User currentUser;
+        long dialogId;
+        Class cls;
+        int dialogFilterId;
+        int dialogFolderId;
+        ArrayList arrayList = new ArrayList();
+        if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
+            return arrayList;
+        }
+        List fragmentStack = parentLayout.getFragmentStack();
+        List pulledDialogs = parentLayout.getPulledDialogs();
+        if (fragmentStack != null) {
+            int size = fragmentStack.size();
+            for (int i = 0; i < size; i++) {
+                BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(i);
+                if (baseFragment2 instanceof ChatActivity) {
+                    ChatActivity chatActivity = (ChatActivity) baseFragment2;
+                    if (chatActivity.getChatMode() == 0 && !chatActivity.isReport()) {
+                        currentChat = chatActivity.getCurrentChat();
+                        currentUser = chatActivity.getCurrentUser();
+                        dialogId = chatActivity.getDialogId();
+                        dialogFolderId = chatActivity.getDialogFolderId();
+                        dialogFilterId = chatActivity.getDialogFilterId();
+                        cls = ChatActivity.class;
+                        if (dialogId == j && (j != 0 || !UserObject.isUserSelf(currentUser))) {
+                            int i2 = 0;
+                            while (true) {
+                                if (i2 >= arrayList.size()) {
+                                    PulledDialog pulledDialog = new PulledDialog();
+                                    pulledDialog.activity = cls;
+                                    pulledDialog.stackIndex = i;
+                                    pulledDialog.chat = currentChat;
+                                    pulledDialog.user = currentUser;
+                                    pulledDialog.dialogId = dialogId;
+                                    pulledDialog.folderId = dialogFolderId;
+                                    pulledDialog.filterId = dialogFilterId;
+                                    if (currentChat != null || currentUser != null) {
+                                        arrayList.add(pulledDialog);
+                                    }
+                                } else {
+                                    if (((PulledDialog) arrayList.get(i2)).dialogId == dialogId) {
+                                        break;
+                                    }
+                                    i2++;
+                                }
+                            }
+                        }
+                    }
+                } else if (baseFragment2 instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) baseFragment2;
+                    currentChat = profileActivity.getCurrentChat();
+                    try {
+                        currentUser = profileActivity.getUserInfo().user;
+                    } catch (Exception unused) {
+                        currentUser = null;
+                    }
+                    dialogId = profileActivity.getDialogId();
+                    cls = ProfileActivity.class;
+                    dialogFilterId = 0;
+                    dialogFolderId = 0;
+                    if (dialogId == j) {
+                    }
+                }
+            }
+        }
+        if (pulledDialogs != null) {
+            for (int size2 = pulledDialogs.size() - 1; size2 >= 0; size2--) {
+                PulledDialog pulledDialog2 = (PulledDialog) pulledDialogs.get(size2);
+                if (pulledDialog2.dialogId != j) {
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= arrayList.size()) {
+                            arrayList.add(pulledDialog2);
+                            break;
+                        }
+                        if (((PulledDialog) arrayList.get(i3)).dialogId == pulledDialog2.dialogId) {
+                            break;
+                        }
+                        i3++;
+                    }
+                }
+            }
+        }
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                return BackButtonMenu.lambda$getStackedHistoryDialogs$2((BackButtonMenu.PulledDialog) obj, (BackButtonMenu.PulledDialog) obj2);
+            }
+        });
+        return arrayList;
     }
 
     public static int lambda$getStackedHistoryDialogs$2(PulledDialog pulledDialog, PulledDialog pulledDialog2) {

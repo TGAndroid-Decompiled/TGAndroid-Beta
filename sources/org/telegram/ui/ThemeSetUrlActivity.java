@@ -120,14 +120,11 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             try {
-                boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                if (motionEvent.getAction() != 1) {
-                    if (motionEvent.getAction() == 3) {
-                    }
-                    return onTouchEvent;
+                boolean zOnTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    Selection.removeSelection(spannable);
                 }
-                Selection.removeSelection(spannable);
-                return onTouchEvent;
+                return zOnTouchEvent;
             } catch (Exception e) {
                 FileLog.e(e);
                 return false;
@@ -168,7 +165,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
+            public void onItemClick(int i) throws Throwable {
                 if (i == -1) {
                     ThemeSetUrlActivity.this.finishFragment();
                 } else if (i == 1) {
@@ -185,9 +182,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = ThemeSetUrlActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return ThemeSetUrlActivity.lambda$createView$0(view, motionEvent);
             }
         });
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -225,9 +220,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.nameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                boolean lambda$createView$1;
-                lambda$createView$1 = ThemeSetUrlActivity.this.lambda$createView$1(textView, i3, keyEvent);
-                return lambda$createView$1;
+                return this.f$0.lambda$createView$1(textView, i3, keyEvent);
             }
         });
         View view = new View(context) {
@@ -276,9 +269,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.linkField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                boolean lambda$createView$2;
-                lambda$createView$2 = ThemeSetUrlActivity.this.lambda$createView$2(textView, i3, keyEvent);
-                return lambda$createView$2;
+                return this.f$0.lambda$createView$2(textView, i3, keyEvent);
             }
         });
         this.linkField.addTextChangedListener(new TextWatcher() {
@@ -305,11 +296,11 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     return;
                 }
                 String str = "https://" + ThemeSetUrlActivity.this.getMessagesController().linkPrefix + "/addtheme/" + ((Object) ThemeSetUrlActivity.this.linkField.getText());
-                String formatString = LocaleController.formatString("ThemeHelpLink", R.string.ThemeHelpLink, str);
-                int indexOf = formatString.indexOf(str);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-                if (indexOf >= 0) {
-                    spannableStringBuilder.setSpan(new LinkSpan(str), indexOf, str.length() + indexOf, 33);
+                String string = LocaleController.formatString("ThemeHelpLink", R.string.ThemeHelpLink, str);
+                int iIndexOf = string.indexOf(str);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+                if (iIndexOf >= 0) {
+                    spannableStringBuilder.setSpan(ThemeSetUrlActivity.this.new LinkSpan(str), iIndexOf, str.length() + iIndexOf, 33);
                 }
                 ThemeSetUrlActivity.this.helpInfoCell.setText(TextUtils.concat(ThemeSetUrlActivity.this.infoText, "\n\n", spannableStringBuilder));
             }
@@ -318,7 +309,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.linkField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view2, boolean z) {
-                    ThemeSetUrlActivity.this.lambda$createView$3(view2, z);
+                    this.f$0.lambda$createView$3(view2, z);
                 }
             });
         }
@@ -338,9 +329,9 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
         } else {
             TextInfoPrivacyCell textInfoPrivacyCell3 = this.helpInfoCell;
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeSetUrlHelp));
-            this.infoText = replaceTags;
-            textInfoPrivacyCell3.setText(replaceTags);
+            SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeSetUrlHelp));
+            this.infoText = spannableStringBuilderReplaceTags;
+            textInfoPrivacyCell3.setText(spannableStringBuilderReplaceTags);
         }
         linearLayout2.addView(this.helpInfoCell, LayoutHelper.createLinear(-1, -2));
         if (this.creatingNewTheme) {
@@ -356,7 +347,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.createCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ThemeSetUrlActivity.this.lambda$createView$5(context, view2);
+                    this.f$0.lambda$createView$5(context, view2);
                 }
             });
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
@@ -423,9 +414,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$createView$4;
-                lambda$createView$4 = ThemeSetUrlActivity.lambda$createView$4(view2, motionEvent);
-                return lambda$createView$4;
+                return ThemeSetUrlActivity.lambda$createView$4(view2, motionEvent);
             }
         });
         builder.setCustomView(linearLayout);
@@ -512,8 +501,8 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
-                char charAt = str.charAt(i);
-                if (i == 0 && charAt >= '0' && charAt <= '9') {
+                char cCharAt = str.charAt(i);
+                if (i == 0 && cCharAt >= '0' && cCharAt <= '9') {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidStartNumber));
                     } else {
@@ -521,7 +510,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     }
                     return false;
                 }
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
+                if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalid));
                     } else {
@@ -561,7 +550,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeSetUrlActivity.this.lambda$checkUrl$8(str);
+                    this.f$0.lambda$checkUrl$8(str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -578,7 +567,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(createtheme, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ThemeSetUrlActivity.this.lambda$checkUrl$7(str, tLObject, tL_error);
+                this.f$0.lambda$checkUrl$7(str, tLObject, tL_error);
             }
         }, 2);
     }
@@ -587,7 +576,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemeSetUrlActivity.this.lambda$checkUrl$6(str, tL_error);
+                this.f$0.lambda$checkUrl$6(str, tL_error);
             }
         });
     }
@@ -629,7 +618,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void saveTheme() {
+    public void saveTheme() throws Throwable {
         if (checkUrl(this.linkField.getText().toString(), true) && getParentActivity() != null) {
             if (this.nameField.length() == 0) {
                 AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNameInvalid));
@@ -648,9 +637,9 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 this.progressDialog.show();
                 Theme.ThemeInfo themeInfo = this.themeInfo;
                 TLRPC.TL_theme tL_theme = this.info;
-                String obj = this.nameField.getText().toString();
-                tL_theme.title = obj;
-                themeInfo.name = obj;
+                String string = this.nameField.getText().toString();
+                tL_theme.title = string;
+                themeInfo.name = string;
                 this.themeInfo.info.slug = this.linkField.getText().toString();
                 Theme.saveCurrentTheme(this.themeInfo, true, true, true);
                 return;
@@ -662,9 +651,9 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             }
             String str3 = tL_theme2.title;
             String str4 = str3 != null ? str3 : "";
-            String obj2 = this.linkField.getText().toString();
-            String obj3 = this.nameField.getText().toString();
-            if (str2.equals(obj2) && str4.equals(obj3)) {
+            String string2 = this.linkField.getText().toString();
+            String string3 = this.nameField.getText().toString();
+            if (str2.equals(string2) && str4.equals(string3)) {
                 finishFragment();
                 return;
             }
@@ -676,21 +665,21 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             tL_inputTheme.access_hash = tL_theme3.access_hash;
             updatetheme.theme = tL_inputTheme;
             updatetheme.format = "android";
-            updatetheme.slug = obj2;
+            updatetheme.slug = string2;
             int i = updatetheme.flags;
-            updatetheme.title = obj3;
+            updatetheme.title = string3;
             updatetheme.flags = i | 3;
-            final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatetheme, new RequestDelegate() {
+            final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatetheme, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ThemeSetUrlActivity.this.lambda$saveTheme$12(updatetheme, tLObject, tL_error);
+                    this.f$0.lambda$saveTheme$12(updatetheme, tLObject, tL_error);
                 }
             }, 2);
-            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, this.classGuid);
+            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ThemeSetUrlActivity.this.lambda$saveTheme$13(sendRequest, dialogInterface);
+                    this.f$0.lambda$saveTheme$13(iSendRequest, dialogInterface);
                 }
             });
             this.progressDialog.show();
@@ -703,14 +692,14 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeSetUrlActivity.this.lambda$saveTheme$10(tL_theme);
+                    this.f$0.lambda$saveTheme$10(tL_theme);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeSetUrlActivity.this.lambda$saveTheme$11(tL_error, updatetheme);
+                    this.f$0.lambda$saveTheme$11(tL_error, updatetheme);
                 }
             });
         }

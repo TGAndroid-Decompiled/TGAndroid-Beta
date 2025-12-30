@@ -209,7 +209,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.drawAbove = new StoryViewer.HolderDrawAbove() {
                         @Override
                         public final void draw(Canvas canvas, RectF rectF, float f, boolean z) {
-                            StoriesListPlaceProvider.lambda$findView$1(SharedPhotoVideoCell2.this, fastScroll, iArr, canvas, rectF, f, z);
+                            StoriesListPlaceProvider.lambda$findView$1(sharedPhotoVideoCell2, fastScroll, iArr, canvas, rectF, f, z);
                         }
                     };
                     transitionViewHolder.clipParent = (View) sharedPhotoVideoCell2.getParent();
@@ -313,8 +313,8 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
             return;
         }
         path.rewind();
-        float pow = (float) Math.pow(f, 2.0d);
-        path.addCircle((rectF.right + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), (rectF.bottom + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), AndroidUtilities.dp(11.0f), Path.Direction.CW);
+        float fPow = (float) Math.pow(f, 2.0d);
+        path.addCircle((rectF.right + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * fPow), (rectF.bottom + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * fPow), AndroidUtilities.dp(11.0f), Path.Direction.CW);
         canvas.clipPath(path, Region.Op.DIFFERENCE);
     }
 

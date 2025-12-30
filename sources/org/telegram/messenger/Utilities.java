@@ -101,8 +101,6 @@ public class Utilities {
 
     private static native void aesIgeEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, int i2);
 
-    public static native void applyAlphaThreshold(Bitmap bitmap, int i);
-
     public static native void blurBitmap(Object obj, int i, int i2, int i3, int i4, int i5);
 
     public static native void calcCDT(ByteBuffer byteBuffer, int i, int i2, ByteBuffer byteBuffer2, ByteBuffer byteBuffer3);
@@ -152,12 +150,12 @@ public class Utilities {
     }
 
     public static Bitmap stackBlurBitmapMax(Bitmap bitmap, boolean z) {
-        int dp = AndroidUtilities.dp(20.0f);
-        int dp2 = (int) ((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth());
-        Bitmap createBitmap = Bitmap.createBitmap(dp, dp2, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        int iDp = AndroidUtilities.dp(20.0f);
+        int iDp2 = (int) ((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth());
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iDp, iDp2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.save();
-        canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+        canvas.scale(bitmapCreateBitmap.getWidth() / bitmap.getWidth(), bitmapCreateBitmap.getHeight() / bitmap.getHeight());
         if (z) {
             Path path = new Path();
             path.addCircle(bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f, (Math.min(bitmap.getWidth(), bitmap.getHeight()) / 2.0f) - 1.0f, Path.Direction.CW);
@@ -165,36 +163,36 @@ public class Utilities {
         }
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / 150));
-        return createBitmap;
+        stackBlurBitmap(bitmapCreateBitmap, Math.max(10, Math.max(iDp, iDp2) / 150));
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap stackBlurBitmapWithScaleFactor(Bitmap bitmap, float f) {
-        int max = (int) Math.max(AndroidUtilities.dp(20.0f), bitmap.getWidth() / f);
-        int max2 = (int) Math.max((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth(), bitmap.getHeight() / f);
-        Bitmap createBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        int iMax = (int) Math.max(AndroidUtilities.dp(20.0f), bitmap.getWidth() / f);
+        int iMax2 = (int) Math.max((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth(), bitmap.getHeight() / f);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iMax, iMax2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.save();
-        canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+        canvas.scale(bitmapCreateBitmap.getWidth() / bitmap.getWidth(), bitmapCreateBitmap.getHeight() / bitmap.getHeight());
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / 150));
-        return createBitmap;
+        stackBlurBitmap(bitmapCreateBitmap, Math.max(10, Math.max(iMax, iMax2) / 150));
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap blurWallpaper(Bitmap bitmap) {
-        Bitmap createBitmap;
+        Bitmap bitmapCreateBitmap;
         if (bitmap == null) {
             return null;
         }
         if (bitmap.getHeight() > bitmap.getWidth()) {
-            createBitmap = Bitmap.createBitmap(Math.round((bitmap.getWidth() * 450.0f) / bitmap.getHeight()), 450, Bitmap.Config.ARGB_8888);
+            bitmapCreateBitmap = Bitmap.createBitmap(Math.round((bitmap.getWidth() * 450.0f) / bitmap.getHeight()), 450, Bitmap.Config.ARGB_8888);
         } else {
-            createBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
+            bitmapCreateBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
         }
-        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), new Paint(2));
-        stackBlurBitmap(createBitmap, 12);
-        return createBitmap;
+        new Canvas(bitmapCreateBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight()), new Paint(2));
+        stackBlurBitmap(bitmapCreateBitmap, 12);
+        return bitmapCreateBitmap;
     }
 
     public static void aesIgeEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, boolean z, boolean z2, int i, int i2) {
@@ -216,7 +214,6 @@ public class Utilities {
     }
 
     public static Integer parseInt(CharSequence charSequence) {
-        boolean z;
         int i = 0;
         if (charSequence == null) {
             return 0;
@@ -228,25 +225,14 @@ public class Utilities {
                 if (i3 >= charSequence.length()) {
                     break;
                 }
-                char charAt = charSequence.charAt(i3);
-                if (charAt != '-' && (charAt < '0' || charAt > '9')) {
-                    z = false;
-                    if (!z && i2 < 0) {
-                        i2 = i3;
-                    } else if (!z && i2 >= 0) {
-                        i3++;
-                        break;
-                    }
-                    i3++;
-                }
-                z = true;
-                if (!z) {
-                }
-                if (!z) {
+                char cCharAt = charSequence.charAt(i3);
+                boolean z = cCharAt == '-' || (cCharAt >= '0' && cCharAt <= '9');
+                if (z && i2 < 0) {
+                    i2 = i3;
+                } else if (!z && i2 >= 0) {
                     i3++;
                     break;
                 }
-                continue;
                 i3++;
             } catch (Exception unused) {
             }
@@ -260,21 +246,21 @@ public class Utilities {
     private static int parseInt(String str) {
         boolean z;
         int length = str.length();
-        int i = 0;
-        char charAt = str.charAt(0);
-        if (charAt == '-') {
+        int iCharAt = 0;
+        char cCharAt = str.charAt(0);
+        if (cCharAt == '-') {
             z = false;
         } else {
-            i = '0' - charAt;
+            iCharAt = '0' - cCharAt;
             z = true;
         }
-        for (int i2 = 1; i2 < length; i2++) {
-            i = ((i * 10) + 48) - str.charAt(i2);
+        for (int i = 1; i < length; i++) {
+            iCharAt = ((iCharAt * 10) + 48) - str.charAt(i);
         }
-        return z ? -i : i;
+        return z ? -iCharAt : iCharAt;
     }
 
-    public static Long parseLong(String str) {
+    public static Long parseLong(String str) throws NumberFormatException {
         long j = 0;
         if (str == null) {
             return 0L;
@@ -345,7 +331,7 @@ public class Utilities {
         return z;
     }
 
-    public static byte[] computeSHA1(byte[] bArr, int i, int i2) {
+    public static byte[] computeSHA1(byte[] bArr, int i, int i2) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             messageDigest.update(bArr, i, i2);
@@ -357,8 +343,8 @@ public class Utilities {
     }
 
     public static byte[] computeSHA1(ByteBuffer byteBuffer, int i, int i2) {
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
+        int iPosition = byteBuffer.position();
+        int iLimit = byteBuffer.limit();
         try {
             try {
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
@@ -368,13 +354,13 @@ public class Utilities {
                 return messageDigest.digest();
             } catch (Exception e) {
                 FileLog.e(e);
-                byteBuffer.limit(limit);
-                byteBuffer.position(position);
+                byteBuffer.limit(iLimit);
+                byteBuffer.position(iPosition);
                 return new byte[20];
             }
         } finally {
-            byteBuffer.limit(limit);
-            byteBuffer.position(position);
+            byteBuffer.limit(iLimit);
+            byteBuffer.position(iPosition);
         }
     }
 
@@ -390,7 +376,7 @@ public class Utilities {
         return computeSHA256(bArr, 0, bArr.length);
     }
 
-    public static byte[] computeSHA256(byte[] bArr, int i, long j) {
+    public static byte[] computeSHA256(byte[] bArr, int i, long j) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(bArr, i, (int) j);
@@ -401,7 +387,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA256(byte[]... bArr) {
+    public static byte[] computeSHA256(byte[]... bArr) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             for (byte[] bArr2 : bArr) {
@@ -414,7 +400,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA512(byte[] bArr) {
+    public static byte[] computeSHA512(byte[] bArr) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -425,7 +411,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2) {
+    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -443,7 +429,7 @@ public class Utilities {
         return bArr3;
     }
 
-    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2, byte[] bArr3) {
+    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2, byte[] bArr3) throws NoSuchAlgorithmException {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -457,8 +443,8 @@ public class Utilities {
     }
 
     public static byte[] computeSHA256(byte[] bArr, int i, int i2, ByteBuffer byteBuffer, int i3, int i4) {
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
+        int iPosition = byteBuffer.position();
+        int iLimit = byteBuffer.limit();
         try {
             try {
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -469,13 +455,13 @@ public class Utilities {
                 return messageDigest.digest();
             } catch (Exception e) {
                 FileLog.e(e);
-                byteBuffer.limit(limit);
-                byteBuffer.position(position);
+                byteBuffer.limit(iLimit);
+                byteBuffer.position(iPosition);
                 return new byte[32];
             }
         } finally {
-            byteBuffer.limit(limit);
-            byteBuffer.position(position);
+            byteBuffer.limit(iLimit);
+            byteBuffer.position(iPosition);
         }
     }
 
@@ -496,9 +482,9 @@ public class Utilities {
             return null;
         }
         try {
-            byte[] digest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
+            byte[] bArrDigest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
-            for (byte b : digest) {
+            for (byte b : bArrDigest) {
                 sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
             }
             return sb.toString();
@@ -513,9 +499,9 @@ public class Utilities {
             return null;
         }
         try {
-            byte[] digest = MessageDigest.getInstance("SHA-256").digest(AndroidUtilities.getStringBytes(str));
+            byte[] bArrDigest = MessageDigest.getInstance("SHA-256").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
-            for (byte b : digest) {
+            for (byte b : bArrDigest) {
                 sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
             }
             return sb.toString();
@@ -564,16 +550,16 @@ public class Utilities {
     }
 
     public static String getExtension(String str) {
-        int lastIndexOf = str.lastIndexOf(46);
-        String substring = lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : null;
-        if (substring == null) {
+        int iLastIndexOf = str.lastIndexOf(46);
+        String strSubstring = iLastIndexOf != -1 ? str.substring(iLastIndexOf + 1) : null;
+        if (strSubstring == null) {
             return null;
         }
-        return substring.toUpperCase();
+        return strSubstring.toUpperCase();
     }
 
-    public static <Key, Value> Value getOrDefault(HashMap<Key, Value> hashMap, Key key, Value value) {
-        Value value2 = hashMap.get(key);
+    public static <Key, Value> Value getOrDefault(HashMap<Key, Value> map, Key key, Value value) {
+        Value value2 = map.get(key);
         return value2 == null ? value : value2;
     }
 
@@ -656,5 +642,9 @@ public class Utilities {
         } catch (Exception unused) {
             return j;
         }
+    }
+
+    public static int divCeil(int i, int i2) {
+        return ((i + i2) - 1) / i2;
     }
 }

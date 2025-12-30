@@ -83,37 +83,37 @@ public class SuggestBirthdayActionLayout {
     }
 
     public void draw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(66.0f);
-        int width = (this.view.getWidth() - dp) / 2;
-        this.sticker.setBounds(width, AndroidUtilities.dp(13.0f), width + dp, AndroidUtilities.dp(13.0f) + dp);
+        int iDp = AndroidUtilities.dp(66.0f);
+        int width = (this.view.getWidth() - iDp) / 2;
+        this.sticker.setBounds(width, AndroidUtilities.dp(13.0f), width + iDp, AndroidUtilities.dp(13.0f) + iDp);
         this.sticker.draw(canvas);
-        this.text.draw(canvas, (this.view.getWidth() - this.text.getWidth()) / 2.0f, AndroidUtilities.dp(19.0f) + dp, -1, 1.0f);
-        int dp2 = (int) (AndroidUtilities.dp(19.0f) + dp + this.text.getHeight() + AndroidUtilities.dp(17.0f));
-        int i = 0;
-        for (int i2 = 0; i2 < this.titles.length; i2++) {
-            i = (int) (i + AndroidUtilities.dp(9.0f) + Math.max(this.titles[i2].getWidth(), this.values[i2].getWidth()) + AndroidUtilities.dp(9.0f));
+        this.text.draw(canvas, (this.view.getWidth() - this.text.getWidth()) / 2.0f, AndroidUtilities.dp(19.0f) + iDp, -1, 1.0f);
+        int iDp2 = (int) (AndroidUtilities.dp(19.0f) + iDp + this.text.getHeight() + AndroidUtilities.dp(17.0f));
+        int iDp3 = 0;
+        for (int i = 0; i < this.titles.length; i++) {
+            iDp3 = (int) (iDp3 + AndroidUtilities.dp(9.0f) + Math.max(this.titles[i].getWidth(), this.values[i].getWidth()) + AndroidUtilities.dp(9.0f));
         }
-        int width2 = (this.view.getWidth() - i) / 2;
-        for (int i3 = 0; i3 < this.titles.length; i3++) {
-            float dp3 = AndroidUtilities.dp(9.0f) + Math.max(this.titles[i3].getWidth(), this.values[i3].getWidth()) + AndroidUtilities.dp(9.0f);
+        int width2 = (this.view.getWidth() - iDp3) / 2;
+        for (int i2 = 0; i2 < this.titles.length; i2++) {
+            float fDp = AndroidUtilities.dp(9.0f) + Math.max(this.titles[i2].getWidth(), this.values[i2].getWidth()) + AndroidUtilities.dp(9.0f);
             float f = width2;
-            float f2 = (dp3 / 2.0f) + f;
-            width2 = (int) (f + dp3);
-            Text text = this.titles[i3];
-            text.draw(canvas, f2 - (text.getWidth() / 2.0f), dp2, -1, 0.75f);
-            Text text2 = this.values[i3];
-            text2.draw(canvas, f2 - (text2.getWidth() / 2.0f), AndroidUtilities.dp(16.0f) + dp2, -1, 1.0f);
+            float f2 = (fDp / 2.0f) + f;
+            width2 = (int) (f + fDp);
+            Text text = this.titles[i2];
+            text.draw(canvas, f2 - (text.getWidth() / 2.0f), iDp2, -1, 0.75f);
+            Text text2 = this.values[i2];
+            text2.draw(canvas, f2 - (text2.getWidth() / 2.0f), AndroidUtilities.dp(16.0f) + iDp2, -1, 1.0f);
         }
         if (this.hasButton) {
-            int dp4 = dp2 + AndroidUtilities.dp(38.0f);
+            int iDp4 = iDp2 + AndroidUtilities.dp(38.0f);
             canvas.save();
             float width3 = this.button.getWidth() + AndroidUtilities.dp(26.0f);
-            float dp5 = AndroidUtilities.dp(30.0f);
-            float f3 = dp4;
-            this.buttonRect.set((this.view.getWidth() - width3) / 2.0f, f3, (this.view.getWidth() + width3) / 2.0f, f3 + dp5);
+            float fDp2 = AndroidUtilities.dp(30.0f);
+            float f3 = iDp4;
+            this.buttonRect.set((this.view.getWidth() - width3) / 2.0f, f3, (this.view.getWidth() + width3) / 2.0f, f3 + fDp2);
             float scale = this.bounce.getScale(0.1f);
             canvas.scale(scale, scale, this.buttonRect.centerX(), this.buttonRect.centerY());
-            float f4 = dp5 / 2.0f;
+            float f4 = fDp2 / 2.0f;
             canvas.drawRoundRect(this.buttonRect, f4, f4, this.buttonPaint);
             this.button.draw(canvas, this.buttonRect.left + AndroidUtilities.dp(13.0f), this.buttonRect.centerY(), -1, 1.0f);
             canvas.restore();
@@ -137,9 +137,9 @@ public class SuggestBirthdayActionLayout {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = this.buttonRect.contains(motionEvent.getX(), motionEvent.getY());
+        boolean zContains = this.buttonRect.contains(motionEvent.getX(), motionEvent.getY());
         if (motionEvent.getAction() == 0) {
-            this.bounce.setPressed(contains);
+            this.bounce.setPressed(zContains);
         } else if (motionEvent.getAction() != 2) {
             if (motionEvent.getAction() == 1) {
                 if (this.bounce.isPressed()) {
@@ -157,7 +157,7 @@ public class SuggestBirthdayActionLayout {
         AlertsCreator.createBirthdayPickerDialog(this.view.getContext(), LocaleController.getString(R.string.DateOfBirth), LocaleController.getString(R.string.DateOfBirthAddToProfile), this.birthday, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SuggestBirthdayActionLayout.this.lambda$open$2((TL_account.TL_birthday) obj);
+                this.f$0.lambda$open$2((TL_account.TL_birthday) obj);
             }
         }, null, true, this.resourcesProvider).show();
     }
@@ -176,7 +176,7 @@ public class SuggestBirthdayActionLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatebirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SuggestBirthdayActionLayout.this.lambda$open$1(userFull, tL_birthday2, tLObject, tL_error);
+                this.f$0.lambda$open$1(userFull, tL_birthday2, tLObject, tL_error);
             }
         }, 1024);
         MessagesController.getInstance(this.currentAccount).invalidateContentSettings();
@@ -188,7 +188,7 @@ public class SuggestBirthdayActionLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SuggestBirthdayActionLayout.this.lambda$open$0(tLObject, userFull, tL_birthday, tL_error);
+                this.f$0.lambda$open$0(tLObject, userFull, tL_birthday, tL_error);
             }
         });
     }

@@ -35,7 +35,7 @@ public class NetworkMonitor {
 
     private native void nativeNotifyOfNetworkPreference(long j, NetworkChangeDetector.ConnectionType connectionType, int i);
 
-    public static class InstanceHolder {
+    private static class InstanceHolder {
         static final NetworkMonitor instance = new NetworkMonitor();
 
         private InstanceHolder() {
@@ -283,8 +283,8 @@ public class NetworkMonitor {
 
     static NetworkMonitorAutoDetect createAndSetAutoDetectForTest(Context context, String str) {
         NetworkMonitor networkMonitor = getInstance();
-        NetworkChangeDetector createNetworkChangeDetector = networkMonitor.createNetworkChangeDetector(context, str);
-        networkMonitor.networkChangeDetector = createNetworkChangeDetector;
-        return (NetworkMonitorAutoDetect) createNetworkChangeDetector;
+        NetworkChangeDetector networkChangeDetectorCreateNetworkChangeDetector = networkMonitor.createNetworkChangeDetector(context, str);
+        networkMonitor.networkChangeDetector = networkChangeDetectorCreateNetworkChangeDetector;
+        return (NetworkMonitorAutoDetect) networkChangeDetectorCreateNetworkChangeDetector;
     }
 }

@@ -86,7 +86,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.loadSharedAudioRunnable = new Runnable() {
             @Override
             public final void run() {
-                SelectAudioAlert.this.loadSharedAudio();
+                this.f$0.loadSharedAudio();
             }
         };
         this.topPadding = 0.35f;
@@ -171,7 +171,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                SelectAudioAlert.this.lambda$new$0(callback, view, i5);
+                this.f$0.lambda$new$0(callback, view, i5);
             }
         });
     }
@@ -241,7 +241,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                SelectAudioAlert.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -291,7 +291,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         ArrayList arrayList3 = new ArrayList();
         String str2 = this.query;
         String lowerCase = str2 == null ? null : str2.toLowerCase();
-        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
         Iterator it = arrayList2.iterator();
         while (it.hasNext()) {
             MessageObject messageObject = (MessageObject) it.next();
@@ -301,7 +301,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             } else {
                 String musicTitle = messageObject.getMusicTitle();
                 String musicAuthor = messageObject.getMusicAuthor();
-                if (matches(lowerCase, translitSafe, musicTitle) || matches(lowerCase, translitSafe, musicAuthor)) {
+                if (matches(lowerCase, strTranslitSafe, musicTitle) || matches(lowerCase, strTranslitSafe, musicAuthor)) {
                     messageObject.setQuery(this.query);
                     arrayList3.add(messageObject);
                 }
@@ -324,9 +324,9 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         String lowerCase = str3.toLowerCase();
         if (!lowerCase.startsWith(str)) {
             if (!lowerCase.contains(" " + str)) {
-                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                if (!translitSafe.startsWith(str2)) {
-                    if (!translitSafe.contains(" " + str2)) {
+                String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+                if (!strTranslitSafe.startsWith(str2)) {
+                    if (!strTranslitSafe.contains(" " + str2)) {
                         return false;
                     }
                 }
@@ -369,7 +369,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    SelectAudioAlert.this.lambda$loadSharedAudio$2(tLObject, tL_error);
+                    this.f$0.lambda$loadSharedAudio$2(tLObject, tL_error);
                 }
             });
         }
@@ -379,7 +379,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectAudioAlert.this.lambda$loadSharedAudio$1(tLObject);
+                this.f$0.lambda$loadSharedAudio$1(tLObject);
             }
         });
     }
@@ -406,7 +406,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SelectAudioAlert.this.lambda$loadLocalAudio$4();
+                    this.f$0.lambda$loadLocalAudio$4();
                 }
             });
         }
@@ -416,17 +416,17 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
         final ArrayList arrayList = new ArrayList();
         try {
-            Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+            Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
             int i = -2000000000;
-            while (query.moveToNext()) {
+            while (cursorQuery.moveToNext()) {
                 try {
                     MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                    audioEntry.id = query.getInt(0);
-                    audioEntry.author = query.getString(1);
-                    audioEntry.title = query.getString(2);
-                    audioEntry.path = query.getString(3);
-                    audioEntry.duration = (int) (query.getLong(4) / 1000);
-                    audioEntry.genre = query.getString(5);
+                    audioEntry.id = cursorQuery.getInt(0);
+                    audioEntry.author = cursorQuery.getString(1);
+                    audioEntry.title = cursorQuery.getString(2);
+                    audioEntry.path = cursorQuery.getString(3);
+                    audioEntry.duration = (int) (cursorQuery.getLong(4) / 1000);
+                    audioEntry.genre = cursorQuery.getString(5);
                     File file = new File(audioEntry.path);
                     TLRPC.TL_message tL_message = new TLRPC.TL_message();
                     tL_message.out = true;
@@ -477,14 +477,14 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                 } finally {
                 }
             }
-            query.close();
+            cursorQuery.close();
         } catch (Exception e) {
             FileLog.e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectAudioAlert.this.lambda$loadLocalAudio$3(arrayList);
+                this.f$0.lambda$loadLocalAudio$3(arrayList);
             }
         });
     }

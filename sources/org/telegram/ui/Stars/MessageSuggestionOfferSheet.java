@@ -71,7 +71,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     private final OutlineTextContainerView starsCountEditOutline;
 
     @Override
-    public boolean isTouchOutside(float f, float f2) {
+    protected boolean isTouchOutside(float f, float f2) {
         BalanceCloud balanceCloud;
         if (!this.balanceCloudVisible || (balanceCloud = this.balanceCloud) == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
             return super.isTouchOutside(f, f2);
@@ -80,18 +80,18 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     }
 
     public MessageSuggestionOfferSheet(final Context context, final int i, final long j, MessageSuggestionParams messageSuggestionParams, final ChatActivity chatActivity, final Theme.ResourcesProvider resourcesProvider, int i2, final Utilities.Callback callback) {
-        super(context, true, resourcesProvider);
         int i3;
         boolean z;
+        super(context, true, resourcesProvider);
         this.selectedTime = -1L;
         this.spanRefStars = new ColoredImageSpan[1];
         this.spanRefTon = new ColoredImageSpan[1];
         this.mode = i2;
         this.waitingKeyboard = true;
         this.smoothKeyboardAnimationEnabled = true;
-        boolean canManageMonoForum = ChatObject.canManageMonoForum(i, j);
-        this.isMonoForumAdmin = canManageMonoForum;
-        boolean z2 = canManageMonoForum || StarsController.getTonInstance(i).canUseTon();
+        boolean zCanManageMonoForum = ChatObject.canManageMonoForum(i, j);
+        this.isMonoForumAdmin = zCanManageMonoForum;
+        boolean z2 = zCanManageMonoForum || StarsController.getTonInstance(i).canUseTon();
         AppGlobalConfig appGlobalConfig = MessagesController.getInstance(i).config;
         long j2 = appGlobalConfig.tonSuggestedPostAmountMin.get();
         AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.TON;
@@ -101,7 +101,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
         this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(j3, amountUtils$Currency2);
         this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(appGlobalConfig.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
-        if (!canManageMonoForum) {
+        if (!zCanManageMonoForum) {
             BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
             this.balanceCloud = balanceCloud;
             balanceCloud.setScaleX(0.6f);
@@ -114,7 +114,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             balanceCloud.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MessageSuggestionOfferSheet.this.lambda$new$0(context, resourcesProvider, view);
+                    this.f$0.lambda$new$0(context, resourcesProvider, view);
                 }
             });
         } else {
@@ -151,7 +151,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageSuggestionOfferSheet.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         linearLayout2.addView(imageView, LayoutHelper.createLinear(48, 48, 0.0f, 21, 0, 0, 6, 0));
@@ -166,7 +166,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i6) {
-                    MessageSuggestionOfferSheet.this.lambda$new$2(i6);
+                    this.f$0.lambda$new$2(i6);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 12.0f));
@@ -195,7 +195,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z3) {
-                MessageSuggestionOfferSheet.this.lambda$new$3(view, z3);
+                this.f$0.lambda$new$3(view, z3);
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -246,7 +246,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         outlineTextContainerView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageSuggestionOfferSheet.this.lambda$new$5(context, resourcesProvider, view);
+                this.f$0.lambda$new$5(context, resourcesProvider, view);
             }
         });
         linearLayout3.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 24.0f, 18.0f, 0.0f));
@@ -271,7 +271,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageSuggestionOfferSheet.this.lambda$new$6(chatActivity, i, context, resourcesProvider, j, callback, view);
+                this.f$0.lambda$new$6(chatActivity, i, context, resourcesProvider, j, callback, view);
             }
         });
         if (i2 == 1) {
@@ -299,11 +299,11 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String obj;
-                int indexOf;
+                String string;
+                int iIndexOf;
                 boolean z3 = editable == null || editable.toString().isEmpty() || ".".equals(editable.toString());
-                if (!z3 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-                    editable.delete(indexOf + 3, obj.length());
+                if (!z3 && (iIndexOf = (string = editable.toString()).indexOf(46)) >= 0 && (string.length() - iIndexOf) - 1 > 2) {
+                    editable.delete(iIndexOf + 3, string.length());
                 }
                 MessageSuggestionOfferSheet.this.setAmount(!z3 ? AmountUtils$Amount.fromDecimal(editable.toString(), MessageSuggestionOfferSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, MessageSuggestionOfferSheet.this.inputAmount.currency), false, false, true);
                 MessageSuggestionOfferSheet.this.starsCountEditOutline.animateSelection(MessageSuggestionOfferSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(MessageSuggestionOfferSheet.this.starsCountEditField.getText()));
@@ -340,7 +340,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AlertsCreator.createSuggestedMessageDatePickerDialog(context, this.selectedTime, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i, int i2) {
-                MessageSuggestionOfferSheet.this.lambda$new$4(z, i, i2);
+                this.f$0.lambda$new$4(z, i, i2);
             }
         }, resourcesProvider, 0).show();
     }
@@ -360,8 +360,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             return;
         }
         StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
-        AmountUtils$Amount of = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-        if (!this.isMonoForumAdmin && (of == null || of.asNano() < this.inputAmount.asNano())) {
+        AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
+        if (!this.isMonoForumAdmin && (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < this.inputAmount.asNano())) {
             AmountUtils$Amount amountUtils$Amount = this.inputAmount;
             AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
             if (amountUtils$Currency == AmountUtils$Currency.STARS) {
@@ -423,9 +423,9 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             checkRateText(z3);
         }
         if (z && z5) {
-            String asDecimalString = this.inputAmount.asDecimalString();
-            this.starsCountEditField.setText(asDecimalString);
-            this.starsCountEditField.setSelection(asDecimalString.length());
+            String strAsDecimalString = this.inputAmount.asDecimalString();
+            this.starsCountEditField.setText(strAsDecimalString);
+            this.starsCountEditField.setSelection(strAsDecimalString.length());
         }
     }
 
@@ -447,10 +447,10 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         }
         if (z) {
             this.iconStars.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
-            ViewPropertyAnimator animate = this.iconTon.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.iconTon.animate();
             AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
             AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
-            animate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
+            viewPropertyAnimatorAnimate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
         } else {
             this.iconStars.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
             this.iconTon.setAlpha(this.inputAmount.currency == AmountUtils$Currency.TON ? 1.0f : 0.0f);
@@ -488,7 +488,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     }
 
     private void checkButtonOfferText(boolean z) {
-        String formatNumber;
+        String number;
         if (this.mode == 0) {
             if (!this.inputAmount.isZero()) {
                 AmountUtils$Amount amountUtils$Amount = this.inputAmount;
@@ -496,11 +496,11 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
                 ButtonWithCounterView buttonWithCounterView = this.buttonView;
                 int i = R.string.PostSuggestionsOfferStars;
                 if (z2) {
-                    formatNumber = amountUtils$Amount.asDecimalString();
+                    number = amountUtils$Amount.asDecimalString();
                 } else {
-                    formatNumber = LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',');
+                    number = LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',');
                 }
-                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(i, formatNumber), z2 ? this.spanRefTon : this.spanRefStars), z);
+                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(i, number), z2 ? this.spanRefTon : this.spanRefStars), z);
                 return;
             }
             this.buttonView.setText(LocaleController.getString(R.string.PostSuggestionsOfferForFree), z);
@@ -568,7 +568,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSuggestionOfferSheet.this.lambda$show$7();
+                this.f$0.lambda$show$7();
             }
         }, 50L);
     }
@@ -581,10 +581,10 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         if (j <= 0) {
             return LocaleController.getString(R.string.PostSuggestionsAnytime);
         }
-        String formatDateTime = LocaleController.formatDateTime(j, true);
-        if (formatDateTime.isEmpty()) {
-            return formatDateTime;
+        String dateTime = LocaleController.formatDateTime(j, true);
+        if (dateTime.isEmpty()) {
+            return dateTime;
         }
-        return Character.toUpperCase(formatDateTime.charAt(0)) + formatDateTime.substring(1);
+        return Character.toUpperCase(dateTime.charAt(0)) + dateTime.substring(1);
     }
 }

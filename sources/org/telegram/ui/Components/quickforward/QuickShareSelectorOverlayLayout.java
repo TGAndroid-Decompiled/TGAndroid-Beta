@@ -37,22 +37,22 @@ public class QuickShareSelectorOverlayLayout extends View {
 
     public void open(ChatMessageCell chatMessageCell) {
         fetchDialogs();
-        final String key = key(chatMessageCell);
-        if (key == null) {
+        final String strKey = key(chatMessageCell);
+        if (strKey == null) {
             return;
         }
-        QuickShareSelectorDrawable quickShareSelectorDrawable = new QuickShareSelectorDrawable(this, chatMessageCell, removeDuplicates(this.dialogs), key, new Runnable() {
+        QuickShareSelectorDrawable quickShareSelectorDrawable = new QuickShareSelectorDrawable(this, chatMessageCell, removeDuplicates(this.dialogs), strKey, new Runnable() {
             @Override
             public final void run() {
-                QuickShareSelectorOverlayLayout.this.lambda$open$0(key);
+                this.f$0.lambda$open$0(strKey);
             }
         });
         quickShareSelectorDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         quickShareSelectorDrawable.setCallback(this);
-        if (this.drawableHashMap.containsKey(key)) {
+        if (this.drawableHashMap.containsKey(strKey)) {
             return;
         }
-        this.drawableHashMap.put(key, quickShareSelectorDrawable);
+        this.drawableHashMap.put(strKey, quickShareSelectorDrawable);
     }
 
     public void lambda$open$0(String str) {

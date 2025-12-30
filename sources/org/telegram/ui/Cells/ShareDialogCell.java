@@ -142,7 +142,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         checkBox2.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
             @Override
             public final void setProgress(float f) {
-                ShareDialogCell.this.lambda$new$0(f);
+                this.f$0.lambda$new$0(f);
             }
         });
         addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, i == 2 ? -40.0f : 42.0f, 0.0f, 0.0f));
@@ -171,15 +171,15 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userIsPremiumBlockedUpadted) {
-            TL_account.RequirementToContact isUserContactBlocked = this.user != null ? MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id) : null;
-            long sendPaidMessagesStars = this.currentDialog < 0 ? MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(this.currentDialog) : DialogObject.getMessagesStarsPrice(isUserContactBlocked);
-            if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == sendPaidMessagesStars) {
+            TL_account.RequirementToContact requirementToContactIsUserContactBlocked = this.user != null ? MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id) : null;
+            long sendPaidMessagesStars = this.currentDialog < 0 ? MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(this.currentDialog) : DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
+            if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked) && this.starsPriceBlocked == sendPaidMessagesStars) {
                 return;
             }
-            boolean isPremiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
-            this.premiumBlocked = isPremiumBlocked;
+            boolean zIsPremiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
+            this.premiumBlocked = zIsPremiumBlocked;
             this.starsPriceBlocked = sendPaidMessagesStars;
-            this.nameTextView.setTextColor(getThemedColor(isPremiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
+            this.nameTextView.setTextColor(getThemedColor(zIsPremiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
             invalidate();
         }
     }
@@ -189,7 +189,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.currentType == 2 ? 95.0f : 103.0f), 1073741824));
     }
 
-    public String repostToCustomName() {
+    protected String repostToCustomName() {
         return LocaleController.getString(R.string.FwdMyStory);
     }
 
@@ -203,9 +203,9 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             this.imageView.setImage((ImageLocation) null, (String) null, this.repostStoryDrawable, (Object) null);
         } else if (DialogObject.isUserDialog(j)) {
             this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-            TL_account.RequirementToContact isUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(j);
-            this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
-            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+            TL_account.RequirementToContact requirementToContactIsUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(j);
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
             this.nameTextView.setTextColor(getThemedColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
             this.premiumBlockedT.force(this.premiumBlocked);
             this.starsBlockedT.force(this.starsPriceBlocked > 0);
@@ -304,12 +304,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             SpringAnimation springAnimation2 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z4 ? 0.0f : 1000.0f)).setSpring(new SpringForce(z4 ? 1000.0f : 0.0f).setStiffness(1500.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    ShareDialogCell.this.lambda$setTopic$1(dynamicAnimation, f, f2);
+                    this.f$0.lambda$setTopic$1(dynamicAnimation, f, f2);
                 }
             })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z5, float f, float f2) {
-                    ShareDialogCell.this.lambda$setTopic$2(dynamicAnimation, z5, f, f2);
+                    this.f$0.lambda$setTopic$2(dynamicAnimation, z5, f, f2);
                 }
             });
             this.topicTextView.setTag(i, springAnimation2);
@@ -352,9 +352,9 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
         Theme.checkboxSquare_checkPaint.setColor(getThemedColor(Theme.key_dialogRoundCheckBox));
         Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
-        int dp = AndroidUtilities.dp(this.currentType == 2 ? 24.0f : 28.0f);
+        int iDp = AndroidUtilities.dp(this.currentType == 2 ? 24.0f : 28.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(left - dp, top - dp, left + dp, top + dp);
+        rectF.set(left - iDp, top - iDp, left + iDp, top + iDp);
         canvas.drawRoundRect(rectF, this.imageView.getRoundRadius()[0], this.imageView.getRoundRadius()[0], Theme.checkboxSquare_checkPaint);
         super.onDraw(canvas);
     }
@@ -411,9 +411,9 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 return;
             }
             this.lottieDrawable = null;
-            Drawable mutate = context.getResources().getDrawable(i).mutate();
-            this.drawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            Drawable drawableMutate = context.getResources().getDrawable(i).mutate();
+            this.drawable = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
 
         @Override
@@ -423,12 +423,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getBounds().width(), getBounds().height());
             this.paint.setAlpha(this.alpha);
-            float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) * (this.alpha / 255.0f);
-            canvas.drawRoundRect(rectF, min, min, this.paint);
+            float fMin = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) * (this.alpha / 255.0f);
+            canvas.drawRoundRect(rectF, fMin, fMin, this.paint);
             canvas.restore();
-            int dp = AndroidUtilities.dp(this.lottieDrawable != null ? 20.0f : 15.0f);
+            int iDp = AndroidUtilities.dp(this.lottieDrawable != null ? 20.0f : 15.0f);
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
+            rect.set(getBounds().centerX() - iDp, getBounds().centerY() - iDp, getBounds().centerX() + iDp, getBounds().centerY() + iDp);
             Drawable drawable = this.lottieDrawable;
             if (drawable == null) {
                 drawable = this.drawable;

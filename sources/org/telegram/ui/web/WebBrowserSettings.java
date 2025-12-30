@@ -59,7 +59,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     private Utilities.Callback whenHistoryClicked;
 
     @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
 
@@ -93,7 +93,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         if (BrowserHistory.getHistory(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                WebBrowserSettings.this.lambda$loadSizes$0((ArrayList) obj);
+                this.f$0.lambda$loadSizes$0((ArrayList) obj);
             }
         }) != null) {
             this.historySize = r0.size();
@@ -105,7 +105,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$loadSizes$2();
+                this.f$0.lambda$loadSizes$2();
             }
         });
     }
@@ -140,7 +140,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$loadSizes$1(j, directorySize);
+                this.f$0.lambda$loadSizes$1(j, directorySize);
             }
         });
     }
@@ -157,13 +157,13 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
     @Override
     public View createView(Context context) {
-        Drawable mutate = context.getResources().getDrawable(R.drawable.poll_add_circle).mutate();
-        Drawable mutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.poll_add_circle).mutate();
+        Drawable drawableMutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
         int themedColor = getThemedColor(Theme.key_switchTrackChecked);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
-        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), mode));
-        this.addIcon = new CombinedDrawable(mutate, mutate2) {
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), mode));
+        this.addIcon = new CombinedDrawable(drawableMutate, drawableMutate2) {
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
             }
@@ -186,12 +186,12 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    public void fillItems(java.util.ArrayList r9, org.telegram.ui.Components.UniversalAdapter r10) {
+    protected void fillItems(java.util.ArrayList r9, org.telegram.ui.Components.UniversalAdapter r10) throws org.json.JSONException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
     @Override
-    public void onClick(UItem uItem, final View view, int i, float f, float f2) {
+    protected void onClick(UItem uItem, final View view, int i, float f, float f2) {
         int i2 = uItem.id;
         if (i2 == 12) {
             SharedConfig.toggleBrowserAdaptableColors();
@@ -232,7 +232,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             title.setMessage(LocaleController.formatString(i3, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    WebBrowserSettings.this.lambda$onClick$3(alertDialog, i4);
+                    this.f$0.lambda$onClick$3(alertDialog, i4);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
@@ -246,21 +246,21 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             title2.setMessage(LocaleController.formatString(i4, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i5) {
-                    WebBrowserSettings.this.lambda$onClick$4(alertDialog, i5);
+                    this.f$0.lambda$onClick$4(alertDialog, i5);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
         }
         if (i2 == 7) {
             Iterator it = BrowserHistory.getHistory().iterator();
-            long j = Long.MAX_VALUE;
+            long jMin = Long.MAX_VALUE;
             while (it.hasNext()) {
-                j = Math.min(j, ((BrowserHistory.Entry) it.next()).time);
+                jMin = Math.min(jMin, ((BrowserHistory.Entry) it.next()).time);
             }
-            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000))).setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
+            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(jMin / 1000))).setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i5) {
-                    WebBrowserSettings.this.lambda$onClick$5(alertDialog, i5);
+                    this.f$0.lambda$onClick$5(alertDialog, i5);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
@@ -270,7 +270,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
+                    this.f$0.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
                 }
             });
             historyFragmentArr[0] = historyFragment;
@@ -289,7 +289,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
                 @Override
                 public final void run() {
-                    WebBrowserSettings.this.lambda$onClick$7(arrayList);
+                    this.f$0.lambda$onClick$7(arrayList);
                 }
             }).show();
             return;
@@ -322,9 +322,9 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 });
                 i6++;
             }
-            AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
-            atomicReference.set(create);
-            showDialog(create);
+            AlertDialog alertDialogCreate = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            atomicReference.set(alertDialogCreate);
+            showDialog(alertDialogCreate);
             return;
         }
         if (i5 == 4) {
@@ -340,14 +340,14 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
             final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                 @Override
-                public void onMeasure(int i8, int i9) {
+                protected void onMeasure(int i8, int i9) {
                     super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
                 }
             };
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
+                    this.f$0.lambda$onClick$11(editTextBoldCursor, alertDialogArr);
                 }
             };
             editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -387,18 +387,18 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     alertDialog.dismiss();
                 }
             });
-            AlertDialog create2 = builder.create();
-            final AlertDialog[] alertDialogArr = {create2};
-            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog alertDialogCreate2 = builder.create();
+            final AlertDialog[] alertDialogArr = {alertDialogCreate2};
+            alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                    AndroidUtilities.hideKeyboard(editTextBoldCursor);
                 }
             });
             alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
+                    WebBrowserSettings.lambda$onClick$15(editTextBoldCursor, dialogInterface);
                 }
             });
             alertDialogArr[0].setDismissDialogByButtons(false);
@@ -480,16 +480,16 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     public void lambda$onClick$11(EditTextBoldCursor editTextBoldCursor, final AlertDialog[] alertDialogArr) {
-        String obj = editTextBoldCursor.getText().toString();
-        Uri parse = Uri.parse(obj);
-        if (parse == null || parse.getHost() == null) {
-            parse = Uri.parse("https://" + obj);
+        String string = editTextBoldCursor.getText().toString();
+        Uri uri = Uri.parse(string);
+        if (uri == null || uri.getHost() == null) {
+            uri = Uri.parse("https://" + string);
         }
-        if (parse == null || parse.getHost() == null) {
+        if (uri == null || uri.getHost() == null) {
             AndroidUtilities.shakeView(editTextBoldCursor);
             return;
         }
-        final String lowerCase = parse.getHost().toLowerCase();
+        final String lowerCase = uri.getHost().toLowerCase();
         if (lowerCase.startsWith("www.")) {
             lowerCase = lowerCase.substring(4);
         }
@@ -507,15 +507,15 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog2);
+                this.f$0.lambda$onClick$9(alertDialogArr, alertDialog2);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 5000L);
         alertDialog2.showDelayed(300L);
-        WebMetadataCache.retrieveFaviconAndSitename("https://" + obj + "/", new Utilities.Callback2() {
+        WebMetadataCache.retrieveFaviconAndSitename("https://" + string + "/", new Utilities.Callback2() {
             @Override
-            public final void run(Object obj2, Object obj3) {
-                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog2, lowerCase, (String) obj2, (Bitmap) obj3);
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$onClick$10(runnable, alertDialog2, lowerCase, (String) obj, (Bitmap) obj2);
             }
         });
     }
@@ -608,11 +608,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             if (TextUtils.isEmpty(charSequence)) {
                 charSequence = (arrayList.isEmpty() || TextUtils.isEmpty((CharSequence) arrayList.get(0))) ? "" : (String) arrayList.get(0);
             }
-            String charSequence2 = charSequence.toString();
+            String string = charSequence.toString();
             if (bitmap != null) {
                 this.imageView.setImageBitmap(bitmap);
             } else {
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(charSequence2) {
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(string) {
                     private final Text text;
                     final String val$s;
 
@@ -630,8 +630,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     }
 
                     {
-                        this.val$s = charSequence2;
-                        this.text = new Text(charSequence2.substring(0, !charSequence2.isEmpty() ? 1 : 0), 14.0f, AndroidUtilities.bold());
+                        this.val$s = string;
+                        this.text = new Text(string.substring(0, !string.isEmpty() ? 1 : 0), 14.0f, AndroidUtilities.bold());
                     }
 
                     @Override
@@ -680,29 +680,29 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             }
 
             public static UItem as(ArrayList arrayList, String str, Bitmap bitmap) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.text = str;
-                ofFactory.object = bitmap;
-                ofFactory.object2 = arrayList;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.text = str;
+                uItemOfFactory.object = bitmap;
+                uItemOfFactory.object2 = arrayList;
+                return uItemOfFactory;
             }
         }
     }
 
     private static long getDirectorySize(File file, Boolean bool) {
-        long j = 0;
+        long directorySize = 0;
         if (file == null || !file.exists()) {
             return 0L;
         }
         if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles == null) {
+            File[] fileArrListFiles = file.listFiles();
+            if (fileArrListFiles == null) {
                 return 0L;
             }
-            for (File file2 : listFiles) {
-                j += getDirectorySize(file2, bool);
+            for (File file2 : fileArrListFiles) {
+                directorySize += getDirectorySize(file2, bool);
             }
-            return j;
+            return directorySize;
         }
         if (bool == null || bool.booleanValue() == file.getName().startsWith("Cookies")) {
             return file.length();
@@ -716,10 +716,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             return false;
         }
         if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles != null) {
+            File[] fileArrListFiles = file.listFiles();
+            if (fileArrListFiles != null) {
                 z = true;
-                for (File file2 : listFiles) {
+                for (File file2 : fileArrListFiles) {
                     if ((bool == null || bool.booleanValue() == file2.getName().startsWith("Cookies")) && !deleteDirectory(file2, bool)) {
                         z = false;
                     }

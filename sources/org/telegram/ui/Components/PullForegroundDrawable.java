@@ -117,13 +117,13 @@ public abstract class PullForegroundDrawable {
         this.textSwappingUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.this.lambda$new$0(valueAnimator);
+                this.f$0.lambda$new$0(valueAnimator);
             }
         };
         this.textInUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.this.lambda$new$1(valueAnimator);
+                this.f$0.lambda$new$1(valueAnimator);
             }
         };
         this.textInRunnable = new Runnable() {
@@ -156,37 +156,37 @@ public abstract class PullForegroundDrawable {
     private void checkTextLayouts(int i) {
         if (i != this.lastWidth) {
             this.pullTooltipLayout = new StaticLayout(this.pullTooltipText, this.tooltipTextPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            float f = 0.0f;
+            float fMax = 0.0f;
             for (int i2 = 0; i2 < this.pullTooltipLayout.getLineCount(); i2++) {
-                f = Math.max(f, this.pullTooltipLayout.getLineWidth(i2));
+                fMax = Math.max(fMax, this.pullTooltipLayout.getLineWidth(i2));
             }
-            float f2 = i;
-            this.pullTooltipLayoutScale = Math.min(1.0f, f2 / f);
-            int ceil = (int) Math.ceil(f);
+            float f = i;
+            this.pullTooltipLayoutScale = Math.min(1.0f, f / fMax);
+            int iCeil = (int) Math.ceil(fMax);
             if (this.pullTooltipLayoutScale < 0.8f) {
                 this.pullTooltipLayoutScale = 0.8f;
-                ceil = HintView2.cutInFancyHalf(this.pullTooltipText, this.tooltipTextPaint);
+                iCeil = HintView2.cutInFancyHalf(this.pullTooltipText, this.tooltipTextPaint);
             }
-            this.pullTooltipLayout = new StaticLayout(this.pullTooltipText, this.tooltipTextPaint, ceil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            this.pullTooltipLayoutLeft = ceil;
+            this.pullTooltipLayout = new StaticLayout(this.pullTooltipText, this.tooltipTextPaint, iCeil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.pullTooltipLayoutLeft = iCeil;
             this.pullTooltipLayoutWidth = 0.0f;
             for (int i3 = 0; i3 < this.pullTooltipLayout.getLineCount(); i3++) {
                 this.pullTooltipLayoutLeft = Math.min(this.pullTooltipLayoutLeft, this.pullTooltipLayout.getLineLeft(i3));
                 this.pullTooltipLayoutWidth = Math.max(this.pullTooltipLayoutWidth, this.pullTooltipLayout.getLineWidth(i3));
             }
             this.releaseTooltipLayout = new StaticLayout(this.releaseTooltipText, this.tooltipTextPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            float f3 = 0.0f;
+            float fMax2 = 0.0f;
             for (int i4 = 0; i4 < this.releaseTooltipLayout.getLineCount(); i4++) {
-                f3 = Math.max(f3, this.releaseTooltipLayout.getLineWidth(i4));
+                fMax2 = Math.max(fMax2, this.releaseTooltipLayout.getLineWidth(i4));
             }
-            this.releaseTooltipLayoutScale = Math.min(1.0f, f2 / f3);
-            int ceil2 = (int) Math.ceil(f3);
+            this.releaseTooltipLayoutScale = Math.min(1.0f, f / fMax2);
+            int iCeil2 = (int) Math.ceil(fMax2);
             if (this.releaseTooltipLayoutScale < 0.8f) {
                 this.releaseTooltipLayoutScale = 0.8f;
-                ceil2 = HintView2.cutInFancyHalf(this.releaseTooltipText, this.tooltipTextPaint);
+                iCeil2 = HintView2.cutInFancyHalf(this.releaseTooltipText, this.tooltipTextPaint);
             }
-            this.releaseTooltipLayout = new StaticLayout(this.releaseTooltipText, this.tooltipTextPaint, ceil2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            this.releaseTooltipLayoutLeft = ceil2;
+            this.releaseTooltipLayout = new StaticLayout(this.releaseTooltipText, this.tooltipTextPaint, iCeil2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.releaseTooltipLayoutLeft = iCeil2;
             this.releaseTooltipLayoutWidth = 0.0f;
             for (int i5 = 0; i5 < this.releaseTooltipLayout.getLineCount(); i5++) {
                 this.releaseTooltipLayoutLeft = Math.min(this.releaseTooltipLayoutLeft, this.releaseTooltipLayout.getLineLeft(i5));
@@ -245,14 +245,14 @@ public abstract class PullForegroundDrawable {
             return;
         }
         boolean z2 = view instanceof TopicsFragment.TopicDialogCell;
-        int dp = AndroidUtilities.dp(z2 ? 15.0f : 28.0f);
-        int dp2 = AndroidUtilities.dp(8.0f);
-        int dp3 = AndroidUtilities.dp(9.0f);
-        int dp4 = AndroidUtilities.dp(18.0f);
+        int iDp = AndroidUtilities.dp(z2 ? 15.0f : 28.0f);
+        int iDp2 = AndroidUtilities.dp(8.0f);
+        int iDp3 = AndroidUtilities.dp(9.0f);
+        int iDp4 = AndroidUtilities.dp(18.0f);
         int viewOffset = (int) getViewOffset();
         int height = (int) (this.cell.getHeight() * this.pullProgress);
         float f6 = this.bounceIn ? (this.bounceProgress * 0.07f) - 0.05f : this.bounceProgress * 0.02f;
-        checkTextLayouts((this.cell.getWidth() - (dp * 4)) - AndroidUtilities.dp(16.0f));
+        checkTextLayouts((this.cell.getWidth() - (iDp * 4)) - AndroidUtilities.dp(16.0f));
         updateTextProgress(this.pullProgress);
         float f7 = this.outProgress * 2.0f;
         if (f7 > 1.0f) {
@@ -263,29 +263,29 @@ public abstract class PullForegroundDrawable {
         if (z) {
             f9 += viewOffset;
         }
-        int i8 = dp + dp3;
-        int measuredHeight = (this.cell.getMeasuredHeight() - dp2) - dp3;
+        int i8 = iDp + iDp3;
+        int measuredHeight = (this.cell.getMeasuredHeight() - iDp2) - iDp3;
         if (z) {
             measuredHeight += viewOffset;
         }
-        int i9 = dp4 + (dp2 * 2);
+        int i9 = iDp4 + (iDp2 * 2);
         if (height > i9) {
-            i = dp3;
+            i = iDp3;
             f = 1.0f;
         } else {
-            i = dp3;
+            i = iDp3;
             f = height / i9;
         }
         canvas.save();
         if (z) {
-            i2 = dp4;
-            i4 = dp2;
+            i2 = iDp4;
+            i4 = iDp2;
             i3 = viewOffset;
             canvas.clipRect(0, -AndroidUtilities.dp(4.0f), this.listView.getMeasuredWidth(), viewOffset + 1);
         } else {
-            i2 = dp4;
+            i2 = iDp4;
             i3 = viewOffset;
-            i4 = dp2;
+            i4 = iDp2;
         }
         if (this.outProgress == 0.0f) {
             if (this.accentRevalProgress != 1.0f && this.accentRevalProgressOut != 1.0f) {
@@ -347,10 +347,10 @@ public abstract class PullForegroundDrawable {
             this.paintSecondary.setAlpha((int) ((1.0f - f7) * 0.4f * f * 255.0f));
             if (z) {
                 i6 = i4;
-                this.rectF.set(dp, i6, dp + i2, i6 + i3 + i);
+                this.rectF.set(iDp, i6, iDp + i2, i6 + i3 + i);
             } else {
                 i6 = i4;
-                this.rectF.set(dp, ((this.cell.getHeight() - height) + i6) - i3, dp + i2, this.cell.getHeight() - i6);
+                this.rectF.set(iDp, ((this.cell.getHeight() - height) + i6) - i3, iDp + i2, this.cell.getHeight() - i6);
             }
             i5 = i;
             float f23 = i5;
@@ -398,7 +398,7 @@ public abstract class PullForegroundDrawable {
             textIn();
         }
         float height2 = (this.cell.getHeight() - (i9 / 2.0f)) + AndroidUtilities.dp(6.0f);
-        float width2 = (this.cell.getWidth() + (z2 ? dp * 2 : 0)) / 2.0f;
+        float width2 = (this.cell.getWidth() + (z2 ? iDp * 2 : 0)) / 2.0f;
         if (this.pullTooltipLayout != null) {
             float f29 = this.textSwappingProgress;
             if (f29 > 0.0f && f29 < 1.0f) {
@@ -448,9 +448,9 @@ public abstract class PullForegroundDrawable {
         int intrinsicWidth2 = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
         int height3 = (this.cell.getHeight() - i6) - i5;
         float f37 = intrinsicWidth2;
-        float dp5 = AndroidUtilities.dp(24.0f) / f37;
+        float fDp = AndroidUtilities.dp(24.0f) / f37;
         float f38 = this.outProgress;
-        float f39 = dp5 + ((1.0f - dp5) * f38) + f2;
+        float f39 = fDp + ((1.0f - fDp) * f38) + f2;
         float f40 = f5;
         float f41 = i7 - f40;
         float f42 = 1.0f - f38;
@@ -486,9 +486,9 @@ public abstract class PullForegroundDrawable {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.textSwappingProgress, z ? 0.0f : 1.0f);
-                this.textSwipingAnimator = ofFloat;
-                ofFloat.addUpdateListener(this.textSwappingUpdateListener);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.textSwappingProgress, z ? 0.0f : 1.0f);
+                this.textSwipingAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(this.textSwappingUpdateListener);
                 this.textSwipingAnimator.setInterpolator(new LinearInterpolator());
                 this.textSwipingAnimator.setDuration(170L);
                 this.textSwipingAnimator.start();
@@ -500,12 +500,12 @@ public abstract class PullForegroundDrawable {
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.arrowRotateProgress, this.arrowAnimateTo ? 0.0f : 1.0f);
-            this.arrowRotateAnimator = ofFloat2;
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.arrowRotateProgress, this.arrowAnimateTo ? 0.0f : 1.0f);
+            this.arrowRotateAnimator = valueAnimatorOfFloat2;
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                    PullForegroundDrawable.this.lambda$updateTextProgress$2(valueAnimator4);
+                    this.f$0.lambda$updateTextProgress$2(valueAnimator4);
                 }
             });
             this.arrowRotateAnimator.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
@@ -532,12 +532,12 @@ public abstract class PullForegroundDrawable {
                     this.accentRevalAnimatorIn = null;
                 }
                 this.accentRevalProgress = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.accentRevalAnimatorIn = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.accentRevalAnimatorIn = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        PullForegroundDrawable.this.lambda$colorize$3(valueAnimator2);
+                        this.f$0.lambda$colorize$3(valueAnimator2);
                     }
                 });
                 this.accentRevalAnimatorIn.setInterpolator(AndroidUtilities.accelerateInterpolator);
@@ -551,12 +551,12 @@ public abstract class PullForegroundDrawable {
                 this.accentRevalAnimatorOut = null;
             }
             this.accentRevalProgressOut = 0.0f;
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.accentRevalAnimatorOut = ofFloat2;
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.accentRevalAnimatorOut = valueAnimatorOfFloat2;
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                    PullForegroundDrawable.this.lambda$colorize$4(valueAnimator3);
+                    this.f$0.lambda$colorize$4(valueAnimator3);
                 }
             });
             this.accentRevalAnimatorOut.setInterpolator(AndroidUtilities.accelerateInterpolator);
@@ -619,34 +619,34 @@ public abstract class PullForegroundDrawable {
         this.bounceIn = true;
         this.bounceProgress = 0.0f;
         this.outOverScroll = this.listView.getTranslationY() / AndroidUtilities.dp(100.0f);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.this.lambda$startOutAnimation$5(valueAnimator);
+                this.f$0.lambda$startOutAnimation$5(valueAnimator);
             }
         });
-        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        ofFloat.setDuration(250L);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        valueAnimatorOfFloat.setDuration(250L);
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.this.lambda$startOutAnimation$6(valueAnimator);
+                this.f$0.lambda$startOutAnimation$6(valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_BOTH;
-        ofFloat2.setInterpolator(cubicBezierInterpolator);
-        ofFloat2.setDuration(150L);
-        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
-        ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat2.setDuration(150L);
+        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
+        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.this.lambda$startOutAnimation$7(valueAnimator);
+                this.f$0.lambda$startOutAnimation$7(valueAnimator);
             }
         });
-        ofFloat3.setInterpolator(cubicBezierInterpolator);
-        ofFloat3.setDuration(135L);
+        valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat3.setDuration(135L);
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.outAnimator = animatorSet2;
         animatorSet2.addListener(new AnimatorListenerAdapter() {
@@ -656,9 +656,9 @@ public abstract class PullForegroundDrawable {
             }
         });
         AnimatorSet animatorSet3 = new AnimatorSet();
-        animatorSet3.playSequentially(ofFloat2, ofFloat3);
+        animatorSet3.playSequentially(valueAnimatorOfFloat2, valueAnimatorOfFloat3);
         animatorSet3.setStartDelay(180L);
-        this.outAnimator.playTogether(ofFloat, animatorSet3);
+        this.outAnimator.playTogether(valueAnimatorOfFloat, animatorSet3);
         this.outAnimator.start();
     }
 
@@ -690,12 +690,12 @@ public abstract class PullForegroundDrawable {
 
     private void setOutProgress(float f) {
         this.outProgress = f;
-        int blendARGB = ColorUtils.blendARGB(Theme.getNonAnimatedColor(this.avatarBackgroundColorKey), Theme.getNonAnimatedColor(this.backgroundActiveColorKey), 1.0f - this.outProgress);
-        this.paintBackgroundAccent.setColor(blendARGB);
+        int iBlendARGB = ColorUtils.blendARGB(Theme.getNonAnimatedColor(this.avatarBackgroundColorKey), Theme.getNonAnimatedColor(this.backgroundActiveColorKey), 1.0f - this.outProgress);
+        this.paintBackgroundAccent.setColor(iBlendARGB);
         if (this.changeAvatarColor && isDraw()) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1.**", blendARGB);
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2.**", blendARGB);
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1.**", iBlendARGB);
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2.**", iBlendARGB);
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
@@ -764,7 +764,7 @@ public abstract class PullForegroundDrawable {
         this.wasSendCallback = false;
     }
 
-    public class ArrowDrawable extends Drawable {
+    private class ArrowDrawable extends Drawable {
         private float lastDensity;
         private Path path = new Path();
         private Paint paint = new Paint(1);
@@ -787,12 +787,12 @@ public abstract class PullForegroundDrawable {
         }
 
         private void updatePath() {
-            int dp = AndroidUtilities.dp(18.0f);
+            int iDp = AndroidUtilities.dp(18.0f);
             this.path.reset();
-            float f = dp >> 1;
+            float f = iDp >> 1;
             this.path.moveTo(f, AndroidUtilities.dpf2(4.98f));
             this.path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
-            this.path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+            this.path.lineTo(iDp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
             this.path.lineTo(f, AndroidUtilities.dpf2(4.98f));
             this.paint.setStyle(Paint.Style.FILL_AND_STROKE);
             this.paint.setStrokeJoin(Paint.Join.ROUND);

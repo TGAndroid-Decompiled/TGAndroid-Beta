@@ -31,21 +31,21 @@ public class WebRtcAudioEffects {
     public static boolean isAcousticEchoCancelerBlacklisted() {
         List<String> blackListedModelsForAecUsage = WebRtcAudioUtils.getBlackListedModelsForAecUsage();
         String str = Build.MODEL;
-        boolean contains = blackListedModelsForAecUsage.contains(str);
-        if (contains) {
+        boolean zContains = blackListedModelsForAecUsage.contains(str);
+        if (zContains) {
             Logging.w("WebRtcAudioEffects", str + " is blacklisted for HW AEC usage!");
         }
-        return contains;
+        return zContains;
     }
 
     public static boolean isNoiseSuppressorBlacklisted() {
         List<String> blackListedModelsForNsUsage = WebRtcAudioUtils.getBlackListedModelsForNsUsage();
         String str = Build.MODEL;
-        boolean contains = blackListedModelsForNsUsage.contains(str);
-        if (contains) {
+        boolean zContains = blackListedModelsForNsUsage.contains(str);
+        if (zContains) {
             Logging.w("WebRtcAudioEffects", str + " is blacklisted for HW NS usage!");
         }
-        return contains;
+        return zContains;
     }
 
     private static boolean isAcousticEchoCancelerExcludedByUUID() {
@@ -124,16 +124,16 @@ public class WebRtcAudioEffects {
         return true;
     }
 
-    public void enable(int i) {
+    public void enable(int i) throws IllegalStateException {
         Logging.d("WebRtcAudioEffects", "enable(audioSession=" + i + ")");
         boolean z = false;
         assertTrue(this.aec == null);
         assertTrue(this.ns == null);
         if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler create = AcousticEchoCanceler.create(i);
-            this.aec = create;
-            if (create != null) {
-                boolean enabled = create.getEnabled();
+            AcousticEchoCanceler acousticEchoCancelerCreate = AcousticEchoCanceler.create(i);
+            this.aec = acousticEchoCancelerCreate;
+            if (acousticEchoCancelerCreate != null) {
+                boolean enabled = acousticEchoCancelerCreate.getEnabled();
                 boolean z2 = this.shouldEnableAec && canUseAcousticEchoCanceler() && !SharedConfig.disableVoiceAudioEffects;
                 if (this.aec.setEnabled(z2) != 0) {
                     Logging.e("WebRtcAudioEffects", "Failed to set the AcousticEchoCanceler state");
@@ -151,10 +151,10 @@ public class WebRtcAudioEffects {
             }
         }
         if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor create2 = NoiseSuppressor.create(i);
-            this.ns = create2;
-            if (create2 != null) {
-                boolean enabled2 = create2.getEnabled();
+            NoiseSuppressor noiseSuppressorCreate = NoiseSuppressor.create(i);
+            this.ns = noiseSuppressorCreate;
+            if (noiseSuppressorCreate != null) {
+                boolean enabled2 = noiseSuppressorCreate.getEnabled();
                 if (this.shouldEnableNs && canUseNoiseSuppressor() && !SharedConfig.disableVoiceAudioEffects) {
                     z = true;
                 }
@@ -204,9 +204,9 @@ public class WebRtcAudioEffects {
         if (descriptorArr != null) {
             return descriptorArr;
         }
-        AudioEffect.Descriptor[] queryEffects = AudioEffect.queryEffects();
-        cachedEffects = queryEffects;
-        return queryEffects;
+        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
+        cachedEffects = descriptorArrQueryEffects;
+        return descriptorArrQueryEffects;
     }
 
     private static boolean isEffectTypeAvailable(UUID uuid) {

@@ -63,7 +63,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.recorder.CaptionContainerView;
 
 public abstract class CaptionContainerView extends FrameLayout {
     public ImageView applyButton;
@@ -147,15 +146,15 @@ public abstract class CaptionContainerView extends FrameLayout {
 
     protected abstract void beforeUpdateShownKeyboard(boolean z);
 
-    public abstract boolean captionLimitToast();
+    protected abstract boolean captionLimitToast();
 
     protected boolean clipChild(View view) {
         return true;
     }
 
-    public abstract boolean customBlur();
+    protected abstract boolean customBlur();
 
-    public abstract void drawBlur(BlurringShader.StoryBlurDrawer storyBlurDrawer, Canvas canvas, RectF rectF, float f, boolean z, float f2, float f3, boolean z2, float f4);
+    protected abstract void drawBlur(BlurringShader.StoryBlurDrawer storyBlurDrawer, Canvas canvas, RectF rectF, float f, boolean z, float f2, float f3, boolean z2, float f4);
 
     public void drawOver(Canvas canvas, RectF rectF) {
     }
@@ -192,7 +191,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     public void invalidateDrawOver2() {
     }
 
-    public boolean isAtTop() {
+    protected boolean isAtTop() {
         return false;
     }
 
@@ -228,14 +227,14 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.textChangeRunnable = new Runnable() {
             @Override
             public final void run() {
-                CaptionContainerView.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         };
         this.bounce = new ButtonBounce(this, 1.0f, 3.0f);
         this.updateShowKeyboard = new Runnable() {
             @Override
             public final void run() {
-                CaptionContainerView.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -257,7 +256,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.keyboardNotifier = new KeyboardNotifier(frameLayout, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                CaptionContainerView.this.updateKeyboard(((Integer) obj).intValue());
+                this.f$0.updateKeyboard(((Integer) obj).intValue());
             }
         });
         EditTextEmoji editTextEmoji = new EditTextEmoji(context, sizeNotifierFrameLayout, null, getEditTextStyle(), true, new DarkThemeResourceProvider()) {
@@ -278,12 +277,12 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            public void updatedEmojiExpanded() {
+            protected void updatedEmojiExpanded() {
                 CaptionContainerView.this.keyboardNotifier.fire();
             }
 
             @Override
-            public void onEmojiKeyboardUpdate() {
+            protected void onEmojiKeyboardUpdate() {
                 CaptionContainerView.this.keyboardNotifier.fire();
             }
 
@@ -293,7 +292,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            public void createEmojiView() {
+            protected void createEmojiView() {
                 super.createEmojiView();
                 EmojiView emojiView = getEmojiView();
                 if (emojiView != null) {
@@ -375,7 +374,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         editTextEmoji.getEditText().drawHint = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CaptionContainerView.this.drawHint((Canvas) obj, (Runnable) obj2);
+                this.f$0.drawHint((Canvas) obj, (Runnable) obj2);
             }
         };
         editTextEmoji.getEditText().setSupportRtlHint(true);
@@ -394,9 +393,9 @@ public abstract class CaptionContainerView extends FrameLayout {
         BounceableImageView bounceableImageView = new BounceableImageView(context);
         this.applyButton = bounceableImageView;
         ScaleStateListAnimator.apply(bounceableImageView, 0.05f, 1.25f);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
-        this.applyButtonCheck = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
+        this.applyButtonCheck = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
         CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
         this.applyButtonDrawable = combinedDrawable;
         combinedDrawable.setCustomSize(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
@@ -407,7 +406,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CaptionContainerView.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         this.applyButton.setTranslationY(-AndroidUtilities.dp(1.0f));
@@ -428,7 +427,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
-    public class AnonymousClass2 implements TextWatcher {
+    class AnonymousClass2 implements TextWatcher {
         private int lastLength;
         private boolean lastOverLimit;
 
@@ -491,7 +490,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionContainerView.AnonymousClass2.this.lambda$afterTextChanged$0();
+                    this.f$0.lambda$afterTextChanged$0();
                 }
             });
         }
@@ -585,9 +584,9 @@ public abstract class CaptionContainerView extends FrameLayout {
         EditTextEmoji editTextEmoji = this.editText;
         editTextEmoji.setSelection(z ? editTextEmoji.length() : 0);
         this.editText.getEditText().setForceCursorEnd(false);
-        ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, z ? editText.getLayout().getLineTop(editText.getLineCount()) - ((editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom()) : 0);
-        this.scrollAnimator = ofInt;
-        ofInt.setDuration(360L);
+        ObjectAnimator objectAnimatorOfInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, z ? editText.getLayout().getLineTop(editText.getLineCount()) - ((editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom()) : 0);
+        this.scrollAnimator = objectAnimatorOfInt;
+        objectAnimatorOfInt.setDuration(360L);
         this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.scrollAnimator.start();
     }
@@ -714,7 +713,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             i = Math.max(0, additionalKeyboardHeight() + this.editText.getKeyboardHeight());
         }
         SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.sizeNotifierFrameLayout;
-        int max = Math.max(0, i - (sizeNotifierFrameLayout2 == null ? 0 : sizeNotifierFrameLayout2.getBottomPadding()));
+        int iMax = Math.max(0, i - (sizeNotifierFrameLayout2 == null ? 0 : sizeNotifierFrameLayout2.getBottomPadding()));
         View view = (View) getParent();
         view.clearAnimation();
         if (!isAtTop()) {
@@ -724,8 +723,8 @@ public abstract class CaptionContainerView extends FrameLayout {
                 this.parentKeyboardAnimator.cancel();
                 this.parentKeyboardAnimator = null;
             }
-            this.parentKeyboardAnimator = ObjectAnimator.ofFloat(view, (Property<View, Float>) FrameLayout.TRANSLATION_Y, view.getTranslationY(), -max);
-            if (max > AndroidUtilities.dp(20.0f)) {
+            this.parentKeyboardAnimator = ObjectAnimator.ofFloat(view, (Property<View, Float>) FrameLayout.TRANSLATION_Y, view.getTranslationY(), -iMax);
+            if (iMax > AndroidUtilities.dp(20.0f)) {
                 this.parentKeyboardAnimator.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                 this.parentKeyboardAnimator.setDuration(250L);
             } else {
@@ -734,10 +733,10 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
             this.parentKeyboardAnimator.start();
         }
-        this.toKeyboardShow = max > AndroidUtilities.dp(20.0f);
+        this.toKeyboardShow = iMax > AndroidUtilities.dp(20.0f);
         AndroidUtilities.cancelRunOnUIThread(this.updateShowKeyboard);
         AndroidUtilities.runOnUIThread(this.updateShowKeyboard);
-        if (max < AndroidUtilities.dp(20.0f)) {
+        if (iMax < AndroidUtilities.dp(20.0f)) {
             this.editText.getEditText().clearFocus();
             this.editText.hidePopup(true);
         }
@@ -747,7 +746,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         updateShowKeyboard(this.toKeyboardShow, true);
     }
 
-    public void updateEditTextLeft() {
+    protected void updateEditTextLeft() {
         this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
     }
 
@@ -776,12 +775,12 @@ public abstract class CaptionContainerView extends FrameLayout {
             } else {
                 this.editText.getEditText().scrollBy(0, -this.editText.getEditText().getScrollY());
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.keyboardT, z ? 1.0f : 0.0f);
-            this.keyboardAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.keyboardT, z ? 1.0f : 0.0f);
+            this.keyboardAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    CaptionContainerView.this.lambda$updateShowKeyboard$3(valueAnimator2);
+                    this.f$0.lambda$updateShowKeyboard$3(valueAnimator2);
                 }
             });
             if (!z) {
@@ -893,7 +892,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         return UserConfig.getInstance(this.currentAccount).isPremium() ? getCaptionPremiumLimit() : getCaptionDefaultLimit();
     }
 
-    public void drawBlurBitmap(Bitmap bitmap, float f) {
+    protected void drawBlurBitmap(Bitmap bitmap, float f) {
         Utilities.stackBlurBitmap(bitmap, (int) f);
     }
 
@@ -936,32 +935,32 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     private void drawReply(Canvas canvas) {
+        float fDp;
         float f;
         float f2;
-        float f3;
-        int min;
+        int iMin;
         if (!this.hasReply || this.replyBackgroundBlur == null || this.replyTextBlur == null) {
             return;
         }
         if (this.collapsed) {
             if (this.keyboardShown) {
-                f3 = this.bounds.bottom;
-                min = Math.max(AndroidUtilities.dp(46.0f), this.editText.getHeight());
+                f2 = this.bounds.bottom;
+                iMin = Math.max(AndroidUtilities.dp(46.0f), this.editText.getHeight());
             } else {
-                f3 = this.bounds.bottom;
-                min = Math.min(AndroidUtilities.dp(82.0f), this.editText.getHeight());
+                f2 = this.bounds.bottom;
+                iMin = Math.min(AndroidUtilities.dp(82.0f), this.editText.getHeight());
             }
-            float f4 = f3 - min;
-            f = f4 - AndroidUtilities.dp(50.0f);
-            f2 = 1.0f - this.collapsedT.get();
+            float f3 = f2 - iMin;
+            fDp = f3 - AndroidUtilities.dp(50.0f);
+            f = 1.0f - this.collapsedT.get();
         } else {
-            f = this.bounds.top;
-            f2 = 1.0f;
+            fDp = this.bounds.top;
+            f = 1.0f;
         }
-        Paint paint = this.replyBackgroundBlur.getPaint(f2);
-        Paint paint2 = this.replyTextBlur.getPaint(f2);
+        Paint paint = this.replyBackgroundBlur.getPaint(f);
+        Paint paint2 = this.replyTextBlur.getPaint(f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(this.bounds.left + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + f, this.bounds.right - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(52.0f) + f);
+        rectF.set(this.bounds.left + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + fDp, this.bounds.right - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(52.0f) + fDp);
         if (paint != null) {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), paint);
         }
@@ -975,44 +974,44 @@ public abstract class CaptionContainerView extends FrameLayout {
         } else {
             path.rewind();
         }
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(21.0f), 0, this.keyboardT);
+        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(21.0f), 0, this.keyboardT);
         Path path2 = this.replyClipPath;
         RectF rectF3 = this.bounds;
         Path.Direction direction = Path.Direction.CW;
-        path2.addRoundRect(rectF3, lerp, lerp, direction);
+        path2.addRoundRect(rectF3, fLerp, fLerp, direction);
         canvas.clipPath(this.replyClipPath);
         Text text = this.replyTitle;
         if (text != null) {
-            text.ellipsize((int) (this.bounds.width() - AndroidUtilities.dp(40.0f))).draw(canvas, AndroidUtilities.dp(20.0f) + this.bounds.left, f + AndroidUtilities.dp(22.0f), -1, 1.0f);
+            text.ellipsize((int) (this.bounds.width() - AndroidUtilities.dp(40.0f))).draw(canvas, AndroidUtilities.dp(20.0f) + this.bounds.left, fDp + AndroidUtilities.dp(22.0f), -1, 1.0f);
         }
         Path path3 = this.replyLinePath;
         if (path3 == null) {
             this.replyLinePath = new Path();
             float[] fArr = new float[8];
             this.replyLinePathRadii = fArr;
-            float dp = AndroidUtilities.dp(5.0f);
-            fArr[1] = dp;
-            fArr[0] = dp;
+            float fDp2 = AndroidUtilities.dp(5.0f);
+            fArr[1] = fDp2;
+            fArr[0] = fDp2;
             float[] fArr2 = this.replyLinePathRadii;
             fArr2[3] = 0.0f;
             fArr2[2] = 0.0f;
             fArr2[5] = 0.0f;
             fArr2[4] = 0.0f;
-            float dp2 = AndroidUtilities.dp(5.0f);
-            fArr2[7] = dp2;
-            fArr2[6] = dp2;
+            float fDp3 = AndroidUtilities.dp(5.0f);
+            fArr2[7] = fDp3;
+            fArr2[6] = fDp3;
         } else {
             path3.rewind();
         }
-        float f5 = rectF.left;
-        rectF.set(f5, rectF.top, AndroidUtilities.dp(3.0f) + f5, rectF.bottom);
+        float f4 = rectF.left;
+        rectF.set(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
         this.replyLinePath.addRoundRect(rectF, this.replyLinePathRadii, direction);
         if (this.replyLinePaint == null) {
             Paint paint3 = new Paint();
             this.replyLinePaint = paint3;
             paint3.setColor(-1);
         }
-        this.replyLinePaint.setAlpha((int) (f2 * 255.0f));
+        this.replyLinePaint.setAlpha((int) (f * 255.0f));
         canvas.drawPath(this.replyLinePath, this.replyLinePaint);
         if (paint2 != null) {
             canvas.save();
@@ -1022,12 +1021,12 @@ public abstract class CaptionContainerView extends FrameLayout {
         }
         Text text2 = this.replyText;
         if (text2 != null) {
-            text2.ellipsize((int) (this.bounds.width() - AndroidUtilities.dp(40.0f))).draw(canvas, AndroidUtilities.dp(20.0f) + this.bounds.left, f + AndroidUtilities.dp(40.0f), -1, 1.0f);
+            text2.ellipsize((int) (this.bounds.width() - AndroidUtilities.dp(40.0f))).draw(canvas, AndroidUtilities.dp(20.0f) + this.bounds.left, fDp + AndroidUtilities.dp(40.0f), -1, 1.0f);
         }
     }
 
     @Override
-    public void dispatchDraw(android.graphics.Canvas r31) {
+    protected void dispatchDraw(android.graphics.Canvas r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CaptionContainerView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -1077,18 +1076,18 @@ public abstract class CaptionContainerView extends FrameLayout {
 
     public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, View view) {
         Bitmap bitmap;
-        float f3 = 0.0f;
+        float x = 0.0f;
         if (this.keyboardT > 0.0f && this.blurPaint != null && this.blurBitmapShader != null && (bitmap = this.blurBitmap) != null && !bitmap.isRecycled()) {
             this.blurBitmapMatrix.reset();
             this.blurBitmapMatrix.postScale(this.rootView.getWidth() / this.blurBitmap.getWidth(), this.rootView.getHeight() / this.blurBitmap.getHeight());
-            float f4 = 0.0f;
+            float y = 0.0f;
             for (int i = 0; i < 8 && view != null; i++) {
-                f3 += view.getX();
-                f4 += view.getY();
+                x += view.getX();
+                y += view.getY();
                 Object parent = view.getParent();
                 view = parent instanceof View ? (View) parent : null;
             }
-            this.blurBitmapMatrix.postTranslate(-f3, -f4);
+            this.blurBitmapMatrix.postTranslate(-x, -y);
             this.blurBitmapShader.setLocalMatrix(this.blurBitmapMatrix);
             this.blurPaint.setAlpha((int) (this.keyboardT * 255.0f * f2));
             canvas.drawRoundRect(rectF, f, f, this.blurPaint);
@@ -1100,12 +1099,12 @@ public abstract class CaptionContainerView extends FrameLayout {
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         if (view == this.editText) {
-            float max = isAtTop() ? 0.0f : Math.max(0, (this.editText.getHeight() - AndroidUtilities.dp(82.0f)) - this.editText.getScrollY()) * (1.0f - this.keyboardT);
+            float fMax = isAtTop() ? 0.0f : Math.max(0, (this.editText.getHeight() - AndroidUtilities.dp(82.0f)) - this.editText.getScrollY()) * (1.0f - this.keyboardT);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.save();
             canvas.clipRect(this.bounds);
-            canvas.translate(0.0f, max);
-            boolean drawChild = super.drawChild(canvas, view, j);
+            canvas.translate(0.0f, fMax);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
             canvas.restore();
             canvas.save();
             this.matrix.reset();
@@ -1121,19 +1120,19 @@ public abstract class CaptionContainerView extends FrameLayout {
             this.fadeGradient.setLocalMatrix(this.matrix);
             RectF rectF2 = this.bounds;
             float f3 = rectF2.left;
-            float dp = rectF2.bottom - AndroidUtilities.dp(10.0f);
+            float fDp = rectF2.bottom - AndroidUtilities.dp(10.0f);
             RectF rectF3 = this.bounds;
-            canvas.drawRect(f3, dp, rectF3.right, rectF3.bottom, this.fadePaint);
+            canvas.drawRect(f3, fDp, rectF3.right, rectF3.bottom, this.fadePaint);
             canvas.restore();
             canvas.restore();
-            return drawChild;
+            return zDrawChild;
         }
         if (clipChild(view)) {
             canvas.save();
             canvas.clipRect(this.bounds);
-            boolean drawChild2 = super.drawChild(canvas, view, j);
+            boolean zDrawChild2 = super.drawChild(canvas, view, j);
             canvas.restore();
-            return drawChild2;
+            return zDrawChild2;
         }
         return super.drawChild(canvas, view, j);
     }
@@ -1216,7 +1215,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (customBlur()) {
             Bitmap bitmap = this.hintTextBitmap;
@@ -1233,7 +1232,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Bitmap bitmap = this.blurBitmap;
         if (bitmap != null) {
@@ -1305,7 +1304,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionContainerView.PeriodDrawable.this.invalidateSelf();
+                    this.f$0.invalidateSelf();
                 }
             };
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -1372,7 +1371,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         }
 
         public void draw(Canvas canvas, float f) {
-            float dpf2 = AndroidUtilities.dpf2(this.diameterDp) / 2.0f;
+            float fDpf2 = AndroidUtilities.dpf2(this.diameterDp) / 2.0f;
             float f2 = this.fillT.set(this.filled);
             if (f2 > 0.0f) {
                 this.fillPaint.setAlpha((int) (f * 255.0f * f2));
@@ -1383,7 +1382,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             RectF rectF = AndroidUtilities.rectTmp;
             float f4 = this.cx;
             float f5 = this.cy;
-            rectF.set(f4 - dpf2, f5 - dpf2, f4 + dpf2, f5 + dpf2);
+            rectF.set(f4 - fDpf2, f5 - fDpf2, f4 + fDpf2, f5 + fDpf2);
             canvas.drawArc(rectF, 90.0f, 180.0f, false, this.strokePaint);
             float f6 = (this.dashes * 1.0f) + ((r1 + 1) * 1.5f);
             float f7 = (1.0f / f6) * 180.0f;

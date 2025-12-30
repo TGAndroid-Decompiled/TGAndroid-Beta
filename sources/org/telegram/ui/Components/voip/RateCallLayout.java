@@ -48,15 +48,13 @@ public class RateCallLayout extends FrameLayout {
             this.startsViews[i].setAllStarsProvider(new StarContainer.AllStarsProvider() {
                 @Override
                 public final RateCallLayout.StarContainer[] getAllStartsViews() {
-                    RateCallLayout.StarContainer[] lambda$new$0;
-                    lambda$new$0 = RateCallLayout.this.lambda$new$0();
-                    return lambda$new$0;
+                    return this.f$0.lambda$new$0();
                 }
             });
             this.startsViews[i].setOnSelectedStar(new StarContainer.OnSelectedStar() {
                 @Override
                 public final void onSelected(float f, float f2, int i2) {
-                    RateCallLayout.this.lambda$new$3(context, f, f2, i2);
+                    this.f$0.lambda$new$3(context, f, f2, i2);
                 }
             }, i);
             this.starsContainer.addView(this.startsViews[i], LayoutHelper.createFrame(-2, -2.0f, 51, i * 41, 0.0f, 0.0f, 0.0f));
@@ -72,20 +70,20 @@ public class RateCallLayout extends FrameLayout {
     public void lambda$new$3(Context context, float f, float f2, int i) {
         if (i >= 4) {
             final RLottieImageView rLottieImageView = new RLottieImageView(context);
-            int dp = AndroidUtilities.dp(133.0f);
+            int iDp = AndroidUtilities.dp(133.0f);
             rLottieImageView.setAnimation(R.raw.rate, 133, 133);
             int[] iArr = new int[2];
             getLocationOnScreen(iArr);
             int i2 = iArr[0];
             int i3 = iArr[1];
             addView(rLottieImageView, LayoutHelper.createFrame(133, 133.0f));
-            float f3 = dp / 2.0f;
+            float f3 = iDp / 2.0f;
             rLottieImageView.setTranslationX((f - i2) - f3);
             rLottieImageView.setTranslationY((f2 - i3) - f3);
             rLottieImageView.setOnAnimationEndListener(new Runnable() {
                 @Override
                 public final void run() {
-                    RateCallLayout.this.lambda$new$2(rLottieImageView);
+                    this.f$0.lambda$new$2(rLottieImageView);
                 }
             });
             rLottieImageView.playAnimation();
@@ -104,7 +102,7 @@ public class RateCallLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                RateCallLayout.this.lambda$new$1(rLottieImageView);
+                this.f$0.lambda$new$1(rLottieImageView);
             }
         });
     }
@@ -136,11 +134,11 @@ public class RateCallLayout extends FrameLayout {
         private final Drawable rippleDrawable;
         public RLottieImageView selectedStar;
 
-        public interface AllStarsProvider {
+        interface AllStarsProvider {
             StarContainer[] getAllStartsViews();
         }
 
-        public interface OnSelectedStar {
+        interface OnSelectedStar {
             void onSelected(float f, float f2, int i);
         }
 
@@ -164,9 +162,9 @@ public class RateCallLayout extends FrameLayout {
             this.selectedStar.setAlpha(0.0f);
             addView(this.defaultStar, LayoutHelper.createFrame(37, 37.0f));
             addView(this.selectedStar, LayoutHelper.createFrame(37, 37.0f));
-            Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(37.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
-            this.rippleDrawable = createSimpleSelectorCircleDrawable;
-            createSimpleSelectorCircleDrawable.setCallback(this);
+            Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(37.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
+            this.rippleDrawable = drawableCreateSimpleSelectorCircleDrawable;
+            drawableCreateSimpleSelectorCircleDrawable.setCallback(this);
             setClickable(true);
         }
 

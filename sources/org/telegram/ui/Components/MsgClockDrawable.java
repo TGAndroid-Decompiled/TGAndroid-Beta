@@ -40,22 +40,22 @@ public class MsgClockDrawable extends Drawable {
     public void draw(Canvas canvas) {
         android.graphics.Rect bounds = getBounds();
         canvas.drawCircle(bounds.centerX(), bounds.centerY(), (Math.min(bounds.width(), bounds.height()) >> 1) - AndroidUtilities.dp(0.5f), this.paint);
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         canvas.save();
-        canvas.rotate(((((float) (currentTimeMillis - this.startTime)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
+        canvas.rotate((((jCurrentTimeMillis - this.startTime) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
         canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - AndroidUtilities.dp(3.0f), this.paint);
         canvas.restore();
         canvas.save();
-        canvas.rotate(((((float) (currentTimeMillis - this.startTime)) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
+        canvas.rotate((((jCurrentTimeMillis - this.startTime) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
         canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX() + AndroidUtilities.dp(2.3f), bounds.centerY(), this.paint);
         canvas.restore();
     }
 
     public void setColor(int i) {
         if (i != this.color) {
-            int alpha = Color.alpha(i);
-            this.colorAlpha = alpha;
-            this.paint.setColor(ColorUtils.setAlphaComponent(i, (int) (this.alpha * (alpha / 255.0f))));
+            int iAlpha = Color.alpha(i);
+            this.colorAlpha = iAlpha;
+            this.paint.setColor(ColorUtils.setAlphaComponent(i, (int) (this.alpha * (iAlpha / 255.0f))));
         }
         this.color = i;
     }

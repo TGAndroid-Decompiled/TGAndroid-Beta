@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import androidx.core.content.ContextCompat;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,7 +37,7 @@ public class EmuDetector {
     private boolean isTelephony = false;
     private boolean isCheckPackage = true;
 
-    public enum EmulatorTypes {
+    private enum EmulatorTypes {
         GENY,
         ANDY,
         NOX,
@@ -49,7 +50,7 @@ public class EmuDetector {
         void onResult(boolean z);
     }
 
-    public static class Property {
+    static class Property {
         public String name;
         public String seek_value;
 
@@ -191,7 +192,7 @@ public class EmuDetector {
         return ((TelephonyManager) this.mContext.getSystemService("phone")).getNetworkOperatorName().equalsIgnoreCase("android");
     }
 
-    private boolean checkQEmuDrivers() {
+    private boolean checkQEmuDrivers() throws IOException {
         File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
         for (int i = 0; i < 2; i++) {
             File file = fileArr[i];
@@ -234,7 +235,7 @@ public class EmuDetector {
         return false;
     }
 
-    private boolean checkQEmuProps() {
+    private boolean checkQEmuProps() throws ClassNotFoundException {
         int i = 0;
         for (Property property : PROPERTIES) {
             String prop = getProp(this.mContext, property.name);
@@ -249,7 +250,7 @@ public class EmuDetector {
         return i >= 5;
     }
 
-    private boolean checkIp() {
+    private boolean checkIp() throws IOException {
         if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
         }
@@ -267,11 +268,11 @@ public class EmuDetector {
             inputStream.close();
         } catch (Exception unused) {
         }
-        String sb2 = sb.toString();
-        if (TextUtils.isEmpty(sb2)) {
+        String string = sb.toString();
+        if (TextUtils.isEmpty(string)) {
             return false;
         }
-        for (String str : sb2.split("\n")) {
+        for (String str : string.split("\n")) {
             if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains("10.0.2.15")) {
                 return true;
             }
@@ -279,10 +280,10 @@ public class EmuDetector {
         return false;
     }
 
-    private String getProp(Context context, String str) {
+    private String getProp(Context context, String str) throws ClassNotFoundException {
         try {
-            Class<?> loadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
-            return (String) loadClass.getMethod("get", String.class).invoke(loadClass, str);
+            Class<?> clsLoadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
+            return (String) clsLoadClass.getMethod("get", String.class).invoke(clsLoadClass, str);
         } catch (Exception unused) {
             return null;
         }

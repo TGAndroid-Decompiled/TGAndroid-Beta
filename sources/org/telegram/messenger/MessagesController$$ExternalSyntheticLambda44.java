@@ -9,6 +9,6 @@ public final class MessagesController$$ExternalSyntheticLambda44 implements Runn
 
     @Override
     public final void run() {
-        MessagesController.$r8$lambda$iIVVXoUA0ql9CUj5EUb9UaAzKh4(this.f$0);
+        this.f$0.removePromoDialog();
     }
 }

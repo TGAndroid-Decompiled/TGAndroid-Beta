@@ -107,9 +107,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = IdenticonActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return IdenticonActivity.lambda$createView$0(view, motionEvent);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -176,7 +174,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             StringBuilder sb = new StringBuilder();
             byte[] bArr = encryptedChat.key_hash;
             if (bArr.length > 16) {
-                String bytesToHex = Utilities.bytesToHex(bArr);
+                String strBytesToHex = Utilities.bytesToHex(bArr);
                 for (int i2 = 0; i2 < 32; i2++) {
                     if (i2 != 0) {
                         if (i2 % 8 == 0) {
@@ -186,14 +184,14 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                         }
                     }
                     int i3 = i2 * 2;
-                    spannableStringBuilder.append((CharSequence) bytesToHex.substring(i3, i3 + 2));
+                    spannableStringBuilder.append((CharSequence) strBytesToHex.substring(i3, i3 + 2));
                     spannableStringBuilder.append(' ');
                 }
                 spannableStringBuilder.append((CharSequence) "\n");
                 for (int i4 = 0; i4 < 5; i4++) {
                     byte[] bArr2 = encryptedChat.key_hash;
                     int i5 = i4 * 4;
-                    int i6 = (bArr2[i5 + 19] & 255) | ((bArr2[i5 + 16] & Byte.MAX_VALUE) << 24) | ((bArr2[i5 + 17] & 255) << 16) | ((bArr2[i5 + 18] & 255) << 8);
+                    int i6 = (bArr2[i5 + 19] & 255) | ((bArr2[i5 + 16] & 127) << 24) | ((bArr2[i5 + 17] & 255) << 16) | ((bArr2[i5 + 18] & 255) << 8);
                     if (i4 != 0) {
                         sb.append(" ");
                     }
@@ -207,9 +205,9 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             int i7 = R.string.EncryptionKeyDescription;
             String str = user.first_name;
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("EncryptionKeyDescription", i7, str, str)));
-            int indexOf = spannableStringBuilder.toString().indexOf("telegram.org");
-            if (indexOf != -1) {
-                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString(R.string.EncryptionKeyLink)), indexOf, indexOf + 12, 33);
+            int iIndexOf = spannableStringBuilder.toString().indexOf("telegram.org");
+            if (iIndexOf != -1) {
+                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString(R.string.EncryptionKeyLink)), iIndexOf, iIndexOf + 12, 33);
             }
             this.textView.setText(spannableStringBuilder);
         }

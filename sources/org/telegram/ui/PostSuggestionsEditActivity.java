@@ -26,7 +26,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCheckCell;
-import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
@@ -59,10 +58,10 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         long j2 = chat2 != null ? chat2.send_paid_messages_stars : 0L;
         boolean z = chat != null && chat.broadcast_messages_allowed;
         this.initialSuggestionsEnabled = z;
-        long clamp = Utilities.clamp(z ? j2 : getMessagesController().config.starsPaidMessagesChannelAmountDefault.get(), getMessagesController().starsPaidMessageAmountMax, 0L);
-        this.initialSuggestionsStarsCount = clamp;
+        long jClamp = Utilities.clamp(z ? j2 : getMessagesController().config.starsPaidMessagesChannelAmountDefault.get(), getMessagesController().starsPaidMessageAmountMax, 0L);
+        this.initialSuggestionsStarsCount = jClamp;
         this.isSuggestionsEnabled = z;
-        this.suggestionsStarsCount = clamp;
+        this.suggestionsStarsCount = jClamp;
     }
 
     @Override
@@ -82,10 +81,10 @@ public class PostSuggestionsEditActivity extends BaseFragment {
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -105,12 +104,12 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, this.classGuid, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PostSuggestionsEditActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                PostSuggestionsEditActivity.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null, this.resourceProvider);
         this.listView = universalRecyclerView;
@@ -127,14 +126,12 @@ public class PostSuggestionsEditActivity extends BaseFragment {
             this.slideView.set((int) Utilities.clamp(this.suggestionsStarsCount, 10000L, 0L), SlideIntChooseView.Options.make(1, SlideIntChooseView.cut(new int[]{0, 10, 50, 100, 200, 250, 400, 500, 1000, 2500, 5000, 7500, 9000, 10000}, (int) getMessagesController().starsPaidMessageAmountMax), 20, new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    CharSequence lambda$fillItems$0;
-                    lambda$fillItems$0 = PostSuggestionsEditActivity.lambda$fillItems$0((Integer) obj, (Integer) obj2);
-                    return lambda$fillItems$0;
+                    return PostSuggestionsEditActivity.lambda$fillItems$0((Integer) obj, (Integer) obj2);
                 }
             }), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PostSuggestionsEditActivity.this.lambda$fillItems$1((Integer) obj);
+                    this.f$0.lambda$fillItems$1((Integer) obj);
                 }
             });
             arrayList.add(UItem.asCustom(3, this.slideView));
@@ -156,22 +153,12 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         return LocaleController.formatNumber(num2.intValue(), ',');
     }
 
-    public void lambda$fillItems$1(Integer num) {
-        this.suggestionsStarsCount = num.intValue();
-        View findViewByItemId = this.listView.findViewByItemId(4);
-        if (findViewByItemId instanceof TextInfoPrivacyCell) {
-            TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) findViewByItemId;
-            if (textInfoPrivacyCell.getFixedSize() <= 0 && this.suggestionsStarsCount > 0) {
-                textInfoPrivacyCell.setText(getIncomeInfo());
-                checkDone(true);
-            }
-        }
-        this.listView.adapter.update(true);
-        checkDone(true);
+    public void lambda$fillItems$1(java.lang.Integer r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PostSuggestionsEditActivity.lambda$fillItems$1(java.lang.Integer):void");
     }
 
     private CharSequence getIncomeInfo() {
-        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, AffiliateProgramFragment.percents(getMessagesController().starsPaidMessageCommissionPermille), String.valueOf(((int) (((((float) this.suggestionsStarsCount) * (r0 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
+        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, AffiliateProgramFragment.percents(getMessagesController().starsPaidMessageCommissionPermille), String.valueOf(((int) (((this.suggestionsStarsCount * (r0 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
     }
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
@@ -219,7 +206,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         getConnectionsManager().sendRequest(updatepaidmessagesprice, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PostSuggestionsEditActivity.this.lambda$processDone$3(updatepaidmessagesprice, tLObject, tL_error);
+                this.f$0.lambda$processDone$3(updatepaidmessagesprice, tLObject, tL_error);
             }
         });
         TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.currentChatId));
@@ -254,7 +241,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PostSuggestionsEditActivity.this.lambda$processDone$2(tL_error, tLObject, updatepaidmessagesprice);
+                this.f$0.lambda$processDone$2(tL_error, tLObject, updatepaidmessagesprice);
             }
         });
     }
@@ -283,19 +270,19 @@ public class PostSuggestionsEditActivity extends BaseFragment {
     }
 
     private void checkDone(boolean z) {
-        boolean hasChanges;
-        if (this.doneButton == null || this.lastHasChanges == (hasChanges = hasChanges())) {
+        boolean zHasChanges;
+        if (this.doneButton == null || this.lastHasChanges == (zHasChanges = hasChanges())) {
             return;
         }
-        this.lastHasChanges = hasChanges;
-        this.doneButton.setEnabled(hasChanges);
+        this.lastHasChanges = zHasChanges;
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
     @Override
@@ -312,13 +299,13 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                PostSuggestionsEditActivity.this.lambda$onBackPressed$4(alertDialog, i);
+                this.f$0.lambda$onBackPressed$4(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Discard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                PostSuggestionsEditActivity.this.lambda$onBackPressed$5(alertDialog, i);
+                this.f$0.lambda$onBackPressed$5(alertDialog, i);
             }
         });
         showDialog(builder.create());

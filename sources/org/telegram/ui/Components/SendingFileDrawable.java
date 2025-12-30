@@ -50,13 +50,13 @@ public class SendingFileDrawable extends StatusDrawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 50) {
             j = 50;
         }
-        this.progress += ((float) j) / 500.0f;
+        this.progress += j / 500.0f;
         while (true) {
             float f = this.progress;
             if (f > 1.0f) {
@@ -94,15 +94,15 @@ public class SendingFileDrawable extends StatusDrawable {
             } else {
                 paint.setAlpha(255);
             }
-            float dp = (AndroidUtilities.dp(5.0f) * i) + (AndroidUtilities.dp(5.0f) * this.progress);
+            float fDp = (AndroidUtilities.dp(5.0f) * i) + (AndroidUtilities.dp(5.0f) * this.progress);
             float f = 8.0f;
-            canvas.drawLine(dp, AndroidUtilities.dp(this.isChat ? 3.0f : 4.0f), dp + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(this.isChat ? 7.0f : 8.0f), paint);
-            float dp2 = AndroidUtilities.dp(this.isChat ? 11.0f : 12.0f);
-            float dp3 = dp + AndroidUtilities.dp(4.0f);
+            canvas.drawLine(fDp, AndroidUtilities.dp(this.isChat ? 3.0f : 4.0f), fDp + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(this.isChat ? 7.0f : 8.0f), paint);
+            float fDp2 = AndroidUtilities.dp(this.isChat ? 11.0f : 12.0f);
+            float fDp3 = fDp + AndroidUtilities.dp(4.0f);
             if (this.isChat) {
                 f = 7.0f;
             }
-            canvas.drawLine(dp, dp2, dp3, AndroidUtilities.dp(f), paint);
+            canvas.drawLine(fDp, fDp2, fDp3, AndroidUtilities.dp(f), paint);
         }
         if (this.started) {
             update();

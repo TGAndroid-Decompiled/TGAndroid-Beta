@@ -132,12 +132,12 @@ public class AvatarsDrawable {
         }
         this.transitionProgress = 0.0f;
         if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.transitionProgressAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.transitionProgressAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AvatarsDrawable.this.lambda$commitTransition$0(valueAnimator2);
+                    this.f$0.lambda$commitTransition$0(valueAnimator2);
                 }
             });
             this.transitionProgressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -382,17 +382,17 @@ public class AvatarsDrawable {
     }
 
     public float getUsedWidth() {
-        int dp;
+        int iDp;
         int i = this.currentStyle;
         boolean z = i == 4 || i == 10;
         if (i == 11) {
-            dp = AndroidUtilities.dp(12.0f);
+            iDp = AndroidUtilities.dp(12.0f);
         } else {
             int i2 = this.overrideSize;
             if (i2 != 0) {
-                dp = (int) (i2 * this.overrideSizeStepFactor);
+                iDp = (int) (i2 * this.overrideSizeStepFactor);
             } else {
-                dp = AndroidUtilities.dp(z ? 24.0f : 20.0f);
+                iDp = AndroidUtilities.dp(z ? 24.0f : 20.0f);
             }
         }
         int i3 = 0;
@@ -401,7 +401,7 @@ public class AvatarsDrawable {
                 i3++;
             }
         }
-        return (Math.max(0, i3 - 1) * dp) + (i3 > 0 ? getSize() : 0);
+        return (Math.max(0, i3 - 1) * iDp) + (i3 > 0 ? getSize() : 0);
     }
 
     public void onDraw(android.graphics.Canvas r34) {

@@ -36,7 +36,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ChatGreetingsView;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.LaunchActivity;
@@ -148,7 +147,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
                     this.premiumIconView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ChatGreetingsView.this.lambda$setPremiumLock$0(view);
+                            this.f$0.lambda$setPremiumLock$0(view);
                         }
                     });
                 }
@@ -239,9 +238,9 @@ public abstract class ChatGreetingsView extends LinearLayout {
         removeAllViews();
         if (this.premiumLock) {
             addView(this.premiumIconView, LayoutHelper.createLinear(78, 78, 49, 20, 9, 20, 9));
-            boolean premiumFeaturesBlocked = MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked();
-            addView(this.premiumTextView, LayoutHelper.createLinear(-2, -2, 49, 20, 0, 20, premiumFeaturesBlocked ? 13 : 9));
-            if (premiumFeaturesBlocked) {
+            boolean zPremiumFeaturesBlocked = MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked();
+            addView(this.premiumTextView, LayoutHelper.createLinear(-2, -2, 49, 20, 0, 20, zPremiumFeaturesBlocked ? 13 : 9));
+            if (zPremiumFeaturesBlocked) {
                 return;
             }
             TextView textView = this.premiumButtonView;
@@ -271,7 +270,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.stickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setSticker$1(document, view);
+                this.f$0.lambda$setSticker$1(document, view);
             }
         });
     }
@@ -310,12 +309,12 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.nextStickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setNextSticker$2(document, view);
+                this.f$0.lambda$setNextSticker$2(document, view);
             }
         });
     }
 
-    public class AnonymousClass2 implements ImageReceiver.ImageReceiverDelegate {
+    class AnonymousClass2 implements ImageReceiver.ImageReceiverDelegate {
         final Runnable val$whenDone;
         private boolean waited;
 
@@ -354,7 +353,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
                 rLottieDrawable.whenCacheDone = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatGreetingsView.AnonymousClass2.this.lambda$didSetImageBitmap$0(runnable2);
+                        this.f$0.lambda$didSetImageBitmap$0(runnable2);
                     }
                 };
             }
@@ -412,66 +411,66 @@ public abstract class ChatGreetingsView extends LinearLayout {
         AnimatorSet animatorSet3 = this.togglingStickersAnimator;
         BackupImageView backupImageView = this.nextStickerToSendView;
         Property property = View.ALPHA;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f);
         BackupImageView backupImageView2 = this.nextStickerToSendView;
         Property property2 = View.SCALE_X;
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(backupImageView2, (Property<BackupImageView, Float>) property2, 0.7f, 1.0f);
+        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(backupImageView2, (Property<BackupImageView, Float>) property2, 0.7f, 1.0f);
         BackupImageView backupImageView3 = this.nextStickerToSendView;
         Property property3 = View.SCALE_Y;
-        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(backupImageView3, (Property<BackupImageView, Float>) property3, 0.7f, 1.0f);
+        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(backupImageView3, (Property<BackupImageView, Float>) property3, 0.7f, 1.0f);
         BackupImageView backupImageView4 = this.nextStickerToSendView;
         Property property4 = View.TRANSLATION_Y;
-        animatorSet3.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(backupImageView4, (Property<BackupImageView, Float>) property4, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property4, 0.0f, AndroidUtilities.dp(24.0f)));
+        animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(backupImageView4, (Property<BackupImageView, Float>) property4, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property4, 0.0f, AndroidUtilities.dp(24.0f)));
         this.togglingStickersAnimator.start();
     }
 
     public static String createFilter(TLRPC.Document document) {
-        float min;
+        float fMin;
         float f;
+        int iDp;
         int i;
-        int i2;
         if (AndroidUtilities.isTablet()) {
-            min = AndroidUtilities.getMinTabletSide();
+            fMin = AndroidUtilities.getMinTabletSide();
             f = 0.4f;
         } else {
             android.graphics.Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
+            fMin = Math.min(point.x, point.y);
             f = 0.5f;
         }
-        float f2 = min * f;
-        int i3 = 0;
+        float f2 = fMin * f;
+        int i2 = 0;
         while (true) {
-            if (i3 >= document.attributes.size()) {
+            if (i2 >= document.attributes.size()) {
+                iDp = 0;
                 i = 0;
-                i2 = 0;
                 break;
             }
-            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i3);
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i2);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
-                i = documentAttribute.w;
-                i2 = documentAttribute.h;
+                iDp = documentAttribute.w;
+                i = documentAttribute.h;
                 break;
             }
-            i3++;
+            i2++;
         }
-        if (MessageObject.isAnimatedStickerDocument(document, true) && i == 0 && i2 == 0) {
+        if (MessageObject.isAnimatedStickerDocument(document, true) && iDp == 0 && i == 0) {
+            iDp = 512;
             i = 512;
-            i2 = 512;
         }
-        if (i == 0) {
-            i2 = (int) f2;
-            i = i2 + AndroidUtilities.dp(100.0f);
+        if (iDp == 0) {
+            i = (int) f2;
+            iDp = i + AndroidUtilities.dp(100.0f);
         }
-        int i4 = (int) (i2 * (f2 / i));
-        int i5 = (int) f2;
-        float f3 = i4;
+        int i3 = (int) (i * (f2 / iDp));
+        int i4 = (int) f2;
+        float f3 = i3;
         if (f3 > f2) {
-            i5 = (int) (i5 * (f2 / f3));
-            i4 = i5;
+            i4 = (int) (i4 * (f2 / f3));
+            i3 = i4;
         }
-        float f4 = i5;
+        float f4 = i4;
         float f5 = AndroidUtilities.density;
-        return String.format(Locale.US, "%d_%d", Integer.valueOf((int) (f4 / f5)), Integer.valueOf((int) (i4 / f5)));
+        return String.format(Locale.US, "%d_%d", Integer.valueOf((int) (f4 / f5)), Integer.valueOf((int) (i3 / f5)));
     }
 
     private void updateColors() {
@@ -486,7 +485,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         this.ignoreLayot = true;
         if (!this.preview) {
             this.descriptionView.setVisibility(0);
@@ -507,7 +506,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
     }
 
     public void setPreview(CharSequence charSequence, CharSequence charSequence2) {
-        int i;
+        int iMin;
         this.preview = true;
         TextView textView = this.titleView;
         if (TextUtils.isEmpty(charSequence == null ? null : charSequence.toString().trim())) {
@@ -521,11 +520,11 @@ public abstract class ChatGreetingsView extends LinearLayout {
         textView2.setText(charSequence2);
         TextView textView3 = this.descriptionView;
         if (textView3.getText().length() > 60) {
-            i = Math.min((int) (AndroidUtilities.displaySize.x * 0.5f), HintView2.cutInFancyHalf(this.descriptionView.getText(), this.descriptionView.getPaint()));
+            iMin = Math.min((int) (AndroidUtilities.displaySize.x * 0.5f), HintView2.cutInFancyHalf(this.descriptionView.getText(), this.descriptionView.getPaint()));
         } else {
-            i = (int) (AndroidUtilities.displaySize.x * 0.5f);
+            iMin = (int) (AndroidUtilities.displaySize.x * 0.5f);
         }
-        textView3.setMaxWidth(i);
+        textView3.setMaxWidth(iMin);
     }
 
     public void setVisiblePart(float f, int i) {
@@ -593,7 +592,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
     }
 
     public static void showPremiumSheet(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
-        String str;
+        String firstName;
         final BottomSheet bottomSheet = new BottomSheet(context, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -606,32 +605,32 @@ public abstract class ChatGreetingsView extends LinearLayout {
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(80, 80, 1, 0, 16, 0, 16));
-        boolean premiumFeaturesBlocked = MessagesController.getInstance(i).premiumFeaturesBlocked();
+        boolean zPremiumFeaturesBlocked = MessagesController.getInstance(i).premiumFeaturesBlocked();
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTextSize(1, 20.0f);
-        textView.setText(LocaleController.getString(premiumFeaturesBlocked ? R.string.PremiumMessageHeaderLocked : R.string.PremiumMessageHeader));
+        textView.setText(LocaleController.getString(zPremiumFeaturesBlocked ? R.string.PremiumMessageHeaderLocked : R.string.PremiumMessageHeader));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 12, 0, 12, 0));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         if (j <= 0) {
-            str = "";
+            firstName = "";
         } else {
-            str = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+            firstName = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         }
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(premiumFeaturesBlocked ? R.string.PremiumMessageTextLocked : R.string.PremiumMessageText, str, str)));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(zPremiumFeaturesBlocked ? R.string.PremiumMessageTextLocked : R.string.PremiumMessageText, firstName, firstName)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 12, 9, 12, 19));
-        if (!premiumFeaturesBlocked) {
+        if (!zPremiumFeaturesBlocked) {
             PremiumButtonView premiumButtonView = new PremiumButtonView(context, true, resourcesProvider);
             premiumButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatGreetingsView.lambda$showPremiumSheet$3(BottomSheet.this, view);
+                    ChatGreetingsView.lambda$showPremiumSheet$3(bottomSheet, view);
                 }
             });
             premiumButtonView.setOverlayText(LocaleController.getString(R.string.PremiumMessageButton), false, false);

@@ -98,7 +98,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         gradientButtonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ReassignBoostBottomSheet.this.lambda$new$3(chat, view);
+                this.f$0.lambda$new$3(chat, view);
             }
         });
         selectorBtnCell.addView(gradientButtonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
@@ -111,7 +111,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                ReassignBoostBottomSheet.this.lambda$new$4(chat, view, i3);
+                this.f$0.lambda$new$4(chat, view, i3);
             }
         });
         fixNavigationBar();
@@ -174,12 +174,12 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         BoostRepository.applyBoost(chat.id, arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$1(chat, arrayList, hashSet, (TL_stories.TL_premium_myBoosts) obj);
+                this.f$0.lambda$new$1(chat, arrayList, hashSet, (TL_stories.TL_premium_myBoosts) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$2((TLRPC.TL_error) obj);
+                this.f$0.lambda$new$2((TLRPC.TL_error) obj);
             }
         });
     }
@@ -188,7 +188,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(-chat.id, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$0(tL_premium_myBoosts, list, hashSet, (TL_stories.TL_premium_boostsStatus) obj);
+                this.f$0.lambda$new$0(tL_premium_myBoosts, list, hashSet, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
@@ -314,23 +314,23 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
+                View shadowSectionCell;
                 Context context = viewGroup.getContext();
                 if (i == 0) {
                     TopCell topCell = new TopCell(context);
                     topCell.showBoosts(ReassignBoostBottomSheet.this.selectedBoosts, ReassignBoostBottomSheet.this.currentChat);
-                    view = topCell;
+                    shadowSectionCell = topCell;
                 } else if (i == 1) {
-                    view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
+                    shadowSectionCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
                 } else if (i == 2) {
-                    view = new HeaderCell(context, 22);
+                    shadowSectionCell = new HeaderCell(context, 22);
                 } else if (i == 3) {
-                    view = new SelectorUserCell(context, true, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
+                    shadowSectionCell = new SelectorUserCell(context, true, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
                 } else {
-                    view = new View(context);
+                    shadowSectionCell = new View(context);
                 }
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(view);
+                shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(shadowSectionCell);
             }
 
             @Override
@@ -362,7 +362,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         };
     }
 
-    public static class TopCell extends LinearLayout {
+    static class TopCell extends LinearLayout {
         private final List addedChats;
         private final ArrowView arrowView;
         private final FrameLayout avatarsContainer;
@@ -407,20 +407,20 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void setData(TLRPC.Chat chat, final BottomSheet bottomSheet) {
             try {
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", BoostRepository.boostsPerSentGift(), chat == null ? "" : chat.title, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new Runnable() {
+                SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", BoostRepository.boostsPerSentGift(), chat == null ? "" : chat.title, "%3$s"));
+                SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new Runnable() {
                     @Override
                     public final void run() {
-                        ReassignBoostBottomSheet.TopCell.lambda$setData$0(BottomSheet.this);
+                        ReassignBoostBottomSheet.TopCell.lambda$setData$0(bottomSheet);
                     }
                 });
-                final int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
-                replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
-                this.description.setText(replaceTags, TextView.BufferType.EDITABLE);
+                final int iIndexOf = TextUtils.indexOf(spannableStringBuilderReplaceTags, "%3$s");
+                spannableStringBuilderReplaceTags.replace(iIndexOf, iIndexOf + 4, (CharSequence) spannableStringBuilderReplaceSingleTag);
+                this.description.setText(spannableStringBuilderReplaceTags, TextView.BufferType.EDITABLE);
                 this.description.post(new Runnable() {
                     @Override
                     public final void run() {
-                        ReassignBoostBottomSheet.TopCell.this.lambda$setData$1(indexOf);
+                        this.f$0.lambda$setData$1(iIndexOf);
                     }
                 });
             } catch (Exception e) {
@@ -585,7 +585,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static class AvatarHolderView extends FrameLayout {
+    private static class AvatarHolderView extends FrameLayout {
         private final Paint bgPaint;
         private final BoostIconView boostIconView;
         public TLRPC.Chat chat;
@@ -621,7 +621,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static class BoostIconView extends View {
+    private static class BoostIconView extends View {
         Drawable boostDrawable;
         Paint paint;
 
@@ -639,8 +639,8 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.paint);
             PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(10.0f), 0.0f);
             canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(2.0f), PremiumGradient.getInstance().getMainGradientPaint());
-            float dp = AndroidUtilities.dp(18.0f) / 2.0f;
-            this.boostDrawable.setBounds((int) (measuredWidth - dp), (int) (measuredHeight - dp), (int) (measuredWidth + dp), (int) (measuredHeight + dp));
+            float fDp = AndroidUtilities.dp(18.0f) / 2.0f;
+            this.boostDrawable.setBounds((int) (measuredWidth - fDp), (int) (measuredHeight - fDp), (int) (measuredWidth + fDp), (int) (measuredHeight + fDp));
             this.boostDrawable.draw(canvas);
         }
     }

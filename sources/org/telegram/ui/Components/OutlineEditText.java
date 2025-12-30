@@ -12,7 +12,7 @@ public class OutlineEditText extends OutlineTextContainerView {
         super(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
-            public void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
+            protected void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
                 super.onFocusChanged(z, i, rect);
                 OutlineEditText.this.animateSelection((z || isFocused()) ? 1.0f : 0.0f);
             }

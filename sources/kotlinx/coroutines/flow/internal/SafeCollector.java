@@ -61,9 +61,9 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
 
     @Override
     public Object invokeSuspend(Object obj) {
-        Throwable m277exceptionOrNullimpl = Result.m277exceptionOrNullimpl(obj);
-        if (m277exceptionOrNullimpl != null) {
-            this.lastEmissionContext = new DownstreamExceptionContext(m277exceptionOrNullimpl, getContext());
+        Throwable thM277exceptionOrNullimpl = Result.m277exceptionOrNullimpl(obj);
+        if (thM277exceptionOrNullimpl != null) {
+            this.lastEmissionContext = new DownstreamExceptionContext(thM277exceptionOrNullimpl, getContext());
         }
         Continuation continuation = this.completion_;
         if (continuation != null) {
@@ -80,11 +80,11 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
     @Override
     public Object emit(Object obj, Continuation continuation) {
         try {
-            Object emit = emit(continuation, obj);
-            if (emit == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+            Object objEmit = emit(continuation, obj);
+            if (objEmit == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
                 DebugProbesKt.probeCoroutineSuspended(continuation);
             }
-            return emit == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? emit : Unit.INSTANCE;
+            return objEmit == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? objEmit : Unit.INSTANCE;
         } catch (Throwable th) {
             this.lastEmissionContext = new DownstreamExceptionContext(th, continuation.getContext());
             throw th;
@@ -92,7 +92,6 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
     }
 
     private final Object emit(Continuation continuation, Object obj) {
-        Function3 function3;
         CoroutineContext context = continuation.getContext();
         JobKt.ensureActive(context);
         CoroutineContext coroutineContext = this.lastEmissionContext;
@@ -101,15 +100,15 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
             this.lastEmissionContext = context;
         }
         this.completion_ = continuation;
-        function3 = SafeCollectorKt.emitFun;
+        Function3 function3 = SafeCollectorKt.emitFun;
         FlowCollector flowCollector = this.collector;
         Intrinsics.checkNotNull(flowCollector, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Intrinsics.checkNotNull(this, "null cannot be cast to non-null type kotlin.coroutines.Continuation<kotlin.Unit>");
-        Object invoke = function3.invoke(flowCollector, obj, this);
-        if (!Intrinsics.areEqual(invoke, IntrinsicsKt.getCOROUTINE_SUSPENDED())) {
+        Object objInvoke = function3.invoke(flowCollector, obj, this);
+        if (!Intrinsics.areEqual(objInvoke, IntrinsicsKt.getCOROUTINE_SUSPENDED())) {
             this.completion_ = null;
         }
-        return invoke;
+        return objInvoke;
     }
 
     private final void checkContext(CoroutineContext coroutineContext, CoroutineContext coroutineContext2, Object obj) {

@@ -93,7 +93,7 @@ public abstract class MaxFileSizeCell extends FrameLayout {
                     } else {
                         float f6 = f5 - 0.25f;
                         if (f6 > 0.25f) {
-                            i = (int) (104857600 + (((float) (2097152000 - 104857600)) * ((f6 - 0.25f) / 0.25f)));
+                            i = (int) (104857600 + ((2097152000 - 104857600) * ((f6 - 0.25f) / 0.25f)));
                             long j = i;
                             MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
                             MaxFileSizeCell.this.currentSize = j;
@@ -165,31 +165,31 @@ public abstract class MaxFileSizeCell extends FrameLayout {
     }
 
     public void setSize(long j) {
-        float max;
+        float fMax;
         float f;
-        float f2;
+        float fMax2;
         this.currentSize = j;
         this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
         long j2 = j - 512000;
         if (j2 < 536576) {
-            f2 = Math.max(0.0f, ((float) j2) / 536576.0f) * 0.25f;
+            fMax2 = Math.max(0.0f, j2 / 536576.0f) * 0.25f;
         } else {
             long j3 = j - 1048576;
             if (j3 < 9437184) {
-                f2 = (Math.max(0.0f, ((float) j3) / 9437184.0f) * 0.25f) + 0.25f;
+                fMax2 = (Math.max(0.0f, j3 / 9437184.0f) * 0.25f) + 0.25f;
             } else {
                 long j4 = j - 10485760;
                 if (j4 < 94371840) {
-                    max = Math.max(0.0f, ((float) j4) / 9.437184E7f) * 0.25f;
+                    fMax = Math.max(0.0f, j4 / 9.437184E7f) * 0.25f;
                     f = 0.5f;
                 } else {
-                    max = Math.max(0.0f, ((float) (j - 104857600)) / 1.9922944E9f) * 0.25f;
+                    fMax = Math.max(0.0f, (j - 104857600) / 1.9922944E9f) * 0.25f;
                     f = 0.75f;
                 }
-                f2 = max + f;
+                fMax2 = fMax + f;
             }
         }
-        this.seekBarView.setProgress(Math.min(1.0f, f2));
+        this.seekBarView.setProgress(Math.min(1.0f, fMax2));
     }
 
     public void setEnabled(boolean z, ArrayList arrayList) {

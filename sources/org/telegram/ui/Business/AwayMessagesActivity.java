@@ -72,10 +72,10 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -83,7 +83,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
             @Override
             public final void run() {
-                AwayMessagesActivity.this.lambda$createView$0();
+                this.f$0.lambda$createView$0();
             }
         });
         this.recipientsHelper = businessRecipientsHelper;
@@ -96,12 +96,12 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AwayMessagesActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                AwayMessagesActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -117,66 +117,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     private void setValue() {
-        UniversalRecyclerView universalRecyclerView;
-        UniversalAdapter universalAdapter;
-        if (this.valueSet) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = userFull.business_away_message;
-        this.currentValue = tL_businessAwayMessage;
-        this.hasHours = userFull.business_work_hours != null;
-        this.enabled = tL_businessAwayMessage != null;
-        this.exclude = tL_businessAwayMessage != null ? tL_businessAwayMessage.recipients.exclude_selected : true;
-        this.offline_only = tL_businessAwayMessage != null ? tL_businessAwayMessage.offline_only : true;
-        BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-        if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tL_businessAwayMessage == null ? null : tL_businessAwayMessage.recipients);
-        }
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage2 = this.currentValue;
-        if (tL_businessAwayMessage2 != null) {
-            TL_account.BusinessAwayMessageSchedule businessAwayMessageSchedule = tL_businessAwayMessage2.schedule;
-            if (businessAwayMessageSchedule instanceof TL_account.TL_businessAwayMessageScheduleCustom) {
-                this.currentValueScheduleType = 2;
-                this.schedule = 2;
-                TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = (TL_account.TL_businessAwayMessageScheduleCustom) businessAwayMessageSchedule;
-                int i = tL_businessAwayMessageScheduleCustom.start_date;
-                this.currentScheduleCustomStart = i;
-                this.scheduleCustomStart = i;
-                int i2 = tL_businessAwayMessageScheduleCustom.end_date;
-                this.currentScheduleCustomEnd = i2;
-                this.scheduleCustomEnd = i2;
-                universalRecyclerView = this.listView;
-                if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-                    universalAdapter.update(true);
-                }
-                checkDone(true);
-                this.valueSet = true;
-            }
-        }
-        this.scheduleCustomStart = getConnectionsManager().getCurrentTime();
-        this.scheduleCustomEnd = getConnectionsManager().getCurrentTime() + 86400;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage3 = this.currentValue;
-        if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleAlways)) {
-            this.currentValueScheduleType = 0;
-            this.schedule = 0;
-        } else if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleOutsideWorkHours)) {
-            this.currentValueScheduleType = 1;
-            this.schedule = 1;
-        } else {
-            this.currentValueScheduleType = 0;
-            this.schedule = 0;
-        }
-        universalRecyclerView = this.listView;
-        if (universalRecyclerView != null) {
-            universalAdapter.update(true);
-        }
-        checkDone(true);
-        this.valueSet = true;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.AwayMessagesActivity.setValue():void");
     }
 
     public boolean hasChanges() {
@@ -212,15 +153,15 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
     public void processDone() {
@@ -231,14 +172,14 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             finishFragment();
             return;
         }
-        QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
+        QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
         boolean z = this.enabled;
-        if (z && findReply == null) {
+        if (z && quickReplyFindReply == null) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            View findViewByItemId = this.listView.findViewByItemId(2);
+            View viewFindViewByItemId = this.listView.findViewByItemId(2);
             int i = -this.shiftDp;
             this.shiftDp = i;
-            AndroidUtilities.shakeViewSpring(findViewByItemId, i);
+            AndroidUtilities.shakeViewSpring(viewFindViewByItemId, i);
             UniversalRecyclerView universalRecyclerView = this.listView;
             universalRecyclerView.smoothScrollToPosition(universalRecyclerView.findPositionByItemId(2));
             return;
@@ -251,7 +192,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 TL_account.TL_inputBusinessAwayMessage tL_inputBusinessAwayMessage = new TL_account.TL_inputBusinessAwayMessage();
                 updatebusinessawaymessage.message = tL_inputBusinessAwayMessage;
                 tL_inputBusinessAwayMessage.offline_only = this.offline_only;
-                tL_inputBusinessAwayMessage.shortcut_id = findReply.id;
+                tL_inputBusinessAwayMessage.shortcut_id = quickReplyFindReply.id;
                 tL_inputBusinessAwayMessage.recipients = this.recipientsHelper.getInputValue();
                 int i2 = this.schedule;
                 if (i2 == 0) {
@@ -270,7 +211,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                     TL_account.TL_businessAwayMessage tL_businessAwayMessage = new TL_account.TL_businessAwayMessage();
                     userFull.business_away_message = tL_businessAwayMessage;
                     tL_businessAwayMessage.offline_only = this.offline_only;
-                    tL_businessAwayMessage.shortcut_id = findReply.id;
+                    tL_businessAwayMessage.shortcut_id = quickReplyFindReply.id;
                     tL_businessAwayMessage.recipients = this.recipientsHelper.getValue();
                     userFull.business_away_message.schedule = updatebusinessawaymessage.message.schedule;
                 }
@@ -281,7 +222,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(updatebusinessawaymessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    AwayMessagesActivity.this.lambda$processDone$2(tLObject, tL_error);
+                    this.f$0.lambda$processDone$2(tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
@@ -292,7 +233,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AwayMessagesActivity.this.lambda$processDone$1(tL_error, tLObject);
+                this.f$0.lambda$processDone$1(tL_error, tLObject);
             }
         });
     }
@@ -325,13 +266,13 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    AwayMessagesActivity.this.lambda$onBackPressed$3(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$3(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    AwayMessagesActivity.this.lambda$onBackPressed$4(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$4(alertDialog, i);
                 }
             });
             showDialog(builder.create());
@@ -352,9 +293,9 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessAwaySend)).setChecked(this.enabled));
         arrayList.add(UItem.asShadow(null));
         if (this.enabled) {
-            QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
-            if (findReply != null) {
-                arrayList.add(UItem.asLargeQuickReply(findReply));
+            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
+            if (quickReplyFindReply != null) {
+                arrayList.add(UItem.asLargeQuickReply(quickReplyFindReply));
             } else {
                 arrayList.add(UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate)).accent());
             }
@@ -440,7 +381,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 AlertsCreator.createDatePickerDialog(getContext(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), this.scheduleCustomStart, new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i3, int i4) {
-                        AwayMessagesActivity.this.lambda$onClick$5(view, z, i3, i4);
+                        this.f$0.lambda$onClick$5(view, z, i3, i4);
                     }
                 });
                 return;
@@ -449,7 +390,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 AlertsCreator.createDatePickerDialog(getContext(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), this.scheduleCustomEnd, new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i3, int i4) {
-                        AwayMessagesActivity.this.lambda$onClick$6(view, z, i3, i4);
+                        this.f$0.lambda$onClick$6(view, z, i3, i4);
                     }
                 });
             } else if (i2 == 10) {

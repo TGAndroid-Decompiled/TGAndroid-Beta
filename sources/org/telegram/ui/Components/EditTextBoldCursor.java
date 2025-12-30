@@ -136,10 +136,10 @@ public class EditTextBoldCursor extends EditTextEffects {
     private boolean transformHintToHeader;
     private View windowView;
 
-    public void extendActionMode(ActionMode actionMode, Menu menu) {
+    protected void extendActionMode(ActionMode actionMode, Menu menu) {
     }
 
-    public int getActionModeStyle() {
+    protected int getActionModeStyle() {
         return 1;
     }
 
@@ -168,7 +168,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         invalidate();
     }
 
-    public class ActionModeCallback2Wrapper extends ActionMode.Callback2 {
+    private class ActionModeCallback2Wrapper extends ActionMode.Callback2 {
         private final ActionMode.Callback mWrapped;
 
         public ActionModeCallback2Wrapper(ActionMode.Callback callback) {
@@ -600,7 +600,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onScrollChanged(int i, int i2, int i3, int i4) {
+    protected void onScrollChanged(int i, int i2, int i3, int i4) {
         super.onScrollChanged(i, i2, i3, i4);
         if (i != i3) {
             getParent().requestDisallowInterceptTouchEvent(true);
@@ -615,7 +615,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
@@ -690,7 +690,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
+    protected void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
         try {
             super.onFocusChanged(z, i, rect);
         } catch (Exception e) {
@@ -791,20 +791,20 @@ public class EditTextBoldCursor extends EditTextEffects {
         if (length() == 0 || this.transformHintToHeader) {
             boolean z = this.hintVisible;
             if ((z && this.hintAlpha != 1.0f) || (!z && this.hintAlpha != 0.0f)) {
-                long currentTimeMillis = System.currentTimeMillis();
-                long j = currentTimeMillis - this.hintLastUpdateTime;
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                long j = jCurrentTimeMillis - this.hintLastUpdateTime;
                 if (j < 0 || j > 17) {
                     j = 17;
                 }
-                this.hintLastUpdateTime = currentTimeMillis;
+                this.hintLastUpdateTime = jCurrentTimeMillis;
                 if (this.hintVisible) {
-                    float f = this.hintAlpha + (((float) j) / 150.0f);
+                    float f = this.hintAlpha + (j / 150.0f);
                     this.hintAlpha = f;
                     if (f > 1.0f) {
                         this.hintAlpha = 1.0f;
                     }
                 } else {
-                    float f2 = this.hintAlpha - (((float) j) / 150.0f);
+                    float f2 = this.hintAlpha - (j / 150.0f);
                     this.hintAlpha = f2;
                     if (f2 < 0.0f) {
                         this.hintAlpha = 0.0f;
@@ -882,7 +882,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                             callback2.run(canvas, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    EditTextBoldCursor.this.lambda$drawHint$0(canvas);
+                                    this.f$0.lambda$drawHint$0(canvas);
                                 }
                             });
                         } else {
@@ -901,7 +901,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r15) {
+    protected void onDraw(android.graphics.Canvas r15) throws java.lang.IllegalAccessException, java.lang.IllegalArgumentException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EditTextBoldCursor.onDraw(android.graphics.Canvas):void");
     }
 
@@ -920,37 +920,37 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     private int clampHorizontalPosition(Drawable drawable, float f) {
-        int i;
-        float max = Math.max(0.5f, f - 0.5f);
+        int intrinsicWidth;
+        float fMax = Math.max(0.5f, f - 0.5f);
         if (this.mTempRect == null) {
             this.mTempRect = new android.graphics.Rect();
         }
         if (drawable != null) {
             drawable.getPadding(this.mTempRect);
-            i = drawable.getIntrinsicWidth();
+            intrinsicWidth = drawable.getIntrinsicWidth();
         } else {
             this.mTempRect.setEmpty();
-            i = 0;
+            intrinsicWidth = 0;
         }
         int scrollX = getScrollX();
-        float f2 = max - scrollX;
+        float f2 = fMax - scrollX;
         int width = (getWidth() - getCompoundPaddingLeft()) - getCompoundPaddingRight();
         float f3 = width;
         if (f2 >= f3 - 1.0f) {
-            return (width + scrollX) - (i - this.mTempRect.right);
+            return (width + scrollX) - (intrinsicWidth - this.mTempRect.right);
         }
-        if (Math.abs(f2) <= 1.0f || (TextUtils.isEmpty(getText()) && 1048576 - scrollX <= f3 + 1.0f && max <= 1.0f)) {
+        if (Math.abs(f2) <= 1.0f || (TextUtils.isEmpty(getText()) && 1048576 - scrollX <= f3 + 1.0f && fMax <= 1.0f)) {
             return scrollX - this.mTempRect.left;
         }
-        return ((int) max) - this.mTempRect.left;
+        return ((int) fMax) - this.mTempRect.left;
     }
 
     private void updateCursorPosition(int i, int i2, float f) {
-        int clampHorizontalPosition = clampHorizontalPosition(this.gradientDrawable, f);
-        int dp = AndroidUtilities.dp(this.cursorWidth);
+        int iClampHorizontalPosition = clampHorizontalPosition(this.gradientDrawable, f);
+        int iDp = AndroidUtilities.dp(this.cursorWidth);
         GradientDrawable gradientDrawable = this.gradientDrawable;
         android.graphics.Rect rect = this.mTempRect;
-        gradientDrawable.setBounds(clampHorizontalPosition, i - rect.top, dp + clampHorizontalPosition, i2 + rect.bottom);
+        gradientDrawable.setBounds(iClampHorizontalPosition, i - rect.top, iDp + iClampHorizontalPosition, i2 + rect.bottom);
     }
 
     @Override
@@ -971,7 +971,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         try {
             super.onAttachedToWindow();
         } catch (Exception e) {
@@ -982,7 +982,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = null;
         AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
@@ -1007,18 +1007,14 @@ public class EditTextBoldCursor extends EditTextEffects {
             this.floatingToolbar.setQuoteShowVisible(new Utilities.Callback0Return() {
                 @Override
                 public final Object run() {
-                    boolean shouldShowQuoteButton;
-                    shouldShowQuoteButton = EditTextBoldCursor.this.shouldShowQuoteButton();
-                    return Boolean.valueOf(shouldShowQuoteButton);
+                    return Boolean.valueOf(this.f$0.shouldShowQuoteButton());
                 }
             });
             this.floatingActionMode = new FloatingActionMode(getContext(), new ActionModeCallback2Wrapper(callback), this, this.floatingToolbar);
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
-                    boolean lambda$startActionMode$1;
-                    lambda$startActionMode$1 = EditTextBoldCursor.this.lambda$startActionMode$1();
-                    return lambda$startActionMode$1;
+                    return this.f$0.lambda$startActionMode$1();
                 }
             };
             FloatingActionMode floatingActionMode2 = this.floatingActionMode;
@@ -1095,23 +1091,21 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     public void setHandlesColor(int i) {
-        Drawable textSelectHandleLeft;
-        Drawable textSelectHandle;
-        Drawable textSelectHandleRight;
-        if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
-            try {
-                textSelectHandleLeft = getTextSelectHandleLeft();
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                textSelectHandleLeft.setColorFilter(i, mode);
-                setTextSelectHandleLeft(textSelectHandleLeft);
-                textSelectHandle = getTextSelectHandle();
-                textSelectHandle.setColorFilter(i, mode);
-                setTextSelectHandle(textSelectHandle);
-                textSelectHandleRight = getTextSelectHandleRight();
-                textSelectHandleRight.setColorFilter(i, mode);
-                setTextSelectHandleRight(textSelectHandleRight);
-            } catch (Exception unused) {
-            }
+        if (Build.VERSION.SDK_INT < 29 || XiaomiUtilities.isMIUI()) {
+            return;
+        }
+        try {
+            Drawable textSelectHandleLeft = getTextSelectHandleLeft();
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            textSelectHandleLeft.setColorFilter(i, mode);
+            setTextSelectHandleLeft(textSelectHandleLeft);
+            Drawable textSelectHandle = getTextSelectHandle();
+            textSelectHandle.setColorFilter(i, mode);
+            setTextSelectHandle(textSelectHandle);
+            Drawable textSelectHandleRight = getTextSelectHandleRight();
+            textSelectHandleRight.setColorFilter(i, mode);
+            setTextSelectHandleRight(textSelectHandleRight);
+        } catch (Exception unused) {
         }
     }
 
@@ -1136,7 +1130,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
     }
 }

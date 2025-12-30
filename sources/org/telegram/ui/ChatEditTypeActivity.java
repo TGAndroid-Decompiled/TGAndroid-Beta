@@ -132,7 +132,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     private Runnable enableDoneLoading = new Runnable() {
         @Override
         public final void run() {
-            ChatEditTypeActivity.this.lambda$new$6();
+            this.f$0.lambda$new$6();
         }
     };
     private boolean deactivatingLinks = false;
@@ -152,7 +152,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$onFragmentCreate$0(tL_error);
+                this.f$0.lambda$onFragmentCreate$0(tL_error);
             }
         });
     }
@@ -223,13 +223,13 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 }
             }
         });
-        ActionBarMenu createMenu = this.actionBar.createMenu();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
-        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
+        this.doneButton = actionBarMenuCreateMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         ScrollView scrollView = new ScrollView(context) {
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
@@ -293,7 +293,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.radioButtonCell2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatEditTypeActivity.this.lambda$createView$2(view);
+                this.f$0.lambda$createView$2(view);
             }
         });
         RadioButtonCell radioButtonCell2 = new RadioButtonCell(context);
@@ -308,7 +308,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.radioButtonCell1.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatEditTypeActivity.this.lambda$createView$3(view);
+                this.f$0.lambda$createView$3(view);
             }
         });
         ShadowSectionCell shadowSectionCell = new ShadowSectionCell(context);
@@ -390,11 +390,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 if (ChatEditTypeActivity.this.ignoreTextChanges) {
                     return;
                 }
-                String obj = ChatEditTypeActivity.this.usernameTextView.getText().toString();
+                String string = ChatEditTypeActivity.this.usernameTextView.getText().toString();
                 if (ChatEditTypeActivity.this.editableUsernameCell != null) {
-                    ChatEditTypeActivity.this.editableUsernameCell.updateUsername(obj);
+                    ChatEditTypeActivity.this.editableUsernameCell.updateUsername(string);
                 }
-                ChatEditTypeActivity.this.checkUserName(obj);
+                ChatEditTypeActivity.this.checkUserName(string);
             }
 
             @Override
@@ -469,7 +469,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.manageLinksTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatEditTypeActivity.this.lambda$createView$4(view);
+                this.f$0.lambda$createView$4(view);
             }
         });
         this.linearLayout.addView(this.manageLinksTextView, LayoutHelper.createLinear(-1, -2));
@@ -498,7 +498,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.saveRestrictCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatEditTypeActivity.this.lambda$createView$5(view);
+                this.f$0.lambda$createView$5(view);
             }
         });
         this.saveContainer.addView(this.saveRestrictCell, LayoutHelper.createLinear(-1, -2));
@@ -552,18 +552,18 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         public void setText(CharSequence charSequence) {
             if (charSequence != 0) {
                 charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                int indexOf = charSequence.toString().indexOf(10);
-                if (indexOf >= 0) {
-                    charSequence.replace(indexOf, indexOf + 1, " ");
-                    charSequence.setSpan(new ForegroundColorSpan(ChatEditTypeActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
+                int iIndexOf = charSequence.toString().indexOf(10);
+                if (iIndexOf >= 0) {
+                    charSequence.replace(iIndexOf, iIndexOf + 1, " ");
+                    charSequence.setSpan(new ForegroundColorSpan(ChatEditTypeActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, iIndexOf, 33);
                 }
                 TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                final String obj = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? "" : ChatEditTypeActivity.this.usernameTextView.getText().toString();
+                final String string = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? "" : ChatEditTypeActivity.this.usernameTextView.getText().toString();
                 for (int i = 0; i < typefaceSpanArr.length; i++) {
                     charSequence.setSpan(new ClickableSpan() {
                         @Override
                         public void onClick(View view) {
-                            Browser.openUrl(AnonymousClass6.this.getContext(), "https://fragment.com/username/" + obj);
+                            Browser.openUrl(AnonymousClass6.this.getContext(), "https://fragment.com/username/" + string);
                         }
 
                         @Override
@@ -597,9 +597,9 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.translateAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.translateAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         ChatEditTypeActivity.AnonymousClass6.lambda$onLayout$0(arrayList, height, valueAnimator2);
@@ -613,11 +613,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
 
         public static void lambda$onLayout$0(ArrayList arrayList, float f, ValueAnimator valueAnimator) {
-            float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
             for (int i = 0; i < arrayList.size(); i++) {
                 View view = (View) arrayList.get(i);
                 if (view != null) {
-                    view.setTranslationY(f * floatValue);
+                    view.setTranslationY(f * fFloatValue);
                 }
             }
         }
@@ -648,15 +648,15 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
-            this.doneButtonDrawableAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
+            this.doneButtonDrawableAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChatEditTypeActivity.this.lambda$updateDoneProgress$7(valueAnimator2);
+                    this.f$0.lambda$updateDoneProgress$7(valueAnimator2);
                 }
             });
-            this.doneButtonDrawableAnimator.setDuration(Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f);
+            this.doneButtonDrawableAnimator.setDuration((long) (Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f));
             this.doneButtonDrawableAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.doneButtonDrawableAnimator.start();
         }
@@ -676,7 +676,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$showPremiumIncreaseLimitDialog$8();
+                this.f$0.lambda$showPremiumIncreaseLimitDialog$8();
             }
         };
         showDialog(limitReachedBottomSheet);
@@ -741,7 +741,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
                         @Override
                         public final void run(long j) {
-                            ChatEditTypeActivity.this.lambda$tryUpdateJoinSettings$9(j);
+                            this.f$0.lambda$tryUpdateJoinSettings$9(j);
                         }
                     });
                     return false;
@@ -775,7 +775,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public class UsernamesListView extends RecyclerListView {
+    class UsernamesListView extends RecyclerListView {
         private final int VIEW_TYPE_HEADER;
         private final int VIEW_TYPE_HELP;
         private final int VIEW_TYPE_USERNAME;
@@ -804,7 +804,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             itemTouchHelper.attachToRecyclerView(this);
         }
 
-        public class AnonymousClass1 implements RecyclerListView.OnItemClickListener {
+        class AnonymousClass1 implements RecyclerListView.OnItemClickListener {
             final ChatEditTypeActivity val$this$0;
 
             AnonymousClass1(ChatEditTypeActivity chatEditTypeActivity) {
@@ -830,7 +830,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 new AlertDialog.Builder(UsernamesListView.this.getContext(), ChatEditTypeActivity.this.getResourceProvider()).setTitle(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLink : R.string.UsernameActivateLink)).setMessage(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLinkChannelMessage : R.string.UsernameActivateLinkChannelMessage)).setPositiveButton(LocaleController.getString(tL_username.active ? R.string.Hide : R.string.Show), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        ChatEditTypeActivity.UsernamesListView.AnonymousClass1.this.lambda$onItemClick$4(tL_username, view, alertDialog, i2);
+                        this.f$0.lambda$onItemClick$4(tL_username, view, alertDialog, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                     @Override
@@ -861,7 +861,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     ChatEditTypeActivity.this.getConnectionsManager().sendRequest(tL_channels_toggleUsername, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            ChatEditTypeActivity.UsernamesListView.AnonymousClass1.this.lambda$onItemClick$3(tL_channels_toggleUsername, tL_username, z2, tLObject, tL_error);
+                            this.f$0.lambda$onItemClick$3(tL_channels_toggleUsername, tL_username, z2, tLObject, tL_error);
                         }
                     });
                     ChatEditTypeActivity.this.loadingUsernames.add(tL_username.username);
@@ -874,7 +874,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatEditTypeActivity.UsernamesListView.AnonymousClass1.this.lambda$onItemClick$2(tL_channels_toggleUsername, tLObject, tL_username, z, tL_error);
+                        this.f$0.lambda$onItemClick$2(tL_channels_toggleUsername, tLObject, tL_username, z, tL_error);
                     }
                 });
             }
@@ -887,7 +887,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatEditTypeActivity.UsernamesListView.AnonymousClass1.this.lambda$onItemClick$1(tL_username, z);
+                            this.f$0.lambda$onItemClick$1(tL_username, z);
                         }
                     });
                 } else {
@@ -901,7 +901,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 new AlertDialog.Builder(UsernamesListView.this.getContext(), ((RecyclerListView) UsernamesListView.this).resourcesProvider).setTitle(LocaleController.getString(R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString(R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        ChatEditTypeActivity.UsernamesListView.AnonymousClass1.this.lambda$onItemClick$0(tL_username, z, alertDialog, i);
+                        this.f$0.lambda$onItemClick$0(tL_username, z, alertDialog, i);
                     }
                 }).show();
             }
@@ -927,7 +927,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
         public void toggleUsername(int i, boolean z, boolean z2) {
             TLRPC.TL_username tL_username;
-            int min;
+            int iMin;
             int i2 = i - 1;
             if (i2 < 0 || i2 >= ChatEditTypeActivity.this.usernames.size() || (tL_username = (TLRPC.TL_username) ChatEditTypeActivity.this.usernames.get(i2)) == null) {
                 return;
@@ -949,8 +949,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                         }
                     }
                     if (i5 >= 0) {
-                        min = Math.max(0, i5 - 1);
-                        i3 = min + 1;
+                        iMin = Math.max(0, i5 - 1);
+                        i3 = iMin + 1;
                     }
                 } else {
                     int i6 = -1;
@@ -960,8 +960,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                         }
                     }
                     if (i6 >= 0) {
-                        min = Math.min(ChatEditTypeActivity.this.usernames.size() - 1, i6 + 1);
-                        i3 = min + 1;
+                        iMin = Math.min(ChatEditTypeActivity.this.usernames.size() - 1, i6 + 1);
+                        i3 = iMin + 1;
                     }
                 }
             }
@@ -990,7 +990,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
 
@@ -1095,7 +1095,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             ChatEditTypeActivity.this.getMessagesController().putChat(ChatEditTypeActivity.this.currentChat, true);
         }
 
-        public class Adapter extends RecyclerListView.SelectionAdapter {
+        private class Adapter extends RecyclerListView.SelectionAdapter {
             private Adapter() {
             }
 
@@ -1207,21 +1207,21 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             int childAdapterPosition;
             int size = ChatEditTypeActivity.this.usernames.size();
-            int i = Integer.MAX_VALUE;
-            int i2 = Integer.MIN_VALUE;
-            for (int i3 = 0; i3 < getChildCount(); i3++) {
-                View childAt = getChildAt(i3);
+            int iMin = Integer.MAX_VALUE;
+            int iMax = Integer.MIN_VALUE;
+            for (int i = 0; i < getChildCount(); i++) {
+                View childAt = getChildAt(i);
                 if (childAt != null && (childAdapterPosition = getChildAdapterPosition(childAt)) >= 1 && childAdapterPosition <= size) {
-                    i = Math.min(childAt.getTop(), i);
-                    i2 = Math.max(childAt.getBottom(), i2);
+                    iMin = Math.min(childAt.getTop(), iMin);
+                    iMax = Math.max(childAt.getBottom(), iMax);
                 }
             }
-            if (i < i2) {
+            if (iMin < iMax) {
                 this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-                canvas.drawRect(0.0f, i, getWidth(), i2, this.backgroundPaint);
+                canvas.drawRect(0.0f, iMin, getWidth(), iMax, this.backgroundPaint);
             }
             super.dispatchDraw(canvas);
         }
@@ -1235,7 +1235,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
                     @Override
                     public final void run(long j) {
-                        ChatEditTypeActivity.this.lambda$trySetRestrict$10(j);
+                        this.f$0.lambda$trySetRestrict$10(j);
                     }
                 });
                 return false;
@@ -1281,28 +1281,28 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         if (publicUsername == null) {
             publicUsername = "";
         }
-        String obj = this.isPrivate ? "" : this.usernameTextView.getText().toString();
-        if (publicUsername.equals(obj)) {
+        String string = this.isPrivate ? "" : this.usernameTextView.getText().toString();
+        if (publicUsername.equals(string)) {
             return tryDeactivateAllLinks();
         }
         if (!ChatObject.isChannel(this.currentChat)) {
             getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    ChatEditTypeActivity.this.lambda$trySetUsername$11(j);
+                    this.f$0.lambda$trySetUsername$11(j);
                 }
             });
             return false;
         }
-        getMessagesController().updateChannelUserName(this, this.chatId, obj, new Runnable() {
+        getMessagesController().updateChannelUserName(this, this.chatId, string, new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$trySetUsername$12();
+                this.f$0.lambda$trySetUsername$12();
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$trySetUsername$13();
+                this.f$0.lambda$trySetUsername$13();
             }
         });
         return false;
@@ -1347,7 +1347,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(tL_channels_deactivateAllUsernames, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatEditTypeActivity.this.lambda$tryDeactivateAllLinks$15(tLObject, tL_error);
+                    this.f$0.lambda$tryDeactivateAllLinks$15(tLObject, tL_error);
                 }
             });
         } else {
@@ -1360,7 +1360,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$tryDeactivateAllLinks$14(tLObject);
+                this.f$0.lambda$tryDeactivateAllLinks$14(tLObject);
             }
         });
     }
@@ -1378,7 +1378,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.processDone();
+                this.f$0.processDone();
             }
         });
     }
@@ -1392,7 +1392,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatEditTypeActivity.this.lambda$loadAdminedChannels$22(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedChannels$22(tLObject, tL_error);
             }
         });
     }
@@ -1401,7 +1401,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$loadAdminedChannels$21(tLObject);
+                this.f$0.lambda$loadAdminedChannels$21(tLObject);
             }
         });
     }
@@ -1420,7 +1420,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             AdminedChannelCell adminedChannelCell = new AdminedChannelCell(getParentActivity(), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatEditTypeActivity.this.lambda$loadAdminedChannels$20(view);
+                    this.f$0.lambda$loadAdminedChannels$20(view);
                 }
             }, false, 0);
             TLRPC.Chat chat = tL_messages_chats.chats.get(i2);
@@ -1448,7 +1448,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChatEditTypeActivity.this.lambda$loadAdminedChannels$19(currentChannel, alertDialog, i);
+                this.f$0.lambda$loadAdminedChannels$19(currentChannel, alertDialog, i);
             }
         });
         showDialog(builder.create());
@@ -1461,7 +1461,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().sendRequest(tL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatEditTypeActivity.this.lambda$loadAdminedChannels$18(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedChannels$18(tLObject, tL_error);
             }
         }, 64);
     }
@@ -1471,7 +1471,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatEditTypeActivity.this.lambda$loadAdminedChannels$17();
+                    this.f$0.lambda$loadAdminedChannels$17();
                 }
             });
         }
@@ -1631,8 +1631,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
-                char charAt = str.charAt(i);
-                if (i == 0 && charAt >= '0' && charAt <= '9') {
+                char cCharAt = str.charAt(i);
+                if (i == 0 && cCharAt >= '0' && cCharAt <= '9') {
                     if (this.isChannel) {
                         this.checkTextView.setText(LocaleController.getString(R.string.LinkInvalidStartNumber));
                     } else {
@@ -1641,7 +1641,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     this.checkTextView.setTextColorByKey(Theme.key_text_RedRegular);
                     return false;
                 }
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
+                if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     this.checkTextView.setText(LocaleController.getString(R.string.LinkInvalid));
                     this.checkTextView.setTextColorByKey(Theme.key_text_RedRegular);
                     return false;
@@ -1668,7 +1668,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$checkUserName$25(str);
+                this.f$0.lambda$checkUserName$25(str);
             }
         };
         this.checkRunnable = runnable2;
@@ -1683,7 +1683,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.checkReqId = getConnectionsManager().sendRequest(tL_channels_checkUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatEditTypeActivity.this.lambda$checkUserName$24(str, tL_channels_checkUsername, tLObject, tL_error);
+                this.f$0.lambda$checkUserName$24(str, tL_channels_checkUsername, tLObject, tL_error);
             }
         }, 2);
     }
@@ -1692,7 +1692,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$checkUserName$23(str, tL_error, tLObject, tL_channels_checkUsername);
+                this.f$0.lambda$checkUserName$23(str, tL_error, tLObject, tL_channels_checkUsername);
             }
         });
     }
@@ -1737,7 +1737,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatEditTypeActivity.this.lambda$generateLink$27(z, tLObject, tL_error);
+                this.f$0.lambda$generateLink$27(z, tLObject, tL_error);
             }
         }), this.classGuid);
     }
@@ -1746,7 +1746,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditTypeActivity.this.lambda$generateLink$26(tL_error, tLObject, z);
+                this.f$0.lambda$generateLink$26(tL_error, tLObject, z);
             }
         });
     }
@@ -1785,7 +1785,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatEditTypeActivity.this.lambda$getThemeDescriptions$28();
+                this.f$0.lambda$getThemeDescriptions$28();
             }
 
             @Override

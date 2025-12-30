@@ -66,16 +66,16 @@ public class TrashView extends View {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float dp = AndroidUtilities.dp(30.0f);
+        float fDp = AndroidUtilities.dp(30.0f);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float dp2 = (AndroidUtilities.dp(3.0f) * this.draggedT.set(this.dragged)) + dp;
-        canvas.drawCircle(width, height, dp2, this.greyPaint);
-        canvas.drawCircle(width, height, dp2, this.circlePaint);
-        float dp3 = AndroidUtilities.dp(48.0f) / 2.0f;
-        this.drawable.setBounds((int) (width - dp3), (int) (height - dp3), (int) (width + dp3), (int) (dp3 + height));
+        float fDp2 = (AndroidUtilities.dp(3.0f) * this.draggedT.set(this.dragged)) + fDp;
+        canvas.drawCircle(width, height, fDp2, this.greyPaint);
+        canvas.drawCircle(width, height, fDp2, this.circlePaint);
+        float fDp3 = AndroidUtilities.dp(48.0f) / 2.0f;
+        this.drawable.setBounds((int) (width - fDp3), (int) (height - fDp3), (int) (width + fDp3), (int) (fDp3 + height));
         this.drawable.draw(canvas);
-        this.textDrawable.setBounds(0, (int) (height + dp + AndroidUtilities.dp(7.0f)), getWidth(), getHeight());
+        this.textDrawable.setBounds(0, (int) (height + fDp + AndroidUtilities.dp(7.0f)), getWidth(), getHeight());
         this.textDrawable.draw(canvas);
     }
 

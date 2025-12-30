@@ -34,8 +34,8 @@ public class AlbumButton extends View {
     private final CharSequence title;
 
     public AlbumButton(Context context, MediaController.PhotoEntry photoEntry, CharSequence charSequence, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         String str;
+        super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
         TextPaint textPaint = new TextPaint(1);
@@ -56,9 +56,9 @@ public class AlbumButton extends View {
         this.title = "" + ((Object) charSequence);
         this.subtitle = "" + i;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), mutate);
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), drawableMutate);
         combinedDrawable.setFullsize(false);
         combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
@@ -102,17 +102,17 @@ public class AlbumButton extends View {
         StaticLayout staticLayout = this.nameLayout;
         if (staticLayout == null || staticLayout.getWidth() != i) {
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            CharSequence ellipsize = TextUtils.ellipsize(this.title, this.namePaintLayout, i, truncateAt);
+            CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.title, this.namePaintLayout, i, truncateAt);
             TextPaint textPaint = this.namePaintLayout;
-            int max = Math.max(0, i);
+            int iMax = Math.max(0, i);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            StaticLayout staticLayout2 = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(charSequenceEllipsize, textPaint, iMax, alignment, 1.0f, 0.0f, false);
             this.nameLayout = staticLayout2;
             this.nameLayoutLeft = staticLayout2.getLineCount() > 0 ? this.nameLayout.getLineLeft(0) : 0.0f;
             float lineWidth = this.nameLayout.getLineCount() > 0 ? this.nameLayout.getLineWidth(0) : 0.0f;
             this.nameLayoutWidth = lineWidth;
-            int dp = i - ((int) (lineWidth + AndroidUtilities.dp(8.0f)));
-            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.subtitle, this.countPaintLayout, dp, truncateAt), this.countPaintLayout, Math.max(0, dp), alignment, 1.0f, 0.0f, false);
+            int iDp = i - ((int) (lineWidth + AndroidUtilities.dp(8.0f)));
+            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.subtitle, this.countPaintLayout, iDp, truncateAt), this.countPaintLayout, Math.max(0, iDp), alignment, 1.0f, 0.0f, false);
             this.countLayout = staticLayout3;
             this.countLayoutLeft = staticLayout3.getLineCount() > 0 ? this.countLayout.getLineLeft(0) : 0.0f;
             this.countLayoutWidth = this.countLayout.getLineCount() > 0 ? this.countLayout.getLineWidth(0) : 0.0f;
@@ -124,17 +124,17 @@ public class AlbumButton extends View {
         float paddingLeft = getPaddingLeft();
         this.imageReceiver.setImageCoords(paddingLeft, (getMeasuredHeight() - AndroidUtilities.dp(30.0f)) / 2.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
         this.imageReceiver.draw(canvas);
-        float dp = paddingLeft + AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f);
+        float fDp = paddingLeft + AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f);
         if (this.nameLayout != null) {
             canvas.save();
-            canvas.translate(dp - this.nameLayoutLeft, (getMeasuredHeight() - this.nameLayout.getHeight()) / 2.0f);
+            canvas.translate(fDp - this.nameLayoutLeft, (getMeasuredHeight() - this.nameLayout.getHeight()) / 2.0f);
             this.nameLayout.draw(canvas);
-            dp = dp + this.nameLayoutWidth + AndroidUtilities.dp(6.0f);
+            fDp = fDp + this.nameLayoutWidth + AndroidUtilities.dp(6.0f);
             canvas.restore();
         }
         if (this.countLayout != null) {
             canvas.save();
-            canvas.translate(dp - this.countLayoutLeft, ((getMeasuredHeight() - this.countLayout.getHeight()) / 2.0f) + AndroidUtilities.dpf2(1.6f));
+            canvas.translate(fDp - this.countLayoutLeft, ((getMeasuredHeight() - this.countLayout.getHeight()) / 2.0f) + AndroidUtilities.dpf2(1.6f));
             this.countLayout.draw(canvas);
             canvas.restore();
         }

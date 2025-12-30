@@ -26,7 +26,7 @@ public class SlotsDrawable extends RLottieDrawable {
     private int[] secondFrameNums;
     private long[] secondNativePtrs;
 
-    public enum ReelValue {
+    enum ReelValue {
         bar,
         berries,
         lemon,
@@ -45,7 +45,7 @@ public class SlotsDrawable extends RLottieDrawable {
         this.loadFrameRunnable = new Runnable() {
             @Override
             public final void run() {
-                SlotsDrawable.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
     }
@@ -227,7 +227,7 @@ public class SlotsDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setBaseDice$5(tL_messages_stickerSet, i, messageObject, chatMessageCell);
+                    this.f$0.lambda$setBaseDice$5(tL_messages_stickerSet, i, messageObject, chatMessageCell);
                 }
             });
         }
@@ -240,7 +240,7 @@ public class SlotsDrawable extends RLottieDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setBaseDice$1();
+                    this.f$0.lambda$setBaseDice$1();
                 }
             });
             return;
@@ -266,17 +266,17 @@ public class SlotsDrawable extends RLottieDrawable {
                     }
                 }
                 final TLRPC.Document document = tL_messages_stickerSet.documents.get(i2);
-                String readRes = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
-                if (TextUtils.isEmpty(readRes)) {
+                String res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
+                if (TextUtils.isEmpty(res)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            SlotsDrawable.lambda$setBaseDice$2(TLRPC.Document.this, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                            SlotsDrawable.lambda$setBaseDice$2(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
                         }
                     });
                     z = true;
                 } else {
-                    this.nativePtrs[i3] = RLottieDrawable.createWithJson(readRes, "dice", this.metaData, null);
+                    this.nativePtrs[i3] = RLottieDrawable.createWithJson(res, "dice", this.metaData, null);
                     this.frameCounts[i3] = this.metaData[0];
                 }
             }
@@ -286,14 +286,14 @@ public class SlotsDrawable extends RLottieDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setBaseDice$3();
+                    this.f$0.lambda$setBaseDice$3();
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setBaseDice$4(i, chatMessageCell);
+                    this.f$0.lambda$setBaseDice$4(i, chatMessageCell);
                 }
             });
         }
@@ -338,7 +338,7 @@ public class SlotsDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setDiceNumber$10(tL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
+                    this.f$0.lambda$setDiceNumber$10(tL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
                 }
             });
         }

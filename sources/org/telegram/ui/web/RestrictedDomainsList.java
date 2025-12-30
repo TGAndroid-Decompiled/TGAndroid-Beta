@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -27,16 +28,16 @@ public class RestrictedDomainsList {
         return instance;
     }
 
-    public void load() {
+    public void load() throws JSONException {
         if (this.loaded) {
             return;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         try {
             JSONObject jSONObject = new JSONObject(globalMainSettings.getString("web_opened_domains", "{}"));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
+            Iterator<String> itKeys = jSONObject.keys();
+            while (itKeys.hasNext()) {
+                String next = itKeys.next();
                 this.openedDomains.put(next, Integer.valueOf(jSONObject.getInt(next)));
             }
         } catch (Exception e) {
@@ -60,19 +61,19 @@ public class RestrictedDomainsList {
         this.loaded = true;
     }
 
-    public int incrementOpen(String str) {
+    public int incrementOpen(String str) throws JSONException {
         load();
         Integer num = (Integer) this.openedDomains.get(str);
         if (num == null) {
             num = 0;
         }
-        int intValue = num.intValue() + 1;
-        this.openedDomains.put(str, Integer.valueOf(intValue));
+        int iIntValue = num.intValue() + 1;
+        this.openedDomains.put(str, Integer.valueOf(iIntValue));
         scheduleSave();
-        return intValue;
+        return iIntValue;
     }
 
-    public boolean isRestricted(String... strArr) {
+    public boolean isRestricted(String... strArr) throws JSONException {
         load();
         for (String str : strArr) {
             if (this.restrictedDomainsSet.contains(str)) {
@@ -82,7 +83,7 @@ public class RestrictedDomainsList {
         return false;
     }
 
-    public boolean isRestricted(String str) {
+    public boolean isRestricted(String str) throws JSONException {
         load();
         return this.restrictedDomainsSet.contains(str);
     }
@@ -126,26 +127,26 @@ public class RestrictedDomainsList {
     public void scheduleSave() {
         AndroidUtilities.cancelRunOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                RestrictedDomainsList.this.save();
+            public final void run() throws JSONException {
+                this.f$0.save();
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                RestrictedDomainsList.this.save();
+            public final void run() throws JSONException {
+                this.f$0.save();
             }
         }, 1000L);
     }
 
-    public void save() {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+    public void save() throws JSONException {
+        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         try {
             JSONObject jSONObject = new JSONObject();
             for (Map.Entry entry : this.openedDomains.entrySet()) {
                 jSONObject.put((String) entry.getKey(), entry.getValue());
             }
-            edit.putString("web_opened_domains", jSONObject.toString());
+            editorEdit.putString("web_opened_domains", jSONObject.toString());
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -161,10 +162,10 @@ public class RestrictedDomainsList {
                 }
                 jSONArray.put(jSONArray2);
             }
-            edit.putString("web_restricted_domains2", jSONArray.toString());
+            editorEdit.putString("web_restricted_domains2", jSONArray.toString());
         } catch (Exception e2) {
             FileLog.e(e2);
         }
-        edit.apply();
+        editorEdit.apply();
     }
 }

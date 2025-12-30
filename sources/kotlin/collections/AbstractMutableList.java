@@ -16,4 +16,7 @@ public abstract class AbstractMutableList extends java.util.AbstractList impleme
     public final int size() {
         return getSize();
     }
+
+    protected AbstractMutableList() {
+    }
 }

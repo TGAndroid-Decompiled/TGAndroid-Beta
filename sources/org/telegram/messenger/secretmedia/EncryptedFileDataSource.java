@@ -19,9 +19,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
 
     @Override
     public Map getResponseHeaders() {
-        Map emptyMap;
-        emptyMap = Collections.emptyMap();
-        return emptyMap;
+        return Collections.emptyMap();
     }
 
     public static class EncryptedFileDataSourceException extends IOException {
@@ -78,15 +76,15 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         if (i3 == 0) {
             return -1;
         }
-        int min = Math.min(i2, i3);
+        int iMin = Math.min(i2, i3);
         try {
-            this.fileInputStream.read(bArr, i, min);
+            this.fileInputStream.read(bArr, i, iMin);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.bytesRemaining -= min;
-        bytesTransferred(min);
-        return min;
+        this.bytesRemaining -= iMin;
+        bytesTransferred(iMin);
+        return iMin;
     }
 
     @Override
@@ -95,7 +93,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     }
 
     @Override
-    public void close() {
+    public void close() throws IOException {
         try {
             this.fileInputStream.close();
         } catch (IOException e) {

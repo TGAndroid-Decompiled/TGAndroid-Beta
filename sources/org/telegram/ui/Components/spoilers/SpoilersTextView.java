@@ -94,7 +94,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
             @Override
             public final void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
-                SpoilersTextView.this.lambda$new$2(z, spoilerEffect, f, f2);
+                this.f$0.lambda$new$2(z, spoilerEffect, f, f2);
             }
         });
     }
@@ -106,13 +106,13 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         spoilerEffect.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                SpoilersTextView.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         });
-        float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
+        float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
         Iterator it = this.spoilers.iterator();
         while (it.hasNext()) {
-            ((SpoilerEffect) it.next()).startRipple(f, f2, sqrt);
+            ((SpoilerEffect) it.next()).startRipple(f, f2, fSqrt);
         }
     }
 
@@ -120,7 +120,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         post(new Runnable() {
             @Override
             public final void run() {
-                SpoilersTextView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
     }
@@ -134,12 +134,12 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         if (this.currentLinkLoading != characterStyle) {
             this.links.clearLoading(true);
             this.currentLinkLoading = characterStyle;
-            LoadingDrawable makeLoading = LinkSpanDrawable.LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
-            if (makeLoading != null) {
+            LoadingDrawable loadingDrawableMakeLoading = LinkSpanDrawable.LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
+            if (loadingDrawableMakeLoading != null) {
                 int color = Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
-                makeLoading.setColors(Theme.multAlpha(color, 0.8f), Theme.multAlpha(color, 1.3f), Theme.multAlpha(color, 1.0f), Theme.multAlpha(color, 4.0f));
-                makeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-                this.links.addLoading(makeLoading);
+                loadingDrawableMakeLoading.setColors(Theme.multAlpha(color, 0.8f), Theme.multAlpha(color, 1.3f), Theme.multAlpha(color, 1.0f), Theme.multAlpha(color, 4.0f));
+                loadingDrawableMakeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                this.links.addLoading(loadingDrawableMakeLoading);
             }
         }
     }
@@ -160,22 +160,22 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (this.links != null) {
             Layout layout = getLayout();
-            final ClickableSpan hit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (hit != null && motionEvent.getAction() == 0) {
-                final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+            final ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (clickableSpanHit != null && motionEvent.getAction() == 0) {
+                final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                 linkSpanDrawable.setColor(overrideLinkColor());
                 this.pressedLink = linkSpanDrawable;
                 this.links.addLink(linkSpanDrawable);
                 SpannableString spannableString = new SpannableString(layout.getText());
                 int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
                 int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
-                LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
-                obtainNewPath.setCurrentLayout(layout, spanStart, this.disablePaddingInLinks ? 0.0f : getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+                LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, this.disablePaddingInLinks ? 0.0f : getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SpoilersTextView.this.lambda$dispatchTouchEvent$3(linkSpanDrawable, hit);
+                        this.f$0.lambda$dispatchTouchEvent$3(linkSpanDrawable, clickableSpanHit);
                     }
                 }, ViewConfiguration.getLongPressTimeout());
                 return true;
@@ -183,7 +183,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
             if (motionEvent.getAction() == 1) {
                 this.links.clear();
                 LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == hit) {
+                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
                     LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
                     if (onLinkPress != null) {
                         onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
@@ -230,7 +230,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         super.onTextChanged(charSequence, i, i2, i3);
         invalidateSpoilers();
         updateAnimatedEmoji(true);
@@ -261,7 +261,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
         canvas.save();

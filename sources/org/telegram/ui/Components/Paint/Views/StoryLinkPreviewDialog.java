@@ -107,7 +107,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkPreviewDialog.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -199,66 +199,54 @@ public class StoryLinkPreviewDialog extends Dialog {
         };
         this.linkView = linkPreview;
         frameLayout4.addView(linkPreview, LayoutHelper.createFrame(-2, -2, 17));
-        ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, darkThemeResourceProvider, frameLayout);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(frameLayout, darkThemeResourceProvider, frameLayout);
         MessagePreviewView.ToggleButton toggleButton = new MessagePreviewView.ToggleButton(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), darkThemeResourceProvider);
         this.captionButton = toggleButton;
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkPreviewDialog.this.lambda$new$1(i, view);
+                this.f$0.lambda$new$1(i, view);
             }
         });
-        makeOptions.addView(toggleButton);
+        itemOptionsMakeOptions.addView(toggleButton);
         MessagePreviewView.ToggleButton toggleButton2 = new MessagePreviewView.ToggleButton(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), darkThemeResourceProvider);
         this.photoButton = toggleButton2;
         toggleButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkPreviewDialog.this.lambda$new$2(i, view);
+                this.f$0.lambda$new$2(i, view);
             }
         });
-        makeOptions.addView(toggleButton2);
-        makeOptions.addGap();
-        makeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new Runnable() {
+        itemOptionsMakeOptions.addView(toggleButton2);
+        itemOptionsMakeOptions.addGap();
+        itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new Runnable() {
             @Override
             public final void run() {
-                StoryLinkPreviewDialog.this.dismiss();
+                this.f$0.dismiss();
             }
         });
-        makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DoNotLinkPreview), true, new Runnable() {
+        itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DoNotLinkPreview), true, new Runnable() {
             @Override
             public final void run() {
-                StoryLinkPreviewDialog.this.lambda$new$3();
+                this.f$0.lambda$new$3();
             }
         });
-        linearLayout.addView(makeOptions.getLayout(), LayoutHelper.createLinear(-2, -2, 0.0f, 85));
+        linearLayout.addView(itemOptionsMakeOptions.getLayout(), LayoutHelper.createLinear(-2, -2, 0.0f, 85));
         frameLayout.setFitsSystemWindows(true);
         frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets windowInsets2;
-                Insets insets;
-                int i2;
-                int i3;
-                int i4;
-                int i5;
-                int i6 = Build.VERSION.SDK_INT;
-                if (i6 < 30) {
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 < 30) {
                     StoryLinkPreviewDialog.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
                 } else {
-                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    Rect rect = StoryLinkPreviewDialog.this.insets;
-                    i2 = insets.left;
-                    i3 = insets.top;
-                    i4 = insets.right;
-                    i5 = insets.bottom;
-                    rect.set(i2, i3, i4, i5);
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    StoryLinkPreviewDialog.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
                 }
                 StoryLinkPreviewDialog.this.windowView.setPadding(StoryLinkPreviewDialog.this.insets.left, StoryLinkPreviewDialog.this.insets.top, StoryLinkPreviewDialog.this.insets.right, StoryLinkPreviewDialog.this.insets.bottom);
                 StoryLinkPreviewDialog.this.windowView.requestLayout();
-                if (i6 >= 30) {
-                    windowInsets2 = WindowInsets.CONSUMED;
-                    return windowInsets2;
+                if (i2 >= 30) {
+                    return WindowInsets.CONSUMED;
                 }
                 return windowInsets.consumeSystemWindowInsets();
             }
@@ -323,12 +311,12 @@ public class StoryLinkPreviewDialog extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StoryLinkPreviewDialog.this.lambda$animateOpenTo$4(valueAnimator2);
+                this.f$0.lambda$animateOpenTo$4(valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -351,9 +339,9 @@ public class StoryLinkPreviewDialog extends Dialog {
     }
 
     public void lambda$animateOpenTo$4(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.openProgress = floatValue;
-        this.containerView.setAlpha(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.openProgress = fFloatValue;
+        this.containerView.setAlpha(fFloatValue);
         this.containerView.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, this.openProgress));
         this.containerView.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, this.openProgress));
         this.windowView.invalidate();
@@ -366,7 +354,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StoryLinkPreviewDialog.this.lambda$prepareBlur$5(view, (Bitmap) obj);
+                this.f$0.lambda$prepareBlur$5(view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -418,7 +406,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                StoryLinkPreviewDialog.this.lambda$dismiss$7();
+                this.f$0.lambda$dismiss$7();
             }
         });
         this.windowView.invalidate();
@@ -432,7 +420,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkPreviewDialog.this.lambda$dismiss$6();
+                this.f$0.lambda$dismiss$6();
             }
         });
     }

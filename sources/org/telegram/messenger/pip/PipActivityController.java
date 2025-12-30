@@ -149,23 +149,23 @@ public class PipActivityController {
         this.pipContentView.invalidate();
     }
 
-    public void dispatchSourceRegister(PipSource pipSource) {
+    void dispatchSourceRegister(PipSource pipSource) {
         this.sources.put(pipSource.tag, pipSource);
         updateSources();
     }
 
-    public void dispatchSourceUnregister(PipSource pipSource) {
+    void dispatchSourceUnregister(PipSource pipSource) {
         if (this.sources.remove(pipSource.tag) != null) {
             updateSources();
         }
     }
 
-    public void dispatchSourceAvailabilityChanged(PipSource pipSource) {
+    void dispatchSourceAvailabilityChanged(PipSource pipSource) {
         updateSources();
         this.pipContentView.invalidate();
     }
 
-    public void dispatchSourceParamsChanged(PipSource pipSource) {
+    void dispatchSourceParamsChanged(PipSource pipSource) {
         if (this.maxPrioritySource == pipSource) {
             PipUtils.applyPictureInPictureParams(this.activity, pipSource);
             MediaSessionConnector mediaSessionConnector = this.mediaSessionConnector;

@@ -19,7 +19,7 @@ public abstract class CastMediaRouteButton extends MediaRouteButton {
         super(context);
     }
 
-    public boolean isConnected() {
+    public boolean isConnected() throws NoSuchFieldException, SecurityException {
         try {
             Field declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
             declaredField.setAccessible(true);
@@ -30,32 +30,32 @@ public abstract class CastMediaRouteButton extends MediaRouteButton {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) throws NoSuchFieldException, SecurityException {
         checkConnected();
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) throws NoSuchFieldException, SecurityException {
         checkConnected();
     }
 
     @Override
-    public void invalidate() {
+    public void invalidate() throws NoSuchFieldException, SecurityException {
         super.invalidate();
         checkConnected();
     }
 
     @Override
-    public void onAttachedToWindow() {
+    public void onAttachedToWindow() throws NoSuchFieldException, SecurityException {
         super.onAttachedToWindow();
         checkConnected();
     }
 
-    private void checkConnected() {
-        boolean isConnected = isConnected();
-        if (this.lastConnected != isConnected) {
-            this.lastConnected = isConnected;
-            stateUpdated(isConnected);
+    private void checkConnected() throws NoSuchFieldException, SecurityException {
+        boolean zIsConnected = isConnected();
+        if (this.lastConnected != zIsConnected) {
+            this.lastConnected = zIsConnected;
+            stateUpdated(zIsConnected);
         }
     }
 }

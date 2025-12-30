@@ -30,15 +30,15 @@ public class SmsReceiver extends BroadcastReceiver {
             }
             Matcher matcher = Pattern.compile("[0-9\\-]+").matcher(str);
             if (matcher.find()) {
-                final String replace = matcher.group(0).replace("-", "");
-                if (replace.length() >= 3) {
+                final String strReplace = matcher.group(0).replace("-", "");
+                if (strReplace.length() >= 3) {
                     if (string != null) {
-                        sharedPreferences.edit().putString("sms_hash_code", string + "|" + replace).commit();
+                        sharedPreferences.edit().putString("sms_hash_code", string + "|" + strReplace).commit();
                     }
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            SmsReceiver.lambda$onReceive$0(replace);
+                            SmsReceiver.lambda$onReceive$0(strReplace);
                         }
                     });
                 }

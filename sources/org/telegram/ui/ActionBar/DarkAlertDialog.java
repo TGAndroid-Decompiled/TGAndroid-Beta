@@ -9,7 +9,7 @@ public class DarkAlertDialog extends AlertDialog {
     }
 
     @Override
-    public int getThemedColor(int i) {
+    protected int getThemedColor(int i) {
         if (i == Theme.key_dialogBackground) {
             return -14277082;
         }

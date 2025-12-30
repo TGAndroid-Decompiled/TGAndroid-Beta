@@ -5,6 +5,7 @@ import android.media.MediaCrypto;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.view.Surface;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
 
@@ -29,7 +30,7 @@ public class AudioDecoder {
         public int offset = 0;
     }
 
-    public AudioDecoder(String str) {
+    public AudioDecoder(String str) throws IOException {
         this.audioIndex = -1;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
@@ -37,7 +38,7 @@ public class AudioDecoder {
         init();
     }
 
-    public AudioDecoder(String str, int i) {
+    public AudioDecoder(String str, int i) throws IOException {
         this.audioIndex = -1;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
@@ -46,12 +47,12 @@ public class AudioDecoder {
         init();
     }
 
-    private void init() {
+    private void init() throws IOException {
         selectTrack();
         MediaFormat trackFormat = this.extractor.getTrackFormat(this.trackIndex);
-        MediaCodec createDecoderByType = MediaCodec.createDecoderByType(trackFormat.getString("mime"));
-        this.decoder = createDecoderByType;
-        createDecoderByType.configure(trackFormat, (Surface) null, (MediaCrypto) null, 0);
+        MediaCodec mediaCodecCreateDecoderByType = MediaCodec.createDecoderByType(trackFormat.getString("mime"));
+        this.decoder = mediaCodecCreateDecoderByType;
+        mediaCodecCreateDecoderByType.configure(trackFormat, (Surface) null, (MediaCrypto) null, 0);
         this.startTimeUs = 0L;
         try {
             this.endTimeUs = this.extractor.getTrackFormat(this.trackIndex).getLong("durationUs");
@@ -219,31 +220,31 @@ public class AudioDecoder {
         this.decodingDone = false;
     }
 
-    public DecodedBufferData decode() {
-        int usToBytes;
-        int limit;
-        int dequeueInputBuffer;
+    public DecodedBufferData decode() throws MediaCodec.CryptoException {
+        int iUsToBytes;
+        int iLimit;
+        int iDequeueInputBuffer;
         DecodedBufferData decodedBufferData = new DecodedBufferData();
         boolean z = false;
         while (!z && !this.decodingDone) {
-            if (!this.allInputExtracted && (dequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
-                int readSampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(dequeueInputBuffer), 0);
-                if (readSampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
-                    this.decoder.queueInputBuffer(dequeueInputBuffer, 0, readSampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
+            if (!this.allInputExtracted && (iDequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
+                int sampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(iDequeueInputBuffer), 0);
+                if (sampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
+                    this.decoder.queueInputBuffer(iDequeueInputBuffer, 0, sampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
                     this.extractor.advance();
                 } else if (this.loopingEnabled) {
                     this.decoder.flush();
                     this.extractor.seekTo(this.startTimeUs, 0);
                 } else {
-                    this.decoder.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
+                    this.decoder.queueInputBuffer(iDequeueInputBuffer, 0, 0, 0L, 4);
                     this.allInputExtracted = true;
                 }
             }
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-            int dequeueOutputBuffer = this.decoder.dequeueOutputBuffer(bufferInfo, 0L);
-            if (dequeueOutputBuffer >= 0) {
-                decodedBufferData.byteBuffer = this.decoder.getOutputBuffer(dequeueOutputBuffer);
-                decodedBufferData.index = dequeueOutputBuffer;
+            int iDequeueOutputBuffer = this.decoder.dequeueOutputBuffer(bufferInfo, 0L);
+            if (iDequeueOutputBuffer >= 0) {
+                decodedBufferData.byteBuffer = this.decoder.getOutputBuffer(iDequeueOutputBuffer);
+                decodedBufferData.index = iDequeueOutputBuffer;
                 decodedBufferData.size = bufferInfo.size;
                 long j = bufferInfo.presentationTimeUs;
                 decodedBufferData.presentationTimeUs = j;
@@ -251,15 +252,15 @@ public class AudioDecoder {
                 decodedBufferData.offset = bufferInfo.offset;
                 long j2 = this.startTimeUs;
                 if (j < j2) {
-                    int position = decodedBufferData.byteBuffer.position() + AudioConversions.usToBytes(j2 - j, getSampleRate(), getChannelCount());
-                    if (position <= decodedBufferData.byteBuffer.limit()) {
-                        decodedBufferData.byteBuffer.position(position);
+                    int iPosition = decodedBufferData.byteBuffer.position() + AudioConversions.usToBytes(j2 - j, getSampleRate(), getChannelCount());
+                    if (iPosition <= decodedBufferData.byteBuffer.limit()) {
+                        decodedBufferData.byteBuffer.position(iPosition);
                     }
                 }
-                long bytesToUs = decodedBufferData.presentationTimeUs + AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount());
+                long jBytesToUs = decodedBufferData.presentationTimeUs + AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount());
                 long j3 = this.endTimeUs;
-                if (bytesToUs > j3 && (usToBytes = AudioConversions.usToBytes(bytesToUs - j3, getSampleRate(), getChannelCount())) > 0 && (limit = decodedBufferData.byteBuffer.limit() - usToBytes) >= decodedBufferData.byteBuffer.position()) {
-                    decodedBufferData.byteBuffer.limit(limit);
+                if (jBytesToUs > j3 && (iUsToBytes = AudioConversions.usToBytes(jBytesToUs - j3, getSampleRate(), getChannelCount())) > 0 && (iLimit = decodedBufferData.byteBuffer.limit() - iUsToBytes) >= decodedBufferData.byteBuffer.position()) {
+                    decodedBufferData.byteBuffer.limit(iLimit);
                 }
                 if ((bufferInfo.flags & 4) != 0) {
                     this.decodingDone = true;

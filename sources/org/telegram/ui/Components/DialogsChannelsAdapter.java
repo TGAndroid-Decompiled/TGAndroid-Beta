@@ -53,13 +53,13 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         this.searchMessagesRunnable = new Runnable() {
             @Override
             public final void run() {
-                DialogsChannelsAdapter.this.lambda$new$5();
+                this.f$0.lambda$new$5();
             }
         };
         this.fillItems = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                DialogsChannelsAdapter.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
         this.context = context;
@@ -94,7 +94,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchMyChannels), LocaleController.getString(this.expandedMyChannels ? R.string.ShowLess : R.string.ShowMore), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            DialogsChannelsAdapter.this.toggleExpandedMyChannels(view);
+                            this.f$0.toggleExpandedMyChannels(view);
                         }
                     }));
                 } else {
@@ -171,7 +171,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
                 arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchChannels), LocaleController.getString(this.expandedSearchChannels ? R.string.ShowLess : R.string.ShowMore), new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        DialogsChannelsAdapter.this.toggleExpandedSearchChannels(view);
+                        this.f$0.toggleExpandedSearchChannels(view);
                     }
                 }));
             }
@@ -264,7 +264,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsChannelsAdapter.this.lambda$searchMessages$2(i, tL_messages_searchGlobal, z);
+                this.f$0.lambda$searchMessages$2(i, tL_messages_searchGlobal, z);
             }
         }, z ? 800L : 0L);
         if (z) {
@@ -277,7 +277,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_search, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                DialogsChannelsAdapter.this.lambda$searchMessages$4(tL_contacts_search, tLObject, tL_error);
+                this.f$0.lambda$searchMessages$4(tL_contacts_search, tLObject, tL_error);
             }
         });
     }
@@ -287,7 +287,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    DialogsChannelsAdapter.this.lambda$searchMessages$1(i, tL_messages_searchGlobal, z, tLObject, tL_error);
+                    this.f$0.lambda$searchMessages$1(i, tL_messages_searchGlobal, z, tLObject, tL_error);
                 }
             });
         }
@@ -297,7 +297,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsChannelsAdapter.this.lambda$searchMessages$0(i, tL_messages_searchGlobal, z, tLObject);
+                this.f$0.lambda$searchMessages$0(i, tL_messages_searchGlobal, z, tLObject);
             }
         });
     }
@@ -331,7 +331,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsChannelsAdapter.this.lambda$searchMessages$3(tL_contacts_search, tLObject);
+                this.f$0.lambda$searchMessages$3(tL_contacts_search, tLObject);
             }
         });
     }
@@ -366,7 +366,7 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         }
         this.searchRecommendedChannels.clear();
         String lowerCase = this.query.toLowerCase();
-        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
         MessagesController.ChannelRecommendations cachedChannelRecommendations = MessagesController.getInstance(this.currentAccount).getCachedChannelRecommendations(0L);
         if (cachedChannelRecommendations != null && !cachedChannelRecommendations.chats.isEmpty()) {
             Iterator<TLObject> it2 = cachedChannelRecommendations.chats.iterator();
@@ -378,10 +378,10 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
                         TLRPC.Chat chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat3.id));
                         if (ChatObject.isNotInChat(chat3) && (chat4 == null || ChatObject.isNotInChat(chat4))) {
                             String lowerCase2 = chat3.title.toLowerCase();
-                            String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                            String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
                             if (!lowerCase2.startsWith(lowerCase)) {
-                                if (!lowerCase2.contains(" " + lowerCase) && !translitSafe2.startsWith(translitSafe)) {
-                                    if (translitSafe2.contains(" " + translitSafe)) {
+                                if (!lowerCase2.contains(" " + lowerCase) && !strTranslitSafe2.startsWith(strTranslitSafe)) {
+                                    if (strTranslitSafe2.contains(" " + strTranslitSafe)) {
                                     }
                                 }
                             }

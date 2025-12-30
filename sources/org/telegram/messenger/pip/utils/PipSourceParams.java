@@ -53,7 +53,7 @@ public class PipSourceParams {
     public PictureInPictureParams.Builder build() {
         int i;
         Rational rational;
-        PictureInPictureParams.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline25.m();
+        PictureInPictureParams.Builder builderM = AndroidUtilities$$ExternalSyntheticApiModelOutline25.m();
         Point point = this.ratio;
         int i2 = point.x;
         if (i2 > 0 && (i = point.y) > 0) {
@@ -66,21 +66,21 @@ public class PipSourceParams {
                 Point point2 = this.ratio;
                 rational = new Rational(point2.x, point2.y);
             }
-            m.setAspectRatio(rational);
+            builderM.setAspectRatio(rational);
             if (Build.VERSION.SDK_INT >= 33) {
-                m.setExpandedAspectRatio(rational);
+                builderM.setExpandedAspectRatio(rational);
             }
         } else {
-            m.setAspectRatio(null);
+            builderM.setAspectRatio(null);
             if (Build.VERSION.SDK_INT >= 33) {
-                m.setExpandedAspectRatio(null);
+                builderM.setExpandedAspectRatio(null);
             }
         }
         if (!this.position.isEmpty()) {
-            m.setSourceRectHint(this.position);
+            builderM.setSourceRectHint(this.position);
         } else {
-            m.setSourceRectHint(null);
+            builderM.setSourceRectHint(null);
         }
-        return m;
+        return builderM;
     }
 }

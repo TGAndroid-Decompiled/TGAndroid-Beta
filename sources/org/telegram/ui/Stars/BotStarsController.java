@@ -21,7 +21,6 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
-import org.telegram.ui.Stars.BotStarsController;
 
 public class BotStarsController {
     private static volatile BotStarsController[] Instance = new BotStarsController[4];
@@ -142,7 +141,7 @@ public class BotStarsController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.this.lambda$getStarsRevenueStats$1(j, tLObject, tL_error);
+                    this.f$0.lambda$getStarsRevenueStats$1(j, tLObject, tL_error);
                 }
             });
         }
@@ -153,7 +152,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$getStarsRevenueStats$0(tLObject, j);
+                this.f$0.lambda$getStarsRevenueStats$0(tLObject, j);
             }
         });
     }
@@ -180,7 +179,7 @@ public class BotStarsController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.this.lambda$getTONRevenueStats$3(j, tLObject, tL_error);
+                    this.f$0.lambda$getTONRevenueStats$3(j, tLObject, tL_error);
                 }
             }, null, null, 0, chatFull != null ? chatFull.stats_dc : Integer.MAX_VALUE, 1, true);
         }
@@ -191,7 +190,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$getTONRevenueStats$2(tLObject, j);
+                this.f$0.lambda$getTONRevenueStats$2(tLObject, j);
             }
         });
     }
@@ -230,7 +229,7 @@ public class BotStarsController {
         invalidateTransactions(peerDialogId, true);
     }
 
-    public class TransactionsState {
+    class TransactionsState {
         private final boolean[] endReached;
         private final boolean[] loading;
         private final String[] offset;
@@ -251,10 +250,10 @@ public class BotStarsController {
         if (transactionsState != null) {
             return transactionsState;
         }
-        HashMap hashMap = this.transactions;
-        Long valueOf = Long.valueOf(j);
+        HashMap map = this.transactions;
+        Long lValueOf = Long.valueOf(j);
         TransactionsState transactionsState2 = new TransactionsState();
-        hashMap.put(valueOf, transactionsState2);
+        map.put(lValueOf, transactionsState2);
         return transactionsState2;
     }
 
@@ -295,7 +294,7 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.this.lambda$loadTransactions$5(transactionsState, i, j, tLObject, tL_error);
+                this.f$0.lambda$loadTransactions$5(transactionsState, i, j, tLObject, tL_error);
             }
         });
     }
@@ -304,7 +303,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$loadTransactions$4(transactionsState, i, tLObject, j);
+                this.f$0.lambda$loadTransactions$4(transactionsState, i, tLObject, j);
             }
         });
     }
@@ -397,7 +396,7 @@ public class BotStarsController {
             this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbots, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.ChannelConnectedBots.this.lambda$load$1(tLObject, tL_error);
+                    this.f$0.lambda$load$1(tLObject, tL_error);
                 }
             });
         }
@@ -406,7 +405,7 @@ public class BotStarsController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BotStarsController.ChannelConnectedBots.this.lambda$load$0(tLObject);
+                    this.f$0.lambda$load$0(tLObject);
                 }
             });
         }
@@ -472,10 +471,10 @@ public class BotStarsController {
         if (channelConnectedBots != null) {
             return channelConnectedBots;
         }
-        HashMap hashMap = this.connectedBots;
-        Long valueOf = Long.valueOf(j);
+        HashMap map = this.connectedBots;
+        Long lValueOf = Long.valueOf(j);
         ChannelConnectedBots channelConnectedBots2 = new ChannelConnectedBots(this.currentAccount, j);
-        hashMap.put(valueOf, channelConnectedBots2);
+        map.put(lValueOf, channelConnectedBots2);
         return channelConnectedBots2;
     }
 
@@ -563,7 +562,7 @@ public class BotStarsController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsuggestedstarrefbots, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.ChannelSuggestedBots.this.lambda$load$1(tLObject, tL_error);
+                    this.f$0.lambda$load$1(tLObject, tL_error);
                 }
             });
         }
@@ -572,7 +571,7 @@ public class BotStarsController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BotStarsController.ChannelSuggestedBots.this.lambda$load$0(tLObject);
+                    this.f$0.lambda$load$0(tLObject);
                 }
             });
         }
@@ -619,10 +618,10 @@ public class BotStarsController {
         if (channelSuggestedBots != null) {
             return channelSuggestedBots;
         }
-        HashMap hashMap = this.suggestedBots;
-        Long valueOf = Long.valueOf(j);
+        HashMap map = this.suggestedBots;
+        Long lValueOf = Long.valueOf(j);
         ChannelSuggestedBots channelSuggestedBots2 = new ChannelSuggestedBots(this.currentAccount, j);
-        hashMap.put(valueOf, channelSuggestedBots2);
+        map.put(lValueOf, channelSuggestedBots2);
         return channelSuggestedBots2;
     }
 
@@ -634,7 +633,7 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_bots.getAdminedBots(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.this.lambda$loadAdminedBots$7(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedBots$7(tLObject, tL_error);
             }
         });
     }
@@ -643,7 +642,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$loadAdminedBots$6(tLObject);
+                this.f$0.lambda$loadAdminedBots$6(tLObject);
             }
         });
     }
@@ -668,7 +667,7 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.this.lambda$loadAdminedChannels$9(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedChannels$9(tLObject, tL_error);
             }
         });
     }
@@ -677,7 +676,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$loadAdminedChannels$8(tLObject);
+                this.f$0.lambda$loadAdminedChannels$8(tLObject);
             }
         });
     }
@@ -735,17 +734,17 @@ public class BotStarsController {
         TL_payments.getConnectedStarRefBot getconnectedstarrefbot = new TL_payments.getConnectedStarRefBot();
         getconnectedstarrefbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         getconnectedstarrefbot.bot = MessagesController.getInstance(this.currentAccount).getInputUser(j2);
-        final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbot, new RequestDelegate() {
+        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.this.lambda$getConnectedBot$11(alertDialog, j2, callback, tLObject, tL_error);
+                this.f$0.lambda$getConnectedBot$11(alertDialog, j2, callback, tLObject, tL_error);
             }
         });
         alertDialog.setCanCancel(true);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                BotStarsController.this.lambda$getConnectedBot$12(sendRequest, dialogInterface);
+                this.f$0.lambda$getConnectedBot$12(iSendRequest, dialogInterface);
             }
         });
         alertDialog.showDelayed(200L);
@@ -755,7 +754,7 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.this.lambda$getConnectedBot$10(alertDialog, tLObject, j, callback);
+                this.f$0.lambda$getConnectedBot$10(alertDialog, tLObject, j, callback);
             }
         });
     }

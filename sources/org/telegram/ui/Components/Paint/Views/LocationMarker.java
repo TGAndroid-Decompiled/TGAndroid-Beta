@@ -176,7 +176,7 @@ public class LocationMarker extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LocationMarker.this.lambda$setCodeEmoji$0(str, (TLRPC.TL_messages_stickerSet) obj);
+                    this.f$0.lambda$setCodeEmoji$0(str, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
@@ -184,7 +184,7 @@ public class LocationMarker extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LocationMarker.this.lambda$setCodeEmoji$1(str, (TLRPC.TL_messages_stickerSet) obj);
+                    this.f$0.lambda$setCodeEmoji$1(str, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
             this.flagImageReceiver.setImage(ImageLocation.getForDocument(this.flagDocument), "80_80", getEmojiThumb(str), null, null, 0);
@@ -195,19 +195,19 @@ public class LocationMarker extends View {
     }
 
     public void lambda$setCodeEmoji$0(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        TLRPC.Document findDocument = findDocument(tL_messages_stickerSet, str);
-        this.flagDocument = findDocument;
-        this.flagImageReceiver.setImage(ImageLocation.getForDocument(findDocument), "80_80", getEmojiThumb(str), null, null, 0);
+        TLRPC.Document documentFindDocument = findDocument(tL_messages_stickerSet, str);
+        this.flagDocument = documentFindDocument;
+        this.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", getEmojiThumb(str), null, null, 0);
         this.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(this.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
     }
 
     public void lambda$setCodeEmoji$1(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        TLRPC.Document findDocument = findDocument(tL_messages_stickerSet, str);
-        this.flagAnimatedDocument = findDocument;
-        if (findDocument == null) {
+        TLRPC.Document documentFindDocument = findDocument(tL_messages_stickerSet, str);
+        this.flagAnimatedDocument = documentFindDocument;
+        if (documentFindDocument == null) {
             return;
         }
-        this.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(findDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
+        this.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
     }
 
     private TLRPC.Document findDocument(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str) {
@@ -215,9 +215,9 @@ public class LocationMarker extends View {
             for (int i = 0; i < tL_messages_stickerSet.packs.size(); i++) {
                 TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i);
                 if (containsEmoji(tL_stickerPack.emoticon, str) && !tL_stickerPack.documents.isEmpty()) {
-                    long longValue = tL_stickerPack.documents.get(0).longValue();
+                    long jLongValue = tL_stickerPack.documents.get(0).longValue();
                     for (int i2 = 0; i2 < tL_messages_stickerSet.documents.size(); i2++) {
-                        if (tL_messages_stickerSet.documents.get(i2).id == longValue) {
+                        if (tL_messages_stickerSet.documents.get(i2).id == jLongValue) {
                             return tL_messages_stickerSet.documents.get(i2);
                         }
                     }
@@ -229,9 +229,9 @@ public class LocationMarker extends View {
 
     private boolean containsEmoji(String str, String str2) {
         if (str != null && str2 != null) {
-            ArrayList<Emoji.EmojiSpanRange> parseEmojis = Emoji.parseEmojis(str);
-            for (int i = 0; i < parseEmojis.size(); i++) {
-                if (TextUtils.equals(parseEmojis.get(i).code, str2)) {
+            ArrayList<Emoji.EmojiSpanRange> emojis = Emoji.parseEmojis(str);
+            for (int i = 0; i < emojis.size(); i++) {
+                if (TextUtils.equals(emojis.get(i).code, str2)) {
                     return true;
                 }
             }
@@ -319,21 +319,21 @@ public class LocationMarker extends View {
 
     public void setupLayout() {
         if (this.relayout) {
-            float measureText = this.textPaint.measureText(this.text);
+            float fMeasureText = this.textPaint.measureText(this.text);
             int i = this.maxWidth;
             int i2 = this.padx;
             float f = (i - i2) - i2;
             RectF rectF = this.padding;
             float f2 = 2.25f;
             float f3 = f - (((((rectF.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f)) + 21.33f) + 3.25f) + rectF.right) * this.density);
-            float min = Math.min(1.0f, f3 / measureText);
-            this.textScale = min;
-            if (min < 0.4f) {
+            float fMin = Math.min(1.0f, f3 / fMeasureText);
+            this.textScale = fMin;
+            if (fMin < 0.4f) {
                 String str = this.text;
                 TextPaint textPaint = this.textPaint;
                 this.layout = new StaticLayout(str, textPaint, HintView2.cutInFancyHalf(str, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
-                this.layout = new StaticLayout(this.text, this.textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.layout = new StaticLayout(this.text, this.textPaint, (int) Math.ceil(fMeasureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;

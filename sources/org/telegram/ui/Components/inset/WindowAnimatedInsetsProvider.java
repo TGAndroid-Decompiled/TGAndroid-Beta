@@ -32,7 +32,7 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
     }
 
     @Override
-    public WindowInsetsCompat onProgress(WindowInsetsCompat windowInsetsCompat, List list) {
+    public WindowInsetsCompat onProgress(WindowInsetsCompat windowInsetsCompat, List list) throws InterruptedException {
         dispatchWindowInsetsAnimationChange(windowInsetsCompat);
         return windowInsetsCompat;
     }
@@ -53,7 +53,7 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
         this.listeners.add(listener);
     }
 
-    private void dispatchWindowInsetsAnimationChange(WindowInsetsCompat windowInsetsCompat) {
+    private void dispatchWindowInsetsAnimationChange(WindowInsetsCompat windowInsetsCompat) throws InterruptedException {
         Iterator it = this.listeners.iterator();
         while (it.hasNext()) {
             Listener listener = (Listener) it.next();

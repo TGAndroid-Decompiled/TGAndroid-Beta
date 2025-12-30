@@ -76,10 +76,10 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -87,7 +87,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
             @Override
             public final void run() {
-                GreetMessagesActivity.this.lambda$createView$0();
+                this.f$0.lambda$createView$0();
             }
         });
         this.recipientsHelper = businessRecipientsHelper;
@@ -98,12 +98,12 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GreetMessagesActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                GreetMessagesActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -170,15 +170,15 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
     public void processDone() {
@@ -189,14 +189,14 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             finishFragment();
             return;
         }
-        QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
+        QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
         boolean z = this.enabled;
-        if (z && findReply == null) {
+        if (z && quickReplyFindReply == null) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            View findViewByItemId = this.listView.findViewByItemId(2);
+            View viewFindViewByItemId = this.listView.findViewByItemId(2);
             int i = -this.shiftDp;
             this.shiftDp = i;
-            AndroidUtilities.shakeViewSpring(findViewByItemId, i);
+            AndroidUtilities.shakeViewSpring(viewFindViewByItemId, i);
             return;
         }
         if (!z || this.recipientsHelper.validate(this.listView)) {
@@ -206,7 +206,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             if (this.enabled) {
                 TL_account.TL_inputBusinessGreetingMessage tL_inputBusinessGreetingMessage = new TL_account.TL_inputBusinessGreetingMessage();
                 updatebusinessgreetingmessage.message = tL_inputBusinessGreetingMessage;
-                tL_inputBusinessGreetingMessage.shortcut_id = findReply.id;
+                tL_inputBusinessGreetingMessage.shortcut_id = quickReplyFindReply.id;
                 tL_inputBusinessGreetingMessage.recipients = this.recipientsHelper.getInputValue();
                 updatebusinessgreetingmessage.message.no_activity_days = this.inactivityDays;
                 updatebusinessgreetingmessage.flags |= 1;
@@ -214,7 +214,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                     userFull.flags2 |= 4;
                     TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = new TL_account.TL_businessGreetingMessage();
                     userFull.business_greeting_message = tL_businessGreetingMessage;
-                    tL_businessGreetingMessage.shortcut_id = findReply.id;
+                    tL_businessGreetingMessage.shortcut_id = quickReplyFindReply.id;
                     tL_businessGreetingMessage.recipients = this.recipientsHelper.getValue();
                     userFull.business_greeting_message.no_activity_days = this.inactivityDays;
                 }
@@ -225,7 +225,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    GreetMessagesActivity.this.lambda$processDone$2(tLObject, tL_error);
+                    this.f$0.lambda$processDone$2(tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
@@ -236,7 +236,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GreetMessagesActivity.this.lambda$processDone$1(tL_error, tLObject);
+                this.f$0.lambda$processDone$1(tL_error, tLObject);
             }
         });
     }
@@ -269,13 +269,13 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    GreetMessagesActivity.this.lambda$onBackPressed$3(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$3(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    GreetMessagesActivity.this.lambda$onBackPressed$4(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$4(alertDialog, i);
                 }
             });
             showDialog(builder.create());
@@ -296,9 +296,9 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessGreetSend)).setChecked(this.enabled));
         arrayList.add(UItem.asShadow(null));
         if (this.enabled) {
-            QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
-            if (findReply != null) {
-                arrayList.add(UItem.asLargeQuickReply(findReply));
+            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
+            if (quickReplyFindReply != null) {
+                arrayList.add(UItem.asLargeQuickReply(quickReplyFindReply));
             } else {
                 arrayList.add(UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessGreetCreate)).accent());
             }
@@ -325,7 +325,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             arrayList.add(UItem.asSlideView(this.daysOfInactivityTexts, i, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GreetMessagesActivity.this.chooseInactivity(((Integer) obj).intValue());
+                    this.f$0.chooseInactivity(((Integer) obj).intValue());
                 }
             }));
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessGreetPeriodInfo)));

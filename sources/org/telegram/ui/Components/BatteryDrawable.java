@@ -60,29 +60,29 @@ public class BatteryDrawable extends Drawable {
     }
 
     public void setFillValue(float f, boolean z) {
-        final float max = Math.max(Math.min(f, 1.0f), 0.0f);
+        final float fMax = Math.max(Math.min(f, 1.0f), 0.0f);
         ValueAnimator valueAnimator = this.fillValueAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.fillValueAnimator = null;
         }
         if (!z) {
-            this.fillValue = max;
+            this.fillValue = fMax;
             invalidateSelf();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.fillValue, max);
-        this.fillValueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.fillValue, fMax);
+        this.fillValueAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BatteryDrawable.this.lambda$setFillValue$0(valueAnimator2);
+                this.f$0.lambda$setFillValue$0(valueAnimator2);
             }
         });
         this.fillValueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                BatteryDrawable.this.fillValue = max;
+                BatteryDrawable.this.fillValue = fMax;
                 BatteryDrawable.this.invalidateSelf();
             }
         });
@@ -107,10 +107,10 @@ public class BatteryDrawable extends Drawable {
         }
         int i = getBounds().left;
         int i2 = getBounds().top + ((int) this.translateY);
-        int width = getBounds().width();
-        int height = getBounds().height();
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY() + ((int) this.translateY);
+        int iWidth = getBounds().width();
+        int iHeight = getBounds().height();
+        int iCenterX = getBounds().centerX();
+        int iCenterY = getBounds().centerY() + ((int) this.translateY);
         Paint paint = this.paintReference;
         if (paint != null) {
             setColor(paint.getColor());
@@ -118,18 +118,18 @@ public class BatteryDrawable extends Drawable {
         if (this.scale != 1.0f) {
             canvas.save();
             float f = this.scale;
-            canvas.scale(f, f, centerX, centerY);
+            canvas.scale(f, f, iCenterX, iCenterY);
         }
         this.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
         float f2 = i;
-        float f3 = width;
+        float f3 = iWidth;
         float f4 = i2;
-        float f5 = height;
+        float f5 = iHeight;
         this.rectTmp.set((((f3 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((f5 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f4, (((AndroidUtilities.dpf2(16.33f) + f3) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f5) / 2.0f) + f4);
         canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), this.strokePaint);
         this.rectTmp.set((((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.66f), ((f5 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f4, ((f2 + ((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f)) - AndroidUtilities.dpf2(1.66f)) + Math.max(AndroidUtilities.dpf2(1.1f), this.fillValue * AndroidUtilities.dpf2(13.0f)), f4 + ((f5 + AndroidUtilities.dpf2(7.33f)) / 2.0f));
         canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), this.fillPaint);
-        float f6 = centerY;
+        float f6 = iCenterY;
         this.rectTmp.set((((AndroidUtilities.dpf2(17.5f) + f3) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f2, f6 - AndroidUtilities.dpf2(2.65f), f2 + (((f3 + AndroidUtilities.dpf2(17.5f)) + AndroidUtilities.dpf2(4.66f)) / 2.0f), f6 + AndroidUtilities.dpf2(2.65f));
         canvas.drawArc(this.rectTmp, -90.0f, 180.0f, false, this.connectorPaint);
         if (this.scale != 1.0f) {

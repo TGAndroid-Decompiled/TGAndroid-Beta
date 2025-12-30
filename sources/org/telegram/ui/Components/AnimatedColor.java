@@ -67,7 +67,7 @@ public class AnimatedColor {
     }
 
     public int set(int i, boolean z) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
         if (z || this.transitionDuration <= 0 || this.firstSet) {
             this.targetValue = i;
             this.value = i;
@@ -77,19 +77,19 @@ public class AnimatedColor {
             this.transition = true;
             this.targetValue = i;
             this.startValue = this.value;
-            this.transitionStart = elapsedRealtime;
+            this.transitionStart = jElapsedRealtime;
         }
         if (this.transition) {
-            float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
-            if (elapsedRealtime - this.transitionStart >= this.transitionDelay) {
+            float fClamp = MathUtils.clamp(((jElapsedRealtime - this.transitionStart) - this.transitionDelay) / this.transitionDuration, 0.0f, 1.0f);
+            if (jElapsedRealtime - this.transitionStart >= this.transitionDelay) {
                 TimeInterpolator timeInterpolator = this.transitionInterpolator;
                 if (timeInterpolator == null) {
-                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, clamp);
+                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, fClamp);
                 } else {
-                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
+                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, timeInterpolator.getInterpolation(fClamp));
                 }
             }
-            if (clamp >= 1.0f) {
+            if (fClamp >= 1.0f) {
                 this.transition = false;
             } else {
                 View view = this.parent;

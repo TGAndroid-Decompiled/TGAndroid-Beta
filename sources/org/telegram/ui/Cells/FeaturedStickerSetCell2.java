@@ -113,7 +113,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                FeaturedStickerSetCell2.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         premiumButtonView.setVisibility(8);
@@ -121,9 +121,9 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) premiumButtonView.getIconView().getLayoutParams();
             marginLayoutParams.leftMargin = AndroidUtilities.dp(1.0f);
             marginLayoutParams.topMargin = AndroidUtilities.dp(1.0f);
-            int dp = AndroidUtilities.dp(20.0f);
-            marginLayoutParams.height = dp;
-            marginLayoutParams.width = dp;
+            int iDp = AndroidUtilities.dp(20.0f);
+            marginLayoutParams.height = iDp;
+            marginLayoutParams.width = iDp;
             ((ViewGroup.MarginLayoutParams) premiumButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.dp(3.0f);
             premiumButtonView.getChildAt(0).setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         } catch (Exception unused) {
@@ -334,13 +334,13 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
             AnimatorSet animatorSet3 = this.currentAnimation;
             TextView textView3 = this.delButton;
             Property property = View.ALPHA;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
             TextView textView4 = this.delButton;
             Property property2 = View.SCALE_X;
-            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
             TextView textView5 = this.delButton;
             Property property3 = View.SCALE_Y;
-            animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f));
+            animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f));
             this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -457,9 +457,9 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.groupStickersDidLoad) {
-            long longValue = ((Long) objArr[0]).longValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
             Long l = this.waitingForStickerSetId;
-            if (l == null || l.longValue() != longValue) {
+            if (l == null || l.longValue() != jLongValue) {
                 return;
             }
             this.waitingForStickerSetId = null;

@@ -4,14 +4,13 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -65,10 +64,10 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -76,12 +75,12 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OpeningHoursActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                OpeningHoursActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -92,22 +91,49 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     }
 
     public boolean hasChanges() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.OpeningHoursActivity.hasChanges():boolean");
+        if ((this.currentValue != null) != this.enabled || !TextUtils.equals(this.currentTimezoneId, this.timezoneId)) {
+            return true;
+        }
+        if (this.currentValue != null && this.enabled) {
+            if (this.value == null) {
+                return true;
+            }
+            int i = 0;
+            loop0: while (true) {
+                ArrayList[] arrayListArr = this.currentValue;
+                if (i >= arrayListArr.length) {
+                    break;
+                }
+                if (arrayListArr[i].size() != this.value[i].size()) {
+                    return true;
+                }
+                for (int i2 = 0; i2 < this.value[i].size(); i2++) {
+                    Period period = (Period) this.currentValue[i].get(i2);
+                    Period period2 = (Period) this.value[i].get(i2);
+                    if (period.start != period2.start || period.end != period2.end) {
+                        break loop0;
+                    }
+                }
+                i++;
+            }
+            return true;
+        }
+        return false;
     }
 
     private void checkDone(boolean z) {
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
     @Override
@@ -190,64 +216,8 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         this.valueSet = true;
     }
 
-    public static ArrayList adaptWeeklyOpen(ArrayList arrayList, int i) {
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        ArrayList arrayList3 = new ArrayList(arrayList2.size());
-        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = (TL_account.TL_businessWeeklyOpen) arrayList2.get(i2);
-            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = new TL_account.TL_businessWeeklyOpen();
-            if (i != 0) {
-                int i3 = tL_businessWeeklyOpen.start_minute;
-                int i4 = i3 % 1440;
-                int i5 = tL_businessWeeklyOpen.end_minute;
-                int i6 = (i5 - i3) + i4;
-                if (i4 == 0 && (i6 == 1440 || i6 == 1439)) {
-                    tL_businessWeeklyOpen2.start_minute = i3;
-                    tL_businessWeeklyOpen2.end_minute = i5;
-                    arrayList3.add(tL_businessWeeklyOpen2);
-                }
-            }
-            tL_businessWeeklyOpen2.start_minute = tL_businessWeeklyOpen.start_minute + i;
-            tL_businessWeeklyOpen2.end_minute = tL_businessWeeklyOpen.end_minute + i;
-            arrayList3.add(tL_businessWeeklyOpen2);
-            int i7 = tL_businessWeeklyOpen2.start_minute;
-            if (i7 < 0) {
-                int i8 = tL_businessWeeklyOpen2.end_minute;
-                if (i8 < 0) {
-                    tL_businessWeeklyOpen2.start_minute = i7 + 10080;
-                    tL_businessWeeklyOpen2.end_minute = i8 + 10080;
-                } else {
-                    tL_businessWeeklyOpen2.start_minute = 0;
-                    TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen3 = new TL_account.TL_businessWeeklyOpen();
-                    tL_businessWeeklyOpen3.start_minute = tL_businessWeeklyOpen.start_minute + 10080 + i;
-                    tL_businessWeeklyOpen3.end_minute = 10079;
-                    arrayList3.add(tL_businessWeeklyOpen3);
-                }
-            } else {
-                int i9 = tL_businessWeeklyOpen2.end_minute;
-                if (i9 > 10080) {
-                    if (i7 > 10080) {
-                        tL_businessWeeklyOpen2.start_minute = i7 - 10080;
-                        tL_businessWeeklyOpen2.end_minute = i9 - 10080;
-                    } else {
-                        tL_businessWeeklyOpen2.end_minute = 10079;
-                        TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen4 = new TL_account.TL_businessWeeklyOpen();
-                        tL_businessWeeklyOpen4.start_minute = 0;
-                        tL_businessWeeklyOpen4.end_minute = (tL_businessWeeklyOpen.end_minute + i) - 10079;
-                        arrayList3.add(tL_businessWeeklyOpen4);
-                    }
-                }
-            }
-        }
-        Collections.sort(arrayList3, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$adaptWeeklyOpen$0;
-                lambda$adaptWeeklyOpen$0 = OpeningHoursActivity.lambda$adaptWeeklyOpen$0((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
-                return lambda$adaptWeeklyOpen$0;
-            }
-        });
-        return arrayList3;
+    public static java.util.ArrayList adaptWeeklyOpen(java.util.ArrayList r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.OpeningHoursActivity.adaptWeeklyOpen(java.util.ArrayList, int):java.util.ArrayList");
     }
 
     public static int lambda$adaptWeeklyOpen$0(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
@@ -284,13 +254,13 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                         ((Period) arrayListArr[i11].get(r6.size() - 1)).end = 1439;
                     }
                 }
-                int min = Math.min((i9 - r4) - 1, 2879);
+                int iMin = Math.min((i9 - r4) - 1, 2879);
                 ArrayList arrayList2 = arrayListArr[(i6 + 8) % 7];
-                if (min >= 1440 && !arrayList2.isEmpty() && ((Period) arrayList2.get(0)).start < min - 1440) {
-                    min = ((Period) arrayList2.get(0)).start + 1439;
+                if (iMin >= 1440 && !arrayList2.isEmpty() && ((Period) arrayList2.get(0)).start < iMin - 1440) {
+                    iMin = ((Period) arrayList2.get(0)).start + 1439;
                 }
                 arrayListArr[i6].clear();
-                arrayListArr[i6].add(new Period(0, min));
+                arrayListArr[i6].add(new Period(0, iMin));
             } else {
                 int i12 = i7 % 7;
                 if (!arrayListArr[i6].isEmpty() && !arrayListArr[i12].isEmpty()) {
@@ -359,9 +329,9 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             }
             sb.append("\n");
         }
-        TLRPC.TL_timezone findTimezone = TimezonesController.getInstance(i).findTimezone(tL_businessWorkHours.timezone_id);
-        if (((Calendar.getInstance().getTimeZone().getRawOffset() / 1000) - (findTimezone == null ? 0 : findTimezone.utc_offset)) / 60 != 0 && findTimezone != null) {
-            sb.append(LocaleController.formatString(R.string.BusinessHoursCopyFooter, TimezonesController.getInstance(i).getTimezoneName(findTimezone, true)));
+        TLRPC.TL_timezone tL_timezoneFindTimezone = TimezonesController.getInstance(i).findTimezone(tL_businessWorkHours.timezone_id);
+        if (((Calendar.getInstance().getTimeZone().getRawOffset() / 1000) - (tL_timezoneFindTimezone == null ? 0 : tL_timezoneFindTimezone.utc_offset)) / 60 != 0 && tL_timezoneFindTimezone != null) {
+            sb.append(LocaleController.formatString(R.string.BusinessHoursCopyFooter, TimezonesController.getInstance(i).getTimezoneName(tL_timezoneFindTimezone, true)));
         }
         return sb.toString();
     }
@@ -377,11 +347,11 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         this.doneButtonDrawable.animateToProgress(1.0f);
         TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
         TL_account.updateBusinessWorkHours updatebusinessworkhours = new TL_account.updateBusinessWorkHours();
-        ArrayList fromDaysHours = fromDaysHours(this.value);
-        if (this.enabled && !fromDaysHours.isEmpty()) {
+        ArrayList arrayListFromDaysHours = fromDaysHours(this.value);
+        if (this.enabled && !arrayListFromDaysHours.isEmpty()) {
             TL_account.TL_businessWorkHours tL_businessWorkHours = new TL_account.TL_businessWorkHours();
             tL_businessWorkHours.timezone_id = this.timezoneId;
-            tL_businessWorkHours.weekly_open.addAll(fromDaysHours);
+            tL_businessWorkHours.weekly_open.addAll(arrayListFromDaysHours);
             updatebusinessworkhours.flags |= 1;
             updatebusinessworkhours.business_work_hours = tL_businessWorkHours;
             if (userFull != null) {
@@ -395,7 +365,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().sendRequest(updatebusinessworkhours, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                OpeningHoursActivity.this.lambda$processDone$2(tLObject, tL_error);
+                this.f$0.lambda$processDone$2(tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
@@ -405,7 +375,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                OpeningHoursActivity.this.lambda$processDone$1(tL_error, tLObject);
+                this.f$0.lambda$processDone$1(tL_error, tLObject);
             }
         });
     }
@@ -451,8 +421,8 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             int i2 = i % 60;
             Calendar calendar = Calendar.getInstance();
             calendar.set(0, 0, 0, ((i - i2) / 60) % 24, i2);
-            String format = LocaleController.getInstance().getFormatterConstDay().format(calendar.getTime());
-            return (i <= 1440 || !z) ? format : LocaleController.formatString(R.string.BusinessHoursNextDay, format);
+            String str = LocaleController.getInstance().getFormatterConstDay().format(calendar.getTime());
+            return (i <= 1440 || !z) ? str : LocaleController.formatString(R.string.BusinessHoursNextDay, str);
         }
     }
 
@@ -505,14 +475,14 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     }
 
     private int maxPeriodsFor(int i) {
-        int i2 = 0;
-        for (int i3 = 0; i3 < 7; i3++) {
-            ArrayList arrayList = this.value[i3];
+        int iMax = 0;
+        for (int i2 = 0; i2 < 7; i2++) {
+            ArrayList arrayList = this.value[i2];
             if (arrayList != null) {
-                i2 += Math.max(1, arrayList.size());
+                iMax += Math.max(1, arrayList.size());
             }
         }
-        return 28 - i2;
+        return 28 - iMax;
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -556,7 +526,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             presentFragment(new TimezoneSelector().setValue(this.timezoneId).whenSelected(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OpeningHoursActivity.this.lambda$onClick$3(view, (String) obj);
+                    this.f$0.lambda$onClick$3(view, (String) obj);
                 }
             }));
             return;
@@ -584,7 +554,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                 i4 = ((Period) this.value[i3].get(i5)).end;
             }
         }
-        int max = Math.max(0, i4 - 1439);
+        int iMax = Math.max(0, i4 - 1439);
         int i6 = (uItem.id + 1) % 7;
         int i7 = 1440;
         for (int i8 = 0; i8 < this.value[i6].size(); i8++) {
@@ -596,15 +566,15 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         CharSequence charSequence = uItem.text;
         ArrayList[] arrayListArr = this.value;
         int i10 = uItem.id;
-        presentFragment(new OpeningHoursDayActivity(charSequence, arrayListArr[i10], max, i9, maxPeriodsFor(i10)).onApplied(new Runnable() {
+        presentFragment(new OpeningHoursDayActivity(charSequence, arrayListArr[i10], iMax, i9, maxPeriodsFor(i10)).onApplied(new Runnable() {
             @Override
             public final void run() {
-                OpeningHoursActivity.this.lambda$onClick$4();
+                this.f$0.lambda$onClick$4();
             }
         }).onDone(new Runnable() {
             @Override
             public final void run() {
-                OpeningHoursActivity.this.lambda$onClick$5(uItem);
+                this.f$0.lambda$onClick$5(uItem);
             }
         }));
     }
@@ -649,9 +619,9 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         if (period2.start >= 1439) {
             this.value[i2].remove(period2);
         }
-        View findViewByItemId = this.listView.findViewByItemId(i2);
-        if (findViewByItemId instanceof NotificationsCheckCell) {
-            ((NotificationsCheckCell) findViewByItemId).setValue(getPeriodsValue(this.value[i2]));
+        View viewFindViewByItemId = this.listView.findViewByItemId(i2);
+        if (viewFindViewByItemId instanceof NotificationsCheckCell) {
+            ((NotificationsCheckCell) viewFindViewByItemId).setValue(getPeriodsValue(this.value[i2]));
         } else {
             this.listView.adapter.update(true);
         }

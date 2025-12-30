@@ -133,17 +133,17 @@ public class VoIpGradientLayout extends FrameLayout {
         setLayerType(2, null);
         AnimatorSet animatorSet = new AnimatorSet();
         this.defaultAnimatorSet = animatorSet;
-        ValueAnimator ofInt = ValueAnimator.ofInt(0, 360);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 360);
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.this.lambda$new$0(voIPBackgroundProvider, valueAnimator);
+                this.f$0.lambda$new$0(voIPBackgroundProvider, valueAnimator);
             }
         });
-        ofInt.setRepeatCount(-1);
-        ofInt.setRepeatMode(1);
+        valueAnimatorOfInt.setRepeatCount(-1);
+        valueAnimatorOfInt.setRepeatMode(1);
         animatorSet.setInterpolator(new LinearInterpolator());
-        animatorSet.playTogether(ofInt);
+        animatorSet.playTogether(valueAnimatorOfInt);
         animatorSet.setDuration(12000L);
         if (this.allowAnimations) {
             animatorSet.start();
@@ -189,12 +189,12 @@ public class VoIpGradientLayout extends FrameLayout {
         }
         this.state = gradientState2;
         this.alphaBlueGreen = 255;
-        ValueAnimator ofInt = ValueAnimator.ofInt(255, 0, 255);
-        this.callingAnimator = ofInt;
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(255, 0, 255);
+        this.callingAnimator = valueAnimatorOfInt;
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.this.lambda$switchToCalling$1(valueAnimator);
+                this.f$0.lambda$switchToCalling$1(valueAnimator);
             }
         });
         this.callingAnimator.setRepeatCount(-1);
@@ -238,17 +238,17 @@ public class VoIpGradientLayout extends FrameLayout {
         int i6 = i5 * i5;
         int i7 = i * i;
         int i8 = i2 * i2;
-        double max = Math.max(Math.max(Math.max(Math.sqrt(i4 + i6), Math.sqrt(i6 + i7)), Math.sqrt(i7 + i8)), Math.sqrt(i4 + i8));
+        double dMax = Math.max(Math.max(Math.max(Math.sqrt(i4 + i6), Math.sqrt(i6 + i7)), Math.sqrt(i7 + i8)), Math.sqrt(i4 + i8));
         this.showClip = true;
         this.backgroundProvider.setReveal(true);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (float) max);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, (float) dMax);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.this.lambda$switchToCallConnected$2(valueAnimator2);
+                this.f$0.lambda$switchToCallConnected$2(valueAnimator2);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 VoIpGradientLayout.this.showClip = false;
@@ -260,8 +260,8 @@ public class VoIpGradientLayout extends FrameLayout {
                 VoIpGradientLayout.this.switchToConnectedAnimator();
             }
         });
-        ofFloat.setDuration(z ? 400L : 0L);
-        ofFloat.start();
+        valueAnimatorOfFloat.setDuration(z ? 400L : 0L);
+        valueAnimatorOfFloat.start();
     }
 
     public void lambda$switchToCallConnected$2(ValueAnimator valueAnimator) {
@@ -282,25 +282,25 @@ public class VoIpGradientLayout extends FrameLayout {
         }
         this.alphaGreen = 255;
         this.connectedAnimatorSet = new AnimatorSet();
-        ValueAnimator ofInt = ValueAnimator.ofInt(0, 255, 255, 255, 0);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255, 255, 255, 0);
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.this.lambda$switchToConnectedAnimator$3(valueAnimator2);
+                this.f$0.lambda$switchToConnectedAnimator$3(valueAnimator2);
             }
         });
-        ofInt.setRepeatCount(-1);
-        ofInt.setRepeatMode(1);
-        ValueAnimator ofInt2 = ValueAnimator.ofInt(0, 0, 255, 0, 0);
-        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfInt.setRepeatCount(-1);
+        valueAnimatorOfInt.setRepeatMode(1);
+        ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(0, 0, 255, 0, 0);
+        valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.this.lambda$switchToConnectedAnimator$4(valueAnimator2);
+                this.f$0.lambda$switchToConnectedAnimator$4(valueAnimator2);
             }
         });
-        ofInt2.setRepeatCount(-1);
-        ofInt2.setRepeatMode(1);
-        this.connectedAnimatorSet.playTogether(ofInt2, ofInt);
+        valueAnimatorOfInt2.setRepeatCount(-1);
+        valueAnimatorOfInt2.setRepeatMode(1);
+        this.connectedAnimatorSet.playTogether(valueAnimatorOfInt2, valueAnimatorOfInt);
         this.connectedAnimatorSet.setInterpolator(new LinearInterpolator());
         this.connectedAnimatorSet.setDuration(24000L);
         if (this.allowAnimations) {
@@ -329,12 +329,12 @@ public class VoIpGradientLayout extends FrameLayout {
             return;
         }
         this.state = gradientState2;
-        ValueAnimator ofInt = ValueAnimator.ofInt(this.alphaOrangeRed, 255);
-        this.badConnectionAnimator = ofInt;
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alphaOrangeRed, 255);
+        this.badConnectionAnimator = valueAnimatorOfInt;
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.this.lambda$showToBadConnection$5(valueAnimator);
+                this.f$0.lambda$showToBadConnection$5(valueAnimator);
             }
         });
         this.badConnectionAnimator.setDuration(500L);
@@ -360,12 +360,12 @@ public class VoIpGradientLayout extends FrameLayout {
             valueAnimator.removeAllUpdateListeners();
             this.badConnectionAnimator.cancel();
         }
-        ValueAnimator ofInt = ValueAnimator.ofInt(this.alphaOrangeRed, 0);
-        this.badConnectionAnimator = ofInt;
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alphaOrangeRed, 0);
+        this.badConnectionAnimator = valueAnimatorOfInt;
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.this.lambda$hideBadConnection$6(valueAnimator2);
+                this.f$0.lambda$hideBadConnection$6(valueAnimator2);
             }
         });
         this.badConnectionAnimator.setDuration(500L);
@@ -419,8 +419,8 @@ public class VoIpGradientLayout extends FrameLayout {
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
         canvas.save();
-        float sqrt = ((float) Math.sqrt((width * width) + (height * width))) / Math.min(height, width);
-        canvas.scale(sqrt, sqrt, width, height);
+        float fSqrt = ((float) Math.sqrt((width * width) + (height * width))) / Math.min(height, width);
+        canvas.scale(fSqrt, fSqrt, width, height);
         canvas.rotate(this.backgroundProvider.getDegree(), width, height);
         Canvas lightCanvas = this.backgroundProvider.getLightCanvas();
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;

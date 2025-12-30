@@ -269,10 +269,10 @@ public class BusinessRecipientsHelper {
             return true;
         }
         BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        View findViewByItemId = universalRecyclerView.findViewByItemId(101);
+        View viewFindViewByItemId = universalRecyclerView.findViewByItemId(101);
         int i = -this.shiftDp;
         this.shiftDp = i;
-        AndroidUtilities.shakeViewSpring(findViewByItemId, i);
+        AndroidUtilities.shakeViewSpring(viewFindViewByItemId, i);
         universalRecyclerView.smoothScrollToPosition(universalRecyclerView.findPositionByItemId(101));
         return false;
     }
@@ -373,7 +373,7 @@ public class BusinessRecipientsHelper {
         baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext(), this.fragment.getResourceProvider()).setTitle(LocaleController.getString(!z ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle)).setMessage(LocaleController.formatString(!z ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, peerName)).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                BusinessRecipientsHelper.this.lambda$onClick$0(flag, z, uItem, alertDialog, i2);
+                this.f$0.lambda$onClick$0(flag, z, uItem, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
         return true;
@@ -392,41 +392,14 @@ public class BusinessRecipientsHelper {
 
     private int getFlag(String str) {
         str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1197490811:
-                if (str.equals("non_contacts")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -567451565:
-                if (str.equals("contacts")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -268161860:
-                if (str.equals("new_chats")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 151051367:
-                if (str.equals("existing_chats")) {
-                    c = 3;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
+        switch (str) {
+            case "non_contacts":
                 return 8;
-            case 1:
+            case "contacts":
                 return 4;
-            case 2:
+            case "new_chats":
                 return 2;
-            case 3:
+            case "existing_chats":
                 return 1;
             default:
                 return 0;
@@ -451,17 +424,17 @@ public class BusinessRecipientsHelper {
     }
 
     private void selectChatsFor(final boolean z) {
-        UsersSelectActivity asPrivateChats = new UsersSelectActivity(z, z ? this.alwaysShow : this.neverShow, getFlags()).asPrivateChats();
-        asPrivateChats.noChatTypes = (!this.bot || this.exclude || z) ? false : true;
-        asPrivateChats.allowSelf = false;
-        asPrivateChats.doNotNewChats = !z && this.doNotExcludeNewChats;
-        asPrivateChats.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
+        UsersSelectActivity usersSelectActivityAsPrivateChats = new UsersSelectActivity(z, z ? this.alwaysShow : this.neverShow, getFlags()).asPrivateChats();
+        usersSelectActivityAsPrivateChats.noChatTypes = (!this.bot || this.exclude || z) ? false : true;
+        usersSelectActivityAsPrivateChats.allowSelf = false;
+        usersSelectActivityAsPrivateChats.doNotNewChats = !z && this.doNotExcludeNewChats;
+        usersSelectActivityAsPrivateChats.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
             @Override
             public final void didSelectChats(ArrayList arrayList, int i) {
-                BusinessRecipientsHelper.this.lambda$selectChatsFor$1(z, arrayList, i);
+                this.f$0.lambda$selectChatsFor$1(z, arrayList, i);
             }
         });
-        this.fragment.presentFragment(asPrivateChats);
+        this.fragment.presentFragment(usersSelectActivityAsPrivateChats);
     }
 
     public void lambda$selectChatsFor$1(boolean z, ArrayList arrayList, int i) {

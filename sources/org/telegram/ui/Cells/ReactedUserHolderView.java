@@ -203,12 +203,12 @@ public class ReactedUserHolderView extends FrameLayout {
             this.alphaAnimator = null;
         }
         if (z) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.alphaInternal, f);
-            this.alphaAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.alphaInternal, f);
+            this.alphaAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ReactedUserHolderView.this.lambda$animateAlpha$0(valueAnimator2);
+                    this.f$0.lambda$animateAlpha$0(valueAnimator2);
                 }
             });
             this.alphaAnimator.addListener(new AnimatorListenerAdapter() {
@@ -247,11 +247,11 @@ public class ReactedUserHolderView extends FrameLayout {
         }
         super.dispatchDraw(canvas);
         if (this.drawDivider) {
-            float dp = AndroidUtilities.dp(this.style == STYLE_STORY ? 73.0f : 55.0f);
+            float fDp = AndroidUtilities.dp(this.style == STYLE_STORY ? 73.0f : 55.0f);
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - fDp, getMeasuredHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
             } else {
-                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
+                canvas.drawLine(fDp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
             }
         }
         if (z) {

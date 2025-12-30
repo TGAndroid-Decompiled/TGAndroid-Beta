@@ -19,8 +19,38 @@ public abstract class FunctionReference extends CallableReference implements Fun
     }
 
     @Override
+    public KFunction getReflected() {
+        return (KFunction) super.getReflected();
+    }
+
+    @Override
     protected KCallable computeReflected() {
         return Reflection.function(this);
+    }
+
+    @Override
+    public boolean isInline() {
+        return getReflected().isInline();
+    }
+
+    @Override
+    public boolean isExternal() {
+        return getReflected().isExternal();
+    }
+
+    @Override
+    public boolean isOperator() {
+        return getReflected().isOperator();
+    }
+
+    @Override
+    public boolean isInfix() {
+        return getReflected().isInfix();
+    }
+
+    @Override
+    public boolean isSuspend() {
+        return getReflected().isSuspend();
     }
 
     public boolean equals(Object obj) {
@@ -42,9 +72,9 @@ public abstract class FunctionReference extends CallableReference implements Fun
     }
 
     public String toString() {
-        KCallable compute = compute();
-        if (compute != this) {
-            return compute.toString();
+        KCallable kCallableCompute = compute();
+        if (kCallableCompute != this) {
+            return kCallableCompute.toString();
         }
         if ("<init>".equals(getName())) {
             return "constructor (Kotlin reflection is not available)";

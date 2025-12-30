@@ -34,7 +34,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        WearReplyReceiver.this.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra);
+                        this.f$0.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra);
                     }
                 });
                 return;
@@ -43,7 +43,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    WearReplyReceiver.this.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra);
+                    this.f$0.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra);
                 }
             });
             return;
@@ -56,7 +56,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WearReplyReceiver.this.lambda$onReceive$0(accountInstance, userSync, charSequence, j, j2, i);
+                this.f$0.lambda$onReceive$0(accountInstance, userSync, charSequence, j, j2, i);
             }
         });
     }
@@ -71,7 +71,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WearReplyReceiver.this.lambda$onReceive$2(accountInstance, chatSync, charSequence, j, j2, i);
+                this.f$0.lambda$onReceive$2(accountInstance, chatSync, charSequence, j, j2, i);
             }
         });
     }

@@ -27,19 +27,19 @@ public class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null && this.drawBlur && this.backgroundColor != 0) {
             if (this.backgroundPaint == null) {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
             this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
-            float f = 0.0f;
+            float y = 0.0f;
             View view = this;
             while (true) {
                 SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
                 if (view != sizeNotifierFrameLayout) {
-                    f += view.getY();
+                    y += view.getY();
                     Object parent = view.getParent();
                     if (parent instanceof View) {
                         view = (View) parent;
@@ -48,7 +48,7 @@ public class BlurredFrameLayout extends FrameLayout {
                         return;
                     }
                 } else {
-                    sizeNotifierFrameLayout.drawBlurRect(canvas, f, this.blurBounds, this.backgroundPaint, this.isTopView);
+                    sizeNotifierFrameLayout.drawBlurRect(canvas, y, this.blurBounds, this.backgroundPaint, this.isTopView);
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
             sizeNotifierFrameLayout.blurBehindViews.add(this);
@@ -75,7 +75,7 @@ public class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);

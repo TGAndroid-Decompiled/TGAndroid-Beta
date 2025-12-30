@@ -128,21 +128,21 @@ public abstract class TlUtils {
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).random_id;
         }
-        long j = 0;
+        long jCalcHash = 0;
         if (tLObject instanceof TLRPC.TL_messages_forwardMessages) {
             Iterator<Long> it = ((TLRPC.TL_messages_forwardMessages) tLObject).random_id.iterator();
             while (it.hasNext()) {
-                j = MediaDataController.calcHash(j, it.next().longValue());
+                jCalcHash = MediaDataController.calcHash(jCalcHash, it.next().longValue());
             }
-            return j;
+            return jCalcHash;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
             Iterator<TLRPC.TL_inputSingleMedia> it2 = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media.iterator();
             while (it2.hasNext()) {
-                j = MediaDataController.calcHash(j, it2.next().random_id);
+                jCalcHash = MediaDataController.calcHash(jCalcHash, it2.next().random_id);
             }
         }
-        return j;
+        return jCalcHash;
     }
 
     public static boolean isInstance(Object obj, Class... clsArr) {

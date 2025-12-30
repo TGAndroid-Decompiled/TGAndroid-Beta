@@ -56,7 +56,6 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.TopicsTabsView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.GradientClip;
@@ -102,8 +101,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     }
 
     public TopicsTabsView(Context context, BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, int i, long j, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         ViewGroup viewGroup;
+        super(context);
         this.animatorCloseButtonVisibility = new BoolAnimator(0, new FactorAnimator.Target() {
             @Override
             public void onFactorChangeFinished(int i2, float f, FactorAnimator factorAnimator) {
@@ -112,7 +111,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
             @Override
             public final void onFactorChanged(int i2, float f, float f2, FactorAnimator factorAnimator) {
-                TopicsTabsView.this.lambda$new$2(i2, f, f2, factorAnimator);
+                this.f$0.lambda$new$2(i2, f, f2, factorAnimator);
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
         this.sidemenuT = 0.0f;
@@ -123,8 +122,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         this.resourcesProvider = resourcesProvider;
         long j2 = -j;
         this.mono = ChatObject.isMonoForum(MessagesController.getInstance(i).getChat(Long.valueOf(j2)));
-        boolean isBotForum = UserObject.isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
-        this.bot = isBotForum;
+        boolean zIsBotForum = UserObject.isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+        this.bot = zIsBotForum;
         SharedPreferences preferences = UserConfig.getInstance(i).getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + j2, false);
         setClipChildren(true);
@@ -144,19 +143,17 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TopicsTabsView.this.fillHorizontalTabs((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillHorizontalTabs((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                TopicsTabsView.this.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onTabLongClick;
-                onTabLongClick = TopicsTabsView.this.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onTabLongClick);
+                return Boolean.valueOf(this.f$0.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         }, resourcesProvider) {
             private final AnimatedFloat animateTab;
@@ -178,7 +175,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 float f = this.animatedClip.set(canScrollHorizontally(-1));
                 if (f > 0.0f) {
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
@@ -228,7 +225,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
             private void drawPinnedBackground(Canvas canvas) {
                 float width = getWidth();
-                float f = 0.0f;
+                float x = 0.0f;
                 for (int i2 = 0; i2 < getChildCount(); i2++) {
                     View childAt = getChildAt(i2);
                     if (childAt instanceof HorizontalTabView) {
@@ -238,17 +235,17 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                                 width = horizontalTabView.getX();
                                 getChildAdapterPosition(horizontalTabView);
                             }
-                            if (f < horizontalTabView.getX() + horizontalTabView.getWidth()) {
-                                f = horizontalTabView.getX() + horizontalTabView.getWidth();
+                            if (x < horizontalTabView.getX() + horizontalTabView.getWidth()) {
+                                x = horizontalTabView.getX() + horizontalTabView.getWidth();
                                 getChildAdapterPosition(horizontalTabView);
                             }
                         }
                     }
                 }
-                if (f > width) {
+                if (x > width) {
                     this.pinnedBackgroundPaint.setColor(Theme.getColor(Theme.key_chats_pinnedOverlay, this.resourcesProvider));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(width, (getHeight() - AndroidUtilities.dp(38.0f)) / 2.0f, f, (getHeight() + AndroidUtilities.dp(38.0f)) / 2.0f);
+                    rectF.set(width, (getHeight() - AndroidUtilities.dp(38.0f)) / 2.0f, x, (getHeight() + AndroidUtilities.dp(38.0f)) / 2.0f);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.pinnedBackgroundPaint);
                     if (this.pinIcon == null) {
                         this.pinIcon = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
@@ -273,13 +270,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         universalRecyclerView.listenReorder(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TopicsTabsView.this.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
             }
         });
         universalRecyclerView.setWillNotDraw(false);
         universalRecyclerView.adapter.setApplyBackground(false);
         universalRecyclerView.makeHorizontal();
-        blurredFrameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f, 119, isBotForum ? 96.0f : 64.0f, 0.0f, 0.0f, 0.0f));
+        blurredFrameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f, 119, zIsBotForum ? 96.0f : 64.0f, 0.0f, 0.0f, 0.0f));
         universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
@@ -288,14 +285,14 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 }
             }
         });
-        if (isBotForum) {
+        if (zIsBotForum) {
             HorizontalTabView horizontalTabView = new HorizontalTabView(context, i, resourcesProvider);
             this.botCreateTopicButtonHorizontal = horizontalTabView;
             horizontalTabView.setAll(true, false, this.currentTopicId == 0);
             horizontalTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    TopicsTabsView.this.lambda$new$0(view2);
+                    this.f$0.lambda$new$0(view2);
                 }
             });
             blurredFrameLayout.addView(horizontalTabView, LayoutHelper.createFrame(48, 48.0f, 51, 36.0f, 0.0f, 0.0f, 0.0f));
@@ -305,7 +302,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             verticalTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    TopicsTabsView.this.lambda$new$1(view2);
+                    this.f$0.lambda$new$1(view2);
                 }
             });
             viewGroup = frameLayout;
@@ -319,19 +316,17 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         UniversalRecyclerView universalRecyclerView2 = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TopicsTabsView.this.fillVerticalTabs((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillVerticalTabs((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                TopicsTabsView.this.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onTabLongClick;
-                onTabLongClick = TopicsTabsView.this.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onTabLongClick);
+                return Boolean.valueOf(this.f$0.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         }, resourcesProvider) {
             private Drawable pinIcon;
@@ -341,7 +336,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             private final Paint pinnedBackgroundPaint = new Paint(1);
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 float f = this.animatedClip.set(canScrollVertically(-1));
                 if (f > 0.0f) {
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
@@ -360,7 +355,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
             private void drawPinnedBackground(Canvas canvas) {
                 float height = getHeight();
-                float f = 0.0f;
+                float y = 0.0f;
                 for (int i2 = 0; i2 < getChildCount(); i2++) {
                     View childAt = getChildAt(i2);
                     if (childAt instanceof VerticalTabView) {
@@ -370,17 +365,17 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                                 height = verticalTabView2.getY();
                                 getChildAdapterPosition(verticalTabView2);
                             }
-                            if (f < verticalTabView2.getY() + verticalTabView2.getHeight()) {
-                                f = verticalTabView2.getY() + verticalTabView2.getHeight();
+                            if (y < verticalTabView2.getY() + verticalTabView2.getHeight()) {
+                                y = verticalTabView2.getY() + verticalTabView2.getHeight();
                                 getChildAdapterPosition(verticalTabView2);
                             }
                         }
                     }
                 }
-                if (f > height) {
+                if (y > height) {
                     this.pinnedBackgroundPaint.setColor(Theme.getColor(Theme.key_chats_pinnedOverlay, this.resourcesProvider));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (getWidth() + AndroidUtilities.dp(56.0f)) / 2.0f, f);
+                    rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (getWidth() + AndroidUtilities.dp(56.0f)) / 2.0f, y);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.pinnedBackgroundPaint);
                     if (this.pinIcon == null) {
                         this.pinIcon = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
@@ -400,13 +395,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         universalRecyclerView2.listenReorder(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TopicsTabsView.this.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
             }
         });
         universalRecyclerView2.adapter.setApplyBackground(false);
         universalRecyclerView2.setClipToPadding(false);
         universalRecyclerView2.setClipChildren(false);
-        viewGroup2.addView(universalRecyclerView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, isBotForum ? 90.0f : 48.0f, 0.0f, 0.0f));
+        viewGroup2.addView(universalRecyclerView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, zIsBotForum ? 90.0f : 48.0f, 0.0f, 0.0f));
         universalRecyclerView2.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
@@ -416,39 +411,39 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
         });
         int i2 = R.drawable.menu_sidebar;
-        ImageView createButton = createButton(context, i2, new View.OnClickListener() {
+        ImageView imageViewCreateButton = createButton(context, i2, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TopicsTabsView.this.onSideMenuButtonClick(view2);
+                this.f$0.onSideMenuButtonClick(view2);
             }
         });
-        this.toggleButtonTop = createButton;
-        ImageView createButton2 = createButton(context, i2, new View.OnClickListener() {
+        this.toggleButtonTop = imageViewCreateButton;
+        ImageView imageViewCreateButton2 = createButton(context, i2, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TopicsTabsView.this.onSideMenuButtonClick(view2);
+                this.f$0.onSideMenuButtonClick(view2);
             }
         });
-        this.toggleButtonSide = createButton2;
-        blurredFrameLayout.addView(createButton, LayoutHelper.createFrame(64, 48, 51));
-        viewGroup2.addView(createButton2, LayoutHelper.createFrame(64, 48, 51));
+        this.toggleButtonSide = imageViewCreateButton2;
+        blurredFrameLayout.addView(imageViewCreateButton, LayoutHelper.createFrame(64, 48, 51));
+        viewGroup2.addView(imageViewCreateButton2, LayoutHelper.createFrame(64, 48, 51));
         int i3 = R.drawable.msg_select;
-        ImageView createButton3 = createButton(context, i3, new View.OnClickListener() {
+        ImageView imageViewCreateButton3 = createButton(context, i3, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TopicsTabsView.this.onCloseButtonClick(view2);
+                this.f$0.onCloseButtonClick(view2);
             }
         });
-        this.closeButtonTop = createButton3;
-        ImageView createButton4 = createButton(context, i3, new View.OnClickListener() {
+        this.closeButtonTop = imageViewCreateButton3;
+        ImageView imageViewCreateButton4 = createButton(context, i3, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TopicsTabsView.this.onCloseButtonClick(view2);
+                this.f$0.onCloseButtonClick(view2);
             }
         });
-        this.closeButtonSide = createButton4;
-        blurredFrameLayout.addView(createButton3, LayoutHelper.createFrame(64, 48, 51));
-        viewGroup2.addView(createButton4, LayoutHelper.createFrame(64, 48, 51));
+        this.closeButtonSide = imageViewCreateButton4;
+        blurredFrameLayout.addView(imageViewCreateButton3, LayoutHelper.createFrame(64, 48, 51));
+        viewGroup2.addView(imageViewCreateButton4, LayoutHelper.createFrame(64, 48, 51));
         MessagesController.getInstance(i).getTopicsController().loadTopics(j2, false, 3);
         if (MessagesController.getInstance(i).getMainSettings().getBoolean("topicssidetabs" + j, false)) {
             this.sidemenuT = 1.0f;
@@ -535,11 +530,11 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 canvas.clipPath(this.sideMenuBackgroundDrawable.getPath());
             }
         }
-        boolean drawChild = super.drawChild(canvas, view, j);
+        boolean zDrawChild = super.drawChild(canvas, view, j);
         if (z) {
             canvas.restore();
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     public void setSideMenuBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
@@ -563,13 +558,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
     private void checkSideTabsPadding(boolean z) {
         int paddingBottom = this.sideTabsContainer.getPaddingBottom();
-        int round = Math.round(this.sideMenuBackgroundMarginBottom + this.sideMenuBackgroundMarginTop);
-        if (paddingBottom == round) {
+        int iRound = Math.round(this.sideMenuBackgroundMarginBottom + this.sideMenuBackgroundMarginTop);
+        if (paddingBottom == iRound) {
             return;
         }
         if (z) {
-            this.sideTabsContainer.setPadding(0, 0, 0, round);
-        } else if (round < paddingBottom) {
+            this.sideTabsContainer.setPadding(0, 0, 0, iRound);
+        } else if (iRound < paddingBottom) {
             this.sideTabsContainer.setPadding(0, 0, 0, 0);
         }
     }
@@ -587,9 +582,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         int i = Theme.key_windowBackgroundWhiteGrayText2;
         int color = Theme.getColor(i, this.resourcesProvider);
         int i2 = Theme.key_featuredStickers_addButton;
-        int blendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.sidemenuT);
+        int iBlendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.sidemenuT);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+        imageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
         this.toggleButtonSide.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(i, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider), this.sidemenuT), mode));
         this.closeButtonTop.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
         this.closeButtonSide.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
@@ -610,12 +605,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
         this.sidemenuEnabled = z;
         this.sidemenuAnimating = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.sidemenuT, z ? 1.0f : 0.0f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.sidemenuT, z ? 1.0f : 0.0f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                TopicsTabsView.this.lambda$animateSidemenuTo$3(valueAnimator2);
+                this.f$0.lambda$animateSidemenuTo$3(valueAnimator2);
             }
         });
         this.animator.addListener(new AnonymousClass5(z));
@@ -629,7 +624,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         updateSidemenuPosition();
     }
 
-    public class AnonymousClass5 extends AnimatorListenerAdapter {
+    class AnonymousClass5 extends AnimatorListenerAdapter {
         final boolean val$side;
 
         AnonymousClass5(boolean z) {
@@ -647,14 +642,14 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 topicsTabsView2.animator = null;
                 MessagesController.getInstance(TopicsTabsView.this.currentAccount).getMainSettings().edit().putBoolean("topicssidetabs" + TopicsTabsView.this.dialogId, TopicsTabsView.this.sidemenuEnabled).apply();
                 if (TopicsTabsView.this.pendingSidemenu != null && this.val$side != TopicsTabsView.this.pendingSidemenu.booleanValue()) {
-                    boolean booleanValue = TopicsTabsView.this.pendingSidemenu.booleanValue();
+                    boolean zBooleanValue = TopicsTabsView.this.pendingSidemenu.booleanValue();
                     TopicsTabsView.this.pendingSidemenu = null;
-                    TopicsTabsView.this.animateSidemenuTo(booleanValue);
+                    TopicsTabsView.this.animateSidemenuTo(zBooleanValue);
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsTabsView.AnonymousClass5.this.lambda$onAnimationEnd$0();
+                        this.f$0.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -668,20 +663,20 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     }
 
     private void updateTabs() {
-        boolean canScrollHorizontally = this.topTabs.canScrollHorizontally(-1);
+        boolean zCanScrollHorizontally = this.topTabs.canScrollHorizontally(-1);
         this.topTabs.adapter.update(true);
-        if (!canScrollHorizontally) {
+        if (!zCanScrollHorizontally) {
             this.topTabs.scrollToPosition(0);
         }
-        boolean canScrollVertically = this.sideTabs.canScrollVertically(-1);
+        boolean zCanScrollVertically = this.sideTabs.canScrollVertically(-1);
         this.sideTabs.adapter.update(true);
-        if (!canScrollVertically) {
+        if (!zCanScrollVertically) {
             this.sideTabs.scrollToPosition(0);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.this.lambda$updateTabs$4();
+                this.f$0.lambda$updateTabs$4();
             }
         });
     }
@@ -885,125 +880,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
     }
 
-    public boolean onTabLongClick(UItem uItem, View view, int i, float f, float f2) {
-        final ItemOptions itemOptions;
-        final long j;
-        final TLRPC.Chat chat;
-        final TLRPC.User user;
-        if (this.sideTabs.isReorderAllowed() || this.topTabs.isReorderAllowed()) {
-            return false;
-        }
-        Object obj = uItem.object;
-        if (!(obj instanceof TLRPC.TL_forumTopic)) {
-            return false;
-        }
-        final TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj;
-        final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        long j2 = this.dialogId;
-        TLRPC.Chat chat2 = j2 < 0 ? messagesController.getChat(Long.valueOf(-j2)) : null;
-        long j3 = this.dialogId;
-        TLRPC.User user2 = j3 > 0 ? messagesController.getUser(Long.valueOf(j3)) : null;
-        final ItemOptions makeOptions = ItemOptions.makeOptions(this.fragment, view, true);
-        if (ChatObject.isMonoForum(chat2)) {
-            final long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-            if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
-                return false;
-            }
-            itemOptions = makeOptions;
-            final TLRPC.Chat chat3 = chat2;
-            itemOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
-                @Override
-                public final void run() {
-                    TopicsTabsView.this.lambda$onTabLongClick$6(makeOptions, peerDialogId, chat3);
-                }
-            });
-            long j4 = chat2.id;
-            if (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
-                long j5 = chat2.linked_monoforum_id;
-                if (j5 != 0) {
-                    j = j5;
-                    chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-                    user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                    if (user != null && ChatObject.canBlockUsers(chat)) {
-                        itemOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                        final ActionBarMenuSubItem last = itemOptions.getLast();
-                        last.setVisibility(8);
-                        MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
-                            @Override
-                            public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                                TopicsTabsView.this.lambda$onTabLongClick$11(last, itemOptions, j, user, chat, z, tL_chatAdminRights, str);
-                            }
-                        });
-                    }
-                }
-            }
-            j = j4;
-            chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-            if (user != null) {
-                itemOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                final ActionBarMenuSubItem last2 = itemOptions.getLast();
-                last2.setVisibility(8);
-                MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
-                    @Override
-                    public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                        TopicsTabsView.this.lambda$onTabLongClick$11(last2, itemOptions, j, user, chat, z, tL_chatAdminRights, str);
-                    }
-                });
-            }
-        } else {
-            itemOptions = makeOptions;
-            if (ChatObject.canManageTopics(chat2) || UserObject.isBotForum(user2)) {
-                boolean z = tL_forumTopic.pinned;
-                itemOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.this.lambda$onTabLongClick$12(itemOptions, messagesController, tL_forumTopic);
-                    }
-                });
-                if (tL_forumTopic.pinned) {
-                    itemOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
-                        @Override
-                        public final void run() {
-                            TopicsTabsView.this.lambda$onTabLongClick$13();
-                        }
-                    });
-                }
-            }
-            final ItemOptions addAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptions, this.dialogId, tL_forumTopic.id);
-            boolean isDialogMuted = messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id);
-            itemOptions.add(isDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(isDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
-                @Override
-                public final void run() {
-                    TopicsTabsView.this.lambda$onTabLongClick$14(messagesController, tL_forumTopic, itemOptions, addAsItemOptions);
-                }
-            });
-            if (ChatObject.canManageTopic(this.currentAccount, chat2, tL_forumTopic) && !UserObject.isBotForum(user2)) {
-                boolean z2 = tL_forumTopic.closed;
-                itemOptions.add(z2 ? R.drawable.msg_topic_restart : R.drawable.msg_topic_close, LocaleController.getString(z2 ? R.string.RestartTopic : R.string.CloseTopic), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.this.lambda$onTabLongClick$15(itemOptions, tL_forumTopic);
-                    }
-                });
-            }
-            if (ChatObject.canDeleteTopic(this.currentAccount, chat2, tL_forumTopic)) {
-                itemOptions.add(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", 1), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.this.lambda$onTabLongClick$17(itemOptions, tL_forumTopic);
-                    }
-                });
-            }
-        }
-        if (view instanceof HorizontalTabView) {
-            itemOptions.setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), 0, 0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)));
-            itemOptions.translate(AndroidUtilities.dp(16.0f), 0.0f);
-        } else {
-            itemOptions.setScrimViewBackground(Theme.createRoundRectDrawable(0, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)));
-        }
-        itemOptions.show();
-        return true;
+    public boolean onTabLongClick(org.telegram.ui.Components.UItem r23, android.view.View r24, int r25, float r26, float r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TopicsTabsView.onTabLongClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):boolean");
     }
 
     public void lambda$onTabLongClick$6(ItemOptions itemOptions, final long j, TLRPC.Chat chat) {
@@ -1013,7 +891,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             AlertsCreator.createClearDaysDialogAlert(this.fragment, -1, user, chat, true, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z) {
-                    TopicsTabsView.this.lambda$onTabLongClick$5(j, z);
+                    this.f$0.lambda$onTabLongClick$5(j, z);
                 }
             }, this.fragment.getResourceProvider());
         }
@@ -1030,7 +908,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.this.lambda$onTabLongClick$10(z, actionBarMenuSubItem, itemOptions, j, user, chat);
+                this.f$0.lambda$onTabLongClick$10(z, actionBarMenuSubItem, itemOptions, j, user, chat);
             }
         });
     }
@@ -1042,7 +920,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsTabsView.this.lambda$onTabLongClick$9(itemOptions, z2, j, user, chat, view);
+                this.f$0.lambda$onTabLongClick$9(itemOptions, z2, j, user, chat, view);
             }
         });
     }
@@ -1060,7 +938,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TopicsTabsView.this.lambda$onTabLongClick$8(tLObject, tL_error);
+                this.f$0.lambda$onTabLongClick$8(tLObject, tL_error);
             }
         });
     }
@@ -1075,7 +953,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsTabsView.this.lambda$onTabLongClick$7(updates);
+                    this.f$0.lambda$onTabLongClick$7(updates);
                 }
             }, 1000L);
         }
@@ -1288,46 +1166,46 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     float f2;
                     float f3;
                     float f4;
-                    float isNotEmpty = VerticalTabView.this.counterText.isNotEmpty();
-                    boolean z = isNotEmpty > 0.0f;
-                    float lerp = AndroidUtilities.lerp(0.5f, 1.0f, isNotEmpty) * VerticalTabView.this.countScale;
-                    float dp = AndroidUtilities.dp(10.0f);
-                    float dp2 = AndroidUtilities.dp(8.33f);
+                    float fIsNotEmpty = VerticalTabView.this.counterText.isNotEmpty();
+                    boolean z = fIsNotEmpty > 0.0f;
+                    float fLerp = AndroidUtilities.lerp(0.5f, 1.0f, fIsNotEmpty) * VerticalTabView.this.countScale;
+                    float fDp = AndroidUtilities.dp(10.0f);
+                    float fDp2 = AndroidUtilities.dp(8.33f);
                     float width = (getWidth() / 2.0f) + AndroidUtilities.dp(12.0f);
-                    float dp3 = AndroidUtilities.dp(12.0f);
-                    float max = Math.max(dp2 + dp2, VerticalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
+                    float fDp3 = AndroidUtilities.dp(12.0f);
+                    float fMax = Math.max(fDp2 + fDp2, VerticalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
                     if (z) {
-                        f = dp3;
+                        f = fDp3;
                         f2 = width;
                         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                     } else {
-                        f = dp3;
+                        f = fDp3;
                         f2 = width;
                     }
                     super.dispatchDraw(canvas);
                     if (z) {
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f5 = max / 2.0f;
+                        float f5 = fMax / 2.0f;
                         f4 = f2;
                         f3 = f;
-                        rectF.set((f4 - f5) - AndroidUtilities.dp(1.33f), f3 - dp, f5 + f4 + AndroidUtilities.dp(1.33f), f3 + dp);
-                        AndroidUtilities.scaleRect(rectF, isNotEmpty);
-                        float f6 = dp * isNotEmpty;
+                        rectF.set((f4 - f5) - AndroidUtilities.dp(1.33f), f3 - fDp, f5 + f4 + AndroidUtilities.dp(1.33f), f3 + fDp);
+                        AndroidUtilities.scaleRect(rectF, fIsNotEmpty);
+                        float f6 = fDp * fIsNotEmpty;
                         canvas.drawRoundRect(rectF, f6, f6, this.clipPaint);
                         canvas.restore();
                     } else {
                         f3 = f;
                         f4 = f2;
                     }
-                    if (isNotEmpty > 0.0f) {
+                    if (fIsNotEmpty > 0.0f) {
                         canvas.save();
-                        canvas.scale(lerp, lerp, f4, f3);
+                        canvas.scale(fLerp, fLerp, f4, f3);
                         RectF rectF2 = AndroidUtilities.rectTmp;
-                        float f7 = max / 2.0f;
-                        rectF2.set(f4 - f7, f3 - dp2, f4 + f7, f3 + dp2);
-                        canvas.drawRoundRect(rectF2, dp2, dp2, this.backgroundPaint.setByKey(VerticalTabView.this.counterBackgroundColorKey, isNotEmpty));
+                        float f7 = fMax / 2.0f;
+                        rectF2.set(f4 - f7, f3 - fDp2, f4 + f7, f3 + fDp2);
+                        canvas.drawRoundRect(rectF2, fDp2, fDp2, this.backgroundPaint.setByKey(VerticalTabView.this.counterBackgroundColorKey, fIsNotEmpty));
                         VerticalTabView.this.counterText.setBounds(rectF2);
-                        VerticalTabView.this.counterText.setAlpha((int) (isNotEmpty * 255.0f));
+                        VerticalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
                         VerticalTabView.this.counterText.draw(canvas);
                         canvas.restore();
                     }
@@ -1339,9 +1217,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 17));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
-            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(34, 34, 17);
-            this.imageViewParams = createFrame;
-            frameLayout.addView(backupImageView, createFrame);
+            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(34, 34, 17);
+            this.imageViewParams = layoutParamsCreateFrame;
+            frameLayout.addView(backupImageView, layoutParamsCreateFrame);
             this.avatarDrawable = new AvatarDrawable();
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -1427,12 +1305,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 valueAnimator.cancel();
                 this.counterAnimator = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.counterAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.counterAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.VerticalTabView.this.lambda$animateCounterBounce$0(valueAnimator2);
+                    this.f$0.lambda$animateCounterBounce$0(valueAnimator2);
                 }
             });
             this.counterAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1563,13 +1441,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
 
         public void updateImageColor() {
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), this.isAdd ? 1.0f : this.selectT);
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), this.isAdd ? 1.0f : this.selectT);
             if (!this.staticImage) {
                 this.imageView.setColorFilter(null);
             } else {
-                this.imageView.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.SRC_IN));
+                this.imageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
             }
-            this.imageView.setEmojiColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.SRC_IN));
+            this.imageView.setEmojiColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
             this.imageView.invalidate();
         }
 
@@ -1609,12 +1487,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
-            this.selectAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
+            this.selectAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.VerticalTabView.this.lambda$setSelected$1(valueAnimator2);
+                    this.f$0.lambda$setSelected$1(valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1686,42 +1564,42 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
 
             public static UItem asAll(boolean z, boolean z2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = 0;
-                ofFactory.longValue = 0L;
-                ofFactory.object = null;
-                ofFactory.accent = z2;
-                ofFactory.flags = z ? 1 : 0;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = 0;
+                uItemOfFactory.longValue = 0L;
+                uItemOfFactory.object = null;
+                uItemOfFactory.accent = z2;
+                uItemOfFactory.flags = z ? 1 : 0;
+                return uItemOfFactory;
             }
 
             public static UItem asAdd(boolean z) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = -2;
-                ofFactory.longValue = -2L;
-                ofFactory.object = null;
-                ofFactory.accent = z;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = -2;
+                uItemOfFactory.longValue = -2L;
+                uItemOfFactory.object = null;
+                uItemOfFactory.accent = z;
+                return uItemOfFactory;
             }
 
             public static UItem asTab(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.dialogId = j;
-                ofFactory.id = tL_forumTopic.id;
-                ofFactory.object = tL_forumTopic;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.dialogId = j;
+                uItemOfFactory.id = tL_forumTopic.id;
+                uItemOfFactory.object = tL_forumTopic;
                 if (z) {
-                    ofFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-                    ofFactory.withUsername = false;
+                    uItemOfFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+                    uItemOfFactory.withUsername = false;
                 }
-                return ofFactory;
+                return uItemOfFactory;
             }
 
             public static UItem asLoading(int i) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.red = true;
-                ofFactory.checked = false;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.red = true;
+                uItemOfFactory.checked = false;
+                return uItemOfFactory;
             }
         }
     }
@@ -1772,9 +1650,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     this.shaker.concat(canvas, f);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 canvas.restore();
-                return drawChild;
+                return zDrawChild;
             }
             return super.drawChild(canvas, view, j);
         }
@@ -1823,17 +1701,17 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
-                    float isNotEmpty = HorizontalTabView.this.counterText.isNotEmpty();
-                    float lerp = AndroidUtilities.lerp(0.6f, 1.0f, isNotEmpty);
-                    float max = Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
+                    float fIsNotEmpty = HorizontalTabView.this.counterText.isNotEmpty();
+                    float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, fIsNotEmpty);
+                    float fMax = Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, max, getHeight());
+                    rectF.set(0.0f, 0.0f, fMax, getHeight());
                     canvas.save();
-                    canvas.scale(lerp, lerp, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.33f), AndroidUtilities.dp(8.33f), this.backgroundPaint.setByKey(HorizontalTabView.this.counterBackgroundColorKey).blendTo(HorizontalTabView.this.getTextColor(), HorizontalTabView.this.selectT).multAlpha(isNotEmpty));
+                    canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.33f), AndroidUtilities.dp(8.33f), this.backgroundPaint.setByKey(HorizontalTabView.this.counterBackgroundColorKey).blendTo(HorizontalTabView.this.getTextColor(), HorizontalTabView.this.selectT).multAlpha(fIsNotEmpty));
                     canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
                     HorizontalTabView.this.counterText.setBounds(rectF);
-                    HorizontalTabView.this.counterText.setAlpha((int) (isNotEmpty * 255.0f));
+                    HorizontalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
                     HorizontalTabView.this.counterText.setTextColor(Theme.getColor(Theme.key_chats_unreadCounterText, this.val$resourcesProvider));
                     HorizontalTabView.this.counterText.draw(canvas);
                     canvas.restore();
@@ -2021,12 +1899,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
-            this.selectAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
+            this.selectAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.HorizontalTabView.this.lambda$setSelected$0(valueAnimator2);
+                    this.f$0.lambda$setSelected$0(valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2096,12 +1974,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 valueAnimator.cancel();
                 this.counterAnimator = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.counterAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.counterAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.HorizontalTabView.this.lambda$animateCounterBounce$1(valueAnimator2);
+                    this.f$0.lambda$animateCounterBounce$1(valueAnimator2);
                 }
             });
             this.counterAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2172,40 +2050,40 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
 
             public static UItem asAll(boolean z, boolean z2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = 0;
-                ofFactory.longValue = 0L;
-                ofFactory.object = null;
-                ofFactory.accent = z2;
-                ofFactory.flags = z ? 1 : 0;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = 0;
+                uItemOfFactory.longValue = 0L;
+                uItemOfFactory.object = null;
+                uItemOfFactory.accent = z2;
+                uItemOfFactory.flags = z ? 1 : 0;
+                return uItemOfFactory;
             }
 
             public static UItem asTab(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.dialogId = j;
-                ofFactory.id = tL_forumTopic.id;
-                ofFactory.object = tL_forumTopic;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.dialogId = j;
+                uItemOfFactory.id = tL_forumTopic.id;
+                uItemOfFactory.object = tL_forumTopic;
                 if (z) {
-                    ofFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-                    ofFactory.withUsername = false;
+                    uItemOfFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+                    uItemOfFactory.withUsername = false;
                 }
-                return ofFactory;
+                return uItemOfFactory;
             }
 
             public static UItem asLoading(int i) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.red = true;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.red = true;
+                return uItemOfFactory;
             }
 
             public static UItem asAdd() {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = -2;
-                ofFactory.longValue = -2L;
-                ofFactory.object = null;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = -2;
+                uItemOfFactory.longValue = -2L;
+                uItemOfFactory.object = null;
+                return uItemOfFactory;
             }
         }
     }
@@ -2222,7 +2100,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                TopicsTabsView.this.lambda$deleteTopics$20(hashSet, arrayList, runnable, alertDialog, i);
+                this.f$0.lambda$deleteTopics$20(hashSet, arrayList, runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2231,9 +2109,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 alertDialog.dismiss();
             }
         });
-        AlertDialog create = builder.create();
-        create.show();
-        TextView textView = (TextView) create.getButton(-1);
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.show();
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
         if (textView != null) {
             textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
@@ -2245,12 +2123,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         BulletinFactory.of(this.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.this.lambda$deleteTopics$18(hashSet);
+                this.f$0.lambda$deleteTopics$18(hashSet);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.this.lambda$deleteTopics$19(arrayList, runnable);
+                this.f$0.lambda$deleteTopics$19(arrayList, runnable);
             }
         }).show();
         alertDialog.dismiss();
@@ -2270,7 +2148,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         return this.mono ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
     }
 
-    public static class BotNewTopicDrawable extends Drawable {
+    private static class BotNewTopicDrawable extends Drawable {
         private final Drawable drawable;
         private final Paint paint = new Paint(1);
         private final RectF rectF = new RectF();
@@ -2302,9 +2180,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         protected void onBoundsChange(android.graphics.Rect rect) {
             super.onBoundsChange(rect);
             this.rectF.set(rect);
-            int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
-            int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
-            this.drawable.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+            int iCenterX = rect.centerX() - AndroidUtilities.dp(12.0f);
+            int iCenterY = rect.centerY() - AndroidUtilities.dp(12.0f);
+            this.drawable.setBounds(iCenterX, iCenterY, AndroidUtilities.dp(24.0f) + iCenterX, AndroidUtilities.dp(24.0f) + iCenterY);
         }
 
         @Override

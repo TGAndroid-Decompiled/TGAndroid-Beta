@@ -2,7 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -13,7 +13,9 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
@@ -22,7 +24,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -34,6 +35,7 @@ import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.FilteredSearchView;
 
 public class SharedAudioCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private int TAG;
@@ -144,8 +146,97 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     }
 
     @Override
-    protected void onMeasure(int r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.onMeasure(int, int):void");
+    protected void onMeasure(int i, int i2) {
+        int iDp;
+        CharSequence charSequenceReplace;
+        this.descriptionLayout = null;
+        this.titleLayout = null;
+        this.captionLayout = null;
+        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(28.0f);
+        if (this.viewType == 1) {
+            String strStringForMessageListDate = LocaleController.stringForMessageListDate(this.currentMessageObject.messageOwner.date);
+            int iCeil = (int) Math.ceil(this.description2TextPaint.measureText(strStringForMessageListDate));
+            this.dateLayout = ChatMessageCell.generateStaticLayout(strStringForMessageListDate, this.description2TextPaint, iCeil, iCeil, 0, 1);
+            this.dateLayoutX = ((size - iCeil) - AndroidUtilities.dp(8.0f)) + AndroidUtilities.dp(20.0f);
+            iDp = iCeil + AndroidUtilities.dp(12.0f);
+        } else {
+            iDp = 0;
+        }
+        try {
+            if (this.viewType == 1 && (this.currentMessageObject.isVoice() || this.currentMessageObject.isRoundVideo())) {
+                charSequenceReplace = FilteredSearchView.createFromInfoString(this.currentMessageObject, 1);
+            } else {
+                charSequenceReplace = this.currentMessageObject.getMusicTitle().replace('\n', ' ');
+            }
+            CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceReplace, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+            if (charSequenceHighlightText != null) {
+                charSequenceReplace = charSequenceHighlightText;
+            }
+            TextPaint textPaint = this.titlePaint;
+            if (textPaint == null) {
+                textPaint = Theme.chat_contextResult_titleTextPaint;
+            }
+            TextPaint textPaint2 = textPaint;
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequenceReplace, textPaint2, size - iDp, TextUtils.TruncateAt.END), textPaint2, (AndroidUtilities.dp(4.0f) + size) - iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.titleLayout = staticLayout;
+            this.titleLayoutLeft = staticLayout.getLineCount() > 0 ? this.titleLayout.getLineLeft(0) : 0.0f;
+            this.titleLayoutWidth = this.titleLayout.getLineCount() > 0 ? this.titleLayout.getLineWidth(0) : 0.0f;
+            this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, this.titleLayout);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        String str = "";
+        if (this.currentMessageObject.hasHighlightedWords()) {
+            CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(TextUtils.isEmpty(this.currentMessageObject.messageOwner.message) ? "" : Emoji.replaceEmoji(this.currentMessageObject.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), Theme.chat_msgTextPaint.getFontMetricsInt(), false), this.currentMessageObject.highlightedWords, this.resourcesProvider);
+            if (charSequenceHighlightText2 != null) {
+                StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(AndroidUtilities.ellipsizeCenterEnd(charSequenceHighlightText2, this.currentMessageObject.highlightedWords.get(0), size, this.captionTextPaint, 130), this.captionTextPaint, size, TextUtils.TruncateAt.END), this.captionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.captionLayout = staticLayout2;
+                this.captionLayoutLeft = staticLayout2.getLineCount() > 0 ? this.captionLayout.getLineLeft(0) : 0.0f;
+                this.captionLayoutWidth = this.captionLayout.getLineCount() > 0 ? this.captionLayout.getLineWidth(0) : 0.0f;
+            }
+            this.captionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.captionLayoutEmojis, this.captionLayout);
+        }
+        try {
+            if (this.viewType == 1 && (this.currentMessageObject.isVoice() || this.currentMessageObject.isRoundVideo())) {
+                String duration = AndroidUtilities.formatDuration((int) this.currentMessageObject.getDuration(), false);
+                TextPaint textPaint3 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(duration, textPaint3, size, TextUtils.TruncateAt.END), textPaint3, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            } else {
+                CharSequence charSequenceReplace2 = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
+                CharSequence charSequenceHighlightText3 = AndroidUtilities.highlightText(charSequenceReplace2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+                if (charSequenceHighlightText3 != null) {
+                    charSequenceReplace2 = charSequenceHighlightText3;
+                }
+                if (this.viewType == 1) {
+                    charSequenceReplace2 = new SpannableStringBuilder(charSequenceReplace2).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 1));
+                }
+                TextPaint textPaint4 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
+                if (this.currentMessageObject.getDuration() > 0.0d) {
+                    str = " • " + LocaleController.formatShortDuration((int) Math.ceil(this.currentMessageObject.getDuration()));
+                }
+                this.descriptionLayout = new StaticLayout(SpannableStringBuilder.valueOf(TextUtils.ellipsize(charSequenceReplace2, textPaint4, size - textPaint4.measureText(str), TextUtils.TruncateAt.END)).append((CharSequence) str), textPaint4, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            }
+            this.descriptionLayoutLeft = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineLeft(0) : 0.0f;
+            this.descriptionLayoutWidth = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineWidth(0) : 0.0f;
+            this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, this.descriptionLayout);
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(56.0f) + (this.captionLayout != null ? AndroidUtilities.dp(18.0f) : 0) + (this.needDivider ? 1 : 0));
+        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(8.0f)) - AndroidUtilities.dp(52.0f) : AndroidUtilities.dp(8.0f);
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        int iDp2 = AndroidUtilities.dp(4.0f) + size2;
+        this.buttonX = iDp2;
+        int iDp3 = AndroidUtilities.dp(6.0f);
+        this.buttonY = iDp3;
+        radialProgress2.setProgressRect(iDp2, iDp3, size2 + AndroidUtilities.dp(48.0f), AndroidUtilities.dp(50.0f));
+        measureChildWithMargins(this.checkBox, i, 0, i2, 0);
+        if (this.captionLayout != null) {
+            this.captionY = AndroidUtilities.dp(29.0f);
+            this.descriptionY = AndroidUtilities.dp(29.0f) + AndroidUtilities.dp(18.0f);
+        } else {
+            this.descriptionY = AndroidUtilities.dp(29.0f);
+        }
     }
 
     public void setMessageObject(MessageObject messageObject, boolean z) {
@@ -219,13 +310,13 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     private boolean checkAudioMotionEvent(MotionEvent motionEvent) {
         boolean z;
-        int dp;
-        int dp2;
+        int iDp;
+        int iDp2;
         int i;
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
-        int dp3 = AndroidUtilities.dp(36.0f);
-        boolean z2 = this.miniButtonState >= 0 && x >= (dp2 = this.buttonX + (dp = AndroidUtilities.dp(27.0f))) && x <= dp2 + dp3 && y >= (i = this.buttonY + dp) && y <= i + dp3;
+        int iDp3 = AndroidUtilities.dp(36.0f);
+        boolean z2 = this.miniButtonState >= 0 && x >= (iDp2 = this.buttonX + (iDp = AndroidUtilities.dp(27.0f))) && x <= iDp2 + iDp3 && y >= (i = this.buttonY + iDp) && y <= i + iDp3;
         if (motionEvent.getAction() != 0) {
             if (motionEvent.getAction() == 1) {
                 if (this.miniButtonPressed) {
@@ -276,9 +367,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (this.currentMessageObject == null) {
             return super.onTouchEvent(motionEvent);
         }
-        boolean checkAudioMotionEvent = checkAudioMotionEvent(motionEvent);
+        boolean zCheckAudioMotionEvent = checkAudioMotionEvent(motionEvent);
         if (motionEvent.getAction() != 3) {
-            return checkAudioMotionEvent;
+            return zCheckAudioMotionEvent;
         }
         this.miniButtonPressed = false;
         this.buttonPressed = false;
@@ -390,8 +481,8 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (this.hasMiniProgress == 0) {
             if (z3) {
                 DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-                if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                boolean zIsPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                if (!zIsPlayingMessage || (zIsPlayingMessage && MediaController.getInstance().isMessagePaused())) {
                     this.buttonState = 0;
                 } else {
                     this.buttonState = 1;
@@ -419,8 +510,8 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             return;
         }
         this.radialProgress.setMiniProgressBackgroundColor(getThemedColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader));
-        boolean isPlayingMessage2 = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-        if (!isPlayingMessage2 || (isPlayingMessage2 && MediaController.getInstance().isMessagePaused())) {
+        boolean zIsPlayingMessage2 = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+        if (!zIsPlayingMessage2 || (zIsPlayingMessage2 && MediaController.getInstance().isMessagePaused())) {
             this.buttonState = 0;
         } else {
             this.buttonState = 1;
@@ -461,7 +552,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     @Override
     public void onProgressDownload(String str, long j, long j2) {
-        this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
+        this.radialProgress.setProgress(Math.min(1.0f, j / j2), true);
         if (this.hasMiniProgress != 0) {
             if (this.miniButtonState != 1) {
                 updateButtonState(false, true);
@@ -505,86 +596,12 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
-        boolean z = this.showName;
-        if (z) {
-            float f = this.showNameProgress;
-            if (f != 1.0f) {
-                this.showNameProgress = f + 0.10666667f;
-                invalidate();
-                this.showNameProgress = Utilities.clamp(this.showNameProgress, 1.0f, 0.0f);
-                if (this.enterAlpha == 1.0f && this.globalGradientView != null) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
-                    this.globalGradientView.setViewType(4);
-                    this.globalGradientView.updateColors();
-                    this.globalGradientView.updateGradient();
-                    this.globalGradientView.draw(canvas);
-                    canvas.restore();
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
-                    drawInternal(canvas);
-                    super.dispatchDraw(canvas);
-                    drawReorder(canvas);
-                    canvas.restore();
-                    return;
-                }
-                drawInternal(canvas);
-                drawReorder(canvas);
-                super.dispatchDraw(canvas);
-            }
-        }
-        if (!z) {
-            float f2 = this.showNameProgress;
-            if (f2 != 0.0f) {
-                this.showNameProgress = f2 - 0.10666667f;
-                invalidate();
-            }
-        }
-        this.showNameProgress = Utilities.clamp(this.showNameProgress, 1.0f, 0.0f);
-        if (this.enterAlpha == 1.0f) {
-        }
-        drawInternal(canvas);
-        drawReorder(canvas);
-        super.dispatchDraw(canvas);
+    protected void dispatchDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    private void drawReorder(Canvas canvas) {
-        boolean z = this.showReorderIcon;
-        if (z || this.showReorderIconProgress != 0.0f) {
-            if (z) {
-                float f = this.showReorderIconProgress;
-                if (f != 1.0f) {
-                    this.showReorderIconProgress = f + 0.10666667f;
-                    invalidate();
-                    this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
-                    int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
-                    int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
-                    canvas.save();
-                    float f2 = this.showReorderIconProgress;
-                    canvas.scale(f2, f2, measuredWidth + (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f), measuredHeight + (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f));
-                    Drawable drawable = Theme.dialogs_reorderDrawable;
-                    drawable.setBounds(measuredWidth, measuredHeight, drawable.getIntrinsicWidth() + measuredWidth, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight);
-                    Theme.dialogs_reorderDrawable.draw(canvas);
-                    canvas.restore();
-                }
-            }
-            if (!z) {
-                float f3 = this.showReorderIconProgress;
-                if (f3 != 0.0f) {
-                    this.showReorderIconProgress = f3 - 0.10666667f;
-                    invalidate();
-                }
-            }
-            this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
-            int measuredWidth2 = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
-            int measuredHeight2 = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
-            canvas.save();
-            float f22 = this.showReorderIconProgress;
-            canvas.scale(f22, f22, measuredWidth2 + (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f), measuredHeight2 + (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f));
-            Drawable drawable2 = Theme.dialogs_reorderDrawable;
-            drawable2.setBounds(measuredWidth2, measuredHeight2, drawable2.getIntrinsicWidth() + measuredWidth2, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight2);
-            Theme.dialogs_reorderDrawable.draw(canvas);
-            canvas.restore();
-        }
+    private void drawReorder(android.graphics.Canvas r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.drawReorder(android.graphics.Canvas):void");
     }
 
     private void drawInternal(Canvas canvas) {
@@ -592,7 +609,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (this.viewType == 1) {
             this.description2TextPaint.setColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
         }
-        int i = 0;
+        int width = 0;
         if (this.dateLayout != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
@@ -606,11 +623,11 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 Theme.chat_contextResult_titleTextPaint.setAlpha((int) (alpha * f));
             }
             canvas.save();
-            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : AndroidUtilities.leftBaseline);
+            int iDp = AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL && (staticLayout = this.dateLayout) != null) {
-                i = staticLayout.getWidth() + AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 4.0f);
+                width = staticLayout.getWidth() + AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 4.0f);
             }
-            canvas.translate(((dp + i) + (LocaleController.isRTL ? this.titleLayout.getWidth() - this.titleLayoutWidth : 0.0f)) - this.titleLayoutLeft, this.titleY);
+            canvas.translate(((iDp + width) + (LocaleController.isRTL ? this.titleLayout.getWidth() - this.titleLayoutWidth : 0.0f)) - this.titleLayoutLeft, this.titleY);
             this.titleLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.titleLayout, this.titleLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -702,9 +719,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         }
 
         public static UItem as(MessageObject messageObject) {
-            UItem ofFactory = UItem.ofFactory(Factory.class);
-            ofFactory.object = messageObject;
-            return ofFactory;
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.object = messageObject;
+            return uItemOfFactory;
         }
     }
 }

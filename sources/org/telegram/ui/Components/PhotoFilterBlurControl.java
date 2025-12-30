@@ -42,7 +42,7 @@ public class PhotoFilterBlurControl extends FrameLayout {
     private float startRadius;
     private int type;
 
-    public enum BlurViewActiveControl {
+    private enum BlurViewActiveControl {
         BlurViewActiveControlNone,
         BlurViewActiveControlCenter,
         BlurViewActiveControlInnerRadius,
@@ -118,51 +118,51 @@ public class PhotoFilterBlurControl extends FrameLayout {
         Point actualCenterPoint = getActualCenterPoint();
         float f = x - actualCenterPoint.x;
         float f2 = y - actualCenterPoint.y;
-        float sqrt = (float) Math.sqrt((f * f) + (f2 * f2));
+        float fSqrt = (float) Math.sqrt((f * f) + (f2 * f2));
         Size size = this.actualAreaSize;
-        float min = Math.min(size.width, size.height);
-        float f3 = this.falloff * min;
-        float f4 = this.size * min;
-        float abs = (float) Math.abs((f * Math.cos(degreesToRadians(this.angle) + 1.5707963267948966d)) + (f2 * Math.sin(degreesToRadians(this.angle) + 1.5707963267948966d)));
+        float fMin = Math.min(size.width, size.height);
+        float f3 = this.falloff * fMin;
+        float f4 = this.size * fMin;
+        float fAbs = (float) Math.abs((f * Math.cos(degreesToRadians(this.angle) + 1.5707963267948966d)) + (f2 * Math.sin(degreesToRadians(this.angle) + 1.5707963267948966d)));
         if (i == 1) {
             this.pointerStartX = motionEvent.getX();
             this.pointerStartY = motionEvent.getY();
-            r6 = Math.abs(f4 - f3) < BlurInsetProximity ? 1 : 0;
-            float f5 = r6 != 0 ? 0.0f : BlurViewRadiusInset;
-            float f6 = r6 == 0 ? BlurViewRadiusInset : 0.0f;
+            i = Math.abs(f4 - f3) < BlurInsetProximity ? 1 : 0;
+            float f5 = i != 0 ? 0.0f : BlurViewRadiusInset;
+            float f6 = i == 0 ? BlurViewRadiusInset : 0.0f;
             int i2 = this.type;
             if (i2 == 0) {
-                if (sqrt < BlurViewCenterInset) {
+                if (fSqrt < BlurViewCenterInset) {
                     this.activeControl = BlurViewActiveControl.BlurViewActiveControlCenter;
                     this.startCenterPoint = actualCenterPoint;
                 } else {
                     float f7 = BlurViewRadiusInset;
                     float f8 = f3 - f7;
-                    if (abs > f8 && abs < f5 + f3) {
+                    if (fAbs > f8 && fAbs < f5 + f3) {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlInnerRadius;
-                        this.startDistance = abs;
+                        this.startDistance = fAbs;
                         this.startRadius = f3;
-                    } else if (abs > f4 - f6 && abs < f4 + f7) {
+                    } else if (fAbs > f4 - f6 && fAbs < f4 + f7) {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlOuterRadius;
-                        this.startDistance = abs;
+                        this.startDistance = fAbs;
                         this.startRadius = f4;
-                    } else if (abs <= f8 || abs >= f4 + f7) {
+                    } else if (fAbs <= f8 || fAbs >= f4 + f7) {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlRotation;
                     }
                 }
             } else if (i2 == 1) {
-                if (sqrt < BlurViewCenterInset) {
+                if (fSqrt < BlurViewCenterInset) {
                     this.activeControl = BlurViewActiveControl.BlurViewActiveControlCenter;
                     this.startCenterPoint = actualCenterPoint;
                 } else {
                     float f9 = BlurViewRadiusInset;
-                    if (sqrt > f3 - f9 && sqrt < f5 + f3) {
+                    if (fSqrt > f3 - f9 && fSqrt < f5 + f3) {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlInnerRadius;
-                        this.startDistance = sqrt;
+                        this.startDistance = fSqrt;
                         this.startRadius = f3;
-                    } else if (sqrt > f4 - f6 && sqrt < f9 + f4) {
+                    } else if (fSqrt > f4 - f6 && fSqrt < f9 + f4) {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlOuterRadius;
-                        this.startDistance = sqrt;
+                        this.startDistance = fSqrt;
                         this.startRadius = f4;
                     }
                 }
@@ -180,8 +180,8 @@ public class PhotoFilterBlurControl extends FrameLayout {
         }
         int i3 = this.type;
         if (i3 == 0) {
-            int ordinal = this.activeControl.ordinal();
-            if (ordinal == 1) {
+            int iOrdinal = this.activeControl.ordinal();
+            if (iOrdinal == 1) {
                 float f10 = x - this.pointerStartX;
                 float f11 = y - this.pointerStartY;
                 float width = (getWidth() - this.actualAreaSize.width) / 2.0f;
@@ -191,33 +191,33 @@ public class PhotoFilterBlurControl extends FrameLayout {
                 float f13 = size2.height;
                 Rect rect = new Rect(width, f12 + ((height - f13) / 2.0f), size2.width, f13);
                 float f14 = rect.x;
-                float max = Math.max(f14, Math.min(rect.width + f14, this.startCenterPoint.x + f10));
+                float fMax = Math.max(f14, Math.min(rect.width + f14, this.startCenterPoint.x + f10));
                 float f15 = rect.y;
-                Point point = new Point(max, Math.max(f15, Math.min(rect.height + f15, this.startCenterPoint.y + f11)));
+                Point point = new Point(fMax, Math.max(f15, Math.min(rect.height + f15, this.startCenterPoint.y + f11)));
                 float f16 = point.x - rect.x;
                 Size size3 = this.actualAreaSize;
                 float f17 = size3.width;
                 this.centerPoint = new Point(f16 / f17, ((point.y - rect.y) + ((f17 - size3.height) / 2.0f)) / f17);
-            } else if (ordinal == 2) {
-                this.falloff = Math.min(Math.max(0.1f, (this.startRadius + (abs - this.startDistance)) / min), this.size - 0.02f);
-            } else if (ordinal == 3) {
-                this.size = Math.max(this.falloff + 0.02f, (this.startRadius + (abs - this.startDistance)) / min);
-            } else if (ordinal == 5) {
+            } else if (iOrdinal == 2) {
+                this.falloff = Math.min(Math.max(0.1f, (this.startRadius + (fAbs - this.startDistance)) / fMin), this.size - 0.02f);
+            } else if (iOrdinal == 3) {
+                this.size = Math.max(this.falloff + 0.02f, (this.startRadius + (fAbs - this.startDistance)) / fMin);
+            } else if (iOrdinal == 5) {
                 float f18 = x - this.pointerStartX;
                 float f19 = y - this.pointerStartY;
                 boolean z = x > actualCenterPoint.x;
                 boolean z2 = y > actualCenterPoint.y;
                 boolean z3 = Math.abs(f19) > Math.abs(f18);
                 if (z || z2 ? !(!z || z2 ? !z || !z2 ? !z3 ? f18 >= 0.0f : f19 >= 0.0f : !z3 ? f18 >= 0.0f : f19 <= 0.0f : !z3 ? f18 <= 0.0f : f19 <= 0.0f) : !(!z3 ? f18 <= 0.0f : f19 >= 0.0f)) {
-                    r6 = 1;
+                    i = 1;
                 }
-                this.angle += ((((float) Math.sqrt((f18 * f18) + (f19 * f19))) * ((r6 * 2) - 1)) / 3.1415927f) / 1.15f;
+                this.angle += ((((float) Math.sqrt((f18 * f18) + (f19 * f19))) * ((i * 2) - 1)) / 3.1415927f) / 1.15f;
                 this.pointerStartX = x;
                 this.pointerStartY = y;
             }
         } else if (i3 == 1) {
-            int ordinal2 = this.activeControl.ordinal();
-            if (ordinal2 == 1) {
+            int iOrdinal2 = this.activeControl.ordinal();
+            if (iOrdinal2 == 1) {
                 float f20 = x - this.pointerStartX;
                 float f21 = y - this.pointerStartY;
                 float width2 = (getWidth() - this.actualAreaSize.width) / 2.0f;
@@ -227,17 +227,17 @@ public class PhotoFilterBlurControl extends FrameLayout {
                 float f23 = size4.height;
                 Rect rect2 = new Rect(width2, f22 + ((height2 - f23) / 2.0f), size4.width, f23);
                 float f24 = rect2.x;
-                float max2 = Math.max(f24, Math.min(rect2.width + f24, this.startCenterPoint.x + f20));
+                float fMax2 = Math.max(f24, Math.min(rect2.width + f24, this.startCenterPoint.x + f20));
                 float f25 = rect2.y;
-                Point point2 = new Point(max2, Math.max(f25, Math.min(rect2.height + f25, this.startCenterPoint.y + f21)));
+                Point point2 = new Point(fMax2, Math.max(f25, Math.min(rect2.height + f25, this.startCenterPoint.y + f21)));
                 float f26 = point2.x - rect2.x;
                 Size size5 = this.actualAreaSize;
                 float f27 = size5.width;
                 this.centerPoint = new Point(f26 / f27, ((point2.y - rect2.y) + ((f27 - size5.height) / 2.0f)) / f27);
-            } else if (ordinal2 == 2) {
-                this.falloff = Math.min(Math.max(0.1f, (this.startRadius + (sqrt - this.startDistance)) / min), this.size - 0.02f);
-            } else if (ordinal2 == 3) {
-                this.size = Math.max(this.falloff + 0.02f, (this.startRadius + (sqrt - this.startDistance)) / min);
+            } else if (iOrdinal2 == 2) {
+                this.falloff = Math.min(Math.max(0.1f, (this.startRadius + (fSqrt - this.startDistance)) / fMin), this.size - 0.02f);
+            } else if (iOrdinal2 == 3) {
+                this.size = Math.max(this.falloff + 0.02f, (this.startRadius + (fSqrt - this.startDistance)) / fMin);
             }
         }
         invalidate();
@@ -264,9 +264,9 @@ public class PhotoFilterBlurControl extends FrameLayout {
         float distance = getDistance(motionEvent);
         float f = this.pointerScale + (((distance - this.startPointerDistance) / AndroidUtilities.density) * 0.01f);
         this.pointerScale = f;
-        float max = Math.max(0.1f, this.falloff * f);
-        this.falloff = max;
-        this.size = Math.max(max + 0.02f, this.size * this.pointerScale);
+        float fMax = Math.max(0.1f, this.falloff * f);
+        this.falloff = fMax;
+        this.size = Math.max(fMax + 0.02f, this.size * this.pointerScale);
         this.pointerScale = 1.0f;
         this.startPointerDistance = distance;
         invalidate();
@@ -292,35 +292,35 @@ public class PhotoFilterBlurControl extends FrameLayout {
         int i = this.type;
         if (i == 0) {
             canvas.rotate(this.angle);
-            float dp = AndroidUtilities.dp(6.0f);
-            float dp2 = AndroidUtilities.dp(12.0f);
-            float dp3 = AndroidUtilities.dp(1.5f);
+            float fDp = AndroidUtilities.dp(6.0f);
+            float fDp2 = AndroidUtilities.dp(12.0f);
+            float fDp3 = AndroidUtilities.dp(1.5f);
             for (int i2 = 0; i2 < 30; i2++) {
-                float f = dp2 + dp;
+                float f = fDp2 + fDp;
                 float f2 = i2 * f;
                 float f3 = -actualInnerRadius;
-                float f4 = f2 + dp2;
-                float f5 = dp3 - actualInnerRadius;
+                float f4 = f2 + fDp2;
+                float f5 = fDp3 - actualInnerRadius;
                 canvas.drawRect(f2, f3, f4, f5, this.paint);
-                float f6 = ((-r11) * f) - dp;
-                float f7 = f6 - dp2;
+                float f6 = ((-r11) * f) - fDp;
+                float f7 = f6 - fDp2;
                 canvas.drawRect(f7, f3, f6, f5, this.paint);
-                float f8 = dp3 + actualInnerRadius;
+                float f8 = fDp3 + actualInnerRadius;
                 canvas.drawRect(f2, actualInnerRadius, f4, f8, this.paint);
                 canvas.drawRect(f7, actualInnerRadius, f6, f8, this.paint);
             }
-            float dp4 = AndroidUtilities.dp(6.0f);
+            float fDp4 = AndroidUtilities.dp(6.0f);
             for (int i3 = 0; i3 < 64; i3++) {
-                float f9 = dp4 + dp;
+                float f9 = fDp4 + fDp;
                 float f10 = i3 * f9;
                 float f11 = -actualOuterRadius;
-                float f12 = dp4 + f10;
-                float f13 = dp3 - actualOuterRadius;
+                float f12 = fDp4 + f10;
+                float f13 = fDp3 - actualOuterRadius;
                 canvas.drawRect(f10, f11, f12, f13, this.paint);
-                float f14 = ((-i3) * f9) - dp;
-                float f15 = f14 - dp4;
+                float f14 = ((-i3) * f9) - fDp;
+                float f15 = f14 - fDp4;
                 canvas.drawRect(f15, f11, f14, f13, this.paint);
-                float f16 = dp3 + actualOuterRadius;
+                float f16 = fDp3 + actualOuterRadius;
                 canvas.drawRect(f10, actualOuterRadius, f12, f16, this.paint);
                 canvas.drawRect(f15, actualOuterRadius, f14, f16, this.paint);
             }

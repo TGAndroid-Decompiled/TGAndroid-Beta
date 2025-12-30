@@ -64,7 +64,7 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        SeekBarAccessibilityDelegate.this.lambda$postAccessibilityEventRunnable$0(view);
+                        this.f$0.lambda$postAccessibilityEventRunnable$0(view);
                     }
                 };
                 map.put(view, runnable2);

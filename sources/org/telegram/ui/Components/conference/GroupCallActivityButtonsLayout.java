@@ -27,11 +27,11 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         setMeasuredDimension(size, size2);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
         int childCount = getChildCount();
         for (int i3 = 0; i3 < childCount; i3++) {
-            getChildAt(i3).measure(makeMeasureSpec, makeMeasureSpec2);
+            getChildAt(i3).measure(iMakeMeasureSpec, iMakeMeasureSpec2);
         }
         if (this.lastWidth != size || this.lastHeight != size2) {
             doLayout(false, true);
@@ -56,7 +56,7 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
         this.holders.put(voIPToggleButton, new ButtonHolder(voIPToggleButton, new Runnable() {
             @Override
             public final void run() {
-                GroupCallActivityButtonsLayout.this.invalidate();
+                this.f$0.invalidate();
             }
         }));
     }
@@ -79,46 +79,46 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
     }
 
     private void doLayout(boolean z, boolean z2) {
-        int min;
+        int iMin;
         int i;
         int measuredWidth;
-        int i2;
+        int measuredHeight;
         int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        boolean z3 = measuredWidth2 <= measuredHeight;
-        if (measuredWidth2 <= 0 || measuredHeight <= 0) {
+        int measuredHeight2 = getMeasuredHeight();
+        boolean z3 = measuredWidth2 <= measuredHeight2;
+        if (measuredWidth2 <= 0 || measuredHeight2 <= 0) {
             return;
         }
         Iterator it = this.holders.values().iterator();
-        int i3 = 0;
+        int i2 = 0;
         while (it.hasNext()) {
             if (((ButtonHolder) it.next()).isVisible) {
-                i3++;
+                i2++;
             }
         }
-        if (i3 == 0) {
-            i3 = 1;
+        if (i2 == 0) {
+            i2 = 1;
         }
         if (!z3) {
-            int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) ((measuredWidth2 - (AndroidUtilities.dp(50.0f) * i3)) / (i3 + 0.333f)), 0), measuredWidth2 / i3);
-            min = AndroidUtilities.dp(76.0f);
-            i = (measuredWidth2 - (i3 * min2)) / 2;
-            measuredWidth2 = min2;
+            int iMin2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) ((measuredWidth2 - (AndroidUtilities.dp(50.0f) * i2)) / (i2 + 0.333f)), 0), measuredWidth2 / i2);
+            iMin = AndroidUtilities.dp(76.0f);
+            i = (measuredWidth2 - (i2 * iMin2)) / 2;
+            measuredWidth2 = iMin2;
         } else {
-            min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) ((measuredHeight - (AndroidUtilities.dp(50.0f) * i3)) / (i3 + 0.333f)), 0), measuredHeight / i3);
-            i = (measuredHeight - (i3 * min)) / 2;
+            iMin = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) ((measuredHeight2 - (AndroidUtilities.dp(50.0f) * i2)) / (i2 + 0.333f)), 0), measuredHeight2 / i2);
+            i = (measuredHeight2 - (i2 * iMin)) / 2;
         }
         Iterator it2 = this.holders.entrySet().iterator();
-        int i4 = 0;
+        int i3 = 0;
         while (it2.hasNext()) {
             ButtonHolder buttonHolder = (ButtonHolder) ((Map.Entry) it2.next()).getValue();
             if (buttonHolder.isVisible) {
                 if (!z3) {
-                    measuredWidth = (measuredWidth2 * i4) + i + ((measuredWidth2 - buttonHolder.view.getMeasuredWidth()) / 2);
-                    i2 = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
+                    measuredWidth = (measuredWidth2 * i3) + i + ((measuredWidth2 - buttonHolder.view.getMeasuredWidth()) / 2);
+                    measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
                 } else {
                     measuredWidth = (getMeasuredWidth() - measuredWidth2) + ((measuredWidth2 - buttonHolder.view.getMeasuredWidth()) / 2);
-                    i2 = (min * i4) + i;
+                    measuredHeight = (iMin * i3) + i;
                 }
                 if (!z2 && ((z || buttonHolder.xAnimator.isAnimating()) && buttonHolder.visibility.getValue())) {
                     buttonHolder.xAnimator.animateTo(measuredWidth);
@@ -126,18 +126,18 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
                     buttonHolder.xAnimator.forceFactor(measuredWidth);
                 }
                 if (!z2 && ((z || buttonHolder.yAnimator.isAnimating()) && buttonHolder.visibility.getValue())) {
-                    buttonHolder.yAnimator.animateTo(i2);
+                    buttonHolder.yAnimator.animateTo(measuredHeight);
                 } else {
-                    buttonHolder.yAnimator.forceFactor(i2);
+                    buttonHolder.yAnimator.forceFactor(measuredHeight);
                 }
-                i4++;
+                i3++;
             }
             buttonHolder.visibility.setValue(buttonHolder.isVisible, !z2 && (z || buttonHolder.visibility.isAnimating()));
         }
         invalidate();
     }
 
-    public static class ButtonHolder implements FactorAnimator.Target {
+    private static class ButtonHolder implements FactorAnimator.Target {
         public final BoolAnimator enabled;
         private final Runnable invalidateRunnable;
         private boolean isVisible;

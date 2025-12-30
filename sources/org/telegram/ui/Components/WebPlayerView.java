@@ -30,6 +30,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -47,7 +49,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.Components.WebPlayerView;
 
 public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerDelegate, AudioManager.OnAudioFocusChangeListener {
     private static int lastContainerId = 4001;
@@ -164,7 +165,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         return f2;
     }
 
-    public static class JSExtractor {
+    private static class JSExtractor {
         private String jsCode;
         ArrayList codeLines = new ArrayList();
         private String[] operators = {"|", "^", "&", ">>", "<<", "-", "+", "%", "/", "*"};
@@ -174,13 +175,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.jsCode = str;
         }
 
-        private void interpretExpression(String str, HashMap hashMap, int i) {
-            String trim = str.trim();
-            if (TextUtils.isEmpty(trim)) {
+        private void interpretExpression(String str, HashMap map, int i) throws Exception {
+            String strTrim = str.trim();
+            if (TextUtils.isEmpty(strTrim)) {
                 return;
             }
-            if (trim.charAt(0) == '(') {
-                Matcher matcher = WebPlayerView.exprParensPattern.matcher(trim);
+            if (strTrim.charAt(0) == '(') {
+                Matcher matcher = WebPlayerView.exprParensPattern.matcher(strTrim);
                 int i2 = 0;
                 while (true) {
                     if (!matcher.find()) {
@@ -191,88 +192,88 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     } else {
                         i2--;
                         if (i2 == 0) {
-                            interpretExpression(trim.substring(1, matcher.start()), hashMap, i);
-                            trim = trim.substring(matcher.end()).trim();
-                            if (TextUtils.isEmpty(trim)) {
+                            interpretExpression(strTrim.substring(1, matcher.start()), map, i);
+                            strTrim = strTrim.substring(matcher.end()).trim();
+                            if (TextUtils.isEmpty(strTrim)) {
                                 return;
                             }
                         }
                     }
                 }
                 if (i2 != 0) {
-                    throw new Exception(String.format("Premature end of parens in %s", trim));
+                    throw new Exception(String.format("Premature end of parens in %s", strTrim));
                 }
             }
             int i3 = 0;
             while (true) {
                 String[] strArr = this.assign_operators;
                 if (i3 < strArr.length) {
-                    Matcher matcher2 = Pattern.compile(String.format(Locale.US, "(?x)(%s)(?:\\[([^\\]]+?)\\])?\\s*%s(.*)$", "[a-zA-Z_$][a-zA-Z_$0-9]*", Pattern.quote(strArr[i3]))).matcher(trim);
+                    Matcher matcher2 = Pattern.compile(String.format(Locale.US, "(?x)(%s)(?:\\[([^\\]]+?)\\])?\\s*%s(.*)$", "[a-zA-Z_$][a-zA-Z_$0-9]*", Pattern.quote(strArr[i3]))).matcher(strTrim);
                     if (matcher2.find()) {
-                        interpretExpression(matcher2.group(3), hashMap, i - 1);
-                        String group = matcher2.group(2);
-                        if (!TextUtils.isEmpty(group)) {
-                            interpretExpression(group, hashMap, i);
+                        interpretExpression(matcher2.group(3), map, i - 1);
+                        String strGroup = matcher2.group(2);
+                        if (!TextUtils.isEmpty(strGroup)) {
+                            interpretExpression(strGroup, map, i);
                             return;
                         } else {
-                            hashMap.put(matcher2.group(1), "");
+                            map.put(matcher2.group(1), "");
                             return;
                         }
                     }
                     i3++;
                 } else {
                     try {
-                        Integer.parseInt(trim);
+                        Integer.parseInt(strTrim);
                         return;
                     } catch (Exception unused) {
-                        if (Pattern.compile(String.format(Locale.US, "(?!if|return|true|false)(%s)$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(trim).find()) {
+                        if (Pattern.compile(String.format(Locale.US, "(?!if|return|true|false)(%s)$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(strTrim).find()) {
                             return;
                         }
-                        if (trim.charAt(0) == '\"' && trim.charAt(trim.length() - 1) == '\"') {
+                        if (strTrim.charAt(0) == '\"' && strTrim.charAt(strTrim.length() - 1) == '\"') {
                             return;
                         }
                         try {
-                            new JSONObject(trim).toString();
+                            new JSONObject(strTrim).toString();
                             return;
                         } catch (Exception unused2) {
                             Locale locale = Locale.US;
-                            Matcher matcher3 = Pattern.compile(String.format(locale, "(%s)\\[(.+)\\]$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(trim);
+                            Matcher matcher3 = Pattern.compile(String.format(locale, "(%s)\\[(.+)\\]$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(strTrim);
                             if (matcher3.find()) {
                                 matcher3.group(1);
-                                interpretExpression(matcher3.group(2), hashMap, i - 1);
+                                interpretExpression(matcher3.group(2), map, i - 1);
                                 return;
                             }
-                            Matcher matcher4 = Pattern.compile(String.format(locale, "(%s)(?:\\.([^(]+)|\\[([^]]+)\\])\\s*(?:\\(+([^()]*)\\))?$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(trim);
+                            Matcher matcher4 = Pattern.compile(String.format(locale, "(%s)(?:\\.([^(]+)|\\[([^]]+)\\])\\s*(?:\\(+([^()]*)\\))?$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(strTrim);
                             if (matcher4.find()) {
-                                String group2 = matcher4.group(1);
-                                String group3 = matcher4.group(2);
-                                String group4 = matcher4.group(3);
-                                if (TextUtils.isEmpty(group3)) {
-                                    group3 = group4;
+                                String strGroup2 = matcher4.group(1);
+                                String strGroup3 = matcher4.group(2);
+                                String strGroup4 = matcher4.group(3);
+                                if (TextUtils.isEmpty(strGroup3)) {
+                                    strGroup3 = strGroup4;
                                 }
-                                group3.replace("\"", "");
-                                String group5 = matcher4.group(4);
-                                if (hashMap.get(group2) == null) {
-                                    extractObject(group2);
+                                strGroup3.replace("\"", "");
+                                String strGroup5 = matcher4.group(4);
+                                if (map.get(strGroup2) == null) {
+                                    extractObject(strGroup2);
                                 }
-                                if (group5 == null) {
+                                if (strGroup5 == null) {
                                     return;
                                 }
-                                if (trim.charAt(trim.length() - 1) != ')') {
+                                if (strTrim.charAt(strTrim.length() - 1) != ')') {
                                     throw new Exception("last char not ')'");
                                 }
-                                if (group5.length() != 0) {
-                                    for (String str2 : group5.split(",")) {
-                                        interpretExpression(str2, hashMap, i);
+                                if (strGroup5.length() != 0) {
+                                    for (String str2 : strGroup5.split(",")) {
+                                        interpretExpression(str2, map, i);
                                     }
                                     return;
                                 }
                                 return;
                             }
-                            Matcher matcher5 = Pattern.compile(String.format(locale, "(%s)\\[(.+)\\]$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(trim);
+                            Matcher matcher5 = Pattern.compile(String.format(locale, "(%s)\\[(.+)\\]$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(strTrim);
                             if (matcher5.find()) {
-                                hashMap.get(matcher5.group(1));
-                                interpretExpression(matcher5.group(2), hashMap, i - 1);
+                                map.get(matcher5.group(1));
+                                interpretExpression(matcher5.group(2), map, i - 1);
                                 return;
                             }
                             int i4 = 0;
@@ -280,26 +281,26 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                 String[] strArr2 = this.operators;
                                 if (i4 < strArr2.length) {
                                     String str3 = strArr2[i4];
-                                    Matcher matcher6 = Pattern.compile(String.format(Locale.US, "(.+?)%s(.+)", Pattern.quote(str3))).matcher(trim);
+                                    Matcher matcher6 = Pattern.compile(String.format(Locale.US, "(.+?)%s(.+)", Pattern.quote(str3))).matcher(strTrim);
                                     if (matcher6.find()) {
                                         boolean[] zArr = new boolean[1];
                                         int i5 = i - 1;
-                                        interpretStatement(matcher6.group(1), hashMap, zArr, i5);
+                                        interpretStatement(matcher6.group(1), map, zArr, i5);
                                         if (zArr[0]) {
-                                            throw new Exception(String.format("Premature left-side return of %s in %s", str3, trim));
+                                            throw new Exception(String.format("Premature left-side return of %s in %s", str3, strTrim));
                                         }
-                                        interpretStatement(matcher6.group(2), hashMap, zArr, i5);
+                                        interpretStatement(matcher6.group(2), map, zArr, i5);
                                         if (zArr[0]) {
-                                            throw new Exception(String.format("Premature right-side return of %s in %s", str3, trim));
+                                            throw new Exception(String.format("Premature right-side return of %s in %s", str3, strTrim));
                                         }
                                     }
                                     i4++;
                                 } else {
-                                    Matcher matcher7 = Pattern.compile(String.format(Locale.US, "^(%s)\\(([a-zA-Z0-9_$,]*)\\)$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(trim);
+                                    Matcher matcher7 = Pattern.compile(String.format(Locale.US, "^(%s)\\(([a-zA-Z0-9_$,]*)\\)$", "[a-zA-Z_$][a-zA-Z_$0-9]*")).matcher(strTrim);
                                     if (matcher7.find()) {
                                         extractFunction(matcher7.group(1));
                                     }
-                                    throw new Exception(String.format("Unsupported JS expression %s", trim));
+                                    throw new Exception(String.format("Unsupported JS expression %s", strTrim));
                                 }
                             }
                         }
@@ -308,60 +309,60 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
         }
 
-        private void interpretStatement(String str, HashMap hashMap, boolean[] zArr, int i) {
+        private void interpretStatement(String str, HashMap map, boolean[] zArr, int i) throws Exception {
             if (i < 0) {
                 throw new Exception("recursion limit reached");
             }
             zArr[0] = false;
-            String trim = str.trim();
-            Matcher matcher = WebPlayerView.stmtVarPattern.matcher(trim);
+            String strTrim = str.trim();
+            Matcher matcher = WebPlayerView.stmtVarPattern.matcher(strTrim);
             if (!matcher.find()) {
-                Matcher matcher2 = WebPlayerView.stmtReturnPattern.matcher(trim);
+                Matcher matcher2 = WebPlayerView.stmtReturnPattern.matcher(strTrim);
                 if (matcher2.find()) {
-                    trim = trim.substring(matcher2.group(0).length());
+                    strTrim = strTrim.substring(matcher2.group(0).length());
                     zArr[0] = true;
                 }
             } else {
-                trim = trim.substring(matcher.group(0).length());
+                strTrim = strTrim.substring(matcher.group(0).length());
             }
-            interpretExpression(trim, hashMap, i);
+            interpretExpression(strTrim, map, i);
         }
 
         private HashMap extractObject(String str) {
-            HashMap hashMap = new HashMap();
+            HashMap map = new HashMap();
             Matcher matcher = Pattern.compile(String.format(Locale.US, "(?:var\\s+)?%s\\s*=\\s*\\{\\s*((%s\\s*:\\s*function\\(.*?\\)\\s*\\{.*?\\}(?:,\\s*)?)*)\\}\\s*;", Pattern.quote(str), "(?:[a-zA-Z$0-9]+|\"[a-zA-Z$0-9]+\"|'[a-zA-Z$0-9]+')")).matcher(this.jsCode);
             String str2 = null;
             while (true) {
                 if (!matcher.find()) {
                     break;
                 }
-                String group = matcher.group();
-                String group2 = matcher.group(2);
-                if (TextUtils.isEmpty(group2)) {
-                    str2 = group2;
+                String strGroup = matcher.group();
+                String strGroup2 = matcher.group(2);
+                if (TextUtils.isEmpty(strGroup2)) {
+                    str2 = strGroup2;
                 } else {
-                    if (!this.codeLines.contains(group)) {
+                    if (!this.codeLines.contains(strGroup)) {
                         this.codeLines.add(matcher.group());
                     }
-                    str2 = group2;
+                    str2 = strGroup2;
                 }
             }
             Matcher matcher2 = Pattern.compile(String.format("(%s)\\s*:\\s*function\\(([a-z,]+)\\)\\{([^}]+)\\}", "(?:[a-zA-Z$0-9]+|\"[a-zA-Z$0-9]+\"|'[a-zA-Z$0-9]+')")).matcher(str2);
             while (matcher2.find()) {
                 buildFunction(matcher2.group(2).split(","), matcher2.group(3));
             }
-            return hashMap;
+            return map;
         }
 
-        private void buildFunction(String[] strArr, String str) {
-            HashMap hashMap = new HashMap();
+        private void buildFunction(String[] strArr, String str) throws Exception {
+            HashMap map = new HashMap();
             for (String str2 : strArr) {
-                hashMap.put(str2, "");
+                map.put(str2, "");
             }
-            String[] split = str.split(";");
+            String[] strArrSplit = str.split(";");
             boolean[] zArr = new boolean[1];
-            for (String str3 : split) {
-                interpretStatement(str3, hashMap, zArr, 100);
+            for (String str3 : strArrSplit) {
+                interpretStatement(str3, map, zArr, 100);
                 if (zArr[0]) {
                     return;
                 }
@@ -370,12 +371,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         public String extractFunction(String str) {
             try {
-                String quote = Pattern.quote(str);
-                Matcher matcher = Pattern.compile(String.format(Locale.US, "(?x)(?:function\\s+%s|[{;,]\\s*%s\\s*=\\s*function|var\\s+%s\\s*=\\s*function)\\s*\\(([^)]*)\\)\\s*\\{([^}]+)\\}", quote, quote, quote)).matcher(this.jsCode);
+                String strQuote = Pattern.quote(str);
+                Matcher matcher = Pattern.compile(String.format(Locale.US, "(?x)(?:function\\s+%s|[{;,]\\s*%s\\s*=\\s*function|var\\s+%s\\s*=\\s*function)\\s*\\(([^)]*)\\)\\s*\\{([^}]+)\\}", strQuote, strQuote, strQuote)).matcher(this.jsCode);
                 if (matcher.find()) {
-                    String group = matcher.group();
-                    if (!this.codeLines.contains(group)) {
-                        this.codeLines.add(group + ";");
+                    String strGroup = matcher.group();
+                    if (!this.codeLines.contains(strGroup)) {
+                        this.codeLines.add(strGroup + ";");
                     }
                     buildFunction(matcher.group(1).split(","), matcher.group(2));
                 }
@@ -404,11 +405,11 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         return downloadUrlContent(asyncTask, str, null, true);
     }
 
-    protected java.lang.String downloadUrlContent(android.os.AsyncTask r19, java.lang.String r20, java.util.HashMap r21, boolean r22) {
+    protected java.lang.String downloadUrlContent(android.os.AsyncTask r19, java.lang.String r20, java.util.HashMap r21, boolean r22) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WebPlayerView.downloadUrlContent(android.os.AsyncTask, java.lang.String, java.util.HashMap, boolean):java.lang.String");
     }
 
-    public class YoutubeVideoTask extends AsyncTask {
+    class YoutubeVideoTask extends AsyncTask {
         private boolean canRetry = true;
         private CountDownLatch countDownLatch = new CountDownLatch(1);
         private String[] result = new String[2];
@@ -420,7 +421,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public java.lang.String[] doInBackground(java.lang.Void... r24) {
+        public java.lang.String[] doInBackground(java.lang.Void... r24) throws org.json.JSONException, java.lang.InterruptedException, java.io.UnsupportedEncodingException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WebPlayerView.YoutubeVideoTask.doInBackground(java.lang.Void[]):java.lang.String[]");
         }
 
@@ -428,7 +429,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             WebPlayerView.this.webView.evaluateJavascript(str, new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
-                    WebPlayerView.YoutubeVideoTask.this.lambda$doInBackground$0((String) obj);
+                    this.f$0.lambda$doInBackground$0((String) obj);
                 }
             });
         }
@@ -471,7 +472,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class VimeoVideoTask extends AsyncTask {
+    private class VimeoVideoTask extends AsyncTask {
         private boolean canRetry = true;
         private String[] results = new String[2];
         private String videoId;
@@ -481,13 +482,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            String downloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "https://player.vimeo.com/video/%s/config", this.videoId));
+        public String doInBackground(Void... voidArr) throws JSONException {
+            String strDownloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "https://player.vimeo.com/video/%s/config", this.videoId));
             if (isCancelled()) {
                 return null;
             }
             try {
-                JSONObject jSONObject = new JSONObject(downloadUrlContent).getJSONObject("request").getJSONObject("files");
+                JSONObject jSONObject = new JSONObject(strDownloadUrlContent).getJSONObject("request").getJSONObject("files");
                 if (jSONObject.has("hls")) {
                     JSONObject jSONObject2 = jSONObject.getJSONObject("hls");
                     try {
@@ -529,7 +530,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class AparatVideoTask extends AsyncTask {
+    private class AparatVideoTask extends AsyncTask {
         private boolean canRetry = true;
         private String[] results = new String[2];
         private String videoId;
@@ -539,13 +540,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            String downloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/%s", this.videoId));
+        public String doInBackground(Void... voidArr) throws JSONException {
+            String strDownloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/%s", this.videoId));
             if (isCancelled()) {
                 return null;
             }
             try {
-                Matcher matcher = WebPlayerView.aparatFileListPattern.matcher(downloadUrlContent);
+                Matcher matcher = WebPlayerView.aparatFileListPattern.matcher(strDownloadUrlContent);
                 if (matcher.find()) {
                     JSONArray jSONArray = new JSONArray(matcher.group(1));
                     for (int i = 0; i < jSONArray.length(); i++) {
@@ -588,7 +589,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class TwitchClipVideoTask extends AsyncTask {
+    private class TwitchClipVideoTask extends AsyncTask {
         private String currentUrl;
         private String videoId;
         private boolean canRetry = true;
@@ -600,13 +601,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            String downloadUrlContent = WebPlayerView.this.downloadUrlContent(this, this.currentUrl, null, false);
+        public String doInBackground(Void... voidArr) throws JSONException, IOException {
+            String strDownloadUrlContent = WebPlayerView.this.downloadUrlContent(this, this.currentUrl, null, false);
             if (isCancelled()) {
                 return null;
             }
             try {
-                Matcher matcher = WebPlayerView.twitchClipFilePattern.matcher(downloadUrlContent);
+                Matcher matcher = WebPlayerView.twitchClipFilePattern.matcher(strDownloadUrlContent);
                 if (matcher.find()) {
                     this.results[0] = new JSONObject(matcher.group(1)).getJSONArray("quality_options").getJSONObject(0).getString("source");
                     this.results[1] = "other";
@@ -640,7 +641,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class TwitchStreamVideoTask extends AsyncTask {
+    private class TwitchStreamVideoTask extends AsyncTask {
         private String currentUrl;
         private String videoId;
         private boolean canRetry = true;
@@ -652,28 +653,28 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            HashMap hashMap = new HashMap();
-            hashMap.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-            int indexOf = this.videoId.indexOf(38);
-            if (indexOf > 0) {
-                this.videoId = this.videoId.substring(0, indexOf);
+        public String doInBackground(Void... voidArr) throws JSONException, IOException {
+            HashMap map = new HashMap();
+            map.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
+            int iIndexOf = this.videoId.indexOf(38);
+            if (iIndexOf > 0) {
+                this.videoId = this.videoId.substring(0, iIndexOf);
             }
             WebPlayerView webPlayerView = WebPlayerView.this;
             Locale locale = Locale.US;
-            String downloadUrlContent = webPlayerView.downloadUrlContent(this, String.format(locale, "https://api.twitch.tv/kraken/streams/%s?stream_type=all", this.videoId), hashMap, false);
+            String strDownloadUrlContent = webPlayerView.downloadUrlContent(this, String.format(locale, "https://api.twitch.tv/kraken/streams/%s?stream_type=all", this.videoId), map, false);
             if (isCancelled()) {
                 return null;
             }
             try {
-                new JSONObject(downloadUrlContent).getJSONObject("stream");
-                JSONObject jSONObject = new JSONObject(WebPlayerView.this.downloadUrlContent(this, String.format(locale, "https://api.twitch.tv/api/channels/%s/access_token", this.videoId), hashMap, false));
-                String encode = URLEncoder.encode(jSONObject.getString("sig"), "UTF-8");
-                String encode2 = URLEncoder.encode(jSONObject.getString("token"), "UTF-8");
+                new JSONObject(strDownloadUrlContent).getJSONObject("stream");
+                JSONObject jSONObject = new JSONObject(WebPlayerView.this.downloadUrlContent(this, String.format(locale, "https://api.twitch.tv/api/channels/%s/access_token", this.videoId), map, false));
+                String strEncode = URLEncoder.encode(jSONObject.getString("sig"), "UTF-8");
+                String strEncode2 = URLEncoder.encode(jSONObject.getString("token"), "UTF-8");
                 URLEncoder.encode("https://youtube.googleapis.com/v/" + this.videoId, "UTF-8");
-                String format = String.format(locale, "https://usher.ttvnw.net/api/channel/hls/%s.m3u8?%s", this.videoId, "allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + encode + "&token=" + encode2);
+                String str = String.format(locale, "https://usher.ttvnw.net/api/channel/hls/%s.m3u8?%s", this.videoId, "allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + strEncode + "&token=" + strEncode2);
                 String[] strArr = this.results;
-                strArr[0] = format;
+                strArr[0] = str;
                 strArr[1] = "hls";
             } catch (Exception e) {
                 FileLog.e(e);
@@ -704,7 +705,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class CoubVideoTask extends AsyncTask {
+    private class CoubVideoTask extends AsyncTask {
         private boolean canRetry = true;
         private String[] results = new String[4];
         private String videoId;
@@ -714,13 +715,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            String downloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "https://coub.com/api/v2/coubs/%s.json", this.videoId));
+        public String doInBackground(Void... voidArr) throws JSONException {
+            String strDownloadUrlContent = WebPlayerView.this.downloadUrlContent(this, String.format(Locale.US, "https://coub.com/api/v2/coubs/%s.json", this.videoId));
             if (isCancelled()) {
                 return null;
             }
             try {
-                JSONObject jSONObject = new JSONObject(downloadUrlContent).getJSONObject("file_versions").getJSONObject("mobile");
+                JSONObject jSONObject = new JSONObject(strDownloadUrlContent).getJSONObject("file_versions").getJSONObject("mobile");
                 String string = jSONObject.getString("video");
                 String string2 = jSONObject.getJSONArray("audio").getString(0);
                 if (string != null && string2 != null) {
@@ -761,7 +762,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class ControlsView extends FrameLayout {
+    class ControlsView extends FrameLayout {
         private int bufferedPosition;
         private AnimatorSet currentAnimation;
         private int currentProgressX;
@@ -790,7 +791,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    WebPlayerView.ControlsView.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             };
             setWillNotDraw(false);
@@ -910,27 +911,27 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         public boolean onTouchEvent(MotionEvent motionEvent) {
             int measuredWidth;
             int measuredHeight;
-            int i;
+            int iDp;
             if (WebPlayerView.this.inFullscreen) {
-                i = AndroidUtilities.dp(36.0f) + this.durationWidth;
+                iDp = AndroidUtilities.dp(36.0f) + this.durationWidth;
                 measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - this.durationWidth;
                 measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth();
                 measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(12.0f);
-                i = 0;
+                iDp = 0;
             }
-            int i2 = this.duration;
-            int i3 = (i2 != 0 ? (int) ((measuredWidth - i) * (this.progress / i2)) : 0) + i;
+            int i = this.duration;
+            int i2 = (i != 0 ? (int) ((measuredWidth - iDp) * (this.progress / i)) : 0) + iDp;
             if (motionEvent.getAction() == 0) {
                 if (this.isVisible && !WebPlayerView.this.isInline && !WebPlayerView.this.isStream) {
                     if (this.duration != 0) {
                         int x = (int) motionEvent.getX();
                         int y = (int) motionEvent.getY();
-                        if (x >= i3 - AndroidUtilities.dp(10.0f) && x <= AndroidUtilities.dp(10.0f) + i3 && y >= measuredHeight - AndroidUtilities.dp(10.0f) && y <= measuredHeight + AndroidUtilities.dp(10.0f)) {
+                        if (x >= i2 - AndroidUtilities.dp(10.0f) && x <= AndroidUtilities.dp(10.0f) + i2 && y >= measuredHeight - AndroidUtilities.dp(10.0f) && y <= measuredHeight + AndroidUtilities.dp(10.0f)) {
                             this.progressPressed = true;
                             this.lastProgressX = x;
-                            this.currentProgressX = i3;
+                            this.currentProgressX = i2;
                             getParent().requestDisallowInterceptTouchEvent(true);
                             invalidate();
                         }
@@ -946,21 +947,21 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (this.progressPressed) {
                     this.progressPressed = false;
                     if (WebPlayerView.this.initied) {
-                        this.progress = (int) (this.duration * ((this.currentProgressX - i) / (measuredWidth - i)));
+                        this.progress = (int) (this.duration * ((this.currentProgressX - iDp) / (measuredWidth - iDp)));
                         WebPlayerView.this.videoPlayer.seekTo(this.progress * 1000);
                     }
                 }
             } else if (motionEvent.getAction() == 2 && this.progressPressed) {
                 int x2 = (int) motionEvent.getX();
-                int i4 = this.currentProgressX - (this.lastProgressX - x2);
-                this.currentProgressX = i4;
+                int i3 = this.currentProgressX - (this.lastProgressX - x2);
+                this.currentProgressX = i3;
                 this.lastProgressX = x2;
-                if (i4 < i) {
-                    this.currentProgressX = i;
-                } else if (i4 > measuredWidth) {
+                if (i3 < iDp) {
+                    this.currentProgressX = iDp;
+                } else if (i3 > measuredWidth) {
                     this.currentProgressX = measuredWidth;
                 }
-                setProgress((int) (this.duration * 1000 * ((this.currentProgressX - i) / (measuredWidth - i))));
+                setProgress((int) (this.duration * 1000 * ((this.currentProgressX - iDp) / (measuredWidth - iDp))));
                 invalidate();
             }
             super.onTouchEvent(motionEvent);
@@ -1014,7 +1015,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return false;
             }
 
-            public class AnonymousClass1 implements ViewTreeObserver.OnPreDrawListener {
+            class AnonymousClass1 implements ViewTreeObserver.OnPreDrawListener {
                 AnonymousClass1() {
                 }
 
@@ -1032,7 +1033,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            WebPlayerView.AnonymousClass2.AnonymousClass1.this.lambda$onPreDraw$0();
+                            this.f$0.lambda$onPreDraw$0();
                         }
                     });
                     WebPlayerView.this.waitingForFirstTextureUpload = 0;
@@ -1104,7 +1105,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.backgroundPaint.setColor(-16777216);
         AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context) {
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
                 if (WebPlayerView.this.textureViewContainer != null) {
                     ViewGroup.LayoutParams layoutParams = WebPlayerView.this.textureView.getLayoutParams();
@@ -1138,7 +1139,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         webView.addJavascriptInterface(new JavaScriptInterface(new CallJavaResultInterface() {
             @Override
             public final void jsCallFinished(String str) {
-                WebPlayerView.this.lambda$new$0(str);
+                this.f$0.lambda$new$0(str);
             }
         }), this.interfaceName);
         WebSettings settings = this.webView.getSettings();
@@ -1188,7 +1189,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebPlayerView.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         ImageView imageView3 = new ImageView(context);
@@ -1198,7 +1199,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebPlayerView.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         if (z) {
@@ -1209,7 +1210,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.inlineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    WebPlayerView.this.lambda$new$3(view);
+                    this.f$0.lambda$new$3(view);
                 }
             });
         }
@@ -1222,7 +1223,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    WebPlayerView.this.lambda$new$4(view);
+                    this.f$0.lambda$new$4(view);
                 }
             });
         }
@@ -1338,9 +1339,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             return;
         }
         try {
-            Bitmap createBitmap = Bitmaps.createBitmap(this.textureView.getWidth(), this.textureView.getHeight(), Bitmap.Config.ARGB_8888);
-            this.currentBitmap = createBitmap;
-            this.changedTextureView.getBitmap(createBitmap);
+            Bitmap bitmapCreateBitmap = Bitmaps.createBitmap(this.textureView.getWidth(), this.textureView.getHeight(), Bitmap.Config.ARGB_8888);
+            this.currentBitmap = bitmapCreateBitmap;
+            this.changedTextureView.getBitmap(bitmapCreateBitmap);
         } catch (Throwable th) {
             Bitmap bitmap = this.currentBitmap;
             if (bitmap != null) {
@@ -1466,9 +1467,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         int i5 = i3 - i;
         int measuredWidth = (i5 - this.aspectRatioFrameLayout.getMeasuredWidth()) / 2;
         int i6 = i4 - i2;
-        int dp = ((i6 - AndroidUtilities.dp(10.0f)) - this.aspectRatioFrameLayout.getMeasuredHeight()) / 2;
+        int iDp = ((i6 - AndroidUtilities.dp(10.0f)) - this.aspectRatioFrameLayout.getMeasuredHeight()) / 2;
         AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
-        aspectRatioFrameLayout.layout(measuredWidth, dp, aspectRatioFrameLayout.getMeasuredWidth() + measuredWidth, this.aspectRatioFrameLayout.getMeasuredHeight() + dp);
+        aspectRatioFrameLayout.layout(measuredWidth, iDp, aspectRatioFrameLayout.getMeasuredWidth() + measuredWidth, this.aspectRatioFrameLayout.getMeasuredHeight() + iDp);
         if (this.controlsView.getParent() == this) {
             ControlsView controlsView = this.controlsView;
             controlsView.layout(0, 0, controlsView.getMeasuredWidth(), this.controlsView.getMeasuredHeight());
@@ -1525,7 +1526,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebPlayerView.this.lambda$onAudioFocusChange$5(i);
+                this.f$0.lambda$onAudioFocusChange$5(i);
             }
         });
     }
@@ -1675,9 +1676,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     }
                 }
             }
-            TextureView onSwitchToFullscreen = this.delegate.onSwitchToFullscreen(this.controlsView, this.inFullscreen, this.aspectRatioFrameLayout.getAspectRatio(), this.aspectRatioFrameLayout.getVideoRotation(), z);
-            this.changedTextureView = onSwitchToFullscreen;
-            onSwitchToFullscreen.setVisibility(4);
+            TextureView textureViewOnSwitchToFullscreen = this.delegate.onSwitchToFullscreen(this.controlsView, this.inFullscreen, this.aspectRatioFrameLayout.getAspectRatio(), this.aspectRatioFrameLayout.getVideoRotation(), z);
+            this.changedTextureView = textureViewOnSwitchToFullscreen;
+            textureViewOnSwitchToFullscreen.setVisibility(4);
             if (this.inFullscreen && this.changedTextureView != null && (viewGroup = (ViewGroup) this.textureView.getParent()) != null) {
                 viewGroup.removeView(this.textureView);
             }
@@ -1808,18 +1809,18 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public String getCoubId(String str) {
-        String group;
+        String strGroup;
         if (TextUtils.isEmpty(str)) {
             return null;
         }
         try {
             Matcher matcher = coubIdRegex.matcher(str);
-            group = matcher.find() ? matcher.group(1) : null;
+            strGroup = matcher.find() ? matcher.group(1) : null;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (group != null) {
-            return group;
+        if (strGroup != null) {
+            return strGroup;
         }
         return null;
     }

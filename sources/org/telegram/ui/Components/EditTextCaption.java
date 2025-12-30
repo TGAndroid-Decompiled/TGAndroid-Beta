@@ -175,17 +175,17 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     public void makeSelectedQuote(boolean z) {
         int selectionEnd;
-        int i = this.selectionStart;
-        if (i >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
+        int selectionStart = this.selectionStart;
+        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
             this.selectionEnd = -1;
             this.selectionStart = -1;
         } else {
-            i = getSelectionStart();
+            selectionStart = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        int putQuoteToEditable = QuoteSpan.putQuoteToEditable(getText(), i, selectionEnd, z);
-        if (putQuoteToEditable >= 0) {
-            setSelection(putQuoteToEditable);
+        int iPutQuoteToEditable = QuoteSpan.putQuoteToEditable(getText(), selectionStart, selectionEnd, z);
+        if (iPutQuoteToEditable >= 0) {
+            setSelection(iPutQuoteToEditable);
             resetFontMetricsCache();
         }
         invalidateQuotes(true);
@@ -195,7 +195,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     public void makeSelectedUrl() {
         Object builder;
         final int selectionEnd;
-        CharSequence charSequence;
+        CharSequence charSequenceCoerceToText;
         if (this.adaptiveCreateLinkDialog) {
             builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
         } else {
@@ -206,7 +206,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         ?? frameLayout = new FrameLayout(getContext());
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
             }
         };
@@ -240,22 +240,22 @@ public class EditTextCaption extends EditTextBoldCursor {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                EditTextCaption.this.lambda$makeSelectedUrl$0(editTextBoldCursor, textView);
+                this.f$0.lambda$makeSelectedUrl$0(editTextBoldCursor, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                EditTextCaption.this.lambda$makeSelectedUrl$1(editTextBoldCursor, runnable, view);
+                this.f$0.lambda$makeSelectedUrl$1(editTextBoldCursor, runnable, view);
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
 
             @Override
@@ -266,46 +266,46 @@ public class EditTextCaption extends EditTextBoldCursor {
         ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
         if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
             try {
-                charSequence = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(getContext());
+                charSequenceCoerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(getContext());
             } catch (Exception e) {
                 FileLog.e(e);
-                charSequence = null;
+                charSequenceCoerceToText = null;
             }
-            if (charSequence != null) {
-                editTextBoldCursor.setText(charSequence);
+            if (charSequenceCoerceToText != null) {
+                editTextBoldCursor.setText(charSequenceCoerceToText);
                 editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
             }
         }
         runnable.run();
         r2.setView(frameLayout);
-        final int i = this.selectionStart;
-        if (i >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
+        final int selectionStart = this.selectionStart;
+        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
             this.selectionEnd = -1;
             this.selectionStart = -1;
         } else {
-            i = getSelectionStart();
+            selectionStart = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
         r2.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                EditTextCaption.this.lambda$makeSelectedUrl$2(i, selectionEnd, editTextBoldCursor, alertDialog, i2);
+            public final void onClick(AlertDialog alertDialog, int i) {
+                this.f$0.lambda$makeSelectedUrl$2(selectionStart, selectionEnd, editTextBoldCursor, alertDialog, i);
             }
         });
         r2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         if (this.adaptiveCreateLinkDialog) {
-            AlertDialog create = r2.create();
-            this.creationLinkDialog = create;
-            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog alertDialogCreate = r2.create();
+            this.creationLinkDialog = alertDialogCreate;
+            alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    EditTextCaption.this.lambda$makeSelectedUrl$3(dialogInterface);
+                    this.f$0.lambda$makeSelectedUrl$3(dialogInterface);
                 }
             });
             this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$4(EditTextBoldCursor.this, dialogInterface);
+                    EditTextCaption.lambda$makeSelectedUrl$4(editTextBoldCursor, dialogInterface);
                 }
             });
             this.creationLinkDialog.showDelayed(250L);
@@ -313,7 +313,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             r2.show().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$5(EditTextBoldCursor.this, dialogInterface);
+                    EditTextCaption.lambda$makeSelectedUrl$5(editTextBoldCursor, dialogInterface);
                 }
             });
         }
@@ -322,9 +322,9 @@ public class EditTextCaption extends EditTextBoldCursor {
             if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
                 ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
             }
-            int dp = AndroidUtilities.dp(24.0f);
-            marginLayoutParams.leftMargin = dp;
-            marginLayoutParams.rightMargin = dp;
+            int iDp = AndroidUtilities.dp(24.0f);
+            marginLayoutParams.leftMargin = iDp;
+            marginLayoutParams.rightMargin = iDp;
             marginLayoutParams.height = AndroidUtilities.dp(36.0f);
             editTextBoldCursor.setLayoutParams(marginLayoutParams);
         }
@@ -338,15 +338,15 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public void lambda$makeSelectedUrl$1(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
-        CharSequence charSequence;
+        CharSequence charSequenceCoerceToText;
         try {
-            charSequence = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
+            charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
         } catch (Exception e) {
             FileLog.e(e);
-            charSequence = null;
+            charSequenceCoerceToText = null;
         }
-        if (charSequence != null) {
-            editTextBoldCursor.setText(charSequence);
+        if (charSequenceCoerceToText != null) {
+            editTextBoldCursor.setText(charSequenceCoerceToText);
             editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
         }
         runnable.run();
@@ -418,25 +418,25 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     private void applyTextStyleToSelection(TextStyleSpan textStyleSpan) {
         int selectionEnd;
-        int i = this.selectionStart;
-        if (i >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
+        int selectionStart = this.selectionStart;
+        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
             this.selectionEnd = -1;
             this.selectionStart = -1;
         } else {
-            i = getSelectionStart();
+            selectionStart = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        MediaDataController.addStyleToText(textStyleSpan, i, selectionEnd, getText(), this.allowTextEntitiesIntersection);
+        MediaDataController.addStyleToText(textStyleSpan, selectionStart, selectionEnd, getText(), this.allowTextEntitiesIntersection);
         if (textStyleSpan == null) {
             Editable text = getText();
-            for (CodeHighlighting.Span span : (CodeHighlighting.Span[]) text.getSpans(i, selectionEnd, CodeHighlighting.Span.class)) {
+            for (CodeHighlighting.Span span : (CodeHighlighting.Span[]) text.getSpans(selectionStart, selectionEnd, CodeHighlighting.Span.class)) {
                 text.removeSpan(span);
             }
-            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) text.getSpans(i, selectionEnd, QuoteSpan.class);
-            for (int i2 = 0; i2 < quoteSpanArr.length; i2++) {
-                text.removeSpan(quoteSpanArr[i2]);
-                text.removeSpan(quoteSpanArr[i2].styleSpan);
-                QuoteSpan.QuoteCollapsedPart quoteCollapsedPart = quoteSpanArr[i2].collapsedSpan;
+            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) text.getSpans(selectionStart, selectionEnd, QuoteSpan.class);
+            for (int i = 0; i < quoteSpanArr.length; i++) {
+                text.removeSpan(quoteSpanArr[i]);
+                text.removeSpan(quoteSpanArr[i].styleSpan);
+                QuoteSpan.QuoteCollapsedPart quoteCollapsedPart = quoteSpanArr[i].collapsedSpan;
                 if (quoteCollapsedPart != null) {
                     text.removeSpan(quoteCollapsedPart);
                 }
@@ -580,8 +580,8 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
-        int indexOf;
+    protected void onMeasure(int i, int i2) {
+        int iIndexOf;
         try {
             this.isInitLineCount = getMeasuredWidth() == 0 && getMeasuredHeight() == 0;
             super.onMeasure(i, i2);
@@ -599,19 +599,19 @@ public class EditTextCaption extends EditTextBoldCursor {
             return;
         }
         Editable text = getText();
-        if (text.length() <= 1 || text.charAt(0) != '@' || (indexOf = TextUtils.indexOf((CharSequence) text, ' ')) == -1) {
+        if (text.length() <= 1 || text.charAt(0) != '@' || (iIndexOf = TextUtils.indexOf((CharSequence) text, ' ')) == -1) {
             return;
         }
         TextPaint paint = getPaint();
-        CharSequence subSequence = text.subSequence(0, indexOf + 1);
-        int ceil = (int) Math.ceil(paint.measureText(text, 0, r13));
+        CharSequence charSequenceSubSequence = text.subSequence(0, iIndexOf + 1);
+        int iCeil = (int) Math.ceil(paint.measureText(text, 0, r13));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        this.userNameLength = subSequence.length();
-        int i3 = measuredWidth - ceil;
-        CharSequence ellipsize = TextUtils.ellipsize(this.caption, paint, i3, TextUtils.TruncateAt.END);
-        this.xOffset = ceil;
+        this.userNameLength = charSequenceSubSequence.length();
+        int i3 = measuredWidth - iCeil;
+        CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.caption, paint, i3, TextUtils.TruncateAt.END);
+        this.xOffset = iCeil;
         try {
-            StaticLayout staticLayout = new StaticLayout(ellipsize, getPaint(), i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(charSequenceEllipsize, getPaint(), i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.captionLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.xOffset = (int) (this.xOffset + (-this.captionLayout.getLineLeft(0)));
@@ -620,6 +620,14 @@ public class EditTextCaption extends EditTextBoldCursor {
         } catch (Exception e2) {
             FileLog.e(e2);
         }
+    }
+
+    public boolean isNearRightCaption(int i) {
+        Layout layout = getLayout();
+        if (layout == null || layout.getLineCount() <= 0) {
+            return false;
+        }
+        return layout.getLineCount() > 1 || layout.getLineRight(0) + ((float) i) >= ((float) ((getWidth() - getPaddingLeft()) - getPaddingRight()));
     }
 
     public String getCaption() {
@@ -634,7 +642,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         canvas.save();
         canvas.translate(0.0f, this.offsetY);
         super.onDraw(canvas);
@@ -658,11 +666,11 @@ public class EditTextCaption extends EditTextBoldCursor {
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        AccessibilityNodeInfoCompat wrap = AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo);
+        AccessibilityNodeInfoCompat accessibilityNodeInfoCompatWrap = AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo);
         if (!TextUtils.isEmpty(this.caption)) {
-            wrap.setHintText(this.caption);
+            accessibilityNodeInfoCompatWrap.setHintText(this.caption);
         }
-        List actionList = wrap.getActionList();
+        List actionList = accessibilityNodeInfoCompatWrap.getActionList();
         int size = actionList.size();
         int i = 0;
         while (true) {
@@ -671,20 +679,20 @@ public class EditTextCaption extends EditTextBoldCursor {
             }
             AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat = (AccessibilityNodeInfoCompat.AccessibilityActionCompat) actionList.get(i);
             if (accessibilityActionCompat.getId() == 268435456) {
-                wrap.removeAction(accessibilityActionCompat);
+                accessibilityNodeInfoCompatWrap.removeAction(accessibilityActionCompat);
                 break;
             }
             i++;
         }
         if (hasSelection()) {
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString(R.string.Bold)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString(R.string.Italic)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString(R.string.Mono)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString(R.string.Strike)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString(R.string.Underline)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString(R.string.CreateLink)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString(R.string.Regular)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString(R.string.Bold)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString(R.string.Italic)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString(R.string.Mono)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString(R.string.Strike)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString(R.string.Underline)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString(R.string.CreateLink)));
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString(R.string.Regular)));
         }
     }
 
@@ -711,9 +719,9 @@ public class EditTextCaption extends EditTextBoldCursor {
                             animatedEmojiSpan.applyFontMetrics(getPaint().getFontMetricsInt(), AnimatedEmojiDrawable.getCacheTypeForEnterView());
                         }
                     }
-                    int max = Math.max(0, getSelectionStart());
-                    int min = Math.min(getText().length(), getSelectionEnd());
-                    QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) getText().getSpans(max, min, QuoteSpan.QuoteStyleSpan.class);
+                    int iMax = Math.max(0, getSelectionStart());
+                    int iMin = Math.min(getText().length(), getSelectionEnd());
+                    QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) getText().getSpans(iMax, iMin, QuoteSpan.QuoteStyleSpan.class);
                     if (quoteStyleSpanArr != null && quoteStyleSpanArr.length > 0) {
                         QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr2 = (QuoteSpan.QuoteStyleSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteSpan.QuoteStyleSpan.class);
                         for (int i2 = 0; i2 < quoteStyleSpanArr2.length; i2++) {
@@ -723,8 +731,8 @@ public class EditTextCaption extends EditTextBoldCursor {
                     } else {
                         QuoteSpan.normalizeQuotes(spannableStringBuilder);
                     }
-                    setText(getText().replace(max, min, spannableStringBuilder));
-                    setSelection(spannableStringBuilder.length() + max, max + spannableStringBuilder.length());
+                    setText(getText().replace(iMax, iMin, spannableStringBuilder));
+                    setSelection(spannableStringBuilder.length() + iMax, iMax + spannableStringBuilder.length());
                     return true;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -733,30 +741,30 @@ public class EditTextCaption extends EditTextBoldCursor {
         } else {
             try {
                 if (i == 16908321) {
-                    int max2 = Math.max(0, getSelectionStart());
-                    int min2 = Math.min(getText().length(), getSelectionEnd());
-                    AndroidUtilities.addToClipboard(getText().subSequence(max2, min2));
+                    int iMax2 = Math.max(0, getSelectionStart());
+                    int iMin2 = Math.min(getText().length(), getSelectionEnd());
+                    AndroidUtilities.addToClipboard(getText().subSequence(iMax2, iMin2));
                     AndroidUtilities.findActivity(getContext()).closeContextMenu();
                     FloatingActionMode floatingActionMode = this.floatingActionMode;
                     if (floatingActionMode != null) {
                         floatingActionMode.finish();
                     }
-                    setSelection(max2, min2);
+                    setSelection(iMax2, iMin2);
                     return true;
                 }
                 if (i == 16908320) {
-                    int max3 = Math.max(0, getSelectionStart());
-                    int min3 = Math.min(getText().length(), getSelectionEnd());
-                    AndroidUtilities.addToClipboard(getText().subSequence(max3, min3));
+                    int iMax3 = Math.max(0, getSelectionStart());
+                    int iMin3 = Math.min(getText().length(), getSelectionEnd());
+                    AndroidUtilities.addToClipboard(getText().subSequence(iMax3, iMin3));
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                    if (max3 != 0) {
-                        spannableStringBuilder2.append(getText().subSequence(0, max3));
+                    if (iMax3 != 0) {
+                        spannableStringBuilder2.append(getText().subSequence(0, iMax3));
                     }
-                    if (min3 != getText().length()) {
-                        spannableStringBuilder2.append(getText().subSequence(min3, getText().length()));
+                    if (iMin3 != getText().length()) {
+                        spannableStringBuilder2.append(getText().subSequence(iMin3, getText().length()));
                     }
                     setText(spannableStringBuilder2);
-                    setSelection(max3, max3);
+                    setSelection(iMax3, iMax3);
                     return true;
                 }
             } catch (Exception unused) {

@@ -72,7 +72,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    RevenueSharingAdsInfoBottomSheet.this.lambda$new$0(callback, resourcesProvider, imageView, view);
+                    this.f$0.lambda$new$0(callback, resourcesProvider, imageView, view);
                 }
             });
             frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
@@ -94,12 +94,12 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 22, 8, 22, 0));
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_privacy, LocaleController.getString(z ? R.string.RevenueSharingAdsInfo1TitleBot : R.string.RevenueSharingAdsInfo1Title), LocaleController.getString(z ? R.string.RevenueSharingAdsInfo1SubtitleBot : R.string.RevenueSharingAdsInfo1Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 20, 0, 0));
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_split, LocaleController.getString(z ? R.string.RevenueSharingAdsInfo2TitleBot : R.string.RevenueSharingAdsInfo2Title), LocaleController.getString(z ? R.string.RevenueSharingAdsInfo2SubtitleBot : R.string.RevenueSharingAdsInfo2Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
-        String formatString = LocaleController.formatString(z ? R.string.RevenueSharingAdsInfo3SubtitleBot : R.string.RevenueSharingAdsInfo3Subtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
+        String string = LocaleController.formatString(z ? R.string.RevenueSharingAdsInfo3SubtitleBot : R.string.RevenueSharingAdsInfo3Subtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i3 = Theme.key_chat_messageLinkIn;
-        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i3, 0, new Runnable() {
+        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(string, i3, 0, new Runnable() {
             @Override
             public final void run() {
-                RevenueSharingAdsInfoBottomSheet.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         })), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
@@ -115,11 +115,11 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         textView3.setTextAlignment(4);
         textView3.setGravity(17);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 1, 22, 0, 22, 0));
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.RevenueSharingAdsInfo4Subtitle2Bot : R.string.RevenueSharingAdsInfo4Subtitle2));
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
+        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.RevenueSharingAdsInfo4Subtitle2Bot : R.string.RevenueSharingAdsInfo4Subtitle2));
+        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
             @Override
             public final void run() {
-                RevenueSharingAdsInfoBottomSheet.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         });
         SpannableString spannableString = new SpannableString(">");
@@ -129,9 +129,9 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         coloredImageSpan.setWidth(AndroidUtilities.dp(12.0f));
         coloredImageSpan.setTranslateY(1.0f);
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-        SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence(">", AndroidUtilities.replaceCharSequence("%1$s", replaceTags, replaceSingleTag), spannableString);
+        SpannableStringBuilder spannableStringBuilderReplaceCharSequence = AndroidUtilities.replaceCharSequence(">", AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceTags, spannableStringBuilderReplaceSingleTag), spannableString);
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-        linksTextView.setText(replaceCharSequence);
+        linksTextView.setText(spannableStringBuilderReplaceCharSequence);
         linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setGravity(1);
@@ -150,7 +150,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                RevenueSharingAdsInfoBottomSheet.this.lambda$new$3(view2);
+                this.f$0.lambda$new$3(view2);
             }
         });
         linearLayout.addView(textView4, LayoutHelper.createLinear(-1, 48, 0, 14, 22, 14, 14));
@@ -200,10 +200,10 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
             super(context);
             boolean z = LocaleController.isRTL;
             ImageView imageView = new ImageView(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
+            Drawable drawableMutate = getContext().getResources().getDrawable(i).mutate();
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            imageView.setImageDrawable(mutate);
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView.setImageDrawable(drawableMutate);
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
             TextView textView = new TextView(getContext());
             textView.setText(charSequence);
@@ -231,7 +231,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                RevenueSharingAdsInfoBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;

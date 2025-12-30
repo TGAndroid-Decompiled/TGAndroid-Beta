@@ -87,7 +87,7 @@ public class SimpleAvatarView extends View {
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SimpleAvatarView.this.lambda$setSelected$0(valueAnimator2);
+                    this.f$0.lambda$setSelected$0(valueAnimator2);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {

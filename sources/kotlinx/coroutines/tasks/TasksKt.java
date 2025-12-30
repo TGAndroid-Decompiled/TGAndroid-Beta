@@ -19,7 +19,7 @@ public abstract class TasksKt {
         return awaitImpl(task, null, continuation);
     }
 
-    private static final Object awaitImpl(Task task, final CancellationTokenSource cancellationTokenSource, Continuation continuation) {
+    private static final Object awaitImpl(Task task, final CancellationTokenSource cancellationTokenSource, Continuation continuation) throws Exception {
         if (task.isComplete()) {
             Exception exception = task.getException();
             if (exception == null) {
@@ -38,15 +38,15 @@ public abstract class TasksKt {
                 Exception exception2 = task2.getException();
                 if (exception2 == null) {
                     if (task2.isCanceled()) {
-                        CancellableContinuation.DefaultImpls.cancel$default(CancellableContinuation.this, null, 1, null);
+                        CancellableContinuation.DefaultImpls.cancel$default(cancellableContinuationImpl, null, 1, null);
                         return;
                     }
-                    CancellableContinuation cancellableContinuation = CancellableContinuation.this;
+                    CancellableContinuation cancellableContinuation = cancellableContinuationImpl;
                     Result.Companion companion = Result.Companion;
                     cancellableContinuation.resumeWith(Result.m275constructorimpl(task2.getResult()));
                     return;
                 }
-                CancellableContinuation cancellableContinuation2 = CancellableContinuation.this;
+                CancellableContinuation cancellableContinuation2 = cancellableContinuationImpl;
                 Result.Companion companion2 = Result.Companion;
                 cancellableContinuation2.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(exception2)));
             }
@@ -64,7 +64,7 @@ public abstract class TasksKt {
                 }
 
                 public final void invoke(Throwable th) {
-                    CancellationTokenSource.this.cancel();
+                    cancellationTokenSource.cancel();
                 }
             });
         }

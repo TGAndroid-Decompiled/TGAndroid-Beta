@@ -179,10 +179,10 @@ public class MentionCell extends LinearLayout {
                     ((AnimatedEmojiDrawable) drawable).removeView(this);
                     this.emojiDrawable = null;
                 }
-                AnimatedEmojiDrawable make = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 0, Long.parseLong(keywordResult.emoji.substring(9)));
-                this.emojiDrawable = make;
+                AnimatedEmojiDrawable animatedEmojiDrawableMake = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 0, Long.parseLong(keywordResult.emoji.substring(9)));
+                this.emojiDrawable = animatedEmojiDrawableMake;
                 if (this.attached) {
-                    make.addView(this);
+                    animatedEmojiDrawableMake.addView(this);
                 }
             } catch (Exception unused) {
                 this.emojiDrawable = Emoji.getEmojiDrawable(keywordResult.emoji);
@@ -213,9 +213,9 @@ public class MentionCell extends LinearLayout {
         super.dispatchDraw(canvas);
         Drawable drawable = this.emojiDrawable;
         if (drawable != null) {
-            int dp = AndroidUtilities.dp(drawable instanceof AnimatedEmojiDrawable ? 24.0f : 20.0f);
-            int dp2 = AndroidUtilities.dp(this.emojiDrawable instanceof AnimatedEmojiDrawable ? -2.0f : 0.0f);
-            this.emojiDrawable.setBounds(this.nameTextView.getLeft() + dp2, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) - dp) / 2, this.nameTextView.getLeft() + dp2 + dp, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) + dp) / 2);
+            int iDp = AndroidUtilities.dp(drawable instanceof AnimatedEmojiDrawable ? 24.0f : 20.0f);
+            int iDp2 = AndroidUtilities.dp(this.emojiDrawable instanceof AnimatedEmojiDrawable ? -2.0f : 0.0f);
+            this.emojiDrawable.setBounds(this.nameTextView.getLeft() + iDp2, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) - iDp) / 2, this.nameTextView.getLeft() + iDp2 + iDp, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) + iDp) / 2);
             Drawable drawable2 = this.emojiDrawable;
             if (drawable2 instanceof AnimatedEmojiDrawable) {
                 ((AnimatedEmojiDrawable) drawable2).setTime(System.currentTimeMillis());

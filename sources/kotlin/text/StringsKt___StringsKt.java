@@ -18,8 +18,8 @@ public abstract class StringsKt___StringsKt extends StringsKt___StringsJvmKt {
         if (i < 0) {
             throw new IllegalArgumentException(("Requested character count " + i + " is less than zero.").toString());
         }
-        String substring = str.substring(RangesKt.coerceAtMost(i, str.length()));
-        Intrinsics.checkNotNullExpressionValue(substring, "substring(...)");
-        return substring;
+        String strSubstring = str.substring(RangesKt.coerceAtMost(i, str.length()));
+        Intrinsics.checkNotNullExpressionValue(strSubstring, "substring(...)");
+        return strSubstring;
     }
 }

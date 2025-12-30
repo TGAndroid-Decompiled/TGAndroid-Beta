@@ -29,7 +29,7 @@ public class MarqueeTextView extends TextView {
         this.startMarquee = new Runnable() {
             @Override
             public final void run() {
-                MarqueeTextView.this.startMarqueeInternal();
+                this.f$0.startMarqueeInternal();
             }
         };
     }
@@ -55,10 +55,10 @@ public class MarqueeTextView extends TextView {
     }
 
     private void invalidateGradient() {
-        float min = Math.min(AndroidUtilities.dp(10.0f) / this.originalWidth, 0.49f);
+        float fMin = Math.min(AndroidUtilities.dp(10.0f) / this.originalWidth, 0.49f);
         int currentTextColor = getCurrentTextColor();
         int i = 1048575 & currentTextColor;
-        this.gradient = new LinearGradient(0.0f, 0.0f, this.originalWidth, 0.0f, new int[]{i, currentTextColor, currentTextColor, i}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        this.gradient = new LinearGradient(0.0f, 0.0f, this.originalWidth, 0.0f, new int[]{i, currentTextColor, currentTextColor, i}, new float[]{0.0f, fMin, 1.0f - fMin, 1.0f}, Shader.TileMode.CLAMP);
         if (this.needMarquee) {
             getPaint().setShader(this.gradient);
         } else {
@@ -75,15 +75,15 @@ public class MarqueeTextView extends TextView {
     @Override
     protected void onDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth();
-        int dp = AndroidUtilities.dp(40.0f);
+        int iDp = AndroidUtilities.dp(40.0f);
         float f = this.scrollX;
         float f2 = measuredWidth;
-        float clamp = f < f2 ? MathUtils.clamp(f / AndroidUtilities.dp(10.0f), 0.0f, 1.0f) : 0.0f;
+        float fClamp = f < f2 ? MathUtils.clamp(f / AndroidUtilities.dp(10.0f), 0.0f, 1.0f) : 0.0f;
         this.gradientMatrix.reset();
         Matrix matrix = this.gradientMatrix;
-        float dp2 = AndroidUtilities.dp(10.0f);
+        float fDp = AndroidUtilities.dp(10.0f);
         float f3 = this.originalWidth;
-        matrix.postScale(((dp2 / f3) * (1.0f - clamp)) + 1.0f, 1.0f, f3, 0.0f);
+        matrix.postScale(((fDp / f3) * (1.0f - fClamp)) + 1.0f, 1.0f, f3, 0.0f);
         this.gradientMatrix.postScale(1.0f - (this.rightPadding / this.originalWidth), 1.0f, 0.0f, 0.0f);
         this.gradientMatrix.postTranslate(this.scrollX, 0.0f);
         this.gradient.setLocalMatrix(this.gradientMatrix);
@@ -96,7 +96,7 @@ public class MarqueeTextView extends TextView {
             if (f4 > 0.0f && f4 + getWidth() > f2 && this.needMarquee && this.marqueeIsStarted) {
                 Matrix matrix2 = this.gradientMatrix;
                 float f5 = -this.scrollX;
-                float f6 = dp;
+                float f6 = iDp;
                 matrix2.postTranslate(f5 - ((f5 + f2) + f6), 0.0f);
                 this.gradient.setLocalMatrix(this.gradientMatrix);
                 canvas.save();
@@ -106,14 +106,14 @@ public class MarqueeTextView extends TextView {
             }
         }
         boolean z = ((double) this.scrollX) < 1.0E-4d;
-        long uptimeMillis = SystemClock.uptimeMillis();
+        long jUptimeMillis = SystemClock.uptimeMillis();
         long j = this.lastFrameTime;
-        long min = (j == 0 || z) ? 16L : Math.min(uptimeMillis - j, 120L);
-        this.lastFrameTime = uptimeMillis;
+        long jMin = (j == 0 || z) ? 16L : Math.min(jUptimeMillis - j, 120L);
+        this.lastFrameTime = jUptimeMillis;
         if ((this.needMarquee && this.marqueeIsStarted) || !z) {
-            float dp3 = this.scrollX + (AndroidUtilities.dp(60.0f) * (((float) min) / 1000.0f));
-            this.scrollX = dp3;
-            if (dp3 > measuredWidth + dp) {
+            float fDp2 = this.scrollX + (AndroidUtilities.dp(60.0f) * (jMin / 1000.0f));
+            this.scrollX = fDp2;
+            if (fDp2 > measuredWidth + iDp) {
                 stopMarqueeInternal();
             }
             invalidate();

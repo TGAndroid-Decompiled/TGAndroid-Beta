@@ -5,9 +5,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.bots.BotSensors;
 import org.telegram.ui.web.BotWebViewContainer;
 
 public class BotSensors {
@@ -327,7 +327,7 @@ public class BotSensors {
         }
     }
 
-    public class AnonymousClass1 implements SensorEventListener {
+    class AnonymousClass1 implements SensorEventListener {
         private long lastTime;
         private float[] xyz;
 
@@ -339,7 +339,7 @@ public class BotSensors {
         }
 
         @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
+        public void onSensorChanged(SensorEvent sensorEvent) throws JSONException {
             if (BotSensors.this.accelerometerListenerPostponed != null) {
                 AndroidUtilities.cancelRunOnUIThread(BotSensors.this.accelerometerListenerPostponed);
                 BotSensors.this.accelerometerListenerPostponed = null;
@@ -347,21 +347,21 @@ public class BotSensors {
             if (BotSensors.this.paused || BotSensors.this.webView == null) {
                 return;
             }
-            long currentTimeMillis = System.currentTimeMillis() - this.lastTime;
+            long jCurrentTimeMillis = System.currentTimeMillis() - this.lastTime;
             this.xyz = sensorEvent.values;
-            if (currentTimeMillis < BotSensors.this.accelerometerDesiredRefreshRate) {
+            if (jCurrentTimeMillis < BotSensors.this.accelerometerDesiredRefreshRate) {
                 AndroidUtilities.runOnUIThread(BotSensors.this.accelerometerListenerPostponed = new Runnable() {
                     @Override
-                    public final void run() {
-                        BotSensors.AnonymousClass1.this.post();
+                    public final void run() throws JSONException {
+                        this.f$0.post();
                     }
-                }, BotSensors.this.accelerometerDesiredRefreshRate - currentTimeMillis);
+                }, BotSensors.this.accelerometerDesiredRefreshRate - jCurrentTimeMillis);
             } else {
                 post();
             }
         }
 
-        public void post() {
+        public void post() throws JSONException {
             if (BotSensors.this.webView == null || this.xyz == null) {
                 return;
             }
@@ -377,7 +377,7 @@ public class BotSensors {
         }
     }
 
-    public class AnonymousClass2 implements SensorEventListener {
+    class AnonymousClass2 implements SensorEventListener {
         private float[] captured = new float[3];
         private long lastTime;
 
@@ -389,7 +389,7 @@ public class BotSensors {
         }
 
         @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
+        public void onSensorChanged(SensorEvent sensorEvent) throws JSONException {
             if (BotSensors.this.gyroscopeListenerPostponed != null) {
                 AndroidUtilities.cancelRunOnUIThread(BotSensors.this.gyroscopeListenerPostponed);
                 BotSensors.this.gyroscopeListenerPostponed = null;
@@ -403,20 +403,20 @@ public class BotSensors {
             fArr[0] = f + fArr2[0];
             fArr[1] = fArr[1] + fArr2[1];
             fArr[2] = fArr[2] + fArr2[2];
-            long currentTimeMillis = System.currentTimeMillis() - this.lastTime;
-            if (currentTimeMillis < BotSensors.this.gyroscopeDesiredRefreshRate) {
+            long jCurrentTimeMillis = System.currentTimeMillis() - this.lastTime;
+            if (jCurrentTimeMillis < BotSensors.this.gyroscopeDesiredRefreshRate) {
                 AndroidUtilities.runOnUIThread(BotSensors.this.gyroscopeListenerPostponed = new Runnable() {
                     @Override
-                    public final void run() {
-                        BotSensors.AnonymousClass2.this.post();
+                    public final void run() throws JSONException {
+                        this.f$0.post();
                     }
-                }, BotSensors.this.gyroscopeDesiredRefreshRate - currentTimeMillis);
+                }, BotSensors.this.gyroscopeDesiredRefreshRate - jCurrentTimeMillis);
             } else {
                 post();
             }
         }
 
-        public void post() {
+        public void post() throws JSONException {
             if (BotSensors.this.webView == null) {
                 return;
             }
@@ -437,7 +437,7 @@ public class BotSensors {
         }
     }
 
-    public class AnonymousClass3 implements SensorEventListener {
+    class AnonymousClass3 implements SensorEventListener {
         private float[] geomagnetic;
         private float[] gravity;
         private long lastTime;
@@ -450,7 +450,7 @@ public class BotSensors {
         }
 
         @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
+        public void onSensorChanged(SensorEvent sensorEvent) throws JSONException {
             if (BotSensors.this.absoluteOrientationListenerPostponed != null) {
                 AndroidUtilities.cancelRunOnUIThread(BotSensors.this.absoluteOrientationListenerPostponed);
                 BotSensors.this.absoluteOrientationListenerPostponed = null;
@@ -458,26 +458,26 @@ public class BotSensors {
             if (BotSensors.this.paused || BotSensors.this.webView == null) {
                 return;
             }
-            long currentTimeMillis = System.currentTimeMillis() - this.lastTime;
+            long jCurrentTimeMillis = System.currentTimeMillis() - this.lastTime;
             if (sensorEvent.sensor.getType() == 1) {
                 this.gravity = sensorEvent.values;
             }
             if (sensorEvent.sensor.getType() == 2) {
                 this.geomagnetic = sensorEvent.values;
             }
-            if (currentTimeMillis < BotSensors.this.absoluteOrientationDesiredRefreshRate) {
+            if (jCurrentTimeMillis < BotSensors.this.absoluteOrientationDesiredRefreshRate) {
                 AndroidUtilities.runOnUIThread(BotSensors.this.absoluteOrientationListenerPostponed = new Runnable() {
                     @Override
-                    public final void run() {
-                        BotSensors.AnonymousClass3.this.post();
+                    public final void run() throws JSONException {
+                        this.f$0.post();
                     }
-                }, BotSensors.this.absoluteOrientationDesiredRefreshRate - currentTimeMillis);
+                }, BotSensors.this.absoluteOrientationDesiredRefreshRate - jCurrentTimeMillis);
             } else {
                 post();
             }
         }
 
-        public void post() {
+        public void post() throws JSONException {
             if (this.gravity == null || this.geomagnetic == null || BotSensors.this.webView == null) {
                 return;
             }
@@ -498,7 +498,7 @@ public class BotSensors {
         }
     }
 
-    public class AnonymousClass4 implements SensorEventListener {
+    class AnonymousClass4 implements SensorEventListener {
         private long lastTime;
         private float[] mDeviceRotationMatrix;
         private float[] mTruncatedRotationVector;
@@ -512,7 +512,7 @@ public class BotSensors {
         }
 
         @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
+        public void onSensorChanged(SensorEvent sensorEvent) throws JSONException {
             if (BotSensors.this.relativeOrientationListenerPostponed != null) {
                 AndroidUtilities.cancelRunOnUIThread(BotSensors.this.relativeOrientationListenerPostponed);
                 BotSensors.this.relativeOrientationListenerPostponed = null;
@@ -520,14 +520,14 @@ public class BotSensors {
             if (BotSensors.this.paused || BotSensors.this.webView == null) {
                 return;
             }
-            long currentTimeMillis = System.currentTimeMillis() - this.lastTime;
-            if (currentTimeMillis < BotSensors.this.relativeOrientationDesiredRefreshRate) {
+            long jCurrentTimeMillis = System.currentTimeMillis() - this.lastTime;
+            if (jCurrentTimeMillis < BotSensors.this.relativeOrientationDesiredRefreshRate) {
                 AndroidUtilities.runOnUIThread(BotSensors.this.relativeOrientationListenerPostponed = new Runnable() {
                     @Override
-                    public final void run() {
-                        BotSensors.AnonymousClass4.this.post();
+                    public final void run() throws JSONException {
+                        this.f$0.post();
                     }
-                }, BotSensors.this.relativeOrientationDesiredRefreshRate - currentTimeMillis);
+                }, BotSensors.this.relativeOrientationDesiredRefreshRate - jCurrentTimeMillis);
             } else {
                 if (sensorEvent.sensor.getType() == 15) {
                     this.values = sensorEvent.values;
@@ -536,7 +536,7 @@ public class BotSensors {
             }
         }
 
-        public void post() {
+        public void post() throws JSONException {
             if (this.values == null || BotSensors.this.webView == null) {
                 return;
             }

@@ -44,7 +44,7 @@ public class VoIPTimerView extends View {
         this.updater = new Runnable() {
             @Override
             public final void run() {
-                VoIPTimerView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -72,10 +72,10 @@ public class VoIPTimerView extends View {
         if (sharedInstance == null) {
             return;
         }
-        String formatLongDuration = AndroidUtilities.formatLongDuration((int) (sharedInstance.getCallDuration() / 1000));
+        String longDuration = AndroidUtilities.formatLongDuration((int) (sharedInstance.getCallDuration() / 1000));
         String str = this.currentTimeStr;
-        if (str == null || !str.equals(formatLongDuration)) {
-            this.currentTimeStr = formatLongDuration;
+        if (str == null || !str.equals(longDuration)) {
+            this.currentTimeStr = longDuration;
             if (this.timerLayout == null) {
                 requestLayout();
             }

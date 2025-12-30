@@ -8,8 +8,8 @@ import kotlin.random.AbstractPlatformRandom;
 public final class PlatformThreadLocalRandom extends AbstractPlatformRandom {
     @Override
     public Random getImpl() {
-        ThreadLocalRandom current = ThreadLocalRandom.current();
-        Intrinsics.checkNotNullExpressionValue(current, "current(...)");
-        return current;
+        ThreadLocalRandom threadLocalRandomCurrent = ThreadLocalRandom.current();
+        Intrinsics.checkNotNullExpressionValue(threadLocalRandomCurrent, "current(...)");
+        return threadLocalRandomCurrent;
     }
 }

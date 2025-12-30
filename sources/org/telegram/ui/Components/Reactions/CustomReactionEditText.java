@@ -64,7 +64,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                CustomReactionEditText.this.lambda$new$0(view, z);
+                this.f$0.lambda$new$0(view, z);
             }
         });
         setTextIsSelectable(true);
@@ -94,7 +94,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
     }
 
     @Override
-    public void onSelectionChanged(int i, int i2) {
+    protected void onSelectionChanged(int i, int i2) {
         super.onSelectionChanged(i, i2);
         if (!hasSelection() || ((AddReactionsSpan[]) getText().getSpans(i, i2, AddReactionsSpan.class)).length == 0) {
             return;
@@ -103,7 +103,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
     }
 
     @Override
-    public void extendActionMode(ActionMode actionMode, Menu menu) {
+    protected void extendActionMode(ActionMode actionMode, Menu menu) {
         menu.clear();
         int i = R.id.menu_delete;
         menu.add(i, i, 0, LocaleController.getString(R.string.Delete));
@@ -131,7 +131,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    CustomReactionEditText.this.lambda$removeReactionsSpan$1(addReactionsSpan);
+                    this.f$0.lambda$removeReactionsSpan$1(addReactionsSpan);
                 }
             };
             if (z) {

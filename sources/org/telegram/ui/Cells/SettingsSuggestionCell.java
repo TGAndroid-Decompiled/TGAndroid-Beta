@@ -77,7 +77,7 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        SettingsSuggestionCell.this.lambda$new$0(view);
+                        this.f$0.lambda$new$0(view);
                     }
                 });
             } else {
@@ -85,7 +85,7 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        SettingsSuggestionCell.this.lambda$new$1(view);
+                        this.f$0.lambda$new$1(view);
                     }
                 });
             }
@@ -122,16 +122,16 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
             return;
         }
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
-        this.textView.setText(LocaleController.formatString("CheckPhoneNumber", R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
+        this.textView.setText(LocaleController.formatString(R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
         String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-        int indexOf = string.indexOf("**");
-        int lastIndexOf = string.lastIndexOf("**");
-        if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
-            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+        int iIndexOf = string.indexOf("**");
+        int iLastIndexOf = string.lastIndexOf("**");
+        if (iIndexOf >= 0 && iLastIndexOf >= 0 && iIndexOf != iLastIndexOf) {
+            spannableStringBuilder.replace(iLastIndexOf, iLastIndexOf + 2, (CharSequence) "");
+            spannableStringBuilder.replace(iIndexOf, iIndexOf + 2, (CharSequence) "");
             try {
-                spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
+                spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl)), iIndexOf, iLastIndexOf - 2, 33);
             } catch (Exception e) {
                 FileLog.e(e);
             }

@@ -77,7 +77,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryModeTabs.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         ScaleStateListAnimator.apply(frameLayout);
@@ -94,7 +94,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
         frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryModeTabs.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         ScaleStateListAnimator.apply(frameLayout2);
@@ -111,7 +111,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
         frameLayout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryModeTabs.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         ScaleStateListAnimator.apply(frameLayout3);
@@ -158,12 +158,12 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mode, i);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mode, i);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StoryModeTabs.this.lambda$switchMode$3(valueAnimator2);
+                this.f$0.lambda$switchMode$3(valueAnimator2);
             }
         });
         this.animator.setDuration(320L);
@@ -172,11 +172,11 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
     }
 
     public void lambda$switchMode$3(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.mode = floatValue;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.mode = fFloatValue;
         Utilities.Callback callback = this.onSwitchingModeListener;
         if (callback != null) {
-            callback.run(Float.valueOf(Utilities.clamp(floatValue, 1.0f, -1.0f)));
+            callback.run(Float.valueOf(Utilities.clamp(fFloatValue, 1.0f, -1.0f)));
         }
         this.layout.invalidate();
     }

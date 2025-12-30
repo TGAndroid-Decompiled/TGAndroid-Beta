@@ -21,7 +21,7 @@ public abstract class RecyclerListViewWithOverlayDraw extends RecyclerListView {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         this.invalidated = false;
         for (int i = 0; i < getChildCount(); i++) {
             if (getChildAt(i) instanceof OverlayView) {

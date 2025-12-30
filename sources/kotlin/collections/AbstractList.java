@@ -35,6 +35,9 @@ public abstract class AbstractList extends AbstractCollection implements List {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
+    protected AbstractList() {
+    }
+
     @Override
     public Iterator iterator() {
         return new IteratorImpl();
@@ -96,7 +99,7 @@ public abstract class AbstractList extends AbstractCollection implements List {
         return Companion.orderedHashCode$kotlin_stdlib(this);
     }
 
-    public class IteratorImpl implements Iterator {
+    private class IteratorImpl implements Iterator {
         private int index;
 
         @Override
@@ -216,12 +219,12 @@ public abstract class AbstractList extends AbstractCollection implements List {
         public final int orderedHashCode$kotlin_stdlib(Collection c) {
             Intrinsics.checkNotNullParameter(c, "c");
             Iterator it = c.iterator();
-            int i = 1;
+            int iHashCode = 1;
             while (it.hasNext()) {
                 Object next = it.next();
-                i = (i * 31) + (next != null ? next.hashCode() : 0);
+                iHashCode = (iHashCode * 31) + (next != null ? next.hashCode() : 0);
             }
-            return i;
+            return iHashCode;
         }
 
         public final boolean orderedEquals$kotlin_stdlib(Collection c, Collection other) {

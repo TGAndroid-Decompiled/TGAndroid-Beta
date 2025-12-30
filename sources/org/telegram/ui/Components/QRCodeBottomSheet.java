@@ -19,6 +19,7 @@ import androidx.core.graphics.ColorUtils;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.io.IOException;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -61,9 +62,9 @@ public class QRCodeBottomSheet extends BottomSheet {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-        Bitmap createQR = createQR(context, str2, this.qrCode);
-        this.qrCode = createQR;
-        imageView.setImageBitmap(createQR);
+        Bitmap bitmapCreateQR = createQR(context, str2, this.qrCode);
+        this.qrCode = bitmapCreateQR;
+        imageView.setImageBitmap(bitmapCreateQR);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.iconImage = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -103,8 +104,8 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setText(LocaleController.getString(R.string.ShareQrCode));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
-                QRCodeBottomSheet.this.lambda$new$0(context, view);
+            public final void onClick(View view) throws IOException {
+                this.f$0.lambda$new$0(context, view);
             }
         });
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 80, 16, 15, 16, 3));
@@ -129,7 +130,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public void lambda$new$0(Context context, View view) {
+    public void lambda$new$0(Context context, View view) throws IOException {
         Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(this.qrCode, "qr_tmp.png", Bitmap.CompressFormat.PNG);
         if (bitmapShareUri != null) {
             Intent intent = new Intent("android.intent.action.SEND");
@@ -147,20 +148,20 @@ public class QRCodeBottomSheet extends BottomSheet {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
         intent.putExtra("android.intent.extra.TEXT", str);
-        Intent createChooser = Intent.createChooser(intent, LocaleController.getString(R.string.ShareLink));
-        createChooser.setFlags(268435456);
-        context.startActivity(createChooser);
+        Intent intentCreateChooser = Intent.createChooser(intent, LocaleController.getString(R.string.ShareLink));
+        intentCreateChooser.setFlags(268435456);
+        context.startActivity(intentCreateChooser);
     }
 
     public Bitmap createQR(Context context, String str, Bitmap bitmap) {
         try {
-            HashMap hashMap = new HashMap();
-            hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
-            hashMap.put(EncodeHintType.MARGIN, 0);
+            HashMap map = new HashMap();
+            map.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+            map.put(EncodeHintType.MARGIN, 0);
             QRCodeWriter qRCodeWriter = new QRCodeWriter();
-            Bitmap encode = qRCodeWriter.encode(str, 768, 768, hashMap, bitmap);
+            Bitmap bitmapEncode = qRCodeWriter.encode(str, 768, 768, map, bitmap);
             this.imageSize = qRCodeWriter.getImageSize();
-            return encode;
+            return bitmapEncode;
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -177,12 +178,12 @@ public class QRCodeBottomSheet extends BottomSheet {
         this.iconImage.setImageBitmap(bitmap);
     }
 
-    public void updateColors() {
+    void updateColors() {
         this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         TextView textView = this.buttonTextView;
-        int dp = AndroidUtilities.dp(6.0f);
+        int iDp = AndroidUtilities.dp(6.0f);
         int i = Theme.key_featuredStickers_addButton;
-        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
         TextView textView2 = this.button2TextView;
         if (textView2 != null) {
             textView2.setTextColor(getThemedColor(i));

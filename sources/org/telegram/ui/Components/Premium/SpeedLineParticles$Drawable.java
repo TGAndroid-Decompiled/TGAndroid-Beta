@@ -49,23 +49,23 @@ public class SpeedLineParticles$Drawable {
     }
 
     public void resetPositions() {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < this.particles.size(); i++) {
-            ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, true);
+            ((Particle) this.particles.get(i)).genPosition(jCurrentTimeMillis, true);
         }
     }
 
     public void onDraw(Canvas canvas) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < this.particles.size(); i++) {
             Particle particle = (Particle) this.particles.get(i);
             if (this.paused) {
                 particle.draw(canvas, i, this.pausedTime);
             } else {
-                particle.draw(canvas, i, currentTimeMillis);
+                particle.draw(canvas, i, jCurrentTimeMillis);
             }
-            if (currentTimeMillis > particle.lifeTime || !this.screenRect.contains(particle.x, particle.y)) {
-                particle.genPosition(currentTimeMillis, false);
+            if (jCurrentTimeMillis > particle.lifeTime || !this.screenRect.contains(particle.x, particle.y)) {
+                particle.genPosition(jCurrentTimeMillis, false);
             }
         }
         canvas.drawLines(this.lines, this.paint);
@@ -92,9 +92,9 @@ public class SpeedLineParticles$Drawable {
             if (SpeedLineParticles$Drawable.this.paused) {
                 return;
             }
-            float dp = AndroidUtilities.dp(4.0f) * (SpeedLineParticles$Drawable.this.dt / 660.0f);
+            float fDp = AndroidUtilities.dp(4.0f) * (SpeedLineParticles$Drawable.this.dt / 660.0f);
             SpeedLineParticles$Drawable speedLineParticles$Drawable = SpeedLineParticles$Drawable.this;
-            float f = dp * speedLineParticles$Drawable.speedScale;
+            float f = fDp * speedLineParticles$Drawable.speedScale;
             this.x += this.vecX * f;
             this.y += this.vecY * f;
             float f2 = this.inProgress;
@@ -110,13 +110,13 @@ public class SpeedLineParticles$Drawable {
         public void genPosition(long j, boolean z) {
             this.lifeTime = j + SpeedLineParticles$Drawable.this.minLifeTime + Utilities.fastRandom.nextInt(1000);
             RectF rectF = z ? SpeedLineParticles$Drawable.this.screenRect : SpeedLineParticles$Drawable.this.rect;
-            float abs = rectF.left + Math.abs(Utilities.fastRandom.nextInt() % rectF.width());
-            float abs2 = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());
-            this.x = abs;
-            this.y = abs2;
-            double atan2 = Math.atan2(abs - SpeedLineParticles$Drawable.this.rect.centerX(), this.y - SpeedLineParticles$Drawable.this.rect.centerY());
-            this.vecX = (float) Math.sin(atan2);
-            this.vecY = (float) Math.cos(atan2);
+            float fAbs = rectF.left + Math.abs(Utilities.fastRandom.nextInt() % rectF.width());
+            float fAbs2 = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());
+            this.x = fAbs;
+            this.y = fAbs2;
+            double dAtan2 = Math.atan2(fAbs - SpeedLineParticles$Drawable.this.rect.centerX(), this.y - SpeedLineParticles$Drawable.this.rect.centerY());
+            this.vecX = (float) Math.sin(dAtan2);
+            this.vecY = (float) Math.cos(dAtan2);
             this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
             this.inProgress = 0.0f;
         }

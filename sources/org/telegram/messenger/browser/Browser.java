@@ -1,27 +1,33 @@
 package org.telegram.messenger.browser;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.IDN;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.support.customtabs.CustomTabsCallback;
 import org.telegram.messenger.support.customtabs.CustomTabsClient;
 import org.telegram.messenger.support.customtabs.CustomTabsServiceConnection;
@@ -57,9 +63,9 @@ public abstract class Browser {
         if (customTabsClient2 == null) {
             customTabsSession = null;
         } else if (customTabsSession == null) {
-            CustomTabsSession newSession = customTabsClient2.newSession(new NavigationCallback());
-            customTabsSession = newSession;
-            setCurrentSession(newSession);
+            CustomTabsSession customTabsSessionNewSession = customTabsClient2.newSession(new NavigationCallback());
+            customTabsSession = customTabsSessionNewSession;
+            setCurrentSession(customTabsSessionNewSession);
         }
         return customTabsSession;
     }
@@ -127,7 +133,7 @@ public abstract class Browser {
         customTabsSession = null;
     }
 
-    public static class NavigationCallback extends CustomTabsCallback {
+    private static class NavigationCallback extends CustomTabsCallback {
         @Override
         public void onNavigationEvent(int i, Bundle bundle) {
         }
@@ -281,7 +287,7 @@ public abstract class Browser {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Browser.lambda$openUrl$0(Browser.Progress.this, alertDialogArr, tLObject, i, uri, context, z);
+                Browser.lambda$openUrl$0(progress, alertDialogArr, tLObject, i, uri, context, z);
             }
         });
     }
@@ -364,7 +370,7 @@ public abstract class Browser {
         return true;
     }
 
-    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) {
+    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         BottomSheetTabs bottomSheetTabs;
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null && bottomSheetTabs.tryReopenTab(str) != null) {
@@ -385,21 +391,21 @@ public abstract class Browser {
         return openInExternalBrowser(context, str, z, null);
     }
 
-    public static boolean openInExternalBrowser(Context context, String str, boolean z, String str2) {
+    public static boolean openInExternalBrowser(Context context, String str, boolean z, String str2) throws URISyntaxException {
         Intent intent;
         if (str == null) {
             return false;
         }
         try {
-            Uri parse = Uri.parse(str);
-            boolean z2 = parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent");
+            Uri uri = Uri.parse(str);
+            boolean z2 = uri.getScheme() != null && uri.getScheme().equalsIgnoreCase("intent");
             if (z2 && !z) {
                 return false;
             }
             if (z2) {
-                intent = Intent.parseUri(parse.toString(), 1);
+                intent = Intent.parseUri(uri.toString(), 1);
             } else {
-                intent = new Intent("android.intent.action.VIEW", parse);
+                intent = new Intent("android.intent.action.VIEW", uri);
             }
             if (!TextUtils.isEmpty(str2)) {
                 intent.setPackage(str2);
@@ -419,34 +425,130 @@ public abstract class Browser {
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
             return true;
         }
-        Uri parse = Uri.parse(str);
-        return parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite");
+        Uri uri = Uri.parse(str);
+        return uri.getScheme() != null && uri.getScheme().equalsIgnoreCase("tonsite");
     }
 
     public static boolean isTonsitePunycode(String str) {
-        boolean matches;
+        boolean zMatches;
         if (domainPattern == null) {
             domainPattern = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = domainPattern.matcher(hostAuthority).matches();
+            zMatches = domainPattern.matcher(hostAuthority).matches();
         } else {
-            Uri parse = Uri.parse(str);
-            if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
+            Uri uri = Uri.parse(str);
+            if (uri.getScheme() == null || !uri.getScheme().equalsIgnoreCase("tonsite")) {
                 return false;
             }
-            matches = domainPattern.matcher(parse.getScheme()).matches();
+            zMatches = domainPattern.matcher(uri.getScheme()).matches();
         }
-        return !matches;
+        return !zMatches;
     }
 
-    public static boolean openInExternalApp(android.content.Context r5, java.lang.String r6, boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openInExternalApp(android.content.Context, java.lang.String, boolean):boolean");
+    public static boolean openInExternalApp(Context context, String str, boolean z) throws URISyntaxException {
+        Intent intent;
+        if (str == null) {
+            return false;
+        }
+        try {
+            if (!isTonsite(str) && !isInternalUrl(str, null)) {
+                Uri uri = Uri.parse(str);
+                String strReplace = replace(uri, uri.getScheme() == null ? "https" : uri.getScheme(), null, uri.getHost() != null ? uri.getHost().toLowerCase() : uri.getHost(), TextUtils.isEmpty(uri.getPath()) ? "/" : uri.getPath());
+                Uri uri2 = Uri.parse(strReplace);
+                boolean z2 = strReplace.startsWith("intent://") || (uri2.getScheme() != null && uri2.getScheme().equalsIgnoreCase("intent"));
+                if (z2 && !z) {
+                    return false;
+                }
+                if (z2) {
+                    intent = Intent.parseUri(uri2.toString(), 1);
+                } else {
+                    intent = new Intent("android.intent.action.VIEW", uri2);
+                }
+                if (!z2 && Build.VERSION.SDK_INT >= 30) {
+                    intent.addCategory("android.intent.category.BROWSABLE");
+                    intent.addCategory("android.intent.category.DEFAULT");
+                    intent.addFlags(268435456);
+                    intent.addFlags(1024);
+                } else if (!z2 && !hasAppToOpen(context, strReplace)) {
+                    return false;
+                }
+                context.startActivity(intent);
+                return true;
+            }
+            return false;
+        } catch (ActivityNotFoundException e) {
+            FileLog.e((Throwable) e, false);
+            return false;
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            return false;
+        }
     }
 
-    public static boolean hasAppToOpen(android.content.Context r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.hasAppToOpen(android.content.Context, java.lang.String):boolean");
+    public static boolean hasAppToOpen(Context context, String str) {
+        String[] strArr;
+        List<ResolveInfo> listQueryIntentActivities;
+        if (str == null) {
+            return false;
+        }
+        List<ResolveInfo> listQueryIntentActivities2 = null;
+        try {
+            listQueryIntentActivities = context.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")), 0);
+        } catch (Exception unused) {
+        }
+        if (listQueryIntentActivities == null || listQueryIntentActivities.isEmpty()) {
+            strArr = null;
+        } else {
+            strArr = new String[listQueryIntentActivities.size()];
+            for (int i = 0; i < listQueryIntentActivities.size(); i++) {
+                try {
+                    strArr[i] = listQueryIntentActivities.get(i).activityInfo.packageName;
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("default browser name = " + strArr[i]);
+                    }
+                } catch (Exception unused2) {
+                }
+            }
+        }
+        try {
+            listQueryIntentActivities2 = context.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", Uri.parse(str)), 0);
+            if (strArr != null) {
+                int i2 = 0;
+                while (i2 < listQueryIntentActivities2.size()) {
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= strArr.length) {
+                            break;
+                        }
+                        if (strArr[i3].equals(listQueryIntentActivities2.get(i2).activityInfo.packageName)) {
+                            listQueryIntentActivities2.remove(i2);
+                            i2--;
+                            break;
+                        }
+                        i3++;
+                    }
+                    i2++;
+                }
+            } else {
+                int i4 = 0;
+                while (i4 < listQueryIntentActivities2.size()) {
+                    if (isBrowserPackageName(listQueryIntentActivities2.get(i4).activityInfo.packageName.toLowerCase())) {
+                        listQueryIntentActivities2.remove(i4);
+                        i4--;
+                    }
+                    i4++;
+                }
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                for (int i5 = 0; i5 < listQueryIntentActivities2.size(); i5++) {
+                    FileLog.d("device has " + listQueryIntentActivities2.get(i5).activityInfo.packageName + " to open " + str);
+                }
+            }
+        } catch (Exception unused3) {
+        }
+        return (listQueryIntentActivities2 == null || listQueryIntentActivities2.isEmpty()) ? false : true;
     }
 
     public static boolean isInternalUrl(String str, boolean[] zArr) {
@@ -494,15 +596,15 @@ public abstract class Browser {
         String str;
         String str2;
         String hostAuthority = AndroidUtilities.getHostAuthority(uri);
-        String str3 = "";
-        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
-        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
+        String lowerCase = "";
+        String lowerCase2 = hostAuthority != null ? hostAuthority.toLowerCase() : "";
+        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase2)) {
             if (zArr != null) {
                 zArr[0] = true;
             }
             return false;
         }
-        Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase);
+        Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase2);
         if (matcher.find()) {
             StringBuilder sb = new StringBuilder();
             sb.append("https://t.me/");
@@ -522,16 +624,16 @@ public abstract class Browser {
             uri = Uri.parse(sb.toString());
             String host = uri.getHost();
             if (host != null) {
-                str3 = host.toLowerCase();
+                lowerCase = host.toLowerCase();
             }
         } else {
-            str3 = lowerCase;
+            lowerCase = lowerCase2;
         }
         if ("ton".equals(uri.getScheme())) {
             try {
-                List<ResolveInfo> queryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
-                if (queryIntentActivities != null) {
-                    if (queryIntentActivities.size() >= 1) {
+                List<ResolveInfo> listQueryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
+                if (listQueryIntentActivities != null) {
+                    if (listQueryIntentActivities.size() >= 1) {
                         return false;
                     }
                 }
@@ -542,14 +644,14 @@ public abstract class Browser {
         if ("tg".equals(uri.getScheme())) {
             return true;
         }
-        if ("telegram.dog".equals(str3)) {
+        if ("telegram.dog".equals(lowerCase)) {
             String path = uri.getPath();
             if (path != null && path.length() > 1) {
                 if (z) {
                     return true;
                 }
-                String lowerCase2 = path.substring(1).toLowerCase();
-                if (!lowerCase2.startsWith("blog") && !lowerCase2.equals("iv") && !lowerCase2.startsWith("faq") && !lowerCase2.equals("apps") && !lowerCase2.startsWith("s/")) {
+                String lowerCase3 = path.substring(1).toLowerCase();
+                if (!lowerCase3.startsWith("blog") && !lowerCase3.equals("iv") && !lowerCase3.startsWith("faq") && !lowerCase3.equals("apps") && !lowerCase3.startsWith("s/")) {
                     return true;
                 }
                 if (zArr != null) {
@@ -557,14 +659,14 @@ public abstract class Browser {
                 }
                 return false;
             }
-        } else if ("telegram.me".equals(str3) || "t.me".equals(str3)) {
+        } else if ("telegram.me".equals(lowerCase) || "t.me".equals(lowerCase)) {
             String path2 = uri.getPath();
             if (path2 != null && path2.length() > 1) {
                 if (z) {
                     return true;
                 }
-                String lowerCase3 = path2.substring(1).toLowerCase();
-                if (!lowerCase3.equals("iv") && !lowerCase3.startsWith("s/")) {
+                String lowerCase4 = path2.substring(1).toLowerCase();
+                if (!lowerCase4.equals("iv") && !lowerCase4.startsWith("s/")) {
                     return true;
                 }
                 if (zArr != null) {
@@ -572,10 +674,10 @@ public abstract class Browser {
                 }
             }
         } else {
-            if ("telegram.org".equals(str3) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
+            if ("telegram.org".equals(lowerCase) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
                 return true;
             }
-            if (z && (str3.endsWith("telegram.org") || str3.endsWith("telegra.ph") || str3.endsWith("telesco.pe"))) {
+            if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
                 return true;
             }
         }
@@ -586,179 +688,9 @@ public abstract class Browser {
         if (str == null) {
             return null;
         }
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1973822757:
-                if (str.equals("brave-browser")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -1451156338:
-                if (str.equals("google-chrome")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -1361128838:
-                if (str.equals("chrome")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case -1270430916:
-                if (str.equals("microsoft-edge")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case -1249474382:
-                if (str.equals("tor-browser")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case -1051190859:
-                if (str.equals("duckduckgo-browser")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case -849452327:
-                if (str.equals("firefox")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case -329108395:
-                if (str.equals("samsung-browser")) {
-                    c = 7;
-                    break;
-                }
-                break;
-            case -220816629:
-                if (str.equals("kiwi-browser")) {
-                    c = '\b';
-                    break;
-                }
-                break;
-            case -61272559:
-                if (str.equals("opera-mini")) {
-                    c = '\t';
-                    break;
-                }
-                break;
-            case 3726:
-                if (str.equals("uc")) {
-                    c = '\n';
-                    break;
-                }
-                break;
-            case 115031:
-                if (str.equals("tor")) {
-                    c = 11;
-                    break;
-                }
-                break;
-            case 3108285:
-                if (str.equals("edge")) {
-                    c = '\f';
-                    break;
-                }
-                break;
-            case 3292336:
-                if (str.equals("kiwi")) {
-                    c = '\r';
-                    break;
-                }
-                break;
-            case 93998208:
-                if (str.equals("brave")) {
-                    c = 14;
-                    break;
-                }
-                break;
-            case 105948115:
-                if (str.equals("opera")) {
-                    c = 15;
-                    break;
-                }
-                break;
-            case 469285011:
-                if (str.equals("vivaldi")) {
-                    c = 16;
-                    break;
-                }
-                break;
-            case 557649660:
-                if (str.equals("mozilla-firefox")) {
-                    c = 17;
-                    break;
-                }
-                break;
-            case 696911194:
-                if (str.equals("duckduckgo")) {
-                    c = 18;
-                    break;
-                }
-                break;
-            case 1117815790:
-                if (str.equals("vivaldi-browser")) {
-                    c = 19;
-                    break;
-                }
-                break;
-            case 1201385193:
-                if (str.equals("uc-browser")) {
-                    c = 20;
-                    break;
-                }
-                break;
-            case 1864941562:
-                if (str.equals("samsung")) {
-                    c = 21;
-                    break;
-                }
-                break;
+        switch (str) {
         }
-        switch (c) {
-            case 0:
-            case 14:
-                return "com.brave.browser";
-            case 1:
-            case 2:
-                return "com.android.chrome";
-            case 3:
-            case '\f':
-                return "com.microsoft.emmx";
-            case 4:
-            case 11:
-                return "org.torproject.torbrowser";
-            case 5:
-            case 18:
-                return "com.duckduckgo.mobile.android";
-            case 6:
-            case 17:
-                return "org.mozilla.firefox";
-            case 7:
-            case 21:
-                return "com.sec.android.app.sbrowser";
-            case '\b':
-            case '\r':
-                return "com.kiwibrowser.browser";
-            case '\t':
-                return "com.opera.mini.native";
-            case '\n':
-            case 20:
-                return "com.UCMobile.intl";
-            case 15:
-                return "com.opera.browser";
-            case 16:
-            case 19:
-                return "com.vivaldi.browser";
-            default:
-                return null;
-        }
+        return null;
     }
 
     public static boolean isBrowserPackageName(String str) {
@@ -769,11 +701,11 @@ public abstract class Browser {
         if (str == null) {
             return true;
         }
-        String[] split = str.split("\\.");
-        if (split.length <= 0) {
+        String[] strArrSplit = str.split("\\.");
+        if (strArrSplit.length <= 0) {
             return true;
         }
-        return split[split.length - 1].startsWith("xn--");
+        return strArrSplit[strArrSplit.length - 1].startsWith("xn--");
     }
 
     public static String IDN_toUnicode(String str) {

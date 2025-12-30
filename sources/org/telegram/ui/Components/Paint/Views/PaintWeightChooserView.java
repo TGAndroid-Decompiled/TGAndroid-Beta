@@ -64,11 +64,11 @@ public class PaintWeightChooserView extends View {
 
             @Override
             public boolean onDown(MotionEvent motionEvent) {
-                boolean contains = PaintWeightChooserView.this.touchRect.contains(motionEvent.getX(), motionEvent.getY());
-                if (PaintWeightChooserView.this.isTouchInProgress != contains) {
-                    PaintWeightChooserView.this.isTouchInProgress = contains;
+                boolean zContains = PaintWeightChooserView.this.touchRect.contains(motionEvent.getX(), motionEvent.getY());
+                if (PaintWeightChooserView.this.isTouchInProgress != zContains) {
+                    PaintWeightChooserView.this.isTouchInProgress = zContains;
                     PaintWeightChooserView.this.invalidate();
-                    if (contains) {
+                    if (zContains) {
                         this.startWeight = PaintWeightChooserView.this.valueOverride != null ? PaintWeightChooserView.this.valueOverride.get() : PaintWeightChooserView.this.colorSwatch.brushWeight;
                         this.startedY = false;
                     }
@@ -83,13 +83,13 @@ public class PaintWeightChooserView extends View {
                         this.startDeltaY = motionEvent.getY() - motionEvent2.getY();
                         this.startedY = true;
                     }
-                    float clamp = MathUtils.clamp(this.startWeight + ((((motionEvent.getY() - motionEvent2.getY()) - this.startDeltaY) / PaintWeightChooserView.this.touchRect.height()) * (PaintWeightChooserView.this.max - PaintWeightChooserView.this.min)), PaintWeightChooserView.this.min, PaintWeightChooserView.this.max);
+                    float fClamp = MathUtils.clamp(this.startWeight + ((((motionEvent.getY() - motionEvent2.getY()) - this.startDeltaY) / PaintWeightChooserView.this.touchRect.height()) * (PaintWeightChooserView.this.max - PaintWeightChooserView.this.min)), PaintWeightChooserView.this.min, PaintWeightChooserView.this.max);
                     if (PaintWeightChooserView.this.valueOverride != null) {
-                        PaintWeightChooserView.this.valueOverride.set(clamp);
+                        PaintWeightChooserView.this.valueOverride.set(fClamp);
                     } else {
-                        PaintWeightChooserView.this.colorSwatch.brushWeight = clamp;
+                        PaintWeightChooserView.this.colorSwatch.brushWeight = fClamp;
                     }
-                    PaintWeightChooserView.this.animatedWeight.set(clamp, true);
+                    PaintWeightChooserView.this.animatedWeight.set(fClamp, true);
                     if (PaintWeightChooserView.this.onUpdate != null) {
                         PaintWeightChooserView.this.onUpdate.run();
                     }
@@ -150,12 +150,12 @@ public class PaintWeightChooserView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = this.gestureDetector.onTouchEvent(motionEvent);
+        boolean zOnTouchEvent = this.gestureDetector.onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
             this.isTouchInProgress = false;
             invalidate();
         }
-        return onTouchEvent;
+        return zOnTouchEvent;
     }
 
     @Override

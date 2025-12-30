@@ -52,7 +52,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         this.stopRunnable = new Runnable() {
             @Override
             public final void run() {
-                RoundVideoRecorder.this.stop();
+                this.f$0.stop();
             }
         };
         this.alpha = 1.0f;
@@ -70,7 +70,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
                 this.circlePath.rewind();
                 this.circlePath.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
@@ -91,7 +91,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         cameraView.setDelegate(new CameraView.CameraViewDelegate() {
             @Override
             public final void onCameraInit() {
-                RoundVideoRecorder.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         });
         cameraView.initTexture();
@@ -105,12 +105,12 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         CameraController.getInstance().recordVideo(this.cameraView.getCameraSessionObject(), this.file, false, new CameraController.VideoTakeCallback() {
             @Override
             public final void onFinishVideoRecording(String str, long j) {
-                RoundVideoRecorder.this.lambda$new$0(str, j);
+                this.f$0.lambda$new$0(str, j);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                RoundVideoRecorder.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         }, this.cameraView, true);
     }
@@ -148,17 +148,17 @@ public abstract class RoundVideoRecorder extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
-        int min = (int) (Math.min(size, size2) * 0.43f);
-        this.cameraView.measure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(min, 1073741824));
+        int iMin = (int) (Math.min(size, size2) * 0.43f);
+        this.cameraView.measure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(iMin, 1073741824));
         setMeasuredDimension(size, size2);
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int measuredWidth = ((i3 - i) - this.cameraView.getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
-        int dp = AndroidUtilities.dp(72.0f);
+        int iDp = AndroidUtilities.dp(72.0f);
         CameraView cameraView = this.cameraView;
-        cameraView.layout(measuredWidth, dp, cameraView.getMeasuredWidth() + measuredWidth, this.cameraView.getMeasuredHeight() + dp);
+        cameraView.layout(measuredWidth, iDp, cameraView.getMeasuredWidth() + measuredWidth, this.cameraView.getMeasuredHeight() + iDp);
     }
 
     public RoundVideoRecorder onDone(Utilities.Callback3 callback3) {
@@ -193,12 +193,12 @@ public abstract class RoundVideoRecorder extends FrameLayout {
             canvas.restore();
         }
         if (this.recordingStarted > 0) {
-            float clamp = Utilities.clamp(((float) sinceRecording()) / 59500.0f, 1.0f, 0.0f);
+            float fClamp = Utilities.clamp(sinceRecording() / 59500.0f, 1.0f, 0.0f);
             this.progressPaint.setStrokeWidth(AndroidUtilities.dp(3.33f));
             this.progressPaint.setColor(Theme.multAlpha(-1090519041, this.alpha));
             this.progressPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.33f), Theme.multAlpha(536870912, this.alpha));
             rectF.inset(-AndroidUtilities.dp(7.665f), -AndroidUtilities.dp(7.665f));
-            canvas.drawArc(rectF, -90.0f, clamp * 360.0f, false, this.progressPaint);
+            canvas.drawArc(rectF, -90.0f, fClamp * 360.0f, false, this.progressPaint);
             if (this.recordingStopped <= 0) {
                 invalidate();
             }
@@ -209,17 +209,17 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         if (this.recordingStarted < 0) {
             return 0L;
         }
-        long j = this.recordingStopped;
-        if (j < 0) {
-            j = System.currentTimeMillis();
+        long jCurrentTimeMillis = this.recordingStopped;
+        if (jCurrentTimeMillis < 0) {
+            jCurrentTimeMillis = System.currentTimeMillis();
         }
-        return Math.min(59500L, j - this.recordingStarted);
+        return Math.min(59500L, jCurrentTimeMillis - this.recordingStarted);
     }
 
     public String sinceRecordingText() {
-        long sinceRecording = sinceRecording();
-        int i = (int) (sinceRecording / 1000);
-        int i2 = (int) ((sinceRecording - (i * 1000)) / 100);
+        long jSinceRecording = sinceRecording();
+        int i = (int) (jSinceRecording / 1000);
+        int i2 = (int) ((jSinceRecording - (i * 1000)) / 100);
         int i3 = i / 60;
         int i4 = i % 60;
         StringBuilder sb = new StringBuilder();
@@ -243,7 +243,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         post(new Runnable() {
             @Override
             public final void run() {
-                RoundVideoRecorder.this.lambda$hideTo$5(roundView);
+                this.f$0.lambda$hideTo$5(roundView);
             }
         });
     }
@@ -253,7 +253,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
             this.cameraView.animate().scaleX(0.0f).scaleY(1.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    RoundVideoRecorder.this.lambda$hideTo$3();
+                    this.f$0.lambda$hideTo$3();
                 }
             }).start();
             return;
@@ -270,7 +270,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         this.cameraViewAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                RoundVideoRecorder.this.lambda$hideTo$4(scaleX, width, x, y, valueAnimator2);
+                this.f$0.lambda$hideTo$4(scaleX, width, x, y, valueAnimator2);
             }
         });
         this.cameraViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -298,12 +298,12 @@ public abstract class RoundVideoRecorder extends FrameLayout {
     }
 
     public void lambda$hideTo$4(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.cameraView.setScaleX(AndroidUtilities.lerp(f, f2, floatValue));
-        this.cameraView.setScaleY(AndroidUtilities.lerp(f, f2, floatValue));
-        this.cameraView.setTranslationX(f3 * floatValue);
-        this.cameraView.setTranslationY(f4 * floatValue);
-        float f5 = 1.0f - floatValue;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.cameraView.setScaleX(AndroidUtilities.lerp(f, f2, fFloatValue));
+        this.cameraView.setScaleY(AndroidUtilities.lerp(f, f2, fFloatValue));
+        this.cameraView.setTranslationX(f3 * fFloatValue);
+        this.cameraView.setTranslationY(f4 * fFloatValue);
+        float f5 = 1.0f - fFloatValue;
         this.cameraView.setAlpha(f5);
         this.alpha = f5;
         invalidate();
@@ -348,12 +348,12 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.destroyT, 1.0f);
-        this.destroyAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.destroyT, 1.0f);
+        this.destroyAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                RoundVideoRecorder.this.lambda$destroy$6(valueAnimator2);
+                this.f$0.lambda$destroy$6(valueAnimator2);
             }
         });
         this.destroyAnimator.addListener(new AnimatorListenerAdapter() {
@@ -370,9 +370,9 @@ public abstract class RoundVideoRecorder extends FrameLayout {
     }
 
     public void lambda$destroy$6(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.destroyT = floatValue;
-        this.cameraView.setScaleX(1.0f - floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.destroyT = fFloatValue;
+        this.cameraView.setScaleX(1.0f - fFloatValue);
         this.cameraView.setScaleY(1.0f - this.destroyT);
         invalidate();
     }

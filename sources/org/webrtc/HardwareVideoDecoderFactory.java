@@ -46,7 +46,13 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         this(context, null);
     }
 
-    public HardwareVideoDecoderFactory(org.webrtc.EglBase.Context r2, org.webrtc.Predicate<android.media.MediaCodecInfo> r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.<init>(org.webrtc.EglBase$Context, org.webrtc.Predicate):void");
+    public HardwareVideoDecoderFactory(EglBase.Context context, Predicate<MediaCodecInfo> predicate) {
+        Predicate<MediaCodecInfo> predicateAnd;
+        if (predicate == null) {
+            predicateAnd = defaultAllowedPredicate;
+        } else {
+            predicateAnd = predicate.and(defaultAllowedPredicate);
+        }
+        super(context, predicateAnd);
     }
 }

@@ -9,11 +9,11 @@ public final class MP4Input extends MP4Box {
     }
 
     public MP4Atom nextChildUpTo(String str) {
-        MP4Atom nextChild;
+        MP4Atom mP4AtomNextChild;
         do {
-            nextChild = nextChild();
-        } while (!nextChild.getType().matches(str));
-        return nextChild;
+            mP4AtomNextChild = nextChild();
+        } while (!mP4AtomNextChild.getType().matches(str));
+        return mP4AtomNextChild;
     }
 
     public String toString() {

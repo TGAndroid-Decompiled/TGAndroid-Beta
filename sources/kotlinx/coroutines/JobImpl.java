@@ -20,6 +20,18 @@ public class JobImpl extends JobSupport implements CompletableJob {
     }
 
     private final boolean handlesException() {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.JobImpl.handlesException():boolean");
+        JobSupport job;
+        ChildHandle parentHandle$kotlinx_coroutines_core = getParentHandle$kotlinx_coroutines_core();
+        ChildHandleNode childHandleNode = parentHandle$kotlinx_coroutines_core instanceof ChildHandleNode ? (ChildHandleNode) parentHandle$kotlinx_coroutines_core : null;
+        if (childHandleNode != null && (job = childHandleNode.getJob()) != null) {
+            while (!job.getHandlesException$kotlinx_coroutines_core()) {
+                ChildHandle parentHandle$kotlinx_coroutines_core2 = job.getParentHandle$kotlinx_coroutines_core();
+                ChildHandleNode childHandleNode2 = parentHandle$kotlinx_coroutines_core2 instanceof ChildHandleNode ? (ChildHandleNode) parentHandle$kotlinx_coroutines_core2 : null;
+                if (childHandleNode2 == null || (job = childHandleNode2.getJob()) == null) {
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

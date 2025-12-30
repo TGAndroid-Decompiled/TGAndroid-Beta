@@ -31,7 +31,7 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
     float scrollYOffset;
     Paint topBackground;
 
-    public void onDismiss() {
+    protected void onDismiss() {
     }
 
     @Override
@@ -52,18 +52,18 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
         this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 if (BotCommandsMenuContainer.this.listView.getLayoutManager() == null || BotCommandsMenuContainer.this.listView.getAdapter() == null || BotCommandsMenuContainer.this.listView.getAdapter().getItemCount() == 0) {
                     super.dispatchDraw(canvas);
                     return;
                 }
-                float dp = BotCommandsMenuContainer.this.scrollYOffset - AndroidUtilities.dp(8.0f);
-                BotCommandsMenuContainer.this.containerY = dp - AndroidUtilities.dp(16.0f);
+                float fDp = BotCommandsMenuContainer.this.scrollYOffset - AndroidUtilities.dp(8.0f);
+                BotCommandsMenuContainer.this.containerY = fDp - AndroidUtilities.dp(16.0f);
                 if (BotCommandsMenuContainer.this.backgroundDrawable != null) {
                     BotCommandsMenuContainer.this.backgroundDrawable.draw(canvas);
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(12.0f), dp - AndroidUtilities.dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(12.0f), dp);
+                rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(12.0f), fDp - AndroidUtilities.dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(12.0f), fDp);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), BotCommandsMenuContainer.this.topBackground);
                 super.dispatchDraw(canvas);
             }
@@ -76,8 +76,8 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 super.onScrolled(recyclerView, i, i2);
-                View findViewByPosition = BotCommandsMenuContainer.this.listView.getLayoutManager().findViewByPosition(0);
-                float y = findViewByPosition != null ? findViewByPosition.getY() : 0.0f;
+                View viewFindViewByPosition = BotCommandsMenuContainer.this.listView.getLayoutManager().findViewByPosition(0);
+                float y = viewFindViewByPosition != null ? viewFindViewByPosition.getY() : 0.0f;
                 float f = y >= 0.0f ? y : 0.0f;
                 BotCommandsMenuContainer botCommandsMenuContainer = BotCommandsMenuContainer.this;
                 botCommandsMenuContainer.scrollYOffset = f;
@@ -211,13 +211,13 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
             return;
         }
         RecyclerListView recyclerListView = this.listView;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), 0.0f);
-        this.currentAnimation = ofFloat;
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), 0.0f);
+        this.currentAnimation = objectAnimatorOfFloat;
         if (z) {
-            ofFloat.setDuration(320L);
+            objectAnimatorOfFloat.setDuration(320L);
             this.currentAnimation.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
-            ofFloat.setDuration(150L);
+            objectAnimatorOfFloat.setDuration(150L);
             this.currentAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
         }
         this.currentAnimation.start();
@@ -230,9 +230,9 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
         this.dismissed = true;
         cancelCurrentAnimation();
         RecyclerListView recyclerListView = this.listView;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.dp(40.0f));
-        this.currentAnimation = ofFloat;
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.dp(40.0f));
+        this.currentAnimation = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 BotCommandsMenuContainer.this.setVisibility(8);

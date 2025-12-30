@@ -35,7 +35,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
-public abstract class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout acceptButton;
     private TextView acceptTextView;
     private int accountNum;
@@ -50,7 +50,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
     private ScrollView scrollView;
     private TextView textView;
 
-    public BlockingUpdateView(final Context context) {
+    public BlockingUpdateView(final Context context) throws NoSuchFieldException, SecurityException {
         super(context);
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i = Theme.key_windowBackgroundWhite;
@@ -70,7 +70,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         rLottieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BlockingUpdateView.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -134,7 +134,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         this.acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BlockingUpdateView.this.lambda$new$1(context, view);
+                this.f$0.lambda$new$1(context, view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -148,10 +148,10 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             @Override
             protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
                 super.onLayout(z, i4, i5, i6, i7);
-                int dp = AndroidUtilities.dp(36.0f);
-                int i8 = ((i6 - i4) - dp) / 2;
-                int i9 = ((i7 - i5) - dp) / 2;
-                BlockingUpdateView.this.radialProgress.setProgressRect(i8, i9, i8 + dp, dp + i9);
+                int iDp = AndroidUtilities.dp(36.0f);
+                int i8 = ((i6 - i4) - iDp) / 2;
+                int i9 = ((i7 - i5) - iDp) / 2;
+                BlockingUpdateView.this.radialProgress.setProgressRect(i8, i9, i8 + iDp, iDp + i9);
             }
 
             @Override
@@ -246,7 +246,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             if (str6 == null || !str6.equals(str5)) {
                 return;
             }
-            this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+            this.radialProgress.setProgress(Math.min(1.0f, ((Long) objArr[1]).longValue() / ((Long) objArr[2]).longValue()), true);
         }
     }
 
@@ -262,26 +262,26 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             AnimatorSet animatorSet2 = this.progressAnimation;
             TextView textView = this.acceptTextView;
             Property property = View.SCALE_X;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.1f);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.1f);
             TextView textView2 = this.acceptTextView;
             Property property2 = View.SCALE_Y;
-            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.1f);
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.1f);
             TextView textView3 = this.acceptTextView;
             Property property3 = View.ALPHA;
-            animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property3, 1.0f));
+            animatorSet2.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property3, 1.0f));
         } else {
             this.acceptTextView.setVisibility(0);
             this.acceptButton.setEnabled(true);
             AnimatorSet animatorSet3 = this.progressAnimation;
             FrameLayout frameLayout = this.radialProgressView;
             Property property4 = View.SCALE_X;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property4, 0.1f);
+            ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property4, 0.1f);
             FrameLayout frameLayout2 = this.radialProgressView;
             Property property5 = View.SCALE_Y;
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property5, 0.1f);
+            ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property5, 0.1f);
             FrameLayout frameLayout3 = this.radialProgressView;
             Property property6 = View.ALPHA;
-            animatorSet3.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property6, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property4, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property5, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property6, 1.0f));
+            animatorSet3.playTogether(objectAnimatorOfFloat3, objectAnimatorOfFloat4, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property6, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property4, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property5, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property6, 1.0f));
         }
         this.progressAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -342,7 +342,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             ConnectionsManager.getInstance(this.accountNum).sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BlockingUpdateView.this.lambda$show$3(tLObject, tL_error);
+                    this.f$0.lambda$show$3(tLObject, tL_error);
                 }
             });
         }
@@ -352,7 +352,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BlockingUpdateView.this.lambda$show$2(tLObject);
+                this.f$0.lambda$show$2(tLObject);
             }
         });
     }

@@ -69,13 +69,13 @@ public class ProfileGalleryBlurView extends View {
         this.blurTask = new Runnable() {
             @Override
             public final void run() {
-                ProfileGalleryBlurView.this.doBlur();
+                this.f$0.doBlur();
             }
         };
         this.invalidateTask = new Runnable() {
             @Override
             public final void run() {
-                ProfileGalleryBlurView.this.updateContent();
+                this.f$0.updateContent();
             }
         };
         this.currentPosition = -1;
@@ -306,7 +306,7 @@ public class ProfileGalleryBlurView extends View {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileGalleryBlurView.this.lambda$doBlur$0();
+                    this.f$0.lambda$doBlur$0();
                 }
             });
         } else {
@@ -474,8 +474,8 @@ public class ProfileGalleryBlurView extends View {
             profileMusicView.drawingBlur(false);
         }
         if (this.needNewFrame || this.sizeChanged || this.loopInvalidate || (this.paints[0].getShader() == null && this.paints[1].getShader() == null && !this.isBluring)) {
-            boolean captureNextFrame = captureNextFrame();
-            if (!this.isBluring && captureNextFrame) {
+            boolean zCaptureNextFrame = captureNextFrame();
+            if (!this.isBluring && zCaptureNextFrame) {
                 this.isBluring = true;
                 DispatchQueue dispatchQueue = ProfileMetaballView.profileBlurQueue;
                 dispatchQueue.cancelRunnable(this.blurTask);
@@ -528,10 +528,6 @@ public class ProfileGalleryBlurView extends View {
     }
 
     private void initRenderNode() {
-        RenderEffect createBlurEffect;
-        RenderEffect createShaderEffect;
-        BlendMode blendMode;
-        RenderEffect createBlendModeEffect;
         if (this.blurNode == null) {
             float renderNodeScale = getRenderNodeScale();
             this.blurNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("profileBlurNode");
@@ -539,17 +535,11 @@ public class ProfileGalleryBlurView extends View {
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.size / renderNodeScale, new int[]{0, -1}, fArr, tileMode);
             float blurRadius = getBlurRadius();
-            RenderNode renderNode = this.blurNode;
-            createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode);
-            createShaderEffect = RenderEffect.createShaderEffect(linearGradient);
-            blendMode = BlendMode.DST_IN;
-            createBlendModeEffect = RenderEffect.createBlendModeEffect(createBlurEffect, createShaderEffect, blendMode);
-            renderNode.setRenderEffect(createBlendModeEffect);
+            this.blurNode.setRenderEffect(RenderEffect.createBlendModeEffect(RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode), RenderEffect.createShaderEffect(linearGradient), BlendMode.DST_IN));
         }
     }
 
     private void initActionsRenderNode() {
-        RenderEffect createColorFilterEffect;
         if (this.actionsView == null && this.suggestionView == null && this.musicView == null) {
             this.shouldBlurActions = false;
             return;
@@ -559,15 +549,12 @@ public class ProfileGalleryBlurView extends View {
             ColorMatrix colorMatrix = new ColorMatrix();
             AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.65f);
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.5f);
-            RenderNode renderNode = this.actionsBlurNode;
-            createColorFilterEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
-            renderNode.setRenderEffect(createColorFilterEffect);
+            this.actionsBlurNode.setRenderEffect(RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix)));
         }
         this.shouldBlurActions = true;
     }
 
     public void drawRenderNode(Canvas canvas, float f) {
-        RecordingCanvas beginRecording;
         initRenderNode();
         SizeNotifierFrameLayout.IViewWithInvalidateCallback iViewWithInvalidateCallback = this.listeners[0];
         if (iViewWithInvalidateCallback != null) {
@@ -579,18 +566,18 @@ public class ProfileGalleryBlurView extends View {
         }
         float renderNodeScale = getRenderNodeScale();
         this.blurNode.setPosition(0, 0, (int) (f / renderNodeScale), (int) ((this.size + this.actionSize) / renderNodeScale));
-        beginRecording = this.blurNode.beginRecording();
+        RecordingCanvas recordingCanvasBeginRecording = this.blurNode.beginRecording();
         float f2 = 1.0f / renderNodeScale;
-        beginRecording.scale(f2, f2);
-        beginRecording.save();
-        beginRecording.translate(-this.offset, 0.0f);
-        drawViewWithRenderNode(beginRecording, 0);
-        beginRecording.restore();
+        recordingCanvasBeginRecording.scale(f2, f2);
+        recordingCanvasBeginRecording.save();
+        recordingCanvasBeginRecording.translate(-this.offset, 0.0f);
+        drawViewWithRenderNode(recordingCanvasBeginRecording, 0);
+        recordingCanvasBeginRecording.restore();
         if (this.offset != 0) {
-            beginRecording.save();
-            beginRecording.translate((-this.offset) + f, 0.0f);
-            drawViewWithRenderNode(beginRecording, 1);
-            beginRecording.restore();
+            recordingCanvasBeginRecording.save();
+            recordingCanvasBeginRecording.translate((-this.offset) + f, 0.0f);
+            drawViewWithRenderNode(recordingCanvasBeginRecording, 1);
+            recordingCanvasBeginRecording.restore();
         }
         this.blurNode.endRecording();
         this.blurNode.setAlpha(this.alpha.set(1.0f));
@@ -629,7 +616,6 @@ public class ProfileGalleryBlurView extends View {
     }
 
     public void drawOpeningRenderNode(ProfileActivity.AvatarImageView avatarImageView, Canvas canvas, float f, float f2, float f3, float f4) {
-        RecordingCanvas beginRecording;
         ImageReceiver imageReceiver;
         float measuredWidth = f / this.view.getMeasuredWidth();
         float f5 = this.size * (1.0f - f3);
@@ -637,18 +623,18 @@ public class ProfileGalleryBlurView extends View {
         float renderNodeScale = getRenderNodeScale() * measuredWidth;
         initRenderNode();
         this.blurNode.setPosition(0, 0, (int) (f / renderNodeScale), (int) ((this.actionSize + f5) / renderNodeScale));
-        beginRecording = this.blurNode.beginRecording();
+        RecordingCanvas recordingCanvasBeginRecording = this.blurNode.beginRecording();
         float f7 = 1.0f / renderNodeScale;
-        beginRecording.scale(f7, f7);
+        recordingCanvasBeginRecording.scale(f7, f7);
         AnimatedEmojiDrawable animatedEmojiDrawable = avatarImageView.animatedEmojiDrawable;
         if (animatedEmojiDrawable != null) {
             imageReceiver = animatedEmojiDrawable.getImageReceiver();
         } else {
             imageReceiver = avatarImageView.imageReceiver;
         }
-        drawOpeningImageRenderNode(imageReceiver, beginRecording, f6, f2);
+        drawOpeningImageRenderNode(imageReceiver, recordingCanvasBeginRecording, f6, f2);
         if (avatarImageView.drawForeground && avatarImageView.foregroundAlpha > 0.0f) {
-            drawOpeningImageRenderNode(avatarImageView.foregroundImageReceiver, beginRecording, f6, f2);
+            drawOpeningImageRenderNode(avatarImageView.foregroundImageReceiver, recordingCanvasBeginRecording, f6, f2);
         }
         this.blurNode.endRecording();
         this.blurNode.setAlpha(f4);
@@ -659,7 +645,6 @@ public class ProfileGalleryBlurView extends View {
     }
 
     private void captureActionsBlurRenderNode(float f, ProfileActivity.AvatarImageView avatarImageView, float f2, float f3) {
-        RecordingCanvas beginRecording;
         initActionsRenderNode();
         if (!this.shouldBlurActions) {
             ProfileActionsView profileActionsView = this.actionsView;
@@ -679,9 +664,9 @@ public class ProfileGalleryBlurView extends View {
         }
         float renderNodeScale = getRenderNodeScale() * f2 * 8.0f;
         this.actionsBlurNode.setPosition(0, 0, (int) Math.ceil(f / renderNodeScale), (int) ((this.actionSize + f3) / renderNodeScale));
-        beginRecording = this.actionsBlurNode.beginRecording();
-        beginRecording.scale(0.125f, 0.125f);
-        beginRecording.drawRenderNode(this.blurNode);
+        RecordingCanvas recordingCanvasBeginRecording = this.actionsBlurNode.beginRecording();
+        recordingCanvasBeginRecording.scale(0.125f, 0.125f);
+        recordingCanvasBeginRecording.drawRenderNode(this.blurNode);
         this.actionsBlurNode.endRecording();
         this.actionsBlurNode.setAlpha(this.alpha.set(1.0f));
         ProfileActionsView profileActionsView2 = this.actionsView;

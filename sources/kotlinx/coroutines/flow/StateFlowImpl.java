@@ -3,16 +3,38 @@ package kotlinx.coroutines.flow;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlow;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot;
 import kotlinx.coroutines.flow.internal.NullSurrogateKt;
 import kotlinx.coroutines.internal.Symbol;
 
-public final class StateFlowImpl extends AbstractSharedFlow implements MutableStateFlow, Flow {
+final class StateFlowImpl extends AbstractSharedFlow implements MutableStateFlow, Flow {
     private static final AtomicReferenceFieldUpdater _state$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(StateFlowImpl.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     private int sequence;
+
+    static final class AnonymousClass1 extends ContinuationImpl {
+        Object L$0;
+        Object L$1;
+        Object L$2;
+        Object L$3;
+        Object L$4;
+        int label;
+        Object result;
+
+        AnonymousClass1(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return StateFlowImpl.this.collect(null, this);
+        }
+    }
 
     private final boolean updateState(Object obj, Object obj2) {
         int i;
@@ -88,7 +110,7 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
     }
 
     @Override
-    public java.lang.Object collect(kotlinx.coroutines.flow.FlowCollector r11, kotlin.coroutines.Continuation r12) {
+    public java.lang.Object collect(kotlinx.coroutines.flow.FlowCollector r11, kotlin.coroutines.Continuation r12) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.flow.StateFlowImpl.collect(kotlinx.coroutines.flow.FlowCollector, kotlin.coroutines.Continuation):java.lang.Object");
     }
 

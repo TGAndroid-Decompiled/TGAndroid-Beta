@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -19,7 +20,7 @@ public class AddChannelCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private final SimpleTextView textView;
 
-    public AddChannelCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public AddChannelCell(Context context, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         super(context);
         this.resourcesProvider = resourcesProvider;
         SimpleTextView simpleTextView = new SimpleTextView(context);
@@ -55,18 +56,18 @@ public class AddChannelCell extends FrameLayout {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int dp;
+        int iDp;
         int i5 = i3 - i;
         int textHeight = ((i4 - i2) - this.textView.getTextHeight()) / 2;
         if (LocaleController.isRTL) {
-            dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
+            iDp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
         } else {
-            dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
+            iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
         }
         SimpleTextView simpleTextView = this.textView;
-        simpleTextView.layout(dp, textHeight, simpleTextView.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight);
-        int dp2 = !LocaleController.isRTL ? AndroidUtilities.dp(24.0f) : (i5 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(24.0f);
+        simpleTextView.layout(iDp, textHeight, simpleTextView.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight);
+        int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(24.0f) : (i5 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(24.0f);
         ImageView imageView = this.imageView;
-        imageView.layout(dp2, 0, imageView.getMeasuredWidth() + dp2, this.imageView.getMeasuredHeight());
+        imageView.layout(iDp2, 0, imageView.getMeasuredWidth() + iDp2, this.imageView.getMeasuredHeight());
     }
 }

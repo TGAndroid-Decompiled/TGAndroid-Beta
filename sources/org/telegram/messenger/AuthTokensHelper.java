@@ -16,9 +16,9 @@ public class AuthTokensHelper {
         ArrayList<TLRPC.TL_auth_loggedOut> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < i; i2++) {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_out_token_" + i2, "")));
-            TLRPC.TL_auth_loggedOut TLdeserialize = TLRPC.TL_auth_loggedOut.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            if (TLdeserialize != null) {
-                arrayList.add(TLdeserialize);
+            TLRPC.TL_auth_loggedOut tL_auth_loggedOutTLdeserialize = TLRPC.TL_auth_loggedOut.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+            if (tL_auth_loggedOutTLdeserialize != null) {
+                arrayList.add(tL_auth_loggedOutTLdeserialize);
             }
         }
         return arrayList;
@@ -33,14 +33,14 @@ public class AuthTokensHelper {
             arrayList2.add(arrayList.get(i));
         }
         if (arrayList2.size() > 0) {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt("count", arrayList2.size());
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            editorEdit.putInt("count", arrayList2.size());
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_loggedOut) arrayList2.get(i2)).getObjectSize());
                 ((TLRPC.TL_auth_loggedOut) arrayList2.get(i2)).serializeToStream(serializedData);
-                edit.putString("log_out_token_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
+                editorEdit.putString("log_out_token_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
             }
-            edit.apply();
+            editorEdit.apply();
         }
     }
 
@@ -54,9 +54,9 @@ public class AuthTokensHelper {
         for (int i2 = 0; i2 < i; i2++) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i2, "")));
-                TLRPC.auth_Authorization TLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                if (TLdeserialize instanceof TLRPC.TL_auth_authorization) {
-                    arrayList.add((TLRPC.TL_auth_authorization) TLdeserialize);
+                TLRPC.auth_Authorization auth_authorizationTLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (auth_authorizationTLdeserialize instanceof TLRPC.TL_auth_authorization) {
+                    arrayList.add((TLRPC.TL_auth_authorization) auth_authorizationTLdeserialize);
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -85,14 +85,14 @@ public class AuthTokensHelper {
             arrayList2.add(arrayList.get(i));
         }
         if (arrayList2.size() > 0) {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt("count", arrayList2.size());
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            editorEdit.putInt("count", arrayList2.size());
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_authorization) arrayList2.get(i2)).getObjectSize());
                 ((TLRPC.TL_auth_authorization) arrayList2.get(i2)).serializeToStream(serializedData);
-                edit.putString("log_in_token_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
+                editorEdit.putString("log_in_token_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
             }
-            edit.apply();
+            editorEdit.apply();
             BackupAgent.requestBackup(ApplicationLoader.applicationContext);
         }
     }

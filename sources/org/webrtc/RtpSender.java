@@ -32,8 +32,8 @@ public class RtpSender {
         this.nativeRtpSender = j;
         this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
         if (nativeGetMediaType(j).equalsIgnoreCase("audio")) {
-            long nativeGetDtmfSender = nativeGetDtmfSender(j);
-            this.dtmfSender = nativeGetDtmfSender != 0 ? new DtmfSender(nativeGetDtmfSender) : null;
+            long jNativeGetDtmfSender = nativeGetDtmfSender(j);
+            this.dtmfSender = jNativeGetDtmfSender != 0 ? new DtmfSender(jNativeGetDtmfSender) : null;
         } else {
             this.dtmfSender = null;
         }
@@ -105,7 +105,7 @@ public class RtpSender {
         this.nativeRtpSender = 0L;
     }
 
-    public long getNativeRtpSender() {
+    long getNativeRtpSender() {
         checkRtpSenderExists();
         return this.nativeRtpSender;
     }

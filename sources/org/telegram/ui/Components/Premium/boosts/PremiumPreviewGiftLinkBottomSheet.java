@@ -98,9 +98,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                boolean lambda$share$0;
-                lambda$share$0 = PremiumPreviewGiftLinkBottomSheet.this.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
-                return lambda$share$0;
+                return this.f$0.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override
@@ -136,51 +134,6 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
     @Override
     protected void onBindAdditionCell(View view, int i) {
         ((LinkCell) view).setSlug(this.slug);
-    }
-
-    public class AnonymousClass1 implements Bulletin.Delegate {
-        @Override
-        public boolean allowLayoutChanges() {
-            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-        }
-
-        @Override
-        public boolean bottomOffsetAnimated() {
-            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-        }
-
-        @Override
-        public boolean clipWithGradient(int i) {
-            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-        }
-
-        @Override
-        public int getTopOffset(int i) {
-            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
-        }
-
-        @Override
-        public void onBottomOffsetChange(float f) {
-            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-        }
-
-        @Override
-        public void onHide(Bulletin bulletin) {
-            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-        }
-
-        @Override
-        public void onShow(Bulletin bulletin) {
-            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-        }
-
-        AnonymousClass1() {
-        }
-
-        @Override
-        public int getBottomOffset(int i) {
-            return AndroidUtilities.dp(68.0f);
-        }
     }
 
     private void init() {
@@ -220,9 +173,6 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
 
-            AnonymousClass1() {
-            }
-
             @Override
             public int getBottomOffset(int i) {
                 return AndroidUtilities.dp(68.0f);
@@ -237,7 +187,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             actionBtnCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PremiumPreviewGiftLinkBottomSheet.this.lambda$init$4(view);
+                    this.f$0.lambda$init$4(view);
                 }
             });
             this.actionBtn.setActivateForFreeStyle();
@@ -254,12 +204,12 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.this.lambda$init$2((Void) obj);
+                this.f$0.lambda$init$2((Void) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.this.lambda$init$3((TLRPC.TL_error) obj);
+                this.f$0.lambda$init$3((TLRPC.TL_error) obj);
             }
         });
     }
@@ -270,7 +220,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PremiumPreviewGiftLinkBottomSheet.this.lambda$init$1();
+                this.f$0.lambda$init$1();
             }
         }, 200L);
     }

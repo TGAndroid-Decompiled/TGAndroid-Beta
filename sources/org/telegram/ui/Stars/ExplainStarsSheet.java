@@ -46,14 +46,14 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
-        StarParticlesView makeParticlesView = StarsIntroActivity.makeParticlesView(context, 70, 0);
-        frameLayout.addView(makeParticlesView, LayoutHelper.createFrame(-1, -1.0f));
+        StarParticlesView starParticlesViewMakeParticlesView = StarsIntroActivity.makeParticlesView(context, 70, 0);
+        frameLayout.addView(starParticlesViewMakeParticlesView, LayoutHelper.createFrame(-1, -1.0f));
         GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2);
         GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
         gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
         gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
         gLIconRenderer.updateColors();
-        gLIconTextureView.setStarParticlesView(makeParticlesView);
+        gLIconTextureView.setStarParticlesView(starParticlesViewMakeParticlesView);
         frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         gLIconTextureView.setPaused(false);
         this.headerView.addView(frameLayout, LayoutHelper.createFrame(-1, 150.0f));
@@ -77,7 +77,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ExplainStarsSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         this.buttonContainer.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
@@ -103,7 +103,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ExplainStarsSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider) {
             @Override
@@ -121,7 +121,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(FeatureCell.Factory.of(R.drawable.msg_bot, LocaleController.getString(R.string.ExplainStarsFeature2Title), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExplainStarsFeature2Text), new Runnable() {
             @Override
             public final void run() {
-                ExplainStarsSheet.this.lambda$fillItems$1();
+                this.f$0.lambda$fillItems$1();
             }
         }), true)));
         arrayList.add(FeatureCell.Factory.of(R.drawable.menu_unlock, LocaleController.getString(R.string.ExplainStarsFeature3Title), LocaleController.getString(R.string.ExplainStarsFeature3Text)));
@@ -191,12 +191,12 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             }
 
             public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.selectable = false;
-                ofFactory.intValue = i;
-                ofFactory.text = charSequence;
-                ofFactory.subtext = charSequence2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.selectable = false;
+                uItemOfFactory.intValue = i;
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                return uItemOfFactory;
             }
         }
     }

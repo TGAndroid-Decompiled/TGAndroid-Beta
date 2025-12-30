@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-public class PipSourcePlaceholder {
+class PipSourcePlaceholder {
     private Bitmap placeholder;
     private Drawable placeholderActivityDrawable;
     private final View placeholderActivityView;
@@ -109,12 +109,12 @@ public class PipSourcePlaceholder {
             int i6 = i4 - i2;
             float width = this.bitmap.getWidth();
             float height = this.bitmap.getHeight();
-            float min = Math.min(i5 / width, i6 / height);
-            int round = Math.round(width * min);
-            int round2 = Math.round(height * min);
-            int i7 = i + ((i5 - round) / 2);
-            int i8 = i2 + ((i6 - round2) / 2);
-            this.rect.set(i7, i8, round + i7, round2 + i8);
+            float fMin = Math.min(i5 / width, i6 / height);
+            int iRound = Math.round(width * fMin);
+            int iRound2 = Math.round(height * fMin);
+            int i7 = i + ((i5 - iRound) / 2);
+            int i8 = i2 + ((i6 - iRound2) / 2);
+            this.rect.set(i7, i8, iRound + i7, iRound2 + i8);
         }
     }
 }

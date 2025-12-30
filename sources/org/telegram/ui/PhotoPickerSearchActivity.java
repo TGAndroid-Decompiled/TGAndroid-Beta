@@ -44,9 +44,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     private static final Interpolator interpolator = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            float lambda$static$0;
-            lambda$static$0 = PhotoPickerSearchActivity.lambda$static$0(f);
-            return lambda$static$0;
+            return PhotoPickerSearchActivity.lambda$static$0(f);
         }
     };
     private boolean animatingForward;
@@ -68,7 +66,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         return (f2 * f2 * f2 * f2 * f2) + 1.0f;
     }
 
-    public static class ViewPage extends FrameLayout {
+    private static class ViewPage extends FrameLayout {
         private ActionBar actionBar;
         private FrameLayout fragmentView;
         private RecyclerListView listView;
@@ -80,9 +78,9 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         }
     }
 
-    public PhotoPickerSearchActivity(HashMap hashMap, ArrayList arrayList, int i, boolean z, ChatActivity chatActivity) {
-        this.imagesSearch = new PhotoPickerActivity(0, null, hashMap, arrayList, i, z, chatActivity, false);
-        this.gifsSearch = new PhotoPickerActivity(1, null, hashMap, arrayList, i, z, chatActivity, false);
+    public PhotoPickerSearchActivity(HashMap map, ArrayList arrayList, int i, boolean z, ChatActivity chatActivity) {
+        this.imagesSearch = new PhotoPickerActivity(0, null, map, arrayList, i, z, chatActivity, false);
+        this.gifsSearch = new PhotoPickerActivity(1, null, map, arrayList, i, z, chatActivity, false);
     }
 
     @Override
@@ -289,12 +287,12 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             @Override
-            public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
+            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoPickerSearchActivity.AnonymousClass4.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 float measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight() + ((int) ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY());
                 canvas.drawLine(0.0f, measuredHeight, getWidth(), measuredHeight, Theme.dividerPaint);
@@ -325,8 +323,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                float f;
-                float f2;
+                float xVelocity;
+                float yVelocity;
                 float measuredWidth;
                 int measuredWidth2;
                 if (((BaseFragment) PhotoPickerSearchActivity.this).parentLayout.checkTransitionAnimation() || checkTabsAnimationInProgress()) {
@@ -346,7 +344,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                     this.velocityTracker.clear();
                 } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
                     int x = (int) (motionEvent.getX() - this.startedTrackingX);
-                    int abs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
+                    int iAbs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
                     if (this.startedTracking && ((PhotoPickerSearchActivity.this.animatingForward && x > 0) || (!PhotoPickerSearchActivity.this.animatingForward && x < 0))) {
                         if (!prepareForMoving(motionEvent, x < 0)) {
                             this.maybeStartTracking = true;
@@ -366,25 +364,25 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                             }
                             PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.selectTabWithId(PhotoPickerSearchActivity.this.viewPages[1].selectedType, Math.abs(x) / PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth());
                         }
-                    } else if (Math.abs(x) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x) > abs) {
+                    } else if (Math.abs(x) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x) > iAbs) {
                         prepareForMoving(motionEvent, x < 0);
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
                     this.velocityTracker.computeCurrentVelocity(1000, PhotoPickerSearchActivity.this.maximumVelocity);
                     if (motionEvent == null || motionEvent.getAction() == 3) {
-                        f = 0.0f;
-                        f2 = 0.0f;
+                        xVelocity = 0.0f;
+                        yVelocity = 0.0f;
                     } else {
-                        f = this.velocityTracker.getXVelocity();
-                        f2 = this.velocityTracker.getYVelocity();
-                        if (!this.startedTracking && Math.abs(f) >= 3000.0f && Math.abs(f) > Math.abs(f2)) {
-                            prepareForMoving(motionEvent, f < 0.0f);
+                        xVelocity = this.velocityTracker.getXVelocity();
+                        yVelocity = this.velocityTracker.getYVelocity();
+                        if (!this.startedTracking && Math.abs(xVelocity) >= 3000.0f && Math.abs(xVelocity) > Math.abs(yVelocity)) {
+                            prepareForMoving(motionEvent, xVelocity < 0.0f);
                         }
                     }
                     if (this.startedTracking) {
                         float x2 = PhotoPickerSearchActivity.this.viewPages[0].getX();
                         PhotoPickerSearchActivity.this.tabsAnimation = new AnimatorSet();
-                        PhotoPickerSearchActivity.this.backAnimation = Math.abs(x2) < ((float) PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()) / 3.0f && (Math.abs(f) < 3500.0f || Math.abs(f) < Math.abs(f2));
+                        PhotoPickerSearchActivity.this.backAnimation = Math.abs(x2) < ((float) PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()) / 3.0f && (Math.abs(xVelocity) < 3500.0f || Math.abs(xVelocity) < Math.abs(yVelocity));
                         if (!PhotoPickerSearchActivity.this.backAnimation) {
                             measuredWidth = PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() - Math.abs(x2);
                             if (PhotoPickerSearchActivity.this.animatingForward) {
@@ -414,11 +412,11 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                         }
                         PhotoPickerSearchActivity.this.tabsAnimation.setInterpolator(PhotoPickerSearchActivity.interpolator);
                         int measuredWidth3 = getMeasuredWidth();
-                        float f3 = measuredWidth3 / 2;
-                        float distanceInfluenceForSnapDuration = f3 + (AndroidUtilities.distanceInfluenceForSnapDuration(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f3);
-                        float abs2 = Math.abs(f);
-                        if (abs2 > 0.0f) {
-                            measuredWidth2 = Math.round(Math.abs(distanceInfluenceForSnapDuration / abs2) * 1000.0f) * 4;
+                        float f = measuredWidth3 / 2;
+                        float fDistanceInfluenceForSnapDuration = f + (AndroidUtilities.distanceInfluenceForSnapDuration(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f);
+                        float fAbs = Math.abs(xVelocity);
+                        if (fAbs > 0.0f) {
+                            measuredWidth2 = Math.round(Math.abs(fDistanceInfluenceForSnapDuration / fAbs) * 1000.0f) * 4;
                         } else {
                             measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
                         }

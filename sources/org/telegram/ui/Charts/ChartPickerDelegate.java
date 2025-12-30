@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Charts.ChartPickerDelegate;
 
 public class ChartPickerDelegate {
     public boolean disabled;
@@ -23,7 +22,7 @@ public class ChartPickerDelegate {
     public float minDistance = 0.1f;
     CapturesData[] capturedStates = {null, null};
 
-    public interface Listener {
+    interface Listener {
         void invalidate();
 
         void onPickerDataChanged();
@@ -74,7 +73,7 @@ public class ChartPickerDelegate {
         return capturesData2;
     }
 
-    public class CapturesData {
+    class CapturesData {
         ValueAnimator a;
         public float aValue = 0.0f;
         public int capturedX;
@@ -89,14 +88,14 @@ public class ChartPickerDelegate {
         }
 
         public void captured() {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.a = ofFloat;
-            ofFloat.setDuration(600L);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.a = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.setDuration(600L);
             this.a.setInterpolator(BaseChartView.INTERPOLATOR);
             this.a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChartPickerDelegate.CapturesData.this.lambda$captured$0(valueAnimator);
+                    this.f$0.lambda$captured$0(valueAnimator);
                 }
             });
             this.a.start();
@@ -333,7 +332,7 @@ public class ChartPickerDelegate {
                     this.moveToAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChartPickerDelegate.this.lambda$uncapture$0(f5, f2, f4, f, valueAnimator);
+                            this.f$0.lambda$uncapture$0(f5, f2, f4, f, valueAnimator);
                         }
                     });
                     this.moveToAnimator.setInterpolator(BaseChartView.INTERPOLATOR);
@@ -363,9 +362,9 @@ public class ChartPickerDelegate {
     }
 
     public void lambda$uncapture$0(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.pickerStart = f + ((f2 - f) * floatValue);
-        this.pickerEnd = f3 + ((f4 - f3) * floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.pickerStart = f + ((f2 - f) * fFloatValue);
+        this.pickerEnd = f3 + ((f4 - f3) * fFloatValue);
         this.view.onPickerJumpTo(f2, f4, false);
     }
 

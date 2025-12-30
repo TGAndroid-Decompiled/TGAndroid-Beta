@@ -61,13 +61,13 @@ public abstract class AdjustPanLayoutHelper {
 
     protected abstract boolean heightAnimationEnabled();
 
-    public void onPanTranslationUpdate(float f, float f2, boolean z) {
+    protected void onPanTranslationUpdate(float f, float f2, boolean z) {
     }
 
-    public void onTransitionEnd() {
+    protected void onTransitionEnd() {
     }
 
-    public void onTransitionStart(boolean z, int i) {
+    protected void onTransitionStart(boolean z, int i) {
     }
 
     protected int startOffset() {
@@ -84,7 +84,7 @@ public abstract class AdjustPanLayoutHelper {
             this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AdjustPanLayoutHelper.this.lambda$animateHeight$0(valueAnimator);
+                    this.f$0.lambda$animateHeight$0(valueAnimator);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -196,10 +196,10 @@ public abstract class AdjustPanLayoutHelper {
             @Override
             public boolean onPreDraw() {
                 int height = AdjustPanLayoutHelper.this.parent.getHeight();
-                int startOffset = height - AdjustPanLayoutHelper.this.startOffset();
+                int iStartOffset = height - AdjustPanLayoutHelper.this.startOffset();
                 AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
                 int i = adjustPanLayoutHelper.previousHeight;
-                if (startOffset == i - adjustPanLayoutHelper.previousStartOffset || height == i || adjustPanLayoutHelper.animator != null) {
+                if (iStartOffset == i - adjustPanLayoutHelper.previousStartOffset || height == i || adjustPanLayoutHelper.animator != null) {
                     if (adjustPanLayoutHelper.animator == null) {
                         adjustPanLayoutHelper.previousHeight = height;
                         adjustPanLayoutHelper.previousContentHeight = adjustPanLayoutHelper.contentView.getHeight();
@@ -245,7 +245,7 @@ public abstract class AdjustPanLayoutHelper {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AdjustPanLayoutHelper.this.onAttach();
+                this.f$0.onAttach();
             }
         });
     }
@@ -256,11 +256,11 @@ public abstract class AdjustPanLayoutHelper {
         if (activity != null) {
             this.contentView = (ViewGroup) ((ViewGroup) activity.getWindow().getDecorView()).findViewById(16908290);
         }
-        View findResizableView = findResizableView(this.parent);
-        this.resizableView = findResizableView;
-        if (findResizableView != null) {
-            this.parentForListener = findResizableView;
-            findResizableView.getViewTreeObserver().addOnPreDrawListener(this.onPreDrawListener);
+        View viewFindResizableView = findResizableView(this.parent);
+        this.resizableView = viewFindResizableView;
+        if (viewFindResizableView != null) {
+            this.parentForListener = viewFindResizableView;
+            viewFindResizableView.getViewTreeObserver().addOnPreDrawListener(this.onPreDrawListener);
         }
         if (!this.useInsetsAnimator || Build.VERSION.SDK_INT < 30) {
             return;
@@ -346,30 +346,25 @@ public abstract class AdjustPanLayoutHelper {
         view.setWindowInsetsAnimationCallback(new WindowInsetsAnimation.Callback(1) {
             @Override
             public WindowInsets onProgress(WindowInsets windowInsets, List list) {
-                WindowInsetsAnimation windowInsetsAnimation;
-                float interpolatedFraction;
-                int typeMask;
+                WindowInsetsAnimation windowInsetsAnimationM;
                 if (AdjustPanLayoutHelper.this.animationInProgress && AndroidUtilities.screenRefreshRate >= 90.0f) {
                     Iterator it = list.iterator();
                     while (true) {
                         if (!it.hasNext()) {
-                            windowInsetsAnimation = null;
+                            windowInsetsAnimationM = null;
                             break;
                         }
-                        windowInsetsAnimation = WindowInsetsAnimationCompat$Impl30$ProxyCallback$$ExternalSyntheticApiModelOutline0.m(it.next());
-                        typeMask = windowInsetsAnimation.getTypeMask();
-                        if ((typeMask & WindowInsetsCompat.Type.ime()) != 0) {
+                        windowInsetsAnimationM = WindowInsetsAnimationCompat$Impl30$ProxyCallback$$ExternalSyntheticApiModelOutline0.m(it.next());
+                        if ((windowInsetsAnimationM.getTypeMask() & WindowInsetsCompat.Type.ime()) != 0) {
                             break;
                         }
                     }
-                    if (windowInsetsAnimation != null) {
-                        long elapsedRealtime = SystemClock.elapsedRealtime();
+                    if (windowInsetsAnimationM != null) {
+                        long jElapsedRealtime = SystemClock.elapsedRealtime();
                         AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
-                        if (elapsedRealtime >= adjustPanLayoutHelper.startAfter) {
+                        if (jElapsedRealtime >= adjustPanLayoutHelper.startAfter) {
                             adjustPanLayoutHelper.usingInsetAnimator = true;
-                            AdjustPanLayoutHelper adjustPanLayoutHelper2 = AdjustPanLayoutHelper.this;
-                            interpolatedFraction = windowInsetsAnimation.getInterpolatedFraction();
-                            adjustPanLayoutHelper2.updateTransition(interpolatedFraction);
+                            AdjustPanLayoutHelper.this.updateTransition(windowInsetsAnimationM.getInterpolatedFraction());
                         }
                     }
                 }

@@ -37,9 +37,9 @@ public class JoinToSendSettingsView extends LinearLayout {
     }
 
     public JoinToSendSettingsView(Context context, TLRPC.Chat chat) {
-        super(context);
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         TLRPC.TL_chatAdminRights tL_chatAdminRights2;
+        super(context);
         this.MAXSPEC = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
         this.currentChat = chat;
         this.isJoinToSend = chat.join_to_send;
@@ -63,7 +63,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.joinToSendCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinToSendSettingsView.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         addView(this.joinToSendCell);
@@ -81,7 +81,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.joinRequestCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinToSendSettingsView.this.lambda$new$5(view);
+                this.f$0.lambda$new$5(view);
             }
         });
         addView(this.joinRequestCell);
@@ -106,7 +106,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         if (onJoinToSendToggle(z2, new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.this.lambda$new$1(z3, z);
+                this.f$0.lambda$new$1(z3, z);
             }
         })) {
             lambda$new$3(false);
@@ -118,7 +118,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.this.lambda$new$0(z, z2);
+                this.f$0.lambda$new$0(z, z2);
             }
         });
     }
@@ -134,7 +134,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         if (onJoinRequestToggle(z2, new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.this.lambda$new$4(z);
+                this.f$0.lambda$new$4(z);
             }
         })) {
             lambda$new$3(z2);
@@ -145,7 +145,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.this.lambda$new$3(z);
+                this.f$0.lambda$new$3(z);
             }
         });
     }
@@ -170,9 +170,9 @@ public class JoinToSendSettingsView extends LinearLayout {
         float f2 = 1.0f - f;
         this.joinRequestCell.setTranslationY((-AndroidUtilities.dp(16.0f)) * f2);
         this.joinRequestCell.setScaleY(1.0f - (0.1f * f2));
-        int dp = this.joinRequestCell.getMeasuredHeight() <= 0 ? AndroidUtilities.dp(50.0f) : this.joinRequestCell.getMeasuredHeight();
+        int iDp = this.joinRequestCell.getMeasuredHeight() <= 0 ? AndroidUtilities.dp(50.0f) : this.joinRequestCell.getMeasuredHeight();
         this.joinToSendInfoCell.setAlpha(f2);
-        float f3 = (-dp) * f2;
+        float f3 = (-iDp) * f2;
         this.joinToSendInfoCell.setTranslationY(((-AndroidUtilities.dp(4.0f)) * f) + f3);
         this.joinRequestInfoCell.setAlpha(f);
         this.joinRequestInfoCell.setTranslationY(f3 + (AndroidUtilities.dp(4.0f) * f2));
@@ -203,14 +203,14 @@ public class JoinToSendSettingsView extends LinearLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.toggleValue, this.isJoinToSend ? 1.0f : 0.0f);
-        this.toggleAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.toggleValue, this.isJoinToSend ? 1.0f : 0.0f);
+        this.toggleAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.setDuration(200L);
         this.toggleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.toggleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                JoinToSendSettingsView.this.lambda$setJoinToSend$6(valueAnimator2);
+                this.f$0.lambda$setJoinToSend$6(valueAnimator2);
             }
         });
         this.toggleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -228,9 +228,9 @@ public class JoinToSendSettingsView extends LinearLayout {
     }
 
     public void lambda$setJoinToSend$6(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.toggleValue = floatValue;
-        updateToggleValue(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.toggleValue = fFloatValue;
+        updateToggleValue(fFloatValue);
     }
 
     @Override

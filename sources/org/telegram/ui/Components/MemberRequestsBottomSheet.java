@@ -28,7 +28,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         this.isEmptyViewVisible = false;
         MemberRequestsDelegate memberRequestsDelegate = new MemberRequestsDelegate(baseFragment, this.container, j, false) {
             @Override
-            public void onImportersChanged(String str, boolean z, boolean z2) {
+            protected void onImportersChanged(String str, boolean z, boolean z2) {
                 if (!hasAllImporters()) {
                     if (MemberRequestsBottomSheet.this.membersEmptyView.getVisibility() != 4) {
                         MemberRequestsBottomSheet.this.membersEmptyView.setVisibility(4);
@@ -49,16 +49,16 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         this.searchListViewAdapter = adapter;
         this.listView.setAdapter(adapter);
         memberRequestsDelegate.setRecyclerView(this.listView);
-        int indexOfChild = ((ViewGroup) this.listView.getParent()).indexOfChild(this.listView);
+        int iIndexOfChild = ((ViewGroup) this.listView.getParent()).indexOfChild(this.listView);
         FlickerLoadingView loadingView = memberRequestsDelegate.getLoadingView();
         this.currentLoadingView = loadingView;
-        this.containerView.addView(loadingView, indexOfChild, LayoutHelper.createFrame(-1, -1.0f));
+        this.containerView.addView(loadingView, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
         StickerEmptyView emptyView = memberRequestsDelegate.getEmptyView();
         this.membersEmptyView = emptyView;
-        this.containerView.addView(emptyView, indexOfChild, LayoutHelper.createFrame(-1, -1.0f));
+        this.containerView.addView(emptyView, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
         StickerEmptyView searchEmptyView = memberRequestsDelegate.getSearchEmptyView();
         this.membersSearchEmptyView = searchEmptyView;
-        this.containerView.addView(searchEmptyView, indexOfChild, LayoutHelper.createFrame(-1, -1.0f));
+        this.containerView.addView(searchEmptyView, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
         memberRequestsDelegate.lambda$new$8();
     }
 
@@ -83,7 +83,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void setTranslationY(int i) {
+    protected void setTranslationY(int i) {
         super.setTranslationY(i);
         this.currentLoadingView.setTranslationY(this.frameLayout.getMeasuredHeight() + i);
         float f = i;
@@ -92,7 +92,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void updateLayout() {
+    protected void updateLayout() {
         if (this.listView.getChildCount() <= 0) {
             int paddingTop = this.listView.getVisibility() == 0 ? this.listView.getPaddingTop() - AndroidUtilities.dp(8.0f) : 0;
             if (this.scrollOffsetY != paddingTop) {
@@ -106,7 +106,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         super.search(str);
         this.delegate.setQuery(str);
     }
@@ -118,22 +118,22 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
             this.yOffset = this.scrollOffsetY;
             this.delegate.setAdapterItemsEnabled(false);
         } else if (motionEvent.getAction() == 1 && Math.abs(this.scrollOffsetY - this.yOffset) < this.touchSlop && !this.enterEventSent) {
-            Activity findActivity = AndroidUtilities.findActivity(getContext());
-            if (findActivity instanceof LaunchActivity) {
-                LaunchActivity launchActivity = (LaunchActivity) findActivity;
+            Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+            if (activityFindActivity instanceof LaunchActivity) {
+                LaunchActivity launchActivity = (LaunchActivity) activityFindActivity;
                 baseFragment = (BaseFragment) launchActivity.getActionBarLayout().getFragmentStack().get(launchActivity.getActionBarLayout().getFragmentStack().size() - 1);
             } else {
                 baseFragment = null;
             }
             if (baseFragment instanceof ChatActivity) {
-                boolean needEnterText = ((ChatActivity) baseFragment).needEnterText();
+                boolean zNeedEnterText = ((ChatActivity) baseFragment).needEnterText();
                 this.enterEventSent = true;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MemberRequestsBottomSheet.this.lambda$onSearchViewTouched$1(editTextBoldCursor);
+                        this.f$0.lambda$onSearchViewTouched$1(editTextBoldCursor);
                     }
-                }, needEnterText ? 200L : 0L);
+                }, zNeedEnterText ? 200L : 0L);
             } else {
                 this.enterEventSent = true;
                 setFocusable(true);
@@ -141,7 +141,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+                        AndroidUtilities.showKeyboard(editTextBoldCursor);
                     }
                 });
             }
@@ -157,7 +157,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
             }
         });
     }

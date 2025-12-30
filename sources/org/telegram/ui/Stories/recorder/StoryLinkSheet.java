@@ -76,7 +76,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.requestPreview = new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.lambda$new$7();
+                this.f$0.lambda$new$7();
             }
         };
         this.whenDone = callback;
@@ -89,7 +89,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         editTextCell.whenHitEnter(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.processDone();
+                this.f$0.processDone();
             }
         });
         this.urlEditText.editText.setHandlesColor(-12476440);
@@ -111,13 +111,13 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.lambda$new$0(str, textView);
+                this.f$0.lambda$new$0(str, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkSheet.this.lambda$new$1(runnable, view);
+                this.f$0.lambda$new$1(runnable, view);
             }
         });
         runnable.run();
@@ -150,13 +150,13 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                     StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
                     return;
                 }
-                String substring = editable.toString().substring(str.length());
+                String strSubstring = editable.toString().substring(str.length());
                 StoryLinkSheet.this.ignoreUrlEdit = true;
-                StoryLinkSheet.this.urlEditText.editText.setText(substring);
+                StoryLinkSheet.this.urlEditText.editText.setText(strSubstring);
                 StoryLinkSheet.this.urlEditText.editText.setSelection(0, StoryLinkSheet.this.urlEditText.editText.getText().length());
                 StoryLinkSheet.this.ignoreUrlEdit = false;
                 StoryLinkSheet.this.needRemoveDefPrefix = false;
-                StoryLinkSheet.this.checkEditURL(substring);
+                StoryLinkSheet.this.checkEditURL(strSubstring);
             }
         });
         EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, false, -1, resourcesProvider);
@@ -164,7 +164,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         editTextCell2.whenHitEnter(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.processDone();
+                this.f$0.processDone();
             }
         });
         this.buttonContainer = new FrameLayout(context);
@@ -174,7 +174,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkSheet.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
@@ -185,7 +185,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.smoothKeyboardByBottom = true;
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 super.onMoveAnimationUpdate(viewHolder);
                 ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
             }
@@ -201,7 +201,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                StoryLinkSheet.this.lambda$new$4(context, previewView, view, i2);
+                this.f$0.lambda$new$4(context, previewView, view, i2);
             }
         });
         UniversalAdapter universalAdapter = this.adapter;
@@ -217,15 +217,15 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     }
 
     public void lambda$new$1(Runnable runnable, View view) {
-        CharSequence charSequence;
+        CharSequence charSequenceCoerceToText;
         try {
-            charSequence = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
+            charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
         } catch (Exception e) {
             FileLog.e(e);
-            charSequence = null;
+            charSequenceCoerceToText = null;
         }
-        if (charSequence != null) {
-            this.urlEditText.editText.setText(charSequence.toString());
+        if (charSequenceCoerceToText != null) {
+            this.urlEditText.editText.setText(charSequenceCoerceToText.toString());
             EditTextCaption editTextCaption = this.urlEditText.editText;
             editTextCaption.setSelection(0, editTextCaption.getText().length());
         }
@@ -253,7 +253,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             storyLinkPreviewDialog.set(webPagePreview, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    StoryLinkSheet.this.lambda$new$3((LinkPreview.WebPagePreview) obj);
+                    this.f$0.lambda$new$3((LinkPreview.WebPagePreview) obj);
                 }
             });
             storyLinkPreviewDialog.setStoryPreviewView(previewView);
@@ -334,11 +334,11 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StoryLinkSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider) {
             @Override
-            public int getThemedColor(int i) {
+            protected int getThemedColor(int i) {
                 if (i == Theme.key_dialogBackgroundGray) {
                     return -15921907;
                 }
@@ -379,9 +379,9 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             return;
         }
         this.lastCheckedStr = str;
-        boolean containsURL = containsURL(str);
+        boolean zContainsURL = containsURL(str);
         AndroidUtilities.cancelRunOnUIThread(this.requestPreview);
-        if (containsURL) {
+        if (zContainsURL) {
             if (!this.loading || this.webpage != null) {
                 this.loading = true;
                 this.webpage = null;
@@ -403,7 +403,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                 universalAdapter2.update(true);
             }
         }
-        this.button.setEnabled(containsURL);
+        this.button.setEnabled(zContainsURL);
     }
 
     public void lambda$new$7() {
@@ -412,7 +412,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoryLinkSheet.this.lambda$new$6(tLObject, tL_error);
+                this.f$0.lambda$new$6(tLObject, tL_error);
             }
         });
     }
@@ -421,7 +421,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.lambda$new$5(tLObject);
+                this.f$0.lambda$new$5(tLObject);
             }
         });
     }
@@ -458,7 +458,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             arrayList.add(WebpagePreviewView.Factory.item(this.webpage, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StoryLinkSheet.this.closePreview(view);
+                    this.f$0.closePreview(view);
                 }
             }));
         }
@@ -602,10 +602,10 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             }
 
             public static UItem item(TLRPC.WebPage webPage, View.OnClickListener onClickListener) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = webPage;
-                ofFactory.clickCallback = onClickListener;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = webPage;
+                uItemOfFactory.clickCallback = onClickListener;
+                return uItemOfFactory;
             }
         }
     }
@@ -621,7 +621,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.lambda$show$8();
+                this.f$0.lambda$show$8();
             }
         }, 150L);
     }

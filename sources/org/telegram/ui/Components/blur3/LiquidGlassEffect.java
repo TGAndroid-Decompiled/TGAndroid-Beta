@@ -27,69 +27,63 @@ public class LiquidGlassEffect {
     private float thickness;
 
     public LiquidGlassEffect(RenderNode renderNode) {
-        RenderEffect createRuntimeShaderEffect;
         this.node = renderNode;
-        RuntimeShader m = LiquidGlassEffect$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
-        this.shader = m;
-        createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(m, "img");
-        this.effect = createRuntimeShaderEffect;
-        renderNode.setRenderEffect(createRuntimeShaderEffect);
+        RuntimeShader runtimeShaderM = LiquidGlassEffect$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
+        this.shader = runtimeShaderM;
+        RenderEffect renderEffectCreateRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(runtimeShaderM, "img");
+        this.effect = renderEffectCreateRuntimeShaderEffect;
+        renderNode.setRenderEffect(renderEffectCreateRuntimeShaderEffect);
     }
 
     public void update(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, int i) {
-        int width;
-        int height;
         float f12;
         float f13;
         float f14;
         float f15;
-        RenderEffect createRuntimeShaderEffect;
-        width = this.node.getWidth();
-        float f16 = width;
-        height = this.node.getHeight();
-        float f17 = height;
-        float f18 = (f + f3) / 2.0f;
-        float f19 = (f2 + f4) / 2.0f;
-        float f20 = f4 - f2;
-        float f21 = (f3 - f) / 2.0f;
-        float f22 = f20 / 2.0f;
-        float f23 = f5 + f8;
-        if (f23 > f20) {
-            float f24 = f5 / f23;
-            f12 = f20 * f24;
-            f13 = (1.0f - f24) * f20;
+        float width = this.node.getWidth();
+        float height = this.node.getHeight();
+        float f16 = (f + f3) / 2.0f;
+        float f17 = (f2 + f4) / 2.0f;
+        float f18 = f4 - f2;
+        float f19 = (f3 - f) / 2.0f;
+        float f20 = f18 / 2.0f;
+        float f21 = f5 + f8;
+        if (f21 > f18) {
+            float f22 = f5 / f21;
+            f12 = f18 * f22;
+            f13 = (1.0f - f22) * f18;
         } else {
             f12 = f5;
             f13 = f8;
         }
-        float f25 = f6 + f7;
-        if (f25 > f20) {
-            float f26 = f6 / f25;
-            float f27 = f20 * f26;
-            f15 = f20 * (1.0f - f26);
-            f14 = f27;
+        float f23 = f6 + f7;
+        if (f23 > f18) {
+            float f24 = f6 / f23;
+            float f25 = f18 * f24;
+            f15 = f18 * (1.0f - f24);
+            f14 = f25;
         } else {
             f14 = f6;
             f15 = f7;
         }
-        if (Math.abs(this.resolutionX - f16) > 0.1f || Math.abs(this.resolutionY - f17) > 0.1f || Math.abs(this.centerX - f18) > 0.1f || Math.abs(this.centerY - f19) > 0.1f || Math.abs(this.sizeX - f21) > 0.1f || Math.abs(this.sizeY - f22) > 0.1f || Math.abs(this.radiusLeftTop - f12) > 0.1f || Math.abs(this.radiusRightTop - f14) > 0.1f || Math.abs(this.radiusRightBottom - f15) > 0.1f || Math.abs(this.radiusLeftBottom - f13) > 0.1f || Math.abs(this.thickness - f9) > 0.1f || Math.abs(this.intensity - f10) > 0.1f || Math.abs(this.index - f11) > 0.1f || this.foregroundColor != i) {
+        if (Math.abs(this.resolutionX - width) > 0.1f || Math.abs(this.resolutionY - height) > 0.1f || Math.abs(this.centerX - f16) > 0.1f || Math.abs(this.centerY - f17) > 0.1f || Math.abs(this.sizeX - f19) > 0.1f || Math.abs(this.sizeY - f20) > 0.1f || Math.abs(this.radiusLeftTop - f12) > 0.1f || Math.abs(this.radiusRightTop - f14) > 0.1f || Math.abs(this.radiusRightBottom - f15) > 0.1f || Math.abs(this.radiusLeftBottom - f13) > 0.1f || Math.abs(this.thickness - f9) > 0.1f || Math.abs(this.intensity - f10) > 0.1f || Math.abs(this.index - f11) > 0.1f || this.foregroundColor != i) {
             this.foregroundColor = i;
-            float alpha = Color.alpha(i) / 255.0f;
-            float red = (Color.red(i) / 255.0f) * alpha;
-            float green = (Color.green(i) / 255.0f) * alpha;
-            float blue = (Color.blue(i) / 255.0f) * alpha;
+            float fAlpha = Color.alpha(i) / 255.0f;
+            float fRed = (Color.red(i) / 255.0f) * fAlpha;
+            float fGreen = (Color.green(i) / 255.0f) * fAlpha;
+            float fBlue = (Color.blue(i) / 255.0f) * fAlpha;
             RuntimeShader runtimeShader = this.shader;
-            this.resolutionX = f16;
-            this.resolutionY = f17;
-            runtimeShader.setFloatUniform("resolution", f16, f17);
+            this.resolutionX = width;
+            this.resolutionY = height;
+            runtimeShader.setFloatUniform("resolution", width, height);
             RuntimeShader runtimeShader2 = this.shader;
-            this.centerX = f18;
-            this.centerY = f19;
-            runtimeShader2.setFloatUniform("center", f18, f19);
+            this.centerX = f16;
+            this.centerY = f17;
+            runtimeShader2.setFloatUniform("center", f16, f17);
             RuntimeShader runtimeShader3 = this.shader;
-            this.sizeX = f21;
-            this.sizeY = f22;
-            runtimeShader3.setFloatUniform("size", f21, f22);
+            this.sizeX = f19;
+            this.sizeY = f20;
+            runtimeShader3.setFloatUniform("size", f19, f20);
             RuntimeShader runtimeShader4 = this.shader;
             this.radiusRightBottom = f15;
             this.radiusRightTop = f14;
@@ -105,11 +99,11 @@ public class LiquidGlassEffect {
             RuntimeShader runtimeShader7 = this.shader;
             this.index = f11;
             runtimeShader7.setFloatUniform("refract_index", f11);
-            this.shader.setFloatUniform("foreground_color_premultiplied", red, green, blue, alpha);
+            this.shader.setFloatUniform("foreground_color_premultiplied", fRed, fGreen, fBlue, fAlpha);
             RenderNode renderNode = this.node;
-            createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
-            this.effect = createRuntimeShaderEffect;
-            renderNode.setRenderEffect(createRuntimeShaderEffect);
+            RenderEffect renderEffectCreateRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
+            this.effect = renderEffectCreateRuntimeShaderEffect;
+            renderNode.setRenderEffect(renderEffectCreateRuntimeShaderEffect);
         }
     }
 }

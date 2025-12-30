@@ -42,7 +42,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         AnimatedFloat animatedFloat = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                HorizontalRoundTabsLayout.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         this.selectorStartX = animatedFloat;
@@ -50,7 +50,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         AnimatedFloat animatedFloat2 = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                HorizontalRoundTabsLayout.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         });
         this.selectorEndX = animatedFloat2;
@@ -83,16 +83,16 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
             roundTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    HorizontalRoundTabsLayout.this.lambda$setTabs$2(i, intCallback, view);
+                    this.f$0.lambda$setTabs$2(i, intCallback, view);
                 }
             });
             roundTabView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
-            LinearLayout.LayoutParams createLinear = LayoutHelper.createLinear(-2, -2);
+            LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-2, -2);
             if (i < arrayList.size() - 1) {
-                createLinear.rightMargin = AndroidUtilities.dp(4.0f);
+                layoutParamsCreateLinear.rightMargin = AndroidUtilities.dp(4.0f);
             }
             roundTabView.setText(new Text(charSequence, this.textPaint));
-            this.linearLayout.addView(roundTabView, createLinear);
+            this.linearLayout.addView(roundTabView, layoutParamsCreateLinear);
         }
     }
 
@@ -122,10 +122,10 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         rectF.set(this.selectorStartX.getValue(), 0.0f, this.selectorEndX.getValue(), getMeasuredHeight());
         this.clipPath.rewind();
         Path path = this.clipPath;
-        float dp = AndroidUtilities.dp(13.0f);
-        float dp2 = AndroidUtilities.dp(13.0f);
+        float fDp = AndroidUtilities.dp(13.0f);
+        float fDp2 = AndroidUtilities.dp(13.0f);
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, dp, dp2, direction);
+        path.addRoundRect(rectF, fDp, fDp2, direction);
         this.clipPath.close();
         this.clipPath2.rewind();
         this.clipPath2.addRect(0.0f, 0.0f, this.linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
@@ -156,7 +156,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         canvas.restore();
     }
 
-    public static class RoundTabView extends View {
+    private static class RoundTabView extends View {
         private Text text;
 
         public RoundTabView(Context context) {

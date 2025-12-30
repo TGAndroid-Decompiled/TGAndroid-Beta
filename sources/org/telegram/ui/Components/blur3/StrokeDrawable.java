@@ -63,16 +63,16 @@ public class StrokeDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        float centerX = getBounds().centerX();
-        float centerY = getBounds().centerY();
-        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.padding;
-        this.rect.set(centerX - min, centerY - min, centerX + min, centerY + min);
-        canvas.drawCircle(centerX, centerY, min, this.paintFill);
+        float fCenterX = getBounds().centerX();
+        float fCenterY = getBounds().centerY();
+        float fMin = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.padding;
+        this.rect.set(fCenterX - fMin, fCenterY - fMin, fCenterX + fMin, fCenterY + fMin);
+        canvas.drawCircle(fCenterX, fCenterY, fMin, this.paintFill);
         if (this.strokeColorTop != 0) {
-            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, min, AndroidUtilities.dpf2(1.0f), true, this.paintStrokeTop);
+            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, fMin, AndroidUtilities.dpf2(1.0f), true, this.paintStrokeTop);
         }
         if (this.strokeColorBottom != 0) {
-            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, min, AndroidUtilities.dpf2(0.6666667f), false, this.paintStrokeBottom);
+            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, fMin, AndroidUtilities.dpf2(0.6666667f), false, this.paintStrokeBottom);
         }
     }
 

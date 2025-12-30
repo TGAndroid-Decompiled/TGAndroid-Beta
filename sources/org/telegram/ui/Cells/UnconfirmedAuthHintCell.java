@@ -131,13 +131,13 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         this.yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$set$2(BaseFragment.this, i, arrayList, view);
+                UnconfirmedAuthHintCell.lambda$set$2(baseFragment, i, arrayList, view);
             }
         });
         this.noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.this.lambda$set$4(i, arrayList, view);
+                this.f$0.lambda$set$4(i, arrayList, view);
             }
         });
     }
@@ -145,10 +145,10 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
     public static void lambda$set$2(final BaseFragment baseFragment, int i, ArrayList arrayList, View view) {
         String string = LocaleController.getString(R.string.UnconfirmedAuthConfirmedMessage);
         int i2 = Theme.key_undo_cancelColor;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i2, 0, new Runnable() {
+        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i2, 0, new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthHintCell.lambda$set$0(BaseFragment.this);
+                UnconfirmedAuthHintCell.lambda$set$0(baseFragment);
             }
         });
         SpannableString spannableString = new SpannableString(">");
@@ -157,8 +157,8 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         coloredImageSpan.setScale(0.7f, 0.7f);
         coloredImageSpan.setWidth(AndroidUtilities.dp(12.0f));
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-        AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString);
-        BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.UnconfirmedAuthConfirmed), replaceSingleTag).show();
+        AndroidUtilities.replaceCharSequence(">", spannableStringBuilderReplaceSingleTag, spannableString);
+        BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.UnconfirmedAuthConfirmed), spannableStringBuilderReplaceSingleTag).show();
         MessagesController.getInstance(i).getUnconfirmedAuthController().confirm(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -178,7 +178,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         MessagesController.getInstance(i).getUnconfirmedAuthController().deny(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthHintCell.this.lambda$set$3(i, (ArrayList) obj);
+                this.f$0.lambda$set$3(i, (ArrayList) obj);
             }
         });
     }
@@ -205,7 +205,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         this.noButton.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.3f : 0.15f), 7, AndroidUtilities.dp(8.0f)));
     }
 
-    public static class TextViewWithLoading extends TextView {
+    private static class TextViewWithLoading extends TextView {
         private boolean loading;
         private final AnimatedFloat loadingT;
         private CircularProgressDrawable progressDrawable;
@@ -320,9 +320,9 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 40.0f, 9.0f, 40.0f, 0.0f));
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        int dp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(8.0f);
         int i2 = Theme.key_text_RedBold;
-        frameLayout.setBackground(Theme.createRoundRectDrawable(dp, Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.2f : 0.15f)));
+        frameLayout.setBackground(Theme.createRoundRectDrawable(iDp, Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.2f : 0.15f)));
         TextView textView3 = new TextView(getContext());
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
@@ -335,19 +335,19 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         ScaleStateListAnimator.apply(buttonWithCounterView, 0.02f, 1.5f);
         buttonWithCounterView.setText(LocaleController.getString(R.string.GotIt), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 20.0f, 14.0f, 4.0f));
-        final BottomSheet show = new BottomSheet.Builder(getContext()).setCustomView(linearLayout).show();
-        show.setCanDismissWithSwipe(false);
-        show.setCanDismissWithTouchOutside(false);
+        final BottomSheet bottomSheetShow = new BottomSheet.Builder(getContext()).setCustomView(linearLayout).show();
+        bottomSheetShow.setCanDismissWithSwipe(false);
+        bottomSheetShow.setCanDismissWithTouchOutside(false);
         buttonWithCounterView.setTimer(5, new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$5(BottomSheet.this);
+                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$5(bottomSheetShow);
             }
         });
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$6(ButtonWithCounterView.this, show, view);
+                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$6(buttonWithCounterView, bottomSheetShow, view);
             }
         });
     }

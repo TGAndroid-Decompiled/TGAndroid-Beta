@@ -18,6 +18,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
+import java.io.IOException;
 import java.net.URLEncoder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -74,7 +75,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     public static void lambda$stopVideoPlayer$2() {
     }
 
-    public void checkVideo() {
+    public void checkVideo() throws SecurityException, IOException, IllegalArgumentException {
         File file = this.file;
         if ((file != null && file.exists()) || SharedConfig.streamMedia) {
             File file2 = this.file;
@@ -86,8 +87,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     }
                     Runnable runnable2 = new Runnable() {
                         @Override
-                        public final void run() {
-                            VideoScreenPreview.this.checkVideo();
+                        public final void run() throws SecurityException, IOException, IllegalArgumentException {
+                            this.f$0.checkVideo();
                         }
                     };
                     this.nextCheck = runnable2;
@@ -97,10 +98,10 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
                     mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.file));
-                    int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
-                    int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
+                    int i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
+                    int i2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.aspectRatio = parseInt / parseInt2;
+                    this.aspectRatio = i / i2;
                 } catch (Exception unused) {
                     this.aspectRatio = 0.671f;
                 }
@@ -115,8 +116,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     }
 
     public VideoScreenPreview(Context context, SvgHelper.SvgDrawable svgDrawable, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         int i3;
+        super(context);
         this.phoneFrame1 = new Paint(1);
         this.phoneFrame2 = new Paint(1);
         this.fromTop = false;
@@ -190,7 +191,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             Path clipPath = new Path();
 
             @Override
-            public void onMeasure(int i4, int i5) {
+            protected void onMeasure(int i4, int i5) {
                 super.onMeasure(i4, i5);
                 this.clipPath.reset();
                 VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
@@ -199,8 +200,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 } else {
                     AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + VideoScreenPreview.this.roundRadius));
                 }
-                float dp = VideoScreenPreview.this.roundRadius - AndroidUtilities.dp(3.0f);
-                this.clipPath.addRoundRect(AndroidUtilities.rectTmp, dp, dp, Path.Direction.CW);
+                float fDp = VideoScreenPreview.this.roundRadius - AndroidUtilities.dp(3.0f);
+                this.clipPath.addRoundRect(AndroidUtilities.rectTmp, fDp, fDp, Path.Direction.CW);
             }
 
             @Override
@@ -222,14 +223,14 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
 
     private void setVideo() {
         TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(this.currentAccount).getPremiumPromo();
-        String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(this.type);
+        String strFeatureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(this.type);
         if (premiumPromo != null) {
             int i = 0;
             while (true) {
                 if (i >= premiumPromo.video_sections.size()) {
                     i = -1;
                     break;
-                } else if (premiumPromo.video_sections.get(i).equals(featureTypeToServerString)) {
+                } else if (premiumPromo.video_sections.get(i).equals(strFeatureTypeToServerString)) {
                     break;
                 } else {
                     i++;
@@ -267,7 +268,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        VideoScreenPreview.this.lambda$setVideo$1(document);
+                        this.f$0.lambda$setVideo$1(document);
                     }
                 });
             }
@@ -278,13 +279,13 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         final File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(document);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                VideoScreenPreview.this.lambda$setVideo$0(pathToAttach);
+            public final void run() throws SecurityException, IOException, IllegalArgumentException {
+                this.f$0.lambda$setVideo$0(pathToAttach);
             }
         });
     }
 
-    public void lambda$setVideo$0(File file) {
+    public void lambda$setVideo$0(File file) throws SecurityException, IOException, IllegalArgumentException {
         this.file = file;
         checkVideo();
     }
@@ -340,8 +341,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     this.starDrawable.rect.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
                 } else {
                     RectF rectF = AndroidUtilities.rectTmp;
-                    float width = (int) (rectF.width() * 0.4f);
-                    this.starDrawable.rect.set(rectF.centerX() - width, rectF.centerY() - width, rectF.centerX() + width, rectF.centerY() + width);
+                    float fWidth = (int) (rectF.width() * 0.4f);
+                    this.starDrawable.rect.set(rectF.centerX() - fWidth, rectF.centerY() - fWidth, rectF.centerX() + fWidth, rectF.centerY() + fWidth);
                     this.starDrawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 }
                 this.starDrawable.resetPositions();
@@ -371,9 +372,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         float f;
         if (this.starDrawable != null || this.speedLinesDrawable != null || this.helloParticlesDrawable != null || this.matrixParticlesDrawable != null) {
             if (this.progress < 0.5f) {
-                float pow = (float) Math.pow(1.0f - r0, 2.0d);
+                float fPow = (float) Math.pow(1.0f - r0, 2.0d);
                 canvas.save();
-                canvas.scale(pow, pow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                canvas.scale(fPow, fPow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
                 MatrixParticlesDrawable matrixParticlesDrawable = this.matrixParticlesDrawable;
                 if (matrixParticlesDrawable != null) {
                     matrixParticlesDrawable.onDraw(canvas);
@@ -382,14 +383,13 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     if (drawable != null) {
                         drawable.onDraw(canvas);
                     } else if (this.speedLinesDrawable != null) {
-                        VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
-                        if (videoPlayerHolderBase != null) {
-                            float clamp = Utilities.clamp(((float) videoPlayerHolderBase.getCurrentPosition()) / ((float) this.videoPlayerBase.getDuration()), 1.0f, 0.0f);
+                        if (this.videoPlayerBase != null) {
+                            float fClamp = Utilities.clamp(r0.getCurrentPosition() / this.videoPlayerBase.getDuration(), 1.0f, 0.0f);
                             float[] fArr = speedScaleVideoTimestamps;
                             float length = 1.0f / (fArr.length - 1);
-                            int i = (int) (clamp / length);
+                            int i = (int) (fClamp / length);
                             int i2 = i + 1;
-                            float f2 = (clamp - (i * length)) / length;
+                            float f2 = (fClamp - (i * length)) / length;
                             if (i2 < fArr.length) {
                                 f = (fArr[i] * (1.0f - f2)) + (fArr[i2] * f2);
                             } else {
@@ -398,9 +398,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         } else {
                             f = 0.2f;
                         }
-                        float clamp2 = ((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f;
+                        float fClamp2 = ((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f;
                         SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
-                        speedLineParticles$Drawable.speedScale = clamp2 * 150.0f * f;
+                        speedLineParticles$Drawable.speedScale = fClamp2 * 150.0f * f;
                         speedLineParticles$Drawable.onDraw(canvas);
                     } else {
                         HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
@@ -434,11 +434,11 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         } else {
             rectF.set(measuredWidth, getMeasuredHeight() - measuredHeight, getMeasuredWidth() - measuredWidth, getMeasuredHeight());
         }
-        float dp = this.roundRadius - AndroidUtilities.dp(3.0f);
-        this.roundRadius = dp;
+        float fDp = this.roundRadius - AndroidUtilities.dp(3.0f);
+        this.roundRadius = fDp;
         RoundedBitmapDrawable roundedBitmapDrawable = this.roundedBitmapDrawable;
         if (roundedBitmapDrawable != null) {
-            roundedBitmapDrawable.setCornerRadius(dp);
+            roundedBitmapDrawable.setCornerRadius(fDp);
         }
         CellFlickerDrawable.DrawableInterface drawableInterface = this.cellFlickerDrawable;
         if (drawableInterface != null) {
@@ -480,7 +480,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.progress = Math.abs(measuredWidth);
             z = measuredWidth < 1.0f;
             if (measuredWidth < 0.1f) {
-                r1 = true;
+                z = true;
             }
         } else {
             float measuredWidth2 = (-f) / getMeasuredWidth();
@@ -492,16 +492,16 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth2);
             }
             z = measuredWidth2 > -1.0f;
-            r1 = measuredWidth2 > -0.1f;
+            z = measuredWidth2 > -0.1f;
             this.progress = Math.abs(measuredWidth2);
         }
         if (z != this.visible) {
             this.visible = z;
             updateAttachState();
         }
-        if (r1 != this.allowPlay) {
-            this.allowPlay = r1;
-            this.imageReceiver.setAllowStartAnimation(r1);
+        if (z != this.allowPlay) {
+            this.allowPlay = z;
+            this.imageReceiver.setAllowStartAnimation(z);
             if (this.allowPlay) {
                 this.imageReceiver.startAnimation();
                 runVideoPlayer();
@@ -513,7 +513,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    protected void onAttachedToWindow() throws SecurityException, IOException, IllegalArgumentException {
         super.onAttachedToWindow();
         this.attached = true;
         updateAttachState();
@@ -538,7 +538,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws SecurityException, IOException, IllegalArgumentException {
         if (i == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
             String str2 = this.attachFileName;
@@ -563,7 +563,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     }
 
     private void runVideoPlayer() {
-        Uri uri;
+        Uri uriFromFile;
         if ((this.file != null || SharedConfig.streamMedia) && this.videoPlayerBase == null) {
             this.aspectRatioFrameLayout.setAspectRatio(this.aspectRatio, 0);
             VideoPlayerHolderBase videoPlayerHolderBase = new VideoPlayerHolderBase() {
@@ -603,7 +603,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             videoPlayerHolderBase.with(this.textureView);
             File file = this.file;
             if (file != null && file.exists()) {
-                uri = Uri.fromFile(this.file);
+                uriFromFile = Uri.fromFile(this.file);
             } else {
                 try {
                     StringBuilder sb = new StringBuilder();
@@ -629,15 +629,15 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         bArr = new byte[0];
                     }
                     sb.append(Utilities.bytesToHex(bArr));
-                    uri = Uri.parse("tg://" + this.attachFileName + sb.toString());
+                    uriFromFile = Uri.parse("tg://" + this.attachFileName + sb.toString());
                 } catch (Exception unused) {
-                    uri = null;
+                    uriFromFile = null;
                 }
             }
-            if (uri == null) {
+            if (uriFromFile == null) {
                 return;
             }
-            this.videoPlayerBase.preparePlayer(uri, false, 1.0f);
+            this.videoPlayerBase.preparePlayer(uriFromFile, false, 1.0f);
             if (!this.firstFrameRendered) {
                 this.imageReceiver.stopAnimation();
                 this.textureView.setAlpha(0.0f);

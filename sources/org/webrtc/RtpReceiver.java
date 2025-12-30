@@ -42,7 +42,7 @@ public class RtpReceiver {
         return nativeGetId(this.nativeRtpReceiver);
     }
 
-    public long getNativeRtpReceiver() {
+    long getNativeRtpReceiver() {
         checkRtpReceiverExists();
         return this.nativeRtpReceiver;
     }

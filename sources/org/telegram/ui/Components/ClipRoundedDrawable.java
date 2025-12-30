@@ -57,22 +57,22 @@ public class ClipRoundedDrawable extends Drawable {
 
     public void setRadii(float f, float f2, float f3, float f4) {
         float[] fArr = this.radii;
-        float max = Math.max(0.0f, f);
+        float fMax = Math.max(0.0f, f);
         boolean z = true;
-        fArr[1] = max;
-        fArr[0] = max;
+        fArr[1] = fMax;
+        fArr[0] = fMax;
         float[] fArr2 = this.radii;
-        float max2 = Math.max(0.0f, f2);
-        fArr2[3] = max2;
-        fArr2[2] = max2;
+        float fMax2 = Math.max(0.0f, f2);
+        fArr2[3] = fMax2;
+        fArr2[2] = fMax2;
         float[] fArr3 = this.radii;
-        float max3 = Math.max(0.0f, f3);
-        fArr3[5] = max3;
-        fArr3[4] = max3;
+        float fMax3 = Math.max(0.0f, f3);
+        fArr3[5] = fMax3;
+        fArr3[4] = fMax3;
         float[] fArr4 = this.radii;
-        float max4 = Math.max(0.0f, f4);
-        fArr4[7] = max4;
-        fArr4[6] = max4;
+        float fMax4 = Math.max(0.0f, f4);
+        fArr4[7] = fMax4;
+        fArr4[6] = fMax4;
         if (f <= 0.0f && f2 <= 0.0f && f3 <= 0.0f && f4 <= 0.0f) {
             z = false;
         }

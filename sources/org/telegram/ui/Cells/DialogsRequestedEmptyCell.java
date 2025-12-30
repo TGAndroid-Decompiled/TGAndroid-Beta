@@ -70,7 +70,7 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         backupImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsRequestedEmptyCell.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         updateSticker();
@@ -99,7 +99,7 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsRequestedEmptyCell.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         linearLayout.addView(this.buttonView, LayoutHelper.createLinear(-1, -2, 49, 0, 18, 0, 0));

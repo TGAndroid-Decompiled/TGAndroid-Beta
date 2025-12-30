@@ -89,9 +89,9 @@ public class BackDrawable extends Drawable {
         float f;
         if (this.currentRotation != this.finalRotation) {
             if (this.lastFrameTime != 0) {
-                int currentTimeMillis = (int) (this.currentAnimationTime + (System.currentTimeMillis() - this.lastFrameTime));
-                this.currentAnimationTime = currentTimeMillis;
-                float f2 = currentTimeMillis;
+                int iCurrentTimeMillis = (int) (this.currentAnimationTime + (System.currentTimeMillis() - this.lastFrameTime));
+                this.currentAnimationTime = iCurrentTimeMillis;
+                float f2 = iCurrentTimeMillis;
                 float f3 = this.animationTime;
                 if (f2 >= f3) {
                     this.currentRotation = this.finalRotation;
@@ -121,11 +121,11 @@ public class BackDrawable extends Drawable {
         }
         float f5 = 1.0f - f;
         canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f5), 0.0f, this.paint);
-        float dp = AndroidUtilities.dp(-0.25f);
-        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f5);
-        float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
-        canvas.drawLine(dp3, -dp, 0.0f, -dp2, this.paint);
-        canvas.drawLine(dp3, dp, 0.0f, dp2, this.paint);
+        float fDp = AndroidUtilities.dp(-0.25f);
+        float fDp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f5);
+        float fDp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
+        canvas.drawLine(fDp3, -fDp, 0.0f, -fDp2, this.paint);
+        canvas.drawLine(fDp3, fDp, 0.0f, fDp2, this.paint);
         canvas.restore();
     }
 

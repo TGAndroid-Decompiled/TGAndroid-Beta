@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.BreakIterator;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -104,14 +106,14 @@ public class AddressBarList extends FrameLayout {
         int i2 = UserConfig.selectedAccount;
         Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                AddressBarList.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            public final void run(Object obj, Object obj2) throws JSONException {
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
         Utilities.Callback5 callback5 = new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                AddressBarList.this.itemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.itemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         };
         WrappedResourceProvider wrappedResourceProvider = new WrappedResourceProvider(null);
@@ -135,9 +137,9 @@ public class AddressBarList extends FrameLayout {
         this.currentContainer = frameLayout;
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.currentView = frameLayout2;
-        Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(this.grayBackgroundColor, this.rippleColor, 15, 15);
-        this.currentViewBackground = createRadSelectorDrawable;
-        frameLayout2.setBackground(createRadSelectorDrawable);
+        Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(this.grayBackgroundColor, this.rippleColor, 15, 15);
+        this.currentViewBackground = drawableCreateRadSelectorDrawable;
+        frameLayout2.setBackground(drawableCreateRadSelectorDrawable);
         ScaleStateListAnimator.apply(frameLayout2, 0.04f, 1.25f);
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 7, 12.0f, 0.0f, 12.0f, 15.0f));
         ImageView imageView = new ImageView(context);
@@ -148,9 +150,9 @@ public class AddressBarList extends FrameLayout {
         ScaleStateListAnimator.apply(imageView2);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.msg_copy);
-        Drawable createRadSelectorDrawable2 = Theme.createRadSelectorDrawable(0, 0, 6, 6);
-        this.currentCopyBackground = createRadSelectorDrawable2;
-        imageView2.setBackground(createRadSelectorDrawable2);
+        Drawable drawableCreateRadSelectorDrawable2 = Theme.createRadSelectorDrawable(0, 0, 6, 6);
+        this.currentCopyBackground = drawableCreateRadSelectorDrawable2;
+        imageView2.setBackground(drawableCreateRadSelectorDrawable2);
         frameLayout2.addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 53, 14.0f, 14.0f, 14.0f, 14.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.currentTextContainer = linearLayout;
@@ -172,7 +174,7 @@ public class AddressBarList extends FrameLayout {
         this.bookmarksList = new BookmarksList(i, new Runnable() {
             @Override
             public final void run() {
-                AddressBarList.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         this.space = new View(context) {
@@ -194,7 +196,7 @@ public class AddressBarList extends FrameLayout {
         new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.WebRecentClearTitle)).setMessage(LocaleController.getString(R.string.WebRecentClearText)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AddressBarList.this.lambda$clearRecentSearches$1(alertDialog, i);
+                this.f$0.lambda$clearRecentSearches$1(alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
@@ -204,7 +206,7 @@ public class AddressBarList extends FrameLayout {
         this.listView.adapter.update(true);
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) throws JSONException {
         if (!this.hideCurrent && this.suggestions.isEmpty()) {
             arrayList.add(UItem.asCustom(this.currentContainer));
         }
@@ -220,7 +222,7 @@ public class AddressBarList extends FrameLayout {
             arrayList.add(Address2View.Factory.as(1, str, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AddressBarList.this.lambda$fillItems$2(str, view);
+                    this.f$0.lambda$fillItems$2(str, view);
                 }
             }, i == 0, i == this.suggestions.size() - 1, this));
             i++;
@@ -229,7 +231,7 @@ public class AddressBarList extends FrameLayout {
             arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.WebSectionRecent), LocaleController.getString(R.string.WebRecentClear), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AddressBarList.this.clearRecentSearches(view);
+                    this.f$0.clearRecentSearches(view);
                 }
             }));
             int i2 = 0;
@@ -238,7 +240,7 @@ public class AddressBarList extends FrameLayout {
                 arrayList.add(Address2View.Factory.as(0, str2, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AddressBarList.this.lambda$fillItems$3(str2, view);
+                        this.f$0.lambda$fillItems$3(str2, view);
                     }
                 }, i2 == 0, i2 == recentSearches.size() - 1, this));
                 i2++;
@@ -301,10 +303,10 @@ public class AddressBarList extends FrameLayout {
     public void itemClick(UItem uItem, View view, int i, float f, float f2) {
         Utilities.Callback callback;
         if (uItem.instanceOf(Address2View.Factory.class)) {
-            String charSequence = uItem.text.toString();
+            String string = uItem.text.toString();
             Utilities.Callback callback2 = this.onQueryClick;
             if (callback2 != null) {
-                callback2.run(charSequence);
+                callback2.run(string);
                 return;
             }
             return;
@@ -363,19 +365,19 @@ public class AddressBarList extends FrameLayout {
         }
         this.currentCopyView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
         Theme.setSelectorDrawableColor(this.currentCopyBackground, Theme.multAlpha(this.rippleColor, 1.5f), true);
-        int blendOver = Theme.blendOver(i, Theme.multAlpha(i2, 0.05f));
-        int blendOver2 = Theme.blendOver(i, Theme.multAlpha(i2, 0.55f));
+        int iBlendOver = Theme.blendOver(i, Theme.multAlpha(i2, 0.05f));
+        int iBlendOver2 = Theme.blendOver(i, Theme.multAlpha(i2, 0.55f));
         this.resourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhite, this.listBackgroundColor);
         this.resourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhiteBlackText, i2);
-        this.resourceProvider.sparseIntArray.put(Theme.key_graySection, blendOver);
-        this.resourceProvider.sparseIntArray.put(Theme.key_graySectionText, blendOver2);
+        this.resourceProvider.sparseIntArray.put(Theme.key_graySection, iBlendOver);
+        this.resourceProvider.sparseIntArray.put(Theme.key_graySectionText, iBlendOver2);
         this.resourceProvider.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuBackground, Theme.multAlpha(i2, 0.2f));
         this.resourceProvider.sparseIntArray.put(Theme.key_listSelector, Theme.multAlpha(i2, AndroidUtilities.lerp(0.05f, 0.12f, f)));
         this.listView.invalidateViews();
     }
 
     public void setCurrent(Bitmap bitmap, String str, String str2, final Runnable runnable, Utilities.Callback callback, Utilities.Callback callback2, Utilities.Callback callback3, View.OnClickListener onClickListener) {
-        String str3;
+        String strDecode;
         if (bitmap == null) {
             this.currentIconView.setImageResource(R.drawable.msg_language);
             this.currentIconView.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
@@ -387,18 +389,18 @@ public class AddressBarList extends FrameLayout {
         textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), false));
         try {
             try {
-                Uri parse = Uri.parse(str2);
-                str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                Uri uri = Uri.parse(str2);
+                str2 = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
             }
-            str3 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+            strDecode = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
         } catch (Exception e2) {
             FileLog.e(e2);
-            str3 = str2;
+            strDecode = str2;
         }
         TextView textView2 = this.currentLinkView;
-        textView2.setText(Emoji.replaceEmoji(str3, textView2.getPaint().getFontMetricsInt(), false));
+        textView2.setText(Emoji.replaceEmoji(strDecode, textView2.getPaint().getFontMetricsInt(), false));
         this.onCurrentClick = runnable;
         this.onQueryClick = callback;
         this.onQueryInsertClick = callback2;
@@ -406,7 +408,7 @@ public class AddressBarList extends FrameLayout {
         this.currentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AddressBarList.this.lambda$setCurrent$4(runnable, view);
+                this.f$0.lambda$setCurrent$4(runnable, view);
             }
         });
         this.currentCopyView.setOnClickListener(onClickListener);
@@ -443,7 +445,7 @@ public class AddressBarList extends FrameLayout {
         this.lastTask = new HttpGetTask(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AddressBarList.this.lambda$setInput$6(z, (String) obj);
+                this.f$0.lambda$setInput$6(z, (String) obj);
             }
         }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
     }
@@ -452,7 +454,7 @@ public class AddressBarList extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AddressBarList.this.lambda$setInput$5(str, z);
+                this.f$0.lambda$setInput$5(str, z);
             }
         });
     }
@@ -507,9 +509,9 @@ public class AddressBarList extends FrameLayout {
         public void setColors(int i, int i2) {
             this.textView.setTextColor(i2);
             ImageView imageView = this.iconView;
-            int multAlpha = Theme.multAlpha(i2, 0.6f);
+            int iMultAlpha = Theme.multAlpha(i2, 0.6f);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            imageView.setColorFilter(new PorterDuffColorFilter(multAlpha, mode));
+            imageView.setColorFilter(new PorterDuffColorFilter(iMultAlpha, mode));
             this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), mode));
             this.insertView.setBackground(Theme.createRadSelectorDrawable(0, Theme.multAlpha(i2, 0.15f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         }
@@ -565,15 +567,15 @@ public class AddressBarList extends FrameLayout {
             }
 
             public static UItem as(int i, String str, View.OnClickListener onClickListener, boolean z, boolean z2, AddressBarList addressBarList) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.intValue = i;
-                ofFactory.text = str;
-                ofFactory.clickCallback = onClickListener;
-                ofFactory.accent = z;
-                ofFactory.red = z2;
-                ofFactory.object = Boolean.TRUE;
-                ofFactory.object2 = addressBarList;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.intValue = i;
+                uItemOfFactory.text = str;
+                uItemOfFactory.clickCallback = onClickListener;
+                uItemOfFactory.accent = z;
+                uItemOfFactory.red = z2;
+                uItemOfFactory.object = Boolean.TRUE;
+                uItemOfFactory.object2 = addressBarList;
+                return uItemOfFactory;
             }
         }
     }
@@ -617,9 +619,9 @@ public class AddressBarList extends FrameLayout {
             textView2.setMaxLines(1);
             textView2.setEllipsize(truncateAt);
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 51, 0, 3, 0, 0));
-            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 0.0f, 70.0f, 0.0f);
-            this.textLayoutParams = createFrame;
-            addView(linearLayout, createFrame);
+            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 0.0f, 70.0f, 0.0f);
+            this.textLayoutParams = layoutParamsCreateFrame;
+            addView(linearLayout, layoutParamsCreateFrame);
             TextView textView3 = new TextView(context);
             this.timeView = textView3;
             textView3.setTextSize(1, 13.0f);
@@ -664,18 +666,18 @@ public class AddressBarList extends FrameLayout {
             this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
         }
 
-        public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) {
+        public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) throws UnsupportedEncodingException {
             String str2;
             TLRPC.Photo photo;
-            String str3;
+            String strUrlWithoutFragment;
             Bitmap bitmap;
-            String str4;
+            String str3;
             updateColors();
             TLRPC.WebPage webPage = MessageObject.getMedia(messageObject) != null ? MessageObject.getMedia(messageObject).webpage : null;
             String link = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
             WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(AndroidUtilities.getHostAuthority(link, true));
-            if (webPage != null && (str4 = webPage.title) != null) {
-                this.textView.setText(str4);
+            if (webPage != null && (str3 = webPage.title) != null) {
+                this.textView.setText(str3);
             } else if (webPage != null && (str2 = webPage.site_name) != null) {
                 this.textView.setText(str2);
             } else if (webMetadata != null && !TextUtils.isEmpty(webMetadata.title)) {
@@ -684,8 +686,8 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String str5 = Uri.parse(link).getHost().split("\\.")[r5.length - 2];
-                    this.textView.setText(str5.substring(0, 1).toUpperCase() + str5.substring(1));
+                    String str4 = Uri.parse(link).getHost().split("\\.")[r5.length - 2];
+                    this.textView.setText(str4.substring(0, 1).toUpperCase() + str4.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
                 }
@@ -696,10 +698,10 @@ public class AddressBarList extends FrameLayout {
             } else if (webPage != null && (photo = webPage.photo) != null) {
                 this.iconView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(32.0f), true, null, true), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(32.0f), true, null, false), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), 0, messageObject);
             } else {
-                String charSequence = this.textView.getText() == null ? "" : this.textView.getText().toString();
+                String string = this.textView.getText() == null ? "" : this.textView.getText().toString();
                 BreakIterator characterInstance = BreakIterator.getCharacterInstance();
-                characterInstance.setText(charSequence);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(charSequence.isEmpty() ? "" : charSequence.substring(characterInstance.first(), characterInstance.next())) {
+                characterInstance.setText(string);
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(string.isEmpty() ? "" : string.substring(characterInstance.first(), characterInstance.next())) {
                     private final Text text;
                     final String val$firstLetter;
 
@@ -717,8 +719,8 @@ public class AddressBarList extends FrameLayout {
                     }
 
                     {
-                        this.val$firstLetter = r4;
-                        this.text = new Text(r4, 14.0f, AndroidUtilities.bold());
+                        this.val$firstLetter = str;
+                        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
                     }
 
                     @Override
@@ -734,18 +736,18 @@ public class AddressBarList extends FrameLayout {
             String link2 = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
             try {
                 try {
-                    Uri parse = Uri.parse(link2);
-                    link2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                    Uri uri = Uri.parse(link2);
+                    link2 = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
                 link2 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
-                str3 = BottomSheetTabs.urlWithoutFragment(link2);
+                strUrlWithoutFragment = BottomSheetTabs.urlWithoutFragment(link2);
             } catch (Exception e2) {
                 FileLog.e(e2);
-                str3 = link2;
+                strUrlWithoutFragment = link2;
             }
-            this.subtextView.setText(str3);
+            this.subtextView.setText(strUrlWithoutFragment);
             if (!TextUtils.isEmpty(str)) {
                 TextView textView = this.textView;
                 textView.setText(AndroidUtilities.highlightText(textView.getText(), str, this.resourcesProvider));
@@ -763,13 +765,13 @@ public class AddressBarList extends FrameLayout {
             setWillNotDraw(!z3);
         }
 
-        public void set(BrowserHistory.Entry entry, String str, boolean z) {
+        public void set(BrowserHistory.Entry entry, String str, boolean z) throws UnsupportedEncodingException {
             Bitmap bitmap;
             updateColors();
             if (entry == null) {
                 return;
             }
-            String str2 = entry.url;
+            String strDecode = entry.url;
             WebMetadataCache.WebMetadata webMetadata = entry.meta;
             if (webMetadata != null && !TextUtils.isEmpty(webMetadata.title)) {
                 this.textView.setText(webMetadata.title);
@@ -777,8 +779,8 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String str3 = Uri.parse(str2).getHost().split("\\.")[r5.length - 2];
-                    this.textView.setText(str3.substring(0, 1).toUpperCase() + str3.substring(1));
+                    String str2 = Uri.parse(strDecode).getHost().split("\\.")[r5.length - 2];
+                    this.textView.setText(str2.substring(0, 1).toUpperCase() + str2.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
                 }
@@ -786,10 +788,10 @@ public class AddressBarList extends FrameLayout {
             if (webMetadata != null && (bitmap = webMetadata.favicon) != null) {
                 this.iconView.setImageBitmap(bitmap);
             } else {
-                String charSequence = this.textView.getText() == null ? "" : this.textView.getText().toString();
+                String string = this.textView.getText() == null ? "" : this.textView.getText().toString();
                 BreakIterator characterInstance = BreakIterator.getCharacterInstance();
-                characterInstance.setText(charSequence);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(charSequence.isEmpty() ? "" : charSequence.substring(characterInstance.first(), characterInstance.next())) {
+                characterInstance.setText(string);
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(string.isEmpty() ? "" : string.substring(characterInstance.first(), characterInstance.next())) {
                     private final Text text;
                     final String val$firstLetter;
 
@@ -807,8 +809,8 @@ public class AddressBarList extends FrameLayout {
                     }
 
                     {
-                        this.val$firstLetter = r4;
-                        this.text = new Text(r4, 14.0f, AndroidUtilities.bold());
+                        this.val$firstLetter = str;
+                        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
                     }
 
                     @Override
@@ -822,16 +824,16 @@ public class AddressBarList extends FrameLayout {
             this.insertView.setVisibility(8);
             try {
                 try {
-                    Uri parse = Uri.parse(str2);
-                    str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                    Uri uri = Uri.parse(strDecode);
+                    strDecode = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
-                str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+                strDecode = URLDecoder.decode(strDecode.replaceAll("\\+", "%2b"), "UTF-8");
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
-            this.subtextView.setText(str2);
+            this.subtextView.setText(strDecode);
             if (!TextUtils.isEmpty(str)) {
                 TextView textView = this.textView;
                 textView.setText(AndroidUtilities.highlightText(textView.getText(), str, this.resourcesProvider));
@@ -878,7 +880,7 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) throws UnsupportedEncodingException {
                 BookmarkView bookmarkView = (BookmarkView) view;
                 Object obj = uItem.object2;
                 if (obj instanceof MessageObject) {
@@ -896,29 +898,29 @@ public class AddressBarList extends FrameLayout {
             }
 
             public static UItem as(MessageObject messageObject, boolean z) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.intValue = 3;
-                ofFactory.accent = z;
-                ofFactory.object2 = messageObject;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.intValue = 3;
+                uItemOfFactory.accent = z;
+                uItemOfFactory.object2 = messageObject;
+                return uItemOfFactory;
             }
 
             public static UItem as(MessageObject messageObject, boolean z, String str) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.intValue = 3;
-                ofFactory.accent = z;
-                ofFactory.object2 = messageObject;
-                ofFactory.subtext = str;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.intValue = 3;
+                uItemOfFactory.accent = z;
+                uItemOfFactory.object2 = messageObject;
+                uItemOfFactory.subtext = str;
+                return uItemOfFactory;
             }
 
             public static UItem as(BrowserHistory.Entry entry, String str) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.intValue = 3;
-                ofFactory.accent = false;
-                ofFactory.object2 = entry;
-                ofFactory.subtext = str;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.intValue = 3;
+                uItemOfFactory.accent = false;
+                uItemOfFactory.object2 = entry;
+                uItemOfFactory.subtext = str;
+                return uItemOfFactory;
             }
 
             @Override
@@ -933,7 +935,7 @@ public class AddressBarList extends FrameLayout {
         }
     }
 
-    public static class QueryEntry {
+    static class QueryEntry {
         public long lastUsage;
         public final String query;
         public double rank;
@@ -944,7 +946,7 @@ public class AddressBarList extends FrameLayout {
         }
     }
 
-    public static ArrayList getRecentSearches(Context context) {
+    public static ArrayList getRecentSearches(Context context) throws JSONException {
         SharedPreferences sharedPreferences = context.getSharedPreferences("webhistory", 0);
         ArrayList arrayList = new ArrayList();
         String string = sharedPreferences.getString("queries_json", null);
@@ -961,9 +963,7 @@ public class AddressBarList extends FrameLayout {
                 Collections.sort(arrayList2, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        int lambda$getRecentSearches$7;
-                        lambda$getRecentSearches$7 = AddressBarList.lambda$getRecentSearches$7((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
-                        return lambda$getRecentSearches$7;
+                        return AddressBarList.lambda$getRecentSearches$7((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
                 Iterator it = arrayList2.iterator();
@@ -1001,9 +1001,7 @@ public class AddressBarList extends FrameLayout {
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        int lambda$pushRecentSearch$8;
-                        lambda$pushRecentSearch$8 = AddressBarList.lambda$pushRecentSearch$8((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
-                        return lambda$pushRecentSearch$8;
+                        return AddressBarList.lambda$pushRecentSearch$8((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
             } catch (Exception e) {
@@ -1027,14 +1025,14 @@ public class AddressBarList extends FrameLayout {
                 return;
             }
         }
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         if (queryEntry != null) {
-            queryEntry.rank += Math.exp((currentTimeMillis - queryEntry.lastUsage) / 2419200.0d);
+            queryEntry.rank += Math.exp((jCurrentTimeMillis - queryEntry.lastUsage) / 2419200.0d);
         } else {
-            queryEntry = new QueryEntry(str, currentTimeMillis);
+            queryEntry = new QueryEntry(str, jCurrentTimeMillis);
             arrayList.add(queryEntry);
         }
-        queryEntry.lastUsage = currentTimeMillis;
+        queryEntry.lastUsage = jCurrentTimeMillis;
         JSONArray jSONArray2 = new JSONArray();
         for (int i3 = 0; i3 < Math.min(arrayList.size(), 20); i3++) {
             QueryEntry queryEntry4 = (QueryEntry) arrayList.get(i3);
@@ -1116,16 +1114,16 @@ public class AddressBarList extends FrameLayout {
             }
             this.loading = true;
             long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            int i = Integer.MAX_VALUE;
-            for (int i2 = 0; i2 < this.links.size(); i2++) {
-                i = Math.min(i, ((MessageObject) this.links.get(i2)).getId());
+            int iMin = Integer.MAX_VALUE;
+            for (int i = 0; i < this.links.size(); i++) {
+                iMin = Math.min(iMin, ((MessageObject) this.links.get(i)).getId());
             }
             MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
-            int i3 = this.links.isEmpty() ? 30 : 50;
-            if (i == Integer.MAX_VALUE) {
-                i = 0;
+            int i2 = this.links.isEmpty() ? 30 : 50;
+            if (iMin == Integer.MAX_VALUE) {
+                iMin = 0;
             }
-            mediaDataController.loadMedia(clientUserId, i3, i, 0, 3, 0L, 1, this.guid, 0, null, this.query);
+            mediaDataController.loadMedia(clientUserId, i2, iMin, 0, 3, 0L, 1, this.guid, 0, null, this.query);
         }
 
         @Override

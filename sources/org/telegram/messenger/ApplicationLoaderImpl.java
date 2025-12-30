@@ -21,9 +21,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.UpdateAppAlertDialog;
-import org.telegram.ui.Components.UpdateButton;
 import org.telegram.ui.Components.UpdateLayout;
-import org.telegram.ui.IUpdateButton;
 import org.telegram.ui.IUpdateLayout;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
@@ -67,32 +65,26 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     protected void startAppCenterInternal(Activity activity) {
-        String str;
-        String str2;
-        String str3;
-        String str4;
         try {
             if (BuildVars.DEBUG_VERSION) {
-                String str5 = "" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
+                String str = "" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
                 if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
                     String publicUsername = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                     if (!TextUtils.isEmpty(publicUsername)) {
-                        str5 = "@" + publicUsername;
+                        str = "@" + publicUsername;
                     }
                 }
                 if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
-                    str5 = str5 + " [TEST SERVER]";
+                    str = str + " [TEST SERVER]";
                 }
                 FirebaseCrashlytics firebaseCrashlytics = FirebaseCrashlytics.getInstance();
-                firebaseCrashlytics.setUserId(str5);
+                firebaseCrashlytics.setUserId(str);
                 firebaseCrashlytics.setCustomKey("version", getVersionName(4));
                 firebaseCrashlytics.setCustomKey("model", Build.MODEL);
                 firebaseCrashlytics.setCustomKey("manufacturer", Build.MANUFACTURER);
                 if (Build.VERSION.SDK_INT >= 31) {
-                    str3 = Build.SOC_MODEL;
-                    firebaseCrashlytics.setCustomKey("soc_model", str3);
-                    str4 = Build.SOC_MANUFACTURER;
-                    firebaseCrashlytics.setCustomKey("soc_manufacturer", str4);
+                    firebaseCrashlytics.setCustomKey("soc_model", Build.SOC_MODEL);
+                    firebaseCrashlytics.setCustomKey("soc_manufacturer", Build.SOC_MANUFACTURER);
                 }
                 firebaseCrashlytics.setCustomKey("device", Build.DEVICE);
                 firebaseCrashlytics.setCustomKey("product", Build.PRODUCT);
@@ -114,24 +106,22 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                     customProperties.set("model", Build.MODEL);
                     customProperties.set("manufacturer", Build.MANUFACTURER);
                     if (Build.VERSION.SDK_INT >= 31) {
-                        str = Build.SOC_MODEL;
-                        customProperties.set("soc_model", str);
-                        str2 = Build.SOC_MANUFACTURER;
-                        customProperties.set("soc_manufacturer", str2);
+                        customProperties.set("soc_model", Build.SOC_MODEL);
+                        customProperties.set("soc_manufacturer", Build.SOC_MANUFACTURER);
                     }
                     customProperties.set("device", Build.DEVICE);
                     customProperties.set("product", Build.PRODUCT);
                     customProperties.set("hardware", Build.HARDWARE);
                     customProperties.set("user", Build.USER);
                     AppCenter.setCustomProperties(customProperties);
-                    String str6 = "uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
+                    String str2 = "uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
                     if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
                         String publicUsername2 = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                         if (!TextUtils.isEmpty(publicUsername2)) {
-                            str6 = str6 + " @" + publicUsername2;
+                            str2 = str2 + " @" + publicUsername2;
                         }
                     }
-                    AppCenter.setUserId(str6);
+                    AppCenter.setUserId(str2);
                     return;
                 }
                 throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
@@ -175,12 +165,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean checkApkInstallPermissions(Context context) {
-        boolean canRequestPackageInstalls;
-        if (Build.VERSION.SDK_INT < 26) {
-            return true;
-        }
-        canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
-        if (canRequestPackageInstalls) {
+        if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
             return true;
         }
         AlertsCreator.createApkRestrictedDialog(context, null).show();
@@ -189,12 +174,12 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean openApkInstall(Activity activity, TLRPC.Document document) {
-        boolean z = false;
+        boolean zExists = false;
         try {
             FileLoader.getAttachFileName(document);
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true);
-            z = pathToAttach.exists();
-            if (z) {
+            zExists = pathToAttach.exists();
+            if (zExists) {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
@@ -211,7 +196,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         } catch (Exception e2) {
             FileLog.e(e2);
         }
-        return z;
+        return zExists;
     }
 
     @Override
@@ -273,17 +258,9 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup) {
         if (isCustomUpdate()) {
-            return new UpdateLayout(activity, viewGroup, viewGroup2);
-        }
-        return null;
-    }
-
-    @Override
-    public IUpdateButton takeUpdateButton(Context context) {
-        if (isCustomUpdate()) {
-            return new UpdateButton(context);
+            return new UpdateLayout(activity, viewGroup);
         }
         return null;
     }

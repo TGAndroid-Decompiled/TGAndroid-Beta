@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class RecyclerAnimationScrollHelper {
@@ -57,84 +55,15 @@ public class RecyclerAnimationScrollHelper {
         scrollToPosition(i, i2, z, z2, false);
     }
 
-    public void scrollToPosition(final int i, final int i2, final boolean z, final boolean z2, boolean z3) {
-        long itemId;
-        RecyclerListView recyclerListView = this.recyclerView;
-        if (recyclerListView.fastScrollAnimationRunning) {
-            return;
-        }
-        if (recyclerListView.getItemAnimator() != null) {
-            if (z3) {
-                if (this.recyclerView.getItemAnimator().isRunning(new RecyclerView.ItemAnimator.ItemAnimatorFinishedListener() {
-                    @Override
-                    public final void onAnimationsFinished() {
-                        RecyclerAnimationScrollHelper.this.lambda$scrollToPosition$0(i, i2, z, z2);
-                    }
-                })) {
-                    return;
-                }
-            } else if (this.recyclerView.getItemAnimator().isRunning()) {
-                return;
-            }
-        }
-        if (!z2 || this.scrollDirection == -1) {
-            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-            return;
-        }
-        int childCount = this.recyclerView.getChildCount();
-        if (childCount == 0 || !MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
-            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-            return;
-        }
-        boolean z4 = this.scrollDirection == 0;
-        this.recyclerView.setScrollEnabled(false);
-        ArrayList arrayList = new ArrayList();
-        this.positionToOldView.clear();
-        RecyclerView.Adapter adapter = this.recyclerView.getAdapter();
-        this.oldStableIds.clear();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = this.recyclerView.getChildAt(i3);
-            arrayList.add(childAt);
-            this.positionToOldView.put(this.layoutManager.getPosition(childAt), childAt);
-            if (adapter != null && (adapter.hasStableIds() || this.forceUseStableId)) {
-                if (this.forceUseStableId) {
-                    int adapterPosition = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getAdapterPosition();
-                    if (adapterPosition >= 0) {
-                        itemId = adapter.getItemId(adapterPosition);
-                    }
-                } else {
-                    itemId = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId();
-                }
-                this.oldStableIds.put(Long.valueOf(itemId), childAt);
-            }
-            if (childAt instanceof ChatMessageCell) {
-                ((ChatMessageCell) childAt).setAnimationRunning(true, true);
-            }
-        }
-        this.recyclerView.prepareForFastScroll();
-        AnimatableAdapter animatableAdapter = adapter instanceof AnimatableAdapter ? (AnimatableAdapter) adapter : null;
-        this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
-        this.recyclerView.stopScroll();
-        this.recyclerView.setVerticalScrollBarEnabled(false);
-        AnimationCallback animationCallback = this.animationCallback;
-        if (animationCallback != null) {
-            animationCallback.onStartAnimation();
-        }
-        this.recyclerView.fastScrollAnimationRunning = true;
-        if (animatableAdapter != null) {
-            animatableAdapter.onAnimationStart();
-        }
-        this.recyclerView.addOnLayoutChangeListener(new AnonymousClass1(adapter, arrayList, z4, animatableAdapter));
+    public void scrollToPosition(final int r10, final int r11, final boolean r12, final boolean r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerAnimationScrollHelper.scrollToPosition(int, int, boolean, boolean, boolean):void");
     }
 
     public void lambda$scrollToPosition$0(int i, int i2, boolean z, boolean z2) {
         scrollToPosition(i, i2, z, z2, false);
     }
 
-    public class AnonymousClass1 implements View.OnLayoutChangeListener {
+    class AnonymousClass1 implements View.OnLayoutChangeListener {
         final RecyclerView.Adapter val$adapter;
         final AnimatableAdapter val$finalAnimatableAdapter;
         final ArrayList val$oldViews;
@@ -150,24 +79,24 @@ public class RecyclerAnimationScrollHelper {
         @Override
         public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
             int height;
-            long min;
+            long jMin;
             View view2;
             RecyclerAnimationScrollHelper.this.recyclerView.removeOnLayoutChangeListener(this);
             final ArrayList arrayList = new ArrayList();
             RecyclerAnimationScrollHelper.this.recyclerView.stopScroll();
             int childCount = RecyclerAnimationScrollHelper.this.recyclerView.getChildCount();
+            int top = 0;
+            int bottom = 0;
             int i9 = 0;
-            int i10 = 0;
-            int i11 = 0;
             boolean z = false;
-            for (int i12 = 0; i12 < childCount; i12++) {
-                View childAt = RecyclerAnimationScrollHelper.this.recyclerView.getChildAt(i12);
+            for (int i10 = 0; i10 < childCount; i10++) {
+                View childAt = RecyclerAnimationScrollHelper.this.recyclerView.getChildAt(i10);
                 arrayList.add(childAt);
-                if (childAt.getTop() < i9) {
-                    i9 = childAt.getTop();
+                if (childAt.getTop() < top) {
+                    top = childAt.getTop();
                 }
-                if (childAt.getBottom() > i10) {
-                    i10 = childAt.getBottom();
+                if (childAt.getBottom() > bottom) {
+                    bottom = childAt.getBottom();
                 }
                 if (childAt instanceof ChatMessageCell) {
                     ((ChatMessageCell) childAt).setAnimationRunning(true, false);
@@ -183,9 +112,9 @@ public class RecyclerAnimationScrollHelper {
                         if (RecyclerAnimationScrollHelper.this.animationCallback != null) {
                             RecyclerAnimationScrollHelper.this.animationCallback.recycleView(view2);
                         }
-                        int top = childAt.getTop() - view2.getTop();
-                        if (top != 0) {
-                            i11 = top;
+                        int top2 = childAt.getTop() - view2.getTop();
+                        if (top2 != 0) {
+                            i9 = top2;
                         }
                         z = true;
                     }
@@ -193,17 +122,17 @@ public class RecyclerAnimationScrollHelper {
             }
             RecyclerAnimationScrollHelper.this.oldStableIds.clear();
             Iterator it = this.val$oldViews.iterator();
-            int i13 = Integer.MAX_VALUE;
-            int i14 = 0;
+            int i11 = Integer.MAX_VALUE;
+            int height2 = 0;
             while (it.hasNext()) {
                 View view3 = (View) it.next();
-                int bottom = view3.getBottom();
-                int top2 = view3.getTop();
-                if (bottom > i14) {
-                    i14 = bottom;
+                int bottom2 = view3.getBottom();
+                int top3 = view3.getTop();
+                if (bottom2 > height2) {
+                    height2 = bottom2;
                 }
-                if (top2 < i13) {
-                    i13 = top2;
+                if (top3 < i11) {
+                    i11 = top3;
                 }
                 if (view3.getParent() == null) {
                     RecyclerAnimationScrollHelper.this.recyclerView.addView(view3);
@@ -216,17 +145,17 @@ public class RecyclerAnimationScrollHelper {
                     ((ChatMessageCell) view3).setAnimationRunning(true, true);
                 }
             }
-            int i15 = i13 != Integer.MAX_VALUE ? i13 : 0;
+            int i12 = i11 != Integer.MAX_VALUE ? i11 : 0;
             if (RecyclerAnimationScrollHelper.this.animationCallback != null) {
                 RecyclerAnimationScrollHelper.this.animationCallback.onPreAnimation();
             }
             if (this.val$oldViews.isEmpty()) {
-                height = Math.abs(i11);
+                height = Math.abs(i9);
             } else {
                 if (!this.val$scrollDown) {
-                    i14 = RecyclerAnimationScrollHelper.this.recyclerView.getHeight() - i15;
+                    height2 = RecyclerAnimationScrollHelper.this.recyclerView.getHeight() - i12;
                 }
-                height = (this.val$scrollDown ? -i9 : i10 - RecyclerAnimationScrollHelper.this.recyclerView.getHeight()) + i14;
+                height = (this.val$scrollDown ? -top : bottom - RecyclerAnimationScrollHelper.this.recyclerView.getHeight()) + height2;
             }
             if (RecyclerAnimationScrollHelper.this.animator != null) {
                 RecyclerAnimationScrollHelper.this.animator.removeAllListeners();
@@ -236,11 +165,11 @@ public class RecyclerAnimationScrollHelper {
             ValueAnimator valueAnimator = RecyclerAnimationScrollHelper.this.animator;
             final ArrayList arrayList2 = this.val$oldViews;
             final boolean z2 = this.val$scrollDown;
-            final int i16 = height;
+            final int i13 = height;
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    RecyclerAnimationScrollHelper.AnonymousClass1.this.lambda$onLayoutChange$0(arrayList2, z2, i16, arrayList, valueAnimator2);
+                    this.f$0.lambda$onLayoutChange$0(arrayList2, z2, i13, arrayList, valueAnimator2);
                 }
             });
             RecyclerAnimationScrollHelper.this.animator.addListener(new AnimatorListenerAdapter() {
@@ -276,8 +205,8 @@ public class RecyclerAnimationScrollHelper {
                         }
                     }
                     int childCount2 = RecyclerAnimationScrollHelper.this.recyclerView.getChildCount();
-                    for (int i17 = 0; i17 < childCount2; i17++) {
-                        View childAt2 = RecyclerAnimationScrollHelper.this.recyclerView.getChildAt(i17);
+                    for (int i14 = 0; i14 < childCount2; i14++) {
+                        View childAt2 = RecyclerAnimationScrollHelper.this.recyclerView.getChildAt(i14);
                         if (childAt2 instanceof ChatMessageCell) {
                             ((ChatMessageCell) childAt2).setAnimationRunning(false, false);
                         }
@@ -305,18 +234,18 @@ public class RecyclerAnimationScrollHelper {
             RecyclerAnimationScrollHelper recyclerAnimationScrollHelper = RecyclerAnimationScrollHelper.this;
             if (!recyclerAnimationScrollHelper.isDialogs) {
                 if (z) {
-                    min = 600;
+                    jMin = 600;
                 } else {
-                    long measuredHeight = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
-                    min = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
+                    long measuredHeight = (long) (((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f);
+                    jMin = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
                 }
-                RecyclerAnimationScrollHelper.this.animator.setDuration(min);
+                RecyclerAnimationScrollHelper.this.animator.setDuration(jMin);
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             } else if (z) {
                 recyclerAnimationScrollHelper.animator.setDuration(150L);
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             } else {
-                long measuredHeight2 = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                long measuredHeight2 = (long) (((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f);
                 RecyclerAnimationScrollHelper.this.animator.setDuration(Math.min(measuredHeight2 >= 300 ? measuredHeight2 : 300L, 1300L));
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             }
@@ -324,16 +253,16 @@ public class RecyclerAnimationScrollHelper {
         }
 
         public void lambda$onLayoutChange$0(ArrayList arrayList, boolean z, int i, ArrayList arrayList2, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             int size = arrayList.size();
             for (int i2 = 0; i2 < size; i2++) {
                 View view = (View) arrayList.get(i2);
                 float y = view.getY();
                 if (view.getY() + view.getMeasuredHeight() >= 0.0f && y <= RecyclerAnimationScrollHelper.this.recyclerView.getMeasuredHeight()) {
                     if (z) {
-                        view.setTranslationY((-i) * floatValue);
+                        view.setTranslationY((-i) * fFloatValue);
                     } else {
-                        view.setTranslationY(i * floatValue);
+                        view.setTranslationY(i * fFloatValue);
                     }
                 }
             }
@@ -341,9 +270,9 @@ public class RecyclerAnimationScrollHelper {
             for (int i3 = 0; i3 < size2; i3++) {
                 View view2 = (View) arrayList2.get(i3);
                 if (z) {
-                    view2.setTranslationY(i * (1.0f - floatValue));
+                    view2.setTranslationY(i * (1.0f - fFloatValue));
                 } else {
-                    view2.setTranslationY((-i) * (1.0f - floatValue));
+                    view2.setTranslationY((-i) * (1.0f - fFloatValue));
                 }
             }
             RecyclerAnimationScrollHelper.this.recyclerView.invalidate();

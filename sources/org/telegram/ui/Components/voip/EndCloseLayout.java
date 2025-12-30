@@ -93,9 +93,9 @@ public class EndCloseLayout extends FrameLayout {
         public Animator createAnimator(ViewGroup viewGroup, final TransitionValues transitionValues, TransitionValues transitionValues2) {
             if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof EndCloseView)) {
                 AnimatorSet animatorSet = new AnimatorSet();
-                Animator createAnimator = super.createAnimator(viewGroup, transitionValues, transitionValues2);
-                if (createAnimator != null) {
-                    animatorSet.playTogether(createAnimator);
+                Animator animatorCreateAnimator = super.createAnimator(viewGroup, transitionValues, transitionValues2);
+                if (animatorCreateAnimator != null) {
+                    animatorSet.playTogether(animatorCreateAnimator);
                 }
                 Integer num = (Integer) transitionValues.values.get("back_color_end_close");
                 Integer num2 = (Integer) transitionValues2.values.get("back_color_end_close");
@@ -115,30 +115,30 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(valueAnimator);
-                ValueAnimator ofInt = ValueAnimator.ofInt(num3.intValue(), num4.intValue());
-                ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(num3.intValue(), num4.intValue());
+                valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         EndCloseLayout.AnonymousClass1.lambda$createAnimator$1(transitionValues, valueAnimator2);
                     }
                 });
-                animatorSet.playTogether(ofInt);
-                ValueAnimator ofInt2 = ValueAnimator.ofInt(num5.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue());
-                ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                animatorSet.playTogether(valueAnimatorOfInt);
+                ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(num5.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue(), num6.intValue());
+                valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         EndCloseLayout.AnonymousClass1.lambda$createAnimator$2(transitionValues, valueAnimator2);
                     }
                 });
-                animatorSet.playTogether(ofInt2);
-                ValueAnimator ofInt3 = ValueAnimator.ofInt(num7.intValue(), num7.intValue(), (int) (num8.intValue() * 0.25f), (int) (num8.intValue() * 0.5f), (int) (num8.intValue() * 0.75f), num8.intValue());
-                ofInt3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                animatorSet.playTogether(valueAnimatorOfInt2);
+                ValueAnimator valueAnimatorOfInt3 = ValueAnimator.ofInt(num7.intValue(), num7.intValue(), (int) (num8.intValue() * 0.25f), (int) (num8.intValue() * 0.5f), (int) (num8.intValue() * 0.75f), num8.intValue());
+                valueAnimatorOfInt3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         EndCloseLayout.AnonymousClass1.lambda$createAnimator$3(transitionValues, valueAnimator2);
                     }
                 });
-                animatorSet.playTogether(ofInt3);
+                animatorSet.playTogether(valueAnimatorOfInt3);
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animator) {
@@ -197,7 +197,7 @@ public class EndCloseLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                EndCloseLayout.this.lambda$switchToClose$0(onClickListener);
+                this.f$0.lambda$switchToClose$0(onClickListener);
             }
         }, 500L);
     }
@@ -206,7 +206,7 @@ public class EndCloseLayout extends FrameLayout {
         this.endCloseView.setOnClickListener(onClickListener);
     }
 
-    public static class EndCloseView extends View {
+    static class EndCloseView extends View {
         public int backColor;
         private final Paint backgroundPaint;
         private final RectF backgroundRect;
@@ -231,9 +231,9 @@ public class EndCloseLayout extends FrameLayout {
             this.round = AndroidUtilities.dp(26.0f);
             this.callDeclineAlpha = 255;
             this.closeTextAlpha = 0;
-            Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.calls_decline).mutate();
-            this.callDeclineDrawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+            Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.calls_decline).mutate();
+            this.callDeclineDrawable = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
             paint.setTextSize(AndroidUtilities.dp(18.0f));
             paint.setTypeface(AndroidUtilities.bold());
             Paint.Align align = Paint.Align.CENTER;
@@ -297,9 +297,9 @@ public class EndCloseLayout extends FrameLayout {
             canvas.drawText(this.closeText, width, AndroidUtilities.dp(6.0f) + height, this.textPaintMask);
             canvas.drawText(this.closeText, width, height + AndroidUtilities.dp(6.0f), this.textPaint);
             if (this.rippleDrawable == null) {
-                Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 8, 8);
-                this.rippleDrawable = createRadSelectorDrawable;
-                createRadSelectorDrawable.setCallback(this);
+                Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 8, 8);
+                this.rippleDrawable = drawableCreateRadSelectorDrawable;
+                drawableCreateRadSelectorDrawable.setCallback(this);
             }
             this.rippleDrawable.setBounds(0, 0, getWidth(), getHeight());
             this.rippleDrawable.draw(canvas);

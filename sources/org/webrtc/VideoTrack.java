@@ -26,16 +26,16 @@ public class VideoTrack extends MediaStreamTrack {
         if (this.sinks.containsKey(videoSink)) {
             return;
         }
-        long nativeWrapSink = nativeWrapSink(videoSink);
-        this.sinks.put(videoSink, Long.valueOf(nativeWrapSink));
-        nativeAddSink(getNativeMediaStreamTrack(), nativeWrapSink);
+        long jNativeWrapSink = nativeWrapSink(videoSink);
+        this.sinks.put(videoSink, Long.valueOf(jNativeWrapSink));
+        nativeAddSink(getNativeMediaStreamTrack(), jNativeWrapSink);
     }
 
     public void removeSink(VideoSink videoSink) {
-        Long remove = this.sinks.remove(videoSink);
-        if (remove != null) {
-            nativeRemoveSink(getNativeMediaStreamTrack(), remove.longValue());
-            nativeFreeSink(remove.longValue());
+        Long lRemove = this.sinks.remove(videoSink);
+        if (lRemove != null) {
+            nativeRemoveSink(getNativeMediaStreamTrack(), lRemove.longValue());
+            nativeFreeSink(lRemove.longValue());
         }
     }
 
@@ -43,9 +43,9 @@ public class VideoTrack extends MediaStreamTrack {
     public void dispose() {
         Iterator<Long> it = this.sinks.values().iterator();
         while (it.hasNext()) {
-            long longValue = it.next().longValue();
-            nativeRemoveSink(getNativeMediaStreamTrack(), longValue);
-            nativeFreeSink(longValue);
+            long jLongValue = it.next().longValue();
+            nativeRemoveSink(getNativeMediaStreamTrack(), jLongValue);
+            nativeFreeSink(jLongValue);
         }
         this.sinks.clear();
         super.dispose();

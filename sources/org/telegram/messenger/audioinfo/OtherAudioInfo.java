@@ -4,13 +4,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import java.io.File;
+import java.io.IOException;
 import org.telegram.messenger.FileLog;
 
 public class OtherAudioInfo extends AudioInfo {
     public boolean failed;
     private final MediaMetadataRetriever r;
 
-    public OtherAudioInfo(File file) {
+    public OtherAudioInfo(File file) throws IOException, IllegalArgumentException {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         this.r = mediaMetadataRetriever;
         try {
@@ -33,9 +34,9 @@ public class OtherAudioInfo extends AudioInfo {
                 this.cover = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
             }
             if (this.cover != null) {
-                float max = Math.max(r5.getWidth(), this.cover.getHeight()) / 120.0f;
-                if (max > 0.0f) {
-                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / max), (int) (this.cover.getHeight() / max), true);
+                float fMax = Math.max(r5.getWidth(), this.cover.getHeight()) / 120.0f;
+                if (fMax > 0.0f) {
+                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / fMax), (int) (this.cover.getHeight() / fMax), true);
                 } else {
                     this.smallCover = this.cover;
                 }

@@ -10,8 +10,8 @@ public abstract class ContinuationKt {
     public static final void startCoroutine(Function2 function2, Object obj, Continuation completion) {
         Intrinsics.checkNotNullParameter(function2, "<this>");
         Intrinsics.checkNotNullParameter(completion, "completion");
-        Continuation intercepted = IntrinsicsKt.intercepted(IntrinsicsKt.createCoroutineUnintercepted(function2, obj, completion));
+        Continuation continuationIntercepted = IntrinsicsKt.intercepted(IntrinsicsKt.createCoroutineUnintercepted(function2, obj, completion));
         Result.Companion companion = Result.Companion;
-        intercepted.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
+        continuationIntercepted.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
     }
 }

@@ -31,7 +31,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     protected DrawerLayoutContainer drawerLayoutContainer;
     private boolean finished;
     private Runnable lockRunnable;
-    private ArrayList mainFragmentsStack = new ArrayList();
+    private final ArrayList mainFragmentsStack = new ArrayList();
     private Intent passcodeSaveIntent;
     private int passcodeSaveIntentAccount;
     private boolean passcodeSaveIntentIsNew;
@@ -51,7 +51,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        return INavigationLayout.INavigationLayoutDelegate.CC.$default$needPresentFragment(this, iNavigationLayout, navigationParams);
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
     }
 
     @Override
@@ -75,12 +75,12 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) throws NumberFormatException {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
-        if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
+        if (!SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
                 AndroidUtilities.logFlagSecure();
@@ -89,20 +89,19 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             }
         }
         super.onCreate(bundle);
-        if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.appLocked) {
+        if (!SharedConfig.passcodeHash.isEmpty() && SharedConfig.appLocked) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(this, false);
-        this.actionBarLayout = newLayout;
-        newLayout.setInBubbleMode(true);
+        INavigationLayout iNavigationLayoutNewLayout = INavigationLayout.CC.newLayout(this, false);
+        this.actionBarLayout = iNavigationLayoutNewLayout;
+        iNavigationLayoutNewLayout.setInBubbleMode(true);
         this.actionBarLayout.setRemoveActionBarExtraHeight(true);
         DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
         this.drawerLayoutContainer = drawerLayoutContainer;
-        drawerLayoutContainer.setAllowOpenDrawer(false, false);
-        setContentView(this.drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
         RelativeLayout relativeLayout = new RelativeLayout(this);
         this.drawerLayoutContainer.addView(relativeLayout, LayoutHelper.createFrame(-1, -1.0f));
         relativeLayout.addView(this.actionBarLayout.getView(), LayoutHelper.createRelative(-1, -1));
@@ -119,7 +118,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         instance = this;
     }
 
-    public void showPasscodeActivity() {
+    public void showPasscodeActivity() throws NumberFormatException {
         if (this.passcodeView == null) {
             return;
         }
@@ -133,28 +132,26 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         }
         this.passcodeView.onShow(true, false);
         SharedConfig.isWaitingForPasscodeEnter = true;
-        this.drawerLayoutContainer.setAllowOpenDrawer(false, false);
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
-            public final void didAcceptedPassword(PasscodeView passcodeView) {
-                BubbleActivity.this.lambda$showPasscodeActivity$0(passcodeView);
+            public final void didAcceptedPassword(PasscodeView passcodeView) throws NumberFormatException {
+                this.f$0.lambda$showPasscodeActivity$0(passcodeView);
             }
         });
     }
 
-    public void lambda$showPasscodeActivity$0(PasscodeView passcodeView) {
+    public void lambda$showPasscodeActivity$0(PasscodeView passcodeView) throws NumberFormatException {
         SharedConfig.isWaitingForPasscodeEnter = false;
         Intent intent = this.passcodeSaveIntent;
         if (intent != null) {
             handleIntent(intent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
             this.passcodeSaveIntent = null;
         }
-        this.drawerLayoutContainer.setAllowOpenDrawer(true, false);
         this.actionBarLayout.showLastFragment();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
     }
 
-    private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
+    private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws NumberFormatException {
         ChatActivity chatActivity;
         if (!z3 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             showPasscodeActivity();
@@ -203,7 +200,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent) throws NumberFormatException {
         super.onNewIntent(intent);
         handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }
@@ -222,7 +219,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
         this.actionBarLayout.onPause();
         ApplicationLoader.externalInterfacePaused = true;
@@ -235,7 +232,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
         int i = this.currentAccount;
         if (i != -1) {
@@ -247,22 +244,23 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onActivityResult(int i, int i2, Intent intent) {
+    protected void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
         ThemeEditorView themeEditorView = ThemeEditorView.getInstance();
         if (themeEditorView != null) {
             themeEditorView.onActivityResult(i, i2, intent);
         }
-        if (this.actionBarLayout.getFragmentStack().size() != 0) {
-            ((BaseFragment) this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1)).onActivityResultFragment(i, i2, intent);
+        if (this.actionBarLayout.getFragmentStack().isEmpty()) {
+            return;
         }
+        ((BaseFragment) this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1)).onActivityResultFragment(i, i2, intent);
     }
 
     @Override
     public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
-            if (this.actionBarLayout.getFragmentStack().size() != 0) {
+            if (!this.actionBarLayout.getFragmentStack().isEmpty()) {
                 ((BaseFragment) this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i, strArr, iArr);
             }
             VoIPFragment.onRequestPermissionsResult(i, strArr, iArr);
@@ -270,7 +268,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() throws NumberFormatException {
         super.onResume();
         this.actionBarLayout.onResume();
         ApplicationLoader.externalInterfacePaused = false;
@@ -290,11 +288,11 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.cancelRunOnUIThread(runnable);
             this.lockRunnable = null;
         }
-        if (SharedConfig.passcodeHash.length() != 0) {
+        if (!SharedConfig.passcodeHash.isEmpty()) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable2 = new Runnable() {
                 @Override
-                public void run() {
+                public void run() throws NumberFormatException {
                     if (BubbleActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
@@ -323,7 +321,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         SharedConfig.saveConfig();
     }
 
-    private void onPasscodeResume() {
+    private void onPasscodeResume() throws NumberFormatException {
         Runnable runnable = this.lockRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -346,19 +344,15 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() throws NumberFormatException {
         if (this.mainFragmentsStack.size() == 1) {
             super.onBackPressed();
             return;
         }
         if (this.passcodeView.getVisibility() == 0) {
             finish();
-            return;
-        }
-        if (PhotoViewer.getInstance().isVisible()) {
+        } else if (PhotoViewer.getInstance().isVisible()) {
             PhotoViewer.getInstance().closePhoto(true, false);
-        } else if (this.drawerLayoutContainer.isDrawerOpened()) {
-            this.drawerLayoutContainer.closeDrawer(false);
         } else {
             this.actionBarLayout.onBackPressed();
         }

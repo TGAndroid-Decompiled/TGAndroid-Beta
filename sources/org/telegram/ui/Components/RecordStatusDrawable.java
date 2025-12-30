@@ -49,13 +49,13 @@ public class RecordStatusDrawable extends StatusDrawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 50) {
             j = 50;
         }
-        this.progress += ((float) j) / 800.0f;
+        this.progress += j / 800.0f;
         while (true) {
             float f = this.progress;
             if (f > 1.0f) {
@@ -98,9 +98,9 @@ public class RecordStatusDrawable extends StatusDrawable {
             } else {
                 paint.setAlpha(this.alpha);
             }
-            float dp = (AndroidUtilities.dp(4.0f) * i) + (AndroidUtilities.dp(4.0f) * this.progress);
-            float f = -dp;
-            this.rect.set(f, f, dp, dp);
+            float fDp = (AndroidUtilities.dp(4.0f) * i) + (AndroidUtilities.dp(4.0f) * this.progress);
+            float f = -fDp;
+            this.rect.set(f, f, fDp, fDp);
             canvas.drawArc(this.rect, -15.0f, 30.0f, false, paint);
         }
         canvas.restore();

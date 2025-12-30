@@ -80,9 +80,9 @@ public class ThemeKey {
 
     public int hashCode() {
         String str = this.emoticon;
-        int hashCode = str != null ? str.hashCode() : 0;
+        int iHashCode = str != null ? str.hashCode() : 0;
         String str2 = this.giftSlug;
-        return hashCode ^ (str2 != null ? str2.hashCode() : 0);
+        return iHashCode ^ (str2 != null ? str2.hashCode() : 0);
     }
 
     public boolean equals(Object obj) {

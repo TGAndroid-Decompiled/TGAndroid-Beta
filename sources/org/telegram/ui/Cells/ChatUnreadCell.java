@@ -68,7 +68,7 @@ public class ChatUnreadCell extends FrameLayout {
 
     private int getColor(int i) {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer valueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(i)) : null;
-        return valueOf != null ? valueOf.intValue() : Theme.getColor(i);
+        Integer numValueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(i)) : null;
+        return numValueOf != null ? numValueOf.intValue() : Theme.getColor(i);
     }
 }

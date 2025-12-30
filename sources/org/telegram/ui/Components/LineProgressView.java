@@ -37,9 +37,9 @@ public class LineProgressView extends View {
     }
 
     private void updateAnimation() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         float f = this.animatedProgressValue;
         if (f != 1.0f) {
             float f2 = this.currentProgress;
@@ -54,7 +54,7 @@ public class LineProgressView extends View {
                         this.animationProgressStart = f2;
                         this.currentProgressTime = 0L;
                     } else {
-                        this.animatedProgressValue = f3 + (f4 * decelerateInterpolator.getInterpolation(((float) j2) / 300.0f));
+                        this.animatedProgressValue = f3 + (f4 * decelerateInterpolator.getInterpolation(j2 / 300.0f));
                     }
                 }
                 invalidate();
@@ -66,7 +66,7 @@ public class LineProgressView extends View {
         }
         float f6 = this.animatedAlphaValue;
         if (f6 != 0.0f) {
-            float f7 = f6 - (((float) j) / 200.0f);
+            float f7 = f6 - (j / 200.0f);
             this.animatedAlphaValue = f7;
             if (f7 <= 0.0f) {
                 this.animatedAlphaValue = 0.0f;

@@ -29,7 +29,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Gifts.ActiveAuctionsSheet;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
@@ -64,7 +63,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
             activeAuctionCell.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActiveAuctionsSheet.this.lambda$new$0(context, resourcesProvider, auction, view);
+                    this.f$0.lambda$new$0(context, resourcesProvider, auction, view);
                 }
             });
             linearLayout.addView(activeAuctionCell, LayoutHelper.createLinear(-1, -2));
@@ -75,7 +74,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
 
     public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
         new AuctionBidSheet(context, resourcesProvider, null, auction).show();
-        lambda$new$0();
+        dismiss();
     }
 
     @Override
@@ -90,9 +89,9 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
             ActiveAuctionCell activeAuctionCell = (ActiveAuctionCell) this.activeAuctionCells.get(auction.giftId);
             if (activeAuctionCell != null) {
                 activeAuctionCell.updateStatus(this.isOpenAnimationEnd);
-                long max = Math.max(0, i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                activeAuctionCell.updateButton(max, this.isOpenAnimationEnd);
-                activeAuctionCell.timer.start(max);
+                long jMax = Math.max(0, i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
+                activeAuctionCell.updateButton(jMax, this.isOpenAnimationEnd);
+                activeAuctionCell.timer.start(jMax);
             }
         }
     }
@@ -104,9 +103,9 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.lambda$new$0();
+        super.dismiss();
     }
 
     @Override
@@ -123,7 +122,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ActiveAuctionsSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -135,7 +134,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         arrayList.add(this.headerItem);
     }
 
-    public static class ActiveAuctionCell extends FrameLayout {
+    static class ActiveAuctionCell extends FrameLayout {
         private final GiftAuctionController.Auction auction;
         private final ButtonWithCounterView buttonView;
         private final ColoredImageSpan cs;
@@ -156,7 +155,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
             this.timer = new CountdownTimer(new CountdownTimer.Callback() {
                 @Override
                 public final void onTimerUpdate(long j) {
-                    ActiveAuctionsSheet.ActiveAuctionCell.this.lambda$new$0(j);
+                    this.f$0.lambda$new$0(j);
                 }
             });
             this.cs = new ColoredImageSpan(R.drawable.filled_gift_sell_24);
@@ -189,13 +188,13 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         }
 
         public void updateButton(long j, boolean z) {
-            String formatDurationNoHours = AndroidUtilities.formatDurationNoHours((int) j, false);
+            String durationNoHours = AndroidUtilities.formatDurationNoHours((int) j, false);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
             spannableStringBuilder.setSpan(this.cs, 0, spannableStringBuilder.length(), 33);
             spannableStringBuilder.append((CharSequence) "  ");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
             spannableStringBuilder.append((CharSequence) "  ");
-            spannableStringBuilder.append((CharSequence) formatDurationNoHours);
+            spannableStringBuilder.append((CharSequence) durationNoHours);
             this.buttonView.setText(spannableStringBuilder, z);
         }
 

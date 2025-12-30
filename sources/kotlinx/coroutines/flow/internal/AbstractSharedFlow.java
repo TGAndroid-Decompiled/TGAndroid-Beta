@@ -15,45 +15,45 @@ public abstract class AbstractSharedFlow {
 
     protected abstract AbstractSharedFlowSlot[] createSlotArray(int i);
 
-    public final AbstractSharedFlowSlot allocateSlot() {
-        AbstractSharedFlowSlot abstractSharedFlowSlot;
+    protected final AbstractSharedFlowSlot allocateSlot() {
+        AbstractSharedFlowSlot abstractSharedFlowSlotCreateSlot;
         synchronized (this) {
             try {
-                AbstractSharedFlowSlot[] abstractSharedFlowSlotArr = this.slots;
-                if (abstractSharedFlowSlotArr == null) {
-                    abstractSharedFlowSlotArr = createSlotArray(2);
-                    this.slots = abstractSharedFlowSlotArr;
-                } else if (this.nCollectors >= abstractSharedFlowSlotArr.length) {
-                    Object[] copyOf = Arrays.copyOf(abstractSharedFlowSlotArr, abstractSharedFlowSlotArr.length * 2);
-                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-                    this.slots = (AbstractSharedFlowSlot[]) copyOf;
-                    abstractSharedFlowSlotArr = (AbstractSharedFlowSlot[]) copyOf;
+                AbstractSharedFlowSlot[] abstractSharedFlowSlotArrCreateSlotArray = this.slots;
+                if (abstractSharedFlowSlotArrCreateSlotArray == null) {
+                    abstractSharedFlowSlotArrCreateSlotArray = createSlotArray(2);
+                    this.slots = abstractSharedFlowSlotArrCreateSlotArray;
+                } else if (this.nCollectors >= abstractSharedFlowSlotArrCreateSlotArray.length) {
+                    Object[] objArrCopyOf = Arrays.copyOf(abstractSharedFlowSlotArrCreateSlotArray, abstractSharedFlowSlotArrCreateSlotArray.length * 2);
+                    Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+                    this.slots = (AbstractSharedFlowSlot[]) objArrCopyOf;
+                    abstractSharedFlowSlotArrCreateSlotArray = (AbstractSharedFlowSlot[]) objArrCopyOf;
                 }
                 int i = this.nextIndex;
                 do {
-                    abstractSharedFlowSlot = abstractSharedFlowSlotArr[i];
-                    if (abstractSharedFlowSlot == null) {
-                        abstractSharedFlowSlot = createSlot();
-                        abstractSharedFlowSlotArr[i] = abstractSharedFlowSlot;
+                    abstractSharedFlowSlotCreateSlot = abstractSharedFlowSlotArrCreateSlotArray[i];
+                    if (abstractSharedFlowSlotCreateSlot == null) {
+                        abstractSharedFlowSlotCreateSlot = createSlot();
+                        abstractSharedFlowSlotArrCreateSlotArray[i] = abstractSharedFlowSlotCreateSlot;
                     }
                     i++;
-                    if (i >= abstractSharedFlowSlotArr.length) {
+                    if (i >= abstractSharedFlowSlotArrCreateSlotArray.length) {
                         i = 0;
                     }
-                    Intrinsics.checkNotNull(abstractSharedFlowSlot, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
-                } while (!abstractSharedFlowSlot.allocateLocked(this));
+                    Intrinsics.checkNotNull(abstractSharedFlowSlotCreateSlot, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
+                } while (!abstractSharedFlowSlotCreateSlot.allocateLocked(this));
                 this.nextIndex = i;
                 this.nCollectors++;
             } catch (Throwable th) {
                 throw th;
             }
         }
-        return abstractSharedFlowSlot;
+        return abstractSharedFlowSlotCreateSlot;
     }
 
-    public final void freeSlot(AbstractSharedFlowSlot abstractSharedFlowSlot) {
+    protected final void freeSlot(AbstractSharedFlowSlot abstractSharedFlowSlot) {
         int i;
-        Continuation[] freeLocked;
+        Continuation[] continuationArrFreeLocked;
         synchronized (this) {
             try {
                 int i2 = this.nCollectors - 1;
@@ -62,12 +62,12 @@ public abstract class AbstractSharedFlow {
                     this.nextIndex = 0;
                 }
                 Intrinsics.checkNotNull(abstractSharedFlowSlot, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
-                freeLocked = abstractSharedFlowSlot.freeLocked(this);
+                continuationArrFreeLocked = abstractSharedFlowSlot.freeLocked(this);
             } catch (Throwable th) {
                 throw th;
             }
         }
-        for (Continuation continuation : freeLocked) {
+        for (Continuation continuation : continuationArrFreeLocked) {
             if (continuation != null) {
                 Result.Companion companion = Result.Companion;
                 continuation.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
@@ -75,7 +75,7 @@ public abstract class AbstractSharedFlow {
         }
     }
 
-    public final AbstractSharedFlowSlot[] getSlots() {
+    protected final AbstractSharedFlowSlot[] getSlots() {
         return this.slots;
     }
 }

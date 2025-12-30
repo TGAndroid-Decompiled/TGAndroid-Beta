@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Կիսվել…</string>
     <string name="abc_shareactionprovider_share_with_application">Կիսվել %s հավելվածի միջոցով</string>
     <string name="abc_toolbar_collapse_description">Ծալել</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Գաղտնաբառ</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Մուտքի բանալի</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Գաղտնաբառ</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Մուտքի բանալի</string>
     <string name="call_notification_answer_action">Պատասխանել</string>
     <string name="call_notification_answer_video_action">Տեսազանգ</string>
     <string name="call_notification_decline_action">Մերժել</string>

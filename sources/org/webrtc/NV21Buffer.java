@@ -52,8 +52,8 @@ public class NV21Buffer implements VideoFrame.Buffer {
 
     @Override
     public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
-        JavaI420Buffer allocate = JavaI420Buffer.allocate(i5, i6);
-        nativeCropAndScale(i, i2, i3, i4, i5, i6, this.data, this.width, this.height, allocate.getDataY(), allocate.getStrideY(), allocate.getDataU(), allocate.getStrideU(), allocate.getDataV(), allocate.getStrideV());
-        return allocate;
+        JavaI420Buffer javaI420BufferAllocate = JavaI420Buffer.allocate(i5, i6);
+        nativeCropAndScale(i, i2, i3, i4, i5, i6, this.data, this.width, this.height, javaI420BufferAllocate.getDataY(), javaI420BufferAllocate.getStrideY(), javaI420BufferAllocate.getDataU(), javaI420BufferAllocate.getStrideU(), javaI420BufferAllocate.getDataV(), javaI420BufferAllocate.getStrideV());
+        return javaI420BufferAllocate;
     }
 }

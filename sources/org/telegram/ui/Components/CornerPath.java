@@ -35,73 +35,13 @@ public class CornerPath extends Path {
     }
 
     @Override
-    public void addRect(RectF rectF, Path.Direction direction) {
-        RectF rectF2;
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            float f = rectF.left;
-            float f2 = this.paddingX;
-            float f3 = f - f2;
-            float f4 = rectF.top;
-            float f5 = this.paddingY;
-            super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
-            return;
-        }
-        if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r10.size() - 1)).contains(rectF)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            if (Math.abs(rectF.top - ((RectF) this.rects.get(r1.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(rectF.bottom - ((RectF) this.rects.get(r1.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r10.size() - 1)).union(rectF);
-                    this.isPathCreated = false;
-                }
-            }
-        }
-        ArrayList arrayList = recycled;
-        if (arrayList != null && arrayList.size() > 0) {
-            rectF2 = (RectF) recycled.remove(0);
-        } else {
-            rectF2 = new RectF();
-        }
-        rectF2.set(rectF);
-        this.rects.add(rectF2);
-        this.isPathCreated = false;
+    public void addRect(android.graphics.RectF r9, android.graphics.Path.Direction r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CornerPath.addRect(android.graphics.RectF, android.graphics.Path$Direction):void");
     }
 
     @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        RectF rectF;
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            float f5 = this.paddingX;
-            float f6 = f - f5;
-            float f7 = this.paddingY;
-            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
-            return;
-        }
-        if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r12.size() - 1)).contains(f, f2, f3, f4)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            if (Math.abs(f2 - ((RectF) this.rects.get(r12.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(f4 - ((RectF) this.rects.get(r12.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r12.size() - 1)).union(f, f2, f3, f4);
-                    this.isPathCreated = false;
-                }
-            }
-        }
-        ArrayList arrayList = recycled;
-        if (arrayList != null && arrayList.size() > 0) {
-            rectF = (RectF) recycled.remove(0);
-        } else {
-            rectF = new RectF();
-        }
-        rectF.set(f, f2, f3, f4);
-        this.rects.add(rectF);
-        this.isPathCreated = false;
+    public void addRect(float r8, float r9, float r10, float r11, android.graphics.Path.Direction r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CornerPath.addRect(float, float, float, float, android.graphics.Path$Direction):void");
     }
 
     @Override

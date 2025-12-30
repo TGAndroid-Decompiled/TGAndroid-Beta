@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Абагуліць праз</string>
     <string name="abc_shareactionprovider_share_with_application">Абагуліць праз праграму \"%s\"</string>
     <string name="abc_toolbar_collapse_description">Згарнуць</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Пароль</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Ключ доступу</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Пароль</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Ключ доступу</string>
     <string name="call_notification_answer_action">Адказаць</string>
     <string name="call_notification_answer_video_action">Відэа</string>
     <string name="call_notification_decline_action">Адхіліць</string>

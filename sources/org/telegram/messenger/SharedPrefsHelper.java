@@ -22,13 +22,13 @@ public class SharedPrefsHelper {
     public static void cleanupAccount(int i) {
         SharedPreferences sharedPreferences = webViewBotsPrefs;
         if (sharedPreferences != null) {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
             for (String str : webViewBotsPrefs.getAll().keySet()) {
                 if (str.startsWith("confirm_shown_" + i + "_")) {
-                    edit.remove(str);
+                    editorEdit.remove(str);
                 }
             }
-            edit.apply();
+            editorEdit.apply();
         }
     }
 

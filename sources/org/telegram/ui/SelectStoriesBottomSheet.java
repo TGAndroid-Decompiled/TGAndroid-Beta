@@ -64,7 +64,7 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SelectStoriesBottomSheet.this.lambda$new$0(callback, view2);
+                this.f$0.lambda$new$0(callback, view2);
             }
         });
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
@@ -90,15 +90,13 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i4) {
-                SelectStoriesBottomSheet.this.onItemClick(view2, i4);
+                this.f$0.onItemClick(view2, i4);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view2, int i4) {
-                boolean onItemClick;
-                onItemClick = SelectStoriesBottomSheet.this.onItemClick(view2, i4);
-                return onItemClick;
+                return this.f$0.onItemClick(view2, i4);
             }
         });
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -167,7 +165,7 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                SelectStoriesBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -216,17 +214,17 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     public void checkLoadMoreScroll() {
-        int findFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
-        int abs = findFirstVisibleItemPosition == -1 ? 0 : Math.abs(this.layoutManager.findLastVisibleItemPosition() - findFirstVisibleItemPosition) + 1;
+        int iFindFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
+        int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(this.layoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
         StoriesController.StoriesList storiesList = this.storiesList;
         if (storiesList != null) {
-            int i = findFirstVisibleItemPosition + abs;
+            int i = iFindFirstVisibleItemPosition + iAbs;
             int loadedCount = storiesList.getLoadedCount();
             int i2 = this.columnsCount;
             if (i > loadedCount - i2) {
-                int max = Math.max(1, i2 / 2);
+                int iMax = Math.max(1, i2 / 2);
                 int i3 = this.columnsCount;
-                this.storiesList.load(false, Math.min(100, max * i3 * i3));
+                this.storiesList.load(false, Math.min(100, iMax * i3 * i3));
             }
         }
     }

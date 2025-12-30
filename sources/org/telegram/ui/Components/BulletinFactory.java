@@ -93,13 +93,13 @@ public final class BulletinFactory {
     public void showForError(TLRPC.TL_error tL_error, boolean z) {
         if (LaunchActivity.isActive) {
             if (tL_error == null) {
-                Bulletin createErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
-                createErrorBulletin.hideAfterBottomSheet = false;
-                createErrorBulletin.show(z);
+                Bulletin bulletinCreateErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
+                bulletinCreateErrorBulletin.hideAfterBottomSheet = false;
+                bulletinCreateErrorBulletin.show(z);
             } else {
-                Bulletin createErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text));
-                createErrorBulletin2.hideAfterBottomSheet = false;
-                createErrorBulletin2.show(z);
+                Bulletin bulletinCreateErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text));
+                bulletinCreateErrorBulletin2.hideAfterBottomSheet = false;
+                bulletinCreateErrorBulletin2.show(z);
             }
         }
     }
@@ -111,13 +111,13 @@ public final class BulletinFactory {
     public void showForError(String str, boolean z) {
         if (LaunchActivity.isActive) {
             if (TextUtils.isEmpty(str)) {
-                Bulletin createErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
-                createErrorBulletin.hideAfterBottomSheet = false;
-                createErrorBulletin.show(z);
+                Bulletin bulletinCreateErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
+                bulletinCreateErrorBulletin.hideAfterBottomSheet = false;
+                bulletinCreateErrorBulletin.show(z);
             } else {
-                Bulletin createErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, str));
-                createErrorBulletin2.hideAfterBottomSheet = false;
-                createErrorBulletin2.show(z);
+                Bulletin bulletinCreateErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, str));
+                bulletinCreateErrorBulletin2.hideAfterBottomSheet = false;
+                bulletinCreateErrorBulletin2.show(z);
             }
         }
     }
@@ -204,7 +204,7 @@ public final class BulletinFactory {
             return LocaleController.getString(this.localeKey, this.localeRes);
         }
 
-        public enum Icon {
+        private enum Icon {
             SAVED_TO_DOWNLOADS(R.raw.ic_download, 2, "Box", "Arrow"),
             SAVED_TO_GALLERY(R.raw.ic_save_to_gallery, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
             SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
@@ -329,12 +329,12 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setAnimation(i, 36, 36, new String[0]);
         if (charSequence != null) {
-            String charSequence2 = charSequence.toString();
+            String string = charSequence.toString();
             SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
             int i3 = 0;
-            for (int indexOf = charSequence2.indexOf(10); indexOf >= 0 && indexOf < charSequence.length(); indexOf = charSequence2.indexOf(10, indexOf + 1)) {
+            for (int iIndexOf = string.indexOf(10); iIndexOf >= 0 && iIndexOf < charSequence.length(); iIndexOf = string.indexOf(10, iIndexOf + 1)) {
                 if (i3 >= i2) {
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) " ");
+                    spannableStringBuilder.replace(iIndexOf, iIndexOf + 1, (CharSequence) " ");
                 }
                 i3++;
             }
@@ -350,12 +350,12 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setAnimation(i, 36, 36, new String[0]);
         if (charSequence != null) {
-            String charSequence2 = charSequence.toString();
+            String string = charSequence.toString();
             SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
             int i4 = 0;
-            for (int indexOf = charSequence2.indexOf(10); indexOf >= 0 && indexOf < charSequence.length(); indexOf = charSequence2.indexOf(10, indexOf + 1)) {
+            for (int iIndexOf = string.indexOf(10); iIndexOf >= 0 && iIndexOf < charSequence.length(); iIndexOf = string.indexOf(10, iIndexOf + 1)) {
                 if (i4 >= i2) {
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) " ");
+                    spannableStringBuilder.replace(iIndexOf, iIndexOf + 1, (CharSequence) " ");
                 }
                 i4++;
             }
@@ -521,14 +521,14 @@ public final class BulletinFactory {
             usersLayout.subtitleView.setSingleLine(false);
             usersLayout.subtitleView.setMaxLines(3);
             if (usersLayout.linearLayout.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int dp = AndroidUtilities.dp(70 - ((3 - i) * 12));
+                int iDp = AndroidUtilities.dp(70 - ((3 - i) * 12));
                 if (i == 1) {
-                    dp += AndroidUtilities.dp(4.0f);
+                    iDp += AndroidUtilities.dp(4.0f);
                 }
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = iDp;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = iDp;
                 }
             }
         } else {
@@ -536,15 +536,15 @@ public final class BulletinFactory {
             usersLayout.textView.setMaxLines(4);
             usersLayout.textView.setText(charSequence);
             if (usersLayout.textView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int dp2 = AndroidUtilities.dp(70 - ((3 - i) * 12));
+                int iDp2 = AndroidUtilities.dp(70 - ((3 - i) * 12));
                 if (i == 1) {
                     usersLayout.textView.setTranslationY(-AndroidUtilities.dp(1.0f));
-                    dp2 += AndroidUtilities.dp(4.0f);
+                    iDp2 += AndroidUtilities.dp(4.0f);
                 }
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = iDp2;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = iDp2;
                 }
             }
         }
@@ -588,11 +588,11 @@ public final class BulletinFactory {
             usersLayout.subtitleView.setSingleLine(true);
             usersLayout.subtitleView.setMaxLines(1);
             if (usersLayout.linearLayout.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int dp = AndroidUtilities.dp(74 - ((3 - i) * 12));
+                int iDp = AndroidUtilities.dp(74 - ((3 - i) * 12));
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = iDp;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = iDp;
                 }
             }
         } else {
@@ -600,11 +600,11 @@ public final class BulletinFactory {
             usersLayout.textView.setMaxLines(2);
             usersLayout.textView.setText(charSequence);
             if (usersLayout.textView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int dp2 = AndroidUtilities.dp(74 - ((3 - i) * 12));
+                int iDp2 = AndroidUtilities.dp(74 - ((3 - i) * 12));
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = iDp2;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = iDp2;
                 }
             }
         }
@@ -615,21 +615,21 @@ public final class BulletinFactory {
     }
 
     public Bulletin createUsersAddedBulletin(ArrayList arrayList, TLRPC.Chat chat) {
-        SpannableStringBuilder spannableStringBuilder;
+        SpannableStringBuilder spannableStringBuilderReplaceTags;
         if (arrayList == null || arrayList.size() == 0) {
-            spannableStringBuilder = null;
+            spannableStringBuilderReplaceTags = null;
         } else if (arrayList.size() == 1) {
             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
             } else {
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
             }
         } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-            spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedMembersToChannel", arrayList.size(), new Object[0]));
+            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedMembersToChannel", arrayList.size(), new Object[0]));
         } else {
-            spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedSubscribersToChannel", arrayList.size(), new Object[0]));
+            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedSubscribersToChannel", arrayList.size(), new Object[0]));
         }
-        return createUsersBulletin(arrayList, spannableStringBuilder);
+        return createUsersBulletin(arrayList, spannableStringBuilderReplaceTags);
     }
 
     public Bulletin createEmojiBulletin(TLRPC.Document document, CharSequence charSequence) {
@@ -721,37 +721,37 @@ public final class BulletinFactory {
             } else {
                 spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, "<{LOADING}>")));
             }
-            int indexOf = spannableStringBuilder.toString().indexOf("<{LOADING}>");
-            if (indexOf >= 0) {
+            int iIndexOf = spannableStringBuilder.toString().indexOf("<{LOADING}>");
+            if (iIndexOf >= 0) {
                 loadingSpan = new LoadingSpan(null, AndroidUtilities.dp(100.0f), AndroidUtilities.dp(2.0f), this.resourcesProvider);
-                spannableStringBuilder.setSpan(loadingSpan, indexOf, indexOf + 11, 33);
+                spannableStringBuilder.setSpan(loadingSpan, iIndexOf, iIndexOf + 11, 33);
                 int i2 = Theme.key_undo_infoColor;
                 loadingSpan.setColors(ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), 72));
             } else {
                 loadingSpan = null;
             }
-            final long currentTimeMillis = System.currentTimeMillis();
-            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(document, spannableStringBuilder, LocaleController.getString(R.string.ViewAction), new Runnable() {
+            final long jCurrentTimeMillis = System.currentTimeMillis();
+            final Bulletin bulletinCreateEmojiLoadingBulletin = createEmojiLoadingBulletin(document, spannableStringBuilder, LocaleController.getString(R.string.ViewAction), new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(inputStickerSet);
+                    callback.run(inputStickerSet);
                 }
             });
-            if (loadingSpan != null && (createEmojiLoadingBulletin.getLayout() instanceof Bulletin.LoadingLottieLayout)) {
-                loadingSpan.setView(((Bulletin.LoadingLottieLayout) createEmojiLoadingBulletin.getLayout()).textLoadingView);
+            if (loadingSpan != null && (bulletinCreateEmojiLoadingBulletin.getLayout() instanceof Bulletin.LoadingLottieLayout)) {
+                loadingSpan.setView(((Bulletin.LoadingLottieLayout) bulletinCreateEmojiLoadingBulletin.getLayout()).textLoadingView);
             }
             MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(inputStickerSet, null, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BulletinFactory.lambda$createContainsEmojiBulletin$2(i, createEmojiLoadingBulletin, currentTimeMillis, (TLRPC.TL_messages_stickerSet) obj);
+                    BulletinFactory.lambda$createContainsEmojiBulletin$2(i, bulletinCreateEmojiLoadingBulletin, jCurrentTimeMillis, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
-            return createEmojiLoadingBulletin;
+            return bulletinCreateEmojiLoadingBulletin;
         }
         return createEmojiBulletin(document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title)), LocaleController.getString(R.string.ViewAction), new Runnable() {
             @Override
             public final void run() {
-                Utilities.Callback.this.run(inputStickerSet);
+                callback.run(inputStickerSet);
             }
         });
     }
@@ -767,7 +767,7 @@ public final class BulletinFactory {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Bulletin.this.onLoaded(string);
+                bulletin.onLoaded(string);
             }
         }, Math.max(1L, 750 - (System.currentTimeMillis() - j)));
     }
@@ -854,13 +854,13 @@ public final class BulletinFactory {
     public Bulletin createCaptionLimitBulletin(int i, final Runnable runnable) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), null);
         lottieLayout.setAnimation(R.raw.caption_limit, new String[0]);
-        String formatPluralString = LocaleController.formatPluralString("ChannelCaptionLimitPremiumPromo", i, new Object[0]);
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(AndroidUtilities.replaceTags(formatPluralString));
-        int indexOf = formatPluralString.indexOf(42);
-        int i2 = indexOf + 1;
-        int indexOf2 = formatPluralString.indexOf(42, i2);
-        valueOf.replace(indexOf, indexOf2 + 1, (CharSequence) formatPluralString.substring(i2, indexOf2));
-        valueOf.setSpan(new ClickableSpan() {
+        String pluralString = LocaleController.formatPluralString("ChannelCaptionLimitPremiumPromo", i, new Object[0]);
+        SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(AndroidUtilities.replaceTags(pluralString));
+        int iIndexOf = pluralString.indexOf(42);
+        int i2 = iIndexOf + 1;
+        int iIndexOf2 = pluralString.indexOf(42, i2);
+        spannableStringBuilderValueOf.replace(iIndexOf, iIndexOf2 + 1, (CharSequence) pluralString.substring(i2, iIndexOf2));
+        spannableStringBuilderValueOf.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
                 runnable.run();
@@ -871,8 +871,8 @@ public final class BulletinFactory {
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
             }
-        }, indexOf, indexOf2 - 1, 33);
-        lottieLayout.textView.setText(valueOf);
+        }, iIndexOf, iIndexOf2 - 1, 33);
+        lottieLayout.textView.setText(spannableStringBuilderValueOf);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(3);
         return create(lottieLayout, 5000);
@@ -883,10 +883,10 @@ public final class BulletinFactory {
         lottieLayout.setAnimation(R.raw.voip_muted, new String[0]);
         String string = LocaleController.getString(R.string.PrivacyVoiceMessagesPremiumOnly);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-        int indexOf = string.indexOf(42);
-        int lastIndexOf = string.lastIndexOf(42);
-        if (indexOf >= 0) {
-            spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
+        int iIndexOf = string.indexOf(42);
+        int iLastIndexOf = string.lastIndexOf(42);
+        if (iIndexOf >= 0) {
+            spannableStringBuilder.replace(iIndexOf, iLastIndexOf + 1, (CharSequence) string.substring(iIndexOf + 1, iLastIndexOf));
             spannableStringBuilder.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
@@ -898,7 +898,7 @@ public final class BulletinFactory {
                     super.updateDrawState(textPaint);
                     textPaint.setUnderlineText(false);
                 }
-            }, indexOf, lastIndexOf - 1, 33);
+            }, iIndexOf, iLastIndexOf - 1, 33);
         }
         lottieLayout.textView.setText(spannableStringBuilder);
         lottieLayout.textView.setSingleLine(false);
@@ -995,15 +995,15 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createMuteBulletin(BaseFragment baseFragment, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
-        String formatPluralString;
+        String pluralString;
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
         TextView textView = lottieLayout.textView;
         if (z) {
-            formatPluralString = LocaleController.formatPluralString("NotificationsMutedHintChats", i, new Object[0]);
+            pluralString = LocaleController.formatPluralString("NotificationsMutedHintChats", i, new Object[0]);
         } else {
-            formatPluralString = LocaleController.formatPluralString("NotificationsUnmutedHintChats", i, new Object[0]);
+            pluralString = LocaleController.formatPluralString("NotificationsUnmutedHintChats", i, new Object[0]);
         }
-        textView.setText(formatPluralString);
+        textView.setText(pluralString);
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_mute, "Body Main", "Body Top", "Line", "Curve Big", "Curve Small");
         } else {
@@ -1072,30 +1072,30 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createInviteSentBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
-        SpannableStringBuilder replaceTags;
+        SpannableStringBuilder spannableStringBuilderReplaceTags;
         final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
         int i5 = 300;
         if (i > 1) {
-            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToChats", R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0])));
+            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToChats", R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0])));
             lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
         } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-            replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.InvLinkToSavedMessages));
+            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.InvLinkToSavedMessages));
             lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
             i5 = -1;
         } else {
             if (DialogObject.isChatDialog(j)) {
-                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToGroup", R.string.InvLinkToGroup, MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j)).title));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToGroup", R.string.InvLinkToGroup, MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j)).title));
             } else {
-                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToUser", R.string.InvLinkToUser, UserObject.getFirstName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j)))));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToUser", R.string.InvLinkToUser, UserObject.getFirstName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j)))));
             }
             lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
         }
-        lottieLayout.textView.setText(replaceTags);
+        lottieLayout.textView.setText(spannableStringBuilderReplaceTags);
         if (i5 > 0) {
             lottieLayout.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                    lottieLayout.performHapticFeedback(3, 2);
                 }
             }, i5);
         }
@@ -1115,7 +1115,7 @@ public final class BulletinFactory {
     }
 
     public boolean showForwardedBulletinWithTag(long j, int i) {
-        SpannableStringBuilder replaceSingleTag;
+        SpannableStringBuilder spannableStringBuilderReplaceSingleTag;
         if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
             return false;
         }
@@ -1124,18 +1124,18 @@ public final class BulletinFactory {
             return false;
         }
         if (i <= 1) {
-            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+            spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
         } else {
-            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+            spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
         }
         lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
-        lottieLayoutWithReactions.textView.setText(replaceSingleTag);
+        lottieLayoutWithReactions.textView.setText(spannableStringBuilderReplaceSingleTag);
         lottieLayoutWithReactions.textView.setSingleLine(false);
         lottieLayoutWithReactions.textView.setMaxLines(2);
-        Bulletin create = create(lottieLayoutWithReactions, 3500);
-        lottieLayoutWithReactions.setBulletin(create);
-        create.hideAfterBottomSheet(false);
-        create.show(true);
+        Bulletin bulletinCreate = create(lottieLayoutWithReactions, 3500);
+        lottieLayoutWithReactions.setBulletin(bulletinCreate);
+        bulletinCreate.hideAfterBottomSheet(false);
+        bulletinCreate.show(true);
         return true;
     }
 
@@ -1148,15 +1148,15 @@ public final class BulletinFactory {
         Context context2;
         int i6;
         int i7;
-        Theme.ResourcesProvider resourcesProvider;
-        SpannableStringBuilder replaceTags;
-        Bulletin make;
+        Theme.ResourcesProvider resourceProvider;
+        SpannableStringBuilder spannableStringBuilderReplaceTags;
+        Bulletin bulletinMake;
         int i8;
         if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && baseFragment != null && i <= 1 && j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             lottieLayout = new Bulletin.LottieLayoutWithReactions(baseFragment, i2);
         } else {
             if (baseFragment != null) {
-                resourcesProvider = baseFragment.getResourceProvider();
+                resourceProvider = baseFragment.getResourceProvider();
                 context2 = context;
                 i6 = i3;
                 i7 = i4;
@@ -1164,9 +1164,9 @@ public final class BulletinFactory {
                 context2 = context;
                 i6 = i3;
                 i7 = i4;
-                resourcesProvider = null;
+                resourceProvider = null;
             }
-            lottieLayout = new Bulletin.LottieLayout(context2, resourcesProvider, i6, i7);
+            lottieLayout = new Bulletin.LottieLayout(context2, resourceProvider, i6, i7);
         }
         boolean z = (runnable2 == null && runnable == null) ? false : true;
         final boolean[] zArr = {false};
@@ -1178,16 +1178,16 @@ public final class BulletinFactory {
         } : null;
         if (i > 1) {
             if (i2 <= 1) {
-                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessageToManyChats", i, new Object[0]));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessageToManyChats", i, new Object[0]));
             } else {
-                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessagesToManyChats", i, new Object[0]));
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessagesToManyChats", i, new Object[0]));
             }
             lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
         } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             if (i2 <= 1) {
-                replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
             } else {
-                replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
             }
             lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
         } else {
@@ -1202,17 +1202,17 @@ public final class BulletinFactory {
                 if (i2 > 1) {
                     i8 = 0;
                     if (baseFragment != null) {
-                        replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title), -1, 2, runnable4);
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title), -1, 2, runnable4);
                     } else {
-                        replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title));
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title));
                         i8 = 0;
                     }
                 } else if (baseFragment != null) {
                     i8 = 0;
-                    replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.FwdMessageToGroup, chat.title), -1, 2, runnable4);
+                    spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.FwdMessageToGroup, chat.title), -1, 2, runnable4);
                 } else {
                     i8 = 0;
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FwdMessageToGroup, chat.title));
+                    spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FwdMessageToGroup, chat.title));
                 }
                 lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[i8]);
             } else {
@@ -1221,48 +1221,48 @@ public final class BulletinFactory {
                     int i9 = z ? R.string.FwdMessageToUserShort : R.string.FwdMessageToUser;
                     if (baseFragment != null) {
                         i8 = 0;
-                        replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i9, UserObject.getFirstName(user)), -1, 2, runnable4);
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i9, UserObject.getFirstName(user)), -1, 2, runnable4);
                     } else {
-                        replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i9, UserObject.getFirstName(user)));
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i9, UserObject.getFirstName(user)));
                         i8 = 0;
                     }
                 } else {
                     int i10 = z ? R.string.FwdMessagesToUserShort : R.string.FwdMessagesToUser;
                     if (baseFragment != null) {
                         i8 = 0;
-                        replaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i10, UserObject.getFirstName(user)), -1, 2, runnable4);
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i10, UserObject.getFirstName(user)), -1, 2, runnable4);
                     } else {
                         i8 = 0;
-                        replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i10, UserObject.getFirstName(user)));
+                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i10, UserObject.getFirstName(user)));
                     }
                 }
                 lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[i8]);
             }
         }
-        lottieLayout.textView.setText(replaceTags);
+        lottieLayout.textView.setText(spannableStringBuilderReplaceTags);
         if (z) {
             lottieLayout.setButton(new Bulletin.UndoButton(lottieLayout.getContext(), true, true, baseFragment != null ? baseFragment.getResourceProvider() : null).setUndoAction(runnable).setDelayedAction(runnable3));
         }
         lottieLayout.postDelayed(new Runnable() {
             @Override
             public final void run() {
-                Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                lottieLayout.performHapticFeedback(3, 2);
             }
         }, 300);
         if (frameLayout != null) {
-            make = Bulletin.make(frameLayout, lottieLayout, i5);
+            bulletinMake = Bulletin.make(frameLayout, lottieLayout, i5);
         } else if (baseFragment != null) {
-            make = Bulletin.make(baseFragment, lottieLayout, i5);
+            bulletinMake = Bulletin.make(baseFragment, lottieLayout, i5);
         } else {
             throw new IllegalArgumentException();
         }
         if (lottieLayout instanceof Bulletin.LottieLayoutWithReactions) {
             lottieLayout.textView.setSingleLine(false);
             lottieLayout.textView.setMaxLines(2);
-            ((Bulletin.LottieLayoutWithReactions) lottieLayout).setBulletin(make);
-            make.hideAfterBottomSheet(false);
+            ((Bulletin.LottieLayoutWithReactions) lottieLayout).setBulletin(bulletinMake);
+            bulletinMake.hideAfterBottomSheet(false);
         }
-        return make;
+        return bulletinMake;
     }
 
     public static void lambda$createForwardedBulletin$6(boolean[] zArr, Runnable runnable) {
@@ -1283,15 +1283,15 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createRemoveFromChatBulletin(BaseFragment baseFragment, TLRPC.User user, String str) {
-        String str2;
+        String string;
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
         if (user.deleted) {
-            str2 = LocaleController.formatString("HiddenName", R.string.HiddenName, new Object[0]);
+            string = LocaleController.formatString("HiddenName", R.string.HiddenName, new Object[0]);
         } else {
-            str2 = user.first_name;
+            string = user.first_name;
         }
-        lottieLayout.textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserRemovedFromChatHint", R.string.UserRemovedFromChatHint, str2, str)));
+        lottieLayout.textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserRemovedFromChatHint", R.string.UserRemovedFromChatHint, string, str)));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
     }
 

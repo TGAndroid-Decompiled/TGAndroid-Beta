@@ -113,7 +113,7 @@ public class VoIPFloatingLayout extends FrameLayout {
         this.mutedUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIPFloatingLayout.this.lambda$new$0(valueAnimator);
+                this.f$0.lambda$new$0(valueAnimator);
             }
         };
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -324,9 +324,9 @@ public class VoIPFloatingLayout extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.toFloatingModeProgress, 1.0f);
-            this.switchToFloatingModeAnimator = ofFloat;
-            ofFloat.addUpdateListener(this.progressUpdateListener);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.toFloatingModeProgress, 1.0f);
+            this.switchToFloatingModeAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(this.progressUpdateListener);
             this.switchToFloatingModeAnimator.setDuration(300L);
             this.switchToFloatingModeAnimator.start();
             animate().setListener(null).cancel();
@@ -413,9 +413,9 @@ public class VoIPFloatingLayout extends FrameLayout {
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mutedProgress, z ? 1.0f : 0.0f);
-        this.mutedAnimator = ofFloat;
-        ofFloat.addUpdateListener(this.mutedUpdateListener);
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mutedProgress, z ? 1.0f : 0.0f);
+        this.mutedAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(this.mutedUpdateListener);
         this.mutedAnimator.setDuration(150L);
         this.mutedAnimator.start();
     }

@@ -34,7 +34,7 @@ public class StickerView extends EntityView {
     protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
     }
 
-    public class FrameLayoutDrawer extends FrameLayout {
+    private class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
             setWillNotDraw(false);
@@ -82,7 +82,7 @@ public class StickerView extends EntityView {
         this.centerImage.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                StickerView.this.lambda$new$0(imageReceiver, z, z2, z3);
+                this.f$0.lambda$new$0(imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -147,7 +147,7 @@ public class StickerView extends EntityView {
     }
 
     @Override
-    public void updatePosition() {
+    protected void updatePosition() {
         Size size = this.baseSize;
         float f = size.width / 2.0f;
         float f2 = size.height / 2.0f;
@@ -227,15 +227,15 @@ public class StickerView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDp2 = AndroidUtilities.dp(19.5f);
+            float f3 = fDp + fDp2;
             float f4 = f3 * 2.0f;
             float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+            if (f > f3 - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + fDp2 && f2 < measuredHeight + fDp2) {
                 return 1;
             }
-            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
+            if (f > ((getMeasuredWidth() - f4) + f3) - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + (getMeasuredWidth() - f4) + fDp2 && f2 < measuredHeight + fDp2) {
                 return 2;
             }
             float measuredWidth = getMeasuredWidth() / 2.0f;
@@ -253,19 +253,19 @@ public class StickerView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
-            float dp = AndroidUtilities.dp(1.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2) - dp2;
-            float f = dp2 + (2.0f * measuredWidth);
-            this.arcRect.set(dp2, dp2, f, f);
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDpf2 = AndroidUtilities.dpf2(5.66f);
+            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2) - fDp2;
+            float f = fDp2 + (2.0f * measuredWidth);
+            this.arcRect.set(fDp2, fDp2, f, f);
             canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
             canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + dp2;
-            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
-            canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            float f2 = measuredWidth + fDp2;
+            canvas.drawCircle(fDp2, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(fDp2, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.drawCircle(f, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(f, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.restoreToCount(saveCount);
         }
     }

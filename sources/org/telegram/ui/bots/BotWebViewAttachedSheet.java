@@ -22,10 +22,8 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
     private static final SimpleFloatPropertyCompat ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float lambda$static$1;
             WindowDecorActionBar$$ExternalSyntheticThrowCCEIfNotNull0.m(obj);
-            lambda$static$1 = BotWebViewAttachedSheet.lambda$static$1(null);
-            return lambda$static$1;
+            return BotWebViewAttachedSheet.lambda$static$1(null);
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -66,12 +64,12 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
         if (userFull == null || (botInfo = userFull.bot_info) == null) {
             return false;
         }
-        String str = botInfo.privacy_policy_url;
-        if (str == null && !hasPrivacyCommand(userFull)) {
-            str = LocaleController.getString(R.string.BotDefaultPrivacyPolicy);
+        String string = botInfo.privacy_policy_url;
+        if (string == null && !hasPrivacyCommand(userFull)) {
+            string = LocaleController.getString(R.string.BotDefaultPrivacyPolicy);
         }
-        if (str != null) {
-            Browser.openUrl(ApplicationLoader.applicationContext, str);
+        if (string != null) {
+            Browser.openUrl(ApplicationLoader.applicationContext, string);
             return false;
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();

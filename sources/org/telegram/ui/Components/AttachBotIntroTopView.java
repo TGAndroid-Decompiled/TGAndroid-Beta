@@ -35,7 +35,7 @@ public class AttachBotIntroTopView extends View {
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                AttachBotIntroTopView.this.lambda$new$1(imageReceiver2, z, z2, z3);
+                this.f$0.lambda$new$1(imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -59,7 +59,7 @@ public class AttachBotIntroTopView extends View {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AttachBotIntroTopView.this.lambda$new$0(valueAnimator);
+                this.f$0.lambda$new$0(valueAnimator);
             }
         });
         duration.start();

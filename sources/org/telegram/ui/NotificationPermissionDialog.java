@@ -32,7 +32,6 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.NotificationPermissionDialog;
 
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
@@ -52,9 +51,9 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         this.rLottieImageView.setAnimation(R.raw.silent_unmute, 46, 46);
         this.rLottieImageView.playAnimation();
         RLottieImageView rLottieImageView2 = this.rLottieImageView;
-        int dp = AndroidUtilities.dp(72.0f);
+        int iDp = AndroidUtilities.dp(72.0f);
         int i = Theme.key_featuredStickers_addButton;
-        rLottieImageView2.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        rLottieImageView2.setBackground(Theme.createCircleDrawable(iDp, Theme.getColor(i)));
         frameLayout.addView(this.rLottieImageView, LayoutHelper.createFrame(72, 72, 17));
         CounterView counterView = new CounterView(context);
         this.counterView = counterView;
@@ -63,7 +62,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                NotificationPermissionDialog.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 110));
@@ -98,7 +97,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                NotificationPermissionDialog.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         linearLayout.addView(textView3, LayoutHelper.createLinear(-1, 48, 14.0f, 14.0f, 14.0f, 10.0f));
@@ -136,14 +135,14 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     public void updateCounter() {
-        int i = 0;
-        for (int i2 = 0; i2 < 4; i2++) {
-            MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
+        int mainUnreadCount = 0;
+        for (int i = 0; i < 4; i++) {
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
             if (messagesStorage != null) {
-                i += messagesStorage.getMainUnreadCount();
+                mainUnreadCount += messagesStorage.getMainUnreadCount();
             }
         }
-        if (!this.counterView.setCount(i) || this.rLottieImageView.isPlaying()) {
+        if (!this.counterView.setCount(mainUnreadCount) || this.rLottieImageView.isPlaying()) {
             return;
         }
         this.rLottieImageView.setProgress(0.0f);
@@ -173,7 +172,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         }
     }
 
-    public static class CounterView extends View {
+    static class CounterView extends View {
         private final AnimatedFloat alpha;
         private ValueAnimator countAnimator;
         private float countScale;
@@ -210,7 +209,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         public boolean setCount(int i) {
             int i2 = this.lastCount;
             if (i2 != i) {
-                r1 = i2 < i;
+                z = i2 < i;
                 this.lastCount = i;
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
                 String str = "";
@@ -218,11 +217,11 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                     str = "" + this.lastCount;
                 }
                 animatedTextDrawable.setText(str, true);
-                if (r1) {
+                if (z) {
                     animateBounce();
                 }
             }
-            return r1;
+            return z;
         }
 
         private void animateBounce() {
@@ -231,12 +230,12 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 valueAnimator.cancel();
                 this.countAnimator = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.countAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.countAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    NotificationPermissionDialog.CounterView.this.lambda$animateBounce$0(valueAnimator2);
+                    this.f$0.lambda$animateBounce$0(valueAnimator2);
                 }
             });
             this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -263,9 +262,9 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             float f2 = this.countScale * f;
             canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
             float currentWidth = this.textDrawable.getCurrentWidth() + AndroidUtilities.dpf2(12.66f);
-            float dpf2 = AndroidUtilities.dpf2(20.3f);
+            float fDpf2 = AndroidUtilities.dpf2(20.3f);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getWidth() - currentWidth) / 2.0f, (getHeight() - dpf2) / 2.0f, (getWidth() + currentWidth) / 2.0f, (getHeight() + dpf2) / 2.0f);
+            rectF.set((getWidth() - currentWidth) / 2.0f, (getHeight() - fDpf2) / 2.0f, (getWidth() + currentWidth) / 2.0f, (getHeight() + fDpf2) / 2.0f);
             int i = (int) (f * 255.0f);
             this.strokePaint.setAlpha(i);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), this.strokePaint);
@@ -307,12 +306,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     public static boolean shouldAsk(Activity activity) {
-        int checkSelfPermission;
-        if (activity == null || Build.VERSION.SDK_INT < 23) {
-            return false;
-        }
-        checkSelfPermission = activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS");
-        if (checkSelfPermission == 0) {
+        if (activity == null || Build.VERSION.SDK_INT < 23 || activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS") == 0) {
             return false;
         }
         long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsAfter", -1L);
@@ -324,7 +318,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
 
     public static void askLater() {
         long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
-        long currentTimeMillis = System.currentTimeMillis() + j;
+        long jCurrentTimeMillis = System.currentTimeMillis() + j;
         long j2 = 259200000;
         if (j >= 259200000) {
             j2 = 604800000;
@@ -332,6 +326,6 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 j2 = 2592000000L;
             }
         }
-        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
+        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", jCurrentTimeMillis).putLong("askNotificationsDuration", j2).apply();
     }
 }

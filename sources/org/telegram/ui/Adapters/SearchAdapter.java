@@ -79,8 +79,8 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
             }
 
             @Override
-            public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
-                SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
+            public void onSetHashtags(ArrayList arrayList, HashMap map) {
+                SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, map);
             }
 
             @Override
@@ -137,7 +137,7 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchAdapter.this.lambda$processSearch$1(str);
+                this.f$0.lambda$processSearch$1(str);
             }
         });
     }
@@ -156,7 +156,7 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SearchAdapter.this.lambda$processSearch$0(str, i2, arrayList, i);
+                this.f$0.lambda$processSearch$0(str, i2, arrayList, i);
             }
         });
     }
@@ -283,7 +283,7 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchAdapter.this.lambda$updateSearchResults$2(i, arrayList, arrayList2, arrayList3);
+                this.f$0.lambda$updateSearchResults$2(i, arrayList, arrayList2, arrayList3);
             }
         });
     }
@@ -370,21 +370,25 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View profileSearchCell;
+        View userCell;
         if (i != 0) {
             if (i == 1) {
-                profileSearchCell = new GraySectionCell(this.mContext);
+                userCell = new GraySectionCell(this.mContext);
             } else if (i != 3) {
-                profileSearchCell = new TextCell(this.mContext, 16, false);
+                userCell = new TextCell(this.mContext, 16, false);
             } else {
-                profileSearchCell = new ProfileSearchCell(this.mContext);
+                ProfileSearchCell profileSearchCell = new ProfileSearchCell(this.mContext);
+                profileSearchCell.setCallCellStyle();
+                userCell = profileSearchCell;
             }
         } else if (this.useUserCell) {
-            profileSearchCell = new UserCell(this.mContext, 1, 1, false);
+            userCell = new UserCell(this.mContext, 1, 1, false);
         } else {
-            profileSearchCell = new ProfileSearchCell(this.mContext);
+            ProfileSearchCell profileSearchCell2 = new ProfileSearchCell(this.mContext);
+            profileSearchCell2.setCallCellStyle();
+            userCell = profileSearchCell2;
         }
-        return new RecyclerListView.Holder(profileSearchCell);
+        return new RecyclerListView.Holder(userCell);
     }
 
     @Override
@@ -401,7 +405,7 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         return item instanceof String ? "section".equals((String) item) ? 1 : 2 : item instanceof ContactsController.Contact ? 3 : 0;
     }
 
-    public static class ContactEntry {
+    private static class ContactEntry {
         ContactsController.Contact contact;
         String q1;
         String q2;

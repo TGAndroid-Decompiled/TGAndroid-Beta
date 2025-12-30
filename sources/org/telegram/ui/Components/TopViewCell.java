@@ -26,13 +26,13 @@ public class TopViewCell extends LinearLayout {
         backupImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopViewCell.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         addView(backupImageView, LayoutHelper.createLinear(90, 90, 17, 0, 9, 0, 9));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
                 if (TopViewCell.this.maxWidth > 0 && TopViewCell.this.maxWidth < size) {
                     size = TopViewCell.this.maxWidth;

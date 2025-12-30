@@ -43,7 +43,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -113,10 +112,10 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
 
             @Override
             public void processTouchEvent(MotionEvent motionEvent) {
-                MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
-                ChatAttachAlertAudioLayout.this.listView.dispatchTouchEvent(obtain);
-                obtain.recycle();
+                MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                motionEventObtain.setLocation(motionEventObtain.getRawX(), (motionEventObtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
+                ChatAttachAlertAudioLayout.this.listView.dispatchTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
             }
 
             @Override
@@ -140,9 +139,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = ChatAttachAlertAudioLayout.lambda$new$0(view, motionEvent);
-                return lambda$new$0;
+                return ChatAttachAlertAudioLayout.lambda$new$0(view, motionEvent);
             }
         });
         ImageView imageView = new ImageView(context);
@@ -185,7 +182,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     }
 
                     @Override
-                    public int calculateTimeForDeceleration(int i3) {
+                    protected int calculateTimeForDeceleration(int i3) {
                         return super.calculateTimeForDeceleration(i3) * 2;
                     }
                 };
@@ -206,15 +203,13 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                ChatAttachAlertAudioLayout.this.lambda$new$1(view, i2);
+                this.f$0.lambda$new$1(view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                boolean lambda$new$2;
-                lambda$new$2 = ChatAttachAlertAudioLayout.this.lambda$new$2(view, i2);
-                return lambda$new$2;
+                return this.f$0.lambda$new$2(view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -271,7 +266,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public void updateEmptyView() {
-        boolean isEmpty;
+        boolean zIsEmpty;
         if (this.loadingAudio) {
             this.currentEmptyView = this.progressView;
             this.emptyView.setVisibility(8);
@@ -288,11 +283,11 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchAdapter;
         if (adapter != searchAdapter) {
-            isEmpty = this.audioEntries.isEmpty();
+            zIsEmpty = this.audioEntries.isEmpty();
         } else {
-            isEmpty = searchAdapter.searchResult.isEmpty();
+            zIsEmpty = searchAdapter.searchResult.isEmpty();
         }
-        this.currentEmptyView.setVisibility(isEmpty ? 0 : 8);
+        this.currentEmptyView.setVisibility(zIsEmpty ? 0 : 8);
         updateEmptyViewPosition();
     }
 
@@ -355,27 +350,8 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onPreMeasure(int i, int i2) {
-        int i3;
-        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
-            i3 = AndroidUtilities.dp(8.0f);
-            this.parentAlert.setAllowNestedScroll(false);
-        } else {
-            if (!AndroidUtilities.isTablet()) {
-                android.graphics.Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i3 = (int) (i2 / 3.5f);
-                    this.parentAlert.setAllowNestedScroll(true);
-                }
-            }
-            i3 = (i2 / 5) * 2;
-            this.parentAlert.setAllowNestedScroll(true);
-        }
-        if (this.listView.getPaddingTop() != i3) {
-            this.ignoreLayout = true;
-            this.listView.setPadding(0, i3, 0, AndroidUtilities.dp(48.0f));
-            this.ignoreLayout = false;
-        }
+    public void onPreMeasure(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onPreMeasure(int, int):void");
     }
 
     @Override
@@ -496,7 +472,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         return AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), arrayList.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatAttachAlertAudioLayout.this.lambda$sendSelectedItems$3(arrayList, z, i, i2, j, z2, (Long) obj);
+                this.f$0.lambda$sendSelectedItems$3(arrayList, z, i, i2, j, z2, (Long) obj);
             }
         });
     }
@@ -523,7 +499,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertAudioLayout.this.lambda$loadAudio$5();
+                this.f$0.lambda$loadAudio$5();
             }
         });
     }
@@ -532,17 +508,17 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
         final ArrayList arrayList = new ArrayList();
         try {
-            Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
+            Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strArr, "is_music != 0", null, "title");
             int i = -2000000000;
-            while (query.moveToNext()) {
+            while (cursorQuery.moveToNext()) {
                 try {
                     MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                    audioEntry.id = query.getInt(0);
-                    audioEntry.author = query.getString(1);
-                    audioEntry.title = query.getString(2);
-                    audioEntry.path = query.getString(3);
-                    audioEntry.duration = (int) (query.getLong(4) / 1000);
-                    audioEntry.genre = query.getString(5);
+                    audioEntry.id = cursorQuery.getInt(0);
+                    audioEntry.author = cursorQuery.getString(1);
+                    audioEntry.title = cursorQuery.getString(2);
+                    audioEntry.path = cursorQuery.getString(3);
+                    audioEntry.duration = (int) (cursorQuery.getLong(4) / 1000);
+                    audioEntry.genre = cursorQuery.getString(5);
                     File file = new File(audioEntry.path);
                     TLRPC.TL_message tL_message = new TLRPC.TL_message();
                     tL_message.out = true;
@@ -592,14 +568,14 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 } finally {
                 }
             }
-            query.close();
+            cursorQuery.close();
         } catch (Exception e) {
             FileLog.e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertAudioLayout.this.lambda$loadAudio$4(arrayList);
+                this.f$0.lambda$loadAudio$4(arrayList);
             }
         });
     }
@@ -610,7 +586,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.listAdapter.notifyDataSetChanged();
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override
@@ -715,7 +691,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$1(str, i);
+                    this.f$0.lambda$search$1(str, i);
                 }
             };
             this.searchRunnable = runnable2;
@@ -727,7 +703,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$0(str, arrayList, i);
+                    this.f$0.lambda$search$0(str, arrayList, i);
                 }
             });
         }
@@ -757,11 +733,11 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     if (i4 < i2) {
                         String str3 = strArr[i4];
                         String str4 = audioEntry.author;
-                        boolean contains = str4 != null ? str4.toLowerCase().contains(str3) : false;
-                        if (!contains && (str2 = audioEntry.title) != null) {
-                            contains = str2.toLowerCase().contains(str3);
+                        boolean zContains = str4 != null ? str4.toLowerCase().contains(str3) : false;
+                        if (!zContains && (str2 = audioEntry.title) != null) {
+                            zContains = str2.toLowerCase().contains(str3);
                         }
-                        if (contains) {
+                        if (zContains) {
                             arrayList2.add(audioEntry);
                             break;
                         }
@@ -776,7 +752,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$updateSearchResults$2(i, str, arrayList);
+                    this.f$0.lambda$updateSearchResults$2(i, str, arrayList);
                 }
             });
         }

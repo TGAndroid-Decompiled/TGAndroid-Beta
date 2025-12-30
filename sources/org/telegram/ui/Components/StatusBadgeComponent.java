@@ -35,24 +35,24 @@ public class StatusBadgeComponent {
     public Drawable updateDrawable(TLRPC.User user, TLRPC.Chat chat, int i, boolean z) {
         if (chat != null && chat.verified) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.statusDrawable;
-            Drawable drawable = this.verifiedDrawable;
-            if (drawable == null) {
-                drawable = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
+            Drawable combinedDrawable = this.verifiedDrawable;
+            if (combinedDrawable == null) {
+                combinedDrawable = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
             }
-            this.verifiedDrawable = drawable;
-            swapAnimatedEmojiDrawable.set(drawable, z);
+            this.verifiedDrawable = combinedDrawable;
+            swapAnimatedEmojiDrawable.set(combinedDrawable, z);
             this.statusDrawable.setColor(null);
         } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
             this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z);
             this.statusDrawable.setColor(Integer.valueOf(i));
         } else if (user != null && user.verified) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
-            Drawable drawable2 = this.verifiedDrawable;
-            if (drawable2 == null) {
-                drawable2 = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
+            Drawable combinedDrawable2 = this.verifiedDrawable;
+            if (combinedDrawable2 == null) {
+                combinedDrawable2 = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
             }
-            this.verifiedDrawable = drawable2;
-            swapAnimatedEmojiDrawable2.set(drawable2, z);
+            this.verifiedDrawable = combinedDrawable2;
+            swapAnimatedEmojiDrawable2.set(combinedDrawable2, z);
             this.statusDrawable.setColor(null);
         } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
             this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z);

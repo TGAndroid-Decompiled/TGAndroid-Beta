@@ -58,15 +58,15 @@ public class AddReactionsSpan extends ReplacementSpan {
     }
 
     public void show(final View view) {
-        ValueAnimator ofInt = ValueAnimator.ofInt(this.alpha, 255);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alpha, 255);
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AddReactionsSpan.this.lambda$show$0(view, valueAnimator);
+                this.f$0.lambda$show$0(view, valueAnimator);
             }
         });
-        ofInt.setDuration(200L);
-        ofInt.start();
+        valueAnimatorOfInt.setDuration(200L);
+        valueAnimatorOfInt.start();
     }
 
     public void lambda$show$0(View view, ValueAnimator valueAnimator) {
@@ -75,21 +75,21 @@ public class AddReactionsSpan extends ReplacementSpan {
     }
 
     public void hide(final View view, final Runnable runnable) {
-        ValueAnimator ofInt = ValueAnimator.ofInt(this.alpha, 0);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alpha, 0);
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AddReactionsSpan.this.lambda$hide$1(view, valueAnimator);
+                this.f$0.lambda$hide$1(view, valueAnimator);
             }
         });
-        ofInt.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfInt.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 runnable.run();
             }
         });
-        ofInt.setDuration(200L);
-        ofInt.start();
+        valueAnimatorOfInt.setDuration(200L);
+        valueAnimatorOfInt.start();
     }
 
     public void lambda$hide$1(View view, ValueAnimator valueAnimator) {

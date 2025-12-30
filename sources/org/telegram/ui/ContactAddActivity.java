@@ -291,9 +291,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = ContactAddActivity.this.lambda$createView$0(textView6, i3, keyEvent);
-                return lambda$createView$0;
+                return this.f$0.lambda$createView$0(textView6, i3, keyEvent);
             }
         });
         this.firstNameField.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -312,9 +310,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                boolean lambda$createView$1;
-                lambda$createView$1 = ContactAddActivity.this.lambda$createView$1(textView6, i3, keyEvent);
-                return lambda$createView$1;
+                return this.f$0.lambda$createView$1(textView6, i3, keyEvent);
             }
         });
         this.lastNameField.setText(this.lastNameFromCard);
@@ -326,18 +322,16 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                boolean lambda$createView$2;
-                lambda$createView$2 = ContactAddActivity.this.lambda$createView$2(textView6, i3, keyEvent);
-                return lambda$createView$2;
+                return this.f$0.lambda$createView$2(textView6, i3, keyEvent);
             }
         });
         if (!this.addContact) {
             final TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
             TextCell textCell = new TextCell(context, this.resourcesProvider);
             this.suggestPhoto = textCell;
-            String formatString = LocaleController.formatString(R.string.SuggestUserPhoto, user.first_name);
+            String string = LocaleController.formatString(R.string.SuggestUserPhoto, user.first_name);
             int i3 = R.drawable.msg_addphoto;
-            textCell.setTextAndIcon((CharSequence) formatString, i3, true);
+            textCell.setTextAndIcon((CharSequence) string, i3, true);
             this.suggestPhoto.setBackground(Theme.getSelectorDrawable(true, this.resourcesProvider));
             TextCell textCell2 = this.suggestPhoto;
             int i4 = Theme.key_windowBackgroundWhiteBlueIcon;
@@ -350,7 +344,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ContactAddActivity.this.lambda$createView$5(user, rLottieDrawable, view2);
+                    this.f$0.lambda$createView$5(user, rLottieDrawable, view2);
                 }
             });
             TextCell textCell3 = new TextCell(context, this.resourcesProvider);
@@ -365,24 +359,24 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.setAvatarCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ContactAddActivity.this.lambda$createView$8(user, rLottieDrawable2, view2);
+                    this.f$0.lambda$createView$8(user, rLottieDrawable2, view2);
                 }
             });
             this.oldAvatarView = new BackupImageView(context);
             this.oldPhotoCell = new TextCell(context, this.resourcesProvider) {
                 @Override
-                public void onMeasure(int i8, int i9) {
+                protected void onMeasure(int i8, int i9) {
                     super.onMeasure(i8, i9);
                     ContactAddActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
                     ContactAddActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
                 }
 
                 @Override
-                public void onLayout(boolean z3, int i8, int i9, int i10, int i11) {
+                protected void onLayout(boolean z3, int i8, int i9, int i10, int i11) {
                     super.onLayout(z3, i8, i9, i10, i11);
-                    int dp = AndroidUtilities.dp(21.0f);
+                    int iDp = AndroidUtilities.dp(21.0f);
                     int measuredHeight = (getMeasuredHeight() - ContactAddActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
-                    ContactAddActivity.this.oldAvatarView.layout(dp, measuredHeight, ContactAddActivity.this.oldAvatarView.getMeasuredWidth() + dp, ContactAddActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
+                    ContactAddActivity.this.oldAvatarView.layout(iDp, measuredHeight, ContactAddActivity.this.oldAvatarView.getMeasuredWidth() + iDp, ContactAddActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
                 }
             };
             if (this.avatarDrawable == null) {
@@ -397,7 +391,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.oldPhotoCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ContactAddActivity.this.lambda$createView$10(context, user, view2);
+                    this.f$0.lambda$createView$10(context, user, view2);
                 }
             });
             TextCell textCell4 = new TextCell(context, this.resourcesProvider);
@@ -410,7 +404,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestBirthday.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ContactAddActivity.this.lambda$createView$14(user, view2);
+                    this.f$0.lambda$createView$14(user, view2);
                 }
             });
             TLRPC.UserFull userFull = getMessagesController().getUserFull(this.user_id);
@@ -426,12 +420,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ContactAddActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                ContactAddActivity.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -492,7 +486,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ContactAddActivity.this.lambda$createView$4(rLottieDrawable, dialogInterface);
+                this.f$0.lambda$createView$4(rLottieDrawable, dialogInterface);
             }
         }, 2);
         rLottieDrawable.setCurrentFrame(0);
@@ -521,7 +515,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ContactAddActivity.this.lambda$createView$7(rLottieDrawable, dialogInterface);
+                this.f$0.lambda$createView$7(rLottieDrawable, dialogInterface);
             }
         }, 1);
         rLottieDrawable.setCurrentFrame(0);
@@ -542,7 +536,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AlertsCreator.createSimpleAlert(context, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString(R.string.ResetToOriginalPhotoMessage, user.first_name), LocaleController.getString(R.string.Reset), new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.this.lambda$createView$9(user);
+                this.f$0.lambda$createView$9(user);
             }
         }, this.resourcesProvider).show();
     }
@@ -586,7 +580,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         showDialog(AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.formatString(R.string.UserSuggestBirthdayTitle, UserObject.getForcedFirstName(user)), LocaleController.getString(R.string.UserSuggestBirthdayButton), null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ContactAddActivity.this.lambda$createView$13((TL_account.TL_birthday) obj);
+                this.f$0.lambda$createView$13((TL_account.TL_birthday) obj);
             }
         }, null, false, this.resourcesProvider).create());
     }
@@ -598,7 +592,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_suggestBirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ContactAddActivity.this.lambda$createView$12(tLObject, tL_error);
+                this.f$0.lambda$createView$12(tLObject, tL_error);
             }
         });
     }
@@ -607,7 +601,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.this.lambda$createView$11();
+                this.f$0.lambda$createView$11();
             }
         });
     }
@@ -653,14 +647,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactAddActivity.this.lambda$fillItems$15(user);
+                    this.f$0.lambda$fillItems$15(user);
                 }
             });
             this.firstSet = false;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactAddActivity.this.lambda$fillItems$16();
+                    this.f$0.lambda$fillItems$16();
                 }
             }, 200L);
         }
@@ -709,7 +703,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             new AlertDialog.Builder(getParentActivity(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.DeleteContact)).setMessage(LocaleController.getString(R.string.AreYouSureDeleteContact)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    ContactAddActivity.this.lambda$onItemClick$17(user, alertDialog, i3);
+                    this.f$0.lambda$onItemClick$17(user, alertDialog, i3);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
@@ -822,8 +816,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         MessagesController.DialogPhotos dialogPhotos;
         if (i == NotificationCenter.updateInterfaces) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            if ((MessagesController.UPDATE_MASK_AVATAR & intValue) == 0 && (intValue & MessagesController.UPDATE_MASK_STATUS) == 0) {
+            int iIntValue = ((Integer) objArr[0]).intValue();
+            if ((MessagesController.UPDATE_MASK_AVATAR & iIntValue) == 0 && (iIntValue & MessagesController.UPDATE_MASK_STATUS) == 0) {
                 return;
             }
             updateAvatarLayout();
@@ -891,7 +885,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.this.lambda$didUploadPhoto$19(photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
+                this.f$0.lambda$didUploadPhoto$19(photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
             }
         });
     }
@@ -907,9 +901,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             NavigationExt.backToFragment(this, new NavigationExt.FragmentConsumer() {
                 @Override
                 public final boolean consume(BaseFragment baseFragment) {
-                    boolean lambda$didUploadPhoto$18;
-                    lambda$didUploadPhoto$18 = ContactAddActivity.this.lambda$didUploadPhoto$18(baseFragment);
-                    return lambda$didUploadPhoto$18;
+                    return this.f$0.lambda$didUploadPhoto$18(baseFragment);
                 }
             });
         }
@@ -952,7 +944,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.this.lambda$didUploadFailed$20();
+                this.f$0.lambda$didUploadFailed$20();
             }
         });
     }
@@ -1027,7 +1019,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         getConnectionsManager().sendRequest(tL_photos_uploadContactProfilePhoto, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ContactAddActivity.this.lambda$sendPhotoChangedRequest$22(fileLocation, inputFile2, fileLocation2, i, tLObject, tL_error);
+                this.f$0.lambda$sendPhotoChangedRequest$22(fileLocation, inputFile2, fileLocation2, i, tLObject, tL_error);
             }
         });
     }
@@ -1036,7 +1028,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.this.lambda$sendPhotoChangedRequest$21(fileLocation, inputFile, tLObject, fileLocation2, i);
+                this.f$0.lambda$sendPhotoChangedRequest$21(fileLocation, inputFile, tLObject, fileLocation2, i);
             }
         });
     }
@@ -1116,7 +1108,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ContactAddActivity.this.lambda$getThemeDescriptions$23();
+                this.f$0.lambda$getThemeDescriptions$23();
             }
 
             @Override

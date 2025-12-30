@@ -32,13 +32,13 @@ public final class RenderSynchronizer {
     public RenderSynchronizer(float f) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f);
+        this.targetFrameIntervalNanos = Math.round(TimeUnit.SECONDS.toNanos(1L) / f);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
         handler.post(new Runnable() {
             @Override
             public final void run() {
-                RenderSynchronizer.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         Logging.d("RenderSynchronizer", "Created");
@@ -62,7 +62,7 @@ public final class RenderSynchronizer {
                     this.mainThreadHandler.post(new Runnable() {
                         @Override
                         public final void run() {
-                            RenderSynchronizer.this.lambda$registerListener$1();
+                            this.f$0.lambda$registerListener$1();
                         }
                     });
                 }

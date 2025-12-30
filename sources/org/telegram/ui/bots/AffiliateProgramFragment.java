@@ -66,7 +66,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     private final Runnable updateTimerRunnable = new Runnable() {
         @Override
         public final void run() {
-            AffiliateProgramFragment.this.lambda$new$7();
+            this.f$0.lambda$new$7();
         }
     };
     private String[] durationTexts = null;
@@ -89,21 +89,21 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         View view = new View(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                int i3;
+                int iDp;
                 AffiliateProgramFragment affiliateProgramFragment = AffiliateProgramFragment.this;
                 if (affiliateProgramFragment.isLandscapeMode) {
-                    i3 = (affiliateProgramFragment.statusBarHeight + ((BaseFragment) affiliateProgramFragment).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
+                    iDp = (affiliateProgramFragment.statusBarHeight + ((BaseFragment) affiliateProgramFragment).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
                 } else {
-                    int dp = AndroidUtilities.dp(140.0f);
+                    int iDp2 = AndroidUtilities.dp(140.0f);
                     AffiliateProgramFragment affiliateProgramFragment2 = AffiliateProgramFragment.this;
-                    int i4 = dp + affiliateProgramFragment2.statusBarHeight;
-                    if (affiliateProgramFragment2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i4) {
-                        i3 = AndroidUtilities.dp(24.0f) + AffiliateProgramFragment.this.backgroundView.getMeasuredHeight();
+                    int i3 = iDp2 + affiliateProgramFragment2.statusBarHeight;
+                    if (affiliateProgramFragment2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i3) {
+                        iDp = AndroidUtilities.dp(24.0f) + AffiliateProgramFragment.this.backgroundView.getMeasuredHeight();
                     } else {
-                        i3 = i4;
+                        iDp = i3;
                     }
                 }
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (i3 - (((GradientHeaderActivity) AffiliateProgramFragment.this).yOffset * 2.5f)), 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (iDp - (((GradientHeaderActivity) AffiliateProgramFragment.this).yOffset * 2.5f)), 1073741824));
             }
         };
         this.emptyLayout = view;
@@ -139,7 +139,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                AffiliateProgramFragment.this.lambda$createView$4(context, view3);
+                this.f$0.lambda$createView$4(context, view3);
             }
         });
         this.buttonLayout.addView(this.button, LayoutHelper.createLinear(-1, 48, 10.0f, 10.0f, 10.0f, 7.0f));
@@ -156,7 +156,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i) {
-                AffiliateProgramFragment.this.lambda$createView$5(view3, i);
+                this.f$0.lambda$createView$5(view3, i);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -175,7 +175,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    AffiliateProgramFragment.this.lambda$createView$2();
+                    this.f$0.lambda$createView$2();
                 }
             };
             tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(this.program.commission_permille));
@@ -211,7 +211,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AffiliateProgramFragment.this.lambda$createView$1(alertDialog, tLObject, tL_error);
+                this.f$0.lambda$createView$1(alertDialog, tLObject, tL_error);
             }
         });
     }
@@ -220,7 +220,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AffiliateProgramFragment.this.lambda$createView$0(alertDialog, tLObject, tL_error);
+                this.f$0.lambda$createView$0(alertDialog, tLObject, tL_error);
             }
         });
     }
@@ -258,7 +258,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     }
 
     private void closeToProfile(boolean z) {
-        BaseFragment baseFragment = null;
+        BaseFragment backgroundFragment = null;
         if (getParentLayout() != null && getParentLayout().getFragmentStack() != null) {
             INavigationLayout parentLayout = getParentLayout();
             List fragmentStack = parentLayout.getFragmentStack();
@@ -268,30 +268,30 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
                     size = -1;
                     break;
                 }
-                BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(size);
-                if ((baseFragment2 instanceof ProfileActivity) && ((ProfileActivity) baseFragment2).getDialogId() == this.bot_id) {
-                    baseFragment = baseFragment2;
+                BaseFragment baseFragment = (BaseFragment) fragmentStack.get(size);
+                if ((baseFragment instanceof ProfileActivity) && ((ProfileActivity) baseFragment).getDialogId() == this.bot_id) {
+                    backgroundFragment = baseFragment;
                     break;
                 }
                 size--;
             }
-            if (baseFragment != null) {
+            if (backgroundFragment != null) {
                 for (int size2 = fragmentStack.size() - 1; size2 > size; size2--) {
                     parentLayout.removeFragmentFromStack((BaseFragment) fragmentStack.get(size2));
                 }
                 finishFragment();
             } else {
                 finishFragment();
-                baseFragment = parentLayout.getBackgroundFragment();
+                backgroundFragment = parentLayout.getBackgroundFragment();
             }
         } else {
             finishFragment();
         }
-        if (baseFragment != null) {
+        if (backgroundFragment != null) {
             if (z) {
-                BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.AffiliateProgramEndedTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramEndedText))).show();
+                BulletinFactory.of(backgroundFragment).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.AffiliateProgramEndedTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramEndedText))).show();
             } else {
-                BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.AffiliateProgramStartedTitle), LocaleController.getString(R.string.AffiliateProgramStartedText)).show();
+                BulletinFactory.of(backgroundFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.AffiliateProgramStartedTitle), LocaleController.getString(R.string.AffiliateProgramStartedText)).show();
             }
         }
     }
@@ -303,7 +303,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.buttonSubtext.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStartInfo : R.string.AffiliateProgramUpdateInfo), new Runnable() {
             @Override
             public final void run() {
-                AffiliateProgramFragment.this.lambda$update$6();
+                this.f$0.lambda$update$6();
             }
         }));
         updateEnabled();
@@ -332,7 +332,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         buttonWithCounterView.setEnabled(starrefprogram2.end_date == 0 && !((starrefprogram = this.initialProgram) != null && starrefprogram.commission_permille == starrefprogram2.commission_permille && starrefprogram.duration_months == starrefprogram2.duration_months));
     }
 
-    public class BulletinTextView extends TextView {
+    private class BulletinTextView extends TextView {
         public BulletinTextView(Context context) {
             super(context);
         }
@@ -375,7 +375,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.AffiliateProgramStopButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                AffiliateProgramFragment.this.lambda$end$10(alertDialog, i2);
+                this.f$0.lambda$end$10(alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -389,7 +389,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AffiliateProgramFragment.this.lambda$end$9(alertDialog2, tLObject, tL_error);
+                this.f$0.lambda$end$9(alertDialog2, tLObject, tL_error);
             }
         });
     }
@@ -398,7 +398,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AffiliateProgramFragment.this.lambda$end$8(alertDialog, tLObject, tL_error);
+                this.f$0.lambda$end$8(alertDialog, tLObject, tL_error);
             }
         });
     }
@@ -442,46 +442,44 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         arrayList.add(FeatureCell.Factory.as(R.drawable.menu_feature_links2, LocaleController.getString(R.string.BotAffiliateProgramFeature3Title), LocaleController.getString(R.string.BotAffiliateProgramFeature3)));
         arrayList.add(UItem.asShadow(1, null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.AffiliateProgramCommission)));
-        UItem asIntSlideView = UItem.asIntSlideView(1, getMessagesController().starrefMinCommissionPermille, this.program.commission_permille, getMessagesController().starrefMaxCommissionPermille, new Utilities.CallbackReturn() {
+        UItem uItemAsIntSlideView = UItem.asIntSlideView(1, getMessagesController().starrefMinCommissionPermille, this.program.commission_permille, getMessagesController().starrefMaxCommissionPermille, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                CharSequence lambda$fillItems$11;
-                lambda$fillItems$11 = AffiliateProgramFragment.lambda$fillItems$11((Integer) obj);
-                return lambda$fillItems$11;
+                return AffiliateProgramFragment.lambda$fillItems$11((Integer) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AffiliateProgramFragment.this.lambda$fillItems$12((Integer) obj);
+                this.f$0.lambda$fillItems$12((Integer) obj);
             }
         });
         TL_payments.starRefProgram starrefprogram = this.initialProgram;
-        arrayList.add(asIntSlideView.setMinSliderValue(starrefprogram == null ? -1 : starrefprogram.commission_permille));
+        arrayList.add(uItemAsIntSlideView.setMinSliderValue(starrefprogram == null ? -1 : starrefprogram.commission_permille));
         arrayList.add(UItem.asShadow(LocaleController.getString(R.string.AffiliateProgramCommissionInfo)));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.AffiliateProgramDuration)));
         if (this.durationTexts == null) {
             this.durationTexts = new String[this.durationValues.size()];
             for (int i = 0; i < this.durationValues.size(); i++) {
-                int intValue = ((Integer) this.durationValues.get(i)).intValue();
-                if (intValue == 0) {
+                int iIntValue = ((Integer) this.durationValues.get(i)).intValue();
+                if (iIntValue == 0) {
                     this.durationTexts[i] = LocaleController.getString(R.string.Infinity);
-                } else if (intValue < 12 || intValue % 12 != 0) {
-                    this.durationTexts[i] = LocaleController.formatPluralString("MonthsShort", intValue, new Object[0]);
+                } else if (iIntValue < 12 || iIntValue % 12 != 0) {
+                    this.durationTexts[i] = LocaleController.formatPluralString("MonthsShort", iIntValue, new Object[0]);
                 } else {
-                    this.durationTexts[i] = LocaleController.formatPluralString("YearsShort", intValue / 12, new Object[0]);
+                    this.durationTexts[i] = LocaleController.formatPluralString("YearsShort", iIntValue / 12, new Object[0]);
                 }
             }
         }
-        UItem asSlideView = UItem.asSlideView(this.durationTexts, this.durationValues.indexOf(Integer.valueOf(this.program.duration_months)), new Utilities.Callback() {
+        UItem uItemAsSlideView = UItem.asSlideView(this.durationTexts, this.durationValues.indexOf(Integer.valueOf(this.program.duration_months)), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AffiliateProgramFragment.this.lambda$fillItems$13((Integer) obj);
+                this.f$0.lambda$fillItems$13((Integer) obj);
             }
         });
         TL_payments.starRefProgram starrefprogram2 = this.initialProgram;
         if (starrefprogram2 != null) {
             if (starrefprogram2.duration_months <= 0) {
-                asSlideView.setMinSliderValue(this.durationValues.size() - 1);
+                uItemAsSlideView.setMinSliderValue(this.durationValues.size() - 1);
             } else {
                 int size = this.durationValues.size() - 1;
                 while (true) {
@@ -489,14 +487,14 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
                         break;
                     }
                     if (((Integer) this.durationValues.get(size)).intValue() > 0 && ((Integer) this.durationValues.get(size)).intValue() <= this.initialProgram.duration_months) {
-                        asSlideView.setMinSliderValue(size);
+                        uItemAsSlideView.setMinSliderValue(size);
                         break;
                     }
                     size--;
                 }
             }
         }
-        arrayList.add(asSlideView);
+        arrayList.add(uItemAsSlideView);
         arrayList.add(UItem.asShadow(LocaleController.getString(R.string.AffiliateProgramDurationInfo)));
         arrayList.add(ColorfulTextCell.Factory.as(2, getThemedColor(Theme.key_color_green), R.drawable.filled_earn_stars, LocaleController.getString(R.string.AffiliateProgramExistingProgramsTitle), LocaleController.getString(R.string.AffiliateProgramExistingProgramsText)));
         arrayList.add(UItem.asShadow(3, null));
@@ -534,7 +532,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             @Override
-            public void configure() {
+            protected void configure() {
                 super.configure();
                 StarParticlesView.Drawable drawable = this.drawable;
                 drawable.useGradient = true;
@@ -579,7 +577,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
                 getMessagesController().loadFullUser(user, getClassGuid(), true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        AffiliateProgramFragment.this.lambda$onFragmentCreate$15((TLRPC.UserFull) obj);
+                        this.f$0.lambda$onFragmentCreate$15((TLRPC.UserFull) obj);
                     }
                 });
             }
@@ -591,7 +589,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AffiliateProgramFragment.this.lambda$onFragmentCreate$14(userFull);
+                this.f$0.lambda$onFragmentCreate$14(userFull);
             }
         });
     }
@@ -624,7 +622,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     }
 
     @Override
-    public View getHeader(Context context) {
+    protected View getHeader(Context context) {
         return super.getHeader(context);
     }
 
@@ -653,7 +651,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         UniversalAdapter universalAdapter = new UniversalAdapter(this.listView, getContext(), this.currentAccount, this.classGuid, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AffiliateProgramFragment.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, getResourceProvider()) {
             @Override
@@ -739,11 +737,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             public static UItem as(int i, CharSequence charSequence, CharSequence charSequence2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.iconResId = i;
-                ofFactory.text = charSequence;
-                ofFactory.subtext = charSequence2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.iconResId = i;
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                return uItemOfFactory;
             }
         }
     }
@@ -773,15 +771,15 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
             imageView.setScaleType(scaleType);
-            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-            this.imageViewLayoutParams = createFrame;
-            addView(imageView, createFrame);
+            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
+            this.imageViewLayoutParams = layoutParamsCreateFrame;
+            addView(imageView, layoutParamsCreateFrame);
             LinearLayout linearLayout = new LinearLayout(context);
             this.textLayout = linearLayout;
             linearLayout.setOrientation(1);
-            FrameLayout.LayoutParams createFrame2 = LayoutHelper.createFrame(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
-            this.textLayoutLayoutParams = createFrame2;
-            addView(linearLayout, createFrame2);
+            FrameLayout.LayoutParams layoutParamsCreateFrame2 = LayoutHelper.createFrame(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
+            this.textLayoutLayoutParams = layoutParamsCreateFrame2;
+            addView(linearLayout, layoutParamsCreateFrame2);
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTypeface(AndroidUtilities.bold());
@@ -868,13 +866,13 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             public static UItem as(int i, int i2, int i3, CharSequence charSequence, CharSequence charSequence2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.intValue = i2;
-                ofFactory.iconResId = i3;
-                ofFactory.text = charSequence;
-                ofFactory.subtext = charSequence2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.intValue = i2;
+                uItemOfFactory.iconResId = i3;
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                return uItemOfFactory;
             }
         }
     }

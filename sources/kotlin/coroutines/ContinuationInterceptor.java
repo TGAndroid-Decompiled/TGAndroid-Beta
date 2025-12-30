@@ -25,9 +25,9 @@ public interface ContinuationInterceptor extends CoroutineContext.Element {
                 if (!abstractCoroutineContextKey.isSubKey$kotlin_stdlib(continuationInterceptor.getKey())) {
                     return null;
                 }
-                CoroutineContext.Element tryCast$kotlin_stdlib = abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
-                if (tryCast$kotlin_stdlib instanceof CoroutineContext.Element) {
-                    return tryCast$kotlin_stdlib;
+                CoroutineContext.Element elementTryCast$kotlin_stdlib = abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
+                if (elementTryCast$kotlin_stdlib instanceof CoroutineContext.Element) {
+                    return elementTryCast$kotlin_stdlib;
                 }
                 return null;
             }

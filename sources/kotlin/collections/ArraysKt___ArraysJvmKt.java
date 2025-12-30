@@ -8,9 +8,9 @@ import kotlin.jvm.internal.Intrinsics;
 public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
     public static List asList(Object[] objArr) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
-        List asList = ArraysUtilJVM.asList(objArr);
-        Intrinsics.checkNotNullExpressionValue(asList, "asList(...)");
-        return asList;
+        List listAsList = ArraysUtilJVM.asList(objArr);
+        Intrinsics.checkNotNullExpressionValue(listAsList, "asList(...)");
+        return listAsList;
     }
 
     public static Object[] copyInto$default(Object[] objArr, Object[] objArr2, int i, int i2, int i3, int i4, Object obj) {
@@ -70,9 +70,9 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
     public static Object[] copyOfRange(Object[] objArr, int i, int i2) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         ArraysKt__ArraysJVMKt.copyOfRangeToIndexCheck(i2, objArr.length);
-        Object[] copyOfRange = Arrays.copyOfRange(objArr, i, i2);
-        Intrinsics.checkNotNullExpressionValue(copyOfRange, "copyOfRange(...)");
-        return copyOfRange;
+        Object[] objArrCopyOfRange = Arrays.copyOfRange(objArr, i, i2);
+        Intrinsics.checkNotNullExpressionValue(objArrCopyOfRange, "copyOfRange(...)");
+        return objArrCopyOfRange;
     }
 
     public static final void fill(Object[] objArr, Object obj, int i, int i2) {

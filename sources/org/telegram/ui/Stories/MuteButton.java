@@ -55,8 +55,8 @@ public class MuteButton extends FrameLayout {
 
             @Override
             protected void onDraw(Canvas canvas) {
-                int dp = AndroidUtilities.dp(1.0f);
-                this.progressDrawable.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
+                int iDp = AndroidUtilities.dp(1.0f);
+                this.progressDrawable.setBounds(iDp, iDp, (getWidth() - iDp) - iDp, (getHeight() - iDp) - iDp);
                 this.progressDrawable.draw(canvas);
                 invalidate();
             }
@@ -89,12 +89,12 @@ public class MuteButton extends FrameLayout {
             this.loadingView.setVisibility(z ? 8 : 0);
         } else {
             this.loadingView.setVisibility(0);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.loadingView.getAlpha(), z ? 0.0f : 1.0f);
-            this.loadingViewAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadingView.getAlpha(), z ? 0.0f : 1.0f);
+            this.loadingViewAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    MuteButton.this.lambda$setConnected$0(valueAnimator2);
+                    this.f$0.lambda$setConnected$0(valueAnimator2);
                 }
             });
             this.loadingViewAnimator.setDuration(320L);
@@ -137,12 +137,12 @@ public class MuteButton extends FrameLayout {
             this.layout.invalidate();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mutedT, z ? 1.0f : 0.0f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mutedT, z ? 1.0f : 0.0f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                MuteButton.this.lambda$updateFill$1(valueAnimator2);
+                this.f$0.lambda$updateFill$1(valueAnimator2);
             }
         });
         this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -151,9 +151,9 @@ public class MuteButton extends FrameLayout {
     }
 
     public void lambda$updateFill$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.mutedT = floatValue;
-        this.filledBackgroundView.setAlpha(1.0f - floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.mutedT = fFloatValue;
+        this.filledBackgroundView.setAlpha(1.0f - fFloatValue);
         this.filledBackgroundView.setScaleX(1.0f - this.mutedT);
         this.filledBackgroundView.setScaleY(1.0f - this.mutedT);
         this.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -2960428, this.mutedT), PorterDuff.Mode.SRC_IN));

@@ -50,7 +50,7 @@ public class BookmarksFragment extends UniversalFragment {
     public AddressBarList.BookmarksList list = new AddressBarList.BookmarksList(this.currentAccount, new Runnable() {
         @Override
         public final void run() {
-            BookmarksFragment.this.updateWithOffset();
+            this.f$0.updateWithOffset();
         }
     });
     public HashSet selected = new HashSet();
@@ -89,14 +89,14 @@ public class BookmarksFragment extends UniversalFragment {
             if (!it.hasNext()) {
                 break;
             }
-            int intValue = ((Integer) it.next()).intValue();
+            int iIntValue = ((Integer) it.next()).intValue();
             Iterator it2 = this.list.links.iterator();
             while (true) {
                 if (!it2.hasNext()) {
                     break;
                 }
                 MessageObject messageObject2 = (MessageObject) it2.next();
-                if (messageObject2 != null && messageObject2.getId() == intValue) {
+                if (messageObject2 != null && messageObject2.getId() == iIntValue) {
                     messageObject = messageObject2;
                     break;
                 }
@@ -109,7 +109,7 @@ public class BookmarksFragment extends UniversalFragment {
                         break;
                     }
                     MessageObject messageObject3 = (MessageObject) it3.next();
-                    if (messageObject3 != null && messageObject3.getId() == intValue) {
+                    if (messageObject3 != null && messageObject3.getId() == iIntValue) {
                         messageObject = messageObject3;
                         break;
                     }
@@ -124,7 +124,7 @@ public class BookmarksFragment extends UniversalFragment {
         new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.formatPluralString("DeleteOptionsTitle", hashSet2.size(), new Object[0])).setMessage(LocaleController.getString(hashSet2.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages")).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BookmarksFragment.this.lambda$deleteSelectedMessages$0(hashSet2, alertDialog, i);
+                this.f$0.lambda$deleteSelectedMessages$0(hashSet2, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -146,7 +146,7 @@ public class BookmarksFragment extends UniversalFragment {
             return;
         }
         final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        final int intValue = ((Integer) this.selected.iterator().next()).intValue();
+        final int iIntValue = ((Integer) this.selected.iterator().next()).intValue();
         finishFragment();
         Runnable runnable = this.closeToTabs;
         if (runnable != null) {
@@ -155,7 +155,7 @@ public class BookmarksFragment extends UniversalFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BookmarksFragment.lambda$gotoMessage$1(clientUserId, intValue);
+                BookmarksFragment.lambda$gotoMessage$1(clientUserId, iIntValue);
             }
         }, 80L);
     }
@@ -188,8 +188,8 @@ public class BookmarksFragment extends UniversalFragment {
         this.actionBar.setItemsColor(getThemedColor(i2), true);
         this.actionBar.setCastShadows(true);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        ActionBarMenu createActionMode = this.actionBar.createActionMode();
-        NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
+        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode();
+        NumberTextView numberTextView = new NumberTextView(actionBarMenuCreateActionMode.getContext());
         this.selectedCount = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedCount.setTypeface(AndroidUtilities.bold());
@@ -197,14 +197,12 @@ public class BookmarksFragment extends UniversalFragment {
         this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$2;
-                lambda$createView$2 = BookmarksFragment.lambda$createView$2(view, motionEvent);
-                return lambda$createView$2;
+                return BookmarksFragment.lambda$createView$2(view, motionEvent);
             }
         });
-        createActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
-        this.gotoItem = createActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrGoToMessage));
-        createActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
+        actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
+        this.gotoItem = actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrGoToMessage));
+        actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
         this.searchItem = actionBarMenuItemSearchListener;
         int i3 = R.string.Search;
@@ -278,11 +276,11 @@ public class BookmarksFragment extends UniversalFragment {
         }
     }
 
-    public class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+    class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
         private Runnable applySearch = new Runnable() {
             @Override
             public final void run() {
-                BookmarksFragment.AnonymousClass2.this.lambda$$1();
+                this.f$0.lambda$$1();
             }
         };
 
@@ -312,9 +310,9 @@ public class BookmarksFragment extends UniversalFragment {
         @Override
         public void onTextChanged(EditText editText) {
             boolean z = !TextUtils.isEmpty(BookmarksFragment.this.query);
-            String obj = editText.getText().toString();
-            if (!TextUtils.equals(BookmarksFragment.this.query, obj)) {
-                BookmarksFragment.this.query = obj;
+            String string = editText.getText().toString();
+            if (!TextUtils.equals(BookmarksFragment.this.query, string)) {
+                BookmarksFragment.this.query = string;
                 AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
                 if (bookmarksList != null) {
                     bookmarksList.detach();
@@ -322,10 +320,10 @@ public class BookmarksFragment extends UniversalFragment {
                 BookmarksFragment bookmarksFragment = BookmarksFragment.this;
                 int i = ((BaseFragment) bookmarksFragment).currentAccount;
                 final BookmarksFragment bookmarksFragment2 = BookmarksFragment.this;
-                bookmarksFragment.searchList = new AddressBarList.BookmarksList(i, obj, new Runnable() {
+                bookmarksFragment.searchList = new AddressBarList.BookmarksList(i, string, new Runnable() {
                     @Override
                     public final void run() {
-                        BookmarksFragment.access$400(BookmarksFragment.this);
+                        BookmarksFragment.access$400(bookmarksFragment2);
                     }
                 });
                 BookmarksFragment.this.searchList.attach();
@@ -334,7 +332,7 @@ public class BookmarksFragment extends UniversalFragment {
             UniversalRecyclerView universalRecyclerView = BookmarksFragment.this.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.adapter.update(true);
-                if (z != (!TextUtils.isEmpty(obj))) {
+                if (z != (!TextUtils.isEmpty(string))) {
                     BookmarksFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
                 }
             }
@@ -371,7 +369,7 @@ public class BookmarksFragment extends UniversalFragment {
     }
 
     @Override
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
         this.addedUrls.clear();
@@ -437,11 +435,11 @@ public class BookmarksFragment extends UniversalFragment {
         if (!lowerCase.startsWith(lowerCase2)) {
             if (!lowerCase.contains(" " + lowerCase2)) {
                 if (!lowerCase.contains("." + lowerCase2)) {
-                    String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                    String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                    if (!translitSafe.startsWith(translitSafe2)) {
-                        if (!translitSafe.contains(" " + translitSafe2)) {
-                            if (!translitSafe.contains("." + translitSafe2)) {
+                    String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+                    String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                    if (!strTranslitSafe.startsWith(strTranslitSafe2)) {
+                        if (!strTranslitSafe.contains(" " + strTranslitSafe2)) {
+                            if (!strTranslitSafe.contains("." + strTranslitSafe2)) {
                                 return false;
                             }
                         }
@@ -454,7 +452,7 @@ public class BookmarksFragment extends UniversalFragment {
     }
 
     @Override
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+    protected void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
@@ -485,7 +483,7 @@ public class BookmarksFragment extends UniversalFragment {
     }
 
     @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         if (!uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             return false;
         }
@@ -499,28 +497,28 @@ public class BookmarksFragment extends UniversalFragment {
     }
 
     public void updateWithOffset() {
-        int i;
-        int i2 = -1;
-        int i3 = 0;
+        int top;
+        int i = -1;
+        int i2 = 0;
         while (true) {
-            if (i3 >= this.listView.getChildCount()) {
-                i = 0;
+            if (i2 >= this.listView.getChildCount()) {
+                top = 0;
                 break;
             }
-            View childAt = this.listView.getChildAt(i3);
+            View childAt = this.listView.getChildAt(i2);
             int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
             if (childAdapterPosition >= 0) {
-                i = childAt.getTop();
-                i2 = childAdapterPosition;
+                top = childAt.getTop();
+                i = childAdapterPosition;
                 break;
             } else {
-                i3++;
-                i2 = childAdapterPosition;
+                i2++;
+                i = childAdapterPosition;
             }
         }
         this.listView.adapter.update(true);
-        if (i2 >= 0) {
-            this.listView.layoutManager.scrollToPositionWithOffset(i2, i);
+        if (i >= 0) {
+            this.listView.layoutManager.scrollToPositionWithOffset(i, top);
         } else {
             this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
         }

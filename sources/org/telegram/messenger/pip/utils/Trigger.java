@@ -21,7 +21,7 @@ public class Trigger implements Runnable {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                Trigger.this.lambda$new$0(callback);
+                this.f$0.lambda$new$0(callback);
             }
         };
         this.timeoutRunnable = runnable;
@@ -50,7 +50,7 @@ public class Trigger implements Runnable {
                 this.handler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        Trigger.this.lambda$run$1();
+                        this.f$0.lambda$run$1();
                     }
                 });
             }

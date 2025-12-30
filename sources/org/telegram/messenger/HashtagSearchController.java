@@ -71,23 +71,23 @@ public class HashtagSearchController {
     }
 
     private void saveHistoryToPref() {
-        SharedPreferences.Editor edit = this.historyPreferences.edit();
-        edit.clear();
-        edit.putInt("count", this.history.size());
+        SharedPreferences.Editor editorEdit = this.historyPreferences.edit();
+        editorEdit.clear();
+        editorEdit.putInt("count", this.history.size());
         for (int i = 0; i < this.history.size(); i++) {
-            edit.putString("e_" + i, this.history.get(i));
+            editorEdit.putString("e_" + i, this.history.get(i));
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public void putToHistory(String str) {
         if (str.startsWith("#") || str.startsWith("$")) {
-            int indexOf = this.history.indexOf(str);
-            if (indexOf != -1) {
-                if (indexOf == 0) {
+            int iIndexOf = this.history.indexOf(str);
+            if (iIndexOf != -1) {
+                if (iIndexOf == 0) {
                     return;
                 } else {
-                    this.history.remove(indexOf);
+                    this.history.remove(iIndexOf);
                 }
             }
             this.history.add(0, str);
@@ -105,9 +105,9 @@ public class HashtagSearchController {
     }
 
     public void removeHashtagFromHistory(String str) {
-        int indexOf = this.history.indexOf(str);
-        if (indexOf != -1) {
-            this.history.remove(indexOf);
+        int iIndexOf = this.history.indexOf(str);
+        if (iIndexOf != -1) {
+            this.history.remove(iIndexOf);
             saveHistoryToPref();
         }
     }
@@ -139,52 +139,52 @@ public class HashtagSearchController {
 
     public void searchHashtag(String str, final int i, final int i2, final int i3) {
         String str2;
-        String str3;
+        String strSubstring;
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts;
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts2;
-        String str4 = str;
+        String str3 = str;
         final SearchResult searchResult = getSearchResult(i2);
-        if (searchResult.lastHashtag == null && str4 == null) {
+        if (searchResult.lastHashtag == null && str3 == null) {
             return;
         }
-        if (str4 == null || !str.isEmpty()) {
-            if (str4 == null) {
-                str4 = searchResult.lastHashtag;
-            } else if (!TextUtils.equals(str4, searchResult.lastHashtag)) {
+        if (str3 == null || !str.isEmpty()) {
+            if (str3 == null) {
+                str3 = searchResult.lastHashtag;
+            } else if (!TextUtils.equals(str3, searchResult.lastHashtag)) {
                 searchResult.clear();
             } else if (searchResult.loading) {
                 return;
             }
-            final String str5 = str4;
-            searchResult.lastHashtag = str5;
-            int indexOf = str5.indexOf(64);
-            TLObject tLObject = null;
-            if (indexOf >= 0) {
-                String substring = str5.substring(indexOf + 1);
-                str3 = str5.substring(0, indexOf);
-                str2 = substring;
+            final String str4 = str3;
+            searchResult.lastHashtag = str4;
+            int iIndexOf = str4.indexOf(64);
+            TLObject userOrChat = null;
+            if (iIndexOf >= 0) {
+                String strSubstring2 = str4.substring(iIndexOf + 1);
+                strSubstring = str4.substring(0, iIndexOf);
+                str2 = strSubstring2;
             } else {
                 str2 = null;
-                str3 = str5;
+                strSubstring = str4;
             }
             searchResult.loading = true;
-            if (!TextUtils.isEmpty(str2) && (tLObject = MessagesController.getInstance(this.currentAccount).getUserOrChat(str2)) == null) {
-                final String str6 = str2;
-                Runnable resolve = MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new Consumer() {
+            if (!TextUtils.isEmpty(str2) && (userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(str2)) == null) {
+                final String str5 = str2;
+                Runnable runnableResolve = MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        HashtagSearchController.this.lambda$searchHashtag$0(searchResult, str5, str6, r5, i, i2, i3, (Long) obj);
+                        this.f$0.lambda$searchHashtag$0(searchResult, str4, str5, runnableArr, i, i2, i3, (Long) obj);
                     }
                 });
-                searchResult.cancel = resolve;
-                final Runnable[] runnableArr = {resolve};
+                searchResult.cancel = runnableResolve;
+                final Runnable[] runnableArr = {runnableResolve};
                 return;
             }
             final int i4 = 21;
             if (i2 == 1) {
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                 tL_messages_searchGlobal.limit = 21;
-                tL_messages_searchGlobal.q = str5;
+                tL_messages_searchGlobal.q = str4;
                 tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                 tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 tL_channels_searchPosts2 = tL_messages_searchGlobal;
@@ -195,29 +195,29 @@ public class HashtagSearchController {
                     tL_channels_searchPosts2 = tL_messages_searchGlobal;
                 }
             } else {
-                if (tLObject != null) {
+                if (userOrChat != null) {
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-                    tL_messages_search.peer = MessagesController.getInputPeer(tLObject);
-                    tL_messages_search.q = str3;
+                    tL_messages_search.peer = MessagesController.getInputPeer(userOrChat);
+                    tL_messages_search.q = strSubstring;
                     tL_messages_search.limit = 21;
                     int i5 = searchResult.lastOffsetId;
                     if (i5 != 0) {
                         tL_messages_search.offset_id = i5;
                     }
                     tL_channels_searchPosts = tL_messages_search;
-                    int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
+                    int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                            HashtagSearchController.this.lambda$searchHashtag$2(i2, str5, r4, searchResult, i4, i, i3, tLObject2, tL_error);
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject, tL_error);
                         }
                     });
-                    searchResult.reqId = sendRequest;
-                    final int[] iArr = {sendRequest};
+                    searchResult.reqId = iSendRequest;
+                    final int[] iArr = {iSendRequest};
                 }
                 TLRPC.TL_channels_searchPosts tL_channels_searchPosts3 = new TLRPC.TL_channels_searchPosts();
                 tL_channels_searchPosts3.flags |= 1;
-                tL_channels_searchPosts3.hashtag = str5;
+                tL_channels_searchPosts3.hashtag = str4;
                 tL_channels_searchPosts3.limit = 21;
                 tL_channels_searchPosts3.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 tL_channels_searchPosts2 = tL_channels_searchPosts3;
@@ -229,14 +229,14 @@ public class HashtagSearchController {
                 }
             }
             tL_channels_searchPosts = tL_channels_searchPosts2;
-            int sendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
+            int iSendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    HashtagSearchController.this.lambda$searchHashtag$2(i2, str5, iArr, searchResult, i4, i, i3, tLObject2, tL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject, tL_error);
                 }
             });
-            searchResult.reqId = sendRequest2;
-            final int[] iArr2 = {sendRequest2};
+            searchResult.reqId = iSendRequest2;
+            final int[] iArr2 = {iSendRequest2};
         }
     }
 
@@ -273,7 +273,7 @@ public class HashtagSearchController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    HashtagSearchController.this.lambda$searchHashtag$1(iArr, searchResult, messages_messages, arrayList, i2, i3, i4);
+                    this.f$0.lambda$searchHashtag$1(iArr, searchResult, messages_messages, arrayList, i2, i3, i4);
                 }
             });
         }
@@ -288,17 +288,17 @@ public class HashtagSearchController {
             while (it.hasNext()) {
                 MessageObject messageObject = (MessageObject) it.next();
                 MessageCompositeID messageCompositeID = new MessageCompositeID(messageObject.messageOwner);
-                Integer num = searchResult.generatedIds.get(messageCompositeID);
-                if (num == null) {
+                Integer numValueOf = searchResult.generatedIds.get(messageCompositeID);
+                if (numValueOf == null) {
                     int i4 = searchResult.lastGeneratedId;
                     searchResult.lastGeneratedId = i4 - 1;
-                    num = Integer.valueOf(i4);
-                    searchResult.generatedIds.put(messageCompositeID, num);
+                    numValueOf = Integer.valueOf(i4);
+                    searchResult.generatedIds.put(messageCompositeID, numValueOf);
                     searchResult.messages.add(messageObject);
                 }
                 TLRPC.Message message = messageObject.messageOwner;
                 message.realId = message.id;
-                message.id = num.intValue();
+                message.id = numValueOf.intValue();
             }
             if (!messages_messages.messages.isEmpty()) {
                 ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
@@ -334,7 +334,7 @@ public class HashtagSearchController {
         getSearchResult(i).clear();
     }
 
-    public static final class MessageCompositeID {
+    private static final class MessageCompositeID {
         final long dialog_id;
         final int id;
 

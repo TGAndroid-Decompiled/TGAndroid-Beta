@@ -104,9 +104,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
         };
         this.darkGradientTools = premiumGradientTools;
-        Bitmap createBitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        this.gradientTextureBitmap = createBitmap;
-        this.gradientCanvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        this.gradientTextureBitmap = bitmapCreateBitmap;
+        this.gradientCanvas = new Canvas(bitmapCreateBitmap);
         this.particlesViewHeight = -1;
         this.useFillLastLayoutManager = true;
         this.headerBgPaint = new Paint();
@@ -140,11 +140,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         this.whiteBackground = z;
     }
 
-    public void configureHeader(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
+    protected void configureHeader(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
         this.backgroundView.setData(charSequence, charSequence2, view, view2);
     }
 
-    public View getHeader(Context context) {
+    protected View getHeader(Context context) {
         return new View(context) {
             @Override
             protected void onMeasure(int i, int i2) {
@@ -152,13 +152,13 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 if (gradientHeaderActivity.isLandscapeMode) {
                     gradientHeaderActivity.firstViewHeight = (gradientHeaderActivity.statusBarHeight + ((BaseFragment) gradientHeaderActivity).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
                 } else {
-                    int dp = AndroidUtilities.dp(140.0f);
+                    int iDp = AndroidUtilities.dp(140.0f);
                     GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-                    int i3 = dp + gradientHeaderActivity2.statusBarHeight;
-                    if (gradientHeaderActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i3) {
-                        i3 = Math.max(i3, (GradientHeaderActivity.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f)) - GradientHeaderActivity.this.minusHeaderHeight);
+                    int iMax = iDp + gradientHeaderActivity2.statusBarHeight;
+                    if (gradientHeaderActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > iMax) {
+                        iMax = Math.max(iMax, (GradientHeaderActivity.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f)) - GradientHeaderActivity.this.minusHeaderHeight);
                     }
-                    GradientHeaderActivity.this.firstViewHeight = i3;
+                    GradientHeaderActivity.this.firstViewHeight = iMax;
                 }
                 GradientHeaderActivity.access$024(GradientHeaderActivity.this, r5.yOffset * 2.5f);
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(GradientHeaderActivity.this.firstViewHeight, 1073741824));
@@ -170,14 +170,14 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     public View createView(Context context) {
         this.hasOwnBackground = true;
         final Rect rect = new Rect();
-        Drawable mutate = ContextCompat.getDrawable(context, R.drawable.sheet_shadow_round).mutate();
-        this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
-        ContentView createContentView = createContentView();
-        this.contentView = createContentView;
-        createContentView.setFitsSystemWindows(true);
+        ContentView contentViewCreateContentView = createContentView();
+        this.contentView = contentViewCreateContentView;
+        contentViewCreateContentView.setFitsSystemWindows(true);
         this.listView = new RecyclerListView(context) {
             @Override
             public void onDraw(Canvas canvas) {
@@ -208,11 +208,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                         gradientHeaderActivity.listView.smoothScrollBy(0, gradientHeaderActivity.currentYOffset - bottom);
                         return;
                     }
-                    View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                    if (findViewByPosition == null || findViewByPosition.getTop() >= 0) {
+                    View viewFindViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                    if (viewFindViewByPosition == null || viewFindViewByPosition.getTop() >= 0) {
                         return;
                     }
-                    GradientHeaderActivity.this.listView.smoothScrollBy(0, findViewByPosition.getTop());
+                    GradientHeaderActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition.getTop());
                 }
             }
 
@@ -225,9 +225,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         this.backgroundView = new BackgroundView(context) {
         };
         FrameLayout frameLayout = this.contentView;
-        StarParticlesView createParticlesView = createParticlesView();
-        this.particlesView = createParticlesView;
-        frameLayout.addView(createParticlesView, LayoutHelper.createFrame(-1, -2.0f));
+        StarParticlesView starParticlesViewCreateParticlesView = createParticlesView();
+        this.particlesView = starParticlesViewCreateParticlesView;
+        frameLayout.addView(starParticlesViewCreateParticlesView, LayoutHelper.createFrame(-1, -2.0f));
         this.contentView.addView(this.backgroundView, LayoutHelper.createFrame(-1, -2.0f));
         this.contentView.addView(this.listView);
         this.fragmentView = this.contentView;
@@ -268,18 +268,18 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
             BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
             gradientHeaderActivity.isLandscapeMode = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
             GradientHeaderActivity.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
             backgroundView.measure(i, View.MeasureSpec.makeMeasureSpec(0, 0));
             ViewGroup.LayoutParams layoutParams = GradientHeaderActivity.this.particlesView.getLayoutParams();
-            int i3 = GradientHeaderActivity.this.particlesViewHeight;
-            if (i3 <= 0) {
-                i3 = backgroundView.getMeasuredHeight();
+            int measuredHeight = GradientHeaderActivity.this.particlesViewHeight;
+            if (measuredHeight <= 0) {
+                measuredHeight = backgroundView.getMeasuredHeight();
             }
-            layoutParams.height = i3;
+            layoutParams.height = measuredHeight;
             GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
             LinearLayoutManager linearLayoutManager = gradientHeaderActivity2.layoutManager;
             if (linearLayoutManager instanceof FillLastLinearLayoutManager) {
@@ -311,11 +311,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
             float x2 = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
             float y2 = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
-            boolean isClickable = backgroundView.aboveTitleLayout.isClickable();
+            boolean zIsClickable = backgroundView.aboveTitleLayout.isClickable();
             rectF.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
             if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
                 GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-                if (!gradientHeaderActivity.listView.scrollingByUser && isClickable && gradientHeaderActivity.progressToFull < 1.0f) {
+                if (!gradientHeaderActivity.listView.scrollingByUser && zIsClickable && gradientHeaderActivity.progressToFull < 1.0f) {
                     motionEvent.offsetLocation(-x2, -y2);
                     if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
                         this.topInterceptedTouch = true;
@@ -348,7 +348,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
             BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
             if (!gradientHeaderActivity.isDialogVisible) {
@@ -364,8 +364,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                     }
                 }
             }
-            View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-            GradientHeaderActivity.this.currentYOffset = findViewByPosition != null ? findViewByPosition.getBottom() : 0;
+            View viewFindViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+            GradientHeaderActivity.this.currentYOffset = viewFindViewByPosition != null ? viewFindViewByPosition.getBottom() : 0;
             int bottom = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
             GradientHeaderActivity.this.totalProgress = 1.0f - ((r4.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
             GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
@@ -387,9 +387,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             if (f != GradientHeaderActivity.this.progressToFull) {
                 GradientHeaderActivity.this.listView.invalidate();
             }
-            float max = Math.max((((((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() - GradientHeaderActivity.this.statusBarHeight) - backgroundView.titleView.getMeasuredHeight()) / 2.0f) + GradientHeaderActivity.this.statusBarHeight) - backgroundView.getTop()) - backgroundView.titleView.getTop(), (GradientHeaderActivity.this.currentYOffset - ((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() + backgroundView.getMeasuredHeight()) - GradientHeaderActivity.this.statusBarHeight)) + AndroidUtilities.dp(16.0f));
-            backgroundView.setTranslationY(max);
-            backgroundView.aboveTitleLayout.setTranslationY(((-max) / 4.0f) + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(16.0f));
+            float fMax = Math.max((((((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() - GradientHeaderActivity.this.statusBarHeight) - backgroundView.titleView.getMeasuredHeight()) / 2.0f) + GradientHeaderActivity.this.statusBarHeight) - backgroundView.getTop()) - backgroundView.titleView.getTop(), (GradientHeaderActivity.this.currentYOffset - ((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() + backgroundView.getMeasuredHeight()) - GradientHeaderActivity.this.statusBarHeight)) + AndroidUtilities.dp(16.0f));
+            backgroundView.setTranslationY(fMax);
+            backgroundView.aboveTitleLayout.setTranslationY(((-fMax) / 4.0f) + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(16.0f));
             float f2 = ((1.0f - GradientHeaderActivity.this.totalProgress) * 0.4f) + 0.6f;
             float f3 = 1.0f - (GradientHeaderActivity.this.totalProgress > 0.5f ? (GradientHeaderActivity.this.totalProgress - 0.5f) / 0.5f : 0.0f);
             backgroundView.aboveTitleLayout.setScaleX(f2);
@@ -417,9 +417,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
             int themedColor = GradientHeaderActivity.this.getThemedColor(Theme.key_dialogTextBlack);
             GradientHeaderActivity gradientHeaderActivity5 = GradientHeaderActivity.this;
-            int blendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity5.getThemedColor(gradientHeaderActivity5.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
-            ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton().setColorFilter(blendARGB);
-            backgroundView.titleView.setTextColor(blendARGB);
+            int iBlendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity5.getThemedColor(gradientHeaderActivity5.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
+            ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton().setColorFilter(iBlendARGB);
+            backgroundView.titleView.setTextColor(iBlendARGB);
             GradientHeaderActivity.this.headerBgPaint.setAlpha((int) ((1.0f - f3) * 255.0f));
             setLightStatusBar(Theme.blendOver(Theme.getColor(Theme.key_premiumGradientBackground4, ((BaseFragment) GradientHeaderActivity.this).resourceProvider), GradientHeaderActivity.this.headerBgPaint.getColor()));
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), GradientHeaderActivity.this.headerBgPaint);
@@ -456,7 +456,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     public StarParticlesView createParticlesView() {
         return new StarParticlesView(getContext()) {
             @Override
-            public void configure() {
+            protected void configure() {
                 StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(50) {
                     @Override
                     protected int getPathColor(int i) {
@@ -502,18 +502,18 @@ public abstract class GradientHeaderActivity extends BaseFragment {
 
     @Override
     public Dialog showDialog(Dialog dialog) {
-        Dialog showDialog = super.showDialog(dialog);
-        updateDialogVisibility(showDialog != null);
-        return showDialog;
+        Dialog dialogShowDialog = super.showDialog(dialog);
+        updateDialogVisibility(dialogShowDialog != null);
+        return dialogShowDialog;
     }
 
     @Override
-    public void onDialogDismiss(Dialog dialog) {
+    protected void onDialogDismiss(Dialog dialog) {
         super.onDialogDismiss(dialog);
         updateDialogVisibility(false);
     }
 
-    public void updateDialogVisibility(boolean z) {
+    protected void updateDialogVisibility(boolean z) {
         if (z != this.isDialogVisible) {
             this.isDialogVisible = z;
             this.particlesView.setPaused(z);
@@ -553,7 +553,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         return SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                GradientHeaderActivity.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override
@@ -639,30 +639,30 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     }
 
     public void saveScrollPosition() {
-        View view;
-        int i;
+        View childAt;
+        int childAdapterPosition;
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView == null || recyclerListView.getChildCount() <= 0) {
             return;
         }
-        int i2 = 0;
+        int i = 0;
         while (true) {
-            if (i2 >= this.listView.getChildCount()) {
-                view = null;
-                i = -1;
+            if (i >= this.listView.getChildCount()) {
+                childAt = null;
+                childAdapterPosition = -1;
                 break;
             }
-            view = this.listView.getChildAt(i2);
-            i = this.listView.getChildAdapterPosition(view);
-            if (i >= 0 && view.getTop() < Integer.MAX_VALUE) {
-                view.getTop();
+            childAt = this.listView.getChildAt(i);
+            childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition >= 0 && childAt.getTop() < Integer.MAX_VALUE) {
+                childAt.getTop();
                 break;
             }
-            i2++;
+            i++;
         }
-        if (view != null) {
-            this.savedScrollPosition = i;
-            this.savedScrollOffset = view.getTop();
+        if (childAt != null) {
+            this.savedScrollPosition = childAdapterPosition;
+            this.savedScrollOffset = childAt.getTop();
         }
     }
 
@@ -675,12 +675,12 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         if (recyclerListView == null || this.layoutManager == null || this.savedScrollPosition < 0) {
             return;
         }
-        int i = this.savedScrollOffset;
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(0);
-        if (z && findViewHolderForAdapterPosition != null) {
-            i -= Math.max(findViewHolderForAdapterPosition.itemView.getBottom() - this.listView.getPaddingTop(), 0);
+        int iMax = this.savedScrollOffset;
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(0);
+        if (z && viewHolderFindViewHolderForAdapterPosition != null) {
+            iMax -= Math.max(viewHolderFindViewHolderForAdapterPosition.itemView.getBottom() - this.listView.getPaddingTop(), 0);
         }
-        this.layoutManager.scrollToPositionWithOffset(this.savedScrollPosition, i);
+        this.layoutManager.scrollToPositionWithOffset(this.savedScrollPosition, iMax);
         this.savedScrollPosition = -1;
     }
 }

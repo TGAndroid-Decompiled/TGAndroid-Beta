@@ -185,15 +185,15 @@ public class DataSettingsActivity extends BaseFragment {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                DataSettingsActivity.this.lambda$loadCacheSize$0();
+                this.f$0.lambda$loadCacheSize$0();
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 100L);
-        final long currentTimeMillis = System.currentTimeMillis();
+        final long jCurrentTimeMillis = System.currentTimeMillis();
         CacheControlActivity.calculateTotalSize(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DataSettingsActivity.this.lambda$loadCacheSize$1(runnable, currentTimeMillis, (Long) obj);
+                this.f$0.lambda$loadCacheSize$1(runnable, jCurrentTimeMillis, (Long) obj);
             }
         });
     }
@@ -302,7 +302,7 @@ public class DataSettingsActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                DataSettingsActivity.this.lambda$createView$9(context, view, i, f, f2);
+                this.f$0.lambda$createView$9(context, view, i, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -322,7 +322,7 @@ public class DataSettingsActivity extends BaseFragment {
         DownloadController.Preset preset;
         DownloadController.Preset preset2;
         String str;
-        SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
+        SharedPreferences.Editor editorEdit = MessagesController.getMainSettings(this.currentAccount).edit();
         for (int i2 = 0; i2 < 3; i2++) {
             if (i2 == 0) {
                 preset = DownloadController.getInstance(this.currentAccount).mobilePreset;
@@ -340,14 +340,14 @@ public class DataSettingsActivity extends BaseFragment {
             preset.set(preset2);
             preset.enabled = preset2.isEnabled();
             DownloadController.getInstance(this.currentAccount).currentMobilePreset = 3;
-            edit.putInt("currentMobilePreset", 3);
+            editorEdit.putInt("currentMobilePreset", 3);
             DownloadController.getInstance(this.currentAccount).currentWifiPreset = 3;
-            edit.putInt("currentWifiPreset", 3);
+            editorEdit.putInt("currentWifiPreset", 3);
             DownloadController.getInstance(this.currentAccount).currentRoamingPreset = 3;
-            edit.putInt("currentRoamingPreset", 3);
-            edit.putString(str, preset.toString());
+            editorEdit.putInt("currentRoamingPreset", 3);
+            editorEdit.putString(str, preset.toString());
         }
-        edit.commit();
+        editorEdit.commit();
         DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
         for (int i3 = 0; i3 < 3; i3++) {
             DownloadController.getInstance(this.currentAccount).savePresetToServer(i3);
@@ -387,7 +387,7 @@ public class DataSettingsActivity extends BaseFragment {
             builder2.setPositiveButton(LocaleController.getString(R.string.Proceed), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    DataSettingsActivity.this.lambda$createView$4(str, builder, alertDialog, i);
+                    this.f$0.lambda$createView$4(str, builder, alertDialog, i);
                 }
             });
             builder2.setNegativeButton(LocaleController.getString(R.string.Back), null);
@@ -407,7 +407,7 @@ public class DataSettingsActivity extends BaseFragment {
         getConnectionsManager().sendRequest(new TLRPC.TL_messages_clearAllDrafts(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                DataSettingsActivity.this.lambda$createView$7(tLObject, tL_error);
+                this.f$0.lambda$createView$7(tLObject, tL_error);
             }
         });
     }
@@ -420,7 +420,7 @@ public class DataSettingsActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DataSettingsActivity.this.lambda$createView$6();
+                this.f$0.lambda$createView$6();
             }
         });
     }
@@ -435,7 +435,7 @@ public class DataSettingsActivity extends BaseFragment {
         ImageLoader.getInstance().checkMediaPaths(new Runnable() {
             @Override
             public final void run() {
-                DataSettingsActivity.this.lambda$setStorageDirectory$10();
+                this.f$0.lambda$setStorageDirectory$10();
             }
         });
     }
@@ -446,7 +446,7 @@ public class DataSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public void onDialogDismiss(Dialog dialog) {
+    protected void onDialogDismiss(Dialog dialog) {
         DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
     }
 
@@ -458,7 +458,7 @@ public class DataSettingsActivity extends BaseFragment {
         updateRows(false);
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {

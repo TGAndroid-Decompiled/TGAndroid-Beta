@@ -76,7 +76,7 @@ public abstract class FrameTickScheduler {
         return i3 < 0 ? i3 + i2 : i3;
     }
 
-    public static class Sub {
+    private static class Sub {
         final Runnable action;
         final int i;
         final int n;

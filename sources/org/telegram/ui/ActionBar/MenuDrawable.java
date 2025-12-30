@@ -95,39 +95,9 @@ public class MenuDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public void setType(int i, boolean z) {
-        int i2 = this.type;
-        if (i2 == i) {
-            return;
-        }
-        this.previousType = i2;
-        this.type = i;
-        if (z) {
-            this.typeAnimationProgress = 0.0f;
-        } else {
-            this.typeAnimationProgress = 1.0f;
-        }
-        invalidateSelf();
-    }
-
     @Override
     public void draw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MenuDrawable.draw(android.graphics.Canvas):void");
-    }
-
-    public void setUpdateDownloadProgress(float f, boolean z) {
-        if (!z) {
-            this.animatedDownloadProgress = f;
-            this.downloadProgressAnimationStart = f;
-        } else {
-            if (this.animatedDownloadProgress > f) {
-                this.animatedDownloadProgress = f;
-            }
-            this.downloadProgressAnimationStart = this.animatedDownloadProgress;
-        }
-        this.downloadProgress = f;
-        this.downloadProgressTime = 0.0f;
-        invalidateSelf();
     }
 
     @Override

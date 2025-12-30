@@ -3,16 +3,16 @@ package org.telegram.ui.Components.inset;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 
-public class KeyboardState {
+class KeyboardState {
     private final Utilities.Callback onUpdateListener;
     private State state = State.STATE_FULLY_HIDDEN;
     private final Runnable applyPendingStateR = new Runnable() {
         @Override
         public final void run() {
-            KeyboardState.this.applyPendingState();
+            this.f$0.applyPendingState();
         }
     };
-    private final long keyboardDuration = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
+    private final long keyboardDuration = (long) ((AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f);
 
     public enum State {
         STATE_FULLY_HIDDEN,
@@ -21,7 +21,7 @@ public class KeyboardState {
         STATE_FULLY_VISIBLE
     }
 
-    public KeyboardState(Utilities.Callback callback) {
+    KeyboardState(Utilities.Callback callback) {
         this.onUpdateListener = callback;
     }
 

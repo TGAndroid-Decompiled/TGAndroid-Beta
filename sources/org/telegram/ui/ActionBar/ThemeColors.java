@@ -156,11 +156,11 @@ public abstract class ThemeColors {
         iArr[Theme.key_avatar_backgroundPink] = -30036;
         iArr[Theme.key_avatar_background2Pink] = -2534028;
         iArr[Theme.key_avatar_backgroundGray] = -6181963;
-        iArr[Theme.key_avatar_backgroundInProfileBlue] = -11500111;
-        iArr[Theme.key_avatar_backgroundActionBarBlue] = -10907718;
-        iArr[Theme.key_avatar_subtitleInProfileBlue] = -2626822;
-        iArr[Theme.key_avatar_actionBarSelectorBlue] = -11959891;
-        iArr[Theme.key_avatar_actionBarIconBlue] = -1;
+        iArr[Theme.key_avatar_backgroundInProfileBlue] = -1;
+        iArr[Theme.key_avatar_backgroundActionBarBlue] = -657931;
+        iArr[Theme.key_avatar_subtitleInProfileBlue] = -14540254;
+        iArr[Theme.key_avatar_actionBarSelectorBlue] = -855310;
+        iArr[Theme.key_avatar_actionBarIconBlue] = -14540254;
         iArr[Theme.key_avatar_nameInMessageRed] = -3387319;
         iArr[Theme.key_avatar_nameInMessageOrange] = -2722014;
         iArr[Theme.key_avatar_nameInMessageViolet] = -6988581;
@@ -168,17 +168,17 @@ public abstract class ThemeColors {
         iArr[Theme.key_avatar_nameInMessageCyan] = -13590854;
         iArr[Theme.key_avatar_nameInMessageBlue] = -13202735;
         iArr[Theme.key_avatar_nameInMessagePink] = -3714933;
-        iArr[Theme.key_actionBarDefault] = -11371101;
-        iArr[Theme.key_actionBarDefaultIcon] = -1;
+        iArr[Theme.key_actionBarDefault] = -1;
+        iArr[Theme.key_actionBarDefaultIcon] = -14540254;
         iArr[Theme.key_actionBarActionModeDefault] = -1;
         iArr[Theme.key_actionBarActionModeDefaultTop] = 268435456;
-        iArr[Theme.key_actionBarActionModeDefaultIcon] = -9999761;
-        iArr[Theme.key_actionBarDefaultTitle] = -1;
-        iArr[Theme.key_actionBarDefaultSubtitle] = -2758409;
-        iArr[Theme.key_actionBarDefaultSelector] = -12554860;
-        iArr[Theme.key_actionBarWhiteSelector] = 486539264;
-        iArr[Theme.key_actionBarDefaultSearch] = -1;
-        iArr[Theme.key_actionBarDefaultSearchPlaceholder] = -1996488705;
+        iArr[Theme.key_actionBarActionModeDefaultIcon] = -14540254;
+        iArr[Theme.key_actionBarDefaultTitle] = -14540254;
+        iArr[Theme.key_actionBarDefaultSubtitle] = -8814210;
+        iArr[Theme.key_actionBarDefaultSelector] = -855310;
+        iArr[Theme.key_actionBarWhiteSelector] = -855310;
+        iArr[Theme.key_actionBarDefaultSearch] = -14540254;
+        iArr[Theme.key_actionBarDefaultSearchPlaceholder] = -8814210;
         iArr[Theme.key_actionBarDefaultSubmenuItem] = -14540254;
         iArr[Theme.key_actionBarDefaultSubmenuItemIcon] = -9999504;
         iArr[Theme.key_actionBarDefaultSubmenuBackground] = -1;
@@ -187,24 +187,24 @@ public abstract class ThemeColors {
         iArr[Theme.key_actionBarActionModeReaction] = -986896;
         iArr[Theme.key_actionBarActionModeReactionText] = -8223094;
         iArr[Theme.key_actionBarActionModeReactionDot] = -4144960;
-        iArr[Theme.key_actionBarTabActiveText] = -1;
-        iArr[Theme.key_actionBarTabUnactiveText] = -2758409;
-        iArr[Theme.key_actionBarTabLine] = -1;
-        iArr[Theme.key_actionBarTabSelector] = -12554860;
+        iArr[Theme.key_actionBarTabActiveText] = -14540254;
+        iArr[Theme.key_actionBarTabUnactiveText] = -8156010;
+        iArr[Theme.key_actionBarTabLine] = -14540254;
+        iArr[Theme.key_actionBarTabSelector] = -855310;
         iArr[Theme.key_actionBarBrowser] = -1;
         iArr[Theme.key_table_background] = -526345;
         iArr[Theme.key_table_border] = -2039584;
-        iArr[Theme.key_actionBarDefaultArchived] = -9471353;
-        iArr[Theme.key_actionBarDefaultArchivedSelector] = -10590350;
-        iArr[Theme.key_actionBarDefaultArchivedIcon] = -1;
-        iArr[Theme.key_actionBarDefaultArchivedTitle] = -1;
-        iArr[Theme.key_actionBarDefaultArchivedSearch] = -1;
-        iArr[Theme.key_actionBarDefaultArchivedSearchPlaceholder] = -1996488705;
+        iArr[Theme.key_actionBarDefaultArchived] = -1;
+        iArr[Theme.key_actionBarDefaultArchivedSelector] = -855310;
+        iArr[Theme.key_actionBarDefaultArchivedIcon] = -14540254;
+        iArr[Theme.key_actionBarDefaultArchivedTitle] = -14540254;
+        iArr[Theme.key_actionBarDefaultArchivedSearch] = -14540254;
+        iArr[Theme.key_actionBarDefaultArchivedSearchPlaceholder] = -8156010;
         iArr[Theme.key_chats_onlineCircle] = -11810020;
-        iArr[Theme.key_chats_unreadCounter] = -11613090;
+        iArr[Theme.key_chats_unreadCounter] = -14509328;
         iArr[Theme.key_chats_unreadCounterMuted] = -3749428;
         iArr[Theme.key_chats_unreadCounterText] = -1;
-        iArr[Theme.key_chats_archiveBackground] = -10049056;
+        iArr[Theme.key_chats_archiveBackground] = -14509328;
         iArr[Theme.key_chats_archivePinBackground] = -6313293;
         iArr[Theme.key_chats_archiveIcon] = -1;
         iArr[Theme.key_chats_archiveText] = -1;
@@ -247,7 +247,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chats_actionPressedBackground] = -11100714;
         iArr[Theme.key_chats_menuTopBackgroundCats] = -10907718;
         iArr[Theme.key_chats_archivePullDownBackground] = -3749428;
-        iArr[Theme.key_chats_archivePullDownBackgroundActive] = -10049056;
+        iArr[Theme.key_chats_archivePullDownBackgroundActive] = -14509328;
         iArr[Theme.key_chat_attachCheckBoxCheck] = -1;
         iArr[Theme.key_chat_attachCheckBoxBackground] = -11750155;
         iArr[Theme.key_chat_attachPhotoBackground] = 201326592;
@@ -276,11 +276,11 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_outPollCorrectAnswer] = -10436011;
         iArr[Theme.key_chat_inPollWrongAnswer] = -1351584;
         iArr[Theme.key_chat_outPollWrongAnswer] = -1351584;
-        iArr[Theme.key_chat_status] = -2758409;
+        iArr[Theme.key_chat_status] = -14509328;
         iArr[Theme.key_chat_inGreenCall] = -16725933;
         iArr[Theme.key_chat_outGreenCall] = -16725933;
         iArr[Theme.key_chat_lockIcon] = -1;
-        iArr[Theme.key_chat_muteIcon] = -5124893;
+        iArr[Theme.key_chat_muteIcon] = -8814210;
         iArr[Theme.key_chat_inBubble] = -1;
         iArr[Theme.key_chat_inBubbleSelected] = -1247235;
         iArr[Theme.key_chat_inBubbleShadow] = -14862509;
@@ -483,14 +483,13 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_recordTime] = -7432805;
         iArr[Theme.key_chat_emojiPanelNewTrending] = -11688214;
         iArr[Theme.key_chat_gifSaveHintText] = -1;
-        iArr[Theme.key_chat_gifSaveHintBackground] = -871296751;
+        iArr[Theme.key_chat_gifSaveHintBackground] = -501273800;
         iArr[Theme.key_chat_goDownButton] = -1;
-        iArr[Theme.key_chat_goDownButtonIcon] = -7432805;
         iArr[Theme.key_chat_goDownButtonCounter] = -1;
         iArr[Theme.key_chat_goDownButtonCounterBackground] = -11689240;
         iArr[Theme.key_chat_messagePanelCancelInlineBot] = -5395027;
         iArr[Theme.key_chat_messagePanelVoicePressed] = -1;
-        iArr[Theme.key_chat_messagePanelVoiceBackground] = -10639650;
+        iArr[Theme.key_chat_messagePanelVoiceBackground] = -14509328;
         iArr[Theme.key_chat_messagePanelVoiceDelete] = -9211021;
         iArr[Theme.key_chat_messagePanelVoiceDuration] = -1;
         iArr[Theme.key_chat_inlineResultIcon] = -11037236;
@@ -516,10 +515,10 @@ public abstract class ThemeColors {
         iArr[Theme.key_profile_actionIcon] = -8288630;
         iArr[Theme.key_profile_actionBackground] = -1;
         iArr[Theme.key_profile_actionPressedBackground] = -855310;
-        iArr[Theme.key_profile_verifiedBackground] = -5056776;
-        iArr[Theme.key_profile_verifiedCheck] = -11959368;
-        iArr[Theme.key_profile_title] = -1;
-        iArr[Theme.key_profile_status] = -2626822;
+        iArr[Theme.key_profile_verifiedBackground] = -14509328;
+        iArr[Theme.key_profile_verifiedCheck] = -1;
+        iArr[Theme.key_profile_title] = -14540254;
+        iArr[Theme.key_profile_status] = -14540254;
         iArr[Theme.key_profile_tabText] = -7893872;
         iArr[Theme.key_profile_tabSelectedText] = -12937771;
         iArr[Theme.key_profile_tabSelectedLine] = -11557143;
@@ -559,10 +558,11 @@ public abstract class ThemeColors {
         iArr[Theme.key_dialog_liveLocationProgress] = -13262875;
         iArr[Theme.key_calls_callReceivedGreenIcon] = -16725933;
         iArr[Theme.key_calls_callReceivedRedIcon] = -47032;
-        iArr[Theme.key_featuredStickers_addedIcon] = -11491093;
+        iArr[Theme.key_featuredStickers_addedIcon] = -14509328;
         iArr[Theme.key_featuredStickers_buttonProgress] = -1;
-        iArr[Theme.key_featuredStickers_addButton] = -11491093;
-        iArr[Theme.key_featuredStickers_addButtonPressed] = -12346402;
+        iArr[Theme.key_featuredStickers_addButton] = -14509328;
+        iArr[Theme.key_featuredStickers_addButton2] = -11093264;
+        iArr[Theme.key_featuredStickers_addButtonPressed] = -14513967;
         iArr[Theme.key_featuredStickers_removeButtonText] = -11496493;
         iArr[Theme.key_featuredStickers_buttonText] = -1;
         iArr[Theme.key_featuredStickers_unread] = -11688214;
@@ -583,7 +583,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_checkboxDisabled] = -5195326;
         iArr[Theme.key_stickers_menu] = -4801083;
         iArr[Theme.key_stickers_menuSelector] = 251658240;
-        iArr[Theme.key_changephoneinfo_image2] = -11491350;
+        iArr[Theme.key_changephoneinfo_image2] = -14509328;
         iArr[Theme.key_groupcreate_hintText] = -6182221;
         iArr[Theme.key_groupcreate_cursor] = -11361317;
         iArr[Theme.key_groupcreate_sectionShadow] = -16777216;
@@ -704,7 +704,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_voipgroup_windowBackgroundWhiteInputField] = -2368549;
         iArr[Theme.key_voipgroup_windowBackgroundWhiteInputFieldActivated] = -13129232;
         iArr[Theme.key_chat_outReactionButtonBackground] = -8863118;
-        iArr[Theme.key_chat_inReactionButtonBackground] = -9259544;
+        iArr[Theme.key_chat_inReactionButtonBackground] = -14509328;
         iArr[Theme.key_chat_inReactionButtonText] = -12940081;
         iArr[Theme.key_chat_outReactionButtonText] = -11162801;
         iArr[Theme.key_chat_inReactionButtonTextSelected] = -1;
@@ -753,11 +753,12 @@ public abstract class ThemeColors {
         iArr[Theme.key_code_function] = -881607;
         iArr[Theme.key_iv_background] = -1;
         iArr[Theme.key_iv_backgroundGray] = -986896;
-        iArr[Theme.key_iv_ab_progress] = -11491093;
+        iArr[Theme.key_iv_ab_progress] = -14509328;
         iArr[Theme.key_iv_navigationBackground] = -986896;
         iArr[Theme.key_reactionStarSelector] = 1089514271;
         iArr[Theme.key_glass_defaultIcon] = -1726275033;
         iArr[Theme.key_glass_defaultText] = -1726275033;
+        iArr[Theme.key_telegram_color] = -14509328;
         return iArr;
     }
 
@@ -1284,7 +1285,6 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_chat_gifSaveHintText, "chat_gifSaveHintText");
         sparseArray.put(Theme.key_chat_gifSaveHintBackground, "chat_gifSaveHintBackground");
         sparseArray.put(Theme.key_chat_goDownButton, "chat_goDownButton");
-        sparseArray.put(Theme.key_chat_goDownButtonIcon, "chat_goDownButtonIcon");
         sparseArray.put(Theme.key_chat_goDownButtonCounter, "chat_goDownButtonCounter");
         sparseArray.put(Theme.key_chat_goDownButtonCounterBackground, "chat_goDownButtonCounterBackground");
         sparseArray.put(Theme.key_chat_outTextSelectionHighlight, "chat_outTextSelectionHighlight");
@@ -1381,6 +1381,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_featuredStickers_addedIcon, "featuredStickers_addedIcon");
         sparseArray.put(Theme.key_featuredStickers_buttonProgress, "featuredStickers_buttonProgress");
         sparseArray.put(Theme.key_featuredStickers_addButton, "featuredStickers_addButton");
+        sparseArray.put(Theme.key_featuredStickers_addButton2, "featuredStickers_addButton2");
         sparseArray.put(Theme.key_featuredStickers_addButtonPressed, "featuredStickers_addButtonPressed");
         sparseArray.put(Theme.key_featuredStickers_removeButtonText, "featuredStickers_removeButtonText");
         sparseArray.put(Theme.key_featuredStickers_buttonText, "featuredStickers_buttonText");
@@ -1526,6 +1527,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_share_linkBackground, "share_linkBackground");
         sparseArray.put(Theme.key_glass_defaultIcon, "glass_defaultIcon");
         sparseArray.put(Theme.key_glass_defaultText, "glass_defaultText");
+        sparseArray.put(Theme.key_telegram_color, "telegram_color");
         return sparseArray;
     }
 
@@ -1533,11 +1535,11 @@ public abstract class ThemeColors {
         if (colorKeysMap == null) {
             colorKeysMap = createColorKeysMap();
         }
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (int i = 0; i < colorKeysMap.size(); i++) {
-            hashMap.put((String) colorKeysMap.valueAt(i), Integer.valueOf(colorKeysMap.keyAt(i)));
+            map.put((String) colorKeysMap.valueAt(i), Integer.valueOf(colorKeysMap.keyAt(i)));
         }
-        return hashMap;
+        return map;
     }
 
     public static int stringKeyToInt(String str) {

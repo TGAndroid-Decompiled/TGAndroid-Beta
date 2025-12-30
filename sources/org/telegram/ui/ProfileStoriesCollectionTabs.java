@@ -2,11 +2,10 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,14 +15,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Stories.StoriesController;
 
-public abstract class ProfileStoriesCollectionTabs extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final Adapter adapter;
+    private final Rect clipRect;
     private final StoriesController.StoriesCollections collections;
     int initialAlbumId;
     private boolean reorderingCollections;
@@ -48,14 +50,15 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
 
     protected abstract void updatedReordering(boolean z);
 
-    public ProfileStoriesCollectionTabs(Context context, final StoriesController.StoriesCollections storiesCollections, final Delegate delegate) {
-        super(context);
+    public ProfileStoriesCollectionTabs(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, final StoriesController.StoriesCollections storiesCollections, final Delegate delegate) {
+        super(context, sizeNotifierFrameLayout);
+        this.clipRect = new Rect();
         this.collections = storiesCollections;
         Objects.requireNonNull(storiesCollections);
         this.sendCollectionsOrder = new Runnable() {
             @Override
             public final void run() {
-                StoriesController.StoriesCollections.this.sendOrder();
+                storiesCollections.sendOrder();
             }
         };
         ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
@@ -69,7 +72,7 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
             }
 
             @Override
-            public void onTabScrollEnd(int i) {
+            protected void onTabScrollEnd(int i) {
                 super.onTabScrollEnd(i);
                 Delegate delegate2 = delegate;
                 if (delegate2 != null) {
@@ -92,26 +95,22 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
         adapter.canCreateNewAlbum = storiesCollections.canCreateNewAlbum();
         viewPagerFixed.setAdapter(adapter);
         viewPagerFixed.setTranslationY(AndroidUtilities.dp(42.0f));
-        ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(true, 9);
-        this.tabsView = createTabsView;
-        createTabsView.tabMarginDp = 12;
-        createTabsView.setPreTabClick(new Utilities.Callback2Return() {
+        ViewPagerFixed.TabsView tabsViewCreateTabsView = viewPagerFixed.createTabsView(true, 9);
+        this.tabsView = tabsViewCreateTabsView;
+        tabsViewCreateTabsView.tabMarginDp = 12;
+        tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                Boolean lambda$new$0;
-                lambda$new$0 = ProfileStoriesCollectionTabs.this.lambda$new$0(delegate, (Integer) obj, (Integer) obj2);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(delegate, (Integer) obj, (Integer) obj2);
             }
         });
-        createTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
+        tabsViewCreateTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                Boolean lambda$new$1;
-                lambda$new$1 = ProfileStoriesCollectionTabs.this.lambda$new$1(delegate, (Integer) obj, (View) obj2);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(delegate, (Integer) obj, (View) obj2);
             }
         });
-        addView(createTabsView, LayoutHelper.createFrame(-1, 42, 48));
+        addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
         setVisibility(!storiesCollections.collections.isEmpty(), false, true);
     }
 
@@ -143,7 +142,7 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileStoriesCollectionTabs.this.lambda$setInitialTabId$2(i);
+                    this.f$0.lambda$setInitialTabId$2(i);
                 }
             }, 500L);
         } else {
@@ -190,7 +189,7 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileStoriesCollectionTabs.this.lambda$didReceivedNotification$3(i4);
+                            this.f$0.lambda$didReceivedNotification$3(i4);
                         }
                     }, 500L);
                     this.initialAlbumId = 0;
@@ -211,6 +210,12 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
 
     public void lambda$setInitialTabId$2(int i) {
         this.tabsView.scrollToTab(i, this.adapter.getItemPosition(i));
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        checkUi_clipRect();
     }
 
     public boolean isReordering() {
@@ -235,7 +240,7 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileStoriesCollectionTabs.lambda$setReorderingAlbums$4(BaseFragment.this);
+                        ProfileStoriesCollectionTabs.lambda$setReorderingAlbums$4(safeLastFragment);
                     }
                 });
             }
@@ -269,14 +274,14 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
                 this.visibilityFactor = f;
                 onVisibilityChange(f);
             } else {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.visibilityFactor, z ? 1.0f : 0.0f);
-                this.visibilityAnimator = ofFloat;
-                ofFloat.setDuration(480L);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.visibilityFactor, z ? 1.0f : 0.0f);
+                this.visibilityAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.setDuration(480L);
                 this.visibilityAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.visibilityAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ProfileStoriesCollectionTabs.this.lambda$setVisibility$5(valueAnimator2);
+                        this.f$0.lambda$setVisibility$5(valueAnimator2);
                     }
                 });
                 this.visibilityAnimator.start();
@@ -285,13 +290,19 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
     }
 
     public void lambda$setVisibility$5(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.visibilityFactor = floatValue;
-        onVisibilityChange(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.visibilityFactor = fFloatValue;
+        onVisibilityChange(fFloatValue);
     }
 
-    public void onVisibilityChange(float f) {
+    protected void onVisibilityChange(float f) {
+        checkUi_clipRect();
         invalidate();
+    }
+
+    private void checkUi_clipRect() {
+        this.clipRect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(this.clipRect);
     }
 
     public float getVisibilityFactor() {
@@ -307,18 +318,7 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
         return this.visibilityValue && super.dispatchTouchEvent(motionEvent);
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        if (this.visibilityFactor == 0.0f) {
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), getVisualHeight());
-        super.draw(canvas);
-        canvas.restore();
-    }
-
-    public class Adapter extends ViewPagerFixed.Adapter {
+    private class Adapter extends ViewPagerFixed.Adapter {
         private boolean canCreateNewAlbum;
 
         @Override
@@ -355,8 +355,8 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
                 Integer num = (Integer) it.next();
-                int intValue = num.intValue();
-                if (intValue != -1 && intValue != -2 && intValue != 0) {
+                int iIntValue = num.intValue();
+                if (iIntValue != -1 && iIntValue != -2 && iIntValue != 0) {
                     arrayList2.add(num);
                 }
             }
@@ -374,11 +374,11 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
             if (i == 0) {
                 return 0;
             }
-            int indexOf = ProfileStoriesCollectionTabs.this.collections.indexOf(i);
-            if (indexOf == -1) {
+            int iIndexOf = ProfileStoriesCollectionTabs.this.collections.indexOf(i);
+            if (iIndexOf == -1) {
                 return -1;
             }
-            return indexOf + 1;
+            return iIndexOf + 1;
         }
 
         @Override

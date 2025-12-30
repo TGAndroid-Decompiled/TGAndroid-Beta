@@ -204,11 +204,6 @@ public class MediaActionDrawable extends Drawable {
         this.messageDrawable = messageDrawable;
     }
 
-    public void setBackgroundGradientDrawable(LinearGradient linearGradient) {
-        this.gradientDrawable = linearGradient;
-        this.gradientMatrix = new Matrix();
-    }
-
     public void setHasOverlayImage(boolean z) {
         this.hasOverlayImage = z;
     }

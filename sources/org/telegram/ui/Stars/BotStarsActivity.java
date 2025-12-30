@@ -66,7 +66,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.Stars.BotStarsActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -131,7 +130,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     private Runnable setBalanceButtonText = new Runnable() {
         @Override
         public final void run() {
-            BotStarsActivity.this.lambda$new$19();
+            this.f$0.lambda$new$19();
         }
     };
     private int stats_dc = -1;
@@ -156,7 +155,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.withdrawInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(z ? LocaleController.formatPluralStringComma("SelfStarsWithdrawInfo", (int) getMessagesController().starsRevenueWithdrawalMin) : LocaleController.getString(R.string.BotStarsWithdrawInfo), new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         }), true);
     }
@@ -236,10 +235,10 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 if (BotStarsActivity.this.balanceEditText != null && !BotStarsActivity.this.balanceEditText.isFocusable()) {
                     BotStarsActivity.this.balanceEditText.setFocusable(true);
                     BotStarsActivity.this.balanceEditText.setFocusableInTouchMode(true);
-                    int findPositionByItemId = BotStarsActivity.this.listView.findPositionByItemId(1);
-                    if (findPositionByItemId >= 0 && findPositionByItemId < BotStarsActivity.this.listView.adapter.getItemCount()) {
+                    int iFindPositionByItemId = BotStarsActivity.this.listView.findPositionByItemId(1);
+                    if (iFindPositionByItemId >= 0 && iFindPositionByItemId < BotStarsActivity.this.listView.adapter.getItemCount()) {
                         BotStarsActivity.this.listView.stopScroll();
-                        BotStarsActivity.this.listView.smoothScrollToPosition(findPositionByItemId);
+                        BotStarsActivity.this.listView.smoothScrollToPosition(iFindPositionByItemId);
                     }
                     BotStarsActivity.this.balanceEditText.requestFocus();
                 }
@@ -251,7 +250,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
-            public void onDetachedFromWindow() {
+            protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 AndroidUtilities.hideKeyboard(this);
             }
@@ -264,8 +263,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditText.setBackground(null);
         this.balanceEditText.setTextSize(1, 18.0f);
         this.balanceEditText.setMaxLines(1);
-        int dp = AndroidUtilities.dp(16.0f);
-        this.balanceEditText.setPadding(AndroidUtilities.dp(6.0f), dp, dp, dp);
+        int iDp = AndroidUtilities.dp(16.0f);
+        this.balanceEditText.setPadding(AndroidUtilities.dp(6.0f), iDp, iDp, iDp);
         this.balanceEditText.setInputType(2);
         this.balanceEditText.setTypeface(Typeface.DEFAULT);
         this.balanceEditText.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
@@ -274,7 +273,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                BotStarsActivity.this.lambda$createView$1(view, z);
+                this.f$0.lambda$createView$1(view, z);
             }
         });
         this.balanceEditText.addTextChangedListener(new TextWatcher() {
@@ -319,9 +318,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                boolean lambda$createView$2;
-                lambda$createView$2 = BotStarsActivity.this.lambda$createView$2(textView, i5, keyEvent);
-                return lambda$createView$2;
+                return this.f$0.lambda$createView$2(textView, i5, keyEvent);
             }
         });
         this.balanceLayout.addView(this.balanceEditTextContainer, LayoutHelper.createLinear(-1, -2, 1, 18, 14, 18, 2));
@@ -341,7 +338,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStarsActivity.this.lambda$createView$3(view);
+                this.f$0.lambda$createView$3(view);
             }
         });
         ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, getResourceProvider());
@@ -351,7 +348,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.adsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStarsActivity.this.lambda$createView$7(context, view);
+                this.f$0.lambda$createView$7(context, view);
             }
         });
         this.balanceButtonsLayout.addView(this.balanceButton, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
@@ -392,26 +389,24 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.tonBalanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStarsActivity.this.lambda$createView$10(view);
+                this.f$0.lambda$createView$10(view);
             }
         });
         this.tonBalanceLayout.addView(this.tonBalanceButton, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                BotStarsActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                BotStarsActivity.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onItemLongClick;
-                onItemLongClick = BotStarsActivity.this.onItemLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onItemLongClick);
+                return Boolean.valueOf(this.f$0.onItemLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         });
         this.listView = universalRecyclerView;
@@ -458,7 +453,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsActivity.this.lambda$createView$6(context, tLObject, tL_error);
+                this.f$0.lambda$createView$6(context, tLObject, tL_error);
             }
         });
     }
@@ -467,7 +462,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$createView$5(tLObject, context);
+                this.f$0.lambda$createView$5(tLObject, context);
             }
         });
     }
@@ -479,7 +474,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$createView$4();
+                this.f$0.lambda$createView$4();
             }
         }, 1000L);
     }
@@ -496,14 +491,14 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                BotStarsActivity.this.lambda$createView$8(twoStepVerificationActivity, inputCheckPasswordSRP);
+                this.f$0.lambda$createView$8(twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
         this.tonBalanceButton.setLoading(true);
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$createView$9(twoStepVerificationActivity);
+                this.f$0.lambda$createView$9(twoStepVerificationActivity);
             }
         });
     }
@@ -530,7 +525,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             BulletinFactory.of(this).createSimpleBulletin(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) getMessagesController().starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
                 @Override
                 public final void run() {
-                    BotStarsActivity.this.lambda$withdraw$11();
+                    this.f$0.lambda$withdraw$11();
                 }
             })).show();
             return;
@@ -540,14 +535,14 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                BotStarsActivity.this.lambda$withdraw$12(j, twoStepVerificationActivity, inputCheckPasswordSRP);
+                this.f$0.lambda$withdraw$12(j, twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
         this.balanceButton.setLoading(true);
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$withdraw$13(twoStepVerificationActivity);
+                this.f$0.lambda$withdraw$13(twoStepVerificationActivity);
             }
         });
     }
@@ -642,17 +637,17 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     this.titleInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.BotMonetizationInfo, 50), -1, 3, new Runnable() {
                         @Override
                         public final void run() {
-                            BotStarsActivity.this.lambda$fillItems$14();
+                            this.f$0.lambda$fillItems$14();
                         }
                     }, this.resourceProvider), true);
                 }
                 arrayList.add(UItem.asCenterShadow(this.titleInfo));
             }
             if (this.impressionsChart == null && tONRevenueStats != null) {
-                StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(tONRevenueStats.top_hours_graph, LocaleController.getString(R.string.BotMonetizationGraphImpressions), 0);
-                this.impressionsChart = createViewData;
-                if (createViewData != null) {
-                    createViewData.useHourFormat = true;
+                StatisticActivity.ChartViewData chartViewDataCreateViewData = StatisticActivity.createViewData(tONRevenueStats.top_hours_graph, LocaleController.getString(R.string.BotMonetizationGraphImpressions), 0);
+                this.impressionsChart = chartViewDataCreateViewData;
+                if (chartViewDataCreateViewData != null) {
+                    chartViewDataCreateViewData.useHourFormat = true;
                 }
             }
             StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
@@ -707,7 +702,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i2), -1, 3, new Runnable() {
                         @Override
                         public final void run() {
-                            BotStarsActivity.this.lambda$fillItems$15(i3);
+                            this.f$0.lambda$fillItems$15(i3);
                         }
                     }, this.resourceProvider), true);
                 }
@@ -719,7 +714,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 this.balanceInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled ? R.string.BotMonetizationBalanceInfo : R.string.BotMonetizationBalanceInfoNotAvailable), -1, 3, new Runnable() {
                     @Override
                     public final void run() {
-                        BotStarsActivity.this.lambda$fillItems$16();
+                        this.f$0.lambda$fillItems$16();
                     }
                 }), true);
             }
@@ -765,7 +760,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsActivity.this.lambda$loadTonTransactions$18(tLObject, tL_error);
+                this.f$0.lambda$loadTonTransactions$18(tLObject, tL_error);
             }
         });
     }
@@ -774,7 +769,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$loadTonTransactions$17(tLObject, tL_error);
+                this.f$0.lambda$loadTonTransactions$17(tLObject, tL_error);
             }
         });
     }
@@ -823,9 +818,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         }
         long j = (long) (this.rate * starsAmount.amount * 100.0d);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(StarsIntroActivity.replaceStarsWithPlain(TextUtils.concat("XTR ", StarsIntroActivity.formatStarsAmount(starsAmount, 0.8f, ' ')), 1.0f));
-        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-        if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
+        int iIndexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+        if (iIndexOf >= 0) {
+            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, iIndexOf, spannableStringBuilder.length(), 33);
         }
         this.balanceTitle.setText(spannableStringBuilder);
         this.balanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j, "USD"));
@@ -859,9 +854,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         double d = j / 1.0E9d;
         this.formatter.setMaximumFractionDigits(d > 1.5d ? 2 : 6);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ChannelMonetizationLayout.replaceTON("TON " + this.formatter.format(d), this.tonBalanceTitle.getPaint(), 0.9f, true));
-        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-        if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(this.tonBalanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
+        int iIndexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+        if (iIndexOf >= 0) {
+            spannableStringBuilder.setSpan(this.tonBalanceTitleSizeSpan, iIndexOf, spannableStringBuilder.length(), 33);
         }
         this.tonBalanceTitle.setText(spannableStringBuilder);
         this.tonBalanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
@@ -928,9 +923,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.lastStatsStatus = starsRevenueStats != null ? starsRevenueStats.status : null;
         if (starsRevenueStats != null) {
             this.rate = starsRevenueStats.usd_rate;
-            StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(starsRevenueStats.revenue_graph, LocaleController.getString(R.string.BotStarsChartRevenue), 2);
-            this.revenueChartData = createViewData;
-            if (createViewData != null && (chartData = createViewData.chartData) != null && (arrayList = chartData.lines) != null && !arrayList.isEmpty() && this.revenueChartData.chartData.lines.get(0) != null) {
+            StatisticActivity.ChartViewData chartViewDataCreateViewData = StatisticActivity.createViewData(starsRevenueStats.revenue_graph, LocaleController.getString(R.string.BotStarsChartRevenue), 2);
+            this.revenueChartData = chartViewDataCreateViewData;
+            if (chartViewDataCreateViewData != null && (chartData = chartViewDataCreateViewData.chartData) != null && (arrayList = chartData.lines) != null && !arrayList.isEmpty() && this.revenueChartData.chartData.lines.get(0) != null) {
                 StatisticActivity.ChartViewData chartViewData = this.revenueChartData;
                 chartViewData.showAll = true;
                 ((ChartData.Line) chartViewData.chartData.lines.get(0)).colorKey = Theme.key_color_yellow;
@@ -963,7 +958,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         return AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite)) > 0.721f;
     }
 
-    public class NestedFrameLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3 {
+    class NestedFrameLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3 {
         private NestedScrollingParentHelper nestedScrollingParentHelper;
 
         @Override
@@ -1006,7 +1001,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BotStarsActivity.NestedFrameLayout.this.lambda$onNestedScroll$0();
+                        this.f$0.lambda$onNestedScroll$0();
                     }
                 });
             }
@@ -1032,12 +1027,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
             int i4;
             if (view == BotStarsActivity.this.listView && BotStarsActivity.this.transactionsLayout.isAttachedToWindow()) {
-                boolean isSearchFieldVisible = ((BaseFragment) BotStarsActivity.this).actionBar.isSearchFieldVisible();
+                boolean zIsSearchFieldVisible = ((BaseFragment) BotStarsActivity.this).actionBar.isSearchFieldVisible();
                 int top = (((View) BotStarsActivity.this.transactionsLayout.getParent()).getTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
                 int bottom = ((View) BotStarsActivity.this.transactionsLayout.getParent()).getBottom();
                 boolean z = false;
                 if (i2 >= 0) {
-                    if (isSearchFieldVisible) {
+                    if (zIsSearchFieldVisible) {
                         RecyclerListView currentListView = BotStarsActivity.this.transactionsLayout.getCurrentListView();
                         iArr[1] = i2;
                         if (top > 0) {
@@ -1063,19 +1058,19 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 ((BaseFragment) BotStarsActivity.this).actionBar.setCastShadows(BotStarsActivity.this.listView.getHeight() - bottom < 0);
                 if (BotStarsActivity.this.listView.getHeight() - bottom >= 0) {
                     RecyclerListView currentListView3 = BotStarsActivity.this.transactionsLayout.getCurrentListView();
-                    int findFirstVisibleItemPosition = ((LinearLayoutManager) currentListView3.getLayoutManager()).findFirstVisibleItemPosition();
-                    if (findFirstVisibleItemPosition != -1) {
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = currentListView3.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                        int top2 = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : -1;
+                    int iFindFirstVisibleItemPosition = ((LinearLayoutManager) currentListView3.getLayoutManager()).findFirstVisibleItemPosition();
+                    if (iFindFirstVisibleItemPosition != -1) {
+                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = currentListView3.findViewHolderForAdapterPosition(iFindFirstVisibleItemPosition);
+                        int top2 = viewHolderFindViewHolderForAdapterPosition != null ? viewHolderFindViewHolderForAdapterPosition.itemView.getTop() : -1;
                         int paddingTop = currentListView3.getPaddingTop();
-                        if (top2 != paddingTop || findFirstVisibleItemPosition != 0) {
-                            iArr[1] = findFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
+                        if (top2 != paddingTop || iFindFirstVisibleItemPosition != 0) {
+                            iArr[1] = iFindFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
                             currentListView3.scrollBy(0, i2);
                             z = true;
                         }
                     }
                 }
-                if (isSearchFieldVisible) {
+                if (zIsSearchFieldVisible) {
                     if (!z && top < 0) {
                         iArr[1] = i2 - Math.max(top, i2);
                     } else {
@@ -1125,7 +1120,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueWithdrawalUrl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsActivity.this.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, j, tLObject, tL_error);
+                this.f$0.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, j, tLObject, tL_error);
             }
         });
     }
@@ -1134,7 +1129,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
+                this.f$0.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
             }
         });
     }
@@ -1206,7 +1201,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i4) {
-                            BotStarsActivity.this.lambda$initWithdraw$20(alertDialog, i4);
+                            this.f$0.lambda$initWithdraw$20(alertDialog, i4);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1234,7 +1229,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        BotStarsActivity.this.lambda$initWithdraw$22(twoStepVerificationActivity, z, j, tLObject2, tL_error2);
+                        this.f$0.lambda$initWithdraw$22(twoStepVerificationActivity, z, j, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
@@ -1264,7 +1259,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.this.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z, j);
+                this.f$0.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z, j);
             }
         });
     }

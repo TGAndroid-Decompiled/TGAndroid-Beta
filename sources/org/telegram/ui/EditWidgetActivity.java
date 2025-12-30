@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -52,7 +53,6 @@ import org.telegram.ui.Components.InviteMembersBottomSheet;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.EditWidgetActivity;
 
 public class EditWidgetActivity extends BaseFragment {
     private int chatsEndRow;
@@ -124,7 +124,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
             if (i != 0) {
                 EditWidgetActivity.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);
@@ -173,7 +173,7 @@ public class EditWidgetActivity extends BaseFragment {
             return false;
         }
 
-        public WidgetPreviewCell(Context context) {
+        public WidgetPreviewCell(Context context) throws Resources.NotFoundException {
             super(context);
             this.roundPaint = new Paint(1);
             this.bitmapRect = new RectF();
@@ -213,7 +213,7 @@ public class EditWidgetActivity extends BaseFragment {
             this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
         }
 
-        public void updateDialogs() {
+        public void updateDialogs() throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.EditWidgetActivity.WidgetPreviewCell.updateDialogs():void");
         }
 
@@ -263,14 +263,14 @@ public class EditWidgetActivity extends BaseFragment {
                             drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
                         } else {
                             int measuredHeight = getMeasuredHeight();
-                            float max = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
-                            int ceil = (int) Math.ceil(drawable.getIntrinsicWidth() * max);
-                            int ceil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * max);
-                            int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                            int i2 = (measuredHeight - ceil2) / 2;
+                            float fMax = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
+                            int iCeil = (int) Math.ceil(drawable.getIntrinsicWidth() * fMax);
+                            int iCeil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * fMax);
+                            int measuredWidth = (getMeasuredWidth() - iCeil) / 2;
+                            int i2 = (measuredHeight - iCeil2) / 2;
                             canvas.save();
-                            canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                            drawable.setBounds(measuredWidth, i2, ceil + measuredWidth, ceil2 + i2);
+                            canvas.clipRect(0, 0, iCeil, getMeasuredHeight());
+                            drawable.setBounds(measuredWidth, i2, iCeil + measuredWidth, iCeil2 + i2);
                         }
                         drawable.draw(canvas);
                         canvas.restore();
@@ -307,7 +307,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public EditWidgetActivity(int i, int i2) {
+    public EditWidgetActivity(int i, int i2) throws InterruptedException {
         this.widgetType = i;
         this.currentWidgetId = i2;
         ArrayList<TLRPC.User> arrayList = new ArrayList<>();
@@ -385,10 +385,10 @@ public class EditWidgetActivity extends BaseFragment {
                     arrayList.add(MessagesStorage.TopicKey.of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
                 }
                 EditWidgetActivity.this.getMessagesStorage().putWidgetDialogs(EditWidgetActivity.this.currentWidgetId, arrayList);
-                SharedPreferences.Editor edit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
-                edit.putInt("account" + EditWidgetActivity.this.currentWidgetId, ((BaseFragment) EditWidgetActivity.this).currentAccount);
-                edit.putInt("type" + EditWidgetActivity.this.currentWidgetId, EditWidgetActivity.this.widgetType);
-                edit.commit();
+                SharedPreferences.Editor editorEdit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
+                editorEdit.putInt("account" + EditWidgetActivity.this.currentWidgetId, ((BaseFragment) EditWidgetActivity.this).currentAccount);
+                editorEdit.putInt("type" + EditWidgetActivity.this.currentWidgetId, EditWidgetActivity.this.widgetType);
+                editorEdit.commit();
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(EditWidgetActivity.this.getParentActivity());
                 if (EditWidgetActivity.this.widgetType == 0) {
                     ChatsWidgetProvider.updateWidget(EditWidgetActivity.this.getParentActivity(), appWidgetManager, EditWidgetActivity.this.currentWidgetId);
@@ -419,7 +419,7 @@ public class EditWidgetActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                EditWidgetActivity.this.lambda$createView$1(context, view, i);
+                this.f$0.lambda$createView$1(context, view, i);
             }
         });
         this.listView.setOnItemLongClickListener(new AnonymousClass2());
@@ -431,8 +431,8 @@ public class EditWidgetActivity extends BaseFragment {
             InviteMembersBottomSheet inviteMembersBottomSheet = new InviteMembersBottomSheet(context, this.currentAccount, null, 0L, this, null);
             inviteMembersBottomSheet.setDelegate(new InviteMembersBottomSheet.InviteMembersBottomSheetDelegate() {
                 @Override
-                public final void didSelectDialogs(ArrayList arrayList) {
-                    EditWidgetActivity.this.lambda$createView$0(arrayList);
+                public final void didSelectDialogs(ArrayList arrayList) throws Resources.NotFoundException {
+                    this.f$0.lambda$createView$0(arrayList);
                 }
             }, this.selectedDialogs);
             inviteMembersBottomSheet.setSelectedContacts(this.selectedDialogs);
@@ -440,7 +440,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public void lambda$createView$0(ArrayList arrayList) {
+    public void lambda$createView$0(ArrayList arrayList) throws Resources.NotFoundException {
         this.selectedDialogs.clear();
         this.selectedDialogs.addAll(arrayList);
         updateRows();
@@ -450,7 +450,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public class AnonymousClass2 implements RecyclerListView.OnItemLongClickListenerExtended {
+    class AnonymousClass2 implements RecyclerListView.OnItemLongClickListenerExtended {
         private Rect rect = new Rect();
 
         @Override
@@ -472,8 +472,8 @@ public class EditWidgetActivity extends BaseFragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditWidgetActivity.this.getParentActivity());
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i2) {
-                            EditWidgetActivity.AnonymousClass2.this.lambda$onItemClick$0(i, dialogInterface, i2);
+                        public final void onClick(DialogInterface dialogInterface, int i2) throws Resources.NotFoundException {
+                            this.f$0.lambda$onItemClick$0(i, dialogInterface, i2);
                         }
                     });
                     EditWidgetActivity.this.showDialog(builder.create());
@@ -483,7 +483,7 @@ public class EditWidgetActivity extends BaseFragment {
             return false;
         }
 
-        public void lambda$onItemClick$0(int i, DialogInterface dialogInterface, int i2) {
+        public void lambda$onItemClick$0(int i, DialogInterface dialogInterface, int i2) throws Resources.NotFoundException {
             if (i2 == 0) {
                 EditWidgetActivity.this.selectedDialogs.remove(i - EditWidgetActivity.this.chatsStartRow);
                 EditWidgetActivity.this.updateRows();
@@ -502,12 +502,12 @@ public class EditWidgetActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                EditWidgetActivity.this.removeSelfFromStack();
+                this.f$0.removeSelfFromStack();
             }
         }, 1000L);
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
@@ -537,7 +537,7 @@ public class EditWidgetActivity extends BaseFragment {
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 frameLayout = textCell;
             } else if (i == 2) {
-                frameLayout = EditWidgetActivity.this.widgetPreviewCell = new WidgetPreviewCell(this.mContext);
+                frameLayout = EditWidgetActivity.this.widgetPreviewCell = EditWidgetActivity.this.new WidgetPreviewCell(this.mContext);
             } else {
                 final GroupCreateUserCell groupCreateUserCell = new GroupCreateUserCell(this.mContext, 0, 0, false);
                 ImageView imageView = new ImageView(this.mContext);
@@ -548,9 +548,7 @@ public class EditWidgetActivity extends BaseFragment {
                 imageView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view, MotionEvent motionEvent) {
-                        boolean lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = EditWidgetActivity.ListAdapter.this.lambda$onCreateViewHolder$0(groupCreateUserCell, view, motionEvent);
-                        return lambda$onCreateViewHolder$0;
+                        return this.f$0.lambda$onCreateViewHolder$0(groupCreateUserCell, view, motionEvent);
                     }
                 });
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_pinnedIcon), PorterDuff.Mode.MULTIPLY));
@@ -568,7 +566,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
@@ -595,12 +593,12 @@ public class EditWidgetActivity extends BaseFragment {
                 }
                 GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
                 Long l = (Long) EditWidgetActivity.this.selectedDialogs.get(i - EditWidgetActivity.this.chatsStartRow);
-                long longValue = l.longValue();
-                if (DialogObject.isUserDialog(longValue)) {
+                long jLongValue = l.longValue();
+                if (DialogObject.isUserDialog(jLongValue)) {
                     groupCreateUserCell.setObject(EditWidgetActivity.this.getMessagesController().getUser(l), null, null, i != EditWidgetActivity.this.chatsEndRow - 1);
                     return;
                 } else {
-                    groupCreateUserCell.setObject(EditWidgetActivity.this.getMessagesController().getChat(Long.valueOf(-longValue)), null, null, i != EditWidgetActivity.this.chatsEndRow - 1);
+                    groupCreateUserCell.setObject(EditWidgetActivity.this.getMessagesController().getChat(Long.valueOf(-jLongValue)), null, null, i != EditWidgetActivity.this.chatsEndRow - 1);
                     return;
                 }
             }

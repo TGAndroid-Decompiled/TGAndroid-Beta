@@ -1,6 +1,7 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.InflaterInputStream;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
@@ -10,7 +11,7 @@ public class ID3v2TagBody {
     private final RangeInputStream input;
     private final ID3v2TagHeader tagHeader;
 
-    public ID3v2TagBody(InputStream inputStream, long j, int i, ID3v2TagHeader iD3v2TagHeader) {
+    ID3v2TagBody(InputStream inputStream, long j, int i, ID3v2TagHeader iD3v2TagHeader) {
         RangeInputStream rangeInputStream = new RangeInputStream(inputStream, j, i);
         this.input = rangeInputStream;
         this.data = new ID3v2DataInput(rangeInputStream);
@@ -33,38 +34,38 @@ public class ID3v2TagBody {
         return this.tagHeader;
     }
 
-    public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) {
-        int i;
-        InputStream inputStream;
+    public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) throws IOException, ID3v2Exception {
+        int dataLengthIndicator;
+        InputStream inflaterInputStream;
         int bodySize = iD3v2FrameHeader.getBodySize();
-        InputStream inputStream2 = this.input;
+        InputStream byteArrayInputStream = this.input;
         if (iD3v2FrameHeader.isUnsynchronization()) {
-            byte[] readFully = this.data.readFully(iD3v2FrameHeader.getBodySize());
-            int length = readFully.length;
-            int i2 = 0;
+            byte[] fully = this.data.readFully(iD3v2FrameHeader.getBodySize());
+            int length = fully.length;
+            int i = 0;
             boolean z = false;
-            for (int i3 = 0; i3 < length; i3++) {
-                byte b = readFully[i3];
+            for (int i2 = 0; i2 < length; i2++) {
+                byte b = fully[i2];
                 if (!z || b != 0) {
-                    readFully[i2] = b;
-                    i2++;
+                    fully[i] = b;
+                    i++;
                 }
                 z = b == -1;
             }
-            inputStream2 = new ByteArrayInputStream(readFully, 0, i2);
-            bodySize = i2;
+            byteArrayInputStream = new ByteArrayInputStream(fully, 0, i);
+            bodySize = i;
         }
         if (iD3v2FrameHeader.isEncryption()) {
             throw new ID3v2Exception("Frame encryption is not supported");
         }
         if (iD3v2FrameHeader.isCompression()) {
-            i = iD3v2FrameHeader.getDataLengthIndicator();
-            inputStream = new InflaterInputStream(inputStream2);
+            dataLengthIndicator = iD3v2FrameHeader.getDataLengthIndicator();
+            inflaterInputStream = new InflaterInputStream(byteArrayInputStream);
         } else {
-            i = bodySize;
-            inputStream = inputStream2;
+            dataLengthIndicator = bodySize;
+            inflaterInputStream = byteArrayInputStream;
         }
-        return new ID3v2FrameBody(inputStream, iD3v2FrameHeader.getHeaderSize(), i, this.tagHeader, iD3v2FrameHeader);
+        return new ID3v2FrameBody(inflaterInputStream, iD3v2FrameHeader.getHeaderSize(), dataLengthIndicator, this.tagHeader, iD3v2FrameHeader);
     }
 
     public String toString() {

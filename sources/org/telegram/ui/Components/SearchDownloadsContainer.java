@@ -88,7 +88,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.currentAccount = i;
         this.recyclerListView = new BlurredRecyclerView(getContext()) {
             @Override
-            public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 super.onLayout(z, i2, i3, i4, i5);
                 SearchDownloadsContainer.this.checkItemsFloodWait();
             }
@@ -118,15 +118,13 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                SearchDownloadsContainer.this.lambda$new$0(i, view, i2);
+                this.f$0.lambda$new$0(i, view, i2);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                boolean lambda$new$1;
-                lambda$new$1 = SearchDownloadsContainer.this.lambda$new$1(view, i2);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(view, i2);
             }
         });
         this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(this.recyclerListView, true);
@@ -169,9 +167,9 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                     MediaController.getInstance().playMessage(message2);
                     return;
                 }
-                boolean canPreviewDocument = message2.canPreviewDocument();
-                if (canPreviewDocument) {
-                    z = canPreviewDocument;
+                boolean zCanPreviewDocument = message2.canPreviewDocument();
+                if (zCanPreviewDocument) {
+                    z = zCanPreviewDocument;
                 } else {
                     TLRPC.Message message3 = message2.messageOwner;
                     boolean z2 = message3 != null && message3.noforwards;
@@ -185,7 +183,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                     if (chat != null) {
                         z2 = chat.noforwards;
                     }
-                    if (canPreviewDocument || z2) {
+                    if (zCanPreviewDocument || z2) {
                         z = true;
                     }
                 }
@@ -244,7 +242,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.this.lambda$checkFilesExist$3();
+                this.f$0.lambda$checkFilesExist$3();
             }
         });
     }
@@ -269,7 +267,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.this.lambda$checkFilesExist$2(arrayList3, arrayList4);
+                this.f$0.lambda$checkFilesExist$2(arrayList3, arrayList4);
             }
         });
     }
@@ -320,21 +318,21 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(this.currentAccount).getCurrentLoadingFiles(arrayList);
         FileLoader.getInstance(this.currentAccount).getRecentLoadingFiles(arrayList2);
         final String lowerCase = this.searchQuery.toLowerCase();
-        boolean equals = lowerCase.equals(this.lastQueryString);
+        boolean zEquals = lowerCase.equals(this.lastQueryString);
         this.lastQueryString = lowerCase;
         Utilities.searchQueue.cancelRunnable(this.lastSearchRunnable);
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.this.lambda$update$5(arrayList, lowerCase, arrayList2);
+                this.f$0.lambda$update$5(arrayList, lowerCase, arrayList2);
             }
         };
         this.lastSearchRunnable = runnable;
-        dispatchQueue.postRunnable(runnable, equals ? 0L : 300L);
+        dispatchQueue.postRunnable(runnable, zEquals ? 0L : 300L);
         this.recentLoadingFilesTmp.clear();
         this.currentLoadingFilesTmp.clear();
-        if (equals) {
+        if (zEquals) {
             return;
         }
         this.emptyView.showProgress(true, true);
@@ -365,7 +363,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.this.lambda$update$4(str, arrayList3, arrayList4);
+                this.f$0.lambda$update$4(str, arrayList3, arrayList4);
             }
         });
     }
@@ -534,27 +532,27 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         update(false);
     }
 
-    public class DownloadsAdapter extends RecyclerListView.SelectionAdapter {
+    class DownloadsAdapter extends RecyclerListView.SelectionAdapter {
         private DownloadsAdapter() {
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View cell;
             if (i == 0) {
-                view = new GraySectionCell(viewGroup.getContext());
+                cell = new GraySectionCell(viewGroup.getContext());
             } else if (i == 1) {
-                view = new Cell(viewGroup.getContext());
+                cell = SearchDownloadsContainer.this.new Cell(viewGroup.getContext());
             } else {
-                view = new SharedAudioCell(viewGroup.getContext()) {
+                cell = new SharedAudioCell(viewGroup.getContext()) {
                     @Override
                     public boolean needPlayMessage(MessageObject messageObject) {
                         return MediaController.getInstance().playMessage(messageObject);
                     }
                 };
             }
-            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(view);
+            cell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(cell);
         }
 
         @Override
@@ -632,7 +630,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
     }
 
-    public class Cell extends FrameLayout {
+    private class Cell extends FrameLayout {
         SharedDocumentCell sharedDocumentCell;
 
         public Cell(Context context) {
@@ -750,11 +748,11 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         if (this.parentFragment == null || !this.recyclerListView.isAttachedToWindow()) {
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown < MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupNotifyPeriod * 1000) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (jCurrentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown < MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupNotifyPeriod * 1000) {
             return;
         }
-        ConnectionsManager.lastPremiumFloodWaitShown = currentTimeMillis;
+        ConnectionsManager.lastPremiumFloodWaitShown = jCurrentTimeMillis;
         if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             return;
         }
@@ -771,7 +769,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         BulletinFactory.of(this.parentFragment).createSimpleBulletin(R.raw.speed_limit, LocaleController.getString(z ? R.string.UploadSpeedLimited : R.string.DownloadSpeedLimited), AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(z ? R.string.UploadSpeedLimitedMessage : R.string.DownloadSpeedLimitedMessage), new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.this.lambda$showPremiumFloodWaitBulletin$6(z);
+                this.f$0.lambda$showPremiumFloodWaitBulletin$6(z);
             }
         }), spannableString)).setDuration(8000).show(false);
     }

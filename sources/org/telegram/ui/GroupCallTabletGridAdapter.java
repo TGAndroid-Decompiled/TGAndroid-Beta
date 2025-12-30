@@ -48,7 +48,7 @@ public class GroupCallTabletGridAdapter extends RecyclerListView.SelectionAdapte
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return new RecyclerListView.Holder(new GroupCallGridCell(viewGroup.getContext(), true) {
             @Override
-            public void onAttachedToWindow() {
+            protected void onAttachedToWindow() {
                 super.onAttachedToWindow();
                 if (!GroupCallTabletGridAdapter.this.visible || getParticipant() == null) {
                     return;
@@ -57,7 +57,7 @@ public class GroupCallTabletGridAdapter extends RecyclerListView.SelectionAdapte
             }
 
             @Override
-            public void onDetachedFromWindow() {
+            protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 GroupCallTabletGridAdapter.this.attachRenderer(this, false);
             }

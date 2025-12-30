@@ -30,8 +30,8 @@ public abstract class GroupCallGridCell extends FrameLayout {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.gridAdapter.getItemHeight(this.position), 1073741824));
         } else {
             float f = GroupCallActivity.isLandscapeMode ? 3.0f : 2.0f;
-            float dp = (AndroidUtilities.displaySize.x - (AndroidUtilities.dp(14.0f) * 2)) + (GroupCallActivity.isLandscapeMode ? -AndroidUtilities.dp(90.0f) : 0);
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) ((GroupCallActivity.isTabletMode ? dp / 2.0f : dp / f) + AndroidUtilities.dp(4.0f)), 1073741824));
+            float fDp = (AndroidUtilities.displaySize.x - (AndroidUtilities.dp(14.0f) * 2)) + (GroupCallActivity.isLandscapeMode ? -AndroidUtilities.dp(90.0f) : 0);
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) ((GroupCallActivity.isTabletMode ? fDp / 2.0f : fDp / f) + AndroidUtilities.dp(4.0f)), 1073741824));
         }
     }
 
@@ -52,13 +52,13 @@ public abstract class GroupCallGridCell extends FrameLayout {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
     }

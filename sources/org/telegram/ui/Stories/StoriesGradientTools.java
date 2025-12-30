@@ -16,7 +16,7 @@ public class StoriesGradientTools extends GradientTools {
     }
 
     @Override
-    public void updateBounds() {
+    protected void updateBounds() {
         setColors(Theme.getColor(this.colorKey1), Theme.getColor(this.colorKey2));
         super.updateBounds();
     }

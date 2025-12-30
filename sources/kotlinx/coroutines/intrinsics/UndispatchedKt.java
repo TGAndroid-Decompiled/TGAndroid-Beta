@@ -17,65 +17,62 @@ import kotlinx.coroutines.internal.ThreadContextKt;
 
 public abstract class UndispatchedKt {
     public static final void startCoroutineUndispatched(Function2 function2, Object obj, Continuation continuation) {
-        Continuation probeCoroutineCreated = DebugProbesKt.probeCoroutineCreated(continuation);
+        Continuation continuationProbeCoroutineCreated = DebugProbesKt.probeCoroutineCreated(continuation);
         try {
             CoroutineContext context = continuation.getContext();
-            Object updateThreadContext = ThreadContextKt.updateThreadContext(context, null);
+            Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context, null);
             try {
-                Object wrapWithContinuationImpl = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, probeCoroutineCreated) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, probeCoroutineCreated);
-                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
-                if (wrapWithContinuationImpl != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-                    probeCoroutineCreated.resumeWith(Result.m275constructorimpl(wrapWithContinuationImpl));
+                Object objWrapWithContinuationImpl = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, continuationProbeCoroutineCreated) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, continuationProbeCoroutineCreated);
+                ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
+                if (objWrapWithContinuationImpl != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+                    continuationProbeCoroutineCreated.resumeWith(Result.m275constructorimpl(objWrapWithContinuationImpl));
                 }
             } catch (Throwable th) {
-                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
                 throw th;
             }
         } catch (Throwable th2) {
             Result.Companion companion = Result.Companion;
-            probeCoroutineCreated.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(th2)));
+            continuationProbeCoroutineCreated.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(th2)));
         }
     }
 
     public static final Object startUndispatchedOrReturn(ScopeCoroutine scopeCoroutine, Object obj, Function2 function2) {
         Object completedExceptionally;
-        Object makeCompletingOnce$kotlinx_coroutines_core;
+        Object objMakeCompletingOnce$kotlinx_coroutines_core;
         try {
             completedExceptionally = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, scopeCoroutine) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
         } catch (Throwable th) {
             completedExceptionally = new CompletedExceptionally(th, false, 2, null);
         }
-        if (completedExceptionally != IntrinsicsKt.getCOROUTINE_SUSPENDED() && (makeCompletingOnce$kotlinx_coroutines_core = scopeCoroutine.makeCompletingOnce$kotlinx_coroutines_core(completedExceptionally)) != JobSupportKt.COMPLETING_WAITING_CHILDREN) {
-            if (makeCompletingOnce$kotlinx_coroutines_core instanceof CompletedExceptionally) {
-                throw ((CompletedExceptionally) makeCompletingOnce$kotlinx_coroutines_core).cause;
+        if (completedExceptionally != IntrinsicsKt.getCOROUTINE_SUSPENDED() && (objMakeCompletingOnce$kotlinx_coroutines_core = scopeCoroutine.makeCompletingOnce$kotlinx_coroutines_core(completedExceptionally)) != JobSupportKt.COMPLETING_WAITING_CHILDREN) {
+            if (objMakeCompletingOnce$kotlinx_coroutines_core instanceof CompletedExceptionally) {
+                throw ((CompletedExceptionally) objMakeCompletingOnce$kotlinx_coroutines_core).cause;
             }
-            return JobSupportKt.unboxState(makeCompletingOnce$kotlinx_coroutines_core);
+            return JobSupportKt.unboxState(objMakeCompletingOnce$kotlinx_coroutines_core);
         }
         return IntrinsicsKt.getCOROUTINE_SUSPENDED();
     }
 
-    public static final Object startUndispatchedOrReturnIgnoreTimeout(ScopeCoroutine scopeCoroutine, Object obj, Function2 function2) {
+    public static final Object startUndispatchedOrReturnIgnoreTimeout(ScopeCoroutine scopeCoroutine, Object obj, Function2 function2) throws Throwable {
         Object completedExceptionally;
-        Object makeCompletingOnce$kotlinx_coroutines_core;
+        Object objMakeCompletingOnce$kotlinx_coroutines_core;
         try {
             completedExceptionally = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, scopeCoroutine) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
         } catch (Throwable th) {
             completedExceptionally = new CompletedExceptionally(th, false, 2, null);
         }
-        if (completedExceptionally != IntrinsicsKt.getCOROUTINE_SUSPENDED() && (makeCompletingOnce$kotlinx_coroutines_core = scopeCoroutine.makeCompletingOnce$kotlinx_coroutines_core(completedExceptionally)) != JobSupportKt.COMPLETING_WAITING_CHILDREN) {
-            if (makeCompletingOnce$kotlinx_coroutines_core instanceof CompletedExceptionally) {
-                Throwable th2 = ((CompletedExceptionally) makeCompletingOnce$kotlinx_coroutines_core).cause;
-                if (!(th2 instanceof TimeoutCancellationException)) {
-                    throw th2;
-                }
-                if (((TimeoutCancellationException) th2).coroutine != scopeCoroutine) {
+        if (completedExceptionally != IntrinsicsKt.getCOROUTINE_SUSPENDED() && (objMakeCompletingOnce$kotlinx_coroutines_core = scopeCoroutine.makeCompletingOnce$kotlinx_coroutines_core(completedExceptionally)) != JobSupportKt.COMPLETING_WAITING_CHILDREN) {
+            if (objMakeCompletingOnce$kotlinx_coroutines_core instanceof CompletedExceptionally) {
+                Throwable th2 = ((CompletedExceptionally) objMakeCompletingOnce$kotlinx_coroutines_core).cause;
+                if (!(th2 instanceof TimeoutCancellationException) || ((TimeoutCancellationException) th2).coroutine != scopeCoroutine) {
                     throw th2;
                 }
                 if (completedExceptionally instanceof CompletedExceptionally) {
                     throw ((CompletedExceptionally) completedExceptionally).cause;
                 }
             } else {
-                completedExceptionally = JobSupportKt.unboxState(makeCompletingOnce$kotlinx_coroutines_core);
+                completedExceptionally = JobSupportKt.unboxState(objMakeCompletingOnce$kotlinx_coroutines_core);
             }
             return completedExceptionally;
         }

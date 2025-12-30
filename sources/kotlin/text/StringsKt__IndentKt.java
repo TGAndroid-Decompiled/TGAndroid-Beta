@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.collections.CollectionsKt;
+import kotlin.collections.CollectionsKt___CollectionsKt;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -22,9 +23,9 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
         String str2;
         Intrinsics.checkNotNullParameter(str, "<this>");
         Intrinsics.checkNotNullParameter(newIndent, "newIndent");
-        List lines = StringsKt__StringsKt.lines(str);
+        List listLines = StringsKt__StringsKt.lines(str);
         ArrayList arrayList = new ArrayList();
-        for (Object obj : lines) {
+        for (Object obj : listLines) {
             if (!StringsKt.isBlank((String) obj)) {
                 arrayList.add(obj);
             }
@@ -36,12 +37,12 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
         }
         Integer num = (Integer) CollectionsKt.minOrNull(arrayList2);
         int i = 0;
-        int intValue = num != null ? num.intValue() : 0;
-        int length = str.length() + (newIndent.length() * lines.size());
+        int iIntValue = num != null ? num.intValue() : 0;
+        int length = str.length() + (newIndent.length() * listLines.size());
         Function1 indentFunction$StringsKt__IndentKt = getIndentFunction$StringsKt__IndentKt(newIndent);
-        int lastIndex = CollectionsKt.getLastIndex(lines);
+        int lastIndex = CollectionsKt.getLastIndex(listLines);
         ArrayList arrayList3 = new ArrayList();
-        for (Object obj2 : lines) {
+        for (Object obj2 : listLines) {
             int i2 = i + 1;
             if (i < 0) {
                 CollectionsKt.throwIndexOverflow();
@@ -50,8 +51,8 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
             if ((i == 0 || i == lastIndex) && StringsKt.isBlank(str3)) {
                 str3 = null;
             } else {
-                String drop = StringsKt___StringsKt.drop(str3, intValue);
-                if (drop != null && (str2 = (String) indentFunction$StringsKt__IndentKt.invoke(drop)) != null) {
+                String strDrop = StringsKt___StringsKt.drop(str3, iIntValue);
+                if (strDrop != null && (str2 = (String) indentFunction$StringsKt__IndentKt.invoke(strDrop)) != null) {
                     str3 = str2;
                 }
             }
@@ -60,23 +61,19 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
             }
             i = i2;
         }
-        return ((StringBuilder) CollectionsKt.joinTo$default(arrayList3, new StringBuilder(length), "\n", null, null, 0, null, null, 124, null)).toString();
+        return ((StringBuilder) CollectionsKt___CollectionsKt.joinTo(arrayList3, new StringBuilder(length), (124 & 2) != 0 ? ", " : "\n", (124 & 4) != 0 ? "" : null, (124 & 8) == 0 ? null : "", (124 & 16) != 0 ? -1 : 0, (124 & 32) != 0 ? "..." : null, (124 & 64) != 0 ? null : null)).toString();
     }
 
     private static final Function1 getIndentFunction$StringsKt__IndentKt(final String str) {
         return str.length() == 0 ? new Function1() {
             @Override
             public final Object invoke(Object obj) {
-                String indentFunction$lambda$8$StringsKt__IndentKt;
-                indentFunction$lambda$8$StringsKt__IndentKt = StringsKt__IndentKt.getIndentFunction$lambda$8$StringsKt__IndentKt((String) obj);
-                return indentFunction$lambda$8$StringsKt__IndentKt;
+                return StringsKt__IndentKt.getIndentFunction$lambda$8$StringsKt__IndentKt((String) obj);
             }
         } : new Function1() {
             @Override
             public final Object invoke(Object obj) {
-                String indentFunction$lambda$9$StringsKt__IndentKt;
-                indentFunction$lambda$9$StringsKt__IndentKt = StringsKt__IndentKt.getIndentFunction$lambda$9$StringsKt__IndentKt(str, (String) obj);
-                return indentFunction$lambda$9$StringsKt__IndentKt;
+                return StringsKt__IndentKt.getIndentFunction$lambda$9$StringsKt__IndentKt(str, (String) obj);
             }
         };
     }

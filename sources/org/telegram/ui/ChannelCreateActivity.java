@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -60,7 +61,6 @@ import org.telegram.ui.Cells.RadioButtonCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextBlockCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.ChannelCreateActivity;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CircularProgressDrawable;
@@ -172,7 +172,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.enableDoneLoading = new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$new$3();
+                this.f$0.lambda$new$3();
             }
         };
         this.currentStep = bundle.getInt("step", 0);
@@ -189,7 +189,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelCreateActivity.this.lambda$new$1(tLObject, tL_error);
+                    this.f$0.lambda$new$1(tLObject, tL_error);
                 }
             });
             return;
@@ -213,7 +213,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$new$0(tL_error);
+                this.f$0.lambda$new$0(tL_error);
             }
         });
     }
@@ -330,7 +330,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         builder.setNegativeButton(LocaleController.getString(R.string.Stop), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChannelCreateActivity.this.lambda$showDoneCancelDialog$2(alertDialog, i);
+                this.f$0.lambda$showDoneCancelDialog$2(alertDialog, i);
             }
         });
         this.cancelDialog = builder.show();
@@ -360,15 +360,15 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
-            this.doneButtonDrawableAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
+            this.doneButtonDrawableAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChannelCreateActivity.this.lambda$updateDoneProgress$4(valueAnimator2);
+                    this.f$0.lambda$updateDoneProgress$4(valueAnimator2);
                 }
             });
-            this.doneButtonDrawableAnimator.setDuration(Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f);
+            this.doneButtonDrawableAnimator.setDuration((long) (Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f));
             this.doneButtonDrawableAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.doneButtonDrawableAnimator.start();
         }
@@ -388,13 +388,13 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        ActionBarMenu createMenu = this.actionBar.createMenu();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
-        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
+        this.doneButton = actionBarMenuCreateMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         int i2 = this.currentStep;
         if (i2 == 0) {
             this.actionBar.setTitle(LocaleController.getString(R.string.NewChannel));
@@ -435,7 +435,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
 
                 @Override
-                public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+                protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelCreateActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
                 }
 
@@ -450,9 +450,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             sizeNotifierFrameLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    boolean lambda$createView$5;
-                    lambda$createView$5 = ChannelCreateActivity.lambda$createView$5(view, motionEvent);
-                    return lambda$createView$5;
+                    return ChannelCreateActivity.lambda$createView$5(view, motionEvent);
                 }
             });
             this.fragmentView = sizeNotifierFrameLayout;
@@ -509,7 +507,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    ChannelCreateActivity.this.lambda$createView$8(view3);
+                    this.f$0.lambda$createView$8(view3);
                 }
             });
             int i4 = R.raw.camera;
@@ -565,9 +563,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.nameTextView.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                    boolean lambda$createView$9;
-                    lambda$createView$9 = ChannelCreateActivity.this.lambda$createView$9(textView, i5, keyEvent);
-                    return lambda$createView$9;
+                    return this.f$0.lambda$createView$9(textView, i5, keyEvent);
                 }
             });
             EditTextEmoji editTextEmoji3 = this.nameTextView;
@@ -595,9 +591,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.descriptionTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                    boolean lambda$createView$10;
-                    lambda$createView$10 = ChannelCreateActivity.this.lambda$createView$10(textView, i6, keyEvent);
-                    return lambda$createView$10;
+                    return this.f$0.lambda$createView$10(textView, i6, keyEvent);
                 }
             });
             this.descriptionTextView.addTextChangedListener(new TextWatcher() {
@@ -664,7 +658,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.radioButtonCell1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view4) {
-                    ChannelCreateActivity.this.lambda$createView$11(view4);
+                    this.f$0.lambda$createView$11(view4);
                 }
             });
             Boolean bool2 = this.forcePublic;
@@ -686,7 +680,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.radioButtonCell2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view4) {
-                    ChannelCreateActivity.this.lambda$createView$12(view4);
+                    this.f$0.lambda$createView$12(view4);
                 }
             });
             Boolean bool4 = this.forcePublic;
@@ -773,18 +767,18 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
                         charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                        int indexOf = charSequence.toString().indexOf(10);
-                        if (indexOf >= 0) {
-                            charSequence.replace(indexOf, indexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
+                        int iIndexOf = charSequence.toString().indexOf(10);
+                        if (iIndexOf >= 0) {
+                            charSequence.replace(iIndexOf, iIndexOf + 1, " ");
+                            charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, iIndexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? "" : ChannelCreateActivity.this.descriptionTextView.getText().toString();
+                        final String string = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? "" : ChannelCreateActivity.this.descriptionTextView.getText().toString();
                         for (int i10 = 0; i10 < typefaceSpanArr.length; i10++) {
                             charSequence.setSpan(new ClickableSpan() {
                                 @Override
                                 public void onClick(View view4) {
-                                    Browser.openUrl(getContext(), "https://fragment.com/username/" + obj);
+                                    Browser.openUrl(getContext(), "https://fragment.com/username/" + string);
                                 }
 
                                 @Override
@@ -830,7 +824,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         return this.fragmentView;
     }
 
-    public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass1() {
         }
 
@@ -857,12 +851,12 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                                     messagesController.updateChannelUserName(channelCreateActivity, channelCreateActivity.chatId, ChannelCreateActivity.this.lastCheckName, new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ChannelCreateActivity.AnonymousClass1.this.lambda$onItemClick$0();
+                                            this.f$0.lambda$onItemClick$0();
                                         }
                                     }, new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ChannelCreateActivity.AnonymousClass1.this.lambda$onItemClick$1();
+                                            this.f$0.lambda$onItemClick$1();
                                         }
                                     });
                                 } else {
@@ -948,12 +942,12 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$createView$6();
+                this.f$0.lambda$createView$6();
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChannelCreateActivity.this.lambda$createView$7(dialogInterface);
+                this.f$0.lambda$createView$7(dialogInterface);
             }
         }, 0);
         this.cameraDrawable.setCurrentFrame(0);
@@ -1037,7 +1031,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.this.lambda$generateLink$14(tLObject, tL_error);
+                this.f$0.lambda$generateLink$14(tLObject, tL_error);
             }
         });
     }
@@ -1046,7 +1040,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$generateLink$13(tL_error, tLObject);
+                this.f$0.lambda$generateLink$13(tL_error, tLObject);
             }
         });
     }
@@ -1147,7 +1141,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$didUploadPhoto$15(inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
+                this.f$0.lambda$didUploadPhoto$15(inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
             }
         });
     }
@@ -1254,7 +1248,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, NumberFormatException {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);
@@ -1271,9 +1265,9 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             }
             EditTextEmoji editTextEmoji = this.nameTextView;
             if (editTextEmoji != null) {
-                String obj = editTextEmoji.getText().toString();
-                if (obj.length() != 0) {
-                    bundle.putString("nameTextView", obj);
+                String string = editTextEmoji.getText().toString();
+                if (string.length() != 0) {
+                    bundle.putString("nameTextView", string);
                 }
             }
         }
@@ -1333,17 +1327,17 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     FileLog.e(e2);
                 }
             }
-            long longValue = ((Long) objArr[0]).longValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
             Bundle bundle = new Bundle();
             bundle.putInt("step", 1);
-            bundle.putLong("chat_id", longValue);
+            bundle.putLong("chat_id", jLongValue);
             bundle.putBoolean("canCreatePublic", this.canCreatePublic);
             Boolean bool = this.forcePublic;
             if (bool != null) {
                 bundle.putBoolean("forcePublic", bool.booleanValue());
             }
             if (this.inputPhoto != null || this.inputVideo != null || this.inputEmojiMarkup != null) {
-                MessagesController.getInstance(this.currentAccount).changeChatAvatar(longValue, null, this.inputPhoto, this.inputVideo, this.inputEmojiMarkup, this.videoTimestamp, this.inputVideoPath, this.avatar, this.avatarBig, null);
+                MessagesController.getInstance(this.currentAccount).changeChatAvatar(jLongValue, null, this.inputPhoto, this.inputVideo, this.inputEmojiMarkup, this.videoTimestamp, this.inputVideoPath, this.avatar, this.avatarBig, null);
             }
             ChannelCreateActivity channelCreateActivity = new ChannelCreateActivity(bundle);
             channelCreateActivity.setOnFinishListener(this.onFinishListener);
@@ -1360,7 +1354,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$21(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedChannels$21(tLObject, tL_error);
             }
         });
     }
@@ -1369,7 +1363,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$20(tLObject);
+                this.f$0.lambda$loadAdminedChannels$20(tLObject);
             }
         });
     }
@@ -1388,7 +1382,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             AdminedChannelCell adminedChannelCell = new AdminedChannelCell(getParentActivity(), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelCreateActivity.this.lambda$loadAdminedChannels$19(view);
+                    this.f$0.lambda$loadAdminedChannels$19(view);
                 }
             }, false, 0);
             TLRPC.Chat chat = tL_messages_chats.chats.get(i2);
@@ -1416,7 +1410,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$18(currentChannel, alertDialog, i);
+                this.f$0.lambda$loadAdminedChannels$18(currentChannel, alertDialog, i);
             }
         });
         showDialog(builder.create());
@@ -1429,7 +1423,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$17(tLObject, tL_error);
+                this.f$0.lambda$loadAdminedChannels$17(tLObject, tL_error);
             }
         }, 64);
     }
@@ -1439,7 +1433,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelCreateActivity.this.lambda$loadAdminedChannels$16();
+                    this.f$0.lambda$loadAdminedChannels$16();
                 }
             });
         }
@@ -1479,8 +1473,8 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 return false;
             }
             for (int i2 = 0; i2 < str.length(); i2++) {
-                char charAt = str.charAt(i2);
-                if (i2 == 0 && charAt >= '0' && charAt <= '9') {
+                char cCharAt = str.charAt(i2);
+                if (i2 == 0 && cCharAt >= '0' && cCharAt <= '9') {
                     this.checkTextView.setText(LocaleController.getString(R.string.LinkInvalidStartNumber));
                     TextView textView2 = this.checkTextView;
                     int i3 = Theme.key_text_RedRegular;
@@ -1488,7 +1482,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     this.checkTextView.setTextColor(Theme.getColor(i3));
                     return false;
                 }
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
+                if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     this.checkTextView.setText(LocaleController.getString(R.string.LinkInvalid));
                     TextView textView3 = this.checkTextView;
                     int i4 = Theme.key_text_RedRegular;
@@ -1523,7 +1517,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$checkUserName$24(str);
+                this.f$0.lambda$checkUserName$24(str);
             }
         };
         this.checkRunnable = runnable2;
@@ -1538,7 +1532,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.this.lambda$checkUserName$23(str, tL_channels_checkUsername, tLObject, tL_error);
+                this.f$0.lambda$checkUserName$23(str, tL_channels_checkUsername, tLObject, tL_error);
             }
         }, 2);
     }
@@ -1547,7 +1541,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$checkUserName$22(str, tL_error, tLObject, tL_channels_checkUsername);
+                this.f$0.lambda$checkUserName$22(str, tL_error, tLObject, tL_channels_checkUsername);
             }
         });
     }
@@ -1597,7 +1591,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$showPremiumIncreaseLimitDialog$25();
+                this.f$0.lambda$showPremiumIncreaseLimitDialog$25();
             }
         };
         showDialog(limitReachedBottomSheet);
@@ -1614,7 +1608,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChannelCreateActivity.this.lambda$getThemeDescriptions$26();
+                this.f$0.lambda$getThemeDescriptions$26();
             }
 
             @Override

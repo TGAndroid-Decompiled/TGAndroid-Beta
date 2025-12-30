@@ -95,21 +95,16 @@ public class RadialProgress {
         if (this.disableUpdate) {
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         Drawable drawable = this.checkBackgroundDrawable;
-        if (drawable != null) {
-            if (this.currentDrawable == drawable) {
-                throw null;
-            }
-            if (this.previousDrawable == drawable) {
-                throw null;
-            }
+        if (drawable != null && (this.currentDrawable == drawable || this.previousDrawable == drawable)) {
+            throw null;
         }
         if (z) {
             if (this.animatedProgressValue != 1.0f) {
-                this.radOffset += ((float) (360 * j)) / 3000.0f;
+                this.radOffset += (360 * j) / 3000.0f;
                 float f = this.currentProgress;
                 float f2 = this.animationProgressStart;
                 float f3 = f - f2;
@@ -121,7 +116,7 @@ public class RadialProgress {
                         this.animationProgressStart = f;
                         this.currentProgressTime = 0L;
                     } else {
-                        this.animatedProgressValue = f2 + (f3 * decelerateInterpolator.getInterpolation(((float) j2) / 300.0f));
+                        this.animatedProgressValue = f2 + (f3 * decelerateInterpolator.getInterpolation(j2 / 300.0f));
                     }
                 }
                 invalidateParent();
@@ -130,7 +125,7 @@ public class RadialProgress {
                 if (this.animatedProgressValue < 1.0f || this.previousDrawable == null) {
                     return;
                 }
-                float f4 = this.animatedAlphaValue - (((float) j) / 200.0f);
+                float f4 = this.animatedAlphaValue - (j / 200.0f);
                 this.animatedAlphaValue = f4;
                 if (f4 <= 0.0f) {
                     this.animatedAlphaValue = 0.0f;
@@ -142,7 +137,7 @@ public class RadialProgress {
             if (this.animatedProgressValue < 1.0f || this.previousMiniDrawable == null) {
                 return;
             }
-            float f5 = this.animatedAlphaValue - (((float) j) / 200.0f);
+            float f5 = this.animatedAlphaValue - (j / 200.0f);
             this.animatedAlphaValue = f5;
             if (f5 <= 0.0f) {
                 this.animatedAlphaValue = 0.0f;
@@ -154,7 +149,7 @@ public class RadialProgress {
         }
         if (this.drawMiniProgress) {
             if (this.previousMiniDrawable != null) {
-                float f6 = this.animatedAlphaValue - (((float) j) / 200.0f);
+                float f6 = this.animatedAlphaValue - (j / 200.0f);
                 this.animatedAlphaValue = f6;
                 if (f6 <= 0.0f) {
                     this.animatedAlphaValue = 0.0f;
@@ -167,7 +162,7 @@ public class RadialProgress {
             return;
         }
         if (this.previousDrawable != null) {
-            float f7 = this.animatedAlphaValue - (((float) j) / 200.0f);
+            float f7 = this.animatedAlphaValue - (j / 200.0f);
             this.animatedAlphaValue = f7;
             if (f7 <= 0.0f) {
                 this.animatedAlphaValue = 0.0f;
@@ -211,12 +206,12 @@ public class RadialProgress {
     }
 
     private void invalidateParent() {
-        int dp = AndroidUtilities.dp(2.0f);
+        int iDp = AndroidUtilities.dp(2.0f);
         View view = this.parent;
         RectF rectF = this.progressRect;
-        int i = ((int) rectF.left) - dp;
-        int i2 = ((int) rectF.top) - dp;
-        int i3 = dp * 2;
+        int i = ((int) rectF.left) - iDp;
+        int i2 = ((int) rectF.top) - iDp;
+        int i3 = iDp * 2;
         view.invalidate(i, i2, ((int) rectF.right) + i3, ((int) rectF.bottom) + i3);
     }
 
@@ -243,8 +238,8 @@ public class RadialProgress {
 
     public void draw(Canvas canvas) {
         Drawable drawable;
-        float centerX;
-        float centerY;
+        float fCenterX;
+        float fCenterY;
         int i;
         int i2;
         Drawable drawable2;
@@ -264,13 +259,13 @@ public class RadialProgress {
             }
             if (Math.abs(this.progressRect.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
                 float f = 16;
-                centerX = this.progressRect.centerX() + AndroidUtilities.dp(f);
-                centerY = this.progressRect.centerY() + AndroidUtilities.dp(f);
+                fCenterX = this.progressRect.centerX() + AndroidUtilities.dp(f);
+                fCenterY = this.progressRect.centerY() + AndroidUtilities.dp(f);
                 i = 20;
                 i2 = 0;
             } else {
-                centerX = this.progressRect.centerX() + AndroidUtilities.dp(18.0f);
-                centerY = this.progressRect.centerY() + AndroidUtilities.dp(18.0f);
+                fCenterX = this.progressRect.centerX() + AndroidUtilities.dp(18.0f);
+                fCenterY = this.progressRect.centerY() + AndroidUtilities.dp(18.0f);
                 i = 22;
                 i2 = 2;
             }
@@ -287,7 +282,7 @@ public class RadialProgress {
                 } else {
                     this.miniProgressBackgroundPaint.setAlpha(255);
                 }
-                canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(12.0f), this.miniProgressBackgroundPaint);
+                canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(12.0f), this.miniProgressBackgroundPaint);
             }
             if (this.miniDrawCanvas != null) {
                 Bitmap bitmap = this.miniDrawBitmap;
@@ -302,7 +297,7 @@ public class RadialProgress {
                     drawable4.setAlpha((int) (this.overrideAlpha * 255.0f));
                 }
                 float f4 = i3;
-                this.previousMiniDrawable.setBounds((int) (centerX - (AndroidUtilities.dp(f4) * f2)), (int) (centerY - (AndroidUtilities.dp(f4) * f2)), (int) ((AndroidUtilities.dp(f4) * f2) + centerX), (int) ((AndroidUtilities.dp(f4) * f2) + centerY));
+                this.previousMiniDrawable.setBounds((int) (fCenterX - (AndroidUtilities.dp(f4) * f2)), (int) (fCenterY - (AndroidUtilities.dp(f4) * f2)), (int) ((AndroidUtilities.dp(f4) * f2) + fCenterX), (int) ((AndroidUtilities.dp(f4) * f2) + fCenterY));
                 this.previousMiniDrawable.draw(canvas);
             }
             if (!this.hideCurrentDrawable && (drawable2 = this.currentMiniDrawable) != null) {
@@ -312,7 +307,7 @@ public class RadialProgress {
                     drawable2.setAlpha((int) (this.overrideAlpha * 255.0f));
                 }
                 float f5 = i3;
-                this.currentMiniDrawable.setBounds((int) (centerX - AndroidUtilities.dp(f5)), (int) (centerY - AndroidUtilities.dp(f5)), (int) (AndroidUtilities.dp(f5) + centerX), (int) (AndroidUtilities.dp(f5) + centerY));
+                this.currentMiniDrawable.setBounds((int) (fCenterX - AndroidUtilities.dp(f5)), (int) (fCenterY - AndroidUtilities.dp(f5)), (int) (AndroidUtilities.dp(f5) + fCenterX), (int) (AndroidUtilities.dp(f5) + fCenterY));
                 this.currentMiniDrawable.draw(canvas);
             }
             if (this.currentMiniWithRound || this.previousMiniWithRound) {
@@ -323,7 +318,7 @@ public class RadialProgress {
                     this.miniProgressPaint.setAlpha((int) (this.overrideAlpha * 255.0f));
                 }
                 float f6 = i3 - 2;
-                this.cicleRect.set(centerX - (AndroidUtilities.dp(f6) * f2), centerY - (AndroidUtilities.dp(f6) * f2), centerX + (AndroidUtilities.dp(f6) * f2), centerY + (AndroidUtilities.dp(f6) * f2));
+                this.cicleRect.set(fCenterX - (AndroidUtilities.dp(f6) * f2), fCenterY - (AndroidUtilities.dp(f6) * f2), fCenterX + (AndroidUtilities.dp(f6) * f2), fCenterY + (AndroidUtilities.dp(f6) * f2));
                 canvas.drawArc(this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, this.miniProgressPaint);
                 updateAnimation(true);
                 return;
@@ -380,16 +375,16 @@ public class RadialProgress {
 
     private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
         if (this.roundRectProgress) {
-            float height = rectF.height() * 0.32f;
+            float fHeight = rectF.height() * 0.32f;
             if (Math.abs(f2) == 360.0f) {
-                canvas.drawRoundRect(rectF, height, height, paint);
+                canvas.drawRoundRect(rectF, fHeight, fHeight, paint);
                 return;
             }
             float f3 = ((((int) f) / 90) * 90) + 90;
             float f4 = (-199.0f) + f3;
             float f5 = ((f + f2) - f4) / 360.0f;
             this.roundProgressRectPath.rewind();
-            this.roundProgressRectPath.addRoundRect(rectF, height, height, Path.Direction.CW);
+            this.roundProgressRectPath.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
             this.roundProgressRectMatrix.reset();
             this.roundProgressRectMatrix.postRotate(f3, rectF.centerX(), rectF.centerY());
             this.roundProgressRectPath.transform(this.roundProgressRectMatrix);

@@ -6,7 +6,7 @@ import kotlin.coroutines.intrinsics.IntrinsicsKt;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.intrinsics.CancellableKt;
 
-public final class LazyStandaloneCoroutine extends StandaloneCoroutine {
+final class LazyStandaloneCoroutine extends StandaloneCoroutine {
     private final Continuation continuation;
 
     public LazyStandaloneCoroutine(CoroutineContext coroutineContext, Function2 function2) {
@@ -15,7 +15,7 @@ public final class LazyStandaloneCoroutine extends StandaloneCoroutine {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() throws Throwable {
         CancellableKt.startCoroutineCancellable(this.continuation, this);
     }
 }

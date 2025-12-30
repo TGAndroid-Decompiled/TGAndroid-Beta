@@ -97,7 +97,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             this.albumViews[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PhotoPickerAlbumsCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         }
@@ -155,21 +155,21 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int dp;
+        int iDp;
         if (AndroidUtilities.isTablet()) {
-            dp = ((AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
+            iDp = ((AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
         } else {
-            dp = ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
+            iDp = ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
         }
         for (int i3 = 0; i3 < this.albumsCount; i3++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.albumViews[i3].getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(4.0f);
-            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + dp) * i3;
-            layoutParams.width = dp;
-            layoutParams.height = dp;
+            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + iDp) * i3;
+            layoutParams.width = iDp;
+            layoutParams.height = iDp;
             layoutParams.gravity = 51;
             this.albumViews[i3].setLayoutParams(layoutParams);
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f) + dp, 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f) + iDp, 1073741824));
     }
 }

@@ -18,33 +18,33 @@ public abstract class CustomHtml {
 
     private static void toHTML_0_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
+            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, iNextSpanTransition, QuoteSpan.class);
             if (quoteSpanArr != null) {
                 for (QuoteSpan quoteSpan : quoteSpanArr) {
                     sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
                 }
             }
-            toHTML_1_wrapTextStyle(sb, spanned, i, nextSpanTransition);
+            toHTML_1_wrapTextStyle(sb, spanned, i, iNextSpanTransition);
             if (quoteSpanArr != null) {
                 for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
                     sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_1_wrapTextStyle(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, TextStyleSpan.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, TextStyleSpan.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(i, nextSpanTransition, TextStyleSpan.class);
+            TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(i, iNextSpanTransition, TextStyleSpan.class);
             if (textStyleSpanArr != null) {
                 for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
                     if (textStyleSpan != null) {
@@ -72,7 +72,7 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            toHTML_2_wrapURLReplacements(sb, spanned, i, nextSpanTransition);
+            toHTML_2_wrapURLReplacements(sb, spanned, i, iNextSpanTransition);
             if (textStyleSpanArr != null) {
                 for (TextStyleSpan textStyleSpan2 : textStyleSpanArr) {
                     if (textStyleSpan2 != null) {
@@ -98,17 +98,17 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_2_wrapURLReplacements(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, URLSpanReplacement.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, URLSpanReplacement.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(i, nextSpanTransition, URLSpanReplacement.class);
+            URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(i, iNextSpanTransition, URLSpanReplacement.class);
             if (uRLSpanReplacementArr != null) {
                 for (URLSpanReplacement uRLSpanReplacement : uRLSpanReplacementArr) {
                     sb.append("<a href=\"");
@@ -116,23 +116,23 @@ public abstract class CustomHtml {
                     sb.append("\">");
                 }
             }
-            toHTML_3_wrapMonoscape(sb, spanned, i, nextSpanTransition);
+            toHTML_3_wrapMonoscape(sb, spanned, i, iNextSpanTransition);
             if (uRLSpanReplacementArr != null) {
                 for (int i3 = 0; i3 < uRLSpanReplacementArr.length; i3++) {
                     sb.append("</a>");
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_3_wrapMonoscape(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, URLSpanMono.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, URLSpanMono.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            URLSpanMono[] uRLSpanMonoArr = (URLSpanMono[]) spanned.getSpans(i, nextSpanTransition, URLSpanMono.class);
+            URLSpanMono[] uRLSpanMonoArr = (URLSpanMono[]) spanned.getSpans(i, iNextSpanTransition, URLSpanMono.class);
             if (uRLSpanMonoArr != null) {
                 for (URLSpanMono uRLSpanMono : uRLSpanMonoArr) {
                     if (uRLSpanMono != null) {
@@ -140,7 +140,7 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            toHTML_4_wrapMonoscape2(sb, spanned, i, nextSpanTransition);
+            toHTML_4_wrapMonoscape2(sb, spanned, i, iNextSpanTransition);
             if (uRLSpanMonoArr != null) {
                 for (URLSpanMono uRLSpanMono2 : uRLSpanMonoArr) {
                     if (uRLSpanMono2 != null) {
@@ -148,17 +148,17 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_4_wrapMonoscape2(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, CodeHighlighting.Span.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, CodeHighlighting.Span.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            CodeHighlighting.Span[] spanArr = (CodeHighlighting.Span[]) spanned.getSpans(i, nextSpanTransition, CodeHighlighting.Span.class);
+            CodeHighlighting.Span[] spanArr = (CodeHighlighting.Span[]) spanned.getSpans(i, iNextSpanTransition, CodeHighlighting.Span.class);
             if (spanArr != null) {
                 for (CodeHighlighting.Span span : spanArr) {
                     if (span != null) {
@@ -172,7 +172,7 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
+            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, iNextSpanTransition);
             if (spanArr != null) {
                 for (CodeHighlighting.Span span2 : spanArr) {
                     if (span2 != null) {
@@ -180,17 +180,17 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_6_wrapAnimatedEmoji(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, AnimatedEmojiSpan.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
+            int iNextSpanTransition = spanned.nextSpanTransition(i, i2, AnimatedEmojiSpan.class);
+            if (iNextSpanTransition < 0) {
+                iNextSpanTransition = i2;
             }
-            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(i, nextSpanTransition, AnimatedEmojiSpan.class);
+            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(i, iNextSpanTransition, AnimatedEmojiSpan.class);
             if (animatedEmojiSpanArr != null) {
                 for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
                     if (animatedEmojiSpan != null && !animatedEmojiSpan.standard) {
@@ -198,7 +198,7 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            toHTML_7_withinStyle(sb, spanned, i, nextSpanTransition);
+            toHTML_7_withinStyle(sb, spanned, i, iNextSpanTransition);
             if (animatedEmojiSpanArr != null) {
                 for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
                     if (animatedEmojiSpan2 != null && !animatedEmojiSpan2.standard) {
@@ -206,29 +206,29 @@ public abstract class CustomHtml {
                     }
                 }
             }
-            i = nextSpanTransition;
+            i = iNextSpanTransition;
         }
     }
 
     private static void toHTML_7_withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
         int i3;
-        char charAt;
+        char cCharAt;
         while (i < i2) {
-            char charAt2 = charSequence.charAt(i);
-            if (charAt2 == '\n') {
+            char cCharAt2 = charSequence.charAt(i);
+            if (cCharAt2 == '\n') {
                 sb.append("<br>");
-            } else if (charAt2 == '<') {
+            } else if (cCharAt2 == '<') {
                 sb.append("&lt;");
-            } else if (charAt2 == '>') {
+            } else if (cCharAt2 == '>') {
                 sb.append("&gt;");
-            } else if (charAt2 == '&') {
+            } else if (cCharAt2 == '&') {
                 sb.append("&amp;");
-            } else if (charAt2 < 55296 || charAt2 > 57343) {
-                if (charAt2 > '~' || charAt2 < ' ') {
+            } else if (cCharAt2 < 55296 || cCharAt2 > 57343) {
+                if (cCharAt2 > '~' || cCharAt2 < ' ') {
                     sb.append("&#");
-                    sb.append((int) charAt2);
+                    sb.append((int) cCharAt2);
                     sb.append(";");
-                } else if (charAt2 == ' ') {
+                } else if (cCharAt2 == ' ') {
                     while (true) {
                         int i4 = i + 1;
                         if (i4 >= i2 || charSequence.charAt(i4) != ' ') {
@@ -239,11 +239,11 @@ public abstract class CustomHtml {
                     }
                     sb.append(' ');
                 } else {
-                    sb.append(charAt2);
+                    sb.append(cCharAt2);
                 }
-            } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
+            } else if (cCharAt2 < 56320 && (i3 = i + 1) < i2 && (cCharAt = charSequence.charAt(i3)) >= 56320 && cCharAt <= 57343) {
                 sb.append("&#");
-                sb.append(((charAt2 - 55296) << 10) | 65536 | (charAt - 56320));
+                sb.append(((cCharAt2 - 55296) << 10) | 65536 | (cCharAt - 56320));
                 sb.append(";");
                 i = i3;
             }

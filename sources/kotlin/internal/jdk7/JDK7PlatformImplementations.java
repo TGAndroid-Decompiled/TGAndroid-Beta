@@ -1,11 +1,12 @@
 package kotlin.internal.jdk7;
 
+import java.lang.reflect.InvocationTargetException;
 import kotlin.internal.PlatformImplementations;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class JDK7PlatformImplementations extends PlatformImplementations {
 
-    public static final class ReflectSdkVersion {
+    private static final class ReflectSdkVersion {
         public static final ReflectSdkVersion INSTANCE = new ReflectSdkVersion();
         public static final Integer sdkVersion;
 
@@ -13,25 +14,17 @@ public abstract class JDK7PlatformImplementations extends PlatformImplementation
         }
 
         static {
-            Integer num;
             Object obj;
-            Integer num2 = null;
+            Integer num = null;
             try {
                 obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
             } catch (Throwable unused) {
             }
-            if (obj instanceof Integer) {
-                num = (Integer) obj;
-                if (num != null && num.intValue() > 0) {
-                    num2 = num;
-                }
-                sdkVersion = num2;
+            Integer num2 = obj instanceof Integer ? (Integer) obj : null;
+            if (num2 != null && num2.intValue() > 0) {
+                num = num2;
             }
-            num = null;
-            if (num != null) {
-                num2 = num;
-            }
-            sdkVersion = num2;
+            sdkVersion = num;
         }
     }
 
@@ -41,7 +34,7 @@ public abstract class JDK7PlatformImplementations extends PlatformImplementation
     }
 
     @Override
-    public void addSuppressed(Throwable cause, Throwable exception) {
+    public void addSuppressed(Throwable cause, Throwable exception) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Intrinsics.checkNotNullParameter(cause, "cause");
         Intrinsics.checkNotNullParameter(exception, "exception");
         if (sdkIsNullOrAtLeast(19)) {

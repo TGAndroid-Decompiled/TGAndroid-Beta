@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -37,6 +37,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
@@ -46,16 +47,16 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
     private String currentGroupCreateAddress;
     private String currentGroupCreateDisplayAddress;
     private Location currentGroupCreateLocation;
-    private int currentType;
+    private final int currentType;
     private LinearLayout descriptionLayout;
-    private TextView[] descriptionLines = new TextView[6];
+    private final TextView[] descriptionLines = new TextView[6];
     private TextView descriptionText;
     private TextView descriptionText2;
-    private Drawable drawable2;
     private boolean flickerButton;
     private RLottieImageView imageView;
     private ActionIntroQRLoginDelegate qrLoginDelegate;
     private boolean showingAsBottomSheet;
+    private GradientDrawable startMessagingButtonBackground;
     private TextView subtitleTextView;
     private TextView titleTextView;
 
@@ -78,8 +79,8 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         if (actionBar != null) {
             actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-            this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
-            this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarWhiteSelector), false);
+            this.actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon), false);
+            this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSelector), false);
             this.actionBar.setCastShadows(false);
             this.actionBar.setAddToContainer(false);
             this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -109,12 +110,12 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                             int i5 = (int) (f * 0.6f);
                             ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i5, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(i5, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                            ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         } else {
                             ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             ActionIntroActivity.this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                            ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         }
                     } else if (i4 != 5) {
                         if (i4 == 6) {
@@ -127,14 +128,14 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                                 int i6 = (int) (size * 0.6f);
                                 ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                                 ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                                ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                             } else {
                                 ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                                 ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                                 if (ActionIntroActivity.this.currentType == 6) {
-                                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                 } else {
-                                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                 }
                             }
                         }
@@ -142,7 +143,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                         ActionIntroActivity.this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.32f), 1073741824));
                         ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                         ActionIntroActivity.this.descriptionLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         size2 = ActionIntroActivity.this.buttonTextView.getMeasuredHeight() + ActionIntroActivity.this.imageView.getMeasuredHeight() + ActionIntroActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.dp(20.0f) + ActionIntroActivity.this.titleTextView.getMeasuredHeight() + ActionIntroActivity.this.descriptionLayout.getMeasuredHeight();
                     } else if (size > size2) {
                         float f2 = size;
@@ -150,12 +151,12 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                         int i7 = (int) (f2 * 0.6f);
                         ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                         ActionIntroActivity.this.descriptionLayout.measure(View.MeasureSpec.makeMeasureSpec(i7, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i7, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i7, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                     } else {
                         ActionIntroActivity.this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
                         ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                         ActionIntroActivity.this.descriptionLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                        ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                     }
                 } else if (size > size2) {
                     float f3 = size;
@@ -163,12 +164,12 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                     int i8 = (int) (f3 * 0.6f);
                     ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                     ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 } else {
                     ActionIntroActivity.this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
                     ActionIntroActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                     ActionIntroActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                    ActionIntroActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 }
                 setMeasuredDimension(size, size2);
             }
@@ -341,9 +342,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         viewGroup2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = ActionIntroActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return ActionIntroActivity.lambda$createView$0(view, motionEvent);
             }
         });
         ActionBar actionBar2 = this.actionBar;
@@ -420,13 +419,13 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                     this.descriptionLines[i9].setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection));
                     String string = LocaleController.getString(R.string.AuthAnotherClientInfo1);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-                    int indexOf = string.indexOf(42);
-                    int lastIndexOf = string.lastIndexOf(42);
-                    if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
+                    int iIndexOf = string.indexOf(42);
+                    int iLastIndexOf = string.lastIndexOf(42);
+                    if (iIndexOf != -1 && iLastIndexOf != -1 && iIndexOf != iLastIndexOf) {
                         this.descriptionLines[i9].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                        spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                        spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                        spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl)), indexOf, lastIndexOf - 1, 33);
+                        spannableStringBuilder.replace(iLastIndexOf, iLastIndexOf + 1, (CharSequence) "");
+                        spannableStringBuilder.replace(iIndexOf, iIndexOf + 1, (CharSequence) "");
+                        spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl)), iIndexOf, iLastIndexOf - 1, 33);
                     }
                     this.descriptionLines[i9].setText(spannableStringBuilder);
                 } else if (i4 == 1) {
@@ -457,44 +456,59 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         this.descriptionText2.setVisibility(8);
         this.descriptionText2.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         viewGroup2.addView(this.descriptionText2);
+        this.startMessagingButtonBackground = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
         TextView textView6 = new TextView(context) {
-            CellFlickerDrawable cellFlickerDrawable;
+            private final CellFlickerDrawable cellFlickerDrawable;
+
+            {
+                CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
+                this.cellFlickerDrawable = cellFlickerDrawable;
+                cellFlickerDrawable.drawFrame = false;
+                cellFlickerDrawable.repeatProgress = 2.0f;
+            }
+
+            @Override
+            protected void onSizeChanged(int i10, int i11, int i12, int i13) {
+                super.onSizeChanged(i10, i11, i12, i13);
+                ActionIntroActivity.this.startMessagingButtonBackground.setBounds(0, 0, i10, i11);
+                ActionIntroActivity.this.startMessagingButtonBackground.setCornerRadius(Math.min(i10, i11) / 2.0f);
+                this.cellFlickerDrawable.setParentWidth(i10);
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                ActionIntroActivity.this.startMessagingButtonBackground.draw(canvas);
+                super.draw(canvas);
+            }
 
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 if (ActionIntroActivity.this.flickerButton) {
-                    if (this.cellFlickerDrawable == null) {
-                        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
-                        this.cellFlickerDrawable = cellFlickerDrawable;
-                        cellFlickerDrawable.drawFrame = false;
-                        cellFlickerDrawable.repeatProgress = 2.0f;
-                    }
-                    this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(4.0f), null);
+                    this.cellFlickerDrawable.draw(canvas, rectF, getMeasuredHeight() / 2.0f, null);
                     invalidate();
                 }
             }
         };
         this.buttonTextView = textView6;
-        textView6.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        ScaleStateListAnimator.apply(textView6, 0.02f, 1.2f);
+        this.buttonTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.bold());
-        int i10 = this.currentType;
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, (i10 == 6 || i10 == 3 || i10 == 0) ? 6 : 4));
+        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(24.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
         viewGroup2.addView(this.buttonTextView);
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ActionIntroActivity.this.lambda$createView$2(view);
+                this.f$0.lambda$createView$2(view);
             }
         });
-        int i11 = this.currentType;
-        if (i11 == 0) {
+        int i10 = this.currentType;
+        if (i10 == 0) {
             this.imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             this.imageView.setAnimation(R.raw.channel_create, 200, 200);
             this.titleTextView.setText(LocaleController.getString(R.string.ChannelAlertTitle));
@@ -502,14 +516,14 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.buttonTextView.setText(LocaleController.getString(R.string.ChannelAlertCreate2));
             this.imageView.playAnimation();
             this.flickerButton = true;
-        } else if (i11 == 3) {
+        } else if (i10 == 3) {
             this.subtitleTextView.setVisibility(0);
             this.imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             this.imageView.setAnimation(R.raw.utyan_change_number, 200, 200);
             this.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActionIntroActivity.this.lambda$createView$4(view);
+                    this.f$0.lambda$createView$4(view);
                 }
             });
             UserConfig userConfig = getUserConfig();
@@ -523,32 +537,32 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.subtitleTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActionIntroActivity.this.lambda$createView$5(view);
+                    this.f$0.lambda$createView$5(view);
                 }
             });
             TextView textView7 = this.titleTextView;
-            int i12 = R.string.PhoneNumberChange2;
-            textView7.setText(LocaleController.getString(i12));
+            int i11 = R.string.PhoneNumberChange2;
+            textView7.setText(LocaleController.getString(i11));
             this.descriptionText.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PhoneNumberHelp)));
-            this.buttonTextView.setText(LocaleController.getString(i12));
+            this.buttonTextView.setText(LocaleController.getString(i11));
             this.imageView.playAnimation();
             this.flickerButton = true;
-        } else if (i11 == 5) {
-            this.colors = new int[8];
-            updateColors();
-            this.imageView.setAnimation(R.raw.qr_login, 334, 334, this.colors);
+        } else if (i10 == 5) {
+            int[] iArr = new int[8];
+            this.colors = iArr;
+            this.imageView.setAnimation(R.raw.qr_login, 334, 334, iArr);
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.titleTextView.setText(LocaleController.getString(R.string.AuthAnotherClient));
             this.buttonTextView.setText(LocaleController.getString(R.string.AuthAnotherClientScan));
             this.imageView.playAnimation();
-        } else if (i11 == 6) {
+        } else if (i10 == 6) {
             this.imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             this.imageView.setAnimation(R.raw.utyan_passcode, 200, 200);
             this.imageView.setFocusable(false);
             this.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActionIntroActivity.this.lambda$createView$3(view);
+                    this.f$0.lambda$createView$3(view);
                 }
             });
             this.titleTextView.setText(LocaleController.getString(R.string.Passcode));
@@ -561,11 +575,11 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.buttonTextView.setPadding(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f));
             this.buttonTextView.setTextSize(1, 15.0f);
         }
+        updateColors();
         return this.fragmentView;
     }
 
     public void lambda$createView$2(View view) {
-        int checkSelfPermission;
         if (getParentActivity() == null) {
             return;
         }
@@ -583,7 +597,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             builder.setPositiveButton(LocaleController.getString(R.string.Change), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    ActionIntroActivity.this.lambda$createView$1(alertDialog, i2);
+                    this.f$0.lambda$createView$1(alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -599,14 +613,11 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             if (getParentActivity() == null) {
                 return;
             }
-            if (Build.VERSION.SDK_INT >= 23) {
-                checkSelfPermission = getParentActivity().checkSelfPermission("android.permission.CAMERA");
-                if (checkSelfPermission != 0) {
-                    getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                    return;
-                }
+            if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+            } else {
+                processOpenQrReader();
             }
-            processOpenQrReader();
         }
     }
 
@@ -652,6 +663,11 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
     }
 
     public void updateColors() {
+        GradientDrawable gradientDrawable = this.startMessagingButtonBackground;
+        int i = Theme.key_featuredStickers_addButton;
+        gradientDrawable.setColors(new int[]{getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButton2)});
+        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(24.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
         int[] iArr = this.colors;
         if (iArr == null || this.imageView == null) {
             return;
@@ -660,14 +676,14 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         iArr[1] = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText);
         int[] iArr2 = this.colors;
         iArr2[2] = 16777215;
-        int i = Theme.key_windowBackgroundWhite;
-        iArr2[3] = Theme.getColor(i);
+        int i2 = Theme.key_windowBackgroundWhite;
+        iArr2[3] = Theme.getColor(i2);
         int[] iArr3 = this.colors;
         iArr3[4] = 5285866;
-        iArr3[5] = Theme.getColor(Theme.key_featuredStickers_addButton);
+        iArr3[5] = Theme.getColor(i);
         int[] iArr4 = this.colors;
         iArr4[6] = 2170912;
-        iArr4[7] = Theme.getColor(i);
+        iArr4[7] = Theme.getColor(i2);
         this.imageView.replaceColors(this.colors);
     }
 
@@ -680,7 +696,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 new AlertDialog.Builder(getParentActivity()).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        ActionIntroActivity.this.lambda$onRequestPermissionsResultFragment$6(alertDialog, i2);
+                        this.f$0.lambda$onRequestPermissionsResultFragment$6(alertDialog, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
             }
@@ -737,7 +753,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ActionIntroActivity.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override
@@ -751,8 +767,8 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         arrayList.add(new ThemeDescription(view, i, null, null, null, themeDescriptionDelegate, i2));
         if (this.actionBar != null) {
             arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarWhiteSelector));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
         }
         TextView textView = this.titleTextView;
         int i3 = ThemeDescription.FLAG_TEXTCOLOR;
@@ -760,9 +776,6 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         arrayList.add(new ThemeDescription(textView, i3, null, null, null, themeDescriptionDelegate, i4));
         arrayList.add(new ThemeDescription(this.subtitleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.descriptionText, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText6));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_featuredStickers_buttonText));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_featuredStickers_addButtonPressed));
         arrayList.add(new ThemeDescription(this.descriptionLines[0], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.descriptionLines[1], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.descriptionLines[1], ThemeDescription.FLAG_LINKCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteLinkText));
@@ -770,7 +783,6 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         arrayList.add(new ThemeDescription(this.descriptionLines[3], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.descriptionLines[4], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.descriptionLines[5], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
-        arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, new Drawable[]{this.drawable2}, null, Theme.key_changephoneinfo_image2));
         return arrayList;
     }
 

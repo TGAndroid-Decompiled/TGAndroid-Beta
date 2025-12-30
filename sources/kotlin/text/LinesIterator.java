@@ -47,9 +47,9 @@ final class LinesIterator implements Iterator {
         int length = this.string.length();
         int length2 = this.string.length();
         for (int i4 = this.tokenStartIndex; i4 < length2; i4++) {
-            char charAt = this.string.charAt(i4);
-            if (charAt == '\n' || charAt == '\r') {
-                i = (charAt == '\r' && (i2 = i4 + 1) < this.string.length() && this.string.charAt(i2) == '\n') ? 2 : 1;
+            char cCharAt = this.string.charAt(i4);
+            if (cCharAt == '\n' || cCharAt == '\r') {
+                i = (cCharAt == '\r' && (i2 = i4 + 1) < this.string.length() && this.string.charAt(i2) == '\n') ? 2 : 1;
                 length = i4;
                 this.state = 1;
                 this.delimiterLength = i;

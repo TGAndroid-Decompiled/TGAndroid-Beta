@@ -26,9 +26,7 @@ public class SenderSelectView extends View {
     private static final FloatPropertyCompat MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((SenderSelectView) obj).menuProgress;
-            return f;
+            return ((SenderSelectView) obj).menuProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -69,9 +67,9 @@ public class SenderSelectView extends View {
     private void updateColors() {
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
         this.menuPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoicePressed));
-        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite));
-        this.selectorDrawable = createSimpleSelectorRoundRectDrawable;
-        createSimpleSelectorRoundRectDrawable.setCallback(this);
+        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.selectorDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
+        drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this);
     }
 
     @Override
@@ -109,9 +107,9 @@ public class SenderSelectView extends View {
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, this.backgroundPaint);
         canvas.save();
         this.menuPaint.setAlpha(i);
-        float dp = AndroidUtilities.dp(9.0f) + this.menuPaint.getStrokeWidth();
-        canvas.drawLine(dp, dp, getWidth() - dp, getHeight() - dp, this.menuPaint);
-        canvas.drawLine(dp, getHeight() - dp, getWidth() - dp, dp, this.menuPaint);
+        float fDp = AndroidUtilities.dp(9.0f) + this.menuPaint.getStrokeWidth();
+        canvas.drawLine(fDp, fDp, getWidth() - fDp, getHeight() - fDp, this.menuPaint);
+        canvas.drawLine(fDp, getHeight() - fDp, getWidth() - fDp, fDp, this.menuPaint);
         canvas.restore();
         this.selectorDrawable.setBounds(0, 0, getWidth(), getHeight());
         this.selectorDrawable.draw(canvas);
@@ -119,17 +117,17 @@ public class SenderSelectView extends View {
     }
 
     public void setAvatar(TLObject tLObject) {
-        String str;
+        String firstName;
         if (tLObject instanceof TLRPC.User) {
-            str = UserObject.getFirstName((TLRPC.User) tLObject);
+            firstName = UserObject.getFirstName((TLRPC.User) tLObject);
         } else if (tLObject instanceof TLRPC.Chat) {
-            str = ((TLRPC.Chat) tLObject).title;
+            firstName = ((TLRPC.Chat) tLObject).title;
         } else if (!(tLObject instanceof TLRPC.ChatInvite)) {
-            str = "";
+            firstName = "";
         } else {
-            str = ((TLRPC.ChatInvite) tLObject).title;
+            firstName = ((TLRPC.ChatInvite) tLObject).title;
         }
-        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
+        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, firstName));
         this.avatarDrawable.setInfo(tLObject);
         this.avatarImage.setForUserOrChat(tLObject, this.avatarDrawable);
     }
@@ -166,13 +164,13 @@ public class SenderSelectView extends View {
                 this.menuSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f4, float f5) {
-                        SenderSelectView.this.lambda$setProgress$2(z3, f2, f3, dynamicAnimation, f4, f5);
+                        this.f$0.lambda$setProgress$2(z3, f2, f3, dynamicAnimation, f4, f5);
                     }
                 });
                 this.menuSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f4, float f5) {
-                        SenderSelectView.this.lambda$setProgress$3(dynamicAnimation, z4, f4, f5);
+                        this.f$0.lambda$setProgress$3(dynamicAnimation, z4, f4, f5);
                     }
                 });
                 this.menuSpring.start();
@@ -184,7 +182,7 @@ public class SenderSelectView extends View {
             this.menuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SenderSelectView.this.lambda$setProgress$4(valueAnimator2);
+                    this.f$0.lambda$setProgress$4(valueAnimator2);
                 }
             });
             this.menuAnimator.addListener(new AnimatorListenerAdapter() {

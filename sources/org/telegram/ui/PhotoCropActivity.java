@@ -19,7 +19,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.PhotoCropActivity;
 
 public class PhotoCropActivity extends BaseFragment {
     private String bitmapKey;
@@ -39,7 +38,7 @@ public class PhotoCropActivity extends BaseFragment {
         return false;
     }
 
-    public class PhotoCropView extends FrameLayout {
+    class PhotoCropView extends FrameLayout {
         int bitmapHeight;
         int bitmapWidth;
         int bitmapX;
@@ -89,9 +88,7 @@ public class PhotoCropActivity extends BaseFragment {
             setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    boolean lambda$init$0;
-                    lambda$init$0 = PhotoCropActivity.PhotoCropView.this.lambda$init$0(view, motionEvent);
-                    return lambda$init$0;
+                    return this.f$0.lambda$init$0(view, motionEvent);
                 }
             });
         }
@@ -125,17 +122,17 @@ public class PhotoCropActivity extends BaseFragment {
                 this.bitmapHeight = (int) Math.ceil(height * f9);
             }
             this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.dp(14.0f);
-            int dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.dp(14.0f);
-            this.bitmapY = dp;
+            int iDp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.dp(14.0f);
+            this.bitmapY = iDp;
             if (this.rectX == -1.0f && this.rectY == -1.0f) {
                 if (this.freeform) {
-                    this.rectY = dp;
+                    this.rectY = iDp;
                     this.rectX = this.bitmapX;
                     this.rectSizeX = this.bitmapWidth;
                     this.rectSizeY = this.bitmapHeight;
                 } else {
                     if (this.bitmapWidth > this.bitmapHeight) {
-                        this.rectY = dp;
+                        this.rectY = iDp;
                         this.rectX = ((this.viewWidth - r1) / 2) + AndroidUtilities.dp(14.0f);
                         float f10 = this.bitmapHeight;
                         this.rectSizeX = f10;
@@ -152,7 +149,7 @@ public class PhotoCropActivity extends BaseFragment {
                 float f12 = this.bitmapWidth;
                 this.rectX = (f3 * f12) + this.bitmapX;
                 float f13 = this.bitmapHeight;
-                this.rectY = (f6 * f13) + dp;
+                this.rectY = (f6 * f13) + iDp;
                 this.rectSizeX = f7 * f12;
                 this.rectSizeY = f8 * f13;
             }
@@ -218,7 +215,7 @@ public class PhotoCropActivity extends BaseFragment {
 
     @Override
     public boolean onFragmentCreate() {
-        int max;
+        int iMax;
         if (this.imageToCrop == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
@@ -229,15 +226,15 @@ public class PhotoCropActivity extends BaseFragment {
                 return false;
             }
             if (AndroidUtilities.isTablet()) {
-                max = AndroidUtilities.dp(520.0f);
+                iMax = AndroidUtilities.dp(520.0f);
             } else {
                 Point point = AndroidUtilities.displaySize;
-                max = Math.max(point.x, point.y);
+                iMax = Math.max(point.x, point.y);
             }
-            float f = max;
-            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f, f, true);
-            this.imageToCrop = loadBitmap;
-            if (loadBitmap == null) {
+            float f = iMax;
+            Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(string, uri, f, f, true);
+            this.imageToCrop = bitmapLoadBitmap;
+            if (bitmapLoadBitmap == null) {
                 return false;
             }
         }

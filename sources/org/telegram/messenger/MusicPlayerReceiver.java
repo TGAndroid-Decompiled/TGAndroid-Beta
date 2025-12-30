@@ -43,64 +43,23 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         String action = intent.getAction();
         action.hashCode();
-        char c = 65535;
-        switch (action.hashCode()) {
-            case -1461225938:
-                if (action.equals("org.telegram.android.musicplayer.close")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -1449542100:
-                if (action.equals("org.telegram.android.musicplayer.pause")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -1293741059:
-                if (action.equals("org.telegram.android.musicplayer.next")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case -1293675458:
-                if (action.equals("org.telegram.android.musicplayer.play")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case -549244379:
-                if (action.equals("android.media.AUDIO_BECOMING_NOISY")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case 40087297:
-                if (action.equals("org.telegram.android.musicplayer.previous")) {
-                    c = 5;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
+        switch (action) {
+            case "org.telegram.android.musicplayer.close":
                 MediaController.getInstance().cleanupPlayer(true, true);
-                return;
-            case 1:
-            case 4:
+                break;
+            case "org.telegram.android.musicplayer.pause":
+            case "android.media.AUDIO_BECOMING_NOISY":
                 MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
-                return;
-            case 2:
+                break;
+            case "org.telegram.android.musicplayer.next":
                 MediaController.getInstance().playNextMessage();
-                return;
-            case 3:
+                break;
+            case "org.telegram.android.musicplayer.play":
                 MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
-                return;
-            case 5:
+                break;
+            case "org.telegram.android.musicplayer.previous":
                 MediaController.getInstance().playPreviousMessage();
-                return;
-            default:
-                return;
+                break;
         }
     }
 }

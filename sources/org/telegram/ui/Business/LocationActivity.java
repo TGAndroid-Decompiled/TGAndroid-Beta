@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -53,6 +54,7 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LocationActivity;
+import org.xml.sax.SAXException;
 
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String address;
@@ -77,7 +79,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private final int BUTTON_CLEAR = 2;
 
     @Override
-    public View createView(Context context) {
+    public View createView(Context context) throws SAXException, IOException {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
@@ -93,10 +95,10 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 }
             }
         });
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -121,7 +123,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            protected void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 super.onTextChanged(charSequence, i2, i3, i4);
                 if (this.limit != null) {
                     this.limitCount = 96 - charSequence.length();
@@ -136,7 +138,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider())));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
@@ -184,9 +186,9 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 if (charSequence == null) {
                     return null;
                 }
-                String charSequence2 = charSequence.toString();
-                if (charSequence2.contains("\n")) {
-                    return charSequence2.replaceAll("\n", "");
+                String string = charSequence.toString();
+                if (string.contains("\n")) {
+                    return string.replaceAll("\n", "");
                 }
                 return null;
             }
@@ -210,7 +212,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             protected ImageReceiver createImageReciever() {
                 return new ImageReceiver(this) {
                     @Override
-                    public boolean setImageBitmapByKey(Drawable drawable, String str, int i4, boolean z, int i5) {
+                    protected boolean setImageBitmapByKey(Drawable drawable, String str, int i4, boolean z, int i5) {
                         if (drawable != null && i4 != 1) {
                             LocationActivity.this.mapMarker.animate().alpha(1.0f).translationY(0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK).setDuration(250L).start();
                         }
@@ -225,7 +227,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public boolean verifyDrawable(Drawable drawable) {
+            protected boolean verifyDrawable(Drawable drawable) {
                 return drawable == LocationActivity.this.mapLoadingDrawable || super.verifyDrawable(drawable);
             }
         };
@@ -273,12 +275,12 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                LocationActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                LocationActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -354,10 +356,10 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             int measuredWidth = this.mapPreview.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : this.mapPreview.getMeasuredWidth();
             float f = AndroidUtilities.density;
             int i = (int) (measuredWidth / f);
-            int min = Math.min(2, (int) Math.ceil(f));
+            int iMin = Math.min(2, (int) Math.ceil(f));
             BackupImageView backupImageView2 = this.mapPreview;
             TLRPC.GeoPoint geoPoint = this.geo;
-            backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
+            backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, iMin * i, iMin * 240, 15, iMin)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
             return;
         }
         backupImageView.setImageBitmap(null);
@@ -389,14 +391,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         if (this.doneButton == null) {
             return;
         }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
         } else {
-            this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+            this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || universalRecyclerView.adapter == null) {
@@ -418,8 +420,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 return;
             }
             String str = this.address;
-            String trim = str == null ? "" : str.trim();
-            if (TextUtils.isEmpty(trim) || trim.length() > 96) {
+            String strTrim = str == null ? "" : str.trim();
+            if (TextUtils.isEmpty(strTrim) || strTrim.length() > 96) {
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 EditTextBoldCursor editTextBoldCursor = this.editText;
                 int i = -this.shiftDp;
@@ -463,7 +465,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         getConnectionsManager().sendRequest(updatebusinesslocation, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LocationActivity.this.lambda$processDone$1(tLObject, tL_error);
+                this.f$0.lambda$processDone$1(tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
@@ -473,7 +475,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.this.lambda$processDone$0(tL_error, tLObject);
+                this.f$0.lambda$processDone$0(tL_error, tLObject);
             }
         });
     }
@@ -503,13 +505,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    LocationActivity.this.lambda$onBackPressed$2(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$2(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    LocationActivity.this.lambda$onBackPressed$3(alertDialog, i);
+                    this.f$0.lambda$onBackPressed$3(alertDialog, i);
                 }
             });
             showDialog(builder.create());
@@ -570,7 +572,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    LocationActivity.this.lambda$onClick$6(alertDialog, i3);
+                    this.f$0.lambda$onClick$6(alertDialog, i3);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -589,7 +591,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         getConnectionsManager().sendRequest(updatebusinesslocation, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LocationActivity.this.lambda$onClick$5(tLObject, tL_error);
+                this.f$0.lambda$onClick$5(tLObject, tL_error);
             }
         });
     }
@@ -598,7 +600,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.this.lambda$onClick$4(tL_error, tLObject);
+                this.f$0.lambda$onClick$4(tL_error, tLObject);
             }
         });
     }
@@ -625,7 +627,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2, j);
+                this.f$0.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2, j);
             }
         });
         if (this.geo == null && !TextUtils.isEmpty(this.address)) {
@@ -634,8 +636,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             alertDialog.showDelayed(200L);
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    LocationActivity.this.lambda$showLocationAlert$9(locationActivity, alertDialog);
+                public final void run() throws IOException {
+                    this.f$0.lambda$showLocationAlert$9(locationActivity, alertDialog);
                 }
             });
             return;
@@ -666,7 +668,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         checkDone(true);
     }
 
-    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) {
+    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) throws IOException {
         try {
             List<Address> fromLocationName = new Geocoder(getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(this.address, 1);
             if (!fromLocationName.isEmpty()) {
@@ -685,7 +687,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.this.lambda$showLocationAlert$8(alertDialog, locationActivity);
+                this.f$0.lambda$showLocationAlert$8(alertDialog, locationActivity);
             }
         });
     }

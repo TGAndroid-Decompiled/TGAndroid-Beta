@@ -111,7 +111,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.groupInfoContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallPipAlertView.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -137,7 +137,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallPipAlertView.this.lambda$new$1(context, view);
+                this.f$0.lambda$new$1(context, view);
             }
         });
         this.soundButton.setCheckable(true);
@@ -148,7 +148,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallPipAlertView.this.lambda$new$2(context, view);
+                this.f$0.lambda$new$2(context, view);
             }
         });
         VoIPToggleButton voIPToggleButton3 = new VoIPToggleButton(context, 44.0f);
@@ -158,7 +158,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallPipAlertView.this.lambda$new$4(context, view);
+                this.f$0.lambda$new$4(context, view);
             }
         });
         VoIPButtonsLayout voIPButtonsLayout = new VoIPButtonsLayout(context);
@@ -180,22 +180,10 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
     }
 
     public void lambda$new$1(Context context, View view) {
-        boolean z;
-        boolean canDrawOverlays;
         if (VoIPService.getSharedInstance() == null) {
             return;
         }
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        Context context2 = getContext();
-        if (Build.VERSION.SDK_INT >= 23) {
-            canDrawOverlays = Settings.canDrawOverlays(context);
-            if (!canDrawOverlays) {
-                z = false;
-                sharedInstance.toggleSpeakerphoneOrShowRouteSheet(context2, z);
-            }
-        }
-        z = true;
-        sharedInstance.toggleSpeakerphoneOrShowRouteSheet(context2, z);
+        VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(getContext(), Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
     }
 
     public void lambda$new$2(Context context, View view) {
@@ -219,24 +207,12 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
     }
 
     public void lambda$new$4(final Context context, View view) {
-        boolean z;
-        boolean canDrawOverlays;
-        Context context2 = getContext();
-        Runnable runnable = new Runnable() {
+        GroupCallActivity.onLeaveClick(getContext(), new Runnable() {
             @Override
             public final void run() {
                 GroupCallPip.updateVisibility(context);
             }
-        };
-        if (Build.VERSION.SDK_INT >= 23) {
-            canDrawOverlays = Settings.canDrawOverlays(context);
-            if (!canDrawOverlays) {
-                z = false;
-                GroupCallActivity.onLeaveClick(context2, runnable, z);
-            }
-        }
-        z = true;
-        GroupCallActivity.onLeaveClick(context2, runnable, z);
+        }, Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
     }
 
     @Override
@@ -251,7 +227,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     @Override
     protected void onAttachedToWindow() {
-        String str;
+        String strTrim;
         ChatObject.Call call;
         super.onAttachedToWindow();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -265,7 +241,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             }
             if (sharedInstance.isConference() && (call = sharedInstance.groupCall) != null) {
                 if (call.sortedParticipants.size() == 1) {
-                    str = LocaleController.getString(R.string.ConferenceChat);
+                    strTrim = LocaleController.getString(R.string.ConferenceChat);
                 } else {
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < Math.min(3, sharedInstance.groupCall.sortedParticipants.size()); i++) {
@@ -278,19 +254,19 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
                         sb.append(" ");
                         sb.append(LocaleController.formatPluralString("AndOther", sharedInstance.groupCall.sortedParticipants.size() - 3, new Object[0]));
                     }
-                    str = sb.toString();
+                    strTrim = sb.toString();
                 }
             } else if (!TextUtils.isEmpty(sharedInstance.groupCall.call.title)) {
-                str = sharedInstance.groupCall.call.title;
+                strTrim = sharedInstance.groupCall.call.title;
             } else if (chat != null) {
-                str = chat.title;
+                strTrim = chat.title;
             } else {
-                str = "";
+                strTrim = "";
             }
-            if (str != null) {
-                str = str.replace("\n", " ").replaceAll(" +", " ").trim();
+            if (strTrim != null) {
+                strTrim = strTrim.replace("\n", " ").replaceAll(" +", " ").trim();
             }
-            this.titleView.setText(str);
+            this.titleView.setText(strTrim);
             updateMembersCount();
             sharedInstance.registerStateListener(this);
             if (VoIPService.getSharedInstance() != null) {
@@ -333,10 +309,10 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         if (this.soundButton == null || this.muteButton == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
             return;
         }
-        boolean isBluetoothOn = sharedInstance.isBluetoothOn();
-        boolean z2 = !isBluetoothOn && sharedInstance.isSpeakerphoneOn();
+        boolean zIsBluetoothOn = sharedInstance.isBluetoothOn();
+        boolean z2 = !zIsBluetoothOn && sharedInstance.isSpeakerphoneOn();
         this.soundButton.setChecked(z2, z);
-        if (isBluetoothOn) {
+        if (zIsBluetoothOn) {
             this.soundButton.setData(R.drawable.calls_bluetooth, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipAudioRoutingBluetooth), false, z);
         } else if (z2) {
             this.soundButton.setData(R.drawable.calls_speaker, -1, 0, 0.3f, true, LocaleController.getString(R.string.VoipSpeaker), false, z);
@@ -373,13 +349,13 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        boolean mutedByAdmin;
+        boolean zMutedByAdmin;
         if (i == NotificationCenter.groupCallUpdated) {
             updateMembersCount();
-            if (VoIPService.getSharedInstance() == null || (mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin()) == this.mutedByAdmin) {
+            if (VoIPService.getSharedInstance() == null || (zMutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin()) == this.mutedByAdmin) {
                 return;
             }
-            this.mutedByAdmin = mutedByAdmin;
+            this.mutedByAdmin = zMutedByAdmin;
             invalidate();
         }
     }

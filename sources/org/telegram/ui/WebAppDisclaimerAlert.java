@@ -49,7 +49,7 @@ public class WebAppDisclaimerAlert {
         builder.setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                WebAppDisclaimerAlert.lambda$show$1(Consumer.this, zArr, alertDialog, i);
+                WebAppDisclaimerAlert.lambda$show$1(consumer, zArr, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -58,9 +58,9 @@ public class WebAppDisclaimerAlert {
                 alertDialog.dismiss();
             }
         });
-        AlertDialog create = builder.create();
-        webAppDisclaimerAlert.alert = create;
-        create.show();
+        AlertDialog alertDialogCreate = builder.create();
+        webAppDisclaimerAlert.alert = alertDialogCreate;
+        alertDialogCreate.show();
         TextView textView2 = (TextView) webAppDisclaimerAlert.alert.getButton(-1);
         webAppDisclaimerAlert.positiveButton = textView2;
         textView2.setEnabled(false);
@@ -68,7 +68,7 @@ public class WebAppDisclaimerAlert {
         webAppDisclaimerAlert.cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebAppDisclaimerAlert.lambda$show$3(WebAppDisclaimerAlert.this, view);
+                WebAppDisclaimerAlert.lambda$show$3(this.f$0, view);
             }
         });
         webAppDisclaimerAlert.cell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));

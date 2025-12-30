@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import com.android.billingclient.api.ProductDetails;
 import j$.util.Objects;
+import java.io.IOException;
 import java.lang.Thread;
 import java.util.Iterator;
 
@@ -29,8 +30,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "12.2.11";
-        SUPPORTS_PASSKEYS = true;
+        BUILD_VERSION_STRING = "12.3.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -39,6 +39,7 @@ public class BuildVars {
         GOOGLE_AUTH_CLIENT_ID = "760348033671-81kmi3pi84p11ub8hp9a1funsv0rn2p9.apps.googleusercontent.com";
         HUAWEI_APP_ID = "101184875";
         IS_BILLING_UNAVAILABLE = false;
+        SUPPORTS_PASSKEYS = true;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
             boolean z2 = DEBUG_VERSION;
@@ -50,7 +51,7 @@ public class BuildVars {
                 final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
-                    public final void uncaughtException(Thread thread, Throwable th) {
+                    public final void uncaughtException(Thread thread, Throwable th) throws IOException {
                         BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
                     }
                 });
@@ -58,7 +59,7 @@ public class BuildVars {
         }
     }
 
-    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
+    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) throws IOException {
         FileLog.fatal(th, false);
         if (uncaughtExceptionHandler != null) {
             uncaughtExceptionHandler.uncaughtException(thread, th);

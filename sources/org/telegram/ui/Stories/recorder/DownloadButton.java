@@ -38,7 +38,6 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Stories.recorder.DownloadButton;
 
 public class DownloadButton extends ImageView {
     private BuildingVideo buildingVideo;
@@ -72,7 +71,7 @@ public class DownloadButton extends ImageView {
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DownloadButton.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         this.progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
@@ -103,18 +102,14 @@ public class DownloadButton extends ImageView {
     }
 
     private void onClick() {
-        int checkSelfPermission;
         int i = Build.VERSION.SDK_INT;
-        if (i >= 23 && (i <= 28 || BuildVars.NO_SCOPED_STORAGE)) {
-            checkSelfPermission = getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
-            if (checkSelfPermission != 0) {
-                Activity findActivity = AndroidUtilities.findActivity(getContext());
-                if (findActivity != null) {
-                    findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
-                    return;
-                }
+        if (i >= 23 && ((i <= 28 || BuildVars.NO_SCOPED_STORAGE) && getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
+            Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+            if (activityFindActivity != null) {
+                activityFindActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
                 return;
             }
+            return;
         }
         if (this.downloading || this.currentEntry == null) {
             return;
@@ -149,7 +144,7 @@ public class DownloadButton extends ImageView {
             callback.run(new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.this.onClickInternal();
+                    this.f$0.onClickInternal();
                 }
             });
         }
@@ -172,31 +167,31 @@ public class DownloadButton extends ImageView {
             preparingVideoToast.setOnCancelListener(new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$1();
+                    this.f$0.lambda$onClickInternal$1();
                 }
             });
             this.container.addView(this.toast);
-            final File generateVideoPath = AndroidUtilities.generateVideoPath();
-            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
+            final File fileGenerateVideoPath = AndroidUtilities.generateVideoPath();
+            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, fileGenerateVideoPath, new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$3(generateVideoPath);
+                    this.f$0.lambda$onClickInternal$3(fileGenerateVideoPath);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    DownloadButton.this.lambda$onClickInternal$4((Float) obj);
+                    this.f$0.lambda$onClickInternal$4((Float) obj);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$5();
+                    this.f$0.lambda$onClickInternal$5();
                 }
             });
         } else {
             this.downloadingVideo = false;
-            final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
-            if (generatePicturePath == null) {
+            final File fileGeneratePicturePath = AndroidUtilities.generatePicturePath(false, "png");
+            if (fileGeneratePicturePath == null) {
                 this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
                 this.downloading = false;
                 updateImage();
@@ -205,7 +200,7 @@ public class DownloadButton extends ImageView {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$8(generatePicturePath);
+                    this.f$0.lambda$onClickInternal$8(fileGeneratePicturePath);
                 }
             });
         }
@@ -234,7 +229,7 @@ public class DownloadButton extends ImageView {
         MediaController.saveFile(file.getAbsolutePath(), getContext(), 1, null, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DownloadButton.this.lambda$onClickInternal$2((Uri) obj);
+                this.f$0.lambda$onClickInternal$2((Uri) obj);
             }
         }, false);
     }
@@ -273,7 +268,7 @@ public class DownloadButton extends ImageView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DownloadButton.this.lambda$onClickInternal$7(file);
+                this.f$0.lambda$onClickInternal$7(file);
             }
         });
     }
@@ -282,7 +277,7 @@ public class DownloadButton extends ImageView {
         MediaController.saveFile(file.getAbsolutePath(), getContext(), 0, null, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DownloadButton.this.lambda$onClickInternal$6((Uri) obj);
+                this.f$0.lambda$onClickInternal$6((Uri) obj);
             }
         }, false);
     }
@@ -317,12 +312,12 @@ public class DownloadButton extends ImageView {
         }
         if (this.wasVideoDownloading != (this.downloading && this.downloadingVideo)) {
             clearAnimation();
-            ViewPropertyAnimator animate = animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = animate();
             if (this.downloading && this.downloadingVideo) {
                 z3 = true;
             }
             this.wasVideoDownloading = z3;
-            animate.alpha(z3 ? 0.4f : 1.0f).start();
+            viewPropertyAnimatorAnimate.alpha(z3 ? 0.4f : 1.0f).start();
         }
     }
 
@@ -342,7 +337,7 @@ public class DownloadButton extends ImageView {
         showToast(R.raw.error, LocaleController.getString("VideoConvertFail"));
     }
 
-    public static class BuildingVideo implements NotificationCenter.NotificationCenterDelegate {
+    static class BuildingVideo implements NotificationCenter.NotificationCenterDelegate {
         final int currentAccount;
         final StoryEntry entry;
         final File file;
@@ -375,7 +370,7 @@ public class DownloadButton extends ImageView {
             this.entry.getVideoEditedInfo(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    DownloadButton.BuildingVideo.this.lambda$start$0((VideoEditedInfo) obj);
+                    this.f$0.lambda$start$0((VideoEditedInfo) obj);
                 }
             });
         }
@@ -410,14 +405,14 @@ public class DownloadButton extends ImageView {
             if (i == NotificationCenter.fileNewChunkAvailable) {
                 if (((MessageObject) objArr[0]) == this.messageObject) {
                     ((Long) objArr[2]).longValue();
-                    long longValue = ((Long) objArr[3]).longValue();
+                    long jLongValue = ((Long) objArr[3]).longValue();
                     Float f = (Float) objArr[4];
                     f.floatValue();
                     Utilities.Callback callback = this.onProgress;
                     if (callback != null) {
                         callback.run(f);
                     }
-                    if (longValue > 0) {
+                    if (jLongValue > 0) {
                         this.onDone.run();
                         VideoEncodingService.stop();
                         stop(false);
@@ -475,9 +470,9 @@ public class DownloadButton extends ImageView {
         }
 
         public PreparingVideoToast(Context context, String str) {
-            super(context);
             int i;
-            float f;
+            float lineWidth;
+            super(context);
             Paint paint = new Paint(1);
             this.dimPaint = paint;
             TextPaint textPaint = new TextPaint(1);
@@ -521,12 +516,12 @@ public class DownloadButton extends ImageView {
             this.preparingLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 i = 0;
-                f = staticLayout.getLineWidth(0);
+                lineWidth = staticLayout.getLineWidth(0);
             } else {
                 i = 0;
-                f = 0.0f;
+                lineWidth = 0.0f;
             }
-            this.preparingLayoutWidth = f;
+            this.preparingLayoutWidth = lineWidth;
             this.preparingLayoutLeft = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(i) : 0.0f;
             show();
         }
@@ -544,12 +539,12 @@ public class DownloadButton extends ImageView {
             float f3 = 1.0f - f2;
             this.dimPaint.setAlpha((int) (90.0f * f3 * f));
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.dimPaint);
-            float max = Math.max(this.preparingLayoutWidth, AndroidUtilities.dp(54.0f)) + AndroidUtilities.dp(42.0f);
-            float dp = AndroidUtilities.dp(111.0f) + this.preparingLayout.getHeight();
-            this.prepareRect.set((getWidth() - max) / 2.0f, (getHeight() - dp) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + dp) / 2.0f);
-            float dp2 = AndroidUtilities.dp(74.0f) + this.doneLayoutWidth;
-            float dp3 = AndroidUtilities.dp(48.0f);
-            this.toastRect.set((getWidth() - dp2) / 2.0f, (getHeight() - dp3) / 2.0f, (getWidth() + dp2) / 2.0f, (getHeight() + dp3) / 2.0f);
+            float fMax = Math.max(this.preparingLayoutWidth, AndroidUtilities.dp(54.0f)) + AndroidUtilities.dp(42.0f);
+            float fDp = AndroidUtilities.dp(111.0f) + this.preparingLayout.getHeight();
+            this.prepareRect.set((getWidth() - fMax) / 2.0f, (getHeight() - fDp) / 2.0f, (getWidth() + fMax) / 2.0f, (getHeight() + fDp) / 2.0f);
+            float fDp2 = AndroidUtilities.dp(74.0f) + this.doneLayoutWidth;
+            float fDp3 = AndroidUtilities.dp(48.0f);
+            this.toastRect.set((getWidth() - fDp2) / 2.0f, (getHeight() - fDp3) / 2.0f, (getWidth() + fDp2) / 2.0f, (getHeight() + fDp3) / 2.0f);
             AndroidUtilities.lerp(this.prepareRect, this.toastRect, f2, this.currentRect);
             if (f < 1.0f && this.preparing) {
                 this.hiddenRect.set(getWidth() / 2.0f, getHeight() / 2.0f, getWidth() / 2.0f, getHeight() / 2.0f);
@@ -578,7 +573,7 @@ public class DownloadButton extends ImageView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.PreparingVideoToast.this.lambda$onDraw$0();
+                    this.f$0.lambda$onDraw$0();
                 }
             });
         }
@@ -591,23 +586,23 @@ public class DownloadButton extends ImageView {
 
         private void drawPreparing(Canvas canvas, float f) {
             float f2 = this.progressT.set(this.progress);
-            float centerX = this.prepareRect.centerX();
-            float dp = this.prepareRect.top + AndroidUtilities.dp(48.0f);
-            float dp2 = AndroidUtilities.dp(25.0f);
+            float fCenterX = this.prepareRect.centerX();
+            float fDp = this.prepareRect.top + AndroidUtilities.dp(48.0f);
+            float fDp2 = AndroidUtilities.dp(25.0f);
             this.greyPaint.setAlpha((int) (51.0f * f));
-            canvas.drawCircle(centerX, dp, dp2, this.greyPaint);
+            canvas.drawCircle(fCenterX, fDp, fDp2, this.greyPaint);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(centerX - dp2, dp - dp2, centerX + dp2, dp2 + dp);
+            rectF.set(fCenterX - fDp2, fDp - fDp2, fCenterX + fDp2, fDp2 + fDp);
             int i = (int) (f * 255.0f);
             this.whitePaint.setAlpha(i);
             this.whitePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.drawArc(rectF, -90.0f, f2 * 360.0f, false, this.whitePaint);
             float scale = this.cancelButton.getScale(0.15f);
             canvas.save();
-            canvas.scale(scale, scale, centerX, dp);
+            canvas.scale(scale, scale, fCenterX, fDp);
             this.whitePaint.setStrokeWidth(AndroidUtilities.dp(3.4f));
-            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), this.whitePaint);
-            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), this.whitePaint);
+            canvas.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp - AndroidUtilities.dp(7.0f), fCenterX + AndroidUtilities.dp(7.0f), fDp + AndroidUtilities.dp(7.0f), this.whitePaint);
+            canvas.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp + AndroidUtilities.dp(7.0f), fCenterX + AndroidUtilities.dp(7.0f), fDp - AndroidUtilities.dp(7.0f), this.whitePaint);
             canvas.restore();
             canvas.save();
             canvas.translate((this.prepareRect.left + AndroidUtilities.dp(21.0f)) - this.preparingLayoutLeft, (this.prepareRect.bottom - AndroidUtilities.dp(18.0f)) - this.preparingLayout.getHeight());
@@ -660,7 +655,7 @@ public class DownloadButton extends ImageView {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.PreparingVideoToast.this.hide();
+                    this.f$0.hide();
                 }
             };
             this.hideRunnable = runnable2;
@@ -688,14 +683,14 @@ public class DownloadButton extends ImageView {
 
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
-            boolean contains = this.currentRect.contains(motionEvent.getX(), motionEvent.getY());
-            if (motionEvent.getAction() == 0 && (this.preparing || contains)) {
-                this.cancelButton.setPressed(contains);
+            boolean zContains = this.currentRect.contains(motionEvent.getX(), motionEvent.getY());
+            if (motionEvent.getAction() == 0 && (this.preparing || zContains)) {
+                this.cancelButton.setPressed(zContains);
                 return true;
             }
             if (motionEvent.getAction() == 1) {
                 if (this.cancelButton.isPressed()) {
-                    if (contains) {
+                    if (zContains) {
                         if (this.preparing) {
                             Runnable runnable = this.onCancel;
                             if (runnable != null) {

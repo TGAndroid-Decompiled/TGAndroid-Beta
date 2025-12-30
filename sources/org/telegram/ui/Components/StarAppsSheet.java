@@ -30,7 +30,7 @@ public class StarAppsSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                StarAppsSheet.this.lambda$new$0(view, i2);
+                this.f$0.lambda$new$0(view, i2);
             }
         });
     }

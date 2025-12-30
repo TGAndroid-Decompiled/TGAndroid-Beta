@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">اس کے ساتھ اشتراک کریں</string>
     <string name="abc_shareactionprovider_share_with_application">%s کے ساتھ اشتراک کریں</string>
     <string name="abc_toolbar_collapse_description">سکیڑیں</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">پاس ورڈ</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">پاس کی</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">پاس ورڈ</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">پاس کی</string>
     <string name="call_notification_answer_action">جواب دیں</string>
     <string name="call_notification_answer_video_action">ویڈیو</string>
     <string name="call_notification_decline_action">مسترد کریں</string>

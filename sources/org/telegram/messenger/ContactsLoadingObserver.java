@@ -13,7 +13,7 @@ public final class ContactsLoadingObserver {
     private final NotificationCenter.NotificationCenterDelegate observer = new NotificationCenter.NotificationCenterDelegate() {
         @Override
         public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-            ContactsLoadingObserver.this.lambda$new$0(i, i2, objArr);
+            this.f$0.lambda$new$0(i, i2, objArr);
         }
     };
     private final Runnable releaseRunnable;
@@ -40,7 +40,7 @@ public final class ContactsLoadingObserver {
         this.releaseRunnable = new Runnable() {
             @Override
             public final void run() {
-                ContactsLoadingObserver.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         };
         this.contactsController = ContactsController.getInstance(i);

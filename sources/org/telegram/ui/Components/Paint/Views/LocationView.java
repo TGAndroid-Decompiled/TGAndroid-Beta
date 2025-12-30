@@ -50,24 +50,24 @@ public class LocationView extends EntityView {
     }
 
     private static String deg(double d) {
-        double abs = Math.abs(d);
-        double floor = Math.floor(abs);
-        double floor2 = Math.floor((abs - floor) * 60.0d);
+        double dAbs = Math.abs(d);
+        double dFloor = Math.floor(dAbs);
+        double dFloor2 = Math.floor((dAbs - dFloor) * 60.0d);
         StringBuilder sb = new StringBuilder();
-        sb.append("" + ((int) floor) + "°");
-        sb.append(floor2 <= 0.0d ? "0" : "");
-        sb.append(floor2 < 10.0d ? "0" : "");
-        sb.append((int) floor2);
+        sb.append("" + ((int) dFloor) + "°");
+        sb.append(dFloor2 <= 0.0d ? "0" : "");
+        sb.append(dFloor2 < 10.0d ? "0" : "");
+        sb.append((int) dFloor2);
         sb.append("'");
-        String sb2 = sb.toString();
-        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(sb2);
-        sb3.append(floor3 <= 0.0d ? "0" : "");
-        sb3.append(floor3 < 10.0d ? "0" : "");
-        sb3.append((int) floor3);
-        sb3.append("\"");
-        return sb3.toString();
+        String string = sb.toString();
+        double dFloor3 = Math.floor(Math.floor(dFloor2) * 60.0d);
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(string);
+        sb2.append(dFloor3 <= 0.0d ? "0" : "");
+        sb2.append(dFloor3 < 10.0d ? "0" : "");
+        sb2.append((int) dFloor3);
+        sb2.append("\"");
+        return sb2.toString();
     }
 
     public static String geo(double d, double d2) {
@@ -94,22 +94,22 @@ public class LocationView extends EntityView {
     }
 
     public void setLocation(int i, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
-        String str;
+        String strGeo;
         this.location = messageMedia;
         this.mediaArea = mediaArea;
-        String str2 = null;
+        String str = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
-            str = geo(geoPoint.lat, geoPoint._long);
+            strGeo = geo(geoPoint.lat, geoPoint._long);
         } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
             String upperCase = messageMedia.title.toUpperCase();
-            str2 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
-            str = upperCase;
+            str = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
+            strGeo = upperCase;
         } else {
-            str = "";
+            strGeo = "";
         }
-        this.marker.setCodeEmoji(i, str2);
-        this.marker.setText(str);
+        this.marker.setCodeEmoji(i, str);
+        this.marker.setText(strGeo);
         updateSelectionView();
     }
 
@@ -188,17 +188,17 @@ public class LocationView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDp2 = AndroidUtilities.dp(19.5f);
+            float f3 = fDp + fDp2;
             float f4 = f3 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f4;
             float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+            if (f > f3 - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + fDp2 && f2 < measuredHeight + fDp2) {
                 return 1;
             }
             float f5 = f3 + measuredWidth;
-            return (f <= f5 - dp2 || f2 <= measuredHeight - dp2 || f >= f5 + dp2 || f2 >= measuredHeight + dp2) ? 0 : 2;
+            return (f <= f5 - fDp2 || f2 <= measuredHeight - fDp2 || f >= f5 + fDp2 || f2 >= measuredHeight + fDp2) ? 0 : 2;
         }
 
         @Override
@@ -212,50 +212,50 @@ public class LocationView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
-            float dp = AndroidUtilities.dp(2.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float f = dp2 * 2.0f;
+            float fDp = AndroidUtilities.dp(2.0f);
+            float fDpf2 = AndroidUtilities.dpf2(5.66f);
+            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
+            float f = fDp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f;
             float measuredHeight = getMeasuredHeight() - f;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp2 + measuredWidth;
-            float f3 = dp2 + measuredHeight;
-            rectF.set(dp2, dp2, f2, f3);
-            float dp3 = AndroidUtilities.dp(12.0f);
-            float min = Math.min(dp3, measuredWidth / 2.0f);
+            float f2 = fDp2 + measuredWidth;
+            float f3 = fDp2 + measuredHeight;
+            rectF.set(fDp2, fDp2, f2, f3);
+            float fDp3 = AndroidUtilities.dp(12.0f);
+            float fMin = Math.min(fDp3, measuredWidth / 2.0f);
             float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(dp3, f4);
+            float fMin2 = Math.min(fDp3, f4);
             this.path.rewind();
-            float f5 = min * 2.0f;
-            float f6 = dp2 + f5;
-            float f7 = 2.0f * min2;
-            float f8 = dp2 + f7;
-            rectF.set(dp2, dp2, f6, f8);
+            float f5 = fMin * 2.0f;
+            float f6 = fDp2 + f5;
+            float f7 = 2.0f * fMin2;
+            float f8 = fDp2 + f7;
+            rectF.set(fDp2, fDp2, f6, f8);
             this.path.arcTo(rectF, 180.0f, 90.0f);
             float f9 = f2 - f5;
-            rectF.set(f9, dp2, f2, f8);
+            rectF.set(f9, fDp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
             canvas.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
-            rectF.set(dp2, f10, f6, f3);
+            rectF.set(fDp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
             canvas.drawPath(this.path, this.paint);
-            float f11 = dp2 + f4;
-            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            float f11 = fDp2 + f4;
+            canvas.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = dp2 + min2;
-            float f13 = f3 - min2;
-            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
+            float f12 = fDp2 + fMin2;
+            float f13 = f3 - fMin2;
+            canvas.drawLine(fDp2, f12, fDp2, f13, this.paint);
             canvas.drawLine(f2, f12, f2, f13, this.paint);
-            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
+            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + fDpf2) - 1.0f, this.clearPaint);
+            canvas.drawCircle(fDp2, f11, (fDpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
             canvas.restoreToCount(saveCount);
         }
     }

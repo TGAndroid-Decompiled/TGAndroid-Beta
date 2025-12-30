@@ -48,7 +48,7 @@ public abstract class FloatingDebugController {
             floatingDebugView.dismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    FloatingDebugController.lambda$setActive$0(LaunchActivity.this);
+                    FloatingDebugController.lambda$setActive$0(launchActivity);
                 }
             });
         }

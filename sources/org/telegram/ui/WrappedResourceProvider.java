@@ -15,9 +15,7 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public boolean isDark() {
-        boolean isCurrentThemeDark;
-        isCurrentThemeDark = Theme.isCurrentThemeDark();
-        return isCurrentThemeDark;
+        return Theme.isCurrentThemeDark();
     }
 
     public WrappedResourceProvider(Theme.ResourcesProvider resourcesProvider) {
@@ -27,9 +25,9 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public int getColor(int i) {
-        int indexOfKey = this.sparseIntArray.indexOfKey(i);
-        if (indexOfKey >= 0) {
-            return this.sparseIntArray.valueAt(indexOfKey);
+        int iIndexOfKey = this.sparseIntArray.indexOfKey(i);
+        if (iIndexOfKey >= 0) {
+            return this.sparseIntArray.valueAt(iIndexOfKey);
         }
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (resourcesProvider == null) {

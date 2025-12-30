@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
@@ -49,6 +50,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
@@ -66,7 +68,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.EmojiPacksAlert;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
@@ -113,7 +114,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     private boolean shown;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -127,7 +128,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         emojiPacksAlert.onSubItemClick(i);
     }
 
-    public class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
+    class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
         public void addToFavoriteSelected(String str) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
@@ -291,9 +292,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public void copyEmoji(TLRPC.Document document) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
-            valueOf.setSpan(new AnimatedEmojiSpan(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-            if (AndroidUtilities.addToClipboard(valueOf)) {
+            SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
+            spannableStringBuilderValueOf.setSpan(new AnimatedEmojiSpan(document, (Paint.FontMetricsInt) null), 0, spannableStringBuilderValueOf.length(), 33);
+            if (AndroidUtilities.addToClipboard(spannableStringBuilderValueOf)) {
                 BulletinFactory.of((FrameLayout) ((BottomSheet) EmojiPacksAlert.this).containerView, ((BottomSheet) EmojiPacksAlert.this).resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.EmojiCopied)).show();
             }
         }
@@ -310,9 +311,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public void setAsEmojiStatus(TLRPC.Document document, Integer num) {
-            TLRPC.EmojiStatus emojiStatus;
+            TLRPC.EmojiStatus tL_emojiStatusEmpty;
             if (document == null) {
-                emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+                tL_emojiStatusEmpty = new TLRPC.TL_emojiStatusEmpty();
             } else {
                 TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
                 tL_emojiStatus.document_id = document.id;
@@ -320,15 +321,15 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     tL_emojiStatus.flags |= 1;
                     tL_emojiStatus.until = num.intValue();
                 }
-                emojiStatus = tL_emojiStatus;
+                tL_emojiStatusEmpty = tL_emojiStatus;
             }
             TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-            final TLRPC.EmojiStatus tL_emojiStatusEmpty = currentUser == null ? new TLRPC.TL_emojiStatusEmpty() : currentUser.emoji_status;
-            MessagesController.getInstance(((BottomSheet) EmojiPacksAlert.this).currentAccount).updateEmojiStatus(emojiStatus);
+            final TLRPC.EmojiStatus tL_emojiStatusEmpty2 = currentUser == null ? new TLRPC.TL_emojiStatusEmpty() : currentUser.emoji_status;
+            MessagesController.getInstance(((BottomSheet) EmojiPacksAlert.this).currentAccount).updateEmojiStatus(tL_emojiStatusEmpty);
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.AnonymousClass1.this.lambda$setAsEmojiStatus$0(tL_emojiStatusEmpty);
+                    this.f$0.lambda$setAsEmojiStatus$0(tL_emojiStatusEmpty2);
                 }
             };
             if (document != null) {
@@ -361,8 +362,238 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         this(baseFragment, context, resourcesProvider, arrayList, null);
     }
 
-    private EmojiPacksAlert(final org.telegram.ui.ActionBar.BaseFragment r21, final android.content.Context r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r23, final java.util.ArrayList r24, org.telegram.tgnet.TLObject r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiPacksAlert.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, java.util.ArrayList, org.telegram.tgnet.TLObject):void");
+    private EmojiPacksAlert(final BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, final ArrayList arrayList, TLObject tLObject) {
+        final Theme.ResourcesProvider resourceProvider = (baseFragment == null || baseFragment.getResourceProvider() == null) ? resourcesProvider : baseFragment.getResourceProvider();
+        super(context, false, resourceProvider);
+        this.highlightStartPosition = -1;
+        this.highlightEndPosition = -1;
+        this.previewDelegate = new AnonymousClass1();
+        this.highlightIndex = -1;
+        this.shown = false;
+        this.loaded = true;
+        this.fragment = baseFragment;
+        fixNavigationBar();
+        if (arrayList != null) {
+            this.limitCount = arrayList.size() > 1;
+        }
+        this.customEmojiPacks = new EmojiPacksLoader(this.currentAccount, arrayList, tLObject) {
+            @Override
+            protected void onUpdate() {
+                EmojiPacksAlert.this.updateButton();
+                if (EmojiPacksAlert.this.listView == null || EmojiPacksAlert.this.listView.getAdapter() == null) {
+                    return;
+                }
+                EmojiPacksAlert.this.listView.getAdapter().notifyDataSetChanged();
+            }
+        };
+        float fDp = AndroidUtilities.dp(32.0f);
+        float fDp2 = AndroidUtilities.dp(3.5f);
+        int i = Theme.key_featuredStickers_addButton;
+        this.progressDrawable = new CircularProgressDrawable(fDp, fDp2, getThemedColor(i));
+        ContentView contentView = new ContentView(context);
+        this.contentView = contentView;
+        this.containerView = contentView;
+        this.paddingView = new View(context) {
+            @Override
+            protected void onMeasure(int i2, int i3) {
+                android.graphics.Point point = AndroidUtilities.displaySize;
+                int i4 = point.x;
+                int i5 = point.y;
+                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((int) (i5 * (i4 < i5 ? 0.56f : 0.3f)), 1073741824));
+            }
+        };
+        RecyclerListView recyclerListView = new RecyclerListView(context, this.resourcesProvider) {
+            private Paint highlightPaint = new Paint(1);
+
+            @Override
+            public boolean drawChild(Canvas canvas, View view, long j) {
+                return false;
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                return super.onInterceptTouchEvent(motionEvent) || ContentPreviewViewer.getInstance().onInterceptTouchEvent(motionEvent, EmojiPacksAlert.this.listView, 0, EmojiPacksAlert.this.previewDelegate, this.resourcesProvider);
+            }
+
+            @Override
+            protected void onMeasure(int i2, int i3) {
+                View.MeasureSpec.getSize(i2);
+                EmojiPacksAlert.this.gridLayoutManager.setSpanCount(40);
+                super.onMeasure(i2, i3);
+            }
+
+            @Override
+            public void onScrolled(int i2, int i3) {
+                super.onScrolled(i2, i3);
+                EmojiPacksAlert.this.contentView.updateEmojiDrawables();
+                ((BottomSheet) EmojiPacksAlert.this).containerView.invalidate();
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
+                EmojiPacksAlert.this.contentView.updateEmojiDrawables();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                super.onDetachedFromWindow();
+                AnimatedEmojiSpan.release(((BottomSheet) EmojiPacksAlert.this).containerView, (LongSparseArray<AnimatedEmojiDrawable>) EmojiPacksAlert.this.animatedEmojiDrawables);
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                if (EmojiPacksAlert.this.highlightAlpha != null) {
+                    EmojiPacksAlert emojiPacksAlert = EmojiPacksAlert.this;
+                    if (emojiPacksAlert.highlightStartPosition >= 0 && emojiPacksAlert.highlightEndPosition >= 0 && emojiPacksAlert.adapter != null && isAttachedToWindow()) {
+                        float f = EmojiPacksAlert.this.highlightAlpha.set(0.0f);
+                        if (f > 0.0f) {
+                            int iMin = Integer.MAX_VALUE;
+                            int iMax = Integer.MIN_VALUE;
+                            for (int i2 = 0; i2 < getChildCount(); i2++) {
+                                View childAt = getChildAt(i2);
+                                int childAdapterPosition = getChildAdapterPosition(childAt);
+                                if (childAdapterPosition != -1) {
+                                    EmojiPacksAlert emojiPacksAlert2 = EmojiPacksAlert.this;
+                                    if (childAdapterPosition >= emojiPacksAlert2.highlightStartPosition && childAdapterPosition <= emojiPacksAlert2.highlightEndPosition) {
+                                        iMin = Math.min(iMin, childAt.getTop() + ((int) childAt.getTranslationY()));
+                                        iMax = Math.max(iMax, childAt.getBottom() + ((int) childAt.getTranslationY()));
+                                    }
+                                }
+                            }
+                            if (iMin < iMax) {
+                                this.highlightPaint.setColor(Theme.multAlpha(getThemedColor(Theme.key_chat_linkSelectBackground), f));
+                                canvas.drawRect(0.0f, iMin, getMeasuredWidth(), iMax, this.highlightPaint);
+                            }
+                            invalidate();
+                        }
+                    }
+                }
+                super.dispatchDraw(canvas);
+            }
+        };
+        this.listView = recyclerListView;
+        this.highlightAlpha = new AnimatedFloat(0.0f, recyclerListView, 0L, 1250L, CubicBezierInterpolator.EASE_IN);
+        ViewGroup viewGroup = this.containerView;
+        int i2 = this.backgroundPaddingLeft;
+        viewGroup.setPadding(i2, AndroidUtilities.statusBarHeight, i2, 0);
+        this.containerView.setClipChildren(false);
+        this.containerView.setClipToPadding(false);
+        this.containerView.setWillNotDraw(false);
+        this.listView.setWillNotDraw(false);
+        this.listView.setSelectorRadius(AndroidUtilities.dp(6.0f));
+        this.listView.setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, resourceProvider));
+        this.listView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(this.limitCount ? 8.0f : 68.0f));
+        RecyclerListView recyclerListView2 = this.listView;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 8);
+        this.gridLayoutManager = gridLayoutManager;
+        recyclerListView2.setLayoutManager(gridLayoutManager);
+        this.listView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                if (view instanceof SeparatorView) {
+                    rect.left = -EmojiPacksAlert.this.listView.getPaddingLeft();
+                    rect.right = -EmojiPacksAlert.this.listView.getPaddingRight();
+                } else if (EmojiPacksAlert.this.listView.getChildAdapterPosition(view) == 1) {
+                    rect.top = AndroidUtilities.dp(14.0f);
+                }
+            }
+        });
+        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                if (EmojiPacksAlert.this.contentView == null || !EmojiPacksAlert.this.listView.scrollingByUser) {
+                    return;
+                }
+                EmojiPacksAlert.this.contentView.hidePreviewEmoji();
+            }
+        });
+        RecyclerListView recyclerListView3 = this.listView;
+        final RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i3) {
+                this.f$0.lambda$new$0(arrayList, baseFragment, resourceProvider, view, i3);
+            }
+        };
+        recyclerListView3.setOnItemClickListener(onItemClickListener);
+        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+            @Override
+            public final boolean onItemClick(View view, int i3) {
+                return this.f$0.lambda$new$2(context, view, i3);
+            }
+        });
+        this.listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                return this.f$0.lambda$new$3(onItemClickListener, view, motionEvent);
+            }
+        });
+        this.gridLayoutManager.setReverseLayout(false);
+        this.gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int i3) {
+                TLRPC.StickerSet stickerSet;
+                if (EmojiPacksAlert.this.listView.getAdapter() == null || EmojiPacksAlert.this.listView.getAdapter().getItemViewType(i3) != 1) {
+                    return EmojiPacksAlert.this.gridLayoutManager.getSpanCount();
+                }
+                int i4 = 0;
+                int i5 = 0;
+                while (i4 < EmojiPacksAlert.this.customEmojiPacks.data.length) {
+                    int size = EmojiPacksAlert.this.customEmojiPacks.data[i4].size();
+                    if (EmojiPacksAlert.this.customEmojiPacks.data.length > 1) {
+                        size = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, size);
+                    }
+                    i5 += size + 2;
+                    if (i3 < i5) {
+                        break;
+                    }
+                    i4++;
+                }
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (EmojiPacksAlert.this.customEmojiPacks.stickerSets == null || i4 >= EmojiPacksAlert.this.customEmojiPacks.stickerSets.size()) ? null : (TLRPC.TL_messages_stickerSet) EmojiPacksAlert.this.customEmojiPacks.stickerSets.get(i4);
+                return (tL_messages_stickerSet == null || (stickerSet = tL_messages_stickerSet.set) == null || stickerSet.emojis) ? 5 : 8;
+            }
+        });
+        this.scrollHelper = new RecyclerAnimationScrollHelper(this.listView, this.gridLayoutManager);
+        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        View view = new View(context);
+        this.shadowView = view;
+        view.setBackgroundColor(Theme.getColor(Theme.key_dialogShadowLine));
+        this.containerView.addView(this.shadowView, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 80));
+        this.shadowView.setTranslationY(-AndroidUtilities.dp(68.0f));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.buttonsView = frameLayout;
+        frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
+        this.containerView.addView(this.buttonsView, LayoutHelper.createFrame(-1, 68, 87));
+        TextView textView = new TextView(context);
+        this.addButtonView = textView;
+        textView.setVisibility(8);
+        this.addButtonView.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor(i), 6.0f));
+        this.addButtonView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
+        this.addButtonView.setTypeface(AndroidUtilities.bold());
+        this.addButtonView.setGravity(17);
+        this.buttonsView.addView(this.addButtonView, LayoutHelper.createFrame(-1, 48.0f, 80, 12.0f, 10.0f, 12.0f, 10.0f));
+        TextView textView2 = new TextView(context);
+        this.removeButtonView = textView2;
+        textView2.setVisibility(8);
+        TextView textView3 = this.removeButtonView;
+        int i3 = Theme.key_text_RedBold;
+        textView3.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i3) & 268435455, 0, 0));
+        this.removeButtonView.setTextColor(getThemedColor(i3));
+        this.removeButtonView.setTypeface(AndroidUtilities.bold());
+        this.removeButtonView.setGravity(17);
+        this.removeButtonView.setClickable(true);
+        this.buttonsView.addView(this.removeButtonView, LayoutHelper.createFrame(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 19.0f));
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false, this.resourcesProvider);
+        this.premiumButtonView = premiumButtonView;
+        premiumButtonView.setButton(LocaleController.getString(R.string.UnlockPremiumEmoji), new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                this.f$0.lambda$new$4(view2);
+            }
+        });
+        this.premiumButtonView.setIcon(R.raw.unlock_icon);
+        this.premiumButtonView.buttonLayout.setClickable(true);
+        this.buttonsView.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 80, 12.0f, 10.0f, 12.0f, 10.0f));
     }
 
     public void lambda$new$0(ArrayList arrayList, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view, int i) {
@@ -378,11 +609,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getChatActivityEnterView().getVisibility() == 0 && (view instanceof EmojiImageView)) {
                 AnimatedEmojiSpan animatedEmojiSpan = ((EmojiImageView) view).span;
                 try {
-                    TLRPC.Document document = animatedEmojiSpan.document;
-                    if (document == null) {
-                        document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                    TLRPC.Document documentFindDocument = animatedEmojiSpan.document;
+                    if (documentFindDocument == null) {
+                        documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                     }
-                    SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(document));
+                    SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(documentFindDocument));
                     spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                     ((ChatActivity) baseFragment).getChatActivityEnterView().messageEditText.getText().append((CharSequence) spannableString);
                     onCloseByLink();
@@ -439,7 +670,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }.show();
     }
 
-    public boolean lambda$new$2(Context context, View view, int i) {
+    public boolean lambda$new$2(Context context, View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         final AnimatedEmojiSpan animatedEmojiSpan;
         if (!(view instanceof EmojiImageView) || (animatedEmojiSpan = ((EmojiImageView) view).span) == null) {
             return false;
@@ -453,13 +684,13 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                EmojiPacksAlert.this.lambda$new$1(animatedEmojiSpan, view2);
+                this.f$0.lambda$new$1(animatedEmojiSpan, view2);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
-        Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
-        linearLayout.setBackground(mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
+        linearLayout.setBackground(drawableMutate);
         linearLayout.addView(actionBarMenuSubItem);
         ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(linearLayout, -2, -2);
         this.popupWindow = actionBarPopupWindow;
@@ -516,28 +747,28 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
     private void updateShowButton(boolean z) {
         boolean z2 = !this.shown && z;
-        float dp = this.removeButtonView.getVisibility() == 0 ? AndroidUtilities.dp(19.0f) : 0;
-        float f = 0.0f;
+        float fDp = this.removeButtonView.getVisibility() == 0 ? AndroidUtilities.dp(19.0f) : 0;
+        float fDp2 = 0.0f;
         if (z2) {
-            ViewPropertyAnimator duration = this.buttonsView.animate().translationY(z ? dp : AndroidUtilities.dp(16.0f)).alpha(z ? 1.0f : 0.0f).setDuration(250L);
+            ViewPropertyAnimator duration = this.buttonsView.animate().translationY(z ? fDp : AndroidUtilities.dp(16.0f)).alpha(z ? 1.0f : 0.0f).setDuration(250L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             duration.setInterpolator(cubicBezierInterpolator).start();
-            this.shadowView.animate().translationY(z ? -(AndroidUtilities.dp(68.0f) - dp) : 0.0f).alpha(z ? 1.0f : 0.0f).setDuration(250L).setInterpolator(cubicBezierInterpolator).start();
-            ViewPropertyAnimator animate = this.listView.animate();
+            this.shadowView.animate().translationY(z ? -(AndroidUtilities.dp(68.0f) - fDp) : 0.0f).alpha(z ? 1.0f : 0.0f).setDuration(250L).setInterpolator(cubicBezierInterpolator).start();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.listView.animate();
             if (!this.limitCount && !z) {
-                f = AndroidUtilities.dp(68.0f) - dp;
+                fDp2 = AndroidUtilities.dp(68.0f) - fDp;
             }
-            animate.translationY(f).setDuration(250L).setInterpolator(cubicBezierInterpolator).start();
+            viewPropertyAnimatorAnimate.translationY(fDp2).setDuration(250L).setInterpolator(cubicBezierInterpolator).start();
         } else {
             this.buttonsView.setAlpha(z ? 1.0f : 0.0f);
-            this.buttonsView.setTranslationY(z ? dp : AndroidUtilities.dp(16.0f));
+            this.buttonsView.setTranslationY(z ? fDp : AndroidUtilities.dp(16.0f));
             this.shadowView.setAlpha(z ? 1.0f : 0.0f);
-            this.shadowView.setTranslationY(z ? -(AndroidUtilities.dp(68.0f) - dp) : 0.0f);
+            this.shadowView.setTranslationY(z ? -(AndroidUtilities.dp(68.0f) - fDp) : 0.0f);
             RecyclerListView recyclerListView = this.listView;
             if (!this.limitCount && !z) {
-                f = AndroidUtilities.dp(68.0f) - dp;
+                fDp2 = AndroidUtilities.dp(68.0f) - fDp;
             }
-            recyclerListView.setTranslationY(f);
+            recyclerListView.setTranslationY(fDp2);
         }
         this.shown = z;
     }
@@ -546,7 +777,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         this.contentView.setPreviewEmoji(document);
     }
 
-    public class ContentView extends FrameLayout {
+    private class ContentView extends FrameLayout {
         boolean attached;
         private Boolean lastOpen;
         ArrayList lineDrawables;
@@ -612,28 +843,28 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.path.reset();
                 float f = EmojiPacksAlert.this.lastY = r1.getListTop();
                 float f2 = this.statusBarT.set(f <= ((float) ((BottomSheet) EmojiPacksAlert.this).containerView.getPaddingTop()));
-                float lerp = AndroidUtilities.lerp(f, 0.0f, f2);
+                float fLerp = AndroidUtilities.lerp(f, 0.0f, f2);
                 if (this.previewImageReceiver != null) {
-                    float dp = AndroidUtilities.dp(140.0f);
-                    float dp2 = AndroidUtilities.dp(20.0f);
-                    if (lerp < dp + dp2) {
+                    float fDp = AndroidUtilities.dp(140.0f);
+                    float fDp2 = AndroidUtilities.dp(20.0f);
+                    if (fLerp < fDp + fDp2) {
                         this.previewImageVisible = false;
                     }
                     this.previewImageReceiver.setAlpha(this.previewImageVisibleT.set(this.previewImageVisible));
                     if (this.previewImageReceiver.getAlpha() > 0.0f) {
-                        float alpha = ((this.previewImageReceiver.getAlpha() * 0.4f) + 0.6f) * dp;
+                        float alpha = ((this.previewImageReceiver.getAlpha() * 0.4f) + 0.6f) * fDp;
                         float f3 = alpha / 2.0f;
-                        this.previewImageReceiver.setImageCoords((getWidth() / 2.0f) - f3, ((lerp - dp2) - (dp / 2.0f)) - f3, alpha, alpha);
+                        this.previewImageReceiver.setImageCoords((getWidth() / 2.0f) - f3, ((fLerp - fDp2) - (fDp / 2.0f)) - f3, alpha, alpha);
                         this.previewImageReceiver.draw(canvas);
                     } else {
                         this.previewImageReceiver.onDetachedFromWindow();
                         this.previewImageReceiver = null;
                     }
                 }
-                float dp3 = AndroidUtilities.dp((1.0f - f2) * 14.0f);
+                float fDp3 = AndroidUtilities.dp((1.0f - f2) * 14.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(getPaddingLeft(), lerp, getWidth() - getPaddingRight(), getBottom() + dp3);
-                this.path.addRoundRect(rectF, dp3, dp3, Path.Direction.CW);
+                rectF.set(getPaddingLeft(), fLerp, getWidth() - getPaddingRight(), getBottom() + fDp3);
+                this.path.addRoundRect(rectF, fDp3, fDp3, Path.Direction.CW);
                 canvas.drawPath(this.path, this.paint);
                 boolean z = f2 > 0.5f;
                 Boolean bool = this.lastOpen;
@@ -643,10 +874,10 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     emojiPacksAlert.updateLightStatusBar(z);
                 }
                 Theme.dialogs_onlineCirclePaint.setColor(EmojiPacksAlert.this.getThemedColor(Theme.key_sheet_scrollUp));
-                Theme.dialogs_onlineCirclePaint.setAlpha((int) (MathUtils.clamp(lerp / AndroidUtilities.dp(20.0f), 0.0f, 1.0f) * Theme.dialogs_onlineCirclePaint.getAlpha()));
-                int dp4 = AndroidUtilities.dp(36.0f);
-                float dp5 = lerp + AndroidUtilities.dp(10.0f);
-                rectF.set((getMeasuredWidth() - dp4) / 2, dp5, (getMeasuredWidth() + dp4) / 2, AndroidUtilities.dp(4.0f) + dp5);
+                Theme.dialogs_onlineCirclePaint.setAlpha((int) (MathUtils.clamp(fLerp / AndroidUtilities.dp(20.0f), 0.0f, 1.0f) * Theme.dialogs_onlineCirclePaint.getAlpha()));
+                int iDp = AndroidUtilities.dp(36.0f);
+                float fDp4 = fLerp + AndroidUtilities.dp(10.0f);
+                rectF.set((getMeasuredWidth() - iDp) / 2, fDp4, (getMeasuredWidth() + iDp) / 2, AndroidUtilities.dp(4.0f) + fDp4);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                 EmojiPacksAlert.this.shadowView.setVisibility((EmojiPacksAlert.this.listView.canScrollVertically(1) || EmojiPacksAlert.this.removeButtonView.getVisibility() == 0) ? 0 : 4);
                 if (EmojiPacksAlert.this.listView != null) {
@@ -693,7 +924,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     this.lineDrawablesTmp.clear();
                     this.lineDrawablesTmp.addAll(this.lineDrawables);
                     this.lineDrawables.clear();
-                    long currentTimeMillis = System.currentTimeMillis();
+                    long jCurrentTimeMillis = System.currentTimeMillis();
                     for (int i3 = 0; i3 < this.viewsGroupedByLines.size(); i3++) {
                         ArrayList arrayList4 = (ArrayList) this.viewsGroupedByLines.valueAt(i3);
                         View view = (View) arrayList4.get(0);
@@ -729,7 +960,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                         drawingInBackgroundLine2.imageViewEmojis = arrayList4;
                         canvas.save();
                         canvas.translate(0.0f, view.getY() + view.getPaddingTop());
-                        drawingInBackgroundLine2.draw(canvas, currentTimeMillis, getMeasuredWidth(), view.getMeasuredHeight() - view.getPaddingBottom(), 1.0f);
+                        drawingInBackgroundLine2.draw(canvas, jCurrentTimeMillis, getMeasuredWidth(), view.getMeasuredHeight() - view.getPaddingBottom(), 1.0f);
                         canvas.restore();
                     }
                     for (int i5 = 0; i5 < this.lineDrawablesTmp.size(); i5++) {
@@ -746,10 +977,10 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     canvas.restore();
                     if (EmojiPacksAlert.this.listView.getAlpha() < 1.0f) {
                         int width = getWidth() / 2;
-                        int height = (((int) dp5) + getHeight()) / 2;
-                        int dp6 = AndroidUtilities.dp(16.0f);
+                        int height = (((int) fDp4) + getHeight()) / 2;
+                        int iDp2 = AndroidUtilities.dp(16.0f);
                         EmojiPacksAlert.this.progressDrawable.setAlpha((int) ((1.0f - EmojiPacksAlert.this.listView.getAlpha()) * 255.0f));
-                        EmojiPacksAlert.this.progressDrawable.setBounds(width - dp6, height - dp6, width + dp6, height + dp6);
+                        EmojiPacksAlert.this.progressDrawable.setBounds(width - iDp2, height - iDp2, width + iDp2, height + iDp2);
                         EmojiPacksAlert.this.progressDrawable.draw(canvas);
                         invalidate();
                     }
@@ -820,8 +1051,31 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void draw(android.graphics.Canvas r7, long r8, int r10, int r11, float r12) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiPacksAlert.ContentView.DrawingInBackgroundLine.draw(android.graphics.Canvas, long, int, int, float):void");
+            public void draw(Canvas canvas, long j, int i, int i2, float f) {
+                ArrayList arrayList = this.imageViewEmojis;
+                if (arrayList == null) {
+                    return;
+                }
+                boolean z = true;
+                boolean z2 = arrayList.size() <= 3 || SharedConfig.getDevicePerformanceClass() == 0;
+                if (z2) {
+                    z = z2;
+                } else {
+                    for (int i3 = 0; i3 < this.imageViewEmojis.size(); i3++) {
+                        EmojiImageView emojiImageView = (EmojiImageView) this.imageViewEmojis.get(i3);
+                        if (emojiImageView.pressedProgress != 0.0f || emojiImageView.backAnimator != null || emojiImageView.getTranslationX() != 0.0f || emojiImageView.getTranslationY() != 0.0f || emojiImageView.getAlpha() != 1.0f) {
+                            break;
+                        }
+                    }
+                    z = z2;
+                }
+                if (z) {
+                    prepareDraw(System.currentTimeMillis());
+                    drawInUiThread(canvas, f);
+                    reset();
+                    return;
+                }
+                super.draw(canvas, j, i, i2, f);
             }
 
             @Override
@@ -915,7 +1169,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) getContext()).lambda$runLinkRequest$102(new PremiumPreviewFragment(null));
+            ((LaunchActivity) getContext()).lambda$runLinkRequest$96(new PremiumPreviewFragment(null));
         }
     }
 
@@ -953,7 +1207,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                EmojiPacksAlert.lambda$installSet$6(TLRPC.StickerSet.this, tL_error, z, view, baseFragment, tL_messages_stickerSet, tLObject, i, callback, runnable);
+                EmojiPacksAlert.lambda$installSet$6(stickerSet, tL_error, z, view, baseFragment, tL_messages_stickerSet, tLObject, i, callback, runnable);
             }
         });
     }
@@ -1024,7 +1278,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                EmojiPacksAlert.this.lambda$loadAnimation$8(valueAnimator);
+                this.f$0.lambda$loadAnimation$8(valueAnimator);
             }
         });
         this.loadAnimator.setDuration(250L);
@@ -1033,9 +1287,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void lambda$loadAnimation$8(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.loadT = floatValue;
-        this.listView.setAlpha(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.loadT = fFloatValue;
+        this.listView.setAlpha(fFloatValue);
         this.addButtonView.setAlpha(this.loadT);
         this.removeButtonView.setAlpha(this.loadT);
         this.containerView.invalidate();
@@ -1077,10 +1331,10 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         if (!z) {
             this.listView.setAlpha(0.0f);
         } else if (this.highlightIndex >= 0) {
-            int findFirstVisibleItemPosition = this.gridLayoutManager.findFirstVisibleItemPosition();
+            int iFindFirstVisibleItemPosition = this.gridLayoutManager.findFirstVisibleItemPosition();
             int setHeaderPosition = this.adapter.getSetHeaderPosition(this.highlightIndex);
-            if (Math.abs(findFirstVisibleItemPosition - setHeaderPosition) > 54) {
-                this.scrollHelper.setScrollDirection(findFirstVisibleItemPosition < setHeaderPosition ? 0 : 1);
+            if (Math.abs(iFindFirstVisibleItemPosition - setHeaderPosition) > 54) {
+                this.scrollHelper.setScrollDirection(iFindFirstVisibleItemPosition < setHeaderPosition ? 0 : 1);
                 this.scrollHelper.scrollToPosition(setHeaderPosition, (AndroidUtilities.displaySize.y / 2) - AndroidUtilities.dp(170.0f), false, true);
             } else {
                 this.listView.smoothScrollToPosition(setHeaderPosition);
@@ -1110,7 +1364,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             this.addButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiPacksAlert.this.lambda$updateButton$10(arrayList4, view);
+                    this.f$0.lambda$updateButton$10(arrayList4, view);
                 }
             });
             updateShowButton(true);
@@ -1127,7 +1381,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             this.removeButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiPacksAlert.this.lambda$updateButton$11(arrayList2, view);
+                    this.f$0.lambda$updateButton$11(arrayList2, view);
                 }
             });
             updateShowButton(true);
@@ -1145,7 +1399,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             installSet(this.fragment, (TLObject) arrayList.get(i), size == 1, size > 1 ? new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    EmojiPacksAlert.this.lambda$updateButton$9(iArr, size, arrayList, (Boolean) obj);
+                    this.f$0.lambda$updateButton$9(iArr, size, arrayList, (Boolean) obj);
                 }
             } : null, null);
         }
@@ -1244,7 +1498,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         private final int VIEW_TYPE_EMOJI;
         private final int VIEW_TYPE_HEADER;
         private final int VIEW_TYPE_PADDING;
@@ -1270,25 +1524,25 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View separatorView;
             if (i == 0) {
-                view = EmojiPacksAlert.this.paddingView;
+                separatorView = EmojiPacksAlert.this.paddingView;
             } else {
                 if (i == 1) {
-                    view = new EmojiImageView(EmojiPacksAlert.this.getContext());
+                    separatorView = new EmojiImageView(EmojiPacksAlert.this.getContext());
                 } else if (i == 2) {
                     EmojiPacksAlert emojiPacksAlert = EmojiPacksAlert.this;
-                    view = new EmojiPackHeader(emojiPacksAlert.getContext(), EmojiPacksAlert.this.customEmojiPacks.data.length <= 1);
+                    separatorView = emojiPacksAlert.new EmojiPackHeader(emojiPacksAlert.getContext(), EmojiPacksAlert.this.customEmojiPacks.data.length <= 1);
                 } else if (i == 3) {
-                    view = new TextView(EmojiPacksAlert.this.getContext());
+                    separatorView = new TextView(EmojiPacksAlert.this.getContext());
                 } else if (i == 4) {
                     EmojiPacksAlert emojiPacksAlert2 = EmojiPacksAlert.this;
-                    view = new SeparatorView(emojiPacksAlert2.getContext());
+                    separatorView = emojiPacksAlert2.new SeparatorView(emojiPacksAlert2.getContext());
                 } else {
-                    view = null;
+                    separatorView = null;
                 }
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(separatorView);
         }
 
         @Override
@@ -1298,29 +1552,29 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             int i2 = i - 1;
             int itemViewType = viewHolder.getItemViewType();
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-            int i3 = 0;
+            int size = 0;
             boolean z = true;
             if (itemViewType == 1) {
                 if (EmojiPacksAlert.this.hasDescription) {
                     i2 = i - 2;
                 }
                 EmojiImageView emojiImageView = (EmojiImageView) viewHolder.itemView;
-                int i4 = 0;
+                int i3 = 0;
                 while (true) {
-                    if (i3 >= EmojiPacksAlert.this.customEmojiPacks.data.length) {
+                    if (size >= EmojiPacksAlert.this.customEmojiPacks.data.length) {
                         customEmoji = null;
                         break;
                     }
-                    int size = EmojiPacksAlert.this.customEmojiPacks.data[i3].size();
+                    int size2 = EmojiPacksAlert.this.customEmojiPacks.data[size].size();
                     if (EmojiPacksAlert.this.customEmojiPacks.data.length > 1) {
-                        size = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, size);
+                        size2 = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, size2);
                     }
-                    if (i2 > i4 && i2 <= i4 + size) {
-                        customEmoji = (EmojiView.CustomEmoji) EmojiPacksAlert.this.customEmojiPacks.data[i3].get((i2 - i4) - 1);
+                    if (i2 > i3 && i2 <= i3 + size2) {
+                        customEmoji = (EmojiView.CustomEmoji) EmojiPacksAlert.this.customEmojiPacks.data[size].get((i2 - i3) - 1);
                         break;
                     } else {
-                        i4 += size + 2;
-                        i3++;
+                        i3 += size2 + 2;
+                        size++;
                     }
                 }
                 AnimatedEmojiSpan animatedEmojiSpan = emojiImageView.span;
@@ -1359,36 +1613,38 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             if (EmojiPacksAlert.this.hasDescription && i2 > 0) {
                 i2 = i - 2;
             }
+            int i4 = 0;
             int i5 = 0;
-            int i6 = 0;
-            while (i5 < EmojiPacksAlert.this.customEmojiPacks.data.length) {
-                int size2 = EmojiPacksAlert.this.customEmojiPacks.data[i5].size();
+            while (i4 < EmojiPacksAlert.this.customEmojiPacks.data.length) {
+                int size3 = EmojiPacksAlert.this.customEmojiPacks.data[i4].size();
                 if (EmojiPacksAlert.this.customEmojiPacks.data.length > 1) {
-                    size2 = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, size2);
+                    size3 = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, size3);
                 }
-                if (i2 == i6) {
+                if (i2 == i5) {
                     break;
                 }
-                i6 += size2 + 2;
-                i5++;
+                i5 += size3 + 2;
+                i4++;
             }
-            if (EmojiPacksAlert.this.customEmojiPacks.stickerSets != null && i5 < EmojiPacksAlert.this.customEmojiPacks.stickerSets.size()) {
-                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) EmojiPacksAlert.this.customEmojiPacks.stickerSets.get(i5);
+            if (EmojiPacksAlert.this.customEmojiPacks.stickerSets != null && i4 < EmojiPacksAlert.this.customEmojiPacks.stickerSets.size()) {
+                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) EmojiPacksAlert.this.customEmojiPacks.stickerSets.get(i4);
             }
-            if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
-                for (int i7 = 0; i7 < tL_messages_stickerSet.documents.size(); i7++) {
-                    if (!MessageObject.isFreeEmoji(tL_messages_stickerSet.documents.get(i7))) {
+            if (tL_messages_stickerSet == null || tL_messages_stickerSet.documents == null) {
+                z = false;
+            } else {
+                for (int i6 = 0; i6 < tL_messages_stickerSet.documents.size(); i6++) {
+                    if (!MessageObject.isFreeEmoji(tL_messages_stickerSet.documents.get(i6))) {
                         break;
                     }
                 }
+                z = false;
             }
-            z = false;
-            if (i5 < EmojiPacksAlert.this.customEmojiPacks.data.length) {
+            if (i4 < EmojiPacksAlert.this.customEmojiPacks.data.length) {
                 EmojiPackHeader emojiPackHeader = (EmojiPackHeader) viewHolder.itemView;
                 if (tL_messages_stickerSet != null && (arrayList = tL_messages_stickerSet.documents) != null) {
-                    i3 = arrayList.size();
+                    size = arrayList.size();
                 }
-                emojiPackHeader.set(tL_messages_stickerSet, i3, z);
+                emojiPackHeader.set(tL_messages_stickerSet, size, z);
             }
         }
 
@@ -1501,17 +1757,17 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public class AnonymousClass9 extends ShareAlert {
+    class AnonymousClass9 extends ShareAlert {
         AnonymousClass9(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
         }
 
         @Override
-        public void onSend(final androidx.collection.LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        protected void onSend(final androidx.collection.LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.AnonymousClass9.this.lambda$onSend$0(longSparseArray, i);
+                    this.f$0.lambda$onSend$0(longSparseArray, i);
                 }
             }, 100L);
         }
@@ -1573,12 +1829,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 }
                 float f = this.pressedProgress;
                 if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.backAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.backAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            EmojiPacksAlert.EmojiImageView.this.lambda$setPressed$0(valueAnimator2);
+                            this.f$0.lambda$setPressed$0(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1613,7 +1869,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public class EmojiPackHeader extends FrameLayout {
+    class EmojiPackHeader extends FrameLayout {
         public TextView addButtonView;
         private ValueAnimator animator;
         public BaseFragment dummyFragment;
@@ -1628,8 +1884,8 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         public PremiumButtonView unlockButtonView;
 
         public EmojiPackHeader(Context context, boolean z) {
+            float fMax;
             super(context);
-            float f;
             this.dummyFragment = new BaseFragment() {
                 @Override
                 public int getCurrentAccount() {
@@ -1655,30 +1911,30 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             this.toggleT = 0.0f;
             this.single = z;
             if (z) {
-                f = 32.0f;
+                fMax = 32.0f;
             } else {
-                float f2 = 8.0f;
+                float measuredWidth = 8.0f;
                 if (!UserConfig.getInstance(((BottomSheet) EmojiPacksAlert.this).currentAccount).isPremium()) {
                     PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, ((BottomSheet) EmojiPacksAlert.this).resourcesProvider);
                     this.unlockButtonView = premiumButtonView;
                     premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            EmojiPacksAlert.EmojiPackHeader.this.lambda$new$0(view);
+                            this.f$0.lambda$new$0(view);
                         }
                     });
                     this.unlockButtonView.setIcon(R.raw.unlock_icon);
                     ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.unlockButtonView.getIconView().getLayoutParams();
                     marginLayoutParams.leftMargin = AndroidUtilities.dp(1.0f);
                     marginLayoutParams.topMargin = AndroidUtilities.dp(1.0f);
-                    int dp = AndroidUtilities.dp(20.0f);
-                    marginLayoutParams.height = dp;
-                    marginLayoutParams.width = dp;
+                    int iDp = AndroidUtilities.dp(20.0f);
+                    marginLayoutParams.height = iDp;
+                    marginLayoutParams.width = iDp;
                     ((ViewGroup.MarginLayoutParams) this.unlockButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.dp(3.0f);
                     this.unlockButtonView.getChildAt(0).setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
                     addView(this.unlockButtonView, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                     this.unlockButtonView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                    f2 = (this.unlockButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density;
+                    measuredWidth = (this.unlockButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density;
                 }
                 TextView textView = new TextView(context);
                 this.addButtonView = textView;
@@ -1693,12 +1949,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.addButtonView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        EmojiPacksAlert.EmojiPackHeader.this.lambda$new$1(view);
+                        this.f$0.lambda$new$1(view);
                     }
                 });
                 addView(this.addButtonView, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                 this.addButtonView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                float max = Math.max(f2, (this.addButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density);
+                float fMax2 = Math.max(measuredWidth, (this.addButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density);
                 TextView textView3 = new TextView(context);
                 this.removeButtonView = textView3;
                 textView3.setTypeface(AndroidUtilities.bold());
@@ -1710,7 +1966,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.removeButtonView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        EmojiPacksAlert.EmojiPackHeader.this.lambda$new$3(view);
+                        this.f$0.lambda$new$3(view);
                     }
                 });
                 this.removeButtonView.setClickable(false);
@@ -1719,7 +1975,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.removeButtonView.setScaleY(0.0f);
                 this.removeButtonView.setAlpha(0.0f);
                 this.removeButtonView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                f = Math.max(max, (this.removeButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density);
+                fMax = Math.max(fMax2, (this.removeButtonView.getMeasuredWidth() + AndroidUtilities.dp(16.0f)) / AndroidUtilities.density);
             }
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, ((BottomSheet) EmojiPacksAlert.this).resourcesProvider);
             this.titleView = linksTextView;
@@ -1734,10 +1990,10 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             this.titleView.setTextColor(EmojiPacksAlert.this.getThemedColor(Theme.key_dialogTextBlack));
             if (z) {
                 this.titleView.setTextSize(1, 20.0f);
-                addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f, 0.0f));
+                addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, fMax, 0.0f));
             } else {
                 this.titleView.setTextSize(1, 17.0f);
-                addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f, 0.0f));
+                addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, fMax, 0.0f));
             }
             if (!z) {
                 TextView textView4 = new TextView(context);
@@ -1747,7 +2003,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.subtitleView.setEllipsize(truncateAt);
                 this.subtitleView.setSingleLine(true);
                 this.subtitleView.setLines(1);
-                addView(this.subtitleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 8.0f, 31.66f, f, 0.0f));
+                addView(this.subtitleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388659, 8.0f, 31.66f, fMax, 0.0f));
             }
             if (z) {
                 ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, (ActionBarMenu) null, 0, EmojiPacksAlert.this.getThemedColor(Theme.key_sheet_other), ((BottomSheet) EmojiPacksAlert.this).resourcesProvider);
@@ -1762,13 +2018,13 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.optionsButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        EmojiPacksAlert.EmojiPackHeader.this.lambda$new$4(view);
+                        this.f$0.lambda$new$4(view);
                     }
                 });
                 this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
                     @Override
                     public final void onItemClick(int i2) {
-                        EmojiPacksAlert.access$6500(EmojiPacksAlert.this, i2);
+                        EmojiPacksAlert.access$6500(emojiPacksAlert, i2);
                     }
                 });
                 this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
@@ -1789,7 +2045,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             EmojiPacksAlert.uninstallSet(this.dummyFragment, this.set, true, new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.EmojiPackHeader.this.lambda$new$2();
+                    this.f$0.lambda$new$2();
                 }
             }, true);
             toggle(false, true);
@@ -1820,12 +2076,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             textView.setClickable(!z);
             this.removeButtonView.setClickable(z);
             if (z2) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.toggleT, z ? 1.0f : 0.0f);
-                this.animator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.toggleT, z ? 1.0f : 0.0f);
+                this.animator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EmojiPacksAlert.EmojiPackHeader.this.lambda$toggle$6(valueAnimator2);
+                        this.f$0.lambda$toggle$6(valueAnimator2);
                     }
                 });
                 this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -1843,9 +2099,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         public void lambda$toggle$6(ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.toggleT = floatValue;
-            this.addButtonView.setScaleX(1.0f - floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.toggleT = fFloatValue;
+            this.addButtonView.setScaleX(1.0f - fFloatValue);
             this.addButtonView.setScaleY(1.0f - this.toggleT);
             this.addButtonView.setAlpha(1.0f - this.toggleT);
             this.removeButtonView.setScaleX(this.toggleT);
@@ -1863,7 +2119,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static class LinkMovementMethodMy extends LinkMovementMethod {
+    private static class LinkMovementMethodMy extends LinkMovementMethod {
         private LinkMovementMethodMy() {
         }
 
@@ -1874,14 +2130,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         @Override
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             try {
-                boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                if (motionEvent.getAction() != 1) {
-                    if (motionEvent.getAction() == 3) {
-                    }
-                    return onTouchEvent;
+                boolean zOnTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    Selection.removeSelection(spannable);
                 }
-                Selection.removeSelection(spannable);
-                return onTouchEvent;
+                return zOnTouchEvent;
             } catch (Exception e) {
                 FileLog.e(e);
                 return false;
@@ -1889,7 +2142,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public class EmojiPacksLoader implements NotificationCenter.NotificationCenterDelegate {
+    class EmojiPacksLoader implements NotificationCenter.NotificationCenterDelegate {
         private int currentAccount;
         public ArrayList[] data;
         public ArrayList inputStickerSets;
@@ -1957,7 +2210,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
-                        EmojiPacksAlert.EmojiPacksLoader.this.lambda$init$1(tLObject3, tL_error);
+                        this.f$0.lambda$init$1(tLObject3, tL_error);
                     }
                 });
                 return;
@@ -1970,14 +2223,14 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(this.currentAccount).getStickerSet((TLRPC.InputStickerSet) this.inputStickerSets.get(i), null, false, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        EmojiPacksAlert.EmojiPacksLoader.this.lambda$init$3(zArr, (TLRPC.TL_messages_stickerSet) obj);
+                        this.f$0.lambda$init$3(zArr, (TLRPC.TL_messages_stickerSet) obj);
                     }
                 });
                 if (this.data.length == 1 && stickerSet2 != null && (stickerSet = stickerSet2.set) != null && !stickerSet.emojis) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiPacksAlert.EmojiPacksLoader.this.lambda$init$4();
+                            this.f$0.lambda$init$4();
                         }
                     });
                     new StickersAlert(EmojiPacksAlert.this.getContext(), EmojiPacksAlert.this.fragment, (TLRPC.InputStickerSet) this.inputStickerSets.get(i), null, EmojiPacksAlert.this.fragment instanceof ChatActivity ? ((ChatActivity) EmojiPacksAlert.this.fragment).getChatActivityEnterView() : null, ((BottomSheet) EmojiPacksAlert.this).resourcesProvider, false).show();
@@ -1994,7 +2247,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.EmojiPacksLoader.this.lambda$init$0(tL_error, tLObject);
+                    this.f$0.lambda$init$0(tL_error, tLObject);
                 }
             });
         }
@@ -2031,7 +2284,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.EmojiPacksLoader.this.lambda$init$2();
+                    this.f$0.lambda$init$2();
                 }
             });
         }
@@ -2116,7 +2369,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         public int getItemsCount() {
-            int min;
+            int iMin;
             int i = 0;
             if (this.data == null) {
                 return 0;
@@ -2130,11 +2383,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 ArrayList arrayList = arrayListArr[i];
                 if (arrayList != null) {
                     if (arrayListArr.length != 1) {
-                        min = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, this.data[i].size());
+                        iMin = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, this.data[i].size());
                     } else {
-                        min = arrayList.size();
+                        iMin = arrayList.size();
                     }
-                    i2 = i2 + min + 1;
+                    i2 = i2 + iMin + 1;
                 }
                 i++;
             }

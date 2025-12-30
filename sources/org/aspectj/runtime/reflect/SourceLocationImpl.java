@@ -7,7 +7,7 @@ class SourceLocationImpl implements SourceLocation {
     int line;
     Class withinType;
 
-    public SourceLocationImpl(Class cls, String str, int i) {
+    SourceLocationImpl(Class cls, String str, int i) {
         this.withinType = cls;
         this.fileName = str;
         this.line = i;

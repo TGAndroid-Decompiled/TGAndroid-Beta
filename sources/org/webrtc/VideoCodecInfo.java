@@ -54,7 +54,7 @@ public class VideoCodecInfo {
         return "VideoCodec{" + this.name + " " + this.params + "}";
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 

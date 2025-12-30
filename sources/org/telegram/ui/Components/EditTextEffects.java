@@ -71,13 +71,13 @@ public abstract class EditTextEffects extends EditText {
         this.spoilers.get(0).setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         });
-        float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
+        float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
         Iterator<SpoilerEffect> it = this.spoilers.iterator();
         while (it.hasNext()) {
-            it.next().startRipple(this.lastRippleX, this.lastRippleY, sqrt, true);
+            it.next().startRipple(this.lastRippleX, this.lastRippleY, fSqrt, true);
         }
     }
 
@@ -89,7 +89,7 @@ public abstract class EditTextEffects extends EditText {
         post(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
     }
@@ -106,7 +106,7 @@ public abstract class EditTextEffects extends EditText {
         this.spoilerTimeout = new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.rect = new android.graphics.Rect();
@@ -115,7 +115,7 @@ public abstract class EditTextEffects extends EditText {
             this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
                 @Override
                 public final void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
-                    EditTextEffects.this.onSpoilerClicked(spoilerEffect, f, f2);
+                    this.f$0.onSpoilerClicked(spoilerEffect, f, f2);
                 }
             });
         }
@@ -133,13 +133,13 @@ public abstract class EditTextEffects extends EditText {
         spoilerEffect.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$onSpoilerClicked$4();
+                this.f$0.lambda$onSpoilerClicked$4();
             }
         });
-        float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
+        float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
         Iterator<SpoilerEffect> it = this.spoilers.iterator();
         while (it.hasNext()) {
-            it.next().startRipple(f, f2, sqrt);
+            it.next().startRipple(f, f2, fSqrt);
         }
     }
 
@@ -147,7 +147,7 @@ public abstract class EditTextEffects extends EditText {
         post(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$onSpoilerClicked$3();
+                this.f$0.lambda$onSpoilerClicked$3();
             }
         });
     }
@@ -158,7 +158,7 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onSelectionChanged(int i, int i2) {
+    protected void onSelectionChanged(int i, int i2) {
         super.onSelectionChanged(i, i2);
         if (this.suppressOnTextChanged) {
             return;
@@ -194,7 +194,7 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         removeCallbacks(this.spoilerTimeout);
         AnimatedEmojiSpan.release(this, this.animatedEmojiDrawables);
@@ -205,20 +205,20 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateAnimatedEmoji(true);
         invalidateQuotes(false);
     }
 
     @Override
-    public void onSizeChanged(int i, int i2, int i3, int i4) {
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         invalidateEffects();
     }
 
     @Override
-    public void onTextChanged(java.lang.CharSequence r4, int r5, int r6, int r7) {
+    protected void onTextChanged(java.lang.CharSequence r4, int r5, int r6, int r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EditTextEffects.onTextChanged(java.lang.CharSequence, int, int, int):void");
     }
 
@@ -252,7 +252,7 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         invalidateQuotes(false);
     }
@@ -272,16 +272,16 @@ public abstract class EditTextEffects extends EditText {
         if (QuoteSpan.onTouch(motionEvent, getPaddingTop() - getScrollY(), this.quoteBlocks, new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.this.lambda$dispatchTouchEvent$5();
+                this.f$0.lambda$dispatchTouchEvent$5();
             }
         })) {
             return true;
         }
         if (this.shouldRevealSpoilersByTouch && (spoilersClickDetector = this.clickDetector) != null && spoilersClickDetector.onTouchEvent(motionEvent)) {
             if (motionEvent.getActionMasked() == 1) {
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                super.dispatchTouchEvent(obtain);
-                obtain.recycle();
+                MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                super.dispatchTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
             }
             z = true;
         } else {
@@ -328,7 +328,7 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         canvas.save();
         if (this.clipToPadding && getScrollY() != 0) {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY);
@@ -418,11 +418,11 @@ public abstract class EditTextEffects extends EditText {
             this.editedWhileQuoteUpdating = true;
             return;
         }
-        int i = 0;
-        int length = (getLayout() == null || getLayout().getText() == null) ? 0 : getLayout().getText().length();
-        if (z || this.lastText2Length != length) {
+        int length = 0;
+        int length2 = (getLayout() == null || getLayout().getText() == null) ? 0 : getLayout().getText().length();
+        if (z || this.lastText2Length != length2) {
             this.quoteUpdatesTries = 2;
-            this.lastText2Length = length;
+            this.lastText2Length = length2;
         }
         if (this.quoteUpdatesTries > 0) {
             if (this.quoteUpdateLayout == null) {
@@ -442,13 +442,13 @@ public abstract class EditTextEffects extends EditText {
             }
             this.quoteUpdatesTries--;
             if (getLayout() != null && getLayout().getText() != null) {
-                i = getLayout().getText().length();
+                length = getLayout().getText().length();
             }
-            this.lastText2Length = i;
+            this.lastText2Length = length;
         }
     }
 
-    public void resetFontMetricsCache() {
+    protected void resetFontMetricsCache() {
         float textSize = getTextSize();
         setTextSize(0, 1.0f + textSize);
         setTextSize(0, textSize);
@@ -466,7 +466,7 @@ public abstract class EditTextEffects extends EditText {
         invalidateSpoilers();
     }
 
-    public void invalidateSpoilers() {
+    protected void invalidateSpoilers() {
         AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
         AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans2;
         List<SpoilerEffect> list = this.spoilers;

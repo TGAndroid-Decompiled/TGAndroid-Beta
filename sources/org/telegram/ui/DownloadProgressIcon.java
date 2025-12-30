@@ -65,9 +65,9 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-        int dp = AndroidUtilities.dp(15.0f);
-        float f = dp;
-        int i3 = dp * 2;
+        int iDp = AndroidUtilities.dp(15.0f);
+        float f = iDp;
+        int i3 = iDp * 2;
         this.downloadImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
         this.downloadCompleteImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
     }
@@ -106,16 +106,16 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             }
         }
         int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
-        float dp = AndroidUtilities.dp(1.0f);
-        float dp2 = AndroidUtilities.dp(16.0f);
+        float fDp = AndroidUtilities.dp(1.0f);
+        float fDp2 = AndroidUtilities.dp(16.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         float f5 = measuredHeight;
-        float f6 = f5 - dp;
-        float f7 = f5 + dp;
-        rectF.set(dp2, f6, getMeasuredWidth() - dp2, f7);
-        canvas.drawRoundRect(rectF, dp, dp, this.paint2);
-        rectF.set(dp2, f6, ((getMeasuredWidth() - (2.0f * dp2)) * this.currentProgress) + dp2, f7);
-        canvas.drawRoundRect(rectF, dp, dp, this.paint);
+        float f6 = f5 - fDp;
+        float f7 = f5 + fDp;
+        rectF.set(fDp2, f6, getMeasuredWidth() - fDp2, f7);
+        canvas.drawRoundRect(rectF, fDp, fDp, this.paint2);
+        rectF.set(fDp2, f6, ((getMeasuredWidth() - (2.0f * fDp2)) * this.currentProgress) + fDp2, f7);
+        canvas.drawRoundRect(rectF, fDp, fDp, this.paint);
         canvas.save();
         canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f6);
         if (this.progress != 1.0f) {
@@ -157,16 +157,16 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
 
     private void updateDownloadingListeners() {
         DownloadController downloadController = DownloadController.getInstance(this.currentAccount);
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (int i = 0; i < this.currentListeners.size(); i++) {
-            hashMap.put(((ProgressObserver) this.currentListeners.get(i)).fileName, (ProgressObserver) this.currentListeners.get(i));
+            map.put(((ProgressObserver) this.currentListeners.get(i)).fileName, (ProgressObserver) this.currentListeners.get(i));
             DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) this.currentListeners.get(i));
         }
         this.currentListeners.clear();
         for (int i2 = 0; i2 < downloadController.downloadingFiles.size(); i2++) {
             String fileName = downloadController.downloadingFiles.get(i2).getFileName();
             if (FileLoader.getInstance(this.currentAccount).isLoadingFile(fileName)) {
-                ProgressObserver progressObserver = (ProgressObserver) hashMap.get(fileName);
+                ProgressObserver progressObserver = (ProgressObserver) map.get(fileName);
                 if (progressObserver == null) {
                     progressObserver = new ProgressObserver(fileName);
                 }
@@ -199,7 +199,7 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         if (j == 0) {
             this.progress = 1.0f;
         } else {
-            this.progress = ((float) j2) / ((float) j);
+            this.progress = j2 / j;
         }
         float f = this.progress;
         if (f > 1.0f) {
@@ -226,7 +226,7 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         }
     }
 
-    public class ProgressObserver implements DownloadController.FileDownloadProgressListener {
+    private class ProgressObserver implements DownloadController.FileDownloadProgressListener {
         long downloaded;
         private final String fileName;
         long total;

@@ -68,7 +68,7 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
         this.fromEmojiPanel = z;
         ImageReceiver imageReceiver = new ImageReceiver() {
             @Override
-            public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z2, int i2) {
+            protected boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z2, int i2) {
                 if ((drawable instanceof BitmapDrawable) && StickerEmojiCell.this.editModeIconColor == 0) {
                     Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
                     StickerEmojiCell.this.editModeIconColor = AndroidUtilities.getDominantColor(bitmap);
@@ -260,10 +260,11 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
                         if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                             String str3 = documentAttribute.alt;
-                            if (str3 != null && str3.length() > 0) {
-                                TextView textView3 = this.emojiTextView;
-                                textView3.setText(Emoji.replaceEmoji(documentAttribute.alt, textView3.getPaint().getFontMetricsInt(), false));
+                            if (str3 == null || str3.length() <= 0) {
+                                break;
                             }
+                            TextView textView3 = this.emojiTextView;
+                            textView3.setText(Emoji.replaceEmoji(documentAttribute.alt, textView3.getPaint().getFontMetricsInt(), false));
                         } else {
                             i++;
                         }
@@ -293,17 +294,17 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.premiumIconView.getLayoutParams();
         if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
-            int dp = AndroidUtilities.dp(24.0f);
-            layoutParams.width = dp;
-            layoutParams.height = dp;
+            int iDp = AndroidUtilities.dp(24.0f);
+            layoutParams.width = iDp;
+            layoutParams.height = iDp;
             layoutParams.gravity = 81;
             layoutParams.rightMargin = 0;
             layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
             this.premiumIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         } else {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            layoutParams.width = dp2;
-            layoutParams.height = dp2;
+            int iDp2 = AndroidUtilities.dp(16.0f);
+            layoutParams.width = iDp2;
+            layoutParams.height = iDp2;
             layoutParams.gravity = 85;
             layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
             layoutParams.rightMargin = AndroidUtilities.dp(8.0f);
@@ -420,59 +421,7 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
         }
     }
 
-    private void drawInternal(View view, Canvas canvas) {
-        boolean z;
-        if (this.changingAlpha || (((z = this.scaled) && this.scale != 0.8f) || (!z && this.scale != 1.0f))) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - this.lastUpdateTime;
-            this.lastUpdateTime = currentTimeMillis;
-            if (this.changingAlpha) {
-                long j2 = this.time + j;
-                this.time = j2;
-                if (j2 > 1050) {
-                    this.time = 1050L;
-                }
-                float interpolation = (interpolator.getInterpolation(((float) this.time) / 150.0f) * 0.5f) + 0.5f;
-                this.alpha = interpolation;
-                if (interpolation >= 1.0f) {
-                    this.changingAlpha = false;
-                    this.alpha = 1.0f;
-                }
-                this.imageView.setAlpha(this.alpha * this.premiumAlpha);
-            } else {
-                if (this.scaled) {
-                    float f = this.scale;
-                    if (f != 0.8f) {
-                        float f2 = f - (((float) j) / 400.0f);
-                        this.scale = f2;
-                        if (f2 < 0.8f) {
-                            this.scale = 0.8f;
-                        }
-                    }
-                }
-                float f3 = this.scale + (((float) j) / 400.0f);
-                this.scale = f3;
-                if (f3 > 1.0f) {
-                    this.scale = 1.0f;
-                }
-            }
-            view.invalidate();
-        }
-        int min = Math.min(AndroidUtilities.dp(66.0f), Math.min(getMeasuredHeight(), getMeasuredWidth()));
-        float measuredWidth = getMeasuredWidth() >> 1;
-        float f4 = min;
-        float f5 = f4 / 2.0f;
-        float measuredHeight = getMeasuredHeight() >> 1;
-        this.imageView.setImageCoords(measuredWidth - f5, measuredHeight - f5, f4, f4);
-        this.imageView.setAlpha(this.alpha * this.premiumAlpha);
-        if (this.scale != 1.0f) {
-            canvas.save();
-            float f6 = this.scale;
-            canvas.scale(f6, f6, measuredWidth, measuredHeight);
-            this.imageView.draw(canvas);
-            canvas.restore();
-            return;
-        }
-        this.imageView.draw(canvas);
+    private void drawInternal(android.view.View r8, android.graphics.Canvas r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.StickerEmojiCell.drawInternal(android.view.View, android.graphics.Canvas):void");
     }
 }

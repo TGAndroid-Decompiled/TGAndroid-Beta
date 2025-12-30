@@ -13,6 +13,6 @@ public final class BillingController$$ExternalSyntheticLambda3 implements Produc
 
     @Override
     public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-        BillingController.$r8$lambda$u3eoWsyAOzUwIiUdGHizRuGgAaQ(this.f$0, billingResult, list);
+        this.f$0.onQueriedPremiumProductDetails(billingResult, list);
     }
 }

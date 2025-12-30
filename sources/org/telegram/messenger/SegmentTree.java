@@ -146,7 +146,7 @@ public class SegmentTree {
         this.array[node.from] = j;
     }
 
-    public static class Node {
+    static class Node {
         int from;
         long max;
         long min;

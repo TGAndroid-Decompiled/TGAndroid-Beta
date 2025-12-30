@@ -86,9 +86,9 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
 
     public void setCollapseProgress(float f, boolean z) {
         this.isOpening = z;
-        float clamp01 = Utilities.clamp01((f - 0.3f) / 0.7f);
-        if (this.collapseProgress != clamp01) {
-            this.collapseProgress = clamp01;
+        float fClamp01 = Utilities.clamp01((f - 0.3f) / 0.7f);
+        if (this.collapseProgress != fClamp01) {
+            this.collapseProgress = fClamp01;
             invalidate();
         }
     }
@@ -182,9 +182,9 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
 
         private void initParticles() {
             this.particles = new StarsReactionsSheet.Particles(1, 6);
-            float dp = AndroidUtilities.dp(36.0f);
-            float f = (-dp) / 2.0f;
-            float f2 = dp / 2.0f;
+            float fDp = AndroidUtilities.dp(36.0f);
+            float f = (-fDp) / 2.0f;
+            float f2 = fDp / 2.0f;
             this.particles.bounds.set(f, f, f2, f2);
         }
 
@@ -205,8 +205,8 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
             if (f5 <= 0.0f) {
                 return;
             }
-            float dp = AndroidUtilities.dp(45.0f);
-            float f7 = dp / 2.0f;
+            float fDp = AndroidUtilities.dp(45.0f);
+            float f7 = fDp / 2.0f;
             this.bounds.set(f - f7, f2 - f7, f + f7, f2 + f7);
             canvas.save();
             canvas.translate(f, f2);
@@ -218,13 +218,13 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
             Paint paint = this.gradientPaint;
             if (paint != null) {
                 paint.setAlpha((int) (f5 * 255.0f * f6));
-                float f8 = (-dp) / 2.0f;
+                float f8 = (-fDp) / 2.0f;
                 canvas.drawRect(f8, f8, f7, f7, this.gradientPaint);
             }
             if (this.emojiDrawable != null) {
-                int dp2 = AndroidUtilities.dp(24.0f);
-                int i = (-dp2) / 2;
-                int i2 = dp2 / 2;
+                int iDp = AndroidUtilities.dp(24.0f);
+                int i = (-iDp) / 2;
+                int i2 = iDp / 2;
                 this.emojiDrawable.setBounds(i, i, i2, i2);
                 this.emojiDrawable.setAlpha((int) (f5 * 255.0f));
                 this.emojiDrawable.draw(canvas);

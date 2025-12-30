@@ -78,17 +78,17 @@ public class VideoTimerView extends View implements FlashViews.Invertable {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float f = this.recordingT.set(this.recording ? 1.0f : 0.0f);
-        float dp = AndroidUtilities.dp(12.66f) * f;
-        float currentWidth = this.textDrawable.getCurrentWidth() + dp;
+        float fDp = AndroidUtilities.dp(12.66f) * f;
+        float currentWidth = this.textDrawable.getCurrentWidth() + fDp;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.backgroundPaint);
         if (f > 0.0f) {
-            this.recordPaint.setAlpha((int) (Utilities.clamp((((float) Math.sin((((float) (System.currentTimeMillis() % 2000)) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
+            this.recordPaint.setAlpha((int) (Utilities.clamp((((float) Math.sin(((System.currentTimeMillis() % 2000) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
             invalidate();
             canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * f, this.recordPaint);
         }
-        this.textDrawable.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
+        this.textDrawable.setBounds((int) (rectF.left + fDp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
         this.textDrawable.draw(canvas);
     }
 

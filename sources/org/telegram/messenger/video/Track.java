@@ -45,7 +45,7 @@ public class Track {
     private ArrayList<SamplePresentationTime> samplePresentationTimes = new ArrayList<>();
     private boolean first = true;
 
-    public static class SamplePresentationTime {
+    static class SamplePresentationTime {
         private long dt;
         private int index;
         private long presentationTime;
@@ -57,9 +57,9 @@ public class Track {
     }
 
     static {
-        HashMap hashMap = new HashMap();
-        samplingFrequencyIndexMap = hashMap;
-        hashMap.put(96000, 0);
+        HashMap map = new HashMap();
+        samplingFrequencyIndexMap = map;
+        map.put(96000, 0);
         samplingFrequencyIndexMap.put(88200, 1);
         samplingFrequencyIndexMap.put(64000, 2);
         samplingFrequencyIndexMap.put(48000, 3);
@@ -74,7 +74,7 @@ public class Track {
     }
 
     public Track(int i, MediaFormat mediaFormat, boolean z) {
-        String str;
+        String string;
         this.syncSamples = null;
         this.volume = 0.0f;
         this.trackId = i;
@@ -87,8 +87,8 @@ public class Track {
             this.handler = "vide";
             this.headerBox = new VideoMediaHeaderBox();
             this.sampleDescriptionBox = new SampleDescriptionBox();
-            String string = mediaFormat.getString("mime");
-            if (string.equals("video/avc")) {
+            String string2 = mediaFormat.getString("mime");
+            if (string2.equals("video/avc")) {
                 VisualSampleEntry visualSampleEntry = new VisualSampleEntry("avc1");
                 visualSampleEntry.setDataReferenceIndex(1);
                 visualSampleEntry.setDepth(24);
@@ -184,7 +184,7 @@ public class Track {
                 this.sampleDescriptionBox.addBox(visualSampleEntry);
                 return;
             }
-            if (string.equals("video/mp4v")) {
+            if (string2.equals("video/mp4v")) {
                 VisualSampleEntry visualSampleEntry2 = new VisualSampleEntry("mp4v");
                 visualSampleEntry2.setDataReferenceIndex(1);
                 visualSampleEntry2.setDepth(24);
@@ -196,16 +196,16 @@ public class Track {
                 this.sampleDescriptionBox.addBox(visualSampleEntry2);
                 return;
             }
-            if (!string.equals("video/hevc") || mediaFormat.getByteBuffer("csd-0") == null) {
+            if (!string2.equals("video/hevc") || mediaFormat.getByteBuffer("csd-0") == null) {
                 return;
             }
-            byte[] array = mediaFormat.getByteBuffer("csd-0").array();
+            byte[] bArrArray = mediaFormat.getByteBuffer("csd-0").array();
             int i2 = 0;
             int i3 = -1;
             int i4 = -1;
             int i5 = -1;
-            for (int i6 = 0; i6 < array.length; i6++) {
-                if (i2 == 3 && array[i6] == 1) {
+            for (int i6 = 0; i6 < bArrArray.length; i6++) {
+                if (i2 == 3 && bArrArray[i6] == 1) {
                     if (i5 == -1) {
                         i5 = i6 - 3;
                     } else if (i4 == -1) {
@@ -214,34 +214,34 @@ public class Track {
                         i3 = i6 - 3;
                     }
                 }
-                i2 = array[i6] == 0 ? i2 + 1 : 0;
+                i2 = bArrArray[i6] == 0 ? i2 + 1 : 0;
             }
             byte[] bArr3 = new byte[i4 - 4];
             byte[] bArr4 = new byte[(i3 - i4) - 4];
-            byte[] bArr5 = new byte[(array.length - i3) - 4];
-            for (int i7 = 0; i7 < array.length; i7++) {
+            byte[] bArr5 = new byte[(bArrArray.length - i3) - 4];
+            for (int i7 = 0; i7 < bArrArray.length; i7++) {
                 if (i7 < i4) {
                     int i8 = i7 - 4;
                     if (i8 >= 0) {
-                        bArr3[i8] = array[i7];
+                        bArr3[i8] = bArrArray[i7];
                     }
                 } else if (i7 < i3) {
                     int i9 = (i7 - i4) - 4;
                     if (i9 >= 0) {
-                        bArr4[i9] = array[i7];
+                        bArr4[i9] = bArrArray[i7];
                     }
                 } else {
                     int i10 = (i7 - i3) - 4;
                     if (i10 >= 0) {
-                        bArr5[i10] = array[i7];
+                        bArr5[i10] = bArrArray[i7];
                     }
                 }
             }
             try {
-                VisualSampleEntry parseFromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
-                parseFromCsd.setWidth(this.width);
-                parseFromCsd.setHeight(this.height);
-                this.sampleDescriptionBox.addBox(parseFromCsd);
+                VisualSampleEntry fromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
+                fromCsd.setWidth(this.width);
+                fromCsd.setHeight(this.height);
+                this.sampleDescriptionBox.addBox(fromCsd);
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -265,12 +265,12 @@ public class Track {
         sLConfigDescriptor.setPredefined(2);
         eSDescriptor.setSlConfigDescriptor(sLConfigDescriptor);
         if (mediaFormat.containsKey("mime")) {
-            str = mediaFormat.getString("mime");
+            string = mediaFormat.getString("mime");
         } else {
-            str = "audio/mp4-latm";
+            string = "audio/mp4-latm";
         }
         DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
-        if ("audio/mpeg".equals(str)) {
+        if ("audio/mpeg".equals(string)) {
             decoderConfigDescriptor.setObjectTypeIndication(105);
         } else {
             decoderConfigDescriptor.setObjectTypeIndication(64);
@@ -309,14 +309,12 @@ public class Track {
         Collections.sort(this.samplePresentationTimes, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$prepare$0;
-                lambda$prepare$0 = Track.lambda$prepare$0((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
-                return lambda$prepare$0;
+                return Track.lambda$prepare$0((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
             }
         });
         this.sampleDurations = new long[this.samplePresentationTimes.size()];
-        long j = Long.MAX_VALUE;
-        long j2 = 0;
+        long jMin = Long.MAX_VALUE;
+        long j = 0;
         int i2 = 0;
         boolean z = false;
         while (true) {
@@ -324,15 +322,15 @@ public class Track {
                 break;
             }
             SamplePresentationTime samplePresentationTime = this.samplePresentationTimes.get(i2);
-            long j3 = samplePresentationTime.presentationTime - j2;
-            j2 = samplePresentationTime.presentationTime;
-            this.sampleDurations[samplePresentationTime.index] = j3;
+            long j2 = samplePresentationTime.presentationTime - j;
+            j = samplePresentationTime.presentationTime;
+            this.sampleDurations[samplePresentationTime.index] = j2;
             int i3 = i2;
             if (samplePresentationTime.index != 0) {
-                this.duration += j3;
+                this.duration += j2;
             }
-            if (j3 > 0 && j3 < 2147483647L) {
-                j = Math.min(j, j3);
+            if (j2 > 0 && j2 < 2147483647L) {
+                jMin = Math.min(jMin, j2);
             }
             if (samplePresentationTime.index != i3) {
                 z = true;
@@ -341,8 +339,8 @@ public class Track {
         }
         long[] jArr = this.sampleDurations;
         if (jArr.length > 0) {
-            jArr[0] = j;
-            this.duration += j;
+            jArr[0] = jMin;
+            this.duration += jMin;
         }
         for (i = 1; i < arrayList.size(); i++) {
             ((SamplePresentationTime) arrayList.get(i)).dt = this.sampleDurations[i] + ((SamplePresentationTime) arrayList.get(i - 1)).dt;

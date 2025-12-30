@@ -32,7 +32,7 @@ public final class Factory {
         NO_ARGS = new Object[0];
     }
 
-    public static Class makeClass(String str, ClassLoader classLoader) {
+    static Class makeClass(String str, ClassLoader classLoader) {
         if (str.equals("*")) {
             return null;
         }
@@ -50,9 +50,9 @@ public final class Factory {
             if (cls2 != null) {
                 return cls2;
             }
-            Class class$ = class$("java.lang.ClassNotFoundException");
-            class$java$lang$ClassNotFoundException = class$;
-            return class$;
+            Class clsClass$ = class$("java.lang.ClassNotFoundException");
+            class$java$lang$ClassNotFoundException = clsClass$;
+            return clsClass$;
         }
     }
 
@@ -84,28 +84,28 @@ public final class Factory {
         return new JoinPointImpl(staticPart, obj, obj2, new Object[]{obj3});
     }
 
-    public MethodSignature makeMethodSig(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
-        int parseInt = Integer.parseInt(str, 16);
-        Class makeClass = makeClass(str3, this.lookupClassLoader);
+    public MethodSignature makeMethodSig(String str, String str2, String str3, String str4, String str5, String str6, String str7) throws NumberFormatException {
+        int i = Integer.parseInt(str, 16);
+        Class clsMakeClass = makeClass(str3, this.lookupClassLoader);
         StringTokenizer stringTokenizer = new StringTokenizer(str4, ":");
-        int countTokens = stringTokenizer.countTokens();
-        Class[] clsArr = new Class[countTokens];
-        for (int i = 0; i < countTokens; i++) {
-            clsArr[i] = makeClass(stringTokenizer.nextToken(), this.lookupClassLoader);
+        int iCountTokens = stringTokenizer.countTokens();
+        Class[] clsArr = new Class[iCountTokens];
+        for (int i2 = 0; i2 < iCountTokens; i2++) {
+            clsArr[i2] = makeClass(stringTokenizer.nextToken(), this.lookupClassLoader);
         }
         StringTokenizer stringTokenizer2 = new StringTokenizer(str5, ":");
-        int countTokens2 = stringTokenizer2.countTokens();
-        String[] strArr = new String[countTokens2];
-        for (int i2 = 0; i2 < countTokens2; i2++) {
-            strArr[i2] = stringTokenizer2.nextToken();
+        int iCountTokens2 = stringTokenizer2.countTokens();
+        String[] strArr = new String[iCountTokens2];
+        for (int i3 = 0; i3 < iCountTokens2; i3++) {
+            strArr[i3] = stringTokenizer2.nextToken();
         }
         StringTokenizer stringTokenizer3 = new StringTokenizer(str6, ":");
-        int countTokens3 = stringTokenizer3.countTokens();
-        Class[] clsArr2 = new Class[countTokens3];
-        for (int i3 = 0; i3 < countTokens3; i3++) {
-            clsArr2[i3] = makeClass(stringTokenizer3.nextToken(), this.lookupClassLoader);
+        int iCountTokens3 = stringTokenizer3.countTokens();
+        Class[] clsArr2 = new Class[iCountTokens3];
+        for (int i4 = 0; i4 < iCountTokens3; i4++) {
+            clsArr2[i4] = makeClass(stringTokenizer3.nextToken(), this.lookupClassLoader);
         }
-        return new MethodSignatureImpl(parseInt, str2, makeClass, clsArr, strArr, clsArr2, makeClass(str7, this.lookupClassLoader));
+        return new MethodSignatureImpl(i, str2, clsMakeClass, clsArr, strArr, clsArr2, makeClass(str7, this.lookupClassLoader));
     }
 
     public SourceLocation makeSourceLoc(int i, int i2) {

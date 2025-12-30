@@ -17,11 +17,11 @@ public class CorrectlyMeasuringTextView extends TextView {
             if (layout.getLineCount() <= 1) {
                 return;
             }
-            int i3 = 0;
+            int iMax = 0;
             for (int lineCount = layout.getLineCount() - 1; lineCount >= 0; lineCount--) {
-                i3 = Math.max(i3, Math.round(layout.getPaint().measureText(getText(), layout.getLineStart(lineCount), layout.getLineEnd(lineCount))));
+                iMax = Math.max(iMax, Math.round(layout.getPaint().measureText(getText(), layout.getLineStart(lineCount), layout.getLineEnd(lineCount))));
             }
-            super.onMeasure(Math.min(i3 + getPaddingLeft() + getPaddingRight(), getMeasuredWidth()) | 1073741824, 1073741824 | getMeasuredHeight());
+            super.onMeasure(Math.min(iMax + getPaddingLeft() + getPaddingRight(), getMeasuredWidth()) | 1073741824, 1073741824 | getMeasuredHeight());
         } catch (Exception unused) {
         }
     }

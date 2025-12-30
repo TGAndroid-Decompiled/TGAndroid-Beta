@@ -20,15 +20,15 @@ public abstract class SafeCollector_commonKt {
 
             public final Integer invoke(int i, CoroutineContext.Element element) {
                 CoroutineContext.Key key = element.getKey();
-                CoroutineContext.Element element2 = SafeCollector.this.collectContext.get(key);
+                CoroutineContext.Element element2 = safeCollector.collectContext.get(key);
                 if (key != Job.Key) {
                     return Integer.valueOf(element != element2 ? Integer.MIN_VALUE : i + 1);
                 }
                 Job job = (Job) element2;
                 Intrinsics.checkNotNull(element, "null cannot be cast to non-null type kotlinx.coroutines.Job");
-                Job transitiveCoroutineParent = SafeCollector_commonKt.transitiveCoroutineParent((Job) element, job);
-                if (transitiveCoroutineParent != job) {
-                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tEmission from another coroutine is detected.\n\t\tChild of " + transitiveCoroutineParent + ", expected child of " + job + ".\n\t\tFlowCollector is not thread-safe and concurrent emissions are prohibited.\n\t\tTo mitigate this restriction please use 'channelFlow' builder instead of 'flow'").toString());
+                Job jobTransitiveCoroutineParent = SafeCollector_commonKt.transitiveCoroutineParent((Job) element, job);
+                if (jobTransitiveCoroutineParent != job) {
+                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tEmission from another coroutine is detected.\n\t\tChild of " + jobTransitiveCoroutineParent + ", expected child of " + job + ".\n\t\tFlowCollector is not thread-safe and concurrent emissions are prohibited.\n\t\tTo mitigate this restriction please use 'channelFlow' builder instead of 'flow'").toString());
                 }
                 if (job != null) {
                     i++;

@@ -26,7 +26,7 @@ import org.telegram.messenger.pip.utils.PipActions;
 import org.telegram.messenger.pip.utils.PipDuration;
 import org.telegram.messenger.pip.utils.PipUtils;
 
-public class PipActivityHandler implements IPipActivityHandler {
+class PipActivityHandler implements IPipActivityHandler {
     private final Activity activity;
     private boolean hasFrameListener;
     private boolean isActivityStarted;
@@ -42,7 +42,7 @@ public class PipActivityHandler implements IPipActivityHandler {
     private final Choreographer.FrameCallback callback = new Choreographer.FrameCallback() {
         @Override
         public final void doFrame(long j) {
-            PipActivityHandler.this.onFrameInternal(j);
+            this.f$0.onFrameInternal(j);
         }
     };
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -54,27 +54,27 @@ public class PipActivityHandler implements IPipActivityHandler {
         }
     };
 
-    public PipActivityHandler(Activity activity) {
+    PipActivityHandler(Activity activity) {
         this.activity = activity;
     }
 
-    public void addPipListener(IPipActivityListener iPipActivityListener) {
+    void addPipListener(IPipActivityListener iPipActivityListener) {
         this.listeners.add(iPipActivityListener);
     }
 
-    public void removePipListener(IPipActivityListener iPipActivityListener) {
+    void removePipListener(IPipActivityListener iPipActivityListener) {
         this.listeners.remove(iPipActivityListener);
     }
 
-    public void addAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
+    void addAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
         this.animationListeners.add(iPipActivityAnimationListener);
     }
 
-    public void removeAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
+    void removeAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
         this.animationListeners.remove(iPipActivityAnimationListener);
     }
 
-    public void addActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
+    void addActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
         ArrayList arrayList = (ArrayList) this.actionListeners.get(str);
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -83,7 +83,7 @@ public class PipActivityHandler implements IPipActivityHandler {
         arrayList.add(iPipActivityActionListener);
     }
 
-    public void removeActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
+    void removeActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
         ArrayList arrayList = (ArrayList) this.actionListeners.get(str);
         if (arrayList == null) {
             return;
@@ -220,10 +220,10 @@ public class PipActivityHandler implements IPipActivityHandler {
     }
 
     private void dispatchEnterAnimationStart() {
-        long estimated = this.durationEnter.estimated();
+        long jEstimated = this.durationEnter.estimated();
         Iterator it = this.animationListeners.iterator();
         while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onEnterAnimationStart(estimated);
+            ((IPipActivityAnimationListener) it.next()).onEnterAnimationStart(jEstimated);
         }
         dispatchTransitionAnimationProgress(0.0f);
         this.durationEnter.start();
@@ -232,19 +232,19 @@ public class PipActivityHandler implements IPipActivityHandler {
 
     private void dispatchEnterAnimationEnd() {
         dispatchTransitionAnimationProgress(1.0f);
-        long end = this.durationEnter.end();
+        long jEnd = this.durationEnter.end();
         Iterator it = this.animationListeners.iterator();
         while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onEnterAnimationEnd(end);
+            ((IPipActivityAnimationListener) it.next()).onEnterAnimationEnd(jEnd);
         }
         unsubscribeFromFrameUpdates();
     }
 
     private void dispatchLeaveAnimationStart() {
-        long estimated = this.durationLeave.estimated();
+        long jEstimated = this.durationLeave.estimated();
         Iterator it = this.animationListeners.iterator();
         while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationStart(estimated);
+            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationStart(jEstimated);
         }
         dispatchTransitionAnimationProgress(1.0f);
         this.durationLeave.start();
@@ -253,10 +253,10 @@ public class PipActivityHandler implements IPipActivityHandler {
 
     private void dispatchLeaveAnimationEnd() {
         dispatchTransitionAnimationProgress(0.0f);
-        long end = this.durationLeave.end();
+        long jEnd = this.durationLeave.end();
         Iterator it = this.animationListeners.iterator();
         while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationEnd(end);
+            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationEnd(jEnd);
         }
         unsubscribeFromFrameUpdates();
     }

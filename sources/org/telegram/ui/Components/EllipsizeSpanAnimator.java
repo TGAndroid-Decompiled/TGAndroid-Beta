@@ -70,17 +70,17 @@ public class EllipsizeSpanAnimator {
     }
 
     private Animator createEllipsizeAnimator(final TextAlphaSpan textAlphaSpan, int i, int i2, int i3, int i4) {
-        ValueAnimator ofInt = ValueAnimator.ofInt(i, i2);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(i, i2);
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                EllipsizeSpanAnimator.this.lambda$createEllipsizeAnimator$0(textAlphaSpan, valueAnimator);
+                this.f$0.lambda$createEllipsizeAnimator$0(textAlphaSpan, valueAnimator);
             }
         });
-        ofInt.setDuration(i4);
-        ofInt.setStartDelay(i3);
-        ofInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        return ofInt;
+        valueAnimatorOfInt.setDuration(i4);
+        valueAnimatorOfInt.setStartDelay(i3);
+        valueAnimatorOfInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        return valueAnimatorOfInt;
     }
 
     public void lambda$createEllipsizeAnimator$0(TextAlphaSpan textAlphaSpan, ValueAnimator valueAnimator) {

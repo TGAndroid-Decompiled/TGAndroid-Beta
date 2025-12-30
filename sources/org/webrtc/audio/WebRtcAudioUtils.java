@@ -25,14 +25,14 @@ final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    public static void logAudioState(String str, Context context, AudioManager audioManager) {
+    static void logAudioState(String str, Context context, AudioManager audioManager) {
         logDeviceInfo(str);
         logAudioStateBasic(str, context, audioManager);
         logAudioStateVolume(str, audioManager);
         logAudioDeviceInfo(str, audioManager);
     }
 
-    public static String deviceTypeToString(int i) {
+    static String deviceTypeToString(int i) {
         switch (i) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
@@ -153,9 +153,9 @@ final class WebRtcAudioUtils {
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
         int[] iArr = {0, 3, 2, 4, 5, 1};
         Logging.d(str, "Audio State: ");
-        boolean isVolumeFixed = audioManager.isVolumeFixed();
-        Logging.d(str, "  fixed volume=" + isVolumeFixed);
-        if (isVolumeFixed) {
+        boolean zIsVolumeFixed = audioManager.isVolumeFixed();
+        Logging.d(str, "  fixed volume=" + zIsVolumeFixed);
+        if (zIsVolumeFixed) {
             return;
         }
         for (int i = 0; i < 6; i++) {
@@ -172,29 +172,17 @@ final class WebRtcAudioUtils {
     }
 
     private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
-        boolean isStreamMute;
         if (Build.VERSION.SDK_INT >= 23) {
             sb.append(", muted=");
-            isStreamMute = audioManager.isStreamMute(i);
-            sb.append(isStreamMute);
+            sb.append(audioManager.isStreamMute(i));
         }
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        AudioDeviceInfo[] devices;
-        int type;
-        boolean isSource;
-        int[] channelCounts;
-        int[] encodings;
-        int[] sampleRates;
-        int id;
-        int[] sampleRates2;
-        int[] encodings2;
-        int[] channelCounts2;
         if (Build.VERSION.SDK_INT < 23) {
             return;
         }
-        devices = audioManager.getDevices(3);
+        AudioDeviceInfo[] devices = audioManager.getDevices(3);
         if (devices.length == 0) {
             return;
         }
@@ -202,39 +190,30 @@ final class WebRtcAudioUtils {
         for (AudioDeviceInfo audioDeviceInfo : devices) {
             StringBuilder sb = new StringBuilder();
             sb.append("  ");
-            type = audioDeviceInfo.getType();
-            sb.append(deviceTypeToString(type));
-            isSource = audioDeviceInfo.isSource();
-            sb.append(isSource ? "(in): " : "(out): ");
-            channelCounts = audioDeviceInfo.getChannelCounts();
-            if (channelCounts.length > 0) {
+            sb.append(deviceTypeToString(audioDeviceInfo.getType()));
+            sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
+            if (audioDeviceInfo.getChannelCounts().length > 0) {
                 sb.append("channels=");
-                channelCounts2 = audioDeviceInfo.getChannelCounts();
-                sb.append(Arrays.toString(channelCounts2));
+                sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
                 sb.append(", ");
             }
-            encodings = audioDeviceInfo.getEncodings();
-            if (encodings.length > 0) {
+            if (audioDeviceInfo.getEncodings().length > 0) {
                 sb.append("encodings=");
-                encodings2 = audioDeviceInfo.getEncodings();
-                sb.append(Arrays.toString(encodings2));
+                sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
                 sb.append(", ");
             }
-            sampleRates = audioDeviceInfo.getSampleRates();
-            if (sampleRates.length > 0) {
+            if (audioDeviceInfo.getSampleRates().length > 0) {
                 sb.append("sample rates=");
-                sampleRates2 = audioDeviceInfo.getSampleRates();
-                sb.append(Arrays.toString(sampleRates2));
+                sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
                 sb.append(", ");
             }
             sb.append("id=");
-            id = audioDeviceInfo.getId();
-            sb.append(id);
+            sb.append(audioDeviceInfo.getId());
             Logging.d(str, sb.toString());
         }
     }
 
-    public static String modeToString(int i) {
+    static String modeToString(int i) {
         if (i == 0) {
             return "MODE_NORMAL";
         }

@@ -4,14 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -25,8 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,11 +50,11 @@ import org.telegram.ui.Components.AnimatedAvatarContainer;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.UsersSelectActivity;
 
 public class UsersSelectActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private GroupCreateAdapter adapter;
@@ -74,7 +69,8 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
     private StickerEmptyView emptyView;
     private int fieldY;
     private int filterFlags;
-    private ImageView floatingButton;
+    private FragmentFloatingButton floatingButton;
+    private FrameLayout.LayoutParams floatingButtonLp;
     private boolean ignoreScrollEvent;
     private ArrayList initialIds;
     private boolean isInclude;
@@ -94,7 +90,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         void didSelectChats(ArrayList arrayList, int i);
     }
 
-    static int access$2172(UsersSelectActivity usersSelectActivity, int i) {
+    static int access$2272(UsersSelectActivity usersSelectActivity, int i) {
         int i2 = i & usersSelectActivity.filterFlags;
         usersSelectActivity.filterFlags = i2;
         return i2;
@@ -146,7 +142,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public class SpansContainer extends ViewGroup {
+    private class SpansContainer extends ViewGroup {
         private View addingSpan;
         private boolean animationStarted;
         private ArrayList animators;
@@ -160,80 +156,80 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int min;
+            int iMin;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            int dp = size - AndroidUtilities.dp(26.0f);
-            int dp2 = AndroidUtilities.dp(10.0f);
-            int dp3 = AndroidUtilities.dp(10.0f);
-            int i3 = 0;
-            int i4 = 0;
-            for (int i5 = 0; i5 < childCount; i5++) {
-                View childAt = getChildAt(i5);
+            int iDp = size - AndroidUtilities.dp(26.0f);
+            int iDp2 = AndroidUtilities.dp(10.0f);
+            int iDp3 = AndroidUtilities.dp(10.0f);
+            int measuredWidth = 0;
+            int measuredWidth2 = 0;
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = getChildAt(i3);
                 if (childAt instanceof GroupCreateSpan) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > dp) {
-                        dp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                        i3 = 0;
+                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i4 > dp) {
-                        dp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                        i4 = 0;
+                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
+                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth2 = 0;
                     }
-                    int dp4 = AndroidUtilities.dp(13.0f) + i3;
+                    int iDp4 = AndroidUtilities.dp(13.0f) + measuredWidth;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i4);
-                            childAt.setTranslationY(dp3);
+                            childAt.setTranslationX(AndroidUtilities.dp(13.0f) + measuredWidth2);
+                            childAt.setTranslationY(iDp3);
                         } else if (view != null) {
-                            float f = dp4;
+                            float f = iDp4;
                             if (childAt.getTranslationX() != f) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
                             }
-                            float f2 = dp2;
+                            float f2 = iDp2;
                             if (childAt.getTranslationY() != f2) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f2));
                             }
                         } else {
-                            childAt.setTranslationX(dp4);
-                            childAt.setTranslationY(dp2);
+                            childAt.setTranslationX(iDp4);
+                            childAt.setTranslationY(iDp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                     }
-                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                 }
             }
             if (AndroidUtilities.isTablet()) {
-                min = AndroidUtilities.dp(372.0f) / 3;
+                iMin = AndroidUtilities.dp(372.0f) / 3;
             } else {
                 Point point = AndroidUtilities.displaySize;
-                min = (Math.min(point.x, point.y) - AndroidUtilities.dp(158.0f)) / 3;
+                iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(158.0f)) / 3;
             }
-            if (dp - i3 < min) {
-                dp2 += AndroidUtilities.dp(40.0f);
-                i3 = 0;
+            if (iDp - measuredWidth < iMin) {
+                iDp2 += AndroidUtilities.dp(40.0f);
+                measuredWidth = 0;
             }
-            if (dp - i4 < min) {
-                dp3 += AndroidUtilities.dp(40.0f);
+            if (iDp - measuredWidth2 < iMin) {
+                iDp3 += AndroidUtilities.dp(40.0f);
             }
-            UsersSelectActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(dp - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+            UsersSelectActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
             if (!this.animationStarted) {
-                int dp5 = dp3 + AndroidUtilities.dp(42.0f);
-                int dp6 = i3 + AndroidUtilities.dp(16.0f);
-                UsersSelectActivity.this.fieldY = dp2;
+                int iDp5 = iDp3 + AndroidUtilities.dp(42.0f);
+                int iDp6 = measuredWidth + AndroidUtilities.dp(16.0f);
+                UsersSelectActivity.this.fieldY = iDp2;
                 if (this.currentAnimation == null) {
-                    UsersSelectActivity.this.containerHeight = dp5;
-                    UsersSelectActivity.this.editText.setTranslationX(dp6);
+                    UsersSelectActivity.this.containerHeight = iDp5;
+                    UsersSelectActivity.this.editText.setTranslationX(iDp6);
                     UsersSelectActivity.this.editText.setTranslationY(UsersSelectActivity.this.fieldY);
                 } else {
-                    int dp7 = dp2 + AndroidUtilities.dp(42.0f);
-                    if (UsersSelectActivity.this.containerHeight != dp7) {
-                        this.animators.add(ObjectAnimator.ofInt(UsersSelectActivity.this, "containerHeight", dp7));
+                    int iDp7 = iDp2 + AndroidUtilities.dp(42.0f);
+                    if (UsersSelectActivity.this.containerHeight != iDp7) {
+                        this.animators.add(ObjectAnimator.ofInt(UsersSelectActivity.this, "containerHeight", iDp7));
                     }
-                    float f3 = dp6;
+                    float f3 = iDp6;
                     if (UsersSelectActivity.this.editText.getTranslationX() != f3) {
                         this.animators.add(ObjectAnimator.ofFloat(UsersSelectActivity.this.editText, (Property<EditTextBoldCursor, Float>) View.TRANSLATION_X, f3));
                     }
@@ -421,7 +417,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
-    public View createView(final Context context) {
+    public View createView(final Context context) throws NoSuchFieldException, SecurityException {
         int i;
         Object chat;
         this.searching = false;
@@ -463,22 +459,22 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         ViewGroup viewGroup = new ViewGroup(context) {
             @Override
             protected void onMeasure(int i4, int i5) {
-                int dp;
+                int iDp;
                 int size = View.MeasureSpec.getSize(i4);
                 int size2 = View.MeasureSpec.getSize(i5);
                 setMeasuredDimension(size, size2);
                 if (AndroidUtilities.isTablet() || size2 > size) {
-                    dp = AndroidUtilities.dp(144.0f);
+                    iDp = AndroidUtilities.dp(144.0f);
                 } else {
-                    dp = AndroidUtilities.dp(56.0f);
+                    iDp = AndroidUtilities.dp(56.0f);
                 }
-                UsersSelectActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                UsersSelectActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
                 UsersSelectActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - UsersSelectActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 UsersSelectActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - UsersSelectActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 UsersSelectActivity.this.progressView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - UsersSelectActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 if (UsersSelectActivity.this.floatingButton != null) {
-                    int dp2 = AndroidUtilities.dp(56.0f);
-                    UsersSelectActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(dp2, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
+                    int i6 = UsersSelectActivity.this.floatingButtonLp.width;
+                    UsersSelectActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(i6, 1073741824));
                 }
             }
 
@@ -489,19 +485,19 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 UsersSelectActivity.this.emptyView.layout(0, UsersSelectActivity.this.scrollView.getMeasuredHeight(), UsersSelectActivity.this.emptyView.getMeasuredWidth(), UsersSelectActivity.this.scrollView.getMeasuredHeight() + UsersSelectActivity.this.emptyView.getMeasuredHeight());
                 UsersSelectActivity.this.progressView.layout(0, UsersSelectActivity.this.scrollView.getMeasuredHeight(), UsersSelectActivity.this.emptyView.getMeasuredWidth(), UsersSelectActivity.this.scrollView.getMeasuredHeight() + UsersSelectActivity.this.progressView.getMeasuredHeight());
                 if (UsersSelectActivity.this.floatingButton != null) {
-                    int dp = LocaleController.isRTL ? AndroidUtilities.dp(14.0f) : ((i6 - i4) - AndroidUtilities.dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredWidth();
-                    int dp2 = ((i7 - i5) - AndroidUtilities.dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredHeight();
-                    UsersSelectActivity.this.floatingButton.layout(dp, dp2, UsersSelectActivity.this.floatingButton.getMeasuredWidth() + dp, UsersSelectActivity.this.floatingButton.getMeasuredHeight() + dp2);
+                    int measuredWidth = LocaleController.isRTL ? UsersSelectActivity.this.floatingButtonLp.leftMargin : ((i6 - i4) - UsersSelectActivity.this.floatingButtonLp.rightMargin) - UsersSelectActivity.this.floatingButton.getMeasuredWidth();
+                    int measuredHeight = ((i7 - i5) - UsersSelectActivity.this.floatingButtonLp.bottomMargin) - UsersSelectActivity.this.floatingButton.getMeasuredHeight();
+                    UsersSelectActivity.this.floatingButton.layout(measuredWidth, measuredHeight, UsersSelectActivity.this.floatingButton.getMeasuredWidth() + measuredWidth, UsersSelectActivity.this.floatingButton.getMeasuredHeight() + measuredHeight);
                 }
             }
 
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 if (view == UsersSelectActivity.this.listView || view == UsersSelectActivity.this.emptyView) {
                     ((BaseFragment) UsersSelectActivity.this).parentLayout.drawHeaderShadow(canvas, UsersSelectActivity.this.scrollView.getMeasuredHeight());
                 }
-                return drawChild;
+                return zDrawChild;
             }
         };
         this.fragmentView = viewGroup;
@@ -528,7 +524,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.spansContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UsersSelectActivity.this.lambda$createView$0(view);
+                this.f$0.lambda$createView$0(view);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -596,30 +592,30 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                         UsersSelectActivity.this.spansContainer.removeSpan(groupCreateSpan);
                         if (UsersSelectActivity.this.type == 2) {
                             if (groupCreateSpan.getUid() == -9223372036854775800L) {
-                                UsersSelectActivity.access$2172(UsersSelectActivity.this, -2);
+                                UsersSelectActivity.access$2272(UsersSelectActivity.this, -2);
                             } else if (groupCreateSpan.getUid() == -9223372036854775799L) {
-                                UsersSelectActivity.access$2172(UsersSelectActivity.this, -3);
+                                UsersSelectActivity.access$2272(UsersSelectActivity.this, -3);
                             } else if (groupCreateSpan.getUid() == Long.MIN_VALUE) {
-                                UsersSelectActivity.access$2172(UsersSelectActivity.this, -5);
+                                UsersSelectActivity.access$2272(UsersSelectActivity.this, -5);
                             } else if (groupCreateSpan.getUid() == -9223372036854775807L) {
-                                UsersSelectActivity.access$2172(UsersSelectActivity.this, -9);
+                                UsersSelectActivity.access$2272(UsersSelectActivity.this, -9);
                             }
                         } else if (groupCreateSpan.getUid() == Long.MIN_VALUE) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_CONTACTS);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_CONTACTS);
                         } else if (groupCreateSpan.getUid() == -9223372036854775807L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS);
                         } else if (groupCreateSpan.getUid() == -9223372036854775806L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_GROUPS);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_GROUPS);
                         } else if (groupCreateSpan.getUid() == -9223372036854775805L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_CHANNELS);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_CHANNELS);
                         } else if (groupCreateSpan.getUid() == -9223372036854775804L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_BOTS);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_BOTS);
                         } else if (groupCreateSpan.getUid() == -9223372036854775803L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED);
                         } else if (groupCreateSpan.getUid() == -9223372036854775802L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ);
                         } else if (groupCreateSpan.getUid() == -9223372036854775801L) {
-                            UsersSelectActivity.access$2172(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED);
+                            UsersSelectActivity.access$2272(UsersSelectActivity.this, ~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED);
                         }
                         UsersSelectActivity.this.updateHint();
                         UsersSelectActivity.this.checkVisibleRows();
@@ -696,7 +692,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i7) {
-                UsersSelectActivity.this.lambda$createView$1(context, view, i7);
+                this.f$0.lambda$createView$1(context, view, i7);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -707,29 +703,15 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 }
             }
         });
-        ImageView imageView = new ImageView(context);
-        this.floatingButton = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.floatingButton.setBackgroundDrawable(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground)));
-        this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
-        this.floatingButton.setImageResource(R.drawable.floating_check);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        ImageView imageView2 = this.floatingButton;
-        Property property = View.TRANSLATION_Z;
-        stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView2, (Property<ImageView, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, (Property<ImageView, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        this.floatingButton.setStateListAnimator(stateListAnimator);
-        this.floatingButton.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-            }
-        });
-        viewGroup.addView(this.floatingButton);
+        this.floatingButtonLp = FragmentFloatingButton.createDefaultLayoutParams();
+        FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, this.resourceProvider);
+        this.floatingButton = fragmentFloatingButton;
+        fragmentFloatingButton.setImageResource(R.drawable.floating_check);
+        viewGroup.addView(this.floatingButton, this.floatingButtonLp);
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UsersSelectActivity.this.lambda$createView$2(view);
+                this.f$0.lambda$createView$2(view);
             }
         });
         this.floatingButton.setContentDescription(LocaleController.getString(R.string.Next));
@@ -746,14 +728,13 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 if (i == 1) {
                     str = "existing_chats";
                     i7 = 1;
-                } else if (i != 2 || this.doNotNewChats) {
-                    if (i != (!this.doNotNewChats ? 1 : 0) + 2) {
-                        i7 = 8;
-                    }
-                    str = "contacts";
-                } else {
+                } else if (i == 2 && !this.doNotNewChats) {
                     str = "new_chats";
                     i7 = 2;
+                } else if (i == (!this.doNotNewChats ? 1 : 0) + 2) {
+                    str = "contacts";
+                } else {
+                    i7 = 8;
                 }
             } else if (this.isInclude) {
                 if (i == 1) {
@@ -849,15 +830,15 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         }
         if (i == NotificationCenter.updateInterfaces) {
             if (this.listView != null) {
-                int intValue = ((Integer) objArr[0]).intValue();
+                int iIntValue = ((Integer) objArr[0]).intValue();
                 int childCount = this.listView.getChildCount();
-                if ((MessagesController.UPDATE_MASK_AVATAR & intValue) == 0 && (MessagesController.UPDATE_MASK_NAME & intValue) == 0 && (MessagesController.UPDATE_MASK_STATUS & intValue) == 0) {
+                if ((MessagesController.UPDATE_MASK_AVATAR & iIntValue) == 0 && (MessagesController.UPDATE_MASK_NAME & iIntValue) == 0 && (MessagesController.UPDATE_MASK_STATUS & iIntValue) == 0) {
                     return;
                 }
                 for (int i3 = 0; i3 < childCount; i3++) {
                     View childAt = this.listView.getChildAt(i3);
                     if (childAt instanceof GroupCreateUserCell) {
-                        ((GroupCreateUserCell) childAt).update(intValue);
+                        ((GroupCreateUserCell) childAt).update(iIntValue);
                     }
                 }
                 return;
@@ -870,120 +851,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
     }
 
     public void checkVisibleRows() {
-        long j;
-        char c;
-        int childCount = this.listView.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt instanceof GroupCreateUserCell) {
-                GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) childAt;
-                Object object = groupCreateUserCell.getObject();
-                if (object instanceof String) {
-                    String str = (String) object;
-                    switch (str.hashCode()) {
-                        case -1716307998:
-                            if (str.equals("archived")) {
-                                c = '\t';
-                                break;
-                            }
-                            break;
-                        case -1237460524:
-                            if (str.equals("groups")) {
-                                c = 2;
-                                break;
-                            }
-                            break;
-                        case -1197490811:
-                            if (str.equals("non_contacts")) {
-                                c = 1;
-                                break;
-                            }
-                            break;
-                        case -567451565:
-                            if (str.equals("contacts")) {
-                                c = 0;
-                                break;
-                            }
-                            break;
-                        case -268161860:
-                            if (str.equals("new_chats")) {
-                                c = '\b';
-                                break;
-                            }
-                            break;
-                        case 3029900:
-                            if (str.equals("bots")) {
-                                c = 4;
-                                break;
-                            }
-                            break;
-                        case 3496342:
-                            if (str.equals("read")) {
-                                c = 6;
-                                break;
-                            }
-                            break;
-                        case 104264043:
-                            if (str.equals("muted")) {
-                                c = 5;
-                                break;
-                            }
-                            break;
-                        case 151051367:
-                            if (str.equals("existing_chats")) {
-                                c = 7;
-                                break;
-                            }
-                            break;
-                        case 1432626128:
-                            if (str.equals("channels")) {
-                                c = 3;
-                                break;
-                            }
-                            break;
-                    }
-                    c = 65535;
-                    switch (c) {
-                        case 0:
-                            j = Long.MIN_VALUE;
-                            break;
-                        case 1:
-                            j = -9223372036854775807L;
-                            break;
-                        case 2:
-                            j = -9223372036854775806L;
-                            break;
-                        case 3:
-                            j = -9223372036854775805L;
-                            break;
-                        case 4:
-                            j = -9223372036854775804L;
-                            break;
-                        case 5:
-                            j = -9223372036854775803L;
-                            break;
-                        case 6:
-                            j = -9223372036854775802L;
-                            break;
-                        case 7:
-                        case '\b':
-                            j = -9223372036854775800L;
-                            break;
-                        default:
-                            j = -9223372036854775801L;
-                            break;
-                    }
-                } else if (object instanceof TLRPC.User) {
-                    j = ((TLRPC.User) object).id;
-                } else {
-                    j = object instanceof TLRPC.Chat ? -((TLRPC.Chat) object).id : 0L;
-                }
-                if (j != 0) {
-                    groupCreateUserCell.setChecked(this.selectedContacts.indexOfKey(j) >= 0, true);
-                    groupCreateUserCell.setCheckBoxEnabled(true);
-                }
-            }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.UsersSelectActivity.checkVisibleRows():void");
     }
 
     public boolean onDonePressed(boolean z) {
@@ -1132,12 +1000,12 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
                 @Override
                 public final void onDataSetChanged(int i2) {
-                    UsersSelectActivity.GroupCreateAdapter.this.lambda$new$0(i2);
+                    this.f$0.lambda$new$0(i2);
                 }
 
                 @Override
-                public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
-                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
+                public void onSetHashtags(ArrayList arrayList, HashMap map) {
+                    SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, map);
                 }
             });
         }
@@ -1159,25 +1027,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         @Override
         public int getItemCount() {
-            int i;
-            int size;
-            if (this.searching) {
-                i = this.searchResult.size();
-                size = this.searchAdapterHelper.getLocalServerSearch().size() + this.searchAdapterHelper.getGlobalSearch().size();
-            } else {
-                UsersSelectActivity usersSelectActivity = UsersSelectActivity.this;
-                if (!usersSelectActivity.noChatTypes) {
-                    if (usersSelectActivity.type == 2) {
-                        i = (!UsersSelectActivity.this.doNotNewChats ? 1 : 0) + 3;
-                    } else if (UsersSelectActivity.this.type == 0) {
-                        i = UsersSelectActivity.this.isInclude ? 7 : 5;
-                    }
-                    size = this.contacts.size();
-                }
-                i = 0;
-                size = this.contacts.size();
-            }
-            return i + size;
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.UsersSelectActivity.GroupCreateAdapter.getItemCount():int");
         }
 
         @Override
@@ -1260,7 +1110,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    UsersSelectActivity.GroupCreateAdapter.this.lambda$searchDialogs$3(str, z2, z);
+                    this.f$0.lambda$searchDialogs$3(str, z2, z);
                 }
             };
             this.searchRunnable = runnable;
@@ -1271,7 +1121,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UsersSelectActivity.GroupCreateAdapter.this.lambda$searchDialogs$2(str, z, z2);
+                    this.f$0.lambda$searchDialogs$2(str, z, z2);
                 }
             });
         }
@@ -1282,7 +1132,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    UsersSelectActivity.GroupCreateAdapter.this.lambda$searchDialogs$1(str, z2, z);
+                    this.f$0.lambda$searchDialogs$1(str, z2, z);
                 }
             };
             this.searchRunnable = runnable;
@@ -1297,7 +1147,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UsersSelectActivity.GroupCreateAdapter.this.lambda$updateSearchResults$4(arrayList, arrayList2);
+                    this.f$0.lambda$updateSearchResults$4(arrayList, arrayList2);
                 }
             });
         }
@@ -1322,7 +1172,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                UsersSelectActivity.this.lambda$getThemeDescriptions$3();
+                this.f$0.lambda$getThemeDescriptions$3();
             }
 
             @Override

@@ -4,6 +4,7 @@ import android.media.MediaCodec;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.view.Surface;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class AudioRecoder {
     private int channelCount = 2;
     private long encoderInputPresentationTimeUs = 0;
 
-    public AudioRecoder(ArrayList<AudioInput> arrayList, long j) {
+    public AudioRecoder(ArrayList<AudioInput> arrayList, long j) throws IOException {
         this.sampleRate = 44100;
         this.audioInputs = arrayList;
         this.totalDurationUs = j;
@@ -44,15 +45,15 @@ public class AudioRecoder {
                 this.sampleRate = arrayList.get(i).getSampleRate();
             }
         }
-        MediaCodec createEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
-        this.encoder = createEncoderByType;
-        MediaFormat createAudioFormat = MediaFormat.createAudioFormat("audio/mp4a-latm", this.sampleRate, this.channelCount);
-        this.format = createAudioFormat;
-        createAudioFormat.setInteger("bitrate", 128000);
-        createEncoderByType.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
-        createEncoderByType.start();
-        this.encoderInputBuffers = createEncoderByType.getInputBuffers();
-        this.encoderOutputBuffers = createEncoderByType.getOutputBuffers();
+        MediaCodec mediaCodecCreateEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
+        this.encoder = mediaCodecCreateEncoderByType;
+        MediaFormat mediaFormatCreateAudioFormat = MediaFormat.createAudioFormat("audio/mp4a-latm", this.sampleRate, this.channelCount);
+        this.format = mediaFormatCreateAudioFormat;
+        mediaFormatCreateAudioFormat.setInteger("bitrate", 128000);
+        mediaCodecCreateEncoderByType.configure(mediaFormatCreateAudioFormat, (Surface) null, (MediaCrypto) null, 1);
+        mediaCodecCreateEncoderByType.start();
+        this.encoderInputBuffers = mediaCodecCreateEncoderByType.getInputBuffers();
+        this.encoderOutputBuffers = mediaCodecCreateEncoderByType.getOutputBuffers();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             arrayList.get(i2).start(this.sampleRate, this.channelCount);
         }
@@ -69,34 +70,34 @@ public class AudioRecoder {
         }
     }
 
-    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) {
-        int dequeueInputBuffer;
-        if (!this.encoderInputDone && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
+    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) throws MediaCodec.CryptoException {
+        int iDequeueInputBuffer;
+        if (!this.encoderInputDone && (iDequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
             if (isInputAvailable()) {
-                ShortBuffer asShortBuffer = this.encoder.getInputBuffer(dequeueInputBuffer).asShortBuffer();
-                mix(asShortBuffer);
-                this.encoder.queueInputBuffer(dequeueInputBuffer, 0, asShortBuffer.position() * 2, this.encoderInputPresentationTimeUs, 1);
-                this.encoderInputPresentationTimeUs += AudioConversions.shortsToUs(asShortBuffer.position(), this.sampleRate, this.channelCount);
+                ShortBuffer shortBufferAsShortBuffer = this.encoder.getInputBuffer(iDequeueInputBuffer).asShortBuffer();
+                mix(shortBufferAsShortBuffer);
+                this.encoder.queueInputBuffer(iDequeueInputBuffer, 0, shortBufferAsShortBuffer.position() * 2, this.encoderInputPresentationTimeUs, 1);
+                this.encoderInputPresentationTimeUs += AudioConversions.shortsToUs(shortBufferAsShortBuffer.position(), this.sampleRate, this.channelCount);
             } else {
-                this.encoder.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
+                this.encoder.queueInputBuffer(iDequeueInputBuffer, 0, 0, 0L, 4);
                 this.encoderInputDone = true;
             }
         }
         if (!this.encoderDone) {
-            int dequeueOutputBuffer = this.encoder.dequeueOutputBuffer(this.encoderOutputBufferInfo, 2500L);
-            if (dequeueOutputBuffer == -1) {
+            int iDequeueOutputBuffer = this.encoder.dequeueOutputBuffer(this.encoderOutputBufferInfo, 2500L);
+            if (iDequeueOutputBuffer == -1) {
                 return this.encoderDone;
             }
-            if (dequeueOutputBuffer == -3) {
+            if (iDequeueOutputBuffer == -3) {
                 this.encoderOutputBuffers = this.encoder.getOutputBuffers();
             }
-            if (dequeueOutputBuffer == -2) {
+            if (iDequeueOutputBuffer == -2) {
                 return this.encoderDone;
             }
-            ByteBuffer byteBuffer = this.encoderOutputBuffers[dequeueOutputBuffer];
+            ByteBuffer byteBuffer = this.encoderOutputBuffers[iDequeueOutputBuffer];
             MediaCodec.BufferInfo bufferInfo = this.encoderOutputBufferInfo;
             if ((bufferInfo.flags & 2) != 0) {
-                this.encoder.releaseOutputBuffer(dequeueOutputBuffer, false);
+                this.encoder.releaseOutputBuffer(iDequeueOutputBuffer, false);
                 return this.encoderDone;
             }
             if (bufferInfo.size != 0) {
@@ -105,24 +106,24 @@ public class AudioRecoder {
             if ((this.encoderOutputBufferInfo.flags & 4) != 0) {
                 this.encoderDone = true;
             }
-            this.encoder.releaseOutputBuffer(dequeueOutputBuffer, false);
+            this.encoder.releaseOutputBuffer(iDequeueOutputBuffer, false);
         }
         return this.encoderDone;
     }
 
     private void mix(ShortBuffer shortBuffer) {
-        int remaining = shortBuffer.remaining();
-        for (int i = 0; i < remaining && isInputAvailable(); i++) {
+        int iRemaining = shortBuffer.remaining();
+        for (int i = 0; i < iRemaining && isInputAvailable(); i++) {
             boolean z = false;
-            short s = 0;
+            short next = 0;
             for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
                 if (this.audioInputs.get(i2).hasRemaining()) {
-                    s = (short) (s + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
+                    next = (short) (next + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
                     z = true;
                 }
             }
             if (z) {
-                shortBuffer.put(s);
+                shortBuffer.put(next);
             }
         }
     }

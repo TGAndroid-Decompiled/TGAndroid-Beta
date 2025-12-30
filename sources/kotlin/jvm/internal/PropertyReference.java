@@ -43,9 +43,9 @@ public abstract class PropertyReference extends CallableReference implements KPr
     }
 
     public String toString() {
-        KCallable compute = compute();
-        if (compute != this) {
-            return compute.toString();
+        KCallable kCallableCompute = compute();
+        if (kCallableCompute != this) {
+            return kCallableCompute.toString();
         }
         return "property " + getName() + " (Kotlin reflection is not available)";
     }

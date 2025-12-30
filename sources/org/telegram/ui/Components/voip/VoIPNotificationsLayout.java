@@ -123,7 +123,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPNotificationsLayout.this.lambda$lock$0();
+                this.f$0.lambda$lock$0();
             }
         }, 700L);
     }
@@ -198,7 +198,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
         return (childCount > 0 ? AndroidUtilities.dp(16.0f) : 0) + (childCount * AndroidUtilities.dp(32.0f));
     }
 
-    public static class NotificationView extends FrameLayout {
+    private static class NotificationView extends FrameLayout {
         private final VoIPBackgroundProvider backgroundProvider;
         private final RectF bgRect;
         ImageView iconView;
@@ -224,16 +224,16 @@ public class VoIPNotificationsLayout extends LinearLayout {
         }
 
         public void setText(CharSequence charSequence) {
-            int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
-            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(charSequence, this.textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, dp, 10);
-            if (createStaticLayout != null) {
-                int i = 0;
-                for (int i2 = 0; i2 < createStaticLayout.getLineCount(); i2++) {
-                    i = (int) Math.max(i, Math.ceil(createStaticLayout.getLineWidth(i2)));
+            int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequence, this.textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10);
+            if (staticLayoutCreateStaticLayout != null) {
+                int iMax = 0;
+                for (int i = 0; i < staticLayoutCreateStaticLayout.getLineCount(); i++) {
+                    iMax = (int) Math.max(iMax, Math.ceil(staticLayoutCreateStaticLayout.getLineWidth(i)));
                 }
-                dp = i;
+                iDp = iMax;
             }
-            this.textView.setMaxWidth(dp);
+            this.textView.setMaxWidth(iDp);
             this.textView.setText(charSequence);
         }
 

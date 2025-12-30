@@ -77,10 +77,10 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.blocked = (readInt32 & 1) != 0;
-            this.blocked_my_stories_from = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.blocked = (int32 & 1) != 0;
+            this.blocked_my_stories_from = (int32 & 2) != 0;
             this.user_id = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
             if ((this.flags & 4) != 0) {
@@ -109,10 +109,10 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.blocked = (readInt32 & 1) != 0;
-            this.blocked_my_stories_from = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.blocked = (int32 & 1) != 0;
+            this.blocked_my_stories_from = (int32 & 2) != 0;
             this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -133,10 +133,10 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.blocked = (readInt32 & 1) != 0;
-            this.blocked_my_stories_from = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.blocked = (int32 & 1) != 0;
+            this.blocked_my_stories_from = (int32 & 2) != 0;
             this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
@@ -203,10 +203,10 @@ public class TL_stories {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
-            long readInt64 = inputSerializedData.readInt64(z);
+            long int64 = inputSerializedData.readInt64(z);
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             this.peer = tL_peerUser;
-            tL_peerUser.user_id = readInt64;
+            tL_peerUser.user_id = int64;
             if ((this.flags & 1) != 0) {
                 this.max_read_id = inputSerializedData.readInt32(z);
             }
@@ -298,9 +298,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_more = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_more = (int32 & 1) != 0;
             this.count = inputSerializedData.readInt32(z);
             this.state = inputSerializedData.readString(z);
             this.peer_stories = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
@@ -1100,9 +1100,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.active_until_date = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 2) != 0) {
@@ -1292,9 +1292,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.my_boost = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.my_boost = (int32 & 4) != 0;
             this.level = inputSerializedData.readInt32(z);
             this.current_level_boosts = inputSerializedData.readInt32(z);
             this.boosts = inputSerializedData.readInt32(z);
@@ -1418,11 +1418,11 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.gift = (readInt32 & 2) != 0;
-            this.giveaway = (readInt32 & 4) != 0;
-            this.unclaimed = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.gift = (int32 & 2) != 0;
+            this.giveaway = (int32 & 4) != 0;
+            this.unclaimed = (int32 & 8) != 0;
             this.id = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
@@ -1479,11 +1479,11 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.gift = (readInt32 & 2) != 0;
-            this.giveaway = (readInt32 & 4) != 0;
-            this.unclaimed = (readInt32 & 8) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.gift = (int32 & 2) != 0;
+            this.giveaway = (int32 & 4) != 0;
+            this.unclaimed = (int32 & 8) != 0;
             this.id = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
@@ -1740,9 +1740,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_viewers = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_viewers = (int32 & 2) != 0;
             this.views_count = inputSerializedData.readInt32(z);
             if ((this.flags & 4) != 0) {
                 this.forwards_count = inputSerializedData.readInt32(z);
@@ -1816,10 +1816,10 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.modified = (readInt32 & 8) != 0;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.modified = (int32 & 8) != 0;
+            if ((int32 & 1) != 0) {
                 this.from = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 2) != 0) {
@@ -1911,13 +1911,13 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
+            int int32 = inputSerializedData.readInt32(z);
             this.album_id = inputSerializedData.readInt32(z);
             this.title = inputSerializedData.readString(z);
-            if (TLObject.hasFlag(readInt32, 1)) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.icon_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if (TLObject.hasFlag(readInt32, 2)) {
+            if (TLObject.hasFlag(int32, 2)) {
                 this.icon_video = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -1943,17 +1943,17 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pinned = (readInt32 & 32) != 0;
-            this.isPublic = (readInt32 & 128) != 0;
-            this.close_friends = (readInt32 & 256) != 0;
-            this.min = (readInt32 & 512) != 0;
-            this.noforwards = (readInt32 & 1024) != 0;
-            this.edited = (readInt32 & 2048) != 0;
-            this.contacts = (readInt32 & 4096) != 0;
-            this.selected_contacts = (readInt32 & 8192) != 0;
-            this.out = (readInt32 & 65536) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = (int32 & 32) != 0;
+            this.isPublic = (int32 & 128) != 0;
+            this.close_friends = (int32 & 256) != 0;
+            this.min = (int32 & 512) != 0;
+            this.noforwards = (int32 & 1024) != 0;
+            this.edited = (int32 & 2048) != 0;
+            this.contacts = (int32 & 4096) != 0;
+            this.selected_contacts = (int32 & 8192) != 0;
+            this.out = (int32 & 65536) != 0;
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             if ((this.flags & 262144) != 0) {
@@ -2050,17 +2050,17 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pinned = (readInt32 & 32) != 0;
-            this.isPublic = (readInt32 & 128) != 0;
-            this.close_friends = (readInt32 & 256) != 0;
-            this.min = (readInt32 & 512) != 0;
-            this.noforwards = (readInt32 & 1024) != 0;
-            this.edited = (readInt32 & 2048) != 0;
-            this.contacts = (readInt32 & 4096) != 0;
-            this.selected_contacts = (readInt32 & 8192) != 0;
-            this.out = (readInt32 & 65536) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = (int32 & 32) != 0;
+            this.isPublic = (int32 & 128) != 0;
+            this.close_friends = (int32 & 256) != 0;
+            this.min = (int32 & 512) != 0;
+            this.noforwards = (int32 & 1024) != 0;
+            this.edited = (int32 & 2048) != 0;
+            this.contacts = (int32 & 4096) != 0;
+            this.selected_contacts = (int32 & 8192) != 0;
+            this.out = (int32 & 65536) != 0;
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             if ((this.flags & 262144) != 0) {
@@ -2149,17 +2149,17 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pinned = (readInt32 & 32) != 0;
-            this.isPublic = (readInt32 & 128) != 0;
-            this.close_friends = (readInt32 & 256) != 0;
-            this.min = (readInt32 & 512) != 0;
-            this.noforwards = (readInt32 & 1024) != 0;
-            this.edited = (readInt32 & 2048) != 0;
-            this.contacts = (readInt32 & 4096) != 0;
-            this.selected_contacts = (readInt32 & 8192) != 0;
-            this.out = (readInt32 & 65536) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = (int32 & 32) != 0;
+            this.isPublic = (int32 & 128) != 0;
+            this.close_friends = (int32 & 256) != 0;
+            this.min = (int32 & 512) != 0;
+            this.noforwards = (int32 & 1024) != 0;
+            this.edited = (int32 & 2048) != 0;
+            this.contacts = (int32 & 4096) != 0;
+            this.selected_contacts = (int32 & 8192) != 0;
+            this.out = (int32 & 65536) != 0;
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             if ((this.flags & 131072) != 0) {
@@ -2242,17 +2242,17 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pinned = (readInt32 & 32) != 0;
-            this.isPublic = (readInt32 & 128) != 0;
-            this.close_friends = (readInt32 & 256) != 0;
-            this.min = (readInt32 & 512) != 0;
-            this.noforwards = (readInt32 & 1024) != 0;
-            this.edited = (readInt32 & 2048) != 0;
-            this.contacts = (readInt32 & 4096) != 0;
-            this.selected_contacts = (readInt32 & 8192) != 0;
-            this.out = (readInt32 & 65536) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = (int32 & 32) != 0;
+            this.isPublic = (int32 & 128) != 0;
+            this.close_friends = (int32 & 256) != 0;
+            this.min = (int32 & 512) != 0;
+            this.noforwards = (int32 & 1024) != 0;
+            this.edited = (int32 & 2048) != 0;
+            this.contacts = (int32 & 4096) != 0;
+            this.selected_contacts = (int32 & 8192) != 0;
+            this.out = (int32 & 65536) != 0;
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             this.expire_date = inputSerializedData.readInt32(z);
@@ -2329,16 +2329,16 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pinned = (readInt32 & 32) != 0;
-            this.isPublic = (readInt32 & 128) != 0;
-            this.close_friends = (readInt32 & 256) != 0;
-            this.min = (readInt32 & 512) != 0;
-            this.noforwards = (readInt32 & 1024) != 0;
-            this.edited = (readInt32 & 2048) != 0;
-            this.contacts = (readInt32 & 4096) != 0;
-            this.selected_contacts = (readInt32 & 8192) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = (int32 & 32) != 0;
+            this.isPublic = (int32 & 128) != 0;
+            this.close_friends = (int32 & 256) != 0;
+            this.min = (int32 & 512) != 0;
+            this.noforwards = (int32 & 1024) != 0;
+            this.edited = (int32 & 2048) != 0;
+            this.contacts = (int32 & 4096) != 0;
+            this.selected_contacts = (int32 & 8192) != 0;
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             this.expire_date = inputSerializedData.readInt32(z);
@@ -2417,9 +2417,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.close_friends = TLObject.hasFlag(readInt32, 256);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.close_friends = TLObject.hasFlag(int32, 256);
             this.live = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
@@ -2573,10 +2573,10 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.dark = (readInt32 & 1) != 0;
-            this.flipped = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.dark = (int32 & 1) != 0;
+            this.flipped = (int32 & 2) != 0;
             this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
@@ -2691,9 +2691,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.dark = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.dark = (int32 & 1) != 0;
             this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.emoji = inputSerializedData.readString(z);
             this.temperature_c = inputSerializedData.readInt32(z);
@@ -2742,9 +2742,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.dark = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.dark = (int32 & 1) != 0;
             this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.emoji = inputSerializedData.readString(z);
             this.temperature_c = inputSerializedData.readDouble(z);
@@ -3068,10 +3068,10 @@ public class TL_stories {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            StoryItem TLdeserialize = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.story = TLdeserialize;
-            if (TLdeserialize != null) {
-                TLdeserialize.dialogId = DialogObject.getPeerDialogId(this.peer_id);
+            StoryItem storyItemTLdeserialize = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.story = storyItemTLdeserialize;
+            if (storyItemTLdeserialize != null) {
+                storyItemTLdeserialize.dialogId = DialogObject.getPeerDialogId(this.peer_id);
             }
         }
 

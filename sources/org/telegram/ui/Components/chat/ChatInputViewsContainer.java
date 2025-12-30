@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.RoundedCorner;
 import android.view.View;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
@@ -122,13 +125,13 @@ public class ChatInputViewsContainer extends FrameLayout {
 
     private void checkBlurredHeight(boolean z) {
         checkViewsPositions();
-        int dp = this.inputBubbleHeightRound + AndroidUtilities.dp(9.0f) + Math.round(this.maxBottomInset);
-        if (this.currentBlurredHeight != dp || z) {
-            this.currentBlurredHeight = dp;
-            int dp2 = AndroidUtilities.dp(29.0f);
+        int iDp = this.inputBubbleHeightRound + AndroidUtilities.dp(9.0f) + Math.round(this.maxBottomInset);
+        if (this.currentBlurredHeight != iDp || z) {
+            this.currentBlurredHeight = iDp;
+            int iDp2 = AndroidUtilities.dp(29.0f);
             this.tmpRectF.set(0.0f, getMeasuredHeight() - this.imeBottomInset, getMeasuredWidth(), getMeasuredHeight());
             this.underKeyboardPath.rewind();
-            float f = dp2;
+            float f = iDp2;
             this.underKeyboardPath.addRoundRect(this.tmpRectF, new float[]{f, f, f, f, 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CW);
             this.underKeyboardPath.close();
             invalidate();
@@ -136,7 +139,37 @@ public class ChatInputViewsContainer extends FrameLayout {
     }
 
     public void checkInsets() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.chat.ChatInputViewsContainer.checkInsets():void");
+        int radius;
+        WindowInsets rootWindowInsets;
+        this.maxBottomInset = this.windowInsetsProvider.getAnimatedMaxBottomInset();
+        this.imeBottomInset = this.windowInsetsProvider.getAnimatedImeBottomInset();
+        this.needDrawInAppKeyboard = this.windowInsetsProvider.inAppViewIsVisible();
+        int i = 0;
+        boolean z = this.inAppKeyboardBubbleContainer.getVisibility() == 0;
+        boolean z2 = this.needDrawInAppKeyboard;
+        if (z != z2) {
+            this.inAppKeyboardBubbleContainer.setVisibility(z2 ? 0 : 8);
+        }
+        checkInAppKeyboardViewHeight();
+        checkBlurredHeight(false);
+        checkInAppKeyboardChild();
+        if (this.underKeyboardBackgroundDrawable != null) {
+            if (Build.VERSION.SDK_INT < 31 || (rootWindowInsets = getRootWindowInsets()) == null) {
+                radius = 0;
+            } else {
+                RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
+                RoundedCorner roundedCorner2 = rootWindowInsets.getRoundedCorner(2);
+                int radius2 = roundedCorner == null ? 0 : roundedCorner.getRadius();
+                if (roundedCorner2 == null) {
+                    i = radius2;
+                    radius = 0;
+                } else {
+                    radius = roundedCorner2.getRadius();
+                    i = radius2;
+                }
+            }
+            this.underKeyboardBackgroundDrawable.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i, true);
+        }
     }
 
     public void checkViewsPositions() {
@@ -213,11 +246,11 @@ public class ChatInputViewsContainer extends FrameLayout {
             canvas.save();
             canvas.clipPath(this.underKeyboardBackgroundDrawable.getPath());
         }
-        boolean drawChild = super.drawChild(canvas, view, j);
+        boolean zDrawChild = super.drawChild(canvas, view, j);
         if (z) {
             canvas.restore();
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     public void setBackgroundWithFadeDrawable(BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable) {

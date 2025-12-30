@@ -62,7 +62,7 @@ public class StarGiftUniqueActionLayout {
     private final Paint buttonBackgroundPaint = new Paint();
     private final StarsReactionsSheet.Particles buttonParticles = new StarsReactionsSheet.Particles(1, 25);
 
-    public static final class Row {
+    private static final class Row {
         public final Text name;
         public final Text value;
         public final float y;
@@ -122,10 +122,10 @@ public class StarGiftUniqueActionLayout {
     public void draw(Canvas canvas) {
         float width = getWidth() / 2.0f;
         this.backgroundRect.set(0.0f, 0.0f, getWidth(), getHeight());
-        int width2 = ((int) (this.backgroundRect.width() + this.backgroundRect.height())) / 2;
-        if (this.backdrop != null && (this.gradient == null || this.gradientRadius != width2)) {
-            this.gradientRadius = width2;
-            float f = width2;
+        int iWidth = ((int) (this.backgroundRect.width() + this.backgroundRect.height())) / 2;
+        if (this.backdrop != null && (this.gradient == null || this.gradientRadius != iWidth)) {
+            this.gradientRadius = iWidth;
+            float f = iWidth;
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop;
             this.gradient = new RadialGradient(0.0f, 0.0f, f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
@@ -153,24 +153,24 @@ public class StarGiftUniqueActionLayout {
         canvas.restore();
         this.imageReceiver.setImageCoords(width - (AndroidUtilities.dp(110.0f) / 2.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f));
         this.imageReceiver.draw(canvas);
-        int multAlpha = Theme.multAlpha(-1, 0.6f);
+        int iMultAlpha = Theme.multAlpha(-1, 0.6f);
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop3 = this.backdrop;
         if (stargiftattributebackdrop3 != null) {
-            multAlpha = stargiftattributebackdrop3.text_color | (-16777216);
+            iMultAlpha = stargiftattributebackdrop3.text_color | (-16777216);
         }
-        int i = multAlpha;
+        int i = iMultAlpha;
         this.title.ellipsize(getWidth() - AndroidUtilities.dp(12.0f));
         Text text = this.title;
         text.draw(canvas, width - (text.getCurrentWidth() / 2.0f), this.titleY, -1, 1.0f);
         this.subtitle.ellipsize(getWidth() - AndroidUtilities.dp(12.0f));
         Text text2 = this.subtitle;
         text2.draw(canvas, width - (text2.getCurrentWidth() / 2.0f), this.subtitleY, i, 1.0f);
-        float dp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
+        float fDp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
         Iterator it = this.table.iterator();
         while (it.hasNext()) {
             Row row = (Row) it.next();
             Text text3 = row.name;
-            float f2 = width - (dp / 2.0f);
+            float f2 = width - (fDp / 2.0f);
             text3.draw(canvas, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i, 1.0f);
             row.value.draw(canvas, f2 + this.nameWidth + AndroidUtilities.dp(9.0f), row.y, -1, 1.0f);
         }
@@ -212,15 +212,15 @@ public class StarGiftUniqueActionLayout {
     }
 
     public boolean onTouchEvent(float f, float f2, MotionEvent motionEvent) {
-        boolean contains = this.buttonRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
-        boolean contains2 = this.backgroundRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
+        boolean zContains = this.buttonRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
+        boolean zContains2 = this.backgroundRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
         if (motionEvent.getAction() == 0) {
-            this.bounce.setPressed(contains2 && !contains);
-            this.buttonBounce.setPressed(contains);
+            this.bounce.setPressed(zContains2 && !zContains);
+            this.buttonBounce.setPressed(zContains);
         } else if (motionEvent.getAction() == 2) {
-            if (this.buttonBounce.isPressed() && !contains) {
+            if (this.buttonBounce.isPressed() && !zContains) {
                 this.buttonBounce.setPressed(false);
-            } else if (this.bounce.isPressed() && !contains2) {
+            } else if (this.bounce.isPressed() && !zContains2) {
                 this.bounce.setPressed(false);
             }
         } else {

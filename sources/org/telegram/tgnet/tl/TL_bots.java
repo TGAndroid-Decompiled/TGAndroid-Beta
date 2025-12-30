@@ -397,10 +397,10 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_preview_medias = (readInt32 & 64) != 0;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_preview_medias = (int32 & 64) != 0;
+            if ((int32 & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
             if ((this.flags & 2) != 0) {
@@ -470,10 +470,10 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_preview_medias = (readInt32 & 64) != 0;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_preview_medias = (int32 & 64) != 0;
+            if ((int32 & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
             if ((this.flags & 2) != 0) {
@@ -537,10 +537,10 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_preview_medias = (readInt32 & 64) != 0;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_preview_medias = (int32 & 64) != 0;
+            if ((int32 & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
             if ((this.flags & 2) != 0) {
@@ -598,10 +598,10 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_preview_medias = (readInt32 & 64) != 0;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_preview_medias = (int32 & 64) != 0;
+            if ((int32 & 1) != 0) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
             if ((this.flags & 2) != 0) {
@@ -855,9 +855,9 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.next_offset = inputSerializedData.readString(z);
             }
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -890,12 +890,12 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
-                byte[] readByteArray = inputSerializedData.readByteArray(z);
-                this.placeholder_path = readByteArray;
-                this.placeholder_svg_path = SvgHelper.doPath(SvgHelper.decompress(readByteArray));
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
+                byte[] byteArray = inputSerializedData.readByteArray(z);
+                this.placeholder_path = byteArray;
+                this.placeholder_svg_path = SvgHelper.doPath(SvgHelper.decompress(byteArray));
             }
             if ((this.flags & 2) != 0) {
                 this.background_color = inputSerializedData.readInt32(z);
@@ -1023,9 +1023,9 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.can_modify_custom_description = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.can_modify_custom_description = (int32 & 2) != 0;
             this.icon = inputSerializedData.readInt64(z);
             this.company = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {

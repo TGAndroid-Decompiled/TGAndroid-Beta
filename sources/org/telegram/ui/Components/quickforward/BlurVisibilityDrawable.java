@@ -92,10 +92,10 @@ public class BlurVisibilityDrawable extends Drawable {
         double d = i / 255.0d;
         double d2 = d / ((1.0d - d) * 6.0d);
         double d3 = 1.0d + d2;
-        double sqrt = ((-d3) + Math.sqrt((d3 * d3) - (((-d2) * 4.0d) * (-d)))) / ((-2.0d) * d2);
-        int clamp = MathUtils.clamp((int) (d2 * sqrt * 255.0d), 0, 255);
-        drawBlur(canvas, MathUtils.clamp((int) (sqrt * 255.0d), 0, 255));
-        drawNormal(canvas, clamp);
+        double dSqrt = ((-d3) + Math.sqrt((d3 * d3) - (((-d2) * 4.0d) * (-d)))) / ((-2.0d) * d2);
+        int iClamp = MathUtils.clamp((int) (d2 * dSqrt * 255.0d), 0, 255);
+        drawBlur(canvas, MathUtils.clamp((int) (dSqrt * 255.0d), 0, 255));
+        drawNormal(canvas, iClamp);
     }
 
     private void drawNormal(Canvas canvas, int i) {

@@ -39,8 +39,8 @@ public abstract class DispatchedTask extends Task {
 
     @Override
     public final void run() {
-        Object m275constructorimpl;
-        Object m275constructorimpl2;
+        Object objM275constructorimpl;
+        Object objM275constructorimpl2;
         TaskContext taskContext = this.taskContext;
         try {
             Continuation delegate$kotlinx_coroutines_core = getDelegate$kotlinx_coroutines_core();
@@ -49,16 +49,16 @@ public abstract class DispatchedTask extends Task {
             Continuation continuation = dispatchedContinuation.continuation;
             Object obj = dispatchedContinuation.countOrElement;
             CoroutineContext context = continuation.getContext();
-            Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
-            UndispatchedCoroutine updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation, context, updateThreadContext) : null;
+            Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
+            UndispatchedCoroutine undispatchedCoroutineUpdateUndispatchedCompletion = objUpdateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation, context, objUpdateThreadContext) : null;
             try {
                 CoroutineContext context2 = continuation.getContext();
-                Object takeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
-                Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+                Object objTakeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
+                Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(objTakeState$kotlinx_coroutines_core);
                 Job job = (exceptionalResult$kotlinx_coroutines_core == null && DispatchedTaskKt.isCancellableMode(this.resumeMode)) ? (Job) context2.get(Job.Key) : null;
                 if (job != null && !job.isActive()) {
                     CancellationException cancellationException = job.getCancellationException();
-                    cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
+                    cancelCompletedResult$kotlinx_coroutines_core(objTakeState$kotlinx_coroutines_core, cancellationException);
                     Result.Companion companion = Result.Companion;
                     continuation.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(cancellationException)));
                 } else if (exceptionalResult$kotlinx_coroutines_core != null) {
@@ -66,23 +66,23 @@ public abstract class DispatchedTask extends Task {
                     continuation.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
                 } else {
                     Result.Companion companion3 = Result.Companion;
-                    continuation.resumeWith(Result.m275constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core)));
+                    continuation.resumeWith(Result.m275constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(objTakeState$kotlinx_coroutines_core)));
                 }
                 Unit unit = Unit.INSTANCE;
-                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                if (undispatchedCoroutineUpdateUndispatchedCompletion == null || undispatchedCoroutineUpdateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
                 }
                 try {
                     taskContext.afterTask();
-                    m275constructorimpl2 = Result.m275constructorimpl(Unit.INSTANCE);
+                    objM275constructorimpl2 = Result.m275constructorimpl(Unit.INSTANCE);
                 } catch (Throwable th) {
                     Result.Companion companion4 = Result.Companion;
-                    m275constructorimpl2 = Result.m275constructorimpl(ResultKt.createFailure(th));
+                    objM275constructorimpl2 = Result.m275constructorimpl(ResultKt.createFailure(th));
                 }
-                handleFatalException$kotlinx_coroutines_core(null, Result.m277exceptionOrNullimpl(m275constructorimpl2));
+                handleFatalException$kotlinx_coroutines_core(null, Result.m277exceptionOrNullimpl(objM275constructorimpl2));
             } catch (Throwable th2) {
-                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                if (undispatchedCoroutineUpdateUndispatchedCompletion == null || undispatchedCoroutineUpdateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
                 }
                 throw th2;
             }
@@ -90,12 +90,12 @@ public abstract class DispatchedTask extends Task {
             try {
                 Result.Companion companion5 = Result.Companion;
                 taskContext.afterTask();
-                m275constructorimpl = Result.m275constructorimpl(Unit.INSTANCE);
+                objM275constructorimpl = Result.m275constructorimpl(Unit.INSTANCE);
             } catch (Throwable th4) {
                 Result.Companion companion6 = Result.Companion;
-                m275constructorimpl = Result.m275constructorimpl(ResultKt.createFailure(th4));
+                objM275constructorimpl = Result.m275constructorimpl(ResultKt.createFailure(th4));
             }
-            handleFatalException$kotlinx_coroutines_core(th3, Result.m277exceptionOrNullimpl(m275constructorimpl));
+            handleFatalException$kotlinx_coroutines_core(th3, Result.m277exceptionOrNullimpl(objM275constructorimpl));
         }
     }
 

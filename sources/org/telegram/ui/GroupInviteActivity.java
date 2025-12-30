@@ -108,7 +108,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                GroupInviteActivity.this.lambda$createView$1(view, i);
+                this.f$0.lambda$createView$1(view, i);
             }
         });
         return this.fragmentView;
@@ -153,7 +153,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    GroupInviteActivity.this.lambda$createView$0(alertDialog, i2);
+                    this.f$0.lambda$createView$0(alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -169,8 +169,8 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            int intValue = ((Integer) objArr[1]).intValue();
-            if (chatFull.id == this.chatId && intValue == this.classGuid) {
+            int iIntValue = ((Integer) objArr[1]).intValue();
+            if (chatFull.id == this.chatId && iIntValue == this.classGuid) {
                 TLRPC.TL_chatInviteExported exportedInvite = getMessagesController().getExportedInvite(this.chatId);
                 this.invite = exportedInvite;
                 if (exportedInvite == null) {
@@ -202,7 +202,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupInviteActivity.this.lambda$generateLink$3(z, tLObject, tL_error);
+                this.f$0.lambda$generateLink$3(z, tLObject, tL_error);
             }
         }), this.classGuid);
         ListAdapter listAdapter = this.listAdapter;
@@ -215,7 +215,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupInviteActivity.this.lambda$generateLink$2(tL_error, tLObject, z);
+                this.f$0.lambda$generateLink$2(tL_error, tLObject, z);
             }
         });
     }
@@ -238,7 +238,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listAdapter.notifyDataSetChanged();
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {

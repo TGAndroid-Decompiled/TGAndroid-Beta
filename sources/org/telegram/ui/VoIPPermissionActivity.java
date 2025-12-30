@@ -13,41 +13,34 @@ import org.telegram.ui.Components.voip.VoIPHelper;
 public class VoIPPermissionActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
-        boolean isVideo;
-        int checkSelfPermission;
-        int checkSelfPermission2;
+        boolean zIsVideo;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             TL_phone.PhoneCall phoneCall = sharedInstance.privateCall;
-            isVideo = phoneCall != null && phoneCall.video;
+            zIsVideo = phoneCall != null && phoneCall.video;
         } else {
-            isVideo = VoIPPreNotificationService.isVideo();
+            zIsVideo = VoIPPreNotificationService.isVideo();
         }
         ArrayList arrayList = new ArrayList();
-        checkSelfPermission = checkSelfPermission("android.permission.RECORD_AUDIO");
-        if (checkSelfPermission != 0) {
+        if (checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
             arrayList.add("android.permission.RECORD_AUDIO");
         }
-        if (isVideo) {
-            checkSelfPermission2 = checkSelfPermission("android.permission.CAMERA");
-            if (checkSelfPermission2 != 0) {
-                arrayList.add("android.permission.CAMERA");
-            }
+        if (zIsVideo && checkSelfPermission("android.permission.CAMERA") != 0) {
+            arrayList.add("android.permission.CAMERA");
         }
         if (arrayList.isEmpty()) {
             return;
         }
         try {
-            requestPermissions((String[]) arrayList.toArray(new String[0]), isVideo ? 102 : 101);
+            requestPermissions((String[]) arrayList.toArray(new String[0]), zIsVideo ? 102 : 101);
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
-        boolean shouldShowRequestPermissionRationale;
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws InterruptedException {
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;
@@ -71,8 +64,7 @@ public class VoIPPermissionActivity extends Activity {
                 startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
                 return;
             }
-            shouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO");
-            if (!shouldShowRequestPermissionRationale) {
+            if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().declineIncomingCall();
                 } else {
@@ -81,7 +73,7 @@ public class VoIPPermissionActivity extends Activity {
                 VoIPHelper.permissionDenied(this, new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPPermissionActivity.this.finish();
+                        this.f$0.finish();
                     }
                 }, i);
                 return;

@@ -48,16 +48,16 @@ public class PlayingGameDrawable extends StatusDrawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 16) {
             j = 16;
         }
         if (this.progress >= 1.0f) {
             this.progress = 0.0f;
         }
-        float f = this.progress + (((float) j) / 300.0f);
+        float f = this.progress + (j / 300.0f);
         this.progress = f;
         if (f > 1.0f) {
             this.progress = 1.0f;
@@ -80,21 +80,21 @@ public class PlayingGameDrawable extends StatusDrawable {
 
     @Override
     public void draw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(10.0f);
-        int intrinsicHeight = getBounds().top + ((getIntrinsicHeight() - dp) / 2);
+        int iDp = AndroidUtilities.dp(10.0f);
+        int intrinsicHeight = getBounds().top + ((getIntrinsicHeight() - iDp) / 2);
         if (!this.isChat) {
             intrinsicHeight += AndroidUtilities.dp(1.0f);
         }
         int i = intrinsicHeight;
         this.paint.setColor(Theme.getColor(this.isDialogScreen ? Theme.key_chats_actionMessage : Theme.key_chat_status, this.resourcesProvider));
-        this.rect.set(0.0f, i, dp, i + dp);
+        this.rect.set(0.0f, i, iDp, i + iDp);
         float f = this.progress;
         int i2 = (int) (f < 0.5f ? (1.0f - (f / 0.5f)) * 35.0f : ((f - 0.5f) * 35.0f) / 0.5f);
         for (int i3 = 0; i3 < 3; i3++) {
-            float dp2 = (AndroidUtilities.dp(5.0f) * i3) + AndroidUtilities.dp(9.2f);
-            float dp3 = AndroidUtilities.dp(5.0f);
+            float fDp = (AndroidUtilities.dp(5.0f) * i3) + AndroidUtilities.dp(9.2f);
+            float fDp2 = AndroidUtilities.dp(5.0f);
             float f2 = this.progress;
-            float f3 = dp2 - (dp3 * f2);
+            float f3 = fDp - (fDp2 * f2);
             if (i3 == 2) {
                 this.paint.setAlpha(Math.min(255, (int) ((f2 * 255.0f) / 0.5f)));
             } else if (i3 != 0) {
@@ -104,12 +104,12 @@ public class PlayingGameDrawable extends StatusDrawable {
             } else {
                 this.paint.setAlpha(255);
             }
-            canvas.drawCircle(f3, (dp / 2) + i, AndroidUtilities.dp(1.2f), this.paint);
+            canvas.drawCircle(f3, (iDp / 2) + i, AndroidUtilities.dp(1.2f), this.paint);
         }
         this.paint.setAlpha(255);
         canvas.drawArc(this.rect, i2, 360 - (i2 * 2), true, this.paint);
         this.paint.setColor(Theme.getColor(this.isDialogScreen ? Theme.key_windowBackgroundWhite : Theme.key_actionBarDefault));
-        canvas.drawCircle(AndroidUtilities.dp(4.0f), (i + (dp / 2)) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), this.paint);
+        canvas.drawCircle(AndroidUtilities.dp(4.0f), (i + (iDp / 2)) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), this.paint);
         checkUpdate();
     }
 
@@ -121,7 +121,7 @@ public class PlayingGameDrawable extends StatusDrawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PlayingGameDrawable.this.checkUpdate();
+                        this.f$0.checkUpdate();
                     }
                 }, 100L);
             }

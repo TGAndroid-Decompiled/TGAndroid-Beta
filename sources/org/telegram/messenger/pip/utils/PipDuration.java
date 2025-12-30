@@ -28,7 +28,7 @@ public class PipDuration {
 
     public float progress() {
         if (this.estimated > 0) {
-            return MathUtils.clamp(((float) (SystemClock.uptimeMillis() - this.start)) / ((float) this.estimated), 0.0f, 1.0f);
+            return MathUtils.clamp((SystemClock.uptimeMillis() - this.start) / this.estimated, 0.0f, 1.0f);
         }
         return 0.5f;
     }
@@ -41,11 +41,11 @@ public class PipDuration {
         if (this.start == 0) {
             return 0L;
         }
-        long uptimeMillis = SystemClock.uptimeMillis() - this.start;
-        this.estimated = ((this.estimated * MathUtils.clamp(this.count, 0, 9)) / 10) + (((10 - r4) * uptimeMillis) / 10);
+        long jUptimeMillis = SystemClock.uptimeMillis() - this.start;
+        this.estimated = ((this.estimated * MathUtils.clamp(this.count, 0, 9)) / 10) + (((10 - r4) * jUptimeMillis) / 10);
         this.start = 0L;
         this.count++;
         this.mPrefs.edit().putLong("estimated", this.estimated).putInt("count", this.count).apply();
-        return uptimeMillis;
+        return jUptimeMillis;
     }
 }

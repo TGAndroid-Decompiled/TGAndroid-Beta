@@ -18,8 +18,8 @@ public class UnlockPremiumView extends FrameLayout {
     public final PremiumButtonView premiumButtonView;
 
     public UnlockPremiumView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         String string;
+        super(context);
         LinearLayout linearLayout = new LinearLayout(context);
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 80));
         linearLayout.setOrientation(1);

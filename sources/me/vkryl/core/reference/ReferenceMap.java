@@ -29,7 +29,7 @@ public class ReferenceMap {
             this.fullnessListenerHelper = new ReferenceList.FullnessListener(fullnessListener) {
                 @Override
                 public final void onFullnessStateChanged(ReferenceList referenceList, boolean z3) {
-                    ReferenceMap.this.lambda$new$0(null, referenceList, z3);
+                    this.f$0.lambda$new$0(null, referenceList, z3);
                 }
             };
         } else {
@@ -60,7 +60,7 @@ public class ReferenceMap {
     }
 
     public final boolean add(Object obj, Object obj2) {
-        boolean add;
+        boolean zAdd;
         synchronized (this.map) {
             try {
                 ReferenceList referenceList = (ReferenceList) this.map.get(obj);
@@ -74,12 +74,12 @@ public class ReferenceMap {
                     }
                     this.map.put(obj, referenceList);
                 }
-                add = referenceList.add(obj2);
+                zAdd = referenceList.add(obj2);
             } catch (Throwable th) {
                 throw th;
             }
         }
-        return add;
+        return zAdd;
     }
 
     public final boolean has(Object obj) {

@@ -15,7 +15,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -41,7 +40,6 @@ import android.widget.TextView;
 import androidx.arch.core.util.Function;
 import j$.util.Objects;
 import java.util.HashMap;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
@@ -50,14 +48,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.EmbedBottomSheet;
 import org.telegram.ui.Components.WebPlayerView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -102,7 +98,7 @@ public class EmbedBottomSheet extends BottomSheet {
         return true;
     }
 
-    public class YoutubeProxy {
+    class YoutubeProxy {
         private YoutubeProxy() {
         }
 
@@ -112,7 +108,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EmbedBottomSheet.YoutubeProxy.this.lambda$postEvent$0();
+                        this.f$0.lambda$postEvent$0();
                     }
                 });
             }
@@ -191,9 +187,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.fullscreenVideoContainer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = EmbedBottomSheet.lambda$new$0(view, motionEvent);
-                return lambda$new$0;
+                return EmbedBottomSheet.lambda$new$0(view, motionEvent);
             }
         });
         this.container.addView(this.fullscreenVideoContainer, LayoutHelper.createFrame(-1, -1.0f));
@@ -203,25 +197,21 @@ public class EmbedBottomSheet extends BottomSheet {
             protected void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 try {
-                    if (PipVideoOverlay.isVisible()) {
-                        if (EmbedBottomSheet.this.webView.getVisibility() != 0) {
+                    if (!PipVideoOverlay.isVisible() || EmbedBottomSheet.this.webView.getVisibility() != 0) {
+                        if (EmbedBottomSheet.this.webView.getParent() != null) {
+                            removeView(EmbedBottomSheet.this.webView);
+                            EmbedBottomSheet.this.webView.stopLoading();
+                            EmbedBottomSheet.this.webView.loadUrl("about:blank");
+                            EmbedBottomSheet.this.webView.destroy();
                         }
-                        if (!EmbedBottomSheet.this.videoView.isInline() || PipVideoOverlay.isVisible()) {
-                        }
-                        if (EmbedBottomSheet.instance == EmbedBottomSheet.this) {
-                            EmbedBottomSheet unused = EmbedBottomSheet.instance = null;
-                        }
-                        EmbedBottomSheet.this.videoView.destroy();
+                    }
+                    if (EmbedBottomSheet.this.videoView.isInline() || PipVideoOverlay.isVisible()) {
                         return;
                     }
-                    if (EmbedBottomSheet.this.webView.getParent() != null) {
-                        removeView(EmbedBottomSheet.this.webView);
-                        EmbedBottomSheet.this.webView.stopLoading();
-                        EmbedBottomSheet.this.webView.loadUrl("about:blank");
-                        EmbedBottomSheet.this.webView.destroy();
+                    if (EmbedBottomSheet.instance == EmbedBottomSheet.this) {
+                        EmbedBottomSheet unused = EmbedBottomSheet.instance = null;
                     }
-                    if (EmbedBottomSheet.this.videoView.isInline()) {
-                    }
+                    EmbedBottomSheet.this.videoView.destroy();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -236,9 +226,7 @@ public class EmbedBottomSheet extends BottomSheet {
         frameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$1;
-                lambda$new$1 = EmbedBottomSheet.lambda$new$1(view, motionEvent);
-                return lambda$new$1;
+                return EmbedBottomSheet.lambda$new$1(view, motionEvent);
             }
         });
         setCustomView(this.containerLayout);
@@ -257,15 +245,15 @@ public class EmbedBottomSheet extends BottomSheet {
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (onTouchEvent) {
+                boolean zOnTouchEvent = super.onTouchEvent(motionEvent);
+                if (zOnTouchEvent) {
                     if (motionEvent.getAction() == 1) {
                         EmbedBottomSheet.this.setDisableScroll(false);
                     } else {
                         EmbedBottomSheet.this.setDisableScroll(true);
                     }
                 }
-                return onTouchEvent;
+                return zOnTouchEvent;
             }
         };
         this.webView = webView;
@@ -333,10 +321,10 @@ public class EmbedBottomSheet extends BottomSheet {
                     EmbedBottomSheet.this.videoView.getTextureImageView().setVisibility(4);
                 }
                 EmbedBottomSheet.this.videoView.loadVideo(null, null, null, null, false);
-                HashMap hashMap = new HashMap();
-                hashMap.put("Referer", "messenger.telegram.org");
+                HashMap map = new HashMap();
+                map.put("Referer", "messenger.telegram.org");
                 try {
-                    EmbedBottomSheet.this.webView.loadUrl(EmbedBottomSheet.this.embedUrl, hashMap);
+                    EmbedBottomSheet.this.webView.loadUrl(EmbedBottomSheet.this.embedUrl, map);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -418,22 +406,22 @@ public class EmbedBottomSheet extends BottomSheet {
                         float width = pipRect.width / textureView.getWidth();
                         AnimatorSet animatorSet = new AnimatorSet();
                         Property property = View.SCALE_X;
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property, width);
+                        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property, width);
                         Property property2 = View.SCALE_Y;
-                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property2, width);
+                        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property2, width);
                         Property property3 = View.TRANSLATION_X;
-                        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property3, pipRect.x);
+                        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property3, pipRect.x);
                         Property property4 = View.TRANSLATION_Y;
-                        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property4, pipRect.y);
-                        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property, width);
-                        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property2, width);
-                        ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property3, pipRect.x);
-                        ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property4, pipRect.y);
-                        ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) property4, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.dp(10.0f));
-                        ObjectAnimator ofInt = ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0);
+                        ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property4, pipRect.y);
+                        ObjectAnimator objectAnimatorOfFloat5 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property, width);
+                        ObjectAnimator objectAnimatorOfFloat6 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property2, width);
+                        ObjectAnimator objectAnimatorOfFloat7 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property3, pipRect.x);
+                        ObjectAnimator objectAnimatorOfFloat8 = ObjectAnimator.ofFloat(textureView, (Property<TextureView, Float>) property4, pipRect.y);
+                        ObjectAnimator objectAnimatorOfFloat9 = ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) property4, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.dp(10.0f));
+                        ObjectAnimator objectAnimatorOfInt = ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0);
                         FrameLayout frameLayout3 = EmbedBottomSheet.this.fullscreenVideoContainer;
                         Property property5 = View.ALPHA;
-                        animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ofFloat9, ofInt, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property5, 0.0f), ObjectAnimator.ofFloat(controlsView, (Property<View, Float>) property5, 0.0f));
+                        animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, objectAnimatorOfFloat4, objectAnimatorOfFloat5, objectAnimatorOfFloat6, objectAnimatorOfFloat7, objectAnimatorOfFloat8, objectAnimatorOfFloat9, objectAnimatorOfInt, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property5, 0.0f), ObjectAnimator.ofFloat(controlsView, (Property<View, Float>) property5, 0.0f));
                         animatorSet.setInterpolator(new DecelerateInterpolator());
                         animatorSet.setDuration(250L);
                         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -512,13 +500,13 @@ public class EmbedBottomSheet extends BottomSheet {
                     ImageView textureImageView = EmbedBottomSheet.this.videoView.getTextureImageView();
                     AnimatorSet animatorSet = new AnimatorSet();
                     Property property = View.SCALE_X;
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property, 1.0f);
+                    ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property, 1.0f);
                     Property property2 = View.SCALE_Y;
-                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property2, 1.0f);
+                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property2, 1.0f);
                     Property property3 = View.TRANSLATION_X;
-                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property3, EmbedBottomSheet.this.position[0]);
+                    ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property3, EmbedBottomSheet.this.position[0]);
                     Property property4 = View.TRANSLATION_Y;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property4, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property3, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property4, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) property4, 0.0f), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 51));
+                    animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(textureImageView, (Property<ImageView, Float>) property4, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property3, EmbedBottomSheet.this.position[0]), ObjectAnimator.ofFloat(textureView2, (Property<TextureView, Float>) property4, EmbedBottomSheet.this.position[1]), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, (Property<ViewGroup, Float>) property4, 0.0f), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 51));
                     animatorSet.setInterpolator(new DecelerateInterpolator());
                     animatorSet.setDuration(250L);
                     animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -621,7 +609,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.this.lambda$new$2(view3);
+                this.f$0.lambda$new$2(view3);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -645,13 +633,13 @@ public class EmbedBottomSheet extends BottomSheet {
         this.pipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.this.lambda$new$3(view3);
+                this.f$0.lambda$new$3(view3);
             }
         });
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.this.lambda$new$4(view3);
+                this.f$0.lambda$new$4(view3);
             }
         };
         ImageView imageView3 = new ImageView(context);
@@ -689,7 +677,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.this.lambda$new$5(view3);
+                this.f$0.lambda$new$5(view3);
             }
         });
         final boolean z = this.videoView.canHandleUrl(this.embedUrl) || this.videoView.canHandleUrl(str3);
@@ -700,66 +688,7 @@ public class EmbedBottomSheet extends BottomSheet {
         setDelegate(new BottomSheet.BottomSheetDelegate() {
             @Override
             public void onOpenAnimationEnd() {
-                int intValue;
-                if (!z || !EmbedBottomSheet.this.videoView.loadVideo(EmbedBottomSheet.this.embedUrl, null, null, EmbedBottomSheet.this.openUrl, true)) {
-                    EmbedBottomSheet.this.progressBar.setVisibility(0);
-                    EmbedBottomSheet.this.webView.setVisibility(0);
-                    EmbedBottomSheet.this.imageButtonsContainer.setVisibility(0);
-                    EmbedBottomSheet.this.copyTextButton.setVisibility(4);
-                    EmbedBottomSheet.this.webView.setKeepScreenOn(true);
-                    EmbedBottomSheet.this.videoView.setVisibility(4);
-                    EmbedBottomSheet.this.videoView.getControlsView().setVisibility(4);
-                    EmbedBottomSheet.this.videoView.getTextureView().setVisibility(4);
-                    if (EmbedBottomSheet.this.videoView.getTextureImageView() != null) {
-                        EmbedBottomSheet.this.videoView.getTextureImageView().setVisibility(4);
-                    }
-                    EmbedBottomSheet.this.videoView.loadVideo(null, null, null, null, false);
-                    HashMap hashMap = new HashMap();
-                    hashMap.put("Referer", "messenger.telegram.org");
-                    try {
-                        String youtubeId = EmbedBottomSheet.this.videoView.getYoutubeId();
-                        if (youtubeId != null) {
-                            EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(0);
-                            EmbedBottomSheet.this.isYouTube = true;
-                            String str5 = null;
-                            EmbedBottomSheet.this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
-                            if (EmbedBottomSheet.this.openUrl != null) {
-                                try {
-                                    Uri parse = Uri.parse(EmbedBottomSheet.this.openUrl);
-                                    if (EmbedBottomSheet.this.seekTimeOverride > 0) {
-                                        str5 = "" + EmbedBottomSheet.this.seekTimeOverride;
-                                    }
-                                    if (str5 == null && (str5 = parse.getQueryParameter("t")) == null) {
-                                        str5 = parse.getQueryParameter("time_continue");
-                                    }
-                                } catch (Exception e) {
-                                    FileLog.e(e);
-                                }
-                                if (str5 != null) {
-                                    if (str5.contains("m")) {
-                                        String[] split = str5.split("m");
-                                        intValue = (Utilities.parseInt((CharSequence) split[0]).intValue() * 60) + Utilities.parseInt((CharSequence) split[1]).intValue();
-                                    } else {
-                                        intValue = Utilities.parseInt((CharSequence) str5).intValue();
-                                    }
-                                    EmbedBottomSheet.this.webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
-                                    return;
-                                }
-                            }
-                            intValue = 0;
-                            EmbedBottomSheet.this.webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
-                            return;
-                        }
-                        EmbedBottomSheet.this.webView.loadUrl(EmbedBottomSheet.this.embedUrl, hashMap);
-                        return;
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                        return;
-                    }
-                }
-                EmbedBottomSheet.this.progressBar.setVisibility(4);
-                EmbedBottomSheet.this.webView.setVisibility(4);
-                EmbedBottomSheet.this.videoView.setVisibility(0);
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmbedBottomSheet.AnonymousClass8.onOpenAnimationEnd():void");
             }
 
             @Override
@@ -826,7 +755,7 @@ public class EmbedBottomSheet extends BottomSheet {
         instance = this;
     }
 
-    public class AnonymousClass5 extends WebViewClient {
+    class AnonymousClass5 extends WebViewClient {
         AnonymousClass5() {
         }
 
@@ -839,7 +768,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 new AlertDialog.Builder(EmbedBottomSheet.this.getContext(), ((BottomSheet) EmbedBottomSheet.this).resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                     @Override
                     public final void run() {
-                        EmbedBottomSheet.AnonymousClass5.this.lambda$onRenderProcessGone$0();
+                        this.f$0.lambda$onRenderProcessGone$0();
                     }
                 })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                 return true;
@@ -932,16 +861,11 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     public boolean checkInlinePermissions() {
-        boolean canDrawOverlays;
         Activity activity = this.parentActivity;
         if (activity == null) {
             return false;
         }
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        canDrawOverlays = Settings.canDrawOverlays(activity);
-        if (canDrawOverlays) {
+        if (Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(activity)) {
             return true;
         }
         AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null);
@@ -949,7 +873,7 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return (this.videoView.getVisibility() == 0 && this.videoView.isInFullscreen()) ? false : true;
     }
 

@@ -43,7 +43,7 @@ public class HintEditText extends EditTextBoldCursor {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         onTextChange();
     }
@@ -53,17 +53,17 @@ public class HintEditText extends EditTextBoldCursor {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
+    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
+        float fMeasureText;
         if (this.hintText != null && length() < this.hintText.length()) {
             float f = 0.0f;
             for (int i = 0; i < this.hintText.length(); i++) {
                 if (i < length()) {
-                    measureText = getPaint().measureText(getText(), i, i + 1);
+                    fMeasureText = getPaint().measureText(getText(), i, i + 1);
                 } else {
-                    measureText = this.hintPaint.measureText(this.hintText, i, i + 1);
+                    fMeasureText = this.hintPaint.measureText(this.hintText, i, i + 1);
                 }
-                float f2 = measureText;
+                float f2 = fMeasureText;
                 if (shouldDrawBehindText(i) || i >= length()) {
                     int color = this.hintPaint.getColor();
                     canvas.save();

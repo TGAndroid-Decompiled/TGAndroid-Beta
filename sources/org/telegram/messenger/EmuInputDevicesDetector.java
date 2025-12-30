@@ -17,7 +17,7 @@ public final class EmuInputDevicesDetector {
     private EmuInputDevicesDetector() {
     }
 
-    public static boolean detect() {
+    public static boolean detect() throws IOException {
         List<String> inputDevicesNames = getInputDevicesNames();
         if (inputDevicesNames != null) {
             for (String str : inputDevicesNames) {
@@ -31,7 +31,7 @@ public final class EmuInputDevicesDetector {
         return false;
     }
 
-    private static List<String> getInputDevicesNames() {
+    private static List<String> getInputDevicesNames() throws IOException {
         File file = new File("/proc/bus/input/devices");
         if (!file.canRead()) {
             return null;
@@ -40,12 +40,12 @@ public final class EmuInputDevicesDetector {
             ArrayList arrayList = new ArrayList();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    if (readLine.startsWith("N: Name=\"")) {
-                        String substring = readLine.substring(9, readLine.length() - 1);
-                        if (!TextUtils.isEmpty(substring)) {
-                            arrayList.add(substring);
+                String line = bufferedReader.readLine();
+                if (line != null) {
+                    if (line.startsWith("N: Name=\"")) {
+                        String strSubstring = line.substring(9, line.length() - 1);
+                        if (!TextUtils.isEmpty(strSubstring)) {
+                            arrayList.add(strSubstring);
                         }
                     }
                 } else {

@@ -20,7 +20,7 @@ class MediaCodecUtils {
     static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391876};
     static final int[] TEXTURE_COLOR_FORMATS = {2130708361};
 
-    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+    static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         for (int i : iArr) {
             for (int i2 : codecCapabilities.colorFormats) {
                 if (i2 == i) {
@@ -31,7 +31,7 @@ class MediaCodecUtils {
         return null;
     }
 
-    public static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+    static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
         for (String str : mediaCodecInfo.getSupportedTypes()) {
             if (videoCodecMimeType.mimeType().equals(str)) {
                 return true;
@@ -69,7 +69,7 @@ class MediaCodecUtils {
         }
     }
 
-    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
+    static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
         int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
             return new HashMap();
@@ -80,7 +80,7 @@ class MediaCodecUtils {
         throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
     }
 
-    public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
+    static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
         if (Build.VERSION.SDK_INT >= 29) {
             return isHardwareAcceleratedQOrHigher(mediaCodecInfo);
         }
@@ -88,12 +88,10 @@ class MediaCodecUtils {
     }
 
     private static boolean isHardwareAcceleratedQOrHigher(MediaCodecInfo mediaCodecInfo) {
-        boolean isHardwareAccelerated;
-        isHardwareAccelerated = mediaCodecInfo.isHardwareAccelerated();
-        return isHardwareAccelerated;
+        return mediaCodecInfo.isHardwareAccelerated();
     }
 
-    public static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
+    static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
         if (Build.VERSION.SDK_INT >= 29) {
             return isSoftwareOnlyQOrHigher(mediaCodecInfo);
         }
@@ -107,9 +105,7 @@ class MediaCodecUtils {
     }
 
     private static boolean isSoftwareOnlyQOrHigher(MediaCodecInfo mediaCodecInfo) {
-        boolean isSoftwareOnly;
-        isSoftwareOnly = mediaCodecInfo.isSoftwareOnly();
-        return isSoftwareOnly;
+        return mediaCodecInfo.isSoftwareOnly();
     }
 
     private MediaCodecUtils() {

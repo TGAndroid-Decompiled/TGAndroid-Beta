@@ -23,20 +23,20 @@ public class VideoFrameDrawer {
     public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, boolean z) {
         Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
         matrix2.preConcat(matrix);
-        float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
+        float[] fArrConvertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
         int i9 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
         if (i9 == 1) {
-            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
+            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, fArrConvertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
         } else {
             if (i9 == 2) {
-                glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
+                glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, fArrConvertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
                 return;
             }
             throw new RuntimeException("Unknown texture type.");
         }
     }
 
-    public static class AnonymousClass1 {
+    static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type;
 
         static {
@@ -59,7 +59,7 @@ public class VideoFrameDrawer {
         }
     }
 
-    public static class YuvUploader {
+    private static class YuvUploader {
         private ByteBuffer copyBuffer;
         private int[] yuvTextures;
 
@@ -77,35 +77,35 @@ public class VideoFrameDrawer {
             int[] iArr2 = {i, i3, i3};
             int i4 = i2 / 2;
             int[] iArr3 = {i2, i4, i4};
-            int i5 = 0;
-            for (int i6 = 0; i6 < 3; i6++) {
-                int i7 = iArr[i6];
-                int i8 = iArr2[i6];
-                if (i7 > i8) {
-                    i5 = Math.max(i5, i8 * iArr3[i6]);
+            int iMax = 0;
+            for (int i5 = 0; i5 < 3; i5++) {
+                int i6 = iArr[i5];
+                int i7 = iArr2[i5];
+                if (i6 > i7) {
+                    iMax = Math.max(iMax, i7 * iArr3[i5]);
                 }
             }
-            if (i5 > 0 && ((byteBuffer2 = this.copyBuffer) == null || byteBuffer2.capacity() < i5)) {
-                this.copyBuffer = ByteBuffer.allocateDirect(i5);
+            if (iMax > 0 && ((byteBuffer2 = this.copyBuffer) == null || byteBuffer2.capacity() < iMax)) {
+                this.copyBuffer = ByteBuffer.allocateDirect(iMax);
             }
             if (this.yuvTextures == null) {
                 this.yuvTextures = new int[3];
-                for (int i9 = 0; i9 < 3; i9++) {
-                    this.yuvTextures[i9] = GlUtil.generateTexture(3553);
+                for (int i8 = 0; i8 < 3; i8++) {
+                    this.yuvTextures[i8] = GlUtil.generateTexture(3553);
                 }
             }
-            for (int i10 = 0; i10 < 3; i10++) {
-                GLES20.glActiveTexture(33984 + i10);
-                GLES20.glBindTexture(3553, this.yuvTextures[i10]);
-                int i11 = iArr[i10];
-                int i12 = iArr2[i10];
-                if (i11 == i12) {
-                    byteBuffer = byteBufferArr[i10];
+            for (int i9 = 0; i9 < 3; i9++) {
+                GLES20.glActiveTexture(33984 + i9);
+                GLES20.glBindTexture(3553, this.yuvTextures[i9]);
+                int i10 = iArr[i9];
+                int i11 = iArr2[i9];
+                if (i10 == i11) {
+                    byteBuffer = byteBufferArr[i9];
                 } else {
-                    YuvHelper.copyPlane(byteBufferArr[i10], i11, this.copyBuffer, i12, i12, iArr3[i10]);
+                    YuvHelper.copyPlane(byteBufferArr[i9], i10, this.copyBuffer, i11, i11, iArr3[i9]);
                     byteBuffer = this.copyBuffer;
                 }
-                GLES20.glTexImage2D(3553, 0, 6409, iArr2[i10], iArr3[i10], 0, 6409, 5121, byteBuffer);
+                GLES20.glTexImage2D(3553, 0, 6409, iArr2[i9], iArr3[i9], 0, 6409, 5121, byteBuffer);
             }
             return this.yuvTextures;
         }

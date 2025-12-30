@@ -21,7 +21,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.Components.TrendingStickersAlert;
 
 public class TrendingStickersAlert extends BottomSheet {
     private final AlertContainerView alertContainerView;
@@ -31,7 +30,7 @@ public class TrendingStickersAlert extends BottomSheet {
     private final int topOffset;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -59,11 +58,11 @@ public class TrendingStickersAlert extends BottomSheet {
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 this.scrolledY += i2;
                 if (recyclerView.getScrollState() == 1 && Math.abs(this.scrolledY) > AndroidUtilities.dp(96.0f)) {
-                    View findFocus = TrendingStickersAlert.this.layout.findFocus();
-                    if (findFocus == null) {
-                        findFocus = TrendingStickersAlert.this.layout;
+                    View viewFindFocus = TrendingStickersAlert.this.layout.findFocus();
+                    if (viewFindFocus == null) {
+                        viewFindFocus = TrendingStickersAlert.this.layout;
                     }
-                    AndroidUtilities.hideKeyboard(findFocus);
+                    AndroidUtilities.hideKeyboard(viewFindFocus);
                 }
                 if (i2 != 0) {
                     TrendingStickersAlert.this.updateLayout();
@@ -108,7 +107,7 @@ public class TrendingStickersAlert extends BottomSheet {
         trendingStickersLayout.getThemeDescriptions(arrayList, new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                TrendingStickersLayout.this.updateColors();
+                trendingStickersLayout.updateColors();
             }
 
             @Override
@@ -126,7 +125,7 @@ public class TrendingStickersAlert extends BottomSheet {
         this.allowNestedScroll = z;
     }
 
-    public class AlertContainerView extends SizeNotifierFrameLayout {
+    class AlertContainerView extends SizeNotifierFrameLayout {
         private boolean gluedToTop;
         private boolean ignoreLayout;
         private final Paint paint;
@@ -172,7 +171,7 @@ public class TrendingStickersAlert extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TrendingStickersAlert.AlertContainerView.this.requestLayout();
+                    this.f$0.requestLayout();
                 }
             }, 200L);
         }
@@ -197,13 +196,13 @@ public class TrendingStickersAlert extends BottomSheet {
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             int i5 = AndroidUtilities.statusBarHeight;
             int size = View.MeasureSpec.getSize(getMeasuredHeight()) - i5;
-            int measureKeyboardHeight = measureKeyboardHeight();
-            int i6 = (int) ((size + measureKeyboardHeight) * 0.2f);
+            int iMeasureKeyboardHeight = measureKeyboardHeight();
+            int i6 = (int) ((size + iMeasureKeyboardHeight) * 0.2f);
             this.ignoreLayout = true;
-            if (measureKeyboardHeight > AndroidUtilities.dp(20.0f)) {
+            if (iMeasureKeyboardHeight > AndroidUtilities.dp(20.0f)) {
                 TrendingStickersAlert.this.layout.glueToTop(true);
                 TrendingStickersAlert.this.setAllowNestedScroll(false);
                 this.gluedToTop = true;
@@ -240,13 +239,13 @@ public class TrendingStickersAlert extends BottomSheet {
             ((BottomSheet) TrendingStickersAlert.this).shadowDrawable.setBounds(0, (TrendingStickersAlert.this.scrollOffsetY - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingTop) + i, getMeasuredWidth(), getMeasuredHeight() + (i2 < 0 ? -i2 : 0));
             ((BottomSheet) TrendingStickersAlert.this).shadowDrawable.draw(canvas);
             if (fraction > 0.0f && fraction < 1.0f) {
-                float dp = AndroidUtilities.dp(12.0f) * fraction;
+                float fDp = AndroidUtilities.dp(12.0f) * fraction;
                 TrendingStickersAlert.this.shapeDrawable.setColor(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground));
                 float[] fArr = this.radii;
-                fArr[3] = dp;
-                fArr[2] = dp;
-                fArr[1] = dp;
-                fArr[0] = dp;
+                fArr[3] = fDp;
+                fArr[2] = fDp;
+                fArr[1] = fDp;
+                fArr[0] = fDp;
                 TrendingStickersAlert.this.shapeDrawable.setCornerRadii(this.radii);
                 TrendingStickersAlert.this.shapeDrawable.setBounds(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i, getWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i + AndroidUtilities.dp(24.0f));
                 TrendingStickersAlert.this.shapeDrawable.draw(canvas);
@@ -267,7 +266,7 @@ public class TrendingStickersAlert extends BottomSheet {
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             float fraction = getFraction();
             setStatusBarVisible(fraction == 0.0f && !TrendingStickersAlert.this.isDismissed(), true);
             updateLightStatusBar(this.statusBarAlpha > 0.5f);
@@ -278,12 +277,12 @@ public class TrendingStickersAlert extends BottomSheet {
             super.dispatchDraw(canvas);
             canvas.save();
             canvas.translate(0.0f, (TrendingStickersAlert.this.layout.getTranslationY() + AndroidUtilities.statusBarHeight) - TrendingStickersAlert.this.topOffset);
-            int dp = AndroidUtilities.dp(36.0f);
-            int dp2 = AndroidUtilities.dp(4.0f);
-            int i = (int) (dp2 * 2.0f * (1.0f - fraction));
+            int iDp = AndroidUtilities.dp(36.0f);
+            int iDp2 = AndroidUtilities.dp(4.0f);
+            int i = (int) (iDp2 * 2.0f * (1.0f - fraction));
             TrendingStickersAlert.this.shapeDrawable.setCornerRadius(AndroidUtilities.dp(2.0f));
             TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(TrendingStickersAlert.this.getThemedColor(Theme.key_sheet_scrollUp), (int) (Color.alpha(r4) * fraction)));
-            TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i, (getWidth() + dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i + dp2);
+            TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i, (getWidth() + iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i + iDp2);
             TrendingStickersAlert.this.shapeDrawable.draw(canvas);
             canvas.restore();
         }
@@ -313,12 +312,12 @@ public class TrendingStickersAlert extends BottomSheet {
                 if (z2) {
                     ValueAnimator valueAnimator2 = this.statusBarAnimator;
                     if (valueAnimator2 == null) {
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.statusBarAlpha, z ? 1.0f : 0.0f);
-                        this.statusBarAnimator = ofFloat;
-                        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.statusBarAlpha, z ? 1.0f : 0.0f);
+                        this.statusBarAnimator = valueAnimatorOfFloat;
+                        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                TrendingStickersAlert.AlertContainerView.this.lambda$setStatusBarVisible$0(valueAnimator3);
+                                this.f$0.lambda$setStatusBarVisible$0(valueAnimator3);
                             }
                         });
                         this.statusBarAnimator.setDuration(200L);

@@ -57,16 +57,16 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
     public HashtagActivity(String str, Theme.ResourcesProvider resourcesProvider) {
         setResourceProvider(resourcesProvider);
         String str2 = "";
-        String trim = (str == null ? "" : str).trim();
-        if (!trim.startsWith("#") && !trim.startsWith("$")) {
-            trim = "#" + trim;
+        String strTrim = (str == null ? "" : str).trim();
+        if (!strTrim.startsWith("#") && !strTrim.startsWith("$")) {
+            strTrim = "#" + strTrim;
         }
-        int indexOf = trim.indexOf("@");
-        if (indexOf > 0) {
-            this.hashtag = trim.substring(0, indexOf);
-            this.username = trim.substring(indexOf + 1);
+        int iIndexOf = strTrim.indexOf("@");
+        if (iIndexOf > 0) {
+            this.hashtag = strTrim.substring(0, iIndexOf);
+            this.username = strTrim.substring(iIndexOf + 1);
         } else {
-            this.hashtag = trim;
+            this.hashtag = strTrim;
             this.username = null;
         }
         StringBuilder sb = new StringBuilder();
@@ -119,10 +119,10 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         if (i != NotificationCenter.hashtagSearchUpdated || (chatActivityContainer = this.chatContainer) == null || chatActivityContainer.chatActivity == null || ((Integer) objArr[0]).intValue() != this.chatContainer.chatActivity.getClassGuid()) {
             return;
         }
-        int intValue = ((Integer) objArr[1]).intValue();
+        int iIntValue = ((Integer) objArr[1]).intValue();
         MessagesSearchAdapter.StoriesView storiesView2 = this.storiesView;
         if (storiesView2 != null) {
-            storiesView2.setMessages(intValue, this.hashtag, this.username);
+            storiesView2.setMessages(iIntValue, this.hashtag, this.username);
         }
     }
 
@@ -273,7 +273,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void onActionModeSelectedUpdate(SparseArray sparseArray) {
+            protected void onActionModeSelectedUpdate(SparseArray sparseArray) {
             }
 
             @Override
@@ -281,7 +281,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void onTabProgress(float f) {
+            protected void onTabProgress(float f) {
             }
 
             @Override
@@ -289,7 +289,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void showActionMode(boolean z) {
+            protected void showActionMode(boolean z) {
             }
 
             @Override
@@ -338,7 +338,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         this.storiesView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                HashtagActivity.this.lambda$createView$0(view2);
+                this.f$0.lambda$createView$0(view2);
             }
         });
         updateStoriesVisible(this.storiesView.set(this.storiesList), false);
@@ -370,14 +370,14 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                HashtagActivity.this.lambda$updateStoriesVisible$1(z);
+                this.f$0.lambda$updateStoriesVisible$1(z);
             }
         }).setDuration(320L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         duration.setInterpolator(cubicBezierInterpolator).start();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.contentViewValue, z ? 1.0f : 0.0f);
-        this.contentViewAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.contentViewValue, z ? 1.0f : 0.0f);
+        this.contentViewAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 HashtagActivity.this.contentViewValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -432,9 +432,9 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         }
         this.storiesVisible = z;
         this.sharedMediaLayoutContainer.setVisibility(0);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
-        this.transitAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
+        this.transitAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 HashtagActivity.this.transitValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();

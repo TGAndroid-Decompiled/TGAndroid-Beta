@@ -19,11 +19,11 @@ public abstract class AtomicOp extends OpDescriptor {
 
     @Override
     public final Object perform(Object obj) {
-        Object obj2 = _consensus$volatile$FU.get(this);
-        if (obj2 == AtomicKt.NO_DECISION) {
-            obj2 = decide(prepare(obj));
+        Object objDecide = _consensus$volatile$FU.get(this);
+        if (objDecide == AtomicKt.NO_DECISION) {
+            objDecide = decide(prepare(obj));
         }
-        complete(obj, obj2);
-        return obj2;
+        complete(obj, objDecide);
+        return objDecide;
     }
 }

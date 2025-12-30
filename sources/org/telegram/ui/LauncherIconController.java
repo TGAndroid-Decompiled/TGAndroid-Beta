@@ -28,10 +28,10 @@ public abstract class LauncherIconController {
     public static void setIcon(LauncherIcon launcherIcon) {
         Context context = ApplicationLoader.applicationContext;
         PackageManager packageManager = context.getPackageManager();
-        LauncherIcon[] values = LauncherIcon.values();
-        int length = values.length;
+        LauncherIcon[] launcherIconArrValues = LauncherIcon.values();
+        int length = launcherIconArrValues.length;
         for (int i = 0; i < length; i++) {
-            LauncherIcon launcherIcon2 = values[i];
+            LauncherIcon launcherIcon2 = launcherIconArrValues[i];
             packageManager.setComponentEnabledSetting(launcherIcon2.getComponentName(context), launcherIcon2 == launcherIcon ? 1 : 2, 1);
         }
     }

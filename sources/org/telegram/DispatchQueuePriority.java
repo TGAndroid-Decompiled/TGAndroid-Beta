@@ -20,7 +20,7 @@ public class DispatchQueuePriority {
             }
         })) {
             @Override
-            protected void beforeExecute(Thread thread, Runnable runnable) {
+            protected void beforeExecute(Thread thread, Runnable runnable) throws InterruptedException {
                 CountDownLatch countDownLatch = DispatchQueuePriority.this.pauseLatch;
                 if (countDownLatch != null) {
                     try {
@@ -66,7 +66,7 @@ public class DispatchQueuePriority {
         }
     }
 
-    public static class PriorityRunnable implements Runnable {
+    private static class PriorityRunnable implements Runnable {
         final int priority;
         final Runnable runnable;
 

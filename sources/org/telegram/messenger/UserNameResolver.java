@@ -18,7 +18,7 @@ public class UserNameResolver {
     android.util.LruCache<String, CachedPeer> resolvedCache = new android.util.LruCache<>(100);
     HashMap<String, ArrayList<Consumer>> resolvingConsumers = new HashMap<>();
 
-    public UserNameResolver(int i) {
+    UserNameResolver(int i) {
         this.currentAccount = i;
     }
 
@@ -58,16 +58,16 @@ public class UserNameResolver {
             }
             tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
         }
-        final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
+        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                UserNameResolver.this.lambda$resolve$1(str, tLObject, tL_error);
+                this.f$0.lambda$resolve$1(str, tLObject, tL_error);
             }
         });
         return new Runnable() {
             @Override
             public final void run() {
-                UserNameResolver.this.lambda$resolve$2(str, sendRequest);
+                this.f$0.lambda$resolve$2(str, iSendRequest);
             }
         };
     }
@@ -76,29 +76,29 @@ public class UserNameResolver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserNameResolver.this.lambda$resolve$0(str, tL_error, tLObject);
+                this.f$0.lambda$resolve$0(str, tL_error, tLObject);
             }
         }, 2L);
     }
 
     public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
         BaseFragment lastFragment;
-        ArrayList<Consumer> remove = this.resolvingConsumers.remove(str);
-        if (remove == null) {
+        ArrayList<Consumer> arrayListRemove = this.resolvingConsumers.remove(str);
+        if (arrayListRemove == null) {
             return;
         }
         int i = 0;
         if (tL_error != null) {
             String str2 = tL_error.text;
             if (str2 != null && "STARREF_EXPIRED".equals(str2)) {
-                while (i < remove.size()) {
-                    remove.get(i).accept(Long.MAX_VALUE);
+                while (i < arrayListRemove.size()) {
+                    arrayListRemove.get(i).accept(Long.MAX_VALUE);
                     i++;
                 }
                 return;
             }
-            while (i < remove.size()) {
-                remove.get(i).accept(null);
+            while (i < arrayListRemove.size()) {
+                arrayListRemove.get(i).accept(null);
                 i++;
             }
             String str3 = tL_error.text;
@@ -114,8 +114,8 @@ public class UserNameResolver {
         MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
         long peerId = MessageObject.getPeerId(tL_contacts_resolvedPeer.peer);
         this.resolvedCache.put(str, new CachedPeer(peerId));
-        while (i < remove.size()) {
-            remove.get(i).accept(Long.valueOf(peerId));
+        while (i < arrayListRemove.size()) {
+            arrayListRemove.get(i).accept(Long.valueOf(peerId));
             i++;
         }
     }
@@ -149,7 +149,7 @@ public class UserNameResolver {
         }
     }
 
-    public class CachedPeer {
+    private class CachedPeer {
         final long peerId;
         final long time = System.currentTimeMillis();
 

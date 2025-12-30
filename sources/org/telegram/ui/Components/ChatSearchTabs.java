@@ -61,12 +61,12 @@ public abstract class ChatSearchTabs extends BlurredFrameLayout {
         if (z) {
             setVisibility(0);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
-        this.actionBarTagsAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
+        this.actionBarTagsAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatSearchTabs.this.lambda$show$0(valueAnimator2);
+                this.f$0.lambda$show$0(valueAnimator2);
             }
         });
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -90,9 +90,9 @@ public abstract class ChatSearchTabs extends BlurredFrameLayout {
     }
 
     public void lambda$show$0(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBarTagsT = floatValue;
-        setShown(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.actionBarTagsT = fFloatValue;
+        setShown(fFloatValue);
         onShownUpdate(false);
     }
 
@@ -121,7 +121,7 @@ public abstract class ChatSearchTabs extends BlurredFrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         canvas.save();
         if (this.showWithCut) {
             canvas.clipRect(0, 0, getWidth(), getCurrentHeight());

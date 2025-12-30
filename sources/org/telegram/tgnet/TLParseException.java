@@ -16,7 +16,7 @@ public class TLParseException extends RuntimeException {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TLParseException.lambda$doThrowOrLog$0(TLParseException.this);
+                    TLParseException.lambda$doThrowOrLog$0(this.f$0);
                 }
             });
         }

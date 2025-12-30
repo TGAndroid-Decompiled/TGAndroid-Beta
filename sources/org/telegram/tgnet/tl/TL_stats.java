@@ -693,10 +693,10 @@ public class TL_stats {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pending = (readInt32 & 1) != 0;
-            this.failed = (readInt32 & 4) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pending = (int32 & 1) != 0;
+            this.failed = (int32 & 4) != 0;
             this.amount = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
             this.provider = inputSerializedData.readString(z);

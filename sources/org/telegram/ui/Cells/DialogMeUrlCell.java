@@ -86,9 +86,9 @@ public class DialogMeUrlCell extends BaseCell {
     }
 
     public void buildLayout() {
-        String str;
+        String userName;
         int measuredWidth;
-        int dp;
+        int iDp;
         int measuredWidth2;
         TextPaint textPaint = Theme.dialogs_namePaint[0];
         TextPaint textPaint2 = Theme.dialogs_messagePaint[0];
@@ -105,7 +105,7 @@ public class DialogMeUrlCell extends BaseCell {
                 this.nameLockLeft = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
                 this.nameLeft = AndroidUtilities.dp(14.0f);
             }
-            str = chat.title;
+            userName = chat.title;
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.avatarImage.setForUserOrChat(chat, this.avatarDrawable, this.recentMeUrl);
         } else if (recentMeUrl instanceof TLRPC.TL_recentMeUrlUser) {
@@ -128,7 +128,7 @@ public class DialogMeUrlCell extends BaseCell {
                 }
                 this.drawVerified = user.verified;
             }
-            str = UserObject.getUserName(user);
+            userName = UserObject.getUserName(user);
             this.avatarDrawable.setInfo(this.currentAccount, user);
             this.avatarImage.setForUserOrChat(user, this.avatarDrawable, this.recentMeUrl);
         } else if (recentMeUrl instanceof TLRPC.TL_recentMeUrlStickerSet) {
@@ -137,8 +137,8 @@ public class DialogMeUrlCell extends BaseCell {
             } else {
                 this.nameLeft = AndroidUtilities.dp(14.0f);
             }
-            str = this.recentMeUrl.set.set.title;
-            this.avatarDrawable.setInfo(5L, str, null);
+            userName = this.recentMeUrl.set.set.title;
+            this.avatarDrawable.setInfo(5L, userName, null);
             this.avatarImage.setImage(ImageLocation.getForDocument(this.recentMeUrl.set.cover), null, this.avatarDrawable, null, this.recentMeUrl, 0);
         } else if (recentMeUrl instanceof TLRPC.TL_recentMeUrlChatInvite) {
             if (!LocaleController.isRTL) {
@@ -152,15 +152,15 @@ public class DialogMeUrlCell extends BaseCell {
                 this.avatarDrawable.setInfo(this.currentAccount, chat2);
                 TLRPC.RecentMeUrl recentMeUrl2 = this.recentMeUrl;
                 TLRPC.Chat chat3 = recentMeUrl2.chat_invite.chat;
-                String str2 = chat3.title;
+                String str = chat3.title;
                 this.drawVerified = chat3.verified;
                 this.avatarImage.setForUserOrChat(chat3, this.avatarDrawable, recentMeUrl2);
-                str = str2;
+                userName = str;
             } else {
-                String str3 = chatInvite.title;
-                this.avatarDrawable.setInfo(5L, str3, null);
+                String str2 = chatInvite.title;
+                this.avatarDrawable.setInfo(5L, str2, null);
                 this.avatarImage.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(this.recentMeUrl.chat_invite.photo.sizes, 50), this.recentMeUrl.chat_invite.photo), "50_50", this.avatarDrawable, null, this.recentMeUrl, 0);
-                str = str3;
+                userName = str2;
             }
             if (!LocaleController.isRTL) {
                 this.nameLockLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
@@ -176,36 +176,36 @@ public class DialogMeUrlCell extends BaseCell {
                 this.nameLeft = AndroidUtilities.dp(14.0f);
             }
             this.avatarImage.setImage(null, null, this.avatarDrawable, null, this.recentMeUrl, 0);
-            str = "Url";
+            userName = "Url";
         } else {
             this.avatarImage.setImage(null, null, this.avatarDrawable, null, recentMeUrl, 0);
-            str = "";
+            userName = "";
         }
-        String str4 = MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + this.recentMeUrl.url;
-        if (TextUtils.isEmpty(str)) {
-            str = LocaleController.getString(R.string.HiddenName);
+        String str3 = MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + this.recentMeUrl.url;
+        if (TextUtils.isEmpty(userName)) {
+            userName = LocaleController.getString(R.string.HiddenName);
         }
         if (!LocaleController.isRTL) {
             measuredWidth = getMeasuredWidth() - this.nameLeft;
-            dp = AndroidUtilities.dp(14.0f);
+            iDp = AndroidUtilities.dp(14.0f);
         } else {
             measuredWidth = getMeasuredWidth() - this.nameLeft;
-            dp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+            iDp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
         }
-        int i = measuredWidth - dp;
+        int iDp2 = measuredWidth - iDp;
         if (this.drawNameLock) {
-            i -= AndroidUtilities.dp(4.0f) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
+            iDp2 -= AndroidUtilities.dp(4.0f) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
         }
         if (this.drawVerified) {
-            int dp2 = AndroidUtilities.dp(6.0f) + Theme.dialogs_verifiedDrawable.getIntrinsicWidth();
-            i -= dp2;
+            int iDp3 = AndroidUtilities.dp(6.0f) + Theme.dialogs_verifiedDrawable.getIntrinsicWidth();
+            iDp2 -= iDp3;
             if (LocaleController.isRTL) {
-                this.nameLeft += dp2;
+                this.nameLeft += iDp3;
             }
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f), i);
+        int iMax = Math.max(AndroidUtilities.dp(12.0f), iDp2);
         try {
-            this.nameLayout = new StaticLayout(TextUtils.ellipsize(str.replace('\n', ' '), textPaint, max - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint, max, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.nameLayout = new StaticLayout(TextUtils.ellipsize(userName.replace('\n', ' '), textPaint, iMax - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint, iMax, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -218,9 +218,9 @@ public class DialogMeUrlCell extends BaseCell {
             measuredWidth2 = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.isTablet() ? 65.0f : 61.0f);
         }
         this.avatarImage.setImageCoords(measuredWidth2, this.avatarTop, AndroidUtilities.dp(52.0f), AndroidUtilities.dp(52.0f));
-        int max2 = Math.max(AndroidUtilities.dp(12.0f), measuredWidth3);
+        int iMax2 = Math.max(AndroidUtilities.dp(12.0f), measuredWidth3);
         try {
-            this.messageLayout = new StaticLayout(TextUtils.ellipsize(str4, textPaint2, max2 - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint2, max2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.messageLayout = new StaticLayout(TextUtils.ellipsize(str3, textPaint2, iMax2 - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint2, iMax2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         } catch (Exception e2) {
             FileLog.e(e2);
         }
@@ -228,14 +228,14 @@ public class DialogMeUrlCell extends BaseCell {
             StaticLayout staticLayout = this.nameLayout;
             if (staticLayout != null && staticLayout.getLineCount() > 0) {
                 float lineLeft = this.nameLayout.getLineLeft(0);
-                double ceil = Math.ceil(this.nameLayout.getLineWidth(0));
+                double dCeil = Math.ceil(this.nameLayout.getLineWidth(0));
                 if (this.drawVerified) {
-                    this.nameMuteLeft = (int) (((this.nameLeft + (max - ceil)) - AndroidUtilities.dp(6.0f)) - Theme.dialogs_verifiedDrawable.getIntrinsicWidth());
+                    this.nameMuteLeft = (int) (((this.nameLeft + (iMax - dCeil)) - AndroidUtilities.dp(6.0f)) - Theme.dialogs_verifiedDrawable.getIntrinsicWidth());
                 }
                 if (lineLeft == 0.0f) {
-                    double d = max;
-                    if (ceil < d) {
-                        this.nameLeft = (int) (this.nameLeft + (d - ceil));
+                    double d = iMax;
+                    if (dCeil < d) {
+                        this.nameLeft = (int) (this.nameLeft + (d - dCeil));
                     }
                 }
             }
@@ -243,10 +243,10 @@ public class DialogMeUrlCell extends BaseCell {
             if (staticLayout2 == null || staticLayout2.getLineCount() <= 0 || this.messageLayout.getLineLeft(0) != 0.0f) {
                 return;
             }
-            double ceil2 = Math.ceil(this.messageLayout.getLineWidth(0));
-            double d2 = max2;
-            if (ceil2 < d2) {
-                this.messageLeft = (int) (this.messageLeft + (d2 - ceil2));
+            double dCeil2 = Math.ceil(this.messageLayout.getLineWidth(0));
+            double d2 = iMax2;
+            if (dCeil2 < d2) {
+                this.messageLeft = (int) (this.messageLeft + (d2 - dCeil2));
                 return;
             }
             return;
@@ -254,11 +254,11 @@ public class DialogMeUrlCell extends BaseCell {
         StaticLayout staticLayout3 = this.nameLayout;
         if (staticLayout3 != null && staticLayout3.getLineCount() > 0) {
             float lineRight = this.nameLayout.getLineRight(0);
-            if (lineRight == max) {
-                double ceil3 = Math.ceil(this.nameLayout.getLineWidth(0));
-                double d3 = max;
-                if (ceil3 < d3) {
-                    this.nameLeft = (int) (this.nameLeft - (d3 - ceil3));
+            if (lineRight == iMax) {
+                double dCeil3 = Math.ceil(this.nameLayout.getLineWidth(0));
+                double d3 = iMax;
+                if (dCeil3 < d3) {
+                    this.nameLeft = (int) (this.nameLeft - (d3 - dCeil3));
                 }
             }
             if (this.drawVerified) {
@@ -266,13 +266,13 @@ public class DialogMeUrlCell extends BaseCell {
             }
         }
         StaticLayout staticLayout4 = this.messageLayout;
-        if (staticLayout4 == null || staticLayout4.getLineCount() <= 0 || this.messageLayout.getLineRight(0) != max2) {
+        if (staticLayout4 == null || staticLayout4.getLineCount() <= 0 || this.messageLayout.getLineRight(0) != iMax2) {
             return;
         }
-        double ceil4 = Math.ceil(this.messageLayout.getLineWidth(0));
-        double d4 = max2;
-        if (ceil4 < d4) {
-            this.messageLeft = (int) (this.messageLeft - (d4 - ceil4));
+        double dCeil4 = Math.ceil(this.messageLayout.getLineWidth(0));
+        double d4 = iMax2;
+        if (dCeil4 < d4) {
+            this.messageLeft = (int) (this.messageLeft - (d4 - dCeil4));
         }
     }
 

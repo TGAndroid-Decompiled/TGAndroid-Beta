@@ -15,7 +15,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,19 +29,10 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.common.base.Charsets;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
-import org.json.JSONArray;
-import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
@@ -66,7 +56,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.TranslateAlert2;
 
 public abstract class TranslateAlert2 extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private static HashMap localesByCode;
@@ -97,7 +86,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     private String toLanguage;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -107,8 +96,6 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
 
     private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
-        Drawable textSelectHandleLeft;
-        Drawable textSelectHandleRight;
         this.firstTranslation = true;
         this.backgroundPaddingLeft = 0;
         fixNavigationBar();
@@ -147,11 +134,11 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         int themedColor = getThemedColor(Theme.key_chat_TextSelectionCursor);
         try {
             if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
-                textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
+                Drawable textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 textSelectHandleLeft.setColorFilter(themedColor, mode);
                 this.textView.setTextSelectHandleLeft(textSelectHandleLeft);
-                textSelectHandleRight = this.textView.getTextSelectHandleRight();
+                Drawable textSelectHandleRight = this.textView.getTextSelectHandleRight();
                 textSelectHandleRight.setColorFilter(themedColor, mode);
                 this.textView.setTextSelectHandleRight(textSelectHandleRight);
             }
@@ -210,12 +197,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
             }
 
             @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
             }
         };
@@ -249,7 +236,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TranslateAlert2.this.lambda$new$0(view2);
+                this.f$0.lambda$new$0(view2);
             }
         });
         this.buttonView.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f, 87, 16.0f, 16.0f, 16.0f, 16.0f));
@@ -262,13 +249,13 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public boolean hasEnoughHeight() {
-        float f = 0.0f;
+        float height = 0.0f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             if (this.listView.getChildAdapterPosition(this.listView.getChildAt(i)) == 1) {
-                f += r3.getHeight();
+                height += r3.getHeight();
             }
         }
-        return f >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
+        return height >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
     }
 
     public void translate() {
@@ -308,7 +295,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TranslateAlert2.this.lambda$translate$2(tL_textWithEntities, tLObject, tL_error);
+                this.f$0.lambda$translate$2(tL_textWithEntities, tLObject, tL_error);
             }
         }));
     }
@@ -317,7 +304,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateAlert2.this.lambda$translate$1(tL_error, tLObject, tL_textWithEntities);
+                this.f$0.lambda$translate$1(tL_error, tLObject, tL_textWithEntities);
             }
         });
     }
@@ -332,10 +319,10 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             TLRPC.TL_messages_translateResult tL_messages_translateResult = (TLRPC.TL_messages_translateResult) tLObject;
             if (!tL_messages_translateResult.result.isEmpty() && tL_messages_translateResult.result.get(0) != null && tL_messages_translateResult.result.get(0).text != null) {
                 this.firstTranslation = false;
-                TLRPC.TL_textWithEntities preprocess = preprocess(tL_textWithEntities, tL_messages_translateResult.result.get(0));
-                SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(preprocess.text);
-                MessageObject.addEntitiesToText(valueOf, preprocess.entities, false, true, false, false);
-                this.textView.setText(preprocessText(valueOf));
+                TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_messages_translateResult.result.get(0));
+                SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
+                MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
+                this.textView.setText(preprocessText(spannableStringBuilderValueOf));
                 this.adapter.updateMainView(this.textViewContainer);
                 return;
             }
@@ -355,7 +342,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
 
     private void translateAlt() {
         CharSequence charSequence = this.reqText;
-        String charSequence2 = charSequence == null ? "" : charSequence.toString();
+        String string = charSequence == null ? "" : charSequence.toString();
         String str = this.fromLanguage;
         if (str != null) {
             str = str.split("_")[0];
@@ -367,10 +354,10 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         if (str2 != null) {
             str2 = str2.split("_")[0];
         }
-        alternativeTranslate(charSequence2, str, "nb".equals(str2) ? "no" : str2, new Utilities.Callback2() {
+        alternativeTranslate(string, str, "nb".equals(str2) ? "no" : str2, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TranslateAlert2.this.lambda$translateAlt$3((String) obj, (Boolean) obj2);
+                this.f$0.lambda$translateAlt$3((String) obj, (Boolean) obj2);
             }
         });
     }
@@ -399,9 +386,9 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     private static int lastIndexOfSafe(String str, String str2, int i, int i2) {
-        int lastIndexOf = str.lastIndexOf(str2, i2 - 1);
-        if (lastIndexOf >= i) {
-            return lastIndexOf;
+        int iLastIndexOf = str.lastIndexOf(str2, i2 - 1);
+        if (iLastIndexOf >= i) {
+            return iLastIndexOf;
         }
         return -1;
     }
@@ -410,16 +397,16 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         ArrayList arrayList = new ArrayList();
         int i2 = 0;
         while (i2 < str.length()) {
-            int min = Math.min(i2 + i, str.length());
-            int lastIndexOfSafe = lastIndexOfSafe(str, "%0A", i2, min);
-            if (lastIndexOfSafe == -1) {
-                lastIndexOfSafe = lastIndexOfSafe(str, "%20", i2, min);
+            int iMin = Math.min(i2 + i, str.length());
+            int iLastIndexOfSafe = lastIndexOfSafe(str, "%0A", i2, iMin);
+            if (iLastIndexOfSafe == -1) {
+                iLastIndexOfSafe = lastIndexOfSafe(str, "%20", i2, iMin);
             }
-            if (lastIndexOfSafe != -1) {
-                min = lastIndexOfSafe + 3;
+            if (iLastIndexOfSafe != -1) {
+                iMin = iLastIndexOfSafe + 3;
             }
-            arrayList.add(str.substring(i2, min));
-            i2 = min;
+            arrayList.add(str.substring(i2, iMin));
+            i2 = iMin;
         }
         return arrayList;
     }
@@ -442,16 +429,16 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             });
             return;
         }
-        String encode = Uri.encode(str);
-        if (encode.length() > 5000) {
-            ArrayList cut = cut(encode, 5000);
+        String strEncode = Uri.encode(str);
+        if (strEncode.length() > 5000) {
+            ArrayList arrayListCut = cut(strEncode, 5000);
             final ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < cut.size(); i++) {
+            for (int i = 0; i < arrayListCut.size(); i++) {
                 arrayList.add(null);
             }
             final boolean[] zArr = new boolean[1];
-            for (final int i2 = 0; i2 < cut.size(); i2++) {
-                alternativeTranslateInternal((String) cut.get(i2), str2, str3, new Utilities.Callback2() {
+            for (final int i2 = 0; i2 < arrayListCut.size(); i2++) {
+                alternativeTranslateInternal((String) arrayListCut.get(i2), str2, str3, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         TranslateAlert2.lambda$alternativeTranslate$6(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
@@ -460,7 +447,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             }
             return;
         }
-        alternativeTranslateInternal(encode, str2, str3, callback2);
+        alternativeTranslateInternal(strEncode, str2, str3, callback2);
     }
 
     public static void lambda$alternativeTranslate$6(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
@@ -482,7 +469,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         callback2.run(null, bool);
     }
 
-    public class AnonymousClass5 extends Thread {
+    class AnonymousClass5 extends Thread {
         final Utilities.Callback2 val$done;
         final String val$fromLng;
         final String val$text;
@@ -496,111 +483,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
 
         @Override
-        public void run() {
-            HttpURLConnection httpURLConnection;
-            String str;
-            final boolean z = true;
-            try {
-                httpURLConnection = (HttpURLConnection) new URI((((("https://translate.googleapis.com/transl") + "ate_a") + "/singl") + "e?client=gtx&sl=" + Uri.encode(this.val$fromLng) + "&tl=" + Uri.encode(this.val$toLng) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + this.val$text).toURL().openConnection();
-                try {
-                    httpURLConnection.setRequestMethod("GET");
-                    httpURLConnection.setRequestProperty("User-Agent", TranslateAlert2.userAgents[(int) Math.round(Math.random() * (r6.length - 1))]);
-                    httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                    StringBuilder sb = new StringBuilder();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), Charsets.UTF_8));
-                    while (true) {
-                        try {
-                            int read = bufferedReader.read();
-                            if (read == -1) {
-                                break;
-                            } else {
-                                sb.append((char) read);
-                            }
-                        } catch (Throwable th) {
-                            try {
-                                bufferedReader.close();
-                            } catch (Throwable th2) {
-                                th.addSuppressed(th2);
-                            }
-                            throw th;
-                        }
-                    }
-                    bufferedReader.close();
-                    JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
-                    JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-                    try {
-                        str = jSONArray.getString(2);
-                    } catch (Exception unused) {
-                        str = null;
-                    }
-                    if (str != null && str.contains("-")) {
-                        str.substring(0, str.indexOf("-"));
-                    }
-                    final String str2 = "";
-                    for (int i = 0; i < jSONArray2.length(); i++) {
-                        String string = jSONArray2.getJSONArray(i).getString(0);
-                        if (string != null && !string.equals("null")) {
-                            str2 = str2 + string;
-                        }
-                    }
-                    if (this.val$text.length() > 0 && this.val$text.charAt(0) == '\n') {
-                        str2 = "\n" + str2;
-                    }
-                    final Utilities.Callback2 callback2 = this.val$done;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            TranslateAlert2.AnonymousClass5.lambda$run$0(Utilities.Callback2.this, str2);
-                        }
-                    });
-                } catch (Exception e) {
-                    e = e;
-                    try {
-                        StringBuilder sb2 = new StringBuilder();
-                        sb2.append("failed to translate a text ");
-                        sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
-                        sb2.append(" ");
-                        sb2.append(httpURLConnection != null ? httpURLConnection.getResponseMessage() : null);
-                        Log.e("translate", sb2.toString());
-                    } catch (IOException e2) {
-                        e2.printStackTrace();
-                    }
-                    e.printStackTrace();
-                    if (httpURLConnection != null) {
-                        try {
-                            if (httpURLConnection.getResponseCode() == 429) {
-                                final Utilities.Callback2 callback22 = this.val$done;
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        TranslateAlert2.AnonymousClass5.lambda$run$1(Utilities.Callback2.this, z);
-                                    }
-                                });
-                            }
-                        } catch (Exception unused2) {
-                            final Utilities.Callback2 callback23 = this.val$done;
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    TranslateAlert2.AnonymousClass5.lambda$run$2(Utilities.Callback2.this);
-                                }
-                            });
-                            return;
-                        }
-                    }
-                    z = false;
-                    final Utilities.Callback2 callback222 = this.val$done;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            TranslateAlert2.AnonymousClass5.lambda$run$1(Utilities.Callback2.this, z);
-                        }
-                    });
-                }
-            } catch (Exception e3) {
-                e = e3;
-                httpURLConnection = null;
-            }
+        public void run() throws org.json.JSONException, java.io.IOException {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TranslateAlert2.AnonymousClass5.run():void");
         }
 
         public static void lambda$run$0(Utilities.Callback2 callback2, String str) {
@@ -637,13 +521,13 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 if (messageEntity.url != null) {
                     String str = tL_textWithEntities2.text;
                     int i2 = messageEntity.offset;
-                    String substring = str.substring(i2, messageEntity.length + i2);
-                    if (TextUtils.equals(substring, messageEntity.url)) {
+                    String strSubstring = str.substring(i2, messageEntity.length + i2);
+                    if (TextUtils.equals(strSubstring, messageEntity.url)) {
                         TLRPC.TL_messageEntityUrl tL_messageEntityUrl = new TLRPC.TL_messageEntityUrl();
                         tL_messageEntityUrl.offset = messageEntity.offset;
                         tL_messageEntityUrl.length = messageEntity.length;
                         tL_textWithEntities2.entities.set(i, tL_messageEntityUrl);
-                    } else if (messageEntity.url.startsWith("https://t.me/") && substring.startsWith("@") && TextUtils.equals(substring.substring(1), messageEntity.url.substring(13))) {
+                    } else if (messageEntity.url.startsWith("https://t.me/") && strSubstring.startsWith("@") && TextUtils.equals(strSubstring.substring(1), messageEntity.url.substring(13))) {
                         TLRPC.TL_messageEntityMention tL_messageEntityMention = new TLRPC.TL_messageEntityMention();
                         tL_messageEntityMention.offset = messageEntity.offset;
                         tL_messageEntityMention.length = messageEntity.length;
@@ -655,17 +539,17 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             }
         }
         if (tL_textWithEntities != null && tL_textWithEntities.text != null && !tL_textWithEntities.entities.isEmpty()) {
-            HashMap groupEmojiRanges = groupEmojiRanges(tL_textWithEntities.text);
-            HashMap groupEmojiRanges2 = groupEmojiRanges(tL_textWithEntities2.text);
+            HashMap mapGroupEmojiRanges = groupEmojiRanges(tL_textWithEntities.text);
+            HashMap mapGroupEmojiRanges2 = groupEmojiRanges(tL_textWithEntities2.text);
             for (int i3 = 0; i3 < tL_textWithEntities.entities.size(); i3++) {
                 TLRPC.MessageEntity messageEntity2 = tL_textWithEntities.entities.get(i3);
                 if (messageEntity2 instanceof TLRPC.TL_messageEntityCustomEmoji) {
                     String str2 = tL_textWithEntities.text;
                     int i4 = messageEntity2.offset;
-                    String substring2 = str2.substring(i4, messageEntity2.length + i4);
-                    if (!TextUtils.isEmpty(substring2)) {
-                        ArrayList arrayList2 = (ArrayList) groupEmojiRanges.get(substring2);
-                        ArrayList arrayList3 = (ArrayList) groupEmojiRanges2.get(substring2);
+                    String strSubstring2 = str2.substring(i4, messageEntity2.length + i4);
+                    if (!TextUtils.isEmpty(strSubstring2)) {
+                        ArrayList arrayList2 = (ArrayList) mapGroupEmojiRanges.get(strSubstring2);
+                        ArrayList arrayList3 = (ArrayList) mapGroupEmojiRanges2.get(strSubstring2);
                         if (arrayList2 != null && arrayList3 != null) {
                             int i5 = 0;
                             while (true) {
@@ -717,25 +601,25 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     private static HashMap groupEmojiRanges(CharSequence charSequence) {
-        ArrayList<Emoji.EmojiSpanRange> parseEmojis;
-        HashMap hashMap = new HashMap();
-        if (charSequence == null || (parseEmojis = Emoji.parseEmojis(charSequence)) == null) {
-            return hashMap;
+        ArrayList<Emoji.EmojiSpanRange> emojis;
+        HashMap map = new HashMap();
+        if (charSequence == null || (emojis = Emoji.parseEmojis(charSequence)) == null) {
+            return map;
         }
-        String charSequence2 = charSequence.toString();
-        for (int i = 0; i < parseEmojis.size(); i++) {
-            Emoji.EmojiSpanRange emojiSpanRange = parseEmojis.get(i);
+        String string = charSequence.toString();
+        for (int i = 0; i < emojis.size(); i++) {
+            Emoji.EmojiSpanRange emojiSpanRange = emojis.get(i);
             if (emojiSpanRange != null && emojiSpanRange.code != null) {
-                String substring = charSequence2.substring(emojiSpanRange.start, emojiSpanRange.end);
-                ArrayList arrayList = (ArrayList) hashMap.get(substring);
+                String strSubstring = string.substring(emojiSpanRange.start, emojiSpanRange.end);
+                ArrayList arrayList = (ArrayList) map.get(strSubstring);
                 if (arrayList == null) {
                     arrayList = new ArrayList();
-                    hashMap.put(substring, arrayList);
+                    map.put(strSubstring, arrayList);
                 }
                 arrayList.add(emojiSpanRange);
             }
         }
-        return hashMap;
+        return map;
     }
 
     private CharSequence preprocessText(CharSequence charSequence) {
@@ -760,12 +644,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
 
                         @Override
                         public void updateDrawState(TextPaint textPaint) {
-                            int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
+                            int iMin = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
                             if (!(uRLSpan instanceof URLSpanNoUnderline)) {
                                 textPaint.setUnderlineText(true);
                             }
                             textPaint.setColor(Theme.getColor(Theme.key_dialogTextLink));
-                            textPaint.setAlpha(min);
+                            textPaint.setAlpha(iMin);
                         }
                     }, spanStart, spanEnd, 33);
                 }
@@ -805,7 +689,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
     }
 
-    public class LoadingTextView extends TextView {
+    private class LoadingTextView extends TextView {
         private final LoadingDrawable loadingDrawable;
         private final LinkPath path;
 
@@ -859,7 +743,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
     }
 
-    public static class PaddedAdapter extends RecyclerView.Adapter {
+    private static class PaddedAdapter extends RecyclerView.Adapter {
         private Context mContext;
         private View mMainView;
         private int mainViewType = 1;
@@ -920,18 +804,18 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             RecyclerListView recyclerListView = this.listView;
             top += Math.max(0, recyclerListView.getChildAt(recyclerListView.getChildCount() - 1).getTop());
         }
-        float max = Math.max(0.0f, top - AndroidUtilities.dp(78.0f));
+        float fMax = Math.max(0.0f, top - AndroidUtilities.dp(78.0f));
         if (!z || (animatedFloat = this.sheetTopAnimated) == null) {
-            return max;
+            return fMax;
         }
         if (!this.listView.scrollingByUser && !this.sheetTopNotAnimate) {
-            return animatedFloat.set(max);
+            return animatedFloat.set(fMax);
         }
-        animatedFloat.set(max, true);
-        return max;
+        animatedFloat.set(fMax, true);
+        return fMax;
     }
 
-    public class HeaderView extends FrameLayout {
+    class HeaderView extends FrameLayout {
         private ImageView arrowView;
         private ImageView backButton;
         private View backgroundView;
@@ -961,7 +845,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             this.backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    TranslateAlert2.HeaderView.this.lambda$new$0(view2);
+                    this.f$0.lambda$new$0(view2);
                 }
             });
             addView(this.backButton, LayoutHelper.createFrame(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
@@ -1020,7 +904,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 private LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector();
 
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     if (LocaleController.isRTL) {
                         AndroidUtilities.rectTmp.set(getWidth() - width(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
                     } else {
@@ -1039,13 +923,13 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                     if (motionEvent.getAction() == 0) {
                         LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(null, ((BottomSheet) TranslateAlert2.this).resourcesProvider, motionEvent.getX(), motionEvent.getY());
                         linkSpanDrawable.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle), 0.1175f));
-                        LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
+                        LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
                         if (LocaleController.isRTL) {
                             AndroidUtilities.rectTmp.set(getWidth() - width(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
                         } else {
                             AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, width(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
                         }
-                        obtainNewPath.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
+                        linkPathObtainNewPath.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
                         this.links.addLink(linkSpanDrawable);
                         invalidate();
                         return true;
@@ -1072,7 +956,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             this.toLanguageTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    TranslateAlert2.HeaderView.this.lambda$new$1(view2);
+                    this.f$0.lambda$new$1(view2);
                 }
             });
             if (LocaleController.isRTL) {
@@ -1108,46 +992,32 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         public void openLanguagesSelect() {
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext()) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i2)), 1073741824));
                 }
             };
-            Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
-            actionBarPopupWindowLayout.setBackground(mutate);
+            Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
+            actionBarPopupWindowLayout.setBackground(drawableMutate);
             final Runnable[] runnableArr = new Runnable[1];
             ArrayList<LocaleController.LocaleInfo> locales = TranslateController.getLocales();
-            boolean z = true;
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), 2, true, false, ((BottomSheet) TranslateAlert2.this).resourcesProvider);
-                actionBarMenuSubItem.setText("Summarize");
-                actionBarMenuSubItem.setChecked(TextUtils.equals(TranslateAlert2.this.toLanguage, "sum"));
-                actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        TranslateAlert2.HeaderView.this.lambda$openLanguagesSelect$2(runnableArr, view);
-                    }
-                });
-                actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
-                z = false;
-            }
-            boolean z2 = z;
             int i = 0;
+            boolean z = true;
             while (i < locales.size()) {
                 final LocaleController.LocaleInfo localeInfo = locales.get(i);
                 if (!localeInfo.pluralLangCode.equals(TranslateAlert2.this.fromLanguage) && "remote".equals(localeInfo.pathToFile)) {
                     TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode);
-                    ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), 2, z2, i == locales.size() - 1, ((BottomSheet) TranslateAlert2.this).resourcesProvider);
-                    actionBarMenuSubItem2.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(localeInfo.pluralLangCode)));
-                    actionBarMenuSubItem2.setChecked(TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode));
-                    actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), 2, z, i == locales.size() - 1, ((BottomSheet) TranslateAlert2.this).resourcesProvider);
+                    actionBarMenuSubItem.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(localeInfo.pluralLangCode)));
+                    actionBarMenuSubItem.setChecked(TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode));
+                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            TranslateAlert2.HeaderView.this.lambda$openLanguagesSelect$3(runnableArr, localeInfo, view);
+                            this.f$0.lambda$openLanguagesSelect$2(runnableArr, localeInfo, view);
                         }
                     });
-                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
-                    z2 = false;
+                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
+                    z = false;
                 }
                 i++;
             }
@@ -1155,7 +1025,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             runnableArr[0] = new Runnable() {
                 @Override
                 public final void run() {
-                    ActionBarPopupWindow.this.dismiss();
+                    actionBarPopupWindow.dismiss();
                 }
             };
             actionBarPopupWindow.setPauseNotifications(true);
@@ -1172,25 +1042,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             actionBarPopupWindow.showAtLocation(((BottomSheet) TranslateAlert2.this).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), ((float) i2) > (((float) AndroidUtilities.displaySize.y) * 0.9f) - ((float) measuredHeight) ? (i2 - measuredHeight) + AndroidUtilities.dp(8.0f) : (i2 + this.toLanguageTextView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
         }
 
-        public void lambda$openLanguagesSelect$2(Runnable[] runnableArr, View view) {
-            Runnable runnable = runnableArr[0];
-            if (runnable != null) {
-                runnable.run();
-            }
-            if (TextUtils.equals(TranslateAlert2.this.toLanguage, "sum")) {
-                return;
-            }
-            if (TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.textViewContainer) {
-                TranslateAlert2 translateAlert2 = TranslateAlert2.this;
-                translateAlert2.prevToLanguage = translateAlert2.toLanguage;
-            }
-            this.toLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage = "sum")));
-            TranslateAlert2.this.adapter.updateMainView(TranslateAlert2.this.loadingTextView);
-            TranslateAlert2.setToLanguage(TranslateAlert2.this.toLanguage);
-            TranslateAlert2.this.translate();
-        }
-
-        public void lambda$openLanguagesSelect$3(Runnable[] runnableArr, LocaleController.LocaleInfo localeInfo, View view) {
+        public void lambda$openLanguagesSelect$2(Runnable[] runnableArr, LocaleController.LocaleInfo localeInfo, View view) {
             Runnable runnable = runnableArr[0];
             if (runnable != null) {
                 runnable.run();
@@ -1211,11 +1063,11 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         @Override
         public void setTranslationY(float f) {
             super.setTranslationY(f);
-            float clamp = MathUtils.clamp((f - AndroidUtilities.statusBarHeight) / AndroidUtilities.dp(64.0f), 0.0f, 1.0f);
+            float fClamp = MathUtils.clamp((f - AndroidUtilities.statusBarHeight) / AndroidUtilities.dp(64.0f), 0.0f, 1.0f);
             if (!TranslateAlert2.this.hasEnoughHeight()) {
-                clamp = 1.0f;
+                fClamp = 1.0f;
             }
-            float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(clamp);
+            float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(fClamp);
             this.titleTextView.setScaleX(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
             this.titleTextView.setScaleY(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
             this.titleTextView.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-12.0f), 0.0f, interpolation));
@@ -1254,14 +1106,14 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         @Override
         protected void dispatchDraw(Canvas canvas) {
             float sheetTop = TranslateAlert2.this.getSheetTop();
-            float lerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), MathUtils.clamp(sheetTop / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
+            float fLerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), MathUtils.clamp(sheetTop / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
             TranslateAlert2.this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, sheetTop));
             updateLightStatusBar(sheetTop <= ((float) AndroidUtilities.statusBarHeight) / 2.0f);
             TranslateAlert2.this.topBulletinContainer.setTranslationY(((-r2.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + getTranslationY() + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), sheetTop));
             this.bgPath.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, sheetTop, getWidth(), getHeight() + lerp);
-            this.bgPath.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
+            rectF.set(0.0f, sheetTop, getWidth(), getHeight() + fLerp);
+            this.bgPath.addRoundRect(rectF, fLerp, fLerp, Path.Direction.CW);
             canvas.drawPath(this.bgPath, this.bgPaint);
             super.dispatchDraw(canvas);
         }
@@ -1273,17 +1125,17 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
 
         private void updateLightStatusBar(boolean z) {
-            int blendOver;
+            int iBlendOver;
             Boolean bool = this.lightStatusBarFull;
             if (bool == null || bool.booleanValue() != z) {
                 this.lightStatusBarFull = Boolean.valueOf(z);
                 Window window = TranslateAlert2.this.getWindow();
                 if (z) {
-                    blendOver = TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground);
+                    iBlendOver = TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground);
                 } else {
-                    blendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), 855638016);
+                    iBlendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), 855638016);
                 }
-                AndroidUtilities.setLightStatusBar(window, AndroidUtilities.computePerceivedBrightness(blendOver) > 0.721f);
+                AndroidUtilities.setLightStatusBar(window, AndroidUtilities.computePerceivedBrightness(iBlendOver) > 0.721f);
             }
         }
 
@@ -1356,9 +1208,9 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         if (charSequence == null || charSequence.length() <= 0) {
             return null;
         }
-        SpannableStringBuilder valueOf = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : SpannableStringBuilder.valueOf(charSequence);
-        valueOf.replace(0, 1, (CharSequence) valueOf.toString().substring(0, 1).toUpperCase());
-        return valueOf;
+        SpannableStringBuilder spannableStringBuilderValueOf = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : SpannableStringBuilder.valueOf(charSequence);
+        spannableStringBuilderValueOf.replace(0, 1, (CharSequence) spannableStringBuilderValueOf.toString().substring(0, 1).toUpperCase());
+        return spannableStringBuilderValueOf;
     }
 
     public static String languageName(String str) {
@@ -1366,9 +1218,6 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public static String languageName(String str, boolean[] zArr) {
-        if (str != null && "sum".equalsIgnoreCase(str)) {
-            return "Summarize";
-        }
         if (str == null || str.equals("und") || str.equals("auto")) {
             return null;
         }
@@ -1384,12 +1233,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 return string;
             }
         }
-        String systemLanguageName = systemLanguageName(str);
-        if (systemLanguageName == null) {
-            systemLanguageName = systemLanguageName(str2);
+        String strSystemLanguageName = systemLanguageName(str);
+        if (strSystemLanguageName == null) {
+            strSystemLanguageName = systemLanguageName(str2);
         }
-        if (systemLanguageName != null) {
-            return systemLanguageName;
+        if (strSystemLanguageName != null) {
+            return strSystemLanguageName;
         }
         if ("no".equals(str)) {
             str = "nb";
@@ -1406,11 +1255,11 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public static String languageNameCapital(String str) {
-        String languageName = languageName(str);
-        if (languageName == null) {
+        String strLanguageName = languageName(str);
+        if (strLanguageName == null) {
             return null;
         }
-        return languageName.substring(0, 1).toUpperCase() + languageName.substring(1);
+        return strLanguageName.substring(0, 1).toUpperCase() + strLanguageName.substring(1);
     }
 
     public static String systemLanguageName(String str) {

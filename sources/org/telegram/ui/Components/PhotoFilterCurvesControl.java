@@ -89,7 +89,7 @@ public class PhotoFilterCurvesControl extends View {
             }
             return;
         }
-        float min = Math.min(2.0f, (this.lastY - y) / 8.0f);
+        float fMin = Math.min(2.0f, (this.lastY - y) / 8.0f);
         PhotoFilterView.CurvesToolValue curvesToolValue = this.curveValue;
         int i2 = curvesToolValue.activeType;
         if (i2 == 0) {
@@ -103,15 +103,15 @@ public class PhotoFilterCurvesControl extends View {
         }
         int i3 = this.activeSegment;
         if (i3 == 1) {
-            curvesValue.blacksLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.blacksLevel + min));
+            curvesValue.blacksLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.blacksLevel + fMin));
         } else if (i3 == 2) {
-            curvesValue.shadowsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.shadowsLevel + min));
+            curvesValue.shadowsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.shadowsLevel + fMin));
         } else if (i3 == 3) {
-            curvesValue.midtonesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.midtonesLevel + min));
+            curvesValue.midtonesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.midtonesLevel + fMin));
         } else if (i3 == 4) {
-            curvesValue.highlightsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.highlightsLevel + min));
+            curvesValue.highlightsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.highlightsLevel + fMin));
         } else if (i3 == 5) {
-            curvesValue.whitesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.whitesLevel + min));
+            curvesValue.whitesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.whitesLevel + fMin));
         }
         invalidate();
         PhotoFilterCurvesControlDelegate photoFilterCurvesControlDelegate = this.delegate;
@@ -140,7 +140,7 @@ public class PhotoFilterCurvesControl extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         PhotoFilterView.CurvesValue curvesValue;
-        String format;
+        String str;
         float f = this.actualArea.width / 5.0f;
         for (int i = 0; i < 4; i++) {
             Rect rect = this.actualArea;
@@ -170,36 +170,36 @@ public class PhotoFilterCurvesControl extends View {
         }
         for (int i3 = 0; i3 < 5; i3++) {
             if (i3 == 0) {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.blacksLevel / 100.0f));
+                str = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.blacksLevel / 100.0f));
             } else if (i3 == 1) {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.shadowsLevel / 100.0f));
+                str = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.shadowsLevel / 100.0f));
             } else if (i3 == 2) {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.midtonesLevel / 100.0f));
+                str = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.midtonesLevel / 100.0f));
             } else if (i3 == 3) {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.highlightsLevel / 100.0f));
+                str = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.highlightsLevel / 100.0f));
             } else if (i3 == 4) {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.whitesLevel / 100.0f));
+                str = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.whitesLevel / 100.0f));
             } else {
-                format = "";
+                str = "";
             }
-            float measureText = this.textPaint.measureText(format);
+            float fMeasureText = this.textPaint.measureText(str);
             Rect rect3 = this.actualArea;
-            canvas.drawText(format, rect3.x + ((f - measureText) / 2.0f) + (i3 * f), (rect3.y + rect3.height) - AndroidUtilities.dp(4.0f), this.textPaint);
+            canvas.drawText(str, rect3.x + ((f - fMeasureText) / 2.0f) + (i3 * f), (rect3.y + rect3.height) - AndroidUtilities.dp(4.0f), this.textPaint);
         }
-        float[] interpolateCurve = curvesValue.interpolateCurve();
+        float[] fArrInterpolateCurve = curvesValue.interpolateCurve();
         invalidate();
         this.path.reset();
-        for (int i4 = 0; i4 < interpolateCurve.length / 2; i4++) {
+        for (int i4 = 0; i4 < fArrInterpolateCurve.length / 2; i4++) {
             if (i4 == 0) {
                 Path path = this.path;
                 Rect rect4 = this.actualArea;
                 int i5 = i4 * 2;
-                path.moveTo(rect4.x + (interpolateCurve[i5] * rect4.width), rect4.y + ((1.0f - interpolateCurve[i5 + 1]) * rect4.height));
+                path.moveTo(rect4.x + (fArrInterpolateCurve[i5] * rect4.width), rect4.y + ((1.0f - fArrInterpolateCurve[i5 + 1]) * rect4.height));
             } else {
                 Path path2 = this.path;
                 Rect rect5 = this.actualArea;
                 int i6 = i4 * 2;
-                path2.lineTo(rect5.x + (interpolateCurve[i6] * rect5.width), rect5.y + ((1.0f - interpolateCurve[i6 + 1]) * rect5.height));
+                path2.lineTo(rect5.x + (fArrInterpolateCurve[i6] * rect5.width), rect5.y + ((1.0f - fArrInterpolateCurve[i6 + 1]) * rect5.height));
             }
         }
         canvas.drawPath(this.path, this.paintCurve);

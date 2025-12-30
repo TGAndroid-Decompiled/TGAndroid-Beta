@@ -57,9 +57,9 @@ public class MessagePrivateSeenView extends FrameLayout {
     private final TextView valueTextView;
 
     public MessagePrivateSeenView(Context context, int i, MessageObject messageObject, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         int i2;
         TLRPC.MessageFwdHeader messageFwdHeader;
+        super(context);
         this.isPremiumLocked = false;
         this.minWidth = -1.0f;
         this.type = i;
@@ -84,9 +84,9 @@ public class MessagePrivateSeenView extends FrameLayout {
         } else {
             i2 = R.drawable.msg_seen;
         }
-        Drawable mutate = ContextCompat.getDrawable(context, i2).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageDrawable(mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(context, i2).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        imageView.setImageDrawable(drawableMutate);
         TextView textView = new TextView(context);
         this.loadingView = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
@@ -142,7 +142,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getOutboxReadDate, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MessagePrivateSeenView.this.lambda$request$2(tLObject, tL_error);
+                this.f$0.lambda$request$2(tLObject, tL_error);
             }
         });
     }
@@ -151,7 +151,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.this.lambda$request$1(tL_error, tLObject);
+                this.f$0.lambda$request$1(tL_error, tLObject);
             }
         });
     }
@@ -174,16 +174,16 @@ public class MessagePrivateSeenView extends FrameLayout {
             this.valueTextView.setText(LocaleController.formatPmSeenDate(((TLRPC.TL_outboxReadDate) tLObject).date));
             this.premiumTextView.setVisibility(8);
         }
-        ViewPropertyAnimator alpha = this.valueLayout.animate().alpha(1.0f);
+        ViewPropertyAnimator viewPropertyAnimatorAlpha = this.valueLayout.animate().alpha(1.0f);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        alpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+        viewPropertyAnimatorAlpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
         this.loadingView.animate().alpha(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
         if (this.isPremiumLocked) {
             setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 6, 0));
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MessagePrivateSeenView.this.lambda$request$0(view);
+                    this.f$0.lambda$request$0(view);
                 }
             });
         } else {
@@ -196,18 +196,18 @@ public class MessagePrivateSeenView extends FrameLayout {
         showSheet(getContext(), this.currentAccount, this.dialogId, false, this.dismiss, new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.this.request();
+                this.f$0.request();
             }
         }, this.resourcesProvider);
     }
 
     public static void showSheet(final Context context, final int i, long j, final boolean z, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider) {
-        String str;
+        String firstName;
         int i2;
         final BottomSheet bottomSheet;
         final BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
         bottomSheet2.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-        boolean premiumFeaturesBlocked = MessagesController.getInstance(i).premiumFeaturesBlocked();
+        boolean zPremiumFeaturesBlocked = MessagesController.getInstance(i).premiumFeaturesBlocked();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -231,17 +231,17 @@ public class MessagePrivateSeenView extends FrameLayout {
         textView2.setTextColor(Theme.getColor(i3, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         if (j <= 0) {
-            str = "";
+            firstName = "";
         } else {
-            str = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+            firstName = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         }
-        String str2 = str;
+        String str = firstName;
         if (z) {
-            i2 = premiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1;
+            i2 = zPremiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1;
         } else {
-            i2 = premiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1;
+            i2 = zPremiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1;
         }
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, str2)));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, str)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
@@ -249,10 +249,10 @@ public class MessagePrivateSeenView extends FrameLayout {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessagePrivateSeenView.lambda$showSheet$7(ButtonWithCounterView.this, z, i, bottomSheet2, runnable2, context, resourcesProvider, view);
+                MessagePrivateSeenView.lambda$showSheet$7(buttonWithCounterView, z, i, bottomSheet2, runnable2, context, resourcesProvider, view);
             }
         });
-        if (premiumFeaturesBlocked) {
+        if (zPremiumFeaturesBlocked) {
             bottomSheet = bottomSheet2;
         } else {
             SimpleTextView simpleTextView = new SimpleTextView(context) {
@@ -286,7 +286,7 @@ public class MessagePrivateSeenView extends FrameLayout {
             textView4.setGravity(17);
             textView4.setTextColor(Theme.getColor(i3, resourcesProvider));
             textView4.setTextSize(1, 14.0f);
-            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, str2)));
+            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, str)));
             linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
             PremiumButtonView premiumButtonView = new PremiumButtonView(context, true, resourcesProvider);
             bottomSheet = bottomSheet2;
@@ -312,7 +312,7 @@ public class MessagePrivateSeenView extends FrameLayout {
             ConnectionsManager.getInstance(i).sendRequest(setprivacy, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MessagePrivateSeenView.lambda$showSheet$4(ButtonWithCounterView.this, bottomSheet, runnable, tLObject, tL_error);
+                    MessagePrivateSeenView.lambda$showSheet$4(buttonWithCounterView, bottomSheet, runnable, tLObject, tL_error);
                 }
             });
             return;
@@ -336,7 +336,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$3(TLRPC.TL_error.this, buttonWithCounterView, bottomSheet, runnable);
+                MessagePrivateSeenView.lambda$showSheet$3(tL_error, buttonWithCounterView, bottomSheet, runnable);
             }
         });
     }
@@ -358,7 +358,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$5(TLRPC.TL_error.this, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
+                MessagePrivateSeenView.lambda$showSheet$5(tL_error, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
             }
         });
     }
@@ -407,26 +407,26 @@ public class MessagePrivateSeenView extends FrameLayout {
         if (this.minWidth < 0.0f) {
             this.minWidth = 0.0f;
             if (this.type == 0) {
-                long currentTimeMillis = System.currentTimeMillis();
-                float max = Math.max(this.minWidth, AndroidUtilities.dp(144.0f));
-                this.minWidth = max;
-                float max2 = Math.max(max, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)));
-                this.minWidth = max2;
-                float max3 = Math.max(max2, AndroidUtilities.dp(64.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
-                this.minWidth = max3;
-                float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
-                this.minWidth = max4;
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                float fMax = Math.max(this.minWidth, AndroidUtilities.dp(144.0f));
+                this.minWidth = fMax;
+                float fMax2 = Math.max(fMax, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)));
+                this.minWidth = fMax2;
+                float fMax3 = Math.max(fMax2, AndroidUtilities.dp(64.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
+                this.minWidth = fMax3;
+                float fMax4 = Math.max(fMax3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))));
+                this.minWidth = fMax4;
                 if (this.messageDiff > 86400) {
-                    this.minWidth = Math.max(max4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
+                    this.minWidth = Math.max(fMax4, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))));
                 }
                 if (this.messageDiff > 172800) {
                     float f = this.minWidth;
-                    float dp = AndroidUtilities.dp(48.0f);
+                    float fDp = AndroidUtilities.dp(48.0f);
                     TextPaint paint = this.valueTextView.getPaint();
                     int i3 = R.string.PmReadDateTimeAt;
-                    float max5 = Math.max(f, dp + paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
-                    this.minWidth = max5;
-                    this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterYear().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
+                    float fMax5 = Math.max(f, fDp + paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))));
+                    this.minWidth = fMax5;
+                    this.minWidth = Math.max(fMax5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterYear().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))));
                 }
             } else {
                 this.minWidth = AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(this.valueTextView.getText().toString());

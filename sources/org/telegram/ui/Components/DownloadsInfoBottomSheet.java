@@ -44,11 +44,11 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DownloadsInfoBottomSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
-        int dp = AndroidUtilities.dp(8.0f);
-        imageView.setPadding(dp, dp, dp, dp);
+        int iDp = AndroidUtilities.dp(8.0f);
+        imageView.setPadding(iDp, iDp, iDp, iDp);
         frameLayout.addView(imageView, LayoutHelper.createFrame(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
         StickerImageView stickerImageView = new StickerImageView(context, this.currentAccount);
         stickerImageView.setStickerNum(9);
@@ -77,9 +77,9 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.ManageDeviceStorage));
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        int dp2 = AndroidUtilities.dp(8.0f);
+        int iDp2 = AndroidUtilities.dp(8.0f);
         int i3 = Theme.key_featuredStickers_addButton;
-        textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp2, Theme.getColor(i3), ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
+        textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp2, Theme.getColor(i3), ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 14.0f, 28.0f, 14.0f, 6.0f));
         TextView textView4 = new TextView(context);
         textView4.setGravity(17);
@@ -98,13 +98,13 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DownloadsInfoBottomSheet.this.lambda$new$1(baseFragment, view);
+                this.f$0.lambda$new$1(baseFragment, view);
             }
         });
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DownloadsInfoBottomSheet.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
     }

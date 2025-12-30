@@ -30,6 +30,7 @@ import com.googlecode.mp4parser.DataSource;
 import com.googlecode.mp4parser.util.Matrix;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -63,9 +64,9 @@ public class MP4Builder {
         FileOutputStream fileOutputStream = new FileOutputStream(mp4Movie.getCacheFile());
         this.fos = fileOutputStream;
         this.fc = fileOutputStream.getChannel();
-        FileTypeBox createFileTypeBox = createFileTypeBox(z2);
-        createFileTypeBox.getBox(this.fc);
-        long size = this.dataOffset + createFileTypeBox.getSize();
+        FileTypeBox fileTypeBoxCreateFileTypeBox = createFileTypeBox(z2);
+        fileTypeBoxCreateFileTypeBox.getBox(this.fc);
+        long size = this.dataOffset + fileTypeBoxCreateFileTypeBox.getSize();
         this.dataOffset = size;
         this.wroteSinceLastMdat += size;
         this.splitMdat = z;
@@ -74,11 +75,11 @@ public class MP4Builder {
         return this;
     }
 
-    private void flushCurrentMdat() {
-        long position = this.fc.position();
+    private void flushCurrentMdat() throws IOException {
+        long jPosition = this.fc.position();
         this.fc.position(this.mdat.getOffset());
         this.mdat.getBox(this.fc);
-        this.fc.position(position);
+        this.fc.position(jPosition);
         this.mdat.setDataOffset(0L);
         this.mdat.setContentSize(0L);
         this.fos.flush();
@@ -166,13 +167,13 @@ public class MP4Builder {
         this.fos.close();
     }
 
-    public void finishMovie(File file) {
+    public void finishMovie(File file) throws IOException {
         if (file == null) {
             finishMovie();
             return;
         }
         this.fos.flush();
-        long position = this.fc.position();
+        long jPosition = this.fc.position();
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }
@@ -181,11 +182,11 @@ public class MP4Builder {
         try {
             FileChannel channel = randomAccessFile.getChannel();
             try {
-                channel.position(position);
+                channel.position(jPosition);
                 if (this.mdat.getContentSize() != 0) {
                     channel.position(this.mdat.getOffset());
                     this.mdat.getBox(channel);
-                    channel.position(position);
+                    channel.position(jPosition);
                 }
                 this.track2SampleSizes.clear();
                 Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
@@ -227,7 +228,7 @@ public class MP4Builder {
         this.allowSyncFiles = z;
     }
 
-    public static class InterleaveChunkMdat implements Box {
+    private static class InterleaveChunkMdat implements Box {
         private long contentSize;
         private long dataOffset;
         private Container parent;
@@ -281,22 +282,22 @@ public class MP4Builder {
         }
 
         @Override
-        public void getBox(WritableByteChannel writableByteChannel) {
-            ByteBuffer allocate = ByteBuffer.allocate(16);
+        public void getBox(WritableByteChannel writableByteChannel) throws IOException {
+            ByteBuffer byteBufferAllocate = ByteBuffer.allocate(16);
             long size = getSize();
             if (isSmallBox(size)) {
-                IsoTypeWriter.writeUInt32(allocate, size);
+                IsoTypeWriter.writeUInt32(byteBufferAllocate, size);
             } else {
-                IsoTypeWriter.writeUInt32(allocate, 1L);
+                IsoTypeWriter.writeUInt32(byteBufferAllocate, 1L);
             }
-            allocate.put(IsoFile.fourCCtoBytes("mdat"));
+            byteBufferAllocate.put(IsoFile.fourCCtoBytes("mdat"));
             if (isSmallBox(size)) {
-                allocate.put(new byte[8]);
+                byteBufferAllocate.put(new byte[8]);
             } else {
-                IsoTypeWriter.writeUInt64(allocate, size);
+                IsoTypeWriter.writeUInt64(byteBufferAllocate, size);
             }
-            allocate.rewind();
-            writableByteChannel.write(allocate);
+            byteBufferAllocate.rewind();
+            writableByteChannel.write(byteBufferAllocate);
         }
     }
 
@@ -482,17 +483,17 @@ public class MP4Builder {
     protected void createStco(Track track, SampleTableBox sampleTableBox) {
         ArrayList arrayList = new ArrayList();
         Iterator<Sample> it = track.getSamples().iterator();
-        long j = -1;
+        long size = -1;
         while (it.hasNext()) {
             Sample next = it.next();
             long offset = next.getOffset();
-            if (j != -1 && j != offset) {
-                j = -1;
+            if (size != -1 && size != offset) {
+                size = -1;
             }
-            if (j == -1) {
+            if (size == -1) {
                 arrayList.add(Long.valueOf(offset));
             }
-            j = next.getSize() + offset;
+            size = next.getSize() + offset;
         }
         long[] jArr = new long[arrayList.size()];
         for (int i = 0; i < arrayList.size(); i++) {

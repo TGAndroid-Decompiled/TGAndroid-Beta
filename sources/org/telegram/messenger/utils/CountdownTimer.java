@@ -7,7 +7,7 @@ public class CountdownTimer {
     private final Runnable doUpdate = new Runnable() {
         @Override
         public final void run() {
-            CountdownTimer.this.update();
+            this.f$0.update();
         }
     };
     private boolean isRunning;

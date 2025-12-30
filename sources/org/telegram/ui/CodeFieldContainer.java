@@ -38,9 +38,9 @@ public abstract class CodeFieldContainer extends LinearLayout {
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         Paint paint = this.paint;
-        float dp = AndroidUtilities.dp(1.5f);
-        this.strokeWidth = dp;
-        paint.setStrokeWidth(dp);
+        float fDp = AndroidUtilities.dp(1.5f);
+        this.strokeWidth = fDp;
+        paint.setStrokeWidth(fDp);
     }
 
     @Override
@@ -143,8 +143,8 @@ public abstract class CodeFieldContainer extends LinearLayout {
                             }
                             if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
                                 if (keyCode >= 7 && keyCode <= 16) {
-                                    String num = Integer.toString(keyCode - 7);
-                                    if (CodeFieldContainer.this.codeField[i6].getText() != null && num.equals(CodeFieldContainer.this.codeField[i6].getText().toString())) {
+                                    String string = Integer.toString(keyCode - 7);
+                                    if (CodeFieldContainer.this.codeField[i6].getText() != null && string.equals(CodeFieldContainer.this.codeField[i6].getText().toString())) {
                                         int i9 = i6;
                                         if (i9 >= i - 1) {
                                             CodeFieldContainer.this.processNextPressed();
@@ -156,7 +156,7 @@ public abstract class CodeFieldContainer extends LinearLayout {
                                     if (CodeFieldContainer.this.codeField[i6].length() > 0) {
                                         CodeFieldContainer.this.codeField[i6].startExitAnimation();
                                     }
-                                    CodeFieldContainer.this.codeField[i6].setText(num);
+                                    CodeFieldContainer.this.codeField[i6].setText(string);
                                 }
                                 return true;
                             }
@@ -224,17 +224,17 @@ public abstract class CodeFieldContainer extends LinearLayout {
                         if (!CodeFieldContainer.this.ignoreOnTextChange && (length = editable.length()) >= 1) {
                             int i8 = i6;
                             if (length > 1) {
-                                String obj = editable.toString();
+                                String string = editable.toString();
                                 CodeFieldContainer.this.ignoreOnTextChange = true;
                                 for (int i9 = 0; i9 < Math.min(i - i6, length); i9++) {
                                     if (i9 == 0) {
-                                        editable.replace(0, length, obj.substring(i9, i9 + 1));
+                                        editable.replace(0, length, string.substring(i9, i9 + 1));
                                     } else {
                                         i8++;
                                         int i10 = i6 + i9;
                                         CodeNumberField[] codeNumberFieldArr2 = CodeFieldContainer.this.codeField;
                                         if (i10 < codeNumberFieldArr2.length) {
-                                            codeNumberFieldArr2[i10].setText(obj.substring(i9, i9 + 1));
+                                            codeNumberFieldArr2[i10].setText(string.substring(i9, i9 + 1));
                                         }
                                     }
                                 }
@@ -259,9 +259,7 @@ public abstract class CodeFieldContainer extends LinearLayout {
                 this.codeField[i6].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
-                        boolean lambda$setNumbersCount$0;
-                        lambda$setNumbersCount$0 = CodeFieldContainer.this.lambda$setNumbersCount$0(textView, i8, keyEvent);
-                        return lambda$setNumbersCount$0;
+                        return this.f$0.lambda$setNumbersCount$0(textView, i8, keyEvent);
                     }
                 });
                 i6++;

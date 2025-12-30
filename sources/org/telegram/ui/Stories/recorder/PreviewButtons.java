@@ -33,7 +33,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Stories.recorder.PreviewButtons;
 
 public class PreviewButtons extends FrameLayout {
     private ValueAnimator appearAnimator;
@@ -120,21 +119,21 @@ public class PreviewButtons extends FrameLayout {
         this.shadowView.layout(0, 0, i5, i6);
         ShareButtonView shareButtonView = this.shareButton;
         shareButtonView.layout(i5 - shareButtonView.getMeasuredWidth(), (i6 - this.shareButton.getMeasuredHeight()) / 2, i5, (this.shareButton.getMeasuredHeight() + i6) / 2);
-        int dp = (i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth();
+        int iDp = (i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth();
         int i7 = 0;
         for (int i8 = 0; i8 < this.buttons.size(); i8++) {
             if (((ButtonView) this.buttons.get(i8)).getVisibility() == 0) {
                 i7++;
             }
         }
-        int min = Math.min(AndroidUtilities.dp(isButtonVisible(4) ? 20.0f : 30.0f), i7 < 2 ? 0 : (dp - (AndroidUtilities.dp(40.0f) * i7)) / (i7 - 1));
-        int dp2 = (i6 - AndroidUtilities.dp(40.0f)) / 2;
-        int dp3 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
-        int dp4 = AndroidUtilities.dp(12.33f) + (!isButtonVisible(4) ? ((dp - (AndroidUtilities.dp(40.0f) * i7)) - ((i7 - 1) * min)) / 2 : 0);
+        int iMin = Math.min(AndroidUtilities.dp(isButtonVisible(4) ? 20.0f : 30.0f), i7 < 2 ? 0 : (iDp - (AndroidUtilities.dp(40.0f) * i7)) / (i7 - 1));
+        int iDp2 = (i6 - AndroidUtilities.dp(40.0f)) / 2;
+        int iDp3 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
+        int iDp4 = AndroidUtilities.dp(12.33f) + (!isButtonVisible(4) ? ((iDp - (AndroidUtilities.dp(40.0f) * i7)) - ((i7 - 1) * iMin)) / 2 : 0);
         for (int i9 = 0; i9 < this.buttons.size(); i9++) {
             if (((ButtonView) this.buttons.get(i9)).getVisibility() == 0) {
-                ((ButtonView) this.buttons.get(i9)).layout(dp4, dp2, AndroidUtilities.dp(40.0f) + dp4, dp3);
-                dp4 += AndroidUtilities.dp(40.0f) + min;
+                ((ButtonView) this.buttons.get(i9)).layout(iDp4, iDp2, AndroidUtilities.dp(40.0f) + iDp4, iDp3);
+                iDp4 += AndroidUtilities.dp(40.0f) + iMin;
             }
         }
     }
@@ -171,12 +170,12 @@ public class PreviewButtons extends FrameLayout {
         }
         this.appearing = z;
         if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
-            this.appearAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
+            this.appearAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PreviewButtons.this.lambda$appear$0(valueAnimator2);
+                    this.f$0.lambda$appear$0(valueAnimator2);
                 }
             });
             if (this.appearing) {
@@ -203,16 +202,16 @@ public class PreviewButtons extends FrameLayout {
         this.shadowView.setTranslationY((1.0f - this.appearT) * AndroidUtilities.dp(16.0f));
         for (int i = 1; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
-            float f = this.appearT;
+            float interpolation = this.appearT;
             if (this.appearing) {
-                f = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(AndroidUtilities.cascade(f, i - 1, getChildCount() - 1, 3.0f));
+                interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(AndroidUtilities.cascade(interpolation, i - 1, getChildCount() - 1, 3.0f));
             }
-            childAt.setAlpha(f);
-            childAt.setTranslationY((1.0f - f) * AndroidUtilities.dp(24.0f));
+            childAt.setAlpha(interpolation);
+            childAt.setTranslationY((1.0f - interpolation) * AndroidUtilities.dp(24.0f));
         }
     }
 
-    public class ShareButtonView extends View {
+    class ShareButtonView extends View {
         private boolean arrow;
         ValueAnimator backAnimator;
         private final Paint buttonPaint;
@@ -228,8 +227,8 @@ public class PreviewButtons extends FrameLayout {
         private float width;
 
         public ShareButtonView(Context context, String str, boolean z) {
-            super(context);
             CharSequence upperCase;
+            super(context);
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             Paint paint = new Paint(1);
@@ -246,10 +245,10 @@ public class PreviewButtons extends FrameLayout {
             textPaint.setTypeface(AndroidUtilities.bold());
             if (z) {
                 SpannableString spannableString = new SpannableString(">");
-                Drawable mutate = getResources().getDrawable(R.drawable.attach_arrow_right).mutate();
-                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                mutate.setBounds(0, 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-                spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
+                Drawable drawableMutate = getResources().getDrawable(R.drawable.attach_arrow_right).mutate();
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                drawableMutate.setBounds(0, 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+                spannableString.setSpan(new ImageSpan(drawableMutate, 2), 0, spannableString.length(), 33);
                 if (LocaleController.isRTL) {
                     upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
                 } else {
@@ -271,7 +270,7 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PreviewButtons.ShareButtonView.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         }
@@ -293,9 +292,9 @@ public class PreviewButtons extends FrameLayout {
             if (isPressed()) {
                 float f = this.pressedProgress;
                 if (f != 1.0f) {
-                    float min = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 80.0f);
-                    this.pressedProgress = min;
-                    this.pressedProgress = Utilities.clamp(min, 1.0f, 0.0f);
+                    float fMin = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 80.0f);
+                    this.pressedProgress = fMin;
+                    this.pressedProgress = Utilities.clamp(fMin, 1.0f, 0.0f);
                     invalidate();
                 }
             }
@@ -334,12 +333,12 @@ public class PreviewButtons extends FrameLayout {
                 }
                 float f = this.pressedProgress;
                 if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.backAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.backAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            PreviewButtons.ShareButtonView.this.lambda$setPressed$1(valueAnimator2);
+                            this.f$0.lambda$setPressed$1(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -368,7 +367,7 @@ public class PreviewButtons extends FrameLayout {
         }
     }
 
-    public class ButtonView extends ImageView {
+    class ButtonView extends ImageView {
         public final int id;
 
         public ButtonView(Context context, final int i, int i2) {
@@ -381,7 +380,7 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PreviewButtons.ButtonView.this.lambda$new$0(i, view);
+                    this.f$0.lambda$new$0(i, view);
                 }
             });
         }

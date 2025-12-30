@@ -67,7 +67,7 @@ public abstract class AccountFrozenAlert {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                AccountFrozenAlert.lambda$show$0(i, context, r3);
+                AccountFrozenAlert.lambda$show$0(i, context, bottomSheetArr);
             }
         };
         LinearLayout linearLayout = new LinearLayout(context);
@@ -114,15 +114,15 @@ public abstract class AccountFrozenAlert {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AccountFrozenAlert.lambda$show$2(r1, view);
+                AccountFrozenAlert.lambda$show$2(bottomSheetArr, view);
             }
         });
         linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 7, 0, 0, 0, 0));
         builder.setCustomView(linearLayout);
-        BottomSheet create = builder.create();
-        final BottomSheet[] bottomSheetArr = {create};
-        create.useBackgroundTopPadding = false;
-        create.fixNavigationBar();
+        BottomSheet bottomSheetCreate = builder.create();
+        final BottomSheet[] bottomSheetArr = {bottomSheetCreate};
+        bottomSheetCreate.useBackgroundTopPadding = false;
+        bottomSheetCreate.fixNavigationBar();
         shown = true;
         bottomSheetArr[0].show();
         bottomSheetArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {

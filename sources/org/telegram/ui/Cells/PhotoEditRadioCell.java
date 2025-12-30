@@ -43,7 +43,7 @@ public class PhotoEditRadioCell extends FrameLayout {
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PhotoEditRadioCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         }
@@ -72,14 +72,14 @@ public class PhotoEditRadioCell extends FrameLayout {
             View childAt = this.tintButtonsContainer.getChildAt(i2);
             if (childAt instanceof RadioButton) {
                 RadioButton radioButton = (RadioButton) childAt;
-                int intValue = ((Integer) radioButton.getTag()).intValue();
-                radioButton.setChecked(this.currentColor == (this.currentType == 0 ? this.tintShadowColors[intValue] : this.tintHighlighsColors[intValue]), z);
-                if (intValue == 0) {
+                int iIntValue = ((Integer) radioButton.getTag()).intValue();
+                radioButton.setChecked(this.currentColor == (this.currentType == 0 ? this.tintShadowColors[iIntValue] : this.tintHighlighsColors[iIntValue]), z);
+                if (iIntValue == 0) {
                     i = -1;
                 } else {
-                    i = this.currentType == 0 ? this.tintShadowColors[intValue] : this.tintHighlighsColors[intValue];
+                    i = this.currentType == 0 ? this.tintShadowColors[iIntValue] : this.tintHighlighsColors[iIntValue];
                 }
-                radioButton.setColor(i, intValue != 0 ? this.currentType == 0 ? this.tintShadowColors[intValue] : this.tintHighlighsColors[intValue] : -1);
+                radioButton.setColor(i, iIntValue != 0 ? this.currentType == 0 ? this.tintShadowColors[iIntValue] : this.tintHighlighsColors[iIntValue] : -1);
             }
         }
     }

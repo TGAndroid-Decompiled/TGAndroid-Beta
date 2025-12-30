@@ -8,6 +8,6 @@ public abstract class IUpdateLayout {
 
     public abstract void updateFileProgress(Object[] objArr);
 
-    public IUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+    public IUpdateLayout(Activity activity, ViewGroup viewGroup) {
     }
 }

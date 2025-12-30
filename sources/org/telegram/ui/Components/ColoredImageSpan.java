@@ -99,8 +99,8 @@ public class ColoredImageSpan extends ReplacementSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        float abs;
-        int i3;
+        float fAbs;
+        int intrinsicWidth;
         if (this.isRelativeSize && this.fontMetrics != null) {
             if (fontMetricsInt == null) {
                 fontMetricsInt = new Paint.FontMetricsInt();
@@ -110,19 +110,19 @@ public class ColoredImageSpan extends ReplacementSpan {
             fontMetricsInt.descent = fontMetricsInt2.descent;
             fontMetricsInt.top = fontMetricsInt2.top;
             fontMetricsInt.bottom = fontMetricsInt2.bottom;
-            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
-            i3 = this.size;
+            fAbs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
+            intrinsicWidth = this.size;
         } else if (this.sizeWidth != 0) {
-            abs = Math.abs(this.scaleX);
-            i3 = this.sizeWidth;
+            fAbs = Math.abs(this.scaleX);
+            intrinsicWidth = this.sizeWidth;
         } else {
-            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
-            i3 = this.size;
-            if (i3 == 0) {
-                i3 = this.drawable.getIntrinsicWidth();
+            fAbs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
+            intrinsicWidth = this.size;
+            if (intrinsicWidth == 0) {
+                intrinsicWidth = this.drawable.getIntrinsicWidth();
             }
         }
-        return (int) (abs * i3);
+        return (int) (fAbs * intrinsicWidth);
     }
 
     @Override

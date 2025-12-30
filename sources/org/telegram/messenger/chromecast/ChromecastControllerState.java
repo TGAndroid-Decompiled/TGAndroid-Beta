@@ -5,10 +5,13 @@ import java.io.File;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.chromecast.ChromecastController;
 
-public class ChromecastControllerState {
+class ChromecastControllerState {
     private ChromecastController.RemoteMediaClientHandler client;
     private ChromecastMediaVariations media;
     private ChromecastFileServer server;
+
+    ChromecastControllerState() {
+    }
 
     public void setMedia(ChromecastMediaVariations chromecastMediaVariations) {
         ChromecastFileServer chromecastFileServer;

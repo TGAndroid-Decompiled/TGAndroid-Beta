@@ -48,7 +48,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         if (i3 == -1) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, i4, z2) {
                 @Override
-                public int getExtraLayoutSpace(RecyclerView.State state) {
+                protected int getExtraLayoutSpace(RecyclerView.State state) {
                     return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
                 }
             };
@@ -57,7 +57,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         } else {
             final ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, i3) {
                 @Override
-                public int getExtraLayoutSpace(RecyclerView.State state) {
+                protected int getExtraLayoutSpace(RecyclerView.State state) {
                     return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
                 }
             };
@@ -93,7 +93,7 @@ public class UniversalRecyclerView extends RecyclerListView {
 
                 @Override
                 public final void onItemClick(View view, int i5, float f, float f2) {
-                    UniversalRecyclerView.this.lambda$new$0(callback5, view, i5, f, f2);
+                    this.f$0.lambda$new$0(callback5, view, i5, f, f2);
                 }
             });
         }
@@ -101,9 +101,7 @@ public class UniversalRecyclerView extends RecyclerListView {
             setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
                 public final boolean onItemClick(View view, int i5, float f, float f2) {
-                    boolean lambda$new$1;
-                    lambda$new$1 = UniversalRecyclerView.this.lambda$new$1(callback5Return, view, i5, f, f2);
-                    return lambda$new$1;
+                    return this.f$0.lambda$new$1(callback5Return, view, i5, f, f2);
                 }
 
                 @Override
@@ -119,7 +117,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 super.onMoveAnimationUpdate(viewHolder);
                 UniversalRecyclerView.this.invalidate();
             }
@@ -150,7 +148,7 @@ public class UniversalRecyclerView extends RecyclerListView {
     public void makeHorizontal() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), 0, 0 == true ? 1 : 0) {
             @Override
-            public int getExtraLayoutSpace(RecyclerView.State state) {
+            protected int getExtraLayoutSpace(RecyclerView.State state) {
                 return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
             }
         };
@@ -169,7 +167,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
         final ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(getContext(), i) {
             @Override
-            public int getExtraLayoutSpace(RecyclerView.State state) {
+            protected int getExtraLayoutSpace(RecyclerView.State state) {
                 return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
             }
         };
@@ -223,7 +221,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         AndroidUtilities.forEachViews((RecyclerView) this, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                UniversalRecyclerView.this.lambda$allowReorder$2((View) obj);
+                this.f$0.lambda$allowReorder$2((View) obj);
             }
         });
     }
@@ -233,7 +231,7 @@ public class UniversalRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         this.adapter.drawWhiteSections(canvas, this);
         super.dispatchDraw(canvas);
     }
@@ -278,7 +276,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
-    public class TouchHelperCallback extends ItemTouchHelper.Callback {
+    private class TouchHelperCallback extends ItemTouchHelper.Callback {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         }
@@ -292,23 +290,8 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
 
         @Override
-        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            int i;
-            if (UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) {
-                if (UniversalRecyclerView.this.layoutManager.getOrientation() == 0) {
-                    if (!UniversalRecyclerView.this.reorderingOnOtherAxis) {
-                        i = 12;
-                    }
-                    i = 15;
-                } else {
-                    if (!UniversalRecyclerView.this.reorderingOnOtherAxis) {
-                        i = 3;
-                    }
-                    i = 15;
-                }
-                return ItemTouchHelper.Callback.makeMovementFlags(i, 0);
-            }
-            return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
+        public int getMovementFlags(androidx.recyclerview.widget.RecyclerView r2, androidx.recyclerview.widget.RecyclerView.ViewHolder r3) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UniversalRecyclerView.TouchHelperCallback.getMovementFlags(androidx.recyclerview.widget.RecyclerView, androidx.recyclerview.widget.RecyclerView$ViewHolder):int");
         }
 
         @Override

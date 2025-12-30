@@ -112,9 +112,7 @@ public abstract class ReportAlert extends BottomSheet {
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i3, KeyEvent keyEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = ReportAlert.this.lambda$new$0(textView3, i3, keyEvent);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(textView3, i3, keyEvent);
             }
         });
         frameLayout.addView(this.editText, LayoutHelper.createFrame(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
@@ -126,7 +124,7 @@ public abstract class ReportAlert extends BottomSheet {
         this.clearButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ReportAlert.this.lambda$new$1(i, view);
+                this.f$0.lambda$new$1(i, view);
             }
         });
         frameLayout.addView(this.clearButton, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 357.0f, 0.0f, 0.0f));

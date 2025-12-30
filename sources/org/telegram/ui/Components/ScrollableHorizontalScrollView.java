@@ -31,14 +31,14 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         if (getChildCount() <= 0) {
             return false;
         }
-        int dp = AndroidUtilities.dp(50.0f);
-        if (i < getScrollX() + dp) {
-            measuredWidth = i - dp;
+        int iDp = AndroidUtilities.dp(50.0f);
+        if (i < getScrollX() + iDp) {
+            measuredWidth = i - iDp;
         } else {
-            if (i2 <= getScrollX() + (getMeasuredWidth() - dp)) {
+            if (i2 <= getScrollX() + (getMeasuredWidth() - iDp)) {
                 return false;
             }
-            measuredWidth = (i2 - getMeasuredWidth()) + dp;
+            measuredWidth = (i2 - getMeasuredWidth()) + iDp;
         }
         scrollTo(MathUtils.clamp(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
         return true;
@@ -56,12 +56,12 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         if (getScrollX() == i) {
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i);
-        this.scrollAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getScrollX(), i);
+        this.scrollAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ScrollableHorizontalScrollView.this.lambda$scrollTo$0(valueAnimator2);
+                this.f$0.lambda$scrollTo$0(valueAnimator2);
             }
         });
         this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -107,7 +107,7 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         updateButtonsVisibility();
     }
 
-    public void updateButtonsVisibility() {
+    void updateButtonsVisibility() {
         ValueAnimator valueAnimator;
         int childCount = this.contentView.getChildCount();
         for (int i = 0; i < childCount; i++) {

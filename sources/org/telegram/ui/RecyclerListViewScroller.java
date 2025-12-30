@@ -27,12 +27,12 @@ public class RecyclerListViewScroller {
             this.valueAnimator.cancel();
         }
         this.lastScrolled = 0;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.valueAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                RecyclerListViewScroller.this.lambda$smoothScrollBy$0(i, valueAnimator2);
+                this.f$0.lambda$smoothScrollBy$0(i, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -49,9 +49,9 @@ public class RecyclerListViewScroller {
     }
 
     public void lambda$smoothScrollBy$0(int i, ValueAnimator valueAnimator) {
-        int floatValue = (int) (i * ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        this.recyclerListView.scrollBy(0, floatValue - this.lastScrolled);
-        this.lastScrolled = floatValue;
+        int iFloatValue = (int) (i * ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        this.recyclerListView.scrollBy(0, iFloatValue - this.lastScrolled);
+        this.lastScrolled = iFloatValue;
     }
 
     public void cancel() {

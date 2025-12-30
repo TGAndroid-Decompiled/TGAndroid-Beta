@@ -9,15 +9,18 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
 
-public abstract class FormatCache<F extends Format> {
+abstract class FormatCache<F extends Format> {
     static final int NONE = -1;
     private static final ConcurrentMap<MultipartKey, String> cDateTimeInstanceCache = new ConcurrentHashMap(7);
     private final ConcurrentMap<MultipartKey, F> cInstanceCache = new ConcurrentHashMap(7);
 
     protected abstract F createInstance(String str, TimeZone timeZone, Locale locale);
 
+    FormatCache() {
+    }
+
     public F getInstance() {
-        return getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
+        return (F) getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
@@ -35,28 +38,28 @@ public abstract class FormatCache<F extends Format> {
         if (f != null) {
             return f;
         }
-        F createInstance = createInstance(str, timeZone, locale);
-        F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
-        return putIfAbsent != null ? putIfAbsent : createInstance;
+        F f2 = (F) createInstance(str, timeZone, locale);
+        F f3 = (F) this.cInstanceCache.putIfAbsent(multipartKey, f2);
+        return f3 != null ? f3 : f2;
     }
 
     private F getDateTimeInstance(Integer num, Integer num2, TimeZone timeZone, Locale locale) {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        return getInstance(getPatternForStyle(num, num2, locale), timeZone, locale);
+        return (F) getInstance(getPatternForStyle(num, num2, locale), timeZone, locale);
     }
 
-    public F getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i), Integer.valueOf(i2), timeZone, locale);
+    F getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance(Integer.valueOf(i), Integer.valueOf(i2), timeZone, locale);
     }
 
-    public F getDateInstance(int i, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i), (Integer) null, timeZone, locale);
+    F getDateInstance(int i, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance(Integer.valueOf(i), (Integer) null, timeZone, locale);
     }
 
-    public F getTimeInstance(int i, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance((Integer) null, Integer.valueOf(i), timeZone, locale);
+    F getTimeInstance(int i, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance((Integer) null, Integer.valueOf(i), timeZone, locale);
     }
 
     static String getPatternForStyle(Integer num, Integer num2, Locale locale) {
@@ -76,14 +79,14 @@ public abstract class FormatCache<F extends Format> {
                 dateTimeInstance = DateFormat.getDateTimeInstance(num.intValue(), num2.intValue(), locale);
             }
             String pattern = ((SimpleDateFormat) dateTimeInstance).toPattern();
-            String putIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
-            return putIfAbsent != null ? putIfAbsent : pattern;
+            String strPutIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
+            return strPutIfAbsent != null ? strPutIfAbsent : pattern;
         } catch (ClassCastException unused) {
             throw new IllegalArgumentException("No date time pattern for locale: " + locale);
         }
     }
 
-    public static class MultipartKey {
+    private static class MultipartKey {
         private int hashCode;
         private final Object[] keys;
 
@@ -97,13 +100,13 @@ public abstract class FormatCache<F extends Format> {
 
         public int hashCode() {
             if (this.hashCode == 0) {
-                int i = 0;
+                int iHashCode = 0;
                 for (Object obj : this.keys) {
                     if (obj != null) {
-                        i = (i * 7) + obj.hashCode();
+                        iHashCode = (iHashCode * 7) + obj.hashCode();
                     }
                 }
-                this.hashCode = i;
+                this.hashCode = iHashCode;
             }
             return this.hashCode;
         }

@@ -58,12 +58,12 @@ public final class CoroutineStart {
     }
 
     static {
-        CoroutineStart[] $values = $values();
-        $VALUES = $values;
-        $ENTRIES = EnumEntriesKt.enumEntries($values);
+        CoroutineStart[] coroutineStartArr$values = $values();
+        $VALUES = coroutineStartArr$values;
+        $ENTRIES = EnumEntriesKt.enumEntries(coroutineStartArr$values);
     }
 
-    public final void invoke(Function2 function2, Object obj, Continuation continuation) {
+    public final void invoke(Function2 function2, Object obj, Continuation continuation) throws Throwable {
         int i = WhenMappings.$EnumSwitchMapping$0[ordinal()];
         if (i == 1) {
             CancellableKt.startCoroutineCancellable$default(function2, obj, continuation, null, 4, null);

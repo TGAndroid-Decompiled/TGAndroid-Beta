@@ -51,9 +51,9 @@ public class ReactionTabHolderView extends FrameLayout {
         this.overlaySelectorView = view;
         addView(view, LayoutHelper.createFrame(-1, -1.0f));
         this.iconView = new ImageView(context);
-        Drawable mutate = ContextCompat.getDrawable(context, R.drawable.msg_reactions_filled).mutate();
-        this.drawable = mutate;
-        this.iconView.setImageDrawable(mutate);
+        Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.msg_reactions_filled).mutate();
+        this.drawable = drawableMutate;
+        this.iconView.setImageDrawable(drawableMutate);
         addView(this.iconView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 8.0f, 0.0f, 8.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.reactView = backupImageView;
@@ -76,10 +76,10 @@ public class ReactionTabHolderView extends FrameLayout {
         int color = Theme.getColor(i);
         int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(i), 16);
         int i2 = Theme.key_chat_inReactionButtonTextSelected;
-        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_inReactionButtonText), Theme.getColor(i2), f);
+        int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_inReactionButtonText), Theme.getColor(i2), f);
         this.bgPaint.setColor(ColorUtils.blendARGB(alphaComponent, color, f));
-        this.counterView.setTextColor(blendARGB);
-        this.drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.MULTIPLY));
+        this.counterView.setTextColor(iBlendARGB);
+        this.drawable.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.MULTIPLY));
         if (f == 1.0f) {
             this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
         } else if (f == 0.0f) {
@@ -99,9 +99,9 @@ public class ReactionTabHolderView extends FrameLayout {
         int i2 = reactionCount.count;
         this.count = i2;
         this.counterView.setText(String.format("%s", LocaleController.formatShortNumber(i2, null)));
-        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(reactionCount.reaction);
-        this.reaction = fromTL;
-        if (fromTL.emojicon != null) {
+        ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(reactionCount.reaction);
+        this.reaction = visibleReactionFromTL;
+        if (visibleReactionFromTL.emojicon != null) {
             for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
                 if (tL_availableReaction.reaction.equals(this.reaction.emojicon)) {
                     this.reactView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);

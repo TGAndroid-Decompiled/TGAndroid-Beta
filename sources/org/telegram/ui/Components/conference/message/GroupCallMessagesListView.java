@@ -61,10 +61,10 @@ public class GroupCallMessagesListView extends RecyclerView {
         GroupCallMessagesAdapter groupCallMessagesAdapter = new GroupCallMessagesAdapter() {
             @Override
             public GroupCallMessageCell.VH onCreateViewHolder(ViewGroup viewGroup, int i) {
-                GroupCallMessageCell.VH onCreateViewHolder = super.onCreateViewHolder(viewGroup, i);
-                onCreateViewHolder.cell.setRenderNode(GroupCallMessagesListView.this.blurRoot, GroupCallMessagesListView.this.renderNode, GroupCallMessagesListView.this.renderNodeScale);
-                onCreateViewHolder.cell.setDelegate(GroupCallMessagesListView.this.cellDelegate);
-                return onCreateViewHolder;
+                GroupCallMessageCell.VH vhOnCreateViewHolder = super.onCreateViewHolder(viewGroup, i);
+                vhOnCreateViewHolder.cell.setRenderNode(GroupCallMessagesListView.this.blurRoot, GroupCallMessagesListView.this.renderNode, GroupCallMessagesListView.this.renderNodeScale);
+                vhOnCreateViewHolder.cell.setDelegate(GroupCallMessagesListView.this.cellDelegate);
+                return vhOnCreateViewHolder;
             }
         };
         this.adapter = groupCallMessagesAdapter;
@@ -106,8 +106,8 @@ public class GroupCallMessagesListView extends RecyclerView {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         int measuredHeight = getMeasuredHeight() - this.visibleHeight;
-        int dp = AndroidUtilities.dp(16.0f);
-        int i = measuredHeight + dp;
+        int iDp = AndroidUtilities.dp(16.0f);
+        int i = measuredHeight + iDp;
         int measuredHeight2 = getMeasuredHeight();
         int measuredWidth = getMeasuredWidth();
         float f = i;
@@ -117,14 +117,14 @@ public class GroupCallMessagesListView extends RecyclerView {
         }
         float f2 = measuredHeight;
         float f3 = measuredWidth;
-        int saveLayer = canvas.saveLayer(0.0f, f2, f3, f, null);
+        int iSaveLayer = canvas.saveLayer(0.0f, f2, f3, f, null);
         canvas.clipRect(0, measuredHeight, measuredWidth, i);
         this.clipTop = measuredHeight;
         this.clipBottom = i;
         super.dispatchDraw(canvas);
         canvas.translate(0.0f, f2);
-        canvas.drawRect(0.0f, 0.0f, f3, dp, this.maskPaint);
-        canvas.restoreToCount(saveLayer);
+        canvas.drawRect(0.0f, 0.0f, f3, iDp, this.maskPaint);
+        canvas.restoreToCount(iSaveLayer);
         canvas.save();
         canvas.clipRect(0, i, measuredWidth, measuredHeight2);
         this.clipTop = i;
@@ -148,14 +148,14 @@ public class GroupCallMessagesListView extends RecyclerView {
 
     private float getMinChildY() {
         int childCount = getChildCount();
-        float f = 2.1474836E9f;
+        float fMin = 2.1474836E9f;
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             if (childAt.getVisibility() == 0) {
-                f = Math.min(f, childAt.getY());
+                fMin = Math.min(fMin, childAt.getY());
             }
         }
-        return f;
+        return fMin;
     }
 
     public void setRenderNode(RenderNode renderNode, float f) {
@@ -200,7 +200,7 @@ public class GroupCallMessagesListView extends RecyclerView {
                 View childAt = getChildAt(i);
                 if (childAt instanceof GroupCallMessageCell) {
                     GroupCallMessageCell groupCallMessageCell = (GroupCallMessageCell) childAt;
-                    if (groupCallMessageCell.getVisibility() == 0 && groupCallMessageCell.isInsideBubble(x - childAt.getX(), y - childAt.getY())) {
+                    if (groupCallMessageCell.getVisibility() != 0 || !groupCallMessageCell.isInsideBubble(x - childAt.getX(), y - childAt.getY())) {
                     }
                 }
             }
@@ -214,13 +214,13 @@ public class GroupCallMessagesListView extends RecyclerView {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.adapter.attach();
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.adapter.detach();
     }

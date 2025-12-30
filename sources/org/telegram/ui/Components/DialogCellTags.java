@@ -23,7 +23,7 @@ public class DialogCellTags {
         this.parentView = view;
     }
 
-    public static class Tag {
+    private static class Tag {
         int color;
         public int colorId;
         public int filterId;
@@ -53,9 +53,9 @@ public class DialogCellTags {
                 str = "";
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-            Text supportAnimatedEmojis = new Text(spannableStringBuilder, 10.0f, AndroidUtilities.bold()).supportAnimatedEmojis(view);
-            tag.text = supportAnimatedEmojis;
-            tag.text.setText(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, supportAnimatedEmojis.getFontMetricsInt(), false), dialogFilter.entities, tag.text.getFontMetricsInt()));
+            Text textSupportAnimatedEmojis = new Text(spannableStringBuilder, 10.0f, AndroidUtilities.bold()).supportAnimatedEmojis(view);
+            tag.text = textSupportAnimatedEmojis;
+            tag.text.setText(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textSupportAnimatedEmojis.getFontMetricsInt(), false), dialogFilter.entities, tag.text.getFontMetricsInt()));
             tag.text.setEmojiCacheType(26);
             tag.width = AndroidUtilities.dp(9.32f) + ((int) tag.text.getCurrentWidth());
             tag.textHeight = (int) tag.text.getHeight();
@@ -81,9 +81,9 @@ public class DialogCellTags {
         AccountInstance accountInstance = AccountInstance.getInstance(i);
         MessagesController messagesController = MessagesController.getInstance(i);
         if (!messagesController.folderTags || !accountInstance.getUserConfig().isPremium()) {
-            boolean isEmpty = this.tags.isEmpty();
+            boolean zIsEmpty = this.tags.isEmpty();
             this.tags.clear();
-            return !isEmpty;
+            return !zIsEmpty;
         }
         ArrayList<MessagesController.DialogFilter> arrayList = messagesController.dialogFilters;
         if (i2 == 7) {
@@ -119,11 +119,10 @@ public class DialogCellTags {
             if (dialogFilter2 == null) {
                 this.tags.remove(i4);
                 i4--;
-            } else {
-                if (dialogFilter2.color != tag2.colorId || ((str = dialogFilter2.name) != null && tag2.text != null && str.length() != tag2.text.getText().length())) {
-                    this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter2));
-                }
+            } else if (dialogFilter2.color == tag2.colorId && ((str = dialogFilter2.name) == null || tag2.text == null || str.length() == tag2.text.getText().length())) {
                 i4++;
+            } else {
+                this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter2));
             }
             z = true;
             i4++;
@@ -165,11 +164,11 @@ public class DialogCellTags {
         if (LocaleController.isRTL) {
             canvas.translate(f, 0.0f);
         }
-        int dp = i - AndroidUtilities.dp(25.0f);
+        int iDp = i - AndroidUtilities.dp(25.0f);
         while (i2 < this.tags.size()) {
             Tag tag = (Tag) this.tags.get(i2);
-            dp -= tag.width + AndroidUtilities.dp(4.0f);
-            if (dp < 0) {
+            iDp -= tag.width + AndroidUtilities.dp(4.0f);
+            if (iDp < 0) {
                 break;
             }
             if (LocaleController.isRTL) {

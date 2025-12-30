@@ -2,13 +2,17 @@ package org.telegram.messenger;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import com.microsoft.appcenter.utils.crypto.CryptoAesHandler$$ExternalSyntheticApiModelOutline5;
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.cert.CertificateException;
 import java.util.Locale;
 import javax.crypto.Cipher;
 import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
@@ -19,7 +23,7 @@ public class FingerprintController {
     private static KeyPairGenerator keyPairGenerator;
     private static KeyStore keyStore;
 
-    private static KeyStore getKeyStore() {
+    private static KeyStore getKeyStore() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException {
         KeyStore keyStore2 = keyStore;
         if (keyStore2 != null) {
             return keyStore2;
@@ -35,7 +39,7 @@ public class FingerprintController {
         }
     }
 
-    private static KeyPairGenerator getKeyPairGenerator() {
+    private static KeyPairGenerator getKeyPairGenerator() throws NoSuchAlgorithmException, NoSuchProviderException {
         KeyPairGenerator keyPairGenerator2 = keyPairGenerator;
         if (keyPairGenerator2 != null) {
             return keyPairGenerator2;
@@ -50,22 +54,14 @@ public class FingerprintController {
         }
     }
 
-    public static void generateNewKey(final boolean z) {
-        KeyGenParameterSpec.Builder digests;
-        KeyGenParameterSpec.Builder encryptionPaddings;
-        KeyGenParameterSpec.Builder userAuthenticationRequired;
-        KeyGenParameterSpec build;
+    public static void generateNewKey(final boolean z) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
         KeyPairGenerator keyPairGenerator2 = getKeyPairGenerator();
         if (keyPairGenerator2 != null) {
             try {
                 Locale locale = Locale.getDefault();
                 setLocale(Locale.ENGLISH);
                 FingerprintController$$ExternalSyntheticApiModelOutline2.m();
-                digests = CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512");
-                encryptionPaddings = digests.setEncryptionPaddings("OAEPPadding");
-                userAuthenticationRequired = encryptionPaddings.setUserAuthenticationRequired(true);
-                build = userAuthenticationRequired.build();
-                keyPairGenerator2.initialize(build);
+                keyPairGenerator2.initialize(CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -107,7 +103,7 @@ public class FingerprintController {
         if (!isKeyReady() && AndroidUtilities.isKeyguardSecure() && FingerprintManagerCompat.from(ApplicationLoader.applicationContext).isHardwareDetected() && FingerprintManagerCompat.from(ApplicationLoader.applicationContext).hasEnrolledFingerprints()) {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
                     FingerprintController.generateNewKey(z);
                 }
             });
@@ -123,7 +119,7 @@ public class FingerprintController {
         }
     }
 
-    public static boolean checkDeviceFingerprintsChanged() {
+    public static boolean checkDeviceFingerprintsChanged() throws InvalidKeyException {
         Boolean bool = hasChangedFingerprints;
         if (bool != null) {
             return bool.booleanValue();

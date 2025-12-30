@@ -10,9 +10,9 @@ public class SparseLongArray implements Cloneable {
     }
 
     public SparseLongArray(int i) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i);
-        this.mKeys = new int[idealLongArraySize];
-        this.mValues = new long[idealLongArraySize];
+        int iIdealLongArraySize = ArrayUtils.idealLongArraySize(i);
+        this.mKeys = new int[iIdealLongArraySize];
+        this.mValues = new long[iIdealLongArraySize];
         this.mSize = 0;
     }
 
@@ -36,14 +36,14 @@ public class SparseLongArray implements Cloneable {
     }
 
     public long get(int i, long j) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
-        return binarySearch < 0 ? j : this.mValues[binarySearch];
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
+        return iBinarySearch < 0 ? j : this.mValues[iBinarySearch];
     }
 
     public void delete(int i) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
-        if (binarySearch >= 0) {
-            removeAt(binarySearch);
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
+        if (iBinarySearch >= 0) {
+            removeAt(iBinarySearch);
         }
     }
 
@@ -57,12 +57,12 @@ public class SparseLongArray implements Cloneable {
     }
 
     public void put(int i, long j) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
-        if (binarySearch >= 0) {
-            this.mValues[binarySearch] = j;
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i);
+        if (iBinarySearch >= 0) {
+            this.mValues[iBinarySearch] = j;
             return;
         }
-        int i2 = ~binarySearch;
+        int i2 = ~iBinarySearch;
         int i3 = this.mSize;
         if (i3 >= this.mKeys.length) {
             growKeyAndValueArrays(i3 + 1);
@@ -124,9 +124,9 @@ public class SparseLongArray implements Cloneable {
     }
 
     private void growKeyAndValueArrays(int i) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i);
-        int[] iArr = new int[idealLongArraySize];
-        long[] jArr = new long[idealLongArraySize];
+        int iIdealLongArraySize = ArrayUtils.idealLongArraySize(i);
+        int[] iArr = new int[iIdealLongArraySize];
+        long[] jArr = new long[iIdealLongArraySize];
         int[] iArr2 = this.mKeys;
         System.arraycopy(iArr2, 0, iArr, 0, iArr2.length);
         long[] jArr2 = this.mValues;

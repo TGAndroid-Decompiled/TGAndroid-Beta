@@ -61,23 +61,23 @@ public abstract class HelloParticles {
         }
 
         public void resetPositions() {
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             for (int i = 0; i < this.particles.size(); i++) {
-                ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, i, true);
+                ((Particle) this.particles.get(i)).genPosition(jCurrentTimeMillis, i, true);
             }
         }
 
         public void onDraw(Canvas canvas) {
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             for (int i = 0; i < this.particles.size(); i++) {
                 Particle particle = (Particle) this.particles.get(i);
                 if (this.paused) {
                     particle.draw(canvas, i, this.pausedTime);
                 } else {
-                    particle.draw(canvas, i, currentTimeMillis);
+                    particle.draw(canvas, i, jCurrentTimeMillis);
                 }
                 if (particle.inProgress >= 1.0f) {
-                    particle.genPosition(currentTimeMillis, i, false);
+                    particle.genPosition(jCurrentTimeMillis, i, false);
                 }
             }
         }
@@ -114,7 +114,7 @@ public abstract class HelloParticles {
                 if (!drawable.paused) {
                     float f = this.inProgress;
                     if (f != 1.0f) {
-                        float f2 = f + (drawable.dt / ((float) this.duration));
+                        float f2 = f + (drawable.dt / this.duration);
                         this.inProgress = f2;
                         if (f2 > 1.0f) {
                             this.inProgress = 1.0f;
@@ -123,11 +123,11 @@ public abstract class HelloParticles {
                 }
                 if (this.bitmap != null) {
                     canvas.save();
-                    float pow = 1.0f - (((float) Math.pow(this.inProgress - 0.5f, 2.0d)) * 4.0f);
-                    float f3 = (this.scale / Drawable.this.bitmapScale) * ((0.4f * pow) + 0.7f);
+                    float fPow = 1.0f - (((float) Math.pow(this.inProgress - 0.5f, 2.0d)) * 4.0f);
+                    float f3 = (this.scale / Drawable.this.bitmapScale) * ((0.4f * fPow) + 0.7f);
                     canvas.translate(this.x - (this.w / 2.0f), this.y - (this.h / 2.0f));
                     canvas.scale(f3, f3, this.w / 2.0f, this.h / 2.0f);
-                    Drawable.this.paint.setAlpha((int) (this.alpha * pow));
+                    Drawable.this.paint.setAlpha((int) (this.alpha * fPow));
                     canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, Drawable.this.paint);
                     canvas.restore();
                 }
@@ -164,43 +164,43 @@ public abstract class HelloParticles {
                 }
                 RectF rectF = Drawable.this.rect;
                 float f = this.w / 4.0f;
-                float f2 = rectF.left + f;
-                float f3 = rectF.right - f;
+                float fCenterX = rectF.left + f;
+                float fCenterX2 = rectF.right - f;
                 if (i % 2 == 0) {
-                    f3 = rectF.centerX() - (this.w / 2.0f);
+                    fCenterX2 = rectF.centerX() - (this.w / 2.0f);
                 } else {
-                    f2 = (this.w / 2.0f) + rectF.centerX();
+                    fCenterX = (this.w / 2.0f) + rectF.centerX();
                 }
-                float f4 = f3 - f2;
-                float abs = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
-                float abs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                float f5 = 0.0f;
+                float f2 = fCenterX2 - fCenterX;
+                float fAbs = Math.abs(Utilities.fastRandom.nextInt() % f2) + fCenterX;
+                float fAbs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
+                float f3 = 0.0f;
                 for (int i2 = 0; i2 < 10; i2++) {
-                    float abs3 = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
-                    float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    float f6 = 2.1474836E9f;
+                    float fAbs3 = Math.abs(Utilities.fastRandom.nextInt() % f2) + fCenterX;
+                    float fAbs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
+                    float f4 = 2.1474836E9f;
                     for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
                         Particle particle = (Particle) Drawable.this.particles.get(i3);
                         if (particle.set) {
-                            float min = Math.min(Math.abs((particle.x + ((particle.w * (this.scale / Drawable.this.bitmapScale)) * 1.1f)) - abs3), Math.abs(particle.x - abs3));
-                            float f7 = particle.y - abs4;
-                            float f8 = (min * min) + (f7 * f7);
-                            if (f8 < f6) {
-                                f6 = f8;
+                            float fMin = Math.min(Math.abs((particle.x + ((particle.w * (this.scale / Drawable.this.bitmapScale)) * 1.1f)) - fAbs3), Math.abs(particle.x - fAbs3));
+                            float f5 = particle.y - fAbs4;
+                            float f6 = (fMin * fMin) + (f5 * f5);
+                            if (f6 < f4) {
+                                f4 = f6;
                             }
                         }
                     }
-                    if (f6 > f5) {
-                        abs = abs3;
-                        abs2 = abs4;
-                        f5 = f6;
+                    if (f4 > f3) {
+                        fAbs = fAbs3;
+                        fAbs2 = fAbs4;
+                        f3 = f4;
                     }
                 }
-                this.x = abs;
-                this.y = abs2;
-                double atan2 = Math.atan2(abs - Drawable.this.rect.centerX(), this.y - Drawable.this.rect.centerY());
-                this.vecX = (float) Math.sin(atan2);
-                this.vecY = (float) Math.cos(atan2);
+                this.x = fAbs;
+                this.y = fAbs2;
+                double dAtan2 = Math.atan2(fAbs - Drawable.this.rect.centerX(), this.y - Drawable.this.rect.centerY());
+                this.vecX = (float) Math.sin(dAtan2);
+                this.vecY = (float) Math.cos(dAtan2);
                 this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
                 this.inProgress = z ? Math.abs((Utilities.fastRandom.nextFloat() % 1.0f) * 0.9f) : 0.0f;
                 this.set = true;

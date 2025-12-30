@@ -1,6 +1,6 @@
 package org.webrtc;
 
-public class Histogram {
+class Histogram {
     private final long handle;
 
     private static native void nativeAddSample(long j, int i);

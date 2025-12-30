@@ -174,7 +174,6 @@ public class RecordControl extends View implements FlashViews.Invertable {
 
     public RecordControl(Context context) {
         super(context);
-        BlendMode blendMode;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.galleryImage = imageReceiver;
         this.mainPaint = new Paint(1);
@@ -226,13 +225,13 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.onRecordLongPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                RecordControl.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         };
         this.onFlipLongPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                RecordControl.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         };
         this.metaballsPath = new Path();
@@ -271,38 +270,37 @@ public class RecordControl extends View implements FlashViews.Invertable {
         paint8.setStrokeJoin(Paint.Join.ROUND);
         paint8.setStrokeCap(cap);
         if (Build.VERSION.SDK_INT >= 29) {
-            blendMode = BlendMode.CLEAR;
-            paint8.setBlendMode(blendMode);
+            paint8.setBlendMode(BlendMode.CLEAR);
         } else {
             paint8.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         }
         imageReceiver.setParentView(this);
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), mutate);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), drawableMutate);
         this.noGalleryDrawable = combinedDrawable;
         combinedDrawable.setFullsize(false);
         combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
         Resources resources = context.getResources();
         int i = R.drawable.msg_photo_switch2;
-        Drawable mutate2 = resources.getDrawable(i).mutate();
-        this.flipDrawableWhite = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        Drawable mutate3 = context.getResources().getDrawable(i).mutate();
-        this.flipDrawableBlack = mutate3;
-        mutate3.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        Drawable mutate4 = context.getResources().getDrawable(R.drawable.msg_filled_unlockedrecord).mutate();
-        this.unlockDrawable = mutate4;
-        mutate4.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        Drawable mutate5 = context.getResources().getDrawable(R.drawable.msg_filled_lockedrecord).mutate();
-        this.lockDrawable = mutate5;
-        mutate5.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        Drawable mutate6 = context.getResources().getDrawable(R.drawable.msg_round_pause_m).mutate();
-        this.pauseDrawable = mutate6;
-        mutate6.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        Drawable drawableMutate2 = resources.getDrawable(i).mutate();
+        this.flipDrawableWhite = drawableMutate2;
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        Drawable drawableMutate3 = context.getResources().getDrawable(i).mutate();
+        this.flipDrawableBlack = drawableMutate3;
+        drawableMutate3.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
+        Drawable drawableMutate4 = context.getResources().getDrawable(R.drawable.msg_filled_unlockedrecord).mutate();
+        this.unlockDrawable = drawableMutate4;
+        drawableMutate4.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        Drawable drawableMutate5 = context.getResources().getDrawable(R.drawable.msg_filled_lockedrecord).mutate();
+        this.lockDrawable = drawableMutate5;
+        drawableMutate5.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
+        Drawable drawableMutate6 = context.getResources().getDrawable(R.drawable.msg_round_pause_m).mutate();
+        this.pauseDrawable = drawableMutate6;
+        drawableMutate6.setColorFilter(new PorterDuffColorFilter(-1, mode));
         updateGalleryImage();
     }
 
@@ -355,9 +353,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.hintLinePaintWhite.setColor(ColorUtils.blendARGB(1493172223, 285212671, f));
         this.hintLinePaintBlack.setColor(ColorUtils.blendARGB(402653184, 805306368, f));
         Drawable drawable = this.flipDrawableWhite;
-        int blendARGB = ColorUtils.blendARGB(-1, -16777216, f);
+        int iBlendARGB = ColorUtils.blendARGB(-1, -16777216, f);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+        drawable.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
         this.unlockDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), mode));
     }
 
@@ -372,14 +370,14 @@ public class RecordControl extends View implements FlashViews.Invertable {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(100.0f);
+        int iDp = AndroidUtilities.dp(100.0f);
         float f = size;
         this.cx = f / 2.0f;
-        this.cy = dp / 2.0f;
-        float min = Math.min(AndroidUtilities.dp(135.0f), f * 0.35f);
+        this.cy = iDp / 2.0f;
+        float fMin = Math.min(AndroidUtilities.dp(135.0f), f * 0.35f);
         float f2 = this.cx;
-        this.leftCx = f2 - min;
-        float f3 = f2 + min;
+        this.leftCx = f2 - fMin;
+        float f3 = f2 + fMin;
         this.rightCx = f3;
         setDrawableBounds(this.flipDrawableWhite, f3, this.cy, AndroidUtilities.dp(14.0f));
         setDrawableBounds(this.flipDrawableBlack, this.rightCx, this.cy, AndroidUtilities.dp(14.0f));
@@ -390,7 +388,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.redMatrix.reset();
         this.redMatrix.postTranslate(this.cx, this.cy);
         this.redGradient.setLocalMatrix(this.redMatrix);
-        setMeasuredDimension(size, dp);
+        setMeasuredDimension(size, iDp);
     }
 
     private static void setDrawableBounds(Drawable drawable, float f, float f2) {
@@ -429,7 +427,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.delegate.onVideoRecordStart(true, new Runnable() {
             @Override
             public final void run() {
-                RecordControl.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
     }
@@ -509,26 +507,26 @@ public class RecordControl extends View implements FlashViews.Invertable {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        float clamp = Utilities.clamp(motionEvent.getX() + 0.0f, this.rightCx, this.leftCx);
+        float fClamp = Utilities.clamp(motionEvent.getX() + 0.0f, this.rightCx, this.leftCx);
         float y = motionEvent.getY() + 0.0f;
-        boolean isPressed = isPressed(clamp, y, this.rightCx, this.cy, AndroidUtilities.dp(7.0f), true);
+        boolean zIsPressed = isPressed(fClamp, y, this.rightCx, this.cy, AndroidUtilities.dp(7.0f), true);
         boolean z = true;
         if (this.recordingLoading) {
             this.recordButton.setPressed(false);
             this.flipButton.setPressed(false);
             this.lockButton.setPressed(false);
         } else if (action == 0 || this.touch) {
-            this.recordButton.setPressed(isPressed(clamp, y, this.cx, this.cy, AndroidUtilities.dp(60.0f), false));
-            this.flipButton.setPressed(isPressed(clamp, y, this.rightCx, this.cy, (float) AndroidUtilities.dp(30.0f), true) && !hasCheck());
-            this.lockButton.setPressed(isPressed(clamp, y, this.leftCx, this.cy, (float) AndroidUtilities.dp(30.0f), false) && !hasCheck());
+            this.recordButton.setPressed(isPressed(fClamp, y, this.cx, this.cy, AndroidUtilities.dp(60.0f), false));
+            this.flipButton.setPressed(isPressed(fClamp, y, this.rightCx, this.cy, (float) AndroidUtilities.dp(30.0f), true) && !hasCheck());
+            this.lockButton.setPressed(isPressed(fClamp, y, this.leftCx, this.cy, (float) AndroidUtilities.dp(30.0f), false) && !hasCheck());
         }
         if (action == 0) {
             this.touch = true;
             this.discardParentTouch = this.recordButton.isPressed() || this.flipButton.isPressed();
             this.touchStart = System.currentTimeMillis();
-            this.touchX = clamp;
+            this.touchX = fClamp;
             this.touchY = y;
-            if (Math.abs(clamp - this.cx) < AndroidUtilities.dp(50.0f)) {
+            if (Math.abs(fClamp - this.cx) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(this.onRecordLongPressRunnable, ViewConfiguration.getLongPressTimeout());
             }
             if (this.flipButton.isPressed()) {
@@ -538,10 +536,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
             if (!this.touch) {
                 return false;
             }
-            this.touchX = Utilities.clamp(clamp, this.rightCx, this.leftCx);
+            this.touchX = Utilities.clamp(fClamp, this.rightCx, this.leftCx);
             this.touchY = y;
             invalidate();
-            if (this.recording && !this.flipButtonWasPressed && isPressed) {
+            if (this.recording && !this.flipButtonWasPressed && zIsPressed) {
                 rotateFlip(180.0f);
                 this.delegate.onFlipClick();
             }
@@ -584,7 +582,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
                         this.delegate.onVideoRecordStart(false, new Runnable() {
                             @Override
                             public final void run() {
-                                RecordControl.this.lambda$onTouchEvent$4();
+                                this.f$0.lambda$onTouchEvent$4();
                             }
                         });
                     }
@@ -605,7 +603,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
             this.lockButton.setPressed(false);
             invalidate();
         }
-        this.flipButtonWasPressed = isPressed;
+        this.flipButtonWasPressed = zIsPressed;
         return z;
     }
 

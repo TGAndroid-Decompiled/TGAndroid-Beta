@@ -15,27 +15,27 @@ public class UpsampleAudioResampler implements AudioResampler {
         if (i3 != 1 && i3 != 2) {
             throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler. Channels:" + i3);
         }
-        int remaining = shortBuffer.remaining() / i3;
-        int ceil = ((int) Math.ceil(remaining * (i2 / i))) - remaining;
-        float ratio = ratio(remaining, remaining);
-        float ratio2 = ratio(ceil, ceil);
-        int i4 = ceil;
-        int i5 = remaining;
+        int iRemaining = shortBuffer.remaining() / i3;
+        int iCeil = ((int) Math.ceil(iRemaining * (i2 / i))) - iRemaining;
+        float fRatio = ratio(iRemaining, iRemaining);
+        float fRatio2 = ratio(iCeil, iCeil);
+        int i4 = iCeil;
+        int i5 = iRemaining;
         while (i5 > 0 && i4 > 0) {
-            if (ratio >= ratio2) {
+            if (fRatio >= fRatio2) {
                 shortBuffer2.put(shortBuffer.get());
                 if (i3 == 2) {
                     shortBuffer2.put(shortBuffer.get());
                 }
                 i5--;
-                ratio = ratio(i5, remaining);
+                fRatio = ratio(i5, iRemaining);
             } else {
                 shortBuffer2.put(fakeSample(shortBuffer2, shortBuffer, 1, i3));
                 if (i3 == 2) {
                     shortBuffer2.put(fakeSample(shortBuffer2, shortBuffer, 2, i3));
                 }
                 i4--;
-                ratio2 = ratio(i4, ceil);
+                fRatio2 = ratio(i4, iCeil);
             }
         }
     }

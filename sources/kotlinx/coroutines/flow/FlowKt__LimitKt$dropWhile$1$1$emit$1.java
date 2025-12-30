@@ -3,14 +3,14 @@ package kotlinx.coroutines.flow;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.jvm.internal.ContinuationImpl;
 
-public final class FlowKt__LimitKt$dropWhile$1$1$emit$1 extends ContinuationImpl {
+final class FlowKt__LimitKt$dropWhile$1$1$emit$1 extends ContinuationImpl {
     Object L$0;
     Object L$1;
     int label;
     Object result;
     final FlowKt__LimitKt$dropWhile$1$1 this$0;
 
-    public FlowKt__LimitKt$dropWhile$1$1$emit$1(FlowKt__LimitKt$dropWhile$1$1 flowKt__LimitKt$dropWhile$1$1, Continuation continuation) {
+    FlowKt__LimitKt$dropWhile$1$1$emit$1(FlowKt__LimitKt$dropWhile$1$1 flowKt__LimitKt$dropWhile$1$1, Continuation continuation) {
         super(continuation);
         this.this$0 = flowKt__LimitKt$dropWhile$1$1;
     }

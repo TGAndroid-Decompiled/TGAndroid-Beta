@@ -71,7 +71,7 @@ public class SeekSpeedDrawable extends Drawable {
         this.hideHintRunnable = new Runnable() {
             @Override
             public final void run() {
-                SeekSpeedDrawable.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.invalidate = runnable;
@@ -134,10 +134,10 @@ public class SeekSpeedDrawable extends Drawable {
             return;
         }
         float f3 = this.animatedSpeed.set(Math.abs(this.lastSpeed));
-        long currentTimeMillis = System.currentTimeMillis();
-        float min = Math.min(0.016f, ((float) (currentTimeMillis - this.lastFrameTime)) / 1000.0f);
-        this.lastFrameTime = currentTimeMillis;
-        this.t += min * Math.min(f3, 4.0f) * 1.5f;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        float fMin = Math.min(0.016f, (jCurrentTimeMillis - this.lastFrameTime) / 1000.0f);
+        this.lastFrameTime = jCurrentTimeMillis;
+        this.t += fMin * Math.min(f3, 4.0f) * 1.5f;
         this.invalidate.run();
         float f4 = currentWidth / 2.0f;
         this.speedRect.set(bounds.centerX() - f4, bounds.top + AndroidUtilities.dp(9.0f), bounds.centerX() + f4, bounds.top + AndroidUtilities.dp(37.0f));
@@ -205,15 +205,15 @@ public class SeekSpeedDrawable extends Drawable {
                 this.hintDrawable.start();
             }
             float currentWidth2 = this.hintText.getCurrentWidth() + AndroidUtilities.dp(54.0f);
-            float dp = AndroidUtilities.dp(32.0f);
+            float fDp = AndroidUtilities.dp(32.0f);
             RectF rectF2 = this.hintRect;
             float f9 = currentWidth2 / 2.0f;
-            float centerX = bounds.centerX() - f9;
+            float fCenterX = bounds.centerX() - f9;
             RectF rectF3 = this.speedRect;
-            float height = rectF3.top + (rectF3.height() * f) + AndroidUtilities.dp(11.0f);
-            float centerX2 = bounds.centerX() + f9;
+            float fHeight = rectF3.top + (rectF3.height() * f) + AndroidUtilities.dp(11.0f);
+            float fCenterX2 = bounds.centerX() + f9;
             RectF rectF4 = this.speedRect;
-            rectF2.set(centerX, height, centerX2, rectF4.top + (rectF4.height() * f) + AndroidUtilities.dp(11.0f) + dp);
+            rectF2.set(fCenterX, fHeight, fCenterX2, rectF4.top + (rectF4.height() * f) + AndroidUtilities.dp(11.0f) + fDp);
             canvas.save();
             float f10 = (0.25f * f8) + 0.75f;
             canvas.scale(f10, f10, this.hintRect.centerX(), this.hintRect.top);

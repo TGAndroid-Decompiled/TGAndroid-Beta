@@ -23,9 +23,9 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
 
     public BlurredBackgroundSourceRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
         this.fallbackSource = blurredBackgroundSource;
-        RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
-        this.renderNode = m;
-        m.setClipToBounds(true);
+        RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
+        this.renderNode = renderNodeM;
+        renderNodeM.setClipToBounds(true);
     }
 
     public void setBlur(float f) {
@@ -33,32 +33,18 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
     }
 
     public boolean needUpdateDisplayList(int i, int i2) {
-        boolean hasDisplayList;
-        int width;
-        int height;
-        hasDisplayList = this.renderNode.hasDisplayList();
-        if (hasDisplayList) {
-            width = this.renderNode.getWidth();
-            if (width == i) {
-                height = this.renderNode.getHeight();
-                if (height == i2) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return (this.renderNode.hasDisplayList() && this.renderNode.getWidth() == i && this.renderNode.getHeight() == i2) ? false : true;
     }
 
     public RecordingCanvas beginRecording(int i, int i2) {
-        RecordingCanvas beginRecording;
         if (this.inRecording) {
             throw new IllegalStateException();
         }
         this.inRecording = true;
         this.renderNode.setPosition(0, 0, i, i2);
-        beginRecording = this.renderNode.beginRecording(i, i2);
-        this.recordingCanvas = beginRecording;
-        return beginRecording;
+        RecordingCanvas recordingCanvasBeginRecording = this.renderNode.beginRecording(i, i2);
+        this.recordingCanvas = recordingCanvasBeginRecording;
+        return recordingCanvasBeginRecording;
     }
 
     public void endRecording() {
@@ -81,23 +67,27 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
     @Override
     public void draw(Canvas canvas, float f, float f2, float f3, float f4) {
         if (!canvas.isHardwareAccelerated()) {
-            this.fallbackSource.draw(canvas, f, f2, f3, f4);
-        } else {
-            if (this.inRecording) {
-                throw new IllegalStateException();
+            BlurredBackgroundSource blurredBackgroundSource = this.fallbackSource;
+            if (blurredBackgroundSource != null) {
+                blurredBackgroundSource.draw(canvas, f, f2, f3, f4);
+                return;
             }
-            canvas.save();
-            canvas.clipRect(f, f2, f3, f4);
-            canvas.drawRenderNode(this.renderNode);
-            canvas.restore();
+            return;
         }
+        if (this.inRecording) {
+            throw new IllegalStateException();
+        }
+        canvas.save();
+        canvas.clipRect(f, f2, f3, f4);
+        canvas.drawRenderNode(this.renderNode);
+        canvas.restore();
     }
 
     public BlurredBackgroundSource getFallbackSource() {
         return this.fallbackSource;
     }
 
-    public int getVisiblePositions(List list, int i, int i2) {
+    public int getVisiblePositions(List list, int i, int i2) throws InterruptedException {
         RectF rectF;
         Iterator it = this.drawables.iterator();
         int i3 = 0;

@@ -71,9 +71,9 @@ public class BotHelpCell extends View {
         int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         int i = SharedConfig.bubbleRadius;
         this.selectorDrawableRadius = i;
-        Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(color, i, i);
-        this.selectorDrawable = createRadSelectorDrawable;
-        createRadSelectorDrawable.setCallback(this);
+        Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(color, i, i);
+        this.selectorDrawable = drawableCreateRadSelectorDrawable;
+        drawableCreateRadSelectorDrawable.setCallback(this);
     }
 
     public void setDelegate(BotHelpCellDelegate botHelpCellDelegate) {
@@ -93,7 +93,7 @@ public class BotHelpCell extends View {
     }
 
     public void setText(boolean z, String str, TLObject tLObject, TL_bots.BotInfo botInfo) {
-        int min;
+        int iMin;
         boolean z2 = tLObject != null;
         boolean z3 = !TextUtils.isEmpty(str);
         if ((str == null || str.length() == 0) && !z2) {
@@ -128,34 +128,34 @@ public class BotHelpCell extends View {
                     }
                     this.imageReceiver.setImage(ImageLocation.getForDocument(document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(document), document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "86_86_b", bitmapDrawable, document.size, "mp4", botInfo, 0);
                 }
-                int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
-                int dp2 = AndroidUtilities.dp(4.0f);
+                int iDp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
+                int iDp2 = AndroidUtilities.dp(4.0f);
                 if (!this.isTextVisible) {
-                    dp2 = dp;
+                    iDp2 = iDp;
                 }
-                this.imageReceiver.setRoundRadius(dp, dp, dp2, dp2);
+                this.imageReceiver.setRoundRadius(iDp, iDp, iDp2, iDp2);
             }
         }
         this.oldText = AndroidUtilities.getSafeString(str2);
         setVisibility(0);
         if (AndroidUtilities.isTablet()) {
-            min = AndroidUtilities.getMinTabletSide();
+            iMin = AndroidUtilities.getMinTabletSide();
         } else {
             Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
+            iMin = Math.min(point.x, point.y);
         }
-        int i = (int) (min * 0.7f);
+        int i = (int) (iMin * 0.7f);
         if (this.isTextVisible) {
-            String[] split = str2.split("\n");
+            String[] strArrSplit = str2.split("\n");
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             String string = LocaleController.getString(R.string.BotInfoTitle);
             if (z) {
                 spannableStringBuilder.append((CharSequence) string);
                 spannableStringBuilder.append((CharSequence) "\n\n");
             }
-            for (int i2 = 0; i2 < split.length; i2++) {
-                spannableStringBuilder.append((CharSequence) split[i2].trim());
-                if (i2 != split.length - 1) {
+            for (int i2 = 0; i2 < strArrSplit.length; i2++) {
+                spannableStringBuilder.append((CharSequence) strArrSplit[i2].trim());
+                if (i2 != strArrSplit.length - 1) {
                     spannableStringBuilder.append((CharSequence) "\n");
                 }
             }
@@ -182,11 +182,11 @@ public class BotHelpCell extends View {
         } else if (this.isPhotoVisible) {
             this.width = i;
         }
-        int dp3 = this.width + AndroidUtilities.dp(22.0f);
-        this.width = dp3;
+        int iDp3 = this.width + AndroidUtilities.dp(22.0f);
+        this.width = iDp3;
         if (this.isPhotoVisible) {
             int i4 = this.height;
-            int i5 = (int) (dp3 * 0.5625d);
+            int i5 = (int) (iDp3 * 0.5625d);
             this.photoHeight = i5;
             this.height = i4 + i5 + AndroidUtilities.dp(4.0f);
         }
@@ -213,32 +213,32 @@ public class BotHelpCell extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         int width = (getWidth() - this.width) / 2;
-        int dp = this.photoHeight + AndroidUtilities.dp(2.0f);
+        int iDp = this.photoHeight + AndroidUtilities.dp(2.0f);
         Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
         if (shadowDrawable != null) {
-            shadowDrawable.setBounds(width, dp, this.width + width, this.height + dp);
+            shadowDrawable.setBounds(width, iDp, this.width + width, this.height + iDp);
             shadowDrawable.draw(canvas);
         }
         Point point = AndroidUtilities.displaySize;
-        int i = point.x;
-        int i2 = point.y;
+        int measuredWidth = point.x;
+        int measuredHeight = point.y;
         if (getParent() instanceof View) {
             View view = (View) getParent();
-            i = view.getMeasuredWidth();
-            i2 = view.getMeasuredHeight();
+            measuredWidth = view.getMeasuredWidth();
+            measuredHeight = view.getMeasuredHeight();
         }
-        int i3 = i2;
+        int i = measuredHeight;
         Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
-        messageDrawable.setTop((int) getY(), i, i3, false, false);
+        messageDrawable.setTop((int) getY(), measuredWidth, i, false, false);
         messageDrawable.setBounds(width, 0, this.width + width, this.height);
         messageDrawable.draw(canvas);
         Drawable drawable = this.selectorDrawable;
         if (drawable != null) {
-            int i4 = this.selectorDrawableRadius;
-            int i5 = SharedConfig.bubbleRadius;
-            if (i4 != i5) {
-                this.selectorDrawableRadius = i5;
-                Theme.setMaskDrawableRad(drawable, i5, i5);
+            int i2 = this.selectorDrawableRadius;
+            int i3 = SharedConfig.bubbleRadius;
+            if (i2 != i3) {
+                this.selectorDrawableRadius = i3;
+                Theme.setMaskDrawableRad(drawable, i3, i3);
             }
             this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
             this.selectorDrawable.draw(canvas);
@@ -248,12 +248,12 @@ public class BotHelpCell extends View {
         Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
         Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);
         canvas.save();
-        int dp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
-        this.textX = dp2;
-        float f = dp2;
-        int dp3 = AndroidUtilities.dp(11.0f) + dp;
-        this.textY = dp3;
-        canvas.translate(f, dp3);
+        int iDp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
+        this.textX = iDp2;
+        float f = iDp2;
+        int iDp3 = AndroidUtilities.dp(11.0f) + iDp;
+        this.textY = iDp3;
+        canvas.translate(f, iDp3);
         if (this.links.draw(canvas)) {
             invalidate();
         }

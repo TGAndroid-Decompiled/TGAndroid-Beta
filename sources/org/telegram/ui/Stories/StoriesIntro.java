@@ -47,7 +47,7 @@ public class StoriesIntro extends FrameLayout {
         this.startItemAnimationRunnable = new Runnable() {
             @Override
             public final void run() {
-                StoriesIntro.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         ImageView imageView = new ImageView(context);
@@ -116,15 +116,15 @@ public class StoriesIntro extends FrameLayout {
         });
     }
 
-    public void startAnimation(boolean z) {
+    void startAnimation(boolean z) {
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = ofFloat;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.valueAnimator = valueAnimatorOfFloat;
         if (z) {
-            ofFloat.setStartDelay(50L);
+            valueAnimatorOfFloat.setStartDelay(50L);
         }
         this.valueAnimator.setDuration(350L);
         this.valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -139,7 +139,7 @@ public class StoriesIntro extends FrameLayout {
         this.valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StoriesIntro.this.lambda$startAnimation$1(valueAnimator2);
+                this.f$0.lambda$startAnimation$1(valueAnimator2);
             }
         });
         this.valueAnimator.start();
@@ -147,11 +147,11 @@ public class StoriesIntro extends FrameLayout {
     }
 
     public void lambda$startAnimation$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        ((StoriesIntroItemView) this.items.get(this.current)).setProgress(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        ((StoriesIntroItemView) this.items.get(this.current)).setProgress(fFloatValue);
         int i = this.prev;
         if (i != -1) {
-            ((StoriesIntroItemView) this.items.get(i)).setProgress(1.0f - floatValue);
+            ((StoriesIntroItemView) this.items.get(i)).setProgress(1.0f - fFloatValue);
         }
     }
 
@@ -183,7 +183,7 @@ public class StoriesIntro extends FrameLayout {
         }
     }
 
-    public static class StoriesIntroItemView extends View {
+    static class StoriesIntroItemView extends View {
         private final Paint backgroundPaint;
         private final String header;
         private final TextPaint headerTextPaint;
@@ -222,11 +222,11 @@ public class StoriesIntro extends FrameLayout {
             TextPaint textPaint = this.headerTextPaint;
             String str = this.header;
             textPaint.getTextBounds(str, 0, str.length(), this.textBounds);
-            int width = this.textBounds.width();
+            int iWidth = this.textBounds.width();
             TextPaint textPaint2 = this.subHeaderTextPaint;
             String str2 = this.subHeader;
             textPaint2.getTextBounds(str2, 0, str2.length(), this.textBounds);
-            return AndroidUtilities.dp(88.0f) + AndroidUtilities.dp(8.0f) + Math.max(width, this.textBounds.width());
+            return AndroidUtilities.dp(88.0f) + AndroidUtilities.dp(8.0f) + Math.max(iWidth, this.textBounds.width());
         }
 
         public long getLottieAnimationDuration() {
@@ -253,30 +253,30 @@ public class StoriesIntro extends FrameLayout {
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
-            int dp = AndroidUtilities.dp(40.0f);
+            int iDp = AndroidUtilities.dp(40.0f);
             int measuredHeight = getMeasuredHeight() / 2;
-            int dp2 = AndroidUtilities.dp(36.0f);
-            int i3 = dp2 / 2;
-            int i4 = dp - i3;
+            int iDp2 = AndroidUtilities.dp(36.0f);
+            int i3 = iDp2 / 2;
+            int i4 = iDp - i3;
             int i5 = measuredHeight - i3;
-            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
+            this.lottieDrawable.setBounds(i4, i5, i4 + iDp2, iDp2 + i5);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            int dp = AndroidUtilities.dp(40.0f);
+            int iDp = AndroidUtilities.dp(40.0f);
             int measuredHeight = getMeasuredHeight() / 2;
-            int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
-            int i = dp2 / 2;
-            int i2 = dp - i;
+            int iDp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
+            int i = iDp2 / 2;
+            int i2 = iDp - i;
             int i3 = measuredHeight - i;
-            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
+            this.lottieDrawable.setBounds(i2, i3, i2 + iDp2, iDp2 + i3);
             this.lottieDrawable.draw(canvas);
             if (this.progress > 0.0f) {
-                float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);
-                float f = dpf2 * 2.0f;
-                this.rectF.set(dpf2, dpf2, getMeasuredWidth() - f, getMeasuredHeight() - f);
+                float fDpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);
+                float f = fDpf2 * 2.0f;
+                this.rectF.set(fDpf2, fDpf2, getMeasuredWidth() - f, getMeasuredHeight() - f);
                 this.backgroundPaint.setAlpha((int) (this.progress * 30.0f));
                 canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
                 canvas.save();

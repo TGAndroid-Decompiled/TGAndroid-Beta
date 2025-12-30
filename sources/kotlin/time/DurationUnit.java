@@ -29,9 +29,9 @@ public final class DurationUnit {
     }
 
     static {
-        DurationUnit[] $values = $values();
-        $VALUES = $values;
-        $ENTRIES = EnumEntriesKt.enumEntries($values);
+        DurationUnit[] durationUnitArr$values = $values();
+        $VALUES = durationUnitArr$values;
+        $ENTRIES = EnumEntriesKt.enumEntries(durationUnitArr$values);
     }
 
     public static DurationUnit valueOf(String str) {

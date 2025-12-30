@@ -49,28 +49,28 @@ class StringMaker {
         stringMaker3.cacheOffset = 2;
     }
 
-    public String makeKindName(String str) {
-        int lastIndexOf = str.lastIndexOf(45);
-        return lastIndexOf == -1 ? str : str.substring(lastIndexOf + 1);
+    String makeKindName(String str) {
+        int iLastIndexOf = str.lastIndexOf(45);
+        return iLastIndexOf == -1 ? str : str.substring(iLastIndexOf + 1);
     }
 
-    public String makeModifiersString(int i) {
+    String makeModifiersString(int i) {
         if (!this.includeModifiers) {
             return "";
         }
-        String modifier = Modifier.toString(i);
-        if (modifier.length() == 0) {
+        String string = Modifier.toString(i);
+        if (string.length() == 0) {
             return "";
         }
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(modifier);
+        stringBuffer.append(string);
         stringBuffer.append(" ");
         return stringBuffer.toString();
     }
 
     String stripPackageName(String str) {
-        int lastIndexOf = str.lastIndexOf(46);
-        return lastIndexOf == -1 ? str : str.substring(lastIndexOf + 1);
+        int iLastIndexOf = str.lastIndexOf(46);
+        return iLastIndexOf == -1 ? str : str.substring(iLastIndexOf + 1);
     }
 
     String makeTypeName(Class cls, String str, boolean z) {

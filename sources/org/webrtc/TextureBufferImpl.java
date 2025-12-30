@@ -18,7 +18,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int width;
     private final YuvConverter yuvConverter;
 
-    public interface RefCountMonitor {
+    interface RefCountMonitor {
         void onDestroy(TextureBufferImpl textureBufferImpl);
 
         void onRelease(TextureBufferImpl textureBufferImpl);
@@ -51,7 +51,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         });
     }
 
-    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
+    TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
         this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, refCountMonitor);
     }
 
@@ -68,7 +68,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.refCountDelegate = new RefCountDelegate(new Runnable() {
             @Override
             public final void run() {
-                TextureBufferImpl.this.lambda$new$0(refCountMonitor);
+                this.f$0.lambda$new$0(refCountMonitor);
             }
         });
         this.refCountMonitor = refCountMonitor;
@@ -108,9 +108,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         return (VideoFrame.I420Buffer) ThreadUtils.invokeAtFrontUninterruptibly(this.toI420Handler, new Callable() {
             @Override
             public final Object call() {
-                VideoFrame.I420Buffer lambda$toI420$1;
-                lambda$toI420$1 = TextureBufferImpl.this.lambda$toI420$1();
-                return lambda$toI420$1;
+                return this.f$0.lambda$toI420$1();
             }
         });
     }

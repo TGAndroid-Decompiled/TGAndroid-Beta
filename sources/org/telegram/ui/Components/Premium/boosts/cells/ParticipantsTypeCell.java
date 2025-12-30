@@ -29,11 +29,11 @@ public class ParticipantsTypeCell extends BaseCell {
 
     public void setType(int i, boolean z, boolean z2, List list, TLRPC.Chat chat) {
         this.selectedType = i;
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (i == TYPE_ALL) {
-            this.titleTextView.setText(LocaleController.formatString(isChannelAndNotMegaGroup ? R.string.BoostingAllSubscribers : R.string.BoostingAllMembers, new Object[0]));
+            this.titleTextView.setText(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.BoostingAllSubscribers : R.string.BoostingAllMembers, new Object[0]));
         } else if (i == TYPE_NEW) {
-            this.titleTextView.setText(LocaleController.formatString(isChannelAndNotMegaGroup ? R.string.BoostingNewSubscribers : R.string.BoostingNewMembers, new Object[0]));
+            this.titleTextView.setText(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.BoostingNewSubscribers : R.string.BoostingNewMembers, new Object[0]));
         }
         this.radioButton.setChecked(z, false);
         setDivider(z2);

@@ -143,7 +143,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
                 @Override
                 public final void onCameraMoveStarted(int i) {
-                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0(IMapsProvider.OnCameraMoveStartedListener.this, i);
+                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0(onCameraMoveStartedListener, i);
                 }
             });
         }
@@ -207,17 +207,17 @@ public class GoogleMapsProvider implements IMapsProvider {
 
         @Override
         public IMapsProvider.IMarker addMarker(IMapsProvider.IMarkerOptions iMarkerOptions) {
-            Marker addMarker = this.googleMap.addMarker(((GoogleMarkerOptions) iMarkerOptions).markerOptions);
-            GoogleMarker googleMarker = new GoogleMarker(addMarker);
-            this.implToAbsMarkerMap.put(addMarker, googleMarker);
+            Marker markerAddMarker = this.googleMap.addMarker(((GoogleMarkerOptions) iMarkerOptions).markerOptions);
+            GoogleMarker googleMarker = new GoogleMarker(markerAddMarker);
+            this.implToAbsMarkerMap.put(markerAddMarker, googleMarker);
             return googleMarker;
         }
 
         @Override
         public IMapsProvider.ICircle addCircle(IMapsProvider.ICircleOptions iCircleOptions) {
-            Circle addCircle = this.googleMap.addCircle(((GoogleCircleOptions) iCircleOptions).circleOptions);
-            GoogleCircle googleCircle = new GoogleCircle(addCircle);
-            this.implToAbsCircleMap.put(addCircle, googleCircle);
+            Circle circleAddCircle = this.googleMap.addCircle(((GoogleCircleOptions) iCircleOptions).circleOptions);
+            GoogleCircle googleCircle = new GoogleCircle(circleAddCircle);
+            this.implToAbsCircleMap.put(circleAddCircle, googleCircle);
             return googleCircle;
         }
 
@@ -228,7 +228,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                 @Override
                 public final void onMyLocationChange(Location location) {
-                    Consumer.this.accept(location);
+                    consumer.accept(location);
                 }
             });
         }
@@ -238,9 +238,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public final boolean onMarkerClick(Marker marker) {
-                    boolean lambda$setOnMarkerClickListener$1;
-                    lambda$setOnMarkerClickListener$1 = GoogleMapsProvider.GoogleMapImpl.this.lambda$setOnMarkerClickListener$1(onMarkerClickListener, marker);
-                    return lambda$setOnMarkerClickListener$1;
+                    return this.f$0.lambda$setOnMarkerClickListener$1(onMarkerClickListener, marker);
                 }
             });
         }
@@ -574,7 +572,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         private MapView mapView;
         private Runnable onLayoutListener;
 
-        public class AnonymousClass1 extends MapView {
+        class AnonymousClass1 extends MapView {
             AnonymousClass1(Context context) {
                 super(context);
             }
@@ -585,9 +583,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                     return GoogleMapView.this.dispatchInterceptor.onInterceptTouchEvent(motionEvent, new IMapsProvider.ICallableMethod() {
                         @Override
                         public final Object call(Object obj) {
-                            Boolean lambda$dispatchTouchEvent$0;
-                            lambda$dispatchTouchEvent$0 = GoogleMapsProvider.GoogleMapView.AnonymousClass1.this.lambda$dispatchTouchEvent$0((MotionEvent) obj);
-                            return lambda$dispatchTouchEvent$0;
+                            return this.f$0.lambda$dispatchTouchEvent$0((MotionEvent) obj);
                         }
                     });
                 }
@@ -604,9 +600,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                     return GoogleMapView.this.interceptInterceptor.onInterceptTouchEvent(motionEvent, new IMapsProvider.ICallableMethod() {
                         @Override
                         public final Object call(Object obj) {
-                            Boolean lambda$onInterceptTouchEvent$1;
-                            lambda$onInterceptTouchEvent$1 = GoogleMapsProvider.GoogleMapView.AnonymousClass1.this.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
-                            return lambda$onInterceptTouchEvent$1;
+                            return this.f$0.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
                         }
                     });
                 }
@@ -655,7 +649,7 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.mapView.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public final void onMapReady(GoogleMap googleMap) {
-                    GoogleMapsProvider.GoogleMapView.this.lambda$getMapAsync$0(consumer, googleMap);
+                    this.f$0.lambda$getMapAsync$0(consumer, googleMap);
                 }
             });
         }

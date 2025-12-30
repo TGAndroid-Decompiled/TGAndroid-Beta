@@ -41,7 +41,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
@@ -91,7 +90,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         return false;
     }
 
-    public void bottomPanelTranslationY(float f) {
+    protected void bottomPanelTranslationY(float f) {
     }
 
     protected void closeParent() {
@@ -104,13 +103,13 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     protected void drawEmojiBackground(Canvas canvas, View view) {
     }
 
-    public void extendActionMode(ActionMode actionMode, Menu menu) {
+    protected void extendActionMode(ActionMode actionMode, Menu menu) {
     }
 
-    public void onEmojiKeyboardUpdate() {
+    protected void onEmojiKeyboardUpdate() {
     }
 
-    public void onLineCountChanged(int i, int i2) {
+    protected void onLineCountChanged(int i, int i2) {
     }
 
     protected boolean onScrollYChange(int i) {
@@ -123,7 +122,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     public void setDelegate(EditTextEmojiDelegate editTextEmojiDelegate) {
     }
 
-    public void updatedEmojiExpanded() {
+    protected void updatedEmojiExpanded() {
     }
 
     public boolean isPopupVisible() {
@@ -194,13 +193,13 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                     EditTextEmoji.this.openKeyboardInternal();
                 }
                 if (motionEvent.getAction() == 0) {
-                    boolean isFocused = isFocused();
+                    boolean zIsFocused = isFocused();
                     requestFocus();
                     if (!AndroidUtilities.showKeyboard(this)) {
                         clearFocus();
                         requestFocus();
                     }
-                    if (!isFocused) {
+                    if (!zIsFocused) {
                         setSelection(getText().length());
                     }
                 }
@@ -218,7 +217,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            public int getActionModeStyle() {
+            protected int getActionModeStyle() {
                 int i2 = i;
                 if (i2 == 2 || i2 == 3) {
                     return 2;
@@ -227,7 +226,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            public void extendActionMode(ActionMode actionMode, Menu menu) {
+            protected void extendActionMode(ActionMode actionMode, Menu menu) {
                 if (EditTextEmoji.this.allowEntities()) {
                     ChatActivity.fillActionModeMenu(menu, null, EditTextEmoji.this.currentStyle == 3, true);
                 } else {
@@ -244,7 +243,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            public void onSelectionChanged(int i2, int i3) {
+            protected void onSelectionChanged(int i2, int i3) {
                 super.onSelectionChanged(i2, i3);
                 if (EditTextEmoji.this.emojiIconDrawable != null) {
                     boolean z2 = false;
@@ -375,7 +374,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                EditTextEmoji.this.lambda$new$0(sizeNotifierFrameLayout, resourcesProvider, view);
+                this.f$0.lambda$new$0(sizeNotifierFrameLayout, resourcesProvider, view);
             }
         });
         this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
@@ -391,18 +390,18 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 ItemOptions itemOptions = this.formatOptions;
                 if (itemOptions == null) {
                     this.editText.hideActionMode();
-                    ItemOptions makeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, this.emojiButton);
-                    makeOptions.setMaxHeight(AndroidUtilities.dp(280.0f));
+                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, this.emojiButton);
+                    itemOptionsMakeOptions.setMaxHeight(AndroidUtilities.dp(280.0f));
                     final EditTextCaption editTextCaption = this.editText;
                     Objects.requireNonNull(editTextCaption);
-                    editTextCaption.extendActionMode(null, new MenuToItemOptions(makeOptions, new Utilities.Callback() {
+                    editTextCaption.extendActionMode(null, new MenuToItemOptions(itemOptionsMakeOptions, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            EditTextCaption.this.performMenuAction(((Integer) obj).intValue());
+                            editTextCaption.performMenuAction(((Integer) obj).intValue());
                         }
                     }, this.editText.getOnPremiumMenuLockClickListener()));
-                    makeOptions.forceTop(true);
-                    makeOptions.show();
+                    itemOptionsMakeOptions.forceTop(true);
+                    itemOptionsMakeOptions.show();
                     return;
                 }
                 itemOptions.dismiss();
@@ -411,10 +410,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
             if (!isPopupShowing()) {
                 showPopup(1);
-                boolean isFocused = this.editText.isFocused();
+                boolean zIsFocused = this.editText.isFocused();
                 this.emojiView.onOpen(this.editText.length() > 0, false);
                 this.editText.requestFocus();
-                if (isFocused) {
+                if (zIsFocused) {
                     return;
                 }
                 EditTextCaption editTextCaption2 = this.editText;
@@ -438,7 +437,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
     }
 
-    public boolean allowEntities() {
+    protected boolean allowEntities() {
         int i = this.currentStyle;
         return i == 2 || i == 3 || i == 5;
     }
@@ -480,11 +479,11 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     public void setEnabled(boolean z) {
         this.editText.setEnabled(z);
         this.emojiButton.setVisibility(z ? 0 : 8);
-        int dp = AndroidUtilities.dp(this.currentStyle == 0 ? 11.0f : 8.0f);
+        int iDp = AndroidUtilities.dp(this.currentStyle == 0 ? 11.0f : 8.0f);
         if (z) {
-            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), dp);
+            this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), iDp);
         } else {
-            this.editText.setPadding(0, 0, 0, dp);
+            this.editText.setPadding(0, 0, 0, iDp);
         }
     }
 
@@ -623,15 +622,15 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                     measuredHeight += ((ViewGroup) this.emojiView.getParent()).getHeight() - this.emojiView.getBottom();
                 }
                 this.emojiViewAlpha = 1.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, measuredHeight);
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, measuredHeight);
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        EditTextEmoji.this.lambda$hidePopup$1(measuredHeight, valueAnimator);
+                        this.f$0.lambda$hidePopup$1(measuredHeight, valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
-                ofFloat.addListener(new AnimatorListenerAdapter() {
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         EditTextEmoji.this.isAnimatePopupClosing = false;
@@ -642,9 +641,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                         EditTextEmoji.this.hideEmojiView();
                     }
                 });
-                ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(250L);
+                valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                valueAnimatorOfFloat.start();
             } else {
                 hideEmojiView();
             }
@@ -662,15 +661,15 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
     public void lambda$hidePopup$1(int i, ValueAnimator valueAnimator) {
         int i2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.emojiView.setTranslationY(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.emojiView.setTranslationY(fFloatValue);
         float f = i;
-        float f2 = 1.0f - (floatValue / f);
+        float f2 = 1.0f - (fFloatValue / f);
         this.emojiViewAlpha = f2;
         if (i > 0 && ((i2 = this.currentStyle) == 2 || i2 == 3)) {
             this.emojiView.setAlpha(f2);
         }
-        bottomPanelTranslationY(floatValue - f);
+        bottomPanelTranslationY(fFloatValue - f);
     }
 
     public float getEmojiPaddingShown() {
@@ -711,7 +710,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(this.openKeyboardRunnable, 100L);
     }
 
-    public void showPopup(int i) {
+    protected void showPopup(int i) {
         if (i == 1) {
             EmojiView emojiView = this.emojiView;
             boolean z = emojiView != null && emojiView.getVisibility() == 0;
@@ -735,33 +734,33 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 }
             }
             android.graphics.Point point = AndroidUtilities.displaySize;
-            int i2 = (point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight) + (this.includeNavigationBar ? AndroidUtilities.navigationBarHeight : 0);
+            int iMin = (point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight) + (this.includeNavigationBar ? AndroidUtilities.navigationBarHeight : 0);
             if (this.emojiExpanded) {
-                i2 = Math.min(i2 + AndroidUtilities.dp(200.0f), AndroidUtilities.displaySize.y);
+                iMin = Math.min(iMin + AndroidUtilities.dp(200.0f), AndroidUtilities.displaySize.y);
             }
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) emojiView2.getLayoutParams();
-            layoutParams.height = i2;
+            layoutParams.height = iMin;
             emojiView2.setLayoutParams(layoutParams);
             if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                 AndroidUtilities.hideKeyboard(this.editText);
             }
             SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierLayout;
             if (sizeNotifierFrameLayout != null) {
-                this.emojiPadding = i2;
+                this.emojiPadding = iMin;
                 sizeNotifierFrameLayout.requestLayout();
                 this.emojiIconDrawable.setIcon(R.drawable.input_keyboard, true);
                 onWindowSizeChanged();
             }
             onEmojiKeyboardUpdate();
             if (!this.keyboardVisible && !z && allowSearchAnimation()) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        EditTextEmoji.this.lambda$showPopup$2(valueAnimator);
+                        this.f$0.lambda$showPopup$2(valueAnimator);
                     }
                 });
-                ofFloat.addListener(new AnimatorListenerAdapter() {
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         EditTextEmoji.this.emojiView.setTranslationY(0.0f);
@@ -770,9 +769,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                         EditTextEmoji.this.bottomPanelTranslationY(0.0f);
                     }
                 });
-                ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(250L);
+                valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                valueAnimatorOfFloat.start();
                 return;
             }
             this.emojiView.setAlpha(1.0f);
@@ -808,22 +807,22 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
     public void lambda$showPopup$2(ValueAnimator valueAnimator) {
         int i;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.emojiView.setTranslationY(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.emojiView.setTranslationY(fFloatValue);
         int i2 = this.emojiPadding;
-        float f = 1.0f - (floatValue / i2);
+        float f = 1.0f - (fFloatValue / i2);
         this.emojiViewAlpha = f;
         if (i2 > 0 && ((i = this.currentStyle) == 2 || i == 3)) {
             this.emojiView.setAlpha(f);
         }
-        bottomPanelTranslationY(floatValue);
+        bottomPanelTranslationY(fFloatValue);
     }
 
     private void onWindowSizeChanged() {
         this.sizeNotifierLayout.getHeight();
     }
 
-    public void createEmojiView() {
+    protected void createEmojiView() {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             this.sizeNotifierLayout.removeView(emojiView);
@@ -835,9 +834,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         BaseFragment baseFragment = this.parentFragment;
         boolean z = this.allowAnimatedEmoji;
         Context context = getContext();
-        boolean allowSearch = allowSearch();
+        boolean zAllowSearch = allowSearch();
         int i = this.currentStyle;
-        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, allowSearch, null, null, (i == 2 || i == 3 || i == 5) ? false : true, this.resourcesProvider, false) {
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, zAllowSearch, null, null, (i == 2 || i == 3 || i == 5) ? false : true, this.resourcesProvider, false) {
             private boolean changedExpanded;
             private boolean lastExpanded;
             private int lastHeight;
@@ -881,7 +880,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.sizeNotifierLayout.addView(this.emojiView);
     }
 
-    public class AnonymousClass7 implements EmojiView.EmojiViewDelegate {
+    class AnonymousClass7 implements EmojiView.EmojiViewDelegate {
         @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
@@ -1051,9 +1050,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             try {
                 try {
                     EditTextEmoji.this.innerTextChange = 2;
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(str, EditTextEmoji.this.editText.getPaint().getFontMetricsInt(), false);
-                    EditTextEmoji.this.editText.setText(EditTextEmoji.this.editText.getText().insert(selectionEnd, replaceEmoji));
-                    int length = selectionEnd + replaceEmoji.length();
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(str, EditTextEmoji.this.editText.getPaint().getFontMetricsInt(), false);
+                    EditTextEmoji.this.editText.setText(EditTextEmoji.this.editText.getText().insert(selectionEnd, charSequenceReplaceEmoji));
+                    int length = selectionEnd + charSequenceReplaceEmoji.length();
                     EditTextEmoji.this.editText.setSelection(length, length);
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -1102,7 +1101,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    EditTextEmoji.AnonymousClass7.this.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1147,16 +1146,16 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
         boolean z3 = false;
         if (isPopupShowing()) {
-            int i3 = (z ? this.keyboardHeightLand : this.keyboardHeight) + (this.includeNavigationBar ? AndroidUtilities.navigationBarHeight : 0);
+            int iMin = (z ? this.keyboardHeightLand : this.keyboardHeight) + (this.includeNavigationBar ? AndroidUtilities.navigationBarHeight : 0);
             if (this.emojiExpanded) {
-                i3 = Math.min(i3 + AndroidUtilities.dp(200.0f), AndroidUtilities.displaySize.y);
+                iMin = Math.min(iMin + AndroidUtilities.dp(200.0f), AndroidUtilities.displaySize.y);
             }
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
-            int i4 = layoutParams.width;
-            int i5 = AndroidUtilities.displaySize.x;
-            if (i4 != i5 || layoutParams.height != i3) {
-                layoutParams.width = i5;
-                layoutParams.height = i3;
+            int i3 = layoutParams.width;
+            int i4 = AndroidUtilities.displaySize.x;
+            if (i3 != i4 || layoutParams.height != iMin) {
+                layoutParams.width = i4;
+                layoutParams.height = iMin;
                 this.emojiView.setLayoutParams(layoutParams);
                 SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierLayout;
                 if (sizeNotifierFrameLayout != null) {

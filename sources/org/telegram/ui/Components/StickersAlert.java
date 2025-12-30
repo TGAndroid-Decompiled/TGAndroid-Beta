@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -89,7 +90,6 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -174,7 +174,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         boolean isInScheduleMode();
 
-        void lambda$onStickerSelected$74(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2);
+        void lambda$onStickerSelected$77(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2);
     }
 
     public interface StickersAlertInstallDelegate {
@@ -191,11 +191,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
-    public class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
+    class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
         public void addToFavoriteSelected(String str) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
@@ -335,7 +335,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.delegate == null) {
                 return;
             }
-            StickersAlert.this.delegate.lambda$onStickerSelected$74(document, str, obj, null, StickersAlert.this.clearsInputField, z, i, 0);
+            StickersAlert.this.delegate.lambda$onStickerSelected$77(document, str, obj, null, StickersAlert.this.clearsInputField, z, i, 0);
             StickersAlert.this.lambda$new$0();
         }
 
@@ -362,8 +362,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         @Override
         public void deleteSticker(TLRPC.Document document) {
             StickersAlert.this.stickerSet.documents.remove(document);
-            final boolean isEmpty = StickersAlert.this.stickerSet.documents.isEmpty();
-            if (isEmpty) {
+            final boolean zIsEmpty = StickersAlert.this.stickerSet.documents.isEmpty();
+            if (zIsEmpty) {
                 StickersAlert.this.lambda$new$0();
             }
             StickersAlert.this.adapter.notifyDataSetChanged();
@@ -374,7 +374,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ConnectionsManager.getInstance(((BottomSheet) StickersAlert.this).currentAccount).sendRequest(tL_stickers_removeStickerFromSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickersAlert.AnonymousClass1.this.lambda$deleteSticker$1(isEmpty, alertDialog, tLObject, tL_error);
+                    this.f$0.lambda$deleteSticker$1(zIsEmpty, alertDialog, tLObject, tL_error);
                 }
             });
         }
@@ -383,7 +383,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.AnonymousClass1.this.lambda$deleteSticker$0(tLObject, z, alertDialog);
+                    this.f$0.lambda$deleteSticker$0(tLObject, z, alertDialog);
                 }
             });
         }
@@ -415,21 +415,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
-                        StickersAlert.AnonymousClass1.this.lambda$editSticker$2(pathToAttach, arrayList, chatActivity, document);
+                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                        this.f$0.lambda$editSticker$2(pathToAttach, arrayList, chatActivity, document);
                     }
                 }, 300L);
                 return;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
-                    StickersAlert.AnonymousClass1.this.lambda$editSticker$3(document, chatActivity);
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    this.f$0.lambda$editSticker$3(document, chatActivity);
                 }
             }, 300L);
         }
 
-        public void lambda$editSticker$2(File file, ArrayList arrayList, ChatActivity chatActivity, TLRPC.Document document) {
+        public void lambda$editSticker$2(File file, ArrayList arrayList, ChatActivity chatActivity, TLRPC.Document document) throws Resources.NotFoundException, NumberFormatException {
             arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L));
             PhotoViewer.getInstance().setParentActivity(StickersAlert.this.parentFragment.getParentActivity(), ((BottomSheet) StickersAlert.this).resourcesProvider);
             PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -442,8 +442,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(StickersAlert.this.stickerSet);
         }
 
-        public void lambda$editSticker$3(TLRPC.Document document, ChatActivity chatActivity) {
-            File makeCacheFile = StoryEntry.makeCacheFile(((BottomSheet) StickersAlert.this).currentAccount, "webp");
+        public void lambda$editSticker$3(TLRPC.Document document, ChatActivity chatActivity) throws Resources.NotFoundException, NumberFormatException {
+            File fileMakeCacheFile = StoryEntry.makeCacheFile(((BottomSheet) StickersAlert.this).currentAccount, "webp");
             int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
             int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;
             float f = 512;
@@ -451,21 +451,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             float f2 = i;
             size.width = f2;
             double d = (f2 * f) / f;
-            float floor = (float) Math.floor(d);
-            size.height = floor;
-            if (floor > f2) {
+            float fFloor = (float) Math.floor(d);
+            size.height = fFloor;
+            if (fFloor > f2) {
                 size.height = f2;
                 size.width = (float) Math.floor(d);
             }
-            Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
             try {
-                createBitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(makeCacheFile));
+                bitmapCreateBitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(fileMakeCacheFile));
             } catch (Throwable th) {
                 FileLog.e(th);
             }
-            createBitmap.recycle();
+            bitmapCreateBitmap.recycle();
             ArrayList arrayList = new ArrayList();
-            MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, makeCacheFile.getAbsolutePath(), 0, false, 0, 0, 0L);
+            MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, fileMakeCacheFile.getAbsolutePath(), 0, false, 0, 0, 0L);
             arrayList.add(photoEntry);
             VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
             mediaEntity.type = (byte) 0;
@@ -475,9 +475,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             mediaEntity.y = 0.5f - ((Math.min(512, 512) / f) / 2.0f);
             mediaEntity.width = Math.min(512, 512) / f;
             mediaEntity.height = Math.min(512, 512) / f;
-            int floor2 = (int) Math.floor(size.width * 0.5d);
-            mediaEntity.viewWidth = floor2;
-            mediaEntity.viewHeight = floor2;
+            int iFloor = (int) Math.floor(size.width * 0.5d);
+            mediaEntity.viewWidth = iFloor;
+            mediaEntity.viewHeight = iFloor;
             mediaEntity.scale = 2.0f;
             mediaEntity.document = document;
             if (MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isVideoStickerDocument(document)) {
@@ -565,13 +565,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         final RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                StickersAlert.this.lambda$new$1(tL_messages_getAttachedStickers, tLObject2, tL_error);
+                this.f$0.lambda$new$1(tL_messages_getAttachedStickers, tLObject2, tL_error);
             }
         };
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                StickersAlert.this.lambda$new$2(obj, tL_messages_getAttachedStickers, requestDelegate, tLObject2, tL_error);
+                this.f$0.lambda$new$2(obj, tL_messages_getAttachedStickers, requestDelegate, tLObject2, tL_error);
             }
         });
         init(context);
@@ -581,7 +581,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$new$0(tL_error, tLObject, tL_messages_getAttachedStickers);
+                this.f$0.lambda$new$0(tL_error, tLObject, tL_messages_getAttachedStickers);
             }
         });
     }
@@ -638,14 +638,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.importingSoftware = str;
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                StickersAlert.this.lambda$new$4(arrayList, arrayList2);
+            public final void run() throws Throwable {
+                this.f$0.lambda$new$4(arrayList, arrayList2);
             }
         });
         init(context);
     }
 
-    public void lambda$new$4(ArrayList arrayList, ArrayList arrayList2) {
+    public void lambda$new$4(ArrayList arrayList, ArrayList arrayList2) throws Throwable {
         Uri uri;
         String stickerExt;
         int i;
@@ -653,26 +653,26 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         int size = arrayList.size();
-        final Boolean bool = null;
+        final Boolean boolValueOf = null;
         for (int i2 = 0; i2 < size; i2++) {
             Object obj = arrayList.get(i2);
             if ((obj instanceof Uri) && (stickerExt = MediaController.getStickerExt((uri = (Uri) obj))) != null) {
-                boolean equals = "tgs".equals(stickerExt);
-                if (bool == null) {
-                    bool = Boolean.valueOf(equals);
-                } else if (bool.booleanValue() != equals) {
+                boolean zEquals = "tgs".equals(stickerExt);
+                if (boolValueOf == null) {
+                    boolValueOf = Boolean.valueOf(zEquals);
+                } else if (boolValueOf.booleanValue() != zEquals) {
                     continue;
                 }
                 if (isDismissed()) {
                     return;
                 }
                 SendMessagesHelper.ImportingSticker importingSticker = new SendMessagesHelper.ImportingSticker();
-                importingSticker.animated = equals;
-                String copyFileToCache = MediaController.copyFileToCache(uri, stickerExt, (equals ? 64 : 512) * 1024);
-                importingSticker.path = copyFileToCache;
-                if (copyFileToCache != null) {
-                    if (!equals) {
-                        BitmapFactory.decodeFile(copyFileToCache, options);
+                importingSticker.animated = zEquals;
+                String strCopyFileToCache = MediaController.copyFileToCache(uri, stickerExt, (zEquals ? 64 : 512) * 1024);
+                importingSticker.path = strCopyFileToCache;
+                if (strCopyFileToCache != null) {
+                    if (!zEquals) {
+                        BitmapFactory.decodeFile(strCopyFileToCache, options);
                         int i3 = options.outWidth;
                         if ((i3 == 512 && (i = options.outHeight) > 0 && i <= 512) || (options.outHeight == 512 && i3 > 0 && i3 <= 512)) {
                             importingSticker.mimeType = "image/" + stickerExt;
@@ -698,7 +698,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$new$3(arrayList3, bool);
+                this.f$0.lambda$new$3(arrayList3, boolValueOf);
             }
         });
     }
@@ -764,7 +764,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StickersAlert.this.lambda$loadStickerSet$6(mediaDataController, tLObject, tL_error);
+                        this.f$0.lambda$loadStickerSet$6(mediaDataController, tLObject, tL_error);
                     }
                 });
             } else {
@@ -788,7 +788,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$loadStickerSet$5(tL_error, tLObject, mediaDataController);
+                this.f$0.lambda$loadStickerSet$5(tL_error, tLObject, mediaDataController);
             }
         });
     }
@@ -830,7 +830,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public class AnonymousClass2 extends Transition {
+    class AnonymousClass2 extends Transition {
         AnonymousClass2() {
         }
 
@@ -849,16 +849,16 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         @Override
         public Animator createAnimator(ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
             final int i = StickersAlert.this.scrollOffsetY;
-            final int intValue = ((Integer) transitionValues.values.get("offset")).intValue() - ((Integer) transitionValues2.values.get("offset")).intValue();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.setDuration(250L);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            final int iIntValue = ((Integer) transitionValues.values.get("offset")).intValue() - ((Integer) transitionValues2.values.get("offset")).intValue();
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.setDuration(250L);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StickersAlert.AnonymousClass2.this.lambda$createAnimator$0(intValue, i, valueAnimator);
+                    this.f$0.lambda$createAnimator$0(iIntValue, i, valueAnimator);
                 }
             });
-            return ofFloat;
+            return valueAnimatorOfFloat;
         }
 
         public void lambda$createAnimator$0(int i, int i2, ValueAnimator valueAnimator) {
@@ -887,9 +887,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     private void checkPremiumStickers() {
         if (this.stickerSet != null) {
-            TLRPC.TL_messages_stickerSet filterPremiumStickers = MessagesController.getInstance(this.currentAccount).filterPremiumStickers(this.stickerSet);
-            this.stickerSet = filterPremiumStickers;
-            if (filterPremiumStickers == null) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSetFilterPremiumStickers = MessagesController.getInstance(this.currentAccount).filterPremiumStickers(this.stickerSet);
+            this.stickerSet = tL_messages_stickerSetFilterPremiumStickers;
+            if (tL_messages_stickerSetFilterPremiumStickers == null) {
                 lambda$new$0();
             }
         }
@@ -989,10 +989,10 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     canvas.save();
                     canvas.rotate(StickersAlert.this.stickersShaker.getRotationValueForPos(adapterPosition), view2.getLeft() + (view2.getMeasuredWidth() / 2.0f), view2.getTop() + (view2.getMeasuredHeight() / 2.0f));
                     canvas.translate(StickersAlert.this.stickersShaker.getTranslateXValueForPos(adapterPosition), StickersAlert.this.stickersShaker.getTranslateYValueForPos(adapterPosition));
-                    boolean drawChild = super.drawChild(canvas, view2, j);
+                    boolean zDrawChild = super.drawChild(canvas, view2, j);
                     canvas.restore();
                     invalidate();
-                    return drawChild;
+                    return zDrawChild;
                 }
                 return super.drawChild(canvas, view2, j);
             }
@@ -1018,7 +1018,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         RecyclerListView recyclerListView2 = this.gridView;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 5) {
             @Override
-            public boolean isLayoutRTL() {
+            protected boolean isLayoutRTL() {
                 return StickersAlert.this.stickerSetCovereds != null && LocaleController.isRTL;
             }
         };
@@ -1103,9 +1103,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.gridView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$init$7;
-                lambda$init$7 = StickersAlert.this.lambda$init$7(view2, motionEvent);
-                return lambda$init$7;
+                return this.f$0.lambda$init$7(view2, motionEvent);
             }
         });
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1117,7 +1115,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i3) {
-                StickersAlert.this.lambda$init$9(view2, i3);
+                this.f$0.lambda$init$9(view2, i3);
             }
         };
         this.stickersOnItemClickListener = onItemClickListener;
@@ -1138,9 +1136,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$init$10;
-                lambda$init$10 = StickersAlert.lambda$init$10(view2, motionEvent);
-                return lambda$init$10;
+                return StickersAlert.lambda$init$10(view2, motionEvent);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
@@ -1167,13 +1163,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersAlert.this.lambda$init$11(view2);
+                this.f$0.lambda$init$11(view2);
             }
         });
         this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
             public final void onItemClick(int i3) {
-                StickersAlert.this.onSubItemClick(i3);
+                this.f$0.onSubItemClick(i3);
             }
         });
         this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
@@ -1215,7 +1211,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.stickerPreviewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersAlert.this.lambda$init$12(view2);
+                this.f$0.lambda$init$12(view2);
             }
         });
         BackupImageView backupImageView = new BackupImageView(context);
@@ -1240,7 +1236,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.previewSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersAlert.this.lambda$init$13(view2);
+                this.f$0.lambda$init$13(view2);
             }
         });
         FrameLayout.LayoutParams layoutParams3 = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
@@ -1315,10 +1311,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 TLRPC.DocumentAttribute documentAttribute = this.selectedSticker.attributes.get(i2);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                     String str = documentAttribute.alt;
-                    if (str != null && str.length() > 0) {
-                        TextView textView2 = this.stickerEmojiTextView;
-                        textView2.setText(Emoji.replaceEmoji(documentAttribute.alt, textView2.getPaint().getFontMetricsInt(), false));
+                    if (str == null || str.length() <= 0) {
+                        break;
                     }
+                    TextView textView2 = this.stickerEmojiTextView;
+                    textView2.setText(Emoji.replaceEmoji(documentAttribute.alt, textView2.getPaint().getFontMetricsInt(), false));
                 } else {
                     i2++;
                 }
@@ -1352,7 +1349,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 stickersAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        StickersAlert.this.lambda$init$8(dialogInterface);
+                        this.f$0.lambda$init$8(dialogInterface);
                     }
                 });
             }
@@ -1379,7 +1376,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             hidePreview();
             this.selectedStickerPath = null;
         } else {
-            this.delegate.lambda$onStickerSelected$74(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0, 0);
+            this.delegate.lambda$onStickerSelected$77(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0, 0);
             lambda$new$0();
         }
     }
@@ -1408,23 +1405,23 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$checkOptions$14(view);
+                        this.f$0.lambda$checkOptions$14(view);
                     }
                 });
-                ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, 0, LocaleController.getString(R.string.StickersDeleteForEveryone), false, this.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, 0, LocaleController.getString(R.string.StickersDeleteForEveryone), false, this.resourcesProvider);
                 int themedColor = getThemedColor(Theme.key_text_RedBold);
-                addItem.setColors(themedColor, themedColor);
-                addItem.setSelectorColor(Theme.multAlpha(themedColor, 0.1f));
+                actionBarMenuSubItemAddItem.setColors(themedColor, themedColor);
+                actionBarMenuSubItemAddItem.setSelectorColor(Theme.multAlpha(themedColor, 0.1f));
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, 0, LocaleController.getString(R.string.StickersRemoveForMe), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$checkOptions$15(view);
+                        this.f$0.lambda$checkOptions$15(view);
                     }
                 });
-                addItem.setOnClickListener(new View.OnClickListener() {
+                actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$checkOptions$17(view);
+                        this.f$0.lambda$checkOptions$17(view);
                     }
                 });
                 this.deleteItem = this.optionsButton.addSwipeBackItem(R.drawable.msg_delete, null, LocaleController.getString(R.string.Delete), actionBarPopupWindowLayout);
@@ -1434,7 +1431,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StickersAlert.this.lambda$checkOptions$19(view);
+                    this.f$0.lambda$checkOptions$19(view);
                 }
             });
             messageContainsEmojiButton.setTag(R.id.fit_width_tag, 1);
@@ -1466,7 +1463,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         StickersDialogs.showDeleteForEveryOneDialog(this.stickerSet.set, this.resourcesProvider, getContext(), new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$checkOptions$16();
+                this.f$0.lambda$checkOptions$16();
             }
         });
     }
@@ -1482,7 +1479,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$checkOptions$18();
+                this.f$0.lambda$checkOptions$18();
             }
         }, 200L);
     }
@@ -1494,38 +1491,38 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     private void updateSendButton() {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         android.graphics.Point point = AndroidUtilities.displaySize;
-        int min = (int) ((Math.min(point.x, point.y) / 2) / AndroidUtilities.density);
+        int iMin = (int) ((Math.min(point.x, point.y) / 2) / AndroidUtilities.density);
         if (this.importingStickers != null) {
             this.previewSendButton.setText(LocaleController.getString(R.string.ImportStickersRemove));
             this.previewSendButton.setTextColor(getThemedColor(Theme.key_text_RedBold));
-            float f = min;
-            this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(min, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
-            this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(min, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
+            float f = iMin;
+            this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(iMin, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
+            this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(iMin, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
             this.previewSendButton.setVisibility(0);
             this.previewSendButtonShadow.setVisibility(0);
             return;
         }
         if (this.delegate != null && ((tL_messages_stickerSet = this.stickerSet) == null || !tL_messages_stickerSet.set.masks)) {
             this.previewSendButton.setText(LocaleController.getString(R.string.SendSticker));
-            float f2 = min;
-            this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(min, f2, 17, 0.0f, 0.0f, 0.0f, 30.0f));
-            this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(min, f2, 17, 0.0f, 0.0f, 0.0f, 30.0f));
+            float f2 = iMin;
+            this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(iMin, f2, 17, 0.0f, 0.0f, 0.0f, 30.0f));
+            this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(iMin, f2, 17, 0.0f, 0.0f, 0.0f, 30.0f));
             this.previewSendButton.setVisibility(0);
             this.previewSendButtonShadow.setVisibility(0);
             return;
         }
         this.previewSendButton.setText(LocaleController.getString(R.string.Close));
-        this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(min, min, 17));
-        this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(min, min, 17));
+        this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(iMin, iMin, 17));
+        this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(iMin, iMin, 17));
         this.previewSendButton.setVisibility(8);
         this.previewSendButtonShadow.setVisibility(8);
     }
 
     public void removeSticker(SendMessagesHelper.ImportingSticker importingSticker) {
-        int indexOf = this.importingStickersPaths.indexOf(importingSticker);
-        if (indexOf >= 0) {
-            this.importingStickersPaths.remove(indexOf);
-            this.adapter.notifyItemRemoved(indexOf);
+        int iIndexOf = this.importingStickersPaths.indexOf(importingSticker);
+        if (iIndexOf >= 0) {
+            this.importingStickersPaths.remove(iIndexOf);
+            this.adapter.notifyItemRemoved(iIndexOf);
             if (this.importingStickersPaths.isEmpty()) {
                 lambda$new$0();
             } else {
@@ -1602,20 +1599,20 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             StickersDialogs.showNameEditorDialog(this.stickerSet.set, this.resourcesProvider, getContext(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    StickersAlert.this.lambda$onSubItemClick$22((CharSequence) obj, (Utilities.Callback) obj2);
+                    this.f$0.lambda$onSubItemClick$22((CharSequence) obj, (Utilities.Callback) obj2);
                 }
             });
         } else if (i == 5) {
             StickersDialogs.showDeleteForEveryOneDialog(this.stickerSet.set, this.resourcesProvider, getContext(), new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.this.lambda$onSubItemClick$23();
+                    this.f$0.lambda$onSubItemClick$23();
                 }
             });
         }
     }
 
-    public class AnonymousClass11 extends ShareAlert {
+    class AnonymousClass11 extends ShareAlert {
         AnonymousClass11(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
         }
@@ -1632,12 +1629,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
-        public void onSend(final LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        protected void onSend(final LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
             if (z) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersAlert.AnonymousClass11.this.lambda$onSend$0(longSparseArray, i);
+                        this.f$0.lambda$onSend$0(longSparseArray, i);
                     }
                 }, 100L);
             }
@@ -1663,7 +1660,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_renameStickerSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickersAlert.lambda$onSubItemClick$21(Utilities.Callback.this, tLObject, tL_error);
+                StickersAlert.lambda$onSubItemClick$21(callback, tLObject, tL_error);
             }
         });
     }
@@ -1672,7 +1669,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.lambda$onSubItemClick$20(TLObject.this, callback);
+                StickersAlert.lambda$onSubItemClick$20(tLObject, callback);
             }
         });
     }
@@ -1701,8 +1698,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         ArrayList<TLRPC.Document> arrayList;
         boolean z;
         TLRPC.StickerSet stickerSet;
-        String formatPluralString;
-        String formatPluralString2;
+        String pluralString;
+        String pluralString2;
         ArrayList<TLRPC.Document> arrayList2;
         TLRPC.StickerSet stickerSet2;
         TLRPC.StickerSet stickerSet3;
@@ -1717,37 +1714,37 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.stickerSet;
         if (tL_messages_stickerSet != null && (arrayList = tL_messages_stickerSet.documents) != null && !arrayList.isEmpty()) {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(this.stickerSet.set.title, this.titleTextView.getPaint().getFontMetricsInt(), false);
+            CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.stickerSet.set.title, this.titleTextView.getPaint().getFontMetricsInt(), false);
             try {
                 if (this.urlPattern == null) {
                     this.urlPattern = Pattern.compile("@[a-zA-Z\\d_]{1,32}");
                 }
-                Matcher matcher = this.urlPattern.matcher(replaceEmoji);
+                Matcher matcher = this.urlPattern.matcher(charSequenceReplaceEmoji);
                 SpannableStringBuilder spannableStringBuilder = null;
                 while (matcher.find()) {
                     if (spannableStringBuilder == null) {
-                        spannableStringBuilder = new SpannableStringBuilder(replaceEmoji);
+                        spannableStringBuilder = new SpannableStringBuilder(charSequenceReplaceEmoji);
                     }
-                    int start = matcher.start();
-                    int end = matcher.end();
-                    if (this.stickerSet.set.title.charAt(start) != '@') {
-                        start++;
+                    int iStart = matcher.start();
+                    int iEnd = matcher.end();
+                    if (this.stickerSet.set.title.charAt(iStart) != '@') {
+                        iStart++;
                     }
-                    spannableStringBuilder.setSpan(new URLSpanNoUnderline(replaceEmoji.subSequence(start + 1, end).toString()) {
+                    spannableStringBuilder.setSpan(new URLSpanNoUnderline(charSequenceReplaceEmoji.subSequence(iStart + 1, iEnd).toString()) {
                         @Override
                         public void onClick(View view) {
                             MessagesController.getInstance(((BottomSheet) StickersAlert.this).currentAccount).openByUserName(getURL(), StickersAlert.this.parentFragment, 1);
                             StickersAlert.this.lambda$new$0();
                         }
-                    }, start, end, 0);
+                    }, iStart, iEnd, 0);
                 }
                 if (spannableStringBuilder != null) {
-                    replaceEmoji = spannableStringBuilder;
+                    charSequenceReplaceEmoji = spannableStringBuilder;
                 }
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            this.titleTextView.setText(replaceEmoji);
+            this.titleTextView.setText(charSequenceReplaceEmoji);
             if (isEmoji()) {
                 int measuredWidth = this.gridView.getMeasuredWidth();
                 if (measuredWidth == 0) {
@@ -1769,7 +1766,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                             this.premiumButtonView.setButton(LocaleController.getString(R.string.UnlockPremiumEmoji), new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    StickersAlert.this.lambda$updateFields$24(view);
+                                    this.f$0.lambda$updateFields$24(view);
                                 }
                             });
                             return;
@@ -1798,7 +1795,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 setButton(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$updateFields$25(view);
+                        this.f$0.lambda$updateFields$25(view);
                     }
                 }, this.customButtonDelegate.getCustomButtonText(), this.customButtonDelegate.getCustomButtonTextColorKey(), this.customButtonDelegate.getCustomButtonColorKey(), this.customButtonDelegate.getCustomButtonRippleColorKey());
                 return;
@@ -1820,52 +1817,52 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet5 = this.stickerSet;
                 if (tL_messages_stickerSet5 != null && (stickerSet3 = tL_messages_stickerSet5.set) != null && stickerSet3.masks) {
                     ArrayList<TLRPC.Document> arrayList3 = tL_messages_stickerSet5.documents;
-                    formatPluralString2 = LocaleController.formatPluralString("AddManyMasksCount", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("AddManyMasksCount", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
                 } else if (tL_messages_stickerSet5 == null || (stickerSet2 = tL_messages_stickerSet5.set) == null || !stickerSet2.emojis) {
-                    formatPluralString2 = LocaleController.formatPluralString("AddManyStickersCount", (tL_messages_stickerSet5 == null || (arrayList2 = tL_messages_stickerSet5.documents) == null) ? 0 : arrayList2.size(), new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("AddManyStickersCount", (tL_messages_stickerSet5 == null || (arrayList2 = tL_messages_stickerSet5.documents) == null) ? 0 : arrayList2.size(), new Object[0]);
                 } else {
                     ArrayList<TLRPC.Document> arrayList4 = tL_messages_stickerSet5.documents;
-                    formatPluralString2 = LocaleController.formatPluralString("AddManyEmojiCount", arrayList4 == null ? 0 : arrayList4.size(), new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("AddManyEmojiCount", arrayList4 == null ? 0 : arrayList4.size(), new Object[0]);
                 }
                 setButton(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$updateFields$28(view);
+                        this.f$0.lambda$updateFields$28(view);
                     }
-                }, formatPluralString2, Theme.key_featuredStickers_buttonText, Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_addButtonPressed);
+                }, pluralString2, Theme.key_featuredStickers_buttonText, Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_addButtonPressed);
             } else {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet6 = this.stickerSet;
                 TLRPC.StickerSet stickerSet8 = tL_messages_stickerSet6.set;
                 boolean z3 = stickerSet8.creator;
                 if (z3) {
-                    formatPluralString = LocaleController.getString(this.isEditModeEnabled ? R.string.Done : R.string.EditStickers);
+                    pluralString = LocaleController.getString(this.isEditModeEnabled ? R.string.Done : R.string.EditStickers);
                 } else if (stickerSet8.masks) {
-                    formatPluralString = LocaleController.formatPluralString("RemoveManyMasksCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
+                    pluralString = LocaleController.formatPluralString("RemoveManyMasksCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
                 } else if (stickerSet8.emojis) {
-                    formatPluralString = LocaleController.formatPluralString("RemoveManyEmojiCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
+                    pluralString = LocaleController.formatPluralString("RemoveManyEmojiCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
                 } else {
-                    formatPluralString = LocaleController.formatPluralString("RemoveManyStickersCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
+                    pluralString = LocaleController.formatPluralString("RemoveManyStickersCount", tL_messages_stickerSet6.documents.size(), new Object[0]);
                 }
-                String str = formatPluralString;
+                String str = pluralString;
                 if (z3) {
                     setButton(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.this.lambda$updateFields$29(view);
+                            this.f$0.lambda$updateFields$29(view);
                         }
                     }, str, Theme.key_featuredStickers_buttonText, Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_addButtonPressed);
                 } else if (this.stickerSet.set.official) {
                     setButton(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.this.lambda$updateFields$30(view);
+                            this.f$0.lambda$updateFields$30(view);
                         }
                     }, str, Theme.key_text_RedBold);
                 } else {
                     setButton(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.this.lambda$updateFields$31(view);
+                            this.f$0.lambda$updateFields$31(view);
                         }
                     }, str, Theme.key_text_RedBold);
                 }
@@ -1878,12 +1875,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             LinkSpanDrawable.LinksTextView linksTextView = this.titleTextView;
             ArrayList arrayList6 = this.importingStickersPaths;
             linksTextView.setText(LocaleController.formatPluralString("Stickers", arrayList6 != null ? arrayList6.size() : arrayList5.size(), new Object[0]));
-            HashMap hashMap = this.uploadImportStickers;
-            if (hashMap == null || hashMap.isEmpty()) {
+            HashMap map = this.uploadImportStickers;
+            if (map == null || map.isEmpty()) {
                 View.OnClickListener onClickListener = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.this.lambda$updateFields$32(view);
+                        this.f$0.lambda$updateFields$32(view);
                     }
                 };
                 int i4 = R.string.ImportStickers;
@@ -1902,7 +1899,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         setButton(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StickersAlert.this.lambda$updateFields$33(view);
+                this.f$0.lambda$updateFields$33(view);
             }
         }, LocaleController.getString(R.string.Close), Theme.key_dialogTextBlue2);
     }
@@ -1912,7 +1909,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) getContext()).lambda$runLinkRequest$102(new PremiumPreviewFragment(null));
+            ((LaunchActivity) getContext()).lambda$runLinkRequest$96(new PremiumPreviewFragment(null));
         }
     }
 
@@ -1936,7 +1933,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_installStickerSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickersAlert.this.lambda$updateFields$27(tLObject, tL_error);
+                this.f$0.lambda$updateFields$27(tLObject, tL_error);
             }
         });
     }
@@ -1945,7 +1942,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$updateFields$26(tL_error, tLObject);
+                this.f$0.lambda$updateFields$26(tL_error, tLObject);
             }
         });
     }
@@ -2075,16 +2072,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i, KeyEvent keyEvent) {
-                boolean lambda$showNameEnterAlert$35;
-                lambda$showNameEnterAlert$35 = StickersAlert.lambda$showNameEnterAlert$35(AlertDialog.Builder.this, textView3, i, keyEvent);
-                return lambda$showNameEnterAlert$35;
+                return StickersAlert.lambda$showNameEnterAlert$35(builder, textView3, i, keyEvent);
             }
         });
         editTextBoldCursor.setSelection(editTextBoldCursor.length());
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                AndroidUtilities.hideKeyboard(editTextBoldCursor);
             }
         });
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ImportStickersEnterNameInfo)));
@@ -2092,19 +2087,19 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         textView.setPadding(AndroidUtilities.dp(23.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(23.0f), AndroidUtilities.dp(6.0f));
         textView.setTextColor(getThemedColor(Theme.key_dialogTextGray2));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-        AlertDialog create = builder.create();
-        create.setOnShowListener(new DialogInterface.OnShowListener() {
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                StickersAlert.lambda$showNameEnterAlert$38(EditTextBoldCursor.this, dialogInterface);
+                StickersAlert.lambda$showNameEnterAlert$38(editTextBoldCursor, dialogInterface);
             }
         });
-        create.show();
+        alertDialogCreate.show();
         editTextBoldCursor.requestFocus();
-        create.getButton(-1).setOnClickListener(new View.OnClickListener() {
+        alertDialogCreate.getButton(-1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StickersAlert.this.lambda$showNameEnterAlert$42(iArr, editTextBoldCursor, textView, textView2, builder, view);
+                this.f$0.lambda$showNameEnterAlert$42(iArr, editTextBoldCursor, textView, textView2, builder, view);
             }
         });
     }
@@ -2121,7 +2116,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.lambda$showNameEnterAlert$37(EditTextBoldCursor.this);
+                StickersAlert.lambda$showNameEnterAlert$37(editTextBoldCursor);
             }
         });
     }
@@ -2139,13 +2134,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (i == 0) {
             iArr[0] = 1;
             TLRPC.TL_stickers_suggestShortName tL_stickers_suggestShortName = new TLRPC.TL_stickers_suggestShortName();
-            String obj = editTextBoldCursor.getText().toString();
-            this.setTitle = obj;
-            tL_stickers_suggestShortName.title = obj;
+            String string = editTextBoldCursor.getText().toString();
+            this.setTitle = string;
+            tL_stickers_suggestShortName.title = string;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stickers_suggestShortName, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickersAlert.this.lambda$showNameEnterAlert$40(editTextBoldCursor, textView, textView2, iArr, tLObject, tL_error);
+                    this.f$0.lambda$showNameEnterAlert$40(editTextBoldCursor, textView, textView2, iArr, tLObject, tL_error);
                 }
             });
             return;
@@ -2163,7 +2158,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             SendMessagesHelper.getInstance(this.currentAccount).prepareImportStickers(this.setTitle, this.lastCheckName, this.importingSoftware, this.importingStickersPaths, new MessagesStorage.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    StickersAlert.this.lambda$showNameEnterAlert$41(str);
+                    this.f$0.lambda$showNameEnterAlert$41(str);
                 }
             });
             builder.getDismissRunnable().run();
@@ -2175,7 +2170,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$showNameEnterAlert$39(tLObject, editTextBoldCursor, textView, textView2, iArr);
+                this.f$0.lambda$showNameEnterAlert$39(tLObject, editTextBoldCursor, textView, textView2, iArr);
             }
         });
     }
@@ -2234,8 +2229,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
             int length = str.length();
             for (int i = 0; i < length; i++) {
-                char charAt = str.charAt(i);
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
+                char cCharAt = str.charAt(i);
+                if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     textView.setText(LocaleController.getString(R.string.ImportStickersEnterUrlInfo));
                     textView.setTextColor(getThemedColor(Theme.key_text_RedRegular));
                     return;
@@ -2257,7 +2252,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.this.lambda$checkUrlAvailable$45(str, textView);
+                    this.f$0.lambda$checkUrlAvailable$45(str, textView);
                 }
             };
             this.checkRunnable = runnable2;
@@ -2271,7 +2266,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stickers_checkShortName, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickersAlert.this.lambda$checkUrlAvailable$44(str, textView, tLObject, tL_error);
+                this.f$0.lambda$checkUrlAvailable$44(str, textView, tLObject, tL_error);
             }
         }, 2);
     }
@@ -2280,7 +2275,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$checkUrlAvailable$43(str, tL_error, tLObject, textView);
+                this.f$0.lambda$checkUrlAvailable$43(str, tL_error, tLObject, textView);
             }
         });
     }
@@ -2453,7 +2448,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
         Bulletin.addDelegate((FrameLayout) this.containerView, new Bulletin.Delegate() {
             @Override
@@ -2521,17 +2516,17 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             return;
         }
         if (i == NotificationCenter.fileUploaded) {
-            HashMap hashMap = this.uploadImportStickers;
-            if (hashMap == null) {
+            HashMap map = this.uploadImportStickers;
+            if (map == null) {
                 return;
             }
             final String str = (String) objArr[0];
-            final SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) hashMap.get(str);
+            final SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) map.get(str);
             if (importingSticker != null) {
                 importingSticker.uploadMedia(this.currentAccount, (TLRPC.InputFile) objArr[1], new Runnable() {
                     @Override
                     public final void run() {
-                        StickersAlert.this.lambda$didReceivedNotification$46(str, importingSticker);
+                        this.f$0.lambda$didReceivedNotification$46(str, importingSticker);
                     }
                 });
                 return;
@@ -2539,11 +2534,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             return;
         }
         if (i == NotificationCenter.fileUploadFailed) {
-            HashMap hashMap2 = this.uploadImportStickers;
-            if (hashMap2 == null) {
+            HashMap map2 = this.uploadImportStickers;
+            if (map2 == null) {
                 return;
             }
-            SendMessagesHelper.ImportingSticker importingSticker2 = (SendMessagesHelper.ImportingSticker) hashMap2.remove((String) objArr[0]);
+            SendMessagesHelper.ImportingSticker importingSticker2 = (SendMessagesHelper.ImportingSticker) map2.remove((String) objArr[0]);
             if (importingSticker2 != null) {
                 removeSticker(importingSticker2);
             }
@@ -2557,13 +2552,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (this.inputStickerSet != null) {
                 MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
                 String str2 = this.inputStickerSet.short_name;
-                r4 = str2 != null ? mediaDataController.getStickerSetByName(str2) : null;
-                if (r4 == null) {
-                    r4 = mediaDataController.getStickerSetById(this.inputStickerSet.id);
+                stickerSetByName = str2 != null ? mediaDataController.getStickerSetByName(str2) : null;
+                if (stickerSetByName == null) {
+                    stickerSetByName = mediaDataController.getStickerSetById(this.inputStickerSet.id);
                 }
             }
-            if (r4 != null && r4 != this.stickerSet) {
-                this.stickerSet = r4;
+            if (stickerSetByName != null && stickerSetByName != this.stickerSet) {
+                this.stickerSet = stickerSetByName;
                 loadStickerSet(false);
             }
             updateFields();
@@ -2579,11 +2574,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             removeSticker(importingSticker);
         } else {
             importingSticker.validated = true;
-            int indexOf = this.importingStickersPaths.indexOf(importingSticker);
-            if (indexOf >= 0) {
-                RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.gridView.findViewHolderForAdapterPosition(indexOf);
-                if (findViewHolderForAdapterPosition != null) {
-                    ((StickerEmojiCell) findViewHolderForAdapterPosition.itemView).setSticker(importingSticker);
+            int iIndexOf = this.importingStickersPaths.indexOf(importingSticker);
+            if (iIndexOf >= 0) {
+                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.gridView.findViewHolderForAdapterPosition(iIndexOf);
+                if (viewHolderFindViewHolderForAdapterPosition != null) {
+                    ((StickerEmojiCell) viewHolderFindViewHolderForAdapterPosition.itemView).setSticker(importingSticker);
                 }
             } else {
                 this.adapter.notifyDataSetChanged();
@@ -2615,15 +2610,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         } else if (i2 >= 0 && i3 >= 0) {
             this.pickerBottomLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(i2), getThemedColor(i3)));
             this.pickerBottomFrameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-            int dp = AndroidUtilities.dp(8.0f);
-            marginLayoutParams.bottomMargin = dp;
-            marginLayoutParams.rightMargin = dp;
-            marginLayoutParams.topMargin = dp;
-            marginLayoutParams.leftMargin = dp;
-            int dp2 = AndroidUtilities.dp(64.0f);
-            marginLayoutParams2.bottomMargin = dp2;
-            marginLayoutParams3.bottomMargin = dp2;
-            marginLayoutParams4.bottomMargin = dp2;
+            int iDp = AndroidUtilities.dp(8.0f);
+            marginLayoutParams.bottomMargin = iDp;
+            marginLayoutParams.rightMargin = iDp;
+            marginLayoutParams.topMargin = iDp;
+            marginLayoutParams.leftMargin = iDp;
+            int iDp2 = AndroidUtilities.dp(64.0f);
+            marginLayoutParams2.bottomMargin = iDp2;
+            marginLayoutParams3.bottomMargin = iDp2;
+            marginLayoutParams4.bottomMargin = iDp2;
             if (this.pickerBottomLayout.getAlpha() < 1.0f) {
                 this.pickerBottomLayout.animate().alpha(1.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(240L).start();
             }
@@ -2634,10 +2629,10 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             marginLayoutParams.rightMargin = 0;
             marginLayoutParams.topMargin = 0;
             marginLayoutParams.leftMargin = 0;
-            int dp3 = AndroidUtilities.dp(48.0f);
-            marginLayoutParams2.bottomMargin = dp3;
-            marginLayoutParams3.bottomMargin = dp3;
-            marginLayoutParams4.bottomMargin = dp3;
+            int iDp3 = AndroidUtilities.dp(48.0f);
+            marginLayoutParams2.bottomMargin = iDp3;
+            marginLayoutParams3.bottomMargin = iDp3;
+            marginLayoutParams4.bottomMargin = iDp3;
             if (this.pickerBottomLayout.getAlpha() < 1.0f) {
                 this.pickerBottomLayout.animate().alpha(1.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(240L).start();
             }
@@ -2697,7 +2692,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                StickersAlert.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override
@@ -2743,7 +2738,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return arrayList;
     }
 
-    public class GridAdapter extends RecyclerListView.SelectionAdapter {
+    class GridAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
         private int stickersPerRow;
         private int stickersRowCount;
@@ -2780,7 +2775,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            FrameLayout addStickerBtnView;
             if (i == 0) {
                 StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, ((BottomSheet) StickersAlert.this).resourcesProvider) {
                     @Override
@@ -2789,15 +2784,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     }
                 };
                 stickerEmojiCell.getImageView().setLayerNum(7);
-                frameLayout = stickerEmojiCell;
+                addStickerBtnView = stickerEmojiCell;
             } else if (i == 1) {
-                frameLayout = new EmptyCell(this.context);
+                addStickerBtnView = new EmptyCell(this.context);
             } else if (i == 2) {
-                frameLayout = new FeaturedStickerSetInfoCell(this.context, 8, true, false, ((BottomSheet) StickersAlert.this).resourcesProvider);
+                addStickerBtnView = new FeaturedStickerSetInfoCell(this.context, 8, true, false, ((BottomSheet) StickersAlert.this).resourcesProvider);
             } else {
-                frameLayout = i != 3 ? null : new AddStickerBtnView(this.context, ((BottomSheet) StickersAlert.this).resourcesProvider);
+                addStickerBtnView = i != 3 ? null : new AddStickerBtnView(this.context, ((BottomSheet) StickersAlert.this).resourcesProvider);
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(addStickerBtnView);
         }
 
         @Override
@@ -2819,7 +2814,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     stickerEmojiCell.editModeIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.GridAdapter.this.lambda$onBindViewHolder$0(stickerEmojiCell, view);
+                            this.f$0.lambda$onBindViewHolder$0(stickerEmojiCell, view);
                         }
                     });
                     return;
@@ -2846,9 +2841,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         @Override
         public void notifyDataSetChanged() {
-            List list;
+            List listSubList;
+            int iCeil;
             int i;
-            int i2;
             if (StickersAlert.this.stickerSetCovereds != null) {
                 int measuredWidth = StickersAlert.this.gridView.getMeasuredWidth();
                 if (measuredWidth == 0) {
@@ -2860,43 +2855,43 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 this.positionsToSets.clear();
                 this.totalItems = 0;
                 this.stickersRowCount = 0;
-                for (int i3 = 0; i3 < StickersAlert.this.stickerSetCovereds.size(); i3++) {
-                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) StickersAlert.this.stickerSetCovereds.get(i3);
+                for (int i2 = 0; i2 < StickersAlert.this.stickerSetCovereds.size(); i2++) {
+                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) StickersAlert.this.stickerSetCovereds.get(i2);
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                        list = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                        listSubList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else {
-                        list = stickerSetCovered.covers;
+                        listSubList = stickerSetCovered.covers;
                     }
-                    if (list != null) {
-                        list = list.subList(0, Math.min(list.size(), this.stickersPerRow));
+                    if (listSubList != null) {
+                        listSubList = listSubList.subList(0, Math.min(listSubList.size(), this.stickersPerRow));
                     }
-                    if (list != null && (!list.isEmpty() || stickerSetCovered.cover != null)) {
+                    if (listSubList != null && (!listSubList.isEmpty() || stickerSetCovered.cover != null)) {
                         this.stickersRowCount++;
                         this.positionsToSets.put(this.totalItems, stickerSetCovered);
                         SparseArray sparseArray = this.cache;
-                        int i4 = this.totalItems;
-                        this.totalItems = i4 + 1;
-                        sparseArray.put(i4, Integer.valueOf(i3));
-                        int i5 = this.totalItems / this.stickersPerRow;
-                        if (!list.isEmpty()) {
-                            i = (int) Math.ceil(list.size() / this.stickersPerRow);
-                            for (int i6 = 0; i6 < list.size(); i6++) {
-                                this.cache.put(this.totalItems + i6, list.get(i6));
+                        int i3 = this.totalItems;
+                        this.totalItems = i3 + 1;
+                        sparseArray.put(i3, Integer.valueOf(i2));
+                        int i4 = this.totalItems / this.stickersPerRow;
+                        if (!listSubList.isEmpty()) {
+                            iCeil = (int) Math.ceil(listSubList.size() / this.stickersPerRow);
+                            for (int i5 = 0; i5 < listSubList.size(); i5++) {
+                                this.cache.put(this.totalItems + i5, listSubList.get(i5));
                             }
                         } else {
                             this.cache.put(this.totalItems, stickerSetCovered.cover);
-                            i = 1;
+                            iCeil = 1;
                         }
-                        int i7 = 0;
+                        int i6 = 0;
                         while (true) {
-                            i2 = this.stickersPerRow * i;
-                            if (i7 >= i2) {
+                            i = this.stickersPerRow * iCeil;
+                            if (i6 >= i) {
                                 break;
                             }
-                            this.positionsToSets.put(this.totalItems + i7, stickerSetCovered);
-                            i7++;
+                            this.positionsToSets.put(this.totalItems + i6, stickerSetCovered);
+                            i6++;
                         }
-                        this.totalItems += i2;
+                        this.totalItems += i;
                     }
                 }
             } else if (StickersAlert.this.importingStickersPaths != null) {
@@ -2958,7 +2953,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.optionsButton.postDelayed(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$enableEditMode$48();
+                this.f$0.lambda$enableEditMode$48();
             }
         }, 200L);
         this.pickerBottomLayout.setText(LocaleController.getString(R.string.Done), true);
@@ -2988,7 +2983,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             this.optionsButton.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.this.lambda$disableEditMode$50();
+                    this.f$0.lambda$disableEditMode$50();
                 }
             }, 200L);
             this.pickerBottomLayout.setText(LocaleController.getString(R.string.EditStickers), true);
@@ -3014,16 +3009,16 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public static class AddStickerBtnView extends FrameLayout {
+    private static class AddStickerBtnView extends FrameLayout {
         public AddStickerBtnView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             View view = new View(context);
-            int dp = AndroidUtilities.dp(28.0f);
+            int iDp = AndroidUtilities.dp(28.0f);
             int i = Theme.key_chat_emojiPanelIcon;
-            ShapeDrawable createRoundRectDrawable = Theme.createRoundRectDrawable(dp, Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.12f));
-            Drawable mutate = context.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            CombinedDrawable combinedDrawable = new CombinedDrawable(createRoundRectDrawable, mutate);
+            ShapeDrawable shapeDrawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(iDp, Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.12f));
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(shapeDrawableCreateRoundRectDrawable, drawableMutate);
             combinedDrawable.setCustomSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
             combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             view.setBackground(combinedDrawable);
@@ -3032,7 +3027,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public static class StickersShaker {
+    static class StickersShaker {
         private final List imageRotations;
         private final List imageTranslationsX;
         private final List imageTranslationsY;
@@ -3091,58 +3086,58 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             init();
             final int i = 0;
             while (i < 6) {
-                long nextFloat = Utilities.random.nextFloat() * 300;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, -2.0f, 0.0f, 2.0f, 0.0f);
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                long jNextFloat = (long) (Utilities.random.nextFloat() * 300);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, -2.0f, 0.0f, 2.0f, 0.0f);
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        StickersAlert.StickersShaker.this.lambda$startShake$0(i, valueAnimator);
+                        this.f$0.lambda$startShake$0(i, valueAnimator);
                     }
                 });
-                ofFloat.setRepeatCount(-1);
-                ofFloat.setRepeatMode(1);
-                ofFloat.setInterpolator(new LinearInterpolator());
-                ofFloat.setCurrentPlayTime(nextFloat);
+                valueAnimatorOfFloat.setRepeatCount(-1);
+                valueAnimatorOfFloat.setRepeatMode(1);
+                valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
+                valueAnimatorOfFloat.setCurrentPlayTime(jNextFloat);
                 long j = 300;
-                ofFloat.setDuration(j);
-                ofFloat.start();
-                float dp = AndroidUtilities.dp(0.5f);
+                valueAnimatorOfFloat.setDuration(j);
+                valueAnimatorOfFloat.start();
+                float fDp = AndroidUtilities.dp(0.5f);
                 float[] fArr = new float[5];
                 fArr[0] = 0.0f;
-                fArr[1] = dp;
+                fArr[1] = fDp;
                 fArr[c2] = 0.0f;
-                fArr[c] = -dp;
+                fArr[c] = -fDp;
                 fArr[4] = 0.0f;
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr);
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(fArr);
+                valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        StickersAlert.StickersShaker.this.lambda$startShake$1(i, valueAnimator);
+                        this.f$0.lambda$startShake$1(i, valueAnimator);
                     }
                 });
-                ofFloat2.setRepeatCount(-1);
-                ofFloat2.setRepeatMode(1);
-                ofFloat2.setInterpolator(new LinearInterpolator());
-                ofFloat2.setCurrentPlayTime(nextFloat);
-                ofFloat2.setDuration((long) (300 * 1.2d));
-                ofFloat2.start();
+                valueAnimatorOfFloat2.setRepeatCount(-1);
+                valueAnimatorOfFloat2.setRepeatMode(1);
+                valueAnimatorOfFloat2.setInterpolator(new LinearInterpolator());
+                valueAnimatorOfFloat2.setCurrentPlayTime(jNextFloat);
+                valueAnimatorOfFloat2.setDuration((long) (300 * 1.2d));
+                valueAnimatorOfFloat2.start();
                 c = 3;
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, dp, 0.0f - dp, 0.0f);
-                ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(0.0f, fDp, 0.0f - fDp, 0.0f);
+                valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        StickersAlert.StickersShaker.this.lambda$startShake$2(i, valueAnimator);
+                        this.f$0.lambda$startShake$2(i, valueAnimator);
                     }
                 });
-                ofFloat3.setRepeatCount(-1);
-                ofFloat3.setRepeatMode(1);
-                ofFloat3.setInterpolator(new LinearInterpolator());
-                ofFloat3.setCurrentPlayTime(nextFloat);
-                ofFloat3.setDuration(j);
-                ofFloat3.start();
-                this.rotateAnimators.add(ofFloat);
-                this.translateXAnimators.add(ofFloat2);
-                this.translateYAnimators.add(ofFloat3);
+                valueAnimatorOfFloat3.setRepeatCount(-1);
+                valueAnimatorOfFloat3.setRepeatMode(1);
+                valueAnimatorOfFloat3.setInterpolator(new LinearInterpolator());
+                valueAnimatorOfFloat3.setCurrentPlayTime(jNextFloat);
+                valueAnimatorOfFloat3.setDuration(j);
+                valueAnimatorOfFloat3.start();
+                this.rotateAnimators.add(valueAnimatorOfFloat);
+                this.translateXAnimators.add(valueAnimatorOfFloat2);
+                this.translateYAnimators.add(valueAnimatorOfFloat3);
                 i++;
                 c2 = 2;
             }
@@ -3173,43 +3168,43 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             for (final int i = 0; i < this.rotateAnimators.size(); i++) {
                 ((ValueAnimator) this.rotateAnimators.get(i)).cancel();
                 if (z) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) this.imageRotations.get(i)).floatValue(), 0.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(((Float) this.imageRotations.get(i)).floatValue(), 0.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            StickersAlert.StickersShaker.this.lambda$stopShake$3(i, valueAnimator);
+                            this.f$0.lambda$stopShake$3(i, valueAnimator);
                         }
                     });
-                    ofFloat.setDuration(100L);
-                    ofFloat.start();
+                    valueAnimatorOfFloat.setDuration(100L);
+                    valueAnimatorOfFloat.start();
                 }
             }
             for (final int i2 = 0; i2 < this.translateXAnimators.size(); i2++) {
                 ((ValueAnimator) this.translateXAnimators.get(i2)).cancel();
                 if (z) {
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) this.imageTranslationsX.get(i2)).floatValue(), 0.0f);
-                    ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(((Float) this.imageTranslationsX.get(i2)).floatValue(), 0.0f);
+                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            StickersAlert.StickersShaker.this.lambda$stopShake$4(i2, valueAnimator);
+                            this.f$0.lambda$stopShake$4(i2, valueAnimator);
                         }
                     });
-                    ofFloat2.setDuration(100L);
-                    ofFloat2.start();
+                    valueAnimatorOfFloat2.setDuration(100L);
+                    valueAnimatorOfFloat2.start();
                 }
             }
             for (final int i3 = 0; i3 < this.translateYAnimators.size(); i3++) {
                 ((ValueAnimator) this.translateYAnimators.get(i3)).cancel();
                 if (z) {
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) this.imageTranslationsY.get(i3)).floatValue(), 0.0f);
-                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(((Float) this.imageTranslationsY.get(i3)).floatValue(), 0.0f);
+                    valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            StickersAlert.StickersShaker.this.lambda$stopShake$5(i3, valueAnimator);
+                            this.f$0.lambda$stopShake$5(i3, valueAnimator);
                         }
                     });
-                    ofFloat3.setDuration(100L);
-                    ofFloat3.start();
+                    valueAnimatorOfFloat3.setDuration(100L);
+                    valueAnimatorOfFloat3.start();
                 }
             }
             this.translateYAnimators.clear();

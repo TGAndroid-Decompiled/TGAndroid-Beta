@@ -22,7 +22,7 @@ public abstract class ConcurrentLinkedListNode {
 
     public final ConcurrentLinkedListNode getNext() {
         Object nextOrClosed = getNextOrClosed();
-        if (nextOrClosed == ConcurrentLinkedListKt.access$getCLOSED$p()) {
+        if (nextOrClosed == ConcurrentLinkedListKt.CLOSED) {
             return null;
         }
         return (ConcurrentLinkedListNode) nextOrClosed;
@@ -45,7 +45,7 @@ public abstract class ConcurrentLinkedListNode {
     }
 
     public final boolean markAsClosed() {
-        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, null, ConcurrentLinkedListKt.access$getCLOSED$p());
+        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, null, ConcurrentLinkedListKt.CLOSED);
     }
 
     public final void remove() {

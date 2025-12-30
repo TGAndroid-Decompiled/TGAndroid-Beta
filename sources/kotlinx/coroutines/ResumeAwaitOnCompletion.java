@@ -3,7 +3,7 @@ package kotlinx.coroutines;
 import kotlin.Result;
 import kotlin.ResultKt;
 
-public final class ResumeAwaitOnCompletion extends JobNode {
+final class ResumeAwaitOnCompletion extends JobNode {
     private final CancellableContinuationImpl continuation;
 
     public ResumeAwaitOnCompletion(CancellableContinuationImpl cancellableContinuationImpl) {

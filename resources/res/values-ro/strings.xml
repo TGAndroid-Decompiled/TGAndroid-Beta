@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Trimiteți la</string>
     <string name="abc_shareactionprovider_share_with_application">Trimiteți folosind %s</string>
     <string name="abc_toolbar_collapse_description">Restrângeți</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Parolă</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Cheie de acces</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Parolă</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Cheie de acces</string>
     <string name="call_notification_answer_action">Răspunde</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Respinge</string>

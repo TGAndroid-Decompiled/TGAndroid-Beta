@@ -1,31 +1,33 @@
 package kotlinx.coroutines.channels;
 
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.FunctionReferenceImpl;
 import kotlin.reflect.KFunction;
 import kotlinx.coroutines.CancellableContinuation;
 import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
 
 public abstract class BufferedChannelKt {
-    public static final Symbol BUFFERED;
-    private static final Symbol CHANNEL_CLOSED;
-    private static final Symbol CLOSE_HANDLER_CLOSED;
-    private static final Symbol CLOSE_HANDLER_INVOKED;
-    private static final Symbol DONE_RCV;
-    private static final int EXPAND_BUFFER_COMPLETION_WAIT_ITERATIONS;
-    private static final Symbol FAILED;
-    private static final Symbol INTERRUPTED_RCV;
-    private static final Symbol INTERRUPTED_SEND;
-    private static final Symbol IN_BUFFER;
-    private static final Symbol NO_CLOSE_CAUSE;
-    private static final Symbol NO_RECEIVE_RESULT;
     private static final ChannelSegment NULL_SEGMENT = new ChannelSegment(-1, null, null, 0);
-    private static final Symbol POISONED;
-    private static final Symbol RESUMING_BY_EB;
-    private static final Symbol RESUMING_BY_RCV;
-    public static final int SEGMENT_SIZE;
-    private static final Symbol SUSPEND;
-    private static final Symbol SUSPEND_NO_WAITER;
+    public static final int SEGMENT_SIZE = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.bufferedChannel.segmentSize", 32, 0, 0, 12, (Object) null);
+    private static final int EXPAND_BUFFER_COMPLETION_WAIT_ITERATIONS = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.bufferedChannel.expandBufferCompletionWaitIterations", 10000, 0, 0, 12, (Object) null);
+    public static final Symbol BUFFERED = new Symbol("BUFFERED");
+    private static final Symbol IN_BUFFER = new Symbol("SHOULD_BUFFER");
+    private static final Symbol RESUMING_BY_RCV = new Symbol("S_RESUMING_BY_RCV");
+    private static final Symbol RESUMING_BY_EB = new Symbol("RESUMING_BY_EB");
+    private static final Symbol POISONED = new Symbol("POISONED");
+    private static final Symbol DONE_RCV = new Symbol("DONE_RCV");
+    private static final Symbol INTERRUPTED_SEND = new Symbol("INTERRUPTED_SEND");
+    private static final Symbol INTERRUPTED_RCV = new Symbol("INTERRUPTED_RCV");
+    private static final Symbol CHANNEL_CLOSED = new Symbol("CHANNEL_CLOSED");
+    private static final Symbol SUSPEND = new Symbol("SUSPEND");
+    private static final Symbol SUSPEND_NO_WAITER = new Symbol("SUSPEND_NO_WAITER");
+    private static final Symbol FAILED = new Symbol("FAILED");
+    private static final Symbol NO_RECEIVE_RESULT = new Symbol("NO_RECEIVE_RESULT");
+    private static final Symbol CLOSE_HANDLER_CLOSED = new Symbol("CLOSE_HANDLER_CLOSED");
+    private static final Symbol CLOSE_HANDLER_INVOKED = new Symbol("CLOSE_HANDLER_INVOKED");
+    private static final Symbol NO_CLOSE_CAUSE = new Symbol("NO_CLOSE_CAUSE");
 
     public static final long constructEBCompletedAndPauseFlag(long j, boolean z) {
         return (z ? 4611686018427387904L : 0L) + j;
@@ -45,40 +47,32 @@ public abstract class BufferedChannelKt {
         return Long.MAX_VALUE;
     }
 
+    class AnonymousClass1 extends FunctionReferenceImpl implements Function2 {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        AnonymousClass1() {
+            super(2, BufferedChannelKt.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
+        }
+
+        @Override
+        public Object invoke(Object obj, Object obj2) {
+            return invoke(((Number) obj).longValue(), (ChannelSegment) obj2);
+        }
+
+        public final ChannelSegment invoke(long j, ChannelSegment channelSegment) {
+            return BufferedChannelKt.createSegment(j, channelSegment);
+        }
+    }
+
     public static final KFunction createSegmentFunction() {
-        return BufferedChannelKt$createSegmentFunction$1.INSTANCE;
+        return AnonymousClass1.INSTANCE;
     }
 
     public static final ChannelSegment createSegment(long j, ChannelSegment channelSegment) {
         return new ChannelSegment(j, channelSegment, channelSegment.getChannel(), 0);
     }
 
-    static {
-        int systemProp$default;
-        int systemProp$default2;
-        systemProp$default = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.bufferedChannel.segmentSize", 32, 0, 0, 12, (Object) null);
-        SEGMENT_SIZE = systemProp$default;
-        systemProp$default2 = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.bufferedChannel.expandBufferCompletionWaitIterations", 10000, 0, 0, 12, (Object) null);
-        EXPAND_BUFFER_COMPLETION_WAIT_ITERATIONS = systemProp$default2;
-        BUFFERED = new Symbol("BUFFERED");
-        IN_BUFFER = new Symbol("SHOULD_BUFFER");
-        RESUMING_BY_RCV = new Symbol("S_RESUMING_BY_RCV");
-        RESUMING_BY_EB = new Symbol("RESUMING_BY_EB");
-        POISONED = new Symbol("POISONED");
-        DONE_RCV = new Symbol("DONE_RCV");
-        INTERRUPTED_SEND = new Symbol("INTERRUPTED_SEND");
-        INTERRUPTED_RCV = new Symbol("INTERRUPTED_RCV");
-        CHANNEL_CLOSED = new Symbol("CHANNEL_CLOSED");
-        SUSPEND = new Symbol("SUSPEND");
-        SUSPEND_NO_WAITER = new Symbol("SUSPEND_NO_WAITER");
-        FAILED = new Symbol("FAILED");
-        NO_RECEIVE_RESULT = new Symbol("NO_RECEIVE_RESULT");
-        CLOSE_HANDLER_CLOSED = new Symbol("CLOSE_HANDLER_CLOSED");
-        CLOSE_HANDLER_INVOKED = new Symbol("CLOSE_HANDLER_INVOKED");
-        NO_CLOSE_CAUSE = new Symbol("NO_CLOSE_CAUSE");
-    }
-
-    public static boolean tryResume0$default(CancellableContinuation cancellableContinuation, Object obj, Function1 function1, int i, Object obj2) {
+    static boolean tryResume0$default(CancellableContinuation cancellableContinuation, Object obj, Function1 function1, int i, Object obj2) {
         if ((i & 2) != 0) {
             function1 = null;
         }
@@ -86,11 +80,11 @@ public abstract class BufferedChannelKt {
     }
 
     public static final boolean tryResume0(CancellableContinuation cancellableContinuation, Object obj, Function1 function1) {
-        Object tryResume = cancellableContinuation.tryResume(obj, null, function1);
-        if (tryResume == null) {
+        Object objTryResume = cancellableContinuation.tryResume(obj, null, function1);
+        if (objTryResume == null) {
             return false;
         }
-        cancellableContinuation.completeResume(tryResume);
+        cancellableContinuation.completeResume(objTryResume);
         return true;
     }
 

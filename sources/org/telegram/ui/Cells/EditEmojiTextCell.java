@@ -99,7 +99,7 @@ public abstract class EditEmojiTextCell extends FrameLayout {
         whenHitEnter(new Runnable() {
             @Override
             public final void run() {
-                EditEmojiTextCell.this.lambda$hideKeyboardOnEnter$0();
+                this.f$0.lambda$hideKeyboardOnEnter$0();
             }
         });
     }
@@ -122,8 +122,8 @@ public abstract class EditEmojiTextCell extends FrameLayout {
     }
 
     public EditEmojiTextCell(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, String str, final boolean z, final int i, int i2, final Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         float f;
+        super(context);
         this.showLimitWhenNear = -1;
         this.allowEntities = true;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
@@ -149,14 +149,14 @@ public abstract class EditEmojiTextCell extends FrameLayout {
                 if (animatedColor != null) {
                     editEmojiTextCell.limit.setTextColor(animatedColor.set(Theme.getColor(editEmojiTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 }
-                int min = Math.min(AndroidUtilities.dp(48.0f), getHeight());
+                int iMin = Math.min(AndroidUtilities.dp(48.0f), getHeight());
                 float f2 = z ? 0.0f : -AndroidUtilities.dp(1.0f);
-                EditEmojiTextCell.this.limit.setBounds(getScrollX(), (getHeight() + f2) - min, (getScrollX() + getWidth()) - AndroidUtilities.dp((z ? 0 : 44) + 12), f2 + getHeight());
+                EditEmojiTextCell.this.limit.setBounds(getScrollX(), (getHeight() + f2) - iMin, (getScrollX() + getWidth()) - AndroidUtilities.dp((z ? 0 : 44) + 12), f2 + getHeight());
                 EditEmojiTextCell.this.limit.draw(canvas);
             }
 
             @Override
-            public void extendActionMode(ActionMode actionMode, Menu menu) {
+            protected void extendActionMode(ActionMode actionMode, Menu menu) {
                 int i3 = R.id.menu_bold;
                 if (menu.findItem(i3) != null) {
                     return;
@@ -181,7 +181,7 @@ public abstract class EditEmojiTextCell extends FrameLayout {
             }
 
             @Override
-            public boolean allowEntities() {
+            protected boolean allowEntities() {
                 return EditEmojiTextCell.this.allowEntities && super.allowEntities();
             }
 
@@ -255,11 +255,11 @@ public abstract class EditEmojiTextCell extends FrameLayout {
                 }
                 if (z) {
                     while (true) {
-                        int indexOf = editable.toString().indexOf("\n");
-                        if (indexOf < 0) {
+                        int iIndexOf = editable.toString().indexOf("\n");
+                        if (iIndexOf < 0) {
                             break;
                         } else {
-                            editable.delete(indexOf, indexOf + 1);
+                            editable.delete(iIndexOf, iIndexOf + 1);
                         }
                     }
                 }
@@ -311,7 +311,7 @@ public abstract class EditEmojiTextCell extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 }

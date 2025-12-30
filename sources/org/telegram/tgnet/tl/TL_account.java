@@ -30,10 +30,10 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.sensitive_enabled = (readInt32 & 1) != 0;
-            this.sensitive_can_change = (readInt32 & 2) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.sensitive_enabled = (int32 & 1) != 0;
+            this.sensitive_can_change = (int32 & 2) != 0;
         }
 
         @Override
@@ -139,9 +139,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.email = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
@@ -351,11 +351,11 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_recovery = (readInt32 & 1) != 0;
-            this.has_secure_values = (readInt32 & 2) != 0;
-            int i = readInt32 & 4;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_recovery = (int32 & 1) != 0;
+            this.has_secure_values = (int32 & 2) != 0;
+            int i = int32 & 4;
             this.has_password = i != 0;
             if (i != 0) {
                 this.current_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -425,11 +425,11 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.has_recovery = (readInt32 & 1) != 0;
-            this.has_secure_values = (readInt32 & 2) != 0;
-            int i = readInt32 & 4;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.has_recovery = (int32 & 1) != 0;
+            this.has_secure_values = (int32 & 2) != 0;
+            int i = int32 & 4;
             this.has_password = i != 0;
             if (i != 0) {
                 this.current_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -647,9 +647,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.new_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 1) != 0) {
@@ -2439,9 +2439,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.open_now = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.open_now = (int32 & 1) != 0;
             this.timezone_id = inputSerializedData.readString(z);
             this.weekly_open = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                 @Override
@@ -2615,9 +2615,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.offline_only = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.offline_only = (int32 & 1) != 0;
             this.shortcut_id = inputSerializedData.readInt32(z);
             this.schedule = BusinessAwayMessageSchedule.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.recipients = TL_inputBusinessRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2649,9 +2649,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.offline_only = (readInt32 & 1) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.offline_only = (int32 & 1) != 0;
             this.shortcut_id = inputSerializedData.readInt32(z);
             this.schedule = BusinessAwayMessageSchedule.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.recipients = TL_businessRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2726,14 +2726,14 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.existing_chats = (readInt32 & 1) != 0;
-            this.new_chats = (readInt32 & 2) != 0;
-            this.contacts = (readInt32 & 4) != 0;
-            this.non_contacts = (readInt32 & 8) != 0;
-            this.exclude_selected = (readInt32 & 32) != 0;
-            if ((readInt32 & 16) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.existing_chats = (int32 & 1) != 0;
+            this.new_chats = (int32 & 2) != 0;
+            this.contacts = (int32 & 4) != 0;
+            this.non_contacts = (int32 & 8) != 0;
+            this.exclude_selected = (int32 & 32) != 0;
+            if ((int32 & 16) != 0) {
                 this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
             }
             if ((this.flags & 64) != 0) {
@@ -2781,14 +2781,14 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.existing_chats = (readInt32 & 1) != 0;
-            this.new_chats = (readInt32 & 2) != 0;
-            this.contacts = (readInt32 & 4) != 0;
-            this.non_contacts = (readInt32 & 8) != 0;
-            this.exclude_selected = (readInt32 & 32) != 0;
-            if ((readInt32 & 16) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.existing_chats = (int32 & 1) != 0;
+            this.new_chats = (int32 & 2) != 0;
+            this.contacts = (int32 & 4) != 0;
+            this.non_contacts = (int32 & 8) != 0;
+            this.exclude_selected = (int32 & 32) != 0;
+            if ((int32 & 16) != 0) {
                 this.users = Vector.deserializeLong(inputSerializedData, z);
             }
             if ((this.flags & 64) != 0) {
@@ -2835,14 +2835,14 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.existing_chats = (readInt32 & 1) != 0;
-            this.new_chats = (readInt32 & 2) != 0;
-            this.contacts = (readInt32 & 4) != 0;
-            this.non_contacts = (readInt32 & 8) != 0;
-            this.exclude_selected = (readInt32 & 32) != 0;
-            if ((readInt32 & 16) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.existing_chats = (int32 & 1) != 0;
+            this.new_chats = (int32 & 2) != 0;
+            this.contacts = (int32 & 4) != 0;
+            this.non_contacts = (int32 & 8) != 0;
+            this.exclude_selected = (int32 & 32) != 0;
+            if ((int32 & 16) != 0) {
                 this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
             }
         }
@@ -2883,14 +2883,14 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.existing_chats = (readInt32 & 1) != 0;
-            this.new_chats = (readInt32 & 2) != 0;
-            this.contacts = (readInt32 & 4) != 0;
-            this.non_contacts = (readInt32 & 8) != 0;
-            this.exclude_selected = (readInt32 & 32) != 0;
-            if ((readInt32 & 16) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.existing_chats = (int32 & 1) != 0;
+            this.new_chats = (int32 & 2) != 0;
+            this.contacts = (int32 & 4) != 0;
+            this.non_contacts = (int32 & 8) != 0;
+            this.exclude_selected = (int32 & 32) != 0;
+            if ((int32 & 16) != 0) {
                 this.users = Vector.deserializeLong(inputSerializedData, z);
             }
         }
@@ -2939,22 +2939,22 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.reply = (readInt32 & 1) != 0;
-            this.read_messages = (readInt32 & 2) != 0;
-            this.delete_sent_messages = (readInt32 & 4) != 0;
-            this.delete_received_messages = (readInt32 & 8) != 0;
-            this.edit_name = (readInt32 & 16) != 0;
-            this.edit_bio = (readInt32 & 32) != 0;
-            this.edit_profile_photo = (readInt32 & 64) != 0;
-            this.edit_username = (readInt32 & 128) != 0;
-            this.view_gifts = (readInt32 & 256) != 0;
-            this.sell_gifts = (readInt32 & 512) != 0;
-            this.change_gift_settings = (readInt32 & 1024) != 0;
-            this.transfer_and_upgrade_gifts = (readInt32 & 2048) != 0;
-            this.transfer_stars = (readInt32 & 4096) != 0;
-            this.manage_stories = (readInt32 & 8192) != 0;
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.reply = (int32 & 1) != 0;
+            this.read_messages = (int32 & 2) != 0;
+            this.delete_sent_messages = (int32 & 4) != 0;
+            this.delete_received_messages = (int32 & 8) != 0;
+            this.edit_name = (int32 & 16) != 0;
+            this.edit_bio = (int32 & 32) != 0;
+            this.edit_profile_photo = (int32 & 64) != 0;
+            this.edit_username = (int32 & 128) != 0;
+            this.view_gifts = (int32 & 256) != 0;
+            this.sell_gifts = (int32 & 512) != 0;
+            this.change_gift_settings = (int32 & 1024) != 0;
+            this.transfer_and_upgrade_gifts = (int32 & 2048) != 0;
+            this.transfer_stars = (int32 & 4096) != 0;
+            this.manage_stories = (int32 & 8192) != 0;
         }
 
         @Override
@@ -3711,9 +3711,9 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            if ((readInt32 & 1) != 0) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if ((int32 & 1) != 0) {
                 this.messages_notify_from = ReactionNotificationsFrom.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 2) != 0) {

@@ -26,15 +26,13 @@ public abstract class CustomPopupMenu {
         this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = CustomPopupMenu.this.lambda$new$0(view, motionEvent);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(view, motionEvent);
             }
         });
         this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                CustomPopupMenu.this.lambda$new$1(keyEvent);
+                this.f$0.lambda$new$1(keyEvent);
             }
         });
         this.popupLayout.setShownFromBottom(false);
@@ -51,7 +49,7 @@ public abstract class CustomPopupMenu {
         this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public final void onDismiss() {
-                CustomPopupMenu.this.lambda$new$2();
+                this.f$0.lambda$new$2();
             }
         });
     }

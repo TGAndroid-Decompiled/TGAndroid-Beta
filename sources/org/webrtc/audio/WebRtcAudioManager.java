@@ -41,7 +41,7 @@ class WebRtcAudioManager {
         return isLowLatencyOutputSupported(context);
     }
 
-    public static int getSampleRate(AudioManager audioManager) {
+    static int getSampleRate(AudioManager audioManager) {
         if (WebRtcAudioUtils.runningOnEmulator()) {
             Logging.d("WebRtcAudioManagerExternal", "Running emulator, overriding sample rate to 8 kHz.");
             return 8000;

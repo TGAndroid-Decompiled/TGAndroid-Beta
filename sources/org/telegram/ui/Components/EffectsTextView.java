@@ -81,21 +81,21 @@ public class EffectsTextView extends SpoilersTextView {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (this.links != null) {
             Layout layout = getLayout();
-            final ClickableSpan hit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (hit != null && motionEvent.getAction() == 0) {
-                final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+            final ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (clickableSpanHit != null && motionEvent.getAction() == 0) {
+                final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                 this.pressedLink = linkSpanDrawable;
                 this.links.addLink(linkSpanDrawable);
                 SpannableString spannableString = new SpannableString(layout.getText());
                 int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
                 int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
-                LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
-                obtainNewPath.setCurrentLayout(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
+                LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EffectsTextView.this.lambda$onTouchEvent$0(linkSpanDrawable, hit);
+                        this.f$0.lambda$onTouchEvent$0(linkSpanDrawable, clickableSpanHit);
                     }
                 }, ViewConfiguration.getLongPressTimeout());
                 return true;
@@ -103,7 +103,7 @@ public class EffectsTextView extends SpoilersTextView {
             if (motionEvent.getAction() == 1) {
                 this.links.clear();
                 LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == hit) {
+                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
                     LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
                     if (onLinkPress != null) {
                         onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());

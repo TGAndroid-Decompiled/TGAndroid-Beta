@@ -24,63 +24,63 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     private final FastDatePrinter printer;
 
     public static FastDateFormat getInstance() {
-        return cache.getInstance();
+        return (FastDateFormat) cache.getInstance();
     }
 
     public static FastDateFormat getInstance(String str) {
-        return cache.getInstance(str, null, null);
+        return (FastDateFormat) cache.getInstance(str, null, null);
     }
 
     public static FastDateFormat getInstance(String str, TimeZone timeZone) {
-        return cache.getInstance(str, timeZone, null);
+        return (FastDateFormat) cache.getInstance(str, timeZone, null);
     }
 
     public static FastDateFormat getInstance(String str, Locale locale) {
-        return cache.getInstance(str, null, locale);
+        return (FastDateFormat) cache.getInstance(str, null, locale);
     }
 
     public static FastDateFormat getInstance(String str, TimeZone timeZone, Locale locale) {
-        return cache.getInstance(str, timeZone, locale);
+        return (FastDateFormat) cache.getInstance(str, timeZone, locale);
     }
 
     public static FastDateFormat getDateInstance(int i) {
-        return cache.getDateInstance(i, null, null);
+        return (FastDateFormat) cache.getDateInstance(i, null, null);
     }
 
     public static FastDateFormat getDateInstance(int i, Locale locale) {
-        return cache.getDateInstance(i, null, locale);
+        return (FastDateFormat) cache.getDateInstance(i, null, locale);
     }
 
     public static FastDateFormat getDateInstance(int i, TimeZone timeZone) {
-        return cache.getDateInstance(i, timeZone, null);
+        return (FastDateFormat) cache.getDateInstance(i, timeZone, null);
     }
 
     public static FastDateFormat getDateInstance(int i, TimeZone timeZone, Locale locale) {
-        return cache.getDateInstance(i, timeZone, locale);
+        return (FastDateFormat) cache.getDateInstance(i, timeZone, locale);
     }
 
     public static FastDateFormat getTimeInstance(int i) {
-        return cache.getTimeInstance(i, null, null);
+        return (FastDateFormat) cache.getTimeInstance(i, null, null);
     }
 
     public static FastDateFormat getTimeInstance(int i, Locale locale) {
-        return cache.getTimeInstance(i, null, locale);
+        return (FastDateFormat) cache.getTimeInstance(i, null, locale);
     }
 
     public static FastDateFormat getTimeInstance(int i, TimeZone timeZone) {
-        return cache.getTimeInstance(i, timeZone, null);
+        return (FastDateFormat) cache.getTimeInstance(i, timeZone, null);
     }
 
     public static FastDateFormat getTimeInstance(int i, TimeZone timeZone, Locale locale) {
-        return cache.getTimeInstance(i, timeZone, locale);
+        return (FastDateFormat) cache.getTimeInstance(i, timeZone, locale);
     }
 
     public static FastDateFormat getDateTimeInstance(int i, int i2) {
-        return cache.getDateTimeInstance(i, i2, (TimeZone) null, (Locale) null);
+        return (FastDateFormat) cache.getDateTimeInstance(i, i2, (TimeZone) null, (Locale) null);
     }
 
     public static FastDateFormat getDateTimeInstance(int i, int i2, Locale locale) {
-        return cache.getDateTimeInstance(i, i2, (TimeZone) null, locale);
+        return (FastDateFormat) cache.getDateTimeInstance(i, i2, (TimeZone) null, locale);
     }
 
     public static FastDateFormat getDateTimeInstance(int i, int i2, TimeZone timeZone) {
@@ -88,7 +88,7 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     }
 
     public static FastDateFormat getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
-        return cache.getDateTimeInstance(i, i2, timeZone, locale);
+        return (FastDateFormat) cache.getDateTimeInstance(i, i2, timeZone, locale);
     }
 
     protected FastDateFormat(String str, TimeZone timeZone, Locale locale) {

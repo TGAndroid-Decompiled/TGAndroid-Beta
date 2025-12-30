@@ -129,9 +129,9 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
     @Override
     protected void onMeasure(int i, int i2) {
         ThreadUtils.checkIsOnMainThread();
-        Point measure = this.videoLayoutMeasure.measure(true, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
-        setMeasuredDimension(measure.x, measure.y);
-        logD("onMeasure(). New size: " + measure.x + "x" + measure.y);
+        Point pointMeasure = this.videoLayoutMeasure.measure(true, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
+        setMeasuredDimension(pointMeasure.x, pointMeasure.y);
+        logD("onMeasure(). New size: " + pointMeasure.x + "x" + pointMeasure.y);
     }
 
     @Override
@@ -154,15 +154,15 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
             } else {
                 i2 = (int) (f / width);
             }
-            int min = Math.min(getWidth(), i);
-            int min2 = Math.min(getHeight(), i2);
-            logD("updateSurfaceSize. Layout size: " + getWidth() + "x" + getHeight() + ", frame size: " + this.rotatedFrameWidth + "x" + this.rotatedFrameHeight + ", requested surface size: " + min + "x" + min2 + ", old surface size: " + this.surfaceWidth + "x" + this.surfaceHeight);
-            if (min == this.surfaceWidth && min2 == this.surfaceHeight) {
+            int iMin = Math.min(getWidth(), i);
+            int iMin2 = Math.min(getHeight(), i2);
+            logD("updateSurfaceSize. Layout size: " + getWidth() + "x" + getHeight() + ", frame size: " + this.rotatedFrameWidth + "x" + this.rotatedFrameHeight + ", requested surface size: " + iMin + "x" + iMin2 + ", old surface size: " + this.surfaceWidth + "x" + this.surfaceHeight);
+            if (iMin == this.surfaceWidth && iMin2 == this.surfaceHeight) {
                 return;
             }
-            this.surfaceWidth = min;
-            this.surfaceHeight = min2;
-            getHolder().setFixedSize(min, min2);
+            this.surfaceWidth = iMin;
+            this.surfaceHeight = iMin2;
+            getHolder().setFixedSize(iMin, iMin2);
             return;
         }
         this.surfaceHeight = 0;
@@ -211,7 +211,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         postOrRun(new Runnable() {
             @Override
             public final void run() {
-                SurfaceViewRenderer.this.lambda$onFrameResolutionChanged$0(i4, i);
+                this.f$0.lambda$onFrameResolutionChanged$0(i4, i);
             }
         });
     }

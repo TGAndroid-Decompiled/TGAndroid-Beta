@@ -65,36 +65,8 @@ public abstract class ReactionsUtils {
         return "";
     }
 
-    public static void applyForStoryViews(TLRPC.Reaction reaction, TLRPC.Reaction reaction2, TL_stories.StoryViews storyViews) {
-        if (storyViews == null) {
-            return;
-        }
-        int i = 0;
-        boolean z = false;
-        while (i < storyViews.reactions.size()) {
-            TLRPC.ReactionCount reactionCount = storyViews.reactions.get(i);
-            if (reaction != null && compare(reactionCount.reaction, reaction)) {
-                int i2 = reactionCount.count - 1;
-                reactionCount.count = i2;
-                if (i2 <= 0) {
-                    storyViews.reactions.remove(i);
-                    i--;
-                    i++;
-                }
-            }
-            if (reaction2 != null && compare(reactionCount.reaction, reaction2)) {
-                reactionCount.count++;
-                z = true;
-            }
-            i++;
-        }
-        if (z) {
-            return;
-        }
-        TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
-        tL_reactionCount.count = 1;
-        tL_reactionCount.reaction = reaction2;
-        storyViews.reactions.add(tL_reactionCount);
+    public static void applyForStoryViews(org.telegram.tgnet.TLRPC.Reaction r5, org.telegram.tgnet.TLRPC.Reaction r6, org.telegram.tgnet.tl.TL_stories.StoryViews r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsUtils.applyForStoryViews(org.telegram.tgnet.TLRPC$Reaction, org.telegram.tgnet.TLRPC$Reaction, org.telegram.tgnet.tl.TL_stories$StoryViews):void");
     }
 
     public static void showLimitReachedDialogForReactions(final long j, int i, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
@@ -109,7 +81,7 @@ public abstract class ReactionsUtils {
         limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
             @Override
             public final void run() {
-                ReactionsUtils.lambda$showLimitReachedDialogForReactions$0(BaseFragment.this, j);
+                ReactionsUtils.lambda$showLimitReachedDialogForReactions$0(lastFragment, j);
             }
         });
         limitReachedBottomSheet.show();
@@ -136,30 +108,30 @@ public abstract class ReactionsUtils {
         return animatedEmojiSpan;
     }
 
-    public static void addReactionToEditText(TLRPC.TL_availableReaction tL_availableReaction, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
+    public static void addReactionToEditText(TLRPC.TL_availableReaction tL_availableReaction, HashMap map, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
         long j = document.id;
-        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
-        hashMap.put(Long.valueOf(j), createAnimatedEmojiSpan);
+        AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
+        map.put(Long.valueOf(j), animatedEmojiSpanCreateAnimatedEmojiSpan);
         list.add(Long.valueOf(j));
-        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
+        editable.append((CharSequence) createSpannableText(animatedEmojiSpanCreateAnimatedEmojiSpan, "e"));
         if (selectAnimatedEmojiDialog != null) {
             selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
         }
     }
 
-    public static void addReactionToEditText(TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
-        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(null, Long.valueOf(tL_reactionCustomEmoji.document_id), fontMetricsInt);
-        hashMap.put(Long.valueOf(tL_reactionCustomEmoji.document_id), createAnimatedEmojiSpan);
+    public static void addReactionToEditText(TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji, HashMap map, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
+        AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = createAnimatedEmojiSpan(null, Long.valueOf(tL_reactionCustomEmoji.document_id), fontMetricsInt);
+        map.put(Long.valueOf(tL_reactionCustomEmoji.document_id), animatedEmojiSpanCreateAnimatedEmojiSpan);
         list.add(Long.valueOf(tL_reactionCustomEmoji.document_id));
-        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
+        editable.append((CharSequence) createSpannableText(animatedEmojiSpanCreateAnimatedEmojiSpan, "e"));
         if (selectAnimatedEmojiDialog != null) {
             selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(tL_reactionCustomEmoji.document_id), false);
         }
     }
 
     public static List startPreloadReactions(TLRPC.Chat chat, TLRPC.ChatFull chatFull) {
-        AnimatedEmojiDrawable make;
+        AnimatedEmojiDrawable animatedEmojiDrawableMake;
         ArrayList arrayList = new ArrayList();
         if (chatFull != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
             TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
@@ -170,22 +142,22 @@ public abstract class ReactionsUtils {
                     if (next instanceof TLRPC.TL_reactionEmoji) {
                         TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(((TLRPC.TL_reactionEmoji) next).emoticon);
                         if (tL_availableReaction != null) {
-                            make = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction.activate_animation);
+                            animatedEmojiDrawableMake = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction.activate_animation);
                         }
                     } else {
-                        make = next instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) next).document_id) : null;
+                        animatedEmojiDrawableMake = next instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) next).document_id) : null;
                     }
-                    if (make != null) {
-                        arrayList.add(make);
-                        make.addView((AnimatedEmojiSpan.InvalidateHolder) null);
+                    if (animatedEmojiDrawableMake != null) {
+                        arrayList.add(animatedEmojiDrawableMake);
+                        animatedEmojiDrawableMake.addView((AnimatedEmojiSpan.InvalidateHolder) null);
                     }
                 }
             } else if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
                 for (TLRPC.TL_availableReaction tL_availableReaction2 : MediaDataController.getInstance(UserConfig.selectedAccount).getEnabledReactionsList()) {
                     if (tL_availableReaction2 != null) {
-                        AnimatedEmojiDrawable make2 = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction2.activate_animation);
-                        arrayList.add(make2);
-                        make2.addView((AnimatedEmojiSpan.InvalidateHolder) null);
+                        AnimatedEmojiDrawable animatedEmojiDrawableMake2 = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction2.activate_animation);
+                        arrayList.add(animatedEmojiDrawableMake2);
+                        animatedEmojiDrawableMake2.addView((AnimatedEmojiSpan.InvalidateHolder) null);
                     }
                 }
             }

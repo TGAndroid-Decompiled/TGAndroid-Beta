@@ -44,10 +44,10 @@ public class StableAnimator extends TimeAnimator {
         setTimeListener(new TimeAnimator.TimeListener() {
             @Override
             public final void onTimeUpdate(TimeAnimator timeAnimator, long j, long j2) {
-                StableAnimator.this.lambda$start$0(timeAnimator, j, j2);
+                this.f$0.lambda$start$0(timeAnimator, j, j2);
             }
         });
-        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        int duration = (int) (getDuration() / AndroidUtilities.screenRefreshTime);
         this.times = duration;
         this.totalTimes = duration;
         super.start();

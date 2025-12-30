@@ -214,7 +214,7 @@ public class FragmentContextViewWavesDrawable {
                     this.targetY = (Utilities.random.nextInt(100) * 4.0f) / 100.0f;
                 }
             }
-            float f3 = (float) j;
+            float f3 = j;
             float f4 = this.time + ((BlobDrawable.GRADIENT_SPEED_MIN + 0.5f) * f3) + (f3 * BlobDrawable.GRADIENT_SPEED_MAX * 2.0f * f);
             this.time = f4;
             float f5 = this.duration;

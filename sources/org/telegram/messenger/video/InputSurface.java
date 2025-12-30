@@ -23,13 +23,13 @@ public class InputSurface {
     }
 
     private void eglSetup() {
-        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.mEGLDisplay = eglGetDisplay;
-        if (eglGetDisplay == EGL14.EGL_NO_DISPLAY) {
+        EGLDisplay eGLDisplayEglGetDisplay = EGL14.eglGetDisplay(0);
+        this.mEGLDisplay = eGLDisplayEglGetDisplay;
+        if (eGLDisplayEglGetDisplay == EGL14.EGL_NO_DISPLAY) {
             throw new RuntimeException("unable to get EGL14 display");
         }
         int[] iArr = new int[2];
-        if (!EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
+        if (!EGL14.eglInitialize(eGLDisplayEglGetDisplay, iArr, 0, iArr, 1)) {
             this.mEGLDisplay = null;
             throw new RuntimeException("unable to initialize EGL14");
         }

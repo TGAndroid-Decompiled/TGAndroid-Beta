@@ -25,6 +25,11 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         return elements.length == 0 ? new ArrayList() : new ArrayList(new ArrayAsCollection(elements, true));
     }
 
+    public static List listOfNotNull(Object... elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        return ArraysKt.filterNotNull(elements);
+    }
+
     public static int getLastIndex(List list) {
         Intrinsics.checkNotNullParameter(list, "<this>");
         return list.size() - 1;

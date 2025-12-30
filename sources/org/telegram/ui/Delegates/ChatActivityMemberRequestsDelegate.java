@@ -67,7 +67,7 @@ public class ChatActivityMemberRequestsDelegate {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatActivityMemberRequestsDelegate.this.lambda$getView$0(view2);
+                    this.f$0.lambda$getView$0(view2);
                 }
             });
             this.root.addView(view, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 2.0f));
@@ -77,7 +77,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.root.addView(this.requestsDataLayout, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
             AvatarsImageView avatarsImageView = new AvatarsImageView(this.fragment.getParentActivity(), false) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.avatarsDrawable.count == 0 ? 0 : ((r2 - 1) * 20) + 24), 1073741824), i2);
                 }
             };
@@ -104,7 +104,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.closeView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatActivityMemberRequestsDelegate.this.lambda$getView$1(view2);
+                    this.f$0.lambda$getView$1(view2);
                 }
             });
             this.root.addView(this.closeView, LayoutHelper.createFrame(36, -1.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
@@ -191,14 +191,14 @@ public class ChatActivityMemberRequestsDelegate {
             if (list == null || list.isEmpty()) {
                 return;
             }
-            int min = Math.min(3, list.size());
-            for (int i2 = 0; i2 < min; i2++) {
+            int iMin = Math.min(3, list.size());
+            for (int i2 = 0; i2 < iMin; i2++) {
                 TLRPC.User user = this.fragment.getMessagesController().getUser((Long) list.get(i2));
                 if (user != null) {
                     this.avatarsView.setObject(i2, this.currentAccount, user);
                 }
             }
-            this.avatarsView.setCount(min);
+            this.avatarsView.setCount(iMin);
             this.avatarsView.commitTransition(true);
         }
     }
@@ -225,12 +225,12 @@ public class ChatActivityMemberRequestsDelegate {
             valueAnimator.cancel();
         }
         if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
-            this.pendingRequestsAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
+            this.pendingRequestsAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChatActivityMemberRequestsDelegate.this.lambda$animatePendingRequests$2(valueAnimator2);
+                    this.f$0.lambda$animatePendingRequests$2(valueAnimator2);
                 }
             });
             this.pendingRequestsAnimator.addListener(new AnimatorListenerAdapter() {

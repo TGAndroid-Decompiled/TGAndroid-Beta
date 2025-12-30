@@ -1,6 +1,7 @@
 package org.telegram.messenger.audioinfo.util;
 
 import java.io.FilterInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class PositionInputStream extends FilterInputStream {
@@ -29,22 +30,22 @@ public class PositionInputStream extends FilterInputStream {
     }
 
     @Override
-    public int read() {
-        int read = super.read();
-        if (read >= 0) {
+    public int read() throws IOException {
+        int i = super.read();
+        if (i >= 0) {
             this.position++;
         }
-        return read;
+        return i;
     }
 
     @Override
-    public int read(byte[] bArr, int i, int i2) {
+    public int read(byte[] bArr, int i, int i2) throws IOException {
         long j = this.position;
-        int read = super.read(bArr, i, i2);
-        if (read > 0) {
-            this.position = j + read;
+        int i3 = super.read(bArr, i, i2);
+        if (i3 > 0) {
+            this.position = j + i3;
         }
-        return read;
+        return i3;
     }
 
     @Override
@@ -53,11 +54,11 @@ public class PositionInputStream extends FilterInputStream {
     }
 
     @Override
-    public long skip(long j) {
+    public long skip(long j) throws IOException {
         long j2 = this.position;
-        long skip = super.skip(j);
-        this.position = j2 + skip;
-        return skip;
+        long jSkip = super.skip(j);
+        this.position = j2 + jSkip;
+        return jSkip;
     }
 
     public long getPosition() {

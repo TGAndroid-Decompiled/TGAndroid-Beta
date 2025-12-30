@@ -48,9 +48,9 @@ public class TextCheckCell2 extends FrameLayout {
             this.animatedTextView.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.collapseViewContainer.addView(this.animatedTextView, LayoutHelper.createFrame(-2, 20.0f));
             this.collapsedArrow = new View(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-            this.collapsedArrow.setBackground(mutate);
+            Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+            this.collapsedArrow.setBackground(drawableMutate);
             this.collapseViewContainer.addView(this.collapsedArrow, LayoutHelper.createLinear(16, 16, 16));
             this.collapseViewContainer.setClipChildren(false);
             setClipChildren(false);

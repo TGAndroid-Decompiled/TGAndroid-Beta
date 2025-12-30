@@ -249,11 +249,11 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             }
         }
         String str = string;
-        int measureText = (int) this.textPaint.measureText((CharSequence) str, 0, str.length());
-        this.chatNameWidth = measureText;
-        int min = Math.min(measureText, this.lastWidth - AndroidUtilities.dp(60.0f));
-        this.chatNameWidth = min;
-        this.chatNameLayout = StaticLayoutEx.createStaticLayout(str, this.textPaint, min, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, min, 1);
+        int iMeasureText = (int) this.textPaint.measureText((CharSequence) str, 0, str.length());
+        this.chatNameWidth = iMeasureText;
+        int iMin = Math.min(iMeasureText, this.lastWidth - AndroidUtilities.dp(60.0f));
+        this.chatNameWidth = iMin;
+        this.chatNameLayout = StaticLayoutEx.createStaticLayout(str, this.textPaint, iMin, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, iMin, 1);
         if (this.recommendedChannel) {
             string2 = LocaleController.getString(R.string.SwipeToGoNextRecommendedChannel);
             string3 = LocaleController.getString(R.string.ReleaseToGoNextRecommendedChannel);
@@ -274,16 +274,16 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             }
         }
         String str2 = string2;
-        int measureText2 = (int) this.textPaint2.measureText(str2);
-        this.layout1Width = measureText2;
-        this.layout1Width = Math.min(measureText2, this.lastWidth - AndroidUtilities.dp(60.0f));
+        int iMeasureText2 = (int) this.textPaint2.measureText(str2);
+        this.layout1Width = iMeasureText2;
+        this.layout1Width = Math.min(iMeasureText2, this.lastWidth - AndroidUtilities.dp(60.0f));
         TextPaint textPaint = this.textPaint2;
         int i3 = this.layout1Width;
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         this.layout1 = new StaticLayout(str2, textPaint, i3, alignment, 1.0f, 0.0f, false);
-        int measureText3 = (int) this.textPaint2.measureText(string3);
-        this.layout2Width = measureText3;
-        this.layout2Width = Math.min(measureText3, this.lastWidth - AndroidUtilities.dp(60.0f));
+        int iMeasureText3 = (int) this.textPaint2.measureText(string3);
+        this.layout2Width = iMeasureText3;
+        this.layout2Width = Math.min(iMeasureText3, this.lastWidth - AndroidUtilities.dp(60.0f));
         this.layout2 = new StaticLayout(string3, this.textPaint2, this.layout2Width, alignment, 1.0f, 0.0f, false);
         this.imageReceiver.setImageCoords((this.lastWidth / 2.0f) - (AndroidUtilities.dp(40.0f) / 2.0f), (AndroidUtilities.dp(12.0f) + this.circleRadius) - (AndroidUtilities.dp(40.0f) / 2.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         this.imageReceiver.setRoundRadius((int) (AndroidUtilities.dp(40.0f) / 2.0f));
@@ -310,12 +310,12 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             }
         }
         this.counterDrawable.setParent(view);
-        float dp = AndroidUtilities.dp(110.0f) * f;
-        if (dp < AndroidUtilities.dp(8.0f)) {
+        float fDp = AndroidUtilities.dp(110.0f) * f;
+        if (fDp < AndroidUtilities.dp(8.0f)) {
             return;
         }
         float f7 = f < 0.2f ? 5.0f * f * f2 : f2;
-        Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - dp);
+        Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - fDp);
         TextPaint textPaint = this.textPaint;
         int i4 = Theme.key_chat_serviceText;
         textPaint.setColor(getThemedColor(i4));
@@ -335,14 +335,14 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             i2 = alpha;
         } else {
             i = i5;
-            long currentTimeMillis = System.currentTimeMillis();
+            long jCurrentTimeMillis = System.currentTimeMillis();
             i2 = alpha;
-            if (currentTimeMillis - this.lastHapticTime > 100) {
+            if (jCurrentTimeMillis - this.lastHapticTime > 100) {
                 try {
                     view.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                this.lastHapticTime = currentTimeMillis;
+                this.lastHapticTime = jCurrentTimeMillis;
             }
             this.lastProgress = f;
         }
@@ -358,72 +358,72 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         float f8 = this.lastWidth / 2.0f;
         float f9 = this.bounceProgress * (-AndroidUtilities.dp(4.0f));
         if (this.emptyStub) {
-            dp -= f9;
+            fDp -= f9;
         }
-        float f10 = dp / 2.0f;
-        float max = Math.max(0.0f, Math.min(this.circleRadius, (f10 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
-        float max2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f10 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
-        float dp2 = AndroidUtilities.dp(56.0f);
+        float f10 = fDp / 2.0f;
+        float fMax = Math.max(0.0f, Math.min(this.circleRadius, (f10 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
+        float fMax2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f10 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
+        float fDp2 = AndroidUtilities.dp(56.0f);
         float f11 = this.swipeToReleaseProgress;
-        float f12 = max2 + (dp2 * f11);
+        float f12 = fMax2 + (fDp2 * f11);
         if (f11 < 1.0f || this.emptyStub) {
-            float f13 = -dp;
+            float f13 = -fDp;
             i3 = alpha2;
             f3 = f7;
-            float dp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f13) * this.swipeToReleaseProgress);
+            float fDp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f13) * this.swipeToReleaseProgress);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f8 - max, f13, max + f8, dp3);
+            rectF.set(f8 - fMax, f13, fMax + f8, fDp3);
             if (this.swipeToReleaseProgress <= 0.0f || this.emptyStub) {
                 f4 = 1.0f;
             } else {
-                float dp4 = AndroidUtilities.dp(16.0f) * this.swipeToReleaseProgress;
-                rectF.inset(dp4, dp4);
+                float fDp4 = AndroidUtilities.dp(16.0f) * this.swipeToReleaseProgress;
+                rectF.inset(fDp4, fDp4);
                 f4 = 1.0f - this.swipeToReleaseProgress;
             }
             drawBackground(canvas, rectF, f4);
-            float dp5 = ((AndroidUtilities.dp(24.0f) + f13) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
+            float fDp5 = ((AndroidUtilities.dp(24.0f) + f13) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
             canvas.save();
-            f5 = dp;
+            f5 = fDp;
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             canvas.clipRect(rectF);
             float f14 = this.swipeToReleaseProgress;
             if (f14 > 0.0f) {
                 this.arrowPaint.setAlpha((int) ((1.0f - f14) * 255.0f));
             }
-            drawArrow(canvas, f8, dp5, AndroidUtilities.dp(24.0f) * f);
+            drawArrow(canvas, f8, fDp5, AndroidUtilities.dp(24.0f) * f);
             if (this.emptyStub) {
-                float dp22 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + ((f13 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f9;
+                float fDp22 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + ((f13 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f9;
                 this.arrowPaint.setAlpha(alpha4);
                 canvas.save();
-                canvas.scale(f, f, f8, AndroidUtilities.dp(28.0f) + dp22);
-                drawCheck(canvas, f8, dp22 + AndroidUtilities.dp(28.0f));
+                canvas.scale(f, f, f8, AndroidUtilities.dp(28.0f) + fDp22);
+                drawCheck(canvas, f8, fDp22 + AndroidUtilities.dp(28.0f));
                 canvas.restore();
             }
             canvas.restore();
         } else {
-            f5 = dp;
+            f5 = fDp;
             f3 = f7;
             i3 = alpha2;
         }
         if (this.chatNameLayout != null && this.swipeToReleaseProgress > 0.0f) {
             getThemedPaint("paintChatActionBackground").setAlpha(i);
             this.textPaint.setAlpha(i6);
-            float dp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f9;
+            float fDp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f9;
             RectF rectF2 = AndroidUtilities.rectTmp;
             float f15 = (r5 - this.chatNameWidth) / 2.0f;
-            rectF2.set(f15, dp6, this.lastWidth - f15, this.chatNameLayout.getHeight() + dp6);
+            rectF2.set(f15, fDp6, this.lastWidth - f15, this.chatNameLayout.getHeight() + fDp6);
             rectF2.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
             }
             canvas.save();
-            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, dp6);
+            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, fDp6);
             this.chatNameLayout.draw(canvas);
             canvas.restore();
         }
         if (!this.emptyStub && f12 > 0.0f) {
-            float dp23 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + (((-f5) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f9;
+            float fDp23 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + (((-f5) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f9;
             AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
             if (animatedEmojiDrawable2 != null && animatedEmojiDrawable2.getImageReceiver() != null) {
                 imageReceiver = this.animatedEmojiDrawable.getImageReceiver();
@@ -434,7 +434,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             imageReceiver2.setAlpha(f3);
             float f16 = f12 / 2.0f;
             imageReceiver2.setRoundRadius((int) f16);
-            imageReceiver2.setImageCoords(f8 - f16, dp23, f12, f12);
+            imageReceiver2.setImageCoords(f8 - f16, fDp23, f12, f12);
             if (this.isTopic && imageReceiver2.getDrawable() != null && (imageReceiver2.getDrawable() instanceof CombinedDrawable) && (((CombinedDrawable) imageReceiver2.getDrawable()).getIcon() instanceof LetterDrawable)) {
                 ((LetterDrawable) ((CombinedDrawable) imageReceiver2.getDrawable()).getIcon()).scale = f;
             }
@@ -443,8 +443,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                 canvas.saveLayerAlpha(imageReceiver2.getImageX(), imageReceiver2.getImageY(), imageReceiver2.getImageWidth() + imageReceiver2.getImageX(), imageReceiver2.getImageHeight() + imageReceiver2.getImageY(), 255, 31);
                 imageReceiver2.draw(canvas);
                 float f17 = this.swipeToReleaseProgress;
-                canvas.scale(f17, f17, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(AndroidUtilities.dp(12.0f) + f8, dp23 - AndroidUtilities.dp(6.0f));
+                canvas.scale(f17, f17, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (fDp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(AndroidUtilities.dp(12.0f) + f8, fDp23 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.updateBackgroundRect();
                 this.counterDrawable.rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
                 RectF rectF3 = this.counterDrawable.rectF;
@@ -452,8 +452,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                 canvas.restore();
                 canvas.save();
                 float f18 = this.swipeToReleaseProgress;
-                canvas.scale(f18, f18, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(f8 + AndroidUtilities.dp(12.0f), dp23 - AndroidUtilities.dp(6.0f));
+                canvas.scale(f18, f18, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (fDp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(f8 + AndroidUtilities.dp(12.0f), fDp23 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.draw(canvas);
                 canvas.restore();
             } else {
@@ -484,17 +484,17 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             canvas.save();
             canvas.clipRect(AndroidUtilities.rectTmp);
             canvas.translate(f - AndroidUtilities.dp(24.0f), f2 - AndroidUtilities.dp(24.0f));
-            float dp = AndroidUtilities.dp(16.0f);
-            float dp2 = AndroidUtilities.dp(26.0f);
-            float dp3 = AndroidUtilities.dp(22.0f);
-            float dp4 = AndroidUtilities.dp(32.0f);
-            float dp5 = AndroidUtilities.dp(32.0f);
-            float dp6 = AndroidUtilities.dp(20.0f);
+            float fDp = AndroidUtilities.dp(16.0f);
+            float fDp2 = AndroidUtilities.dp(26.0f);
+            float fDp3 = AndroidUtilities.dp(22.0f);
+            float fDp4 = AndroidUtilities.dp(32.0f);
+            float fDp5 = AndroidUtilities.dp(32.0f);
+            float fDp6 = AndroidUtilities.dp(20.0f);
             float f8 = 1.0f - f6;
-            canvas.drawLine(dp, dp2, (dp * f8) + (dp3 * f6), (f8 * dp2) + (f6 * dp4), this.arrowPaint);
+            canvas.drawLine(fDp, fDp2, (fDp * f8) + (fDp3 * f6), (f8 * fDp2) + (f6 * fDp4), this.arrowPaint);
             if (f7 > 0.0f) {
                 float f9 = 1.0f - f7;
-                canvas.drawLine(dp3, dp4, (dp3 * f9) + (dp5 * f7), (f9 * dp4) + (dp6 * f7), this.arrowPaint);
+                canvas.drawLine(fDp3, fDp4, (fDp3 * f9) + (fDp5 * f7), (f9 * fDp4) + (fDp6 * f7), this.arrowPaint);
             }
             canvas.restore();
         }
@@ -503,30 +503,30 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     private void drawBackground(Canvas canvas, RectF rectF, float f) {
         if (this.drawFolderBackground) {
             this.path.reset();
-            float width = rectF.width() * 0.2f;
-            float width2 = rectF.width() * 0.1f;
-            float width3 = rectF.width() * 0.03f;
-            float f2 = width2 / 2.0f;
-            float height = rectF.height() - width2;
-            this.path.moveTo(rectF.right, rectF.top + width + width2);
-            float f3 = -width;
+            float fWidth = rectF.width() * 0.2f;
+            float fWidth2 = rectF.width() * 0.1f;
+            float fWidth3 = rectF.width() * 0.03f;
+            float f2 = fWidth2 / 2.0f;
+            float fHeight = rectF.height() - fWidth2;
+            this.path.moveTo(rectF.right, rectF.top + fWidth + fWidth2);
+            float f3 = -fWidth;
             this.path.rQuadTo(0.0f, f3, f3, f3);
-            float f4 = width * 2.0f;
+            float f4 = fWidth * 2.0f;
             float f5 = f2 * 2.0f;
-            this.path.rLineTo((((-(rectF.width() - f4)) / 2.0f) + f5) - width3, 0.0f);
+            this.path.rLineTo((((-(rectF.width() - f4)) / 2.0f) + f5) - fWidth3, 0.0f);
             float f6 = -f2;
             float f7 = f6 / 2.0f;
             float f8 = f6 * 2.0f;
-            float f9 = (-width2) / 2.0f;
+            float f9 = (-fWidth2) / 2.0f;
             this.path.rQuadTo(f7, 0.0f, f8, f9);
             this.path.rQuadTo(f7, f9, f8, f9);
-            this.path.rLineTo(((-(rectF.width() - f4)) / 2.0f) + f5 + width3, 0.0f);
-            this.path.rQuadTo(f3, 0.0f, f3, width);
-            this.path.rLineTo(0.0f, (width2 + height) - f4);
-            this.path.rQuadTo(0.0f, width, width, width);
+            this.path.rLineTo(((-(rectF.width() - f4)) / 2.0f) + f5 + fWidth3, 0.0f);
+            this.path.rQuadTo(f3, 0.0f, f3, fWidth);
+            this.path.rLineTo(0.0f, (fWidth2 + fHeight) - f4);
+            this.path.rQuadTo(0.0f, fWidth, fWidth, fWidth);
             this.path.rLineTo(rectF.width() - f4, 0.0f);
-            this.path.rQuadTo(width, 0.0f, width, f3);
-            this.path.rLineTo(0.0f, -(height - f4));
+            this.path.rQuadTo(fWidth, 0.0f, fWidth, f3);
+            this.path.rLineTo(0.0f, -(fHeight - f4));
             this.path.close();
             canvas.drawPath(this.path, getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
@@ -557,44 +557,44 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.showReleaseAnimator.cancel();
         }
         if (z) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.this.lambda$showReleaseState$0(view, valueAnimator);
+                    this.f$0.lambda$showReleaseState$0(view, valueAnimator);
                 }
             });
-            ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ofFloat.setDuration(250L);
+            valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            valueAnimatorOfFloat.setDuration(250L);
             this.bounceProgress = 0.0f;
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.this.lambda$showReleaseState$1(view, valueAnimator);
+                    this.f$0.lambda$showReleaseState$1(view, valueAnimator);
                 }
             });
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_BOTH;
-            ofFloat2.setInterpolator(cubicBezierInterpolator);
-            ofFloat2.setDuration(180L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
-            ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
+            valueAnimatorOfFloat2.setDuration(180L);
+            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
+            valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.this.lambda$showReleaseState$2(view, valueAnimator);
+                    this.f$0.lambda$showReleaseState$2(view, valueAnimator);
                 }
             });
-            ofFloat3.setInterpolator(cubicBezierInterpolator);
-            ofFloat3.setDuration(120L);
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(-0.5f, 0.0f);
-            ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
+            valueAnimatorOfFloat3.setDuration(120L);
+            ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(-0.5f, 0.0f);
+            valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.this.lambda$showReleaseState$3(view, valueAnimator);
+                    this.f$0.lambda$showReleaseState$3(view, valueAnimator);
                 }
             });
-            ofFloat4.setInterpolator(cubicBezierInterpolator);
-            ofFloat4.setDuration(100L);
+            valueAnimatorOfFloat4.setInterpolator(cubicBezierInterpolator);
+            valueAnimatorOfFloat4.setDuration(100L);
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.showReleaseAnimator = animatorSet2;
             animatorSet2.addListener(new AnimatorListenerAdapter() {
@@ -613,23 +613,23 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                 }
             });
             AnimatorSet animatorSet3 = new AnimatorSet();
-            animatorSet3.playSequentially(ofFloat2, ofFloat3, ofFloat4);
-            this.showReleaseAnimator.playTogether(ofFloat, animatorSet3);
+            animatorSet3.playSequentially(valueAnimatorOfFloat2, valueAnimatorOfFloat3, valueAnimatorOfFloat4);
+            this.showReleaseAnimator.playTogether(valueAnimatorOfFloat, animatorSet3);
             this.showReleaseAnimator.start();
             return;
         }
-        ValueAnimator ofFloat5 = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 0.0f);
-        ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 0.0f);
+        valueAnimatorOfFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatPullingDownDrawable.this.lambda$showReleaseState$4(view, valueAnimator);
+                this.f$0.lambda$showReleaseState$4(view, valueAnimator);
             }
         });
-        ofFloat5.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        ofFloat5.setDuration(220L);
+        valueAnimatorOfFloat5.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        valueAnimatorOfFloat5.setDuration(220L);
         AnimatorSet animatorSet4 = new AnimatorSet();
         this.showReleaseAnimator = animatorSet4;
-        animatorSet4.playTogether(ofFloat5);
+        animatorSet4.playTogether(valueAnimatorOfFloat5);
         this.showReleaseAnimator.start();
     }
 
@@ -662,8 +662,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
 
     private void drawArrow(Canvas canvas, float f, float f2, float f3) {
         canvas.save();
-        float dpf2 = f3 / AndroidUtilities.dpf2(24.0f);
-        canvas.scale(dpf2, dpf2, f, f2 - AndroidUtilities.dp(20.0f));
+        float fDpf2 = f3 / AndroidUtilities.dpf2(24.0f);
+        canvas.scale(fDpf2, fDpf2, f, f2 - AndroidUtilities.dp(20.0f));
         canvas.translate(f - AndroidUtilities.dp2(12.0f), f2 - AndroidUtilities.dp(12.0f));
         canvas.drawLine(AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(22.0f), this.arrowPaint);
         canvas.drawLine(AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(3.5f), this.arrowPaint);
@@ -750,8 +750,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                 }
             }
             for (int i6 = 0; i6 < messagesController.dialogsByFolder.size(); i6++) {
-                int keyAt = messagesController.dialogsByFolder.keyAt(i6);
-                if (i != keyAt && (nextUnreadDialog = getNextUnreadDialog(j, keyAt, 0, false, iArr)) != null) {
+                int iKeyAt = messagesController.dialogsByFolder.keyAt(i6);
+                if (i != iKeyAt && (nextUnreadDialog = getNextUnreadDialog(j, iKeyAt, 0, false, iArr)) != null) {
                     if (iArr != null) {
                         iArr[0] = 1;
                     }
@@ -838,18 +838,18 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         }
         this.onAnimationFinishRunnable = runnable;
         this.showReleaseAnimator = new AnimatorSet();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.swipeToReleaseProgress, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatPullingDownDrawable.this.lambda$runOnAnimationFinish$5(valueAnimator);
+                this.f$0.lambda$runOnAnimationFinish$5(valueAnimator);
             }
         });
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.bounceProgress, 0.0f);
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.bounceProgress, 0.0f);
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatPullingDownDrawable.this.lambda$runOnAnimationFinish$6(valueAnimator);
+                this.f$0.lambda$runOnAnimationFinish$6(valueAnimator);
             }
         });
         this.showReleaseAnimator.addListener(new AnimatorListenerAdapter() {
@@ -870,7 +870,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
                 }
             }
         });
-        this.showReleaseAnimator.playTogether(ofFloat, ofFloat2);
+        this.showReleaseAnimator.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2);
         this.showReleaseAnimator.setDuration(120L);
         this.showReleaseAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.showReleaseAnimator.start();

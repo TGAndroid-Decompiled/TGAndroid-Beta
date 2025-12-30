@@ -28,9 +28,9 @@ public final class Pair implements Serializable {
 
     public int hashCode() {
         Object obj = this.first;
-        int hashCode = (obj == null ? 0 : obj.hashCode()) * 31;
+        int iHashCode = (obj == null ? 0 : obj.hashCode()) * 31;
         Object obj2 = this.second;
-        return hashCode + (obj2 != null ? obj2.hashCode() : 0);
+        return iHashCode + (obj2 != null ? obj2.hashCode() : 0);
     }
 
     public Pair(Object obj, Object obj2) {

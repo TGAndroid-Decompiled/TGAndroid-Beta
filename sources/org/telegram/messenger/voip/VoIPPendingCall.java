@@ -40,14 +40,14 @@ public final class VoIPPendingCall {
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                VoIPPendingCall.this.lambda$new$0(i, i2, objArr);
+                this.f$0.lambda$new$0(i, i2, objArr);
             }
         };
         this.observer = notificationCenterDelegate;
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VoIPPendingCall.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         };
         this.releaseRunnable = runnable;

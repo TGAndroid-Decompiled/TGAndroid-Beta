@@ -184,50 +184,50 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     private void updateCell() {
-        String str;
         String string;
+        String string2;
         SendLocationCell sendLocationCell = this.sendLocationCell;
         if (sendLocationCell != null) {
             int i = this.locationType;
             if (i == 8) {
                 if (!TextUtils.isEmpty(this.overrideAddressName)) {
-                    string = this.overrideAddressName;
+                    string2 = this.overrideAddressName;
                 } else if (!TextUtils.isEmpty(this.addressName)) {
-                    string = this.addressName;
+                    string2 = this.addressName;
                 } else if (this.fetchingLocation) {
-                    string = LocaleController.getString(R.string.Loading);
+                    string2 = LocaleController.getString(R.string.Loading);
                 } else {
-                    string = LocaleController.getString(R.string.UnknownLocation);
+                    string2 = LocaleController.getString(R.string.UnknownLocation);
                 }
-                this.sendLocationCell.setText(LocaleController.getString(R.string.SetThisLocation), string);
+                this.sendLocationCell.setText(LocaleController.getString(R.string.SetThisLocation), string2);
                 this.sendLocationCell.setHasLocation(true);
                 return;
             }
-            str = "";
+            string = "";
             if (i == 4 || this.customLocation != null) {
                 if (!TextUtils.isEmpty(this.overrideAddressName)) {
-                    str = this.overrideAddressName;
+                    string = this.overrideAddressName;
                 } else if (!TextUtils.isEmpty(this.addressName)) {
-                    str = this.addressName;
+                    string = this.addressName;
                 } else {
                     Location location = this.customLocation;
                     if ((location == null && this.gpsLocation == null) || this.fetchingLocation) {
-                        str = LocaleController.getString(R.string.Loading);
+                        string = LocaleController.getString(R.string.Loading);
                     } else if (location != null) {
-                        str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(this.customLocation.getLongitude()));
+                        string = String.format(Locale.US, "(%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(this.customLocation.getLongitude()));
                     } else {
                         Location location2 = this.gpsLocation;
                         if (location2 != null) {
-                            str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.gpsLocation.getLongitude()));
+                            string = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.gpsLocation.getLongitude()));
                         } else if (!this.myLocationDenied) {
-                            str = LocaleController.getString(R.string.Loading);
+                            string = LocaleController.getString(R.string.Loading);
                         }
                     }
                 }
                 if (this.locationType == 4) {
-                    this.sendLocationCell.setText(LocaleController.getString(R.string.ChatSetThisLocation), str);
+                    this.sendLocationCell.setText(LocaleController.getString(R.string.ChatSetThisLocation), string);
                 } else {
-                    this.sendLocationCell.setText(LocaleController.getString(R.string.SendSelectedLocation), str);
+                    this.sendLocationCell.setText(LocaleController.getString(R.string.SendSelectedLocation), string);
                 }
                 this.sendLocationCell.setHasLocation(true);
                 return;
@@ -324,28 +324,28 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         if (i != 6 && i != 5 && i != 4 && !this.biz) {
             if (this.currentMessageObject != null) {
                 if (!this.currentLiveLocations.isEmpty()) {
-                    r5 = this.currentLiveLocations.size() + 3;
+                    size = this.currentLiveLocations.size() + 3;
                 } else if (this.fromStories) {
-                    r5 = 0;
+                    size = 0;
                 }
-                r1 = 2 + r5;
+                size = 2 + size;
             } else if (i == 2) {
                 LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-                r1 = this.currentLiveLocations.size() + 2 + ((sharingLocationInfo == null || sharingLocationInfo.period == Integer.MAX_VALUE) ? 0 : 1);
+                size = this.currentLiveLocations.size() + 2 + ((sharingLocationInfo == null || sharingLocationInfo.period == Integer.MAX_VALUE) ? 0 : 1);
             } else if (this.searching || !this.searched || this.places.isEmpty()) {
                 int i2 = this.locationType;
                 if (i2 == 0) {
-                    r2 = 5;
+                    i = 5;
                 } else if (i2 == 7) {
-                    r2 = (this.street == null ? 0 : 1) + 5;
+                    i = (this.street == null ? 0 : 1) + 5;
                 }
                 boolean z = this.myLocationDenied;
-                r1 = r2 + ((((z || (!this.searching && this.searched)) ? 0 : 2) + (this.needEmptyView ? 1 : 0)) - (z ? 2 : 0));
+                size = i + ((((z || (!this.searching && this.searched)) ? 0 : 2) + (this.needEmptyView ? 1 : 0)) - (z ? 2 : 0));
             } else {
-                r1 = (this.locationType != 1 ? 5 : 6) + this.locations.size() + this.places.size() + (this.needEmptyView ? 1 : 0);
+                size = (this.locationType != 1 ? 5 : 6) + this.locations.size() + this.places.size() + (this.needEmptyView ? 1 : 0);
             }
         }
-        return (this.sharedMediaLayout == null || !this.sharedMediaLayoutVisible) ? r1 : r1 + 1;
+        return (this.sharedMediaLayout == null || !this.sharedMediaLayoutVisible) ? size : size + 1;
     }
 
     public void lambda$onCreateViewHolder$0(View view) {
@@ -354,208 +354,85 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view;
-        View view2;
+        View sendLocationCell;
+        View headerCell;
         switch (i) {
             case 0:
                 FrameLayout frameLayout = new FrameLayout(this.mContext);
                 this.emptyCell = frameLayout;
                 frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, this.overScrollHeight));
-                view2 = frameLayout;
+                headerCell = frameLayout;
                 break;
             case 1:
-                view = new SendLocationCell(this.mContext, false, false, this.resourcesProvider);
-                view2 = view;
+                sendLocationCell = new SendLocationCell(this.mContext, false, false, this.resourcesProvider);
+                headerCell = sendLocationCell;
                 break;
             case 2:
-                view2 = new HeaderCell(this.mContext, this.resourcesProvider);
+                headerCell = new HeaderCell(this.mContext, this.resourcesProvider);
                 break;
             case 3:
-                view = new LocationCell(this.mContext, false, this.resourcesProvider);
-                view2 = view;
+                sendLocationCell = new LocationCell(this.mContext, false, this.resourcesProvider);
+                headerCell = sendLocationCell;
                 break;
             case 4:
-                view2 = new LocationLoadingCell(this.mContext, this.resourcesProvider);
+                headerCell = new LocationLoadingCell(this.mContext, this.resourcesProvider);
                 break;
             case 5:
-                view2 = new LocationPoweredCell(this.mContext, this.resourcesProvider);
+                headerCell = new LocationPoweredCell(this.mContext, this.resourcesProvider);
                 break;
             case 6:
-                SendLocationCell sendLocationCell = new SendLocationCell(this.mContext, true, false, this.resourcesProvider);
-                sendLocationCell.setDialogId(this.dialogId);
-                view = sendLocationCell;
-                view2 = view;
+                SendLocationCell sendLocationCell2 = new SendLocationCell(this.mContext, true, false, this.resourcesProvider);
+                sendLocationCell2.setDialogId(this.dialogId);
+                sendLocationCell = sendLocationCell2;
+                headerCell = sendLocationCell;
                 break;
             case 7:
-                SendLocationCell sendLocationCell2 = new SendLocationCell(this.mContext, true, true, this.resourcesProvider);
-                sendLocationCell2.setDialogId(this.dialogId);
-                view2 = sendLocationCell2;
+                SendLocationCell sendLocationCell3 = new SendLocationCell(this.mContext, true, true, this.resourcesProvider);
+                sendLocationCell3.setDialogId(this.dialogId);
+                headerCell = sendLocationCell3;
                 break;
             case 8:
                 Context context = this.mContext;
                 int i2 = this.locationType;
-                view2 = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5 || i2 == 3) ? 16 : 54, this.resourcesProvider);
+                headerCell = new SharingLiveLocationCell(context, true, (i2 == 4 || i2 == 5 || i2 == 3) ? 16 : 54, this.resourcesProvider);
                 break;
             case 9:
                 LocationDirectionCell locationDirectionCell = new LocationDirectionCell(this.mContext, this.resourcesProvider);
                 locationDirectionCell.setOnButtonClick(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view3) {
-                        LocationActivityAdapter.this.lambda$onCreateViewHolder$0(view3);
+                    public final void onClick(View view) {
+                        this.f$0.lambda$onCreateViewHolder$0(view);
                     }
                 });
-                view2 = locationDirectionCell;
+                headerCell = locationDirectionCell;
                 break;
             case 10:
                 View shadowSectionCell = new ShadowSectionCell(this.mContext);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackgroundDrawable(combinedDrawable);
-                view2 = shadowSectionCell;
+                headerCell = shadowSectionCell;
                 break;
             case 11:
             default:
-                view2 = new View(this.mContext);
+                headerCell = new View(this.mContext);
                 break;
             case 12:
                 LocationCell locationCell = new LocationCell(this.mContext, false, this.resourcesProvider);
                 locationCell.setAllowTextAnimation(true);
-                view = locationCell;
-                view2 = view;
+                sendLocationCell = locationCell;
+                headerCell = sendLocationCell;
                 break;
             case 13:
-                view2 = this.sharedMediaLayout;
+                headerCell = this.sharedMediaLayout;
                 break;
         }
-        return new RecyclerListView.Holder(view2);
+        return new RecyclerListView.Holder(headerCell);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        int i2;
-        TLRPC.TL_messageMediaVenue tL_messageMediaVenue = null;
-        switch (viewHolder.getItemViewType()) {
-            case 0:
-                RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) viewHolder.itemView.getLayoutParams();
-                if (layoutParams == null) {
-                    layoutParams = new RecyclerView.LayoutParams(-1, this.overScrollHeight);
-                } else {
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = this.overScrollHeight;
-                }
-                viewHolder.itemView.setLayoutParams(layoutParams);
-                return;
-            case 1:
-                this.sendLocationCell = (SendLocationCell) viewHolder.itemView;
-                updateCell();
-                return;
-            case 2:
-                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                if (this.currentMessageObject != null) {
-                    headerCell.setText(LocaleController.getString(R.string.LiveLocations));
-                    return;
-                } else {
-                    headerCell.setText(LocaleController.getString(R.string.NearbyVenue));
-                    return;
-                }
-            case 3:
-                LocationCell locationCell = (LocationCell) viewHolder.itemView;
-                int i3 = this.locationType;
-                if (i3 == 0) {
-                    i2 = i - 4;
-                } else {
-                    if (i3 == 7 || i3 == 8) {
-                        int i4 = i - 4;
-                        if (this.street == null) {
-                            i2 = i4;
-                        }
-                    }
-                    i2 = i - 5;
-                }
-                if (this.searched && (i3 != 7 || !this.searching)) {
-                    r4 = true;
-                }
-                if (r4) {
-                    if (i2 >= 0 && i2 < this.locations.size()) {
-                        tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.locations.get(i2);
-                        locationCell.setLocation(tL_messageMediaVenue, r3, true);
-                        return;
-                    } else {
-                        int size = i2 - this.locations.size();
-                        if (size >= 0 && size < this.places.size()) {
-                            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.places.get(size);
-                        }
-                    }
-                }
-                r3 = i2;
-                locationCell.setLocation(tL_messageMediaVenue, r3, true);
-                return;
-            case 4:
-                ((LocationLoadingCell) viewHolder.itemView).setLoading(this.searching);
-                return;
-            case 5:
-            case 9:
-            case 10:
-            default:
-                return;
-            case 6:
-                SendLocationCell sendLocationCell = (SendLocationCell) viewHolder.itemView;
-                sendLocationCell.setHasLocation(this.gpsLocation != null);
-                int i5 = i + 1;
-                if (i5 < getItemCount() && getItemViewType(i5) == 7) {
-                    r4 = true;
-                }
-                sendLocationCell.useDivider = r4;
-                sendLocationCell.invalidate();
-                return;
-            case 7:
-                ((SendLocationCell) viewHolder.itemView).setHasLocation(this.gpsLocation != null);
-                return;
-            case 8:
-                SharingLiveLocationCell sharingLiveLocationCell = (SharingLiveLocationCell) viewHolder.itemView;
-                if (this.locationType == 6) {
-                    sharingLiveLocationCell.setDialog(this.currentMessageObject, this.gpsLocation, this.myLocationDenied);
-                    return;
-                }
-                TLRPC.TL_channelLocation tL_channelLocation = this.chatLocation;
-                if (tL_channelLocation != null) {
-                    sharingLiveLocationCell.setDialog(this.dialogId, tL_channelLocation);
-                    return;
-                }
-                MessageObject messageObject = this.currentMessageObject;
-                if (messageObject != null && i == 1) {
-                    sharingLiveLocationCell.setDialog(messageObject, this.gpsLocation, this.myLocationDenied);
-                    return;
-                }
-                int i6 = i - (messageObject != null ? 5 : 2);
-                LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-                if (sharingLocationInfo != null && sharingLocationInfo.period != Integer.MAX_VALUE) {
-                    i6--;
-                }
-                if (i6 < 0 || i6 >= this.currentLiveLocations.size()) {
-                    return;
-                }
-                sharingLiveLocationCell.setDialog((LocationActivity.LiveLocation) this.currentLiveLocations.get(i6), this.gpsLocation);
-                return;
-            case 11:
-                viewHolder.itemView.setBackgroundColor(Theme.getColor(this.myLocationDenied ? Theme.key_dialogBackgroundGray : Theme.key_dialogBackground, this.resourcesProvider));
-                return;
-            case 12:
-                LocationCell locationCell2 = (LocationCell) viewHolder.itemView;
-                if (this.askingForMyLocation) {
-                    if (i == 1 && this.street != null) {
-                        r4 = true;
-                    }
-                    locationCell2.setLocation(null, 2, r4);
-                    return;
-                }
-                if (i == 1) {
-                    locationCell2.setLocation(this.city, null, 2, this.street != null, this.animated);
-                    return;
-                } else {
-                    locationCell2.setLocation(this.street, null, 2, false, this.animated);
-                    return;
-                }
-        }
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r13, int r14) throws android.content.res.Resources.NotFoundException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.LocationActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
     public Object getItem(int i) {

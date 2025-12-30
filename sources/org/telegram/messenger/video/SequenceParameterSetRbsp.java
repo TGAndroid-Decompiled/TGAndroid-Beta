@@ -26,9 +26,9 @@ public class SequenceParameterSetRbsp {
         cAVLCReader.readBool("sps_temporal_id_nesting_flag");
         profile_tier_level(this.sps_max_sub_layers_minus1, cAVLCReader);
         cAVLCReader.readUE("sps_seq_parameter_set_id");
-        int readUE = cAVLCReader.readUE("chroma_format_idc");
-        this.chroma_format_idc = readUE;
-        if (readUE == 3) {
+        int ue = cAVLCReader.readUE("chroma_format_idc");
+        this.chroma_format_idc = ue;
+        if (ue == 3) {
             cAVLCReader.read1Bit();
         }
         this.pic_width_in_luma_samples = cAVLCReader.readUE("pic_width_in_luma_samples");
@@ -41,14 +41,14 @@ public class SequenceParameterSetRbsp {
         }
         this.bit_depth_luma_minus8 = cAVLCReader.readUE("bit_depth_luma_minus8");
         this.bit_depth_chroma_minus8 = cAVLCReader.readUE("bit_depth_chroma_minus8");
-        int readUE2 = cAVLCReader.readUE("log2_max_pic_order_cnt_lsb_minus4");
-        boolean readBool = cAVLCReader.readBool("sps_sub_layer_ordering_info_present_flag");
+        int ue2 = cAVLCReader.readUE("log2_max_pic_order_cnt_lsb_minus4");
+        boolean bool = cAVLCReader.readBool("sps_sub_layer_ordering_info_present_flag");
         int i = this.sps_max_sub_layers_minus1;
-        int i2 = (i - (readBool ? 0 : i)) + 1;
+        int i2 = (i - (bool ? 0 : i)) + 1;
         int[] iArr = new int[i2];
         int[] iArr2 = new int[i2];
         int[] iArr3 = new int[i2];
-        for (i = readBool ? 0 : i; i <= this.sps_max_sub_layers_minus1; i++) {
+        for (i = bool ? 0 : i; i <= this.sps_max_sub_layers_minus1; i++) {
             iArr[i] = cAVLCReader.readUE("sps_max_dec_pic_buffering_minus1[" + i + "]");
             iArr2[i] = cAVLCReader.readUE("sps_max_num_reorder_pics[" + i + "]");
             iArr3[i] = cAVLCReader.readUE("sps_max_latency_increase_plus1[" + i + "]");
@@ -73,11 +73,11 @@ public class SequenceParameterSetRbsp {
         }
         parse_short_term_ref_pic_sets(cAVLCReader.readUE("num_short_term_ref_pic_sets"), cAVLCReader);
         if (cAVLCReader.readBool("long_term_ref_pics_present_flag")) {
-            int readUE3 = cAVLCReader.readUE("num_long_term_ref_pics_sps");
-            int[] iArr4 = new int[readUE3];
-            boolean[] zArr = new boolean[readUE3];
-            for (int i3 = 0; i3 < readUE3; i3++) {
-                iArr4[i3] = cAVLCReader.readU(readUE2 + 4, "lt_ref_pic_poc_lsb_sps[" + i3 + "]");
+            int ue3 = cAVLCReader.readUE("num_long_term_ref_pics_sps");
+            int[] iArr4 = new int[ue3];
+            boolean[] zArr = new boolean[ue3];
+            for (int i3 = 0; i3 < ue3; i3++) {
+                iArr4[i3] = cAVLCReader.readU(ue2 + 4, "lt_ref_pic_poc_lsb_sps[" + i3 + "]");
                 zArr[i3] = cAVLCReader.readBool("used_by_curr_pic_lt_sps_flag[" + i3 + "]");
             }
         }
@@ -93,16 +93,16 @@ public class SequenceParameterSetRbsp {
                 cAVLCReader.readUE("abs_delta_rps_minus1");
                 jArr[i2] = 0;
                 for (int i3 = 0; i3 <= jArr[i2 - 1]; i3++) {
-                    boolean readBool = cAVLCReader.readBool();
-                    boolean readBool2 = !readBool ? cAVLCReader.readBool() : false;
-                    if (readBool || readBool2) {
+                    boolean bool = cAVLCReader.readBool();
+                    boolean bool2 = !bool ? cAVLCReader.readBool() : false;
+                    if (bool || bool2) {
                         jArr[i2] = jArr[i2] + 1;
                     }
                 }
             } else {
-                long readUE = cAVLCReader.readUE("num_negative_pics") + cAVLCReader.readUE("num_positive_pics");
-                jArr[i2] = readUE;
-                for (long j = 0; j < readUE; j++) {
+                long ue = cAVLCReader.readUE("num_negative_pics") + cAVLCReader.readUE("num_positive_pics");
+                jArr[i2] = ue;
+                for (long j = 0; j < ue; j++) {
                     cAVLCReader.readUE("delta_poc_s0/1_minus1");
                     cAVLCReader.readBool("used_by_curr_pic_s0/1_flag");
                 }
@@ -119,11 +119,11 @@ public class SequenceParameterSetRbsp {
                     if (cAVLCReader.readBool()) {
                         cAVLCReader.readUE("scaling_list_pred_matrix_id_delta");
                     } else {
-                        int min = Math.min(64, 1 << ((i << 1) + 4));
+                        int iMin = Math.min(64, 1 << ((i << 1) + 4));
                         if (i > 1) {
                             cAVLCReader.readUE("scaling_list_dc_coef_minus8");
                         }
-                        for (int i3 = 0; i3 < min; i3++) {
+                        for (int i3 = 0; i3 < iMin; i3++) {
                             cAVLCReader.readUE("scaling_list_delta_coef");
                         }
                     }

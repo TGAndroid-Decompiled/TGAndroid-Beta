@@ -38,12 +38,12 @@ public class MemberRequestsController extends BaseController {
     }
 
     public int getImporters(final long j, String str, final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, LongSparseArray<TLRPC.User> longSparseArray, final RequestDelegate requestDelegate) {
-        final boolean isEmpty = TextUtils.isEmpty(str);
+        final boolean zIsEmpty = TextUtils.isEmpty(str);
         TLRPC.TL_messages_getChatInviteImporters tL_messages_getChatInviteImporters = new TLRPC.TL_messages_getChatInviteImporters();
         tL_messages_getChatInviteImporters.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-j);
         tL_messages_getChatInviteImporters.requested = true;
         tL_messages_getChatInviteImporters.limit = 30;
-        if (!isEmpty) {
+        if (!zIsEmpty) {
             tL_messages_getChatInviteImporters.q = str;
             tL_messages_getChatInviteImporters.flags |= 4;
         }
@@ -56,7 +56,7 @@ public class MemberRequestsController extends BaseController {
         return getConnectionsManager().sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MemberRequestsController.this.lambda$getImporters$1(tL_chatInviteImporter, isEmpty, j, requestDelegate, tLObject, tL_error);
+                this.f$0.lambda$getImporters$1(tL_chatInviteImporter, zIsEmpty, j, requestDelegate, tLObject, tL_error);
             }
         });
     }
@@ -65,7 +65,7 @@ public class MemberRequestsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MemberRequestsController.this.lambda$getImporters$0(tL_error, tLObject, tL_chatInviteImporter, z, j, requestDelegate);
+                this.f$0.lambda$getImporters$0(tL_error, tLObject, tL_chatInviteImporter, z, j, requestDelegate);
             }
         });
     }

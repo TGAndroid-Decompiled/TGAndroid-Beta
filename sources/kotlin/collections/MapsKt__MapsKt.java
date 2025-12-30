@@ -61,7 +61,7 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
             if (size != 1) {
                 return toMap(iterable, new LinkedHashMap(MapsKt.mapCapacity(collection.size())));
             }
-            return MapsKt__MapsJVMKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
+            return MapsKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
         }
         return optimizeReadOnlyMap(toMap(iterable, new LinkedHashMap()));
     }

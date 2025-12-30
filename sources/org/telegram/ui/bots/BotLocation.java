@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -54,13 +55,13 @@ public class BotLocation {
 
     public static BotLocation get(Context context, int i, long j) {
         Pair pair = new Pair(Integer.valueOf(i), Long.valueOf(j));
-        HashMap hashMap = instances;
-        BotLocation botLocation = (BotLocation) hashMap.get(pair);
+        HashMap map = instances;
+        BotLocation botLocation = (BotLocation) map.get(pair);
         if (botLocation != null) {
             return botLocation;
         }
         BotLocation botLocation2 = new BotLocation(context, i, j);
-        hashMap.put(pair, botLocation2);
+        map.put(pair, botLocation2);
         return botLocation2;
     }
 
@@ -101,14 +102,14 @@ public class BotLocation {
                 builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        BotLocation.this.lambda$setGranted$2(runnable, alertDialog, i);
+                        this.f$0.lambda$setGranted$2(runnable, alertDialog, i);
                     }
                 });
             }
             builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    BotLocation.this.lambda$setGranted$3(runnable, alertDialog, i);
+                    this.f$0.lambda$setGranted$3(runnable, alertDialog, i);
                 }
             });
             builder.show();
@@ -140,7 +141,7 @@ public class BotLocation {
             PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BotLocation.this.lambda$setGranted$1(runnable, (int[]) obj);
+                    this.f$0.lambda$setGranted$1(runnable, (int[]) obj);
                 }
             });
             return;
@@ -212,18 +213,18 @@ public class BotLocation {
     }
 
     public void save() {
-        SharedPreferences.Editor edit = this.context.getSharedPreferences("botlocation_" + this.currentAccount, 0).edit();
-        edit.putBoolean(this.botId + "_granted", this.granted);
-        edit.putBoolean(this.botId + "_requested", this.requested);
-        edit.apply();
+        SharedPreferences.Editor editorEdit = this.context.getSharedPreferences("botlocation_" + this.currentAccount, 0).edit();
+        editorEdit.putBoolean(this.botId + "_granted", this.granted);
+        editorEdit.putBoolean(this.botId + "_requested", this.requested);
+        editorEdit.apply();
     }
 
     private Activity getActivity() {
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(this.context);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(this.context);
         }
-        return activity == null ? AndroidUtilities.findActivity(ApplicationLoader.applicationContext) : activity;
+        return activityFindActivity == null ? AndroidUtilities.findActivity(ApplicationLoader.applicationContext) : activityFindActivity;
     }
 
     private boolean deviceHasLocation() {
@@ -231,38 +232,16 @@ public class BotLocation {
     }
 
     private boolean appHasPermission() {
-        int checkSelfPermission;
-        int checkSelfPermission2;
         Activity activity = getActivity();
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (activity != null) {
-                checkSelfPermission = activity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-                if (checkSelfPermission != 0) {
-                    checkSelfPermission2 = activity.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION");
-                    if (checkSelfPermission2 == 0) {
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
+        return Build.VERSION.SDK_INT < 23 || (activity != null && (activity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0 || activity.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION") == 0));
     }
 
     private boolean needToOpenSettings() {
         Activity activity;
-        boolean shouldShowRequestPermissionRationale;
-        boolean shouldShowRequestPermissionRationale2;
-        if (Build.VERSION.SDK_INT < 23 || (activity = getActivity()) == null) {
-            return false;
+        if (Build.VERSION.SDK_INT >= 23 && (activity = getActivity()) != null) {
+            return (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION")) ? false : true;
         }
-        shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION");
-        if (shouldShowRequestPermissionRationale) {
-            shouldShowRequestPermissionRationale2 = activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION");
-            if (shouldShowRequestPermissionRationale2) {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
     public void request(final Utilities.Callback2 callback2) {
@@ -301,20 +280,20 @@ public class BotLocation {
             builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    BotLocation.this.lambda$request$6(zArr, callback2, alertDialog, i);
+                    this.f$0.lambda$request$6(zArr, callback2, alertDialog, i);
                 }
             });
         }
         builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BotLocation.this.lambda$request$7(zArr, callback2, alertDialog, i);
+                this.f$0.lambda$request$7(zArr, callback2, alertDialog, i);
             }
         });
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotLocation.this.lambda$request$8(zArr, callback2, dialogInterface);
+                this.f$0.lambda$request$8(zArr, callback2, dialogInterface);
             }
         });
         builder.show();
@@ -341,7 +320,7 @@ public class BotLocation {
             PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BotLocation.this.lambda$request$5(callback2, (int[]) obj);
+                    this.f$0.lambda$request$5(callback2, (int[]) obj);
                 }
             });
             return;
@@ -412,7 +391,7 @@ public class BotLocation {
         }
     }
 
-    public JSONObject checkObject() {
+    public JSONObject checkObject() throws JSONException {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("available", deviceHasLocation());
@@ -444,27 +423,27 @@ public class BotLocation {
         }
         final LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
         List<String> providers = locationManager.getProviders(true);
-        Location location = null;
+        Location lastKnownLocation = null;
         for (int size = providers.size() - 1; size >= 0; size--) {
-            location = locationManager.getLastKnownLocation(providers.get(size));
-            if (location != null) {
+            lastKnownLocation = locationManager.getLastKnownLocation(providers.get(size));
+            if (lastKnownLocation != null) {
                 break;
             }
         }
-        if (location != null || locationManager.isProviderEnabled("gps")) {
-            if (location != null) {
-                callback.run(locationObject(location));
+        if (lastKnownLocation != null || locationManager.isProviderEnabled("gps")) {
+            if (lastKnownLocation != null) {
+                callback.run(locationObject(lastKnownLocation));
                 return;
             }
             try {
+                final LocationListener[] locationListenerArr = {locationListener};
                 LocationListener locationListener = new LocationListener() {
                     @Override
-                    public void onLocationChanged(Location location2) {
-                        locationManager.removeUpdates(r3[0]);
-                        callback.run(BotLocation.this.locationObject(location2));
+                    public void onLocationChanged(Location location) {
+                        locationManager.removeUpdates(locationListenerArr[0]);
+                        callback.run(BotLocation.this.locationObject(location));
                     }
                 };
-                final LocationListener[] locationListenerArr = {locationListener};
                 locationManager.requestLocationUpdates("gps", 1L, 0.0f, locationListener);
                 return;
             } catch (Exception e2) {
@@ -504,10 +483,7 @@ public class BotLocation {
         }
     }
 
-    public JSONObject locationObject(Location location) {
-        float speedAccuracyMetersPerSecond;
-        float bearingAccuracyDegrees;
-        float verticalAccuracyMeters;
+    public JSONObject locationObject(Location location) throws JSONException {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("available", location != null);
@@ -527,22 +503,19 @@ public class BotLocation {
         }
         jSONObject.put("altitude", location.getAltitude());
         if (i >= 26) {
-            verticalAccuracyMeters = location.getVerticalAccuracyMeters();
-            jSONObject.put("vertical_accuracy", verticalAccuracyMeters);
+            jSONObject.put("vertical_accuracy", location.getVerticalAccuracyMeters());
         } else {
             jSONObject.put("vertical_accuracy", (Object) null);
         }
         jSONObject.put("course", location.getBearing());
         if (i >= 26) {
-            bearingAccuracyDegrees = location.getBearingAccuracyDegrees();
-            jSONObject.put("course_accuracy", bearingAccuracyDegrees);
+            jSONObject.put("course_accuracy", location.getBearingAccuracyDegrees());
         } else {
             jSONObject.put("course_accuracy", (Object) null);
         }
         jSONObject.put("speed", location.getSpeed());
         if (i >= 26) {
-            speedAccuracyMetersPerSecond = location.getSpeedAccuracyMetersPerSecond();
-            jSONObject.put("speed_accuracy", speedAccuracyMetersPerSecond);
+            jSONObject.put("speed_accuracy", location.getSpeedAccuracyMetersPerSecond());
         } else {
             jSONObject.put("speed_accuracy", (Object) null);
         }
@@ -588,9 +561,9 @@ public class BotLocation {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint2.setColor(-1);
-            Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
-            this.locationDrawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogTopBackground), PorterDuff.Mode.SRC_IN));
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
+            this.locationDrawable = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogTopBackground), PorterDuff.Mode.SRC_IN));
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setInfo(user);
             imageReceiver.setForUserOrChat(user, avatarDrawable);
@@ -623,18 +596,18 @@ public class BotLocation {
         public void draw(Canvas canvas) {
             Rect bounds = getBounds();
             this.bgPaint.setColor(Theme.getColor(Theme.key_dialogTopBackground));
-            float dp = AndroidUtilities.dp(136.0f) / 2.0f;
-            this.userImageReceiver.setImageCoords(bounds.centerX() - dp, bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+            float fDp = AndroidUtilities.dp(136.0f) / 2.0f;
+            this.userImageReceiver.setImageCoords(bounds.centerX() - fDp, bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
             this.userImageReceiver.draw(canvas);
-            float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
-            float centerY = bounds.centerY() + AndroidUtilities.dp(16.0f);
-            canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(14.0f), this.bgPaint);
-            canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(12.0f), this.whitePaint);
-            this.locationDrawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (centerY - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), (int) (centerY + AndroidUtilities.dp(9.0f)));
+            float fCenterX = (bounds.centerX() - fDp) + AndroidUtilities.dp(41.0f);
+            float fCenterY = bounds.centerY() + AndroidUtilities.dp(16.0f);
+            canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(14.0f), this.bgPaint);
+            canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(12.0f), this.whitePaint);
+            this.locationDrawable.setBounds((int) (fCenterX - AndroidUtilities.dp(9.0f)), (int) (fCenterY - AndroidUtilities.dp(9.0f)), (int) (fCenterX + AndroidUtilities.dp(9.0f)), (int) (fCenterY + AndroidUtilities.dp(9.0f)));
             this.locationDrawable.draw(canvas);
             canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), bounds.centerX() + AndroidUtilities.dp(3.33f), bounds.centerY(), this.arrowPaint);
             canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() + AndroidUtilities.dp(7.0f), bounds.centerX() + AndroidUtilities.dp(3.33f), bounds.centerY(), this.arrowPaint);
-            this.botImageReceiver.setImageCoords((bounds.centerX() + dp) - AndroidUtilities.dp(50.0f), bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+            this.botImageReceiver.setImageCoords((bounds.centerX() + fDp) - AndroidUtilities.dp(50.0f), bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
             this.botImageReceiver.draw(canvas);
         }
     }

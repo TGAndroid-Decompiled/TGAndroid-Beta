@@ -11,7 +11,7 @@ public class LinearBarChartView extends BaseChartView {
     }
 
     @Override
-    public void init() {
+    protected void init() {
         this.useMinHeight = true;
         super.init();
     }
@@ -59,16 +59,16 @@ public class LinearBarChartView extends BaseChartView {
                                 i2 = i3;
                             } else {
                                 i2 = i3;
-                                f = (float) chartData2.maxValue;
+                                f = chartData2.maxValue;
                             }
                             if (z) {
                                 f2 = this.pickerMinHeight;
                                 jArr = jArr2;
                             } else {
                                 jArr = jArr2;
-                                f2 = (float) chartData2.minValue;
+                                f2 = chartData2.minValue;
                             }
-                            float f5 = (1.0f - ((((float) j) - f2) / (f - f2))) * this.pikerHeight;
+                            float f5 = (1.0f - ((j - f2) / (f - f2))) * this.pikerHeight;
                             if (!BaseChartView.USE_LINES) {
                                 if (i4 == 0) {
                                     lineViewData.bottomLinePath.moveTo(f4 - (f3 / 2.0f), f5);
@@ -135,8 +135,8 @@ public class LinearBarChartView extends BaseChartView {
                         } else {
                             canvas.drawPath(lineViewData.bottomLinePath, lineViewData.bottomLinePaint);
                         }
-                        i3 = i + 1;
                     }
+                    i3 = i + 1;
                 } else {
                     i = i3;
                 }

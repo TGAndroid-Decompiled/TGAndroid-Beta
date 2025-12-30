@@ -201,7 +201,7 @@ public class MessagePreviewParams {
                     }
                 }
                 if (z) {
-                    return new Messages(this.out, this.type, this.messages, this.dialogId, null);
+                    return MessagePreviewParams.this.new Messages(this.out, this.type, this.messages, this.dialogId, null);
                 }
             }
             return null;
@@ -384,13 +384,13 @@ public class MessagePreviewParams {
     public boolean hasLink(CharSequence charSequence, String str) {
         if (str != null) {
             try {
-                SpannableString valueOf = SpannableString.valueOf(charSequence);
+                SpannableString spannableStringValueOf = SpannableString.valueOf(charSequence);
                 try {
-                    AndroidUtilities.addLinksSafe(valueOf, 1, false, true);
+                    AndroidUtilities.addLinksSafe(spannableStringValueOf, 1, false, true);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
+                for (URLSpan uRLSpan : (URLSpan[]) spannableStringValueOf.getSpans(0, spannableStringValueOf.length(), URLSpan.class)) {
                     if (areUrlsEqual(uRLSpan.getURL(), str)) {
                         return true;
                     }
@@ -406,17 +406,17 @@ public class MessagePreviewParams {
         if (str == null || str2 == null) {
             return str == null;
         }
-        Uri parse = Uri.parse(str);
-        Uri parse2 = Uri.parse(str2);
-        if (parse == parse2) {
+        Uri uri = Uri.parse(str);
+        Uri uri2 = Uri.parse(str2);
+        if (uri == uri2) {
             return true;
         }
-        if (parse != null && parse2 != null && parse.getHost() != null && parse.getHost().equalsIgnoreCase(parse2.getHost()) && parse.getPort() == parse2.getPort() && normalizePath(parse.getPath()).equals(normalizePath(parse2.getPath()))) {
-            if (parse.getQuery() == null) {
-                if (parse2.getQuery() == null) {
+        if (uri != null && uri2 != null && uri.getHost() != null && uri.getHost().equalsIgnoreCase(uri2.getHost()) && uri.getPort() == uri2.getPort() && normalizePath(uri.getPath()).equals(normalizePath(uri2.getPath()))) {
+            if (uri.getQuery() == null) {
+                if (uri2.getQuery() == null) {
                     return true;
                 }
-            } else if (parse.getQuery().equals(parse2.getQuery())) {
+            } else if (uri.getQuery().equals(uri2.getQuery())) {
                 return true;
             }
         }
@@ -515,27 +515,27 @@ public class MessagePreviewParams {
     public void checkEdits(ArrayList<MessageObject> arrayList) {
         boolean z;
         MessagePreviewView messagePreviewView;
-        Messages checkEdits;
-        Messages checkEdits2;
-        Messages checkEdits3;
+        Messages messagesCheckEdits;
+        Messages messagesCheckEdits2;
+        Messages messagesCheckEdits3;
         Messages messages = this.forwardMessages;
         boolean z2 = true;
-        if (messages == null || (checkEdits3 = messages.checkEdits(arrayList)) == null) {
+        if (messages == null || (messagesCheckEdits3 = messages.checkEdits(arrayList)) == null) {
             z = false;
         } else {
-            this.forwardMessages = checkEdits3;
+            this.forwardMessages = messagesCheckEdits3;
             z = true;
         }
         Messages messages2 = this.replyMessage;
-        if (messages2 != null && (checkEdits2 = messages2.checkEdits(arrayList)) != null) {
-            this.replyMessage = checkEdits2;
+        if (messages2 != null && (messagesCheckEdits2 = messages2.checkEdits(arrayList)) != null) {
+            this.replyMessage = messagesCheckEdits2;
             z = true;
         }
         Messages messages3 = this.linkMessage;
-        if (messages3 == null || (checkEdits = messages3.checkEdits(arrayList)) == null) {
+        if (messages3 == null || (messagesCheckEdits = messages3.checkEdits(arrayList)) == null) {
             z2 = z;
         } else {
-            this.linkMessage = checkEdits;
+            this.linkMessage = messagesCheckEdits;
         }
         if (!z2 || (messagePreviewView = this.previewView) == null) {
             return;

@@ -41,7 +41,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
     private Drawable shadowDrawable;
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -53,9 +53,9 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
-        Drawable mutate = context.getResources().getDrawable(2131232433).mutate();
-        this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate = context.getResources().getDrawable(2131232470).mutate();
+        this.shadowDrawable = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             public void setTranslationY(float f) {
@@ -89,7 +89,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             private boolean ignoreLayout;
 
             @Override
-            public void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) {
                 int size = View.MeasureSpec.getSize(i3);
                 measureChildWithMargins(UpdateAppAlertDialog.this.linearLayout, i2, 0, i3, 0);
                 int measuredHeight = UpdateAppAlertDialog.this.linearLayout.getMeasuredHeight();
@@ -109,7 +109,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             }
 
             @Override
-            public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 super.onLayout(z, i2, i3, i4, i5);
                 UpdateAppAlertDialog.this.updateLayout();
             }
@@ -123,7 +123,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             }
 
             @Override
-            public void onScrollChanged(int i2, int i3, int i4, int i5) {
+            protected void onScrollChanged(int i2, int i3, int i4, int i5) {
                 super.onScrollChanged(i2, i3, i4, i5);
                 UpdateAppAlertDialog.this.updateLayout();
             }
@@ -183,7 +183,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    UpdateAppAlertDialog.this.lambda$new$0(downloadedUpdateFile, view2);
+                    this.f$0.lambda$new$0(downloadedUpdateFile, view2);
                 }
             });
         } else {
@@ -191,7 +191,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    UpdateAppAlertDialog.this.lambda$new$1(view2);
+                    this.f$0.lambda$new$1(view2);
                 }
             });
         }
@@ -201,18 +201,18 @@ public class UpdateAppAlertDialog extends BottomSheet {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                UpdateAppAlertDialog.this.lambda$new$2(view2);
+                this.f$0.lambda$new$2(view2);
             }
         });
         frameLayout.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 87, 20.0f, 4.0f, 20.0f, 8.0f));
     }
 
     public void lambda$new$0(File file, View view) {
-        Activity findActivity;
-        if (file == null || (findActivity = AndroidUtilities.findActivity(getContext())) == null) {
+        Activity activityFindActivity;
+        if (file == null || (activityFindActivity = AndroidUtilities.findActivity(getContext())) == null) {
             return;
         }
-        AndroidUtilities.openForView(file, "Telegram.apk", "application/vnd.android.package-archive", findActivity, null, false);
+        AndroidUtilities.openForView(file, "Telegram.apk", "application/vnd.android.package-archive", activityFindActivity, null, false);
         dismiss();
     }
 
@@ -266,14 +266,14 @@ public class UpdateAppAlertDialog extends BottomSheet {
 
     public void updateLayout() {
         this.linearLayout.getChildAt(0).getLocationInWindow(this.location);
-        int max = Math.max(this.location[1] - AndroidUtilities.dp(24.0f), 0);
+        int iMax = Math.max(this.location[1] - AndroidUtilities.dp(24.0f), 0);
         if (this.location[1] + this.linearLayout.getMeasuredHeight() <= (this.container.getMeasuredHeight() - AndroidUtilities.dp(113.0f)) + this.containerView.getTranslationY()) {
             runShadowAnimation(0, false);
         } else {
             runShadowAnimation(0, true);
         }
-        if (this.scrollOffsetY != max) {
-            this.scrollOffsetY = max;
+        if (this.scrollOffsetY != iMax) {
+            this.scrollOffsetY = iMax;
             this.scrollView.invalidate();
         }
     }

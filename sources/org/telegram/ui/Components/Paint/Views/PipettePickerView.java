@@ -70,7 +70,7 @@ public abstract class PipettePickerView extends View {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PipettePickerView.this.lambda$animateShow$0(valueAnimator);
+                this.f$0.lambda$animateShow$0(valueAnimator);
             }
         });
         duration.start();
@@ -92,7 +92,7 @@ public abstract class PipettePickerView extends View {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PipettePickerView.this.lambda$animateDisappear$1(valueAnimator);
+                this.f$0.lambda$animateDisappear$1(valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -158,18 +158,18 @@ public abstract class PipettePickerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float min = Math.min(getWidth(), getHeight()) * 0.2f;
+        float fMin = Math.min(getWidth(), getHeight()) * 0.2f;
         float width = this.positionX * getWidth();
         float height = this.positionY * getHeight();
-        int round = Math.round(this.positionX * this.bitmap.getWidth());
-        int round2 = Math.round(this.positionY * this.bitmap.getHeight());
-        int pixel = this.bitmap.getPixel(Utilities.clamp(round, r5.getWidth() - 1, 0), Utilities.clamp(round2, this.bitmap.getHeight() - 1, 0));
+        int iRound = Math.round(this.positionX * this.bitmap.getWidth());
+        int iRound2 = Math.round(this.positionY * this.bitmap.getHeight());
+        int pixel = this.bitmap.getPixel(Utilities.clamp(iRound, r5.getWidth() - 1, 0), Utilities.clamp(iRound2, this.bitmap.getHeight() - 1, 0));
         this.mColor = pixel;
         this.colorPaint.setColor(pixel);
         float f = this.appearProgress;
         if (f != 0.0f && f != 1.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(width - min, height - min, width + min, height + min);
+            rectF.set(width - fMin, height - fMin, width + fMin, height + fMin);
             canvas.saveLayerAlpha(rectF, (int) (this.appearProgress * 255.0f), 31);
         } else {
             canvas.save();
@@ -179,13 +179,13 @@ public abstract class PipettePickerView extends View {
         this.path.rewind();
         Path path = this.path;
         Path.Direction direction = Path.Direction.CW;
-        path.addCircle(width, height, min, direction);
+        path.addCircle(width, height, fMin, direction);
         canvas.clipPath(this.path);
-        int round3 = Math.round(3.5f);
-        this.srcRect.set(round - round3, round2 - round3, round + round3, round2 + round3);
-        this.dstRect.set(width - min, height - min, width + min, height + min);
+        int iRound3 = Math.round(3.5f);
+        this.srcRect.set(iRound - iRound3, iRound2 - iRound3, iRound + iRound3, iRound2 + iRound3);
+        this.dstRect.set(width - fMin, height - fMin, width + fMin, height + fMin);
         canvas.drawBitmap(this.bitmap, this.srcRect, this.dstRect, (Paint) null);
-        float strokeWidth = min - (this.colorPaint.getStrokeWidth() / 2.0f);
+        float strokeWidth = fMin - (this.colorPaint.getStrokeWidth() / 2.0f);
         canvas.drawCircle(width, height, strokeWidth, this.colorPaint);
         float strokeWidth2 = (strokeWidth - (this.colorPaint.getStrokeWidth() / 2.0f)) - (this.outlinePaint.getStrokeWidth() / 2.0f);
         canvas.drawCircle(width, height, strokeWidth2, this.outlinePaint);

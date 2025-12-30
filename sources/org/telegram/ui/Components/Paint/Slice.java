@@ -5,7 +5,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 import org.telegram.messenger.ApplicationLoader;
@@ -17,7 +19,7 @@ public class Slice {
     private File file;
     private final int texture;
 
-    public Slice(ByteBuffer byteBuffer, int i, RectF rectF, DispatchQueue dispatchQueue) {
+    public Slice(ByteBuffer byteBuffer, int i, RectF rectF, DispatchQueue dispatchQueue) throws IOException {
         this.bounds = rectF;
         this.texture = i;
         try {
@@ -39,12 +41,12 @@ public class Slice {
         }
     }
 
-    private void storeData(ByteBuffer byteBuffer) {
+    private void storeData(ByteBuffer byteBuffer) throws IOException {
         try {
-            byte[] array = byteBuffer.array();
+            byte[] bArrArray = byteBuffer.array();
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
             Deflater deflater = new Deflater(1, true);
-            deflater.setInput(array, byteBuffer.arrayOffset(), byteBuffer.remaining());
+            deflater.setInput(bArrArray, byteBuffer.arrayOffset(), byteBuffer.remaining());
             deflater.finish();
             byte[] bArr = new byte[1024];
             while (!deflater.finished()) {
@@ -57,7 +59,7 @@ public class Slice {
         }
     }
 
-    public ByteBuffer getData() {
+    public ByteBuffer getData() throws DataFormatException, IOException {
         try {
             byte[] bArr = new byte[1024];
             byte[] bArr2 = new byte[1024];
@@ -65,25 +67,25 @@ public class Slice {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             Inflater inflater = new Inflater(true);
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read != -1) {
-                    inflater.setInput(bArr, 0, read);
+                int i = fileInputStream.read(bArr);
+                if (i != -1) {
+                    inflater.setInput(bArr, 0, i);
                 }
                 while (true) {
-                    int inflate = inflater.inflate(bArr2, 0, 1024);
-                    if (inflate == 0) {
+                    int iInflate = inflater.inflate(bArr2, 0, 1024);
+                    if (iInflate == 0) {
                         break;
                     }
-                    byteArrayOutputStream.write(bArr2, 0, inflate);
+                    byteArrayOutputStream.write(bArr2, 0, iInflate);
                 }
                 if (!inflater.finished()) {
                     inflater.needsInput();
                 } else {
                     inflater.end();
-                    ByteBuffer wrap = ByteBuffer.wrap(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+                    ByteBuffer byteBufferWrap = ByteBuffer.wrap(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
                     byteArrayOutputStream.close();
                     fileInputStream.close();
-                    return wrap;
+                    return byteBufferWrap;
                 }
             }
         } catch (Exception e) {

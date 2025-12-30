@@ -14,7 +14,7 @@ public class FfmpegAudioWaveformLoader {
         Utilities.phoneBookQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FfmpegAudioWaveformLoader.this.lambda$new$0(str, i);
+                this.f$0.lambda$new$0(str, i);
             }
         });
     }
@@ -23,7 +23,7 @@ public class FfmpegAudioWaveformLoader {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FfmpegAudioWaveformLoader.this.lambda$receiveChunk$1(sArr, i);
+                this.f$0.lambda$receiveChunk$1(sArr, i);
             }
         });
     }
@@ -36,7 +36,7 @@ public class FfmpegAudioWaveformLoader {
         Utilities.phoneBookQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FfmpegAudioWaveformLoader.this.lambda$destroy$2();
+                this.f$0.lambda$destroy$2();
             }
         });
     }

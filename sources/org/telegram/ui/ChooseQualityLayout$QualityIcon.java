@@ -61,7 +61,7 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
         this.animatedCast = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                ChooseQualityLayout$QualityIcon.this.invalidateSelf();
+                this.f$0.invalidateSelf();
             }
         }, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
         Drawable.Callback callback = new Drawable.Callback() {
@@ -107,11 +107,11 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
     @Override
     public void draw(Canvas canvas) {
         float f = this.animatedCast.set(this.cast);
-        float dp = (AndroidUtilities.dp(5.0f) * this.topText.isNotEmpty()) + this.topText.getCurrentWidth();
-        float dp2 = (AndroidUtilities.dp(5.0f) * this.bottomText.isNotEmpty()) + this.bottomText.getCurrentWidth();
+        float fDp = (AndroidUtilities.dp(5.0f) * this.topText.isNotEmpty()) + this.topText.getCurrentWidth();
+        float fDp2 = (AndroidUtilities.dp(5.0f) * this.bottomText.isNotEmpty()) + this.bottomText.getCurrentWidth();
         int saveCount = canvas.getSaveCount();
         Rect bounds = getBounds();
-        if (dp > 0.0f || dp2 > 0.0f || f > 0.0f) {
+        if (fDp > 0.0f || fDp2 > 0.0f || f > 0.0f) {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
         }
         Rect rect = AndroidUtilities.rectTmp2;
@@ -123,27 +123,27 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
         this.base.draw(canvas);
         canvas.restore();
         this.bgPaint.setColor(-1);
-        float width = bounds.left + (bounds.width() * 0.98f);
-        float height = bounds.top + (bounds.height() * 0.18f);
-        float height2 = bounds.top + (bounds.height() * 0.78f);
-        float dp3 = AndroidUtilities.dp(10.0f);
-        if (dp > 0.0f) {
-            float f2 = dp3 / 2.0f;
-            this.rect.set(width - dp, height - f2, width, height + f2);
+        float fWidth = bounds.left + (bounds.width() * 0.98f);
+        float fHeight = bounds.top + (bounds.height() * 0.18f);
+        float fHeight2 = bounds.top + (bounds.height() * 0.78f);
+        float fDp3 = AndroidUtilities.dp(10.0f);
+        if (fDp > 0.0f) {
+            float f2 = fDp3 / 2.0f;
+            this.rect.set(fWidth - fDp, fHeight - f2, fWidth, fHeight + f2);
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
         }
-        if (dp2 > 0.0f) {
-            float f3 = dp3 / 2.0f;
-            this.rect.set(width - dp2, height2 - f3, width, height2 + f3);
+        if (fDp2 > 0.0f) {
+            float f3 = fDp3 / 2.0f;
+            this.rect.set(fWidth - fDp2, fHeight2 - f3, fWidth, fHeight2 + f3);
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
         }
         float f4 = 1.0f - f;
-        if (dp * f4 > 0.0f) {
+        if (fDp * f4 > 0.0f) {
             this.bgPaint.setAlpha((int) (this.topText.isNotEmpty() * 255.0f * f4));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.topText;
             animatedTextDrawable.setAlpha((int) (animatedTextDrawable.isNotEmpty() * 255.0f * f4));
-            float f5 = dp3 / 2.0f;
-            this.rect.set(width - dp, height - f5, width, height + f5);
+            float f5 = fDp3 / 2.0f;
+            this.rect.set(fWidth - fDp, fHeight - f5, fWidth, fHeight + f5);
             this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgPaint);
             this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
@@ -161,8 +161,8 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
             Drawable drawable2 = this.castFill;
             drawable2.setBounds((bounds.right - drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(3.0f), bounds.top + AndroidUtilities.dp(0.66f), bounds.right - AndroidUtilities.dp(3.0f), bounds.top + AndroidUtilities.dp(0.66f) + this.castFill.getIntrinsicHeight());
             this.castFill.setAlpha((int) (f * 255.0f));
-            float lerp = AndroidUtilities.lerp(0.8f, 1.0f, f);
-            canvas.scale(lerp, lerp, this.castFill.getBounds().centerX(), this.castFill.getBounds().centerY());
+            float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f);
+            canvas.scale(fLerp, fLerp, this.castFill.getBounds().centerX(), this.castFill.getBounds().centerY());
             if (f > 0.5f) {
                 canvas.save();
                 canvas.translate(this.castFill.getBounds().left, this.castFill.getBounds().top);
@@ -172,12 +172,12 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
             this.castFill.draw(canvas);
             canvas.restore();
         }
-        if (dp2 > 0.0f) {
+        if (fDp2 > 0.0f) {
             this.bgPaint.setAlpha((int) (this.bottomText.isNotEmpty() * 255.0f));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.bottomText;
             animatedTextDrawable2.setAlpha((int) (animatedTextDrawable2.isNotEmpty() * 255.0f));
-            float f6 = dp3 / 2.0f;
-            this.rect.set(width - dp2, height2 - f6, width, height2 + f6);
+            float f6 = fDp3 / 2.0f;
+            this.rect.set(fWidth - fDp2, fHeight2 - f6, fWidth, fHeight2 + f6);
             this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgPaint);
             this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));

@@ -51,8 +51,8 @@ public final class CombinedContext implements CoroutineContext, Serializable {
         if (this.element.get(key) != null) {
             return this.left;
         }
-        CoroutineContext minusKey = this.left.minusKey(key);
-        return minusKey == this.left ? this : minusKey == EmptyCoroutineContext.INSTANCE ? this.element : new CombinedContext(minusKey, this.element);
+        CoroutineContext coroutineContextMinusKey = this.left.minusKey(key);
+        return coroutineContextMinusKey == this.left ? this : coroutineContextMinusKey == EmptyCoroutineContext.INSTANCE ? this.element : new CombinedContext(coroutineContextMinusKey, this.element);
     }
 
     private final int size() {
@@ -105,9 +105,7 @@ public final class CombinedContext implements CoroutineContext, Serializable {
         return '[' + ((String) fold("", new Function2() {
             @Override
             public final Object invoke(Object obj, Object obj2) {
-                String string$lambda$2;
-                string$lambda$2 = CombinedContext.toString$lambda$2((String) obj, (CoroutineContext.Element) obj2);
-                return string$lambda$2;
+                return CombinedContext.toString$lambda$2((String) obj, (CoroutineContext.Element) obj2);
             }
         })) + ']';
     }

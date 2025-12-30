@@ -35,14 +35,14 @@ public class InfiniteProgress {
     }
 
     private void updateAnimation() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
         if (j > 17) {
             j = 17;
         }
-        this.lastUpdateTime = currentTimeMillis;
-        this.radOffset = (this.radOffset + (((float) (360 * j)) / 2000.0f)) - (((int) (r0 / 360.0f)) * 360);
-        float f = this.currentProgressTime + ((float) j);
+        this.lastUpdateTime = jCurrentTimeMillis;
+        this.radOffset = (this.radOffset + ((360 * j) / 2000.0f)) - (((int) (r0 / 360.0f)) * 360);
+        float f = this.currentProgressTime + j;
         this.currentProgressTime = f;
         if (f >= 500.0f) {
             this.currentProgressTime = 500.0f;

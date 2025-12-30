@@ -98,8 +98,8 @@ public class CameraSession {
 
     public int roundOrientation(int i, int i2) {
         if (i2 != -1) {
-            int abs = Math.abs(i - i2);
-            if (Math.min(abs, 360 - abs) < 50) {
+            int iAbs = Math.abs(i - i2);
+            if (Math.min(iAbs, 360 - iAbs) < 50) {
                 return i2;
             }
         }
@@ -196,7 +196,7 @@ public class CameraSession {
         return this.sameTakePictureOrientation;
     }
 
-    public boolean configureRoundCamera(boolean z) {
+    protected boolean configureRoundCamera(boolean z) {
         Camera.Parameters parameters;
         int i;
         try {
@@ -271,7 +271,7 @@ public class CameraSession {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.updateRotation():void");
     }
 
-    public void configurePhotoCamera() {
+    protected void configurePhotoCamera() {
         Camera.Parameters parameters;
         int i;
         try {
@@ -397,7 +397,7 @@ public class CameraSession {
         }
     }
 
-    public void configureRecorder(int i, MediaRecorder mediaRecorder) {
+    protected void configureRecorder(int i, MediaRecorder mediaRecorder) {
         int i2;
         updateCameraInfo();
         int i3 = this.jpegOrientation;
@@ -413,11 +413,11 @@ public class CameraSession {
         }
         mediaRecorder.setOrientationHint(i2);
         int high = getHigh();
-        boolean hasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
-        boolean hasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
-        if (hasProfile && (i == 1 || !hasProfile2)) {
+        boolean zHasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
+        boolean zHasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
+        if (zHasProfile && (i == 1 || !zHasProfile2)) {
             mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, high));
-        } else if (hasProfile2) {
+        } else if (zHasProfile2) {
             mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, 0));
         } else {
             throw new IllegalStateException("cannot find valid CamcorderProfile");

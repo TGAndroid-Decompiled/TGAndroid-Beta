@@ -3,6 +3,7 @@ package org.telegram.messenger.camera;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
+import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
@@ -24,7 +25,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.camera.Camera2Session;
 
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
@@ -85,26 +85,21 @@ public class Camera2Session {
                         if ((f2 >= 1.0f) != (width >= 1.0f)) {
                             width = 1.0f / width;
                         }
-                        if (f > 0.0f) {
-                            if (Math.abs(f2 - f) > Math.abs(f2 - width)) {
+                        if (f <= 0.0f || Math.abs(f2 - f) > Math.abs(f2 - width)) {
+                            if (streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
+                                android.util.Size sizeChooseOptimalSize = chooseOptimalSize(streamConfigurationMap.getOutputSizes(SurfaceTexture.class), i, i2, false);
+                                if (sizeChooseOptimalSize != null) {
+                                    size = sizeChooseOptimalSize;
+                                    str = str2;
+                                    f = width;
+                                }
                             }
-                            i3++;
-                            cameraManager2 = cameraManager;
-                        }
-                        if (streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
-                            android.util.Size chooseOptimalSize = chooseOptimalSize(streamConfigurationMap.getOutputSizes(SurfaceTexture.class), i, i2, false);
-                            if (chooseOptimalSize != null) {
-                                size = chooseOptimalSize;
-                                str = str2;
-                                f = width;
-                            }
-                            i3++;
-                            cameraManager2 = cameraManager;
                         }
                         i3++;
                         cameraManager2 = cameraManager;
+                    } else {
+                        cameraManager = cameraManager2;
                     }
-                    cameraManager = cameraManager2;
                     i3++;
                     cameraManager2 = cameraManager;
                 } catch (Exception e) {
@@ -123,8 +118,8 @@ public class Camera2Session {
         }
     }
 
-    private Camera2Session(Context context, boolean z, String str, android.util.Size size) {
-        float f = 1.0f;
+    private Camera2Session(Context context, boolean z, String str, android.util.Size size) throws CameraAccessException {
+        float fFloatValue = 1.0f;
         this.maxZoom = 1.0f;
         HandlerThread handlerThread = new HandlerThread("tg_camera2");
         this.thread = handlerThread;
@@ -144,24 +139,24 @@ public class Camera2Session {
             CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
             this.cameraCharacteristics = cameraCharacteristics;
             this.sensorSize = (Rect) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-            Float f2 = (Float) this.cameraCharacteristics.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
-            if (f2 != null && f2.floatValue() >= 1.0f) {
-                f = f2.floatValue();
+            Float f = (Float) this.cameraCharacteristics.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
+            if (f != null && f.floatValue() >= 1.0f) {
+                fFloatValue = f.floatValue();
             }
-            this.maxZoom = f;
+            this.maxZoom = fFloatValue;
             cameraManager.openCamera(str, anonymousClass1, this.handler);
         } catch (Exception e) {
             FileLog.e(e);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             });
         }
     }
 
-    public class AnonymousClass1 extends CameraDevice.StateCallback {
+    class AnonymousClass1 extends CameraDevice.StateCallback {
         final String val$cameraId;
 
         AnonymousClass1(String str) {
@@ -169,7 +164,7 @@ public class Camera2Session {
         }
 
         @Override
-        public void onOpened(CameraDevice cameraDevice) {
+        public void onOpened(CameraDevice cameraDevice) throws CameraAccessException {
             Camera2Session.this.cameraDevice = cameraDevice;
             Camera2Session.this.lastTime = System.currentTimeMillis();
             FileLog.d("Camera2Session camera #" + this.val$cameraId + " opened");
@@ -189,7 +184,7 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.AnonymousClass1.this.lambda$onError$0();
+                    this.f$0.lambda$onError$0();
                 }
             });
         }
@@ -199,7 +194,7 @@ public class Camera2Session {
         }
     }
 
-    public class AnonymousClass2 extends CameraCaptureSession.StateCallback {
+    class AnonymousClass2 extends CameraCaptureSession.StateCallback {
         final String val$cameraId;
 
         AnonymousClass2(String str) {
@@ -216,7 +211,7 @@ public class Camera2Session {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Camera2Session.AnonymousClass2.this.lambda$onConfigured$0();
+                        this.f$0.lambda$onConfigured$0();
                     }
                 });
             } catch (Exception e) {
@@ -239,7 +234,7 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.AnonymousClass2.this.lambda$onConfigureFailed$1();
+                    this.f$0.lambda$onConfigureFailed$1();
                 }
             });
         }
@@ -265,13 +260,13 @@ public class Camera2Session {
     public void open(final SurfaceTexture surfaceTexture) {
         this.handler.post(new Runnable() {
             @Override
-            public final void run() {
-                Camera2Session.this.lambda$open$1(surfaceTexture);
+            public final void run() throws CameraAccessException {
+                this.f$0.lambda$open$1(surfaceTexture);
             }
         });
     }
 
-    public void lambda$open$1(SurfaceTexture surfaceTexture) {
+    public void lambda$open$1(SurfaceTexture surfaceTexture) throws CameraAccessException {
         this.surfaceTexture = surfaceTexture;
         if (surfaceTexture != null) {
             surfaceTexture.setDefaultBufferSize(getPreviewWidth(), getPreviewHeight());
@@ -279,7 +274,7 @@ public class Camera2Session {
         checkOpen();
     }
 
-    public void checkOpen() {
+    public void checkOpen() throws CameraAccessException {
         if (this.opened || this.surfaceTexture == null || this.cameraDevice == null) {
             return;
         }
@@ -295,7 +290,7 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.this.lambda$checkOpen$2();
+                    this.f$0.lambda$checkOpen$2();
                 }
             });
         }
@@ -370,13 +365,13 @@ public class Camera2Session {
         destroy(z, null);
     }
 
-    public void destroy(boolean z, final Runnable runnable) {
+    public void destroy(boolean z, final Runnable runnable) throws InterruptedException {
         this.isClosed = true;
         if (z) {
             this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.this.lambda$destroy$4(runnable);
+                    this.f$0.lambda$destroy$4(runnable);
                 }
             });
             return;
@@ -426,13 +421,13 @@ public class Camera2Session {
         this.thread.quitSafely();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                Camera2Session.this.lambda$destroy$3(runnable);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$destroy$3(runnable);
             }
         });
     }
 
-    public void lambda$destroy$3(Runnable runnable) {
+    public void lambda$destroy$3(Runnable runnable) throws InterruptedException {
         try {
             this.thread.join();
         } catch (Exception e) {
@@ -450,21 +445,21 @@ public class Camera2Session {
         }
     }
 
-    public void setScanningBarcode(boolean z) {
+    public void setScanningBarcode(boolean z) throws CameraAccessException {
         if (this.scanningBarcode != z) {
             this.scanningBarcode = z;
             updateCaptureRequest();
         }
     }
 
-    public void setNightMode(boolean z) {
+    public void setNightMode(boolean z) throws CameraAccessException {
         if (this.nightMode != z) {
             this.nightMode = z;
             updateCaptureRequest();
         }
     }
 
-    public void updateCaptureRequest() {
+    public void updateCaptureRequest() throws CameraAccessException {
         int i;
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice == null || this.surface == null || this.captureSession == null) {
@@ -477,12 +472,12 @@ public class Camera2Session {
             } else {
                 i = this.scanningBarcode ? 2 : 1;
             }
-            CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(i);
-            this.captureRequestBuilder = createCaptureRequest;
+            CaptureRequest.Builder builderCreateCaptureRequest = cameraDevice.createCaptureRequest(i);
+            this.captureRequestBuilder = builderCreateCaptureRequest;
             if (this.scanningBarcode) {
-                createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
+                builderCreateCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
             } else if (this.nightMode) {
-                createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(this.isFront ? 6 : 5));
+                builderCreateCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(this.isFront ? 6 : 5));
             }
             CaptureRequest.Builder builder = this.captureRequestBuilder;
             CaptureRequest.Key key = CaptureRequest.FLASH_MODE;
@@ -497,11 +492,11 @@ public class Camera2Session {
                 this.captureRequestBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, 3);
             }
             if (this.sensorSize != null && Math.abs(this.currentZoom - 1.0f) >= 0.01f) {
-                int width = this.sensorSize.width() / 2;
-                int height = this.sensorSize.height() / 2;
-                int width2 = (int) ((this.sensorSize.width() * 0.5f) / this.currentZoom);
-                int height2 = (int) ((this.sensorSize.height() * 0.5f) / this.currentZoom);
-                this.cropRegion.set(width - width2, height - height2, width + width2, height + height2);
+                int iWidth = this.sensorSize.width() / 2;
+                int iHeight = this.sensorSize.height() / 2;
+                int iWidth2 = (int) ((this.sensorSize.width() * 0.5f) / this.currentZoom);
+                int iHeight2 = (int) ((this.sensorSize.height() * 0.5f) / this.currentZoom);
+                this.cropRegion.set(iWidth - iWidth2, iHeight - iHeight2, iWidth + iWidth2, iHeight + iHeight2);
                 this.captureRequestBuilder.set(CaptureRequest.SCALER_CROP_REGION, this.cropRegion);
             }
             this.captureRequestBuilder.addTarget(this.surface);
@@ -511,19 +506,19 @@ public class Camera2Session {
         }
     }
 
-    public boolean takePicture(File file, Utilities.Callback<Integer> callback) {
+    public boolean takePicture(File file, Utilities.Callback<Integer> callback) throws CameraAccessException {
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice != null && this.captureSession != null) {
             try {
-                CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(2);
+                CaptureRequest.Builder builderCreateCaptureRequest = cameraDevice.createCaptureRequest(2);
                 int jpegOrientation = getJpegOrientation();
-                createCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, Integer.valueOf(jpegOrientation));
+                builderCreateCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, Integer.valueOf(jpegOrientation));
                 this.imageReader.setOnImageAvailableListener(new AnonymousClass3(file, callback, jpegOrientation), null);
                 if (this.scanningBarcode) {
-                    createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
+                    builderCreateCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
                 }
-                createCaptureRequest.addTarget(this.imageReader.getSurface());
-                this.captureSession.capture(createCaptureRequest.build(), new CameraCaptureSession.CaptureCallback() {
+                builderCreateCaptureRequest.addTarget(this.imageReader.getSurface());
+                this.captureSession.capture(builderCreateCaptureRequest.build(), new CameraCaptureSession.CaptureCallback() {
                 }, null);
                 return true;
             } catch (Exception e) {
@@ -545,7 +540,7 @@ public class Camera2Session {
         }
 
         @Override
-        public void onImageAvailable(android.media.ImageReader r5) {
+        public void onImageAvailable(android.media.ImageReader r5) throws java.lang.Throwable {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.Camera2Session.AnonymousClass3.onImageAvailable(android.media.ImageReader):void");
         }
 
@@ -577,7 +572,7 @@ public class Camera2Session {
         return (android.util.Size) Collections.max(Arrays.asList(sizeArr), new CompareSizesByArea());
     }
 
-    public static class CompareSizesByArea implements Comparator<android.util.Size> {
+    static class CompareSizesByArea implements Comparator<android.util.Size> {
         CompareSizesByArea() {
         }
 

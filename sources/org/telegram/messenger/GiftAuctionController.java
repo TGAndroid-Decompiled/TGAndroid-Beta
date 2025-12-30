@@ -82,13 +82,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftAuctionState.version = orCreateAuction.getVersion();
         getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                GiftAuctionController.this.lambda$subscribeToGiftAuctionStateInternal$1(j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+            public final void run(Object obj, Object obj2) throws InterruptedException {
+                this.f$0.lambda$subscribeToGiftAuctionStateInternal$1(j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$subscribeToGiftAuctionStateInternal$1(final long j, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, TLRPC.TL_error tL_error) {
+    public void lambda$subscribeToGiftAuctionStateInternal$1(final long j, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_StarGiftAuctionState != null) {
             getMessagesController().putUsers(tL_StarGiftAuctionState.users, false);
             getMessagesController().putChats(tL_StarGiftAuctionState.chats, false);
@@ -97,8 +97,8 @@ public class GiftAuctionController extends BaseController {
             this.upgrades.put(j, Boolean.TRUE);
             requestAuctionUpgrades(j, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
-                    GiftAuctionController.this.lambda$subscribeToGiftAuctionStateInternal$0(j, tL_StarGiftAuctionState, (ArrayList) obj);
+                public final void run(Object obj) throws InterruptedException {
+                    this.f$0.lambda$subscribeToGiftAuctionStateInternal$0(j, tL_StarGiftAuctionState, (ArrayList) obj);
                 }
             });
         } else if (tL_StarGiftAuctionState != null) {
@@ -106,12 +106,12 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
-    public void lambda$subscribeToGiftAuctionStateInternal$0(long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, ArrayList arrayList) {
+    public void lambda$subscribeToGiftAuctionStateInternal$0(long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, ArrayList arrayList) throws InterruptedException {
         getOrCreateAuction(j).previewAttributes = arrayList;
         onGiftAuctionStateReceivedInternal(j, tL_StarGiftAuctionState);
     }
 
-    private void onGiftAuctionStateReceivedInternal(final long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
+    private void onGiftAuctionStateReceivedInternal(final long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) throws InterruptedException {
         applyGiftAuctionStateAndPerformUpdate(tL_StarGiftAuctionState.gift, tL_StarGiftAuctionState.state, tL_StarGiftAuctionState.user_state);
         final AuctionInternal auctionInternal = this.auctions.get(j);
         if (auctionInternal == null || !auctionInternal.subscription) {
@@ -120,7 +120,7 @@ public class GiftAuctionController extends BaseController {
         auctionInternal.resubscribe = new Runnable() {
             @Override
             public final void run() {
-                GiftAuctionController.this.lambda$onGiftAuctionStateReceivedInternal$2(auctionInternal, j);
+                this.f$0.lambda$onGiftAuctionStateReceivedInternal$2(auctionInternal, j);
             }
         };
         AndroidUtilities.runOnUIThread(auctionInternal.resubscribe, tL_StarGiftAuctionState.timeout * 1000);
@@ -149,13 +149,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftAuctionState.version = 0;
         return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                GiftAuctionController.this.lambda$requestGiftAuctionInternal$4(callback2, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+            public final void run(Object obj, Object obj2) throws InterruptedException {
+                this.f$0.lambda$requestGiftAuctionInternal$4(callback2, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$requestGiftAuctionInternal$4(final Utilities.Callback2 callback2, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, final TLRPC.TL_error tL_error) {
+    public void lambda$requestGiftAuctionInternal$4(final Utilities.Callback2 callback2, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_StarGiftAuctionState != null) {
             getMessagesController().putUsers(tL_StarGiftAuctionState.users, false);
             getMessagesController().putChats(tL_StarGiftAuctionState.chats, false);
@@ -164,8 +164,8 @@ public class GiftAuctionController extends BaseController {
             this.upgrades.put(tL_StarGiftAuctionState.gift.id, Boolean.TRUE);
             requestAuctionUpgrades(tL_StarGiftAuctionState.gift.id, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
-                    GiftAuctionController.this.lambda$requestGiftAuctionInternal$3(tL_StarGiftAuctionState, callback2, tL_error, (ArrayList) obj);
+                public final void run(Object obj) throws InterruptedException {
+                    this.f$0.lambda$requestGiftAuctionInternal$3(tL_StarGiftAuctionState, callback2, tL_error, (ArrayList) obj);
                 }
             });
         } else {
@@ -176,7 +176,7 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
-    public void lambda$requestGiftAuctionInternal$3(TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, Utilities.Callback2 callback2, TLRPC.TL_error tL_error, ArrayList arrayList) {
+    public void lambda$requestGiftAuctionInternal$3(TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, Utilities.Callback2 callback2, TLRPC.TL_error tL_error, ArrayList arrayList) throws InterruptedException {
         getOrCreateAuction(tL_StarGiftAuctionState.gift.id).previewAttributes = arrayList;
         onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.id, tL_StarGiftAuctionState);
         callback2.run(tL_StarGiftAuctionState, tL_error);
@@ -188,7 +188,7 @@ public class GiftAuctionController extends BaseController {
         getConnectionsManager().sendRequestTyped(getstargiftupgradeattributes, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftAuctionController.lambda$requestAuctionUpgrades$5(Utilities.Callback.this, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(callback, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -211,18 +211,18 @@ public class GiftAuctionController extends BaseController {
             StarsController.getInstance(this.currentAccount).getBalance(new Runnable() {
                 @Override
                 public final void run() {
-                    GiftAuctionController.this.lambda$sendBid$6(callback2, j, params, j2);
+                    this.f$0.lambda$sendBid$6(callback2, j, params, j2);
                 }
             });
             return;
         }
-        boolean hasBid = auctionInternal.hasBid();
+        boolean zHasBid = auctionInternal.hasBid();
         auctionInternal.pendingBid = true;
         final TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         TLRPC.TL_inputInvoiceStarGiftAuctionBid tL_inputInvoiceStarGiftAuctionBid = new TLRPC.TL_inputInvoiceStarGiftAuctionBid();
         tL_inputInvoiceStarGiftAuctionBid.gift_id = j;
         tL_inputInvoiceStarGiftAuctionBid.bid_amount = j2;
-        tL_inputInvoiceStarGiftAuctionBid.update_bid = hasBid;
+        tL_inputInvoiceStarGiftAuctionBid.update_bid = zHasBid;
         if (params != null) {
             if (params.dialogId == 0) {
                 tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
@@ -231,7 +231,7 @@ public class GiftAuctionController extends BaseController {
             }
             tL_inputInvoiceStarGiftAuctionBid.message = params.message;
             tL_inputInvoiceStarGiftAuctionBid.hide_name = params.hideName;
-        } else if (!hasBid) {
+        } else if (!zHasBid) {
             tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
             tL_inputInvoiceStarGiftAuctionBid.hide_name = false;
         }
@@ -239,7 +239,7 @@ public class GiftAuctionController extends BaseController {
         getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftAuctionController.this.lambda$sendBid$9(callback2, auctionInternal, tL_payments_getPaymentForm, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$sendBid$9(callback2, auctionInternal, tL_payments_getPaymentForm, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -266,7 +266,7 @@ public class GiftAuctionController extends BaseController {
             getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    GiftAuctionController.this.lambda$sendBid$8(auctionInternal, callback2, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$sendBid$8(auctionInternal, callback2, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -279,7 +279,7 @@ public class GiftAuctionController extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    GiftAuctionController.this.lambda$sendBid$7(tL_payments_paymentResult);
+                    this.f$0.lambda$sendBid$7(tL_payments_paymentResult);
                 }
             });
             callback2.run(Boolean.TRUE, null);
@@ -298,17 +298,17 @@ public class GiftAuctionController extends BaseController {
         ArrayList<Long> arrayList = new ArrayList();
         int size = this.auctions.size();
         for (int i = 0; i < size; i++) {
-            AuctionInternal valueAt = this.auctions.valueAt(i);
-            if (valueAt.internalState != null && !valueAt.internalState.isFinished() && valueAt.internalState.auctionStateActive != null && valueAt.internalState.auctionUserState.bid_date > 0) {
-                arrayList.add(Long.valueOf(valueAt.internalState.auctionStateActive.version | (valueAt.internalState.auctionUserState.bid_date << 32)));
+            AuctionInternal auctionInternalValueAt = this.auctions.valueAt(i);
+            if (auctionInternalValueAt.internalState != null && !auctionInternalValueAt.internalState.isFinished() && auctionInternalValueAt.internalState.auctionStateActive != null && auctionInternalValueAt.internalState.auctionUserState.bid_date > 0) {
+                arrayList.add(Long.valueOf(auctionInternalValueAt.internalState.auctionStateActive.version | (auctionInternalValueAt.internalState.auctionUserState.bid_date << 32)));
             }
         }
         Collections.sort(arrayList);
-        long j = 0;
+        long jCalcHash = 0;
         for (Long l : arrayList) {
-            j = MediaDataController.calcHash(MediaDataController.calcHash(j, l.longValue() & 4294967295L), l.longValue() >> 32);
+            jCalcHash = MediaDataController.calcHash(MediaDataController.calcHash(jCalcHash, l.longValue() & 4294967295L), l.longValue() >> 32);
         }
-        return j;
+        return jCalcHash;
     }
 
     public void requestUserAuctions() {
@@ -316,13 +316,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftActiveAuctions.hash = calculateUserAuctionsHash();
         getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                GiftAuctionController.this.lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
+            public final void run(Object obj, Object obj2) throws InterruptedException {
+                this.f$0.lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$requestUserAuctions$10(TL_payments.StarGiftActiveAuctions starGiftActiveAuctions, TLRPC.TL_error tL_error) {
+    public void lambda$requestUserAuctions$10(TL_payments.StarGiftActiveAuctions starGiftActiveAuctions, TLRPC.TL_error tL_error) throws InterruptedException {
         if (starGiftActiveAuctions == null || tL_error != null) {
             return;
         }
@@ -352,7 +352,7 @@ public class GiftAuctionController extends BaseController {
             getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionAcquiredGifts, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    GiftAuctionController.this.lambda$getOrRequestAcquiredGifts$11(callback, auctionInternal, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$getOrRequestAcquiredGifts$11(callback, auctionInternal, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
                 }
             });
             return;
@@ -379,7 +379,7 @@ public class GiftAuctionController extends BaseController {
             requestGiftAuctionById(j, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    GiftAuctionController.this.lambda$getOrRequestAuction$12(callback2, j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$getOrRequestAuction$12(callback2, j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -389,7 +389,7 @@ public class GiftAuctionController extends BaseController {
         callback2.run(getAuction(j), tL_error);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) {
+    public void processUpdate(TLRPC.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) throws InterruptedException {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyAuctionState(tL_updateStarGiftAuctionState.state)) {
             return;
@@ -398,7 +398,7 @@ public class GiftAuctionController extends BaseController {
         performAuctionUpdate(auctionInternal.giftId);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) {
+    public void processUpdate(TLRPC.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) throws InterruptedException {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionUserState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyUserState(tL_updateStarGiftAuctionUserState.user_state)) {
             return;
@@ -407,17 +407,17 @@ public class GiftAuctionController extends BaseController {
         performAuctionUpdate(auctionInternal.giftId);
     }
 
-    private void applyGiftAuctionStateAndPerformUpdate(TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
-        boolean applyAuctionState;
+    private void applyGiftAuctionStateAndPerformUpdate(TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) throws InterruptedException {
+        boolean zApplyAuctionState;
         AuctionInternal orCreateAuction = getOrCreateAuction(starGift.id);
         if (orCreateAuction.internalState == null) {
             orCreateAuction.internalState = new Auction(this.currentAccount, starGift, starGiftAuctionState, tL_StarGiftAuctionUserState);
             orCreateAuction.internalState.previewAttributes = orCreateAuction.previewAttributes;
-            applyAuctionState = true;
+            zApplyAuctionState = true;
         } else {
-            applyAuctionState = orCreateAuction.internalState.applyAuctionState(starGiftAuctionState) | orCreateAuction.internalState.applyGift(starGift) | orCreateAuction.internalState.applyUserState(tL_StarGiftAuctionUserState);
+            zApplyAuctionState = orCreateAuction.internalState.applyAuctionState(starGiftAuctionState) | orCreateAuction.internalState.applyGift(starGift) | orCreateAuction.internalState.applyUserState(tL_StarGiftAuctionUserState);
         }
-        if (applyAuctionState) {
+        if (zApplyAuctionState) {
             updateActiveAuctions();
             performAuctionUpdate(starGift.id);
         }
@@ -445,10 +445,10 @@ public class GiftAuctionController extends BaseController {
     private Auction findAuctionBySlug(String str) {
         int size = this.auctions.size();
         for (int i = 0; i < size; i++) {
-            AuctionInternal valueAt = this.auctions.valueAt(i);
-            if (valueAt.internalState != null && TextUtils.equals(valueAt.internalState.gift.auction_slug, str)) {
-                if (valueAt.internalState != null) {
-                    return valueAt.internalState;
+            AuctionInternal auctionInternalValueAt = this.auctions.valueAt(i);
+            if (auctionInternalValueAt.internalState != null && TextUtils.equals(auctionInternalValueAt.internalState.gift.auction_slug, str)) {
+                if (auctionInternalValueAt.internalState != null) {
+                    return auctionInternalValueAt.internalState;
                 }
                 return null;
             }
@@ -466,22 +466,20 @@ public class GiftAuctionController extends BaseController {
         return auctionInternal2;
     }
 
-    private void updateActiveAuctions() {
+    private void updateActiveAuctions() throws InterruptedException {
         getMessagesController().putLastGiftAuctionUpdate();
         this.activeAuctions.clear();
         int size = this.auctions.size();
         for (int i = 0; i < size; i++) {
-            AuctionInternal valueAt = this.auctions.valueAt(i);
-            if (valueAt.internalState != null && !valueAt.internalState.isFinished() && valueAt.internalState.auctionUserState.bid_amount > 0) {
-                this.activeAuctions.add(valueAt.internalState);
+            AuctionInternal auctionInternalValueAt = this.auctions.valueAt(i);
+            if (auctionInternalValueAt.internalState != null && !auctionInternalValueAt.internalState.isFinished() && auctionInternalValueAt.internalState.auctionUserState.bid_amount > 0) {
+                this.activeAuctions.add(auctionInternalValueAt.internalState);
             }
         }
         List.EL.sort(this.activeAuctions, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                int lambda$updateActiveAuctions$13;
-                lambda$updateActiveAuctions$13 = GiftAuctionController.lambda$updateActiveAuctions$13((GiftAuctionController.Auction) obj);
-                return lambda$updateActiveAuctions$13;
+                return GiftAuctionController.lambda$updateActiveAuctions$13((GiftAuctionController.Auction) obj);
             }
         }));
         performUpdateActiveAuctions();
@@ -491,7 +489,7 @@ public class GiftAuctionController extends BaseController {
         return auction.auctionUserState.bid_date;
     }
 
-    public static class AuctionInternal {
+    static class AuctionInternal {
         private ArrayList<TL_stars.TL_StarGiftAuctionAcquiredGift> acquiredGifts;
         public final long giftId;
         private Auction internalState;
@@ -526,7 +524,7 @@ public class GiftAuctionController extends BaseController {
         this.onActiveAuctionsUpdateListeners.remove(onActiveAuctionsUpdateListeners);
     }
 
-    private void performUpdateActiveAuctions() {
+    private void performUpdateActiveAuctions() throws InterruptedException {
         Iterator it = this.onActiveAuctionsUpdateListeners.iterator();
         while (it.hasNext()) {
             ((OnActiveAuctionsUpdateListeners) it.next()).onActiveAuctionsUpdate(this.activeAuctions);
@@ -728,9 +726,9 @@ public class GiftAuctionController extends BaseController {
                 long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
                 int i = 0;
                 while (i < this.auctionStateActive.top_bidders.size()) {
-                    long longValue = this.auctionStateActive.top_bidders.get(i).longValue();
+                    long jLongValue = this.auctionStateActive.top_bidders.get(i).longValue();
                     i++;
-                    if (clientUserId == longValue) {
+                    if (clientUserId == jLongValue) {
                         return i;
                     }
                 }

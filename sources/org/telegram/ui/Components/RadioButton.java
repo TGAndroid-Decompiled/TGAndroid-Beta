@@ -98,9 +98,9 @@ public class RadioButton extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(200L);
         this.checkAnimator.start();
     }
 
@@ -144,9 +144,9 @@ public class RadioButton extends View {
         } else {
             f = 2.0f - (f2 / 0.5f);
             float f3 = 1.0f - f;
-            int rgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r4) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r7) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r9) * f3)));
-            paint.setColor(rgb);
-            checkedPaint.setColor(rgb);
+            int iRgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r4) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r7) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r9) * f3)));
+            paint.setColor(iRgb);
+            checkedPaint.setColor(iRgb);
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         float f4 = (this.size / 2) - ((f + 1.0f) * AndroidUtilities.density);
@@ -161,11 +161,11 @@ public class RadioButton extends View {
         }
         canvas.restore();
         if (this.icon != null) {
-            int blendARGB = ColorUtils.blendARGB(this.color, this.checkedColor, Utilities.clamp(this.progress, 1.0f, 0.0f));
-            if (this.iconColor != blendARGB) {
+            int iBlendARGB = ColorUtils.blendARGB(this.color, this.checkedColor, Utilities.clamp(this.progress, 1.0f, 0.0f));
+            if (this.iconColor != iBlendARGB) {
                 Drawable drawable = this.icon;
-                this.iconColor = blendARGB;
-                drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.SRC_IN));
+                this.iconColor = iBlendARGB;
+                drawable.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
             }
             this.icon.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((getWidth() / 2.0f) + (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) + (this.icon.getIntrinsicHeight() / 2.0f)));
             this.icon.draw(canvas);

@@ -108,12 +108,12 @@ public class VoIPToggleButton extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
-        this.pressedScaleAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
+        this.pressedScaleAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIPToggleButton.this.lambda$setPressedBtn$0(valueAnimator2);
+                this.f$0.lambda$setPressedBtn$0(valueAnimator2);
             }
         });
         this.pressedScaleAnimator.setDuration(150L);
@@ -152,13 +152,13 @@ public class VoIPToggleButton extends FrameLayout {
         }
         if (this.rippleDrawable == null || z) {
             if (Color.alpha(i3) == 255 && AndroidUtilities.computePerceivedBrightness(i3) > 0.5d) {
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
-                this.rippleDrawable = createSimpleSelectorCircleDrawable;
-                createSimpleSelectorCircleDrawable.setCallback(this);
+                Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
+                this.rippleDrawable = drawableCreateSimpleSelectorCircleDrawable;
+                drawableCreateSimpleSelectorCircleDrawable.setCallback(this);
             } else {
-                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
-                this.rippleDrawable = createSimpleSelectorCircleDrawable2;
-                createSimpleSelectorCircleDrawable2.setCallback(this);
+                Drawable drawableCreateSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
+                this.rippleDrawable = drawableCreateSimpleSelectorCircleDrawable2;
+                drawableCreateSimpleSelectorCircleDrawable2.setCallback(this);
             }
         }
         ValueAnimator valueAnimator = this.replaceAnimator;
@@ -199,9 +199,9 @@ public class VoIPToggleButton extends FrameLayout {
         if (!this.checkable) {
             this.animateToBackgroundColor = i3;
         }
-        boolean equals = this.textView[0].getText().toString().equals(str);
-        final boolean z5 = !equals;
-        if (equals) {
+        boolean zEquals = this.textView[0].getText().toString().equals(str);
+        final boolean z5 = !zEquals;
+        if (zEquals) {
             this.textView[0].setText(str);
         } else {
             this.textView[1].setText(str);
@@ -210,12 +210,12 @@ public class VoIPToggleButton extends FrameLayout {
             this.textView[1].setScaleX(0.0f);
             this.textView[1].setScaleY(0.0f);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.replaceAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.replaceAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIPToggleButton.this.lambda$setData$1(z5, valueAnimator2);
+                this.f$0.lambda$setData$1(z5, valueAnimator2);
             }
         });
         this.replaceAnimator.addListener(new AnimatorListenerAdapter() {
@@ -310,12 +310,12 @@ public class VoIPToggleButton extends FrameLayout {
                     valueAnimator.removeAllListeners();
                     this.checkAnimator.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.checkedProgress, this.checked ? 1.0f : 0.0f);
-                this.checkAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.checkedProgress, this.checked ? 1.0f : 0.0f);
+                this.checkAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        VoIPToggleButton.this.lambda$setChecked$2(valueAnimator2);
+                        this.f$0.lambda$setChecked$2(valueAnimator2);
                     }
                 });
                 this.checkAnimator.addListener(new AnimatorListenerAdapter() {

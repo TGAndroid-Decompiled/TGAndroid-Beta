@@ -84,7 +84,7 @@ public class YuvConverter {
         int i2 = ((width + 7) / 8) * 8;
         int i3 = (height + 1) / 2;
         int i4 = height + i3;
-        ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i2 * i4);
+        ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i2 * i4);
         int i5 = i2 / 4;
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
@@ -95,10 +95,10 @@ public class YuvConverter {
             GLES20.glBindFramebuffer(36160, this.i420TextureFrameBuffer.getFrameBufferId());
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
-            byteBuffer = nativeAllocateByteBuffer;
+            byteBuffer = byteBufferNativeAllocateByteBuffer;
         } catch (Exception e) {
             e = e;
-            byteBuffer = nativeAllocateByteBuffer;
+            byteBuffer = byteBufferNativeAllocateByteBuffer;
         }
         try {
             VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
@@ -120,16 +120,16 @@ public class YuvConverter {
                 final ByteBuffer byteBuffer2 = byteBuffer;
                 byteBuffer2.position(i);
                 byteBuffer2.limit(i6);
-                ByteBuffer slice = byteBuffer2.slice();
+                ByteBuffer byteBufferSlice = byteBuffer2.slice();
                 byteBuffer2.position(i6);
                 int i9 = ((i3 - 1) * i2) + i7;
                 byteBuffer2.limit(i6 + i9);
-                ByteBuffer slice2 = byteBuffer2.slice();
+                ByteBuffer byteBufferSlice2 = byteBuffer2.slice();
                 byteBuffer2.position(i8);
                 byteBuffer2.limit(i8 + i9);
-                ByteBuffer slice3 = byteBuffer2.slice();
+                ByteBuffer byteBufferSlice3 = byteBuffer2.slice();
                 textureBuffer2.release();
-                return JavaI420Buffer.wrap(width, height, slice, i2, slice2, i2, slice3, i2, new Runnable() {
+                return JavaI420Buffer.wrap(width, height, byteBufferSlice, i2, byteBufferSlice2, i2, byteBufferSlice3, i2, new Runnable() {
                     @Override
                     public final void run() {
                         JniCommon.nativeFreeByteBuffer(byteBuffer2);
@@ -146,16 +146,16 @@ public class YuvConverter {
             final ByteBuffer byteBuffer22 = byteBuffer;
             byteBuffer22.position(i);
             byteBuffer22.limit(i62);
-            ByteBuffer slice4 = byteBuffer22.slice();
+            ByteBuffer byteBufferSlice4 = byteBuffer22.slice();
             byteBuffer22.position(i62);
             int i92 = ((i3 - 1) * i2) + i72;
             byteBuffer22.limit(i62 + i92);
-            ByteBuffer slice22 = byteBuffer22.slice();
+            ByteBuffer byteBufferSlice22 = byteBuffer22.slice();
             byteBuffer22.position(i82);
             byteBuffer22.limit(i82 + i92);
-            ByteBuffer slice32 = byteBuffer22.slice();
+            ByteBuffer byteBufferSlice32 = byteBuffer22.slice();
             textureBuffer2.release();
-            return JavaI420Buffer.wrap(width, height, slice4, i2, slice22, i2, slice32, i2, new Runnable() {
+            return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i2, byteBufferSlice22, i2, byteBufferSlice32, i2, new Runnable() {
                 @Override
                 public final void run() {
                     JniCommon.nativeFreeByteBuffer(byteBuffer22);
@@ -168,16 +168,16 @@ public class YuvConverter {
         final ByteBuffer byteBuffer222 = byteBuffer;
         byteBuffer222.position(i);
         byteBuffer222.limit(i622);
-        ByteBuffer slice42 = byteBuffer222.slice();
+        ByteBuffer byteBufferSlice42 = byteBuffer222.slice();
         byteBuffer222.position(i622);
         int i922 = ((i3 - 1) * i2) + i722;
         byteBuffer222.limit(i622 + i922);
-        ByteBuffer slice222 = byteBuffer222.slice();
+        ByteBuffer byteBufferSlice222 = byteBuffer222.slice();
         byteBuffer222.position(i822);
         byteBuffer222.limit(i822 + i922);
-        ByteBuffer slice322 = byteBuffer222.slice();
+        ByteBuffer byteBufferSlice322 = byteBuffer222.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, slice42, i2, slice222, i2, slice322, i2, new Runnable() {
+        return JavaI420Buffer.wrap(width, height, byteBufferSlice42, i2, byteBufferSlice222, i2, byteBufferSlice322, i2, new Runnable() {
             @Override
             public final void run() {
                 JniCommon.nativeFreeByteBuffer(byteBuffer222);

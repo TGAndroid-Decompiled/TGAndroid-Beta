@@ -75,7 +75,7 @@ public class BotCommandsMenuView extends View {
             }
 
             @Override
-            public void invalidateInternal() {
+            protected void invalidateInternal() {
                 super.invalidateInternal();
                 BotCommandsMenuView.this.invalidate();
             }
@@ -89,9 +89,9 @@ public class BotCommandsMenuView extends View {
         menuDrawable.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
         menuDrawable.setRoundCap();
-        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
-        this.backgroundDrawable = createSimpleSelectorRoundRectDrawable;
-        createSimpleSelectorRoundRectDrawable.setCallback(this);
+        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
+        this.backgroundDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
+        drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
@@ -137,16 +137,16 @@ public class BotCommandsMenuView extends View {
             this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.lastSize = size;
             int i3 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false), this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
-            this.menuTextLayout = createStaticLayout;
-            this.menuTextWidth = createStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false), this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
+            this.menuTextLayout = staticLayoutCreateStaticLayout;
+            this.menuTextWidth = staticLayoutCreateStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
         }
         onTranslationChanged((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * this.expandProgress);
-        int dp = AndroidUtilities.dp(40.0f);
+        int iDp = AndroidUtilities.dp(40.0f);
         if (this.expanded) {
-            dp += ((int) this.menuTextWidth) + AndroidUtilities.dp(4.0f);
+            iDp += ((int) this.menuTextWidth) + AndroidUtilities.dp(4.0f);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 
     @Override

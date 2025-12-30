@@ -39,7 +39,7 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
         super(-1);
         this.dispatcher = coroutineDispatcher;
         this.continuation = continuation;
-        this._state = DispatchedContinuationKt.access$getUNDEFINED$p();
+        this._state = DispatchedContinuationKt.UNDEFINED;
         this.countOrElement = ThreadContextKt.threadContextElements(getContext());
     }
 
@@ -65,8 +65,8 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     }
 
     public final void awaitReusability$kotlinx_coroutines_core() {
-        do {
-        } while (_reusableCancellableContinuation$volatile$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED);
+        while (_reusableCancellableContinuation$volatile$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED) {
+        }
     }
 
     public final void release$kotlinx_coroutines_core() {
@@ -137,7 +137,7 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     @Override
     public Object takeState$kotlinx_coroutines_core() {
         Object obj = this._state;
-        this._state = DispatchedContinuationKt.access$getUNDEFINED$p();
+        this._state = DispatchedContinuationKt.UNDEFINED;
         return obj;
     }
 
@@ -156,20 +156,19 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
             eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
             try {
                 CoroutineContext context2 = getContext();
-                Object updateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
+                Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
                 try {
                     this.continuation.resumeWith(obj);
                     Unit unit = Unit.INSTANCE;
-                    do {
-                    } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
+                    while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent()) {
+                    }
                 } finally {
-                    ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
+                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
                 }
-            } catch (Throwable th) {
+            } finally {
                 try {
-                    handleFatalException$kotlinx_coroutines_core(th, null);
+                    return;
                 } finally {
-                    eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
                 }
             }
             return;

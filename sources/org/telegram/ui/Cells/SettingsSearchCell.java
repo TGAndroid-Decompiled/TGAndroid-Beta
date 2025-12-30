@@ -16,9 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.ProfileActivity;
 
 public class SettingsSearchCell extends FrameLayout {
     private ImageView imageView;
@@ -112,10 +117,10 @@ public class SettingsSearchCell extends FrameLayout {
             for (int i2 = 0; i2 < strArr.length; i2++) {
                 if (i2 != 0) {
                     spannableStringBuilder.append((CharSequence) " > ");
-                    Drawable mutate = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
-                    mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-                    mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), PorterDuff.Mode.MULTIPLY));
-                    spannableStringBuilder.setSpan(new VerticalImageSpan(mutate), spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
+                    Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
+                    drawableMutate.setBounds(0, 0, drawableMutate.getIntrinsicWidth(), drawableMutate.getIntrinsicHeight());
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), PorterDuff.Mode.MULTIPLY));
+                    spannableStringBuilder.setSpan(new VerticalImageSpan(drawableMutate), spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
                 }
                 spannableStringBuilder.append((CharSequence) strArr[i2]);
             }
@@ -148,10 +153,10 @@ public class SettingsSearchCell extends FrameLayout {
             for (int i = 0; i < strArr.length; i++) {
                 if (i != 0) {
                     spannableStringBuilder.append((CharSequence) " > ");
-                    Drawable mutate = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
-                    mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-                    mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
-                    spannableStringBuilder.setSpan(new VerticalImageSpan(mutate), spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
+                    Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
+                    drawableMutate.setBounds(0, 0, drawableMutate.getIntrinsicWidth(), drawableMutate.getIntrinsicHeight());
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+                    spannableStringBuilder.setSpan(new VerticalImageSpan(drawableMutate), spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
                 }
                 spannableStringBuilder.append((CharSequence) strArr[i]);
             }
@@ -165,10 +170,10 @@ public class SettingsSearchCell extends FrameLayout {
                 for (int i2 = 0; i2 < strArr.length; i2++) {
                     if (i2 != 0) {
                         spannableStringBuilder2.append((CharSequence) " > ");
-                        Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
-                        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-                        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), PorterDuff.Mode.MULTIPLY));
-                        spannableStringBuilder2.setSpan(new VerticalImageSpan(mutate2), spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 33);
+                        Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.settings_arrow).mutate();
+                        drawableMutate2.setBounds(0, 0, drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
+                        drawableMutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), PorterDuff.Mode.MULTIPLY));
+                        spannableStringBuilder2.setSpan(new VerticalImageSpan(drawableMutate2), spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 33);
                     }
                     spannableStringBuilder2.append((CharSequence) strArr[i2]);
                 }
@@ -180,13 +185,13 @@ public class SettingsSearchCell extends FrameLayout {
                 this.valueTextView.setVisibility(8);
             }
         }
-        int dp = AndroidUtilities.dp(16.0f);
-        layoutParams.rightMargin = dp;
-        layoutParams.leftMargin = dp;
+        int iDp = AndroidUtilities.dp(16.0f);
+        layoutParams.rightMargin = iDp;
+        layoutParams.leftMargin = iDp;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.valueTextView.getLayoutParams();
-        int dp2 = AndroidUtilities.dp(16.0f);
-        layoutParams2.rightMargin = dp2;
-        layoutParams2.leftMargin = dp2;
+        int iDp2 = AndroidUtilities.dp(16.0f);
+        layoutParams2.rightMargin = iDp2;
+        layoutParams2.leftMargin = iDp2;
         this.imageView.setVisibility(8);
         this.needDivider = z2;
         setWillNotDraw(!z2);
@@ -197,6 +202,42 @@ public class SettingsSearchCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.left), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(this.left) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
+    public static class Factory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public SettingsSearchCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new SettingsSearchCell(context);
+        }
+
+        @Override
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            Object obj = uItem.object;
+            if (obj instanceof ProfileActivity.SearchAdapter.SearchResult) {
+                ProfileActivity.SearchAdapter.SearchResult searchResult = (ProfileActivity.SearchAdapter.SearchResult) obj;
+                ((SettingsSearchCell) view).setTextAndValueAndIcon(uItem.text, searchResult.path, searchResult.iconResId, z);
+            } else if (obj instanceof MessagesController.FaqSearchResult) {
+                ((SettingsSearchCell) view).setTextAndValue(uItem.text, ((MessagesController.FaqSearchResult) obj).path, true, z);
+            }
+        }
+
+        public static UItem of(CharSequence charSequence, ProfileActivity.SearchAdapter.SearchResult searchResult) {
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.text = charSequence;
+            uItemOfFactory.object = searchResult;
+            return uItemOfFactory;
+        }
+
+        public static UItem of(CharSequence charSequence, MessagesController.FaqSearchResult faqSearchResult) {
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.text = charSequence;
+            uItemOfFactory.object = faqSearchResult;
+            return uItemOfFactory;
         }
     }
 }

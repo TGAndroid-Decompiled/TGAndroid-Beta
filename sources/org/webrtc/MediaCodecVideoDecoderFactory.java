@@ -18,12 +18,12 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
 
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
-        VideoCodecMimeType valueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
-        MediaCodecInfo findCodecForType = findCodecForType(valueOf);
-        if (findCodecForType == null) {
+        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
+        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
+        if (mediaCodecInfoFindCodecForType == null) {
             return null;
         }
-        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), findCodecForType.getName(), valueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, findCodecForType.getCapabilitiesForType(valueOf.mimeType())).intValue(), this.sharedContext);
+        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), mediaCodecInfoFindCodecForType.getName(), videoCodecMimeTypeValueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(videoCodecMimeTypeValueOf.mimeType())).intValue(), this.sharedContext);
     }
 
     @Override
@@ -32,13 +32,13 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
         VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264, VideoCodecMimeType.AV1, VideoCodecMimeType.H265};
         for (int i = 0; i < 5; i++) {
             VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
-            MediaCodecInfo findCodecForType = findCodecForType(videoCodecMimeType);
-            if (findCodecForType != null) {
-                String name = videoCodecMimeType.name();
-                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(findCodecForType)) {
-                    arrayList.add(new VideoCodecInfo(name, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
+            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
+            if (mediaCodecInfoFindCodecForType != null) {
+                String strName = videoCodecMimeType.name();
+                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
+                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
                 }
-                arrayList.add(new VideoCodecInfo(name, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
+                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
             }
         }
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
@@ -47,17 +47,17 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
         int i = 0;
         while (true) {
-            MediaCodecInfo mediaCodecInfo = null;
+            MediaCodecInfo codecInfoAt = null;
             if (i >= MediaCodecList.getCodecCount()) {
                 return null;
             }
             try {
-                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i);
+                codecInfoAt = MediaCodecList.getCodecInfoAt(i);
             } catch (IllegalArgumentException e) {
                 Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e);
             }
-            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
-                return mediaCodecInfo;
+            if (codecInfoAt != null && !codecInfoAt.isEncoder() && isSupportedCodec(codecInfoAt, videoCodecMimeType)) {
+                return codecInfoAt;
             }
             i++;
         }

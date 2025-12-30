@@ -3,6 +3,7 @@ package kotlinx.coroutines.internal;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
+import kotlinx.coroutines.CancellableContinuation;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.CoroutineExceptionHandlerKt;
 import kotlinx.coroutines.DefaultExecutorKt;
@@ -23,6 +24,11 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
         return this.$$delegate_0.invokeOnTimeout(j, runnable, coroutineContext);
     }
 
+    @Override
+    public void scheduleResumeAfterDelay(long j, CancellableContinuation cancellableContinuation) {
+        this.$$delegate_0.scheduleResumeAfterDelay(j, cancellableContinuation);
+    }
+
     public LimitedDispatcher(CoroutineDispatcher coroutineDispatcher, int i) {
         this.dispatcher = coroutineDispatcher;
         this.parallelism = i;
@@ -34,12 +40,12 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
 
     @Override
     public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        Runnable obtainTaskOrDeallocateWorker;
+        Runnable runnableObtainTaskOrDeallocateWorker;
         this.queue.addLast(runnable);
-        if (runningWorkers$volatile$FU.get(this) >= this.parallelism || !tryAllocateWorker() || (obtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker()) == null) {
+        if (runningWorkers$volatile$FU.get(this) >= this.parallelism || !tryAllocateWorker() || (runnableObtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker()) == null) {
             return;
         }
-        this.dispatcher.dispatch(this, new Worker(obtainTaskOrDeallocateWorker));
+        this.dispatcher.dispatch(this, new Worker(runnableObtainTaskOrDeallocateWorker));
     }
 
     private final boolean tryAllocateWorker() {
@@ -84,11 +90,11 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
                 } catch (Throwable th) {
                     CoroutineExceptionHandlerKt.handleCoroutineException(EmptyCoroutineContext.INSTANCE, th);
                 }
-                Runnable obtainTaskOrDeallocateWorker = LimitedDispatcher.this.obtainTaskOrDeallocateWorker();
-                if (obtainTaskOrDeallocateWorker == null) {
+                Runnable runnableObtainTaskOrDeallocateWorker = LimitedDispatcher.this.obtainTaskOrDeallocateWorker();
+                if (runnableObtainTaskOrDeallocateWorker == null) {
                     return;
                 }
-                this.currentTask = obtainTaskOrDeallocateWorker;
+                this.currentTask = runnableObtainTaskOrDeallocateWorker;
                 i++;
                 if (i >= 16 && LimitedDispatcher.this.dispatcher.isDispatchNeeded(LimitedDispatcher.this)) {
                     LimitedDispatcher.this.dispatcher.dispatch(LimitedDispatcher.this, this);

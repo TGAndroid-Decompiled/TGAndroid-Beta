@@ -7,9 +7,9 @@ import android.util.Log;
 
 public abstract class Utils {
     public static void HasGLError() {
-        int glGetError = GLES20.glGetError();
-        if (glGetError != 0) {
-            Log.d("Paint", GLUtils.getEGLErrorString(glGetError));
+        int iGlGetError = GLES20.glGetError();
+        if (iGlGetError != 0) {
+            Log.d("Paint", GLUtils.getEGLErrorString(iGlGetError));
         }
     }
 

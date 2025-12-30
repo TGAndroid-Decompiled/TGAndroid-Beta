@@ -4,7 +4,7 @@
     </style>
     <style name="TMessages.AppWidget.Background" parent="@style/Base.TMessages.AppWidget.Background">
         <item name="android:background">@drawable/widget_background</item>
-        <item name="?0x1010628">true</item>
+        <item name="android:clipToOutline">true</item>
     </style>
     <style name="TMessages.AppWidget.Badge" parent="@style/Base.TMessages.AppWidget.Badge">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
@@ -31,7 +31,7 @@
         <item name="android:timePickerStyle">@style/Theme.TMessages.TimePicker</item>
         <item name="android:timePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
         <item name="android:datePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">1</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>
     <style name="Theme.TMessages.Start" parent="@style/Theme.AppCompat.Light">
@@ -46,8 +46,8 @@
         <item name="android:colorPrimaryDark">#426482</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="android:forceDarkAllowed">false</item>
-        <item name="?0x101062c">?android:attr/windowBackground</item>
-        <item name="?0x101062d">@drawable/tg_splash_320</item>
-        <item name="?0x101062e">@integer/splash_screen_duration</item>
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/tg_splash_320</item>
+        <item name="android:windowSplashScreenAnimationDuration">@integer/splash_screen_duration</item>
     </style>
 </resources>

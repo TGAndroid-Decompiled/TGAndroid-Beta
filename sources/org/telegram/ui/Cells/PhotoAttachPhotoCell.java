@@ -103,7 +103,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 if (PhotoAttachPhotoCell.this.spoilerEffect2 != null && view == PhotoAttachPhotoCell.this.imageView) {
-                    boolean drawChild = super.drawChild(canvas, view, j);
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
                     if (PhotoAttachPhotoCell.this.hasSpoiler && PhotoAttachPhotoCell.this.spoilerRevealProgress != 1.0f && (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isAttachSpoilerRevealed)) {
                         if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
                             canvas.save();
@@ -119,7 +119,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                             canvas.restore();
                         }
                     }
-                    return drawChild;
+                    return zDrawChild;
                 }
                 return super.drawChild(canvas, view, j);
             }
@@ -131,7 +131,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             private long lastUpdate;
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
                 ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
                 if (imageReceiver == null) {
@@ -183,10 +183,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 }
                 this.crossfadePaint.setAlpha((int) (CubicBezierInterpolator.DEFAULT.getInterpolation(1.0f - PhotoAttachPhotoCell.this.imageViewCrossfadeProgress) * 255.0f));
                 canvas.drawBitmap(PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot, 0.0f, 0.0f, this.crossfadePaint);
-                long min = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
-                float floatValue = PhotoAttachPhotoCell.this.crossfadeDuration == null ? 250.0f : PhotoAttachPhotoCell.this.crossfadeDuration.floatValue();
+                long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
+                float fFloatValue = PhotoAttachPhotoCell.this.crossfadeDuration == null ? 250.0f : PhotoAttachPhotoCell.this.crossfadeDuration.floatValue();
                 PhotoAttachPhotoCell photoAttachPhotoCell = PhotoAttachPhotoCell.this;
-                photoAttachPhotoCell.imageViewCrossfadeProgress = Math.min(1.0f, photoAttachPhotoCell.imageViewCrossfadeProgress + (((float) min) / floatValue));
+                photoAttachPhotoCell.imageViewCrossfadeProgress = Math.min(1.0f, photoAttachPhotoCell.imageViewCrossfadeProgress + (jMin / fFloatValue));
                 this.lastUpdate = System.currentTimeMillis();
                 invalidate();
                 if (PhotoAttachPhotoCell.this.spoilerEffect2 != null) {
@@ -392,9 +392,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.checkBox.getLayoutParams();
         layoutParams3.gravity = 53;
         layoutParams3.leftMargin = 0;
-        int dp = AndroidUtilities.dp(5.0f);
-        layoutParams3.topMargin = dp;
-        layoutParams3.rightMargin = dp;
+        int iDp = AndroidUtilities.dp(5.0f);
+        layoutParams3.topMargin = iDp;
+        layoutParams3.rightMargin = iDp;
         this.checkBox.setDrawBackgroundAsArc(6);
         this.itemSizeChanged = true;
     }
@@ -402,7 +402,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.itemSizeChanged) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(2.0f), 1073741824));
             return;
         }
         if (this.isVertical) {

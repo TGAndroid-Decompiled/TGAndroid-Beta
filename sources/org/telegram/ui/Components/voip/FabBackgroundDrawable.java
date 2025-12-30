@@ -37,24 +37,24 @@ public class FabBackgroundDrawable extends Drawable {
         if (this.shadowBitmap == null) {
             onBoundsChange(getBounds());
         }
-        int min = Math.min(getBounds().width(), getBounds().height());
+        int iMin = Math.min(getBounds().width(), getBounds().height());
         Bitmap bitmap = this.shadowBitmap;
         if (bitmap != null) {
             canvas.drawBitmap(bitmap, getBounds().centerX() - (this.shadowBitmap.getWidth() / 2), getBounds().centerY() - (this.shadowBitmap.getHeight() / 2), this.shadowPaint);
         }
-        float f = min / 2;
+        float f = iMin / 2;
         canvas.drawCircle(f, f, r0 - AndroidUtilities.dp(4.0f), this.bgPaint);
     }
 
     @Override
     protected void onBoundsChange(Rect rect) {
-        int min = Math.min(rect.width(), rect.height());
-        if (min <= 0) {
+        int iMin = Math.min(rect.width(), rect.height());
+        if (iMin <= 0) {
             this.shadowBitmap = null;
             return;
         }
-        this.shadowBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
-        float f = min / 2;
+        this.shadowBitmap = Bitmap.createBitmap(iMin, iMin, Bitmap.Config.ALPHA_8);
+        float f = iMin / 2;
         new Canvas(this.shadowBitmap).drawCircle(f, f, r5 - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
@@ -65,8 +65,8 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public boolean getPadding(Rect rect) {
-        int dp = AndroidUtilities.dp(4.0f);
-        rect.set(dp, dp, dp, dp);
+        int iDp = AndroidUtilities.dp(4.0f);
+        rect.set(iDp, iDp, iDp, iDp);
         return true;
     }
 }

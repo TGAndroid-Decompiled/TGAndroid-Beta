@@ -54,44 +54,44 @@ public class LruCache<T> {
     }
 
     public void moveToFront(String str) {
-        T remove = this.map.remove(str);
-        if (remove != null) {
-            this.map.put(str, remove);
+        T tRemove = this.map.remove(str);
+        if (tRemove != null) {
+            this.map.put(str, tRemove);
         }
     }
 
     public T put(String str, T t) {
-        T put;
+        T tPut;
         if (str == null || t == null) {
             throw new NullPointerException("key == null || value == null");
         }
         synchronized (this) {
             try {
                 this.size += safeSizeOf(str, t);
-                put = this.map.put(str, t);
-                if (put != null) {
-                    this.size -= safeSizeOf(str, put);
+                tPut = this.map.put(str, t);
+                if (tPut != null) {
+                    this.size -= safeSizeOf(str, tPut);
                 }
             } catch (Throwable th) {
                 throw th;
             }
         }
-        String[] split = str.split("@");
-        if (split.length > 1) {
-            ArrayList<String> arrayList = this.mapFilters.get(split[0]);
+        String[] strArrSplit = str.split("@");
+        if (strArrSplit.length > 1) {
+            ArrayList<String> arrayList = this.mapFilters.get(strArrSplit[0]);
             if (arrayList == null) {
                 arrayList = new ArrayList<>();
-                this.mapFilters.put(split[0], arrayList);
+                this.mapFilters.put(strArrSplit[0], arrayList);
             }
-            if (!arrayList.contains(split[1])) {
-                arrayList.add(split[1]);
+            if (!arrayList.contains(strArrSplit[1])) {
+                arrayList.add(strArrSplit[1]);
             }
         }
-        if (put != null) {
-            entryRemoved(false, str, put, t);
+        if (tPut != null) {
+            entryRemoved(false, str, tPut, t);
         }
         trimToSize(this.maxSize, str);
-        return put;
+        return tPut;
     }
 
     private void trimToSize(int i, String str) {
@@ -106,11 +106,11 @@ public class LruCache<T> {
                         T value = next.getValue();
                         this.size -= safeSizeOf(key, value);
                         it.remove();
-                        String[] split = key.split("@");
-                        if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
-                            arrayList.remove(split[1]);
+                        String[] strArrSplit = key.split("@");
+                        if (strArrSplit.length > 1 && (arrayList = this.mapFilters.get(strArrSplit[0])) != null) {
+                            arrayList.remove(strArrSplit[1]);
                             if (arrayList.isEmpty()) {
-                                this.mapFilters.remove(split[0]);
+                                this.mapFilters.remove(strArrSplit[0]);
                             }
                         }
                         entryRemoved(true, key, value, null);
@@ -122,32 +122,32 @@ public class LruCache<T> {
     }
 
     public final T remove(String str) {
-        T remove;
+        T tRemove;
         ArrayList<String> arrayList;
         if (str == null) {
             throw new NullPointerException("key == null");
         }
         synchronized (this) {
             try {
-                remove = this.map.remove(str);
-                if (remove != null) {
-                    this.size -= safeSizeOf(str, remove);
+                tRemove = this.map.remove(str);
+                if (tRemove != null) {
+                    this.size -= safeSizeOf(str, tRemove);
                 }
             } catch (Throwable th) {
                 throw th;
             }
         }
-        if (remove != null) {
-            String[] split = str.split("@");
-            if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
-                arrayList.remove(split[1]);
+        if (tRemove != null) {
+            String[] strArrSplit = str.split("@");
+            if (strArrSplit.length > 1 && (arrayList = this.mapFilters.get(strArrSplit[0])) != null) {
+                arrayList.remove(strArrSplit[1]);
                 if (arrayList.isEmpty()) {
-                    this.mapFilters.remove(split[0]);
+                    this.mapFilters.remove(strArrSplit[0]);
                 }
             }
-            entryRemoved(false, str, remove, null);
+            entryRemoved(false, str, tRemove, null);
         }
-        return remove;
+        return tRemove;
     }
 
     public boolean contains(String str) {
@@ -155,9 +155,9 @@ public class LruCache<T> {
     }
 
     private int safeSizeOf(String str, T t) {
-        int sizeOf = sizeOf(str, t);
-        if (sizeOf >= 0) {
-            return sizeOf;
+        int iSizeOf = sizeOf(str, t);
+        if (iSizeOf >= 0) {
+            return iSizeOf;
         }
         throw new IllegalStateException("Negative size: " + str + "=" + t);
     }

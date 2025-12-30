@@ -44,7 +44,7 @@ public abstract class ProfileHoursCell extends LinearLayout {
         this.labelTimeText = new TextView[2];
         this.lines = new ViewGroup[7];
         this.labelText = new TextView[7];
-        this.timeText = new TextView[7];
+        this.timeText = new TextView[7][];
         this.todayLinesCount = 1;
         this.todayLinesHeight = 0;
         this.firstAfterAttach = true;
@@ -106,9 +106,9 @@ public abstract class ProfileHoursCell extends LinearLayout {
                 this.switchText.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
                 this.switchText.setGravity(LocaleController.isRTL ? 3 : 5);
                 ClickableAnimatedTextView clickableAnimatedTextView2 = this.switchText;
-                int dp = AndroidUtilities.dp(8.0f);
+                int iDp = AndroidUtilities.dp(8.0f);
                 int i5 = Theme.key_windowBackgroundWhiteBlueText2;
-                clickableAnimatedTextView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.22f)));
+                clickableAnimatedTextView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.22f)));
                 this.switchText.setTextColor(processColor(Theme.getColor(i5, resourcesProvider)));
                 this.switchText.getDrawable().setScaleProperty(0.6f);
                 this.switchText.setVisibility(8);
@@ -152,9 +152,9 @@ public abstract class ProfileHoursCell extends LinearLayout {
 
     public void updateColors() {
         ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
-        int dp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(8.0f);
         int i = Theme.key_windowBackgroundWhiteBlueText2;
-        clickableAnimatedTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.22f)));
+        clickableAnimatedTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.22f)));
         this.switchText.setTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
     }
 
@@ -183,18 +183,18 @@ public abstract class ProfileHoursCell extends LinearLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int dp;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        int iDp;
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
         if (!this.expanded) {
-            int dp2 = AndroidUtilities.dp(60.0f);
+            int iDp2 = AndroidUtilities.dp(60.0f);
             if (this.todayLinesCount > 2 || this.switchText.getVisibility() == 0) {
-                dp = this.todayLinesHeight + AndroidUtilities.dp(15.0f) + AndroidUtilities.dp(this.switchText.getVisibility() == 0 ? 21.0f : 0.0f);
+                iDp = this.todayLinesHeight + AndroidUtilities.dp(15.0f) + AndroidUtilities.dp(this.switchText.getVisibility() == 0 ? 21.0f : 0.0f);
             } else {
-                dp = 0;
+                iDp = 0;
             }
-            i2 = View.MeasureSpec.makeMeasureSpec(Math.max(dp2, dp) + (this.needDivider ? 1 : 0), 1073741824);
+            i2 = View.MeasureSpec.makeMeasureSpec(Math.max(iDp2, iDp) + (this.needDivider ? 1 : 0), 1073741824);
         }
-        super.onMeasure(makeMeasureSpec, i2);
+        super.onMeasure(iMakeMeasureSpec, i2);
     }
 
     @Override

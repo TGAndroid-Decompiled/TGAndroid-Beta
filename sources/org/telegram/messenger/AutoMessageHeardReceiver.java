@@ -21,7 +21,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        AutoMessageHeardReceiver.lambda$onReceive$1(AccountInstance.this, longExtra, intExtra2, intExtra);
+                        AutoMessageHeardReceiver.lambda$onReceive$1(accountInstance, longExtra, intExtra2, intExtra);
                     }
                 });
                 return;
@@ -30,7 +30,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AutoMessageHeardReceiver.lambda$onReceive$3(AccountInstance.this, longExtra, intExtra2, intExtra);
+                    AutoMessageHeardReceiver.lambda$onReceive$3(accountInstance, longExtra, intExtra2, intExtra);
                 }
             });
             return;
@@ -44,7 +44,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AutoMessageHeardReceiver.lambda$onReceive$0(AccountInstance.this, userSync, i, j, i2);
+                AutoMessageHeardReceiver.lambda$onReceive$0(accountInstance, userSync, i, j, i2);
             }
         });
     }
@@ -60,7 +60,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AutoMessageHeardReceiver.lambda$onReceive$2(AccountInstance.this, chatSync, i, j, i2);
+                AutoMessageHeardReceiver.lambda$onReceive$2(accountInstance, chatSync, i, j, i2);
             }
         });
     }

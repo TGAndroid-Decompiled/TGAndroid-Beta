@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -103,7 +104,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this(baseFragment, context, i, z, i2, z2, subscriptionTier, getResourceProvider(baseFragment));
     }
 
-    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier, Theme.ResourcesProvider resourcesProvider) {
+    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         super(context, false, resourcesProvider);
         this.premiumFeatures = new ArrayList();
         this.gradientAlpha = 255;
@@ -188,7 +189,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.closeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumFeatureBottomSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         frameLayout.addView(this.content, LayoutHelper.createLinear(-1, -2, 1, 0, 16, 0, 0));
@@ -215,16 +216,16 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
 
             @Override
-            public void onMeasure(int i4, int i5) {
-                int dp = AndroidUtilities.dp(100.0f);
+            protected void onMeasure(int i4, int i5) throws Resources.NotFoundException {
+                int iDp = AndroidUtilities.dp(100.0f);
                 if (getChildCount() > 0) {
                     getChildAt(0).measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
-                    dp = getChildAt(0).getMeasuredHeight();
+                    iDp = getChildAt(0).getMeasuredHeight();
                 }
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
+                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(iDp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
             }
 
-            private boolean processTap(MotionEvent motionEvent, boolean z3) {
+            private boolean processTap(MotionEvent motionEvent, boolean z3) throws Resources.NotFoundException {
                 Scroller scroller;
                 if (motionEvent.getAction() == 0) {
                     this.lastTapTime = System.currentTimeMillis();
@@ -287,7 +288,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             @Override
             public Object instantiateItem(ViewGroup viewGroup, int i4) {
                 PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-                ViewPage viewPage = new ViewPage(premiumFeatureBottomSheet.getContext(), i4);
+                ViewPage viewPage = premiumFeatureBottomSheet.new ViewPage(premiumFeatureBottomSheet.getContext(), i4);
                 viewGroup.addView(viewPage);
                 viewPage.position = i4;
                 viewPage.setFeatureDate((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i4));
@@ -318,13 +319,13 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumFeatureBottomSheet.this.lambda$new$1(baseFragment, z2, premiumFeatureData2, view);
+                this.f$0.lambda$new$1(baseFragment, z2, premiumFeatureData2, view);
             }
         });
         this.premiumButtonView.overlayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumFeatureBottomSheet.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
@@ -343,7 +344,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         MediaDataController.getInstance(i).preloadPremiumPreviewStickers();
         setButtonText();
         this.customViewGravity = 83;
-        final Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
+        final Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
         FrameLayout frameLayout3 = new FrameLayout(getContext()) {
             int lastSize;
             Path path = new Path();
@@ -380,9 +381,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 if (actionBar == null || actionBar.getVisibility() != 0 || PremiumFeatureBottomSheet.this.actionBar.getAlpha() == 0.0f) {
                     return;
                 }
-                mutate.setBounds(0, PremiumFeatureBottomSheet.this.actionBar.getBottom(), getMeasuredWidth(), PremiumFeatureBottomSheet.this.actionBar.getBottom() + mutate.getIntrinsicHeight());
-                mutate.setAlpha((int) (PremiumFeatureBottomSheet.this.actionBar.getAlpha() * 255.0f));
-                mutate.draw(canvas);
+                drawableMutate.setBounds(0, PremiumFeatureBottomSheet.this.actionBar.getBottom(), getMeasuredWidth(), PremiumFeatureBottomSheet.this.actionBar.getBottom() + drawableMutate.getIntrinsicHeight());
+                drawableMutate.setAlpha((int) (PremiumFeatureBottomSheet.this.actionBar.getAlpha() * 255.0f));
+                drawableMutate.draw(canvas);
             }
 
             @Override
@@ -422,7 +423,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         lambda$new$0();
     }
 
-    public class AnonymousClass5 implements ViewPager.OnPageChangeListener {
+    class AnonymousClass5 implements ViewPager.OnPageChangeListener {
         final BottomPagesView val$bottomPages;
 
         @Override
@@ -563,7 +564,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingProductDetailsUpdated);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumPromoUpdated);
@@ -642,7 +643,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         }
     }
 
-    public class ViewPage extends LinearLayout {
+    private class ViewPage extends LinearLayout {
         LinkSpanDrawable.LinksTextView description;
         LinearLayout featuresLayout;
         public int position;
@@ -723,9 +724,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
                 canvas.save();
                 canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-                boolean drawChild = super.drawChild(canvas, view, j);
+                boolean zDrawChild = super.drawChild(canvas, view, j);
                 canvas.restore();
-                return drawChild;
+                return zDrawChild;
             }
             return super.drawChild(canvas, view, j);
         }
@@ -810,10 +811,10 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 linearLayout.setOrientation(1);
                 AffiliateProgramFragment.FeatureCell featureCell = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
                 featureCell.set(R.drawable.menu_feature_unique, LocaleController.getString(R.string.GiftsFeature1Title), LocaleController.getString(R.string.GiftsFeature1Text));
-                this.featuresLayout.addView(r0[0], LayoutHelper.createLinear(-1, -2));
+                this.featuresLayout.addView(featureCellArr[0], LayoutHelper.createLinear(-1, -2));
                 AffiliateProgramFragment.FeatureCell featureCell2 = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
                 featureCell2.set(R.drawable.menu_feature_tradable, LocaleController.getString(R.string.GiftsFeature2Title), LocaleController.getString(R.string.GiftsFeature2Text));
-                this.featuresLayout.addView(r0[1], LayoutHelper.createLinear(-1, -2));
+                this.featuresLayout.addView(featureCellArr[1], LayoutHelper.createLinear(-1, -2));
                 AffiliateProgramFragment.FeatureCell featureCell3 = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
                 AffiliateProgramFragment.FeatureCell[] featureCellArr = {featureCell, featureCell2, featureCell3};
                 featureCell3.set(R.drawable.menu_wear, LocaleController.getString(R.string.GiftsFeature3Title), LocaleController.getString(R.string.GiftsFeature3Text));
@@ -871,21 +872,21 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     }
 
     @Override
-    public boolean onCustomOpenAnimation() {
+    protected boolean onCustomOpenAnimation() {
         if (this.viewPager.getChildCount() > 0) {
             View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
             if (view instanceof PremiumAppIconsPreviewView) {
                 final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
                 premiumAppIconsPreviewView.setOffset(r2.getMeasuredWidth());
                 this.enterAnimationIsRunning = true;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         premiumAppIconsPreviewView.setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                     }
                 });
-                ofFloat.addListener(new AnimatorListenerAdapter() {
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         PremiumFeatureBottomSheet.this.enterAnimationIsRunning = false;
@@ -893,43 +894,43 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                         super.onAnimationEnd(animator);
                     }
                 });
-                ofFloat.setDuration(500L);
-                ofFloat.setStartDelay(100L);
-                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(500L);
+                valueAnimatorOfFloat.setStartDelay(100L);
+                valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                valueAnimatorOfFloat.start();
             }
         }
         return super.onCustomOpenAnimation();
     }
 
     void checkTopOffset() {
-        View findViewByPosition;
-        View findViewByPosition2;
-        int i = -1;
-        int i2 = -1;
-        for (int i3 = 0; i3 < this.viewPager.getChildCount(); i3++) {
-            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i3);
+        View viewFindViewByPosition;
+        View viewFindViewByPosition2;
+        int top = -1;
+        int top2 = -1;
+        for (int i = 0; i < this.viewPager.getChildCount(); i++) {
+            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
             if (viewPage.position == this.selectedPosition) {
                 View view = viewPage.topView;
-                if ((view instanceof BaseListPageView) && ((findViewByPosition2 = ((BaseListPageView) view).layoutManager.findViewByPosition(0)) == null || (i = findViewByPosition2.getTop()) < 0)) {
-                    i = 0;
+                if ((view instanceof BaseListPageView) && ((viewFindViewByPosition2 = ((BaseListPageView) view).layoutManager.findViewByPosition(0)) == null || (top = viewFindViewByPosition2.getTop()) < 0)) {
+                    top = 0;
                 }
             }
             if (viewPage.position == this.toPosition) {
                 View view2 = viewPage.topView;
-                if ((view2 instanceof BaseListPageView) && ((findViewByPosition = ((BaseListPageView) view2).layoutManager.findViewByPosition(0)) == null || (i2 = findViewByPosition.getTop()) < 0)) {
-                    i2 = 0;
+                if ((view2 instanceof BaseListPageView) && ((viewFindViewByPosition = ((BaseListPageView) view2).layoutManager.findViewByPosition(0)) == null || (top2 = viewFindViewByPosition.getTop()) < 0)) {
+                    top2 = 0;
                 }
             }
         }
-        int i4 = this.topGlobalOffset;
-        if (i >= 0) {
+        int iMin = this.topGlobalOffset;
+        if (top >= 0) {
             float f = 1.0f - this.progress;
-            i4 = Math.min(i4, (int) ((i * f) + (i4 * (1.0f - f))));
+            iMin = Math.min(iMin, (int) ((top * f) + (iMin * (1.0f - f))));
         }
-        if (i2 >= 0) {
+        if (top2 >= 0) {
             float f2 = this.progress;
-            i4 = Math.min(i4, (int) ((i2 * f2) + (this.topGlobalOffset * (1.0f - f2))));
+            iMin = Math.min(iMin, (int) ((top2 * f2) + (this.topGlobalOffset * (1.0f - f2))));
         }
         this.closeLayout.setAlpha(1.0f - this.progressToGradient);
         if (this.progressToFullscreenView == 1.0f) {
@@ -938,11 +939,11 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             this.closeLayout.setVisibility(0);
         }
         this.content.setTranslationX((this.fullscreenNext ? r0.getMeasuredWidth() : -r0.getMeasuredWidth()) * this.progressToGradient);
-        if (i4 != this.topCurrentOffset) {
-            this.topCurrentOffset = i4;
-            for (int i5 = 0; i5 < this.viewPager.getChildCount(); i5++) {
-                if (!((ViewPage) this.viewPager.getChildAt(i5)).topViewOnFullHeight) {
-                    this.viewPager.getChildAt(i5).setTranslationY(this.topCurrentOffset);
+        if (iMin != this.topCurrentOffset) {
+            this.topCurrentOffset = iMin;
+            for (int i2 = 0; i2 < this.viewPager.getChildCount(); i2++) {
+                if (!((ViewPage) this.viewPager.getChildAt(i2)).topViewOnFullHeight) {
+                    this.viewPager.getChildAt(i2).setTranslationY(this.topCurrentOffset);
                 }
             }
             this.content.setTranslationY(this.topCurrentOffset);
@@ -966,7 +967,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         for (int i = 0; i < this.viewPager.getChildCount(); i++) {
             ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
             if (viewPage.position == this.selectedPosition) {

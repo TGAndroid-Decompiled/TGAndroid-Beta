@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">ແບ່ງປັນກັບ</string>
     <string name="abc_shareactionprovider_share_with_application">ແບ່ງປັນດ້ວຍ %s</string>
     <string name="abc_toolbar_collapse_description">ຫຍໍ້ລົງ</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">ລະຫັດຜ່ານ</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">ກະແຈຜ່ານ</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">ລະຫັດຜ່ານ</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">ກະແຈຜ່ານ</string>
     <string name="call_notification_answer_action">ຮັບສາຍ</string>
     <string name="call_notification_answer_video_action">ວິດີໂອ</string>
     <string name="call_notification_decline_action">ປະຕິເສດ</string>

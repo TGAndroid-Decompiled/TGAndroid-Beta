@@ -40,15 +40,15 @@ public final class Size {
     }
 
     public static Size parseSize(String str) {
-        int indexOf = str.indexOf(42);
-        if (indexOf < 0) {
-            indexOf = str.indexOf(120);
+        int iIndexOf = str.indexOf(42);
+        if (iIndexOf < 0) {
+            iIndexOf = str.indexOf(120);
         }
-        if (indexOf < 0) {
+        if (iIndexOf < 0) {
             throw invalidSize(str);
         }
         try {
-            return new Size(Integer.parseInt(str.substring(0, indexOf)), Integer.parseInt(str.substring(indexOf + 1)));
+            return new Size(Integer.parseInt(str.substring(0, iIndexOf)), Integer.parseInt(str.substring(iIndexOf + 1)));
         } catch (NumberFormatException unused) {
             throw invalidSize(str);
         }

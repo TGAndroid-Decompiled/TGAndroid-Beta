@@ -56,7 +56,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.PhotoAlbumPickerActivity;
 import org.telegram.ui.PhotoPickerActivity;
 
 public class PhotoAlbumPickerActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -175,13 +174,13 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 }
             }
         });
-        ActionBarMenu createMenu = this.actionBar.createMenu();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
         if (this.allowSearchImages) {
-            createMenu.addItem(2, R.drawable.ic_ab_search).setContentDescription(LocaleController.getString(R.string.Search));
+            actionBarMenuCreateMenu.addItem(2, R.drawable.ic_ab_search).setContentDescription(LocaleController.getString(R.string.Search));
         }
-        ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other);
-        addItem.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-        addItem.addSubItem(1, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
+        ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other);
+        actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
+        actionBarMenuItemAddItem.addSubItem(1, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             private boolean ignoreLayout;
             private int lastNotifyWidth;
@@ -223,7 +222,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             }
 
             @Override
-            public void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
+            protected void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoAlbumPickerActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
             }
 
@@ -264,9 +263,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = PhotoAlbumPickerActivity.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                return PhotoAlbumPickerActivity.lambda$createView$0(view, motionEvent);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
@@ -290,9 +287,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.frameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$createView$1;
-                lambda$createView$1 = PhotoAlbumPickerActivity.lambda$createView$1(view2, motionEvent);
-                return lambda$createView$1;
+                return PhotoAlbumPickerActivity.lambda$createView$1(view2, motionEvent);
             }
         });
         EditTextEmoji editTextEmoji = this.commentTextView;
@@ -329,9 +324,9 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButtonContainer.setAlpha(0.0f);
         this.sizeNotifierFrameLayout.addView(this.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
         this.writeButton = new ImageView(context);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_dialogFloatingButton), Theme.getColor(Theme.key_dialogFloatingButtonPressed));
-        this.writeButtonDrawable = createSimpleSelectorCircleDrawable;
-        this.writeButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
+        Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_dialogFloatingButton), Theme.getColor(Theme.key_dialogFloatingButtonPressed));
+        this.writeButtonDrawable = drawableCreateSimpleSelectorCircleDrawable;
+        this.writeButton.setBackgroundDrawable(drawableCreateSimpleSelectorCircleDrawable);
         this.writeButton.setImageResource(R.drawable.attach_send);
         this.writeButton.setImportantForAccessibility(2);
         this.writeButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.MULTIPLY));
@@ -346,15 +341,13 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                PhotoAlbumPickerActivity.this.lambda$createView$3(view2);
+                this.f$0.lambda$createView$3(view2);
             }
         });
         this.writeButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                boolean lambda$createView$7;
-                lambda$createView$7 = PhotoAlbumPickerActivity.this.lambda$createView$7(view2);
-                return lambda$createView$7;
+                return this.f$0.lambda$createView$7(view2);
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -362,19 +355,19 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         View view2 = new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
-                String format = String.format("%d", Integer.valueOf(Math.max(1, PhotoAlbumPickerActivity.this.selectedPhotosOrder.size())));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ((int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(format))), AndroidUtilities.dp(24.0f));
+                String str = String.format("%d", Integer.valueOf(Math.max(1, PhotoAlbumPickerActivity.this.selectedPhotosOrder.size())));
+                int iMax = Math.max(AndroidUtilities.dp(16.0f) + ((int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(str))), AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 getMeasuredHeight();
                 PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBoxCheck));
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
-                int i3 = max / 2;
+                int i3 = iMax / 2;
                 PhotoAlbumPickerActivity.this.rect.set(measuredWidth - i3, 0.0f, i3 + measuredWidth, getMeasuredHeight());
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), PhotoAlbumPickerActivity.this.paint);
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
                 PhotoAlbumPickerActivity.this.rect.set(r5 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), r2 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), PhotoAlbumPickerActivity.this.paint);
-                canvas.drawText(format, measuredWidth - (r1 / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
+                canvas.drawText(str, measuredWidth - (r1 / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
             }
         };
         this.selectedCountView = view2;
@@ -401,7 +394,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    PhotoAlbumPickerActivity.this.lambda$createView$2(z, i, i2);
+                    this.f$0.lambda$createView$2(z, i, i2);
                 }
             });
         } else {
@@ -443,7 +436,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 this.sendPopupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                     @Override
                     public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                        PhotoAlbumPickerActivity.this.lambda$createView$4(keyEvent);
+                        this.f$0.lambda$createView$4(keyEvent);
                     }
                 });
                 this.sendPopupLayout.setShownFromBottom(false);
@@ -466,7 +459,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                         this.itemCells[i].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                PhotoAlbumPickerActivity.this.lambda$createView$6(i, view2);
+                                this.f$0.lambda$createView$6(i, view2);
                             }
                         });
                     }
@@ -513,7 +506,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i2, int i3) {
-                    PhotoAlbumPickerActivity.this.lambda$createView$5(z, i2, i3);
+                    this.f$0.lambda$createView$5(z, i2, i3);
                 }
             });
         } else {
@@ -610,14 +603,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.delegate = photoAlbumPickerActivityDelegate;
     }
 
-    public void sendSelectedPhotos(HashMap hashMap, ArrayList arrayList, boolean z, int i) {
-        if (hashMap.isEmpty() || this.delegate == null || this.sendPressed) {
+    public void sendSelectedPhotos(HashMap map, ArrayList arrayList, boolean z, int i) {
+        if (map.isEmpty() || this.delegate == null || this.sendPressed) {
             return;
         }
         this.sendPressed = true;
         ArrayList arrayList2 = new ArrayList();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            Object obj = hashMap.get(arrayList.get(i2));
+            Object obj = map.get(arrayList.get(i2));
             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
             arrayList2.add(sendingMediaInfo);
             if (obj instanceof MediaController.PhotoEntry) {
@@ -772,10 +765,10 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             presentFragment(photoPickerActivity);
             return;
         }
-        final HashMap hashMap = new HashMap();
+        final HashMap map = new HashMap();
         final ArrayList arrayList = new ArrayList();
         if (this.allowGifs) {
-            PhotoPickerSearchActivity photoPickerSearchActivity = new PhotoPickerSearchActivity(hashMap, arrayList, this.selectPhotoType, this.allowCaption, this.chatActivity);
+            PhotoPickerSearchActivity photoPickerSearchActivity = new PhotoPickerSearchActivity(map, arrayList, this.selectPhotoType, this.allowCaption, this.chatActivity);
             Editable text2 = this.commentTextView.getText();
             this.caption = text2;
             photoPickerSearchActivity.setCaption(text2);
@@ -800,7 +793,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     if (z) {
                         return;
                     }
-                    PhotoAlbumPickerActivity.this.sendSelectedPhotos(hashMap, arrayList, z2, i2);
+                    PhotoAlbumPickerActivity.this.sendSelectedPhotos(map, arrayList, z2, i2);
                 }
 
                 @Override
@@ -812,7 +805,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             presentFragment(photoPickerSearchActivity);
             return;
         }
-        PhotoPickerActivity photoPickerActivity2 = new PhotoPickerActivity(0, albumEntry, hashMap, arrayList, this.selectPhotoType, this.allowCaption, this.chatActivity, false);
+        PhotoPickerActivity photoPickerActivity2 = new PhotoPickerActivity(0, albumEntry, map, arrayList, this.selectPhotoType, this.allowCaption, this.chatActivity, false);
         Editable text3 = this.commentTextView.getText();
         this.caption = text3;
         photoPickerActivity2.setCaption(text3);
@@ -837,7 +830,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 if (z) {
                     return;
                 }
-                PhotoAlbumPickerActivity.this.sendSelectedPhotos(hashMap, arrayList, z2, i2);
+                PhotoAlbumPickerActivity.this.sendSelectedPhotos(map, arrayList, z2, i2);
             }
 
             @Override
@@ -849,7 +842,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         presentFragment(photoPickerActivity2);
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override
@@ -880,7 +873,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             photoPickerAlbumsCell.setDelegate(new PhotoPickerAlbumsCell.PhotoPickerAlbumsCellDelegate() {
                 @Override
                 public final void didSelectAlbum(MediaController.AlbumEntry albumEntry) {
-                    PhotoAlbumPickerActivity.ListAdapter.this.lambda$onCreateViewHolder$0(albumEntry);
+                    this.f$0.lambda$onCreateViewHolder$0(albumEntry);
                 }
             });
             return new RecyclerListView.Holder(photoPickerAlbumsCell);

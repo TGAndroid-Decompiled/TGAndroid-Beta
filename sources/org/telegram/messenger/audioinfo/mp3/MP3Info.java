@@ -1,6 +1,7 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +11,7 @@ import org.telegram.messenger.audioinfo.mp3.MP3Frame;
 public class MP3Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(MP3Info.class.getName());
 
-    public interface StopReadCondition {
+    interface StopReadCondition {
         boolean stopRead(MP3Input mP3Input);
     }
 
@@ -18,7 +19,7 @@ public class MP3Info extends AudioInfo {
         this(inputStream, j, Level.FINEST);
     }
 
-    public MP3Info(InputStream inputStream, long j, Level level) {
+    public MP3Info(InputStream inputStream, long j, Level level) throws IOException {
         this.brand = "MP3";
         this.version = "0";
         MP3Input mP3Input = new MP3Input(inputStream);
@@ -100,29 +101,29 @@ public class MP3Info extends AudioInfo {
         }
     }
 
-    org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r12, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r13) {
+    org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r12, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r13) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.MP3Info.readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input, org.telegram.messenger.audioinfo.mp3.MP3Info$StopReadCondition):org.telegram.messenger.audioinfo.mp3.MP3Frame");
     }
 
-    MP3Frame readNextFrame(MP3Input mP3Input, StopReadCondition stopReadCondition, MP3Frame mP3Frame) {
+    MP3Frame readNextFrame(MP3Input mP3Input, StopReadCondition stopReadCondition, MP3Frame mP3Frame) throws MP3Exception, IOException {
         MP3Frame.Header header;
         MP3Frame.Header header2 = mP3Frame.getHeader();
         mP3Input.mark(4);
-        int read = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-        int read2 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-        if (read != -1 && read2 != -1) {
-            if (read == 255 && (read2 & 224) == 224) {
-                int read3 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                int read4 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                if (read3 == -1 || read4 == -1) {
+        int i = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
+        int i2 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
+        if (i != -1 && i2 != -1) {
+            if (i == 255 && (i2 & 224) == 224) {
+                int i3 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
+                int i4 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
+                if (i3 == -1 || i4 == -1) {
                     return null;
                 }
                 try {
-                    header = new MP3Frame.Header(read2, read3, read4);
+                    header = new MP3Frame.Header(i2, i3, i4);
                 } catch (MP3Exception e) {
-                    int i = mP3Input.exceptionsCount + 1;
-                    mP3Input.exceptionsCount = i;
-                    if (i > 5) {
+                    int i5 = mP3Input.exceptionsCount + 1;
+                    mP3Input.exceptionsCount = i5;
+                    if (i5 > 5) {
                         throw e;
                     }
                     header = null;
@@ -130,10 +131,10 @@ public class MP3Info extends AudioInfo {
                 if (header != null && header.isCompatible(header2)) {
                     int frameSize = header.getFrameSize();
                     byte[] bArr = new byte[frameSize];
-                    bArr[0] = (byte) read;
-                    bArr[1] = (byte) read2;
-                    bArr[2] = (byte) read3;
-                    bArr[3] = (byte) read4;
+                    bArr[0] = (byte) i;
+                    bArr[1] = (byte) i2;
+                    bArr[2] = (byte) i3;
+                    bArr[3] = (byte) i4;
                     try {
                         mP3Input.readFully(bArr, 4, frameSize - 4);
                         return new MP3Frame(header, bArr);
@@ -147,32 +148,32 @@ public class MP3Info extends AudioInfo {
         return null;
     }
 
-    long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) {
-        MP3Frame readFirstFrame = readFirstFrame(mP3Input, stopReadCondition);
-        if (readFirstFrame != null) {
-            if (readFirstFrame.getNumberOfFrames() > 0) {
-                return readFirstFrame.getHeader().getTotalDuration(r4 * readFirstFrame.getSize());
+    long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) throws MP3Exception, IOException {
+        MP3Frame firstFrame = readFirstFrame(mP3Input, stopReadCondition);
+        if (firstFrame != null) {
+            if (firstFrame.getNumberOfFrames() > 0) {
+                return firstFrame.getHeader().getTotalDuration(r4 * firstFrame.getSize());
             }
-            long position = mP3Input.getPosition() - readFirstFrame.getSize();
-            long size = readFirstFrame.getSize();
-            int bitrate = readFirstFrame.getHeader().getBitrate();
+            long position = mP3Input.getPosition() - firstFrame.getSize();
+            long size = firstFrame.getSize();
+            int bitrate = firstFrame.getHeader().getBitrate();
             long j2 = bitrate;
-            int duration = 10000 / readFirstFrame.getHeader().getDuration();
+            int duration = 10000 / firstFrame.getHeader().getDuration();
             boolean z = false;
             int i = 1;
             while (true) {
                 if (i == duration && !z && j > 0) {
-                    return readFirstFrame.getHeader().getTotalDuration(j - position);
+                    return firstFrame.getHeader().getTotalDuration(j - position);
                 }
-                readFirstFrame = readNextFrame(mP3Input, stopReadCondition, readFirstFrame);
-                if (readFirstFrame != null) {
-                    int bitrate2 = readFirstFrame.getHeader().getBitrate();
+                firstFrame = readNextFrame(mP3Input, stopReadCondition, firstFrame);
+                if (firstFrame != null) {
+                    int bitrate2 = firstFrame.getHeader().getBitrate();
                     int i2 = duration;
                     if (bitrate2 != bitrate) {
                         z = true;
                     }
                     j2 += bitrate2;
-                    size += readFirstFrame.getSize();
+                    size += firstFrame.getSize();
                     i++;
                     duration = i2;
                 } else {

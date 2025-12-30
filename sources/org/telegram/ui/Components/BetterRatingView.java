@@ -50,9 +50,9 @@ public class BetterRatingView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int i;
-        float dp = AndroidUtilities.dp(-8.0f);
+        float fDp = AndroidUtilities.dp(-8.0f);
         for (int i2 = 0; i2 < this.numStars; i2++) {
-            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.selectedRating != (i = i2 + 1)) {
+            if (motionEvent.getX() > fDp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + fDp && this.selectedRating != (i = i2 + 1)) {
                 this.selectedRating = i;
                 OnRatingChangeListener onRatingChangeListener = this.listener;
                 if (onRatingChangeListener != null) {
@@ -61,7 +61,7 @@ public class BetterRatingView extends View {
                 invalidate();
                 return true;
             }
-            dp += AndroidUtilities.dp(48.0f);
+            fDp += AndroidUtilities.dp(48.0f);
         }
         return true;
     }

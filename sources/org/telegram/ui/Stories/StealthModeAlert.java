@@ -52,7 +52,7 @@ public class StealthModeAlert extends BottomSheet {
         this.updateButtonRunnuble = new Runnable() {
             @Override
             public final void run() {
-                StealthModeAlert.this.lambda$new$4();
+                this.f$0.lambda$new$4();
             }
         };
         this.type = i;
@@ -157,7 +157,7 @@ public class StealthModeAlert extends BottomSheet {
             premiumButtonView.setButton(LocaleController.getString(R.string.UnlockStealthMode), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StealthModeAlert.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         } else {
@@ -168,7 +168,7 @@ public class StealthModeAlert extends BottomSheet {
         premiumButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StealthModeAlert.this.lambda$new$3(currentUser, i, resourcesProvider, view);
+                this.f$0.lambda$new$3(currentUser, i, resourcesProvider, view);
             }
         });
     }
@@ -241,9 +241,9 @@ public class StealthModeAlert extends BottomSheet {
             }
             return;
         }
-        BulletinFactory of = BulletinFactory.of(this.container, resourcesProvider);
-        if (of != null) {
-            of.createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString(R.string.StealthModeCooldownHint))).show(true);
+        BulletinFactory bulletinFactoryOf = BulletinFactory.of(this.container, resourcesProvider);
+        if (bulletinFactoryOf != null) {
+            bulletinFactoryOf.createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString(R.string.StealthModeCooldownHint))).show(true);
         }
     }
 
@@ -261,15 +261,15 @@ public class StealthModeAlert extends BottomSheet {
     }
 
     public static void showStealthModeEnabledBulletin() {
-        BulletinFactory global;
+        BulletinFactory bulletinFactoryGlobal;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment.getLastStoryViewer() != null) {
-            global = BulletinFactory.of(lastFragment.getLastStoryViewer().windowView, lastFragment.getLastStoryViewer().getResourceProvider());
+            bulletinFactoryGlobal = BulletinFactory.of(lastFragment.getLastStoryViewer().windowView, lastFragment.getLastStoryViewer().getResourceProvider());
         } else {
-            global = BulletinFactory.global();
+            bulletinFactoryGlobal = BulletinFactory.global();
         }
-        if (global != null) {
-            global.createSimpleLargeBulletin(R.drawable.msg_stories_stealth2, LocaleController.getString(R.string.StealthModeOn), LocaleController.getString(R.string.StealthModeOnHint)).show();
+        if (bulletinFactoryGlobal != null) {
+            bulletinFactoryGlobal.createSimpleLargeBulletin(R.drawable.msg_stories_stealth2, LocaleController.getString(R.string.StealthModeOn), LocaleController.getString(R.string.StealthModeOnHint)).show();
         }
     }
 

@@ -51,9 +51,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     private static final FloatPropertyCompat FOCUSED_PROGRESS = new SimpleFloatPropertyCompat("focusedProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((CodeNumberField) obj).focusedProgress;
-            return f;
+            return ((CodeNumberField) obj).focusedProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -64,9 +62,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     private static final FloatPropertyCompat ERROR_PROGRESS = new SimpleFloatPropertyCompat("errorProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((CodeNumberField) obj).errorProgress;
-            return f;
+            return ((CodeNumberField) obj).errorProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -77,9 +73,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     private static final FloatPropertyCompat SUCCESS_PROGRESS = new SimpleFloatPropertyCompat("successProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((CodeNumberField) obj).successProgress;
-            return f;
+            return ((CodeNumberField) obj).successProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -90,9 +84,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     private static final FloatPropertyCompat SUCCESS_SCALE_PROGRESS = new SimpleFloatPropertyCompat("successScaleProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((CodeNumberField) obj).successScaleProgress;
-            return f;
+            return ((CodeNumberField) obj).successScaleProgress;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -209,7 +201,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.focusedSpringAnimation.cancel();
         this.errorSpringAnimation.cancel();
@@ -235,12 +227,12 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         staticLayout.draw(this.exitCanvas);
         this.exitCanvas.restore();
         this.exitAnimation = 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.exitAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.exitAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CodeNumberField.this.lambda$startExitAnimation$8(valueAnimator);
+                this.f$0.lambda$startExitAnimation$8(valueAnimator);
             }
         });
         this.exitAnimator.setDuration(220L);
@@ -258,12 +250,12 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     public void startEnterAnimation(boolean z) {
         this.replaceAnimation = z;
         this.enterAnimation = 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.enterAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.enterAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CodeNumberField.this.lambda$startEnterAnimation$9(valueAnimator);
+                this.f$0.lambda$startEnterAnimation$9(valueAnimator);
             }
         });
         if (!this.replaceAnimation) {
@@ -290,7 +282,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
         ClipDescription primaryClipDescription;
         int i;
         if (motionEvent.getAction() == 0) {
@@ -331,7 +323,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
                             }
 
                             @Override
-                            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) throws NumberFormatException {
                                 if (menuItem.getItemId() != 16908322) {
                                     return true;
                                 }
@@ -354,7 +346,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         return this.pressed;
     }
 
-    public void pasteFromClipboard() {
+    public void pasteFromClipboard() throws NumberFormatException {
         ClipboardManager clipboardManager;
         ClipData primaryClip;
         int i;
@@ -362,19 +354,19 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         if (codeFieldContainer == null || (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class)) == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
             return;
         }
-        String charSequence = primaryClip.getItemAt(0).getText().toString();
+        String string = primaryClip.getItemAt(0).getText().toString();
         try {
-            i = Integer.parseInt(charSequence);
+            i = Integer.parseInt(string);
         } catch (Exception unused) {
             i = -1;
         }
         if (i > 0) {
-            codeFieldContainer.setText(charSequence, true);
+            codeFieldContainer.setText(string, true);
         }
     }
 
     @Override
-    public void onFocusChanged(boolean z, int i, Rect rect) {
+    protected void onFocusChanged(boolean z, int i, Rect rect) {
         super.onFocusChanged(z, i, rect);
         if (isFocused()) {
             return;

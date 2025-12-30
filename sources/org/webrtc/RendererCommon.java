@@ -104,14 +104,14 @@ public class RendererCommon {
     }
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
-        int ordinal = scalingType.ordinal();
-        if (ordinal == 0) {
+        int iOrdinal = scalingType.ordinal();
+        if (iOrdinal == 0) {
             return 1.0f;
         }
-        if (ordinal == 1) {
+        if (iOrdinal == 1) {
             return 0.0f;
         }
-        if (ordinal == 2) {
+        if (iOrdinal == 2) {
             return BALANCED_VISIBLE_FRACTION;
         }
         throw new IllegalArgumentException();

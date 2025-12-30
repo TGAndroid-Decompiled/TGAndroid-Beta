@@ -63,7 +63,7 @@ public class PaintToolsView extends LinearLayout {
                 this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintToolsView.this.lambda$new$0(view);
+                        this.f$0.lambda$new$0(view);
                     }
                 });
             } else if (i > 0 && i <= Brush.BRUSHES_LIST.size()) {
@@ -73,7 +73,7 @@ public class PaintToolsView extends LinearLayout {
                     this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PaintToolsView.this.lambda$new$1(i2, brush, view);
+                            this.f$0.lambda$new$1(i2, brush, view);
                         }
                     });
                 } else {
@@ -84,7 +84,7 @@ public class PaintToolsView extends LinearLayout {
                 this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintToolsView.this.lambda$new$2(view);
+                        this.f$0.lambda$new$2(view);
                     }
                 });
             }
@@ -163,7 +163,7 @@ public class PaintToolsView extends LinearLayout {
                 this.nextSelectedAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        PaintToolsView.this.lambda$animateNextIndex$3(valueAnimator2);
+                        this.f$0.lambda$animateNextIndex$3(valueAnimator2);
                     }
                 });
                 this.nextSelectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -234,11 +234,11 @@ public class PaintToolsView extends LinearLayout {
         if (f > 0.25f && f < 0.75f) {
             f2 = (f <= 0.25f || f >= 0.5f) ? 1.0f - ((0.75f - f) / 0.25f) : (0.5f - f) / 0.25f;
         }
-        float min = (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.dp(3.0f) + (AndroidUtilities.dp(3.0f) * f2);
+        float fMin = (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.dp(3.0f) + (AndroidUtilities.dp(3.0f) * f2);
         float x = rLottieImageView.getX() + (rLottieImageView.getWidth() / 2.0f) + getOffsetForIndex(this.selectedIndex);
         float x2 = rLottieImageView2 != null ? rLottieImageView2.getX() + (rLottieImageView2.getWidth() / 2.0f) : 0.0f;
         int i2 = this.nextSelectedIndex;
-        canvas.drawCircle(AndroidUtilities.lerp(x, x2 + (i2 != -1 ? getOffsetForIndex(i2) : 0.0f), f), rLottieImageView.getY() + (rLottieImageView.getHeight() / 2.0f), min, this.selectorPaint);
+        canvas.drawCircle(AndroidUtilities.lerp(x, x2 + (i2 != -1 ? getOffsetForIndex(i2) : 0.0f), f), rLottieImageView.getY() + (rLottieImageView.getHeight() / 2.0f), fMin, this.selectorPaint);
     }
 
     private float getOffsetForIndex(int i) {

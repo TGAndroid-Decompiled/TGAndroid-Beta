@@ -46,9 +46,9 @@ public class WebViewRequestProps {
         webViewRequestProps.fullscreen = z4;
         if (!z3 && !z4 && !TextUtils.isEmpty(str2)) {
             try {
-                Uri parse = Uri.parse(str2);
-                webViewRequestProps.compact = TextUtils.equals(parse.getQueryParameter("mode"), "compact");
-                webViewRequestProps.fullscreen = TextUtils.equals(parse.getQueryParameter("mode"), "fullscreen");
+                Uri uri = Uri.parse(str2);
+                webViewRequestProps.compact = TextUtils.equals(uri.getQueryParameter("mode"), "compact");
+                webViewRequestProps.fullscreen = TextUtils.equals(uri.getQueryParameter("mode"), "fullscreen");
             } catch (Exception e) {
                 FileLog.e(e);
             }

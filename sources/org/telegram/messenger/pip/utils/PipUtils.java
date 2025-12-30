@@ -69,12 +69,12 @@ public abstract class PipUtils {
         int width = view.getWidth() + i3;
         int height = view.getHeight() + i4;
         int i5 = iArr[0];
-        int clamp = MathUtils.clamp(i3, i5, decorView.getWidth() + i5);
+        int iClamp = MathUtils.clamp(i3, i5, decorView.getWidth() + i5);
         int i6 = iArr[1];
-        int clamp2 = MathUtils.clamp(i4, i6, decorView.getHeight() + i6);
+        int iClamp2 = MathUtils.clamp(i4, i6, decorView.getHeight() + i6);
         int i7 = iArr[0];
-        int clamp3 = MathUtils.clamp(width, i7, decorView.getWidth() + i7);
+        int iClamp3 = MathUtils.clamp(width, i7, decorView.getWidth() + i7);
         int i8 = iArr[1];
-        rect.set(clamp, clamp2, clamp3, MathUtils.clamp(height, i8, decorView.getHeight() + i8));
+        rect.set(iClamp, iClamp2, iClamp3, MathUtils.clamp(height, i8, decorView.getHeight() + i8));
     }
 }

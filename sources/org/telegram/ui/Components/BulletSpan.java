@@ -30,14 +30,14 @@ public class BulletSpan implements LeadingMarginSpan {
 
     @Override
     public void drawLeadingMargin(Canvas canvas, Paint paint, int i, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6, int i7, boolean z, Layout layout) {
-        int i8;
+        int color;
         if (((Spanned) charSequence).getSpanStart(this) == i6) {
             Paint.Style style = paint.getStyle();
             if (this.mWantColor) {
-                i8 = paint.getColor();
+                color = paint.getColor();
                 paint.setColor(this.mColor);
             } else {
-                i8 = 0;
+                color = 0;
             }
             paint.setStyle(Paint.Style.FILL);
             if (layout != null) {
@@ -45,7 +45,7 @@ public class BulletSpan implements LeadingMarginSpan {
             }
             canvas.drawCircle(i + (i2 * r7), (i3 + i5) / 2.0f, this.mBulletRadius, paint);
             if (this.mWantColor) {
-                paint.setColor(i8);
+                paint.setColor(color);
             }
             paint.setStyle(style);
         }

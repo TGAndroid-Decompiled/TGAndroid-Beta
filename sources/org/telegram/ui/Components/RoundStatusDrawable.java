@@ -47,15 +47,15 @@ public class RoundStatusDrawable extends StatusDrawable {
     }
 
     private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
         if (j > 50) {
             j = 50;
         }
         float f = this.progress;
         int i = this.progressDirection;
-        float f2 = f + (((float) (i * j)) / 400.0f);
+        float f2 = f + ((i * j) / 400.0f);
         this.progress = f2;
         if (i > 0 && f2 >= 1.0f) {
             this.progressDirection = -1;

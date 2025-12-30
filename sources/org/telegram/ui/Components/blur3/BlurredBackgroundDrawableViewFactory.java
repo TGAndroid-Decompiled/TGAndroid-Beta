@@ -40,31 +40,35 @@ public class BlurredBackgroundDrawableViewFactory {
         this.isLiquidGlassEffectAllowed = z;
     }
 
+    public BlurredBackgroundDrawable create() {
+        return create(null);
+    }
+
     public BlurredBackgroundDrawable create(View view) {
         return create(view, null);
     }
 
     public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         ViewGroup viewGroup;
-        final BlurredBackgroundDrawable createDrawable = this.source.createDrawable();
-        if (this.isLiquidGlassEffectAllowed && Build.VERSION.SDK_INT >= 33 && (createDrawable instanceof BlurredBackgroundDrawableRenderNode)) {
-            ((BlurredBackgroundDrawableRenderNode) createDrawable).setLiquidGlassEffectAllowed();
+        final BlurredBackgroundDrawable blurredBackgroundDrawableCreateDrawable = this.source.createDrawable();
+        if (this.isLiquidGlassEffectAllowed && Build.VERSION.SDK_INT >= 33 && (blurredBackgroundDrawableCreateDrawable instanceof BlurredBackgroundDrawableRenderNode)) {
+            ((BlurredBackgroundDrawableRenderNode) blurredBackgroundDrawableCreateDrawable).setLiquidGlassEffectAllowed();
         }
-        createDrawable.setColorProvider(blurredBackgroundColorProvider);
+        blurredBackgroundDrawableCreateDrawable.setColorProvider(blurredBackgroundColorProvider);
         ReferenceList referenceList = this.linkedViews;
         if (referenceList != null && view != null) {
             referenceList.add(view);
         }
         ViewPositionWatcher viewPositionWatcher = this.viewPositionWatcher;
-        if (viewPositionWatcher != null && (viewGroup = this.parent) != null) {
+        if (viewPositionWatcher != null && (viewGroup = this.parent) != null && view != null) {
             viewPositionWatcher.subscribe(view, viewGroup, new ViewPositionWatcher.OnChangedListener() {
                 @Override
                 public final void onPositionChanged(View view2, RectF rectF) {
-                    BlurredBackgroundDrawableViewFactory.lambda$create$0(BlurredBackgroundDrawable.this, view, view2, rectF);
+                    BlurredBackgroundDrawableViewFactory.lambda$create$0(blurredBackgroundDrawableCreateDrawable, view, view2, rectF);
                 }
             });
         }
-        return createDrawable;
+        return blurredBackgroundDrawableCreateDrawable;
     }
 
     public static void lambda$create$0(BlurredBackgroundDrawable blurredBackgroundDrawable, View view, View view2, RectF rectF) {

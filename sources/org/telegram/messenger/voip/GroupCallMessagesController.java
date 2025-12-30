@@ -12,11 +12,15 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BaseController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonBuilder;
+import org.telegram.tgnet.json.TLJsonParser;
 import org.telegram.tgnet.tl.TL_phone;
 
 public class GroupCallMessagesController extends BaseController {
@@ -45,7 +49,7 @@ public class GroupCallMessagesController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessagesController.this.lambda$processUpdate$0(j, groupCallMessage);
+                this.f$0.lambda$processUpdate$0(j, groupCallMessage);
             }
         });
     }
@@ -60,19 +64,46 @@ public class GroupCallMessagesController extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessagesController.this.lambda$processUpdate$3(j, peerDialogId, bArr);
+                this.f$0.lambda$processUpdate$3(j, peerDialogId, bArr);
             }
         });
     }
 
-    public void lambda$processUpdate$3(final long r10, long r12, byte[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessagesController.lambda$processUpdate$3(long, long, byte[]):void");
+    public void lambda$processUpdate$3(final long j, long j2, byte[] bArr) {
+        byte[] bArrGroupCallMessageDecrypt;
+        try {
+            bArrGroupCallMessageDecrypt = groupCallMessageDecrypt(j, j2, bArr);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        TLRPC.TL_groupCallMessage tL_groupCallMessageTLJsonDeserialize = bArrGroupCallMessageDecrypt != null ? TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(bArrGroupCallMessageDecrypt)))) : null;
+        if (tL_groupCallMessageTLJsonDeserialize != null) {
+            final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j2, tL_groupCallMessageTLJsonDeserialize.random_id, tL_groupCallMessageTLJsonDeserialize.message);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processUpdate$1(j, groupCallMessage);
+                }
+            });
+            return;
+        }
+        TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        tL_groupCallMessage.message = tL_textWithEntities;
+        tL_textWithEntities.text = LocaleController.getString(R.string.GroupCalMessageDecryptionError);
+        final GroupCallMessage groupCallMessage2 = new GroupCallMessage(this.currentAccount, j2, 0L, tL_groupCallMessage.message);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processUpdate$2(j, groupCallMessage2);
+            }
+        });
     }
 
     public boolean sendCallMessage(long j, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, TLRPC.InputGroupCall inputGroupCall) {
         TL_phone.sendGroupCallMessage sendgroupcallmessage;
         TLRPC.GroupCall groupCall;
-        byte[] groupCallMessageEncryptImpl;
+        byte[] bArrGroupCallMessageEncryptImpl;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount) {
             return false;
@@ -90,13 +121,13 @@ public class GroupCallMessagesController extends BaseController {
             TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
             tL_groupCallMessage.message = tL_textWithEntities;
             tL_groupCallMessage.random_id = nextRandomId;
-            JSONObject serialize = TLJsonBuilder.serialize(tL_groupCallMessage);
-            if (serialize == null || (groupCallMessageEncryptImpl = groupCallMessageEncryptImpl(callId, serialize.toString().getBytes(StandardCharsets.UTF_8))) == null) {
+            JSONObject jSONObjectSerialize = TLJsonBuilder.serialize(tL_groupCallMessage);
+            if (jSONObjectSerialize == null || (bArrGroupCallMessageEncryptImpl = groupCallMessageEncryptImpl(callId, jSONObjectSerialize.toString().getBytes(StandardCharsets.UTF_8))) == null) {
                 return false;
             }
             TL_phone.sendGroupCallEncryptedMessage sendgroupcallencryptedmessage = new TL_phone.sendGroupCallEncryptedMessage();
             sendgroupcallencryptedmessage.call = inputGroupCall;
-            sendgroupcallencryptedmessage.encrypted_message = groupCallMessageEncryptImpl;
+            sendgroupcallencryptedmessage.encrypted_message = bArrGroupCallMessageEncryptImpl;
             sendgroupcallmessage = sendgroupcallencryptedmessage;
         } else {
             TL_phone.sendGroupCallMessage sendgroupcallmessage2 = new TL_phone.sendGroupCallMessage();
@@ -112,14 +143,14 @@ public class GroupCallMessagesController extends BaseController {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessagesController.lambda$sendCallMessage$4(GroupCallMessage.this);
+                GroupCallMessagesController.lambda$sendCallMessage$4(groupCallMessage);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 1000L);
         getConnectionsManager().sendRequest(sendgroupcallmessage3, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupCallMessagesController.this.lambda$sendCallMessage$5(runnable, groupCallMessage, tLObject, tL_error);
+                this.f$0.lambda$sendCallMessage$5(runnable, groupCallMessage, tLObject, tL_error);
             }
         });
         return true;
@@ -146,7 +177,7 @@ public class GroupCallMessagesController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessage.this.notifyStateUpdate();
+                groupCallMessage.notifyStateUpdate();
             }
         });
     }
@@ -157,12 +188,12 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public void subscribeToCallMessages(long j, CallMessageListener callMessageListener) {
-        List<CallMessageListener> list = this.callMessagesListeners.get(j);
-        if (list == null) {
-            list = new ArrayList<>();
-            this.callMessagesListeners.put(j, list);
+        List<CallMessageListener> arrayList = this.callMessagesListeners.get(j);
+        if (arrayList == null) {
+            arrayList = new ArrayList<>();
+            this.callMessagesListeners.put(j, arrayList);
         }
-        list.add(callMessageListener);
+        arrayList.add(callMessageListener);
     }
 
     public void unsubscribeFromCallMessages(long j, CallMessageListener callMessageListener) {
@@ -200,7 +231,7 @@ public class GroupCallMessagesController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallMessagesController.this.lambda$pushMessageToList$6(j);
+                    this.f$0.lambda$pushMessageToList$6(j);
                 }
             }, getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
         }
@@ -231,7 +262,7 @@ public class GroupCallMessagesController extends BaseController {
         }
     }
 
-    public static class MessagesList {
+    private static class MessagesList {
         private final List<GroupCallMessage> messages;
         private final Set<Long> randomIds;
 

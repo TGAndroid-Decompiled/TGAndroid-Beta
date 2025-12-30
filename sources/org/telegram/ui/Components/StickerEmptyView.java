@@ -97,7 +97,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         backupImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickerEmptyView.this.lambda$new$0(view2);
+                this.f$0.lambda$new$0(view2);
             }
         });
         SpoilersTextView spoilersTextView = new SpoilersTextView(context);
@@ -256,7 +256,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (getVisibility() == 0) {
             setSticker();
@@ -272,17 +272,17 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
 
     public void setSticker() {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
-        TLRPC.Document document;
+        TLRPC.Document emojiAnimatedSticker;
         int i;
         int i2 = this.stickerType;
         if (i2 != 0) {
             if (i2 != 1) {
-                TLRPC.Document document2 = null;
+                TLRPC.Document document = null;
                 String str = null;
-                document2 = null;
-                document2 = null;
+                document = null;
+                document = null;
                 if (i2 == 16) {
-                    document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
+                    emojiAnimatedSticker = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
                     tL_messages_stickerSet = null;
                 } else {
                     TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
@@ -290,22 +290,22 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                         stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
                     }
                     if (stickerSetByName != null && (i = this.stickerType) >= 0 && i < stickerSetByName.documents.size()) {
-                        document2 = stickerSetByName.documents.get(this.stickerType);
+                        document = stickerSetByName.documents.get(this.stickerType);
                     }
                     tL_messages_stickerSet = stickerSetByName;
-                    document = document2;
+                    emojiAnimatedSticker = document;
                     str = "130_130";
                 }
                 if (!LiteMode.isEnabled(3)) {
                     str = str + "_firstframe";
                 }
                 String str2 = str;
-                if (document != null) {
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, this.colorKey1, 0.2f);
+                if (emojiAnimatedSticker != null) {
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(emojiAnimatedSticker.thumbs, this.colorKey1, 0.2f);
                     if (svgThumb != null) {
                         svgThumb.overrideWidthAndHeight(512, 512);
                     }
-                    this.stickerView.setImage(ImageLocation.getForDocument(document), str2, "tgs", svgThumb, tL_messages_stickerSet);
+                    this.stickerView.setImage(ImageLocation.getForDocument(emojiAnimatedSticker), str2, "tgs", svgThumb, tL_messages_stickerSet);
                     int i3 = this.stickerType;
                     if (i3 == 9 || i3 == 0) {
                         this.stickerView.getImageReceiver().setAutoRepeat(1);
@@ -336,22 +336,22 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                 z = false;
             }
             this.keyboardSize = i;
-            float dp = (-(i >> 1)) + (i > 0 ? AndroidUtilities.dp(20.0f) : 0);
+            float fDp = (-(i >> 1)) + (i > 0 ? AndroidUtilities.dp(20.0f) : 0);
             if (z) {
-                ViewPropertyAnimator translationY = this.linearLayout.animate().translationY(dp);
+                ViewPropertyAnimator viewPropertyAnimatorTranslationY = this.linearLayout.animate().translationY(fDp);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-                translationY.setInterpolator(cubicBezierInterpolator).setDuration(250L);
+                viewPropertyAnimatorTranslationY.setInterpolator(cubicBezierInterpolator).setDuration(250L);
                 RadialProgressView radialProgressView = this.progressBar;
                 if (radialProgressView != null) {
-                    radialProgressView.animate().translationY(dp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
+                    radialProgressView.animate().translationY(fDp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
                     return;
                 }
                 return;
             }
-            this.linearLayout.setTranslationY(dp);
+            this.linearLayout.setTranslationY(fDp);
             RadialProgressView radialProgressView2 = this.progressBar;
             if (radialProgressView2 != null) {
-                radialProgressView2.setTranslationY(dp);
+                radialProgressView2.setTranslationY(fDp);
             }
         }
     }
@@ -456,10 +456,10 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
             int i2 = 0;
             for (int i3 = 0; i3 < charSequence.length(); i3++) {
                 if (Character.isWhitespace(charSequence.charAt(i3))) {
-                    int abs = Math.abs(length - i3);
-                    if (i == -1 || abs < i2) {
+                    int iAbs = Math.abs(length - i3);
+                    if (i == -1 || iAbs < i2) {
                         i = i3;
-                        i2 = abs;
+                        i2 = iAbs;
                     }
                 }
             }
@@ -498,14 +498,14 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                 this.visibilityFactor = f;
                 onVisibilityChange(f);
             } else {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.visibilityFactor, z ? 1.0f : 0.0f);
-                this.visibilityAnimator = ofFloat;
-                ofFloat.setDuration(480L);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.visibilityFactor, z ? 1.0f : 0.0f);
+                this.visibilityAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.setDuration(480L);
                 this.visibilityAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.visibilityAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StickerEmptyView.this.lambda$setVisibility$2(valueAnimator2);
+                        this.f$0.lambda$setVisibility$2(valueAnimator2);
                     }
                 });
                 this.visibilityAnimator.start();
@@ -514,12 +514,12 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
     }
 
     public void lambda$setVisibility$2(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.visibilityFactor = floatValue;
-        onVisibilityChange(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.visibilityFactor = fFloatValue;
+        onVisibilityChange(fFloatValue);
     }
 
-    public void onVisibilityChange(float f) {
+    protected void onVisibilityChange(float f) {
         invalidate();
     }
 }

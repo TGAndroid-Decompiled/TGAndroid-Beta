@@ -182,10 +182,10 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
     }
 
     private void fillImages(boolean z, int i) {
-        int i2;
-        int i3;
-        Object obj;
-        Object obj2;
+        int iMax;
+        int iMin;
+        Object parentObject;
+        Object parentObject2;
         if (!z && !this.imagesToDraw.isEmpty()) {
             this.unusedReceivers.addAll(this.imagesToDraw);
             this.imagesToDraw.clear();
@@ -202,72 +202,72 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         int measuredWidth2 = (getMeasuredWidth() / 2) - (this.itemWidth / 2);
         if (z) {
             int size = this.imagesToDraw.size();
-            int i4 = 0;
-            i2 = Integer.MIN_VALUE;
-            i3 = Integer.MAX_VALUE;
-            while (i4 < size) {
-                ImageReceiver imageReceiver = (ImageReceiver) this.imagesToDraw.get(i4);
+            int i2 = 0;
+            iMax = Integer.MIN_VALUE;
+            iMin = Integer.MAX_VALUE;
+            while (i2 < size) {
+                ImageReceiver imageReceiver = (ImageReceiver) this.imagesToDraw.get(i2);
                 int param = imageReceiver.getParam();
-                int i5 = param - this.currentImage;
-                int i6 = this.itemWidth;
-                int i7 = (i5 * (this.itemSpacing + i6)) + measuredWidth2 + i;
-                if (i7 > measuredWidth || i7 + i6 < 0) {
+                int i3 = param - this.currentImage;
+                int i4 = this.itemWidth;
+                int i5 = (i3 * (this.itemSpacing + i4)) + measuredWidth2 + i;
+                if (i5 > measuredWidth || i5 + i4 < 0) {
                     this.unusedReceivers.add(imageReceiver);
-                    this.imagesToDraw.remove(i4);
+                    this.imagesToDraw.remove(i2);
                     size--;
-                    i4--;
+                    i2--;
                 }
-                i3 = Math.min(i3, param - 1);
-                i2 = Math.max(i2, param + 1);
-                i4++;
-            }
-        } else {
-            i2 = this.currentImage;
-            i3 = i2 - 1;
-        }
-        if (i2 != Integer.MIN_VALUE) {
-            int size2 = this.currentPhotos.size();
-            while (i2 < size2) {
-                int i8 = ((i2 - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth2 + i;
-                if (i8 >= measuredWidth) {
-                    break;
-                }
-                ImageLocation imageLocation = (ImageLocation) this.currentPhotos.get(i2);
-                ImageReceiver freeReceiver = getFreeReceiver();
-                freeReceiver.setImageCoords(i8, this.itemY, this.itemWidth, this.itemHeight);
-                if (this.currentObjects.get(0) instanceof MessageObject) {
-                    obj2 = this.currentObjects.get(i2);
-                } else if (this.currentObjects.get(0) instanceof TLRPC.PageBlock) {
-                    obj2 = this.delegate.getParentObject();
-                } else {
-                    obj2 = "avatar_" + this.delegate.getAvatarsDialogId();
-                }
-                freeReceiver.setImage(null, null, imageLocation, "80_80", 0L, null, obj2, 1);
-                freeReceiver.setParam(i2);
+                iMin = Math.min(iMin, param - 1);
+                iMax = Math.max(iMax, param + 1);
                 i2++;
             }
+        } else {
+            iMax = this.currentImage;
+            iMin = iMax - 1;
         }
-        if (i3 != Integer.MAX_VALUE) {
-            while (i3 >= 0) {
-                int i9 = i3 - this.currentImage;
-                int i10 = this.itemWidth;
-                int i11 = (i9 * (this.itemSpacing + i10)) + measuredWidth2 + i + i10;
-                if (i11 <= 0) {
+        if (iMax != Integer.MIN_VALUE) {
+            int size2 = this.currentPhotos.size();
+            while (iMax < size2) {
+                int i6 = ((iMax - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth2 + i;
+                if (i6 >= measuredWidth) {
                     break;
                 }
-                ImageLocation imageLocation2 = (ImageLocation) this.currentPhotos.get(i3);
-                ImageReceiver freeReceiver2 = getFreeReceiver();
-                freeReceiver2.setImageCoords(i11, this.itemY, this.itemWidth, this.itemHeight);
+                ImageLocation imageLocation = (ImageLocation) this.currentPhotos.get(iMax);
+                ImageReceiver freeReceiver = getFreeReceiver();
+                freeReceiver.setImageCoords(i6, this.itemY, this.itemWidth, this.itemHeight);
                 if (this.currentObjects.get(0) instanceof MessageObject) {
-                    obj = this.currentObjects.get(i3);
+                    parentObject2 = this.currentObjects.get(iMax);
                 } else if (this.currentObjects.get(0) instanceof TLRPC.PageBlock) {
-                    obj = this.delegate.getParentObject();
+                    parentObject2 = this.delegate.getParentObject();
                 } else {
-                    obj = "avatar_" + this.delegate.getAvatarsDialogId();
+                    parentObject2 = "avatar_" + this.delegate.getAvatarsDialogId();
                 }
-                freeReceiver2.setImage(null, null, imageLocation2, "80_80", 0L, null, obj, 1);
-                freeReceiver2.setParam(i3);
-                i3--;
+                freeReceiver.setImage(null, null, imageLocation, "80_80", 0L, null, parentObject2, 1);
+                freeReceiver.setParam(iMax);
+                iMax++;
+            }
+        }
+        if (iMin != Integer.MAX_VALUE) {
+            while (iMin >= 0) {
+                int i7 = iMin - this.currentImage;
+                int i8 = this.itemWidth;
+                int i9 = (i7 * (this.itemSpacing + i8)) + measuredWidth2 + i + i8;
+                if (i9 <= 0) {
+                    break;
+                }
+                ImageLocation imageLocation2 = (ImageLocation) this.currentPhotos.get(iMin);
+                ImageReceiver freeReceiver2 = getFreeReceiver();
+                freeReceiver2.setImageCoords(i9, this.itemY, this.itemWidth, this.itemHeight);
+                if (this.currentObjects.get(0) instanceof MessageObject) {
+                    parentObject = this.currentObjects.get(iMin);
+                } else if (this.currentObjects.get(0) instanceof TLRPC.PageBlock) {
+                    parentObject = this.delegate.getParentObject();
+                } else {
+                    parentObject = "avatar_" + this.delegate.getAvatarsDialogId();
+                }
+                freeReceiver2.setImage(null, null, imageLocation2, "80_80", 0L, null, parentObject, 1);
+                freeReceiver2.setParam(iMin);
+                iMin--;
             }
         }
         ValueAnimator valueAnimator = this.showAnimator;
@@ -307,29 +307,29 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     return true;
                 }
                 if (imagesArr != null && !imagesArr.isEmpty()) {
-                    int indexOf = imagesArr.indexOf((MessageObject) this.currentObjects.get(param));
-                    if (currentIndex == indexOf) {
+                    int iIndexOf = imagesArr.indexOf((MessageObject) this.currentObjects.get(param));
+                    if (currentIndex == iIndexOf) {
                         return true;
                     }
                     this.moveLineProgress = 1.0f;
                     this.animateAllLine = true;
-                    this.delegate.setCurrentIndex(indexOf);
+                    this.delegate.setCurrentIndex(iIndexOf);
                 } else if (pageBlockArr != null && !pageBlockArr.isEmpty()) {
-                    int indexOf2 = pageBlockArr.indexOf((TLRPC.PageBlock) this.currentObjects.get(param));
-                    if (currentIndex == indexOf2) {
+                    int iIndexOf2 = pageBlockArr.indexOf((TLRPC.PageBlock) this.currentObjects.get(param));
+                    if (currentIndex == iIndexOf2) {
                         return true;
                     }
                     this.moveLineProgress = 1.0f;
                     this.animateAllLine = true;
-                    this.delegate.setCurrentIndex(indexOf2);
+                    this.delegate.setCurrentIndex(iIndexOf2);
                 } else if (imagesArrLocations != null && !imagesArrLocations.isEmpty()) {
-                    int indexOf3 = imagesArrLocations.indexOf((ImageLocation) this.currentObjects.get(param));
-                    if (currentIndex == indexOf3) {
+                    int iIndexOf3 = imagesArrLocations.indexOf((ImageLocation) this.currentObjects.get(param));
+                    if (currentIndex == iIndexOf3) {
                         return true;
                     }
                     this.moveLineProgress = 1.0f;
                     this.animateAllLine = true;
-                    this.delegate.setCurrentIndex(indexOf3);
+                    this.delegate.setCurrentIndex(iIndexOf3);
                 }
             } else {
                 i++;
@@ -343,12 +343,12 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         int i2;
         int i3;
         int i4 = this.drawDx;
-        int abs = Math.abs(i4);
+        int iAbs = Math.abs(i4);
         int i5 = this.itemWidth;
         int i6 = this.itemSpacing;
         int i7 = (i5 / 2) + i6;
-        int i8 = -1;
-        if (abs > i7) {
+        int iIndexOf = -1;
+        if (iAbs > i7) {
             if (i4 > 0) {
                 i2 = i4 - i7;
                 i3 = 1;
@@ -365,19 +365,19 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         ArrayList imagesArrLocations = this.delegate.getImagesArrLocations();
         ArrayList imagesArr = this.delegate.getImagesArr();
         List pageBlockArr = this.delegate.getPageBlockArr();
-        int i9 = this.nextPhotoScrolling;
-        if (currentIndex != i9 && i9 >= 0 && i9 < this.currentPhotos.size()) {
+        int i8 = this.nextPhotoScrolling;
+        if (currentIndex != i8 && i8 >= 0 && i8 < this.currentPhotos.size()) {
             Object obj = this.currentObjects.get(this.nextPhotoScrolling);
             if (imagesArr != null && !imagesArr.isEmpty()) {
-                i8 = imagesArr.indexOf((MessageObject) obj);
+                iIndexOf = imagesArr.indexOf((MessageObject) obj);
             } else if (pageBlockArr != null && !pageBlockArr.isEmpty()) {
-                i8 = pageBlockArr.indexOf((TLRPC.PageBlock) obj);
+                iIndexOf = pageBlockArr.indexOf((TLRPC.PageBlock) obj);
             } else if (imagesArrLocations != null && !imagesArrLocations.isEmpty()) {
-                i8 = imagesArrLocations.indexOf((ImageLocation) obj);
+                iIndexOf = imagesArrLocations.indexOf((ImageLocation) obj);
             }
-            if (i8 >= 0) {
+            if (iIndexOf >= 0) {
                 this.ignoreChanges = true;
-                this.delegate.setCurrentIndex(i8);
+                this.delegate.setCurrentIndex(iIndexOf);
             }
         }
         if (!this.scrolling) {
@@ -439,12 +439,12 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (!this.currentPhotos.isEmpty() && getAlpha() == 1.0f) {
-            r1 = this.gestureDetector.onTouchEvent(motionEvent) || super.onTouchEvent(motionEvent);
+            z = this.gestureDetector.onTouchEvent(motionEvent) || super.onTouchEvent(motionEvent);
             if (this.scrolling && motionEvent.getAction() == 1 && this.scroll.isFinished()) {
                 stopScrolling();
             }
         }
-        return r1;
+        return z;
     }
 
     private int getMinScrollX() {
@@ -463,8 +463,8 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i;
-        int i2;
+        int iMax;
+        int iMax2;
         TLRPC.PhotoSize photoSize;
         TLRPC.PhotoSize photoSize2;
         if (this.hasPhotos || !this.imagesToDraw.isEmpty()) {
@@ -478,72 +478,72 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 return;
             }
             int size = this.imagesToDraw.size();
-            int i3 = this.drawDx;
-            int i4 = (int) (this.itemWidth * 2.0f);
-            int dp = AndroidUtilities.dp(8.0f);
+            int i = this.drawDx;
+            int i2 = (int) (this.itemWidth * 2.0f);
+            int iDp = AndroidUtilities.dp(8.0f);
             ImageLocation imageLocation = (ImageLocation) this.currentPhotos.get(this.currentImage);
             if (imageLocation != null && (photoSize2 = imageLocation.photoSize) != null) {
-                i = Math.max(this.itemWidth, (int) (photoSize2.w * (this.itemHeight / photoSize2.h)));
+                iMax = Math.max(this.itemWidth, (int) (photoSize2.w * (this.itemHeight / photoSize2.h)));
             } else {
-                i = this.itemHeight;
+                iMax = this.itemHeight;
             }
-            int min = Math.min(i4, i);
-            float f2 = dp * 2;
+            int iMin = Math.min(i2, iMax);
+            float f2 = iDp * 2;
             float f3 = this.currentItemProgress;
-            int i5 = (int) (f2 * f3);
-            int i6 = this.itemWidth + ((int) ((min - r11) * f3)) + i5;
-            int i7 = this.nextImage;
-            if (i7 >= 0 && i7 < this.currentPhotos.size()) {
+            int i3 = (int) (f2 * f3);
+            int i4 = this.itemWidth + ((int) ((iMin - r11) * f3)) + i3;
+            int i5 = this.nextImage;
+            if (i5 >= 0 && i5 < this.currentPhotos.size()) {
                 ImageLocation imageLocation2 = (ImageLocation) this.currentPhotos.get(this.nextImage);
                 if (imageLocation2 != null && (photoSize = imageLocation2.photoSize) != null) {
-                    i2 = Math.max(this.itemWidth, (int) (photoSize.w * (this.itemHeight / photoSize.h)));
+                    iMax2 = Math.max(this.itemWidth, (int) (photoSize.w * (this.itemHeight / photoSize.h)));
                 } else {
-                    i2 = this.itemHeight;
+                    iMax2 = this.itemHeight;
                 }
             } else {
-                i2 = this.itemWidth;
+                iMax2 = this.itemWidth;
             }
-            int min2 = Math.min(i4, i2);
+            int iMin2 = Math.min(i2, iMax2);
             float f4 = this.nextItemProgress;
-            int i8 = (int) (f2 * f4);
-            float f5 = i3;
-            int i9 = (int) (f5 + ((((min2 + i8) - r12) / 2) * f4 * (this.nextImage > this.currentImage ? -1 : 1)));
-            int i10 = this.itemWidth + ((int) ((min2 - r12) * f4)) + i8;
-            int measuredWidth = (getMeasuredWidth() - i6) / 2;
-            for (int i11 = 0; i11 < size; i11++) {
-                ImageReceiver imageReceiver = (ImageReceiver) this.imagesToDraw.get(i11);
+            int i6 = (int) (f2 * f4);
+            float f5 = i;
+            int i7 = (int) (f5 + ((((iMin2 + i6) - r12) / 2) * f4 * (this.nextImage > this.currentImage ? -1 : 1)));
+            int i8 = this.itemWidth + ((int) ((iMin2 - r12) * f4)) + i6;
+            int measuredWidth = (getMeasuredWidth() - i4) / 2;
+            for (int i9 = 0; i9 < size; i9++) {
+                ImageReceiver imageReceiver = (ImageReceiver) this.imagesToDraw.get(i9);
                 int param = imageReceiver.getParam();
-                int i12 = this.currentImage;
-                if (param == i12) {
-                    imageReceiver.setImageX(measuredWidth + i9 + (i5 / 2));
-                    imageReceiver.setImageWidth(i6 - i5);
+                int i10 = this.currentImage;
+                if (param == i10) {
+                    imageReceiver.setImageX(measuredWidth + i7 + (i3 / 2));
+                    imageReceiver.setImageWidth(i4 - i3);
                 } else {
-                    int i13 = this.nextImage;
-                    if (i13 < i12) {
-                        if (param >= i12) {
-                            imageReceiver.setImageX(measuredWidth + i6 + this.itemSpacing + (((imageReceiver.getParam() - this.currentImage) - 1) * (this.itemWidth + this.itemSpacing)) + i9);
-                        } else if (param <= i13) {
+                    int i11 = this.nextImage;
+                    if (i11 < i10) {
+                        if (param >= i10) {
+                            imageReceiver.setImageX(measuredWidth + i4 + this.itemSpacing + (((imageReceiver.getParam() - this.currentImage) - 1) * (this.itemWidth + this.itemSpacing)) + i7);
+                        } else if (param <= i11) {
                             int param2 = (imageReceiver.getParam() - this.currentImage) + 1;
-                            int i14 = this.itemWidth;
-                            int i15 = this.itemSpacing;
-                            imageReceiver.setImageX((((param2 * (i14 + i15)) + measuredWidth) - (i15 + i10)) + i9);
+                            int i12 = this.itemWidth;
+                            int i13 = this.itemSpacing;
+                            imageReceiver.setImageX((((param2 * (i12 + i13)) + measuredWidth) - (i13 + i8)) + i7);
                         } else {
-                            imageReceiver.setImageX(((imageReceiver.getParam() - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth + i9);
+                            imageReceiver.setImageX(((imageReceiver.getParam() - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth + i7);
                         }
-                    } else if (param < i12) {
-                        imageReceiver.setImageX(((imageReceiver.getParam() - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth + i9);
-                    } else if (param <= i13) {
-                        imageReceiver.setImageX(measuredWidth + i6 + this.itemSpacing + (((imageReceiver.getParam() - this.currentImage) - 1) * (this.itemWidth + this.itemSpacing)) + i9);
+                    } else if (param < i10) {
+                        imageReceiver.setImageX(((imageReceiver.getParam() - this.currentImage) * (this.itemWidth + this.itemSpacing)) + measuredWidth + i7);
+                    } else if (param <= i11) {
+                        imageReceiver.setImageX(measuredWidth + i4 + this.itemSpacing + (((imageReceiver.getParam() - this.currentImage) - 1) * (this.itemWidth + this.itemSpacing)) + i7);
                     } else {
-                        int i16 = measuredWidth + i6 + this.itemSpacing;
+                        int i14 = measuredWidth + i4 + this.itemSpacing;
                         int param3 = (imageReceiver.getParam() - this.currentImage) - 2;
-                        int i17 = this.itemWidth;
-                        int i18 = this.itemSpacing;
-                        imageReceiver.setImageX(i16 + (param3 * (i17 + i18)) + i18 + i10 + i9);
+                        int i15 = this.itemWidth;
+                        int i16 = this.itemSpacing;
+                        imageReceiver.setImageX(i14 + (param3 * (i15 + i16)) + i16 + i8 + i7);
                     }
                     if (param == this.nextImage) {
-                        imageReceiver.setImageWidth(i10 - i8);
-                        imageReceiver.setImageX((int) (imageReceiver.getImageX() + (i8 / 2)));
+                        imageReceiver.setImageWidth(i8 - i6);
+                        imageReceiver.setImageX((int) (imageReceiver.getImageX() + (i6 / 2)));
                     } else {
                         imageReceiver.setImageWidth(this.itemWidth);
                     }
@@ -552,20 +552,20 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(2.0f));
                 imageReceiver.draw(canvas);
             }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - this.lastUpdateTime;
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - this.lastUpdateTime;
             if (j > 17) {
                 j = 17;
             }
-            this.lastUpdateTime = currentTimeMillis;
-            int i19 = this.animateToItem;
-            if (i19 >= 0) {
+            this.lastUpdateTime = jCurrentTimeMillis;
+            int i17 = this.animateToItem;
+            if (i17 >= 0) {
                 float f6 = this.moveLineProgress;
                 if (f6 > 0.0f) {
-                    float f7 = (float) j;
+                    float f7 = j;
                     float f8 = f6 - (f7 / (this.animateToItemFast ? 100.0f : 200.0f));
                     this.moveLineProgress = f8;
-                    if (i19 == this.currentImage) {
+                    if (i17 == this.currentImage) {
                         float f9 = this.currentItemProgress;
                         if (f9 < 1.0f) {
                             float f10 = f9 + (f7 / 200.0f);
@@ -611,7 +611,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
             if (this.scrolling) {
                 float f13 = this.currentItemProgress;
                 if (f13 > 0.0f) {
-                    float f14 = f13 - (((float) j) / 200.0f);
+                    float f14 = f13 - (j / 200.0f);
                     this.currentItemProgress = f14;
                     if (f14 < 0.0f) {
                         this.currentItemProgress = 0.0f;

@@ -48,7 +48,7 @@ public class EditTextCell extends FrameLayout {
     protected void onFocusChanged(boolean z) {
     }
 
-    public void onTextChanged(CharSequence charSequence) {
+    protected void onTextChanged(CharSequence charSequence) {
     }
 
     public void setShowLimitWhenEmpty(boolean z) {
@@ -99,7 +99,7 @@ public class EditTextCell extends FrameLayout {
         whenHitEnter(new Runnable() {
             @Override
             public final void run() {
-                EditTextCell.this.lambda$hideKeyboardOnEnter$0();
+                this.f$0.lambda$hideKeyboardOnEnter$0();
             }
         });
     }
@@ -125,7 +125,7 @@ public class EditTextCell extends FrameLayout {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            protected void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 super.onTextChanged(charSequence, i2, i3, i4);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = EditTextCell.this.limit;
                 if (animatedTextDrawable2 == null || i <= 0) {
@@ -136,7 +136,7 @@ public class EditTextCell extends FrameLayout {
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 EditTextCell editTextCell = EditTextCell.this;
                 editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
@@ -145,7 +145,7 @@ public class EditTextCell extends FrameLayout {
             }
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 canvas.save();
                 canvas.clipRect(getScrollX() + getPaddingLeft(), 0, (getScrollX() + getWidth()) - getPaddingRight(), getHeight());
                 super.onDraw(canvas);
@@ -153,7 +153,7 @@ public class EditTextCell extends FrameLayout {
             }
 
             @Override
-            public void extendActionMode(ActionMode actionMode, Menu menu) {
+            protected void extendActionMode(ActionMode actionMode, Menu menu) {
                 if (z2) {
                     int i2 = R.id.menu_bold;
                     if (menu.findItem(i2) != null) {
@@ -229,11 +229,11 @@ public class EditTextCell extends FrameLayout {
                     return;
                 }
                 while (true) {
-                    int indexOf = editable.toString().indexOf("\n");
-                    if (indexOf < 0) {
+                    int iIndexOf = editable.toString().indexOf("\n");
+                    if (iIndexOf < 0) {
                         return;
                     } else {
-                        editable.delete(indexOf, indexOf + 1);
+                        editable.delete(iIndexOf, iIndexOf + 1);
                     }
                 }
             }

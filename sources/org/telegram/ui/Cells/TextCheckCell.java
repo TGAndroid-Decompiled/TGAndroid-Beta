@@ -301,9 +301,9 @@ public class TextCheckCell extends FrameLayout {
         this.animatedColorBackground = i;
         this.animationPaint.setColor(i);
         this.animationProgress = 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, (Property<TextCheckCell, Float>) ANIMATION_PROGRESS, 0.0f, 1.0f);
-        this.animator = ofFloat;
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, (Property<TextCheckCell, Float>) ANIMATION_PROGRESS, 0.0f, 1.0f);
+        this.animator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 TextCheckCell.this.animatedColorBackground = 0;
@@ -318,8 +318,8 @@ public class TextCheckCell extends FrameLayout {
     public void setAnimationProgress(float f) {
         this.animationProgress = f;
         float lastTouchX = getLastTouchX();
-        float max = Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f);
-        this.checkBox.setOverrideColorProgress(lastTouchX, getMeasuredHeight() / 2, max * this.animationProgress);
+        float fMax = Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f);
+        this.checkBox.setOverrideColorProgress(lastTouchX, getMeasuredHeight() / 2, fMax * this.animationProgress);
     }
 
     public void setBackgroundColorAnimatedReverse(final int i) {
@@ -328,14 +328,14 @@ public class TextCheckCell extends FrameLayout {
             objectAnimator.cancel();
             this.animator = null;
         }
-        int i2 = this.animatedColorBackground;
-        if (i2 == 0) {
-            i2 = getBackground() instanceof ColorDrawable ? ((ColorDrawable) getBackground()).getColor() : 0;
+        int color = this.animatedColorBackground;
+        if (color == 0) {
+            color = getBackground() instanceof ColorDrawable ? ((ColorDrawable) getBackground()).getColor() : 0;
         }
         if (this.animationPaint == null) {
             this.animationPaint = new Paint(1);
         }
-        this.animationPaint.setColor(i2);
+        this.animationPaint.setColor(color);
         setBackgroundColor(i);
         this.checkBox.setOverrideColor(1);
         this.animatedColorBackground = i;
@@ -361,7 +361,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (this.animatedColorBackground != 0) {
             float lastTouchX = getLastTouchX();
             canvas.drawCircle(lastTouchX, getMeasuredHeight() / 2, (Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f)) * this.animationProgress, this.animationPaint);

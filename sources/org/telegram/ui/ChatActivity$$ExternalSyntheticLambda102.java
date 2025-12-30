@@ -9,6 +9,6 @@ public final class ChatActivity$$ExternalSyntheticLambda102 implements Runnable 
 
     @Override
     public final void run() {
-        ChatActivity.m1529$r8$lambda$9RTBMRKI2ADE4kbCy0hU6dA7gc(this.f$0);
+        this.f$0.checkConversionDateTimeToast();
     }
 }

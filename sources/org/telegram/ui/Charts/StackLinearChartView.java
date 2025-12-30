@@ -50,13 +50,13 @@ public class StackLinearChartView extends BaseChartView {
     }
 
     private int quarterForPoint(float f, float f2) {
-        float centerX = this.chartArea.centerX();
-        float centerY = this.chartArea.centerY() + AndroidUtilities.dp(16.0f);
-        if (f >= centerX && f2 <= centerY) {
+        float fCenterX = this.chartArea.centerX();
+        float fCenterY = this.chartArea.centerY() + AndroidUtilities.dp(16.0f);
+        if (f >= fCenterX && f2 <= fCenterY) {
             return 0;
         }
-        if (f < centerX || f2 < centerY) {
-            return (f >= centerX || f2 < centerY) ? 3 : 2;
+        if (f < fCenterX || f2 < fCenterY) {
+            return (f >= fCenterX || f2 < fCenterY) ? 3 : 2;
         }
         return 1;
     }
@@ -97,7 +97,7 @@ public class StackLinearChartView extends BaseChartView {
                     if (lineViewData2.enabled || lineViewData2.alpha != f3) {
                         long j3 = ((StackLinearChartData) this.chartData).simplifiedY[i5][i4];
                         if (j3 > 0) {
-                            f4 += ((float) j3) * lineViewData2.alpha;
+                            f4 += j3 * lineViewData2.alpha;
                             i6++;
                         }
                         i7 = i5;
@@ -123,7 +123,7 @@ public class StackLinearChartView extends BaseChartView {
                         } else {
                             lineViewData = lineViewData3;
                             if (f4 != 0.0f) {
-                                f = (((float) ((StackLinearChartData) this.chartData).simplifiedY[i9][i4]) * lineViewData.alpha) / f4;
+                                f = (((StackLinearChartData) this.chartData).simplifiedY[i9][i4] * lineViewData.alpha) / f4;
                                 f2 = 0.0f;
                             }
                             f2 = 0.0f;
@@ -182,7 +182,7 @@ public class StackLinearChartView extends BaseChartView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         tick();
         drawChart(canvas);
         drawBottomLine(canvas);

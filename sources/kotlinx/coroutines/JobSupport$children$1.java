@@ -13,7 +13,7 @@ final class JobSupport$children$1 extends RestrictedSuspendLambda implements Fun
     int label;
     final JobSupport this$0;
 
-    public JobSupport$children$1(JobSupport jobSupport, Continuation continuation) {
+    JobSupport$children$1(JobSupport jobSupport, Continuation continuation) {
         super(2, continuation);
         this.this$0 = jobSupport;
     }
@@ -31,7 +31,7 @@ final class JobSupport$children$1 extends RestrictedSuspendLambda implements Fun
     }
 
     @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r7) {
+    public final java.lang.Object invokeSuspend(java.lang.Object r7) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.JobSupport$children$1.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

@@ -68,9 +68,9 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     }
 
     public void initCancellability() {
-        DisposableHandle installParentHandle = installParentHandle();
-        if (installParentHandle != null && isCompleted()) {
-            installParentHandle.dispose();
+        DisposableHandle disposableHandleInstallParentHandle = installParentHandle();
+        if (disposableHandleInstallParentHandle != null && isCompleted()) {
+            disposableHandleInstallParentHandle.dispose();
             _parentHandle$volatile$FU.set(this, NonDisposableHandle.INSTANCE);
         }
     }
@@ -241,17 +241,17 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
 
     public final Object getResult() {
         Job job;
-        boolean isReusable = isReusable();
+        boolean zIsReusable = isReusable();
         if (trySuspend()) {
             if (getParentHandle() == null) {
                 installParentHandle();
             }
-            if (isReusable) {
+            if (zIsReusable) {
                 releaseClaimedReusableContinuation$kotlinx_coroutines_core();
             }
             return IntrinsicsKt.getCOROUTINE_SUSPENDED();
         }
-        if (isReusable) {
+        if (zIsReusable) {
             releaseClaimedReusableContinuation$kotlinx_coroutines_core();
         }
         Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
@@ -267,25 +267,24 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     }
 
     private final DisposableHandle installParentHandle() {
-        DisposableHandle invokeOnCompletion$default;
         Job job = (Job) getContext().get(Job.Key);
         if (job == null) {
             return null;
         }
-        invokeOnCompletion$default = JobKt__JobKt.invokeOnCompletion$default(job, true, false, new ChildContinuation(this), 2, null);
-        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_parentHandle$volatile$FU, this, null, invokeOnCompletion$default);
-        return invokeOnCompletion$default;
+        DisposableHandle disposableHandleInvokeOnCompletion$default = JobKt__JobKt.invokeOnCompletion$default(job, true, false, new ChildContinuation(this), 2, null);
+        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_parentHandle$volatile$FU, this, null, disposableHandleInvokeOnCompletion$default);
+        return disposableHandleInvokeOnCompletion$default;
     }
 
     public final void releaseClaimedReusableContinuation$kotlinx_coroutines_core() {
-        Throwable tryReleaseClaimedContinuation$kotlinx_coroutines_core;
+        Throwable thTryReleaseClaimedContinuation$kotlinx_coroutines_core;
         Continuation continuation = this.delegate;
         DispatchedContinuation dispatchedContinuation = continuation instanceof DispatchedContinuation ? (DispatchedContinuation) continuation : null;
-        if (dispatchedContinuation == null || (tryReleaseClaimedContinuation$kotlinx_coroutines_core = dispatchedContinuation.tryReleaseClaimedContinuation$kotlinx_coroutines_core(this)) == null) {
+        if (dispatchedContinuation == null || (thTryReleaseClaimedContinuation$kotlinx_coroutines_core = dispatchedContinuation.tryReleaseClaimedContinuation$kotlinx_coroutines_core(this)) == null) {
             return;
         }
         detachChild$kotlinx_coroutines_core();
-        cancel(tryReleaseClaimedContinuation$kotlinx_coroutines_core);
+        cancel(thTryReleaseClaimedContinuation$kotlinx_coroutines_core);
     }
 
     @Override
@@ -494,6 +493,13 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     @Override
     public void completeResume(Object obj) {
         dispatchResume(this.resumeMode);
+    }
+
+    @Override
+    public void resumeUndispatched(CoroutineDispatcher coroutineDispatcher, Object obj) {
+        Continuation continuation = this.delegate;
+        DispatchedContinuation dispatchedContinuation = continuation instanceof DispatchedContinuation ? (DispatchedContinuation) continuation : null;
+        resumeImpl$default(this, obj, (dispatchedContinuation != null ? dispatchedContinuation.dispatcher : null) == coroutineDispatcher ? 4 : this.resumeMode, null, 4, null);
     }
 
     @Override

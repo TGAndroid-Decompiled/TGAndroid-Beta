@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Vibrator;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,11 +14,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -103,11 +107,11 @@ public class LinkEditActivity extends BaseFragment {
             return;
         }
         TextCheckCell textCheckCell3 = (TextCheckCell) view;
-        boolean isChecked = textCheckCell3.isChecked();
-        boolean z = !isChecked;
-        textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(!isChecked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+        boolean zIsChecked = textCheckCell3.isChecked();
+        boolean z = !zIsChecked;
+        textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(!zIsChecked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
         textCheckCell3.setChecked(z);
-        setUsesVisible(isChecked);
+        setUsesVisible(zIsChecked);
         this.firstLayout = true;
         if (this.subCell != null) {
             if (textCheckCell3.isChecked()) {
@@ -142,7 +146,7 @@ public class LinkEditActivity extends BaseFragment {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LinkEditActivity.this.lambda$createView$1();
+                    this.f$0.lambda$createView$1();
                 }
             };
             runnableArr[0] = runnable;
@@ -154,7 +158,7 @@ public class LinkEditActivity extends BaseFragment {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$createView$2();
+                this.f$0.lambda$createView$2();
             }
         };
         runnableArr[0] = runnable2;
@@ -183,7 +187,7 @@ public class LinkEditActivity extends BaseFragment {
         AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i, int i2) {
-                LinkEditActivity.this.lambda$createView$5(z, i, i2);
+                this.f$0.lambda$createView$5(z, i, i2);
             }
         });
     }
@@ -214,7 +218,7 @@ public class LinkEditActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                LinkEditActivity.this.lambda$createView$9(alertDialog, i);
+                this.f$0.lambda$createView$9(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -226,15 +230,164 @@ public class LinkEditActivity extends BaseFragment {
         finishFragment();
     }
 
-    public void onCreateClicked(android.view.View r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkEditActivity.onCreateClicked(android.view.View):void");
+    public void onCreateClicked(View view) throws NumberFormatException {
+        long j;
+        boolean z;
+        if (this.loading) {
+            return;
+        }
+        int selectedIndex = this.timeChooseView.getSelectedIndex();
+        if (selectedIndex < this.dispalyedDates.size() && ((Integer) this.dispalyedDates.get(selectedIndex)).intValue() < 0) {
+            AndroidUtilities.shakeView(this.timeEditText);
+            Vibrator vibrator = (Vibrator) this.timeEditText.getContext().getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
+                return;
+            }
+            return;
+        }
+        TextCheckCell textCheckCell = this.subCell;
+        if (textCheckCell == null || !textCheckCell.isChecked()) {
+            j = 0;
+        } else {
+            try {
+                j = Long.parseLong(this.subEditPriceCell.editText.getText().toString());
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        int i = this.type;
+        if (i == 0) {
+            AlertDialog alertDialog = this.progressDialog;
+            if (alertDialog != null) {
+                alertDialog.dismiss();
+            }
+            this.loading = true;
+            AlertDialog alertDialog2 = new AlertDialog(getParentActivity(), 3);
+            this.progressDialog = alertDialog2;
+            alertDialog2.showDelayed(500L);
+            TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+            tL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
+            tL_messages_exportChatInvite.legacy_revoke_permanent = false;
+            int selectedIndex2 = this.timeChooseView.getSelectedIndex();
+            tL_messages_exportChatInvite.flags |= 1;
+            if (selectedIndex2 < this.dispalyedDates.size()) {
+                tL_messages_exportChatInvite.expire_date = ((Integer) this.dispalyedDates.get(selectedIndex2)).intValue() + getConnectionsManager().getCurrentTime();
+            } else {
+                tL_messages_exportChatInvite.expire_date = 0;
+            }
+            int selectedIndex3 = this.usesChooseView.getSelectedIndex();
+            tL_messages_exportChatInvite.flags |= 2;
+            if (selectedIndex3 < this.dispalyedUses.size()) {
+                tL_messages_exportChatInvite.usage_limit = ((Integer) this.dispalyedUses.get(selectedIndex3)).intValue();
+            } else {
+                tL_messages_exportChatInvite.usage_limit = 0;
+            }
+            TextCheckCell textCheckCell2 = this.approveCell;
+            boolean z2 = textCheckCell2 != null && textCheckCell2.isChecked();
+            tL_messages_exportChatInvite.request_needed = z2;
+            if (z2) {
+                tL_messages_exportChatInvite.usage_limit = 0;
+            }
+            String string = this.nameEditText.getText().toString();
+            tL_messages_exportChatInvite.title = string;
+            if (!TextUtils.isEmpty(string)) {
+                tL_messages_exportChatInvite.flags |= 16;
+            }
+            if (j > 0) {
+                tL_messages_exportChatInvite.flags |= 32;
+                TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = new TL_stars.TL_starsSubscriptionPricing();
+                tL_messages_exportChatInvite.subscription_pricing = tL_starsSubscriptionPricing;
+                tL_starsSubscriptionPricing.period = getConnectionsManager().isTestBackend() ? 300 : 2592000;
+                tL_messages_exportChatInvite.subscription_pricing.amount = j;
+            }
+            getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$onCreateClicked$13(tLObject, tL_error);
+                }
+            });
+            return;
+        }
+        if (i == 1) {
+            AlertDialog alertDialog3 = this.progressDialog;
+            if (alertDialog3 != null) {
+                alertDialog3.dismiss();
+            }
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = this.inviteToEdit.link;
+            tL_messages_editExportedChatInvite.revoked = false;
+            tL_messages_editExportedChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
+            int selectedIndex4 = this.timeChooseView.getSelectedIndex();
+            if (selectedIndex4 < this.dispalyedDates.size()) {
+                if (this.currentInviteDate != ((Integer) this.dispalyedDates.get(selectedIndex4)).intValue()) {
+                    tL_messages_editExportedChatInvite.flags |= 1;
+                    tL_messages_editExportedChatInvite.expire_date = ((Integer) this.dispalyedDates.get(selectedIndex4)).intValue() + getConnectionsManager().getCurrentTime();
+                    z = true;
+                }
+                z = false;
+            } else {
+                if (this.currentInviteDate != 0) {
+                    tL_messages_editExportedChatInvite.flags |= 1;
+                    tL_messages_editExportedChatInvite.expire_date = 0;
+                    z = true;
+                }
+                z = false;
+            }
+            int selectedIndex5 = this.usesChooseView.getSelectedIndex();
+            if (selectedIndex5 < this.dispalyedUses.size()) {
+                int iIntValue = ((Integer) this.dispalyedUses.get(selectedIndex5)).intValue();
+                if (this.inviteToEdit.usage_limit != iIntValue) {
+                    tL_messages_editExportedChatInvite.flags |= 2;
+                    tL_messages_editExportedChatInvite.usage_limit = iIntValue;
+                    z = true;
+                }
+            } else if (this.inviteToEdit.usage_limit != 0) {
+                tL_messages_editExportedChatInvite.flags |= 2;
+                tL_messages_editExportedChatInvite.usage_limit = 0;
+                z = true;
+            }
+            boolean z3 = this.inviteToEdit.request_needed;
+            TextCheckCell textCheckCell3 = this.approveCell;
+            if (z3 != (textCheckCell3 != null && textCheckCell3.isChecked())) {
+                tL_messages_editExportedChatInvite.flags |= 8;
+                TextCheckCell textCheckCell4 = this.approveCell;
+                boolean z4 = textCheckCell4 != null && textCheckCell4.isChecked();
+                tL_messages_editExportedChatInvite.request_needed = z4;
+                if (z4) {
+                    tL_messages_editExportedChatInvite.flags |= 2;
+                    tL_messages_editExportedChatInvite.usage_limit = 0;
+                }
+                z = true;
+            }
+            String string2 = this.nameEditText.getText().toString();
+            if (!TextUtils.equals(this.inviteToEdit.title, string2)) {
+                tL_messages_editExportedChatInvite.title = string2;
+                tL_messages_editExportedChatInvite.flags |= 16;
+                z = true;
+            }
+            if (z) {
+                this.loading = true;
+                AlertDialog alertDialog4 = new AlertDialog(getParentActivity(), 3);
+                this.progressDialog = alertDialog4;
+                alertDialog4.showDelayed(500L);
+                getConnectionsManager().sendRequest(tL_messages_editExportedChatInvite, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        this.f$0.lambda$onCreateClicked$15(tLObject, tL_error);
+                    }
+                });
+                return;
+            }
+            finishFragment();
+        }
     }
 
     public void lambda$onCreateClicked$13(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$12(tL_error, tLObject);
+                this.f$0.lambda$onCreateClicked$12(tL_error, tLObject);
             }
         });
     }
@@ -260,7 +413,7 @@ public class LinkEditActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$14(tL_error, tLObject);
+                this.f$0.lambda$onCreateClicked$14(tL_error, tLObject);
             }
         });
     }
@@ -290,7 +443,7 @@ public class LinkEditActivity extends BaseFragment {
         this.dispalyedUses.clear();
         int i3 = 0;
         boolean z = false;
-        int i4 = 0;
+        int length = 0;
         while (true) {
             int[] iArr = this.defaultUses;
             if (i3 >= iArr.length) {
@@ -301,26 +454,26 @@ public class LinkEditActivity extends BaseFragment {
                     this.dispalyedUses.add(Integer.valueOf(i));
                 }
                 z = true;
-                i4 = i3;
+                length = i3;
             }
             this.dispalyedUses.add(Integer.valueOf(this.defaultUses[i3]));
             i3++;
         }
         if (!z) {
             this.dispalyedUses.add(Integer.valueOf(i));
-            i4 = this.defaultUses.length;
+            length = this.defaultUses.length;
         }
         int size = this.dispalyedUses.size();
-        int i5 = size + 1;
-        String[] strArr = new String[i5];
-        for (int i6 = 0; i6 < i5; i6++) {
-            if (i6 == size) {
-                strArr[i6] = LocaleController.getString(R.string.NoLimit);
+        int i4 = size + 1;
+        String[] strArr = new String[i4];
+        for (int i5 = 0; i5 < i4; i5++) {
+            if (i5 == size) {
+                strArr[i5] = LocaleController.getString(R.string.NoLimit);
             } else {
-                strArr[i6] = ((Integer) this.dispalyedUses.get(i6)).toString();
+                strArr[i5] = ((Integer) this.dispalyedUses.get(i5)).toString();
             }
         }
-        this.usesChooseView.setOptions(i4, strArr);
+        this.usesChooseView.setOptions(length, strArr);
     }
 
     private void chooseDate(int i) {
@@ -330,7 +483,7 @@ public class LinkEditActivity extends BaseFragment {
         this.dispalyedDates.clear();
         int i2 = 0;
         boolean z = false;
-        int i3 = 0;
+        int length = 0;
         while (true) {
             int[] iArr = this.defaultDates;
             if (i2 >= iArr.length) {
@@ -338,7 +491,7 @@ public class LinkEditActivity extends BaseFragment {
             }
             if (!z && currentTime < iArr[i2]) {
                 this.dispalyedDates.add(Integer.valueOf(currentTime));
-                i3 = i2;
+                length = i2;
                 z = true;
             }
             this.dispalyedDates.add(Integer.valueOf(this.defaultDates[i2]));
@@ -346,32 +499,32 @@ public class LinkEditActivity extends BaseFragment {
         }
         if (!z) {
             this.dispalyedDates.add(Integer.valueOf(currentTime));
-            i3 = this.defaultDates.length;
+            length = this.defaultDates.length;
         }
         int size = this.dispalyedDates.size();
-        int i4 = size + 1;
-        String[] strArr = new String[i4];
-        for (int i5 = 0; i5 < i4; i5++) {
-            if (i5 == size) {
-                strArr[i5] = LocaleController.getString(R.string.NoLimit);
-            } else if (((Integer) this.dispalyedDates.get(i5)).intValue() == this.defaultDates[0]) {
-                strArr[i5] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
-            } else if (((Integer) this.dispalyedDates.get(i5)).intValue() == this.defaultDates[1]) {
-                strArr[i5] = LocaleController.formatPluralString("Days", 1, new Object[0]);
-            } else if (((Integer) this.dispalyedDates.get(i5)).intValue() == this.defaultDates[2]) {
-                strArr[i5] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
+        int i3 = size + 1;
+        String[] strArr = new String[i3];
+        for (int i4 = 0; i4 < i3; i4++) {
+            if (i4 == size) {
+                strArr[i4] = LocaleController.getString(R.string.NoLimit);
+            } else if (((Integer) this.dispalyedDates.get(i4)).intValue() == this.defaultDates[0]) {
+                strArr[i4] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
+            } else if (((Integer) this.dispalyedDates.get(i4)).intValue() == this.defaultDates[1]) {
+                strArr[i4] = LocaleController.formatPluralString("Days", 1, new Object[0]);
+            } else if (((Integer) this.dispalyedDates.get(i4)).intValue() == this.defaultDates[2]) {
+                strArr[i4] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
             } else {
                 long j2 = currentTime;
                 if (j2 < 86400) {
-                    strArr[i5] = LocaleController.getString(R.string.MessageScheduleToday);
+                    strArr[i4] = LocaleController.getString(R.string.MessageScheduleToday);
                 } else if (j2 < 31449600) {
-                    strArr[i5] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
+                    strArr[i4] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
                 } else {
-                    strArr[i5] = LocaleController.getInstance().getFormatterYear().format(j * 1000);
+                    strArr[i4] = LocaleController.getInstance().getFormatterYear().format(j * 1000);
                 }
             }
         }
-        this.timeChooseView.setOptions(i3, strArr);
+        this.timeChooseView.setOptions(length, strArr);
     }
 
     private void resetDates() {
@@ -482,7 +635,7 @@ public class LinkEditActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                LinkEditActivity.this.lambda$getThemeDescriptions$16();
+                this.f$0.lambda$getThemeDescriptions$16();
             }
 
             @Override

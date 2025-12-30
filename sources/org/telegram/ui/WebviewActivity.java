@@ -47,7 +47,6 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ShareAlert;
-import org.telegram.ui.WebviewActivity;
 
 public class WebviewActivity extends BaseFragment {
     private String currentBot;
@@ -82,7 +81,7 @@ public class WebviewActivity extends BaseFragment {
         return false;
     }
 
-    public class TelegramWebviewProxy {
+    class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
         }
 
@@ -91,7 +90,7 @@ public class WebviewActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    WebviewActivity.TelegramWebviewProxy.this.lambda$postEvent$0(str);
+                    this.f$0.lambda$postEvent$0(str);
                 }
             });
         }
@@ -179,11 +178,11 @@ public class WebviewActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenu createMenu = this.actionBar.createMenu();
-        this.progressItem = createMenu.addItemWithWidth(1, R.drawable.share, AndroidUtilities.dp(54.0f));
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        this.progressItem = actionBarMenuCreateMenu.addItemWithWidth(1, R.drawable.share, AndroidUtilities.dp(54.0f));
         int i = this.type;
         if (i == 0) {
-            createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
+            actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
             this.actionBar.setTitle(this.currentGame);
             this.actionBar.setSubtitle("@" + this.currentBot);
             ContextProgressView contextProgressView = new ContextProgressView(context, 1);
@@ -233,8 +232,8 @@ public class WebviewActivity extends BaseFragment {
                 if (TextUtils.isEmpty(str)) {
                     return false;
                 }
-                Uri parse = Uri.parse(str);
-                if (!"tg".equals(parse.getScheme())) {
+                Uri uri = Uri.parse(str);
+                if (!"tg".equals(uri.getScheme())) {
                     return false;
                 }
                 if (WebviewActivity.this.type == 1) {
@@ -246,7 +245,7 @@ public class WebviewActivity extends BaseFragment {
                 } else {
                     WebviewActivity.this.finishFragment(false);
                     try {
-                        Intent intent = new Intent("android.intent.action.VIEW", parse);
+                        Intent intent = new Intent("android.intent.action.VIEW", uri);
                         intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
                         intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
                         ApplicationLoader.applicationContext.startActivity(intent);
@@ -337,7 +336,7 @@ public class WebviewActivity extends BaseFragment {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStatsURL, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                WebviewActivity.this.lambda$reloadStats$1(tLObject, tL_error);
+                this.f$0.lambda$reloadStats$1(tLObject, tL_error);
             }
         });
     }
@@ -346,7 +345,7 @@ public class WebviewActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebviewActivity.this.lambda$reloadStats$0(tLObject);
+                this.f$0.lambda$reloadStats$0(tLObject);
             }
         });
     }
@@ -376,21 +375,24 @@ public class WebviewActivity extends BaseFragment {
                 }
             }
             sb2.append((CharSequence) sb);
-            int indexOf = str.indexOf(35);
-            if (indexOf < 0) {
+            int iIndexOf = str.indexOf(35);
+            if (iIndexOf < 0) {
                 str4 = str + "#" + ((Object) sb2);
             } else {
-                String substring = str.substring(indexOf + 1);
-                if (substring.indexOf(61) < 0 && substring.indexOf(63) < 0) {
-                    str4 = substring.length() > 0 ? str + "?" + ((Object) sb2) : str + ((Object) sb2);
+                String strSubstring = str.substring(iIndexOf + 1);
+                if (strSubstring.indexOf(61) >= 0 || strSubstring.indexOf(63) >= 0) {
+                    str4 = str + "&" + ((Object) sb2);
+                } else if (strSubstring.length() > 0) {
+                    str4 = str + "?" + ((Object) sb2);
+                } else {
+                    str4 = str + ((Object) sb2);
                 }
-                str4 = str + "&" + ((Object) sb2);
             }
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt(((Object) sb) + "_date", (int) (System.currentTimeMillis() / 1000));
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            editorEdit.putInt(((Object) sb) + "_date", (int) (System.currentTimeMillis() / 1000));
             SerializedData serializedData = new SerializedData(messageObject.messageOwner.getObjectSize());
             messageObject.messageOwner.serializeToStream(serializedData);
-            edit.putString(((Object) sb) + "_m", Utilities.bytesToHex(serializedData.toByteArray()));
+            editorEdit.putString(((Object) sb) + "_m", Utilities.bytesToHex(serializedData.toByteArray()));
             String str6 = ((Object) sb) + "_link";
             StringBuilder sb3 = new StringBuilder();
             sb3.append("https://");
@@ -401,8 +403,8 @@ public class WebviewActivity extends BaseFragment {
                 str5 = "?game=" + str2;
             }
             sb3.append(str5);
-            edit.putString(str6, sb3.toString());
-            edit.commit();
+            editorEdit.putString(str6, sb3.toString());
+            editorEdit.commit();
             Browser.openUrl((Context) activity, str4, false);
             serializedData.cleanup();
         } catch (Exception e) {

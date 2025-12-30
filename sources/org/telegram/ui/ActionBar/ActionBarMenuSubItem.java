@@ -65,7 +65,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
 
     public ActionBarMenuSubItem(Context context, int i, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.selectorRad = 6;
+        this.selectorRad = 12;
         this.itemHeight = 48;
         this.resourcesProvider = resourcesProvider;
         this.top = z;
@@ -117,7 +117,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.itemHeight), 1073741824));
         if (!this.expandIfMultiline || this.textView.getLayout().getLineCount() <= 1) {
             return;
@@ -197,8 +197,8 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void setTextAndIcon(CharSequence charSequence, int i, Drawable drawable) {
-        int dp;
-        int dp2;
+        int iDp;
+        int iDp2;
         this.textView.setText(charSequence);
         if (i != 0 || drawable != null || this.checkView != null) {
             if (drawable != null) {
@@ -211,16 +211,16 @@ public class ActionBarMenuSubItem extends FrameLayout {
             this.imageView.setVisibility(0);
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
             if (this.checkViewLeft) {
-                dp = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
+                iDp = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
             } else {
-                dp = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
+                iDp = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
             }
             if (this.checkViewLeft) {
-                dp2 = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
+                iDp2 = AndroidUtilities.dp((i == 0 && drawable == null) ? 0.0f : 43.0f);
             } else {
-                dp2 = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
+                iDp2 = this.checkView != null ? AndroidUtilities.dp(43.0f) : 0;
             }
-            textViewEmojis.setPadding(dp, 0, dp2, 0);
+            textViewEmojis.setPadding(iDp, 0, iDp2, 0);
             return;
         }
         this.iconResId = 0;
@@ -239,6 +239,20 @@ public class ActionBarMenuSubItem extends FrameLayout {
         }
         this.imageView.setVisibility(4);
         this.backupImageView.setImage(imageLocation, str, drawable, obj);
+    }
+
+    public void setIconColorImage(int i) {
+        BackupImageView backupImageView = this.backupImageView;
+        if (backupImageView != null) {
+            backupImageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        }
+    }
+
+    public void setImageSize(int i, int i2) {
+        BackupImageView backupImageView = this.backupImageView;
+        if (backupImageView != null) {
+            backupImageView.setLayoutParams(LayoutHelper.createFrame(i, i2, (LocaleController.isRTL ? 5 : 3) | 16));
+        }
     }
 
     public ActionBarMenuSubItem setColors(int i, int i2) {
@@ -268,13 +282,13 @@ public class ActionBarMenuSubItem extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.enabled ? 1.0f : 0.0f, z ? 1.0f : 0.0f);
-        this.enabledAnimator = ofFloat;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.enabled ? 1.0f : 0.0f, z ? 1.0f : 0.0f);
+        this.enabledAnimator = valueAnimatorOfFloat;
         this.enabled = z;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ActionBarMenuSubItem.this.lambda$setEnabledByColor$0(i, i2, valueAnimator2);
+                this.f$0.lambda$setEnabledByColor$0(i, i2, valueAnimator2);
             }
         });
         this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
@@ -290,9 +304,9 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void lambda$setEnabledByColor$0(int i, int i2, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setTextColor(ColorUtils.blendARGB(i, i2, floatValue));
-        setIconColor(ColorUtils.blendARGB(i, i2, floatValue));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
+        setIconColor(ColorUtils.blendARGB(i, i2, fFloatValue));
     }
 
     public void setEnabledByColor(final boolean z, final int i, final int i2, final int i3) {
@@ -300,13 +314,13 @@ public class ActionBarMenuSubItem extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.enabled ? 1.0f : 0.0f, z ? 1.0f : 0.0f);
-        this.enabledAnimator = ofFloat;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.enabled ? 1.0f : 0.0f, z ? 1.0f : 0.0f);
+        this.enabledAnimator = valueAnimatorOfFloat;
         this.enabled = z;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ActionBarMenuSubItem.this.lambda$setEnabledByColor$1(i, i3, i2, valueAnimator2);
+                this.f$0.lambda$setEnabledByColor$1(i, i3, i2, valueAnimator2);
             }
         });
         this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
@@ -322,9 +336,9 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void lambda$setEnabledByColor$1(int i, int i2, int i3, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setTextColor(ColorUtils.blendARGB(i, i2, floatValue));
-        setIconColor(ColorUtils.blendARGB(i3, i2, floatValue));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
+        setIconColor(ColorUtils.blendARGB(i3, i2, fFloatValue));
     }
 
     public int getIconResId() {
@@ -378,11 +392,11 @@ public class ActionBarMenuSubItem extends FrameLayout {
             this.subtextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(43.0f) : 0, 0);
             addView(this.subtextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 0.0f, 10.0f, 0.0f, 0.0f));
         }
-        boolean isEmpty = TextUtils.isEmpty(charSequence);
-        if ((!isEmpty) != (this.subtextView.getVisibility() == 0)) {
-            this.subtextView.setVisibility(isEmpty ? 8 : 0);
+        boolean zIsEmpty = TextUtils.isEmpty(charSequence);
+        if ((!zIsEmpty) != (this.subtextView.getVisibility() == 0)) {
+            this.subtextView.setVisibility(zIsEmpty ? 8 : 0);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-            layoutParams.bottomMargin = isEmpty ? 0 : AndroidUtilities.dp(10.0f);
+            layoutParams.bottomMargin = zIsEmpty ? 0 : AndroidUtilities.dp(10.0f);
             this.textView.setLayoutParams(layoutParams);
         }
         this.subtextView.setText(charSequence);

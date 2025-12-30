@@ -81,8 +81,8 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
 
     @Override
     public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-        View findChildViewUnder = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-        int childAdapterPosition = findChildViewUnder != null ? recyclerView.getChildAdapterPosition(findChildViewUnder) : -1;
+        View viewFindChildViewUnder = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+        int childAdapterPosition = viewFindChildViewUnder != null ? recyclerView.getChildAdapterPosition(viewFindChildViewUnder) : -1;
         float y = motionEvent.getY();
         int action = motionEvent.getAction();
         if (action == 1) {
@@ -120,7 +120,7 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
             return;
         }
         this.lastDraggedIndex = childAdapterPosition;
-        this.delegate.setSelected(findChildViewUnder, childAdapterPosition, !r8.isSelected(childAdapterPosition));
+        this.delegate.setSelected(viewFindChildViewUnder, childAdapterPosition, !r8.isSelected(childAdapterPosition));
     }
 
     public boolean setIsActive(View view, boolean z, int i, boolean z2) {

@@ -63,13 +63,13 @@ public class PreviewHighlightView extends FrameLayout {
                 super.dispatchDraw(canvas);
                 this.barPaint.setColor(-1);
                 float width = ((getWidth() - (AndroidUtilities.dpf2(5.0f) * 2.0f)) - AndroidUtilities.dpf2((PreviewHighlightView.this.storiesCount - 1) * 2)) / PreviewHighlightView.this.storiesCount;
-                float dpf2 = AndroidUtilities.dpf2(5.0f);
+                float fDpf2 = AndroidUtilities.dpf2(5.0f);
                 int i2 = 0;
                 while (i2 < PreviewHighlightView.this.storiesCount) {
-                    this.rectF.set(dpf2, AndroidUtilities.dpf2(8.0f), dpf2 + width, AndroidUtilities.dpf2(10.0f));
+                    this.rectF.set(fDpf2, AndroidUtilities.dpf2(8.0f), fDpf2 + width, AndroidUtilities.dpf2(10.0f));
                     this.barPaint.setAlpha(i2 < PreviewHighlightView.this.storiesCount + (-1) ? 255 : 133);
                     canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(1.0f), this.barPaint);
-                    dpf2 += AndroidUtilities.dpf2(2.0f) + width;
+                    fDpf2 += AndroidUtilities.dpf2(2.0f) + width;
                     i2++;
                 }
             }

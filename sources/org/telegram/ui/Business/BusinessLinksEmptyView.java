@@ -57,7 +57,7 @@ public class BusinessLinksEmptyView extends LinearLayout {
         this.linkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BusinessLinksEmptyView.lambda$new$0(TL_account.TL_businessChatLink.this, baseFragment, view);
+                BusinessLinksEmptyView.lambda$new$0(tL_businessChatLink, baseFragment, view);
             }
         });
         addView(this.linkView, LayoutHelper.createLinear(-2, -2, 49, 17, 0, 17, 17));

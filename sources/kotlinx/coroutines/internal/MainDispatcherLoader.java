@@ -22,7 +22,7 @@ public final class MainDispatcherLoader {
 
     private final MainCoroutineDispatcher loadMainDispatcher() {
         Object next;
-        MainCoroutineDispatcher tryCreateDispatcher;
+        MainCoroutineDispatcher mainCoroutineDispatcherTryCreateDispatcher;
         try {
             List list = SequencesKt.toList(SequencesKt.asSequence(ServiceLoader.load(MainDispatcherFactory.class, MainDispatcherFactory.class.getClassLoader()).iterator()));
             Iterator it = list.iterator();
@@ -43,8 +43,8 @@ public final class MainDispatcherLoader {
                 next = null;
             }
             MainDispatcherFactory mainDispatcherFactory = (MainDispatcherFactory) next;
-            if (mainDispatcherFactory != null && (tryCreateDispatcher = MainDispatchersKt.tryCreateDispatcher(mainDispatcherFactory, list)) != null) {
-                return tryCreateDispatcher;
+            if (mainDispatcherFactory != null && (mainCoroutineDispatcherTryCreateDispatcher = MainDispatchersKt.tryCreateDispatcher(mainDispatcherFactory, list)) != null) {
+                return mainCoroutineDispatcherTryCreateDispatcher;
             }
             MainDispatchersKt.createMissingDispatcher$default(null, null, 3, null);
             return null;

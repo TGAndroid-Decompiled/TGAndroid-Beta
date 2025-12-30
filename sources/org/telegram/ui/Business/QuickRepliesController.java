@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
@@ -136,6 +137,7 @@ public class QuickRepliesController {
     }
 
     private void load(boolean z, final Runnable runnable) {
+        long jM;
         TLRPC.Message message;
         if (this.loading || this.loaded) {
             return;
@@ -146,8 +148,8 @@ public class QuickRepliesController {
             final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
-                    QuickRepliesController.this.lambda$load$1(messagesStorage, clientUserId, runnable);
+                public final void run() throws Throwable {
+                    this.f$0.lambda$load$1(messagesStorage, clientUserId, runnable);
                 }
             });
             return;
@@ -156,29 +158,35 @@ public class QuickRepliesController {
         tL_messages_getQuickReplies.hash = 0L;
         for (int i = 0; i < this.replies.size(); i++) {
             QuickReply quickReply = (QuickReply) this.replies.get(i);
-            long calcHash = MediaDataController.calcHash(tL_messages_getQuickReplies.hash, quickReply.id);
-            tL_messages_getQuickReplies.hash = calcHash;
+            long jCalcHash = MediaDataController.calcHash(tL_messages_getQuickReplies.hash, quickReply.id);
+            tL_messages_getQuickReplies.hash = jCalcHash;
             String str = quickReply.name;
-            long calcHash2 = MediaDataController.calcHash(calcHash, str == null ? 0L : QuickRepliesController$$ExternalSyntheticBackport1.m(r6, 0, Utilities.MD5(str).substring(0, 16).length(), 16));
-            tL_messages_getQuickReplies.hash = calcHash2;
-            long calcHash3 = MediaDataController.calcHash(calcHash2, quickReply.topMessage == null ? 0L : r6.getId());
-            tL_messages_getQuickReplies.hash = calcHash3;
+            if (str == null) {
+                jM = 0;
+            } else {
+                String strSubstring = Utilities.MD5(str).substring(0, 16);
+                jM = QuickRepliesController$$ExternalSyntheticBackport1.m(strSubstring, 0, strSubstring.length(), 16);
+            }
+            long jCalcHash2 = MediaDataController.calcHash(jCalcHash, jM);
+            tL_messages_getQuickReplies.hash = jCalcHash2;
+            long jCalcHash3 = MediaDataController.calcHash(jCalcHash2, quickReply.topMessage == null ? 0L : r6.getId());
+            tL_messages_getQuickReplies.hash = jCalcHash3;
             MessageObject messageObject = quickReply.topMessage;
             if (messageObject != null && (message = messageObject.messageOwner) != null && (message.flags & 32768) != 0) {
-                tL_messages_getQuickReplies.hash = MediaDataController.calcHash(calcHash3, message.edit_date);
+                tL_messages_getQuickReplies.hash = MediaDataController.calcHash(jCalcHash3, message.edit_date);
             } else {
-                tL_messages_getQuickReplies.hash = MediaDataController.calcHash(calcHash3, 0L);
+                tL_messages_getQuickReplies.hash = MediaDataController.calcHash(jCalcHash3, 0L);
             }
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getQuickReplies, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                QuickRepliesController.this.lambda$load$3(tLObject, tL_error);
+                this.f$0.lambda$load$3(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$load$1(org.telegram.messenger.MessagesStorage r18, long r19, final java.lang.Runnable r21) {
+    public void lambda$load$1(org.telegram.messenger.MessagesStorage r18, long r19, final java.lang.Runnable r21) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$load$1(org.telegram.messenger.MessagesStorage, long, java.lang.Runnable):void");
     }
 
@@ -200,7 +208,7 @@ public class QuickRepliesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$load$2(tLObject);
+                this.f$0.lambda$load$2(tLObject);
             }
         });
     }
@@ -270,40 +278,40 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$saveToCache$4(messagesStorage);
+                this.f$0.lambda$saveToCache$4(messagesStorage);
             }
         });
     }
 
     public void lambda$saveToCache$4(MessagesStorage messagesStorage) {
-        SQLitePreparedStatement sQLitePreparedStatement = null;
+        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 database.executeFast("DELETE FROM business_replies").stepThis().dispose();
-                sQLitePreparedStatement = database.executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?)");
+                sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?)");
                 for (int i = 0; i < this.replies.size(); i++) {
                     QuickReply quickReply = (QuickReply) this.replies.get(i);
-                    sQLitePreparedStatement.requery();
-                    sQLitePreparedStatement.bindInteger(1, quickReply.id);
-                    sQLitePreparedStatement.bindString(2, quickReply.name);
-                    sQLitePreparedStatement.bindInteger(3, quickReply.order);
-                    sQLitePreparedStatement.bindInteger(4, quickReply.messagesCount);
-                    sQLitePreparedStatement.step();
+                    sQLitePreparedStatementExecuteFast.requery();
+                    sQLitePreparedStatementExecuteFast.bindInteger(1, quickReply.id);
+                    sQLitePreparedStatementExecuteFast.bindString(2, quickReply.name);
+                    sQLitePreparedStatementExecuteFast.bindInteger(3, quickReply.order);
+                    sQLitePreparedStatementExecuteFast.bindInteger(4, quickReply.messagesCount);
+                    sQLitePreparedStatementExecuteFast.step();
                 }
-                if (sQLitePreparedStatement == null) {
+                if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             } catch (Exception e) {
                 FileLog.e(e);
-                if (sQLitePreparedStatement == null) {
+                if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
-            sQLitePreparedStatement.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
+            if (sQLitePreparedStatementExecuteFast != null) {
+                sQLitePreparedStatementExecuteFast.dispose();
             }
             throw th;
         }
@@ -320,33 +328,33 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.lambda$addReply$5(MessagesStorage.this, quickReply);
+                QuickRepliesController.lambda$addReply$5(messagesStorage, quickReply);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
     }
 
     public static void lambda$addReply$5(MessagesStorage messagesStorage, QuickReply quickReply) {
-        SQLitePreparedStatement sQLitePreparedStatement = null;
+        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
-                sQLitePreparedStatement = messagesStorage.getDatabase().executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?);");
-                sQLitePreparedStatement.requery();
-                sQLitePreparedStatement.bindInteger(1, quickReply.id);
-                sQLitePreparedStatement.bindString(2, quickReply.name);
-                sQLitePreparedStatement.bindInteger(3, quickReply.order);
-                sQLitePreparedStatement.bindInteger(4, quickReply.messagesCount);
-                sQLitePreparedStatement.step();
+                sQLitePreparedStatementExecuteFast = messagesStorage.getDatabase().executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?);");
+                sQLitePreparedStatementExecuteFast.requery();
+                sQLitePreparedStatementExecuteFast.bindInteger(1, quickReply.id);
+                sQLitePreparedStatementExecuteFast.bindString(2, quickReply.name);
+                sQLitePreparedStatementExecuteFast.bindInteger(3, quickReply.order);
+                sQLitePreparedStatementExecuteFast.bindInteger(4, quickReply.messagesCount);
+                sQLitePreparedStatementExecuteFast.step();
             } catch (Exception e) {
                 FileLog.e(e);
-                if (sQLitePreparedStatement == null) {
+                if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
-            sQLitePreparedStatement.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
+            if (sQLitePreparedStatementExecuteFast != null) {
+                sQLitePreparedStatementExecuteFast.dispose();
             }
             throw th;
         }
@@ -386,8 +394,8 @@ public class QuickRepliesController {
     }
 
     public boolean isNameBusy(String str, int i) {
-        QuickReply findReply = findReply(str);
-        return (findReply == null || findReply.id == i) ? false : true;
+        QuickReply quickReplyFindReply = findReply(str);
+        return (quickReplyFindReply == null || quickReplyFindReply.id == i) ? false : true;
     }
 
     public void reorder() {
@@ -398,9 +406,7 @@ public class QuickRepliesController {
         Collections.sort(this.replies, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$reorder$7;
-                lambda$reorder$7 = QuickRepliesController.lambda$reorder$7((QuickRepliesController.QuickReply) obj, (QuickRepliesController.QuickReply) obj2);
-                return lambda$reorder$7;
+                return QuickRepliesController.lambda$reorder$7((QuickRepliesController.QuickReply) obj, (QuickRepliesController.QuickReply) obj2);
             }
         });
         for (int i2 = 0; i2 < this.replies.size(); i2++) {
@@ -435,11 +441,11 @@ public class QuickRepliesController {
     }
 
     public void renameReply(int i, String str) {
-        QuickReply findReply = findReply(i);
-        if (findReply == null) {
+        QuickReply quickReplyFindReply = findReply(i);
+        if (quickReplyFindReply == null) {
             return;
         }
-        findReply.name = str;
+        quickReplyFindReply.name = str;
         TLRPC.TL_messages_editQuickReplyShortcut tL_messages_editQuickReplyShortcut = new TLRPC.TL_messages_editQuickReplyShortcut();
         tL_messages_editQuickReplyShortcut.shortcut_id = i;
         tL_messages_editQuickReplyShortcut.shortcut = str;
@@ -475,18 +481,18 @@ public class QuickRepliesController {
             return;
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            QuickReply findReply = findReply(((Integer) arrayList.get(i2)).intValue());
-            this.replies.remove(findReply);
-            deleteLocalReply(findReply.name);
+            QuickReply quickReplyFindReply = findReply(((Integer) arrayList.get(i2)).intValue());
+            this.replies.remove(quickReplyFindReply);
+            deleteLocalReply(quickReplyFindReply.name);
             TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-            tL_messages_deleteQuickReplyShortcut.shortcut_id = findReply.id;
+            tL_messages_deleteQuickReplyShortcut.shortcut_id = quickReplyFindReply.id;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_deleteQuickReplyShortcut, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     QuickRepliesController.lambda$deleteReplies$13(tLObject, tL_error);
                 }
             });
-            if ("hello".equals(findReply.name)) {
+            if ("hello".equals(quickReplyFindReply.name)) {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
                 TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
                 if (userFull != null) {
@@ -494,7 +500,7 @@ public class QuickRepliesController {
                     userFull.business_greeting_message = null;
                     MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, true);
                 }
-            } else if ("away".equals(findReply.name)) {
+            } else if ("away".equals(quickReplyFindReply.name)) {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
                 TLRPC.UserFull userFull2 = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
                 if (userFull2 != null) {
@@ -509,7 +515,7 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.lambda$deleteReplies$14(MessagesStorage.this, arrayList);
+                QuickRepliesController.lambda$deleteReplies$14(messagesStorage, arrayList);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -540,13 +546,13 @@ public class QuickRepliesController {
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                QuickRepliesController.this.lambda$updateTopMessage$16(messagesStorage, quickReply, clientUserId);
+            public final void run() throws Throwable {
+                this.f$0.lambda$updateTopMessage$16(messagesStorage, quickReply, clientUserId);
             }
         });
     }
 
-    public void lambda$updateTopMessage$16(org.telegram.messenger.MessagesStorage r15, final org.telegram.ui.Business.QuickRepliesController.QuickReply r16, long r17) {
+    public void lambda$updateTopMessage$16(org.telegram.messenger.MessagesStorage r15, final org.telegram.ui.Business.QuickRepliesController.QuickReply r16, long r17) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$updateTopMessage$16(org.telegram.messenger.MessagesStorage, org.telegram.ui.Business.QuickRepliesController$QuickReply, long):void");
     }
 
@@ -567,7 +573,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.this.lambda$processUpdate$17(message, str, i);
+                    this.f$0.lambda$processUpdate$17(message, str, i);
                 }
             });
             return true;
@@ -576,7 +582,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.this.lambda$processUpdate$18(update);
+                    this.f$0.lambda$processUpdate$18(update);
                 }
             });
             return true;
@@ -585,7 +591,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.this.lambda$processUpdate$19(update);
+                    this.f$0.lambda$processUpdate$19(update);
                 }
             });
             return true;
@@ -594,7 +600,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.this.lambda$processUpdate$21(update);
+                    this.f$0.lambda$processUpdate$21(update);
                 }
             });
             return true;
@@ -605,7 +611,7 @@ public class QuickRepliesController {
         ensureLoaded(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$processUpdate$22(update);
+                this.f$0.lambda$processUpdate$22(update);
             }
         });
         return true;
@@ -613,8 +619,8 @@ public class QuickRepliesController {
 
     public void lambda$processUpdate$17(TLRPC.Message message, String str, int i) {
         if ((message.flags & 1073741824) != 0) {
-            QuickReply findReply = findReply(message.quick_reply_shortcut_id);
-            if (findReply == null) {
+            QuickReply quickReplyFindReply = findReply(message.quick_reply_shortcut_id);
+            if (quickReplyFindReply == null) {
                 QuickReply quickReply = new QuickReply();
                 quickReply.id = message.quick_reply_shortcut_id;
                 quickReply.topMessageId = message.id;
@@ -631,17 +637,17 @@ public class QuickRepliesController {
                 updateOrder();
                 addReply(quickReply);
             } else {
-                int i2 = findReply.topMessageId;
+                int i2 = quickReplyFindReply.topMessageId;
                 int i3 = message.id;
                 if (i2 == i3) {
-                    findReply.topMessageId = i3;
+                    quickReplyFindReply.topMessageId = i3;
                     MessageObject messageObject2 = new MessageObject(this.currentAccount, message, false, true);
-                    findReply.topMessage = messageObject2;
+                    quickReplyFindReply.topMessage = messageObject2;
                     messageObject2.generateThumbs(false);
                     saveToCache();
                     NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                 } else if ((message.flags & 32768) == 0) {
-                    findReply.messagesCount++;
+                    quickReplyFindReply.messagesCount++;
                     saveToCache();
                     NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                 }
@@ -699,15 +705,15 @@ public class QuickRepliesController {
 
     public void lambda$processUpdate$19(TLRPC.Update update) {
         TLRPC.TL_quickReply tL_quickReply = ((TLRPC.TL_updateNewQuickReply) update).quick_reply;
-        QuickReply findReply = findReply(tL_quickReply.shortcut_id);
-        if (findReply != null) {
-            findReply.name = tL_quickReply.shortcut;
-            findReply.messagesCount = tL_quickReply.count;
-            findReply.topMessageId = tL_quickReply.top_message;
-            MessageObject messageObject = findReply.topMessage;
+        QuickReply quickReplyFindReply = findReply(tL_quickReply.shortcut_id);
+        if (quickReplyFindReply != null) {
+            quickReplyFindReply.name = tL_quickReply.shortcut;
+            quickReplyFindReply.messagesCount = tL_quickReply.count;
+            quickReplyFindReply.topMessageId = tL_quickReply.top_message;
+            MessageObject messageObject = quickReplyFindReply.topMessage;
             if (messageObject != null && messageObject.getId() != tL_quickReply.top_message) {
-                findReply.topMessage = null;
-                updateTopMessage(findReply);
+                quickReplyFindReply.topMessage = null;
+                updateTopMessage(quickReplyFindReply);
                 return;
             }
         } else {
@@ -725,16 +731,16 @@ public class QuickRepliesController {
     }
 
     public void lambda$processUpdate$21(TLRPC.Update update) {
-        QuickReply findReply = findReply(((TLRPC.TL_updateDeleteQuickReply) update).shortcut_id);
-        if (findReply != null) {
-            this.replies.remove(findReply);
-            deleteLocalReply(findReply.name);
-            final int i = findReply.id;
+        QuickReply quickReplyFindReply = findReply(((TLRPC.TL_updateDeleteQuickReply) update).shortcut_id);
+        if (quickReplyFindReply != null) {
+            this.replies.remove(quickReplyFindReply);
+            deleteLocalReply(quickReplyFindReply.name);
+            final int i = quickReplyFindReply.id;
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.lambda$processUpdate$20(MessagesStorage.this, i);
+                    QuickRepliesController.lambda$processUpdate$20(messagesStorage, i);
                 }
             });
             saveToCache();
@@ -754,16 +760,16 @@ public class QuickRepliesController {
 
     public void lambda$processUpdate$22(TLRPC.Update update) {
         TLRPC.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TLRPC.TL_updateDeleteQuickReplyMessages) update;
-        QuickReply findReply = findReply(tL_updateDeleteQuickReplyMessages.shortcut_id);
-        if (findReply != null) {
-            int size = findReply.messagesCount - tL_updateDeleteQuickReplyMessages.messages.size();
-            findReply.messagesCount = size;
+        QuickReply quickReplyFindReply = findReply(tL_updateDeleteQuickReplyMessages.shortcut_id);
+        if (quickReplyFindReply != null) {
+            int size = quickReplyFindReply.messagesCount - tL_updateDeleteQuickReplyMessages.messages.size();
+            quickReplyFindReply.messagesCount = size;
             if (size <= 0) {
-                this.replies.remove(findReply);
+                this.replies.remove(quickReplyFindReply);
             }
-            if (tL_updateDeleteQuickReplyMessages.messages.contains(Integer.valueOf(findReply.getTopMessageId())) || findReply.topMessage == null) {
-                findReply.topMessage = null;
-                updateTopMessage(findReply);
+            if (tL_updateDeleteQuickReplyMessages.messages.contains(Integer.valueOf(quickReplyFindReply.getTopMessageId())) || quickReplyFindReply.topMessage == null) {
+                quickReplyFindReply.topMessage = null;
+                updateTopMessage(quickReplyFindReply);
             } else {
                 saveToCache();
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -776,21 +782,21 @@ public class QuickRepliesController {
         while (it.hasNext()) {
             MessageObject messageObject = (MessageObject) it.next();
             if (messageObject.isSending() && findReply(messageObject.getQuickReplyId()) == null && messageObject.getQuickReplyName() != null && findReply(messageObject.getQuickReplyName()) == null) {
-                QuickReply findLocalReply = findLocalReply(messageObject.getQuickReplyName());
-                if (findLocalReply == null) {
-                    findLocalReply = new QuickReply();
-                    findLocalReply.local = true;
-                    findLocalReply.name = messageObject.getQuickReplyName();
-                    findLocalReply.id = -1;
-                    findLocalReply.topMessage = messageObject;
-                    findLocalReply.topMessageId = messageObject.getId();
-                    this.localReplies.add(findLocalReply);
+                QuickReply quickReplyFindLocalReply = findLocalReply(messageObject.getQuickReplyName());
+                if (quickReplyFindLocalReply == null) {
+                    quickReplyFindLocalReply = new QuickReply();
+                    quickReplyFindLocalReply.local = true;
+                    quickReplyFindLocalReply.name = messageObject.getQuickReplyName();
+                    quickReplyFindLocalReply.id = -1;
+                    quickReplyFindLocalReply.topMessage = messageObject;
+                    quickReplyFindLocalReply.topMessageId = messageObject.getId();
+                    this.localReplies.add(quickReplyFindLocalReply);
                 }
-                findLocalReply.localIds.add(Integer.valueOf(messageObject.getId()));
+                quickReplyFindLocalReply.localIds.add(Integer.valueOf(messageObject.getId()));
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        QuickRepliesController.this.lambda$checkLocalMessages$23();
+                        this.f$0.lambda$checkLocalMessages$23();
                     }
                 });
             }
@@ -802,9 +808,9 @@ public class QuickRepliesController {
     }
 
     public void deleteLocalReply(String str) {
-        QuickReply findLocalReply = findLocalReply(str);
-        if (findLocalReply != null) {
-            this.localReplies.remove(findLocalReply);
+        QuickReply quickReplyFindLocalReply = findLocalReply(str);
+        if (quickReplyFindLocalReply != null) {
+            this.localReplies.remove(quickReplyFindLocalReply);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
         }
     }
@@ -849,13 +855,38 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$sendQuickReplyTo$27(messagesStorage, quickReply, tL_messages_sendQuickReplyMessages);
+                this.f$0.lambda$sendQuickReplyTo$27(messagesStorage, quickReply, tL_messages_sendQuickReplyMessages);
             }
         });
     }
 
-    public void lambda$sendQuickReplyTo$27(org.telegram.messenger.MessagesStorage r7, final org.telegram.ui.Business.QuickRepliesController.QuickReply r8, final org.telegram.tgnet.TLRPC.TL_messages_sendQuickReplyMessages r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$sendQuickReplyTo$27(org.telegram.messenger.MessagesStorage, org.telegram.ui.Business.QuickRepliesController$QuickReply, org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages):void");
+    public void lambda$sendQuickReplyTo$27(MessagesStorage messagesStorage, final QuickReply quickReply, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages) {
+        final ArrayList arrayList = new ArrayList();
+        SQLiteCursor sQLiteCursorQueryFinalized = null;
+        try {
+            try {
+                sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT id FROM quick_replies_messages WHERE topic_id = ?", Integer.valueOf(quickReply.id));
+                while (sQLiteCursorQueryFinalized.next()) {
+                    arrayList.add(Integer.valueOf(sQLiteCursorQueryFinalized.intValue(0)));
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+                if (sQLiteCursorQueryFinalized != null) {
+                }
+            }
+            sQLiteCursorQueryFinalized.dispose();
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$sendQuickReplyTo$26(arrayList, quickReply, tL_messages_sendQuickReplyMessages);
+                }
+            });
+        } catch (Throwable th) {
+            if (sQLiteCursorQueryFinalized != null) {
+                sQLiteCursorQueryFinalized.dispose();
+            }
+            throw th;
+        }
     }
 
     public void lambda$sendQuickReplyTo$26(final ArrayList arrayList, QuickReply quickReply, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages) {
@@ -865,7 +896,7 @@ public class QuickRepliesController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getQuickReplyMessages, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    QuickRepliesController.this.lambda$sendQuickReplyTo$25(arrayList, tL_messages_sendQuickReplyMessages, tLObject, tL_error);
+                    this.f$0.lambda$sendQuickReplyTo$25(arrayList, tL_messages_sendQuickReplyMessages, tLObject, tL_error);
                 }
             });
         } else {
@@ -881,7 +912,7 @@ public class QuickRepliesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$sendQuickReplyTo$24(tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_error);
+                this.f$0.lambda$sendQuickReplyTo$24(tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_error);
             }
         });
     }

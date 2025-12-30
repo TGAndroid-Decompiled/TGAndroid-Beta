@@ -59,10 +59,10 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (StatisticPostInfoCell.this.postInfo != null && StatisticPostInfoCell.this.postInfo.isStory()) {
-                    float dp = AndroidUtilities.dp(1.0f);
-                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
+                    float fDp = AndroidUtilities.dp(1.0f);
+                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(fDp, fDp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
                     StatisticPostInfoCell.this.storyAvatarParams.drawSegments = false;
                     StatisticPostInfoCell.this.storyAvatarParams.animate = false;
                     StatisticPostInfoCell.this.storyAvatarParams.drawInside = true;
@@ -145,16 +145,16 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
         textView2.setTextColor(Theme.getColor(i2));
         textView3.setTextColor(Theme.getColor(i2));
         textView4.setTextColor(Theme.getColor(i2));
-        Drawable mutate = ContextCompat.getDrawable(context, R.drawable.mini_stats_likes).mutate();
-        DrawableCompat.setTint(mutate, Theme.getColor(i2));
-        Drawable mutate2 = ContextCompat.getDrawable(context, R.drawable.mini_stats_shares).mutate();
-        DrawableCompat.setTint(mutate2, Theme.getColor(i2));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(null, mutate, 0, AndroidUtilities.dp(1.0f));
-        combinedDrawable.setCustomSize(mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.mini_stats_likes).mutate();
+        DrawableCompat.setTint(drawableMutate, Theme.getColor(i2));
+        Drawable drawableMutate2 = ContextCompat.getDrawable(context, R.drawable.mini_stats_shares).mutate();
+        DrawableCompat.setTint(drawableMutate2, Theme.getColor(i2));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(null, drawableMutate, 0, AndroidUtilities.dp(1.0f));
+        combinedDrawable.setCustomSize(drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         textView4.setCompoundDrawablesWithIntrinsicBounds(combinedDrawable, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
-        CombinedDrawable combinedDrawable2 = new CombinedDrawable(null, mutate2, 0, AndroidUtilities.dp(1.0f));
-        combinedDrawable2.setCustomSize(mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        CombinedDrawable combinedDrawable2 = new CombinedDrawable(null, drawableMutate2, 0, AndroidUtilities.dp(1.0f));
+        combinedDrawable2.setCustomSize(drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         textView3.setCompoundDrawablesWithIntrinsicBounds(combinedDrawable2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         setWillNotDraw(false);
@@ -177,7 +177,7 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
     }
 
     public void setData(StatisticActivity.RecentPostInfo recentPostInfo, boolean z) {
-        CharSequence charSequence;
+        CharSequence string;
         this.postInfo = recentPostInfo;
         this.needDivider = !z;
         MessageObject messageObject = recentPostInfo.message;
@@ -206,17 +206,17 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
             this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
         }
         if (messageObject.isMusic()) {
-            charSequence = String.format("%s, %s", messageObject.getMusicTitle().trim(), messageObject.getMusicAuthor().trim());
+            string = String.format("%s, %s", messageObject.getMusicTitle().trim(), messageObject.getMusicAuthor().trim());
         } else if (messageObject.isStory()) {
-            charSequence = LocaleController.getString(R.string.Story);
+            string = LocaleController.getString(R.string.Story);
         } else {
-            CharSequence charSequence2 = messageObject.caption;
-            charSequence = charSequence2 != null ? charSequence2 : messageObject.messageText;
+            CharSequence charSequence = messageObject.caption;
+            string = charSequence != null ? charSequence : messageObject.messageText;
         }
-        if (charSequence == null) {
-            charSequence = "";
+        if (string == null) {
+            string = "";
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
         for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
             spannableStringBuilder.removeSpan(uRLSpan);
         }

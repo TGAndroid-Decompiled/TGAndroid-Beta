@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Partager avec</string>
     <string name="abc_shareactionprovider_share_with_application">Partager avec %s</string>
     <string name="abc_toolbar_collapse_description">Réduire</string>
-    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Mot de passe</string>
-    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Clé d\'accès</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Mot de passe</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Clé d\'accès</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Les mises à jour ont été désactivées</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d Mo sur %2$d Mo</string>
     <string name="appcenter_distribute_downloading_mandatory_update">Téléchargement de la mise à jour</string>

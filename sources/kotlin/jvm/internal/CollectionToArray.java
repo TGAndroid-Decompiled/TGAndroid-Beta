@@ -8,8 +8,8 @@ import java.util.Iterator;
 public abstract class CollectionToArray {
     private static final Object[] EMPTY = new Object[0];
 
-    public static final Object[] toArray(Collection collection, Object[] objArr) {
-        Object[] objArr2;
+    public static final Object[] toArray(Collection collection, Object[] objArr) throws NegativeArraySizeException {
+        Object[] objArrCopyOf;
         Intrinsics.checkNotNullParameter(collection, "collection");
         objArr.getClass();
         int size = collection.size();
@@ -30,18 +30,18 @@ public abstract class CollectionToArray {
             return objArr;
         }
         if (size <= objArr.length) {
-            objArr2 = objArr;
+            objArrCopyOf = objArr;
         } else {
-            Object newInstance = Array.newInstance(objArr.getClass().getComponentType(), size);
-            Intrinsics.checkNotNull(newInstance, "null cannot be cast to non-null type kotlin.Array<kotlin.Any?>");
-            objArr2 = (Object[]) newInstance;
+            Object objNewInstance = Array.newInstance(objArr.getClass().getComponentType(), size);
+            Intrinsics.checkNotNull(objNewInstance, "null cannot be cast to non-null type kotlin.Array<kotlin.Any?>");
+            objArrCopyOf = (Object[]) objNewInstance;
         }
         while (true) {
             int i2 = i + 1;
-            objArr2[i] = it.next();
-            if (i2 >= objArr2.length) {
+            objArrCopyOf[i] = it.next();
+            if (i2 >= objArrCopyOf.length) {
                 if (!it.hasNext()) {
-                    return objArr2;
+                    return objArrCopyOf;
                 }
                 int i3 = ((i2 * 3) + 1) >>> 1;
                 if (i3 <= i2) {
@@ -50,16 +50,16 @@ public abstract class CollectionToArray {
                         throw new OutOfMemoryError();
                     }
                 }
-                objArr2 = Arrays.copyOf(objArr2, i3);
-                Intrinsics.checkNotNullExpressionValue(objArr2, "copyOf(...)");
+                objArrCopyOf = Arrays.copyOf(objArrCopyOf, i3);
+                Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
             } else if (!it.hasNext()) {
-                if (objArr2 == objArr) {
+                if (objArrCopyOf == objArr) {
                     objArr[i2] = null;
                     return objArr;
                 }
-                Object[] copyOf = Arrays.copyOf(objArr2, i2);
-                Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-                return copyOf;
+                Object[] objArrCopyOf2 = Arrays.copyOf(objArrCopyOf, i2);
+                Intrinsics.checkNotNullExpressionValue(objArrCopyOf2, "copyOf(...)");
+                return objArrCopyOf2;
             }
             i = i2;
         }
@@ -71,14 +71,14 @@ public abstract class CollectionToArray {
         if (size != 0) {
             Iterator it = collection.iterator();
             if (it.hasNext()) {
-                Object[] objArr = new Object[size];
+                Object[] objArrCopyOf = new Object[size];
                 int i = 0;
                 while (true) {
                     int i2 = i + 1;
-                    objArr[i] = it.next();
-                    if (i2 >= objArr.length) {
+                    objArrCopyOf[i] = it.next();
+                    if (i2 >= objArrCopyOf.length) {
                         if (!it.hasNext()) {
-                            return objArr;
+                            return objArrCopyOf;
                         }
                         int i3 = ((i2 * 3) + 1) >>> 1;
                         if (i3 <= i2) {
@@ -87,12 +87,12 @@ public abstract class CollectionToArray {
                                 throw new OutOfMemoryError();
                             }
                         }
-                        objArr = Arrays.copyOf(objArr, i3);
-                        Intrinsics.checkNotNullExpressionValue(objArr, "copyOf(...)");
+                        objArrCopyOf = Arrays.copyOf(objArrCopyOf, i3);
+                        Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
                     } else if (!it.hasNext()) {
-                        Object[] copyOf = Arrays.copyOf(objArr, i2);
-                        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
-                        return copyOf;
+                        Object[] objArrCopyOf2 = Arrays.copyOf(objArrCopyOf, i2);
+                        Intrinsics.checkNotNullExpressionValue(objArrCopyOf2, "copyOf(...)");
+                        return objArrCopyOf2;
                     }
                     i = i2;
                 }

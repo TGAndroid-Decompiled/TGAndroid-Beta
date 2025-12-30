@@ -66,7 +66,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
             setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    StickersArchiveAlert.this.lambda$new$1(alertDialog, i);
+                    this.f$0.lambda$new$1(alertDialog, i);
                 }
             });
         }

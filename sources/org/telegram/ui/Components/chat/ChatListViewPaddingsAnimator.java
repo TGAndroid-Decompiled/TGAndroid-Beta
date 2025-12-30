@@ -14,10 +14,7 @@ public class ChatListViewPaddingsAnimator {
 
     public void setPaddings(int i, float f, int i2, boolean z) {
         int i3 = this.currentAdditionalHeight;
-        if (i3 != 0) {
-            this.currentAdditionalHeight = 0;
-            this.recyclerView.requestLayout();
-        } else if (i3 < 0) {
+        if (i3 != 0 || i3 < 0) {
             this.currentAdditionalHeight = 0;
             this.recyclerView.requestLayout();
         }
@@ -32,7 +29,7 @@ public class ChatListViewPaddingsAnimator {
             AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatListViewPaddingsAnimator.this.lambda$setPaddings$0(i5);
+                    this.f$0.lambda$setPaddings$0(i5);
                 }
             });
         }

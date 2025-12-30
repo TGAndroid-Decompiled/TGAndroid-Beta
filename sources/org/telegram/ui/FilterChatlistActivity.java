@@ -46,7 +46,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -114,7 +113,7 @@ public class FilterChatlistActivity extends BaseFragment {
     private Runnable enableDoneLoading = new Runnable() {
         @Override
         public final void run() {
-            FilterChatlistActivity.this.lambda$new$7();
+            this.f$0.lambda$new$7();
         }
     };
     private float doneButtonAlpha = 1.0f;
@@ -163,13 +162,13 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenu createMenu = this.actionBar.createMenu();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
-        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
+        this.doneButton = actionBarMenuCreateMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDoneButton();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
@@ -191,7 +190,7 @@ public class FilterChatlistActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                FilterChatlistActivity.this.lambda$createView$0(view, i2);
+                this.f$0.lambda$createView$0(view, i2);
             }
         });
         getMessagesController().updateFilterDialogs(this.filter);
@@ -208,11 +207,11 @@ public class FilterChatlistActivity extends BaseFragment {
             TLRPC.Dialog dialog = this.filter.dialogs.get(i3);
             if (dialog != null && !DialogObject.isEncryptedDialog(dialog.id) && !this.peers.contains(Long.valueOf(dialog.id))) {
                 long j = dialog.id;
-                boolean z = j < 0;
+                boolean zCanAddToFolder = j < 0;
                 if (j < 0) {
-                    z = FilterCreateActivity.canAddToFolder(getMessagesController().getChat(Long.valueOf(-dialog.id)));
+                    zCanAddToFolder = FilterCreateActivity.canAddToFolder(getMessagesController().getChat(Long.valueOf(-dialog.id)));
                 }
-                if (z) {
+                if (zCanAddToFolder) {
                     this.peers.add(Long.valueOf(dialog.id));
                     this.allowedPeers.add(Long.valueOf(dialog.id));
                 }
@@ -230,10 +229,10 @@ public class FilterChatlistActivity extends BaseFragment {
 
     public void lambda$createView$0(View view, int i) {
         String string;
-        String str;
+        String string2;
         if (getParentActivity() != null && (view instanceof GroupCreateUserCell)) {
             Long l = (Long) this.peers.get(i - this.chatsStartRow);
-            long longValue = l.longValue();
+            long jLongValue = l.longValue();
             if (this.selectedPeers.contains(l)) {
                 this.selectedPeers.remove(l);
                 this.peersChanged = true;
@@ -254,16 +253,16 @@ public class FilterChatlistActivity extends BaseFragment {
                 AndroidUtilities.shakeViewSpring(view, i2);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 ArrayList arrayList = new ArrayList();
-                if (longValue >= 0) {
+                if (jLongValue >= 0) {
                     arrayList.add(getMessagesController().getUser(l));
                     TLRPC.User user = getMessagesController().getUser(l);
                     if (user != null && user.bot) {
-                        str = LocaleController.getString(R.string.FilterInviteBotToast);
+                        string2 = LocaleController.getString(R.string.FilterInviteBotToast);
                     } else {
-                        str = LocaleController.getString(R.string.FilterInviteUserToast);
+                        string2 = LocaleController.getString(R.string.FilterInviteUserToast);
                     }
                 } else {
-                    TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-longValue));
+                    TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-jLongValue));
                     if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                         if (ChatObject.isPublic(chat)) {
                             string = LocaleController.getString(R.string.FilterInviteChannelToast);
@@ -276,12 +275,12 @@ public class FilterChatlistActivity extends BaseFragment {
                         string = LocaleController.getString(R.string.FilterInvitePrivateGroupToast);
                     }
                     arrayList.add(chat);
-                    str = string;
+                    string2 = string;
                 }
-                if (this.lastClickedDialogId != longValue || System.currentTimeMillis() - this.lastClicked > 1500) {
-                    this.lastClickedDialogId = longValue;
+                if (this.lastClickedDialogId != jLongValue || System.currentTimeMillis() - this.lastClicked > 1500) {
+                    this.lastClickedDialogId = jLongValue;
                     this.lastClicked = System.currentTimeMillis();
-                    BulletinFactory.of(this).createChatsBulletin(arrayList, str, null).show();
+                    BulletinFactory.of(this).createChatsBulletin(arrayList, string2, null).show();
                     return;
                 }
                 return;
@@ -299,14 +298,16 @@ public class FilterChatlistActivity extends BaseFragment {
         }
         boolean z = true;
         boolean z2 = this.selectedPeers.size() != this.invite.peers.size();
-        if (!z2) {
+        if (z2) {
+            z = z2;
+        } else {
             for (int i = 0; i < this.invite.peers.size(); i++) {
                 if (!this.selectedPeers.contains(Long.valueOf(DialogObject.getPeerDialogId(this.invite.peers.get(i))))) {
                     break;
                 }
             }
+            z = z2;
         }
-        z = z2;
         if (z) {
             return;
         }
@@ -347,7 +348,7 @@ public class FilterChatlistActivity extends BaseFragment {
         getConnectionsManager().sendRequest(tL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterChatlistActivity.this.lambda$save$2(tLObject, tL_error);
+                this.f$0.lambda$save$2(tLObject, tL_error);
             }
         });
         Utilities.Callback callback = this.onEdit;
@@ -360,7 +361,7 @@ public class FilterChatlistActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilterChatlistActivity.this.lambda$save$1(tL_error);
+                this.f$0.lambda$save$1(tL_error);
             }
         });
     }
@@ -398,7 +399,7 @@ public class FilterChatlistActivity extends BaseFragment {
         this.savingTitleReqId = getConnectionsManager().sendRequest(tL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterChatlistActivity.this.lambda$saveTitle$4(tLObject, tL_error);
+                this.f$0.lambda$saveTitle$4(tLObject, tL_error);
             }
         });
         Utilities.Callback callback = this.onEdit;
@@ -411,7 +412,7 @@ public class FilterChatlistActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilterChatlistActivity.this.lambda$saveTitle$3(tL_error);
+                this.f$0.lambda$saveTitle$3(tL_error);
             }
         });
     }
@@ -456,7 +457,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.headerCountCell.setAction(LocaleController.getString(!z2 ? R.string.SelectAll : R.string.DeselectAll), new Runnable() {
                 @Override
                 public final void run() {
-                    FilterChatlistActivity.this.lambda$updateHeaderCell$5(z2);
+                    this.f$0.lambda$updateHeaderCell$5(z2);
                 }
             });
         } else {
@@ -517,34 +518,34 @@ public class FilterChatlistActivity extends BaseFragment {
         return str.substring(str.lastIndexOf(47) + 1);
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         ListAdapter() {
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View headerCell;
             if (i == 0) {
-                view = new HintInnerCell(FilterChatlistActivity.this.getContext(), R.raw.folder_share);
+                headerCell = new HintInnerCell(FilterChatlistActivity.this.getContext(), R.raw.folder_share);
             } else if (i == 2) {
-                view = new TextInfoPrivacyCell(FilterChatlistActivity.this.getContext());
+                headerCell = new TextInfoPrivacyCell(FilterChatlistActivity.this.getContext());
             } else if (i == 3) {
-                view = new AnonymousClass1(FilterChatlistActivity.this.getContext(), FilterChatlistActivity.this);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                headerCell = new AnonymousClass1(FilterChatlistActivity.this.getContext(), FilterChatlistActivity.this);
+                headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
-                view = new GroupCreateUserCell(FilterChatlistActivity.this.getContext(), 1, 0, false);
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                headerCell = new GroupCreateUserCell(FilterChatlistActivity.this.getContext(), 1, 0, false);
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 5) {
-                view = new FolderBottomSheet.HeaderCell(FilterChatlistActivity.this.getContext());
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                headerCell = new FolderBottomSheet.HeaderCell(FilterChatlistActivity.this.getContext());
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else {
-                view = null;
+                headerCell = null;
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(headerCell);
         }
 
-        public class AnonymousClass1 extends InviteLinkCell {
+        class AnonymousClass1 extends InviteLinkCell {
             AnonymousClass1(Context context, BaseFragment baseFragment) {
                 super(context, baseFragment);
             }
@@ -562,7 +563,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 FilterChatlistActivity.this.getConnectionsManager().sendRequest(tL_chatlists_deleteExportedInvite, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$deleteLink$3(alertDialog, tLObject, tL_error);
+                        this.f$0.lambda$deleteLink$3(alertDialog, tLObject, tL_error);
                     }
                 });
             }
@@ -571,7 +572,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$deleteLink$2(alertDialog);
+                        this.f$0.lambda$deleteLink$2(alertDialog);
                     }
                 });
             }
@@ -598,7 +599,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                        AndroidUtilities.hideKeyboard(editTextBoldCursor);
                     }
                 });
                 LinearLayout linearLayout = new LinearLayout(getContext());
@@ -623,9 +624,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                        boolean lambda$editname$5;
-                        lambda$editname$5 = FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$5(AlertDialog.Builder.this, textView, i2, keyEvent);
-                        return lambda$editname$5;
+                        return FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$5(builder, textView, i2, keyEvent);
                     }
                 });
                 editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -660,24 +659,24 @@ public class FilterChatlistActivity extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$editname$6(editTextBoldCursor, builder, alertDialog, i2);
+                        this.f$0.lambda$editname$6(editTextBoldCursor, builder, alertDialog, i2);
                     }
                 });
-                AlertDialog create = builder.create();
-                create.setOnShowListener(new DialogInterface.OnShowListener() {
+                AlertDialog alertDialogCreate = builder.create();
+                alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
                     public final void onShow(DialogInterface dialogInterface) {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$8(EditTextBoldCursor.this, dialogInterface);
+                        FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$8(editTextBoldCursor, dialogInterface);
                     }
                 });
-                create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                        AndroidUtilities.hideKeyboard(editTextBoldCursor);
                     }
                 });
-                create.show();
-                create.setTextColor(Theme.getColor(i));
+                alertDialogCreate.show();
+                alertDialogCreate.setTextColor(Theme.getColor(i));
                 editTextBoldCursor.requestFocus();
             }
 
@@ -700,7 +699,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$7(EditTextBoldCursor.this);
+                        FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$7(editTextBoldCursor);
                     }
                 });
             }
@@ -712,122 +711,8 @@ public class FilterChatlistActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String string;
-            TLRPC.Chat chat;
-            TLRPC.Chat chat2;
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 0) {
-                FilterChatlistActivity.this.hintCountCell = (HintInnerCell) viewHolder.itemView;
-                FilterChatlistActivity.this.updateHintCell(false);
-                return;
-            }
-            if (itemViewType == 2) {
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(FilterChatlistActivity.this.getContext(), i == FilterChatlistActivity.this.chatsSectionRow ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                if (i == FilterChatlistActivity.this.chatsSectionRow) {
-                    textInfoPrivacyCell.setFixedSize(0);
-                    FilterChatlistActivity filterChatlistActivity = FilterChatlistActivity.this;
-                    if (filterChatlistActivity.invite == null || filterChatlistActivity.allowedPeers.isEmpty()) {
-                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.FilterInviteHintNo));
-                        return;
-                    } else {
-                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.FilterInviteHint));
-                        return;
-                    }
-                }
-                textInfoPrivacyCell.setFixedSize(12);
-                return;
-            }
-            if (itemViewType == 3) {
-                InviteLinkCell inviteLinkCell = (InviteLinkCell) viewHolder.itemView;
-                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
-                inviteLinkCell.setLink(tL_exportedChatlistInvite != null ? tL_exportedChatlistInvite.url : null, false);
-                return;
-            }
-            if (itemViewType != 4) {
-                if (itemViewType == 5) {
-                    FolderBottomSheet.HeaderCell headerCell = (FolderBottomSheet.HeaderCell) viewHolder.itemView;
-                    if (headerCell == FilterChatlistActivity.this.headerCountCell) {
-                        FilterChatlistActivity.this.headerCountCell = null;
-                    }
-                    if (i != FilterChatlistActivity.this.linkHeaderRow) {
-                        FilterChatlistActivity.this.headerCountCell = headerCell;
-                        FilterChatlistActivity filterChatlistActivity2 = FilterChatlistActivity.this;
-                        if (filterChatlistActivity2.invite != null && !filterChatlistActivity2.allowedPeers.isEmpty()) {
-                            FilterChatlistActivity.this.updateHeaderCell(false);
-                            return;
-                        } else {
-                            headerCell.setText(LocaleController.getString(R.string.FilterInviteHeaderChatsNo), false);
-                            headerCell.setAction("", null);
-                            return;
-                        }
-                    }
-                    headerCell.setText(LocaleController.getString(R.string.InviteLink), false);
-                    headerCell.setAction("", null);
-                    return;
-                }
-                return;
-            }
-            GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
-            Long l = (Long) FilterChatlistActivity.this.peers.get(i - FilterChatlistActivity.this.chatsStartRow);
-            long longValue = l.longValue();
-            if (longValue >= 0) {
-                TLRPC.User user = FilterChatlistActivity.this.getMessagesController().getUser(l);
-                chat = user;
-                if (user != 0) {
-                    r3 = UserObject.getUserName(user);
-                    string = null;
-                    chat2 = user;
-                }
-                string = null;
-                chat2 = chat;
-            } else {
-                TLRPC.Chat chat3 = FilterChatlistActivity.this.getMessagesController().getChat(Long.valueOf(-longValue));
-                chat = chat3;
-                if (chat3 != null) {
-                    r3 = chat3.title;
-                    if (chat3.participants_count != 0) {
-                        if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
-                            string = LocaleController.formatPluralStringComma("Subscribers", chat3.participants_count);
-                            chat2 = chat3;
-                        } else {
-                            string = LocaleController.formatPluralStringComma("Members", chat3.participants_count);
-                            chat2 = chat3;
-                        }
-                    } else if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
-                        string = LocaleController.getString("ChannelPublic");
-                        chat2 = chat3;
-                    } else {
-                        string = LocaleController.getString("MegaPublic");
-                        chat2 = chat3;
-                    }
-                }
-                string = null;
-                chat2 = chat;
-            }
-            if (FilterChatlistActivity.this.allowedPeers.contains(l)) {
-                groupCreateUserCell.setForbiddenCheck(false);
-                groupCreateUserCell.setChecked(FilterChatlistActivity.this.selectedPeers.contains(l), false);
-            } else {
-                groupCreateUserCell.setForbiddenCheck(true);
-                groupCreateUserCell.setChecked(false, false);
-                if (chat2 instanceof TLRPC.User) {
-                    if (((TLRPC.User) chat2).bot) {
-                        string = LocaleController.getString(R.string.FilterInviteBot);
-                    } else {
-                        string = LocaleController.getString(R.string.FilterInviteUser);
-                    }
-                } else if (chat2 instanceof TLRPC.Chat) {
-                    if (ChatObject.isChannelAndNotMegaGroup(chat2)) {
-                        string = LocaleController.getString(R.string.FilterInviteChannel);
-                    } else {
-                        string = LocaleController.getString(R.string.FilterInviteGroup);
-                    }
-                }
-            }
-            groupCreateUserCell.setTag(l);
-            groupCreateUserCell.setObject(chat2, r3, string);
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r10, int r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilterChatlistActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
         @Override
@@ -870,7 +755,7 @@ public class FilterChatlistActivity extends BaseFragment {
         headerCell.setAction(LocaleController.getString(this.selectedPeers.size() >= Math.min(getMaxChats(), this.allowedPeers.size()) ? R.string.DeselectAll : R.string.SelectAll), new Runnable() {
             @Override
             public final void run() {
-                FilterChatlistActivity.this.lambda$deselectAll$6(headerCell, z);
+                this.f$0.lambda$deselectAll$6(headerCell, z);
             }
         });
         this.peersChanged = true;
@@ -951,15 +836,15 @@ public class FilterChatlistActivity extends BaseFragment {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
-            this.doneButtonDrawableAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.doneButtonDrawable.getProgress(), z ? 1.0f : 0.0f);
+            this.doneButtonDrawableAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    FilterChatlistActivity.this.lambda$updateDoneProgress$8(valueAnimator2);
+                    this.f$0.lambda$updateDoneProgress$8(valueAnimator2);
                 }
             });
-            this.doneButtonDrawableAnimator.setDuration(Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f);
+            this.doneButtonDrawableAnimator.setDuration((long) (Math.abs(this.doneButtonDrawable.getProgress() - (z ? 1.0f : 0.0f)) * 200.0f));
             this.doneButtonDrawableAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.doneButtonDrawableAnimator.start();
         }
@@ -974,9 +859,9 @@ public class FilterChatlistActivity extends BaseFragment {
         float f = this.peersChanged ? !this.selectedPeers.isEmpty() ? 1.0f : 0.5f : 0.0f;
         if (Math.abs(this.doneButtonAlpha - f) > 0.1f) {
             this.doneButton.clearAnimation();
-            ViewPropertyAnimator animate = this.doneButton.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.doneButton.animate();
             this.doneButtonAlpha = f;
-            animate.alpha(f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            viewPropertyAnimatorAnimate.alpha(f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         }
     }
 
@@ -1005,13 +890,13 @@ public class FilterChatlistActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                FilterChatlistActivity.this.lambda$checkDiscard$9(alertDialog, i);
+                this.f$0.lambda$checkDiscard$9(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                FilterChatlistActivity.this.lambda$checkDiscard$10(alertDialog, i);
+                this.f$0.lambda$checkDiscard$10(alertDialog, i);
             }
         });
         showDialog(builder.create());
@@ -1049,7 +934,7 @@ public class FilterChatlistActivity extends BaseFragment {
         protected void generate() {
         }
 
-        public class ButtonsBox extends FrameLayout {
+        class ButtonsBox extends FrameLayout {
             private Paint paint;
             private Path path;
             private float[] radii;
@@ -1108,13 +993,13 @@ public class FilterChatlistActivity extends BaseFragment {
             this.parentFragment = baseFragment;
             FrameLayout frameLayout = new FrameLayout(context);
             this.linkBox = frameLayout;
-            int dp = AndroidUtilities.dp(8.0f);
+            int iDp = AndroidUtilities.dp(8.0f);
             int i = Theme.key_graySection;
-            frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), Theme.blendOver(Theme.getColor(i), Theme.getColor(Theme.key_listSelector))));
+            frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, Theme.getColor(i), Theme.blendOver(Theme.getColor(i), Theme.getColor(Theme.key_listSelector))));
             this.linkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             addView(this.linkBox, LayoutHelper.createFrame(-1, 48.0f, 55, 22.0f, 9.0f, 22.0f, 0.0f));
@@ -1149,7 +1034,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.optionsIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$new$2(view);
+                    this.f$0.lambda$new$2(view);
                 }
             });
             this.linkBox.addView(this.optionsIcon, LayoutHelper.createFrame(40, 40.0f, 21, 4.0f, 4.0f, 4.0f, 4.0f));
@@ -1179,7 +1064,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.copyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$new$3(view);
+                    this.f$0.lambda$new$3(view);
                 }
             });
             this.copyButton.setAlpha(0.0f);
@@ -1206,7 +1091,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$new$4(view);
+                    this.f$0.lambda$new$4(view);
                 }
             });
             this.shareButton.setAlpha(0.0f);
@@ -1223,7 +1108,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.generateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$new$5(view);
+                    this.f$0.lambda$new$5(view);
                 }
             });
             this.generateButton.setAlpha(1.0f);
@@ -1241,7 +1126,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 postDelayed(new Runnable() {
                     @Override
                     public final void run() {
-                        FilterChatlistActivity.InviteLinkCell.this.lambda$new$1();
+                        this.f$0.lambda$new$1();
                     }
                 }, 180L);
             }
@@ -1286,12 +1171,12 @@ public class FilterChatlistActivity extends BaseFragment {
                     this.optionsIcon.setVisibility(0);
                     this.copyButton.setVisibility(0);
                     this.shareButton.setVisibility(0);
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.changeAlpha, str != null ? 1.0f : 0.0f);
-                    this.changeAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.changeAlpha, str != null ? 1.0f : 0.0f);
+                    this.changeAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterChatlistActivity.InviteLinkCell.this.lambda$setLink$6(valueAnimator2);
+                            this.f$0.lambda$setLink$6(valueAnimator2);
                         }
                     });
                     this.changeAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1362,7 +1247,7 @@ public class FilterChatlistActivity extends BaseFragment {
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$options$7(view);
+                    this.f$0.lambda$options$7(view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), false, false);
@@ -1371,7 +1256,7 @@ public class FilterChatlistActivity extends BaseFragment {
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$options$8(view);
+                    this.f$0.lambda$options$8(view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), false, true);
@@ -1382,14 +1267,14 @@ public class FilterChatlistActivity extends BaseFragment {
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.this.lambda$options$9(view);
+                    this.f$0.lambda$options$9(view);
                 }
             });
             actionBarPopupWindowLayout.addView((View) actionBarMenuSubItem3, LayoutHelper.createLinear(-1, 48));
             final FrameLayout overlayContainerView = this.parentFragment.getParentLayout().getOverlayContainerView();
             if (overlayContainerView != null) {
                 getPointOnScreen(this.linkBox, overlayContainerView, this.point);
-                float f = this.point[1];
+                float paddingTop = this.point[1];
                 final View view = new View(getContext()) {
                     @Override
                     protected void onDraw(Canvas canvas) {
@@ -1415,7 +1300,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 };
                 overlayContainerView.getViewTreeObserver().addOnPreDrawListener(onPreDrawListener);
                 overlayContainerView.addView(view, LayoutHelper.createFrame(-1, -1.0f));
-                float f2 = 0.0f;
+                float paddingLeft = 0.0f;
                 view.setAlpha(0.0f);
                 view.animate().alpha(1.0f).setDuration(150L);
                 actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredHeight(), 0));
@@ -1447,14 +1332,14 @@ public class FilterChatlistActivity extends BaseFragment {
                 actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                     @Override
                     public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                        FilterChatlistActivity.InviteLinkCell.this.lambda$options$10(keyEvent);
+                        this.f$0.lambda$options$10(keyEvent);
                     }
                 });
                 if (AndroidUtilities.isTablet()) {
-                    f += overlayContainerView.getPaddingTop();
-                    f2 = 0.0f - overlayContainerView.getPaddingLeft();
+                    paddingTop += overlayContainerView.getPaddingTop();
+                    paddingLeft = 0.0f - overlayContainerView.getPaddingLeft();
                 }
-                this.actionBarPopupWindow.showAtLocation(overlayContainerView, 0, (int) (((overlayContainerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + overlayContainerView.getX() + f2), (int) (f + this.linkBox.getMeasuredHeight() + overlayContainerView.getY()));
+                this.actionBarPopupWindow.showAtLocation(overlayContainerView, 0, (int) (((overlayContainerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + overlayContainerView.getX() + paddingLeft), (int) (paddingTop + this.linkBox.getMeasuredHeight() + overlayContainerView.getY()));
             }
         }
 
@@ -1521,13 +1406,13 @@ public class FilterChatlistActivity extends BaseFragment {
         }
 
         public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-            float f = 0.0f;
-            float f2 = 0.0f;
+            float x = 0.0f;
+            float y = 0.0f;
             while (frameLayout != frameLayout2) {
-                f2 += frameLayout.getY();
-                f += frameLayout.getX();
+                y += frameLayout.getY();
+                x += frameLayout.getX();
                 if (frameLayout instanceof ScrollView) {
-                    f2 -= frameLayout.getScrollY();
+                    y -= frameLayout.getScrollY();
                 }
                 if (!(frameLayout.getParent() instanceof View)) {
                     break;
@@ -1537,8 +1422,8 @@ public class FilterChatlistActivity extends BaseFragment {
                     return;
                 }
             }
-            fArr[0] = f - frameLayout2.getPaddingLeft();
-            fArr[1] = f2 - frameLayout2.getPaddingTop();
+            fArr[0] = x - frameLayout2.getPaddingLeft();
+            fArr[1] = y - frameLayout2.getPaddingTop();
         }
     }
 }

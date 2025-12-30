@@ -55,12 +55,12 @@ public class MemberRequestCell extends FrameLayout {
         simpleTextView2.setTextSize(14);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
-        int dp = AndroidUtilities.dp(17.0f);
+        int iDp = AndroidUtilities.dp(17.0f);
         TextView textView = new TextView(getContext());
         textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
-        textView.setPadding(dp, 0, dp, 0);
+        textView.setPadding(iDp, 0, iDp, 0);
         textView.setText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView.setTextSize(14.0f);
@@ -68,17 +68,17 @@ public class MemberRequestCell extends FrameLayout {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MemberRequestCell.this.lambda$new$0(onClickListener, view);
+                this.f$0.lambda$new$0(onClickListener, view);
             }
         });
         boolean z4 = LocaleController.isRTL;
         addView(textView, LayoutHelper.createFrame(-2, 32.0f, z4 ? 5 : 3, z4 ? 0.0f : 73.0f, 62.0f, z4 ? 73.0f : 0.0f, 0.0f));
-        float measureText = textView.getPaint().measureText(textView.getText().toString()) + (dp * 2);
+        float fMeasureText = textView.getPaint().measureText(textView.getText().toString()) + (iDp * 2);
         TextView textView2 = new TextView(getContext());
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
-        textView2.setPadding(dp, 0, dp, 0);
+        textView2.setPadding(iDp, 0, iDp, 0);
         textView2.setText(LocaleController.getString(R.string.Dismiss));
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
         textView2.setTextSize(14.0f);
@@ -86,13 +86,13 @@ public class MemberRequestCell extends FrameLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MemberRequestCell.this.lambda$new$1(onClickListener, view);
+                this.f$0.lambda$new$1(onClickListener, view);
             }
         });
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, AndroidUtilities.dp(32.0f), LocaleController.isRTL ? 5 : 3);
         layoutParams.topMargin = AndroidUtilities.dp(62.0f);
-        layoutParams.leftMargin = LocaleController.isRTL ? 0 : (int) (AndroidUtilities.dp(79.0f) + measureText);
-        layoutParams.rightMargin = LocaleController.isRTL ? (int) (measureText + AndroidUtilities.dp(79.0f)) : 0;
+        layoutParams.leftMargin = LocaleController.isRTL ? 0 : (int) (AndroidUtilities.dp(79.0f) + fMeasureText);
+        layoutParams.rightMargin = LocaleController.isRTL ? (int) (fMeasureText + AndroidUtilities.dp(79.0f)) : 0;
         addView(textView2, layoutParams);
     }
 
@@ -120,19 +120,19 @@ public class MemberRequestCell extends FrameLayout {
         this.avatarDrawable.setInfo(user);
         this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
         this.nameTextView.setText(UserObject.getUserName(user));
-        String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
+        String dateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
         if (tL_chatInviteImporter.via_chatlist) {
             this.statusTextView.setText(LocaleController.getString(R.string.JoinedViaFolder));
             return;
         }
         long j = tL_chatInviteImporter.approved_by;
         if (j == 0) {
-            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio));
+            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, dateAudio));
             return;
         }
         TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j);
         if (user2 != null) {
-            this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), formatDateAudio));
+            this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), dateAudio));
         } else {
             this.statusTextView.setText("");
         }

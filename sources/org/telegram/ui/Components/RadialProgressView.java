@@ -103,12 +103,12 @@ public class RadialProgressView extends View {
     }
 
     private void updateAnimation() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
         if (j > 17) {
             j = 17;
         }
-        this.lastUpdateTime = currentTimeMillis;
+        this.lastUpdateTime = jCurrentTimeMillis;
         updateAnimation(j);
     }
 
@@ -139,7 +139,7 @@ public class RadialProgressView extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
         RectF rectF = this.cicleRect;
         float f = this.radOffset;

@@ -39,7 +39,7 @@ public class AppGlobalConfig {
     public final ConfigLong tonSuggestedPostAmountMin = ofLong("ton_suggested_post_amount_min", 10000000);
     public final ConfigLong tonSuggestedPostAmountMax = ofLong("ton_suggested_post_amount_max", 10000000000000L);
 
-    public interface ConfigInternal {
+    private interface ConfigInternal {
         boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue);
 
         void load(SharedPreferences sharedPreferences);
@@ -73,15 +73,15 @@ public class AppGlobalConfig {
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
         int size = tL_jsonObject.value.size();
-        boolean z = false;
+        boolean zApply = false;
         for (int i = 0; i < size; i++) {
             TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
             ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
             if (configInternal != null) {
-                z |= configInternal.apply(editor, tL_jsonObjectValue.value);
+                zApply |= configInternal.apply(editor, tL_jsonObjectValue.value);
             }
         }
-        return z;
+        return zApply;
     }
 
     public void load(SharedPreferences sharedPreferences) {
@@ -106,7 +106,7 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        public static class Internal implements ConfigInternal {
+        private static class Internal implements ConfigInternal {
             private final int defaultValue;
             private final String name;
             private int value;
@@ -149,7 +149,7 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        public static class Internal implements ConfigInternal {
+        private static class Internal implements ConfigInternal {
             private final long defaultValue;
             private final String name;
             private long value;
@@ -192,7 +192,7 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        public static class Internal implements ConfigInternal {
+        private static class Internal implements ConfigInternal {
             private final double defaultValue;
             private final String name;
             private double value;
@@ -238,7 +238,7 @@ public class AppGlobalConfig {
             return TextUtils.equals(get(), str);
         }
 
-        public static class Internal implements ConfigInternal {
+        private static class Internal implements ConfigInternal {
             private final String defaultValue;
             private final String name;
             private String value;
@@ -281,7 +281,7 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        public static class Internal implements ConfigInternal {
+        private static class Internal implements ConfigInternal {
             private final boolean defaultValue;
             private final String name;
             private boolean value;

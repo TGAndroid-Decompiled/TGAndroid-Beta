@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
+import org.telegram.ui.Components.TableLayout;
 
 public class Vector<T extends TLObject> extends TLObject {
     public static final int constructor = 481674261;
@@ -32,8 +33,8 @@ public class Vector<T extends TLObject> extends TLObject {
 
     @Override
     public void readParams(InputSerializedData inputSerializedData, boolean z) {
-        int readInt32 = inputSerializedData.readInt32(z);
-        for (int i = 0; i < readInt32; i++) {
+        int int32 = inputSerializedData.readInt32(z);
+        for (int i = 0; i < int32; i++) {
             this.objects.add(this.itemDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z), z));
         }
     }
@@ -157,7 +158,7 @@ public class Vector<T extends TLObject> extends TLObject {
         serialize(outputSerializedData, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                OutputSerializedData.this.writeInt64(((Long) obj).longValue());
+                outputSerializedData.writeInt64(((Long) obj).longValue());
             }
         }, arrayList);
     }
@@ -167,20 +168,20 @@ public class Vector<T extends TLObject> extends TLObject {
         serialize(outputSerializedData, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                OutputSerializedData.this.writeString((String) obj);
+                outputSerializedData.writeString((String) obj);
             }
         }, arrayList);
     }
 
     public static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, Utilities.CallbackReturn<Boolean, T> callbackReturn, boolean z) {
-        int readInt32 = inputSerializedData.readInt32(z);
-        if (readInt32 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z);
+        int int32 = inputSerializedData.readInt32(z);
+        if (int32 != 481674261) {
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", int32, z);
             return new ArrayList<>();
         }
-        int readInt322 = inputSerializedData.readInt32(z);
-        ArrayList<T> arrayList = new ArrayList<>(readInt322);
-        for (int i = 0; i < readInt322; i++) {
+        int int322 = inputSerializedData.readInt32(z);
+        ArrayList<T> arrayList = new ArrayList<>(int322);
+        for (int i = 0; i < int322; i++) {
             arrayList.add(callbackReturn.run(Boolean.valueOf(z)));
         }
         return arrayList;
@@ -191,7 +192,7 @@ public class Vector<T extends TLObject> extends TLObject {
         return deserialize(inputSerializedData, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return Integer.valueOf(InputSerializedData.this.readInt32(((Boolean) obj).booleanValue()));
+                return Integer.valueOf(inputSerializedData.readInt32(((Boolean) obj).booleanValue()));
             }
         }, z);
     }
@@ -201,7 +202,7 @@ public class Vector<T extends TLObject> extends TLObject {
         return deserialize(inputSerializedData, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return Long.valueOf(InputSerializedData.this.readInt64(((Boolean) obj).booleanValue()));
+                return Long.valueOf(inputSerializedData.readInt64(((Boolean) obj).booleanValue()));
             }
         }, z);
     }
@@ -211,7 +212,7 @@ public class Vector<T extends TLObject> extends TLObject {
         return deserialize(inputSerializedData, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return InputSerializedData.this.readString(((Boolean) obj).booleanValue());
+                return inputSerializedData.readString(((Boolean) obj).booleanValue());
             }
         }, z);
     }
@@ -221,25 +222,25 @@ public class Vector<T extends TLObject> extends TLObject {
         return deserialize(inputSerializedData, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return InputSerializedData.this.readByteArray(((Boolean) obj).booleanValue());
+                return inputSerializedData.readByteArray(((Boolean) obj).booleanValue());
             }
         }, z);
     }
 
     public static <T extends TLObject> ArrayList<T> deserialize(InputSerializedData inputSerializedData, TLDeserializer<T> tLDeserializer, boolean z) {
-        int readInt32 = inputSerializedData.readInt32(z);
-        if (readInt32 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z);
+        int int32 = inputSerializedData.readInt32(z);
+        if (int32 != 481674261) {
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", int32, z);
             return new ArrayList<>();
         }
-        int readInt322 = inputSerializedData.readInt32(z);
-        ArrayList<T> arrayList = new ArrayList<>(readInt322);
-        for (int i = 0; i < readInt322; i++) {
-            T deserialize = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (deserialize != null) {
-                arrayList.add(deserialize);
+        int int322 = inputSerializedData.readInt32(z);
+        TableLayout.Assoc assoc = (ArrayList<T>) new ArrayList(int322);
+        for (int i = 0; i < int322; i++) {
+            TLObject tLObjectDeserialize = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (tLObjectDeserialize != null) {
+                assoc.add(tLObjectDeserialize);
             }
         }
-        return arrayList;
+        return assoc;
     }
 }

@@ -234,11 +234,11 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             if (this.useLowLatency && Build.VERSION.SDK_INT >= 26) {
                 Logging.d("JavaAudioDeviceModule", "Low latency mode will be used.");
             }
-            ScheduledExecutorService scheduledExecutorService = this.scheduler;
-            if (scheduledExecutorService == null) {
-                scheduledExecutorService = WebRtcAudioRecord.newDefaultScheduler();
+            ScheduledExecutorService scheduledExecutorServiceNewDefaultScheduler = this.scheduler;
+            if (scheduledExecutorServiceNewDefaultScheduler == null) {
+                scheduledExecutorServiceNewDefaultScheduler = WebRtcAudioRecord.newDefaultScheduler();
             }
-            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorService, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency, this.enableVolumeLogger), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
+            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorServiceNewDefaultScheduler, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency, this.enableVolumeLogger), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
         }
     }
 

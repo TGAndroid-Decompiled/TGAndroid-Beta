@@ -199,9 +199,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         protected void onMeasure(int i, int i2) {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             if (this.name != null) {
-                int min = (int) Math.min(AndroidUtilities.dp(46.0f), this.textPaint.measureText(this.name));
-                this.nameWidth = min;
-                this.drawingName = TextUtils.ellipsize(this.name, this.textPaint, min, TextUtils.TruncateAt.END).toString();
+                int iMin = (int) Math.min(AndroidUtilities.dp(46.0f), this.textPaint.measureText(this.name));
+                this.nameWidth = iMin;
+                this.drawingName = TextUtils.ellipsize(this.name, this.textPaint, iMin, TextUtils.TruncateAt.END).toString();
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
         }
@@ -276,10 +276,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 return;
             }
             float f2 = 1.0f - f;
-            float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * f2) + (1.0f * f);
+            float fDp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * f2) + (1.0f * f);
             this.avatarImageView.setTranslationY((-((this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f))) * f2);
-            this.avatarImageView.setScaleX(dp);
-            this.avatarImageView.setScaleY(dp);
+            this.avatarImageView.setScaleX(fDp);
+            this.avatarImageView.setScaleY(fDp);
             this.backgroundPaint.setAlpha((int) (f * 255.0f));
             invalidate();
             GroupCallMiniTextureView groupCallMiniTextureView2 = this.renderer;
@@ -307,9 +307,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.avatarWavesDrawable.update();
             this.avatarWavesDrawable.draw(canvas, x, y, this);
             float f = this.progress;
-            float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
-            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * dp);
-            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * dp);
+            float fDp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
+            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * fDp);
+            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * fDp);
             super.dispatchDraw(canvas);
         }
 

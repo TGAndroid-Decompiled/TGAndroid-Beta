@@ -38,12 +38,12 @@ public class MediaSource {
         this.nativeSource = 0L;
     }
 
-    public long getNativeMediaSource() {
+    protected long getNativeMediaSource() {
         checkMediaSourceExists();
         return this.nativeSource;
     }
 
-    public void runWithReference(Runnable runnable) {
+    void runWithReference(Runnable runnable) {
         if (this.refCountDelegate.safeRetain()) {
             try {
                 runnable.run();

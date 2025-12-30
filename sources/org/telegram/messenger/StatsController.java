@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Array;
 import org.telegram.messenger.utils.ImmutableByteArrayOutputStream;
@@ -89,9 +90,9 @@ public class StatsController extends BaseController {
         return statsController;
     }
 
-    private StatsController(int i) {
-        super(i);
+    private StatsController(int i) throws IOException {
         SharedPreferences sharedPreferences;
+        super(i);
         this.buffer = new byte[8];
         Class cls = Long.TYPE;
         this.sentBytes = (long[][]) Array.newInstance((Class<?>) cls, 3, 8);
@@ -104,12 +105,12 @@ public class StatsController extends BaseController {
         this.byteArrayOutputStream = new ImmutableByteArrayOutputStream();
         this.saveRunnable = new Runnable() {
             @Override
-            public void run() {
-                long currentTimeMillis = System.currentTimeMillis();
-                if (Math.abs(currentTimeMillis - StatsController.this.lastInternalStatsSaveTime) < 2000) {
+            public void run() throws IOException {
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                if (Math.abs(jCurrentTimeMillis - StatsController.this.lastInternalStatsSaveTime) < 2000) {
                     return;
                 }
-                StatsController.this.lastInternalStatsSaveTime = currentTimeMillis;
+                StatsController.this.lastInternalStatsSaveTime = jCurrentTimeMillis;
                 try {
                     StatsController.this.byteArrayOutputStream.reset();
                     for (int i2 = 0; i2 < 3; i2++) {
@@ -297,10 +298,10 @@ public class StatsController extends BaseController {
     }
 
     private void saveStats() {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         ThreadLocal<Long> threadLocal = lastStatsSaveTime;
-        if (Math.abs(currentTimeMillis - threadLocal.get().longValue()) >= 2000) {
-            threadLocal.set(Long.valueOf(currentTimeMillis));
+        if (Math.abs(jCurrentTimeMillis - threadLocal.get().longValue()) >= 2000) {
+            threadLocal.set(Long.valueOf(jCurrentTimeMillis));
             statsSaveQueue.cancelRunnable(this.saveRunnable);
             statsSaveQueue.postRunnable(this.saveRunnable);
         }

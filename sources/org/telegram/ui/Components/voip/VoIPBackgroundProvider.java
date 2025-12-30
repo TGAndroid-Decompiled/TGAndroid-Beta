@@ -71,16 +71,16 @@ public class VoIPBackgroundProvider {
 
     public void setHasVideo(boolean z) {
         if (this.hasVideo && !z) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPBackgroundProvider.this.lambda$setHasVideo$0(valueAnimator);
+                    this.f$0.lambda$setHasVideo$0(valueAnimator);
                 }
             });
-            ofFloat.setInterpolator(new LinearInterpolator());
-            ofFloat.setDuration(80L);
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
+            valueAnimatorOfFloat.setDuration(80L);
+            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     VoIPBackgroundProvider.this.hasVideo = false;
@@ -90,18 +90,18 @@ public class VoIPBackgroundProvider {
                     VoIPBackgroundProvider.this.invalidateViews();
                 }
             });
-            ofFloat.start();
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            valueAnimatorOfFloat.start();
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPBackgroundProvider.this.lambda$setHasVideo$1(valueAnimator);
+                    this.f$0.lambda$setHasVideo$1(valueAnimator);
                 }
             });
-            ofFloat2.setInterpolator(new LinearInterpolator());
-            ofFloat2.setStartDelay(80L);
-            ofFloat2.setDuration(80L);
-            ofFloat2.start();
+            valueAnimatorOfFloat2.setInterpolator(new LinearInterpolator());
+            valueAnimatorOfFloat2.setStartDelay(80L);
+            valueAnimatorOfFloat2.setDuration(80L);
+            valueAnimatorOfFloat2.start();
         } else {
             this.hasVideo = z;
         }
@@ -109,18 +109,18 @@ public class VoIPBackgroundProvider {
     }
 
     public void lambda$setHasVideo$0(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        int i = (int) (35.0f * floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        int i = (int) (35.0f * fFloatValue);
         this.darkPaint.setAlpha(i);
-        this.darkVideoPaint.setAlpha((int) (floatValue * 102.0f));
+        this.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
         this.whiteVideoPaint.setAlpha(i);
         invalidateViews();
     }
 
     public void lambda$setHasVideo$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.darkShaderTools.paint.setAlpha((int) (180.0f * floatValue));
-        this.lightShaderTools.paint.setAlpha((int) (floatValue * 255.0f));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.darkShaderTools.paint.setAlpha((int) (180.0f * fFloatValue));
+        this.lightShaderTools.paint.setAlpha((int) (fFloatValue * 255.0f));
         invalidateViews();
     }
 

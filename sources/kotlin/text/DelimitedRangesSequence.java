@@ -8,7 +8,7 @@ import kotlin.ranges.IntRange;
 import kotlin.ranges.RangesKt;
 import kotlin.sequences.Sequence;
 
-public final class DelimitedRangesSequence implements Sequence {
+final class DelimitedRangesSequence implements Sequence {
     private final Function2 getNextMatch;
     private final CharSequence input;
     private final int limit;
@@ -38,17 +38,13 @@ public final class DelimitedRangesSequence implements Sequence {
             }
 
             {
-                int i;
-                CharSequence charSequence;
-                i = DelimitedRangesSequence.this.startIndex;
-                charSequence = DelimitedRangesSequence.this.input;
-                int coerceIn = RangesKt.coerceIn(i, 0, charSequence.length());
-                this.currentStartIndex = coerceIn;
-                this.nextSearchIndex = coerceIn;
+                int iCoerceIn = RangesKt.coerceIn(DelimitedRangesSequence.this.startIndex, 0, DelimitedRangesSequence.this.input.length());
+                this.currentStartIndex = iCoerceIn;
+                this.nextSearchIndex = iCoerceIn;
             }
 
             private final void calcNext() {
-                throw new UnsupportedOperationException("Method not decompiled: kotlin.text.DelimitedRangesSequence$iterator$1.calcNext():void");
+                throw new UnsupportedOperationException("Method not decompiled: kotlin.text.DelimitedRangesSequence.AnonymousClass1.calcNext():void");
             }
 
             @Override

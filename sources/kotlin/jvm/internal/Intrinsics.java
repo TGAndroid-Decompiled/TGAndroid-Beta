@@ -92,7 +92,7 @@ public abstract class Intrinsics {
         return sanitizeStackTrace(th, Intrinsics.class.getName());
     }
 
-    public static Throwable sanitizeStackTrace(Throwable th, String str) {
+    static Throwable sanitizeStackTrace(Throwable th, String str) {
         StackTraceElement[] stackTrace = th.getStackTrace();
         int length = stackTrace.length;
         int i = -1;

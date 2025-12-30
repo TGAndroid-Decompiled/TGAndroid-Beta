@@ -1,5 +1,6 @@
 package kotlin.io;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -10,9 +11,9 @@ public abstract class TextStreamsKt {
         Intrinsics.checkNotNullParameter(reader, "<this>");
         StringWriter stringWriter = new StringWriter();
         copyTo$default(reader, stringWriter, 0, 2, null);
-        String stringWriter2 = stringWriter.toString();
-        Intrinsics.checkNotNullExpressionValue(stringWriter2, "toString(...)");
-        return stringWriter2;
+        String string = stringWriter.toString();
+        Intrinsics.checkNotNullExpressionValue(string, "toString(...)");
+        return string;
     }
 
     public static long copyTo$default(Reader reader, Writer writer, int i, int i2, Object obj) {
@@ -22,16 +23,16 @@ public abstract class TextStreamsKt {
         return copyTo(reader, writer, i);
     }
 
-    public static final long copyTo(Reader reader, Writer out, int i) {
+    public static final long copyTo(Reader reader, Writer out, int i) throws IOException {
         Intrinsics.checkNotNullParameter(reader, "<this>");
         Intrinsics.checkNotNullParameter(out, "out");
         char[] cArr = new char[i];
-        int read = reader.read(cArr);
+        int i2 = reader.read(cArr);
         long j = 0;
-        while (read >= 0) {
-            out.write(cArr, 0, read);
-            j += read;
-            read = reader.read(cArr);
+        while (i2 >= 0) {
+            out.write(cArr, 0, i2);
+            j += i2;
+            i2 = reader.read(cArr);
         }
         return j;
     }

@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -38,7 +39,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer;
-import org.telegram.ui.web.WebMetadataCache;
 
 public class WebMetadataCache {
     private static WebMetadataCache instance;
@@ -91,8 +91,7 @@ public class WebMetadataCache {
         }
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            Bitmap.CompressFormat compressFormat;
+        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
             outputSerializedData.writeInt64(this.time);
             String str = this.domain;
             if (str == null) {
@@ -120,9 +119,7 @@ public class WebMetadataCache {
             }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             if (Build.VERSION.SDK_INT >= 30) {
-                Bitmap bitmap = this.favicon;
-                compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
-                bitmap.compress(compressFormat, 80, byteArrayOutputStream);
+                this.favicon.compress(Bitmap.CompressFormat.WEBP_LOSSY, 80, byteArrayOutputStream);
             } else {
                 this.favicon.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
             }
@@ -153,7 +150,7 @@ public class WebMetadataCache {
         }
     }
 
-    public static final class MetadataFile extends TLObject {
+    private static final class MetadataFile extends TLObject {
         public final ArrayList array;
 
         private MetadataFile() {
@@ -161,7 +158,7 @@ public class WebMetadataCache {
         }
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
+        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
             outputSerializedData.writeInt32(this.array.size());
             for (int i = 0; i < this.array.size(); i++) {
                 ((WebMetadata) this.array.get(i)).serializeToStream(outputSerializedData);
@@ -170,8 +167,8 @@ public class WebMetadataCache {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            for (int i = 0; i < readInt32; i++) {
+            int int32 = inputSerializedData.readInt32(z);
+            for (int i = 0; i < int32; i++) {
                 WebMetadata webMetadata = new WebMetadata();
                 webMetadata.readParams(inputSerializedData, z);
                 if (TextUtils.isEmpty(webMetadata.domain)) {
@@ -223,7 +220,7 @@ public class WebMetadataCache {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.this.lambda$load$1();
+                this.f$0.lambda$load$1();
             }
         });
     }
@@ -246,7 +243,7 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.this.lambda$load$0(arrayList);
+                this.f$0.lambda$load$0(arrayList);
             }
         });
     }
@@ -264,7 +261,7 @@ public class WebMetadataCache {
         AndroidUtilities.cancelRunOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.this.save();
+                this.f$0.save();
             }
         });
         if (this.saving) {
@@ -273,7 +270,7 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.this.save();
+                this.f$0.save();
             }
         }, BuildVars.DEBUG_PRIVATE_VERSION ? 1L : 1000L);
     }
@@ -283,10 +280,10 @@ public class WebMetadataCache {
             return;
         }
         this.saving = true;
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         final ArrayList arrayList = new ArrayList();
         for (WebMetadata webMetadata : this.cache.values()) {
-            if (!TextUtils.isEmpty(webMetadata.domain) && currentTimeMillis - webMetadata.time <= 604800000) {
+            if (!TextUtils.isEmpty(webMetadata.domain) && jCurrentTimeMillis - webMetadata.time <= 604800000) {
                 arrayList.add(0, webMetadata);
                 if (arrayList.size() >= 100) {
                     break;
@@ -295,13 +292,13 @@ public class WebMetadataCache {
         }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                WebMetadataCache.this.lambda$save$3(arrayList);
+            public final void run() throws IOException {
+                this.f$0.lambda$save$3(arrayList);
             }
         });
     }
 
-    public void lambda$save$3(ArrayList arrayList) {
+    public void lambda$save$3(ArrayList arrayList) throws IOException {
         File cacheFile = getCacheFile();
         if (!cacheFile.exists()) {
             try {
@@ -326,7 +323,7 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.this.lambda$save$2();
+                this.f$0.lambda$save$2();
             }
         });
     }
@@ -336,18 +333,18 @@ public class WebMetadataCache {
     }
 
     public void clear() {
-        HashMap hashMap = this.cache;
-        if (hashMap == null) {
+        HashMap map = this.cache;
+        if (map == null) {
             this.loading = false;
             this.loaded = true;
             this.cache = new HashMap();
         } else {
-            hashMap.clear();
+            map.clear();
         }
         scheduleSave();
     }
 
-    public static class SitenameProxy {
+    static class SitenameProxy {
         private final Utilities.Callback whenReceived;
 
         public SitenameProxy(Utilities.Callback callback) {
@@ -359,7 +356,7 @@ public class WebMetadataCache {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    WebMetadataCache.SitenameProxy.this.lambda$post$0(str, str2);
+                    this.f$0.lambda$post$0(str, str2);
                 }
             });
         }
@@ -382,12 +379,12 @@ public class WebMetadataCache {
         if (context == null) {
             context = ApplicationLoader.applicationContext;
         }
-        Activity findActivity = AndroidUtilities.findActivity(context);
-        if (findActivity == null) {
+        Activity activityFindActivity = AndroidUtilities.findActivity(context);
+        if (activityFindActivity == null) {
             callback2.run(null, null);
             return;
         }
-        View rootView = findActivity.findViewById(16908290).getRootView();
+        View rootView = activityFindActivity.findViewById(16908290).getRootView();
         if (!(rootView instanceof ViewGroup)) {
             callback2.run(null, null);
             return;
@@ -479,7 +476,7 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebMetadataCache.lambda$retrieveFaviconAndSitename$8(Utilities.Callback.this);
+                WebMetadataCache.lambda$retrieveFaviconAndSitename$8(callback);
             }
         }, 10000L);
     }

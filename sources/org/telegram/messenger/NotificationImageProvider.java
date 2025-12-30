@@ -9,6 +9,7 @@ import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -86,7 +87,7 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     }
 
     @Override
-    public ParcelFileDescriptor openFile(Uri uri, String str) {
+    public ParcelFileDescriptor openFile(Uri uri, String str) throws NumberFormatException, IOException {
         if (!"r".equals(str)) {
             throw new SecurityException("Can only open files for read");
         }
@@ -103,12 +104,12 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
             }
             if (!file.exists()) {
                 Long l = this.fileStartTimes.get(str2);
-                long longValue = l != null ? l.longValue() : System.currentTimeMillis();
+                long jLongValue = l != null ? l.longValue() : System.currentTimeMillis();
                 if (l == null) {
-                    this.fileStartTimes.put(str2, Long.valueOf(longValue));
+                    this.fileStartTimes.put(str2, Long.valueOf(jLongValue));
                 }
                 while (!file.exists()) {
-                    if (System.currentTimeMillis() - longValue >= 3000) {
+                    if (System.currentTimeMillis() - jLongValue >= 3000) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.w("Waiting for " + str2 + " to download timed out");
                         }

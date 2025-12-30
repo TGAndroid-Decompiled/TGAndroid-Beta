@@ -5,7 +5,7 @@ public class AudioSource extends MediaSource {
         super(j);
     }
 
-    public long getNativeAudioSource() {
+    long getNativeAudioSource() {
         return getNativeMediaSource();
     }
 }

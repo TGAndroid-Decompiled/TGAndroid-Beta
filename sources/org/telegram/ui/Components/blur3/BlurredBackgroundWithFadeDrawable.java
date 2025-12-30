@@ -78,18 +78,18 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
             return;
         }
         this.colorStaticPaint.setShader(null);
-        int saveLayer = canvas.saveLayer(r0.left, r0.top, r0.right, r0.bottom, null);
+        int iSaveLayer = canvas.saveLayer(r0.left, r0.top, r0.right, r0.bottom, null);
         this.drawable.draw(canvas);
         canvas.translate(r0.left, r0.top);
         canvas.drawRect(0.0f, 0.0f, r0.width(), r0.height(), this.maskFadeGradientPaint);
-        canvas.restoreToCount(saveLayer);
+        canvas.restoreToCount(iSaveLayer);
     }
 
     private static LinearGradient createGradient(int i, int i2, boolean z) {
-        int alpha = Color.alpha(i);
+        int iAlpha = Color.alpha(i);
         if (z) {
-            return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (alpha * 96) / 255), ColorUtils.setAlphaComponent(i, (alpha * 176) / 255), ColorUtils.setAlphaComponent(i, (alpha * 232) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+            return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
         }
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (alpha * 96) / 255), ColorUtils.setAlphaComponent(i, (alpha * 176) / 255), ColorUtils.setAlphaComponent(i, (alpha * 232) / 255), ColorUtils.setAlphaComponent(i, (alpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
     }
 }

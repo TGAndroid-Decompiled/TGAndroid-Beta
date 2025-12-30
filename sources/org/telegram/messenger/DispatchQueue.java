@@ -70,7 +70,7 @@ public class DispatchQueue extends Thread {
         }
     }
 
-    public void cancelRunnables(Runnable[] runnableArr) {
+    public void cancelRunnables(Runnable[] runnableArr) throws InterruptedException {
         try {
             this.syncLatch.await();
             for (Runnable runnable : runnableArr) {
@@ -86,7 +86,7 @@ public class DispatchQueue extends Thread {
         return postRunnable(runnable, 0L);
     }
 
-    public boolean postToFrontRunnable(Runnable runnable) {
+    public boolean postToFrontRunnable(Runnable runnable) throws InterruptedException {
         try {
             this.syncLatch.await();
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class DispatchQueue extends Thread {
         return this.handler.postDelayed(runnable, j);
     }
 
-    public void cleanupQueue() {
+    public void cleanupQueue() throws InterruptedException {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);
@@ -130,9 +130,7 @@ public class DispatchQueue extends Thread {
         this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                boolean lambda$run$0;
-                lambda$run$0 = DispatchQueue.this.lambda$run$0(message);
-                return lambda$run$0;
+                return this.f$0.lambda$run$0(message);
             }
         });
         this.syncLatch.countDown();

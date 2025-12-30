@@ -40,37 +40,37 @@ public class ShareActivity extends Activity {
         }
         Uri data = intent.getData();
         String scheme = data.getScheme();
-        String uri = data.toString();
+        String string = data.toString();
         String queryParameter = data.getQueryParameter("hash");
-        if (!"tgb".equals(scheme) || !uri.toLowerCase().startsWith("tgb://share_game_score") || TextUtils.isEmpty(queryParameter)) {
+        if (!"tgb".equals(scheme) || !string.toLowerCase().startsWith("tgb://share_game_score") || TextUtils.isEmpty(queryParameter)) {
             finish();
             return;
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-        String string = sharedPreferences.getString(queryParameter + "_m", null);
-        if (TextUtils.isEmpty(string)) {
+        String string2 = sharedPreferences.getString(queryParameter + "_m", null);
+        if (TextUtils.isEmpty(string2)) {
             finish();
             return;
         }
-        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-        TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        if (TLdeserialize == null) {
+        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string2));
+        TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        if (messageTLdeserialize == null) {
             finish();
             return;
         }
-        TLdeserialize.readAttachPath(serializedData, 0L);
+        messageTLdeserialize.readAttachPath(serializedData, 0L);
         serializedData.cleanup();
-        String string2 = sharedPreferences.getString(queryParameter + "_link", null);
-        MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
+        String string3 = sharedPreferences.getString(queryParameter + "_link", null);
+        MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, messageTLdeserialize, false, true);
         messageObject.messageOwner.with_my_score = true;
         try {
-            ShareAlert createShareAlert = ShareAlert.createShareAlert(this, messageObject, null, false, string2, false);
-            this.visibleDialog = createShareAlert;
-            createShareAlert.setCanceledOnTouchOutside(true);
+            ShareAlert shareAlertCreateShareAlert = ShareAlert.createShareAlert(this, messageObject, null, false, string3, false);
+            this.visibleDialog = shareAlertCreateShareAlert;
+            shareAlertCreateShareAlert.setCanceledOnTouchOutside(true);
             this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    ShareActivity.this.lambda$onCreate$0(dialogInterface);
+                    this.f$0.lambda$onCreate$0(dialogInterface);
                 }
             });
             this.visibleDialog.show();

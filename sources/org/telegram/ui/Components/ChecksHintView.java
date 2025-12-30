@@ -17,7 +17,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Components.ChecksHintView;
 
 public class ChecksHintView extends FrameLayout {
     private AnimatorSet animatorSet;
@@ -100,30 +99,30 @@ public class ChecksHintView extends FrameLayout {
         this.translationY = measuredHeight;
         setTranslationY(measuredHeight);
         int left = chatMessageCell.getLeft() + checksX;
-        int dp = AndroidUtilities.dp(15.0f);
+        int iDp = AndroidUtilities.dp(15.0f);
         if (left > view.getMeasuredWidth() / 2) {
             int measuredWidth2 = (measuredWidth - getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
             setTranslationX(measuredWidth2);
-            dp += measuredWidth2;
+            iDp += measuredWidth2;
         } else {
             setTranslationX(0.0f);
         }
-        float left2 = ((chatMessageCell.getLeft() + checksX) - dp) - (this.arrowImageView.getMeasuredWidth() / 2);
+        float left2 = ((chatMessageCell.getLeft() + checksX) - iDp) - (this.arrowImageView.getMeasuredWidth() / 2);
         this.arrowImageView.setTranslationX(left2);
         if (left > view.getMeasuredWidth() / 2) {
             if (left2 < AndroidUtilities.dp(10.0f)) {
-                float dp2 = left2 - AndroidUtilities.dp(10.0f);
-                setTranslationX(getTranslationX() + dp2);
-                this.arrowImageView.setTranslationX(left2 - dp2);
+                float fDp = left2 - AndroidUtilities.dp(10.0f);
+                setTranslationX(getTranslationX() + fDp);
+                this.arrowImageView.setTranslationX(left2 - fDp);
             }
         } else if (left2 > getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
             float measuredWidth3 = (left2 - getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
             setTranslationX(measuredWidth3);
             this.arrowImageView.setTranslationX(left2 - measuredWidth3);
         } else if (left2 < AndroidUtilities.dp(10.0f)) {
-            float dp3 = left2 - AndroidUtilities.dp(10.0f);
-            setTranslationX(getTranslationX() + dp3);
-            this.arrowImageView.setTranslationX(left2 - dp3);
+            float fDp2 = left2 - AndroidUtilities.dp(10.0f);
+            setTranslationX(getTranslationX() + fDp2);
+            this.arrowImageView.setTranslationX(left2 - fDp2);
         }
         setPivotX(left2);
         setPivotY(getMeasuredHeight());
@@ -157,7 +156,7 @@ public class ChecksHintView extends FrameLayout {
         return true;
     }
 
-    public class AnonymousClass1 extends AnimatorListenerAdapter {
+    class AnonymousClass1 extends AnimatorListenerAdapter {
         AnonymousClass1() {
         }
 
@@ -167,7 +166,7 @@ public class ChecksHintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(ChecksHintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChecksHintView.AnonymousClass1.this.lambda$onAnimationEnd$0();
+                    this.f$0.lambda$onAnimationEnd$0();
                 }
             }, 3000L);
         }

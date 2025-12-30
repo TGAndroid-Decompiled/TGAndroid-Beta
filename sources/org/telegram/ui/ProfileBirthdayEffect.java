@@ -69,15 +69,15 @@ public class ProfileBirthdayEffect extends View {
                     post(new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileBirthdayEffect.this.lambda$onDraw$0();
+                            this.f$0.lambda$onDraw$0();
                         }
                     });
                 }
             }
             if (this.isPlaying) {
-                long currentTimeMillis = System.currentTimeMillis();
-                this.t = Utilities.clamp(this.t + (((float) Utilities.clamp(currentTimeMillis - this.lastTime, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
-                this.lastTime = currentTimeMillis;
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                this.t = Utilities.clamp(this.t + (Utilities.clamp(jCurrentTimeMillis - this.lastTime, 20L, 0L) / 4200.0f), 1.0f, 0.0f);
+                this.lastTime = jCurrentTimeMillis;
                 updateSourcePoint();
                 float filterWidth = EmojiAnimationsOverlay.getFilterWidth();
                 this.fetcher.interactionAsset.setImageCoords((getWidth() - AndroidUtilities.dp(filterWidth)) / 2.0f, Math.max(0.0f, this.sourcePoint.y - (AndroidUtilities.dp(filterWidth) * 0.5f)), AndroidUtilities.dp(filterWidth), AndroidUtilities.dp(filterWidth));
@@ -86,24 +86,24 @@ public class ProfileBirthdayEffect extends View {
                 this.fetcher.interactionAsset.draw(canvas);
                 this.fetcher.interactionAsset.setAlpha(1.0f - ((this.t - 0.9f) / 0.1f));
                 canvas.restore();
-                int dp = AndroidUtilities.dp(110.0f);
+                int iDp = AndroidUtilities.dp(110.0f);
                 int size = this.fetcher.digitAssets.size() - 1;
                 while (size >= 0) {
                     ImageReceiverAsset imageReceiverAsset = (ImageReceiverAsset) this.fetcher.digitAssets.get(size);
                     float f = size;
-                    float cascade = AndroidUtilities.cascade(this.t, f, this.fetcher.digitAssets.size(), 1.8f);
-                    float f2 = dp;
+                    float fCascade = AndroidUtilities.cascade(this.t, f, this.fetcher.digitAssets.size(), 1.8f);
+                    float f2 = iDp;
                     float f3 = 0.88f * f2;
                     float width = (getWidth() - ((this.fetcher.digitAssets.size() - i) * f3)) / 2.0f;
                     PointF pointF = this.sourcePoint;
                     float f4 = pointF.x;
                     float f5 = pointF.y;
-                    float f6 = f4 + (f3 * f) + ((width - f4) * cascade);
-                    float pow = f5 - ((f5 + f2) * ((float) Math.pow(this.t, 2.0d)));
-                    float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(cascade / 0.4f, 1.0f, 0.0f));
+                    float f6 = f4 + (f3 * f) + ((width - f4) * fCascade);
+                    float fPow = f5 - ((f5 + f2) * ((float) Math.pow(this.t, 2.0d)));
+                    float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(fCascade / 0.4f, 1.0f, 0.0f));
                     float f7 = (f2 / 2.0f) * interpolation;
                     float f8 = f2 * interpolation;
-                    imageReceiverAsset.setImageCoords(f6 - f7, pow - f7, f8, f8);
+                    imageReceiverAsset.setImageCoords(f6 - f7, fPow - f7, f8, f8);
                     imageReceiverAsset.draw(canvas);
                     size--;
                     i = 1;
@@ -240,10 +240,10 @@ public class ProfileBirthdayEffect extends View {
                 final HashSet hashSet = new HashSet();
                 String str = "" + i2;
                 for (int i3 = 0; i3 < str.length(); i3++) {
-                    int charAt = str.charAt(i3) - '0';
-                    if (charAt >= 0 && charAt <= 9) {
-                        arrayList.add(Integer.valueOf(charAt));
-                        hashSet.add(Integer.valueOf(charAt));
+                    int iCharAt = str.charAt(i3) - '0';
+                    if (iCharAt >= 0 && iCharAt <= 9) {
+                        arrayList.add(Integer.valueOf(iCharAt));
+                        hashSet.add(Integer.valueOf(iCharAt));
                     }
                 }
                 TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -251,7 +251,7 @@ public class ProfileBirthdayEffect extends View {
                 MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ProfileBirthdayEffect.BirthdayEffectFetcher.this.lambda$new$1(hashSet, arrayList, (TLRPC.TL_messages_stickerSet) obj);
+                        this.f$0.lambda$new$1(hashSet, arrayList, (TLRPC.TL_messages_stickerSet) obj);
                     }
                 });
             }
@@ -261,28 +261,28 @@ public class ProfileBirthdayEffect extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ProfileBirthdayEffect.BirthdayEffectFetcher.this.lambda$new$3(str2, (TLRPC.TL_messages_stickerSet) obj);
+                    this.f$0.lambda$new$3(str2, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
         }
 
         public void lambda$new$1(HashSet hashSet, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-            HashMap hashMap = new HashMap();
+            HashMap map = new HashMap();
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
                 Integer num = (Integer) it.next();
-                TLRPC.Document findSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "️⃣");
-                if (findSticker == null) {
-                    findSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "⃣");
+                TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "️⃣");
+                if (documentFindSticker == null) {
+                    documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "⃣");
                 }
-                if (findSticker == null) {
+                if (documentFindSticker == null) {
                     FileLog.e("couldn't find " + num + "️⃣ emoji in " + ProfileBirthdayEffect.numbersEmojipack);
                     return;
                 }
-                hashMap.put(num, findSticker);
+                map.put(num, documentFindSticker);
             }
-            HashMap hashMap2 = new HashMap();
-            for (Map.Entry entry : hashMap.entrySet()) {
+            HashMap map2 = new HashMap();
+            for (Map.Entry entry : map.entrySet()) {
                 Integer num2 = (Integer) entry.getKey();
                 num2.intValue();
                 final ImageReceiverAsset imageReceiverAsset = new ImageReceiverAsset();
@@ -290,16 +290,16 @@ public class ProfileBirthdayEffect extends View {
                 imageReceiverAsset.setEmoji((TLRPC.Document) entry.getValue(), "80_80", tL_messages_stickerSet, new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileBirthdayEffect.BirthdayEffectFetcher.this.lambda$new$0(imageReceiverAsset);
+                        this.f$0.lambda$new$0(imageReceiverAsset);
                     }
                 });
                 imageReceiverAsset.onAttachedToWindow();
-                hashMap2.put(num2, imageReceiverAsset);
+                map2.put(num2, imageReceiverAsset);
             }
             for (int i = 0; i < arrayList.size(); i++) {
                 Integer num3 = (Integer) arrayList.get(i);
                 num3.intValue();
-                this.digitAssets.add((ImageReceiverAsset) hashMap2.get(num3));
+                this.digitAssets.add((ImageReceiverAsset) map2.get(num3));
             }
             this.setsLoaded[0] = true;
             checkWhenLoaded();
@@ -311,8 +311,8 @@ public class ProfileBirthdayEffect extends View {
         }
 
         public void lambda$new$3(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-            TLRPC.Document findSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, str);
-            if (findSticker == null) {
+            TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, str);
+            if (documentFindSticker == null) {
                 FileLog.e("couldn't find " + str + " sticker in " + ProfileBirthdayEffect.interactionsPack);
                 return;
             }
@@ -321,10 +321,10 @@ public class ProfileBirthdayEffect extends View {
             this.allAssets.add(imageReceiverAsset);
             int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
             this.interactionAsset.setAutoRepeat(0);
-            this.interactionAsset.setEmoji(findSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new Runnable() {
+            this.interactionAsset.setEmoji(documentFindSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileBirthdayEffect.BirthdayEffectFetcher.this.lambda$new$2();
+                    this.f$0.lambda$new$2();
                 }
             });
             this.interactionAsset.onAttachedToWindow();
@@ -385,11 +385,11 @@ public class ProfileBirthdayEffect extends View {
         }
     }
 
-    public static class ImageReceiverAsset extends ImageReceiver {
+    static class ImageReceiverAsset extends ImageReceiver {
         private ImageReceiverAsset() {
         }
 
-        public class AnonymousClass1 implements ImageReceiver.ImageReceiverDelegate {
+        class AnonymousClass1 implements ImageReceiver.ImageReceiverDelegate {
             final Runnable[] val$callback;
 
             @Override

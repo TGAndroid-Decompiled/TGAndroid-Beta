@@ -28,14 +28,14 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
     private final KeyboardState keyboardState = new KeyboardState(new Utilities.Callback() {
         @Override
         public final void run(Object obj) {
-            WindowInsetsStateHolder.this.onKeyboardStateChanged((KeyboardState.State) obj);
+            this.f$0.onKeyboardStateChanged((KeyboardState.State) obj);
         }
     });
     private int inAppKeyboardState = 1;
     private final Runnable closeInAppKeyboard = new Runnable() {
         @Override
         public final void run() {
-            WindowInsetsStateHolder.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -100,10 +100,10 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
         if (i == 3 && insets2.bottom > 0) {
             this.inAppKeyboardHeight = 0;
         }
-        Insets max = Insets.max(insets2, Insets.of(0, 0, 0, this.inAppKeyboardHeight));
-        Insets max2 = Insets.max(insets, max);
+        Insets insetsMax = Insets.max(insets2, Insets.of(0, 0, 0, this.inAppKeyboardHeight));
+        Insets insetsMax2 = Insets.max(insets, insetsMax);
         if (z) {
-            if (!this.keyboardVisibility.differs(max.bottom > 0 ? 1.0f : 0.0f) && !this.insetsMaxRect.differs(max2.left, max2.top, max2.right, max2.bottom) && !this.insetsImeRect.differs(max.left, max.top, max.right, max.bottom)) {
+            if (!this.keyboardVisibility.differs(insetsMax.bottom > 0 ? 1.0f : 0.0f) && !this.insetsMaxRect.differs(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom) && !this.insetsImeRect.differs(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom)) {
                 if (state != keyboardVisibility) {
                     this.onUpdateListener.run();
                     return;
@@ -114,17 +114,17 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
             this.keyboardVisibility.finishAnimation(false);
             this.insetsMaxRect.finishAnimation(false);
             this.insetsImeRect.finishAnimation(false);
-            this.keyboardVisibility.setTo(max.bottom > 0 ? 1.0f : 0.0f);
-            this.insetsMaxRect.setTo(max2.left, max2.top, max2.right, max2.bottom);
-            this.insetsImeRect.setTo(max.left, max.top, max.right, max.bottom);
+            this.keyboardVisibility.setTo(insetsMax.bottom > 0 ? 1.0f : 0.0f);
+            this.insetsMaxRect.setTo(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom);
+            this.insetsImeRect.setTo(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom);
             this.insetsAnimator.forceFactor(0.0f);
             this.insetsAnimator.animateTo(1.0f);
             return;
         }
         this.insetsAnimator.cancel();
-        this.keyboardVisibility.set(max.bottom > 0 ? 1.0f : 0.0f);
-        this.insetsMaxRect.set(max2.left, max2.top, max2.right, max2.bottom);
-        this.insetsImeRect.set(max.left, max.top, max.right, max.bottom);
+        this.keyboardVisibility.set(insetsMax.bottom > 0 ? 1.0f : 0.0f);
+        this.insetsMaxRect.set(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom);
+        this.insetsImeRect.set(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom);
         this.onUpdateListener.run();
     }
 

@@ -126,8 +126,8 @@ public class LetterDrawable extends Drawable {
             canvas.scale(f, f, bounds.centerX(), bounds.centerY());
         }
         if (this.textLayout != null) {
-            float width = bounds.width();
-            canvas.translate((bounds.left + ((width - this.textWidth) / 2.0f)) - this.textLeft, bounds.top + ((width - this.textHeight) / 2.0f));
+            float fWidth = bounds.width();
+            canvas.translate((bounds.left + ((fWidth - this.textWidth) / 2.0f)) - this.textLeft, bounds.top + ((fWidth - this.textHeight) / 2.0f));
             this.textLayout.draw(canvas);
         }
         canvas.restore();

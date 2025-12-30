@@ -19,13 +19,13 @@ public class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
     }
 
     @Override
-    public void onEnterTransitionEnd() {
+    protected void onEnterTransitionEnd() {
         super.onEnterTransitionEnd();
         this.hintDrawable.startAnimation();
     }
 
     @Override
-    public void onExitTransitionEnd() {
+    protected void onExitTransitionEnd() {
         super.onExitTransitionEnd();
         this.hintDrawable.resetAnimation();
     }

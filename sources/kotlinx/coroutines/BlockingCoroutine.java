@@ -4,7 +4,7 @@ import java.util.concurrent.locks.LockSupport;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class BlockingCoroutine extends AbstractCoroutine {
+final class BlockingCoroutine extends AbstractCoroutine {
     private final Thread blockedThread;
     private final EventLoop eventLoop;
 
@@ -20,7 +20,7 @@ public final class BlockingCoroutine extends AbstractCoroutine {
     }
 
     @Override
-    public void afterCompletion(Object obj) {
+    protected void afterCompletion(Object obj) {
         if (Intrinsics.areEqual(Thread.currentThread(), this.blockedThread)) {
             return;
         }
@@ -29,7 +29,7 @@ public final class BlockingCoroutine extends AbstractCoroutine {
         LockSupport.unpark(thread);
     }
 
-    public final Object joinBlocking() {
+    public final Object joinBlocking() throws Throwable {
         AbstractTimeSourceKt.access$getTimeSource$p();
         try {
             EventLoop eventLoop = this.eventLoop;
@@ -39,20 +39,20 @@ public final class BlockingCoroutine extends AbstractCoroutine {
             while (!Thread.interrupted()) {
                 try {
                     EventLoop eventLoop2 = this.eventLoop;
-                    long processNextEvent = eventLoop2 != null ? eventLoop2.processNextEvent() : Long.MAX_VALUE;
+                    long jProcessNextEvent = eventLoop2 != null ? eventLoop2.processNextEvent() : Long.MAX_VALUE;
                     if (!isCompleted()) {
                         AbstractTimeSourceKt.access$getTimeSource$p();
-                        LockSupport.parkNanos(this, processNextEvent);
+                        LockSupport.parkNanos(this, jProcessNextEvent);
                     } else {
                         EventLoop eventLoop3 = this.eventLoop;
                         if (eventLoop3 != null) {
                             EventLoop.decrementUseCount$default(eventLoop3, false, 1, null);
                         }
                         AbstractTimeSourceKt.access$getTimeSource$p();
-                        Object unboxState = JobSupportKt.unboxState(getState$kotlinx_coroutines_core());
-                        CompletedExceptionally completedExceptionally = unboxState instanceof CompletedExceptionally ? (CompletedExceptionally) unboxState : null;
+                        Object objUnboxState = JobSupportKt.unboxState(getState$kotlinx_coroutines_core());
+                        CompletedExceptionally completedExceptionally = objUnboxState instanceof CompletedExceptionally ? (CompletedExceptionally) objUnboxState : null;
                         if (completedExceptionally == null) {
-                            return unboxState;
+                            return objUnboxState;
                         }
                         throw completedExceptionally.cause;
                     }

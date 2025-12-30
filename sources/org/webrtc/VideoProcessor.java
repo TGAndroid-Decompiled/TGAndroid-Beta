@@ -29,10 +29,10 @@ public interface VideoProcessor extends CapturerObserver {
 
     public abstract class CC {
         public static void $default$onFrameCaptured(VideoProcessor videoProcessor, VideoFrame videoFrame, FrameAdaptationParameters frameAdaptationParameters) {
-            VideoFrame applyFrameAdaptationParameters = applyFrameAdaptationParameters(videoFrame, frameAdaptationParameters);
-            if (applyFrameAdaptationParameters != null) {
-                videoProcessor.onFrameCaptured(applyFrameAdaptationParameters);
-                applyFrameAdaptationParameters.release();
+            VideoFrame videoFrameApplyFrameAdaptationParameters = applyFrameAdaptationParameters(videoFrame, frameAdaptationParameters);
+            if (videoFrameApplyFrameAdaptationParameters != null) {
+                videoProcessor.onFrameCaptured(videoFrameApplyFrameAdaptationParameters);
+                videoFrameApplyFrameAdaptationParameters.release();
             }
         }
 

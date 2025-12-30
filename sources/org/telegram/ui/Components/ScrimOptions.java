@@ -84,8 +84,8 @@ public class ScrimOptions extends Dialog {
                     ScrimOptions.this.scrimDrawable.setAlpha((int) (ScrimOptions.this.openProgress * 255.0f));
                     canvas.save();
                     canvas.translate(ScrimOptions.this.scrimDrawableTx2 + (ScrimOptions.this.scrimDrawableTx1 * ScrimOptions.this.openProgress), ScrimOptions.this.scrimDrawableTy2 + (ScrimOptions.this.scrimDrawableTy1 * ScrimOptions.this.openProgress));
-                    float lerp = AndroidUtilities.lerp(AndroidUtilities.lerp(Math.min(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), Math.max(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), 0.75f), 1.0f, ScrimOptions.this.openProgress);
-                    canvas.scale(lerp, lerp, (-ScrimOptions.this.scrimDrawableTx2) + ScrimOptions.this.scrimDrawable.getBounds().left + ((ScrimOptions.this.scrimDrawable.getBounds().width() / 2.0f) * ScrimOptions.this.scrimDrawableSw), (-ScrimOptions.this.scrimDrawableTy2) + ScrimOptions.this.scrimDrawable.getBounds().top + ((ScrimOptions.this.scrimDrawable.getBounds().height() / 2.0f) * ScrimOptions.this.scrimDrawableSh));
+                    float fLerp = AndroidUtilities.lerp(AndroidUtilities.lerp(Math.min(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), Math.max(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), 0.75f), 1.0f, ScrimOptions.this.openProgress);
+                    canvas.scale(fLerp, fLerp, (-ScrimOptions.this.scrimDrawableTx2) + ScrimOptions.this.scrimDrawable.getBounds().left + ((ScrimOptions.this.scrimDrawable.getBounds().width() / 2.0f) * ScrimOptions.this.scrimDrawableSw), (-ScrimOptions.this.scrimDrawableTy2) + ScrimOptions.this.scrimDrawable.getBounds().top + ((ScrimOptions.this.scrimDrawable.getBounds().height() / 2.0f) * ScrimOptions.this.scrimDrawableSh));
                     ScrimOptions.this.scrimDrawable.draw(canvas);
                     canvas.restore();
                 }
@@ -110,7 +110,7 @@ public class ScrimOptions extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ScrimOptions.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
@@ -121,29 +121,17 @@ public class ScrimOptions extends Dialog {
         frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets windowInsets2;
-                Insets insets;
-                int i;
-                int i2;
-                int i3;
-                int i4;
-                int i5 = Build.VERSION.SDK_INT;
-                if (i5 < 30) {
+                int i = Build.VERSION.SDK_INT;
+                if (i < 30) {
                     ScrimOptions.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                 } else {
-                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    android.graphics.Rect rect = ScrimOptions.this.insets;
-                    i = insets.left;
-                    i2 = insets.top;
-                    i3 = insets.right;
-                    i4 = insets.bottom;
-                    rect.set(i, i2, i3, i4);
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    ScrimOptions.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
                 }
                 ScrimOptions.this.containerView.setPadding(ScrimOptions.this.insets.left, ScrimOptions.this.insets.top, ScrimOptions.this.insets.right, ScrimOptions.this.insets.bottom);
                 ScrimOptions.this.windowView.requestLayout();
-                if (i5 >= 30) {
-                    windowInsets2 = WindowInsets.CONSUMED;
-                    return windowInsets2;
+                if (i >= 30) {
+                    return WindowInsets.CONSUMED;
                 }
                 return windowInsets.consumeSystemWindowInsets();
             }
@@ -186,7 +174,7 @@ public class ScrimOptions extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                ScrimOptions.this.lambda$dismiss$2();
+                this.f$0.lambda$dismiss$2();
             }
         });
         this.windowView.invalidate();
@@ -200,7 +188,7 @@ public class ScrimOptions extends Dialog {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ScrimOptions.this.lambda$dismiss$1();
+                this.f$0.lambda$dismiss$1();
             }
         });
     }
@@ -213,7 +201,7 @@ public class ScrimOptions extends Dialog {
         animateOpenTo(false, 2.0f, new Runnable() {
             @Override
             public final void run() {
-                ScrimOptions.this.lambda$dismissFast$4();
+                this.f$0.lambda$dismissFast$4();
             }
         });
         this.windowView.invalidate();
@@ -227,7 +215,7 @@ public class ScrimOptions extends Dialog {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ScrimOptions.this.lambda$dismissFast$3();
+                this.f$0.lambda$dismissFast$3();
             }
         });
     }
@@ -241,12 +229,12 @@ public class ScrimOptions extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ScrimOptions.this.lambda$animateOpenTo$5(valueAnimator2);
+                this.f$0.lambda$animateOpenTo$5(valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -270,9 +258,9 @@ public class ScrimOptions extends Dialog {
     }
 
     public void lambda$animateOpenTo$5(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.openProgress = floatValue;
-        this.optionsView.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.openProgress = fFloatValue;
+        this.optionsView.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
         this.optionsView.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, this.openProgress));
         this.optionsView.setAlpha(this.openProgress);
         this.windowView.invalidate();
@@ -310,7 +298,7 @@ public class ScrimOptions extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ScrimOptions.this.lambda$prepareBlur$6(view, (Bitmap) obj);
+                this.f$0.lambda$prepareBlur$6(view, (Bitmap) obj);
             }
         }, 14.0f);
     }

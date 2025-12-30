@@ -5,9 +5,10 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
 
 public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundColorProvider {
-    private final float alpha;
+    private float alpha;
     private int backgroundColor;
     private final int backgroundColorId;
+    private boolean backgroundOnly;
     private final Theme.ResourcesProvider resourcesProvider;
     private int shadowColor;
     private int strokeColorBottom;
@@ -26,9 +27,12 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
 
     public void updateColors() {
         int color = Theme.getColor(this.backgroundColorId, this.resourcesProvider);
-        boolean z = AndroidUtilities.computePerceivedBrightness(color) < 0.721f;
         this.backgroundColor = Theme.multAlpha(color, this.alpha);
-        if (z) {
+        if (this.backgroundOnly) {
+            this.shadowColor = 0;
+            this.strokeColorBottom = 0;
+            this.strokeColorTop = 0;
+        } else if (AndroidUtilities.computePerceivedBrightness(color) < 0.721f) {
             this.strokeColorTop = 687865855;
             this.strokeColorBottom = 352321535;
             this.shadowColor = 0;
@@ -37,6 +41,11 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
             this.strokeColorBottom = -1;
             this.shadowColor = 536870912;
         }
+    }
+
+    public BlurredBackgroundColorProviderThemed setBackgroundOnly() {
+        this.backgroundOnly = true;
+        return this;
     }
 
     @Override

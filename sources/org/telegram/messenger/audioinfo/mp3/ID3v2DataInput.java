@@ -1,6 +1,7 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class ID3v2DataInput {
@@ -10,38 +11,38 @@ public class ID3v2DataInput {
         this.input = inputStream;
     }
 
-    public final void readFully(byte[] bArr, int i, int i2) {
+    public final void readFully(byte[] bArr, int i, int i2) throws IOException {
         int i3 = 0;
         while (i3 < i2) {
-            int read = this.input.read(bArr, i + i3, i2 - i3);
-            if (read <= 0) {
+            int i4 = this.input.read(bArr, i + i3, i2 - i3);
+            if (i4 <= 0) {
                 throw new EOFException();
             }
-            i3 += read;
+            i3 += i4;
         }
     }
 
-    public byte[] readFully(int i) {
+    public byte[] readFully(int i) throws IOException {
         byte[] bArr = new byte[i];
         readFully(bArr, 0, i);
         return bArr;
     }
 
-    public void skipFully(long j) {
+    public void skipFully(long j) throws IOException {
         long j2 = 0;
         while (j2 < j) {
-            long skip = this.input.skip(j - j2);
-            if (skip <= 0) {
+            long jSkip = this.input.skip(j - j2);
+            if (jSkip <= 0) {
                 throw new EOFException();
             }
-            j2 += skip;
+            j2 += jSkip;
         }
     }
 
-    public byte readByte() {
-        int read = this.input.read();
-        if (read >= 0) {
-            return (byte) read;
+    public byte readByte() throws IOException {
+        int i = this.input.read();
+        if (i >= 0) {
+            return (byte) i;
         }
         throw new EOFException();
     }
@@ -51,6 +52,6 @@ public class ID3v2DataInput {
     }
 
     public int readSyncsafeInt() {
-        return ((readByte() & Byte.MAX_VALUE) << 21) | ((readByte() & Byte.MAX_VALUE) << 14) | ((readByte() & Byte.MAX_VALUE) << 7) | (readByte() & Byte.MAX_VALUE);
+        return ((readByte() & 127) << 21) | ((readByte() & 127) << 14) | ((readByte() & 127) << 7) | (readByte() & 127);
     }
 }

@@ -45,7 +45,7 @@ public class HistoryFragment extends UniversalFragment {
     private ArrayList history = BrowserHistory.getHistory(new Utilities.Callback() {
         @Override
         public final void run(Object obj) {
-            HistoryFragment.this.lambda$new$0((ArrayList) obj);
+            this.f$0.lambda$new$0((ArrayList) obj);
         }
     });
     private final ArrayList searchResults = new ArrayList();
@@ -59,7 +59,7 @@ public class HistoryFragment extends UniversalFragment {
     }
 
     @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
 
@@ -91,8 +91,8 @@ public class HistoryFragment extends UniversalFragment {
         this.actionBar.setItemsColor(getThemedColor(i2), true);
         this.actionBar.setCastShadows(true);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        ActionBarMenu createActionMode = this.actionBar.createActionMode();
-        NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
+        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode();
+        NumberTextView numberTextView = new NumberTextView(actionBarMenuCreateActionMode.getContext());
         this.selectedCount = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedCount.setTypeface(AndroidUtilities.bold());
@@ -100,12 +100,10 @@ public class HistoryFragment extends UniversalFragment {
         this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$1;
-                lambda$createView$1 = HistoryFragment.lambda$createView$1(view, motionEvent);
-                return lambda$createView$1;
+                return HistoryFragment.lambda$createView$1(view, motionEvent);
             }
         });
-        createActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
+        actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
         this.searchItem = actionBarMenuItemSearchListener;
         int i3 = R.string.Search;
@@ -164,11 +162,11 @@ public class HistoryFragment extends UniversalFragment {
         }
     }
 
-    public class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+    class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
         private Runnable applySearch = new Runnable() {
             @Override
             public final void run() {
-                HistoryFragment.AnonymousClass2.this.lambda$$2();
+                this.f$0.lambda$$2();
             }
         };
 
@@ -195,16 +193,16 @@ public class HistoryFragment extends UniversalFragment {
         @Override
         public void onTextChanged(EditText editText) {
             boolean z = !TextUtils.isEmpty(HistoryFragment.this.query);
-            String obj = editText.getText().toString();
-            if (!TextUtils.equals(HistoryFragment.this.query, obj)) {
-                HistoryFragment.this.query = obj;
+            String string = editText.getText().toString();
+            if (!TextUtils.equals(HistoryFragment.this.query, string)) {
+                HistoryFragment.this.query = string;
                 scheduleSearch();
-                HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(obj) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
+                HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(string) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
             }
             UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.adapter.update(true);
-                if (z != (!TextUtils.isEmpty(obj))) {
+                if (z != (!TextUtils.isEmpty(string))) {
                     HistoryFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
                 }
             }
@@ -222,7 +220,7 @@ public class HistoryFragment extends UniversalFragment {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    HistoryFragment.AnonymousClass2.this.lambda$$1(arrayList, str);
+                    this.f$0.lambda$$1(arrayList, str);
                 }
             });
         }
@@ -239,7 +237,7 @@ public class HistoryFragment extends UniversalFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    HistoryFragment.AnonymousClass2.this.lambda$$0(arrayList2);
+                    this.f$0.lambda$$0(arrayList2);
                 }
             });
         }
@@ -263,11 +261,11 @@ public class HistoryFragment extends UniversalFragment {
             if (!lowerCase.startsWith(lowerCase2)) {
                 if (!lowerCase.contains(" " + lowerCase2)) {
                     if (!lowerCase.contains("." + lowerCase2)) {
-                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                        String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                        if (!translitSafe.startsWith(translitSafe2)) {
-                            if (!translitSafe.contains(" " + translitSafe2)) {
-                                if (!translitSafe.contains("." + translitSafe2)) {
+                        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+                        String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                        if (!strTranslitSafe.startsWith(strTranslitSafe2)) {
+                            if (!strTranslitSafe.contains(" " + strTranslitSafe2)) {
+                                if (!strTranslitSafe.contains("." + strTranslitSafe2)) {
                                     return false;
                                 }
                             }
@@ -286,7 +284,7 @@ public class HistoryFragment extends UniversalFragment {
     }
 
     @Override
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         int i = 0;
@@ -328,7 +326,7 @@ public class HistoryFragment extends UniversalFragment {
     }
 
     @Override
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+    protected void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);

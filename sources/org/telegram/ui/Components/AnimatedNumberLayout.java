@@ -48,11 +48,11 @@ public class AnimatedNumberLayout {
 
     public int getWidth() {
         int size = this.letters.size();
-        float f = 0.0f;
+        float lineWidth = 0.0f;
         for (int i = 0; i < size; i++) {
-            f += ((StaticLayout) this.letters.get(i)).getLineWidth(0);
+            lineWidth += ((StaticLayout) this.letters.get(i)).getLineWidth(0);
         }
-        return (int) Math.ceil(f);
+        return (int) Math.ceil(lineWidth);
     }
 
     public void setNumber(int i, boolean z) {
@@ -66,28 +66,28 @@ public class AnimatedNumberLayout {
             this.oldLetters.addAll(this.letters);
             this.letters.clear();
             Locale locale = Locale.US;
-            String format = String.format(locale, "%d", Integer.valueOf(this.currentNumber));
-            String format2 = String.format(locale, "%d", Integer.valueOf(i));
+            String str = String.format(locale, "%d", Integer.valueOf(this.currentNumber));
+            String str2 = String.format(locale, "%d", Integer.valueOf(i));
             boolean z2 = i > this.currentNumber;
             this.currentNumber = i;
             this.progress = 0.0f;
             int i2 = 0;
-            while (i2 < format2.length()) {
+            while (i2 < str2.length()) {
                 int i3 = i2 + 1;
-                String substring = format2.substring(i2, i3);
-                String substring2 = (this.oldLetters.isEmpty() || i2 >= format.length()) ? null : format.substring(i2, i3);
-                if (substring2 != null && substring2.equals(substring)) {
+                String strSubstring = str2.substring(i2, i3);
+                String strSubstring2 = (this.oldLetters.isEmpty() || i2 >= str.length()) ? null : str.substring(i2, i3);
+                if (strSubstring2 != null && strSubstring2.equals(strSubstring)) {
                     this.letters.add((StaticLayout) this.oldLetters.get(i2));
                     this.oldLetters.set(i2, null);
                 } else {
-                    this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r12.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    this.letters.add(new StaticLayout(strSubstring, this.textPaint, (int) Math.ceil(r12.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
                 i2 = i3;
             }
             if (z && !this.oldLetters.isEmpty()) {
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, (Property<AnimatedNumberLayout, Float>) PROGRESS, z2 ? -1.0f : 1.0f, 0.0f);
-                this.animator = ofFloat;
-                ofFloat.setDuration(150L);
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, (Property<AnimatedNumberLayout, Float>) PROGRESS, z2 ? -1.0f : 1.0f, 0.0f);
+                this.animator = objectAnimatorOfFloat;
+                objectAnimatorOfFloat.setDuration(150L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
@@ -106,11 +106,11 @@ public class AnimatedNumberLayout {
             return;
         }
         float height = ((StaticLayout) this.letters.get(0)).getHeight();
-        int max = Math.max(this.letters.size(), this.oldLetters.size());
+        int iMax = Math.max(this.letters.size(), this.oldLetters.size());
         canvas.save();
         int alpha = this.textPaint.getAlpha();
         int i = 0;
-        while (i < max) {
+        while (i < iMax) {
             canvas.save();
             StaticLayout staticLayout = i < this.oldLetters.size() ? (StaticLayout) this.oldLetters.get(i) : null;
             StaticLayout staticLayout2 = i < this.letters.size() ? (StaticLayout) this.letters.get(i) : null;
@@ -139,7 +139,7 @@ public class AnimatedNumberLayout {
                     canvas.restore();
                 }
                 if (staticLayout2 != null) {
-                    if (i == max - 1 || staticLayout != null) {
+                    if (i == iMax - 1 || staticLayout != null) {
                         this.textPaint.setAlpha((int) (alpha * (this.progress + 1.0f)));
                         canvas.translate(0.0f, this.progress * height);
                     } else {

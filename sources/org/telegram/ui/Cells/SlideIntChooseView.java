@@ -158,10 +158,10 @@ public class SlideIntChooseView extends FrameLayout {
     public int getValue(float f) {
         if (this.options.steps != null) {
             double length = f * (r1.length - 1);
-            int clamp = Utilities.clamp((int) Math.floor(length), this.options.steps.length - 1, 0);
-            int clamp2 = Utilities.clamp((int) Math.ceil(length), this.options.steps.length - 1, 0);
+            int iClamp = Utilities.clamp((int) Math.floor(length), this.options.steps.length - 1, 0);
+            int iClamp2 = Utilities.clamp((int) Math.ceil(length), this.options.steps.length - 1, 0);
             int[] iArr = this.options.steps;
-            return Math.round(AndroidUtilities.lerp(iArr[clamp], iArr[clamp2], Math.round(((float) (length - Math.floor(length))) * this.options.betweenSteps) / this.options.betweenSteps));
+            return Math.round(AndroidUtilities.lerp(iArr[iClamp], iArr[iClamp2], Math.round(((float) (length - Math.floor(length))) * this.options.betweenSteps) / this.options.betweenSteps));
         }
         return Math.round(r0.getMin() + ((this.options.getMax() - this.options.getMin()) * f));
     }
@@ -218,12 +218,12 @@ public class SlideIntChooseView extends FrameLayout {
         }
         this.toMaxTextEmojiSaturation = f;
         if (z) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.maxTextEmojiSaturation, f);
-            this.maxTextEmojiSaturationAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.maxTextEmojiSaturation, f);
+            this.maxTextEmojiSaturationAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SlideIntChooseView.this.lambda$setMaxTextEmojiSaturation$0(valueAnimator2);
+                    this.f$0.lambda$setMaxTextEmojiSaturation$0(valueAnimator2);
                 }
             });
             this.maxTextEmojiSaturationAnimator.addListener(new AnimatorListenerAdapter() {
@@ -252,9 +252,9 @@ public class SlideIntChooseView extends FrameLayout {
 
     public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
         ColorMatrix colorMatrix = new ColorMatrix();
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.maxTextEmojiSaturation = floatValue;
-        colorMatrix.setSaturation(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.maxTextEmojiSaturation = fFloatValue;
+        colorMatrix.setSaturation(fFloatValue);
         if (Theme.isCurrentThemeDark()) {
             AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
         }
@@ -316,9 +316,7 @@ public class SlideIntChooseView extends FrameLayout {
             options.toString = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    CharSequence lambda$make$0;
-                    lambda$make$0 = SlideIntChooseView.Options.lambda$make$0(Utilities.CallbackReturn.this, (Integer) obj, (Integer) obj2);
-                    return lambda$make$0;
+                    return SlideIntChooseView.Options.lambda$make$0(callbackReturn, (Integer) obj, (Integer) obj2);
                 }
             };
             return options;
@@ -345,9 +343,7 @@ public class SlideIntChooseView extends FrameLayout {
             options.toString = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    CharSequence lambda$make$1;
-                    lambda$make$1 = SlideIntChooseView.Options.lambda$make$1(str, (Integer) obj, (Integer) obj2);
-                    return lambda$make$1;
+                    return SlideIntChooseView.Options.lambda$make$1(str, (Integer) obj, (Integer) obj2);
                 }
             };
             return options;

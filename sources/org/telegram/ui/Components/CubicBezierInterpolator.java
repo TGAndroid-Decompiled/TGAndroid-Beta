@@ -65,15 +65,15 @@ public class CubicBezierInterpolator implements Interpolator {
     }
 
     protected float getXForTime(float f) {
-        float f2 = f;
+        float xDerivate = f;
         for (int i = 1; i < 14; i++) {
-            float bezierCoordinateX = getBezierCoordinateX(f2) - f;
+            float bezierCoordinateX = getBezierCoordinateX(xDerivate) - f;
             if (Math.abs(bezierCoordinateX) < 0.001d) {
                 break;
             }
-            f2 -= bezierCoordinateX / getXDerivate(f2);
+            xDerivate -= bezierCoordinateX / getXDerivate(xDerivate);
         }
-        return f2;
+        return xDerivate;
     }
 
     private float getXDerivate(float f) {

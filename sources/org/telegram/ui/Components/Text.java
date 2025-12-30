@@ -111,18 +111,8 @@ public class Text {
     }
 
     public void setText(CharSequence charSequence) {
-        StaticLayout.Builder obtain;
-        StaticLayout.Builder alignment;
-        StaticLayout.Builder maxLines;
-        StaticLayout.Builder lineSpacing;
-        StaticLayout build;
         if (this.maxLines > 1 && Build.VERSION.SDK_INT >= 23) {
-            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.paint, (int) Math.max(this.maxWidth, 1.0f));
-            alignment = obtain.setAlignment(this.align);
-            maxLines = alignment.setMaxLines(this.maxLines);
-            lineSpacing = maxLines.setLineSpacing(this.lineSpacingAdd, 1.0f);
-            build = lineSpacing.build();
-            this.layout = build;
+            this.layout = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.paint, (int) Math.max(this.maxWidth, 1.0f)).setAlignment(this.align).setMaxLines(this.maxLines).setLineSpacing(this.lineSpacingAdd, 1.0f).build();
         } else {
             this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), this.align, 1.0f, this.lineSpacingAdd, false);
         }
@@ -145,11 +135,11 @@ public class Text {
     }
 
     public float calculateRealWidth() {
-        float f = 0.0f;
+        float fMax = 0.0f;
         for (int i = 0; i < this.layout.getLineCount(); i++) {
-            f = Math.max(f, this.layout.getLineWidth(i));
+            fMax = Math.max(fMax, this.layout.getLineWidth(i));
         }
-        return f;
+        return fMax;
     }
 
     public Text multiline(int i) {

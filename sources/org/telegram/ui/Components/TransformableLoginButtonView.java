@@ -11,28 +11,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
 public class TransformableLoginButtonView extends View {
-    private Paint backgroundPaint;
+    private final Paint backgroundPaint;
     private String buttonText;
     private float buttonWidth;
     private boolean drawBackground;
-    private Paint outlinePaint;
+    private final Paint outlinePaint;
     private float progress;
-    private RectF rect;
+    private final RectF rect;
     private Drawable rippleDrawable;
     private TextPaint textPaint;
     private int transformType;
 
     public TransformableLoginButtonView(Context context) {
         super(context);
-        this.backgroundPaint = new Paint(1);
-        this.outlinePaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.backgroundPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.outlinePaint = paint2;
         this.drawBackground = true;
         this.transformType = 0;
         this.rect = new RectF();
-        this.backgroundPaint.setColor(Theme.getColor(Theme.key_chats_actionBackground));
-        this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.outlinePaint.setStyle(Paint.Style.STROKE);
-        this.outlinePaint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(Theme.getColor(Theme.key_chats_actionBackground));
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public void setDrawBackground(boolean z) {
@@ -75,9 +77,9 @@ public class TransformableLoginButtonView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.drawBackground) {
-            float dp = AndroidUtilities.dp(((this.transformType == 0 ? this.progress : 1.0f) * 26.0f) + 6.0f);
+            float fDp = AndroidUtilities.dp(((this.transformType == 0 ? this.progress : 1.0f) * 26.0f) + 6.0f);
             this.rect.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(this.rect, dp, dp, this.backgroundPaint);
+            canvas.drawRoundRect(this.rect, fDp, fDp, this.backgroundPaint);
         }
         int i = this.transformType;
         if (i == 0) {
@@ -88,32 +90,32 @@ public class TransformableLoginButtonView extends View {
                 canvas.drawText(this.buttonText, (getWidth() - this.buttonWidth) / 2.0f, ((getHeight() / 2.0f) + (this.textPaint.getTextSize() / 2.0f)) - AndroidUtilities.dp(1.75f), this.textPaint);
                 this.textPaint.setAlpha(alpha);
             }
-            float max = (Math.max(0.4f, this.progress) - 0.4f) / 0.6f;
-            if (max != 0.0f) {
-                float dp2 = AndroidUtilities.dp(21.0f) + ((getWidth() - (AndroidUtilities.dp(21.0f) * 2)) * max);
+            float fMax = (Math.max(0.4f, this.progress) - 0.4f) / 0.6f;
+            if (fMax != 0.0f) {
+                float fDp2 = AndroidUtilities.dp(21.0f) + ((getWidth() - (AndroidUtilities.dp(21.0f) * 2)) * fMax);
                 float height = getHeight() / 2.0f;
-                canvas.drawLine(AndroidUtilities.dp(21.0f), height, dp2, height, this.outlinePaint);
-                double dp3 = AndroidUtilities.dp(9.0f) * max;
-                float cos = (float) (dp2 - (Math.cos(0.7853981633974483d) * dp3));
-                float sin = (float) (Math.sin(0.7853981633974483d) * dp3);
-                canvas.drawLine(dp2, height, cos, height - sin, this.outlinePaint);
-                canvas.drawLine(dp2, height, cos, height + sin, this.outlinePaint);
+                canvas.drawLine(AndroidUtilities.dp(21.0f), height, fDp2, height, this.outlinePaint);
+                double dDp = AndroidUtilities.dp(9.0f) * fMax;
+                float fCos = (float) (fDp2 - (Math.cos(0.7853981633974483d) * dDp));
+                float fSin = (float) (Math.sin(0.7853981633974483d) * dDp);
+                canvas.drawLine(fDp2, height, fCos, height - fSin, this.outlinePaint);
+                canvas.drawLine(fDp2, height, fCos, height + fSin, this.outlinePaint);
             }
         } else if (i == 1) {
-            float dp4 = AndroidUtilities.dp(21.0f);
+            float fDp3 = AndroidUtilities.dp(21.0f);
             float width = getWidth() - AndroidUtilities.dp(21.0f);
             float height2 = getHeight() / 2.0f;
             canvas.save();
             canvas.translate((-AndroidUtilities.dp(2.0f)) * this.progress, 0.0f);
             canvas.rotate(this.progress * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-            canvas.drawLine(((width - dp4) * this.progress) + dp4, height2, width, height2, this.outlinePaint);
-            int dp5 = AndroidUtilities.dp((this.progress * (-1.0f)) + 9.0f);
-            int dp6 = AndroidUtilities.dp((this.progress * 7.0f) + 9.0f);
+            canvas.drawLine(((width - fDp3) * this.progress) + fDp3, height2, width, height2, this.outlinePaint);
+            int iDp = AndroidUtilities.dp((this.progress * (-1.0f)) + 9.0f);
+            int iDp2 = AndroidUtilities.dp((this.progress * 7.0f) + 9.0f);
             double d = width;
-            double d2 = dp5;
+            double d2 = iDp;
             double d3 = height2;
             canvas.drawLine(width, height2, (float) (d - (Math.cos(0.7853981633974483d) * d2)), (float) ((d2 * Math.sin(0.7853981633974483d)) + d3), this.outlinePaint);
-            double d4 = dp6;
+            double d4 = iDp2;
             canvas.drawLine(width, height2, (float) (d - (Math.cos(0.7853981633974483d) * d4)), (float) (d3 - (d4 * Math.sin(0.7853981633974483d))), this.outlinePaint);
             canvas.restore();
         }

@@ -1,5 +1,6 @@
 package kotlin.collections;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -279,12 +280,12 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             ArrayList arrayList = new ArrayList((size / i2) + (size % i2 == 0 ? 0 : 1));
             int i3 = 0;
             while (i3 >= 0 && i3 < size) {
-                int coerceAtMost = RangesKt.coerceAtMost(i, size - i3);
-                if (coerceAtMost < i && !z) {
+                int iCoerceAtMost = RangesKt.coerceAtMost(i, size - i3);
+                if (iCoerceAtMost < i && !z) {
                     break;
                 }
-                ArrayList arrayList2 = new ArrayList(coerceAtMost);
-                for (int i4 = 0; i4 < coerceAtMost; i4++) {
+                ArrayList arrayList2 = new ArrayList(iCoerceAtMost);
+                for (int i4 = 0; i4 < iCoerceAtMost; i4++) {
                     arrayList2.add(list.get(i4 + i3));
                 }
                 arrayList.add(arrayList2);
@@ -293,9 +294,9 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             return arrayList;
         }
         ArrayList arrayList3 = new ArrayList();
-        Iterator windowedIterator = SlidingWindowKt.windowedIterator(iterable.iterator(), i, i2, z, false);
-        while (windowedIterator.hasNext()) {
-            arrayList3.add((List) windowedIterator.next());
+        Iterator itWindowedIterator = SlidingWindowKt.windowedIterator(iterable.iterator(), i, i2, z, false);
+        while (itWindowedIterator.hasNext()) {
+            arrayList3.add((List) itWindowedIterator.next());
         }
         return arrayList3;
     }
@@ -312,11 +313,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         return arrayList;
     }
 
-    public static Appendable joinTo$default(Iterable iterable, Appendable appendable, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
-        return joinTo(iterable, appendable, (i2 & 2) != 0 ? ", " : charSequence, (i2 & 4) != 0 ? "" : charSequence2, (i2 & 8) == 0 ? charSequence3 : "", (i2 & 16) != 0 ? -1 : i, (i2 & 32) != 0 ? "..." : charSequence4, (i2 & 64) != 0 ? null : function1);
-    }
-
-    public static final Appendable joinTo(Iterable iterable, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
+    public static final Appendable joinTo(Iterable iterable, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         Intrinsics.checkNotNullParameter(buffer, "buffer");
         Intrinsics.checkNotNullParameter(separator, "separator");

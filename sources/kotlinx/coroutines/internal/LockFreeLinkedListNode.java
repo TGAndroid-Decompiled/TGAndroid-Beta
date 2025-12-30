@@ -14,7 +14,7 @@ public class LockFreeLinkedListNode {
     private volatile Object _prev$volatile = this;
     private volatile Object _removedRef$volatile;
 
-    public static final AtomicReferenceFieldUpdater access$get_next$volatile$FU() {
+    public static final AtomicReferenceFieldUpdater get_next$volatile$FU() {
         return _next$volatile$FU;
     }
 
@@ -40,7 +40,7 @@ public class LockFreeLinkedListNode {
         public void complete(LockFreeLinkedListNode lockFreeLinkedListNode, Object obj) {
             boolean z = obj == null;
             LockFreeLinkedListNode lockFreeLinkedListNode2 = z ? this.newNode : this.oldNext;
-            if (lockFreeLinkedListNode2 != null && AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(LockFreeLinkedListNode.access$get_next$volatile$FU(), lockFreeLinkedListNode, this, lockFreeLinkedListNode2) && z) {
+            if (lockFreeLinkedListNode2 != null && AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(LockFreeLinkedListNode.get_next$volatile$FU(), lockFreeLinkedListNode, this, lockFreeLinkedListNode2) && z) {
                 LockFreeLinkedListNode lockFreeLinkedListNode3 = this.newNode;
                 LockFreeLinkedListNode lockFreeLinkedListNode4 = this.oldNext;
                 Intrinsics.checkNotNull(lockFreeLinkedListNode4);
@@ -76,8 +76,8 @@ public class LockFreeLinkedListNode {
     }
 
     public final LockFreeLinkedListNode getPrevNode() {
-        LockFreeLinkedListNode correctPrev = correctPrev(null);
-        return correctPrev == null ? findPrevNonRemoved((LockFreeLinkedListNode) _prev$volatile$FU.get(this)) : correctPrev;
+        LockFreeLinkedListNode lockFreeLinkedListNodeCorrectPrev = correctPrev(null);
+        return lockFreeLinkedListNodeCorrectPrev == null ? findPrevNonRemoved((LockFreeLinkedListNode) _prev$volatile$FU.get(this)) : lockFreeLinkedListNodeCorrectPrev;
     }
 
     private final LockFreeLinkedListNode findPrevNonRemoved(LockFreeLinkedListNode lockFreeLinkedListNode) {

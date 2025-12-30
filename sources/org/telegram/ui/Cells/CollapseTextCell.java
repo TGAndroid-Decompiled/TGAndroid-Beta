@@ -32,14 +32,14 @@ public class CollapseTextCell extends FrameLayout {
         animatedTextView.setOnWidthUpdatedListener(new Runnable() {
             @Override
             public final void run() {
-                CollapseTextCell.this.updateCollapseArrowTranslation();
+                this.f$0.updateCollapseArrowTranslation();
             }
         });
         addView(animatedTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 21.0f, 0.0f, 38.0f, 3.0f));
         this.collapsedArrow = new View(context);
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.collapsedArrow.setBackground(mutate);
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.collapsedArrow.setBackground(drawableMutate);
         addView(this.collapsedArrow, LayoutHelper.createFrameRelatively(14.0f, 14.0f, 8388627, 21.0f, 1.0f, 0.0f, 3.0f));
     }
 

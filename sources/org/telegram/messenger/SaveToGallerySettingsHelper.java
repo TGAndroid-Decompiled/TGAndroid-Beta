@@ -84,16 +84,16 @@ public class SaveToGallerySettingsHelper {
 
     public static void saveExceptions(SharedPreferences sharedPreferences, LongSparseArray<DialogException> longSparseArray) {
         sharedPreferences.edit().clear().apply();
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt("count", longSparseArray.size());
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+        editorEdit.putInt("count", longSparseArray.size());
         for (int i = 0; i < longSparseArray.size(); i++) {
-            DialogException valueAt = longSparseArray.valueAt(i);
-            edit.putLong(i + "_dialog_id", valueAt.dialogId);
-            edit.putBoolean(i + "_photo", valueAt.savePhoto);
-            edit.putBoolean(i + "_video", valueAt.saveVideo);
-            edit.putLong(i + "_limitVideo", valueAt.limitVideo);
+            DialogException dialogExceptionValueAt = longSparseArray.valueAt(i);
+            editorEdit.putLong(i + "_dialog_id", dialogExceptionValueAt.dialogId);
+            editorEdit.putBoolean(i + "_photo", dialogExceptionValueAt.savePhoto);
+            editorEdit.putBoolean(i + "_video", dialogExceptionValueAt.saveVideo);
+            editorEdit.putLong(i + "_limitVideo", dialogExceptionValueAt.limitVideo);
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public static Settings getSettings(int i) {

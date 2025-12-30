@@ -34,7 +34,7 @@ public class MuteDrawable extends Drawable {
         this.animatedMuted = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                MuteDrawable.this.invalidateSelf();
+                this.f$0.invalidateSelf();
             }
         }, 0L, 200L, CubicBezierInterpolator.EASE_OUT);
         this.baseDrawable = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
@@ -62,22 +62,22 @@ public class MuteDrawable extends Drawable {
         this.baseDrawable.draw(canvas);
         float f = this.animatedMuted.set(this.muted);
         if (f > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(0.783f);
-            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float centerX2 = (bounds.centerX() + AndroidUtilities.dp(9.0f)) - dpf2;
-            float centerY2 = (bounds.centerY() + AndroidUtilities.dp(9.0f)) - dpf2;
+            float fDpf2 = AndroidUtilities.dpf2(0.783f);
+            float fCenterX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + fDpf2;
+            float fCenterY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + fDpf2;
+            float fCenterX2 = (bounds.centerX() + AndroidUtilities.dp(9.0f)) - fDpf2;
+            float fCenterY2 = (bounds.centerY() + AndroidUtilities.dp(9.0f)) - fDpf2;
             if (this.muted) {
-                centerX = AndroidUtilities.lerp(centerX2, centerX, f);
-                centerY = AndroidUtilities.lerp(centerY2, centerY, f);
+                fCenterX = AndroidUtilities.lerp(fCenterX2, fCenterX, f);
+                fCenterY = AndroidUtilities.lerp(fCenterY2, fCenterY, f);
             } else {
-                centerX2 = AndroidUtilities.lerp(centerX, centerX2, f);
-                centerY2 = AndroidUtilities.lerp(centerY, centerY2, f);
+                fCenterX2 = AndroidUtilities.lerp(fCenterX, fCenterX2, f);
+                fCenterY2 = AndroidUtilities.lerp(fCenterY, fCenterY2, f);
             }
-            float f2 = centerX;
-            float f3 = centerY;
-            float f4 = centerX2;
-            float f5 = centerY2;
+            float f2 = fCenterX;
+            float f3 = fCenterY;
+            float f4 = fCenterX2;
+            float f5 = fCenterY2;
             canvas.drawLine(f2, f3, f4, f5, this.clipPaint);
             this.strokePaint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
             canvas.drawLine(f2, f3, f4, f5, this.strokePaint);

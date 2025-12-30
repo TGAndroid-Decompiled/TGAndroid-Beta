@@ -6,6 +6,7 @@ import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -81,19 +82,19 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private MediaCodec createEncoderForMimeType() {
-        MediaCodec createEncoderByType;
+    private MediaCodec createEncoderForMimeType() throws IOException {
+        MediaCodec mediaCodecCreateEncoderByType;
         if (this.outputMimeType.equals("video/hevc") && Build.VERSION.SDK_INT >= 29) {
-            String findGoodHevcEncoder = SharedConfig.findGoodHevcEncoder();
-            createEncoderByType = findGoodHevcEncoder != null ? MediaCodec.createByCodecName(findGoodHevcEncoder) : null;
+            String strFindGoodHevcEncoder = SharedConfig.findGoodHevcEncoder();
+            mediaCodecCreateEncoderByType = strFindGoodHevcEncoder != null ? MediaCodec.createByCodecName(strFindGoodHevcEncoder) : null;
         } else {
             if (this.outputMimeType.equals("video/hevc")) {
                 this.outputMimeType = "video/avc";
             }
-            createEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
+            mediaCodecCreateEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
         }
-        if (createEncoderByType != null || !this.outputMimeType.equals("video/hevc")) {
-            return createEncoderByType;
+        if (mediaCodecCreateEncoderByType != null || !this.outputMimeType.equals("video/hevc")) {
+            return mediaCodecCreateEncoderByType;
         }
         this.outputMimeType = "video/avc";
         return MediaCodec.createEncoderByType("video/avc");
@@ -210,29 +211,29 @@ public class MediaCodecVideoConvertor {
     }
 
     private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo) {
-        String readRes;
+        String res;
         if (z) {
             if (hDRInfo.getHDRType() == 1) {
-                readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
+                res = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
             } else {
-                readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
+                res = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
             }
-            return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+            return res.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
         }
         return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {
-        int clamp = (int) Utilities.clamp((Math.max(i, i2) / Math.max(i4, i3)) * 0.8f, 2.0f, 1.0f);
-        if (clamp > 1 && SharedConfig.deviceIsAverage()) {
-            clamp = 1;
+        int iClamp = (int) Utilities.clamp((Math.max(i, i2) / Math.max(i4, i3)) * 0.8f, 2.0f, 1.0f);
+        if (iClamp > 1 && SharedConfig.deviceIsAverage()) {
+            iClamp = 1;
         }
-        int min = Math.min(i5, clamp);
-        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + i4 + "   kernelRadius " + min);
+        int iMin = Math.min(i5, iClamp);
+        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + i4 + "   kernelRadius " + iMin);
         if (z) {
-            return "#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + min + ".0;\nconst float pixelSizeX = 1.0 / " + i + ".0;\nconst float pixelSizeY = 1.0 / " + i2 + ".0;\nuniform samplerExternalOES sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+            return "#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + iMin + ".0;\nconst float pixelSizeX = 1.0 / " + i + ".0;\nconst float pixelSizeY = 1.0 / " + i2 + ".0;\nuniform samplerExternalOES sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
         }
-        return "precision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + min + ".0;\nconst float pixelSizeX = 1.0 / " + i2 + ".0;\nconst float pixelSizeY = 1.0 / " + i + ".0;\nuniform sampler2D sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+        return "precision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + iMin + ".0;\nconst float pixelSizeX = 1.0 / " + i2 + ".0;\nconst float pixelSizeY = 1.0 / " + i + ".0;\nuniform sampler2D sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
     }
 
     public class ConversionCanceledException extends RuntimeException {

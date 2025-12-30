@@ -3,12 +3,12 @@ package kotlin.coroutines.jvm.internal;
 import java.lang.reflect.Method;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class ModuleNameRetriever {
+final class ModuleNameRetriever {
     private static Cache cache;
     public static final ModuleNameRetriever INSTANCE = new ModuleNameRetriever();
     private static final Cache notOnJava9 = new Cache(null, null, null);
 
-    public static final class Cache {
+    private static final class Cache {
         public final Method getDescriptorMethod;
         public final Method getModuleMethod;
         public final Method nameMethod;
@@ -25,21 +25,21 @@ public final class ModuleNameRetriever {
 
     public final String getModuleName(BaseContinuationImpl continuation) {
         Method method;
-        Object invoke;
+        Object objInvoke;
         Method method2;
-        Object invoke2;
+        Object objInvoke2;
         Intrinsics.checkNotNullParameter(continuation, "continuation");
-        Cache cache2 = cache;
-        if (cache2 == null) {
-            cache2 = buildCache(continuation);
+        Cache cacheBuildCache = cache;
+        if (cacheBuildCache == null) {
+            cacheBuildCache = buildCache(continuation);
         }
-        if (cache2 == notOnJava9 || (method = cache2.getModuleMethod) == null || (invoke = method.invoke(continuation.getClass(), null)) == null || (method2 = cache2.getDescriptorMethod) == null || (invoke2 = method2.invoke(invoke, null)) == null) {
+        if (cacheBuildCache == notOnJava9 || (method = cacheBuildCache.getModuleMethod) == null || (objInvoke = method.invoke(continuation.getClass(), null)) == null || (method2 = cacheBuildCache.getDescriptorMethod) == null || (objInvoke2 = method2.invoke(objInvoke, null)) == null) {
             return null;
         }
-        Method method3 = cache2.nameMethod;
-        Object invoke3 = method3 != null ? method3.invoke(invoke2, null) : null;
-        if (invoke3 instanceof String) {
-            return (String) invoke3;
+        Method method3 = cacheBuildCache.nameMethod;
+        Object objInvoke3 = method3 != null ? method3.invoke(objInvoke2, null) : null;
+        if (objInvoke3 instanceof String) {
+            return (String) objInvoke3;
         }
         return null;
     }

@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class DebugMetadataKt {
-    public static final StackTraceElement getStackTraceElement(BaseContinuationImpl baseContinuationImpl) {
-        String str;
+    public static final StackTraceElement getStackTraceElement(BaseContinuationImpl baseContinuationImpl) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+        String strC;
         Intrinsics.checkNotNullParameter(baseContinuationImpl, "<this>");
         DebugMetadata debugMetadataAnnotation = getDebugMetadataAnnotation(baseContinuationImpl);
         if (debugMetadataAnnotation == null) {
@@ -16,18 +16,18 @@ public abstract class DebugMetadataKt {
         int i = label < 0 ? -1 : debugMetadataAnnotation.l()[label];
         String moduleName = ModuleNameRetriever.INSTANCE.getModuleName(baseContinuationImpl);
         if (moduleName == null) {
-            str = debugMetadataAnnotation.c();
+            strC = debugMetadataAnnotation.c();
         } else {
-            str = moduleName + '/' + debugMetadataAnnotation.c();
+            strC = moduleName + '/' + debugMetadataAnnotation.c();
         }
-        return new StackTraceElement(str, debugMetadataAnnotation.m(), debugMetadataAnnotation.f(), i);
+        return new StackTraceElement(strC, debugMetadataAnnotation.m(), debugMetadataAnnotation.f(), i);
     }
 
     private static final DebugMetadata getDebugMetadataAnnotation(BaseContinuationImpl baseContinuationImpl) {
         return (DebugMetadata) baseContinuationImpl.getClass().getAnnotation(DebugMetadata.class);
     }
 
-    private static final int getLabel(BaseContinuationImpl baseContinuationImpl) {
+    private static final int getLabel(BaseContinuationImpl baseContinuationImpl) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
         try {
             Field declaredField = baseContinuationImpl.getClass().getDeclaredField("label");
             declaredField.setAccessible(true);

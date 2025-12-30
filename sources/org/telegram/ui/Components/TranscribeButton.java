@@ -104,7 +104,7 @@ public abstract class TranscribeButton {
         this.outIconDrawable.setOnFinishCallback(new Runnable() {
             @Override
             public final void run() {
-                TranscribeButton.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         }, 19);
         this.outIconDrawable.setAllowDecodeSingleFrame(true);
@@ -116,7 +116,7 @@ public abstract class TranscribeButton {
         this.inIconDrawable.setOnFinishCallback(new Runnable() {
             @Override
             public final void run() {
-                TranscribeButton.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
         }, 19);
         this.inIconDrawable.setAllowDecodeSingleFrame(true);
@@ -293,9 +293,9 @@ public abstract class TranscribeButton {
         this.backgroundPaint.setColor(this.backgroundColor);
         this.backgroundPaint.setAlpha((int) (r1.getAlpha() * (1.0f - f)));
         if (z2 || this.selectorDrawable == null) {
-            Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, this.rippleColor);
-            this.selectorDrawable = createSimpleSelectorRoundRectDrawable;
-            createSimpleSelectorRoundRectDrawable.setCallback(this.parent);
+            Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, this.rippleColor);
+            this.selectorDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
+            drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this.parent);
         }
         if (z2) {
             this.inIconDrawable.beginApplyLayerColors();
@@ -304,18 +304,18 @@ public abstract class TranscribeButton {
             this.inIconDrawable.setAllowDecodeSingleFrame(true);
             this.inIconDrawable.updateCurrentFrame(0L, false);
             RLottieDrawable rLottieDrawable = this.inIconDrawable;
-            int alpha = Color.alpha(i);
-            this.inIconDrawableAlpha = alpha;
-            rLottieDrawable.setAlpha(alpha);
+            int iAlpha = Color.alpha(i);
+            this.inIconDrawableAlpha = iAlpha;
+            rLottieDrawable.setAlpha(iAlpha);
             this.outIconDrawable.beginApplyLayerColors();
             this.outIconDrawable.setLayerColor("Artboard Outlines.**", this.iconColor);
             this.outIconDrawable.commitApplyLayerColors();
             this.outIconDrawable.setAllowDecodeSingleFrame(true);
             this.outIconDrawable.updateCurrentFrame(0L, false);
             RLottieDrawable rLottieDrawable2 = this.outIconDrawable;
-            int alpha2 = Color.alpha(i);
-            this.outIconDrawableAlpha = alpha2;
-            rLottieDrawable2.setAlpha(alpha2);
+            int iAlpha2 = Color.alpha(i);
+            this.outIconDrawableAlpha = iAlpha2;
+            rLottieDrawable2.setAlpha(iAlpha2);
         }
         if (this.strokePaint == null) {
             Paint paint = new Paint(1);
@@ -335,9 +335,9 @@ public abstract class TranscribeButton {
             this.b = (float) ((Math.atan(f / (f3 - f2)) * 180.0d) / 3.141592653589793d);
         }
         this.bounds.set(i, i2, i + i3, i2 + i4);
-        int min = Math.min(Math.min(i3, i4) / 2, i5);
-        this.radius = min;
-        this.diameter = min * 2;
+        int iMin = Math.min(Math.min(i3, i4) / 2, i5);
+        this.radius = iMin;
+        this.diameter = iMin * 2;
     }
 
     public int width() {
@@ -382,16 +382,16 @@ public abstract class TranscribeButton {
         canvas.restore();
         float f4 = this.loadingFloat.set(this.loading ? 1.0f : 0.0f);
         if (f4 > 0.0f) {
-            float[] segments = getSegments(((float) (SystemClock.elapsedRealtime() - this.start)) * 0.75f);
+            float[] segments = getSegments((long) ((SystemClock.elapsedRealtime() - this.start) * 0.75f));
             Path path3 = this.progressClipPath;
             if (path3 == null) {
                 this.progressClipPath = new Path();
             } else {
                 path3.rewind();
             }
-            float max = Math.max(40.0f * f4, segments[1] - segments[0]);
-            float f5 = segments[0] + ((1.0f - f4) * max * (this.loading ? 0.0f : 1.0f));
-            float f6 = (max * f4) + f5;
+            float fMax = Math.max(40.0f * f4, segments[1] - segments[0]);
+            float f5 = segments[0] + ((1.0f - f4) * fMax * (this.loading ? 0.0f : 1.0f));
+            float f6 = (fMax * f4) + f5;
             float f7 = f5 % 360.0f;
             float f8 = f6 % 360.0f;
             if (f7 < 0.0f) {
@@ -403,10 +403,10 @@ public abstract class TranscribeButton {
             }
             float f10 = f8;
             Path path4 = this.progressClipPath;
-            int centerX = this.bounds.centerX();
+            int iCenterX = this.bounds.centerX();
             android.graphics.Rect rect = this.bounds;
             int i = rect.top;
-            addLine(path4, centerX, i, rect.right - this.radius, i, f9, f10, 0.0f, this.a);
+            addLine(path4, iCenterX, i, rect.right - this.radius, i, f9, f10, 0.0f, this.a);
             Path path5 = this.progressClipPath;
             android.graphics.Rect rect2 = this.bounds;
             addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f9, f10, this.a, this.b);
@@ -520,14 +520,15 @@ public abstract class TranscribeButton {
         }
         long j2 = j % 5400;
         float[] fArr = this.segments;
-        float f = ((float) (1520 * j2)) / 5400.0f;
+        float f = (1520 * j2) / 5400.0f;
         fArr[0] = f - 20.0f;
         fArr[1] = f;
         for (int i = 0; i < 4; i++) {
             float[] fArr2 = this.segments;
-            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation(((float) (j2 - (i * 1350))) / 667.0f) * 250.0f);
+            int i2 = i * 1350;
+            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation((j2 - i2) / 667.0f) * 250.0f);
             float[] fArr3 = this.segments;
-            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation(((float) (j2 - (r6 + 667))) / 667.0f) * 250.0f);
+            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation((j2 - (i2 + 667)) / 667.0f) * 250.0f);
         }
         return this.segments;
     }
@@ -550,11 +551,11 @@ public abstract class TranscribeButton {
         if (i == i3 && i2 == i4) {
             return;
         }
-        float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
-        if (MathUtils.clamp(f2, 0.0f, 1.0f) - clamp <= 0.0f) {
+        float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
+        if (MathUtils.clamp(f2, 0.0f, 1.0f) - fClamp <= 0.0f) {
             return;
         }
-        path.moveTo(AndroidUtilities.lerp(i, i3, clamp), AndroidUtilities.lerp(i2, i4, clamp));
+        path.moveTo(AndroidUtilities.lerp(i, i3, fClamp), AndroidUtilities.lerp(i2, i4, fClamp));
         path.lineTo(AndroidUtilities.lerp(i, i3, r9), AndroidUtilities.lerp(i2, i4, r9));
     }
 
@@ -570,9 +571,9 @@ public abstract class TranscribeButton {
     }
 
     private void addCorner(Path path, int i, int i2, int i3, int i4, float f, float f2) {
-        float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
-        float clamp2 = MathUtils.clamp(f2, 0.0f, 1.0f) - clamp;
-        if (clamp2 <= 0.0f) {
+        float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
+        float fClamp2 = MathUtils.clamp(f2, 0.0f, 1.0f) - fClamp;
+        if (fClamp2 <= 0.0f) {
             return;
         }
         if (i4 == 1) {
@@ -584,14 +585,22 @@ public abstract class TranscribeButton {
         } else if (i4 == 4) {
             AndroidUtilities.rectTmp.set(i, i2, i + i3, i2 + i3);
         }
-        path.addArc(AndroidUtilities.rectTmp, ((i4 * 90) - 180) + (clamp * 90.0f), clamp2 * 90.0f);
+        path.addArc(AndroidUtilities.rectTmp, ((i4 * 90) - 180) + (fClamp * 90.0f), fClamp2 * 90.0f);
     }
 
     public static class LoadingPointsSpan extends ImageSpan {
         private static LoadingPointsDrawable drawable;
 
         public LoadingPointsSpan() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TranscribeButton.LoadingPointsSpan.<init>():void");
+            LoadingPointsDrawable loadingPointsDrawable = drawable;
+            if (loadingPointsDrawable == null) {
+                loadingPointsDrawable = new LoadingPointsDrawable(Theme.chat_msgTextPaint);
+                drawable = loadingPointsDrawable;
+            }
+            super(loadingPointsDrawable, 0);
+            float textSize = Theme.chat_msgTextPaint.getTextSize() * 0.89f;
+            int i = (int) (0.02f * textSize);
+            getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
         }
 
         @Override
@@ -626,13 +635,13 @@ public abstract class TranscribeButton {
             float textSize = textPaint.getTextSize() * 0.89f;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
                 @Override
-                public boolean hasParentView() {
+                protected boolean hasParentView() {
                     return true;
                 }
             };
             this.lottie = rLottieDrawable;
             rLottieDrawable.setAutoRepeat(1);
-            this.lottie.setCurrentFrame((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+            this.lottie.setCurrentFrame((int) ((SystemClock.elapsedRealtime() / 16.0f) % 60.0f));
             this.lottie.setAllowDecodeSingleFrame(true);
             this.lottie.start();
         }
@@ -685,10 +694,10 @@ public abstract class TranscribeButton {
     }
 
     public static boolean isTranscribing(MessageObject messageObject) {
-        HashMap hashMap;
+        HashMap map;
         TLRPC.Message message;
-        HashMap hashMap2 = transcribeOperationsByDialogPosition;
-        return (hashMap2 != null && (hashMap2.containsValue(messageObject) || transcribeOperationsByDialogPosition.containsKey(Integer.valueOf(reqInfoHash(messageObject))))) || !((hashMap = transcribeOperationsById) == null || messageObject == null || (message = messageObject.messageOwner) == null || !hashMap.containsKey(Long.valueOf(message.voiceTranscriptionId)));
+        HashMap map2 = transcribeOperationsByDialogPosition;
+        return (map2 != null && (map2.containsValue(messageObject) || transcribeOperationsByDialogPosition.containsKey(Integer.valueOf(reqInfoHash(messageObject))))) || !((map = transcribeOperationsById) == null || messageObject == null || (message = messageObject.messageOwner) == null || !map.containsKey(Long.valueOf(message.voiceTranscriptionId)));
     }
 
     private static void transcribePressed(final MessageObject messageObject, boolean z, final ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate) {
@@ -696,7 +705,7 @@ public abstract class TranscribeButton {
             return;
         }
         final int i = messageObject.currentAccount;
-        final long elapsedRealtime = SystemClock.elapsedRealtime();
+        final long jElapsedRealtime = SystemClock.elapsedRealtime();
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(messageObject.messageOwner.peer_id);
         final long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         TLRPC.Message message = messageObject.messageOwner;
@@ -727,14 +736,14 @@ public abstract class TranscribeButton {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_transcribeAudio, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    TranscribeButton.lambda$transcribePressed$6(i, chatMessageCellDelegate, messageObject, elapsedRealtime, peerDialogId, i2, tLObject, tL_error);
+                    TranscribeButton.lambda$transcribePressed$6(i, chatMessageCellDelegate, messageObject, jElapsedRealtime, peerDialogId, i2, tLObject, tL_error);
                 }
             }, !UserConfig.getInstance(i).isPremium() ? 1024 : 0);
             return;
         }
-        HashMap hashMap = transcribeOperationsByDialogPosition;
-        if (hashMap != null) {
-            hashMap.remove(Integer.valueOf(reqInfoHash(messageObject)));
+        HashMap map = transcribeOperationsByDialogPosition;
+        if (map != null) {
+            map.remove(Integer.valueOf(reqInfoHash(messageObject)));
         }
         messageObject.messageOwner.voiceTranscriptionOpen = false;
         MessagesStorage.getInstance(i).updateMessageVoiceTranscriptionOpen(peerDialogId, i2, messageObject.messageOwner);
@@ -775,7 +784,7 @@ public abstract class TranscribeButton {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate.this, tL_messages_transcribedAudio);
+                        TranscribeButton.lambda$transcribePressed$3(chatMessageCellDelegate, tL_messages_transcribedAudio);
                     }
                 });
             }
@@ -793,7 +802,7 @@ public abstract class TranscribeButton {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.lambda$transcribePressed$4(MessageObject.this, chatMessageCellDelegate, i);
+                        TranscribeButton.lambda$transcribePressed$4(messageObject, chatMessageCellDelegate, i);
                     }
                 });
                 return;
@@ -801,7 +810,7 @@ public abstract class TranscribeButton {
             j3 = 0;
             z = true;
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime() - j;
+        long jElapsedRealtime = SystemClock.elapsedRealtime() - j;
         openVideoTranscription(messageObject);
         TLRPC.Message message = messageObject.messageOwner;
         message.voiceTranscriptionOpen = true;
@@ -815,9 +824,9 @@ public abstract class TranscribeButton {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TranscribeButton.finishTranscription(MessageObject.this, j5, str2);
+                    TranscribeButton.finishTranscription(messageObject, j5, str2);
                 }
-            }, Math.max(0L, 350 - elapsedRealtime));
+            }, Math.max(0L, 350 - jElapsedRealtime));
         }
     }
 
@@ -828,9 +837,9 @@ public abstract class TranscribeButton {
     }
 
     public static void lambda$transcribePressed$4(MessageObject messageObject, ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
-        HashMap hashMap = transcribeOperationsByDialogPosition;
-        if (hashMap != null) {
-            hashMap.remove(Integer.valueOf(reqInfoHash(messageObject)));
+        HashMap map = transcribeOperationsByDialogPosition;
+        if (map != null) {
+            map.remove(Integer.valueOf(reqInfoHash(messageObject)));
         }
         if (chatMessageCellDelegate != null) {
             chatMessageCellDelegate.needShowPremiumBulletin(3);
@@ -845,22 +854,22 @@ public abstract class TranscribeButton {
 
     public static boolean finishTranscription(final MessageObject messageObject, final long j, final String str) {
         try {
-            HashMap hashMap = transcribeOperationsById;
-            MessageObject messageObject2 = (hashMap == null || !hashMap.containsKey(Long.valueOf(j))) ? null : (MessageObject) transcribeOperationsById.remove(Long.valueOf(j));
+            HashMap map = transcribeOperationsById;
+            MessageObject messageObject2 = (map == null || !map.containsKey(Long.valueOf(j))) ? null : (MessageObject) transcribeOperationsById.remove(Long.valueOf(j));
             if (messageObject == null) {
                 messageObject = messageObject2;
             }
             if (messageObject != null && messageObject.messageOwner != null) {
-                HashMap hashMap2 = transcribeOperationsByDialogPosition;
-                if (hashMap2 != null) {
-                    hashMap2.remove(Integer.valueOf(reqInfoHash(messageObject)));
+                HashMap map2 = transcribeOperationsByDialogPosition;
+                if (map2 != null) {
+                    map2.remove(Integer.valueOf(reqInfoHash(messageObject)));
                 }
                 messageObject.messageOwner.voiceTranscriptionFinal = true;
                 MessagesStorage.getInstance(messageObject.currentAccount).updateMessageVoiceTranscription(messageObject.getDialogId(), messageObject.getId(), str, messageObject.messageOwner);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.lambda$finishTranscription$8(MessageObject.this, j, str);
+                        TranscribeButton.lambda$finishTranscription$8(messageObject, j, str);
                     }
                 });
                 return true;
@@ -873,9 +882,9 @@ public abstract class TranscribeButton {
     public static void lambda$finishTranscription$8(MessageObject messageObject, long j, String str) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
         int i = NotificationCenter.voiceTranscriptionUpdate;
-        Long valueOf = Long.valueOf(j);
+        Long lValueOf = Long.valueOf(j);
         Boolean bool = Boolean.TRUE;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, messageObject, valueOf, str, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, messageObject, lValueOf, str, bool, bool);
     }
 
     public static void showOffTranscribe(MessageObject messageObject) {
@@ -893,7 +902,7 @@ public abstract class TranscribeButton {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TranscribeButton.lambda$showOffTranscribe$9(MessageObject.this);
+                    TranscribeButton.lambda$showOffTranscribe$9(messageObject);
                 }
             });
         }

@@ -51,52 +51,52 @@ public class HevcDecoderConfigurationRecord {
 
     public void parse(ByteBuffer byteBuffer) {
         this.configurationVersion = IsoTypeReader.readUInt8(byteBuffer);
-        int readUInt8 = IsoTypeReader.readUInt8(byteBuffer);
-        this.general_profile_space = (readUInt8 & 192) >> 6;
-        this.general_tier_flag = (readUInt8 & 32) > 0;
-        this.general_profile_idc = readUInt8 & 31;
+        int uInt8 = IsoTypeReader.readUInt8(byteBuffer);
+        this.general_profile_space = (uInt8 & 192) >> 6;
+        this.general_tier_flag = (uInt8 & 32) > 0;
+        this.general_profile_idc = uInt8 & 31;
         this.general_profile_compatibility_flags = IsoTypeReader.readUInt32(byteBuffer);
-        long readUInt48 = IsoTypeReader.readUInt48(byteBuffer);
-        this.general_constraint_indicator_flags = readUInt48;
-        long j = readUInt48 >> 44;
+        long uInt48 = IsoTypeReader.readUInt48(byteBuffer);
+        this.general_constraint_indicator_flags = uInt48;
+        long j = uInt48 >> 44;
         this.frame_only_constraint_flag = (8 & j) > 0;
         this.non_packed_constraint_flag = (4 & j) > 0;
         this.interlaced_source_flag = (2 & j) > 0;
         this.progressive_source_flag = (j & 1) > 0;
-        this.general_constraint_indicator_flags = readUInt48 & 140737488355327L;
+        this.general_constraint_indicator_flags = uInt48 & 140737488355327L;
         this.general_level_idc = IsoTypeReader.readUInt8(byteBuffer);
-        int readUInt16 = IsoTypeReader.readUInt16(byteBuffer);
-        this.reserved1 = (61440 & readUInt16) >> 12;
-        this.min_spatial_segmentation_idc = readUInt16 & 4095;
-        int readUInt82 = IsoTypeReader.readUInt8(byteBuffer);
-        this.reserved2 = (readUInt82 & 252) >> 2;
-        this.parallelismType = readUInt82 & 3;
-        int readUInt83 = IsoTypeReader.readUInt8(byteBuffer);
-        this.reserved3 = (readUInt83 & 252) >> 2;
-        this.chromaFormat = readUInt83 & 3;
-        int readUInt84 = IsoTypeReader.readUInt8(byteBuffer);
-        this.reserved4 = (readUInt84 & 248) >> 3;
-        this.bitDepthLumaMinus8 = readUInt84 & 7;
-        int readUInt85 = IsoTypeReader.readUInt8(byteBuffer);
-        this.reserved5 = (readUInt85 & 248) >> 3;
-        this.bitDepthChromaMinus8 = readUInt85 & 7;
+        int uInt16 = IsoTypeReader.readUInt16(byteBuffer);
+        this.reserved1 = (61440 & uInt16) >> 12;
+        this.min_spatial_segmentation_idc = uInt16 & 4095;
+        int uInt82 = IsoTypeReader.readUInt8(byteBuffer);
+        this.reserved2 = (uInt82 & 252) >> 2;
+        this.parallelismType = uInt82 & 3;
+        int uInt83 = IsoTypeReader.readUInt8(byteBuffer);
+        this.reserved3 = (uInt83 & 252) >> 2;
+        this.chromaFormat = uInt83 & 3;
+        int uInt84 = IsoTypeReader.readUInt8(byteBuffer);
+        this.reserved4 = (uInt84 & 248) >> 3;
+        this.bitDepthLumaMinus8 = uInt84 & 7;
+        int uInt85 = IsoTypeReader.readUInt8(byteBuffer);
+        this.reserved5 = (uInt85 & 248) >> 3;
+        this.bitDepthChromaMinus8 = uInt85 & 7;
         this.avgFrameRate = IsoTypeReader.readUInt16(byteBuffer);
-        int readUInt86 = IsoTypeReader.readUInt8(byteBuffer);
-        this.constantFrameRate = (readUInt86 & 192) >> 6;
-        this.numTemporalLayers = (readUInt86 & 56) >> 3;
-        this.temporalIdNested = (readUInt86 & 4) > 0;
-        this.lengthSizeMinusOne = readUInt86 & 3;
-        int readUInt87 = IsoTypeReader.readUInt8(byteBuffer);
+        int uInt86 = IsoTypeReader.readUInt8(byteBuffer);
+        this.constantFrameRate = (uInt86 & 192) >> 6;
+        this.numTemporalLayers = (uInt86 & 56) >> 3;
+        this.temporalIdNested = (uInt86 & 4) > 0;
+        this.lengthSizeMinusOne = uInt86 & 3;
+        int uInt87 = IsoTypeReader.readUInt8(byteBuffer);
         this.arrays = new ArrayList();
-        for (int i = 0; i < readUInt87; i++) {
+        for (int i = 0; i < uInt87; i++) {
             Array array = new Array();
-            int readUInt88 = IsoTypeReader.readUInt8(byteBuffer);
-            array.array_completeness = (readUInt88 & 128) > 0;
-            array.reserved = (readUInt88 & 64) > 0;
-            array.nal_unit_type = readUInt88 & 63;
-            int readUInt162 = IsoTypeReader.readUInt16(byteBuffer);
+            int uInt88 = IsoTypeReader.readUInt8(byteBuffer);
+            array.array_completeness = (uInt88 & 128) > 0;
+            array.reserved = (uInt88 & 64) > 0;
+            array.nal_unit_type = uInt88 & 63;
+            int uInt162 = IsoTypeReader.readUInt16(byteBuffer);
             array.nalUnits = new ArrayList();
-            for (int i2 = 0; i2 < readUInt162; i2++) {
+            for (int i2 = 0; i2 < uInt162; i2++) {
                 byte[] bArr = new byte[IsoTypeReader.readUInt16(byteBuffer)];
                 byteBuffer.get(bArr);
                 array.nalUnits.add(bArr);
@@ -144,15 +144,15 @@ public class HevcDecoderConfigurationRecord {
 
     public int getSize() {
         Iterator<Array> it = this.arrays.iterator();
-        int i = 23;
+        int length = 23;
         while (it.hasNext()) {
-            i += 3;
+            length += 3;
             Iterator<byte[]> it2 = it.next().nalUnits.iterator();
             while (it2.hasNext()) {
-                i = i + 2 + it2.next().length;
+                length = length + 2 + it2.next().length;
             }
         }
-        return i;
+        return length;
     }
 
     public boolean equals(Object obj) {
@@ -563,12 +563,12 @@ public class HevcDecoderConfigurationRecord {
 
     private static H265NalUnitHeader getNalUnitHeader(ByteBuffer byteBuffer) {
         byteBuffer.position(0);
-        int readUInt16 = IsoTypeReader.readUInt16(byteBuffer);
+        int uInt16 = IsoTypeReader.readUInt16(byteBuffer);
         H265NalUnitHeader h265NalUnitHeader = new H265NalUnitHeader();
-        h265NalUnitHeader.forbiddenZeroFlag = (32768 & readUInt16) >> 15;
-        h265NalUnitHeader.nalUnitType = (readUInt16 & 32256) >> 9;
-        h265NalUnitHeader.nuhLayerId = (readUInt16 & 504) >> 3;
-        h265NalUnitHeader.nuhTemporalIdPlusOne = readUInt16 & 7;
+        h265NalUnitHeader.forbiddenZeroFlag = (32768 & uInt16) >> 15;
+        h265NalUnitHeader.nalUnitType = (uInt16 & 32256) >> 9;
+        h265NalUnitHeader.nuhLayerId = (uInt16 & 504) >> 3;
+        h265NalUnitHeader.nuhTemporalIdPlusOne = uInt16 & 7;
         return h265NalUnitHeader;
     }
 }

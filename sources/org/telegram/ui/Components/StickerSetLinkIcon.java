@@ -31,15 +31,15 @@ public class StickerSetLinkIcon extends Drawable {
 
     public StickerSetLinkIcon(int i, boolean z, ArrayList arrayList, boolean z2) {
         this.out = z;
-        int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.N = max;
-        int min = Math.min(max * max, arrayList.size());
-        this.count = min;
-        this.drawables = new AnimatedEmojiDrawable[min];
+        int iMax = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
+        this.N = iMax;
+        int iMin = Math.min(iMax * iMax, arrayList.size());
+        this.count = iMin;
+        this.drawables = new AnimatedEmojiDrawable[iMin];
         if (!arrayList.isEmpty()) {
             MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
         }
-        int i2 = max < 2 ? 1 : 0;
+        int i2 = iMax < 2 ? 1 : 0;
         for (int i3 = 0; i3 < this.count; i3++) {
             this.drawables[i3] = AnimatedEmojiDrawable.make(i, i2, (TLRPC.Document) arrayList.get(i3));
         }
@@ -85,12 +85,12 @@ public class StickerSetLinkIcon extends Drawable {
             return;
         }
         this.rect.set(getBounds());
-        float centerX = this.rect.centerX() - (getIntrinsicWidth() / 2.0f);
-        float centerY = this.rect.centerY() - (getIntrinsicHeight() / 2.0f);
+        float fCenterX = this.rect.centerX() - (getIntrinsicWidth() / 2.0f);
+        float fCenterY = this.rect.centerY() - (getIntrinsicHeight() / 2.0f);
         float intrinsicWidth = getIntrinsicWidth() / this.N;
         float intrinsicHeight = getIntrinsicHeight() / this.N;
         canvas.save();
-        canvas.clipRect(centerX, centerY, getIntrinsicWidth() + centerX, getIntrinsicHeight() + centerY);
+        canvas.clipRect(fCenterX, fCenterY, getIntrinsicWidth() + fCenterX, getIntrinsicHeight() + fCenterY);
         for (int i = 0; i < this.N; i++) {
             int i2 = 0;
             while (true) {
@@ -100,7 +100,7 @@ public class StickerSetLinkIcon extends Drawable {
                     if (i4 >= 0) {
                         AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
                         if (i4 < animatedEmojiDrawableArr.length && (animatedEmojiDrawable = animatedEmojiDrawableArr[i4]) != null) {
-                            animatedEmojiDrawable.setBounds((int) ((i2 * intrinsicWidth) + centerX), (int) ((i * intrinsicHeight) + centerY), (int) (((i2 + 1) * intrinsicWidth) + centerX), (int) (((i + 1) * intrinsicHeight) + centerY));
+                            animatedEmojiDrawable.setBounds((int) ((i2 * intrinsicWidth) + fCenterX), (int) ((i * intrinsicHeight) + fCenterY), (int) (((i2 + 1) * intrinsicWidth) + fCenterX), (int) (((i + 1) * intrinsicHeight) + fCenterY));
                             this.drawables[i4].setAlpha(this.alpha);
                             this.drawables[i4].setColorFilter(this.out ? Theme.chat_outAnimatedEmojiTextColorFilter : Theme.chat_animatedEmojiTextColorFilter);
                             this.drawables[i4].draw(canvas);

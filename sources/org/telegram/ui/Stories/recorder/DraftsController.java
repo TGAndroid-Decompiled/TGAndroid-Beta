@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
@@ -47,13 +48,67 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$loadInternal$1(MessagesStorage.this, z, callback);
+                DraftsController.lambda$loadInternal$1(messagesStorage, z, callback);
             }
         });
     }
 
-    public static void lambda$loadInternal$1(org.telegram.messenger.MessagesStorage r8, boolean r9, final org.telegram.messenger.Utilities.Callback r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$loadInternal$1(org.telegram.messenger.MessagesStorage, boolean, org.telegram.messenger.Utilities$Callback):void");
+    public static void lambda$loadInternal$1(MessagesStorage messagesStorage, boolean z, final Utilities.Callback callback) {
+        SQLiteDatabase database;
+        final ArrayList arrayList = new ArrayList();
+        SQLiteCursor sQLiteCursorQueryFinalized = null;
+        try {
+            try {
+                database = messagesStorage.getDatabase();
+            } catch (Throwable th) {
+                if (sQLiteCursorQueryFinalized != null) {
+                    sQLiteCursorQueryFinalized.dispose();
+                }
+                throw th;
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+            if (sQLiteCursorQueryFinalized != null) {
+            }
+        }
+        if (database == null) {
+            return;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT id, data, type FROM story_drafts WHERE type = ");
+        sb.append(z ? "2" : "0 OR type = 1");
+        sb.append(" ORDER BY date DESC");
+        String string = sb.toString();
+        sQLiteCursorQueryFinalized = database.queryFinalized(string, new Object[0]);
+        while (sQLiteCursorQueryFinalized.next()) {
+            long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
+            NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(1);
+            if (nativeByteBufferByteBufferValue != null) {
+                try {
+                    StoryDraft storyDraft = new StoryDraft(nativeByteBufferByteBufferValue, true);
+                    storyDraft.id = jLongValue;
+                    arrayList.add(storyDraft);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    arrayList2.add(Long.valueOf(jLongValue));
+                }
+                nativeByteBufferByteBufferValue.reuse();
+            }
+        }
+        sQLiteCursorQueryFinalized.dispose();
+        if (arrayList2.size() > 0) {
+            for (int i = 0; i < arrayList2.size(); i++) {
+                database.executeFast("DELETE FROM story_drafts WHERE id = " + arrayList2.get(i)).stepThis().dispose();
+            }
+        }
+        sQLiteCursorQueryFinalized.dispose();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                callback.run(arrayList);
+            }
+        });
     }
 
     public void load() {
@@ -64,29 +119,28 @@ public class DraftsController {
         loadInternal(false, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DraftsController.this.lambda$load$2((ArrayList) obj);
+                this.f$0.lambda$load$2((ArrayList) obj);
             }
         });
     }
 
     public void lambda$load$2(ArrayList arrayList) {
         File file;
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
             StoryEntry entry = ((StoryDraft) arrayList.get(i)).toEntry();
             if (entry != null) {
-                if (entry.isCollage() || ((file = entry.file) != null && file.exists())) {
-                    if (entry.isEdit) {
-                        this.drafts.add(entry);
-                        arrayList2.add(Long.valueOf(entry.draftId));
-                    } else {
-                        this.drafts.add(entry);
-                        arrayList2.add(Long.valueOf(entry.draftId));
-                    }
+                if (!entry.isCollage() && ((file = entry.file) == null || !file.exists())) {
+                    arrayList3.add(entry);
+                } else if (entry.isEdit) {
+                    this.drafts.add(entry);
+                    arrayList2.add(Long.valueOf(entry.draftId));
+                } else {
+                    this.drafts.add(entry);
+                    arrayList2.add(Long.valueOf(entry.draftId));
                 }
-                arrayList3.add(entry);
             }
         }
         delete(arrayList3);
@@ -103,21 +157,21 @@ public class DraftsController {
         loadInternal(true, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DraftsController.this.lambda$loadFailed$3((ArrayList) obj);
+                this.f$0.lambda$loadFailed$3((ArrayList) obj);
             }
         });
     }
 
     public void lambda$loadFailed$3(ArrayList arrayList) {
         File file;
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
             StoryEntry entry = ((StoryDraft) arrayList.get(i)).toEntry();
             if (entry != null) {
-                if ((!entry.isCollage() && ((file = entry.file) == null || !file.exists())) || currentTimeMillis - entry.draftDate > 604800000) {
+                if ((!entry.isCollage() && ((file = entry.file) == null || !file.exists())) || jCurrentTimeMillis - entry.draftDate > 604800000) {
                     arrayList3.add(entry);
                 } else {
                     arrayList4.add(entry);
@@ -145,7 +199,7 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$edit$4(MessagesStorage.this, storyDraft);
+                DraftsController.lambda$edit$4(messagesStorage, storyDraft);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
@@ -153,38 +207,38 @@ public class DraftsController {
 
     public static void lambda$edit$4(MessagesStorage messagesStorage, StoryDraft storyDraft) {
         SQLiteDatabase database;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
+        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
                 database = messagesStorage.getDatabase();
             } catch (Exception e) {
                 FileLog.e(e);
-                if (sQLitePreparedStatement == null) {
+                if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
             if (database == null) {
                 return;
             }
-            sQLitePreparedStatement = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
-            sQLitePreparedStatement.requery();
+            sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
+            sQLitePreparedStatementExecuteFast.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
             storyDraft.toStream(nativeByteBuffer);
             int i = 1;
-            sQLitePreparedStatement.bindLong(1, storyDraft.id);
-            sQLitePreparedStatement.bindLong(2, storyDraft.date);
-            sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer);
+            sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
+            sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
+            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
             if (!storyDraft.isEdit) {
                 i = storyDraft.isError ? 2 : 0;
             }
-            sQLitePreparedStatement.bindInteger(4, i);
-            sQLitePreparedStatement.step();
+            sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+            sQLitePreparedStatementExecuteFast.step();
             nativeByteBuffer.reuse();
-            sQLitePreparedStatement.dispose();
-            sQLitePreparedStatement.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
+            if (sQLitePreparedStatementExecuteFast != null) {
+                sQLitePreparedStatementExecuteFast.dispose();
             }
             throw th;
         }
@@ -202,10 +256,10 @@ public class DraftsController {
         if (storyEntry.fileDeletable) {
             storyEntry.file = prepareFile(storyEntry.file);
         } else if (storyEntry.file != null) {
-            File makeCacheFile = StoryEntry.makeCacheFile(this.currentAccount, storyEntry.isVideo);
+            File fileMakeCacheFile = StoryEntry.makeCacheFile(this.currentAccount, storyEntry.isVideo);
             try {
-                AndroidUtilities.copyFile(storyEntry.file, makeCacheFile);
-                storyEntry.file = prepareFile(makeCacheFile);
+                AndroidUtilities.copyFile(storyEntry.file, fileMakeCacheFile);
+                storyEntry.file = prepareFile(fileMakeCacheFile);
                 storyEntry.fileDeletable = true;
             } catch (IOException e) {
                 FileLog.e(e);
@@ -249,7 +303,7 @@ public class DraftsController {
     }
 
     private void append(final StoryDraft storyDraft) {
-        String str;
+        String string;
         StringBuilder sb;
         long j;
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
@@ -276,11 +330,11 @@ public class DraftsController {
             sb3.append(sb.toString());
             sb3.append(", expireDate=");
             sb3.append(storyDraft.editExpireDate);
-            str = sb3.toString();
+            string = sb3.toString();
         } else {
-            str = "";
+            string = "";
         }
-        sb2.append(str);
+        sb2.append(string);
         sb2.append(", now=");
         sb2.append(System.currentTimeMillis());
         sb2.append(")");
@@ -288,7 +342,7 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$append$5(MessagesStorage.this, storyDraft);
+                DraftsController.lambda$append$5(messagesStorage, storyDraft);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
@@ -296,38 +350,38 @@ public class DraftsController {
 
     public static void lambda$append$5(MessagesStorage messagesStorage, StoryDraft storyDraft) {
         SQLiteDatabase database;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
+        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
                 database = messagesStorage.getDatabase();
             } catch (Exception e) {
                 FileLog.e(e);
-                if (sQLitePreparedStatement == null) {
+                if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
             if (database == null) {
                 return;
             }
-            sQLitePreparedStatement = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
-            sQLitePreparedStatement.requery();
+            sQLitePreparedStatementExecuteFast = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
+            sQLitePreparedStatementExecuteFast.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
             storyDraft.toStream(nativeByteBuffer);
             int i = 1;
-            sQLitePreparedStatement.bindLong(1, storyDraft.id);
-            sQLitePreparedStatement.bindLong(2, storyDraft.date);
-            sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer);
+            sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
+            sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
+            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
             if (!storyDraft.isEdit) {
                 i = storyDraft.isError ? 2 : 0;
             }
-            sQLitePreparedStatement.bindInteger(4, i);
-            sQLitePreparedStatement.step();
+            sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+            sQLitePreparedStatementExecuteFast.step();
             nativeByteBuffer.reuse();
-            sQLitePreparedStatement.dispose();
-            sQLitePreparedStatement.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
+            sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
+            if (sQLitePreparedStatementExecuteFast != null) {
+                sQLitePreparedStatementExecuteFast.dispose();
             }
             throw th;
         }
@@ -405,7 +459,7 @@ public class DraftsController {
     }
 
     public void delete(ArrayList arrayList) {
-        String str;
+        String string;
         StringBuilder sb;
         long j;
         if (arrayList == null) {
@@ -438,11 +492,11 @@ public class DraftsController {
                     sb3.append(sb.toString());
                     sb3.append(", expireDate=");
                     sb3.append(storyEntry.editExpireDate);
-                    str = sb3.toString();
+                    string = sb3.toString();
                 } else {
-                    str = "";
+                    string = "";
                 }
-                sb2.append(str);
+                sb2.append(string);
                 sb2.append(", now=");
                 sb2.append(System.currentTimeMillis());
                 sb2.append(")");
@@ -459,7 +513,7 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$delete$6(MessagesStorage.this, arrayList2);
+                DraftsController.lambda$delete$6(messagesStorage, arrayList2);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
@@ -568,9 +622,9 @@ public class DraftsController {
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
             long j = storyEntry.duration;
-            float f2 = (float) j;
-            this.left = f * f2;
-            this.right = storyEntry.right * f2;
+            float f2 = j;
+            this.left = (long) (f * f2);
+            this.right = (long) (storyEntry.right * f2);
             this.orientation = storyEntry.orientation;
             this.invert = storyEntry.invert;
             this.width = storyEntry.width;
@@ -645,9 +699,9 @@ public class DraftsController {
             long j = this.duration;
             storyEntry.duration = j;
             if (j > 0) {
-                float f = (float) j;
-                storyEntry.left = ((float) this.left) / f;
-                storyEntry.right = ((float) this.right) / f;
+                float f = j;
+                storyEntry.left = this.left / f;
+                storyEntry.right = this.right / f;
             } else {
                 storyEntry.left = 0.0f;
                 storyEntry.right = 1.0f;
@@ -667,9 +721,9 @@ public class DraftsController {
                 if (Theme.chat_msgTextPaint == null) {
                     Theme.createCommonMessageResources();
                 }
-                CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, Theme.chat_msgTextPaint.getFontMetricsInt(), true);
-                MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
-                storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.captionEntities, Theme.chat_msgTextPaint.getFontMetricsInt());
+                CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableString, Theme.chat_msgTextPaint.getFontMetricsInt(), true);
+                MessageObject.addEntitiesToText(charSequenceReplaceEmoji, this.captionEntities, true, false, true, false);
+                storyEntry.caption = MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, this.captionEntities, Theme.chat_msgTextPaint.getFontMetricsInt());
             } else {
                 storyEntry.caption = "";
             }
@@ -907,15 +961,15 @@ public class DraftsController {
                 return;
             }
             this.date = abstractSerializedData.readInt64(z);
-            String readString = abstractSerializedData.readString(z);
-            this.thumb = readString;
-            if (readString != null && readString.length() == 0) {
+            String string = abstractSerializedData.readString(z);
+            this.thumb = string;
+            if (string != null && string.length() == 0) {
                 this.thumb = null;
             }
             this.isVideo = abstractSerializedData.readBool(z);
-            String readString2 = abstractSerializedData.readString(z);
-            this.file = readString2;
-            if (readString2 != null && readString2.length() == 0) {
+            String string2 = abstractSerializedData.readString(z);
+            this.file = string2;
+            if (string2 != null && string2.length() == 0) {
                 this.file = null;
             }
             this.fileDeletable = abstractSerializedData.readBool(z);
@@ -940,9 +994,9 @@ public class DraftsController {
             }
             this.gradientTopColor = abstractSerializedData.readInt32(z);
             this.gradientBottomColor = abstractSerializedData.readInt32(z);
-            String readString3 = abstractSerializedData.readString(z);
-            this.caption = readString3;
-            if (readString3 != null && readString3.length() == 0) {
+            String string3 = abstractSerializedData.readString(z);
+            this.caption = string3;
+            if (string3 != null && string3.length() == 0) {
                 this.caption = null;
             }
             if (abstractSerializedData.readInt32(z) != 481674261) {
@@ -951,8 +1005,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int readInt32 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt32; i2++) {
+            int int32 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < int32; i2++) {
                 if (this.captionEntities == null) {
                     this.captionEntities = new ArrayList();
                 }
@@ -964,15 +1018,15 @@ public class DraftsController {
                 }
                 return;
             }
-            int readInt322 = abstractSerializedData.readInt32(z);
+            int int322 = abstractSerializedData.readInt32(z);
             this.privacyRules.clear();
-            for (int i3 = 0; i3 < readInt322; i3++) {
+            for (int i3 = 0; i3 < int322; i3++) {
                 this.privacyRules.add(TLRPC.InputPrivacyRule.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
             abstractSerializedData.readBool(z);
-            String readString4 = abstractSerializedData.readString(z);
-            this.paintFilePath = readString4;
-            if (readString4 != null && readString4.length() == 0) {
+            String string4 = abstractSerializedData.readString(z);
+            this.paintFilePath = string4;
+            if (string4 != null && string4.length() == 0) {
                 this.paintFilePath = null;
             }
             this.averageDuration = abstractSerializedData.readInt64(z);
@@ -982,8 +1036,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i4 = 0; i4 < readInt323; i4++) {
+            int int323 = abstractSerializedData.readInt32(z);
+            for (int i4 = 0; i4 < int323; i4++) {
                 if (this.mediaEntities == null) {
                     this.mediaEntities = new ArrayList();
                 }
@@ -995,22 +1049,22 @@ public class DraftsController {
                 }
                 return;
             }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            for (int i5 = 0; i5 < readInt324; i5++) {
+            int int324 = abstractSerializedData.readInt32(z);
+            for (int i5 = 0; i5 < int324; i5++) {
                 if (this.stickers == null) {
                     this.stickers = new ArrayList();
                 }
                 this.stickers.add(TLRPC.InputDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
-            String readString5 = abstractSerializedData.readString(z);
-            this.filterFilePath = readString5;
-            if (readString5 != null && readString5.length() == 0) {
+            String string5 = abstractSerializedData.readString(z);
+            this.filterFilePath = string5;
+            if (string5 != null && string5.length() == 0) {
                 this.filterFilePath = null;
             }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            if (readInt325 == 1450380236) {
+            int int325 = abstractSerializedData.readInt32(z);
+            if (int325 == 1450380236) {
                 this.filterState = null;
-            } else if (readInt325 == -1318387530) {
+            } else if (int325 == -1318387530) {
                 MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
                 this.filterState = savedFilterState;
                 savedFilterState.readParams(abstractSerializedData, z);
@@ -1036,19 +1090,19 @@ public class DraftsController {
                 this.editDocumentId = abstractSerializedData.readInt64(z);
             }
             if (abstractSerializedData.remaining() > 0) {
-                String readString6 = abstractSerializedData.readString(z);
-                this.paintEntitiesFilePath = readString6;
-                if (readString6 != null && readString6.length() == 0) {
+                String string6 = abstractSerializedData.readString(z);
+                this.paintEntitiesFilePath = string6;
+                if (string6 != null && string6.length() == 0) {
                     this.paintEntitiesFilePath = null;
                 }
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.isError = abstractSerializedData.readBool(z);
-                int readInt326 = abstractSerializedData.readInt32(z);
-                if (readInt326 == 1450380236) {
+                int int326 = abstractSerializedData.readInt32(z);
+                if (int326 == 1450380236) {
                     this.error = null;
                 } else {
-                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, readInt326, z);
+                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, int326, z);
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
@@ -1083,9 +1137,9 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.botId = abstractSerializedData.readInt64(z);
                 this.botLang = abstractSerializedData.readString(z);
-                int readInt327 = abstractSerializedData.readInt32(z);
-                if (readInt327 != 1450380236) {
-                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, readInt327, z);
+                int int327 = abstractSerializedData.readInt32(z);
+                if (int327 != 1450380236) {
+                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, int327, z);
                 }
             }
             if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -559038737) {

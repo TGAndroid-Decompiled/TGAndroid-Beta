@@ -47,10 +47,10 @@ public class StickerSetNameCell extends FrameLayout {
     }
 
     public StickerSetNameCell(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider, boolean z3) {
+        ViewGroup.LayoutParams layoutParamsCreateFrame;
+        ViewGroup.LayoutParams layoutParamsCreateFrame2;
+        ViewGroup.LayoutParams layoutParamsCreateFrame3;
         super(context);
-        ViewGroup.LayoutParams createFrame;
-        ViewGroup.LayoutParams createFrame2;
-        ViewGroup.LayoutParams createFrame3;
         this.resourcesProvider = resourcesProvider;
         this.isEmoji = z;
         LinearLayout linearLayout = new LinearLayout(context);
@@ -69,11 +69,11 @@ public class StickerSetNameCell extends FrameLayout {
             textView.setTextAlignment(4);
         }
         if (z2) {
-            createFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         } else {
-            createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
+            layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         }
-        addView(linearLayout, createFrame);
+        addView(linearLayout, layoutParamsCreateFrame);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
         TextView textView2 = new TextView(context);
         this.editView = textView2;
@@ -96,23 +96,23 @@ public class StickerSetNameCell extends FrameLayout {
         textView3.setSingleLine(true);
         textView3.setVisibility(4);
         if (z2) {
-            createFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388661, 12.0f, 6.0f, 17.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388661, 12.0f, 6.0f, 17.0f, 0.0f);
         } else {
-            createFrame2 = LayoutHelper.createFrame(-2, -2.0f, 53, 12.0f, 6.0f, 17.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrame(-2, -2.0f, 53, 12.0f, 6.0f, 17.0f, 0.0f);
         }
-        addView(textView3, createFrame2);
+        addView(textView3, layoutParamsCreateFrame2);
         ImageView imageView = new ImageView(context);
         this.buttonView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(z3 ? getGlassIconColor(0.6f) : getThemedColor(Theme.key_chat_emojiPanelStickerSetNameIcon), PorterDuff.Mode.MULTIPLY));
         imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 3));
         if (z2) {
-            createFrame3 = LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388661, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388661, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
         } else {
-            createFrame3 = LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
         }
         imageView.setTranslationY(AndroidUtilities.dp(4.0f));
-        addView(imageView, createFrame3);
+        addView(imageView, layoutParamsCreateFrame3);
     }
 
     public void setUrl(CharSequence charSequence, int i) {

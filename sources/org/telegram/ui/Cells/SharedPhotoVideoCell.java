@@ -265,15 +265,13 @@ public class SharedPhotoVideoCell extends FrameLayout {
             this.photoVideoViews[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SharedPhotoVideoCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             this.photoVideoViews[i2].setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$new$1;
-                    lambda$new$1 = SharedPhotoVideoCell.this.lambda$new$1(view);
-                    return lambda$new$1;
+                    return this.f$0.lambda$new$1(view);
                 }
             });
         }
@@ -281,8 +279,8 @@ public class SharedPhotoVideoCell extends FrameLayout {
 
     public void lambda$new$0(View view) {
         if (this.delegate != null) {
-            int intValue = ((Integer) view.getTag()).intValue();
-            this.delegate.didClickItem(this, this.indeces[intValue], this.messageObjects[intValue], intValue);
+            int iIntValue = ((Integer) view.getTag()).intValue();
+            this.delegate.didClickItem(this, this.indeces[iIntValue], this.messageObjects[iIntValue], iIntValue);
         }
     }
 
@@ -290,8 +288,8 @@ public class SharedPhotoVideoCell extends FrameLayout {
         if (this.delegate == null) {
             return false;
         }
-        int intValue = ((Integer) view.getTag()).intValue();
-        return this.delegate.didLongClickItem(this, this.indeces[intValue], this.messageObjects[intValue], intValue);
+        int iIntValue = ((Integer) view.getTag()).intValue();
+        return this.delegate.didLongClickItem(this, this.indeces[iIntValue], this.messageObjects[iIntValue], iIntValue);
     }
 
     public void updateCheckboxColor() {

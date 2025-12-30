@@ -43,16 +43,16 @@ public abstract class EntitiesContainerView extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         EntitiesContainerViewDelegate entitiesContainerViewDelegate;
-        EntityView onSelectedEntityRequest = this.delegate.onSelectedEntityRequest();
-        if (onSelectedEntityRequest == null) {
+        EntityView entityViewOnSelectedEntityRequest = this.delegate.onSelectedEntityRequest();
+        if (entityViewOnSelectedEntityRequest == null) {
             return false;
         }
         if (motionEvent.getPointerCount() == 1) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
                 this.hasTransformed = false;
-                onSelectedEntityRequest.hasPanned = false;
-                onSelectedEntityRequest.hasReleased = false;
+                entityViewOnSelectedEntityRequest.hasPanned = false;
+                entityViewOnSelectedEntityRequest.hasReleased = false;
                 this.px = motionEvent.getX();
                 this.py = motionEvent.getY();
                 this.cancelled = false;
@@ -61,14 +61,14 @@ public abstract class EntitiesContainerView extends FrameLayout {
                 float y = motionEvent.getY();
                 if (this.hasTransformed || MathUtils.distance(x, y, this.px, this.py) > AndroidUtilities.touchSlop) {
                     this.hasTransformed = true;
-                    onSelectedEntityRequest.hasPanned = true;
-                    onSelectedEntityRequest.pan(x - this.px, y - this.py);
+                    entityViewOnSelectedEntityRequest.hasPanned = true;
+                    entityViewOnSelectedEntityRequest.pan(x - this.px, y - this.py);
                     this.px = x;
                     this.py = y;
                 }
             } else if (actionMasked == 1 || actionMasked == 3) {
-                onSelectedEntityRequest.hasPanned = false;
-                onSelectedEntityRequest.hasReleased = true;
+                entityViewOnSelectedEntityRequest.hasPanned = false;
+                entityViewOnSelectedEntityRequest.hasReleased = true;
                 if (!this.hasTransformed && (entitiesContainerViewDelegate = this.delegate) != null) {
                     entitiesContainerViewDelegate.onEntityDeselect();
                 }
@@ -76,8 +76,8 @@ public abstract class EntitiesContainerView extends FrameLayout {
                 return false;
             }
         } else {
-            onSelectedEntityRequest.hasPanned = false;
-            onSelectedEntityRequest.hasReleased = true;
+            entityViewOnSelectedEntityRequest.hasPanned = false;
+            entityViewOnSelectedEntityRequest.hasReleased = true;
             this.hasTransformed = false;
             this.cancelled = true;
             invalidate();

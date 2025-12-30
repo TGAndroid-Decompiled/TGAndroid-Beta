@@ -93,7 +93,7 @@ public class SharedLinkCell extends FrameLayout {
         return i;
     }
 
-    public final class CheckForTap implements Runnable {
+    private final class CheckForTap implements Runnable {
         private CheckForTap() {
         }
 
@@ -101,7 +101,7 @@ public class SharedLinkCell extends FrameLayout {
         public void run() {
             if (SharedLinkCell.this.pendingCheckForLongPress == null) {
                 SharedLinkCell sharedLinkCell = SharedLinkCell.this;
-                sharedLinkCell.pendingCheckForLongPress = new CheckForLongPress();
+                sharedLinkCell.pendingCheckForLongPress = sharedLinkCell.new CheckForLongPress();
             }
             SharedLinkCell.this.pendingCheckForLongPress.currentPressCount = SharedLinkCell.access$104(SharedLinkCell.this);
             SharedLinkCell sharedLinkCell2 = SharedLinkCell.this;
@@ -109,7 +109,7 @@ public class SharedLinkCell extends FrameLayout {
         }
     }
 
-    public class CheckForLongPress implements Runnable {
+    class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {
@@ -128,9 +128,9 @@ public class SharedLinkCell extends FrameLayout {
                     SharedLinkCell sharedLinkCell = SharedLinkCell.this;
                     sharedLinkCellDelegate.onLinkPress(((CharSequence) sharedLinkCell.links.get(sharedLinkCell.pressedLinkIndex)).toString(), true);
                 }
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                SharedLinkCell.this.onTouchEvent(obtain);
-                obtain.recycle();
+                MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                SharedLinkCell.this.onTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
             }
         }
     }
@@ -266,36 +266,36 @@ public class SharedLinkCell extends FrameLayout {
     }
 
     private void startSpoilerRipples(int i, int i2, int i3) {
-        int dp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+        int iDp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
         resetPressedLink();
         this.spoilerPressed.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                SharedLinkCell.this.lambda$startSpoilerRipples$1();
+                this.f$0.lambda$startSpoilerRipples$1();
             }
         });
-        int i4 = i - dp;
-        float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
+        int i4 = i - iDp;
+        float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
         int i5 = this.spoilerTypePressed;
         if (i5 == 0) {
-            float f = 0.0f;
+            float lineBottom = 0.0f;
             for (int i6 = 0; i6 < this.linkLayout.size(); i6++) {
                 Layout layout = (Layout) this.linkLayout.get(i6);
-                f += layout.getLineBottom(layout.getLineCount() - 1);
+                lineBottom += layout.getLineBottom(layout.getLineCount() - 1);
                 Iterator it = ((List) this.linkSpoilers.get(i6)).iterator();
                 while (it.hasNext()) {
-                    ((SpoilerEffect) it.next()).startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + f, sqrt);
+                    ((SpoilerEffect) it.next()).startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + lineBottom, fSqrt);
                 }
             }
         } else if (i5 == 1) {
             Iterator it2 = this.descriptionLayoutSpoilers.iterator();
             while (it2.hasNext()) {
-                ((SpoilerEffect) it2.next()).startRipple(i4, i2 - getYOffsetForType(1), sqrt);
+                ((SpoilerEffect) it2.next()).startRipple(i4, i2 - getYOffsetForType(1), fSqrt);
             }
         } else if (i5 == 2) {
             Iterator it3 = this.descriptionLayout2Spoilers.iterator();
             while (it3.hasNext()) {
-                ((SpoilerEffect) it3.next()).startRipple(i4, i2 - getYOffsetForType(2), sqrt);
+                ((SpoilerEffect) it3.next()).startRipple(i4, i2 - getYOffsetForType(2), fSqrt);
             }
         }
         for (int i7 = 0; i7 <= 2; i7++) {
@@ -306,18 +306,18 @@ public class SharedLinkCell extends FrameLayout {
                         layout2.getLineBottom(layout2.getLineCount() - 1);
                         Iterator it4 = ((List) this.linkSpoilers.get(i8)).iterator();
                         while (it4.hasNext()) {
-                            ((SpoilerEffect) it4.next()).startRipple(r1.getBounds().centerX(), r1.getBounds().centerY(), sqrt);
+                            ((SpoilerEffect) it4.next()).startRipple(r1.getBounds().centerX(), r1.getBounds().centerY(), fSqrt);
                         }
                     }
                 } else if (i7 == 1) {
                     Iterator it5 = this.descriptionLayoutSpoilers.iterator();
                     while (it5.hasNext()) {
-                        ((SpoilerEffect) it5.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                        ((SpoilerEffect) it5.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), fSqrt);
                     }
                 } else if (i7 == 2) {
                     Iterator it6 = this.descriptionLayout2Spoilers.iterator();
                     while (it6.hasNext()) {
-                        ((SpoilerEffect) it6.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                        ((SpoilerEffect) it6.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), fSqrt);
                     }
                 }
             }
@@ -330,7 +330,7 @@ public class SharedLinkCell extends FrameLayout {
         post(new Runnable() {
             @Override
             public final void run() {
-                SharedLinkCell.this.lambda$startSpoilerRipples$0();
+                this.f$0.lambda$startSpoilerRipples$0();
             }
         });
     }
@@ -389,11 +389,11 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.titleLayout != null) {
             canvas.save();
-            float dp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+            float fDp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
-                dp += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
+                fDp += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
             }
-            canvas.translate(dp, this.titleY);
+            canvas.translate(fDp, this.titleY);
             this.titleLayout.draw(canvas);
             canvas.restore();
         }
@@ -420,13 +420,13 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (!this.linkLayout.isEmpty()) {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
-            int i = 0;
-            for (int i2 = 0; i2 < this.linkLayout.size(); i2++) {
-                StaticLayout staticLayout = (StaticLayout) this.linkLayout.get(i2);
-                List list = (List) this.linkSpoilers.get(i2);
+            int lineBottom = 0;
+            for (int i = 0; i < this.linkLayout.size(); i++) {
+                StaticLayout staticLayout = (StaticLayout) this.linkLayout.get(i);
+                List list = (List) this.linkSpoilers.get(i);
                 if (staticLayout.getLineCount() > 0) {
                     canvas.save();
-                    canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + i);
+                    canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + lineBottom);
                     this.path.rewind();
                     if (list != null) {
                         Iterator it = list.iterator();
@@ -455,7 +455,7 @@ public class SharedLinkCell extends FrameLayout {
                         }
                     }
                     canvas.restore();
-                    i += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
+                    lineBottom += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
                 }
             }
             if (this.linksCollector.draw(canvas)) {

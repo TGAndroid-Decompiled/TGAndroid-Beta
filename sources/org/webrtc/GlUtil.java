@@ -17,22 +17,22 @@ public class GlUtil {
     }
 
     public static void checkNoGLES2Error(String str) {
-        int glGetError = GLES20.glGetError();
-        if (glGetError != 0) {
-            if (glGetError == 1285) {
-                throw new GlOutOfMemoryException(glGetError, str);
+        int iGlGetError = GLES20.glGetError();
+        if (iGlGetError != 0) {
+            if (iGlGetError == 1285) {
+                throw new GlOutOfMemoryException(iGlGetError, str);
             }
-            throw new GLException(glGetError, str + ": GLES20 error: " + glGetError);
+            throw new GLException(iGlGetError, str + ": GLES20 error: " + iGlGetError);
         }
     }
 
     public static FloatBuffer createFloatBuffer(float[] fArr) {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(fArr.length * 4);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        asFloatBuffer.put(fArr);
-        asFloatBuffer.position(0);
-        return asFloatBuffer;
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(fArr.length * 4);
+        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer floatBufferAsFloatBuffer = byteBufferAllocateDirect.asFloatBuffer();
+        floatBufferAsFloatBuffer.put(fArr);
+        floatBufferAsFloatBuffer.position(0);
+        return floatBufferAsFloatBuffer;
     }
 
     public static int generateTexture(int i) {

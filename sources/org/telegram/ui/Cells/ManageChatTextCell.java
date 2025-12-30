@@ -56,10 +56,10 @@ public class ManageChatTextCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(48.0f);
+        int iDp = AndroidUtilities.dp(48.0f);
         this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(24.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(iDp, Integer.MIN_VALUE));
         setMeasuredDimension(size, getFullHeight() + (this.divider ? 1 : 0));
     }
 
@@ -72,17 +72,17 @@ public class ManageChatTextCell extends FrameLayout {
         int i5 = i4 - i2;
         int i6 = i3 - i;
         int textHeight = (i5 - this.valueTextView.getTextHeight()) / 2;
-        int dp = LocaleController.isRTL ? AndroidUtilities.dp(24.0f) : 0;
+        int iDp = LocaleController.isRTL ? AndroidUtilities.dp(24.0f) : 0;
         SimpleTextView simpleTextView = this.valueTextView;
-        simpleTextView.layout(dp, textHeight, simpleTextView.getMeasuredWidth() + dp, this.valueTextView.getMeasuredHeight() + textHeight);
+        simpleTextView.layout(iDp, textHeight, simpleTextView.getMeasuredWidth() + iDp, this.valueTextView.getMeasuredHeight() + textHeight);
         int textHeight2 = (i5 - this.textView.getTextHeight()) / 2;
-        int dp2 = !LocaleController.isRTL ? AndroidUtilities.dp(71.0f) : AndroidUtilities.dp(24.0f);
+        int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(71.0f) : AndroidUtilities.dp(24.0f);
         SimpleTextView simpleTextView2 = this.textView;
-        simpleTextView2.layout(dp2, textHeight2, simpleTextView2.getMeasuredWidth() + dp2, this.textView.getMeasuredHeight() + textHeight2);
-        int dp3 = AndroidUtilities.dp(9.0f);
-        int dp4 = !LocaleController.isRTL ? AndroidUtilities.dp(21.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(21.0f);
+        simpleTextView2.layout(iDp2, textHeight2, simpleTextView2.getMeasuredWidth() + iDp2, this.textView.getMeasuredHeight() + textHeight2);
+        int iDp3 = AndroidUtilities.dp(9.0f);
+        int iDp4 = !LocaleController.isRTL ? AndroidUtilities.dp(21.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(21.0f);
         ImageView imageView = this.imageView;
-        imageView.layout(dp4, dp3, imageView.getMeasuredWidth() + dp4, this.imageView.getMeasuredHeight() + dp3);
+        imageView.layout(iDp4, iDp3, imageView.getMeasuredWidth() + iDp4, this.imageView.getMeasuredHeight() + iDp3);
     }
 
     public void setTextColor(int i) {

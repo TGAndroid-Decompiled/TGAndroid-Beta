@@ -39,15 +39,15 @@ public class EmptyTextProgressView extends FrameLayout {
 
     public EmptyTextProgressView(Context context, View view, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        View view2 = view;
+        View radialProgressView = view;
         this.resourcesProvider = resourcesProvider;
-        if (view2 == null) {
-            view2 = new RadialProgressView(context);
-            addView(view2, LayoutHelper.createFrame(-2, -2.0f));
+        if (radialProgressView == null) {
+            radialProgressView = new RadialProgressView(context);
+            addView(radialProgressView, LayoutHelper.createFrame(-2, -2.0f));
         } else {
-            addView(view2, LayoutHelper.createFrame(-1, -1.0f));
+            addView(radialProgressView, LayoutHelper.createFrame(-1, -1.0f));
         }
-        this.progressView = view2;
+        this.progressView = radialProgressView;
         LinearLayout linearLayout = new LinearLayout(context);
         this.textViewLayout = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
@@ -70,13 +70,11 @@ public class EmptyTextProgressView extends FrameLayout {
         this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 17));
         addView(this.textViewLayout, LayoutHelper.createFrame(-2, -2.0f));
         AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 2.0f, false);
-        AndroidUtilities.updateViewVisibilityAnimated(view2, false, 1.0f, false);
+        AndroidUtilities.updateViewVisibilityAnimated(radialProgressView, false, 1.0f, false);
         setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public final boolean onTouch(View view3, MotionEvent motionEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = EmptyTextProgressView.lambda$new$0(view3, motionEvent);
-                return lambda$new$0;
+            public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                return EmptyTextProgressView.lambda$new$0(view2, motionEvent);
             }
         });
     }
@@ -123,11 +121,11 @@ public class EmptyTextProgressView extends FrameLayout {
             this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
             return;
         }
-        Drawable mutate = getContext().getResources().getDrawable(i).mutate();
-        if (mutate != null) {
-            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_emptyListPlaceholder), PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate = getContext().getResources().getDrawable(i).mutate();
+        if (drawableMutate != null) {
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_emptyListPlaceholder), PorterDuff.Mode.MULTIPLY));
         }
-        this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
+        this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate, (Drawable) null, (Drawable) null);
         this.textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));
     }
 

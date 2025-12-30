@@ -15,10 +15,10 @@ public class OrientationHelper {
                 return;
             }
             OrientationHelper orientationHelper = OrientationHelper.this;
-            int roundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
-            if (roundOrientation != OrientationHelper.this.rotation) {
+            int iRoundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
+            if (iRoundOrientation != OrientationHelper.this.rotation) {
                 OrientationHelper orientationHelper2 = OrientationHelper.this;
-                orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
+                orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = iRoundOrientation);
             }
         }
     };
@@ -29,8 +29,8 @@ public class OrientationHelper {
 
     public int roundOrientation(int i, int i2) {
         if (i2 != -1) {
-            int abs = Math.abs(i - i2);
-            if (Math.min(abs, 360 - abs) < 50) {
+            int iAbs = Math.abs(i - i2);
+            if (Math.min(iAbs, 360 - iAbs) < 50) {
                 return i2;
             }
         }

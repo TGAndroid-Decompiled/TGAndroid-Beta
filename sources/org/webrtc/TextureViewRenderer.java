@@ -16,7 +16,6 @@ import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.RendererCommon;
-import org.webrtc.TextureViewRenderer;
 
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
@@ -200,7 +199,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TextureViewRenderer.TextureEglRenderer.this.lambda$onFirstFrameRendered$0();
+                    this.f$0.lambda$onFirstFrameRendered$0();
                 }
             });
         }
@@ -284,7 +283,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         View view;
         float f;
         float f2;
-        float min;
+        float fMin;
         if (this.orientationHelper == null || this.rotatedFrameWidth == 0 || this.rotatedFrameHeight == 0 || (view = (View) getParent()) == null) {
             return;
         }
@@ -301,19 +300,19 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             f = measuredHeight;
         }
         if (f2 < f) {
-            min = Math.max(f2 / measuredWidth, f / measuredHeight);
+            fMin = Math.max(f2 / measuredWidth, f / measuredHeight);
         } else {
-            min = Math.min(f2 / measuredWidth, f / measuredHeight);
+            fMin = Math.min(f2 / measuredWidth, f / measuredHeight);
         }
-        float f3 = f2 * min;
-        float f4 = f * min;
+        float f3 = f2 * fMin;
+        float f4 = f * fMin;
         if (Math.abs((f3 / f4) - (measuredWidth2 / measuredHeight2)) < 0.1f) {
-            min *= Math.max(measuredWidth2 / f3, measuredHeight2 / f4);
+            fMin *= Math.max(measuredWidth2 / f3, measuredHeight2 / f4);
         }
         if (orientation == 270) {
             orientation = -90;
         }
-        animate().scaleX(min).scaleY(min).rotation(-orientation).setDuration(180L).start();
+        animate().scaleX(fMin).scaleY(fMin).rotation(-orientation).setDuration(180L).start();
     }
 
     public void setMirror(boolean z) {
@@ -360,18 +359,18 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
     @Override
     protected void onMeasure(int i, int i2) {
-        Point measure;
+        Point pointMeasure;
         ThreadUtils.checkIsOnMainThread();
         if (!this.isCamera && this.rotateTextureWithScreen) {
             updateVideoSizes();
         }
         int i3 = this.maxTextureSize;
         if (i3 > 0) {
-            measure = this.videoLayoutMeasure.measure(this.isCamera, View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i)), View.MeasureSpec.makeMeasureSpec(Math.min(this.maxTextureSize, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)), this.rotatedFrameWidth, this.rotatedFrameHeight);
+            pointMeasure = this.videoLayoutMeasure.measure(this.isCamera, View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i)), View.MeasureSpec.makeMeasureSpec(Math.min(this.maxTextureSize, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)), this.rotatedFrameWidth, this.rotatedFrameHeight);
         } else {
-            measure = this.videoLayoutMeasure.measure(this.isCamera, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
+            pointMeasure = this.videoLayoutMeasure.measure(this.isCamera, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
         }
-        setMeasuredDimension(measure.x, measure.y);
+        setMeasuredDimension(pointMeasure.x, pointMeasure.y);
         if (this.rotatedFrameWidth != 0 && this.rotatedFrameHeight != 0) {
             this.eglRenderer.setLayoutAspectRatio(getMeasuredWidth() / getMeasuredHeight());
         }
@@ -390,14 +389,14 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             } else {
                 i2 = (int) (f / width);
             }
-            int min = Math.min(getWidth(), i);
-            int min2 = Math.min(getHeight(), i2);
-            logD("updateSurfaceSize. Layout size: " + getWidth() + "x" + getHeight() + ", frame size: " + this.rotatedFrameWidth + "x" + this.rotatedFrameHeight + ", requested surface size: " + min + "x" + min2 + ", old surface size: " + this.surfaceWidth + "x" + this.surfaceHeight);
-            if (min == this.surfaceWidth && min2 == this.surfaceHeight) {
+            int iMin = Math.min(getWidth(), i);
+            int iMin2 = Math.min(getHeight(), i2);
+            logD("updateSurfaceSize. Layout size: " + getWidth() + "x" + getHeight() + ", frame size: " + this.rotatedFrameWidth + "x" + this.rotatedFrameHeight + ", requested surface size: " + iMin + "x" + iMin2 + ", old surface size: " + this.surfaceWidth + "x" + this.surfaceHeight);
+            if (iMin == this.surfaceWidth && iMin2 == this.surfaceHeight) {
                 return;
             }
-            this.surfaceWidth = min;
-            this.surfaceHeight = min2;
+            this.surfaceWidth = iMin;
+            this.surfaceHeight = iMin2;
             return;
         }
         this.surfaceHeight = 0;
@@ -488,7 +487,55 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void updateVideoSizes() {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.TextureViewRenderer.updateVideoSizes():void");
+        int i;
+        final int i2;
+        final int i3 = this.videoHeight;
+        if (i3 == 0 || (i = this.videoWidth) == 0) {
+            return;
+        }
+        if (this.rotateTextureWithScreen) {
+            if (this.useCameraRotation) {
+                int i4 = this.screenRotation;
+                i2 = i4 == 0 ? i3 : i;
+                if (i4 == 0) {
+                    i3 = i;
+                }
+            } else {
+                int i5 = this.textureRotation;
+                int i6 = (i5 == 0 || i5 == 180 || i5 == -180) ? i : i3;
+                if (i5 == 0 || i5 == 180 || i5 == -180) {
+                    i2 = i6;
+                } else {
+                    i2 = i6;
+                    i3 = i;
+                }
+            }
+        } else {
+            int i7 = this.textureRotation - OrientationHelper.cameraOrientation;
+            int i8 = (i7 == 0 || i7 == 180 || i7 == -180) ? this.videoWidth : this.videoHeight;
+            i3 = (i7 == 0 || i7 == 180 || i7 == -180) ? this.videoHeight : this.videoWidth;
+            i2 = i8;
+        }
+        if (this.rotatedFrameWidth == i2 && this.rotatedFrameHeight == i3) {
+            return;
+        }
+        synchronized (this.eglRenderer.layoutLock) {
+            try {
+                Runnable runnable = this.updateScreenRunnable;
+                if (runnable != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                }
+                Runnable runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updateVideoSizes$1(i2, i3);
+                    }
+                };
+                this.updateScreenRunnable = runnable2;
+                postOrRun(runnable2);
+            } finally {
+            }
+        }
     }
 
     public void lambda$updateVideoSizes$1(int i, int i2) {

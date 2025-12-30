@@ -1,6 +1,7 @@
 package org.telegram.ui.Stories;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -16,7 +17,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoriesViewPager;
 import org.telegram.ui.Stories.StoryViewer;
 
 public abstract class StoriesViewPager extends ViewPager {
@@ -45,7 +45,7 @@ public abstract class StoriesViewPager extends ViewPager {
 
     public abstract void onStateChanged();
 
-    public StoriesViewPager(int i, final Context context, final StoryViewer storyViewer, final Theme.ResourcesProvider resourcesProvider) {
+    public StoriesViewPager(int i, final Context context, final StoryViewer storyViewer, final Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         super(context);
         this.dialogs = new ArrayList();
         this.touchEnabled = true;
@@ -80,7 +80,7 @@ public abstract class StoriesViewPager extends ViewPager {
             @Override
             public Object instantiateItem(ViewGroup viewGroup, int i2) {
                 PeerStoriesView peerStoriesView;
-                PageLayout pageLayout = new PageLayout(context);
+                PageLayout pageLayout = StoriesViewPager.this.new PageLayout(context);
                 if (!this.cachedViews.isEmpty()) {
                     peerStoriesView = (PeerStoriesView) this.cachedViews.remove(0);
                     peerStoriesView.reset();
@@ -107,8 +107,8 @@ public abstract class StoriesViewPager extends ViewPager {
                     pageLayout.day = arrayList2;
                     StoriesController.StoriesList storiesList = storyViewer.storiesList;
                     if (storiesList instanceof StoriesController.SearchStoriesList) {
-                        MessageObject findMessageObject = storiesList.findMessageObject(((Integer) arrayList2.get(0)).intValue());
-                        pageLayout.dialogId = findMessageObject == null ? StoriesViewPager.this.daysDialogId : findMessageObject.getDialogId();
+                        MessageObject messageObjectFindMessageObject = storiesList.findMessageObject(((Integer) arrayList2.get(0)).intValue());
+                        pageLayout.dialogId = messageObjectFindMessageObject == null ? StoriesViewPager.this.daysDialogId : messageObjectFindMessageObject.getDialogId();
                     } else {
                         pageLayout.dialogId = StoriesViewPager.this.daysDialogId;
                     }
@@ -136,7 +136,7 @@ public abstract class StoriesViewPager extends ViewPager {
         setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public final void transformPage(View view, float f) {
-                StoriesViewPager.this.lambda$new$1(view, f);
+                this.f$0.lambda$new$1(view, f);
             }
         });
         setOffscreenPageLimit(0);
@@ -187,7 +187,7 @@ public abstract class StoriesViewPager extends ViewPager {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesViewPager.lambda$new$0(StoriesViewPager.PageLayout.this);
+                    StoriesViewPager.lambda$new$0(pageLayout);
                 }
             }, 16L);
             return;
@@ -275,14 +275,14 @@ public abstract class StoriesViewPager extends ViewPager {
         this.currentAccount = i;
         setAdapter(null);
         setAdapter(this.pagerAdapter);
-        int i2 = 0;
-        while (i2 < arrayList.size() && !((ArrayList) arrayList.get(i2)).contains(Integer.valueOf(this.storyViewer.dayStoryId))) {
-            i2++;
+        int size = 0;
+        while (size < arrayList.size() && !((ArrayList) arrayList.get(size)).contains(Integer.valueOf(this.storyViewer.dayStoryId))) {
+            size++;
         }
         if (this.storyViewer.reversed) {
-            i2 = (arrayList.size() - 1) - i2;
+            size = (arrayList.size() - 1) - size;
         }
-        setCurrentItem(i2);
+        setCurrentItem(size);
         this.updateDelegate = true;
     }
 
@@ -317,7 +317,7 @@ public abstract class StoriesViewPager extends ViewPager {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws Resources.NotFoundException {
         super.onLayout(z, i, i2, i3, i4);
         if (this.updateDelegate) {
             this.updateDelegate = false;
@@ -357,7 +357,7 @@ public abstract class StoriesViewPager extends ViewPager {
         return this.storyViewer.USE_SURFACE_VIEW && Build.VERSION.SDK_INT < 33;
     }
 
-    public boolean switchToNext(boolean z) {
+    public boolean switchToNext(boolean z) throws Resources.NotFoundException {
         if (z) {
             int currentItem = getCurrentItem();
             ArrayList arrayList = this.days;
@@ -463,7 +463,7 @@ public abstract class StoriesViewPager extends ViewPager {
         return this.dialogs;
     }
 
-    public class PageLayout extends FrameLayout {
+    class PageLayout extends FrameLayout {
         ArrayList day;
         long dialogId;
         boolean isVisible;
@@ -490,7 +490,7 @@ public abstract class StoriesViewPager extends ViewPager {
         }
     }
 
-    public void setCurrentDate(long j, int i) {
+    public void setCurrentDate(long j, int i) throws Resources.NotFoundException {
         for (int i2 = 0; i2 < this.days.size(); i2++) {
             if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(((Integer) ((ArrayList) this.days.get(i2)).get(0)).intValue()))) {
                 int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;

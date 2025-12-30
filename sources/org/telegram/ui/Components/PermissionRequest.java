@@ -23,13 +23,11 @@ public abstract class PermissionRequest {
     }
 
     public static void ensureEitherPermission(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback callback) {
-        boolean shouldShowRequestPermissionRationale;
-        int checkSelfPermission;
-        final Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        final Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null) {
+        if (activityFindActivity == null) {
             return;
         }
         if (Build.VERSION.SDK_INT < 23) {
@@ -40,8 +38,7 @@ public abstract class PermissionRequest {
             return;
         }
         for (String str : strArr) {
-            checkSelfPermission = activity.checkSelfPermission(str);
-            if (checkSelfPermission == 0) {
+            if (activityFindActivity.checkSelfPermission(str) == 0) {
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                     return;
@@ -50,12 +47,11 @@ public abstract class PermissionRequest {
             }
         }
         for (String str2 : strArr) {
-            shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
-            if (!shouldShowRequestPermissionRationale) {
-                new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
+            if (!activityFindActivity.shouldShowRequestPermissionRationale(str2)) {
+                new AlertDialog.Builder(activityFindActivity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i3) {
-                        PermissionRequest.lambda$ensureEitherPermission$0(activity, alertDialog, i3);
+                        PermissionRequest.lambda$ensureEitherPermission$0(activityFindActivity, alertDialog, i3);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                 if (callback != null) {
@@ -68,7 +64,7 @@ public abstract class PermissionRequest {
         requestPermissions(strArr2, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PermissionRequest.lambda$ensureEitherPermission$1(strArr2, activity, callback, (int[]) obj);
+                PermissionRequest.lambda$ensureEitherPermission$1(strArr2, activityFindActivity, callback, (int[]) obj);
             }
         });
     }
@@ -84,7 +80,6 @@ public abstract class PermissionRequest {
     }
 
     public static void lambda$ensureEitherPermission$1(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
-        int checkSelfPermission;
         int length = strArr.length;
         boolean z = false;
         int i = 0;
@@ -92,8 +87,7 @@ public abstract class PermissionRequest {
             if (i >= length) {
                 break;
             }
-            checkSelfPermission = activity.checkSelfPermission(strArr[i]);
-            if (checkSelfPermission == 0) {
+            if (activity.checkSelfPermission(strArr[i]) == 0) {
                 z = true;
                 break;
             }
@@ -109,13 +103,11 @@ public abstract class PermissionRequest {
     }
 
     public static void ensureAllPermissions(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback callback) {
-        int checkSelfPermission;
-        boolean shouldShowRequestPermissionRationale;
-        final Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        final Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null) {
+        if (activityFindActivity == null) {
             return;
         }
         if (Build.VERSION.SDK_INT < 23) {
@@ -126,15 +118,13 @@ public abstract class PermissionRequest {
             return;
         }
         for (String str : strArr) {
-            checkSelfPermission = activity.checkSelfPermission(str);
-            if (checkSelfPermission != 0) {
+            if (activityFindActivity.checkSelfPermission(str) != 0) {
                 for (String str2 : strArr) {
-                    shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
-                    if (shouldShowRequestPermissionRationale) {
-                        new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
+                    if (activityFindActivity.shouldShowRequestPermissionRationale(str2)) {
+                        new AlertDialog.Builder(activityFindActivity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i3) {
-                                PermissionRequest.lambda$ensureAllPermissions$2(activity, alertDialog, i3);
+                                PermissionRequest.lambda$ensureAllPermissions$2(activityFindActivity, alertDialog, i3);
                             }
                         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                         if (callback != null) {
@@ -147,7 +137,7 @@ public abstract class PermissionRequest {
                 requestPermissions(strArr2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PermissionRequest.lambda$ensureAllPermissions$3(strArr2, activity, callback, (int[]) obj);
+                        PermissionRequest.lambda$ensureAllPermissions$3(strArr2, activityFindActivity, callback, (int[]) obj);
                     }
                 });
                 return;
@@ -169,7 +159,6 @@ public abstract class PermissionRequest {
     }
 
     public static void lambda$ensureAllPermissions$3(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
-        int checkSelfPermission;
         int length = strArr.length;
         boolean z = false;
         int i = 0;
@@ -177,9 +166,7 @@ public abstract class PermissionRequest {
             if (i >= length) {
                 z = true;
                 break;
-            }
-            checkSelfPermission = activity.checkSelfPermission(strArr[i]);
-            if (checkSelfPermission != 0) {
+            } else if (activity.checkSelfPermission(strArr[i]) != 0) {
                 break;
             } else {
                 i++;
@@ -194,7 +181,7 @@ public abstract class PermissionRequest {
         requestPermissions(new String[]{str}, callback != null ? new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PermissionRequest.lambda$requestPermission$4(Utilities.Callback.this, (int[]) obj);
+                PermissionRequest.lambda$requestPermission$4(callback, (int[]) obj);
             }
         } : null);
     }
@@ -208,24 +195,25 @@ public abstract class PermissionRequest {
     }
 
     public static void requestPermissions(String[] strArr, final Utilities.Callback callback) {
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null) {
+        if (activityFindActivity == null) {
             return;
         }
         if (Build.VERSION.SDK_INT >= 23) {
             final int i = lastId;
             lastId = i + 1;
-            final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
+            final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = new NotificationCenter.NotificationCenterDelegate[1];
+            notificationCenterDelegateArr[0] = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public void didReceivedNotification(int i2, int i3, Object... objArr) {
                     int i4 = NotificationCenter.activityPermissionsGranted;
                     if (i2 == i4) {
-                        int intValue = ((Integer) objArr[0]).intValue();
+                        int iIntValue = ((Integer) objArr[0]).intValue();
                         int[] iArr = (int[]) objArr[2];
-                        if (intValue == i) {
+                        if (iIntValue == i) {
                             Utilities.Callback callback2 = callback;
                             if (callback2 != null) {
                                 callback2.run(iArr);
@@ -234,9 +222,9 @@ public abstract class PermissionRequest {
                         }
                     }
                 }
-            }};
+            };
             NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
-            activity.requestPermissions(strArr, i);
+            activityFindActivity.requestPermissions(strArr, i);
             return;
         }
         if (callback != null) {
@@ -249,46 +237,39 @@ public abstract class PermissionRequest {
     }
 
     public static boolean hasPermission(String str) {
-        int checkSelfPermission;
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null) {
+        if (activityFindActivity == null) {
             return false;
         }
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        checkSelfPermission = activity.checkSelfPermission(str);
-        return checkSelfPermission == 0;
+        return Build.VERSION.SDK_INT < 23 || activityFindActivity.checkSelfPermission(str) == 0;
     }
 
     public static boolean canAskPermission(String str) {
-        boolean shouldShowRequestPermissionRationale;
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null || Build.VERSION.SDK_INT < 23) {
-            return false;
+        if (activityFindActivity != null && Build.VERSION.SDK_INT >= 23) {
+            return activityFindActivity.shouldShowRequestPermissionRationale(str);
         }
-        shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str);
-        return shouldShowRequestPermissionRationale;
+        return false;
     }
 
     public static void showPermissionSettings(String str) {
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        Activity activityFindActivity = LaunchActivity.instance;
+        if (activityFindActivity == null) {
+            activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        if (activity == null) {
+        if (activityFindActivity == null) {
             return;
         }
         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
         intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
         try {
-            activity.startActivity(intent);
+            activityFindActivity.startActivity(intent);
         } catch (Exception e) {
             FileLog.e(e);
         }

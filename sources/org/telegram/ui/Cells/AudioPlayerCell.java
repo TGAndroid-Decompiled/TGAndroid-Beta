@@ -111,11 +111,11 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
             FileLog.e(e);
         }
         try {
-            CharSequence replace = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
+            CharSequence charSequenceReplace = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
             if (this.viewType == 1) {
-                replace = new SpannableStringBuilder(replace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 2));
+                charSequenceReplace = new SpannableStringBuilder(charSequenceReplace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 2));
             }
-            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(charSequenceReplace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.descriptionLayout = staticLayout2;
             this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, staticLayout2);
         } catch (Exception e2) {
@@ -124,11 +124,11 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
         int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(8.0f)) - AndroidUtilities.dp(52.0f) : AndroidUtilities.dp(8.0f);
         RadialProgress2 radialProgress2 = this.radialProgress;
-        int dp = AndroidUtilities.dp(4.0f) + size2;
-        this.buttonX = dp;
-        int dp2 = AndroidUtilities.dp(6.0f);
-        this.buttonY = dp2;
-        radialProgress2.setProgressRect(dp, dp2, size2 + AndroidUtilities.dp(48.0f), AndroidUtilities.dp(50.0f));
+        int iDp = AndroidUtilities.dp(4.0f) + size2;
+        this.buttonX = iDp;
+        int iDp2 = AndroidUtilities.dp(6.0f);
+        this.buttonY = iDp2;
+        radialProgress2.setProgressRect(iDp, iDp2, size2 + AndroidUtilities.dp(48.0f), AndroidUtilities.dp(50.0f));
     }
 
     public void setMessageObject(MessageObject messageObject, boolean z, View.OnClickListener onClickListener, boolean z2, View.OnTouchListener onTouchListener) {
@@ -179,13 +179,13 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
     }
 
     private boolean checkAudioMotionEvent(MotionEvent motionEvent) {
-        int dp;
-        int dp2;
+        int iDp;
+        int iDp2;
         int i;
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
-        int dp3 = AndroidUtilities.dp(36.0f);
-        boolean z = this.miniButtonState >= 0 && x >= (dp2 = this.buttonX + (dp = AndroidUtilities.dp(27.0f))) && x <= dp2 + dp3 && y >= (i = this.buttonY + dp) && y <= i + dp3;
+        int iDp3 = AndroidUtilities.dp(36.0f);
+        boolean z = this.miniButtonState >= 0 && x >= (iDp2 = this.buttonX + (iDp = AndroidUtilities.dp(27.0f))) && x <= iDp2 + iDp3 && y >= (i = this.buttonY + iDp) && y <= i + iDp3;
         if (motionEvent.getAction() == 0) {
             if (z) {
                 this.miniButtonPressed = true;
@@ -216,9 +216,9 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         if (this.currentMessageObject == null) {
             return super.onTouchEvent(motionEvent);
         }
-        boolean checkAudioMotionEvent = checkAudioMotionEvent(motionEvent);
+        boolean zCheckAudioMotionEvent = checkAudioMotionEvent(motionEvent);
         if (motionEvent.getAction() != 3) {
-            return checkAudioMotionEvent;
+            return zCheckAudioMotionEvent;
         }
         this.miniButtonPressed = false;
         this.buttonPressed = false;
@@ -293,7 +293,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
     @Override
     protected void onDraw(Canvas canvas) {
         Paint themePaint;
-        int i = 0;
+        int iDp = 0;
         if (this.titleLayout != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : AndroidUtilities.leftBaseline) + ((LocaleController.isRTL && this.optionsButton.getVisibility() == 0) ? AndroidUtilities.dp(32.0f) : 0), this.titleY);
@@ -304,11 +304,11 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         if (this.descriptionLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             canvas.save();
-            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : AndroidUtilities.leftBaseline);
+            int iDp2 = AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL && this.optionsButton.getVisibility() == 0) {
-                i = AndroidUtilities.dp(32.0f);
+                iDp = AndroidUtilities.dp(32.0f);
             }
-            canvas.translate(dp + i, this.descriptionY);
+            canvas.translate(iDp2 + iDp, this.descriptionY);
             this.descriptionLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.descriptionLayout, this.descriptionLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -347,34 +347,34 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
 
     public void updateButtonState(boolean z, boolean z2) {
         String fileName = this.currentMessageObject.getFileName();
-        File file = null;
+        File pathToAttach = null;
         if (!TextUtils.isEmpty(this.currentMessageObject.messageOwner.attachPath)) {
-            File file2 = new File(this.currentMessageObject.messageOwner.attachPath);
-            if (file2.exists()) {
-                file = file2;
+            File file = new File(this.currentMessageObject.messageOwner.attachPath);
+            if (file.exists()) {
+                pathToAttach = file;
             }
         }
-        if (file == null) {
-            file = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.currentMessageObject.getDocument());
+        if (pathToAttach == null) {
+            pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.currentMessageObject.getDocument());
         }
         if (TextUtils.isEmpty(fileName)) {
             return;
         }
-        if (file.exists() && file.length() == 0) {
-            file.delete();
+        if (pathToAttach.exists() && pathToAttach.length() == 0) {
+            pathToAttach.delete();
         }
-        boolean exists = file.exists();
+        boolean zExists = pathToAttach.exists();
         if (SharedConfig.streamMedia && ((int) this.currentMessageObject.getDialogId()) != 0) {
-            this.hasMiniProgress = exists ? 1 : 2;
-            exists = true;
+            this.hasMiniProgress = zExists ? 1 : 2;
+            zExists = true;
         } else {
             this.miniButtonState = -1;
         }
         if (this.hasMiniProgress == 0) {
-            if (exists) {
+            if (zExists) {
                 DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-                if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                boolean zIsPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                if (!zIsPlayingMessage || (zIsPlayingMessage && MediaController.getInstance().isMessagePaused())) {
                     this.buttonState = 0;
                 } else {
                     this.buttonState = 1;
@@ -402,8 +402,8 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
             return;
         }
         this.radialProgress.setMiniProgressBackgroundColor(getThemedColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader));
-        boolean isPlayingMessage2 = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-        if (!isPlayingMessage2 || (isPlayingMessage2 && MediaController.getInstance().isMessagePaused())) {
+        boolean zIsPlayingMessage2 = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+        if (!zIsPlayingMessage2 || (zIsPlayingMessage2 && MediaController.getInstance().isMessagePaused())) {
             this.buttonState = 0;
         } else {
             this.buttonState = 1;
@@ -444,7 +444,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
 
     @Override
     public void onProgressDownload(String str, long j, long j2) {
-        this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
+        this.radialProgress.setProgress(Math.min(1.0f, j / j2), true);
         if (this.hasMiniProgress != 0) {
             if (this.miniButtonState != 1) {
                 updateButtonState(false, true);

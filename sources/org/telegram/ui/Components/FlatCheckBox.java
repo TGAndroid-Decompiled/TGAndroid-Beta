@@ -93,12 +93,12 @@ public class FlatCheckBox extends View {
             valueAnimator.removeAllListeners();
             this.checkAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.progress, z ? 1.0f : 0.0f);
+        this.checkAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                FlatCheckBox.this.lambda$setChecked$0(valueAnimator2);
+                this.f$0.lambda$setChecked$0(valueAnimator2);
             }
         });
         this.checkAnimator.setDuration(300L);

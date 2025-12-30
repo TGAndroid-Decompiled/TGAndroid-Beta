@@ -65,7 +65,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
-import org.telegram.ui.Gifts.ResaleGiftsFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
@@ -106,7 +105,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         ResaleGiftsList resaleGiftsList = new ResaleGiftsList(this.currentAccount, j2, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ResaleGiftsFragment.this.updateList(((Boolean) obj).booleanValue());
+                this.f$0.updateList(((Boolean) obj).booleanValue());
             }
         });
         this.list = resaleGiftsList;
@@ -156,34 +155,32 @@ public class ResaleGiftsFragment extends BaseFragment {
                 super.onMeasure(i3, i4);
             }
         };
-        int blendOver = Theme.blendOver(Theme.getColor(i, this.resourceProvider), Theme.multAlpha(Theme.getColor(i2, this.resourceProvider), 0.04f));
-        sizeNotifierFrameLayout.setBackgroundColor(blendOver);
+        int iBlendOver = Theme.blendOver(Theme.getColor(i, this.resourceProvider), Theme.multAlpha(Theme.getColor(i2, this.resourceProvider), 0.04f));
+        sizeNotifierFrameLayout.setBackgroundColor(iBlendOver);
         this.fragmentView = sizeNotifierFrameLayout;
         final StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, this.currentAccount, this.resourceProvider);
         ScaleStateListAnimator.apply(starsBalanceView);
         starsBalanceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ResaleGiftsFragment.this.lambda$createView$0(starsBalanceView, view);
+                this.f$0.lambda$createView$0(starsBalanceView, view);
             }
         });
         this.actionBar.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ResaleGiftsFragment.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                ResaleGiftsFragment.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onItemLongClick;
-                onItemLongClick = ResaleGiftsFragment.this.onItemLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onItemLongClick);
+                return Boolean.valueOf(this.f$0.onItemLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         }) {
             @Override
@@ -210,7 +207,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         LargeEmptyView largeEmptyView = new LargeEmptyView(context, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ResaleGiftsFragment.this.lambda$createView$1(view);
+                this.f$0.lambda$createView$1(view);
             }
         }, this.resourceProvider);
         this.emptyView = largeEmptyView;
@@ -228,7 +225,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.filterScrollView = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         this.filterScrollView.addView(this.filtersContainer);
-        this.filterScrollView.setBackgroundColor(blendOver);
+        this.filterScrollView.setBackgroundColor(iBlendOver);
         sizeNotifierFrameLayout.addView(this.filterScrollView, LayoutHelper.createFrame(-1, 47, 55));
         View view = new View(context);
         this.filtersDivider = view;
@@ -253,7 +250,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.clearFiltersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ResaleGiftsFragment.this.lambda$createView$2(view2);
+                this.f$0.lambda$createView$2(view2);
             }
         });
         this.clearFiltersContainer.addView(this.clearFiltersButton, LayoutHelper.createFrame(-1, -1, 119));
@@ -268,7 +265,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.sortButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                ResaleGiftsFragment.this.lambda$createView$6(view3);
+                this.f$0.lambda$createView$6(view3);
             }
         });
         Filter filter2 = new Filter(context, this.resourceProvider);
@@ -278,7 +275,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.modelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                ResaleGiftsFragment.this.lambda$createView$12(context, view3);
+                this.f$0.lambda$createView$12(context, view3);
             }
         });
         Filter filter3 = new Filter(context, this.resourceProvider);
@@ -288,7 +285,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.backdropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                ResaleGiftsFragment.this.lambda$createView$18(context, view3);
+                this.f$0.lambda$createView$18(context, view3);
             }
         });
         Filter filter4 = new Filter(context, this.resourceProvider);
@@ -298,7 +295,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.patternButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                ResaleGiftsFragment.this.lambda$createView$24(context, view3);
+                this.f$0.lambda$createView$24(context, view3);
             }
         });
         FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
@@ -334,17 +331,17 @@ public class ResaleGiftsFragment extends BaseFragment {
             ItemOptions.makeOptions(this, this.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.this.lambda$createView$3();
+                    this.f$0.lambda$createView$3();
                 }
             }).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.this.lambda$createView$4();
+                    this.f$0.lambda$createView$4();
                 }
             }).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.this.lambda$createView$5();
+                    this.f$0.lambda$createView$5();
                 }
             }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
         }
@@ -364,11 +361,11 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$12(Context context, View view) {
         if (this.filtersShown && !this.list.modelAttributes.isEmpty()) {
-            final ItemOptions needsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
-            needsFocus.setOnDismiss(new Runnable() {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$7(ItemOptions.this);
+                    ResaleGiftsFragment.lambda$createView$7(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -376,24 +373,22 @@ public class ResaleGiftsFragment extends BaseFragment {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$createView$8;
-                    lambda$createView$8 = ResaleGiftsFragment.this.lambda$createView$8((TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
-                    return lambda$createView$8;
+                    return this.f$0.lambda$createView$8((TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.this.lambda$createView$9(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.lambda$createView$9(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.this.lambda$createView$10(needsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    this.f$0.lambda$createView$10(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
                 }
             };
@@ -432,19 +427,19 @@ public class ResaleGiftsFragment extends BaseFragment {
                 }
             });
             if (arrayList.size() > 8) {
-                needsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                needsFocus.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!this.list.notSelectedModelAttributes.isEmpty()) {
-                needsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.this.lambda$createView$11();
+                        this.f$0.lambda$createView$11();
                     }
                 });
             }
-            needsFocus.addView(universalRecyclerView);
-            needsFocus.show();
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -469,25 +464,25 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$9(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
         String lowerCase = strArr[0].toLowerCase();
-        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean isEmpty = this.list.notSelectedModelAttributes.isEmpty();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        boolean zIsEmpty = this.list.notSelectedModelAttributes.isEmpty();
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
-            boolean contains = this.list.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
-            boolean z = !contains;
-            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(translitSafe)) {
+            boolean zContains = this.list.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
+            boolean z = !zContains;
+            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributemodel.name.toLowerCase().contains(" " + lowerCase)) {
-                    if (stargiftattributemodel.name.toLowerCase().contains(" " + translitSafe)) {
+                    if (stargiftattributemodel.name.toLowerCase().contains(" " + strTranslitSafe)) {
                     }
                 }
             }
             Integer num = (Integer) this.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
-            UItem asModel = ModelItem.Factory.asModel(stargiftattributemodel, num == null ? 0 : num.intValue(), lowerCase);
+            UItem uItemAsModel = ModelItem.Factory.asModel(stargiftattributemodel, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
-                z = (isEmpty || contains) ? false : true;
+                z = (zIsEmpty || zContains) ? false : true;
             }
-            arrayList2.add(asModel.setChecked(z));
+            arrayList2.add(uItemAsModel.setChecked(z));
         }
         if (arrayList2.isEmpty()) {
             arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersModelEmpty)));
@@ -525,11 +520,11 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$18(Context context, View view) {
         if (this.filtersShown && !this.list.backdropAttributes.isEmpty()) {
-            final ItemOptions needsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
-            needsFocus.setOnDismiss(new Runnable() {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$13(ItemOptions.this);
+                    ResaleGiftsFragment.lambda$createView$13(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -537,24 +532,22 @@ public class ResaleGiftsFragment extends BaseFragment {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$createView$14;
-                    lambda$createView$14 = ResaleGiftsFragment.this.lambda$createView$14((TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
-                    return lambda$createView$14;
+                    return this.f$0.lambda$createView$14((TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.this.lambda$createView$15(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.lambda$createView$15(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.this.lambda$createView$16(needsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    this.f$0.lambda$createView$16(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
                 }
             };
@@ -593,19 +586,19 @@ public class ResaleGiftsFragment extends BaseFragment {
                 }
             });
             if (arrayList.size() > 8) {
-                needsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                needsFocus.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!this.list.notSelectedBackdropAttributes.isEmpty()) {
-                needsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.this.lambda$createView$17();
+                        this.f$0.lambda$createView$17();
                     }
                 });
             }
-            needsFocus.addView(universalRecyclerView);
-            needsFocus.show();
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -630,25 +623,25 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$15(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
         String lowerCase = strArr[0].toLowerCase();
-        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean isEmpty = this.list.notSelectedBackdropAttributes.isEmpty();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        boolean zIsEmpty = this.list.notSelectedBackdropAttributes.isEmpty();
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
-            boolean contains = this.list.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
-            boolean z = !contains;
-            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(translitSafe)) {
+            boolean zContains = this.list.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+            boolean z = !zContains;
+            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributebackdrop.name.toLowerCase().contains(" " + lowerCase)) {
-                    if (stargiftattributebackdrop.name.toLowerCase().contains(" " + translitSafe)) {
+                    if (stargiftattributebackdrop.name.toLowerCase().contains(" " + strTranslitSafe)) {
                     }
                 }
             }
             Integer num = (Integer) this.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
-            UItem asBackdrop = BackdropItem.Factory.asBackdrop(stargiftattributebackdrop, num == null ? 0 : num.intValue(), lowerCase);
+            UItem uItemAsBackdrop = BackdropItem.Factory.asBackdrop(stargiftattributebackdrop, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
-                z = (isEmpty || contains) ? false : true;
+                z = (zIsEmpty || zContains) ? false : true;
             }
-            arrayList2.add(asBackdrop.setChecked(z));
+            arrayList2.add(uItemAsBackdrop.setChecked(z));
         }
         if (arrayList2.isEmpty()) {
             arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersBackdropEmpty)));
@@ -686,11 +679,11 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$24(Context context, View view) {
         if (this.filtersShown && !this.list.patternAttributes.isEmpty()) {
-            final ItemOptions needsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
-            needsFocus.setOnDismiss(new Runnable() {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$19(ItemOptions.this);
+                    ResaleGiftsFragment.lambda$createView$19(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -698,24 +691,22 @@ public class ResaleGiftsFragment extends BaseFragment {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$createView$20;
-                    lambda$createView$20 = ResaleGiftsFragment.this.lambda$createView$20((TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
-                    return lambda$createView$20;
+                    return this.f$0.lambda$createView$20((TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.this.lambda$createView$21(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.lambda$createView$21(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.this.lambda$createView$22(needsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    this.f$0.lambda$createView$22(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
                 }
             };
@@ -754,19 +745,19 @@ public class ResaleGiftsFragment extends BaseFragment {
                 }
             });
             if (arrayList.size() > 8) {
-                needsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                needsFocus.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!this.list.notSelectedPatternAttributes.isEmpty()) {
-                needsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.this.lambda$createView$23();
+                        this.f$0.lambda$createView$23();
                     }
                 });
             }
-            needsFocus.addView(universalRecyclerView);
-            needsFocus.show();
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -791,25 +782,25 @@ public class ResaleGiftsFragment extends BaseFragment {
 
     public void lambda$createView$21(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
         String lowerCase = strArr[0].toLowerCase();
-        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean isEmpty = this.list.notSelectedPatternAttributes.isEmpty();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        boolean zIsEmpty = this.list.notSelectedPatternAttributes.isEmpty();
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
-            boolean contains = this.list.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
-            boolean z = !contains;
-            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(translitSafe)) {
+            boolean zContains = this.list.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
+            boolean z = !zContains;
+            if (!TextUtils.isEmpty(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributepattern.name.toLowerCase().contains(" " + lowerCase)) {
-                    if (stargiftattributepattern.name.toLowerCase().contains(" " + translitSafe)) {
+                    if (stargiftattributepattern.name.toLowerCase().contains(" " + strTranslitSafe)) {
                     }
                 }
             }
             Integer num = (Integer) this.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
-            UItem asPattern = PatternItem.Factory.asPattern(stargiftattributepattern, num == null ? 0 : num.intValue(), lowerCase);
+            UItem uItemAsPattern = PatternItem.Factory.asPattern(stargiftattributepattern, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
-                z = (isEmpty || contains) ? false : true;
+                z = (zIsEmpty || zContains) ? false : true;
             }
-            arrayList2.add(asPattern.setChecked(z));
+            arrayList2.add(uItemAsPattern.setChecked(z));
         }
         if (arrayList2.isEmpty()) {
             arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersSymbolEmpty)));
@@ -852,9 +843,9 @@ public class ResaleGiftsFragment extends BaseFragment {
         this.filtersShown = z;
         if (z2) {
             this.filterScrollView.setVisibility(0);
-            ViewPropertyAnimator alpha = this.filterScrollView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(45.0f)).alpha(z ? 1.0f : 0.0f);
+            ViewPropertyAnimator viewPropertyAnimatorAlpha = this.filterScrollView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(45.0f)).alpha(z ? 1.0f : 0.0f);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            alpha.setInterpolator(cubicBezierInterpolator).setDuration(420L).setListener(new AnimatorListenerAdapter() {
+            viewPropertyAnimatorAlpha.setInterpolator(cubicBezierInterpolator).setDuration(420L).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (z) {
@@ -993,7 +984,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             starGiftSheet.setOnBoughtGift(new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj2, Object obj3) {
-                    ResaleGiftsFragment.this.lambda$onItemClick$25((TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
+                    this.f$0.lambda$onItemClick$25((TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
                 }
             });
             showDialog(starGiftSheet);
@@ -1190,7 +1181,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                 this.reqId = ConnectionsManager.getInstance(this.account).sendRequest(getresalestargifts, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ResaleGiftsFragment.ResaleGiftsList.this.lambda$load$1(getresalestargifts, tLObject, tL_error);
+                        this.f$0.lambda$load$1(getresalestargifts, tLObject, tL_error);
                     }
                 });
             }
@@ -1200,7 +1191,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.ResaleGiftsList.this.lambda$load$0(tLObject, getresalestargifts);
+                    this.f$0.lambda$load$0(tLObject, getresalestargifts);
                 }
             });
         }
@@ -1362,9 +1353,9 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
 
         public void setValue(CharSequence charSequence) {
-            SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
-            append.setSpan(this.span, append.length() - 1, append.length(), 33);
-            setText(append);
+            SpannableStringBuilder spannableStringBuilderAppend = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
+            spannableStringBuilderAppend.setSpan(this.span, spannableStringBuilderAppend.length() - 1, spannableStringBuilderAppend.length(), 33);
+            setText(spannableStringBuilderAppend);
         }
 
         @Override
@@ -1421,9 +1412,9 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             public static UItem asEmptyView(CharSequence charSequence) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.text = charSequence;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.text = charSequence;
+                return uItemOfFactory;
             }
         }
     }
@@ -1530,24 +1521,24 @@ public class ResaleGiftsFragment extends BaseFragment {
             if (this.imageView.isAttachedToWindow()) {
                 this.emojiDrawable.addView(this.imageView);
             }
-            CharSequence charSequence = stargiftattributemodel.name;
+            CharSequence charSequenceHighlightText = stargiftattributemodel.name;
             if (!TextUtils.isEmpty(str)) {
-                charSequence = AndroidUtilities.highlightText(charSequence, str, this.resourcesProvider);
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
             }
             if (i > 0) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
                 spannableStringBuilder.append((CharSequence) "  ");
                 int length = spannableStringBuilder.length();
                 spannableStringBuilder.append((CharSequence) Integer.toString(i));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                charSequence = spannableStringBuilder;
+                charSequenceHighlightText = spannableStringBuilder;
             }
-            setTextAndIcon(charSequence, 0, this.emojiDrawable);
+            setTextAndIcon(charSequenceHighlightText, 0, this.emojiDrawable);
             setChecked(z);
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
             if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
                 size = AndroidUtilities.dp(250.0f);
@@ -1571,11 +1562,11 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             public static UItem asModel(TL_stars.starGiftAttributeModel stargiftattributemodel, int i, String str) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = stargiftattributemodel;
-                ofFactory.text = str;
-                ofFactory.intValue = i;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = stargiftattributemodel;
+                uItemOfFactory.text = str;
+                uItemOfFactory.intValue = i;
+                return uItemOfFactory;
             }
         }
     }
@@ -1635,24 +1626,24 @@ public class ResaleGiftsFragment extends BaseFragment {
             if (this.imageView.isAttachedToWindow()) {
                 this.emojiDrawable.addView(this.imageView);
             }
-            CharSequence charSequence = stargiftattributepattern.name;
+            CharSequence charSequenceHighlightText = stargiftattributepattern.name;
             if (!TextUtils.isEmpty(str)) {
-                charSequence = AndroidUtilities.highlightText(charSequence, str, this.resourcesProvider);
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
             }
             if (i > 0) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
                 spannableStringBuilder.append((CharSequence) "  ");
                 int length = spannableStringBuilder.length();
                 spannableStringBuilder.append((CharSequence) Integer.toString(i));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                charSequence = spannableStringBuilder;
+                charSequenceHighlightText = spannableStringBuilder;
             }
-            setTextAndIcon(charSequence, 0, this.emojiDrawable);
+            setTextAndIcon(charSequenceHighlightText, 0, this.emojiDrawable);
             setChecked(z);
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
             if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
                 size = AndroidUtilities.dp(250.0f);
@@ -1676,11 +1667,11 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             public static UItem asPattern(TL_stars.starGiftAttributePattern stargiftattributepattern, int i, String str) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = stargiftattributepattern;
-                ofFactory.text = str;
-                ofFactory.intValue = i;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = stargiftattributepattern;
+                uItemOfFactory.text = str;
+                uItemOfFactory.intValue = i;
+                return uItemOfFactory;
             }
         }
     }
@@ -1697,25 +1688,25 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
 
         public void set(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, int i, String str, boolean z) {
-            ShapeDrawable createCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
-            CharSequence charSequence = stargiftattributebackdrop.name;
+            ShapeDrawable shapeDrawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
+            CharSequence charSequenceHighlightText = stargiftattributebackdrop.name;
             if (!TextUtils.isEmpty(str)) {
-                charSequence = AndroidUtilities.highlightText(charSequence, str, this.resourcesProvider);
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
             }
             if (i > 0) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
                 spannableStringBuilder.append((CharSequence) "  ");
                 int length = spannableStringBuilder.length();
                 spannableStringBuilder.append((CharSequence) Integer.toString(i));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                charSequence = spannableStringBuilder;
+                charSequenceHighlightText = spannableStringBuilder;
             }
-            setTextAndIcon(charSequence, 0, createCircleDrawable);
+            setTextAndIcon(charSequenceHighlightText, 0, shapeDrawableCreateCircleDrawable);
             setChecked(z);
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
             if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
                 size = AndroidUtilities.dp(250.0f);
@@ -1739,11 +1730,11 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             public static UItem asBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, int i, String str) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = stargiftattributebackdrop;
-                ofFactory.text = str;
-                ofFactory.intValue = i;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = stargiftattributebackdrop;
+                uItemOfFactory.text = str;
+                uItemOfFactory.intValue = i;
+                return uItemOfFactory;
             }
         }
     }

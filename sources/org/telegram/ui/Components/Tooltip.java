@@ -32,7 +32,7 @@ public class Tooltip extends TextView {
         this.dismissRunnable = new Runnable() {
             @Override
             public final void run() {
-                Tooltip.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(3.0f), i));
@@ -55,19 +55,19 @@ public class Tooltip extends TextView {
             return;
         }
         View view = (View) getParent();
-        int i = 0;
-        int i2 = 0;
-        int i3 = 0;
+        int measuredWidth = 0;
+        int left = 0;
+        int top = 0;
         for (View view2 = this.anchor; view2 != view; view2 = (View) view2.getParent()) {
-            i3 += view2.getTop();
-            i2 += view2.getLeft();
+            top += view2.getTop();
+            left += view2.getLeft();
         }
-        int width = (i2 + (this.anchor.getWidth() / 2)) - (getMeasuredWidth() / 2);
+        int width = (left + (this.anchor.getWidth() / 2)) - (getMeasuredWidth() / 2);
         if (width >= 0) {
-            i = getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f) : width;
+            measuredWidth = getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f) : width;
         }
-        setTranslationX(i);
-        setTranslationY(i3 - getMeasuredHeight());
+        setTranslationX(measuredWidth);
+        setTranslationY(top - getMeasuredHeight());
     }
 
     public void show(View view) {

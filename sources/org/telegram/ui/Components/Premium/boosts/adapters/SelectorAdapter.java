@@ -51,14 +51,14 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SelectorAdapter.this.lambda$new$0((HashMap) obj);
+                this.f$0.lambda$new$0((HashMap) obj);
             }
         });
     }
 
-    public void lambda$new$0(HashMap hashMap) {
+    public void lambda$new$0(HashMap map) {
         this.chatsParticipantsCount.clear();
-        this.chatsParticipantsCount.putAll(hashMap);
+        this.chatsParticipantsCount.putAll(map);
     }
 
     public void setNeedChecks2(boolean z) {
@@ -212,9 +212,9 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             selectorUserCell.setCheckboxAlpha(1.0f, false);
             int i3 = i + 1;
             if (i3 < this.items.size() && ((Item) this.items.get(i3)).viewType != itemViewType) {
-                r4 = false;
+                z = false;
             }
-            selectorUserCell.setDivider(r4);
+            selectorUserCell.setDivider(z);
             if (i3 < this.items.size() && ((Item) this.items.get(i3)).viewType == 7) {
                 selectorUserCell.setDivider(false);
             }
@@ -477,7 +477,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
 
         @Override
-        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
             if (this == item) {
                 return true;
             }

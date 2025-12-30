@@ -31,7 +31,7 @@ public class SearchStateDrawable extends Drawable {
     private AnimatedFloat progress = new AnimatedFloat(1.0f, new Runnable() {
         @Override
         public final void run() {
-            SearchStateDrawable.this.invalidateSelf();
+            this.f$0.invalidateSelf();
         }
     }, 0, 350, CubicBezierInterpolator.EASE_OUT_QUINT);
 
@@ -92,7 +92,7 @@ public class SearchStateDrawable extends Drawable {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        SearchStateDrawable.this.lambda$setIconState$0(i, z);
+                        this.f$0.lambda$setIconState$0(i, z);
                     }
                 };
                 this.delaySetProgress = runnable;
@@ -203,10 +203,10 @@ public class SearchStateDrawable extends Drawable {
             f5 = 0.2409f;
         }
         if (f > f7) {
-            float lerp = this.fromState == i ? AndroidUtilities.lerp(x(f3), x(f5), f) : x(f5);
+            float fLerp = this.fromState == i ? AndroidUtilities.lerp(x(f3), x(f5), f) : x(f5);
             canvas.save();
             canvas.rotate(f9 * 45.0f, this.cx, this.cy);
-            drawLines(canvas, lerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f4), y(0.25f), f), lerp, y(f4), lerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f4), y(f3), f));
+            drawLines(canvas, fLerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f4), y(0.25f), f), fLerp, y(f4), fLerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f4), y(f3), f));
             canvas.restore();
         }
         float f10 = f6;
@@ -216,31 +216,31 @@ public class SearchStateDrawable extends Drawable {
                 this.wereNotWaitingForProgressToEnd = this.waitingForProgressToEnd;
             }
             if (this.progressStart > 0) {
-                CircularProgressDrawable.getSegments(((float) (System.currentTimeMillis() - this.progressStart)) % 5400.0f, this.progressSegments);
+                CircularProgressDrawable.getSegments((System.currentTimeMillis() - this.progressStart) % 5400.0f, this.progressSegments);
                 float[] fArr = this.progressSegments;
-                float f11 = fArr[0];
-                float f12 = fArr[1];
+                float fLerp2 = fArr[0];
+                float fMin = fArr[1];
                 if (getIconState() != i && !this.waitingForProgressToEnd) {
-                    float max = Math.max(0.0f, (((float) Math.floor((f11 - 180.0f) / 360.0f)) * 360.0f) + 180.0f);
-                    f12 = Math.min(f12, this.progressAngleTo + max);
-                    f11 = AndroidUtilities.lerp(f12, Math.min(f11, max + this.progressAngleTo), f10);
+                    float fMax = Math.max(0.0f, (((float) Math.floor((fLerp2 - 180.0f) / 360.0f)) * 360.0f) + 180.0f);
+                    fMin = Math.min(fMin, this.progressAngleTo + fMax);
+                    fLerp2 = AndroidUtilities.lerp(fMin, Math.min(fLerp2, fMax + this.progressAngleTo), f10);
                 }
-                float f13 = this.progressAngleTo;
-                float f14 = this.progressAngleFrom;
-                boolean containsAngle = containsAngle(f13, f14 + f11, f14 + f12);
+                float f11 = this.progressAngleTo;
+                float f12 = this.progressAngleFrom;
+                boolean zContainsAngle = containsAngle(f11, f12 + fLerp2, f12 + fMin);
                 boolean z = this.waitingForProgressToEnd;
                 if (z && !this.wereNotWaitingForProgressToEnd) {
                     this.wereNotWaitingForProgressToEnd = z;
-                    this.progressStartedWithOverTo = containsAngle;
+                    this.progressStartedWithOverTo = zContainsAngle;
                 }
-                if (this.progressStartedWithOverTo && !containsAngle) {
+                if (this.progressStartedWithOverTo && !zContainsAngle) {
                     this.progressStartedWithOverTo = false;
                 }
-                if (z && containsAngle && !this.progressStartedWithOverTo) {
+                if (z && zContainsAngle && !this.progressStartedWithOverTo) {
                     this.waitingForProgressToEnd = false;
                 }
                 this.progressRect.set(x(0.25f), y(0.25f), x(f3), y(f3));
-                canvas.drawArc(this.progressRect, this.progressAngleFrom + f11, f12 - f11, false, this.paint);
+                canvas.drawArc(this.progressRect, this.progressAngleFrom + fLerp2, fMin - fLerp2, false, this.paint);
                 invalidateSelf();
             }
         }

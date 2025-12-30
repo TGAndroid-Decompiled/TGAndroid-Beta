@@ -14,7 +14,7 @@ import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
-public class WebRtcAudioTrack {
+class WebRtcAudioTrack {
     private static final int AUDIO_TRACK_START = 0;
     private static final int AUDIO_TRACK_STOP = 1;
     private static final long AUDIO_TRACK_THREAD_JOIN_TIMEOUT_MS = 2000;
@@ -69,43 +69,43 @@ public class WebRtcAudioTrack {
         }
 
         @Override
-        public void run() {
+        public void run() throws InterruptedException, SecurityException, IllegalArgumentException {
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioTrackExternal", "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioTrack.assertTrue(WebRtcAudioTrack.this.audioTrack.getPlayState() == 3);
             WebRtcAudioTrack.this.doAudioTrackStateCallback(0);
-            int capacity = WebRtcAudioTrack.this.byteBuffer.capacity();
+            int iCapacity = WebRtcAudioTrack.this.byteBuffer.capacity();
             int channelCount = WebRtcAudioTrack.this.audioTrack.getChannelCount() * 2;
             int sampleRate = WebRtcAudioTrack.this.audioTrack.getSampleRate();
             this.targetTimeNs = System.nanoTime();
             while (this.keepAlive) {
-                WebRtcAudioTrack.nativeGetPlayoutData(WebRtcAudioTrack.this.nativeAudioTrack, capacity);
-                WebRtcAudioTrack.assertTrue(capacity <= WebRtcAudioTrack.this.byteBuffer.remaining());
+                WebRtcAudioTrack.nativeGetPlayoutData(WebRtcAudioTrack.this.nativeAudioTrack, iCapacity);
+                WebRtcAudioTrack.assertTrue(iCapacity <= WebRtcAudioTrack.this.byteBuffer.remaining());
                 if (WebRtcAudioTrack.this.speakerMute) {
                     WebRtcAudioTrack.this.byteBuffer.clear();
                     WebRtcAudioTrack.this.byteBuffer.put(WebRtcAudioTrack.this.emptyBytes);
                     WebRtcAudioTrack.this.byteBuffer.position(0);
                 }
-                int writeBytes = writeBytes(WebRtcAudioTrack.this.audioTrack, WebRtcAudioTrack.this.byteBuffer, capacity);
-                if (writeBytes != capacity) {
-                    Logging.e("WebRtcAudioTrackExternal", "AudioTrack.write played invalid number of bytes: " + writeBytes);
-                    if (writeBytes < 0) {
+                int iWriteBytes = writeBytes(WebRtcAudioTrack.this.audioTrack, WebRtcAudioTrack.this.byteBuffer, iCapacity);
+                if (iWriteBytes != iCapacity) {
+                    Logging.e("WebRtcAudioTrackExternal", "AudioTrack.write played invalid number of bytes: " + iWriteBytes);
+                    if (iWriteBytes < 0) {
                         this.keepAlive = false;
-                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError("AudioTrack.write failed: " + writeBytes);
+                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError("AudioTrack.write failed: " + iWriteBytes);
                     }
                 }
                 if (WebRtcAudioTrack.this.useLowLatency) {
                     this.bufferManager.maybeAdjustBufferSize(WebRtcAudioTrack.this.audioTrack);
                 }
                 WebRtcAudioTrack.this.byteBuffer.rewind();
-                this.writtenFrames += writeBytes / channelCount;
+                this.writtenFrames += iWriteBytes / channelCount;
                 long playbackHeadPosition = ((this.writtenFrames - WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition()) * 1000) / sampleRate;
                 WebRtcAudioTrack.this.byteBuffer.rewind();
                 this.targetTimeNs += 10000000;
-                long nanoTime = this.targetTimeNs - System.nanoTime();
-                if (nanoTime > 0) {
+                long jNanoTime = this.targetTimeNs - System.nanoTime();
+                if (jNanoTime > 0) {
                     try {
-                        Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
+                        Thread.sleep(jNanoTime / 1000000, (int) (jNanoTime % 1000000));
                     } catch (InterruptedException e) {
                         FileLog.e(e);
                     }
@@ -129,7 +129,7 @@ public class WebRtcAudioTrack {
         this(context, audioManager, null, null, null, false, true);
     }
 
-    public WebRtcAudioTrack(Context context, AudioManager audioManager, AudioAttributes audioAttributes, JavaAudioDeviceModule.AudioTrackErrorCallback audioTrackErrorCallback, JavaAudioDeviceModule.AudioTrackStateCallback audioTrackStateCallback, boolean z, boolean z2) {
+    WebRtcAudioTrack(Context context, AudioManager audioManager, AudioAttributes audioAttributes, JavaAudioDeviceModule.AudioTrackErrorCallback audioTrackErrorCallback, JavaAudioDeviceModule.AudioTrackStateCallback audioTrackStateCallback, boolean z, boolean z2) {
         ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
         this.threadChecker = threadChecker;
         threadChecker.detachThread();
@@ -148,7 +148,6 @@ public class WebRtcAudioTrack {
     }
 
     private int initPlayout(int i, int i2, double d) {
-        int bufferSizeInFrames;
         this.threadChecker.checkIsOnValidThread();
         Logging.d("WebRtcAudioTrackExternal", "initPlayout(sampleRate=" + i + ", channels=" + i2 + ", bufferSizeFactor=" + d + ")");
         this.byteBuffer = ByteBuffer.allocateDirect(i2 * 2 * (i / 100));
@@ -158,8 +157,8 @@ public class WebRtcAudioTrack {
         Logging.d("WebRtcAudioTrackExternal", sb.toString());
         this.emptyBytes = new byte[this.byteBuffer.capacity()];
         nativeCacheDirectBufferAddress(this.nativeAudioTrack, this.byteBuffer);
-        int channelCountToConfiguration = channelCountToConfiguration(i2);
-        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i, channelCountToConfiguration, 2) * d);
+        int iChannelCountToConfiguration = channelCountToConfiguration(i2);
+        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i, iChannelCountToConfiguration, 2) * d);
         Logging.d("WebRtcAudioTrackExternal", "minBufferSizeInBytes: " + minBufferSize);
         if (minBufferSize < this.byteBuffer.capacity()) {
             reportWebRtcAudioTrackInitError("AudioTrack.getMinBufferSize returns an invalid value.");
@@ -174,9 +173,9 @@ public class WebRtcAudioTrack {
         }
         try {
             if (this.useLowLatency && Build.VERSION.SDK_INT >= 26) {
-                this.audioTrack = createAudioTrackOnOreoOrHigher(i, channelCountToConfiguration, minBufferSize, this.audioAttributes);
+                this.audioTrack = createAudioTrackOnOreoOrHigher(i, iChannelCountToConfiguration, minBufferSize, this.audioAttributes);
             } else {
-                this.audioTrack = createAudioTrackBeforeOreo(i, channelCountToConfiguration, minBufferSize, this.audioAttributes);
+                this.audioTrack = createAudioTrackBeforeOreo(i, iChannelCountToConfiguration, minBufferSize, this.audioAttributes);
             }
             AudioTrack audioTrack = this.audioTrack;
             if (audioTrack == null || audioTrack.getState() != 1) {
@@ -185,8 +184,7 @@ public class WebRtcAudioTrack {
                 return -1;
             }
             if (Build.VERSION.SDK_INT >= 23) {
-                bufferSizeInFrames = this.audioTrack.getBufferSizeInFrames();
-                this.initialBufferSizeInFrames = bufferSizeInFrames;
+                this.initialBufferSizeInFrames = this.audioTrack.getBufferSizeInFrames();
             } else {
                 this.initialBufferSizeInFrames = -1;
             }
@@ -200,7 +198,7 @@ public class WebRtcAudioTrack {
         }
     }
 
-    private boolean startPlayout() {
+    private boolean startPlayout() throws IllegalStateException {
         this.threadChecker.checkIsOnValidThread();
         VolumeLogger volumeLogger = this.volumeLogger;
         if (volumeLogger != null) {
@@ -227,7 +225,7 @@ public class WebRtcAudioTrack {
         }
     }
 
-    private boolean stopPlayout() {
+    private boolean stopPlayout() throws IllegalStateException {
         this.threadChecker.checkIsOnValidThread();
         VolumeLogger volumeLogger = this.volumeLogger;
         if (volumeLogger != null) {
@@ -283,16 +281,14 @@ public class WebRtcAudioTrack {
     }
 
     private int GetPlayoutUnderrunCount() {
-        int underrunCount;
         if (Build.VERSION.SDK_INT < 24) {
             return -2;
         }
         AudioTrack audioTrack = this.audioTrack;
-        if (audioTrack == null) {
-            return -1;
+        if (audioTrack != null) {
+            return audioTrack.getUnderrunCount();
         }
-        underrunCount = audioTrack.getUnderrunCount();
-        return underrunCount;
+        return -1;
     }
 
     private void logMainParameters() {
@@ -331,51 +327,26 @@ public class WebRtcAudioTrack {
     }
 
     private static AudioTrack createAudioTrackOnOreoOrHigher(int i, int i2, int i3, AudioAttributes audioAttributes) {
-        AudioTrack.Builder audioAttributes2;
-        AudioTrack.Builder audioFormat;
-        AudioTrack.Builder bufferSizeInBytes;
-        AudioTrack.Builder performanceMode;
-        AudioTrack.Builder transferMode;
-        AudioTrack.Builder sessionId;
-        AudioTrack build;
         Logging.d("WebRtcAudioTrackExternal", "createAudioTrackOnOreoOrHigher");
         logNativeOutputSampleRate(i);
-        audioAttributes2 = DefaultAudioSink$Configuration$$ExternalSyntheticApiModelOutline0.m().setAudioAttributes(getAudioAttributes(audioAttributes));
-        audioFormat = audioAttributes2.setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build());
-        bufferSizeInBytes = audioFormat.setBufferSizeInBytes(i3);
-        performanceMode = bufferSizeInBytes.setPerformanceMode(1);
-        transferMode = performanceMode.setTransferMode(1);
-        sessionId = transferMode.setSessionId(0);
-        build = sessionId.build();
-        return build;
+        return DefaultAudioSink$Configuration$$ExternalSyntheticApiModelOutline0.m().setAudioAttributes(getAudioAttributes(audioAttributes)).setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build()).setBufferSizeInBytes(i3).setPerformanceMode(1).setTransferMode(1).setSessionId(0).build();
     }
 
     private static AudioAttributes.Builder applyAttributesOnQOrHigher(AudioAttributes.Builder builder, AudioAttributes audioAttributes) {
-        int allowedCapturePolicy;
-        AudioAttributes.Builder allowedCapturePolicy2;
-        allowedCapturePolicy = audioAttributes.getAllowedCapturePolicy();
-        allowedCapturePolicy2 = builder.setAllowedCapturePolicy(allowedCapturePolicy);
-        return allowedCapturePolicy2;
+        return builder.setAllowedCapturePolicy(audioAttributes.getAllowedCapturePolicy());
     }
 
     private void logBufferSizeInFrames() {
-        int bufferSizeInFrames;
         if (Build.VERSION.SDK_INT >= 23) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("AudioTrack: buffer size in frames: ");
-            bufferSizeInFrames = this.audioTrack.getBufferSizeInFrames();
-            sb.append(bufferSizeInFrames);
-            Logging.d("WebRtcAudioTrackExternal", sb.toString());
+            Logging.d("WebRtcAudioTrackExternal", "AudioTrack: buffer size in frames: " + this.audioTrack.getBufferSizeInFrames());
         }
     }
 
     private int getBufferSizeInFrames() {
-        int bufferSizeInFrames;
-        if (Build.VERSION.SDK_INT < 23) {
-            return -1;
+        if (Build.VERSION.SDK_INT >= 23) {
+            return this.audioTrack.getBufferSizeInFrames();
         }
-        bufferSizeInFrames = this.audioTrack.getBufferSizeInFrames();
-        return bufferSizeInFrames;
+        return -1;
     }
 
     private int getInitialBufferSizeInFrames() {
@@ -383,13 +354,8 @@ public class WebRtcAudioTrack {
     }
 
     private void logBufferCapacityInFrames() {
-        int bufferCapacityInFrames;
         if (Build.VERSION.SDK_INT >= 24) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("AudioTrack: buffer capacity in frames: ");
-            bufferCapacityInFrames = this.audioTrack.getBufferCapacityInFrames();
-            sb.append(bufferCapacityInFrames);
-            Logging.d("WebRtcAudioTrackExternal", sb.toString());
+            Logging.d("WebRtcAudioTrackExternal", "AudioTrack: buffer capacity in frames: " + this.audioTrack.getBufferCapacityInFrames());
         }
     }
 
@@ -399,13 +365,8 @@ public class WebRtcAudioTrack {
     }
 
     private void logUnderrunCount() {
-        int underrunCount;
         if (Build.VERSION.SDK_INT >= 24) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("underrun count: ");
-            underrunCount = this.audioTrack.getUnderrunCount();
-            sb.append(underrunCount);
-            Logging.d("WebRtcAudioTrackExternal", sb.toString());
+            Logging.d("WebRtcAudioTrackExternal", "underrun count: " + this.audioTrack.getUnderrunCount());
         }
     }
 

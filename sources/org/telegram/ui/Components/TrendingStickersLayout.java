@@ -41,7 +41,6 @@ import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.StickerEmojiCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickersAlert;
-import org.telegram.ui.Components.TrendingStickersLayout;
 
 public class TrendingStickersLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final TrendingStickersAdapter adapter;
@@ -231,15 +230,13 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         final RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                TrendingStickersLayout.this.lambda$new$0(view, i2);
+                this.f$0.lambda$new$0(view, i2);
             }
         };
         recyclerListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$new$1;
-                lambda$new$1 = TrendingStickersLayout.this.lambda$new$1(delegate, onItemClickListener, view, motionEvent);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(delegate, onItemClickListener, view, motionEvent);
             }
         });
         recyclerListView.setOverScrollMode(2);
@@ -253,7 +250,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             }
 
             @Override
-            public boolean isLayoutRTL() {
+            protected boolean isLayoutRTL() {
                 return LocaleController.isRTL;
             }
 
@@ -265,7 +262,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             @Override
             public int scrollVerticallyBy(int i2, RecyclerView.Recycler recycler, RecyclerView.State state) {
                 int i3;
-                View findViewByPosition;
+                View viewFindViewByPosition;
                 if (TrendingStickersLayout.this.scrollFromAnimator) {
                     return super.scrollVerticallyBy(i2, recycler, state);
                 }
@@ -287,8 +284,8 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                         }
                         i4++;
                     }
-                    if (i3 == 0 && (findViewByPosition = TrendingStickersLayout.this.layoutManager.findViewByPosition(i3)) != null && findViewByPosition.getTop() - i2 > AndroidUtilities.dp(58.0f)) {
-                        i2 = findViewByPosition.getTop() - AndroidUtilities.dp(58.0f);
+                    if (i3 == 0 && (viewFindViewByPosition = TrendingStickersLayout.this.layoutManager.findViewByPosition(i3)) != null && viewFindViewByPosition.getTop() - i2 > AndroidUtilities.dp(58.0f)) {
+                        i2 = viewFindViewByPosition.getTop() - AndroidUtilities.dp(58.0f);
                     }
                 }
                 return super.scrollVerticallyBy(i2, recycler, state);
@@ -347,16 +344,16 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     }
 
     public void lambda$new$0(View view, int i) {
-        TLRPC.StickerSetCovered stickerSetCovered;
+        TLRPC.StickerSetCovered setForPosition;
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         StickersSearchAdapter stickersSearchAdapter = this.searchAdapter;
         if (adapter == stickersSearchAdapter) {
-            stickerSetCovered = stickersSearchAdapter.getSetForPosition(i);
+            setForPosition = stickersSearchAdapter.getSetForPosition(i);
         } else {
-            stickerSetCovered = i < this.adapter.totalItems ? (TLRPC.StickerSetCovered) this.adapter.positionsToSets.get(i) : null;
+            setForPosition = i < this.adapter.totalItems ? (TLRPC.StickerSetCovered) this.adapter.positionsToSets.get(i) : null;
         }
-        if (stickerSetCovered != null) {
-            showStickerSet(stickerSetCovered.set);
+        if (setForPosition != null) {
+            showStickerSet(setForPosition.set);
         }
     }
 
@@ -381,8 +378,8 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        int i;
-        int i2;
+        int y;
+        int y2;
         float f = this.highlightProgress;
         if (f != 0.0f && this.scrollToSet != null) {
             float f2 = f - 0.0053333333f;
@@ -394,26 +391,26 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             }
             Integer num = (Integer) this.adapter.setsToPosition.get(this.scrollToSet);
             if (num != null) {
-                View findViewByPosition = this.layoutManager.findViewByPosition(num.intValue());
-                if (findViewByPosition != null) {
-                    i = (int) findViewByPosition.getY();
-                    i2 = ((int) findViewByPosition.getY()) + findViewByPosition.getMeasuredHeight();
+                View viewFindViewByPosition = this.layoutManager.findViewByPosition(num.intValue());
+                if (viewFindViewByPosition != null) {
+                    y = (int) viewFindViewByPosition.getY();
+                    y2 = ((int) viewFindViewByPosition.getY()) + viewFindViewByPosition.getMeasuredHeight();
                 } else {
-                    i = -1;
-                    i2 = -1;
+                    y = -1;
+                    y2 = -1;
                 }
-                View findViewByPosition2 = this.layoutManager.findViewByPosition(num.intValue() + 1);
-                if (findViewByPosition2 != null) {
-                    if (findViewByPosition == null) {
-                        i = (int) findViewByPosition2.getY();
+                View viewFindViewByPosition2 = this.layoutManager.findViewByPosition(num.intValue() + 1);
+                if (viewFindViewByPosition2 != null) {
+                    if (viewFindViewByPosition == null) {
+                        y = (int) viewFindViewByPosition2.getY();
                     }
-                    i2 = ((int) findViewByPosition2.getY()) + findViewByPosition2.getMeasuredHeight();
+                    y2 = ((int) viewFindViewByPosition2.getY()) + viewFindViewByPosition2.getMeasuredHeight();
                 }
-                if (findViewByPosition != null || findViewByPosition2 != null) {
+                if (viewFindViewByPosition != null || viewFindViewByPosition2 != null) {
                     this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
                     float f3 = this.highlightProgress;
                     this.paint.setAlpha((int) ((f3 < 0.06f ? f3 / 0.06f : 1.0f) * 25.5f));
-                    canvas.drawRect(0.0f, i, getMeasuredWidth(), i2, this.paint);
+                    canvas.drawRect(0.0f, y, getMeasuredWidth(), y2, this.paint);
                 }
             }
         }
@@ -430,13 +427,13 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         this.motionEventCatchedByListView = false;
-        boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+        boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
         if (!this.motionEventCatchedByListView) {
-            MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            this.listView.dispatchTouchEvent(obtain);
-            obtain.recycle();
+            MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+            this.listView.dispatchTouchEvent(motionEventObtain);
+            motionEventObtain.recycle();
         }
-        return dispatchTouchEvent;
+        return zDispatchTouchEvent;
     }
 
     private void showStickerSet(TLRPC.StickerSet stickerSet) {
@@ -457,7 +454,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     private void showStickerSet(final TLRPC.InputStickerSet inputStickerSet) {
         StickersAlert stickersAlert = new StickersAlert(getContext(), this.parentFragment, inputStickerSet, null, this.delegate.canSendSticker() ? new StickersAlert.StickersAlertDelegate() {
             @Override
-            public void lambda$onStickerSelected$74(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2) {
+            public void lambda$onStickerSelected$77(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2) {
                 TrendingStickersLayout.this.delegate.onStickerSelected(document, obj, z, z2, i);
             }
 
@@ -536,10 +533,10 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     }
 
     public void setContentViewPaddingTop(int i) {
-        int dp = i + AndroidUtilities.dp(58.0f);
-        if (this.listView.getPaddingTop() != dp) {
+        int iDp = i + AndroidUtilities.dp(58.0f);
+        if (this.listView.getPaddingTop() != iDp) {
             this.ignoreLayout = true;
-            this.listView.setPadding(0, dp, 0, 0);
+            this.listView.setPadding(0, iDp, 0, 0);
             this.ignoreLayout = false;
         }
     }
@@ -622,18 +619,18 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 return;
             }
             final int contentTopOffset = getContentTopOffset();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.glueToTopAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.glueToTopAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 int dy = 0;
 
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int floatValue = (int) (contentTopOffset * ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    int iFloatValue = (int) (contentTopOffset * ((Float) valueAnimator.getAnimatedValue()).floatValue());
                     TrendingStickersLayout.this.scrollFromAnimator = true;
-                    TrendingStickersLayout.this.listView.scrollBy(0, floatValue - this.dy);
+                    TrendingStickersLayout.this.listView.scrollBy(0, iFloatValue - this.dy);
                     TrendingStickersLayout.this.scrollFromAnimator = false;
-                    this.dy = floatValue;
+                    this.dy = iFloatValue;
                 }
             });
             this.glueToTopAnimator.addListener(new AnimatorListenerAdapter() {
@@ -655,7 +652,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         }
     }
 
-    public class TrendingStickersAdapter extends RecyclerListView.SelectionAdapter {
+    class TrendingStickersAdapter extends RecyclerListView.SelectionAdapter {
         private final Context context;
         private boolean endReached;
         private boolean loadingMore;
@@ -713,7 +710,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FrameLayout frameLayout;
-            FrameLayout frameLayout2;
+            FrameLayout emptyCell;
             if (i == 0) {
                 StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, TrendingStickersLayout.this.resourcesProvider) {
                     @Override
@@ -725,37 +722,37 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 frameLayout = stickerEmojiCell;
             } else {
                 if (i == 1) {
-                    frameLayout2 = new EmptyCell(this.context);
+                    emptyCell = new EmptyCell(this.context);
                 } else if (i == 2) {
                     FeaturedStickerSetInfoCell featuredStickerSetInfoCell = new FeaturedStickerSetInfoCell(this.context, 17, true, true, TrendingStickersLayout.this.resourcesProvider);
                     featuredStickerSetInfoCell.setAddOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            TrendingStickersLayout.TrendingStickersAdapter.this.lambda$onCreateViewHolder$0(view);
+                            this.f$0.lambda$onCreateViewHolder$0(view);
                         }
                     });
-                    frameLayout2 = featuredStickerSetInfoCell;
+                    emptyCell = featuredStickerSetInfoCell;
                 } else if (i == 3) {
-                    frameLayout2 = new View(this.context);
+                    emptyCell = new View(this.context);
                 } else if (i == 4) {
-                    frameLayout2 = new GraySectionCell(this.context, TrendingStickersLayout.this.resourcesProvider);
+                    emptyCell = new GraySectionCell(this.context, TrendingStickersLayout.this.resourcesProvider);
                 } else if (i != 5) {
-                    frameLayout2 = null;
+                    emptyCell = null;
                 } else {
                     FeaturedStickerSetCell2 featuredStickerSetCell2 = new FeaturedStickerSetCell2(this.context, TrendingStickersLayout.this.resourcesProvider);
                     featuredStickerSetCell2.setAddOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            TrendingStickersLayout.TrendingStickersAdapter.this.lambda$onCreateViewHolder$1(view);
+                            this.f$0.lambda$onCreateViewHolder$1(view);
                         }
                     });
                     featuredStickerSetCell2.getImageView().setLayerNum(3);
                     frameLayout = featuredStickerSetCell2;
                 }
-                return new RecyclerListView.Holder(frameLayout2);
+                return new RecyclerListView.Holder(emptyCell);
             }
-            frameLayout2 = frameLayout;
-            return new RecyclerListView.Holder(frameLayout2);
+            emptyCell = frameLayout;
+            return new RecyclerListView.Holder(emptyCell);
         }
 
         public void lambda$onCreateViewHolder$1(View view) {
@@ -811,58 +808,8 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TrendingStickersLayout.TrendingStickersAdapter.bindStickerSetCell(android.view.View, int, boolean):void");
         }
 
-        public void installStickerSet(TLRPC.StickerSetCovered stickerSetCovered, View view) {
-            boolean z;
-            int i = 0;
-            while (true) {
-                if (i >= TrendingStickersLayout.this.primaryInstallingStickerSets.length) {
-                    break;
-                }
-                if (TrendingStickersLayout.this.primaryInstallingStickerSets[i] != null) {
-                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(TrendingStickersLayout.this.currentAccount).getStickerSetById(TrendingStickersLayout.this.primaryInstallingStickerSets[i].set.id);
-                    if (stickerSetById != null && !stickerSetById.set.archived) {
-                        TrendingStickersLayout.this.primaryInstallingStickerSets[i] = null;
-                        break;
-                    } else if (TrendingStickersLayout.this.primaryInstallingStickerSets[i].set.id == stickerSetCovered.set.id) {
-                        return;
-                    }
-                }
-                i++;
-            }
-            int i2 = 0;
-            while (true) {
-                if (i2 >= TrendingStickersLayout.this.primaryInstallingStickerSets.length) {
-                    z = false;
-                    break;
-                } else {
-                    if (TrendingStickersLayout.this.primaryInstallingStickerSets[i2] == null) {
-                        TrendingStickersLayout.this.primaryInstallingStickerSets[i2] = stickerSetCovered;
-                        z = true;
-                        break;
-                    }
-                    i2++;
-                }
-            }
-            if (!z && view != null) {
-                if (view instanceof FeaturedStickerSetCell2) {
-                    ((FeaturedStickerSetCell2) view).setDrawProgress(true, true);
-                } else if (view instanceof FeaturedStickerSetInfoCell) {
-                    ((FeaturedStickerSetInfoCell) view).setAddDrawProgress(true, true);
-                }
-            }
-            TrendingStickersLayout.this.installingStickerSets.put(stickerSetCovered.set.id, stickerSetCovered);
-            if (view != null) {
-                TrendingStickersLayout.this.delegate.onStickerSetAdd(stickerSetCovered, z);
-                return;
-            }
-            int size = this.positionsToSets.size();
-            for (int i3 = 0; i3 < size; i3++) {
-                TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) this.positionsToSets.get(i3);
-                if (stickerSetCovered2 != null && stickerSetCovered2.set.id == stickerSetCovered.set.id) {
-                    notifyItemChanged(i3, 0);
-                    return;
-                }
-            }
+        public void installStickerSet(org.telegram.tgnet.TLRPC.StickerSetCovered r8, android.view.View r9) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TrendingStickersLayout.TrendingStickersAdapter.installStickerSet(org.telegram.tgnet.TLRPC$StickerSetCovered, android.view.View):void");
         }
 
         public void refreshStickerSets() {
@@ -890,7 +837,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             int i2 = 0;
             int i3 = 0;
             while (true) {
-                int i4 = 1;
+                int iCeil = 1;
                 if (i2 >= arrayList.size()) {
                     break;
                 }
@@ -898,37 +845,37 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
                     if (i2 == size) {
                         SparseArray sparseArray = this.cache;
-                        int i5 = this.totalItems;
-                        this.totalItems = i5 + 1;
-                        sparseArray.put(i5, -1);
+                        int i4 = this.totalItems;
+                        this.totalItems = i4 + 1;
+                        sparseArray.put(i4, -1);
                     }
                     this.sets.add(stickerSetCovered);
                     this.positionsToSets.put(this.totalItems, stickerSetCovered);
                     this.setsToPosition.put(stickerSetCovered, Integer.valueOf(this.totalItems));
                     SparseArray sparseArray2 = this.cache;
-                    int i6 = this.totalItems;
-                    this.totalItems = i6 + 1;
-                    int i7 = i3 + 1;
-                    sparseArray2.put(i6, Integer.valueOf(i3));
+                    int i5 = this.totalItems;
+                    this.totalItems = i5 + 1;
+                    int i6 = i3 + 1;
+                    sparseArray2.put(i5, Integer.valueOf(i3));
                     if (!stickerSetCovered.covers.isEmpty()) {
-                        i4 = (int) Math.ceil(stickerSetCovered.covers.size() / this.stickersPerRow);
-                        for (int i8 = 0; i8 < stickerSetCovered.covers.size(); i8++) {
-                            this.cache.put(this.totalItems + i8, stickerSetCovered.covers.get(i8));
+                        iCeil = (int) Math.ceil(stickerSetCovered.covers.size() / this.stickersPerRow);
+                        for (int i7 = 0; i7 < stickerSetCovered.covers.size(); i7++) {
+                            this.cache.put(this.totalItems + i7, stickerSetCovered.covers.get(i7));
                         }
                     } else {
                         this.cache.put(this.totalItems, stickerSetCovered.cover);
                     }
-                    int i9 = 0;
+                    int i8 = 0;
                     while (true) {
-                        i = this.stickersPerRow * i4;
-                        if (i9 >= i) {
+                        i = this.stickersPerRow * iCeil;
+                        if (i8 >= i) {
                             break;
                         }
-                        this.positionsToSets.put(this.totalItems + i9, stickerSetCovered);
-                        i9++;
+                        this.positionsToSets.put(this.totalItems + i8, stickerSetCovered);
+                        i8++;
                     }
                     this.totalItems += i;
-                    i3 = i7;
+                    i3 = i6;
                 }
                 i2++;
             }
@@ -950,7 +897,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             ConnectionsManager.getInstance(TrendingStickersLayout.this.currentAccount).sendRequest(tL_messages_getOldFeaturedStickers, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    TrendingStickersLayout.TrendingStickersAdapter.this.lambda$loadMoreStickerSets$3(tLObject, tL_error);
+                    this.f$0.lambda$loadMoreStickerSets$3(tLObject, tL_error);
                 }
             });
         }
@@ -959,14 +906,14 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TrendingStickersLayout.TrendingStickersAdapter.this.lambda$loadMoreStickerSets$2(tL_error, tLObject);
+                    this.f$0.lambda$loadMoreStickerSets$2(tL_error, tLObject);
                 }
             });
         }
 
         public void lambda$loadMoreStickerSets$2(TLRPC.TL_error tL_error, TLObject tLObject) {
+            int iCeil;
             int i;
-            int i2;
             this.loadingMore = false;
             if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_featuredStickers)) {
                 ArrayList<TLRPC.StickerSetCovered> arrayList = ((TLRPC.TL_messages_featuredStickers) tLObject).sets;
@@ -978,42 +925,42 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 }
                 if (this.otherPacks.isEmpty()) {
                     SparseArray sparseArray = this.cache;
-                    int i3 = this.totalItems;
-                    this.totalItems = i3 + 1;
-                    sparseArray.put(i3, -1);
+                    int i2 = this.totalItems;
+                    this.totalItems = i2 + 1;
+                    sparseArray.put(i2, -1);
                 }
                 this.otherPacks.addAll(arrayList);
                 int size = this.sets.size();
-                for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                    TLRPC.StickerSetCovered stickerSetCovered = arrayList.get(i4);
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    TLRPC.StickerSetCovered stickerSetCovered = arrayList.get(i3);
                     if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
                         this.sets.add(stickerSetCovered);
                         this.positionsToSets.put(this.totalItems, stickerSetCovered);
                         SparseArray sparseArray2 = this.cache;
-                        int i5 = this.totalItems;
-                        this.totalItems = i5 + 1;
-                        int i6 = size + 1;
-                        sparseArray2.put(i5, Integer.valueOf(size));
+                        int i4 = this.totalItems;
+                        this.totalItems = i4 + 1;
+                        int i5 = size + 1;
+                        sparseArray2.put(i4, Integer.valueOf(size));
                         if (!stickerSetCovered.covers.isEmpty()) {
-                            i = (int) Math.ceil(stickerSetCovered.covers.size() / this.stickersPerRow);
-                            for (int i7 = 0; i7 < stickerSetCovered.covers.size(); i7++) {
-                                this.cache.put(this.totalItems + i7, stickerSetCovered.covers.get(i7));
+                            iCeil = (int) Math.ceil(stickerSetCovered.covers.size() / this.stickersPerRow);
+                            for (int i6 = 0; i6 < stickerSetCovered.covers.size(); i6++) {
+                                this.cache.put(this.totalItems + i6, stickerSetCovered.covers.get(i6));
                             }
                         } else {
                             this.cache.put(this.totalItems, stickerSetCovered.cover);
-                            i = 1;
+                            iCeil = 1;
                         }
-                        int i8 = 0;
+                        int i7 = 0;
                         while (true) {
-                            i2 = this.stickersPerRow * i;
-                            if (i8 >= i2) {
+                            i = this.stickersPerRow * iCeil;
+                            if (i7 >= i) {
                                 break;
                             }
-                            this.positionsToSets.put(this.totalItems + i8, stickerSetCovered);
-                            i8++;
+                            this.positionsToSets.put(this.totalItems + i7, stickerSetCovered);
+                            i7++;
                         }
-                        this.totalItems += i2;
-                        size = i6;
+                        this.totalItems += i;
+                        size = i5;
                     }
                 }
                 notifyDataSetChanged();

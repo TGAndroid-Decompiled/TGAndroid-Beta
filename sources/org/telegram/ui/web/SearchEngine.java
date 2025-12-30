@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -38,7 +39,7 @@ public class SearchEngine {
         return this.autocomplete_url + URLEncoder.encode(str);
     }
 
-    public ArrayList extractSuggestions(String str) {
+    public ArrayList extractSuggestions(String str) throws JSONException {
         ArrayList arrayList = new ArrayList();
         try {
             JSONArray jSONArray = new JSONArray(str).getJSONArray(1);
@@ -75,11 +76,11 @@ public class SearchEngine {
             searchEngines = new ArrayList();
             int i = 1;
             while (true) {
-                String nullable = nullable(LocaleController.getString("SearchEngine" + i + "Name"));
-                if (nullable == null) {
+                String strNullable = nullable(LocaleController.getString("SearchEngine" + i + "Name"));
+                if (strNullable == null) {
                     break;
                 }
-                searchEngines.add(new SearchEngine(nullable, nullable(LocaleController.getString("SearchEngine" + i + "SearchURL")), nullable(LocaleController.getString("SearchEngine" + i + "AutocompleteURL")), nullable(LocaleController.getString("SearchEngine" + i + "PrivacyPolicyURL"))));
+                searchEngines.add(new SearchEngine(strNullable, nullable(LocaleController.getString("SearchEngine" + i + "SearchURL")), nullable(LocaleController.getString("SearchEngine" + i + "AutocompleteURL")), nullable(LocaleController.getString("SearchEngine" + i + "PrivacyPolicyURL"))));
                 i++;
             }
         }

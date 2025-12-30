@@ -44,7 +44,7 @@ public final class DispatchedCoroutine extends ScopeCoroutine {
     }
 
     @Override
-    public void afterCompletion(Object obj) {
+    protected void afterCompletion(Object obj) {
         afterResume(obj);
     }
 
@@ -60,10 +60,10 @@ public final class DispatchedCoroutine extends ScopeCoroutine {
         if (trySuspend()) {
             return IntrinsicsKt.getCOROUTINE_SUSPENDED();
         }
-        Object unboxState = JobSupportKt.unboxState(getState$kotlinx_coroutines_core());
-        if (unboxState instanceof CompletedExceptionally) {
-            throw ((CompletedExceptionally) unboxState).cause;
+        Object objUnboxState = JobSupportKt.unboxState(getState$kotlinx_coroutines_core());
+        if (objUnboxState instanceof CompletedExceptionally) {
+            throw ((CompletedExceptionally) objUnboxState).cause;
         }
-        return unboxState;
+        return objUnboxState;
     }
 }

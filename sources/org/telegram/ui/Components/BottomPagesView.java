@@ -69,17 +69,17 @@ public class BottomPagesView extends View {
         if (i3 >= 0) {
             this.paint.setColor(Theme.getColor(i3));
         } else {
-            this.paint.setColor(-13851168);
+            this.paint.setColor(-14509328);
         }
-        int dp = this.currentPage * AndroidUtilities.dp(11.0f);
+        int iDp = this.currentPage * AndroidUtilities.dp(11.0f);
         if (this.progress != 0.0f) {
             if (this.scrollPosition >= this.currentPage) {
-                this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress), AndroidUtilities.dp(5.0f));
+                this.rect.set(iDp, 0.0f, iDp + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress), AndroidUtilities.dp(5.0f));
             } else {
-                this.rect.set(dp - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress)), 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+                this.rect.set(iDp - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress)), 0.0f, iDp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
             }
         } else {
-            this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+            this.rect.set(iDp, 0.0f, iDp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
         }
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), this.paint);
     }

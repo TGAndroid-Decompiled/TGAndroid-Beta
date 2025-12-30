@@ -61,7 +61,7 @@ public class WallpaperUpdater {
         builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                WallpaperUpdater.this.lambda$showAlert$0(z, dialogInterface, i);
+                this.f$0.lambda$showAlert$0(z, dialogInterface, i);
             }
         });
         builder.show();
@@ -90,16 +90,16 @@ public class WallpaperUpdater {
             }
             try {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                File generatePicturePath = AndroidUtilities.generatePicturePath();
-                if (generatePicturePath != null) {
+                File fileGeneratePicturePath = AndroidUtilities.generatePicturePath();
+                if (fileGeneratePicturePath != null) {
                     if (Build.VERSION.SDK_INT >= 24) {
-                        intent.putExtra("output", FileProvider.getUriForFile(this.parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
+                        intent.putExtra("output", FileProvider.getUriForFile(this.parentActivity, ApplicationLoader.getApplicationId() + ".provider", fileGeneratePicturePath));
                         intent.addFlags(2);
                         intent.addFlags(1);
                     } else {
-                        intent.putExtra("output", Uri.fromFile(generatePicturePath));
+                        intent.putExtra("output", Uri.fromFile(fileGeneratePicturePath));
                     }
-                    this.currentPicturePath = generatePicturePath.getAbsolutePath();
+                    this.currentPicturePath = fileGeneratePicturePath.getAbsolutePath();
                 }
                 this.parentActivity.startActivityForResult(intent, 10);
             } catch (Exception e) {
@@ -111,25 +111,19 @@ public class WallpaperUpdater {
     }
 
     public void openGallery() {
-        int checkSelfPermission;
-        int checkSelfPermission2;
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment != null) {
             Activity parentActivity = baseFragment.getParentActivity();
             if (parentActivity != null) {
                 int i = Build.VERSION.SDK_INT;
                 if (i >= 33) {
-                    checkSelfPermission2 = parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES");
-                    if (checkSelfPermission2 != 0) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
                         parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
                         return;
                     }
-                } else if (i >= 23) {
-                    checkSelfPermission = parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE");
-                    if (checkSelfPermission != 0) {
-                        parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                        return;
-                    }
+                } else if (i >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
                 }
             }
             PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER, false, false, null);
@@ -168,9 +162,9 @@ public class WallpaperUpdater {
             if (sendingMediaInfo.path != null) {
                 this.currentWallpaperPath = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
                 android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(this.currentWallpaperPath));
-                this.delegate.didSelectWallpaper(this.currentWallpaperPath, loadBitmap, true);
+                Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(this.currentWallpaperPath));
+                this.delegate.didSelectWallpaper(this.currentWallpaperPath, bitmapLoadBitmap, true);
             }
         } catch (Throwable th) {
             FileLog.e(th);

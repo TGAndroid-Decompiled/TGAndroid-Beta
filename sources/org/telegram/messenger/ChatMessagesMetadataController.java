@@ -27,17 +27,17 @@ public class ChatMessagesMetadataController {
         }
         int i3 = chatActivityAdapter.messagesStartRow;
         int i4 = (i2 - i3) - 10;
-        int i5 = (i - i3) + 10;
+        int size = (i - i3) + 10;
         if (i4 < 0) {
             i4 = 0;
         }
-        if (i5 > messages.size()) {
-            i5 = messages.size();
+        if (size > messages.size()) {
+            size = messages.size();
         }
         this.reactionsToCheck.clear();
         this.extendedMediaToCheck.clear();
         this.storiesToCheck.clear();
-        while (i4 < i5) {
+        while (i4 < size) {
             MessageObject messageObject = (MessageObject) messages.get(i4);
             if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && ((messageObject.messageOwner.action == null || messageObject.canSetReaction()) && j - messageObject.reactionsLastCheckTime > 15000)) {
                 messageObject.reactionsLastCheckTime = j;
@@ -47,9 +47,9 @@ public class ChatMessagesMetadataController {
                 messageObject.extendedMediaLastCheckTime = j;
                 this.extendedMediaToCheck.add(messageObject);
             }
-            int i6 = messageObject.type;
-            if (i6 == 23 || i6 == 24 || messageObject.messageOwner.replyStory != null) {
-                TL_stories.StoryItem storyItem = (i6 == 23 || i6 == 24) ? messageObject.messageOwner.media.storyItem : messageObject.messageOwner.replyStory;
+            int i5 = messageObject.type;
+            if (i5 == 23 || i5 == 24 || messageObject.messageOwner.replyStory != null) {
+                TL_stories.StoryItem storyItem = (i5 == 23 || i5 == 24) ? messageObject.messageOwner.media.storyItem : messageObject.messageOwner.replyStory;
                 if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemDeleted) && j - storyItem.lastUpdateTime > 300000) {
                     storyItem.lastUpdateTime = j;
                     this.storiesToCheck.add(messageObject);
@@ -92,7 +92,7 @@ public class ChatMessagesMetadataController {
             this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatMessagesMetadataController.this.lambda$loadStoriesForMessages$2(i3, messageObject, j2, tLObject, tL_error);
+                    this.f$0.lambda$loadStoriesForMessages$2(i3, messageObject, j2, tLObject, tL_error);
                 }
             })));
         }
@@ -104,42 +104,42 @@ public class ChatMessagesMetadataController {
     public void lambda$loadStoriesForMessages$2(int i, final MessageObject messageObject, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-            TL_stories.StoryItem storyItem = tL_stories_stories.stories.size() > 0 ? tL_stories_stories.stories.get(0) : null;
-            if (storyItem == null) {
-                storyItem = new TL_stories.TL_storyItemDeleted();
+            TL_stories.StoryItem tL_storyItemDeleted = tL_stories_stories.stories.size() > 0 ? tL_stories_stories.stories.get(0) : null;
+            if (tL_storyItemDeleted == null) {
+                tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
             }
-            final TL_stories.StoryItem storyItem2 = storyItem;
-            storyItem2.lastUpdateTime = System.currentTimeMillis();
-            storyItem2.id = i;
+            final TL_stories.StoryItem storyItem = tL_storyItemDeleted;
+            storyItem.lastUpdateTime = System.currentTimeMillis();
+            storyItem.id = i;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatMessagesMetadataController.this.lambda$loadStoriesForMessages$1(messageObject, j, storyItem2);
+                    this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
                 }
             });
         }
     }
 
     public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
-        boolean isExpiredStory = messageObject.isExpiredStory();
+        boolean zIsExpiredStory = messageObject.isExpiredStory();
         StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();
         messageObject.forceUpdate = true;
         arrayList.add(messageObject);
         this.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() {
-                ChatMessagesMetadataController.this.lambda$loadStoriesForMessages$0(arrayList);
+            public final void run() throws InterruptedException {
+                this.f$0.lambda$loadStoriesForMessages$0(arrayList);
             }
         });
-        if (!isExpiredStory && messageObject.isExpiredStory() && messageObject.type == 24) {
+        if (!zIsExpiredStory && messageObject.isExpiredStory() && messageObject.type == 24) {
             this.chatActivity.updateMessages(arrayList, true);
         } else {
             this.chatActivity.updateMessages(arrayList, false);
         }
     }
 
-    public void lambda$loadStoriesForMessages$0(ArrayList arrayList) {
+    public void lambda$loadStoriesForMessages$0(ArrayList arrayList) throws InterruptedException {
         this.chatActivity.getMessagesController().getStoriesController().getStoriesStorage().lambda$fillMessagesWithStories$13(arrayList);
     }
 
@@ -155,7 +155,7 @@ public class ChatMessagesMetadataController {
         this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatMessagesMetadataController.this.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                this.f$0.lambda$loadReactionsForMessages$3(tLObject, tL_error);
             }
         })));
         if (this.reactionsRequests.size() > 5) {
@@ -187,7 +187,7 @@ public class ChatMessagesMetadataController {
         this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatMessagesMetadataController.this.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                this.f$0.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
             }
         })));
         if (this.extendedMediaRequests.size() > 10) {

@@ -26,9 +26,9 @@ public class RenderState {
             return;
         }
         this.allocatedCount = 256;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(5120);
-        this.buffer = allocateDirect;
-        allocateDirect.order(ByteOrder.nativeOrder());
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(5120);
+        this.buffer = byteBufferAllocateDirect;
+        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
         this.buffer.position(0);
     }
 
@@ -56,11 +56,11 @@ public class RenderState {
         if (this.buffer != null) {
             this.buffer = null;
         }
-        int max = Math.max(this.allocatedCount * 2, 256);
-        this.allocatedCount = max;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
-        this.buffer = allocateDirect;
-        allocateDirect.order(ByteOrder.nativeOrder());
+        int iMax = Math.max(this.allocatedCount * 2, 256);
+        this.allocatedCount = iMax;
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(iMax * 20);
+        this.buffer = byteBufferAllocateDirect;
+        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
         this.buffer.position(0);
     }
 

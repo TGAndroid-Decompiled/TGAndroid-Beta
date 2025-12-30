@@ -68,16 +68,16 @@ class WebRtcAudioEffects {
         return this.ns.setEnabled(z) == 0;
     }
 
-    public void enable(int i) {
+    public void enable(int i) throws IllegalStateException {
         Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i + ")");
         boolean z = false;
         assertTrue(this.aec == null);
         assertTrue(this.ns == null);
         if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler create = AcousticEchoCanceler.create(i);
-            this.aec = create;
-            if (create != null) {
-                boolean enabled = create.getEnabled();
+            AcousticEchoCanceler acousticEchoCancelerCreate = AcousticEchoCanceler.create(i);
+            this.aec = acousticEchoCancelerCreate;
+            if (acousticEchoCancelerCreate != null) {
+                boolean enabled = acousticEchoCancelerCreate.getEnabled();
                 boolean z2 = this.shouldEnableAec && isAcousticEchoCancelerSupported();
                 if (this.aec.setEnabled(z2) != 0) {
                     Logging.e("WebRtcAudioEffectsExternal", "Failed to set the AcousticEchoCanceler state");
@@ -95,10 +95,10 @@ class WebRtcAudioEffects {
             }
         }
         if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor create2 = NoiseSuppressor.create(i);
-            this.ns = create2;
-            if (create2 != null) {
-                boolean enabled2 = create2.getEnabled();
+            NoiseSuppressor noiseSuppressorCreate = NoiseSuppressor.create(i);
+            this.ns = noiseSuppressorCreate;
+            if (noiseSuppressorCreate != null) {
+                boolean enabled2 = noiseSuppressorCreate.getEnabled();
                 if (this.shouldEnableNs && isNoiseSuppressorSupported()) {
                     z = true;
                 }
@@ -148,9 +148,9 @@ class WebRtcAudioEffects {
         if (descriptorArr != null) {
             return descriptorArr;
         }
-        AudioEffect.Descriptor[] queryEffects = AudioEffect.queryEffects();
-        cachedEffects = queryEffects;
-        return queryEffects;
+        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
+        cachedEffects = descriptorArrQueryEffects;
+        return descriptorArrQueryEffects;
     }
 
     private static boolean isEffectTypeAvailable(UUID uuid, UUID uuid2) {

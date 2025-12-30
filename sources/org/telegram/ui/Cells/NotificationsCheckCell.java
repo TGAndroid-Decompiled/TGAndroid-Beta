@@ -44,13 +44,13 @@ public class NotificationsCheckCell extends FrameLayout {
     }
 
     public NotificationsCheckCell(Context context, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         float f;
         float f2;
         float f3;
         float f4;
         float f5;
         float f6;
+        super(context);
         this.drawLine = true;
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
@@ -235,26 +235,26 @@ public class NotificationsCheckCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float dp;
-        int i;
+        float fDp;
+        int iDp;
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                dp = 0.0f;
+                fDp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
+                fDp = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
+                iDp = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
             } else {
-                i = 0;
+                iDp = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(fDp, measuredHeight, measuredWidth - iDp, getMeasuredHeight() - 1, Theme.dividerPaint);
         }
         if (this.drawLine) {
-            int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
-            canvas.drawRect(dp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, dp2 + 2, r1 + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
+            int iDp2 = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
+            canvas.drawRect(iDp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, iDp2 + 2, r1 + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
         }
     }
 

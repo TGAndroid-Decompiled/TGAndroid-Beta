@@ -78,7 +78,7 @@ public class ChartHeaderView extends FrameLayout {
         this.datesTmp.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                ChartHeaderView.this.lambda$new$0(view, i, i2, i3, i4, i5, i6, i7, i8);
+                this.f$0.lambda$new$0(view, i, i2, i3, i4, i5, i6, i7, i8);
             }
         });
         recolor();
@@ -102,7 +102,7 @@ public class ChartHeaderView extends FrameLayout {
     }
 
     public void setDates(long j, long j2) {
-        String format;
+        String str;
         if (!this.showDate) {
             this.dates.setVisibility(8);
             this.datesTmp.setVisibility(8);
@@ -112,11 +112,11 @@ public class ChartHeaderView extends FrameLayout {
             j2 += 604800000;
         }
         if (j2 - j >= 86400000) {
-            format = LocaleController.getInstance().getFormatterYear().format(new Date(j)) + " — " + LocaleController.getInstance().getFormatterYear().format(new Date(j2));
+            str = LocaleController.getInstance().getFormatterYear().format(new Date(j)) + " — " + LocaleController.getInstance().getFormatterYear().format(new Date(j2));
         } else {
-            format = LocaleController.getInstance().getFormatterYear().format(new Date(j));
+            str = LocaleController.getInstance().getFormatterYear().format(new Date(j));
         }
-        this.dates.setText(format);
+        this.dates.setText(str);
         this.dates.setVisibility(0);
     }
 

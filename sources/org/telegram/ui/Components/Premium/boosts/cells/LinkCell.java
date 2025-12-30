@@ -36,15 +36,15 @@ public class LinkCell extends FrameLayout {
         spoilersTextView2.allowClickSpoilers = false;
         this.linkContainer.addView(spoilersTextView2, LayoutHelper.createFrame(-2, -2, 17));
         FrameLayout frameLayout = this.linkContainer;
-        int dp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(8.0f);
         int color = Theme.getColor(Theme.key_graySection, resourcesProvider);
         int i = Theme.key_listSelector;
-        frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, color, ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), 76)));
+        frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, color, ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), 76)));
         addView(this.linkContainer, LayoutHelper.createFrame(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
         this.linkContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkCell.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         ImageView imageView = new ImageView(getContext());
@@ -57,7 +57,7 @@ public class LinkCell extends FrameLayout {
         this.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkCell.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
     }

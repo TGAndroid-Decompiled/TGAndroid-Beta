@@ -12,7 +12,7 @@ import android.os.IBinder;
 public class AuthenticatorService extends Service {
     private static Authenticator authenticator;
 
-    public static class Authenticator extends AbstractAccountAuthenticator {
+    private static class Authenticator extends AbstractAccountAuthenticator {
         @Override
         public Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String str, String str2, String[] strArr, Bundle bundle) {
             return null;

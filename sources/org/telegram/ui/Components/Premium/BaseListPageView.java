@@ -24,9 +24,9 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider);
         this.recyclerListView = recyclerListView;
         recyclerListView.setNestedScrollingEnabled(true);
-        RecyclerView.Adapter createAdapter = createAdapter();
-        this.adapter = createAdapter;
-        recyclerListView.setAdapter(createAdapter);
+        RecyclerView.Adapter adapterCreateAdapter = createAdapter();
+        this.adapter = adapterCreateAdapter;
+        recyclerListView.setAdapter(adapterCreateAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);

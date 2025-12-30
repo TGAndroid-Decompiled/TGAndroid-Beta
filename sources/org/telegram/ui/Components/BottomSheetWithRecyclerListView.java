@@ -17,7 +17,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
@@ -63,11 +62,11 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         return false;
     }
 
-    public boolean canHighlightChildAt(View view, float f, float f2) {
+    protected boolean canHighlightChildAt(View view, float f, float f2) {
         return true;
     }
 
@@ -82,7 +81,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected void onPreDraw(Canvas canvas, int i, float f) {
     }
 
-    public void onPreMeasure(int i, int i2) {
+    protected void onPreMeasure(int i, int i2) {
     }
 
     public void onViewCreated(FrameLayout frameLayout) {
@@ -117,8 +116,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, final boolean z4, ActionBarType actionBarType, Theme.ResourcesProvider resourcesProvider) {
-        super(context, z, resourcesProvider);
         final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+        super(context, z, resourcesProvider);
         this.topPadding = 0.4f;
         this.showShadow = true;
         this.shadowAlpha = 1.0f;
@@ -141,7 +140,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         if (z3) {
             NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
                     BottomSheetWithRecyclerListView.this.onPreMeasure(i, i2);
                     if (z4) {
@@ -151,7 +150,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 @Override
-                public void dispatchDraw(Canvas canvas) {
+                protected void dispatchDraw(Canvas canvas) {
                     BottomSheetWithRecyclerListView.this.preDrawInternal(canvas, this);
                     super.dispatchDraw(canvas);
                     BottomSheetWithRecyclerListView.this.postDrawInternal(canvas, this);
@@ -241,7 +240,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 @Override
-                public void dispatchDraw(Canvas canvas) {
+                protected void dispatchDraw(Canvas canvas) {
                     BottomSheetWithRecyclerListView.this.preDrawInternal(canvas, this);
                     super.dispatchDraw(canvas);
                     BottomSheetWithRecyclerListView.this.postDrawInternal(canvas, this);
@@ -271,7 +270,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 @Override
-                public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+                protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
                 }
             };
@@ -392,13 +391,13 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected RecyclerListView createRecyclerView(Context context) {
         return new RecyclerListView(context, this.resourcesProvider) {
             @Override
-            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 BottomSheetWithRecyclerListView.this.applyScrolledPosition();
                 super.onLayout(z, i, i2, i3, i4);
             }
 
             @Override
-            public boolean canHighlightChildAt(View view, float f, float f2) {
+            protected boolean canHighlightChildAt(View view, float f, float f2) {
                 return BottomSheetWithRecyclerListView.this.canHighlightChildAt(view, f, f2);
             }
         };
@@ -411,20 +410,20 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int i3;
+            int iDp;
             BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-            int i4 = bottomSheetWithRecyclerListView.contentHeight;
-            if (i4 == 0) {
-                i3 = AndroidUtilities.dp(300.0f);
+            int i3 = bottomSheetWithRecyclerListView.contentHeight;
+            if (i3 == 0) {
+                iDp = AndroidUtilities.dp(300.0f);
             } else {
-                i3 = (int) (i4 * bottomSheetWithRecyclerListView.topPadding);
+                iDp = (int) (i3 * bottomSheetWithRecyclerListView.topPadding);
             }
             BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView2 = BottomSheetWithRecyclerListView.this;
-            int i5 = i3 - (((bottomSheetWithRecyclerListView2.headerTotalHeight - bottomSheetWithRecyclerListView2.headerHeight) - bottomSheetWithRecyclerListView2.headerPaddingTop) - bottomSheetWithRecyclerListView2.headerPaddingBottom);
-            if (i5 < 1) {
-                i5 = 1;
+            int i4 = iDp - (((bottomSheetWithRecyclerListView2.headerTotalHeight - bottomSheetWithRecyclerListView2.headerHeight) - bottomSheetWithRecyclerListView2.headerPaddingTop) - bottomSheetWithRecyclerListView2.headerPaddingBottom);
+            if (i4 < 1) {
+                i4 = 1;
             }
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i5, 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i4, 1073741824));
         }
 
         @Override
@@ -435,25 +434,25 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     protected void resetAdapter(final Context context) {
-        final RecyclerListView.SelectionAdapter createAdapter = createAdapter(this.recyclerListView);
+        final RecyclerListView.SelectionAdapter selectionAdapterCreateAdapter = createAdapter(this.recyclerListView);
         this.recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return createAdapter.isEnabled(viewHolder);
+                return selectionAdapterCreateAdapter.isEnabled(viewHolder);
             }
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 if (i == -1000) {
-                    return new RecyclerListView.Holder(new PaddingView(context));
+                    return new RecyclerListView.Holder(BottomSheetWithRecyclerListView.this.new PaddingView(context));
                 }
-                return createAdapter.onCreateViewHolder(viewGroup, i);
+                return selectionAdapterCreateAdapter.onCreateViewHolder(viewGroup, i);
             }
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 if (i != (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
-                    createAdapter.onBindViewHolder(viewHolder, i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
+                    selectionAdapterCreateAdapter.onBindViewHolder(viewHolder, i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
                 }
             }
 
@@ -462,17 +461,17 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 if (i == (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
                     return -1000;
                 }
-                return createAdapter.getItemViewType(i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
+                return selectionAdapterCreateAdapter.getItemViewType(i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
             }
 
             @Override
             public int getItemCount() {
-                return createAdapter.getItemCount() + 1;
+                return selectionAdapterCreateAdapter.getItemCount() + 1;
             }
 
             @Override
             public void registerAdapterDataObserver(final RecyclerView.AdapterDataObserver adapterDataObserver) {
-                createAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                selectionAdapterCreateAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
                     @Override
                     public void onChanged() {
                         adapterDataObserver.onChanged();
@@ -517,97 +516,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return AndroidUtilities.dp(56.0f);
     }
 
-    public void preDrawInternal(Canvas canvas, View view) {
-        int i;
-        float f;
-        this.restore = false;
-        if (this.hasFixedSize) {
-            return;
-        }
-        if (this.reverseLayout) {
-            int height = this.recyclerListView.getHeight();
-            for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
-                View childAt = this.recyclerListView.getChildAt(i2);
-                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition != -1 && childAdapterPosition != this.recyclerListView.getAdapter().getItemCount() - 1) {
-                    height = Math.min(height, childAt.getTop() + (this.takeTranslationIntoAccount ? (int) childAt.getTranslationY() : 0));
-                }
-            }
-            i = height - AndroidUtilities.dp(16.0f);
-        } else {
-            RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
-            int i3 = -AndroidUtilities.dp(16.0f);
-            if (findViewHolderForAdapterPosition != null) {
-                i3 = findViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.dp(16.0f);
-                if (this.takeTranslationIntoAccount) {
-                    i = ((int) findViewHolderForAdapterPosition.itemView.getTranslationY()) + i3;
-                }
-            }
-            i = i3;
-        }
-        int i4 = (i - ((this.headerHeight + this.headerPaddingTop) + this.headerPaddingBottom)) + this.headerMoveTop;
-        if (this.showHandle && this.handleOffset) {
-            i4 -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
-        }
-        ActionBarType actionBarType = this.actionBarType;
-        float f2 = 1.0f;
-        if (actionBarType == ActionBarType.FADING) {
-            f = 1.0f - ((AndroidUtilities.dp(16.0f) + i4) / getActionBarProgressHeight());
-            if (f < 0.0f) {
-                f = 0.0f;
-            }
-            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, f != 0.0f, 1.0f, this.wasDrawn);
-        } else if (actionBarType == ActionBarType.SLIDING) {
-            float max = Math.max((((i4 - this.headerMoveTop) + AndroidUtilities.dp(8.0f)) + this.headerPaddingTop) - AndroidUtilities.statusBarHeight, 0.0f);
-            float f3 = this.actionBarSlideProgress.set(max == 0.0f ? 1.0f : 0.0f);
-            if (f3 != 0.0f && f3 != 1.0f) {
-                canvas.save();
-                canvas.clipRect(0.0f, max, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
-                this.restore = true;
-            }
-            this.shadowAlpha = f3;
-            f2 = AndroidUtilities.lerp(1.0f, 0.5f, f3);
-            this.actionBar.backButtonImageView.setAlpha(f3);
-            this.actionBar.backButtonImageView.setScaleX(f3);
-            this.actionBar.backButtonImageView.setPivotY(r6.getMeasuredHeight() / 2.0f);
-            this.actionBar.backButtonImageView.setScaleY(f3);
-            SimpleTextView titleTextView = this.actionBar.getTitleTextView();
-            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f3));
-            if (this.centerTitle) {
-                titleTextView.setTranslationX(((this.actionBar.getMeasuredWidth() - titleTextView.getTextWidth()) / 2.0f) - titleTextView.getLeft());
-            }
-            this.actionBar.setTranslationY(max);
-            i4 -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f3);
-            this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f3), this.actionBar.getWidth(), this.actionBar.getHeight());
-            if (f3 > 0.5f) {
-                if (this.actionBarIgnoreTouchEvents) {
-                    this.actionBarIgnoreTouchEvents = false;
-                    this.actionBar.setTag(1);
-                }
-            } else if (!this.actionBarIgnoreTouchEvents) {
-                this.actionBarIgnoreTouchEvents = true;
-                this.actionBar.setTag(null);
-            }
-            f = f3;
-        } else {
-            f = 0.0f;
-        }
-        if (shouldDrawBackground()) {
-            if (needPaddingShadow()) {
-                this.shadowDrawable.setBounds(0, i4, view.getMeasuredWidth(), view.getMeasuredHeight());
-            } else {
-                this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), i4, view.getMeasuredWidth() + AndroidUtilities.dp(6.0f), view.getMeasuredHeight());
-            }
-            this.shadowDrawable.draw(canvas);
-            if (this.showHandle && f2 > 0.0f) {
-                int dp = AndroidUtilities.dp(36.0f);
-                this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, AndroidUtilities.dp(20.0f) + i4, (view.getMeasuredWidth() + dp) / 2.0f, r3 + AndroidUtilities.dp(4.0f));
-                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
-                Theme.dialogs_onlineCirclePaint.setAlpha((int) (r14.getAlpha() * f2));
-                canvas.drawRoundRect(this.handleRect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
-            }
-        }
-        onPreDraw(canvas, i4, f);
+    public void preDrawInternal(android.graphics.Canvas r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.preDrawInternal(android.graphics.Canvas, android.view.View):void");
     }
 
     @Override
@@ -678,12 +588,12 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
         View view = null;
         int i = -1;
-        int i2 = Integer.MAX_VALUE;
-        for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
-            View childAt = this.recyclerListView.getChildAt(i3);
+        int top = Integer.MAX_VALUE;
+        for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
+            View childAt = this.recyclerListView.getChildAt(i2);
             int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
-            if (childAdapterPosition > 0 && childAt.getTop() < i2) {
-                i2 = childAt.getTop();
+            if (childAdapterPosition > 0 && childAt.getTop() < top) {
+                top = childAt.getTop();
                 view = childAt;
                 i = childAdapterPosition;
             }
@@ -705,9 +615,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             return;
         }
         int top = (this.savedScrollOffset - this.containerView.getTop()) - this.recyclerListView.getPaddingTop();
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
-        if (z && findViewHolderForAdapterPosition != null) {
-            top -= Math.max(findViewHolderForAdapterPosition.itemView.getBottom() - this.recyclerListView.getPaddingTop(), 0);
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
+        if (z && viewHolderFindViewHolderForAdapterPosition != null) {
+            top -= Math.max(viewHolderFindViewHolderForAdapterPosition.itemView.getBottom() - this.recyclerListView.getPaddingTop(), 0);
         }
         if (this.recyclerListView.getLayoutManager() instanceof LinearLayoutManager) {
             ((LinearLayoutManager) this.recyclerListView.getLayoutManager()).scrollToPositionWithOffset(this.savedScrollPosition, top);

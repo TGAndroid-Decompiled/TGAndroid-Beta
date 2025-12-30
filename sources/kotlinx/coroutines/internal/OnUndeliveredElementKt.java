@@ -28,9 +28,9 @@ public abstract class OnUndeliveredElementKt {
     }
 
     public static final void callUndeliveredElement(Function1 function1, Object obj, CoroutineContext coroutineContext) {
-        UndeliveredElementException callUndeliveredElementCatchingException = callUndeliveredElementCatchingException(function1, obj, null);
-        if (callUndeliveredElementCatchingException != null) {
-            CoroutineExceptionHandlerKt.handleCoroutineException(coroutineContext, callUndeliveredElementCatchingException);
+        UndeliveredElementException undeliveredElementExceptionCallUndeliveredElementCatchingException = callUndeliveredElementCatchingException(function1, obj, null);
+        if (undeliveredElementExceptionCallUndeliveredElementCatchingException != null) {
+            CoroutineExceptionHandlerKt.handleCoroutineException(coroutineContext, undeliveredElementExceptionCallUndeliveredElementCatchingException);
         }
     }
 
@@ -47,7 +47,7 @@ public abstract class OnUndeliveredElementKt {
             }
 
             public final void invoke(Throwable th) {
-                OnUndeliveredElementKt.callUndeliveredElement(Function1.this, obj, coroutineContext);
+                OnUndeliveredElementKt.callUndeliveredElement(function1, obj, coroutineContext);
             }
         };
     }

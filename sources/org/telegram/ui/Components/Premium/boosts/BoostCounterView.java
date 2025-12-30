@@ -46,12 +46,12 @@ public class BoostCounterView extends View {
             valueAnimator.cancel();
             this.countAnimator = null;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.countAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.countAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BoostCounterView.this.lambda$animateCount$0(valueAnimator2);
+                this.f$0.lambda$animateCount$0(valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {

@@ -64,18 +64,18 @@ public class GroupCreateSpan extends View {
 
     public void updateColors() {
         int color = this.avatarDrawable.getColor();
-        int color2 = Theme.getColor(Theme.key_groupcreate_spanBackground, this.resourcesProvider);
-        int color3 = Theme.getColor(Theme.key_groupcreate_spanDelete, this.resourcesProvider);
-        this.colors[0] = Color.red(color2);
+        int iMultAlpha = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.05f);
+        int color2 = Theme.getColor(Theme.key_groupcreate_spanDelete, this.resourcesProvider);
+        this.colors[0] = Color.red(iMultAlpha);
         this.colors[1] = Color.red(color);
-        this.colors[2] = Color.green(color2);
+        this.colors[2] = Color.green(iMultAlpha);
         this.colors[3] = Color.green(color);
-        this.colors[4] = Color.blue(color2);
+        this.colors[4] = Color.blue(iMultAlpha);
         this.colors[5] = Color.blue(color);
-        this.colors[6] = Color.alpha(color2);
+        this.colors[6] = Color.alpha(iMultAlpha);
         this.colors[7] = Color.alpha(color);
-        this.deleteDrawable.setColorFilter(new PorterDuffColorFilter(color3, PorterDuff.Mode.MULTIPLY));
-        backPaint.setColor(color2);
+        this.deleteDrawable.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
+        backPaint.setColor(iMultAlpha);
     }
 
     public boolean isDeleting() {
@@ -120,18 +120,18 @@ public class GroupCreateSpan extends View {
     protected void onDraw(Canvas canvas) {
         boolean z = this.deleting;
         if ((z && this.progress != 1.0f) || (!z && this.progress != 0.0f)) {
-            long currentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
-            if (currentTimeMillis < 0 || currentTimeMillis > 17) {
-                currentTimeMillis = 17;
+            long jCurrentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
+            if (jCurrentTimeMillis < 0 || jCurrentTimeMillis > 17) {
+                jCurrentTimeMillis = 17;
             }
             if (this.deleting) {
-                float f = this.progress + (((float) currentTimeMillis) / 120.0f);
+                float f = this.progress + (jCurrentTimeMillis / 120.0f);
                 this.progress = f;
                 if (f >= 1.0f) {
                     this.progress = 1.0f;
                 }
             } else {
-                float f2 = this.progress - (((float) currentTimeMillis) / 120.0f);
+                float f2 = this.progress - (jCurrentTimeMillis / 120.0f);
                 this.progress = f2;
                 if (f2 < 0.0f) {
                     this.progress = 0.0f;

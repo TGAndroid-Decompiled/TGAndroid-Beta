@@ -47,7 +47,7 @@ public class SurfaceTextureHelper {
             @Override
             public SurfaceTextureHelper call() {
                 try {
-                    return new SurfaceTextureHelper(EglBase.Context.this, handler, z, yuvConverter, frameRefMonitor);
+                    return new SurfaceTextureHelper(context, handler, z, yuvConverter, frameRefMonitor);
                 } catch (RuntimeException e) {
                     Logging.e("SurfaceTextureHelper", str + " create failure", e);
                     return null;
@@ -112,19 +112,19 @@ public class SurfaceTextureHelper {
         this.timestampAligner = z ? new TimestampAligner() : null;
         this.yuvConverter = yuvConverter;
         this.frameRefMonitor = frameRefMonitor;
-        EglBase create = EglBase.CC.create(context, EglBase.CONFIG_PIXEL_BUFFER);
-        this.eglBase = create;
+        EglBase eglBaseCreate = EglBase.CC.create(context, EglBase.CONFIG_PIXEL_BUFFER);
+        this.eglBase = eglBaseCreate;
         try {
-            create.createDummyPbufferSurface();
-            create.makeCurrent();
-            int generateTexture = GlUtil.generateTexture(36197);
-            this.oesTextureId = generateTexture;
-            SurfaceTexture surfaceTexture = new SurfaceTexture(generateTexture);
+            eglBaseCreate.createDummyPbufferSurface();
+            eglBaseCreate.makeCurrent();
+            int iGenerateTexture = GlUtil.generateTexture(36197);
+            this.oesTextureId = iGenerateTexture;
+            SurfaceTexture surfaceTexture = new SurfaceTexture(iGenerateTexture);
             this.surfaceTexture = surfaceTexture;
             setOnFrameAvailableListener(surfaceTexture, new SurfaceTexture.OnFrameAvailableListener() {
                 @Override
                 public final void onFrameAvailable(SurfaceTexture surfaceTexture2) {
-                    SurfaceTextureHelper.this.lambda$new$0(surfaceTexture2);
+                    this.f$0.lambda$new$0(surfaceTexture2);
                 }
             }, handler);
         } catch (RuntimeException e) {
@@ -160,7 +160,7 @@ public class SurfaceTextureHelper {
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$stopListening$1();
+                this.f$0.lambda$stopListening$1();
             }
         });
     }
@@ -181,7 +181,7 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$setTextureSize$2(i, i2);
+                this.f$0.lambda$setTextureSize$2(i, i2);
             }
         });
     }
@@ -196,7 +196,7 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$forceFrame$3();
+                this.f$0.lambda$forceFrame$3();
             }
         });
     }
@@ -214,7 +214,7 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$setFrameRotation$4(i);
+                this.f$0.lambda$setFrameRotation$4(i);
             }
         });
     }
@@ -231,7 +231,7 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$returnTextureFrame$5();
+                this.f$0.lambda$returnTextureFrame$5();
             }
         });
     }
@@ -254,7 +254,7 @@ public class SurfaceTextureHelper {
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.this.lambda$dispose$6();
+                this.f$0.lambda$dispose$6();
             }
         });
     }

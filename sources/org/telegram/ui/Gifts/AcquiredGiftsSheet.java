@@ -27,7 +27,6 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.Gifts.AcquiredGiftsSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -62,16 +61,16 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AcquiredGiftsSheet.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i = createFrame.leftMargin;
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i = layoutParamsCreateFrame.leftMargin;
         int i2 = this.backgroundPaddingLeft;
-        createFrame.leftMargin = i + i2;
-        createFrame.rightMargin += i2;
-        this.containerView.addView(buttonWithCounterView, createFrame);
+        layoutParamsCreateFrame.leftMargin = i + i2;
+        layoutParamsCreateFrame.rightMargin += i2;
+        this.containerView.addView(buttonWithCounterView, layoutParamsCreateFrame);
         this.adapter.update(false);
     }
 
@@ -93,7 +92,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AcquiredGiftsSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
@@ -110,7 +109,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(AcquiredGiftsCell.Factory.as(tL_StarGiftAuctionAcquiredGift, this.auction, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AcquiredGiftsSheet.this.lambda$fillItems$2(tL_StarGiftAuctionAcquiredGift, view);
+                    this.f$0.lambda$fillItems$2(tL_StarGiftAuctionAcquiredGift, view);
                 }
             }));
         }
@@ -140,7 +139,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         safeLastFragment.presentFragment(new ProfileActivity(bundle));
     }
 
-    public static class AcquiredGiftsCell extends FrameLayout {
+    static class AcquiredGiftsCell extends FrameLayout {
         private final int currentAccount;
         private final Theme.ResourcesProvider resourcesProvider;
 
@@ -160,17 +159,17 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) StarsIntroActivity.replaceStarsWithPlain("⭐️" + LocaleController.formatNumber(tL_StarGiftAuctionAcquiredGift.bid_amount, ','), 0.75f));
-            String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
+            String string = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
             TableView tableView = new TableView(getContext(), this.resourcesProvider);
             tableView.addFullRow(spannableStringBuilder).setFilled(true);
             tableView.addRowUser(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), this.currentAccount, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new Runnable() {
                 @Override
                 public final void run() {
-                    AcquiredGiftsSheet.AcquiredGiftsCell.this.lambda$bind$0(onClickListener);
+                    this.f$0.lambda$bind$0(onClickListener);
                 }
             });
             tableView.addRowDateTime(LocaleController.getString(R.string.Gift2AuctionsAcquiredDate), tL_StarGiftAuctionAcquiredGift.date);
-            tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, (Runnable) null);
+            tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, string, (Runnable) null);
             addView(tableView, LayoutHelper.createFrame(-1, -2.0f));
         }
 
@@ -178,7 +177,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             onClickListener.onClick(this);
         }
 
-        public static class Factory extends UItem.UItemFactory {
+        private static class Factory extends UItem.UItemFactory {
             @Override
             public boolean isClickable() {
                 return false;
@@ -204,11 +203,11 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             }
 
             public static UItem as(TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift, GiftAuctionController.Auction auction, View.OnClickListener onClickListener) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = tL_StarGiftAuctionAcquiredGift;
-                ofFactory.object2 = auction;
-                ofFactory.clickCallback = onClickListener;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = tL_StarGiftAuctionAcquiredGift;
+                uItemOfFactory.object2 = auction;
+                uItemOfFactory.clickCallback = onClickListener;
+                return uItemOfFactory;
             }
         }
     }

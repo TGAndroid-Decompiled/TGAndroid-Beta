@@ -61,7 +61,7 @@ public abstract class CacheFetcher<Args, R> {
             getLocal(i, args, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    CacheFetcher.this.lambda$fetch$1(pair, args, i, (Long) obj, obj2);
+                    this.f$0.lambda$fetch$1(pair, args, i, (Long) obj, obj2);
                 }
             });
         } else if (callback != null) {
@@ -78,7 +78,7 @@ public abstract class CacheFetcher<Args, R> {
             getRemote(i, obj, l.longValue(), new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj3, Object obj4, Object obj5, Object obj6) {
-                    CacheFetcher.this.lambda$fetch$0(pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
+                    this.f$0.lambda$fetch$0(pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
                 }
             });
             return;
@@ -104,11 +104,11 @@ public abstract class CacheFetcher<Args, R> {
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {
-        HashMap<Pair<Integer, Args>, R> hashMap = this.cachedResults;
-        if (hashMap == null) {
+        HashMap<Pair<Integer, Args>, R> map = this.cachedResults;
+        if (map == null) {
             return null;
         }
-        return hashMap.get(pair);
+        return map.get(pair);
     }
 
     private void cacheResult(Pair<Integer, Args> pair, R r) {
@@ -124,20 +124,20 @@ public abstract class CacheFetcher<Args, R> {
         if (this.lastRequestedRemotely == null) {
             this.lastRequestedRemotely = new HashMap<>();
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        this.lastRequestedRemotely.put(pair, Long.valueOf(currentTimeMillis));
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        this.lastRequestedRemotely.put(pair, Long.valueOf(jCurrentTimeMillis));
         if (saveLastTimeRequested()) {
-            setSavedLastTimeRequested(pair.hashCode(), currentTimeMillis);
+            setSavedLastTimeRequested(pair.hashCode(), jCurrentTimeMillis);
         }
     }
 
     private boolean shouldRequest(Pair<Integer, Args> pair) {
-        HashMap<Pair<Integer, Args>, Long> hashMap = this.lastRequestedRemotely;
-        Long l = hashMap != null ? hashMap.get(pair) : null;
-        if (saveLastTimeRequested() && l == null) {
-            l = Long.valueOf(getSavedLastTimeRequested(pair.hashCode()));
+        HashMap<Pair<Integer, Args>, Long> map = this.lastRequestedRemotely;
+        Long lValueOf = map != null ? map.get(pair) : null;
+        if (saveLastTimeRequested() && lValueOf == null) {
+            lValueOf = Long.valueOf(getSavedLastTimeRequested(pair.hashCode()));
         }
-        return l == null || System.currentTimeMillis() - l.longValue() >= this.requestRemotelyTimeout;
+        return lValueOf == null || System.currentTimeMillis() - lValueOf.longValue() >= this.requestRemotelyTimeout;
     }
 
     public void forceRequest(int i, Args args) {
@@ -152,8 +152,8 @@ public abstract class CacheFetcher<Args, R> {
     }
 
     private boolean isLoading(Pair<Integer, Args> pair) {
-        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> hashMap = this.loadingCallbacks;
-        return (hashMap == null || hashMap.get(pair) == null) ? false : true;
+        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
+        return (map == null || map.get(pair) == null) ? false : true;
     }
 
     private void saveCallback(final Pair<Integer, Args> pair, final Utilities.Callback<R> callback) {
@@ -163,7 +163,7 @@ public abstract class CacheFetcher<Args, R> {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheFetcher.this.lambda$saveCallback$2(pair, callback);
+                this.f$0.lambda$saveCallback$2(pair, callback);
             }
         });
     }
@@ -174,9 +174,9 @@ public abstract class CacheFetcher<Args, R> {
         }
         ArrayList<Utilities.Callback<R>> arrayList = this.loadingCallbacks.get(pair);
         if (arrayList == null) {
-            HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> hashMap = this.loadingCallbacks;
+            HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
             ArrayList<Utilities.Callback<R>> arrayList2 = new ArrayList<>();
-            hashMap.put(pair, arrayList2);
+            map.put(pair, arrayList2);
             arrayList = arrayList2;
         }
         arrayList.add(callback);
@@ -186,15 +186,15 @@ public abstract class CacheFetcher<Args, R> {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheFetcher.this.lambda$callCallbacks$3(pair, r, z);
+                this.f$0.lambda$callCallbacks$3(pair, r, z);
             }
         });
     }
 
     public void lambda$callCallbacks$3(Pair pair, Object obj, boolean z) {
         ArrayList<Utilities.Callback<R>> arrayList;
-        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> hashMap = this.loadingCallbacks;
-        if (hashMap == null || (arrayList = hashMap.get(pair)) == null) {
+        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
+        if (map == null || (arrayList = map.get(pair)) == null) {
             return;
         }
         Iterator<Utilities.Callback<R>> it = arrayList.iterator();

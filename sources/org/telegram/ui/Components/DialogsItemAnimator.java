@@ -39,7 +39,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
     protected void onAllAnimationsDone() {
     }
 
-    public static class MoveInfo {
+    private static class MoveInfo {
         public int fromX;
         public int fromY;
         public RecyclerView.ViewHolder holder;
@@ -60,7 +60,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         this.listView = recyclerListView;
     }
 
-    public static class ChangeInfo {
+    private static class ChangeInfo {
         public int fromX;
         public int fromY;
         public RecyclerView.ViewHolder newHolder;
@@ -88,11 +88,11 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
 
     @Override
     public void runPendingAnimations() {
-        boolean isEmpty = this.mPendingRemovals.isEmpty();
-        boolean isEmpty2 = this.mPendingMoves.isEmpty();
-        boolean isEmpty3 = this.mPendingChanges.isEmpty();
-        boolean isEmpty4 = this.mPendingAdditions.isEmpty();
-        if (isEmpty && isEmpty2 && isEmpty4 && isEmpty3) {
+        boolean zIsEmpty = this.mPendingRemovals.isEmpty();
+        boolean zIsEmpty2 = this.mPendingMoves.isEmpty();
+        boolean zIsEmpty3 = this.mPendingChanges.isEmpty();
+        boolean zIsEmpty4 = this.mPendingAdditions.isEmpty();
+        if (zIsEmpty && zIsEmpty2 && zIsEmpty4 && zIsEmpty3) {
             return;
         }
         Iterator it = this.mPendingRemovals.iterator();
@@ -100,29 +100,29 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
             animateRemoveImpl((RecyclerView.ViewHolder) it.next());
         }
         this.mPendingRemovals.clear();
-        if (!isEmpty2) {
+        if (!zIsEmpty2) {
             final ArrayList arrayList = new ArrayList(this.mPendingMoves);
             this.mMovesList.add(arrayList);
             this.mPendingMoves.clear();
             new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsItemAnimator.this.lambda$runPendingAnimations$0(arrayList);
+                    this.f$0.lambda$runPendingAnimations$0(arrayList);
                 }
             }.run();
         }
-        if (!isEmpty3) {
+        if (!zIsEmpty3) {
             final ArrayList arrayList2 = new ArrayList(this.mPendingChanges);
             this.mChangesList.add(arrayList2);
             this.mPendingChanges.clear();
             new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsItemAnimator.this.lambda$runPendingAnimations$1(arrayList2);
+                    this.f$0.lambda$runPendingAnimations$1(arrayList2);
                 }
             }.run();
         }
-        if (isEmpty4) {
+        if (zIsEmpty4) {
             return;
         }
         final ArrayList arrayList3 = new ArrayList(this.mPendingAdditions);
@@ -131,7 +131,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         new Runnable() {
             @Override
             public final void run() {
-                DialogsItemAnimator.this.lambda$runPendingAnimations$2(arrayList3);
+                this.f$0.lambda$runPendingAnimations$2(arrayList3);
             }
         }.run();
     }
@@ -251,8 +251,8 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
             duration2.start();
             return;
         }
-        final ViewPropertyAnimator animate = view.animate();
-        animate.setDuration(180L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
+        viewPropertyAnimatorAnimate.setDuration(180L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
                 DialogsItemAnimator.this.dispatchRemoveStarting(viewHolder);
@@ -260,7 +260,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 view.setAlpha(1.0f);
                 DialogsItemAnimator.this.dispatchRemoveFinished(viewHolder);
                 DialogsItemAnimator.this.mRemoveAnimations.remove(viewHolder);
@@ -291,8 +291,8 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
     void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
         final View view = viewHolder.itemView;
         this.mAddAnimations.add(viewHolder);
-        final ViewPropertyAnimator animate = view.animate();
-        animate.alpha(1.0f).setDuration(180L).setListener(new AnimatorListenerAdapter() {
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
+        viewPropertyAnimatorAnimate.alpha(1.0f).setDuration(180L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
                 DialogsItemAnimator.this.dispatchAddStarting(viewHolder);
@@ -305,7 +305,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 DialogsItemAnimator.this.dispatchAddFinished(viewHolder);
                 DialogsItemAnimator.this.mAddAnimations.remove(viewHolder);
                 DialogsItemAnimator.this.dispatchFinishedWhenDone();
@@ -393,9 +393,9 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
                 this.removingDialog.setBottomClip(this.bottomClip);
             }
         }
-        final ViewPropertyAnimator animate = view.animate();
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
         this.mMoveAnimations.add(viewHolder);
-        animate.setDuration(180L).setListener(new AnimatorListenerAdapter() {
+        viewPropertyAnimatorAnimate.setDuration(180L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
                 DialogsItemAnimator.this.dispatchMoveStarting(viewHolder);
@@ -419,7 +419,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 DialogsItemAnimator.this.dispatchMoveFinished(viewHolder);
                 DialogsItemAnimator.this.mMoveAnimations.remove(viewHolder);
                 DialogsItemAnimator.this.dispatchFinishedWhenDone();

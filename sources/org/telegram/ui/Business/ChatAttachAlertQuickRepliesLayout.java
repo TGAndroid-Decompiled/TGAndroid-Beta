@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -108,10 +107,10 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
 
             @Override
             public void processTouchEvent(MotionEvent motionEvent) {
-                MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
-                ChatAttachAlertQuickRepliesLayout.this.listView.dispatchTouchEvent(obtain);
-                obtain.recycle();
+                MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                motionEventObtain.setLocation(motionEventObtain.getRawX(), (motionEventObtain.getRawY() - ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
+                ChatAttachAlertQuickRepliesLayout.this.listView.dispatchTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
             }
 
             @Override
@@ -140,7 +139,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         NotificationCenter.getInstance(UserConfig.selectedAccount).listenGlobal(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatAttachAlertQuickRepliesLayout.this.lambda$new$1((Object[]) obj);
+                this.f$0.lambda$new$1((Object[]) obj);
             }
         });
         this.listView.setClipToPadding(false);
@@ -155,7 +154,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                     }
 
                     @Override
-                    public int calculateTimeForDeceleration(int i2) {
+                    protected int calculateTimeForDeceleration(int i2) {
                         return super.calculateTimeForDeceleration(i2) * 2;
                     }
                 };
@@ -179,7 +178,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                ChatAttachAlertQuickRepliesLayout.this.lambda$new$3(view, i);
+                this.f$0.lambda$new$3(view, i);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -241,7 +240,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), ((QuickRepliesController.QuickReply) item).getMessagesCount(), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChatAttachAlertQuickRepliesLayout.this.lambda$new$2(item, (Long) obj);
+                        this.f$0.lambda$new$2(item, (Long) obj);
                     }
                 });
             }
@@ -294,27 +293,8 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public void onPreMeasure(int i, int i2) {
-        int i3;
-        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
-            i3 = AndroidUtilities.dp(8.0f);
-            this.parentAlert.setAllowNestedScroll(false);
-        } else {
-            if (!AndroidUtilities.isTablet()) {
-                Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i3 = (int) (i2 / 3.5f);
-                    this.parentAlert.setAllowNestedScroll(true);
-                }
-            }
-            i3 = (i2 / 5) * 2;
-            this.parentAlert.setAllowNestedScroll(true);
-        }
-        if (this.listView.getPaddingTop() != i3) {
-            this.ignoreLayout = true;
-            this.listView.setPadding(0, i3, 0, AndroidUtilities.dp(48.0f));
-            this.ignoreLayout = false;
-        }
+    public void onPreMeasure(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout.onPreMeasure(int, int):void");
     }
 
     @Override
@@ -368,7 +348,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         if (this.listView.getChildCount() == 0) {
             return -1000;
         }
-        int i = 0;
+        int top = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
         if (holder == null) {
@@ -376,9 +356,9 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         }
         int paddingTop = this.listView.getPaddingTop();
         if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-            i = childAt.getTop();
+            top = childAt.getTop();
         }
-        return paddingTop - i;
+        return paddingTop - top;
     }
 
     @Override
@@ -518,35 +498,8 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             this.mContext = context;
         }
 
-        public void search(String str) {
-            if (this.searchRunnable != null) {
-                Utilities.searchQueue.cancelRunnable(this.searchRunnable);
-                this.searchRunnable = null;
-            }
-            this.searchResult.clear();
-            this.lastQuery = str;
-            if (str != null) {
-                String translitSafe = AndroidUtilities.translitSafe(str);
-                if (translitSafe.startsWith("/")) {
-                    translitSafe = translitSafe.substring(1);
-                }
-                QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(UserConfig.selectedAccount);
-                for (int i = 0; i < quickRepliesController.replies.size(); i++) {
-                    QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) quickRepliesController.replies.get(i);
-                    if (!quickReply.isSpecial()) {
-                        String translitSafe2 = AndroidUtilities.translitSafe(quickReply.name);
-                        if (!translitSafe2.startsWith(translitSafe)) {
-                            if (!translitSafe2.contains(" " + translitSafe)) {
-                            }
-                        }
-                        this.searchResult.add(quickReply);
-                    }
-                }
-            }
-            if (ChatAttachAlertQuickRepliesLayout.this.listView.getAdapter() != ChatAttachAlertQuickRepliesLayout.this.searchAdapter) {
-                ChatAttachAlertQuickRepliesLayout.this.listView.setAdapter(ChatAttachAlertQuickRepliesLayout.this.searchAdapter);
-            }
-            notifyDataSetChanged();
+        public void search(java.lang.String r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout.ShareSearchAdapter.search(java.lang.String):void");
         }
 
         @Override
@@ -615,7 +568,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatAttachAlertQuickRepliesLayout.this.lambda$getThemeDescriptions$4();
+                this.f$0.lambda$getThemeDescriptions$4();
             }
 
             @Override

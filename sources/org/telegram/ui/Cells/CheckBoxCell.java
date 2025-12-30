@@ -78,7 +78,7 @@ public class CheckBoxCell extends FrameLayout {
         if (z) {
             AnimatedTextView animatedTextView = new AnimatedTextView(context) {
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     CheckBoxCell.this.updateCollapseArrowTranslation();
                 }
@@ -116,7 +116,7 @@ public class CheckBoxCell extends FrameLayout {
         } else {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     CheckBoxCell.this.updateCollapseArrowTranslation();
                 }
@@ -297,9 +297,9 @@ public class CheckBoxCell extends FrameLayout {
         }
         if (this.collapsedArrow == null) {
             this.collapsedArrow = new View(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
-            this.collapsedArrow.setBackground(mutate);
+            Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+            this.collapsedArrow.setBackground(drawableMutate);
             addView(this.collapsedArrow, LayoutHelper.createFrame(16, 16, 16));
         }
         updateCollapseArrowTranslation();
@@ -308,20 +308,20 @@ public class CheckBoxCell extends FrameLayout {
     }
 
     public void updateCollapseArrowTranslation() {
-        float f;
+        float measuredWidth;
         float left;
         if (this.collapsedArrow == null) {
             return;
         }
         try {
-            f = this.textView.getMeasuredWidth();
+            measuredWidth = this.textView.getMeasuredWidth();
         } catch (Exception unused) {
-            f = 0.0f;
+            measuredWidth = 0.0f;
         }
         if (LocaleController.isRTL) {
-            left = (this.textView.getRight() - f) - AndroidUtilities.dp(20.0f);
+            left = (this.textView.getRight() - measuredWidth) - AndroidUtilities.dp(20.0f);
         } else {
-            left = this.textView.getLeft() + f + AndroidUtilities.dp(4.0f);
+            left = this.textView.getLeft() + measuredWidth + AndroidUtilities.dp(4.0f);
         }
         this.collapsedArrow.setTranslationX(left);
     }
@@ -414,32 +414,32 @@ public class CheckBoxCell extends FrameLayout {
     }
 
     public void setUserOrChat(TLObject tLObject) {
-        String formatName;
+        String name;
         this.avatarDrawable.setInfo(tLObject);
         this.avatarImageView.setForUserOrChat(tLObject, this.avatarDrawable);
         boolean z = tLObject instanceof TLRPC.User;
         if (z) {
-            formatName = UserObject.getUserName((TLRPC.User) tLObject);
+            name = UserObject.getUserName((TLRPC.User) tLObject);
         } else {
-            formatName = ContactsController.formatName(tLObject);
+            name = ContactsController.formatName(tLObject);
         }
         if (z && ((TLRPC.User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
-            formatName = LocaleController.getString(R.string.ChannelAntiSpamUser);
+            name = LocaleController.getString(R.string.ChannelAntiSpamUser);
         }
         if (this.textAnimated) {
-            this.animatedTextView.setText(Emoji.replaceEmoji(formatName, this.animatedTextView.getPaint().getFontMetricsInt(), false));
+            this.animatedTextView.setText(Emoji.replaceEmoji(name, this.animatedTextView.getPaint().getFontMetricsInt(), false));
         } else {
-            this.linksTextView.setText(formatName);
+            this.linksTextView.setText(name);
         }
     }
 
     public void setPad(int i) {
-        int dp = AndroidUtilities.dp(i * 40 * (LocaleController.isRTL ? -1 : 1));
+        int iDp = AndroidUtilities.dp(i * 40 * (LocaleController.isRTL ? -1 : 1));
         View view = this.checkBox;
         if (view != null) {
-            view.setTranslationX(dp);
+            view.setTranslationX(iDp);
         }
-        float f = dp;
+        float f = iDp;
         this.textView.setTranslationX(f);
         BackupImageView backupImageView = this.avatarImageView;
         if (backupImageView != null) {
@@ -547,9 +547,9 @@ public class CheckBoxCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            int dp = AndroidUtilities.dp(isCheckboxRound() ? 60.0f : 20.0f) + ((int) Math.abs(this.textView.getTranslationX()));
+            int iDp = AndroidUtilities.dp(isCheckboxRound() ? 60.0f : 20.0f) + ((int) Math.abs(this.textView.getTranslationX()));
             if (this.currentType == 7) {
-                dp += AndroidUtilities.dp(39.0f);
+                iDp += AndroidUtilities.dp(39.0f);
             }
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : null;
@@ -557,13 +557,13 @@ public class CheckBoxCell extends FrameLayout {
                 paint = Theme.dividerPaint;
             }
             Paint paint2 = paint;
-            float f = LocaleController.isRTL ? 0.0f : dp;
+            float f = LocaleController.isRTL ? 0.0f : iDp;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (!LocaleController.isRTL) {
-                dp = 0;
+                iDp = 0;
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - dp, getMeasuredHeight() - 1, paint2);
+            canvas.drawLine(f, measuredHeight, measuredWidth - iDp, getMeasuredHeight() - 1, paint2);
         }
     }
 
@@ -628,9 +628,9 @@ public class CheckBoxCell extends FrameLayout {
             animatedTextView.setTypeface(AndroidUtilities.bold());
             View view = new View(context);
             this.collapsedArrow = view;
-            Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-            view.setBackground(mutate);
+            Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+            view.setBackground(drawableMutate);
             if (LocaleController.isRTL) {
                 addView(view, LayoutHelper.createLinear(16, 16, 16, 11, 0, 3, 0));
                 addView(animatedTextView, LayoutHelper.createLinear(-2, 16, 16, 0, 0, this.iconView == null ? 11 : 3, 0));

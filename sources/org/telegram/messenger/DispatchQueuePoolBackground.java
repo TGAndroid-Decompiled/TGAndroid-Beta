@@ -27,11 +27,11 @@ public class DispatchQueuePoolBackground {
         @Override
         public void run() {
             if (!DispatchQueuePoolBackground.this.queues.isEmpty()) {
-                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long jElapsedRealtime = SystemClock.elapsedRealtime();
                 int i = 0;
                 while (i < DispatchQueuePoolBackground.this.queues.size()) {
                     DispatchQueue dispatchQueue = (DispatchQueue) DispatchQueuePoolBackground.this.queues.get(i);
-                    if (dispatchQueue.getLastTaskTime() < elapsedRealtime - 30000) {
+                    if (dispatchQueue.getLastTaskTime() < jElapsedRealtime - 30000) {
                         dispatchQueue.recycle();
                         DispatchQueuePoolBackground.this.queues.remove(i);
                         DispatchQueuePoolBackground.access$110(DispatchQueuePoolBackground.this);
@@ -61,35 +61,35 @@ public class DispatchQueuePoolBackground {
     }
 
     private void execute(ArrayList<Runnable> arrayList) {
-        final DispatchQueue remove;
+        final DispatchQueue dispatchQueueRemove;
         for (int i = 0; i < arrayList.size(); i++) {
             final Runnable runnable = arrayList.get(i);
             if (runnable != null) {
                 if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
-                    remove = this.busyQueues.remove(0);
+                    dispatchQueueRemove = this.busyQueues.remove(0);
                 } else if (this.queues.isEmpty()) {
-                    remove = new DispatchQueue("DispatchQueuePoolThreadSafety_" + this.guid + "_" + Utilities.random.nextInt());
-                    remove.setPriority(10);
+                    dispatchQueueRemove = new DispatchQueue("DispatchQueuePoolThreadSafety_" + this.guid + "_" + Utilities.random.nextInt());
+                    dispatchQueueRemove.setPriority(10);
                     this.createdCount = this.createdCount + 1;
                 } else {
-                    remove = this.queues.remove(0);
+                    dispatchQueueRemove = this.queues.remove(0);
                 }
                 if (!this.cleanupScheduled) {
                     Utilities.globalQueue.postRunnable(this.cleanupRunnable, 30000L);
                     this.cleanupScheduled = true;
                 }
                 this.totalTasksCount++;
-                this.busyQueues.add(remove);
-                this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+                this.busyQueues.add(dispatchQueueRemove);
+                this.busyQueuesMap.put(dispatchQueueRemove.index, this.busyQueuesMap.get(dispatchQueueRemove.index, 0) + 1);
                 if (HwEmojis.isHwEnabled()) {
-                    remove.setPriority(1);
-                } else if (remove.getPriority() != 10) {
-                    remove.setPriority(10);
+                    dispatchQueueRemove.setPriority(1);
+                } else if (dispatchQueueRemove.getPriority() != 10) {
+                    dispatchQueueRemove.setPriority(10);
                 }
-                remove.postRunnable(new Runnable() {
+                dispatchQueueRemove.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        DispatchQueuePoolBackground.this.lambda$execute$1(runnable, remove);
+                        this.f$0.lambda$execute$1(runnable, dispatchQueueRemove);
                     }
                 });
             }
@@ -101,7 +101,7 @@ public class DispatchQueuePoolBackground {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePoolBackground.this.lambda$execute$0(dispatchQueue);
+                this.f$0.lambda$execute$0(dispatchQueue);
             }
         });
     }

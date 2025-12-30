@@ -26,19 +26,19 @@ public abstract class ContinuationImpl extends BaseContinuationImpl {
     }
 
     public final Continuation intercepted() {
-        Continuation continuation = this.intercepted;
-        if (continuation == null) {
+        Continuation continuationInterceptContinuation = this.intercepted;
+        if (continuationInterceptContinuation == null) {
             ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) getContext().get(ContinuationInterceptor.Key);
-            if (continuationInterceptor == null || (continuation = continuationInterceptor.interceptContinuation(this)) == null) {
-                continuation = this;
+            if (continuationInterceptor == null || (continuationInterceptContinuation = continuationInterceptor.interceptContinuation(this)) == null) {
+                continuationInterceptContinuation = this;
             }
-            this.intercepted = continuation;
+            this.intercepted = continuationInterceptContinuation;
         }
-        return continuation;
+        return continuationInterceptContinuation;
     }
 
     @Override
-    public void releaseIntercepted() {
+    protected void releaseIntercepted() {
         Continuation continuation = this.intercepted;
         if (continuation != null && continuation != this) {
             CoroutineContext.Element element = getContext().get(ContinuationInterceptor.Key);

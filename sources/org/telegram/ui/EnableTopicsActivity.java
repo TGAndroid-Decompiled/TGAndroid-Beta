@@ -31,7 +31,6 @@ import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.EnableTopicsActivity;
 
 public class EnableTopicsActivity extends BaseFragment {
     private TLRPC.Chat currentChat;
@@ -74,12 +73,12 @@ public class EnableTopicsActivity extends BaseFragment {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                EnableTopicsActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                EnableTopicsActivity.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null) {
             @Override
@@ -107,12 +106,12 @@ public class EnableTopicsActivity extends BaseFragment {
             arrayList.add(TopicsLayoutSwitcher.Factory.asSwitcher(2, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EnableTopicsActivity.this.lambda$fillItems$0(view);
+                    this.f$0.lambda$fillItems$0(view);
                 }
             }, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EnableTopicsActivity.this.lambda$fillItems$1(view);
+                    this.f$0.lambda$fillItems$1(view);
                 }
             }).setChecked(this.isTabs));
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.TopicsLayoutInfo)));
@@ -149,7 +148,7 @@ public class EnableTopicsActivity extends BaseFragment {
             if (baseFragment instanceof DialogsActivity) {
                 RightSlidingDialogContainer rightSlidingDialogContainer = ((DialogsActivity) baseFragment).rightSlidingDialogContainer;
                 if (rightSlidingDialogContainer.hasFragment()) {
-                    rightSlidingDialogContainer.lambda$presentFragment$1();
+                    rightSlidingDialogContainer.finishPreview();
                 }
             }
         }
@@ -169,7 +168,7 @@ public class EnableTopicsActivity extends BaseFragment {
         this.listView.adapter.update(true);
     }
 
-    public static class TopicsLayoutSwitcher extends LinearLayout {
+    static class TopicsLayoutSwitcher extends LinearLayout {
         private ValueAnimator animator;
         private final BackupImageView leftImageView;
         private final FrameLayout leftLayout;
@@ -202,24 +201,24 @@ public class EnableTopicsActivity extends BaseFragment {
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.leftTitleLayout = frameLayout2;
             int i = Theme.key_windowBackgroundWhiteGrayText2;
-            TextView makeTextView = TextHelper.makeTextView(context, 14.0f, i, true);
-            this.leftTitleUnselected = makeTextView;
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 14.0f, i, true);
+            this.leftTitleUnselected = textViewMakeTextView;
             int i2 = R.string.TopicsLayoutTabs;
-            makeTextView.setText(LocaleController.getString(i2));
-            makeTextView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-            frameLayout2.addView(makeTextView, LayoutHelper.createFrame(-2, -2, 17));
+            textViewMakeTextView.setText(LocaleController.getString(i2));
+            textViewMakeTextView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+            frameLayout2.addView(textViewMakeTextView, LayoutHelper.createFrame(-2, -2, 17));
             FrameLayout frameLayout3 = new FrameLayout(context);
             this.leftTitleBackground = frameLayout3;
             frameLayout3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-            int dp = AndroidUtilities.dp(13.0f);
+            int iDp = AndroidUtilities.dp(13.0f);
             int i3 = Theme.key_featuredStickers_addButton;
-            frameLayout3.setBackground(Theme.createRoundRectDrawable(dp, Theme.getColor(i3, resourcesProvider)));
+            frameLayout3.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i3, resourcesProvider)));
             frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2, 26, 17));
             int i4 = Theme.key_windowBackgroundCheckText;
-            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i4, true);
-            this.leftTitleSelected = makeTextView2;
-            makeTextView2.setText(LocaleController.getString(i2));
-            frameLayout3.addView(makeTextView2, LayoutHelper.createFrame(-2, -2, 17));
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i4, true);
+            this.leftTitleSelected = textViewMakeTextView2;
+            textViewMakeTextView2.setText(LocaleController.getString(i2));
+            frameLayout3.addView(textViewMakeTextView2, LayoutHelper.createFrame(-2, -2, 17));
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, 26.0f, 49, 0.0f, 182.0f, 0.0f, 0.0f));
             FrameLayout frameLayout4 = new FrameLayout(context);
             this.rightLayout = frameLayout4;
@@ -231,21 +230,21 @@ public class EnableTopicsActivity extends BaseFragment {
             frameLayout4.addView(backupImageView2, LayoutHelper.createFrame(160, 160.0f, 49, 0.0f, 12.33f, 0.0f, 0.0f));
             FrameLayout frameLayout5 = new FrameLayout(context);
             this.rightTitleLayout = frameLayout5;
-            TextView makeTextView3 = TextHelper.makeTextView(context, 14.0f, i, true);
-            this.rightTitleUnselected = makeTextView3;
+            TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 14.0f, i, true);
+            this.rightTitleUnselected = textViewMakeTextView3;
             int i5 = R.string.TopicsLayoutList;
-            makeTextView3.setText(LocaleController.getString(i5));
-            makeTextView3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-            frameLayout5.addView(makeTextView3, LayoutHelper.createFrame(-2, -2, 17));
+            textViewMakeTextView3.setText(LocaleController.getString(i5));
+            textViewMakeTextView3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+            frameLayout5.addView(textViewMakeTextView3, LayoutHelper.createFrame(-2, -2, 17));
             FrameLayout frameLayout6 = new FrameLayout(context);
             this.rightTitleBackground = frameLayout6;
             frameLayout6.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
             frameLayout6.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.getColor(i3, resourcesProvider)));
             frameLayout5.addView(frameLayout6, LayoutHelper.createFrame(-2, 26, 17));
-            TextView makeTextView4 = TextHelper.makeTextView(context, 14.0f, i4, true);
-            this.rightTitleSelected = makeTextView4;
-            makeTextView4.setText(LocaleController.getString(i5));
-            frameLayout6.addView(makeTextView4, LayoutHelper.createFrame(-2, -2, 17));
+            TextView textViewMakeTextView4 = TextHelper.makeTextView(context, 14.0f, i4, true);
+            this.rightTitleSelected = textViewMakeTextView4;
+            textViewMakeTextView4.setText(LocaleController.getString(i5));
+            frameLayout6.addView(textViewMakeTextView4, LayoutHelper.createFrame(-2, -2, 17));
             frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-2, 26.0f, 49, 0.0f, 182.0f, 0.0f, 0.0f));
             setChecked(false, false);
         }
@@ -262,16 +261,16 @@ public class EnableTopicsActivity extends BaseFragment {
                 this.animator = null;
             }
             if (z2) {
-                ViewPropertyAnimator alpha = this.leftTitleBackground.animate().scaleX(!z ? 0.0f : 1.0f).scaleY(!z ? 0.0f : 1.0f).alpha(!z ? 0.0f : 1.0f);
+                ViewPropertyAnimator viewPropertyAnimatorAlpha = this.leftTitleBackground.animate().scaleX(!z ? 0.0f : 1.0f).scaleY(!z ? 0.0f : 1.0f).alpha(!z ? 0.0f : 1.0f);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                alpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+                viewPropertyAnimatorAlpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
                 this.rightTitleBackground.animate().scaleX(z ? 0.0f : 1.0f).scaleY(z ? 0.0f : 1.0f).alpha(z ? 0.0f : 1.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.tabsAlpha, z ? 1.0f : 0.0f);
-                this.animator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.tabsAlpha, z ? 1.0f : 0.0f);
+                this.animator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EnableTopicsActivity.TopicsLayoutSwitcher.this.lambda$setChecked$0(valueAnimator2);
+                        this.f$0.lambda$setChecked$0(valueAnimator2);
                     }
                 });
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -282,9 +281,9 @@ public class EnableTopicsActivity extends BaseFragment {
                         int i = Theme.key_windowBackgroundWhiteGrayText5;
                         int color = Theme.getColor(i, TopicsLayoutSwitcher.this.resourcesProvider);
                         int i2 = Theme.key_featuredStickers_addButton;
-                        int blendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, TopicsLayoutSwitcher.this.resourcesProvider), TopicsLayoutSwitcher.this.tabsAlpha);
+                        int iBlendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, TopicsLayoutSwitcher.this.resourcesProvider), TopicsLayoutSwitcher.this.tabsAlpha);
                         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                        backupImageView.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+                        backupImageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
                         TopicsLayoutSwitcher.this.leftImageView.invalidate();
                         TopicsLayoutSwitcher.this.rightImageView.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(i, TopicsLayoutSwitcher.this.resourcesProvider), Theme.getColor(i2, TopicsLayoutSwitcher.this.resourcesProvider), 1.0f - TopicsLayoutSwitcher.this.tabsAlpha), mode));
                         TopicsLayoutSwitcher.this.rightImageView.invalidate();
@@ -307,9 +306,9 @@ public class EnableTopicsActivity extends BaseFragment {
                 int i = Theme.key_windowBackgroundWhiteGrayText5;
                 int color = Theme.getColor(i, this.resourcesProvider);
                 int i2 = Theme.key_featuredStickers_addButton;
-                int blendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.tabsAlpha);
+                int iBlendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.tabsAlpha);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                backupImageView.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+                backupImageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
                 this.leftImageView.invalidate();
                 this.rightImageView.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(i, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider), 1.0f - this.tabsAlpha), mode));
                 this.rightImageView.invalidate();
@@ -329,9 +328,9 @@ public class EnableTopicsActivity extends BaseFragment {
             int i = Theme.key_windowBackgroundWhiteGrayText5;
             int color = Theme.getColor(i, this.resourcesProvider);
             int i2 = Theme.key_featuredStickers_addButton;
-            int blendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.tabsAlpha);
+            int iBlendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), this.tabsAlpha);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            backupImageView.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+            backupImageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
             this.leftImageView.invalidate();
             this.rightImageView.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(i, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider), 1.0f - this.tabsAlpha), mode));
             this.rightImageView.invalidate();
@@ -356,11 +355,11 @@ public class EnableTopicsActivity extends BaseFragment {
             }
 
             public static UItem asSwitcher(int i, View.OnClickListener onClickListener, View.OnClickListener onClickListener2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.object = onClickListener;
-                ofFactory.object2 = onClickListener2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.object = onClickListener;
+                uItemOfFactory.object2 = onClickListener2;
+                return uItemOfFactory;
             }
         }
     }

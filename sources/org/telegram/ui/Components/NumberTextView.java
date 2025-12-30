@@ -82,55 +82,55 @@ public class NumberTextView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float f;
-        float f2;
+        float measuredWidth;
+        float lineWidth;
         if (this.letters.isEmpty()) {
             return;
         }
         float height = ((StaticLayout) this.letters.get(0)).getHeight();
-        float dp = this.addNumber ? AndroidUtilities.dp(4.0f) : height;
+        float fDp = this.addNumber ? AndroidUtilities.dp(4.0f) : height;
         if (this.center) {
-            f = (getMeasuredWidth() - this.textWidth) / 2.0f;
-            f2 = ((getMeasuredWidth() - this.oldTextWidth) / 2.0f) - f;
+            measuredWidth = (getMeasuredWidth() - this.textWidth) / 2.0f;
+            lineWidth = ((getMeasuredWidth() - this.oldTextWidth) / 2.0f) - measuredWidth;
         } else {
-            f = 0.0f;
-            f2 = 0.0f;
+            measuredWidth = 0.0f;
+            lineWidth = 0.0f;
         }
         canvas.save();
-        canvas.translate(getPaddingLeft() + f, (getMeasuredHeight() - height) / 2.0f);
-        int max = Math.max(this.letters.size(), this.oldLetters.size());
+        canvas.translate(getPaddingLeft() + measuredWidth, (getMeasuredHeight() - height) / 2.0f);
+        int iMax = Math.max(this.letters.size(), this.oldLetters.size());
         int i = 0;
-        while (i < max) {
+        while (i < iMax) {
             canvas.save();
             StaticLayout staticLayout = i < this.oldLetters.size() ? (StaticLayout) this.oldLetters.get(i) : null;
             StaticLayout staticLayout2 = i < this.letters.size() ? (StaticLayout) this.letters.get(i) : null;
-            float f3 = this.progress;
-            if (f3 > 0.0f) {
+            float f = this.progress;
+            if (f > 0.0f) {
                 if (staticLayout != null) {
-                    this.textPaint.setAlpha((int) (f3 * 255.0f));
+                    this.textPaint.setAlpha((int) (f * 255.0f));
                     canvas.save();
-                    canvas.translate(f2, (this.progress - 1.0f) * dp);
+                    canvas.translate(lineWidth, (this.progress - 1.0f) * fDp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     if (staticLayout2 != null) {
                         this.textPaint.setAlpha((int) ((1.0f - this.progress) * 255.0f));
-                        canvas.translate(0.0f, this.progress * dp);
+                        canvas.translate(0.0f, this.progress * fDp);
                     }
                 } else {
                     this.textPaint.setAlpha(255);
                 }
-            } else if (f3 < 0.0f) {
+            } else if (f < 0.0f) {
                 if (staticLayout != null) {
-                    this.textPaint.setAlpha((int) ((-f3) * 255.0f));
+                    this.textPaint.setAlpha((int) ((-f) * 255.0f));
                     canvas.save();
-                    canvas.translate(f2, (this.progress + 1.0f) * dp);
+                    canvas.translate(lineWidth, (this.progress + 1.0f) * fDp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (staticLayout2 != null) {
-                    if (i == max - 1 || staticLayout != null) {
+                    if (i == iMax - 1 || staticLayout != null) {
                         this.textPaint.setAlpha((int) ((this.progress + 1.0f) * 255.0f));
-                        canvas.translate(0.0f, this.progress * dp);
+                        canvas.translate(0.0f, this.progress * fDp);
                     } else {
                         this.textPaint.setAlpha(255);
                     }
@@ -144,7 +144,7 @@ public class NumberTextView extends View {
             canvas.restore();
             canvas.translate(staticLayout2 != null ? staticLayout2.getLineWidth(0) : staticLayout.getLineWidth(0) + AndroidUtilities.dp(1.0f), 0.0f);
             if (staticLayout2 != null && staticLayout != null) {
-                f2 += staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0);
+                lineWidth += staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0);
             }
             i++;
         }

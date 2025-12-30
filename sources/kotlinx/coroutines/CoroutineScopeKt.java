@@ -24,16 +24,16 @@ public abstract class CoroutineScopeKt {
 
     public static final Object coroutineScope(Function2 function2, Continuation continuation) {
         ScopeCoroutine scopeCoroutine = new ScopeCoroutine(continuation.getContext(), continuation);
-        Object startUndispatchedOrReturn = UndispatchedKt.startUndispatchedOrReturn(scopeCoroutine, scopeCoroutine, function2);
-        if (startUndispatchedOrReturn == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+        Object objStartUndispatchedOrReturn = UndispatchedKt.startUndispatchedOrReturn(scopeCoroutine, scopeCoroutine, function2);
+        if (objStartUndispatchedOrReturn == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
             DebugProbesKt.probeCoroutineSuspended(continuation);
         }
-        return startUndispatchedOrReturn;
+        return objStartUndispatchedOrReturn;
     }
 
     public static final CoroutineScope CoroutineScope(CoroutineContext coroutineContext) {
         if (coroutineContext.get(Job.Key) == null) {
-            coroutineContext = coroutineContext.plus(JobKt.Job$default(null, 1, null));
+            coroutineContext = coroutineContext.plus(JobKt__JobKt.Job$default(null, 1, null));
         }
         return new ContextScope(coroutineContext);
     }

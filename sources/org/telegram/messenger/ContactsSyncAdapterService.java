@@ -14,7 +14,7 @@ import android.os.IBinder;
 public class ContactsSyncAdapterService extends Service {
     private static SyncAdapterImpl sSyncAdapter;
 
-    public static class SyncAdapterImpl extends AbstractThreadedSyncAdapter {
+    private static class SyncAdapterImpl extends AbstractThreadedSyncAdapter {
         private Context mContext;
 
         public SyncAdapterImpl(Context context) {

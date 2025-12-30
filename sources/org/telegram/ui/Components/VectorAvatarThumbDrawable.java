@@ -93,22 +93,22 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
             GradientTools gradientTools = this.gradientTools;
             canvas.drawRoundRect(gradientTools.bounds, f, f, gradientTools.paint);
         }
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        int width = ((int) (getBounds().width() * 0.7f)) >> 1;
+        int iCenterX = getBounds().centerX();
+        int iCenterY = getBounds().centerY();
+        int iWidth = ((int) (getBounds().width() * 0.7f)) >> 1;
         AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
         if (animatedEmojiDrawable != null) {
             if (animatedEmojiDrawable.getImageReceiver() != null) {
-                this.animatedEmojiDrawable.getImageReceiver().setRoundRadius((int) (width * 2 * 0.13f));
+                this.animatedEmojiDrawable.getImageReceiver().setRoundRadius((int) (iWidth * 2 * 0.13f));
             }
-            this.animatedEmojiDrawable.setBounds(centerX - width, centerY - width, centerX + width, centerY + width);
+            this.animatedEmojiDrawable.setBounds(iCenterX - iWidth, iCenterY - iWidth, iCenterX + iWidth, iCenterY + iWidth);
             this.animatedEmojiDrawable.draw(canvas);
         }
         ImageReceiver imageReceiver = this.imageReceiver;
         if (imageReceiver != null) {
-            float f2 = width * 2;
+            float f2 = iWidth * 2;
             imageReceiver.setRoundRadius((int) (0.13f * f2));
-            this.imageReceiver.setImageCoords(centerX - width, centerY - width, f2, f2);
+            this.imageReceiver.setImageCoords(iCenterX - iWidth, iCenterY - iWidth, f2, f2);
             this.imageReceiver.draw(canvas);
         }
     }

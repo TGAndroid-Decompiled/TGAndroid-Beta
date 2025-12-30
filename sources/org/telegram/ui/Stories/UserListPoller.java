@@ -17,7 +17,6 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Stories.UserListPoller;
 
 public class UserListPoller {
     private static UserListPoller[] istances = new UserListPoller[4];
@@ -40,7 +39,7 @@ public class UserListPoller {
         return istances[i];
     }
 
-    public class AnonymousClass1 implements Runnable {
+    class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
         }
 
@@ -58,7 +57,7 @@ public class UserListPoller {
             ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    UserListPoller.AnonymousClass1.this.lambda$run$0(arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$run$0(arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -103,7 +102,7 @@ public class UserListPoller {
     public void checkList(RecyclerListView recyclerListView) {
         long dialogId;
         TLRPC.UserStatus userStatus;
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         this.dialogIds.clear();
         for (int i = 0; i < recyclerListView.getChildCount(); i++) {
             View childAt = recyclerListView.getChildAt(i);
@@ -114,14 +113,14 @@ public class UserListPoller {
             }
             if (dialogId > 0) {
                 TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
-                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
-                    this.userPollLastTime.put(dialogId, currentTimeMillis);
+                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && jCurrentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+                    this.userPollLastTime.put(dialogId, jCurrentTimeMillis);
                     this.dialogIds.add(Long.valueOf(dialogId));
                 }
             } else {
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId));
-                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
-                    this.userPollLastTime.put(dialogId, currentTimeMillis);
+                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && jCurrentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+                    this.userPollLastTime.put(dialogId, jCurrentTimeMillis);
                     this.dialogIds.add(Long.valueOf(dialogId));
                 }
             }

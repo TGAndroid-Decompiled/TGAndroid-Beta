@@ -79,13 +79,13 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         Log.i("PIP_DEBUG", "[HANDLER] pre attach start " + this.positionSource);
         int measuredWidth = this.source.controller.activity.getWindow().getDecorView().getMeasuredWidth();
         int measuredHeight = this.source.controller.activity.getWindow().getDecorView().getMeasuredHeight();
-        Bitmap pipCreatePrimaryWindowViewBitmap = this.source.delegate.pipCreatePrimaryWindowViewBitmap();
+        Bitmap bitmapPipCreatePrimaryWindowViewBitmap = this.source.delegate.pipCreatePrimaryWindowViewBitmap();
         final IPipSourceDelegate iPipSourceDelegate = this.source.delegate;
         Objects.requireNonNull(iPipSourceDelegate);
         this.contentBackground = new PipSourceSnapshot(measuredWidth, measuredHeight, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                IPipSourceDelegate.this.pipRenderBackground((Canvas) obj);
+                iPipSourceDelegate.pipRenderBackground((Canvas) obj);
             }
         });
         final IPipSourceDelegate iPipSourceDelegate2 = this.source.delegate;
@@ -93,7 +93,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.contentForeground = new PipSourceSnapshot(measuredWidth, measuredHeight, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                IPipSourceDelegate.this.pipRenderForeground((Canvas) obj);
+                iPipSourceDelegate2.pipRenderForeground((Canvas) obj);
             }
         });
         this.pictureInPictureView = this.source.delegate.pipCreatePictureInPictureView();
@@ -104,14 +104,14 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.pictureInPictureWrapperView.addView(this.pictureInPictureView);
         PipSourcePlaceholder pipSourcePlaceholder = new PipSourcePlaceholder(this.pictureInPicturePlaceholderView, this.source.placeholderView);
         this.pipSourcePlaceholder = pipSourcePlaceholder;
-        pipSourcePlaceholder.setPlaceholder(pipCreatePrimaryWindowViewBitmap);
+        pipSourcePlaceholder.setPlaceholder(bitmapPipCreatePrimaryWindowViewBitmap);
         this.source.controller.getPipContentView().addView(this.pictureInPictureWrapperView);
         this.state = 1;
         this.pictureInPictureWrapperView.invalidate();
         AndroidUtilities.doOnPreDraw(this.pictureInPictureView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.this.lambda$performPreAttach$0(z);
+                this.f$0.lambda$performPreAttach$0(z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre attach end");
@@ -121,7 +121,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PipSourceHandlerState2.this.performAttach();
+                this.f$0.performAttach();
             }
         });
     }
@@ -136,7 +136,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.source.delegate.pipHidePrimaryWindowView(Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.this.lambda$performAttach$1(z);
+                this.f$0.lambda$performAttach$1(z);
             }
         }, 400L));
         this.state = 2;
@@ -164,7 +164,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.pictureInPictureWrapperView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.this.lambda$performPreDetach1$2(z);
+                this.f$0.lambda$performPreDetach1$2(z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 1");
@@ -174,7 +174,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PipSourceHandlerState2.this.performPreDetach2();
+                this.f$0.performPreDetach2();
             }
         });
     }
@@ -187,7 +187,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.source.delegate.pipShowPrimaryWindowView(Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.this.lambda$performPreDetach2$3(z);
+                this.f$0.lambda$performPreDetach2$3(z);
             }
         }, 400L));
         this.pictureInPictureWrapperView.invalidate();
@@ -195,7 +195,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.source.contentView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.this.lambda$performPreDetach2$4(z);
+                this.f$0.lambda$performPreDetach2$4(z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
@@ -208,7 +208,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PipSourcePlaceholder.this.stopPlaceholderForSource();
+                pipSourcePlaceholder.stopPlaceholderForSource();
             }
         });
     }
@@ -217,7 +217,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PipSourceHandlerState2.this.performDetach();
+                this.f$0.performDetach();
             }
         });
     }

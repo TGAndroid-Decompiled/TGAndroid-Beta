@@ -54,9 +54,9 @@ public class UserCell2 extends FrameLayout {
     }
 
     public UserCell2(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         int i3;
         float f;
+        super(context);
         this.currentAccount = UserConfig.selectedAccount;
         this.resourcesProvider = resourcesProvider;
         this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);

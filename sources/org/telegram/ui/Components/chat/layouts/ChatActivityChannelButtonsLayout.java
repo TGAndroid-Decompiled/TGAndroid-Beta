@@ -94,17 +94,17 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
             if (buttonHolder != null || z) {
                 if (buttonHolder == null) {
                     BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, CubicBezierInterpolator.EASE_OUT_QUINT, 300L);
-                    ChatActivityBlurredRoundButton create = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, this.resourcesProvider, buttonIcons[i]);
-                    ScaleStateListAnimator.apply(create, 0.13f, 2.0f);
-                    create.setVisibility(8);
-                    create.setOnClickListener(new View.OnClickListener() {
+                    ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, this.resourcesProvider, buttonIcons[i], 48);
+                    ScaleStateListAnimator.apply(chatActivityBlurredRoundButtonCreate, 0.13f, 2.0f);
+                    chatActivityBlurredRoundButtonCreate.setVisibility(8);
+                    chatActivityBlurredRoundButtonCreate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ChatActivityChannelButtonsLayout.this.lambda$showButton$0(i, view);
+                            this.f$0.lambda$showButton$0(i, view);
                         }
                     });
-                    addView(create, LayoutHelper.createFrame(56, 56.0f));
-                    this.buttonHolders[i] = new ButtonHolder(create, boolAnimator);
+                    addView(chatActivityBlurredRoundButtonCreate, LayoutHelper.createFrame(56, 56.0f));
+                    this.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundButtonCreate, boolAnimator);
                     checkButtonsPositionsAndVisibility();
                 }
                 this.buttonHolders[i].visibilityAnimator.setValue(z, z2);
@@ -203,26 +203,26 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     }
 
     private void checkContainerPaddings(boolean z) {
-        int dp = AndroidUtilities.dp(7.0f);
-        int dp2 = AndroidUtilities.dp(7.0f);
+        int iDp = AndroidUtilities.dp(7.0f);
+        int iDp2 = AndroidUtilities.dp(7.0f);
         for (int i : buttonsOrderLeft) {
             ButtonHolder buttonHolder = this.buttonHolders[i];
             if (buttonHolder != null) {
-                dp += buttonHolder.visibilityAnimator.getValue() ? AndroidUtilities.dp(54.0f) : 0;
+                iDp += buttonHolder.visibilityAnimator.getValue() ? AndroidUtilities.dp(54.0f) : 0;
             }
         }
         for (int i2 : buttonsOrderRight) {
             ButtonHolder buttonHolder2 = this.buttonHolders[i2];
             if (buttonHolder2 != null) {
-                dp2 += buttonHolder2.visibilityAnimator.getValue() ? AndroidUtilities.dp(54.0f) : 0;
+                iDp2 += buttonHolder2.visibilityAnimator.getValue() ? AndroidUtilities.dp(54.0f) : 0;
             }
         }
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.container.getLayoutParams();
-        if (marginLayoutParams.leftMargin == dp && marginLayoutParams.rightMargin == dp2) {
+        if (marginLayoutParams.leftMargin == iDp && marginLayoutParams.rightMargin == iDp2) {
             return;
         }
-        marginLayoutParams.leftMargin = dp;
-        marginLayoutParams.rightMargin = dp2;
+        marginLayoutParams.leftMargin = iDp;
+        marginLayoutParams.rightMargin = iDp2;
         if (z) {
             this.container.requestLayout();
         }
@@ -299,7 +299,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
         this.accentColor = i;
     }
 
-    public static class ButtonHolder {
+    private static class ButtonHolder {
         public final ChatActivityBlurredRoundButton button;
         public final BoolAnimator visibilityAnimator;
         public boolean wasShown;

@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.LongSparseArray;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
@@ -94,7 +93,6 @@ import org.telegram.messenger.chromecast.ChromecastMedia;
 import org.telegram.messenger.chromecast.ChromecastMediaVariations;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsListener, NotificationCenter.NotificationCenterDelegate {
@@ -739,9 +737,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (eGLContext != null) {
                 loadControl.eglContext = eGLContext;
             }
-            ExoPlayer build = loadControl.build();
-            this.player = build;
-            build.addAnalyticsListener(this);
+            ExoPlayer exoPlayerBuild = loadControl.build();
+            this.player = exoPlayerBuild;
+            exoPlayerBuild.addAnalyticsListener(this);
             this.player.addListener(this);
             this.player.addVideoListener(this);
             TextureView textureView = this.textureView;
@@ -762,9 +760,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             this.player.setRepeatMode(this.looping ? 2 : 0);
         }
         if (this.mixedAudio && this.audioPlayer == null) {
-            SimpleExoPlayer buildSimpleExoPlayer = new ExoPlayer.Builder(ApplicationLoader.applicationContext).setTrackSelector(this.trackSelector).setLoadControl(defaultLoadControl).buildSimpleExoPlayer();
-            this.audioPlayer = buildSimpleExoPlayer;
-            buildSimpleExoPlayer.addListener(new Player.Listener() {
+            SimpleExoPlayer simpleExoPlayerBuildSimpleExoPlayer = new ExoPlayer.Builder(ApplicationLoader.applicationContext).setTrackSelector(this.trackSelector).setLoadControl(defaultLoadControl).buildSimpleExoPlayer();
+            this.audioPlayer = simpleExoPlayerBuildSimpleExoPlayer;
+            simpleExoPlayerBuildSimpleExoPlayer.addListener(new Player.Listener() {
                 @Override
                 public void onAudioAttributesChanged(AudioAttributes audioAttributes) {
                     Player.Listener.CC.$default$onAudioAttributesChanged(this, audioAttributes);
@@ -920,9 +918,6 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     Player.Listener.CC.$default$onVolumeChanged(this, f);
                 }
 
-                AnonymousClass1() {
-                }
-
                 @Override
                 public void onPlayerStateChanged(boolean z, int i) {
                     if (VideoPlayer.this.audioPlayerReady || i != 3) {
@@ -933,175 +928,6 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 }
             });
             this.audioPlayer.setPlayWhenReady(this.autoplay);
-        }
-    }
-
-    public class AnonymousClass1 implements Player.Listener {
-        @Override
-        public void onAudioAttributesChanged(AudioAttributes audioAttributes) {
-            Player.Listener.CC.$default$onAudioAttributesChanged(this, audioAttributes);
-        }
-
-        @Override
-        public void onAvailableCommandsChanged(Player.Commands commands) {
-            Player.Listener.CC.$default$onAvailableCommandsChanged(this, commands);
-        }
-
-        @Override
-        public void onCues(CueGroup cueGroup) {
-            Player.Listener.CC.$default$onCues(this, cueGroup);
-        }
-
-        @Override
-        public void onCues(List list) {
-            Player.Listener.CC.$default$onCues(this, list);
-        }
-
-        @Override
-        public void onDeviceInfoChanged(DeviceInfo deviceInfo) {
-            Player.Listener.CC.$default$onDeviceInfoChanged(this, deviceInfo);
-        }
-
-        @Override
-        public void onDeviceVolumeChanged(int i, boolean z) {
-            Player.Listener.CC.$default$onDeviceVolumeChanged(this, i, z);
-        }
-
-        @Override
-        public void onEvents(Player player, Player.Events events) {
-            Player.Listener.CC.$default$onEvents(this, player, events);
-        }
-
-        @Override
-        public void onIsLoadingChanged(boolean z) {
-            Player.Listener.CC.$default$onIsLoadingChanged(this, z);
-        }
-
-        @Override
-        public void onIsPlayingChanged(boolean z) {
-            Player.Listener.CC.$default$onIsPlayingChanged(this, z);
-        }
-
-        @Override
-        public void onLoadingChanged(boolean z) {
-            Player.Listener.CC.$default$onLoadingChanged(this, z);
-        }
-
-        @Override
-        public void onMediaItemTransition(MediaItem mediaItem, int i) {
-            Player.Listener.CC.$default$onMediaItemTransition(this, mediaItem, i);
-        }
-
-        @Override
-        public void onMediaMetadataChanged(MediaMetadata mediaMetadata) {
-            Player.Listener.CC.$default$onMediaMetadataChanged(this, mediaMetadata);
-        }
-
-        @Override
-        public void onMetadata(Metadata metadata) {
-            Player.Listener.CC.$default$onMetadata(this, metadata);
-        }
-
-        @Override
-        public void onPlayWhenReadyChanged(boolean z, int i) {
-            Player.Listener.CC.$default$onPlayWhenReadyChanged(this, z, i);
-        }
-
-        @Override
-        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-            Player.Listener.CC.$default$onPlaybackParametersChanged(this, playbackParameters);
-        }
-
-        @Override
-        public void onPlaybackStateChanged(int i) {
-            Player.Listener.CC.$default$onPlaybackStateChanged(this, i);
-        }
-
-        @Override
-        public void onPlaybackSuppressionReasonChanged(int i) {
-            Player.Listener.CC.$default$onPlaybackSuppressionReasonChanged(this, i);
-        }
-
-        @Override
-        public void onPlayerError(PlaybackException playbackException) {
-            Player.Listener.CC.$default$onPlayerError(this, playbackException);
-        }
-
-        @Override
-        public void onPlayerErrorChanged(PlaybackException playbackException) {
-            Player.Listener.CC.$default$onPlayerErrorChanged(this, playbackException);
-        }
-
-        @Override
-        public void onPositionDiscontinuity(int i) {
-            Player.Listener.CC.$default$onPositionDiscontinuity(this, i);
-        }
-
-        @Override
-        public void onPositionDiscontinuity(Player.PositionInfo positionInfo, Player.PositionInfo positionInfo2, int i) {
-            Player.Listener.CC.$default$onPositionDiscontinuity(this, positionInfo, positionInfo2, i);
-        }
-
-        @Override
-        public void onRenderedFirstFrame() {
-            Player.Listener.CC.$default$onRenderedFirstFrame(this);
-        }
-
-        @Override
-        public void onRepeatModeChanged(int i) {
-            Player.Listener.CC.$default$onRepeatModeChanged(this, i);
-        }
-
-        @Override
-        public void onSeekProcessed() {
-            Player.Listener.CC.$default$onSeekProcessed(this);
-        }
-
-        @Override
-        public void onShuffleModeEnabledChanged(boolean z) {
-            Player.Listener.CC.$default$onShuffleModeEnabledChanged(this, z);
-        }
-
-        @Override
-        public void onSkipSilenceEnabledChanged(boolean z) {
-            Player.Listener.CC.$default$onSkipSilenceEnabledChanged(this, z);
-        }
-
-        @Override
-        public void onSurfaceSizeChanged(int i, int i2) {
-            Player.Listener.CC.$default$onSurfaceSizeChanged(this, i, i2);
-        }
-
-        @Override
-        public void onTimelineChanged(Timeline timeline, int i) {
-            Player.Listener.CC.$default$onTimelineChanged(this, timeline, i);
-        }
-
-        @Override
-        public void onTracksChanged(Tracks tracks) {
-            Player.Listener.CC.$default$onTracksChanged(this, tracks);
-        }
-
-        @Override
-        public void onVideoSizeChanged(VideoSize videoSize) {
-            Player.Listener.CC.$default$onVideoSizeChanged(this, videoSize);
-        }
-
-        @Override
-        public void onVolumeChanged(float f) {
-            Player.Listener.CC.$default$onVolumeChanged(this, f);
-        }
-
-        AnonymousClass1() {
-        }
-
-        @Override
-        public void onPlayerStateChanged(boolean z, int i) {
-            if (VideoPlayer.this.audioPlayerReady || i != 3) {
-                return;
-            }
-            VideoPlayer.this.audioPlayerReady = true;
-            VideoPlayer.this.checkPlayersReady();
         }
     }
 
@@ -1145,50 +971,30 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     private MediaSource mediaSourceFromUri(Uri uri, String str) {
-        MediaItem build = new MediaItem.Builder().setUri(uri).build();
+        MediaItem mediaItemBuild;
+        mediaItemBuild = new MediaItem.Builder().setUri(uri).build();
         str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case 3680:
-                if (str.equals("ss")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 103407:
-                if (str.equals("hls")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 3075986:
-                if (str.equals("dash")) {
-                    c = 2;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
+        switch (str) {
+            case "ss":
                 if (this.ssMediaSourceFactory == null) {
                     this.ssMediaSourceFactory = new SsMediaSource.Factory(this.mediaDataSourceFactory);
                 }
-                return this.ssMediaSourceFactory.createMediaSource(build);
-            case 1:
+                return this.ssMediaSourceFactory.createMediaSource(mediaItemBuild);
+            case "hls":
                 if (this.hlsMediaSourceFactory == null) {
                     this.hlsMediaSourceFactory = new HlsMediaSource.Factory(this.mediaDataSourceFactory);
                 }
-                return this.hlsMediaSourceFactory.createMediaSource(build);
-            case 2:
+                return this.hlsMediaSourceFactory.createMediaSource(mediaItemBuild);
+            case "dash":
                 if (this.dashMediaSourceFactory == null) {
                     this.dashMediaSourceFactory = new DashMediaSource.Factory(this.mediaDataSourceFactory);
                 }
-                return this.dashMediaSourceFactory.createMediaSource(build);
+                return this.dashMediaSourceFactory.createMediaSource(mediaItemBuild);
             default:
                 if (this.progressiveMediaSourceFactory == null) {
                     this.progressiveMediaSourceFactory = new ProgressiveMediaSource.Factory(this.mediaDataSourceFactory);
                 }
-                return this.progressiveMediaSourceFactory.createMediaSource(build);
+                return this.progressiveMediaSourceFactory.createMediaSource(mediaItemBuild);
         }
     }
 
@@ -1220,7 +1026,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.player.prepare();
     }
 
-    public void preparePlayer(ArrayList arrayList, Quality quality) {
+    public void preparePlayer(ArrayList arrayList, Quality quality) throws NumberFormatException {
         ArrayList arrayList2;
         this.videoQualities = arrayList;
         this.videoQualityToSelect = quality;
@@ -1278,9 +1084,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static void saveQuality(Quality quality, long j, int i) {
-        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit();
+        SharedPreferences.Editor editorEdit = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit();
         if (quality == null) {
-            edit.remove(j + "_" + i + "q2");
+            editorEdit.remove(j + "_" + i + "q2");
         } else {
             String str = j + "_" + i + "q2";
             StringBuilder sb = new StringBuilder();
@@ -1288,9 +1094,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             sb.append("x");
             sb.append(quality.height);
             sb.append(quality.original ? "s" : "");
-            edit.putString(str, sb.toString());
+            editorEdit.putString(str, sb.toString());
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public static void saveLooping(boolean z, MessageObject messageObject) {
@@ -1427,10 +1233,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return this.selectedQualityIndex;
     }
 
-    private TrackSelectionOverride getQualityTrackSelection(VideoUri videoUri) {
+    private TrackSelectionOverride getQualityTrackSelection(VideoUri videoUri) throws NumberFormatException {
         int i;
         try {
-            int indexOf = this.manifestUris.indexOf(videoUri);
+            int iIndexOf = this.manifestUris.indexOf(videoUri);
             MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = this.trackSelector.getCurrentMappedTrackInfo();
             for (int i2 = 0; i2 < currentMappedTrackInfo.getRendererCount(); i2++) {
                 TrackGroupArray trackGroups = currentMappedTrackInfo.getTrackGroups(i2);
@@ -1443,7 +1249,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                         } catch (Exception unused) {
                             i = -1;
                         }
-                        if (i >= 0 && indexOf == i) {
+                        if (i >= 0 && iIndexOf == i) {
                             return new TrackSelectionOverride(trackGroup, i4);
                         }
                         if (format.width == videoUri.width && format.height == videoUri.height) {
@@ -1459,7 +1265,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
-    public void setSelectedQuality(int i) {
+    public void setSelectedQuality(int i) throws NumberFormatException {
         if (this.player == null || i == this.selectedQualityIndex) {
             return;
         }
@@ -1468,12 +1274,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         setSelectedQuality(false, (arrayList == null || i < 0 || i >= arrayList.size()) ? null : (Quality) this.videoQualities.get(i));
     }
 
-    private void setSelectedQuality(boolean z, Quality quality) {
+    private void setSelectedQuality(boolean z, Quality quality) throws NumberFormatException {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer == null) {
             return;
         }
-        boolean isPlaying = exoPlayer.isPlaying();
+        boolean zIsPlaying = exoPlayer.isPlaying();
         long currentPosition = this.player.getCurrentPosition();
         if (!z) {
             this.fallbackPosition = currentPosition;
@@ -1482,14 +1288,14 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.videoQualityToSelect = quality;
         boolean z2 = true;
         if (quality == null) {
-            Uri makeManifest = makeManifest(this.videoQualities);
+            Uri uriMakeManifest = makeManifest(this.videoQualities);
             Quality originalQuality = getOriginalQuality();
             if (originalQuality != null && originalQuality.uris.size() == 1 && ((VideoUri) originalQuality.uris.get(0)).isCached()) {
                 this.currentStreamIsHls = false;
                 this.autoIsOriginal = true;
                 this.videoQualityToSelect = originalQuality;
                 this.player.setMediaSource(mediaSourceFromUri(originalQuality.getDownloadUri().uri, "other"), false);
-            } else if (makeManifest != null) {
+            } else if (uriMakeManifest != null) {
                 this.autoIsOriginal = false;
                 MappingTrackSelector mappingTrackSelector = this.trackSelector;
                 mappingTrackSelector.setParameters(mappingTrackSelector.getParameters().buildUpon().clearOverrides().build());
@@ -1497,7 +1303,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     z2 = false;
                 } else {
                     this.currentStreamIsHls = true;
-                    this.player.setMediaSource(mediaSourceFromUri(makeManifest, "hls"), false);
+                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest, "hls"), false);
                 }
             } else {
                 Quality highestQuality = getHighestQuality(Boolean.TRUE);
@@ -1517,8 +1323,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (quality.uris.isEmpty()) {
                 return;
             }
-            Uri makeManifest2 = quality.uris.size() > 1 ? makeManifest(this.videoQualities) : null;
-            if (makeManifest2 == null || quality.uris.size() == 1 || this.trackSelector.getCurrentMappedTrackInfo() == null) {
+            Uri uriMakeManifest2 = quality.uris.size() > 1 ? makeManifest(this.videoQualities) : null;
+            if (uriMakeManifest2 == null || quality.uris.size() == 1 || this.trackSelector.getCurrentMappedTrackInfo() == null) {
                 this.currentStreamIsHls = false;
                 this.player.setMediaSource(mediaSourceFromUri(quality.getDownloadUri().uri, "other"), false);
             } else {
@@ -1526,24 +1332,24 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     z2 = false;
                 } else {
                     this.currentStreamIsHls = true;
-                    this.player.setMediaSource(mediaSourceFromUri(makeManifest2, "hls"), false);
+                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest2, "hls"), false);
                 }
-                TrackSelectionParameters.Builder clearOverrides = this.trackSelector.getParameters().buildUpon().clearOverrides();
+                TrackSelectionParameters.Builder builderClearOverrides = this.trackSelector.getParameters().buildUpon().clearOverrides();
                 Iterator it = quality.uris.iterator();
                 while (it.hasNext()) {
                     TrackSelectionOverride qualityTrackSelection = getQualityTrackSelection((VideoUri) it.next());
                     if (qualityTrackSelection != null) {
-                        clearOverrides.addOverride(qualityTrackSelection);
+                        builderClearOverrides.addOverride(qualityTrackSelection);
                     }
                 }
-                this.trackSelector.setParameters(clearOverrides.build());
+                this.trackSelector.setParameters(builderClearOverrides.build());
             }
         }
         if (z2) {
             this.player.prepare();
             if (!z) {
                 this.player.seekTo(currentPosition);
-                if (isPlaying) {
+                if (zIsPlaying) {
                     this.player.play();
                 }
             }
@@ -1571,79 +1377,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return getQualities(i, document, arrayList, i2, z, true);
     }
 
-    public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z, boolean z2) {
-        String str;
-        ArrayList arrayList2 = new ArrayList();
-        if (document != null) {
-            arrayList2.add(document);
-        }
-        if (!MessagesController.getInstance(i).videoIgnoreAltDocuments && arrayList != null) {
-            arrayList2.addAll(arrayList);
-        }
-        LongSparseArray longSparseArray = new LongSparseArray();
-        int i3 = 0;
-        while (i3 < arrayList2.size()) {
-            TLRPC.Document document2 = (TLRPC.Document) arrayList2.get(i3);
-            if ("application/x-mpegurl".equalsIgnoreCase(document2.mime_type) && (str = document2.file_name_fixed) != null && str.startsWith("mtproto")) {
-                try {
-                    longSparseArray.put(Long.parseLong(document2.file_name_fixed.substring(7)), document2);
-                    arrayList2.remove(i3);
-                    i3--;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-            i3++;
-        }
-        ArrayList arrayList3 = new ArrayList();
-        for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-            try {
-                TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i4);
-                if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboard".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboardmap".equalsIgnoreCase(document3.mime_type)) {
-                    VideoUri of = VideoUri.of(i, document3, (TLRPC.Document) longSparseArray.get(document3.id), i2, z2);
-                    if (of.width > 0 && of.height > 0) {
-                        if (document3 == document) {
-                            of.original = true;
-                        }
-                        arrayList3.add(of);
-                    }
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        }
-        ArrayList arrayList4 = new ArrayList();
-        for (int i5 = 0; i5 < arrayList3.size(); i5++) {
-            VideoUri videoUri = (VideoUri) arrayList3.get(i5);
-            String str2 = videoUri.codec;
-            if (str2 != null) {
-                if (z) {
-                    if (!"avc".equals(str2)) {
-                        if (!"h264".equals(videoUri.codec)) {
-                            if (!"vp9".equals(videoUri.codec)) {
-                                if (!"vp8".equals(videoUri.codec)) {
-                                    if (!"av1".equals(videoUri.codec)) {
-                                        if (!"av01".equals(videoUri.codec)) {
-                                        }
-                                    }
-                                    if (!supportsHardwareDecoder(videoUri.codec)) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else if (("av1".equals(str2) || "av01".equals(videoUri.codec) || "hevc".equals(videoUri.codec) || "h265".equals(videoUri.codec) || "vp9".equals(videoUri.codec)) && !supportsHardwareDecoder(videoUri.codec)) {
-                }
-            }
-            arrayList4.add(videoUri);
-        }
-        ArrayList arrayList5 = new ArrayList();
-        if (arrayList4.isEmpty()) {
-            arrayList5.addAll(arrayList3);
-        } else {
-            arrayList5.addAll(arrayList4);
-        }
-        return Quality.group(arrayList5);
+    public static java.util.ArrayList getQualities(int r9, org.telegram.tgnet.TLRPC.Document r10, java.util.ArrayList r11, int r12, boolean r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoPlayer.getQualities(int, org.telegram.tgnet.TLRPC$Document, java.util.ArrayList, int, boolean, boolean):java.util.ArrayList");
     }
 
     public static ArrayList getQualities(int i, TLRPC.MessageMedia messageMedia, boolean z) {
@@ -1752,70 +1487,19 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (str == null) {
             return null;
         }
-        char c = 65535;
-        switch (str.hashCode()) {
-            case 96924:
-                if (str.equals("av1")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 96974:
-                if (str.equals("avc")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 116926:
-                if (str.equals("vp8")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 116927:
-                if (str.equals("vp9")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case 3004662:
-                if (str.equals("av01")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case 3148040:
-                if (str.equals("h264")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case 3148041:
-                if (str.equals("h265")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case 3199082:
-                if (str.equals("hevc")) {
-                    c = 7;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-            case 4:
+        switch (str) {
+            case "av1":
+            case "av01":
                 return "video/av01";
-            case 1:
-            case 5:
+            case "avc":
+            case "h264":
                 return "video/avc";
-            case 2:
+            case "vp8":
                 return "video/x-vnd.on2.vp8";
-            case 3:
+            case "vp9":
                 return "video/x-vnd.on2.vp9";
-            case 6:
-            case 7:
+            case "h265":
+            case "hevc":
                 return "video/hevc";
             default:
                 return "video/" + str;
@@ -2023,32 +1707,32 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
 
         public int p() {
-            int min = Math.min(this.width, this.height);
-            if (Math.abs(min - 2160) < 55) {
+            int iMin = Math.min(this.width, this.height);
+            if (Math.abs(iMin - 2160) < 55) {
                 return 2160;
             }
-            if (Math.abs(min - 1440) < 55) {
+            if (Math.abs(iMin - 1440) < 55) {
                 return 1440;
             }
-            if (Math.abs(min - 1080) < 55) {
+            if (Math.abs(iMin - 1080) < 55) {
                 return 1080;
             }
-            if (Math.abs(min - 720) < 55) {
+            if (Math.abs(iMin - 720) < 55) {
                 return 720;
             }
-            if (Math.abs(min - 480) < 55) {
+            if (Math.abs(iMin - 480) < 55) {
                 return 480;
             }
-            if (Math.abs(min - 360) < 55) {
+            if (Math.abs(iMin - 360) < 55) {
                 return 360;
             }
-            if (Math.abs(min - 240) < 55) {
+            if (Math.abs(iMin - 240) < 55) {
                 return 240;
             }
-            if (Math.abs(min - 144) < 55) {
+            if (Math.abs(iMin - 144) < 55) {
                 return 144;
             }
-            return min;
+            return iMin;
         }
 
         public TLRPC.Document getDownloadDocument() {
@@ -2584,26 +2268,26 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public void onPlayerError(final PlaybackException playbackException) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                VideoPlayer.this.lambda$onPlayerError$1(playbackException);
+            public final void run() throws NumberFormatException {
+                this.f$0.lambda$onPlayerError$1(playbackException);
             }
         });
     }
 
-    public void lambda$onPlayerError$1(PlaybackException playbackException) {
+    public void lambda$onPlayerError$1(PlaybackException playbackException) throws NumberFormatException {
         Throwable cause = playbackException.getCause();
         if ((cause instanceof MediaCodecDecoderException) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
             FileLog.e(playbackException);
             FileLog.e("av1 codec failed, we think this codec is not supported");
             MessagesController.getGlobalMainSettings().edit().putBoolean("unsupport_video/av01", true).commit();
-            HashMap hashMap = cachedSupportedCodec;
-            if (hashMap != null) {
-                hashMap.clear();
+            HashMap map = cachedSupportedCodec;
+            if (map != null) {
+                map.clear();
             }
-            ArrayList filterByCodec = Quality.filterByCodec(this.videoQualities);
-            this.videoQualities = filterByCodec;
-            if (filterByCodec != null) {
-                preparePlayer(filterByCodec, this.videoQualityToSelect);
+            ArrayList arrayListFilterByCodec = Quality.filterByCodec(this.videoQualities);
+            this.videoQualities = arrayListFilterByCodec;
+            if (arrayListFilterByCodec != null) {
+                preparePlayer(arrayListFilterByCodec, this.videoQualityToSelect);
                 return;
             }
             return;
@@ -2614,16 +2298,16 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (this.player != null) {
                 ViewGroup viewGroup = (ViewGroup) textureView.getParent();
                 if (viewGroup != null) {
-                    int indexOfChild = viewGroup.indexOfChild(this.textureView);
+                    int iIndexOfChild = viewGroup.indexOfChild(this.textureView);
                     viewGroup.removeView(this.textureView);
-                    viewGroup.addView(this.textureView, indexOfChild);
+                    viewGroup.addView(this.textureView, iIndexOfChild);
                 }
                 DispatchQueue dispatchQueue = this.workerQueue;
                 if (dispatchQueue != null) {
                     dispatchQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() {
-                            VideoPlayer.this.lambda$onPlayerError$0();
+                        public final void run() throws NumberFormatException {
+                            this.f$0.lambda$onPlayerError$0();
                         }
                     });
                     return;
@@ -2646,7 +2330,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.delegate.onError(this, playbackException);
     }
 
-    public void lambda$onPlayerError$0() {
+    public void lambda$onPlayerError$0() throws NumberFormatException {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             exoPlayer.clearVideoTextureView(this.textureView);
@@ -2699,18 +2383,18 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.lastReportedPlaybackState = playbackState;
     }
 
-    public class AudioVisualizerRenderersFactory extends DefaultRenderersFactory {
+    private class AudioVisualizerRenderersFactory extends DefaultRenderersFactory {
         public AudioVisualizerRenderersFactory(Context context) {
             super(context);
         }
 
         @Override
         protected AudioSink buildAudioSink(Context context, boolean z, boolean z2, boolean z3) {
-            return new DefaultAudioSink.Builder().setAudioCapabilities(AudioCapabilities.getCapabilities(context)).setEnableFloatOutput(z).setEnableAudioTrackPlaybackParams(z2).setAudioProcessors(new AudioProcessor[]{new TeeAudioProcessor(new VisualizerBufferSink())}).setOffloadMode(z3 ? 1 : 0).build();
+            return new DefaultAudioSink.Builder().setAudioCapabilities(AudioCapabilities.getCapabilities(context)).setEnableFloatOutput(z).setEnableAudioTrackPlaybackParams(z2).setAudioProcessors(new AudioProcessor[]{new TeeAudioProcessor(VideoPlayer.this.new VisualizerBufferSink())}).setOffloadMode(z3 ? 1 : 0).build();
         }
     }
 
-    public class VisualizerBufferSink implements TeeAudioProcessor.AudioBufferSink {
+    class VisualizerBufferSink implements TeeAudioProcessor.AudioBufferSink {
         ByteBuffer byteBuffer;
         long lastUpdateTime;
         private final int BUFFER_SIZE = 1024;
@@ -2724,9 +2408,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
 
         public VisualizerBufferSink() {
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-            this.byteBuffer = allocateDirect;
-            allocateDirect.position(0);
+            ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(8192);
+            this.byteBuffer = byteBufferAllocateDirect;
+            byteBufferAllocateDirect.position(0);
         }
 
         @Override
@@ -2736,15 +2420,15 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             }
             if (byteBuffer != AudioProcessor.EMPTY_BUFFER && VideoPlayer.this.mixedPlayWhenReady) {
                 if (VideoPlayer.this.audioVisualizerDelegate.needUpdate()) {
-                    int limit = byteBuffer.limit();
+                    int iLimit = byteBuffer.limit();
                     int i = 0;
-                    if (limit > 8192) {
+                    if (iLimit > 8192) {
                         VideoPlayer.this.audioUpdateHandler.removeCallbacksAndMessages(null);
                         VideoPlayer.this.audioVisualizerDelegate.onVisualizerUpdate(false, true, null);
                         return;
                     }
                     this.byteBuffer.put(byteBuffer);
-                    int i2 = this.position + limit;
+                    int i2 = this.position + iLimit;
                     this.position = i2;
                     if (i2 >= 1024) {
                         this.byteBuffer.position(0);
@@ -2763,17 +2447,17 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                             }
                             float f3 = this.fft.getSpectrumReal()[i4];
                             float f4 = this.fft.getSpectrumImaginary()[i4];
-                            float sqrt = ((float) Math.sqrt((f3 * f3) + (f4 * f4))) / 30.0f;
-                            if (sqrt <= 1.0f) {
-                                f2 = sqrt < 0.0f ? 0.0f : sqrt;
+                            float fSqrt = ((float) Math.sqrt((f3 * f3) + (f4 * f4))) / 30.0f;
+                            if (fSqrt <= 1.0f) {
+                                f2 = fSqrt < 0.0f ? 0.0f : fSqrt;
                             }
                             f += f2 * f2;
                             i4++;
                         }
-                        float sqrt2 = (float) Math.sqrt(f / 1024);
+                        float fSqrt2 = (float) Math.sqrt(f / 1024);
                         final float[] fArr = new float[7];
-                        fArr[6] = sqrt2;
-                        if (sqrt2 < 0.4f) {
+                        fArr[6] = fSqrt2;
+                        if (fSqrt2 < 0.4f) {
                             while (i < 7) {
                                 fArr[i] = 0.0f;
                                 i++;
@@ -2783,11 +2467,11 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                                 int i5 = 170 * i;
                                 float f5 = this.fft.getSpectrumReal()[i5];
                                 float f6 = this.fft.getSpectrumImaginary()[i5];
-                                float sqrt3 = (float) (Math.sqrt((f5 * f5) + (f6 * f6)) / 30.0d);
-                                fArr[i] = sqrt3;
-                                if (sqrt3 > 1.0f) {
+                                float fSqrt3 = (float) (Math.sqrt((f5 * f5) + (f6 * f6)) / 30.0d);
+                                fArr[i] = fSqrt3;
+                                if (fSqrt3 > 1.0f) {
                                     fArr[i] = 1.0f;
-                                } else if (sqrt3 < 0.0f) {
+                                } else if (fSqrt3 < 0.0f) {
                                     fArr[i] = 0.0f;
                                 }
                                 i++;
@@ -2800,7 +2484,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                         VideoPlayer.this.audioUpdateHandler.postDelayed(new Runnable() {
                             @Override
                             public final void run() {
-                                VideoPlayer.VisualizerBufferSink.this.lambda$handleBuffer$1(fArr);
+                                this.f$0.lambda$handleBuffer$1(fArr);
                             }
                         }, 130L);
                         return;
@@ -2812,7 +2496,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             VideoPlayer.this.audioUpdateHandler.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayer.VisualizerBufferSink.this.lambda$handleBuffer$0();
+                    this.f$0.lambda$handleBuffer$0();
                 }
             }, 80L);
         }

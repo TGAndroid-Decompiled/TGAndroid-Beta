@@ -17,7 +17,6 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-import org.telegram.messenger.BotFullscreenButtons;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
@@ -101,7 +100,7 @@ public class BotFullscreenButtons extends View {
         this.hidePreview = new Runnable() {
             @Override
             public final void run() {
-                BotFullscreenButtons.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.start = System.currentTimeMillis();
@@ -136,10 +135,6 @@ public class BotFullscreenButtons extends View {
         float f;
         float f2;
         WebView webView;
-        int width;
-        int height;
-        RecordingCanvas beginRecording;
-        RenderEffect createBlurEffect;
         super.onDraw(canvas);
         this.iconPaint.setColor(-1);
         this.iconStrokePaint.setColor(-1);
@@ -150,34 +145,34 @@ public class BotFullscreenButtons extends View {
         RectF rectF2 = this.rightMenu;
         rectF.set(rectF2.left, rectF2.top, rectF2.centerX(), this.rightMenu.bottom);
         RectF rectF3 = this.collapseClickRect;
-        float dp = this.collapseRect.left - AndroidUtilities.dp(8.0f);
-        float dp2 = this.collapseRect.top - AndroidUtilities.dp(8.0f);
+        float fDp = this.collapseRect.left - AndroidUtilities.dp(8.0f);
+        float fDp2 = this.collapseRect.top - AndroidUtilities.dp(8.0f);
         RectF rectF4 = this.collapseRect;
-        rectF3.set(dp, dp2, rectF4.right, rectF4.bottom + AndroidUtilities.dp(8.0f));
+        rectF3.set(fDp, fDp2, rectF4.right, rectF4.bottom + AndroidUtilities.dp(8.0f));
         RectF rectF5 = this.menuRect;
-        float centerX = this.rightMenu.centerX();
+        float fCenterX = this.rightMenu.centerX();
         RectF rectF6 = this.rightMenu;
-        rectF5.set(centerX, rectF6.top, rectF6.right, rectF6.bottom);
+        rectF5.set(fCenterX, rectF6.top, rectF6.right, rectF6.bottom);
         RectF rectF7 = this.menuClickRect;
         RectF rectF8 = this.menuRect;
         rectF7.set(rectF8.left, rectF8.top - AndroidUtilities.dp(8.0f), this.menuRect.right + AndroidUtilities.dp(8.0f), this.menuRect.bottom + AndroidUtilities.dp(8.0f));
         Path path = this.backgroundPath;
         RectF rectF9 = this.rightMenu;
-        float dp3 = AndroidUtilities.dp(15.0f);
-        float dp4 = AndroidUtilities.dp(15.0f);
+        float fDp3 = AndroidUtilities.dp(15.0f);
+        float fDp4 = AndroidUtilities.dp(15.0f);
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF9, dp3, dp4, direction);
+        path.addRoundRect(rectF9, fDp3, fDp4, direction);
         float f3 = this.animatedBack.set(this.back);
         float f4 = this.animatedPreview.set(this.preview);
-        float dp5 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
+        float fDp5 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
         Text text = this.previewText;
         if (text == null) {
             currentWidth = 0.0f;
         } else {
             currentWidth = text.getCurrentWidth() + AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f);
         }
-        float min = Math.min(dp5, currentWidth);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.getCurrentWidth(), this.backText.getCurrentWidth(), f3) + AndroidUtilities.dp(12.0f), min, f4), this.insets.top + AndroidUtilities.dp(38.0f));
+        float fMin = Math.min(fDp5, currentWidth);
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.getCurrentWidth(), this.backText.getCurrentWidth(), f3) + AndroidUtilities.dp(12.0f), fMin, f4), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF10 = this.closeRect;
         RectF rectF11 = this.leftMenu;
         float f5 = rectF11.left;
@@ -188,20 +183,15 @@ public class BotFullscreenButtons extends View {
         this.backgroundPath.addRoundRect(this.leftMenu, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), direction);
         if (this.parentRenderNode != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.webView) == null || webView.getLayerType() == 2)) {
             if (this.blurNode == null) {
-                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("bot_fullscreen_blur");
-                this.blurNode = m;
-                createBlurEffect = RenderEffect.createBlurEffect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Shader.TileMode.CLAMP);
-                m.setRenderEffect(createBlurEffect);
+                RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("bot_fullscreen_blur");
+                this.blurNode = renderNodeM;
+                renderNodeM.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Shader.TileMode.CLAMP));
             }
-            RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.parentRenderNode);
-            width = m2.getWidth();
-            int max = Math.max(1, width - AndroidUtilities.dp(16.0f));
-            float dp6 = this.insets.top + AndroidUtilities.dp(46.0f);
-            height = m2.getHeight();
-            this.blurNode.setPosition(0, 0, max, Math.max(1, (int) Math.min(dp6, height)));
-            beginRecording = this.blurNode.beginRecording();
-            beginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
-            beginRecording.drawRenderNode(m2);
+            RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.parentRenderNode);
+            this.blurNode.setPosition(0, 0, Math.max(1, renderNodeM2.getWidth() - AndroidUtilities.dp(16.0f)), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), renderNodeM2.getHeight())));
+            RecordingCanvas recordingCanvasBeginRecording = this.blurNode.beginRecording();
+            recordingCanvasBeginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
+            recordingCanvasBeginRecording.drawRenderNode(renderNodeM2);
             this.blurNode.endRecording();
             canvas.save();
             canvas.clipPath(this.backgroundPath);
@@ -221,42 +211,42 @@ public class BotFullscreenButtons extends View {
         float scale = this.closeBounce.getScale(0.1f);
         canvas.scale(scale, scale);
         canvas.translate((-AndroidUtilities.dp(6.5f)) * f3, 0.0f);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(5.5f), f3);
-        float f6 = -lerp;
-        canvas.drawLine(AndroidUtilities.lerp(f6, 0.0f, f3), AndroidUtilities.lerp(f6, 0.0f, f3), lerp, lerp, this.iconStrokePaint);
-        canvas.drawLine(AndroidUtilities.lerp(f6, 0.0f, f3), AndroidUtilities.lerp(lerp, 0.0f, f3), lerp, f6, this.iconStrokePaint);
+        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(5.5f), f3);
+        float f6 = -fLerp;
+        canvas.drawLine(AndroidUtilities.lerp(f6, 0.0f, f3), AndroidUtilities.lerp(f6, 0.0f, f3), fLerp, fLerp, this.iconStrokePaint);
+        canvas.drawLine(AndroidUtilities.lerp(f6, 0.0f, f3), AndroidUtilities.lerp(fLerp, 0.0f, f3), fLerp, f6, this.iconStrokePaint);
         if (f3 > 0.0f) {
             canvas.drawLine(0.0f, 0.0f, AndroidUtilities.dp(11.6f) * f3, 0.0f, this.iconStrokePaint);
         }
         canvas.restore();
-        float dp7 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
+        float fDp6 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
         RectF rectF12 = this.leftMenu;
-        canvas.saveLayerAlpha(dp7, rectF12.top, rectF12.right, rectF12.bottom, 255, 31);
+        canvas.saveLayerAlpha(fDp6, rectF12.top, rectF12.right, rectF12.bottom, 255, 31);
         if (f4 <= 0.0f || this.previewText == null) {
             f = 1.0f;
         } else {
             canvas.save();
-            canvas.translate((this.leftMenu.left + AndroidUtilities.dp(30.0f)) - (min * (1.0f - f4)), this.leftMenu.centerY());
+            canvas.translate((this.leftMenu.left + AndroidUtilities.dp(30.0f)) - (fMin * (1.0f - f4)), this.leftMenu.centerY());
             f = 1.0f;
             this.previewText.ellipsize(((this.leftMenu.right - AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f).draw(canvas, 0.0f, 0.0f, -1, f4);
             canvas.translate(this.previewText.getWidth() + AndroidUtilities.dp(5.0f), 0.0f);
-            int dp8 = AndroidUtilities.dp(16.0f);
+            int iDp = AndroidUtilities.dp(16.0f);
             Drawable drawable = this.verifiedBackground;
             if (drawable != null) {
-                drawable.setBounds(0, (-dp8) / 2, dp8, dp8 / 2);
+                drawable.setBounds(0, (-iDp) / 2, iDp, iDp / 2);
                 this.verifiedBackground.setAlpha((int) (75.0f * f4));
                 this.verifiedBackground.draw(canvas);
             }
             Drawable drawable2 = this.verifiedForeground;
             if (drawable2 != null) {
-                drawable2.setBounds(0, (-dp8) / 2, dp8, dp8 / 2);
+                drawable2.setBounds(0, (-iDp) / 2, iDp, iDp / 2);
                 this.verifiedForeground.setAlpha((int) (255.0f * f4));
                 this.verifiedForeground.draw(canvas);
             }
             RectF rectF13 = AndroidUtilities.rectTmp;
-            float dp9 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
+            float fDp7 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
             RectF rectF14 = this.leftMenu;
-            rectF13.set(dp9, rectF14.top, rectF14.left + AndroidUtilities.dp(30.0f), this.leftMenu.bottom);
+            rectF13.set(fDp7, rectF14.top, rectF14.left + AndroidUtilities.dp(30.0f), this.leftMenu.bottom);
             this.previewClip.draw(canvas, rectF13, 2, 1.0f);
             canvas.restore();
         }
@@ -281,11 +271,11 @@ public class BotFullscreenButtons extends View {
         canvas.translate(this.collapseRect.centerX() + AndroidUtilities.dp(2.0f), this.collapseRect.centerY());
         float scale3 = this.collapseBounce.getScale(f2);
         canvas.scale(scale3, scale3);
-        float dp10 = AndroidUtilities.dp(6.0f);
-        float dp11 = AndroidUtilities.dp(3.0f);
-        float f8 = -dp11;
-        canvas.drawLine(-dp10, f8, 0.0f, dp11, this.iconStrokePaint);
-        canvas.drawLine(0.0f, dp11, dp10, f8, this.iconStrokePaint);
+        float fDp8 = AndroidUtilities.dp(6.0f);
+        float fDp9 = AndroidUtilities.dp(3.0f);
+        float f8 = -fDp9;
+        canvas.drawLine(-fDp8, f8, 0.0f, fDp9, this.iconStrokePaint);
+        canvas.drawLine(0.0f, fDp9, fDp8, f8, this.iconStrokePaint);
         canvas.restore();
         canvas.save();
         canvas.translate(this.menuRect.centerX() + AndroidUtilities.dp(f), this.menuRect.centerY());
@@ -301,10 +291,10 @@ public class BotFullscreenButtons extends View {
             canvas.scale(f10, f10);
             this.downloadPaint.setColor(Theme.multAlpha(-1, 0.4f));
             canvas.drawPath(this.downloadPath, this.downloadPaint);
-            float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
-            float f11 = 0.5f + currentTimeMillis;
+            float fCurrentTimeMillis = ((System.currentTimeMillis() - this.start) % 450) / 450.0f;
+            float f11 = 0.5f + fCurrentTimeMillis;
             canvas.save();
-            canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f11));
+            canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), fCurrentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f11));
             this.downloadPaint.setColor(Theme.multAlpha(-1, f));
             canvas.drawPath(this.downloadPath, this.downloadPaint);
             canvas.restore();
@@ -465,7 +455,7 @@ public class BotFullscreenButtons extends View {
             this.animatedDownloading = new AnimatedFloat(new Runnable() {
                 @Override
                 public final void run() {
-                    BotFullscreenButtons.OptionsIcon.this.invalidateSelf();
+                    this.f$0.invalidateSelf();
                 }
             }, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.start = System.currentTimeMillis();
@@ -495,10 +485,10 @@ public class BotFullscreenButtons extends View {
                 canvas.scale(f2, f2);
                 this.downloadPaint.setColor(Theme.multAlpha(-1, 0.4f));
                 canvas.drawPath(this.downloadPath, this.downloadPaint);
-                float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
-                float f3 = 0.5f + currentTimeMillis;
+                float fCurrentTimeMillis = ((System.currentTimeMillis() - this.start) % 450) / 450.0f;
+                float f3 = 0.5f + fCurrentTimeMillis;
                 canvas.save();
-                canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3));
+                canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), fCurrentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3));
                 this.downloadPaint.setColor(Theme.multAlpha(-1, 1.0f));
                 canvas.drawPath(this.downloadPath, this.downloadPaint);
                 canvas.restore();

@@ -92,7 +92,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatReactionsEditActivity.this.lambda$createView$0(view);
+                    this.f$0.lambda$createView$0(view);
                 }
             });
             linearLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
@@ -122,19 +122,19 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         this.allReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatReactionsEditActivity.this.lambda$createView$2(view);
+                this.f$0.lambda$createView$2(view);
             }
         });
         this.someReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatReactionsEditActivity.this.lambda$createView$4(view);
+                this.f$0.lambda$createView$4(view);
             }
         });
         this.disableReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatReactionsEditActivity.this.lambda$createView$6(view);
+                this.f$0.lambda$createView$6(view);
             }
         });
         int i = Theme.key_windowBackgroundWhite;
@@ -239,7 +239,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                ChatReactionsEditActivity.this.lambda$createView$7(view, i3);
+                this.f$0.lambda$createView$7(view, i3);
             }
         });
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
@@ -261,7 +261,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatReactionsEditActivity.this.lambda$createView$1();
+                this.f$0.lambda$createView$1();
             }
         });
     }
@@ -274,7 +274,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatReactionsEditActivity.this.lambda$createView$3();
+                this.f$0.lambda$createView$3();
             }
         });
     }
@@ -287,7 +287,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatReactionsEditActivity.this.lambda$createView$5();
+                this.f$0.lambda$createView$5();
             }
         });
     }
@@ -299,9 +299,9 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         }
         AvailableReactionCell availableReactionCell = (AvailableReactionCell) view;
         TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) this.availableReactions.get(i - (z ? 2 : 3));
-        boolean contains = this.chatReactions.contains(tL_availableReaction.reaction);
-        boolean z2 = !contains;
-        if (!contains) {
+        boolean zContains = this.chatReactions.contains(tL_availableReaction.reaction);
+        boolean z2 = !zContains;
+        if (!zContains) {
             this.chatReactions.add(tL_availableReaction.reaction);
         } else {
             this.chatReactions.remove(tL_availableReaction.reaction);
@@ -415,7 +415,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         return SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatReactionsEditActivity.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override

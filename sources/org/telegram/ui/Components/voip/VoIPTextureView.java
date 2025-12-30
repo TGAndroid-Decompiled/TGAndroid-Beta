@@ -181,9 +181,9 @@ public class VoIPTextureView extends FrameLayout {
         }
         if (z && this.cameraLastBitmap == null) {
             try {
-                Bitmap decodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg").getAbsolutePath());
-                this.cameraLastBitmap = decodeFile;
-                if (decodeFile == null) {
+                Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg").getAbsolutePath());
+                this.cameraLastBitmap = bitmapDecodeFile;
+                if (bitmapDecodeFile == null) {
                     this.cameraLastBitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
                 }
                 imageView.setImageBitmap(this.cameraLastBitmap);
@@ -198,7 +198,7 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j) {
+    protected boolean drawChild(Canvas canvas, View view, long j) {
         if (AndroidUtilities.makingGlobalBlurBitmap && (view == this.renderer || view == this.blurRenderer)) {
             return false;
         }
@@ -265,7 +265,7 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (AndroidUtilities.makingGlobalBlurBitmap) {
             if (this.blurRenderer != null) {
@@ -383,7 +383,7 @@ public class VoIPTextureView extends FrameLayout {
         this.renderer.updateRotation();
     }
 
-    public void updateRendererSize() {
+    protected void updateRendererSize() {
         TextureView textureView = this.blurRenderer;
         if (textureView != null) {
             textureView.getLayoutParams().width = this.renderer.getMeasuredWidth();
@@ -392,7 +392,7 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         float top;
         float left;
         super.onLayout(z, i, i2, i3, i4);
@@ -488,12 +488,12 @@ public class VoIPTextureView extends FrameLayout {
             final float f3 = this.aninateFromScale;
             final float f4 = this.aninateFromScaleBlur;
             final float f5 = this.animateFromThumbScale;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.currentAnimation = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.currentAnimation = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    VoIPTextureView.this.lambda$onLayout$0(f3, f4, f2, f, f5, valueAnimator2);
+                    this.f$0.lambda$onLayout$0(f3, f4, f2, f, f5, valueAnimator2);
                 }
             });
             long j = this.animateNextDuration;
@@ -549,25 +549,25 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     public void lambda$onLayout$0(float f, float f2, float f3, float f4, float f5, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f6 = 1.0f - floatValue;
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float f6 = 1.0f - fFloatValue;
         this.animationProgress = f6;
-        this.currentClipVertical = this.clipVertical * floatValue;
-        this.currentClipHorizontal = this.clipHorizontal * floatValue;
+        this.currentClipVertical = this.clipVertical * fFloatValue;
+        this.currentClipHorizontal = this.clipHorizontal * fFloatValue;
         invalidateOutline();
         invalidate();
-        float f7 = (f * floatValue) + (this.scaleTextureToFill * f6);
+        float f7 = (f * fFloatValue) + (this.scaleTextureToFill * f6);
         this.renderer.setScaleX(f7);
         this.renderer.setScaleY(f7);
-        float f8 = (f2 * floatValue) + (this.scaleTextureToFillBlur * f6);
+        float f8 = (f2 * fFloatValue) + (this.scaleTextureToFillBlur * f6);
         TextureView textureView = this.blurRenderer;
         if (textureView != null) {
             textureView.setScaleX(f8);
             this.blurRenderer.setScaleY(f8);
         }
-        setTranslationX(f3 * floatValue);
-        setTranslationY(f4 * floatValue);
-        this.currentThumbScale = (f5 * floatValue) + (this.scaleThumb * f6);
+        setTranslationX(f3 * fFloatValue);
+        setTranslationY(f4 * fFloatValue);
+        this.currentThumbScale = (f5 * fFloatValue) + (this.scaleThumb * f6);
     }
 
     public void setAnimateWithParent(boolean z) {

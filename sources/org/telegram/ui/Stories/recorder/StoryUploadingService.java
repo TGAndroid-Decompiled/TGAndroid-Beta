@@ -52,9 +52,9 @@ public class StoryUploadingService extends Service implements NotificationCenter
             if (str2 == null || !str2.equals((String) objArr[0])) {
                 return;
             }
-            float floatValue = ((Float) objArr[1]).floatValue();
-            this.currentProgress = floatValue;
-            this.builder.setProgress(100, Math.round(floatValue * 100.0f), this.currentProgress <= 0.0f);
+            float fFloatValue = ((Float) objArr[1]).floatValue();
+            this.currentProgress = fFloatValue;
+            this.builder.setProgress(100, Math.round(fFloatValue * 100.0f), this.currentProgress <= 0.0f);
             try {
                 NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());
                 return;

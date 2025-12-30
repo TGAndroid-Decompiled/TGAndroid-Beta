@@ -4,7 +4,7 @@ import org.webrtc.VideoFrame;
 import org.webrtc.VideoProcessor;
 import org.webrtc.VideoSource;
 
-public class NativeAndroidVideoTrackSource {
+class NativeAndroidVideoTrackSource {
     private final long nativeAndroidVideoTrackSource;
 
     private static native VideoProcessor.FrameAdaptationParameters nativeAdaptFrame(long j, int i, int i2, int i3, long j2);

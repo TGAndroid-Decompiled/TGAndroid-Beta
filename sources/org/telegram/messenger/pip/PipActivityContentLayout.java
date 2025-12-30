@@ -11,7 +11,7 @@ class PipActivityContentLayout extends FrameLayout {
     private int originalHeight;
     private int originalWidth;
 
-    public PipActivityContentLayout(Activity activity) {
+    PipActivityContentLayout(Activity activity) {
         super(activity);
         this.activity = activity;
     }
@@ -20,12 +20,12 @@ class PipActivityContentLayout extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
-        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.activity);
-        if (!isInPictureInPictureMode) {
+        boolean zIsInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.activity);
+        if (!zIsInPictureInPictureMode) {
             this.originalWidth = size;
             this.originalHeight = size2;
         }
-        this.isViewInPip = isInPictureInPictureMode && size < this.originalWidth && size2 < this.originalHeight;
+        this.isViewInPip = zIsInPictureInPictureMode && size < this.originalWidth && size2 < this.originalHeight;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 

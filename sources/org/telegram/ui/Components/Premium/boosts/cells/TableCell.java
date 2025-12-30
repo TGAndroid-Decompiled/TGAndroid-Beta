@@ -57,34 +57,34 @@ public class TableCell extends FrameLayout {
     private final TextView toTextView;
 
     public TableCell(Context context, final Theme.ResourcesProvider resourcesProvider) {
-        super(context);
         boolean z;
+        super(context);
         Paint paint = new Paint();
         this.linePaint = paint;
         this.roundPath = new Path();
         this.roundRect = new RectF();
         paint.setStyle(Paint.Style.STROKE);
         this.resourcesProvider = resourcesProvider;
-        TextView createTextView = createTextView(LocaleController.getString(R.string.BoostingFrom), false);
-        this.fromNameTextView = createTextView;
-        TextView createTextView2 = createTextView(LocaleController.getString(R.string.BoostingTo), false);
-        this.toNameTextView = createTextView2;
-        TextView createTextView3 = createTextView(LocaleController.getString(R.string.BoostingGift), false);
-        this.giftNameTextView = createTextView3;
-        TextView createTextView4 = createTextView(LocaleController.getString(R.string.BoostingReason), false);
-        this.reasonNameTextView = createTextView4;
-        TextView createTextView5 = createTextView(LocaleController.getString(R.string.BoostingDate), false);
-        this.dateNameTextView = createTextView5;
-        TextView createTextView6 = createTextView(true);
-        this.fromTextView = createTextView6;
-        TextView createTextView7 = createTextView(true);
-        this.toTextView = createTextView7;
-        TextView createTextView8 = createTextView(false);
-        this.giftTextView = createTextView8;
-        TextView createTextView9 = createTextView(true);
-        this.reasonTextView = createTextView9;
-        TextView createTextView10 = createTextView(false);
-        this.dateTextView = createTextView10;
+        TextView textViewCreateTextView = createTextView(LocaleController.getString(R.string.BoostingFrom), false);
+        this.fromNameTextView = textViewCreateTextView;
+        TextView textViewCreateTextView2 = createTextView(LocaleController.getString(R.string.BoostingTo), false);
+        this.toNameTextView = textViewCreateTextView2;
+        TextView textViewCreateTextView3 = createTextView(LocaleController.getString(R.string.BoostingGift), false);
+        this.giftNameTextView = textViewCreateTextView3;
+        TextView textViewCreateTextView4 = createTextView(LocaleController.getString(R.string.BoostingReason), false);
+        this.reasonNameTextView = textViewCreateTextView4;
+        TextView textViewCreateTextView5 = createTextView(LocaleController.getString(R.string.BoostingDate), false);
+        this.dateNameTextView = textViewCreateTextView5;
+        TextView textViewCreateTextView6 = createTextView(true);
+        this.fromTextView = textViewCreateTextView6;
+        TextView textViewCreateTextView7 = createTextView(true);
+        this.toTextView = textViewCreateTextView7;
+        TextView textViewCreateTextView8 = createTextView(false);
+        this.giftTextView = textViewCreateTextView8;
+        TextView textViewCreateTextView9 = createTextView(true);
+        this.reasonTextView = textViewCreateTextView9;
+        TextView textViewCreateTextView10 = createTextView(false);
+        this.dateTextView = textViewCreateTextView10;
         BackupImageView backupImageView = new BackupImageView(context);
         this.fromImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(12.0f));
@@ -98,14 +98,14 @@ public class TableCell extends FrameLayout {
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, z2 ? 5 : 3, z2 ? 0.0f : 12.0f, 0.0f, z2 ? 12.0f : 0.0f, 0.0f));
         FrameLayout frameLayout2 = this.fromFrameLayout;
         boolean z3 = LocaleController.isRTL;
-        frameLayout2.addView(createTextView6, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 16, z3 ? 0.0f : 29.0f, 0.0f, z3 ? 29.0f : 0.0f, 0.0f));
+        frameLayout2.addView(textViewCreateTextView6, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 16, z3 ? 0.0f : 29.0f, 0.0f, z3 ? 29.0f : 0.0f, 0.0f));
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(-2, -2, LocaleController.isRTL ? 1.0f : 0.0f);
         layoutParams.gravity = 16;
         if (LocaleController.isRTL) {
             tableRow.addView(this.fromFrameLayout, layoutParams);
-            tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
+            tableRow.addView(textViewCreateTextView, new TableRow.LayoutParams(-2, -2));
         } else {
-            tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
+            tableRow.addView(textViewCreateTextView, new TableRow.LayoutParams(-2, -2));
             tableRow.addView(this.fromFrameLayout, layoutParams);
         }
         this.fromFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
@@ -116,41 +116,41 @@ public class TableCell extends FrameLayout {
         frameLayout3.addView(backupImageView2, LayoutHelper.createFrame(24, 24.0f, z4 ? 5 : 3, z4 ? 0.0f : 12.0f, 0.0f, z4 ? 12.0f : 0.0f, 0.0f));
         FrameLayout frameLayout4 = this.toFrameLayout;
         boolean z5 = LocaleController.isRTL;
-        frameLayout4.addView(createTextView7, LayoutHelper.createFrame(-2, -2.0f, (z5 ? 5 : 3) | 16, z5 ? 0.0f : 29.0f, 0.0f, z5 ? 29.0f : 0.0f, 0.0f));
+        frameLayout4.addView(textViewCreateTextView7, LayoutHelper.createFrame(-2, -2.0f, (z5 ? 5 : 3) | 16, z5 ? 0.0f : 29.0f, 0.0f, z5 ? 29.0f : 0.0f, 0.0f));
         TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(-2, -2, LocaleController.isRTL ? 1.0f : 0.0f);
         layoutParams2.gravity = 16;
         if (LocaleController.isRTL) {
             tableRow2.addView(this.toFrameLayout, layoutParams2);
-            tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
+            tableRow2.addView(textViewCreateTextView2, new TableRow.LayoutParams(-2, -2));
         } else {
-            tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
+            tableRow2.addView(textViewCreateTextView2, new TableRow.LayoutParams(-2, -2));
             tableRow2.addView(this.toFrameLayout, layoutParams2);
         }
         this.toFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         TableRow tableRow3 = new TableRow(context);
         if (LocaleController.isRTL) {
-            tableRow3.addView(createTextView8, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow3.addView(createTextView3, new TableRow.LayoutParams(-2, -2));
+            tableRow3.addView(textViewCreateTextView8, new TableRow.LayoutParams(-2, -2, 1.0f));
+            tableRow3.addView(textViewCreateTextView3, new TableRow.LayoutParams(-2, -2));
         } else {
-            tableRow3.addView(createTextView3, new TableRow.LayoutParams(-2, -2));
-            tableRow3.addView(createTextView8, new TableRow.LayoutParams(-2, -2));
+            tableRow3.addView(textViewCreateTextView3, new TableRow.LayoutParams(-2, -2));
+            tableRow3.addView(textViewCreateTextView8, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow4 = new TableRow(context);
         this.tableRow4 = tableRow4;
         if (LocaleController.isRTL) {
-            tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2, 1.0f));
-            this.tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
+            tableRow4.addView(textViewCreateTextView9, new TableRow.LayoutParams(-2, -2, 1.0f));
+            this.tableRow4.addView(textViewCreateTextView4, new TableRow.LayoutParams(-2, -2));
         } else {
-            tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
-            this.tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2));
+            tableRow4.addView(textViewCreateTextView4, new TableRow.LayoutParams(-2, -2));
+            this.tableRow4.addView(textViewCreateTextView9, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow5 = new TableRow(context);
         if (LocaleController.isRTL) {
-            tableRow5.addView(createTextView10, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow5.addView(createTextView5, new TableRow.LayoutParams(-2, -2));
+            tableRow5.addView(textViewCreateTextView10, new TableRow.LayoutParams(-2, -2, 1.0f));
+            tableRow5.addView(textViewCreateTextView5, new TableRow.LayoutParams(-2, -2));
         } else {
-            tableRow5.addView(createTextView5, new TableRow.LayoutParams(-2, -2));
-            tableRow5.addView(createTextView10, new TableRow.LayoutParams(-2, -2));
+            tableRow5.addView(textViewCreateTextView5, new TableRow.LayoutParams(-2, -2));
+            tableRow5.addView(textViewCreateTextView10, new TableRow.LayoutParams(-2, -2));
         }
         TableLayout tableLayout = new TableLayout(context) {
             @Override
@@ -201,7 +201,7 @@ public class TableCell extends FrameLayout {
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
         final TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id)));
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (tL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "**");
@@ -210,17 +210,17 @@ public class TableCell extends FrameLayout {
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
+                    callback.run(tL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
             this.reasonTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
+                    callback.run(tL_payments_checkedGiftCode);
                 }
             });
         } else {
-            this.reasonTextView.setText(LocaleController.getString(isChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
+            this.reasonTextView.setText(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
             this.reasonTextView.setOnClickListener(null);
         }
         int i = tL_payments_checkedGiftCode.months;
@@ -230,19 +230,19 @@ public class TableCell extends FrameLayout {
             spannableStringBuilder2.append((CharSequence) "**");
             spannableStringBuilder2.append((CharSequence) chat.title);
             spannableStringBuilder2.append((CharSequence) "**");
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(chat);
+                    callback.run(chat);
                 }
             }, this.resourcesProvider);
             TextView textView = this.fromTextView;
-            textView.setText(Emoji.replaceEmoji(replaceSingleTag, textView.getPaint().getFontMetricsInt(), false));
+            textView.setText(Emoji.replaceEmoji(spannableStringBuilderReplaceSingleTag, textView.getPaint().getFontMetricsInt(), false));
             this.fromImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
             this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    Utilities.Callback.this.run(chat);
+                    callback.run(chat);
                 }
             });
         } else {
@@ -252,7 +252,7 @@ public class TableCell extends FrameLayout {
             this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    Utilities.Callback.this.run(user);
+                    callback.run(user);
                 }
             });
         }
@@ -264,7 +264,7 @@ public class TableCell extends FrameLayout {
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
+                    callback.run(tL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
             this.toTextView.setText(LocaleController.getString(R.string.BoostingNoRecipient));
@@ -279,19 +279,19 @@ public class TableCell extends FrameLayout {
                 spannableStringBuilder4.append((CharSequence) "**");
                 spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
                 spannableStringBuilder4.append((CharSequence) "**");
-                SpannableStringBuilder replaceSingleTag2 = AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                SpannableStringBuilder spannableStringBuilderReplaceSingleTag2 = AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        Utilities.Callback.this.run(user2);
+                        callback.run(user2);
                     }
                 }, this.resourcesProvider);
                 TextView textView2 = this.toTextView;
-                textView2.setText(Emoji.replaceEmoji(replaceSingleTag2, textView2.getPaint().getFontMetricsInt(), false));
+                textView2.setText(Emoji.replaceEmoji(spannableStringBuilderReplaceSingleTag2, textView2.getPaint().getFontMetricsInt(), false));
                 this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
                 this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        Utilities.Callback.this.run(user2);
+                        callback.run(user2);
                     }
                 });
             }

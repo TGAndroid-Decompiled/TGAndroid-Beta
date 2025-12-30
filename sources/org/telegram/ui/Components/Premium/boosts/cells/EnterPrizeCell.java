@@ -37,12 +37,12 @@ public class EnterPrizeCell extends LinearLayout {
         InputFilter[] inputFilterArr = {new InputFilter.LengthFilter(128) {
             @Override
             public CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-                CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
-                if (filter != null && filter.length() == 0) {
+                CharSequence charSequenceFilter = super.filter(charSequence, i, i2, spanned, i3, i4);
+                if (charSequenceFilter != null && charSequenceFilter.length() == 0) {
                     AndroidUtilities.shakeView(EnterPrizeCell.this.editText);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 }
-                return filter;
+                return charSequenceFilter;
             }
         }};
         editTextCaption.setInputType(16384);
@@ -80,9 +80,9 @@ public class EnterPrizeCell extends LinearLayout {
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         if (LocaleController.isRTL) {
-            LinearLayout.LayoutParams createLinear = LayoutHelper.createLinear(-1, -2, 16, 20, 0, 36, 0);
-            createLinear.weight = 1.0f;
-            addView(editTextCaption, createLinear);
+            LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, -2, 16, 20, 0, 36, 0);
+            layoutParamsCreateLinear.weight = 1.0f;
+            addView(editTextCaption, layoutParamsCreateLinear);
             addView(textView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
             return;
         }

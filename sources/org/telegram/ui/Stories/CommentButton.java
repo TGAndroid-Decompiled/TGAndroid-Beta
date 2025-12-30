@@ -80,17 +80,17 @@ public class CommentButton extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
-        float isNotEmpty = this.countScale * this.countText.isNotEmpty();
-        float max = Math.max(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f) + this.countText.getCurrentWidth());
+        float fIsNotEmpty = this.countScale * this.countText.isNotEmpty();
+        float fMax = Math.max(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f) + this.countText.getCurrentWidth());
         canvas.save();
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.scale(isNotEmpty, isNotEmpty, rectF.centerX(), rectF.centerY());
+        rectF.set(getWidth() - fMax, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        canvas.scale(fIsNotEmpty, fIsNotEmpty, rectF.centerX(), rectF.centerY());
         rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.clearPaint);
-        rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        rectF.set(getWidth() - fMax, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.backgroundPaint);
-        canvas.translate(rectF.left + ((max - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(7.0f));
+        canvas.translate(rectF.left + ((fMax - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(7.0f));
         this.countText.draw(canvas);
         canvas.restore();
         canvas.restore();
@@ -128,12 +128,12 @@ public class CommentButton extends FrameLayout {
             valueAnimator.cancel();
             this.countAnimator = null;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.countAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.countAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CommentButton.this.lambda$animateBounce$0(valueAnimator2);
+                this.f$0.lambda$animateBounce$0(valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {

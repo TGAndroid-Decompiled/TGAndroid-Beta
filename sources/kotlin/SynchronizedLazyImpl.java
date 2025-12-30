@@ -5,7 +5,7 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class SynchronizedLazyImpl implements Lazy, Serializable {
+final class SynchronizedLazyImpl implements Lazy, Serializable {
     private volatile Object _value;
     private Function0 initializer;
     private final Object lock;
@@ -23,23 +23,23 @@ public final class SynchronizedLazyImpl implements Lazy, Serializable {
 
     @Override
     public Object getValue() {
-        Object obj;
-        Object obj2 = this._value;
+        Object objInvoke;
+        Object obj = this._value;
         UNINITIALIZED_VALUE uninitialized_value = UNINITIALIZED_VALUE.INSTANCE;
-        if (obj2 != uninitialized_value) {
-            return obj2;
+        if (obj != uninitialized_value) {
+            return obj;
         }
         synchronized (this.lock) {
-            obj = this._value;
-            if (obj == uninitialized_value) {
+            objInvoke = this._value;
+            if (objInvoke == uninitialized_value) {
                 Function0 function0 = this.initializer;
                 Intrinsics.checkNotNull(function0);
-                obj = function0.invoke();
-                this._value = obj;
+                objInvoke = function0.invoke();
+                this._value = objInvoke;
                 this.initializer = null;
             }
         }
-        return obj;
+        return objInvoke;
     }
 
     public boolean isInitialized() {

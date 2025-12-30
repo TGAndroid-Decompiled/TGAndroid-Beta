@@ -31,15 +31,15 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3 = i;
-        int i4 = this.maxHeight;
-        int makeMeasureSpec = i4 != 0 ? View.MeasureSpec.makeMeasureSpec(i4, Integer.MIN_VALUE) : i2;
+        int iMakeMeasureSpec = i;
+        int i3 = this.maxHeight;
+        int iMakeMeasureSpec2 = i3 != 0 ? View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE) : i2;
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsLayout;
         if (reactionsContainerLayout != null && this.popupWindowLayout != null) {
             reactionsContainerLayout.getLayoutParams().width = -2;
             ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = 0;
             this.popupLayoutLeftOffset = 0.0f;
-            super.onMeasure(i3, makeMeasureSpec);
+            super.onMeasure(iMakeMeasureSpec, iMakeMeasureSpec2);
             int measuredWidth = this.reactionsLayout.getMeasuredWidth();
             if (this.popupWindowLayout.getSwipeBack() != null && this.popupWindowLayout.getSwipeBack().getMeasuredWidth() > measuredWidth) {
                 measuredWidth = this.popupWindowLayout.getSwipeBack().getMeasuredWidth();
@@ -48,7 +48,7 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                 measuredWidth = this.popupWindowLayout.getMeasuredWidth();
             }
             if (this.reactionsLayout.showCustomEmojiReaction()) {
-                i3 = View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824);
+                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824);
             }
             this.reactionsLayout.measureHint();
             int totalWidth = this.reactionsLayout.getTotalWidth();
@@ -65,13 +65,13 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                 this.reactionsLayout.getLayoutParams().width = totalWidth;
                 this.reactionsLayout.bigCircleOffset = Math.max((totalWidth - childAt.getMeasuredWidth()) - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             } else if (totalWidth > measuredWidth2) {
-                int dp = ((measuredWidth2 - AndroidUtilities.dp(16.0f)) / AndroidUtilities.dp(36.0f)) + 1;
-                int dp2 = (AndroidUtilities.dp(36.0f) * dp) + AndroidUtilities.dp(8.0f);
-                if (hintTextWidth + AndroidUtilities.dp(24.0f) > dp2) {
-                    dp2 = hintTextWidth + AndroidUtilities.dp(24.0f);
+                int iDp = ((measuredWidth2 - AndroidUtilities.dp(16.0f)) / AndroidUtilities.dp(36.0f)) + 1;
+                int iDp2 = (AndroidUtilities.dp(36.0f) * iDp) + AndroidUtilities.dp(8.0f);
+                if (hintTextWidth + AndroidUtilities.dp(24.0f) > iDp2) {
+                    iDp2 = hintTextWidth + AndroidUtilities.dp(24.0f);
                 }
-                if (dp2 <= totalWidth && dp != this.reactionsLayout.getItemsCount()) {
-                    totalWidth = dp2;
+                if (iDp2 <= totalWidth && iDp != this.reactionsLayout.getItemsCount()) {
+                    totalWidth = iDp2;
                 }
                 this.reactionsLayout.getLayoutParams().width = totalWidth;
             } else {
@@ -82,16 +82,16 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                 if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth3 > measuredWidth) {
                     measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
                 }
-                r5 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
-                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r5;
+                i = measuredWidth3 >= 0 ? measuredWidth3 : 0;
+                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = i;
                 this.popupLayoutLeftOffset = 0.0f;
                 updatePopupTranslation();
             } else {
                 float measuredWidth4 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
                 this.popupLayoutLeftOffset = measuredWidth4;
-                int i5 = (int) (r6.bigCircleOffset - measuredWidth4);
-                this.reactionsLayout.bigCircleOffset = i5;
-                if (i5 < AndroidUtilities.dp(36.0f)) {
+                int i4 = (int) (r6.bigCircleOffset - measuredWidth4);
+                this.reactionsLayout.bigCircleOffset = i4;
+                if (i4 < AndroidUtilities.dp(36.0f)) {
                     this.popupLayoutLeftOffset = 0.0f;
                     this.reactionsLayout.bigCircleOffset = AndroidUtilities.dp(36.0f);
                 }
@@ -105,14 +105,14 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                     this.bottomView.getLayoutParams().width = -1;
                 }
                 if (this.popupWindowLayout.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r5 + AndroidUtilities.dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = i + AndroidUtilities.dp(36.0f);
                 } else {
                     ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
                 }
             }
-            super.onMeasure(i3, makeMeasureSpec);
+            super.onMeasure(iMakeMeasureSpec, iMakeMeasureSpec2);
         } else {
-            super.onMeasure(i3, makeMeasureSpec);
+            super.onMeasure(iMakeMeasureSpec, iMakeMeasureSpec2);
         }
         this.maxHeight = getMeasuredHeight();
     }
@@ -142,14 +142,14 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
         actionBarPopupWindowLayout.setOnSizeChangedListener(new ActionBarPopupWindow.onSizeChangedListener() {
             @Override
             public final void onSizeChanged() {
-                ChatScrimPopupContainerLayout.this.lambda$setPopupWindowLayout$0(actionBarPopupWindowLayout);
+                this.f$0.lambda$setPopupWindowLayout$0(actionBarPopupWindowLayout);
             }
         });
         if (actionBarPopupWindowLayout.getSwipeBack() != null) {
             actionBarPopupWindowLayout.getSwipeBack().addOnSwipeBackProgressListener(new PopupSwipeBackLayout.OnSwipeBackProgressListener() {
                 @Override
                 public final void onSwipeBackProgress(PopupSwipeBackLayout popupSwipeBackLayout, float f, float f2) {
-                    ChatScrimPopupContainerLayout.this.lambda$setPopupWindowLayout$1(popupSwipeBackLayout, f, f2);
+                    this.f$0.lambda$setPopupWindowLayout$1(popupSwipeBackLayout, f, f2);
                 }
             });
         }

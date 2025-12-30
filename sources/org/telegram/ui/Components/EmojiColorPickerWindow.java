@@ -55,9 +55,7 @@ public class EmojiColorPickerWindow extends PopupWindow {
         this.pickerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public final boolean onKey(View view, int i, KeyEvent keyEvent) {
-                boolean lambda$new$1;
-                lambda$new$1 = EmojiColorPickerWindow.this.lambda$new$1(view, i, keyEvent);
-                return lambda$new$1;
+                return this.f$0.lambda$new$1(view, i, keyEvent);
             }
         });
     }
@@ -95,12 +93,12 @@ public class EmojiColorPickerWindow extends PopupWindow {
     }
 
     public void onTouchMove(int i) {
-        int max;
-        if (this.isCompound || getSelection() == (max = Math.max(0, Math.min(5, i / (this.emojiSize + AndroidUtilities.dp(4.0f)))))) {
+        int iMax;
+        if (this.isCompound || getSelection() == (iMax = Math.max(0, Math.min(5, i / (this.emojiSize + AndroidUtilities.dp(4.0f)))))) {
             return;
         }
         AndroidUtilities.vibrateCursor(this.pickerView);
-        setSelection(max);
+        setSelection(iMax);
     }
 
     public boolean isCompound() {
@@ -200,10 +198,10 @@ public class EmojiColorPickerWindow extends PopupWindow {
                 this.drawables[8] = CompoundEmoji.getCompoundEmojiDrawable(this.currentEmoji, -2, 2);
                 this.drawables[9] = CompoundEmoji.getCompoundEmojiDrawable(this.currentEmoji, -2, 3);
                 this.drawables[10] = CompoundEmoji.getCompoundEmojiDrawable(this.currentEmoji, -2, 4);
-                Pair<Integer, Integer> isHandshake = CompoundEmoji.isHandshake(str);
-                if (isHandshake != null) {
-                    setSelection(0, ((Integer) isHandshake.first).intValue());
-                    setSelection(1, ((Integer) isHandshake.second).intValue());
+                Pair<Integer, Integer> pairIsHandshake = CompoundEmoji.isHandshake(str);
+                if (pairIsHandshake != null) {
+                    setSelection(0, ((Integer) pairIsHandshake.first).intValue());
+                    setSelection(1, ((Integer) pairIsHandshake.second).intValue());
                     int[] iArr = this.selection;
                     this.both = iArr[0] == iArr[1];
                 }
@@ -322,23 +320,23 @@ public class EmojiColorPickerWindow extends PopupWindow {
                     int i = 0;
                     while (i < 2) {
                         float f2 = (i == 0 ? this.selection1Animated : this.selection2Animated).set(this.selection[i]);
-                        int dp = (int) ((this.emojiSize * (f2 + 1.0f)) + AndroidUtilities.dp((Math.max(0.0f, Math.min(1.0f, r14)) * 3.0f) + f + (r14 * 4.0f)));
-                        float max = Math.max(0.0f, Math.min(1.0f, -f2));
-                        int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(3.0f) + ((this.emojiSize + AndroidUtilities.dp(1.0f)) * i), (getMeasuredHeight() - this.emojiSize) / 2, max);
+                        int iDp = (int) ((this.emojiSize * (f2 + 1.0f)) + AndroidUtilities.dp((Math.max(0.0f, Math.min(1.0f, r14)) * 3.0f) + f + (r14 * 4.0f)));
+                        float fMax = Math.max(0.0f, Math.min(1.0f, -f2));
+                        int iLerp = AndroidUtilities.lerp(AndroidUtilities.dp(3.0f) + ((this.emojiSize + AndroidUtilities.dp(1.0f)) * i), (getMeasuredHeight() - this.emojiSize) / 2, fMax);
                         int i2 = this.emojiSize;
-                        this.rect.set(dp, lerp, dp + i2, lerp + i2);
-                        this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(max * (-2.0f)));
-                        this.rectPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), AndroidUtilities.lerp(1.0f, 0.5f, max)));
+                        this.rect.set(iDp, iLerp, iDp + i2, iLerp + i2);
+                        this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(fMax * (-2.0f)));
+                        this.rectPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), AndroidUtilities.lerp(1.0f, 0.5f, fMax)));
                         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.rectPaint);
                         int i3 = 0;
                         while (i3 < 5) {
                             i3++;
                             int i4 = (i * 5) + i3;
-                            int dp2 = (this.emojiSize * i3) + AndroidUtilities.dp((i3 * 4) + 8);
-                            int dp3 = AndroidUtilities.dp(3.0f) + ((this.emojiSize + AndroidUtilities.dp(1.0f)) * i);
+                            int iDp2 = (this.emojiSize * i3) + AndroidUtilities.dp((i3 * 4) + 8);
+                            int iDp3 = AndroidUtilities.dp(3.0f) + ((this.emojiSize + AndroidUtilities.dp(1.0f)) * i);
                             Drawable drawable = this.drawables[i4];
                             int i5 = this.emojiSize;
-                            drawable.setBounds(dp2, dp3, dp2 + i5, i5 + dp3);
+                            drawable.setBounds(iDp2, iDp3, iDp2 + i5, i5 + iDp3);
                             this.drawables[i4].draw(canvas);
                         }
                         i++;
@@ -350,23 +348,23 @@ public class EmojiColorPickerWindow extends PopupWindow {
                     return;
                 }
                 float f3 = this.selection1Animated.set(this.selection[0]);
-                int dp4 = AndroidUtilities.dp(5.0f);
-                float f4 = dp4;
+                int iDp4 = AndroidUtilities.dp(5.0f);
+                float f4 = iDp4;
                 int i6 = this.emojiSize;
-                this.rect.set((int) ((this.emojiSize * f3) + AndroidUtilities.dp((f3 * 4.0f) + 5.0f)), f4, r5 + i6, i6 + dp4);
+                this.rect.set((int) ((this.emojiSize * f3) + AndroidUtilities.dp((f3 * 4.0f) + 5.0f)), f4, r5 + i6, i6 + iDp4);
                 this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(-2.0f));
                 this.rectPaint.setColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.rectPaint);
                 for (int i7 = 0; i7 < 6; i7++) {
                     Drawable drawable2 = this.drawables[i7];
                     if (drawable2 != null) {
-                        int dp5 = (this.emojiSize * i7) + AndroidUtilities.dp((i7 * 4) + 5);
-                        float min = ((1.0f - (Math.min(0.5f, Math.abs(i7 - f3)) * 2.0f)) * 0.1f) + 0.9f;
+                        int iDp5 = (this.emojiSize * i7) + AndroidUtilities.dp((i7 * 4) + 5);
+                        float fMin = ((1.0f - (Math.min(0.5f, Math.abs(i7 - f3)) * 2.0f)) * 0.1f) + 0.9f;
                         canvas.save();
                         float f5 = this.emojiSize / 2.0f;
-                        canvas.scale(min, min, dp5 + f5, f5 + f4);
+                        canvas.scale(fMin, fMin, iDp5 + f5, f5 + f4);
                         int i8 = this.emojiSize;
-                        drawable2.setBounds(dp5, dp4, dp5 + i8, i8 + dp4);
+                        drawable2.setBounds(iDp5, iDp4, iDp5 + i8, i8 + iDp4);
                         drawable2.draw(canvas);
                         canvas.restore();
                     }
@@ -375,24 +373,24 @@ public class EmojiColorPickerWindow extends PopupWindow {
         }
     }
 
-    private void init() {
-        Field field;
+    private void init() throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+        Field declaredField;
         if (superListenerField == null) {
             try {
-                field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
+                declaredField = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
                 try {
-                    field.setAccessible(true);
+                    declaredField.setAccessible(true);
                 } catch (Exception unused) {
                 }
             } catch (Exception unused2) {
-                field = null;
+                declaredField = null;
             }
-            superListenerField = field;
+            superListenerField = declaredField;
         }
-        Field field2 = superListenerField;
-        if (field2 != null) {
+        Field field = superListenerField;
+        if (field != null) {
             try {
-                this.mSuperScrollListener = (ViewTreeObserver.OnScrollChangedListener) field2.get(this);
+                this.mSuperScrollListener = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
                 superListenerField.set(this, NOP);
             } catch (Exception unused3) {
                 this.mSuperScrollListener = null;

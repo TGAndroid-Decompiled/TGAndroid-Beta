@@ -4,13 +4,13 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.SourceLocation;
 
-public class JoinPointImpl implements JoinPoint {
+class JoinPointImpl implements JoinPoint {
     Object _this;
     Object[] args;
     JoinPoint.StaticPart staticPart;
     Object target;
 
-    public static class StaticPartImpl implements JoinPoint.StaticPart {
+    static class StaticPartImpl implements JoinPoint.StaticPart {
         private int id;
         String kind;
         Signature signature;

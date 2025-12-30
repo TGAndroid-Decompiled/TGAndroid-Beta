@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.Theme;
 public abstract class BasePermissionsActivity extends FragmentActivity {
     protected int currentAccount = -1;
 
-    public boolean checkPermissionsResult(int i, String[] strArr, int[] iArr) {
+    protected boolean checkPermissionsResult(int i, String[] strArr, int[] iArr) {
         if (iArr == null) {
             iArr = new int[0];
         }
@@ -49,10 +49,10 @@ public abstract class BasePermissionsActivity extends FragmentActivity {
             }
             ContactsController.getInstance(this.currentAccount).forceImportContacts();
         } else if (i == 3 || i == 150) {
-            int min = Math.min(strArr.length, iArr.length);
+            int iMin = Math.min(strArr.length, iArr.length);
             boolean z2 = true;
             boolean z3 = true;
-            for (int i2 = 0; i2 < min; i2++) {
+            for (int i2 = 0; i2 < iMin; i2++) {
                 if ("android.permission.RECORD_AUDIO".equals(strArr[i2])) {
                     z2 = iArr[i2] == 0;
                 } else if ("android.permission.CAMERA".equals(strArr[i2])) {
@@ -83,11 +83,11 @@ public abstract class BasePermissionsActivity extends FragmentActivity {
         return true;
     }
 
-    public AlertDialog createPermissionErrorAlert(int i, String str) {
+    protected AlertDialog createPermissionErrorAlert(int i, String str) {
         return new AlertDialog.Builder(this).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(str)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                BasePermissionsActivity.this.lambda$createPermissionErrorAlert$0(alertDialog, i2);
+                this.f$0.lambda$createPermissionErrorAlert$0(alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create();
     }

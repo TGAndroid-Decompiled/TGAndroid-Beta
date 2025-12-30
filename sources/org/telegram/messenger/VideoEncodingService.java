@@ -75,8 +75,8 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         if (i == NotificationCenter.fileUploadProgressChanged) {
             String str3 = (String) objArr[0];
             if (i2 == this.currentAccount && (str2 = this.currentPath) != null && str2.equals(str3)) {
-                float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
-                int i3 = (int) (min * 100.0f);
+                float fMin = Math.min(1.0f, ((Long) objArr[1]).longValue() / ((Long) objArr[2]).longValue());
+                int i3 = (int) (fMin * 100.0f);
                 this.builder.setProgress(100, i3, i3 == 0);
                 updateNotification();
                 return;
@@ -89,7 +89,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VideoEncodingService.this.lambda$didReceivedNotification$0();
+                        this.f$0.lambda$didReceivedNotification$0();
                     }
                 });
             }
@@ -141,7 +141,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoEncodingService.this.updateNotification();
+                this.f$0.updateNotification();
             }
         });
         return 2;

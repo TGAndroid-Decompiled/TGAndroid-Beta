@@ -109,7 +109,7 @@ public class DialogObject {
     }
 
     public static String setDialogPhotoTitle(ImageReceiver imageReceiver, AvatarDrawable avatarDrawable, TLObject tLObject) {
-        String str;
+        String userName;
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (UserObject.isReplyUser(user)) {
@@ -134,7 +134,7 @@ public class DialogObject {
                 imageReceiver.setForUserOrChat(null, avatarDrawable);
                 return string2;
             }
-            str = UserObject.getUserName(user);
+            userName = UserObject.getUserName(user);
             if (avatarDrawable != null) {
                 avatarDrawable.setInfo(user);
             }
@@ -146,7 +146,7 @@ public class DialogObject {
                 return "";
             }
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-            str = chat.title;
+            userName = chat.title;
             if (avatarDrawable != null) {
                 avatarDrawable.setInfo(chat);
             }
@@ -154,7 +154,7 @@ public class DialogObject {
                 imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
             }
         }
-        return str;
+        return userName;
     }
 
     public static String getName(long j) {
@@ -283,10 +283,10 @@ public class DialogObject {
             for (int i = 0; i < arrayList.size(); i++) {
                 TLRPC.TL_username tL_username = arrayList.get(i);
                 if (tL_username != null && tL_username.active && !TextUtils.isEmpty(tL_username.username)) {
-                    double similarity = d < 0.0d ? 0.0d : similarity(tL_username.username, str2);
-                    if (similarity > d) {
+                    double dSimilarity = d < 0.0d ? 0.0d : similarity(tL_username.username, str2);
+                    if (dSimilarity > d) {
                         str3 = tL_username.username;
-                        d = similarity;
+                        d = dSimilarity;
                     }
                 }
             }
@@ -322,12 +322,12 @@ public class DialogObject {
                     iArr[i3] = i3;
                 } else if (i3 > 0) {
                     int i4 = i3 - 1;
-                    int i5 = iArr[i4];
+                    int iMin = iArr[i4];
                     if (lowerCase.charAt(i - 1) != lowerCase2.charAt(i4)) {
-                        i5 = Math.min(Math.min(i5, i2), iArr[i3]) + 1;
+                        iMin = Math.min(Math.min(iMin, i2), iArr[i3]) + 1;
                     }
                     iArr[i4] = i2;
-                    i2 = i5;
+                    i2 = iMin;
                 }
             }
             if (i > 0) {

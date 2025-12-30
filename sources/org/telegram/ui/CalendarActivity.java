@@ -52,7 +52,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.CalendarActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Easings;
@@ -173,7 +172,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         return super.onFragmentCreate();
     }
 
-    public class AnonymousClass1 implements StoryViewer.PlaceProvider {
+    class AnonymousClass1 implements StoryViewer.PlaceProvider {
         @Override
         public void loadNext(boolean z) {
             StoryViewer.PlaceProvider.CC.$default$loadNext(this, z);
@@ -206,7 +205,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                                     CalendarActivity.this.storiesPlaceDrawAbove = new StoryViewer.HolderDrawAbove() {
                                         @Override
                                         public final void draw(Canvas canvas, RectF rectF, float f, boolean z) {
-                                            CalendarActivity.AnonymousClass1.this.lambda$findView$0(canvas, rectF, f, z);
+                                            this.f$0.lambda$findView$0(canvas, rectF, f, z);
                                         }
                                     };
                                 }
@@ -227,15 +226,15 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$findView$0(Canvas canvas, RectF rectF, float f, boolean z) {
             CalendarActivity.this.blackoutPaint.setAlpha((int) (80.0f * f));
-            float lerp = AndroidUtilities.lerp(0.0f, Math.min(rectF.width(), rectF.height()) / 2.0f, f);
-            canvas.drawRoundRect(rectF, lerp, lerp, CalendarActivity.this.blackoutPaint);
-            float clamp = Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f);
-            if (clamp > 0.0f) {
+            float fLerp = AndroidUtilities.lerp(0.0f, Math.min(rectF.width(), rectF.height()) / 2.0f, f);
+            canvas.drawRoundRect(rectF, fLerp, fLerp, CalendarActivity.this.blackoutPaint);
+            float fClamp = Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f);
+            if (fClamp > 0.0f) {
                 int alpha = CalendarActivity.this.activeTextPaint.getAlpha();
-                CalendarActivity.this.activeTextPaint.setAlpha((int) (alpha * clamp));
+                CalendarActivity.this.activeTextPaint.setAlpha((int) (alpha * fClamp));
                 canvas.save();
-                float min = Math.min(2.0f, Math.min(rectF.height(), rectF.width()) / AndroidUtilities.dp(44.0f));
-                canvas.scale(min, min, rectF.centerX(), rectF.centerY());
+                float fMin = Math.min(2.0f, Math.min(rectF.height(), rectF.width()) / AndroidUtilities.dp(44.0f));
+                canvas.scale(fMin, fMin, rectF.centerX(), rectF.centerY());
                 canvas.drawText(Integer.toString(CalendarActivity.this.storiesPlaceDay + 1), rectF.centerX(), rectF.centerY() + AndroidUtilities.dp(5.0f), CalendarActivity.this.activeTextPaint);
                 canvas.restore();
                 CalendarActivity.this.activeTextPaint.setAlpha(alpha);
@@ -290,7 +289,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         this.actionBar.setCastShadows(false);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 CalendarActivity.this.checkEnterItems = false;
             }
@@ -314,7 +313,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         boolean z = this.calendarType == 0 && this.canClearHistory;
         this.contentView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 36.0f, 0.0f, z ? 48.0f : 0.0f));
         final String[] strArr = {LocaleController.getString(R.string.CalendarWeekNameShortMonday), LocaleController.getString(R.string.CalendarWeekNameShortTuesday), LocaleController.getString(R.string.CalendarWeekNameShortWednesday), LocaleController.getString(R.string.CalendarWeekNameShortThursday), LocaleController.getString(R.string.CalendarWeekNameShortFriday), LocaleController.getString(R.string.CalendarWeekNameShortSaturday), LocaleController.getString(R.string.CalendarWeekNameShortSunday)};
-        final Drawable mutate = ContextCompat.getDrawable(context, R.drawable.header_shadow).mutate();
+        final Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.header_shadow).mutate();
         this.contentView.addView(new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -323,8 +322,8 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 for (int i = 0; i < 7; i++) {
                     canvas.drawText(strArr[i], (i * measuredWidth) + (measuredWidth / 2.0f), ((getMeasuredHeight() - AndroidUtilities.dp(2.0f)) / 2.0f) + AndroidUtilities.dp(5.0f), CalendarActivity.this.textPaint2);
                 }
-                mutate.setBounds(0, getMeasuredHeight() - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
-                mutate.draw(canvas);
+                drawableMutate.setBounds(0, getMeasuredHeight() - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
+                drawableMutate.draw(canvas);
             }
         }, LayoutHelper.createFrame(-1, 38.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -383,7 +382,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             this.selectDaysButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    CalendarActivity.this.lambda$createView$0(view);
+                    this.f$0.lambda$createView$0(view);
                 }
             });
             this.selectDaysButton.setText(LocaleController.getString(R.string.SelectDays));
@@ -397,7 +396,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             this.removeDaysButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    CalendarActivity.this.lambda$createView$1(view);
+                    this.f$0.lambda$createView$1(view);
                 }
             });
             this.removeDaysButton.setAllCaps(true);
@@ -499,7 +498,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         getConnectionsManager().sendRequest(tL_messages_getSearchResultsCalendar, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CalendarActivity.this.lambda$loadNext$3(calendar, tLObject, tL_error);
+                this.f$0.lambda$loadNext$3(calendar, tLObject, tL_error);
             }
         });
     }
@@ -508,7 +507,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CalendarActivity.this.lambda$loadNext$2(tL_error, tLObject, calendar);
+                this.f$0.lambda$loadNext$2(tL_error, tLObject, calendar);
             }
         });
     }
@@ -550,7 +549,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 }
                 i3++;
             }
-            int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+            int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
             int i8 = tL_messages_searchResultsCalendar.min_date;
             this.minDate = i8;
             while (true) {
@@ -559,7 +558,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 calendar.set(12, 0);
                 calendar.set(13, 0);
                 calendar.set(14, 0);
-                if (calendar.getTimeInMillis() / 1000 > currentTimeMillis) {
+                if (calendar.getTimeInMillis() / 1000 > iCurrentTimeMillis) {
                     break;
                 }
                 int i9 = (calendar.get(1) * 100) + calendar.get(i2);
@@ -663,8 +662,8 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
             i++;
         }
-        int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        for (int i5 = this.minDate; i5 < currentTimeMillis; i5 += 86400) {
+        int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+        for (int i5 = this.minDate; i5 < iCurrentTimeMillis; i5 += 86400) {
             calendar.setTimeInMillis(i5 * 1000);
             calendar.set(11, 0);
             calendar.set(12, 0);
@@ -708,7 +707,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class CalendarAdapter extends RecyclerView.Adapter {
+    private class CalendarAdapter extends RecyclerView.Adapter {
         private CalendarAdapter() {
         }
 
@@ -718,7 +717,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new MonthView(viewGroup.getContext()));
+            return new RecyclerListView.Holder(CalendarActivity.this.new MonthView(viewGroup.getContext()));
         }
 
         @Override
@@ -749,7 +748,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class MonthView extends FrameLayout {
+    class MonthView extends FrameLayout {
         boolean attached;
         int cellCount;
         int currentMonthInYear;
@@ -776,9 +775,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 this.titleView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        boolean lambda$new$0;
-                        lambda$new$0 = CalendarActivity.MonthView.this.lambda$new$0(view);
-                        return lambda$new$0;
+                        return this.f$0.lambda$new$0(view);
                     }
                 });
                 this.titleView.setOnClickListener(new View.OnClickListener() {
@@ -851,7 +848,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             return false;
         }
 
-        public class AnonymousClass2 extends GestureDetector.SimpleOnGestureListener {
+        class AnonymousClass2 extends GestureDetector.SimpleOnGestureListener {
             final Context val$context;
             final CalendarActivity val$this$0;
 
@@ -955,14 +952,14 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 }
                 int i = monthView.startDayOfWeek;
                 float measuredWidth = monthView.getMeasuredWidth() / 7.0f;
-                float dp = AndroidUtilities.dp(52.0f);
-                int dp2 = AndroidUtilities.dp(44.0f) / 2;
+                float fDp = AndroidUtilities.dp(52.0f);
+                int iDp = AndroidUtilities.dp(44.0f) / 2;
                 int i2 = 0;
                 for (int i3 = 0; i3 < MonthView.this.daysInMonth; i3++) {
                     float f3 = (i * measuredWidth) + (measuredWidth / 2.0f);
-                    float dp3 = (i2 * dp) + (dp / 2.0f) + AndroidUtilities.dp(44.0f);
-                    float f4 = dp2;
-                    if (f >= f3 - f4 && f <= f3 + f4 && f2 >= dp3 - f4 && f2 <= dp3 + f4 && (periodDay = (PeriodDay) MonthView.this.messagesByDays.get(i3, null)) != null) {
+                    float fDp2 = (i2 * fDp) + (fDp / 2.0f) + AndroidUtilities.dp(44.0f);
+                    float f4 = iDp;
+                    if (f >= f3 - f4 && f <= f3 + f4 && f2 >= fDp2 - f4 && f2 <= fDp2 + f4 && (periodDay = (PeriodDay) MonthView.this.messagesByDays.get(i3, null)) != null) {
                         return periodDay;
                     }
                     i++;
@@ -1002,7 +999,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CalendarActivity.MonthView.AnonymousClass2.this.lambda$onLongPress$1(dayAtCoord, view);
+                        this.f$0.lambda$onLongPress$1(dayAtCoord, view);
                     }
                 });
                 actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -1013,7 +1010,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            CalendarActivity.MonthView.AnonymousClass2.this.lambda$onLongPress$2(dayAtCoord, view);
+                            this.f$0.lambda$onLongPress$2(dayAtCoord, view);
                         }
                     });
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
@@ -1023,7 +1020,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            CalendarActivity.MonthView.AnonymousClass2.this.lambda$onLongPress$3(view);
+                            this.f$0.lambda$onLongPress$3(view);
                         }
                     });
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
@@ -1042,7 +1039,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.blurredView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CalendarActivity.MonthView.AnonymousClass2.this.lambda$onLongPress$4(view);
+                        this.f$0.lambda$onLongPress$4(view);
                     }
                 });
                 CalendarActivity.this.blurredView.setVisibility(8);
@@ -1059,7 +1056,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                CalendarActivity.MonthView.AnonymousClass2.this.lambda$onLongPress$0(baseFragment, periodDay);
+                                this.f$0.lambda$onLongPress$0(baseFragment, periodDay);
                             }
                         }, 300L);
                     }
@@ -1178,7 +1175,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        CalendarActivity.MonthView.this.lambda$animateRow$1(rowAnimationValue2, f7, f8, f9, f10, f3, f11, valueAnimator2);
+                        this.f$0.lambda$animateRow$1(rowAnimationValue2, f7, f8, f9, f10, f3, f11, valueAnimator2);
                     }
                 });
                 final float f12 = f4;
@@ -1214,10 +1211,10 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$animateRow$1(RowAnimationValue rowAnimationValue, float f, float f2, float f3, float f4, float f5, float f6, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            rowAnimationValue.startX = f + ((f2 - f) * floatValue);
-            rowAnimationValue.endX = f3 + ((f4 - f3) * floatValue);
-            rowAnimationValue.alpha = f5 + ((f6 - f5) * floatValue);
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            rowAnimationValue.startX = f + ((f2 - f) * fFloatValue);
+            rowAnimationValue.endX = f3 + ((f4 - f3) * fFloatValue);
+            rowAnimationValue.alpha = f5 + ((f6 - f5) * fFloatValue);
             invalidate();
         }
 
@@ -1246,13 +1243,13 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 }
                 int i4 = 0;
                 while (i4 < sparseArray.size()) {
-                    int keyAt = sparseArray.keyAt(i4);
-                    if (this.imagesByDays.get(keyAt, z4) == null && ((PeriodDay) sparseArray.get(keyAt)).hasImage) {
+                    int iKeyAt = sparseArray.keyAt(i4);
+                    if (this.imagesByDays.get(iKeyAt, z4) == null && ((PeriodDay) sparseArray.get(iKeyAt)).hasImage) {
                         ImageReceiver imageReceiver = new ImageReceiver();
                         imageReceiver.setParentView(this);
-                        MessageObject messageObject = ((PeriodDay) sparseArray.get(keyAt)).messageObject;
+                        MessageObject messageObject = ((PeriodDay) sparseArray.get(iKeyAt)).messageObject;
                         if (messageObject != null) {
-                            boolean hasMediaSpoilers = messageObject.hasMediaSpoilers();
+                            boolean zHasMediaSpoilers = messageObject.hasMediaSpoilers();
                             if (messageObject.isVideo()) {
                                 TLRPC.Document document = messageObject.getDocument();
                                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 50);
@@ -1262,9 +1259,9 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                                 }
                                 if (closestPhotoSizeWithSize != null) {
                                     if (messageObject.strippedThumb != null) {
-                                        imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), hasMediaSpoilers ? "5_5_b" : "44_44", messageObject.strippedThumb, null, messageObject, 0);
+                                        imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), zHasMediaSpoilers ? "5_5_b" : "44_44", messageObject.strippedThumb, null, messageObject, 0);
                                     } else {
-                                        imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), hasMediaSpoilers ? "5_5_b" : "44_44", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "b", (String) null, messageObject, 0);
+                                        imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), zHasMediaSpoilers ? "5_5_b" : "44_44", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "b", (String) null, messageObject, 0);
                                     }
                                 }
                             } else {
@@ -1277,9 +1274,9 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                                             closestPhotoSizeWithSize3 = null;
                                         }
                                         if (messageObject.strippedThumb != null) {
-                                            imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), hasMediaSpoilers ? "5_5_b" : "44_44", null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                                            imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), zHasMediaSpoilers ? "5_5_b" : "44_44", null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                                         } else {
-                                            imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), hasMediaSpoilers ? "5_5_b" : "44_44", ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                                            imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), zHasMediaSpoilers ? "5_5_b" : "44_44", ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                                         }
                                     } else {
                                         BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
@@ -1292,7 +1289,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                                 }
                             }
                             imageReceiver.setRoundRadius(AndroidUtilities.dp(22.0f));
-                            this.imagesByDays.put(keyAt, imageReceiver);
+                            this.imagesByDays.put(iKeyAt, imageReceiver);
                         }
                     }
                     i4++;
@@ -1333,25 +1330,25 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             int i2 = this.startDayOfWeek;
             float f8 = 7.0f;
             float measuredWidth = getMeasuredWidth() / 7.0f;
-            float dp = AndroidUtilities.dp(52.0f);
+            float fDp = AndroidUtilities.dp(52.0f);
             float f9 = 44.0f;
-            int dp2 = AndroidUtilities.dp(44.0f);
+            int iDp = AndroidUtilities.dp(44.0f);
             int i3 = 0;
             while (true) {
                 f = 2.0f;
                 if (i3 >= Math.ceil((this.startDayOfWeek + this.daysInMonth) / 7.0f)) {
                     break;
                 }
-                float dp3 = (i3 * dp) + (dp / 2.0f) + AndroidUtilities.dp(44.0f);
+                float fDp2 = (i3 * fDp) + (fDp / 2.0f) + AndroidUtilities.dp(44.0f);
                 RowAnimationValue rowAnimationValue = (RowAnimationValue) this.rowSelectionPos.get(i3);
                 if (rowAnimationValue != null) {
                     CalendarActivity.this.selectPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
                     CalendarActivity.this.selectPaint.setAlpha((int) (rowAnimationValue.alpha * 40.8f));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    float f10 = dp2 / 2.0f;
-                    rectF.set(rowAnimationValue.startX - f10, dp3 - f10, rowAnimationValue.endX + f10, dp3 + f10);
-                    float dp4 = AndroidUtilities.dp(32.0f);
-                    canvas.drawRoundRect(rectF, dp4, dp4, CalendarActivity.this.selectPaint);
+                    float f10 = iDp / 2.0f;
+                    rectF.set(rowAnimationValue.startX - f10, fDp2 - f10, rowAnimationValue.endX + f10, fDp2 + f10);
+                    float fDp3 = AndroidUtilities.dp(32.0f);
+                    canvas.drawRoundRect(rectF, fDp3, fDp3, CalendarActivity.this.selectPaint);
                 }
                 i3++;
             }
@@ -1360,59 +1357,59 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             int i6 = 0;
             while (i6 < this.daysInMonth) {
                 float f11 = (i4 * measuredWidth) + (measuredWidth / f);
-                float dp5 = (i5 * dp) + (dp / f) + AndroidUtilities.dp(f9);
-                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                float fDp4 = (i5 * fDp) + (fDp / f) + AndroidUtilities.dp(f9);
+                int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
                 SparseArray sparseArray = this.messagesByDays;
                 PeriodDay periodDay2 = sparseArray != null ? (PeriodDay) sparseArray.get(i6, null) : null;
                 int i7 = i6 + 1;
-                if (currentTimeMillis < this.startMonthTime + (i7 * 86400) || (CalendarActivity.this.minDate > 0 && CalendarActivity.this.minDate > this.startMonthTime + ((i6 + 2) * 86400))) {
+                if (iCurrentTimeMillis < this.startMonthTime + (i7 * 86400) || (CalendarActivity.this.minDate > 0 && CalendarActivity.this.minDate > this.startMonthTime + ((i6 + 2) * 86400))) {
                     i = i5;
                     f2 = measuredWidth;
-                    f3 = dp;
+                    f3 = fDp;
                     int alpha = CalendarActivity.this.textPaint.getAlpha();
                     CalendarActivity.this.textPaint.setAlpha((int) (alpha * 0.3f));
-                    canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + dp5, CalendarActivity.this.textPaint);
+                    canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + fDp4, CalendarActivity.this.textPaint);
                     CalendarActivity.this.textPaint.setAlpha(alpha);
                 } else if (periodDay2 == null || !periodDay2.hasImage) {
                     i = i5;
                     f2 = measuredWidth;
-                    f3 = dp;
+                    f3 = fDp;
                     PeriodDay periodDay3 = periodDay2;
                     if (periodDay3 != null && periodDay3.selectStartEndProgress >= 0.01f) {
                         CalendarActivity.this.selectPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         CalendarActivity.this.selectPaint.setAlpha((int) (periodDay3.selectStartEndProgress * 255.0f));
-                        canvas.drawCircle(f11, dp5, AndroidUtilities.dp(44.0f) / 2.0f, CalendarActivity.this.selectPaint);
+                        canvas.drawCircle(f11, fDp4, AndroidUtilities.dp(44.0f) / 2.0f, CalendarActivity.this.selectPaint);
                         Paint paint = CalendarActivity.this.selectOutlinePaint;
                         int i8 = Theme.key_chat_messagePanelVoiceBackground;
                         paint.setColor(Theme.getColor(i8));
                         RectF rectF2 = AndroidUtilities.rectTmp;
-                        rectF2.set(f11 - (AndroidUtilities.dp(44.0f) / 2.0f), dp5 - (AndroidUtilities.dp(44.0f) / 2.0f), (AndroidUtilities.dp(44.0f) / 2.0f) + f11, dp5 + (AndroidUtilities.dp(44.0f) / 2.0f));
+                        rectF2.set(f11 - (AndroidUtilities.dp(44.0f) / 2.0f), fDp4 - (AndroidUtilities.dp(44.0f) / 2.0f), (AndroidUtilities.dp(44.0f) / 2.0f) + f11, fDp4 + (AndroidUtilities.dp(44.0f) / 2.0f));
                         canvas.drawArc(rectF2, -90.0f, periodDay3.selectStartEndProgress * 360.0f, false, CalendarActivity.this.selectOutlinePaint);
-                        int dp6 = (int) (AndroidUtilities.dp(7.0f) * periodDay3.selectStartEndProgress);
+                        int iDp2 = (int) (AndroidUtilities.dp(7.0f) * periodDay3.selectStartEndProgress);
                         CalendarActivity.this.selectPaint.setColor(Theme.getColor(i8));
                         CalendarActivity.this.selectPaint.setAlpha((int) (periodDay3.selectStartEndProgress * 255.0f));
-                        canvas.drawCircle(f11, dp5, (AndroidUtilities.dp(44.0f) - dp6) / 2.0f, CalendarActivity.this.selectPaint);
+                        canvas.drawCircle(f11, fDp4, (AndroidUtilities.dp(44.0f) - iDp2) / 2.0f, CalendarActivity.this.selectPaint);
                         float f12 = periodDay3.selectStartEndProgress;
                         if (f12 != 1.0f) {
                             int alpha2 = CalendarActivity.this.textPaint.getAlpha();
                             CalendarActivity.this.textPaint.setAlpha((int) (alpha2 * (1.0f - f12)));
-                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + dp5, CalendarActivity.this.textPaint);
+                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + fDp4, CalendarActivity.this.textPaint);
                             CalendarActivity.this.textPaint.setAlpha(alpha2);
                             int alpha3 = CalendarActivity.this.textPaint.getAlpha();
                             CalendarActivity.this.activeTextPaint.setAlpha((int) (alpha3 * f12));
-                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + dp5, CalendarActivity.this.activeTextPaint);
+                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + fDp4, CalendarActivity.this.activeTextPaint);
                             CalendarActivity.this.activeTextPaint.setAlpha(alpha3);
                         } else {
-                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + dp5, CalendarActivity.this.activeTextPaint);
+                            canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + fDp4, CalendarActivity.this.activeTextPaint);
                         }
                     } else {
-                        canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + dp5, CalendarActivity.this.textPaint);
+                        canvas.drawText(Integer.toString(i7), f11, AndroidUtilities.dp(5.0f) + fDp4, CalendarActivity.this.textPaint);
                     }
                 } else {
                     if (this.imagesByDays.get(i6) != null) {
                         if (CalendarActivity.this.checkEnterItems && !periodDay2.wasDrawn) {
                             periodDay2.enterAlpha = 0.0f;
-                            periodDay2.startEnterDelay = Math.max(0.0f, ((getY() + dp5) / CalendarActivity.this.listView.getMeasuredHeight()) * 150.0f);
+                            periodDay2.startEnterDelay = Math.max(0.0f, ((getY() + fDp4) / CalendarActivity.this.listView.getMeasuredHeight()) * 150.0f);
                         }
                         float f13 = periodDay2.startEnterDelay;
                         if (f13 > 0.0f) {
@@ -1440,19 +1437,19 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         if (f6 != 1.0f) {
                             canvas.save();
                             float f17 = (0.2f * f6) + 0.8f;
-                            canvas.scale(f17, f17, f11, dp5);
+                            canvas.scale(f17, f17, f11, fDp4);
                         }
-                        int dp7 = (int) (AndroidUtilities.dp(f8) * periodDay2.selectProgress);
+                        int iDp3 = (int) (AndroidUtilities.dp(f8) * periodDay2.selectProgress);
                         if (periodDay2.selectStartEndProgress >= 0.01f) {
                             CalendarActivity.this.selectPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                             CalendarActivity.this.selectPaint.setAlpha((int) (periodDay2.selectStartEndProgress * 255.0f));
-                            canvas.drawCircle(f11, dp5, AndroidUtilities.dp(44.0f) / 2.0f, CalendarActivity.this.selectPaint);
+                            canvas.drawCircle(f11, fDp4, AndroidUtilities.dp(44.0f) / 2.0f, CalendarActivity.this.selectPaint);
                             CalendarActivity.this.selectOutlinePaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
                             RectF rectF3 = AndroidUtilities.rectTmp;
                             f2 = measuredWidth;
-                            rectF3.set(f11 - (AndroidUtilities.dp(44.0f) / 2.0f), dp5 - (AndroidUtilities.dp(44.0f) / 2.0f), (AndroidUtilities.dp(44.0f) / 2.0f) + f11, (AndroidUtilities.dp(44.0f) / 2.0f) + dp5);
+                            rectF3.set(f11 - (AndroidUtilities.dp(44.0f) / 2.0f), fDp4 - (AndroidUtilities.dp(44.0f) / 2.0f), (AndroidUtilities.dp(44.0f) / 2.0f) + f11, (AndroidUtilities.dp(44.0f) / 2.0f) + fDp4);
                             periodDay = periodDay2;
-                            f4 = dp5;
+                            f4 = fDp4;
                             f7 = f11;
                             i = i5;
                             canvas.drawArc(rectF3, -90.0f, 360.0f * periodDay2.selectStartEndProgress, false, CalendarActivity.this.selectOutlinePaint);
@@ -1461,28 +1458,28 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                             f7 = f11;
                             i = i5;
                             f2 = measuredWidth;
-                            f4 = dp5;
+                            f4 = fDp4;
                         }
                         PeriodDay periodDay4 = periodDay;
                         ((ImageReceiver) this.imagesByDays.get(i6)).setAlpha(periodDay4.enterAlpha);
                         f11 = f7;
-                        f3 = dp;
-                        ((ImageReceiver) this.imagesByDays.get(i6)).setImageCoords(f11 - ((AndroidUtilities.dp(44.0f) - dp7) / 2.0f), f4 - ((AndroidUtilities.dp(44.0f) - dp7) / 2.0f), AndroidUtilities.dp(44.0f) - dp7, AndroidUtilities.dp(44.0f) - dp7);
+                        f3 = fDp;
+                        ((ImageReceiver) this.imagesByDays.get(i6)).setImageCoords(f11 - ((AndroidUtilities.dp(44.0f) - iDp3) / 2.0f), f4 - ((AndroidUtilities.dp(44.0f) - iDp3) / 2.0f), AndroidUtilities.dp(44.0f) - iDp3, AndroidUtilities.dp(44.0f) - iDp3);
                         ((ImageReceiver) this.imagesByDays.get(i6)).draw(canvas);
                         if (this.messagesByDays.get(i6) != null && ((PeriodDay) this.messagesByDays.get(i6)).messageObject != null && ((PeriodDay) this.messagesByDays.get(i6)).messageObject.hasMediaSpoilers()) {
-                            float dp8 = (AndroidUtilities.dp(44.0f) - dp7) / 2.0f;
+                            float fDp5 = (AndroidUtilities.dp(44.0f) - iDp3) / 2.0f;
                             CalendarActivity.this.path.rewind();
-                            CalendarActivity.this.path.addCircle(f11, f4, dp8, Path.Direction.CW);
+                            CalendarActivity.this.path.addCircle(f11, f4, fDp5, Path.Direction.CW);
                             canvas.save();
                             canvas.clipPath(CalendarActivity.this.path);
                             CalendarActivity.this.mediaSpoilerEffect.setColor(ColorUtils.setAlphaComponent(-1, (int) (Color.alpha(-1) * 0.325f * periodDay4.enterAlpha)));
-                            CalendarActivity.this.mediaSpoilerEffect.setBounds((int) (f11 - dp8), (int) (f4 - dp8), (int) (f11 + dp8), (int) (dp8 + f4));
+                            CalendarActivity.this.mediaSpoilerEffect.setBounds((int) (f11 - fDp5), (int) (f4 - fDp5), (int) (f11 + fDp5), (int) (fDp5 + f4));
                             CalendarActivity.this.mediaSpoilerEffect.draw(canvas);
                             invalidate();
                             canvas.restore();
                         }
                         CalendarActivity.this.blackoutPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (periodDay4.enterAlpha * 80.0f)));
-                        canvas.drawCircle(f11, f4, (AndroidUtilities.dp(44.0f) - dp7) / 2.0f, CalendarActivity.this.blackoutPaint);
+                        canvas.drawCircle(f11, f4, (AndroidUtilities.dp(44.0f) - iDp3) / 2.0f, CalendarActivity.this.blackoutPaint);
                         periodDay4.wasDrawn = true;
                         if (f6 != 1.0f) {
                             canvas.restore();
@@ -1491,8 +1488,8 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     } else {
                         i = i5;
                         f2 = measuredWidth;
-                        f3 = dp;
-                        f4 = dp5;
+                        f3 = fDp;
+                        f4 = fDp4;
                         f5 = 1.0f;
                         f6 = 1.0f;
                     }
@@ -1517,7 +1514,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     i5 = i;
                 }
                 i6 = i7;
-                dp = f3;
+                fDp = f3;
                 measuredWidth = f2;
                 f8 = 7.0f;
                 f9 = 44.0f;
@@ -1558,18 +1555,18 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
         int i = this.dateSelectedStart;
         int i2 = this.dateSelectedEnd;
-        int abs = (i == i2 && i == 0) ? 0 : (Math.abs(i - i2) / 86400) + 1;
+        int iAbs = (i == i2 && i == 0) ? 0 : (Math.abs(i - i2) / 86400) + 1;
         boolean z = this.lastInSelectionMode;
         int i3 = this.lastDaysSelected;
-        if (abs == i3 && z == this.inSelectionMode) {
+        if (iAbs == i3 && z == this.inSelectionMode) {
             return;
         }
-        boolean z2 = i3 > abs;
-        this.lastDaysSelected = abs;
+        boolean z2 = i3 > iAbs;
+        this.lastDaysSelected = iAbs;
         boolean z3 = this.inSelectionMode;
         this.lastInSelectionMode = z3;
-        if (abs > 0) {
-            string = LocaleController.formatPluralString("Days", abs, new Object[0]);
+        if (iAbs > 0) {
+            string = LocaleController.formatPluralString("Days", iAbs, new Object[0]);
             this.backDrawable.setRotation(1.0f, true);
         } else if (z3) {
             string = LocaleController.getString(R.string.SelectDays);
@@ -1578,16 +1575,16 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             string = LocaleController.getString(R.string.Calendar);
             this.backDrawable.setRotation(0.0f, true);
         }
-        if (abs > 1) {
+        if (iAbs > 1) {
             this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForTheseDays", R.string.ClearHistoryForTheseDays, new Object[0]));
-        } else if (abs > 0 || this.inSelectionMode) {
+        } else if (iAbs > 0 || this.inSelectionMode) {
             this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForThisDay", R.string.ClearHistoryForThisDay, new Object[0]));
         }
         this.actionBar.setTitleAnimated(string, z2, 150L);
-        if ((!this.inSelectionMode || abs > 0) && (hintView = this.selectDaysHint) != null) {
+        if ((!this.inSelectionMode || iAbs > 0) && (hintView = this.selectDaysHint) != null) {
             hintView.hide();
         }
-        if (abs > 0 || this.inSelectionMode) {
+        if (iAbs > 0 || this.inSelectionMode) {
             if (this.removeDaysButton.getVisibility() == 8) {
                 this.removeDaysButton.setAlpha(0.0f);
                 this.removeDaysButton.setTranslationY(-AndroidUtilities.dp(20.0f));
@@ -1596,7 +1593,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             this.selectDaysButton.animate().setListener(null).cancel();
             this.removeDaysButton.animate().setListener(null).cancel();
             this.selectDaysButton.animate().alpha(0.0f).translationY(AndroidUtilities.dp(20.0f)).setDuration(150L).setListener(new HideViewAfterAnimation(this.selectDaysButton)).start();
-            this.removeDaysButton.animate().alpha(abs == 0 ? 0.5f : 1.0f).translationY(0.0f).start();
+            this.removeDaysButton.animate().alpha(iAbs == 0 ? 0.5f : 1.0f).translationY(0.0f).start();
             this.selectDaysButton.setEnabled(false);
             this.removeDaysButton.setEnabled(true);
             return;
@@ -1622,7 +1619,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         this.chatActivity = chatActivity;
     }
 
-    public class PeriodDay {
+    class PeriodDay {
         int date;
         float enterAlpha;
         float fromSelProgress;
@@ -1704,7 +1701,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CalendarActivity.this.lambda$animateSelection$4(valueAnimator);
+                this.f$0.lambda$animateSelection$4(valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -1741,9 +1738,9 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$animateSelection$4(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         for (int i = 0; i < this.listView.getChildCount(); i++) {
-            ((MonthView) this.listView.getChildAt(i)).setSelectionValue(floatValue);
+            ((MonthView) this.listView.getChildAt(i)).setSelectionValue(fFloatValue);
         }
     }
 
@@ -1800,7 +1797,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static final class RowAnimationValue {
+    static final class RowAnimationValue {
         float alpha;
         float endX;
         float startX;
@@ -1817,12 +1814,12 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
         int measuredWidth = (int) (this.parentLayout.getView().getMeasuredWidth() / 6.0f);
         int measuredHeight = (int) (this.parentLayout.getView().getMeasuredHeight() / 6.0f);
-        Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.scale(0.16666667f, 0.16666667f);
         this.parentLayout.getView().draw(canvas);
-        Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
-        this.blurredView.setBackground(new BitmapDrawable(createBitmap));
+        Utilities.stackBlurBitmap(bitmapCreateBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
+        this.blurredView.setBackground(new BitmapDrawable(bitmapCreateBitmap));
         this.blurredView.setAlpha(0.0f);
         this.blurredView.setVisibility(0);
     }

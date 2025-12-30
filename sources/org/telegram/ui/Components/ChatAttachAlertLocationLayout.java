@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
@@ -11,15 +10,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.ExifInterface;
-import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Property;
@@ -37,13 +33,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DialogObject;
@@ -58,6 +51,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
@@ -80,7 +74,6 @@ import org.telegram.ui.Cells.SharingLiveLocationCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -170,7 +163,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return f2;
     }
 
-    public static class SearchButton extends TextView {
+    private static class SearchButton extends TextView {
         private float additionanTranslationY;
         private float currentTranslationY;
 
@@ -230,7 +223,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             ChatAttachAlertLocationLayout.this.lastPressedMarkerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$2(venueLocation, view);
+                    this.f$0.lambda$addInfoView$2(venueLocation, view);
                 }
             });
             TextView textView = new TextView(context);
@@ -259,16 +252,16 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             BackupImageView backupImageView = new BackupImageView(context);
             backupImageView.setImage("https://ss3.4sqi.net/img/categories_v2/" + venueLocation.venue.venue_type + "_64.png", null, null);
             frameLayout2.addView(backupImageView, LayoutHelper.createFrame(30, 30, 17));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 private final float[] animatorValues = {0.0f, 1.0f};
                 private boolean startedInner;
 
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     float interpolation;
-                    float lerp = AndroidUtilities.lerp(this.animatorValues, valueAnimator.getAnimatedFraction());
-                    if (lerp >= 0.7f && !this.startedInner && ChatAttachAlertLocationLayout.this.lastPressedMarkerView != null) {
+                    float fLerp = AndroidUtilities.lerp(this.animatorValues, valueAnimator.getAnimatedFraction());
+                    if (fLerp >= 0.7f && !this.startedInner && ChatAttachAlertLocationLayout.this.lastPressedMarkerView != null) {
                         AnimatorSet animatorSet = new AnimatorSet();
                         animatorSet.playTogether(ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertLocationLayout.this.lastPressedMarkerView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
                         animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
@@ -276,19 +269,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                         animatorSet.start();
                         this.startedInner = true;
                     }
-                    if (lerp <= 0.5f) {
-                        interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(lerp / 0.5f) * 1.1f;
-                    } else if (lerp <= 0.75f) {
-                        interpolation = 1.1f - (CubicBezierInterpolator.EASE_OUT.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+                    if (fLerp <= 0.5f) {
+                        interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(fLerp / 0.5f) * 1.1f;
+                    } else if (fLerp <= 0.75f) {
+                        interpolation = 1.1f - (CubicBezierInterpolator.EASE_OUT.getInterpolation((fLerp - 0.5f) / 0.25f) * 0.2f);
                     } else {
-                        interpolation = (CubicBezierInterpolator.EASE_OUT.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+                        interpolation = (CubicBezierInterpolator.EASE_OUT.getInterpolation((fLerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
                     }
                     frameLayout2.setScaleX(interpolation);
                     frameLayout2.setScaleY(interpolation);
                 }
             });
-            ofFloat.setDuration(360L);
-            ofFloat.start();
+            valueAnimatorOfFloat.setDuration(360L);
+            valueAnimatorOfFloat.start();
             this.views.put(iMarker, frameLayout);
             ChatAttachAlertLocationLayout.this.map.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(iMarker.getPosition()), 300, null);
         }
@@ -299,7 +292,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 AlertsCreator.createScheduleDatePickerDialog(ChatAttachAlertLocationLayout.this.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i, int i2) {
-                        ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$0(venueLocation, z, i, i2);
+                        this.f$0.lambda$addInfoView$0(venueLocation, z, i, i2);
                     }
                 }, ChatAttachAlertLocationLayout.this.resourcesProvider);
             } else {
@@ -307,7 +300,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), ChatAttachAlertLocationLayout.this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$1(venueLocation, (Long) obj);
+                        this.f$0.lambda$addInfoView$1(venueLocation, (Long) obj);
                     }
                 });
             }
@@ -348,8 +341,6 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public ChatAttachAlertLocationLayout(ChatAttachAlert chatAttachAlert, Context context, final Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
-        boolean z;
-        int checkSelfPermission;
         this.checkGpsEnabled = true;
         this.askedForLocation = false;
         this.locationDenied = false;
@@ -390,436 +381,10 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (locationActivitySearchAdapter != null) {
             locationActivitySearchAdapter.destroy();
         }
-        if (Build.VERSION.SDK_INT >= 23 && getParentActivity() != null) {
-            checkSelfPermission = getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-            if (checkSelfPermission != 0) {
-                z = true;
-                this.locationDenied = z;
-                ActionBarMenu createMenu = this.parentAlert.actionBar.createMenu();
-                this.overlayView = new MapOverlayView(context);
-                ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
-                    @Override
-                    public void onSearchExpand() {
-                        ChatAttachAlertLocationLayout.this.searching = true;
-                        ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = ChatAttachAlertLocationLayout.this;
-                        chatAttachAlertLocationLayout.parentAlert.makeFocusable(chatAttachAlertLocationLayout.searchItem.getSearchField(), true);
-                    }
-
-                    @Override
-                    public void onSearchCollapse() {
-                        ChatAttachAlertLocationLayout.this.searching = false;
-                        ChatAttachAlertLocationLayout.this.searchWas = false;
-                        ChatAttachAlertLocationLayout.this.searchAdapter.searchDelayed(null, null);
-                        ChatAttachAlertLocationLayout.this.updateEmptyView();
-                        if (ChatAttachAlertLocationLayout.this.otherItem != null) {
-                            ChatAttachAlertLocationLayout.this.otherItem.setVisibility(0);
-                        }
-                        ChatAttachAlertLocationLayout.this.listView.setVisibility(0);
-                        ChatAttachAlertLocationLayout.this.mapViewClip.setVisibility(0);
-                        ChatAttachAlertLocationLayout.this.searchListView.setVisibility(8);
-                        ChatAttachAlertLocationLayout.this.emptyView.setVisibility(8);
-                    }
-
-                    @Override
-                    public void onTextChanged(EditText editText) {
-                        if (ChatAttachAlertLocationLayout.this.searchAdapter == null) {
-                            return;
-                        }
-                        String obj = editText.getText().toString();
-                        if (obj.length() != 0) {
-                            ChatAttachAlertLocationLayout.this.searchWas = true;
-                            ChatAttachAlertLocationLayout.this.searchItem.setShowSearchProgress(true);
-                            if (ChatAttachAlertLocationLayout.this.otherItem != null) {
-                                ChatAttachAlertLocationLayout.this.otherItem.setVisibility(8);
-                            }
-                            ChatAttachAlertLocationLayout.this.listView.setVisibility(8);
-                            ChatAttachAlertLocationLayout.this.mapViewClip.setVisibility(8);
-                            if (ChatAttachAlertLocationLayout.this.searchListView.getAdapter() != ChatAttachAlertLocationLayout.this.searchAdapter) {
-                                ChatAttachAlertLocationLayout.this.searchListView.setAdapter(ChatAttachAlertLocationLayout.this.searchAdapter);
-                            }
-                            ChatAttachAlertLocationLayout.this.searchListView.setVisibility(0);
-                            ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = ChatAttachAlertLocationLayout.this;
-                            chatAttachAlertLocationLayout.searchInProgress = chatAttachAlertLocationLayout.searchAdapter.isEmpty();
-                            ChatAttachAlertLocationLayout.this.updateEmptyView();
-                        } else {
-                            if (ChatAttachAlertLocationLayout.this.otherItem != null) {
-                                ChatAttachAlertLocationLayout.this.otherItem.setVisibility(0);
-                            }
-                            ChatAttachAlertLocationLayout.this.listView.setVisibility(0);
-                            ChatAttachAlertLocationLayout.this.mapViewClip.setVisibility(0);
-                            ChatAttachAlertLocationLayout.this.searchListView.setAdapter(null);
-                            ChatAttachAlertLocationLayout.this.searchListView.setVisibility(8);
-                            ChatAttachAlertLocationLayout.this.emptyView.setVisibility(8);
-                        }
-                        ChatAttachAlertLocationLayout.this.searchAdapter.searchDelayed(obj, ChatAttachAlertLocationLayout.this.userLocation);
-                    }
-                });
-                this.searchItem = actionBarMenuItemSearchListener;
-                actionBarMenuItemSearchListener.setVisibility(((this.locationDenied || this.parentAlert.isStoryLocationPicker) && !this.parentAlert.isBizLocationPicker) ? 0 : 8);
-                ActionBarMenuItem actionBarMenuItem = this.searchItem;
-                int i = R.string.Search;
-                actionBarMenuItem.setSearchFieldHint(LocaleController.getString(i));
-                this.searchItem.setContentDescription(LocaleController.getString(i));
-                EditTextBoldCursor searchField = this.searchItem.getSearchField();
-                int i2 = Theme.key_dialogTextBlack;
-                searchField.setTextColor(getThemedColor(i2));
-                searchField.setCursorColor(getThemedColor(i2));
-                searchField.setHintTextColor(getThemedColor(Theme.key_chat_messagePanelHint));
-                new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(21.0f)).gravity = 83;
-                FrameLayout frameLayout = new FrameLayout(context) {
-                    @Override
-                    protected void onMeasure(int i3, int i4) {
-                        super.onMeasure(i3, i4);
-                        if (ChatAttachAlertLocationLayout.this.overlayView != null) {
-                            ChatAttachAlertLocationLayout.this.overlayView.updatePositions();
-                        }
-                    }
-
-                    @Override
-                    protected boolean drawChild(Canvas canvas, View view, long j) {
-                        canvas.save();
-                        canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - ChatAttachAlertLocationLayout.this.clipSize);
-                        boolean drawChild = ChatAttachAlertLocationLayout.this.doNotDrawMap ? false : super.drawChild(canvas, view, j);
-                        canvas.restore();
-                        return drawChild;
-                    }
-
-                    @Override
-                    protected void onDraw(Canvas canvas) {
-                        ChatAttachAlertLocationLayout.this.backgroundPaint.setColor(ChatAttachAlertLocationLayout.this.getThemedColor(Theme.key_dialogBackground));
-                        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - ChatAttachAlertLocationLayout.this.clipSize, ChatAttachAlertLocationLayout.this.backgroundPaint);
-                    }
-
-                    @Override
-                    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                        if (motionEvent.getY() > getMeasuredHeight() - ChatAttachAlertLocationLayout.this.clipSize) {
-                            return false;
-                        }
-                        return super.onInterceptTouchEvent(motionEvent);
-                    }
-
-                    @Override
-                    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                        if (motionEvent.getY() > getMeasuredHeight() - ChatAttachAlertLocationLayout.this.clipSize) {
-                            return false;
-                        }
-                        return super.dispatchTouchEvent(motionEvent);
-                    }
-                };
-                this.mapViewClip = frameLayout;
-                frameLayout.setWillNotDraw(false);
-                View view = new View(context);
-                this.loadingMapView = view;
-                view.setBackgroundDrawable(new MapPlaceholderDrawable());
-                SearchButton searchButton = new SearchButton(context);
-                this.searchAreaButton = searchButton;
-                searchButton.setTranslationX(-AndroidUtilities.dp(80.0f));
-                this.searchAreaButton.setVisibility(4);
-                int dp = AndroidUtilities.dp(40.0f);
-                int i3 = Theme.key_location_actionBackground;
-                int themedColor = getThemedColor(i3);
-                int i4 = Theme.key_location_actionPressedBackground;
-                Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(dp, themedColor, getThemedColor(i4));
-                StateListAnimator stateListAnimator = new StateListAnimator();
-                SearchButton searchButton2 = this.searchAreaButton;
-                Property property = View.TRANSLATION_Z;
-                stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(searchButton2, (Property<SearchButton, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-                stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.searchAreaButton, (Property<SearchButton, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-                this.searchAreaButton.setStateListAnimator(stateListAnimator);
-                this.searchAreaButton.setOutlineProvider(new ViewOutlineProvider() {
-                    @Override
-                    public void getOutline(View view2, Outline outline) {
-                        outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), view2.getMeasuredHeight() / 2);
-                    }
-                });
-                this.searchAreaButton.setBackgroundDrawable(createSimpleSelectorRoundRectDrawable);
-                SearchButton searchButton3 = this.searchAreaButton;
-                int i5 = Theme.key_location_actionActiveIcon;
-                searchButton3.setTextColor(getThemedColor(i5));
-                this.searchAreaButton.setTextSize(1, 14.0f);
-                this.searchAreaButton.setTypeface(AndroidUtilities.bold());
-                this.searchAreaButton.setText(LocaleController.getString(R.string.PlacesInThisArea));
-                this.searchAreaButton.setGravity(17);
-                this.searchAreaButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-                this.mapViewClip.addView(this.searchAreaButton, LayoutHelper.createFrame(-2, 40.0f, 49, 80.0f, 12.0f, 80.0f, 0.0f));
-                this.searchAreaButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$0(view2);
-                    }
-                });
-                ActionBarMenuItem actionBarMenuItem2 = new ActionBarMenuItem(context, (ActionBarMenu) null, 0, getThemedColor(Theme.key_location_actionIcon), resourcesProvider);
-                this.mapTypeButton = actionBarMenuItem2;
-                actionBarMenuItem2.setClickable(true);
-                this.mapTypeButton.setSubMenuOpenSide(2);
-                this.mapTypeButton.setAdditionalXOffset(AndroidUtilities.dp(10.0f));
-                this.mapTypeButton.setAdditionalYOffset(-AndroidUtilities.dp(10.0f));
-                this.mapTypeButton.addSubItem(2, R.drawable.msg_map, LocaleController.getString(R.string.Map), resourcesProvider);
-                this.mapTypeButton.addSubItem(3, R.drawable.msg_satellite, LocaleController.getString(R.string.Satellite), resourcesProvider);
-                this.mapTypeButton.addSubItem(4, R.drawable.msg_hybrid, LocaleController.getString(R.string.Hybrid), resourcesProvider);
-                this.mapTypeButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i3), getThemedColor(i4));
-                StateListAnimator stateListAnimator2 = new StateListAnimator();
-                stateListAnimator2.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.mapTypeButton, (Property<ActionBarMenuItem, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-                stateListAnimator2.addState(new int[0], ObjectAnimator.ofFloat(this.mapTypeButton, (Property<ActionBarMenuItem, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-                this.mapTypeButton.setStateListAnimator(stateListAnimator2);
-                this.mapTypeButton.setOutlineProvider(new ViewOutlineProvider() {
-                    @Override
-                    public void getOutline(View view2, Outline outline) {
-                        outline.setOval(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-                    }
-                });
-                this.mapTypeButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
-                this.mapTypeButton.setIcon(R.drawable.msg_map_type);
-                this.mapViewClip.addView(this.mapTypeButton, LayoutHelper.createFrame(40, 40.0f, 53, 0.0f, 12.0f, 12.0f, 0.0f));
-                this.mapTypeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$1(view2);
-                    }
-                });
-                this.mapTypeButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
-                    @Override
-                    public final void onItemClick(int i6) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$2(i6);
-                    }
-                });
-                this.locationButton = new ImageView(context);
-                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i3), getThemedColor(i4));
-                StateListAnimator stateListAnimator3 = new StateListAnimator();
-                stateListAnimator3.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.locationButton, (Property<ImageView, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-                stateListAnimator3.addState(new int[0], ObjectAnimator.ofFloat(this.locationButton, (Property<ImageView, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-                this.locationButton.setStateListAnimator(stateListAnimator3);
-                this.locationButton.setOutlineProvider(new ViewOutlineProvider() {
-                    @Override
-                    public void getOutline(View view2, Outline outline) {
-                        outline.setOval(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-                    }
-                });
-                this.locationButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable2);
-                this.locationButton.setImageResource(R.drawable.msg_current_location);
-                this.locationButton.setScaleType(ImageView.ScaleType.CENTER);
-                ImageView imageView = this.locationButton;
-                int themedColor2 = getThemedColor(i5);
-                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                imageView.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
-                this.locationButton.setTag(Integer.valueOf(i5));
-                this.locationButton.setContentDescription(LocaleController.getString(R.string.AccDescrMyLocation));
-                this.mapViewClip.addView(this.locationButton, LayoutHelper.createFrame(40, 40.0f, 85, 0.0f, 0.0f, 12.0f, 12.0f));
-                this.locationButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$3(view2);
-                    }
-                });
-                LinearLayout linearLayout = new LinearLayout(context);
-                this.emptyView = linearLayout;
-                linearLayout.setOrientation(1);
-                this.emptyView.setGravity(1);
-                this.emptyView.setPadding(0, AndroidUtilities.dp(160.0f), 0, 0);
-                this.emptyView.setVisibility(8);
-                addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-                this.emptyView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                        boolean lambda$new$4;
-                        lambda$new$4 = ChatAttachAlertLocationLayout.lambda$new$4(view2, motionEvent);
-                        return lambda$new$4;
-                    }
-                });
-                ImageView imageView2 = new ImageView(context);
-                this.emptyImageView = imageView2;
-                imageView2.setImageResource(R.drawable.location_empty);
-                this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), mode));
-                this.emptyView.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
-                TextView textView = new TextView(context);
-                this.emptyTitleTextView = textView;
-                int i6 = Theme.key_dialogEmptyText;
-                textView.setTextColor(getThemedColor(i6));
-                this.emptyTitleTextView.setGravity(17);
-                this.emptyTitleTextView.setTypeface(AndroidUtilities.bold());
-                this.emptyTitleTextView.setTextSize(1, 17.0f);
-                this.emptyTitleTextView.setText(LocaleController.getString(R.string.NoPlacesFound));
-                this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
-                TextView textView2 = new TextView(context);
-                this.emptySubtitleTextView = textView2;
-                textView2.setTextColor(getThemedColor(i6));
-                this.emptySubtitleTextView.setGravity(17);
-                this.emptySubtitleTextView.setTextSize(1, 15.0f);
-                this.emptySubtitleTextView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-                this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
-                RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
-                    @Override
-                    public void onLayout(boolean z2, int i7, int i8, int i9, int i10) {
-                        super.onLayout(z2, i7, i8, i9, i10);
-                        ChatAttachAlertLocationLayout.this.updateClipView();
-                    }
-                };
-                this.listView = recyclerListView;
-                recyclerListView.setClipToPadding(false);
-                RecyclerListView recyclerListView2 = this.listView;
-                int i7 = this.locationType;
-                long j = this.dialogId;
-                ChatAttachAlert chatAttachAlert3 = this.parentAlert;
-                LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
-                this.adapter = locationActivityAdapter2;
-                recyclerListView2.setAdapter(locationActivityAdapter2);
-                DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-                defaultItemAnimator.setDurations(350L);
-                defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                defaultItemAnimator.setDelayAnimations(false);
-                defaultItemAnimator.setSupportsChangeAnimations(false);
-                this.listView.setItemAnimator(defaultItemAnimator);
-                this.adapter.setUpdateRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertLocationLayout.this.updateClipView();
-                    }
-                });
-                this.adapter.setMyLocationDenied(this.locationDenied, this.askedForLocation);
-                this.listView.setVerticalScrollBarEnabled(false);
-                RecyclerListView recyclerListView3 = this.listView;
-                FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView3) {
-                    @Override
-                    public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i8) {
-                        LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
-                            @Override
-                            public int calculateDyToMakeVisible(View view2, int i9) {
-                                return super.calculateDyToMakeVisible(view2, i9) - (ChatAttachAlertLocationLayout.this.listView.getPaddingTop() - (ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight));
-                            }
-
-                            @Override
-                            public int calculateTimeForDeceleration(int i9) {
-                                return super.calculateTimeForDeceleration(i9) * 4;
-                            }
-                        };
-                        linearSmoothScroller.setTargetPosition(i8);
-                        startSmoothScroll(linearSmoothScroller);
-                    }
-                };
-                this.layoutManager = fillLastLinearLayoutManager;
-                recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
-                addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
-                this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
-                        RecyclerListView.Holder holder;
-                        ChatAttachAlertLocationLayout.this.scrolling = i8 != 0;
-                        if (!ChatAttachAlertLocationLayout.this.scrolling && ChatAttachAlertLocationLayout.this.forceUpdate != null) {
-                            ChatAttachAlertLocationLayout.this.forceUpdate = null;
-                        }
-                        if (i8 == 0) {
-                            int dp2 = AndroidUtilities.dp(13.0f);
-                            int backgroundPaddingTop = ChatAttachAlertLocationLayout.this.parentAlert.getBackgroundPaddingTop();
-                            if (((ChatAttachAlertLocationLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - dp2) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertLocationLayout.this.listView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight) {
-                                return;
-                            }
-                            ChatAttachAlertLocationLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - (ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight));
-                        }
-                    }
-
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int i8, int i9) {
-                        ChatAttachAlertLocationLayout.this.updateClipView();
-                        if (ChatAttachAlertLocationLayout.this.forceUpdate != null) {
-                            ChatAttachAlertLocationLayout.access$2916(ChatAttachAlertLocationLayout.this, i9);
-                        }
-                        ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = ChatAttachAlertLocationLayout.this;
-                        chatAttachAlertLocationLayout.parentAlert.updateLayout(chatAttachAlertLocationLayout, true, i9);
-                    }
-                });
-                this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                    @Override
-                    public final void onItemClick(View view2, int i8) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$9(chatActivity, resourcesProvider, view2, i8);
-                    }
-                });
-                this.adapter.setDelegate(this.dialogId, new BaseLocationAdapter.BaseLocationAdapterDelegate() {
-                    @Override
-                    public final void didLoadSearchResult(ArrayList arrayList) {
-                        ChatAttachAlertLocationLayout.this.updatePlacesMarkers(arrayList);
-                    }
-                });
-                this.adapter.setOverScrollHeight(this.overScrollHeight);
-                addView(this.mapViewClip, LayoutHelper.createFrame(-1, -1, 51));
-                IMapsProvider.IMapView onCreateMapView = ApplicationLoader.getMapsProvider().onCreateMapView(context);
-                this.mapView = onCreateMapView;
-                onCreateMapView.setOnDispatchTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
-                    @Override
-                    public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                        boolean lambda$new$10;
-                        lambda$new$10 = ChatAttachAlertLocationLayout.this.lambda$new$10(motionEvent, iCallableMethod);
-                        return lambda$new$10;
-                    }
-                });
-                this.mapView.setOnInterceptTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
-                    @Override
-                    public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                        boolean lambda$new$11;
-                        lambda$new$11 = ChatAttachAlertLocationLayout.this.lambda$new$11(motionEvent, iCallableMethod);
-                        return lambda$new$11;
-                    }
-                });
-                final IMapsProvider.IMapView iMapView = this.mapView;
-                new Thread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertLocationLayout.this.lambda$new$16(iMapView);
-                    }
-                }).start();
-                ImageView imageView3 = new ImageView(context);
-                this.markerImageView = imageView3;
-                imageView3.setImageResource(R.drawable.map_pin2);
-                this.mapViewClip.addView(this.markerImageView, LayoutHelper.createFrame(28, 48, 49));
-                RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider);
-                this.searchListView = recyclerListView4;
-                recyclerListView4.setVisibility(8);
-                this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-                ChatAttachAlert chatAttachAlert4 = this.parentAlert;
-                LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, chatAttachAlert4.isBizLocationPicker) {
-                    @Override
-                    public void notifyDataSetChanged() {
-                        if (ChatAttachAlertLocationLayout.this.searchItem != null) {
-                            ChatAttachAlertLocationLayout.this.searchItem.setShowSearchProgress(ChatAttachAlertLocationLayout.this.searchAdapter.isSearching());
-                        }
-                        if (ChatAttachAlertLocationLayout.this.emptySubtitleTextView != null) {
-                            ChatAttachAlertLocationLayout.this.emptySubtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, ChatAttachAlertLocationLayout.this.searchAdapter.getLastSearchString())));
-                        }
-                        super.notifyDataSetChanged();
-                    }
-                };
-                this.searchAdapter = locationActivitySearchAdapter2;
-                locationActivitySearchAdapter2.setMyLocationDenied(this.locationDenied);
-                this.searchAdapter.setDelegate(0L, new BaseLocationAdapter.BaseLocationAdapterDelegate() {
-                    @Override
-                    public final void didLoadSearchResult(ArrayList arrayList) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$17(arrayList);
-                    }
-                });
-                this.searchListView.setItemAnimator(null);
-                addView(this.searchListView, LayoutHelper.createFrame(-1, -1, 51));
-                this.searchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
-                        if (i8 == 1 && ChatAttachAlertLocationLayout.this.searching && ChatAttachAlertLocationLayout.this.searchWas) {
-                            AndroidUtilities.hideKeyboard(ChatAttachAlertLocationLayout.this.parentAlert.getCurrentFocus());
-                        }
-                    }
-                });
-                this.searchListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                    @Override
-                    public final void onItemClick(View view2, int i8) {
-                        ChatAttachAlertLocationLayout.this.lambda$new$19(chatActivity, resourcesProvider, view2, i8);
-                    }
-                });
-                updateEmptyView();
-            }
-        }
-        z = false;
-        this.locationDenied = z;
-        ActionBarMenu createMenu2 = this.parentAlert.actionBar.createMenu();
+        this.locationDenied = (Build.VERSION.SDK_INT < 23 || getParentActivity() == null || getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0) ? false : true;
+        ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
         this.overlayView = new MapOverlayView(context);
-        ActionBarMenuItem actionBarMenuItemSearchListener2 = createMenu2.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 ChatAttachAlertLocationLayout.this.searching = true;
@@ -847,8 +412,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 if (ChatAttachAlertLocationLayout.this.searchAdapter == null) {
                     return;
                 }
-                String obj = editText.getText().toString();
-                if (obj.length() != 0) {
+                String string = editText.getText().toString();
+                if (string.length() != 0) {
                     ChatAttachAlertLocationLayout.this.searchWas = true;
                     ChatAttachAlertLocationLayout.this.searchItem.setShowSearchProgress(true);
                     if (ChatAttachAlertLocationLayout.this.otherItem != null) {
@@ -873,37 +438,37 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     ChatAttachAlertLocationLayout.this.searchListView.setVisibility(8);
                     ChatAttachAlertLocationLayout.this.emptyView.setVisibility(8);
                 }
-                ChatAttachAlertLocationLayout.this.searchAdapter.searchDelayed(obj, ChatAttachAlertLocationLayout.this.userLocation);
+                ChatAttachAlertLocationLayout.this.searchAdapter.searchDelayed(string, ChatAttachAlertLocationLayout.this.userLocation);
             }
         });
-        this.searchItem = actionBarMenuItemSearchListener2;
-        actionBarMenuItemSearchListener2.setVisibility(((this.locationDenied || this.parentAlert.isStoryLocationPicker) && !this.parentAlert.isBizLocationPicker) ? 0 : 8);
-        ActionBarMenuItem actionBarMenuItem3 = this.searchItem;
-        int i8 = R.string.Search;
-        actionBarMenuItem3.setSearchFieldHint(LocaleController.getString(i8));
-        this.searchItem.setContentDescription(LocaleController.getString(i8));
-        EditTextBoldCursor searchField2 = this.searchItem.getSearchField();
-        int i22 = Theme.key_dialogTextBlack;
-        searchField2.setTextColor(getThemedColor(i22));
-        searchField2.setCursorColor(getThemedColor(i22));
-        searchField2.setHintTextColor(getThemedColor(Theme.key_chat_messagePanelHint));
+        this.searchItem = actionBarMenuItemSearchListener;
+        actionBarMenuItemSearchListener.setVisibility(((!this.locationDenied || this.parentAlert.isStoryLocationPicker) && !this.parentAlert.isBizLocationPicker) ? 0 : 8);
+        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        int i = R.string.Search;
+        actionBarMenuItem.setSearchFieldHint(LocaleController.getString(i));
+        this.searchItem.setContentDescription(LocaleController.getString(i));
+        EditTextBoldCursor searchField = this.searchItem.getSearchField();
+        int i2 = Theme.key_dialogTextBlack;
+        searchField.setTextColor(getThemedColor(i2));
+        searchField.setCursorColor(getThemedColor(i2));
+        searchField.setHintTextColor(getThemedColor(Theme.key_chat_messagePanelHint));
         new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(21.0f)).gravity = 83;
-        FrameLayout frameLayout2 = new FrameLayout(context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
-            protected void onMeasure(int i32, int i42) {
-                super.onMeasure(i32, i42);
+            protected void onMeasure(int i3, int i4) {
+                super.onMeasure(i3, i4);
                 if (ChatAttachAlertLocationLayout.this.overlayView != null) {
                     ChatAttachAlertLocationLayout.this.overlayView.updatePositions();
                 }
             }
 
             @Override
-            protected boolean drawChild(Canvas canvas, View view2, long j2) {
+            protected boolean drawChild(Canvas canvas, View view, long j) {
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - ChatAttachAlertLocationLayout.this.clipSize);
-                boolean drawChild = ChatAttachAlertLocationLayout.this.doNotDrawMap ? false : super.drawChild(canvas, view2, j2);
+                boolean zDrawChild = ChatAttachAlertLocationLayout.this.doNotDrawMap ? false : super.drawChild(canvas, view, j);
                 canvas.restore();
-                return drawChild;
+                return zDrawChild;
             }
 
             @Override
@@ -928,36 +493,29 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 return super.dispatchTouchEvent(motionEvent);
             }
         };
-        this.mapViewClip = frameLayout2;
-        frameLayout2.setWillNotDraw(false);
-        View view2 = new View(context);
-        this.loadingMapView = view2;
-        view2.setBackgroundDrawable(new MapPlaceholderDrawable());
-        SearchButton searchButton4 = new SearchButton(context);
-        this.searchAreaButton = searchButton4;
-        searchButton4.setTranslationX(-AndroidUtilities.dp(80.0f));
+        this.mapViewClip = frameLayout;
+        frameLayout.setWillNotDraw(false);
+        View view = new View(context);
+        this.loadingMapView = view;
+        view.setBackgroundDrawable(new MapPlaceholderDrawable());
+        SearchButton searchButton = new SearchButton(context);
+        this.searchAreaButton = searchButton;
+        searchButton.setTranslationX(-AndroidUtilities.dp(80.0f));
         this.searchAreaButton.setVisibility(4);
-        int dp2 = AndroidUtilities.dp(40.0f);
-        int i32 = Theme.key_location_actionBackground;
-        int themedColor3 = getThemedColor(i32);
-        int i42 = Theme.key_location_actionPressedBackground;
-        Drawable createSimpleSelectorRoundRectDrawable2 = Theme.createSimpleSelectorRoundRectDrawable(dp2, themedColor3, getThemedColor(i42));
-        StateListAnimator stateListAnimator4 = new StateListAnimator();
-        SearchButton searchButton22 = this.searchAreaButton;
-        Property property2 = View.TRANSLATION_Z;
-        stateListAnimator4.addState(new int[]{16842919}, ObjectAnimator.ofFloat(searchButton22, (Property<SearchButton, Float>) property2, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator4.addState(new int[0], ObjectAnimator.ofFloat(this.searchAreaButton, (Property<SearchButton, Float>) property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        this.searchAreaButton.setStateListAnimator(stateListAnimator4);
-        this.searchAreaButton.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view22, Outline outline) {
-                outline.setRoundRect(0, 0, view22.getMeasuredWidth(), view22.getMeasuredHeight(), view22.getMeasuredHeight() / 2);
-            }
-        });
-        this.searchAreaButton.setBackgroundDrawable(createSimpleSelectorRoundRectDrawable2);
-        SearchButton searchButton32 = this.searchAreaButton;
-        int i52 = Theme.key_location_actionActiveIcon;
-        searchButton32.setTextColor(getThemedColor(i52));
+        int iDp = AndroidUtilities.dp(40.0f);
+        int i3 = Theme.key_location_actionBackground;
+        int themedColor = getThemedColor(i3);
+        int i4 = Theme.key_location_actionPressedBackground;
+        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(iDp, themedColor, getThemedColor(i4));
+        ScaleStateListAnimator.apply(this.searchAreaButton);
+        this.searchAreaButton.setTranslationZ(AndroidUtilities.dp(2.0f));
+        SearchButton searchButton2 = this.searchAreaButton;
+        ViewOutlineProvider viewOutlineProvider = ViewOutlineProviderImpl.BOUNDS_OVAL;
+        searchButton2.setOutlineProvider(viewOutlineProvider);
+        this.searchAreaButton.setBackground(drawableCreateSimpleSelectorRoundRectDrawable);
+        SearchButton searchButton3 = this.searchAreaButton;
+        int i5 = Theme.key_location_actionActiveIcon;
+        searchButton3.setTextColor(getThemedColor(i5));
         this.searchAreaButton.setTextSize(1, 14.0f);
         this.searchAreaButton.setTypeface(AndroidUtilities.bold());
         this.searchAreaButton.setText(LocaleController.getString(R.string.PlacesInThisArea));
@@ -966,13 +524,13 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapViewClip.addView(this.searchAreaButton, LayoutHelper.createFrame(-2, 40.0f, 49, 80.0f, 12.0f, 80.0f, 0.0f));
         this.searchAreaButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view22) {
-                ChatAttachAlertLocationLayout.this.lambda$new$0(view22);
+            public final void onClick(View view2) {
+                this.f$0.lambda$new$0(view2);
             }
         });
-        ActionBarMenuItem actionBarMenuItem22 = new ActionBarMenuItem(context, (ActionBarMenu) null, 0, getThemedColor(Theme.key_location_actionIcon), resourcesProvider);
-        this.mapTypeButton = actionBarMenuItem22;
-        actionBarMenuItem22.setClickable(true);
+        ActionBarMenuItem actionBarMenuItem2 = new ActionBarMenuItem(context, (ActionBarMenu) null, 0, getThemedColor(Theme.key_location_actionIcon), resourcesProvider);
+        this.mapTypeButton = actionBarMenuItem2;
+        actionBarMenuItem2.setClickable(true);
         this.mapTypeButton.setSubMenuOpenSide(2);
         this.mapTypeButton.setAdditionalXOffset(AndroidUtilities.dp(10.0f));
         this.mapTypeButton.setAdditionalYOffset(-AndroidUtilities.dp(10.0f));
@@ -980,160 +538,144 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapTypeButton.addSubItem(3, R.drawable.msg_satellite, LocaleController.getString(R.string.Satellite), resourcesProvider);
         this.mapTypeButton.addSubItem(4, R.drawable.msg_hybrid, LocaleController.getString(R.string.Hybrid), resourcesProvider);
         this.mapTypeButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-        Drawable createSimpleSelectorCircleDrawable3 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i32), getThemedColor(i42));
-        StateListAnimator stateListAnimator22 = new StateListAnimator();
-        stateListAnimator22.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.mapTypeButton, (Property<ActionBarMenuItem, Float>) property2, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator22.addState(new int[0], ObjectAnimator.ofFloat(this.mapTypeButton, (Property<ActionBarMenuItem, Float>) property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        this.mapTypeButton.setStateListAnimator(stateListAnimator22);
-        this.mapTypeButton.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view22, Outline outline) {
-                outline.setOval(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-            }
-        });
-        this.mapTypeButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable3);
+        Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i3), getThemedColor(i4));
+        ScaleStateListAnimator.apply(this.mapTypeButton);
+        this.mapTypeButton.setTranslationZ(AndroidUtilities.dp(2.0f));
+        this.mapTypeButton.setOutlineProvider(viewOutlineProvider);
+        this.mapTypeButton.setBackground(drawableCreateSimpleSelectorCircleDrawable);
         this.mapTypeButton.setIcon(R.drawable.msg_map_type);
         this.mapViewClip.addView(this.mapTypeButton, LayoutHelper.createFrame(40, 40.0f, 53, 0.0f, 12.0f, 12.0f, 0.0f));
         this.mapTypeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view22) {
-                ChatAttachAlertLocationLayout.this.lambda$new$1(view22);
+            public final void onClick(View view2) {
+                this.f$0.lambda$new$1(view2);
             }
         });
         this.mapTypeButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i62) {
-                ChatAttachAlertLocationLayout.this.lambda$new$2(i62);
+            public final void onItemClick(int i6) {
+                this.f$0.lambda$new$2(i6);
             }
         });
         this.locationButton = new ImageView(context);
-        Drawable createSimpleSelectorCircleDrawable22 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i32), getThemedColor(i42));
-        StateListAnimator stateListAnimator32 = new StateListAnimator();
-        stateListAnimator32.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.locationButton, (Property<ImageView, Float>) property2, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-        stateListAnimator32.addState(new int[0], ObjectAnimator.ofFloat(this.locationButton, (Property<ImageView, Float>) property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
-        this.locationButton.setStateListAnimator(stateListAnimator32);
-        this.locationButton.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view22, Outline outline) {
-                outline.setOval(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-            }
-        });
-        this.locationButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable22);
+        Drawable drawableCreateSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(40.0f), getThemedColor(i3), getThemedColor(i4));
+        ScaleStateListAnimator.apply(this.locationButton);
+        this.locationButton.setTranslationZ(AndroidUtilities.dp(2.0f));
+        this.locationButton.setOutlineProvider(viewOutlineProvider);
+        this.locationButton.setBackground(drawableCreateSimpleSelectorCircleDrawable2);
         this.locationButton.setImageResource(R.drawable.msg_current_location);
         this.locationButton.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView4 = this.locationButton;
-        int themedColor22 = getThemedColor(i52);
-        PorterDuff.Mode mode2 = PorterDuff.Mode.MULTIPLY;
-        imageView4.setColorFilter(new PorterDuffColorFilter(themedColor22, mode2));
-        this.locationButton.setTag(Integer.valueOf(i52));
+        ImageView imageView = this.locationButton;
+        int themedColor2 = getThemedColor(i5);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
+        this.locationButton.setTag(Integer.valueOf(i5));
         this.locationButton.setContentDescription(LocaleController.getString(R.string.AccDescrMyLocation));
         this.mapViewClip.addView(this.locationButton, LayoutHelper.createFrame(40, 40.0f, 85, 0.0f, 0.0f, 12.0f, 12.0f));
         this.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view22) {
-                ChatAttachAlertLocationLayout.this.lambda$new$3(view22);
+            public final void onClick(View view2) {
+                this.f$0.lambda$new$3(view2);
             }
         });
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.emptyView = linearLayout2;
-        linearLayout2.setOrientation(1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.emptyView = linearLayout;
+        linearLayout.setOrientation(1);
         this.emptyView.setGravity(1);
         this.emptyView.setPadding(0, AndroidUtilities.dp(160.0f), 0, 0);
         this.emptyView.setVisibility(8);
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public final boolean onTouch(View view22, MotionEvent motionEvent) {
-                boolean lambda$new$4;
-                lambda$new$4 = ChatAttachAlertLocationLayout.lambda$new$4(view22, motionEvent);
-                return lambda$new$4;
+            public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                return ChatAttachAlertLocationLayout.lambda$new$4(view2, motionEvent);
             }
         });
-        ImageView imageView22 = new ImageView(context);
-        this.emptyImageView = imageView22;
-        imageView22.setImageResource(R.drawable.location_empty);
-        this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), mode2));
+        ImageView imageView2 = new ImageView(context);
+        this.emptyImageView = imageView2;
+        imageView2.setImageResource(R.drawable.location_empty);
+        this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), mode));
         this.emptyView.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
-        TextView textView3 = new TextView(context);
-        this.emptyTitleTextView = textView3;
-        int i62 = Theme.key_dialogEmptyText;
-        textView3.setTextColor(getThemedColor(i62));
+        TextView textView = new TextView(context);
+        this.emptyTitleTextView = textView;
+        int i6 = Theme.key_dialogEmptyText;
+        textView.setTextColor(getThemedColor(i6));
         this.emptyTitleTextView.setGravity(17);
         this.emptyTitleTextView.setTypeface(AndroidUtilities.bold());
         this.emptyTitleTextView.setTextSize(1, 17.0f);
         this.emptyTitleTextView.setText(LocaleController.getString(R.string.NoPlacesFound));
         this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
-        TextView textView22 = new TextView(context);
-        this.emptySubtitleTextView = textView22;
-        textView22.setTextColor(getThemedColor(i62));
+        TextView textView2 = new TextView(context);
+        this.emptySubtitleTextView = textView2;
+        textView2.setTextColor(getThemedColor(i6));
         this.emptySubtitleTextView.setGravity(17);
         this.emptySubtitleTextView.setTextSize(1, 15.0f);
         this.emptySubtitleTextView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
         this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
-        RecyclerListView recyclerListView5 = new RecyclerListView(context, resourcesProvider) {
+        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
-            public void onLayout(boolean z2, int i72, int i82, int i9, int i10) {
-                super.onLayout(z2, i72, i82, i9, i10);
+            protected void onLayout(boolean z, int i7, int i8, int i9, int i10) {
+                super.onLayout(z, i7, i8, i9, i10);
                 ChatAttachAlertLocationLayout.this.updateClipView();
             }
         };
-        this.listView = recyclerListView5;
-        recyclerListView5.setClipToPadding(false);
-        RecyclerListView recyclerListView22 = this.listView;
-        int i72 = this.locationType;
-        long j2 = this.dialogId;
-        ChatAttachAlert chatAttachAlert32 = this.parentAlert;
-        LocationActivityAdapter locationActivityAdapter22 = new LocationActivityAdapter(context, i72, j2, true, resourcesProvider, chatAttachAlert32.isStoryLocationPicker, false, chatAttachAlert32.isBizLocationPicker);
-        this.adapter = locationActivityAdapter22;
-        recyclerListView22.setAdapter(locationActivityAdapter22);
-        DefaultItemAnimator defaultItemAnimator2 = new DefaultItemAnimator();
-        defaultItemAnimator2.setDurations(350L);
-        defaultItemAnimator2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        defaultItemAnimator2.setDelayAnimations(false);
-        defaultItemAnimator2.setSupportsChangeAnimations(false);
-        this.listView.setItemAnimator(defaultItemAnimator2);
+        this.listView = recyclerListView;
+        recyclerListView.setClipToPadding(false);
+        RecyclerListView recyclerListView2 = this.listView;
+        int i7 = this.locationType;
+        long j = this.dialogId;
+        ChatAttachAlert chatAttachAlert3 = this.parentAlert;
+        LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
+        this.adapter = locationActivityAdapter2;
+        recyclerListView2.setAdapter(locationActivityAdapter2);
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setDurations(350L);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.listView.setItemAnimator(defaultItemAnimator);
         this.adapter.setUpdateRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.updateClipView();
+                this.f$0.updateClipView();
             }
         });
         this.adapter.setMyLocationDenied(this.locationDenied, this.askedForLocation);
         this.listView.setVerticalScrollBarEnabled(false);
-        RecyclerView recyclerListView32 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView32) {
+        RecyclerListView recyclerListView3 = this.listView;
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView3) {
             @Override
-            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i82) {
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i8) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
-                    public int calculateDyToMakeVisible(View view22, int i9) {
-                        return super.calculateDyToMakeVisible(view22, i9) - (ChatAttachAlertLocationLayout.this.listView.getPaddingTop() - (ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight));
+                    public int calculateDyToMakeVisible(View view2, int i9) {
+                        return super.calculateDyToMakeVisible(view2, i9) - (ChatAttachAlertLocationLayout.this.listView.getPaddingTop() - (ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight));
                     }
 
                     @Override
-                    public int calculateTimeForDeceleration(int i9) {
+                    protected int calculateTimeForDeceleration(int i9) {
                         return super.calculateTimeForDeceleration(i9) * 4;
                     }
                 };
-                linearSmoothScroller.setTargetPosition(i82);
+                linearSmoothScroller.setTargetPosition(i8);
                 startSmoothScroll(linearSmoothScroller);
             }
         };
-        this.layoutManager = fillLastLinearLayoutManager2;
-        recyclerListView32.setLayoutManager(fillLastLinearLayoutManager2);
+        this.layoutManager = fillLastLinearLayoutManager;
+        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
         addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i82) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
                 RecyclerListView.Holder holder;
-                ChatAttachAlertLocationLayout.this.scrolling = i82 != 0;
+                ChatAttachAlertLocationLayout.this.scrolling = i8 != 0;
                 if (!ChatAttachAlertLocationLayout.this.scrolling && ChatAttachAlertLocationLayout.this.forceUpdate != null) {
                     ChatAttachAlertLocationLayout.this.forceUpdate = null;
                 }
-                if (i82 == 0) {
-                    int dp22 = AndroidUtilities.dp(13.0f);
+                if (i8 == 0) {
+                    int iDp2 = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop = ChatAttachAlertLocationLayout.this.parentAlert.getBackgroundPaddingTop();
-                    if (((ChatAttachAlertLocationLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - dp22) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertLocationLayout.this.listView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight) {
+                    if (((ChatAttachAlertLocationLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp2) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertLocationLayout.this.listView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight) {
                         return;
                     }
                     ChatAttachAlertLocationLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - (ChatAttachAlertLocationLayout.this.mapHeight - ChatAttachAlertLocationLayout.this.overScrollHeight));
@@ -1141,7 +683,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i82, int i9) {
+            public void onScrolled(RecyclerView recyclerView, int i8, int i9) {
                 ChatAttachAlertLocationLayout.this.updateClipView();
                 if (ChatAttachAlertLocationLayout.this.forceUpdate != null) {
                     ChatAttachAlertLocationLayout.access$2916(ChatAttachAlertLocationLayout.this, i9);
@@ -1152,53 +694,49 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         });
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view22, int i82) {
-                ChatAttachAlertLocationLayout.this.lambda$new$9(chatActivity, resourcesProvider, view22, i82);
+            public final void onItemClick(View view2, int i8) {
+                this.f$0.lambda$new$9(chatActivity, resourcesProvider, view2, i8);
             }
         });
         this.adapter.setDelegate(this.dialogId, new BaseLocationAdapter.BaseLocationAdapterDelegate() {
             @Override
             public final void didLoadSearchResult(ArrayList arrayList) {
-                ChatAttachAlertLocationLayout.this.updatePlacesMarkers(arrayList);
+                this.f$0.updatePlacesMarkers(arrayList);
             }
         });
         this.adapter.setOverScrollHeight(this.overScrollHeight);
         addView(this.mapViewClip, LayoutHelper.createFrame(-1, -1, 51));
-        IMapsProvider.IMapView onCreateMapView2 = ApplicationLoader.getMapsProvider().onCreateMapView(context);
-        this.mapView = onCreateMapView2;
-        onCreateMapView2.setOnDispatchTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
+        IMapsProvider.IMapView iMapViewOnCreateMapView = ApplicationLoader.getMapsProvider().onCreateMapView(context);
+        this.mapView = iMapViewOnCreateMapView;
+        iMapViewOnCreateMapView.setOnDispatchTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
             @Override
             public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                boolean lambda$new$10;
-                lambda$new$10 = ChatAttachAlertLocationLayout.this.lambda$new$10(motionEvent, iCallableMethod);
-                return lambda$new$10;
+                return this.f$0.lambda$new$10(motionEvent, iCallableMethod);
             }
         });
         this.mapView.setOnInterceptTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
             @Override
             public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                boolean lambda$new$11;
-                lambda$new$11 = ChatAttachAlertLocationLayout.this.lambda$new$11(motionEvent, iCallableMethod);
-                return lambda$new$11;
+                return this.f$0.lambda$new$11(motionEvent, iCallableMethod);
             }
         });
-        final IMapsProvider.IMapView iMapView2 = this.mapView;
+        final IMapsProvider.IMapView iMapView = this.mapView;
         new Thread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$new$16(iMapView2);
+                this.f$0.lambda$new$16(iMapView);
             }
         }).start();
-        ImageView imageView32 = new ImageView(context);
-        this.markerImageView = imageView32;
-        imageView32.setImageResource(R.drawable.map_pin2);
+        ImageView imageView3 = new ImageView(context);
+        this.markerImageView = imageView3;
+        imageView3.setImageResource(R.drawable.map_pin2);
         this.mapViewClip.addView(this.markerImageView, LayoutHelper.createFrame(28, 48, 49));
-        RecyclerListView recyclerListView42 = new RecyclerListView(context, resourcesProvider);
-        this.searchListView = recyclerListView42;
-        recyclerListView42.setVisibility(8);
+        RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider);
+        this.searchListView = recyclerListView4;
+        recyclerListView4.setVisibility(8);
         this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        ChatAttachAlert chatAttachAlert42 = this.parentAlert;
-        LocationActivitySearchAdapter locationActivitySearchAdapter22 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert42.isStoryLocationPicker, chatAttachAlert42.isBizLocationPicker) {
+        ChatAttachAlert chatAttachAlert4 = this.parentAlert;
+        LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, chatAttachAlert4.isBizLocationPicker) {
             @Override
             public void notifyDataSetChanged() {
                 if (ChatAttachAlertLocationLayout.this.searchItem != null) {
@@ -1210,28 +748,28 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 super.notifyDataSetChanged();
             }
         };
-        this.searchAdapter = locationActivitySearchAdapter22;
-        locationActivitySearchAdapter22.setMyLocationDenied(this.locationDenied);
+        this.searchAdapter = locationActivitySearchAdapter2;
+        locationActivitySearchAdapter2.setMyLocationDenied(this.locationDenied);
         this.searchAdapter.setDelegate(0L, new BaseLocationAdapter.BaseLocationAdapterDelegate() {
             @Override
             public final void didLoadSearchResult(ArrayList arrayList) {
-                ChatAttachAlertLocationLayout.this.lambda$new$17(arrayList);
+                this.f$0.lambda$new$17(arrayList);
             }
         });
         this.searchListView.setItemAnimator(null);
         addView(this.searchListView, LayoutHelper.createFrame(-1, -1, 51));
         this.searchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i82) {
-                if (i82 == 1 && ChatAttachAlertLocationLayout.this.searching && ChatAttachAlertLocationLayout.this.searchWas) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
+                if (i8 == 1 && ChatAttachAlertLocationLayout.this.searching && ChatAttachAlertLocationLayout.this.searchWas) {
                     AndroidUtilities.hideKeyboard(ChatAttachAlertLocationLayout.this.parentAlert.getCurrentFocus());
                 }
             }
         });
         this.searchListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view22, int i82) {
-                ChatAttachAlertLocationLayout.this.lambda$new$19(chatActivity, resourcesProvider, view22, i82);
+            public final void onItemClick(View view2, int i8) {
+                this.f$0.lambda$new$19(chatActivity, resourcesProvider, view2, i8);
             }
         });
         updateEmptyView();
@@ -1264,13 +802,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public void lambda$new$3(View view) {
         Activity parentActivity;
-        int checkSelfPermission;
-        if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null) {
-            checkSelfPermission = parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-            if (checkSelfPermission != 0) {
-                AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
-                return;
-            }
+        if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
+            AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
+            return;
         }
         if (this.myLocation != null && this.map != null) {
             ImageView imageView = this.locationButton;
@@ -1324,7 +858,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            ChatAttachAlertLocationLayout.this.lambda$new$6(chatActivity, tL_messageMediaGeo, resourcesProvider, (Long) obj);
+                            this.f$0.lambda$new$6(chatActivity, tL_messageMediaGeo, resourcesProvider, (Long) obj);
                         }
                     });
                     return;
@@ -1355,7 +889,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert2.currentAccount, chatAttachAlert2.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$8(chatActivity, item, resourcesProvider, (Long) obj);
+                    this.f$0.lambda$new$8(chatActivity, item, resourcesProvider, (Long) obj);
                 }
             });
         }
@@ -1366,7 +900,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$5(tL_messageMediaGeo, l, z, i, i2);
+                    this.f$0.lambda$new$5(tL_messageMediaGeo, l, z, i, i2);
                 }
             }, resourcesProvider);
         } else {
@@ -1385,7 +919,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$7(obj, z, i, i2);
+                    this.f$0.lambda$new$7(obj, z, i, i2);
                 }
             }, resourcesProvider);
         } else {
@@ -1401,20 +935,20 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public boolean lambda$new$10(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
         MotionEvent motionEvent2;
-        MotionEvent motionEvent3;
+        MotionEvent motionEventObtain;
         if (this.yOffset != 0.0f) {
-            motionEvent3 = MotionEvent.obtain(motionEvent);
-            motionEvent3.offsetLocation(0.0f, (-this.yOffset) / 2.0f);
-            motionEvent2 = motionEvent3;
+            motionEventObtain = MotionEvent.obtain(motionEvent);
+            motionEventObtain.offsetLocation(0.0f, (-this.yOffset) / 2.0f);
+            motionEvent2 = motionEventObtain;
         } else {
             motionEvent2 = motionEvent;
-            motionEvent3 = null;
+            motionEventObtain = null;
         }
-        boolean booleanValue = ((Boolean) iCallableMethod.call(motionEvent2)).booleanValue();
-        if (motionEvent3 != null) {
-            motionEvent3.recycle();
+        boolean zBooleanValue = ((Boolean) iCallableMethod.call(motionEvent2)).booleanValue();
+        if (motionEventObtain != null) {
+            motionEventObtain.recycle();
         }
-        return booleanValue;
+        return zBooleanValue;
     }
 
     public boolean lambda$new$11(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
@@ -1467,7 +1001,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$new$15(iMapView);
+                this.f$0.lambda$new$15(iMapView);
             }
         });
     }
@@ -1481,8 +1015,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
             this.mapView.getMapAsync(new Consumer() {
                 @Override
-                public final void accept(Object obj) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$14((IMapsProvider.IMap) obj);
+                public final void accept(Object obj) throws IllegalArgumentException {
+                    this.f$0.lambda$new$14((IMapsProvider.IMap) obj);
                 }
             });
             this.mapsInitialized = true;
@@ -1494,12 +1028,12 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$14(IMapsProvider.IMap iMap) {
+    public void lambda$new$14(IMapsProvider.IMap iMap) throws IllegalArgumentException {
         this.map = iMap;
         iMap.setOnMapLoadedCallback(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$new$13();
+                this.f$0.lambda$new$13();
             }
         });
         if (isActiveThemeDark()) {
@@ -1513,7 +1047,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$new$12();
+                this.f$0.lambda$new$12();
             }
         });
     }
@@ -1537,7 +1071,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i2, int i3) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$18(item, z, i2, i3);
+                    this.f$0.lambda$new$18(item, z, i2, i3);
                 }
             }, resourcesProvider);
         } else {
@@ -1735,31 +1269,27 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public void openShareLiveLocation() {
         Activity parentActivity;
-        int checkSelfPermission;
         if (this.delegate == null || getParentActivity() == null || this.myLocation == null) {
             return;
         }
         if (this.checkBackgroundPermission && Build.VERSION.SDK_INT >= 29 && (parentActivity = getParentActivity()) != null) {
             this.checkBackgroundPermission = false;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (Math.abs((System.currentTimeMillis() / 1000) - globalMainSettings.getInt("backgroundloc", 0)) > 86400) {
-                checkSelfPermission = parentActivity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION");
-                if (checkSelfPermission != 0) {
-                    globalMainSettings.edit().putInt("backgroundloc", (int) (System.currentTimeMillis() / 1000)).commit();
-                    AlertsCreator.createBackgroundLocationPermissionDialog(parentActivity, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), new Runnable() {
-                        @Override
-                        public final void run() {
-                            ChatAttachAlertLocationLayout.this.openShareLiveLocation();
-                        }
-                    }, this.resourcesProvider).show();
-                    return;
-                }
+            if (Math.abs((System.currentTimeMillis() / 1000) - globalMainSettings.getInt("backgroundloc", 0)) > 86400 && parentActivity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
+                globalMainSettings.edit().putInt("backgroundloc", (int) (System.currentTimeMillis() / 1000)).commit();
+                AlertsCreator.createBackgroundLocationPermissionDialog(parentActivity, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.openShareLiveLocation();
+                    }
+                }, this.resourcesProvider).show();
+                return;
             }
         }
         AlertsCreator.createLocationUpdateDialog(getParentActivity(), false, DialogObject.isUserDialog(this.dialogId) ? this.parentAlert.baseFragment.getMessagesController().getUser(Long.valueOf(this.dialogId)) : null, new MessagesStorage.IntCallback() {
             @Override
             public final void run(int i) {
-                ChatAttachAlertLocationLayout.this.lambda$openShareLiveLocation$21(i);
+                this.f$0.lambda$openShareLiveLocation$21(i);
             }
         }, this.resourcesProvider).show();
     }
@@ -1769,7 +1299,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatAttachAlertLocationLayout.this.lambda$openShareLiveLocation$20(i, (Long) obj);
+                this.f$0.lambda$openShareLiveLocation$20(i, (Long) obj);
             }
         });
     }
@@ -1793,14 +1323,14 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         try {
             Paint paint = new Paint(1);
             paint.setColor(-1);
-            Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             canvas.drawCircle(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
             paint.setColor(LocationCell.getColorForIndex(i));
             canvas.drawCircle(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), paint);
             canvas.setBitmap(null);
-            this.bitmapCache[i % 7] = createBitmap;
-            return createBitmap;
+            this.bitmapCache[i % 7] = bitmapCreateBitmap;
+            return bitmapCreateBitmap;
         } catch (Throwable th) {
             FileLog.e(th);
             return null;
@@ -1820,19 +1350,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         for (int i2 = 0; i2 < size2; i2++) {
             TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i2);
             try {
-                IMapsProvider.IMarkerOptions onCreateMarkerOptions = ApplicationLoader.getMapsProvider().onCreateMarkerOptions();
+                IMapsProvider.IMarkerOptions iMarkerOptionsOnCreateMarkerOptions = ApplicationLoader.getMapsProvider().onCreateMarkerOptions();
                 TLRPC.GeoPoint geoPoint = tL_messageMediaVenue.geo;
-                IMapsProvider.IMarkerOptions position = onCreateMarkerOptions.position(new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long));
-                position.icon(createPlaceBitmap(i2));
-                position.anchor(0.5f, 0.5f);
-                position.title(tL_messageMediaVenue.title);
-                position.snippet(tL_messageMediaVenue.address);
+                IMapsProvider.IMarkerOptions iMarkerOptionsPosition = iMarkerOptionsOnCreateMarkerOptions.position(new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long));
+                iMarkerOptionsPosition.icon(createPlaceBitmap(i2));
+                iMarkerOptionsPosition.anchor(0.5f, 0.5f);
+                iMarkerOptionsPosition.title(tL_messageMediaVenue.title);
+                iMarkerOptionsPosition.snippet(tL_messageMediaVenue.address);
                 VenueLocation venueLocation = new VenueLocation();
                 venueLocation.num = i2;
-                IMapsProvider.IMarker addMarker = this.map.addMarker(position);
-                venueLocation.marker = addMarker;
+                IMapsProvider.IMarker iMarkerAddMarker = this.map.addMarker(iMarkerOptionsPosition);
+                venueLocation.marker = iMarkerAddMarker;
                 venueLocation.venue = tL_messageMediaVenue;
-                addMarker.setTag(venueLocation);
+                iMarkerAddMarker.setTag(venueLocation);
                 this.placeMarkers.add(venueLocation);
             } catch (Exception e) {
                 FileLog.e(e);
@@ -1861,7 +1391,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return baseFragment.getParentActivity();
     }
 
-    private void onMapInit() {
+    private void onMapInit() throws IllegalArgumentException {
         PackageManager packageManager;
         if (this.map == null) {
             return;
@@ -1881,40 +1411,38 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.map.setOnCameraMoveStartedListener(new IMapsProvider.OnCameraMoveStartedListener() {
             @Override
             public final void onCameraMoveStarted(int i) {
-                ChatAttachAlertLocationLayout.this.lambda$onMapInit$22(i);
+                this.f$0.lambda$onMapInit$22(i);
             }
         });
         this.map.setOnCameraIdleListener(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$onMapInit$23();
+                this.f$0.lambda$onMapInit$23();
             }
         });
         this.map.setOnMyLocationChangeListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatAttachAlertLocationLayout.this.lambda$onMapInit$24((Location) obj);
+                this.f$0.lambda$onMapInit$24((Location) obj);
             }
         });
         this.map.setOnMarkerClickListener(new IMapsProvider.OnMarkerClickListener() {
             @Override
             public final boolean onClick(IMapsProvider.IMarker iMarker) {
-                boolean lambda$onMapInit$25;
-                lambda$onMapInit$25 = ChatAttachAlertLocationLayout.this.lambda$onMapInit$25(iMarker);
-                return lambda$onMapInit$25;
+                return this.f$0.lambda$onMapInit$25(iMarker);
             }
         });
         this.map.setOnCameraMoveListener(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$onMapInit$26();
+                this.f$0.lambda$onMapInit$26();
             }
         });
         positionMarker();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$onMapInit$27();
+                this.f$0.lambda$onMapInit$27();
             }
         }, 200L);
         if (this.checkGpsEnabled && getParentActivity() != null) {
@@ -1931,7 +1459,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     builder.setPositiveButton(LocaleController.getString(R.string.ConnectingToProxyEnable), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            ChatAttachAlertLocationLayout.this.lambda$onMapInit$28(alertDialog, i);
+                            this.f$0.lambda$onMapInit$28(alertDialog, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1946,19 +1474,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public void lambda$onMapInit$22(int i) {
         View childAt;
-        RecyclerView.ViewHolder findContainingViewHolder;
+        RecyclerView.ViewHolder viewHolderFindContainingViewHolder;
         if (i == 1) {
             showSearchPlacesButton(true);
             removeInfoView();
-            if (this.scrolling || this.listView.getChildCount() <= 0 || (childAt = this.listView.getChildAt(0)) == null || (findContainingViewHolder = this.listView.findContainingViewHolder(childAt)) == null || findContainingViewHolder.getAdapterPosition() != 0) {
+            if (this.scrolling || this.listView.getChildCount() <= 0 || (childAt = this.listView.getChildAt(0)) == null || (viewHolderFindContainingViewHolder = this.listView.findContainingViewHolder(childAt)) == null || viewHolderFindContainingViewHolder.getAdapterPosition() != 0) {
                 return;
             }
-            int dp = this.locationType == 0 ? 0 : AndroidUtilities.dp(66.0f);
+            int iDp = this.locationType == 0 ? 0 : AndroidUtilities.dp(66.0f);
             int top = childAt.getTop();
-            if (top < (-dp)) {
+            if (top < (-iDp)) {
                 IMapsProvider.CameraPosition cameraPosition = this.map.getCameraPosition();
                 this.forceUpdate = ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(cameraPosition.target, cameraPosition.zoom);
-                this.listView.smoothScrollBy(0, top + dp);
+                this.listView.smoothScrollBy(0, top + iDp);
             }
         }
     }
@@ -2033,7 +1561,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public void lambda$positionMarker$30(double d, double d2) {
-        IMapsProvider.ICameraUpdate newCameraUpdateLatLngZoom;
+        IMapsProvider.ICameraUpdate iCameraUpdateNewCameraUpdateLatLngZoom;
         if (this.map == null) {
             return;
         }
@@ -2052,12 +1580,12 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
         IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(d, d2);
         if (d != 0.0d && d2 != 0.0d) {
-            newCameraUpdateLatLngZoom = ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMaxZoomLevel() - 4.0f);
+            iCameraUpdateNewCameraUpdateLatLngZoom = ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMaxZoomLevel() - 4.0f);
         } else {
-            newCameraUpdateLatLngZoom = ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMinZoomLevel());
+            iCameraUpdateNewCameraUpdateLatLngZoom = ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng, this.map.getMinZoomLevel());
         }
-        this.forceUpdate = newCameraUpdateLatLngZoom;
-        this.map.moveCamera(newCameraUpdateLatLngZoom);
+        this.forceUpdate = iCameraUpdateNewCameraUpdateLatLngZoom;
+        this.map.moveCamera(iCameraUpdateNewCameraUpdateLatLngZoom);
         if (d != 0.0d && d2 != 0.0d) {
             this.adapter.setCustomLocation(this.userLocation);
         } else {
@@ -2090,33 +1618,33 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     private void showResults() {
         if (this.adapter.getItemCount() != 0 && this.layoutManager.findFirstVisibleItemPosition() == 0) {
-            int dp = AndroidUtilities.dp(258.0f) + this.listView.getChildAt(0).getTop();
-            if (dp < 0 || dp > AndroidUtilities.dp(258.0f)) {
+            int iDp = AndroidUtilities.dp(258.0f) + this.listView.getChildAt(0).getTop();
+            if (iDp < 0 || iDp > AndroidUtilities.dp(258.0f)) {
                 return;
             }
-            this.listView.smoothScrollBy(0, dp);
+            this.listView.smoothScrollBy(0, iDp);
         }
     }
 
     public void updateClipView() {
-        int i;
-        int i2;
+        int y;
+        int iMin;
         IMapsProvider.LatLng latLng;
         Location location;
         IMapsProvider.IMap iMap;
         if (this.mapView == null || this.mapViewClip == null) {
             return;
         }
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(0);
-        if (findViewHolderForAdapterPosition != null) {
-            i = (int) findViewHolderForAdapterPosition.itemView.getY();
-            i2 = this.overScrollHeight + Math.min(i, 0);
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(0);
+        if (viewHolderFindViewHolderForAdapterPosition != null) {
+            y = (int) viewHolderFindViewHolderForAdapterPosition.itemView.getY();
+            iMin = this.overScrollHeight + Math.min(y, 0);
         } else {
-            i = -this.mapViewClip.getMeasuredHeight();
-            i2 = 0;
+            y = -this.mapViewClip.getMeasuredHeight();
+            iMin = 0;
         }
         if (((FrameLayout.LayoutParams) this.mapViewClip.getLayoutParams()) != null) {
-            if (i2 <= 0) {
+            if (iMin <= 0) {
                 if (this.mapView.getView().getVisibility() == 0) {
                     this.mapView.getView().setVisibility(4);
                     this.mapViewClip.setVisibility(4);
@@ -2125,7 +1653,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                         mapOverlayView.setVisibility(4);
                     }
                 }
-                this.mapView.getView().setTranslationY(i);
+                this.mapView.getView().setTranslationY(y);
                 return;
             }
             if (this.mapView.getView().getVisibility() == 4) {
@@ -2136,19 +1664,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                     mapOverlayView2.setVisibility(0);
                 }
             }
-            int max = Math.max(0, (-((i - this.mapHeight) + this.overScrollHeight)) / 2);
-            int i3 = this.mapHeight - this.overScrollHeight;
-            float max2 = 1.0f - Math.max(0.0f, Math.min(1.0f, (this.listView.getPaddingTop() - i) / (this.listView.getPaddingTop() - i3)));
-            int i4 = this.clipSize;
+            int iMax = Math.max(0, (-((y - this.mapHeight) + this.overScrollHeight)) / 2);
+            int iMin2 = this.mapHeight - this.overScrollHeight;
+            float fMax = 1.0f - Math.max(0.0f, Math.min(1.0f, (this.listView.getPaddingTop() - y) / (this.listView.getPaddingTop() - iMin2)));
+            int i = this.clipSize;
             if (this.locationDenied && isTypeSend()) {
-                i3 += Math.min(i, this.listView.getPaddingTop());
+                iMin2 += Math.min(y, this.listView.getPaddingTop());
             }
-            this.clipSize = (int) (i3 * max2);
-            float f = max;
+            this.clipSize = (int) (iMin2 * fMax);
+            float f = iMax;
             this.mapView.getView().setTranslationY(f);
-            this.nonClipSize = i3 - this.clipSize;
+            this.nonClipSize = iMin2 - this.clipSize;
             this.mapViewClip.invalidate();
-            this.mapViewClip.setTranslationY(i - this.nonClipSize);
+            this.mapViewClip.setTranslationY(y - this.nonClipSize);
             IMapsProvider.IMap iMap2 = this.map;
             if (iMap2 != null) {
                 iMap2.setPadding(0, AndroidUtilities.dp(6.0f), 0, this.clipSize + AndroidUtilities.dp(6.0f));
@@ -2157,15 +1685,15 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             if (mapOverlayView3 != null) {
                 mapOverlayView3.setTranslationY(f);
             }
-            float min = Math.min(Math.max(this.nonClipSize - i, 0), (this.mapHeight - this.mapTypeButton.getMeasuredHeight()) - AndroidUtilities.dp(80.0f));
-            this.mapTypeButton.setTranslationY(min);
-            this.searchAreaButton.setTranslation(min);
+            float fMin = Math.min(Math.max(this.nonClipSize - y, 0), (this.mapHeight - this.mapTypeButton.getMeasuredHeight()) - AndroidUtilities.dp(80.0f));
+            this.mapTypeButton.setTranslationY(fMin);
+            this.searchAreaButton.setTranslation(fMin);
             this.locationButton.setTranslationY(-this.clipSize);
             ImageView imageView = this.markerImageView;
-            int dp = (((this.mapHeight - this.clipSize) / 2) - AndroidUtilities.dp(48.0f)) + max;
-            this.markerTop = dp;
-            imageView.setTranslationY(dp);
-            if (i4 != this.clipSize) {
+            int iDp = (((this.mapHeight - this.clipSize) / 2) - AndroidUtilities.dp(48.0f)) + iMax;
+            this.markerTop = iDp;
+            imageView.setTranslationY(iDp);
+            if (i != this.clipSize) {
                 IMapsProvider.IMarker iMarker = this.lastPressedMarker;
                 if (iMarker != null) {
                     latLng = new IMapsProvider.LatLng(iMarker.getPosition().latitude, this.lastPressedMarker.getPosition().longitude);
@@ -2181,10 +1709,10 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
             if (this.locationDenied && isTypeSend()) {
                 int itemCount = this.adapter.getItemCount();
-                for (int i5 = 1; i5 < itemCount; i5++) {
-                    RecyclerView.ViewHolder findViewHolderForAdapterPosition2 = this.listView.findViewHolderForAdapterPosition(i5);
-                    if (findViewHolderForAdapterPosition2 != null) {
-                        findViewHolderForAdapterPosition2.itemView.setTranslationY(this.listView.getPaddingTop() - i);
+                for (int i2 = 1; i2 < itemCount; i2++) {
+                    RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition2 = this.listView.findViewHolderForAdapterPosition(i2);
+                    if (viewHolderFindViewHolderForAdapterPosition2 != null) {
+                        viewHolderFindViewHolderForAdapterPosition2.itemView.setTranslationY(this.listView.getPaddingTop() - y);
                     }
                 }
             }
@@ -2197,9 +1725,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     private int buttonsHeight() {
-        int dp = AndroidUtilities.dp(66.0f);
+        int iDp = AndroidUtilities.dp(66.0f);
         int i = this.locationType;
-        return (i == 1 || i == 7 || i == 8) ? dp + AndroidUtilities.dp(66.0f) : dp;
+        return (i == 1 || i == 7 || i == 8) ? iDp + AndroidUtilities.dp(66.0f) : iDp;
     }
 
     private void fixLayoutInternal(boolean z) {
@@ -2208,13 +1736,13 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             return;
         }
         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
-        int buttonsHeight = ((AndroidUtilities.displaySize.y - currentActionBarHeight) - buttonsHeight()) - AndroidUtilities.dp(90.0f);
-        int dp = AndroidUtilities.dp(189.0f);
-        this.overScrollHeight = dp;
+        int iButtonsHeight = ((AndroidUtilities.displaySize.y - currentActionBarHeight) - buttonsHeight()) - AndroidUtilities.dp(90.0f);
+        int iDp = AndroidUtilities.dp(189.0f);
+        this.overScrollHeight = iDp;
         if (!this.locationDenied || !isTypeSend()) {
-            buttonsHeight = Math.min(AndroidUtilities.dp(310.0f), buttonsHeight);
+            iButtonsHeight = Math.min(AndroidUtilities.dp(310.0f), iButtonsHeight);
         }
-        this.mapHeight = Math.max(dp, buttonsHeight);
+        this.mapHeight = Math.max(iDp, iButtonsHeight);
         if (this.locationDenied && isTypeSend()) {
             this.overScrollHeight = this.mapHeight;
         }
@@ -2246,84 +1774,18 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     private Location getLastLocation() {
         LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
         List<String> providers = locationManager.getProviders(true);
-        Location location = null;
+        Location lastKnownLocation = null;
         for (int size = providers.size() - 1; size >= 0; size--) {
-            location = locationManager.getLastKnownLocation(providers.get(size));
-            if (location != null) {
+            lastKnownLocation = locationManager.getLastKnownLocation(providers.get(size));
+            if (lastKnownLocation != null) {
                 break;
             }
         }
-        return location;
+        return lastKnownLocation;
     }
 
-    private void positionMarker() {
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
-        if (chatAttachAlert.isStoryLocationPicker) {
-            if (chatAttachAlert.storyLocationPickerLatLong != null) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertLocationLayout.this.lambda$positionMarker$29();
-                    }
-                });
-                return;
-            }
-            if (!this.locationDenied) {
-                File file = chatAttachAlert.storyLocationPickerPhotoFile;
-                boolean z = chatAttachAlert.storyLocationPickerFileIsVideo;
-                if (file != null) {
-                    try {
-                        if (z) {
-                            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                            mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
-                            String extractMetadata = mediaMetadataRetriever.extractMetadata(23);
-                            if (extractMetadata != null) {
-                                Matcher matcher = Pattern.compile("([+\\-][0-9.]+)([+\\-][0-9.]+)").matcher(extractMetadata);
-                                if (matcher.find() && matcher.groupCount() == 2) {
-                                    String group = matcher.group(1);
-                                    String group2 = matcher.group(2);
-                                    final double parseDouble = Double.parseDouble(group);
-                                    final double parseDouble2 = Double.parseDouble(group2);
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            ChatAttachAlertLocationLayout.this.lambda$positionMarker$30(parseDouble, parseDouble2);
-                                        }
-                                    });
-                                }
-                            }
-                        } else {
-                            ExifInterface exifInterface = new ExifInterface(file.getAbsolutePath());
-                            final float[] fArr = new float[2];
-                            if (exifInterface.getLatLong(fArr)) {
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        ChatAttachAlertLocationLayout.this.lambda$positionMarker$31(fArr);
-                                    }
-                                });
-                            }
-                        }
-                    } catch (NumberFormatException | Exception unused) {
-                    }
-                    return;
-                }
-                Location lastLocation = getLastLocation();
-                this.myLocation = lastLocation;
-                positionMarker(lastLocation);
-                return;
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertLocationLayout.this.lambda$positionMarker$32();
-                }
-            });
-            return;
-        }
-        Location lastLocation2 = getLastLocation();
-        this.myLocation = lastLocation2;
-        positionMarker(lastLocation2);
+    private void positionMarker() throws java.lang.IllegalArgumentException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertLocationLayout.positionMarker():void");
     }
 
     public void lambda$positionMarker$29() {
@@ -2371,7 +1833,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalArgumentException {
         if (i == NotificationCenter.locationPermissionGranted) {
             this.locationDenied = false;
             this.askedForLocation = false;
@@ -2451,7 +1913,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.this.lambda$onShow$33();
+                this.f$0.lambda$onShow$33();
             }
         }, this.parentAlert.delegate.needEnterComment() ? 200L : 0L);
         this.layoutManager.scrollToPositionWithOffset(0, 0);
@@ -2461,15 +1923,12 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     public void lambda$onShow$33() {
         int i;
         Activity parentActivity;
-        int checkSelfPermission;
-        int checkSelfPermission2;
         String[] strArr;
         if (!this.checkPermission || (i = Build.VERSION.SDK_INT) < 23 || (parentActivity = getParentActivity()) == null) {
             return;
         }
         this.checkPermission = false;
-        checkSelfPermission = parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-        if (checkSelfPermission != 0) {
+        if (parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
             ChatAttachAlert chatAttachAlert = this.parentAlert;
             if (chatAttachAlert.isStoryLocationPicker && chatAttachAlert.storyLocationPickerPhotoFile != null && i >= 29) {
                 strArr = new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_MEDIA_LOCATION"};
@@ -2486,18 +1945,15 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
         if (i >= 29) {
             ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-            if (!chatAttachAlert2.isStoryLocationPicker || chatAttachAlert2.storyLocationPickerPhotoFile == null) {
+            if (!chatAttachAlert2.isStoryLocationPicker || chatAttachAlert2.storyLocationPickerPhotoFile == null || parentActivity.checkSelfPermission("android.permission.ACCESS_MEDIA_LOCATION") == 0) {
                 return;
             }
-            checkSelfPermission2 = parentActivity.checkSelfPermission("android.permission.ACCESS_MEDIA_LOCATION");
-            if (checkSelfPermission2 != 0) {
-                this.askedForLocation = true;
-                LocationActivityAdapter locationActivityAdapter2 = this.adapter;
-                if (locationActivityAdapter2 != null) {
-                    locationActivityAdapter2.setMyLocationDenied(this.locationDenied, true);
-                }
-                parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_MEDIA_LOCATION"}, 211);
+            this.askedForLocation = true;
+            LocationActivityAdapter locationActivityAdapter2 = this.adapter;
+            if (locationActivityAdapter2 != null) {
+                locationActivityAdapter2.setMyLocationDenied(this.locationDenied, true);
             }
+            parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_MEDIA_LOCATION"}, 211);
         }
     }
 
@@ -2511,7 +1967,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatAttachAlertLocationLayout.this.lambda$getThemeDescriptions$34();
+                this.f$0.lambda$getThemeDescriptions$34();
             }
 
             @Override

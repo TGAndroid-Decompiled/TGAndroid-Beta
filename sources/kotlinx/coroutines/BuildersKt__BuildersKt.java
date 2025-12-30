@@ -1,6 +1,5 @@
 package kotlinx.coroutines;
 
-import kotlin.coroutines.ContinuationInterceptor;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
 import kotlin.jvm.functions.Function2;
@@ -13,28 +12,7 @@ public abstract class BuildersKt__BuildersKt {
         return BuildersKt.runBlocking(coroutineContext, function2);
     }
 
-    public static final Object runBlocking(CoroutineContext coroutineContext, Function2 function2) {
-        EventLoop currentOrNull$kotlinx_coroutines_core;
-        CoroutineContext newCoroutineContext;
-        Thread currentThread = Thread.currentThread();
-        ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) coroutineContext.get(ContinuationInterceptor.Key);
-        if (continuationInterceptor == null) {
-            currentOrNull$kotlinx_coroutines_core = ThreadLocalEventLoop.INSTANCE.getEventLoop$kotlinx_coroutines_core();
-            newCoroutineContext = CoroutineContextKt.newCoroutineContext(GlobalScope.INSTANCE, coroutineContext.plus(currentOrNull$kotlinx_coroutines_core));
-        } else {
-            EventLoop eventLoop = continuationInterceptor instanceof EventLoop ? (EventLoop) continuationInterceptor : null;
-            if (eventLoop != null) {
-                EventLoop eventLoop2 = eventLoop.shouldBeProcessedFromContext() ? eventLoop : null;
-                if (eventLoop2 != null) {
-                    currentOrNull$kotlinx_coroutines_core = eventLoop2;
-                    newCoroutineContext = CoroutineContextKt.newCoroutineContext(GlobalScope.INSTANCE, coroutineContext);
-                }
-            }
-            currentOrNull$kotlinx_coroutines_core = ThreadLocalEventLoop.INSTANCE.currentOrNull$kotlinx_coroutines_core();
-            newCoroutineContext = CoroutineContextKt.newCoroutineContext(GlobalScope.INSTANCE, coroutineContext);
-        }
-        BlockingCoroutine blockingCoroutine = new BlockingCoroutine(newCoroutineContext, currentThread, currentOrNull$kotlinx_coroutines_core);
-        blockingCoroutine.start(CoroutineStart.DEFAULT, blockingCoroutine, function2);
-        return blockingCoroutine.joinBlocking();
+    public static final java.lang.Object runBlocking(kotlin.coroutines.CoroutineContext r4, kotlin.jvm.functions.Function2 r5) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(kotlin.coroutines.CoroutineContext, kotlin.jvm.functions.Function2):java.lang.Object");
     }
 }

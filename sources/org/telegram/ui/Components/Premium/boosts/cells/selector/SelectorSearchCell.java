@@ -18,22 +18,16 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Property;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -70,7 +64,7 @@ public abstract class SelectorSearchCell extends ScrollView {
         return this.editText;
     }
 
-    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) throws NoSuchFieldException, SecurityException {
         super(context);
         this.allSpans = new ArrayList();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -163,78 +157,8 @@ public abstract class SelectorSearchCell extends ScrollView {
         this.editText.setHintText(str, z);
     }
 
-    public void updateSpans(boolean z, final HashSet hashSet, final Runnable runnable, List list) {
-        Object chat;
-        Object obj;
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        for (int i = 0; i < this.allSpans.size(); i++) {
-            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.allSpans.get(i);
-            if (!hashSet.contains(Long.valueOf(groupCreateSpan.getUid()))) {
-                arrayList.add(groupCreateSpan);
-            }
-        }
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
-            long longValue = l.longValue();
-            int i2 = 0;
-            while (true) {
-                if (i2 >= this.allSpans.size()) {
-                    if (longValue >= 0) {
-                        chat = messagesController.getUser(l);
-                    } else {
-                        chat = messagesController.getChat(Long.valueOf(-longValue));
-                    }
-                    if (list != null) {
-                        Iterator it2 = list.iterator();
-                        while (it2.hasNext()) {
-                            TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) it2.next();
-                            if (tL_help_country.default_name.hashCode() == longValue) {
-                                obj = tL_help_country;
-                                break;
-                            }
-                        }
-                    }
-                    obj = chat;
-                    if (obj != null) {
-                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
-                        groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view) {
-                                SelectorSearchCell.this.lambda$updateSpans$0(hashSet, runnable, view);
-                            }
-                        });
-                        arrayList2.add(groupCreateSpan2);
-                    }
-                } else if (((GroupCreateSpan) this.allSpans.get(i2)).getUid() == longValue) {
-                    break;
-                } else {
-                    i2++;
-                }
-            }
-        }
-        if (!arrayList.isEmpty() || !arrayList2.isEmpty()) {
-            this.spansContainer.updateSpans(arrayList, arrayList2, z);
-        }
-        this.editText.setOnKeyListener(new View.OnKeyListener() {
-            private boolean wasEmpty;
-
-            @Override
-            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                if (i3 == 67) {
-                    if (keyEvent.getAction() == 0) {
-                        this.wasEmpty = SelectorSearchCell.this.editText.length() == 0;
-                    } else if (keyEvent.getAction() == 1 && this.wasEmpty && !SelectorSearchCell.this.allSpans.isEmpty()) {
-                        ArrayList arrayList3 = SelectorSearchCell.this.allSpans;
-                        SelectorSearchCell.this.lambda$updateSpans$0((GroupCreateSpan) arrayList3.get(arrayList3.size() - 1), hashSet, runnable);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
+    public void updateSpans(boolean r23, final java.util.HashSet r24, final java.lang.Runnable r25, java.util.List r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell.updateSpans(boolean, java.util.HashSet, java.lang.Runnable, java.util.List):void");
     }
 
     public void lambda$updateSpans$0(View view, HashSet hashSet, Runnable runnable) {
@@ -320,14 +244,14 @@ public abstract class SelectorSearchCell extends ScrollView {
     }
 
     protected Animator getContainerHeightAnimator(float f) {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.containerHeight, f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.containerHeight, f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                SelectorSearchCell.this.lambda$getContainerHeightAnimator$1(valueAnimator);
+                this.f$0.lambda$getContainerHeightAnimator$1(valueAnimator);
             }
         });
-        return ofFloat;
+        return valueAnimatorOfFloat;
     }
 
     public void lambda$getContainerHeightAnimator$1(ValueAnimator valueAnimator) {

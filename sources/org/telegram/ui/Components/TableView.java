@@ -53,9 +53,9 @@ public class TableView extends android.widget.TableLayout {
         this.radii = new float[8];
         this.backgroundPaint = new Paint(1);
         this.borderPaint = new Paint(1);
-        float max = Math.max(1, AndroidUtilities.dp(0.66f));
-        this.w = max;
-        this.hw = max / 2.0f;
+        float fMax = Math.max(1, AndroidUtilities.dp(0.66f));
+        this.w = fMax;
+        this.hw = fMax / 2.0f;
         this.resourcesProvider = resourcesProvider;
         setClipToPadding(false);
         setColumnStretchable(1, true);
@@ -141,8 +141,8 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRowUserWithEmojiStatus(CharSequence charSequence, final int i, final long j, final Runnable runnable) {
-        String str;
-        String str2;
+        String userName;
+        String string;
         boolean z;
         final LinkSpanDrawable.LinksSimpleTextView linksSimpleTextView = new LinkSpanDrawable.LinksSimpleTextView(getContext(), this.resourcesProvider);
         linksSimpleTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
@@ -152,32 +152,32 @@ public class TableView extends android.widget.TableLayout {
         linksSimpleTextView.setTextSize(14);
         AvatarSpan avatarSpan = new AvatarSpan(linksSimpleTextView, i, 24.0f);
         if (j == 2666000) {
-            str2 = LocaleController.getString(R.string.StarsTransactionHidden);
+            string = LocaleController.getString(R.string.StarsTransactionHidden);
             CombinedDrawable platformDrawable = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("anonymous");
             platformDrawable.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             avatarSpan.setImageDrawable(platformDrawable);
             z = false;
         } else {
             if (UserObject.isService(j)) {
-                str2 = LocaleController.getString(R.string.StarsTransactionUnknown);
+                string = LocaleController.getString(R.string.StarsTransactionUnknown);
                 CombinedDrawable platformDrawable2 = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("fragment");
                 platformDrawable2.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
                 avatarSpan.setImageDrawable(platformDrawable2);
             } else {
                 if (j >= 0) {
                     TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-                    str = UserObject.getUserName(user);
+                    userName = UserObject.getUserName(user);
                     avatarSpan.setUser(user);
                 } else {
                     TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
-                    str = chat == null ? "" : chat.title;
+                    userName = chat == null ? "" : chat.title;
                     avatarSpan.setChat(chat);
                 }
-                str2 = str;
+                string = userName;
             }
             z = true;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) str2));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) string));
         spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
         if (z) {
             linksSimpleTextView.setClickable(true);
@@ -211,12 +211,12 @@ public class TableView extends android.widget.TableLayout {
                 swapAnimatedEmojiDrawable.detach();
             }
         });
-        final Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+        final Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         Utilities.Callback<Object[]> callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                TableView.lambda$addRowUserWithEmojiStatus$1(j, i, swapAnimatedEmojiDrawable, linksSimpleTextView, mutate, color, (Object[]) obj);
+                TableView.lambda$addRowUserWithEmojiStatus$1(j, i, swapAnimatedEmojiDrawable, linksSimpleTextView, drawableMutate, color, (Object[]) obj);
             }
         };
         callback.run(null);
@@ -237,8 +237,8 @@ public class TableView extends android.widget.TableLayout {
 
     public TableRow addRowUser(CharSequence charSequence, int i, long j, final Runnable runnable, CharSequence charSequence2, Runnable runnable2) {
         boolean z;
-        String str;
-        String str2;
+        String userName;
+        String string;
         boolean z2;
         ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext(), this.resourcesProvider);
         textViewButtons.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
@@ -251,7 +251,7 @@ public class TableView extends android.widget.TableLayout {
         textViewButtons.setDisablePaddingsOffsetY(true);
         AvatarSpan avatarSpan = new AvatarSpan(textViewButtons, i, 24.0f);
         if (j == 2666000) {
-            str2 = LocaleController.getString(R.string.StarsTransactionHidden);
+            string = LocaleController.getString(R.string.StarsTransactionHidden);
             CombinedDrawable platformDrawable = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("anonymous");
             platformDrawable.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             avatarSpan.setImageDrawable(platformDrawable);
@@ -259,7 +259,7 @@ public class TableView extends android.widget.TableLayout {
             z2 = false;
         } else {
             if (UserObject.isService(j)) {
-                str2 = LocaleController.getString(R.string.StarsTransactionUnknown);
+                string = LocaleController.getString(R.string.StarsTransactionUnknown);
                 CombinedDrawable platformDrawable2 = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("fragment");
                 platformDrawable2.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
                 avatarSpan.setImageDrawable(platformDrawable2);
@@ -268,19 +268,19 @@ public class TableView extends android.widget.TableLayout {
                 if (j >= 0) {
                     TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
                     z = user == null;
-                    str = UserObject.getUserName(user);
+                    userName = UserObject.getUserName(user);
                     avatarSpan.setUser(user);
                 } else {
                     TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
                     z = chat == null;
-                    str = chat == null ? "" : chat.title;
+                    userName = chat == null ? "" : chat.title;
                     avatarSpan.setChat(chat);
                 }
-                str2 = str;
+                string = userName;
             }
             z2 = true;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) str2));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) string));
         spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
         if (z2) {
             spannableStringBuilder.setSpan(new ClickableSpan() {
@@ -453,10 +453,10 @@ public class TableView extends android.widget.TableLayout {
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
-                float dp = AndroidUtilities.dp(4.0f);
+                float fDp = AndroidUtilities.dp(8.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
-                float f = this.first ? dp : 0.0f;
+                float f = this.first ? fDp : 0.0f;
                 fArr2[1] = f;
                 fArr[0] = f;
                 float[] fArr3 = this.table.radii;
@@ -468,10 +468,10 @@ public class TableView extends android.widget.TableLayout {
                 float[] fArr5 = this.table.radii;
                 float[] fArr6 = this.table.radii;
                 if (!this.last) {
-                    dp = 0.0f;
+                    fDp = 0.0f;
                 }
-                fArr6[7] = dp;
-                fArr5[6] = dp;
+                fArr6[7] = fDp;
+                fArr5[6] = fDp;
                 this.table.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
@@ -521,29 +521,29 @@ public class TableView extends android.widget.TableLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             if (this.first || this.last) {
-                float dp = AndroidUtilities.dp(4.0f);
+                float fDp = AndroidUtilities.dp(8.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
-                float f = this.first ? dp : 0.0f;
+                float f = this.first ? fDp : 0.0f;
                 fArr2[1] = f;
                 fArr[0] = f;
                 float[] fArr3 = this.table.radii;
                 float[] fArr4 = this.table.radii;
-                float f2 = this.first ? dp : 0.0f;
+                float f2 = this.first ? fDp : 0.0f;
                 fArr4[3] = f2;
                 fArr3[2] = f2;
                 float[] fArr5 = this.table.radii;
                 float[] fArr6 = this.table.radii;
-                float f3 = this.last ? dp : 0.0f;
+                float f3 = this.last ? fDp : 0.0f;
                 fArr6[5] = f3;
                 fArr5[4] = f3;
                 float[] fArr7 = this.table.radii;
                 float[] fArr8 = this.table.radii;
                 if (!this.last) {
-                    dp = 0.0f;
+                    fDp = 0.0f;
                 }
-                fArr8[7] = dp;
-                fArr7[6] = dp;
+                fArr8[7] = fDp;
+                fArr7[6] = fDp;
                 this.table.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
@@ -565,7 +565,9 @@ public class TableView extends android.widget.TableLayout {
     public static class TableRowContent extends FrameLayout {
         private boolean first;
         private boolean last;
+        private boolean left;
         private final Theme.ResourcesProvider resourcesProvider;
+        private boolean right;
         private final TableView table;
 
         public TableRowContent(TableView tableView, View view) {
@@ -574,6 +576,8 @@ public class TableView extends android.widget.TableLayout {
 
         public TableRowContent(TableView tableView, View view, boolean z) {
             super(tableView.getContext());
+            this.left = false;
+            this.right = true;
             this.table = tableView;
             this.resourcesProvider = tableView.resourcesProvider;
             setWillNotDraw(false);
@@ -592,33 +596,49 @@ public class TableView extends android.widget.TableLayout {
             invalidate();
         }
 
+        public void setLeftRight(boolean z, boolean z2) {
+            if (this.left == z && this.right == z2) {
+                return;
+            }
+            this.left = z;
+            this.right = z2;
+            invalidate();
+        }
+
         @Override
         protected void onDraw(Canvas canvas) {
             if (!this.first && !this.last) {
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
-                float dp = AndroidUtilities.dp(4.0f);
+                float fDp = AndroidUtilities.dp(8.0f);
                 float[] fArr = this.table.radii;
-                this.table.radii[1] = 0.0f;
-                fArr[0] = 0.0f;
                 float[] fArr2 = this.table.radii;
+                float f = (this.first && this.left) ? fDp : 0.0f;
+                fArr2[1] = f;
+                fArr[0] = f;
                 float[] fArr3 = this.table.radii;
-                float f = this.first ? dp : 0.0f;
-                fArr3[3] = f;
-                fArr2[2] = f;
                 float[] fArr4 = this.table.radii;
+                float f2 = (this.first && this.right) ? fDp : 0.0f;
+                fArr4[3] = f2;
+                fArr3[2] = f2;
                 float[] fArr5 = this.table.radii;
-                if (!this.last) {
-                    dp = 0.0f;
-                }
-                fArr5[5] = dp;
-                fArr4[4] = dp;
                 float[] fArr6 = this.table.radii;
-                this.table.radii[7] = 0.0f;
-                fArr6[6] = 0.0f;
+                float f3 = (this.last && this.right) ? fDp : 0.0f;
+                fArr6[5] = f3;
+                fArr5[4] = f3;
+                float[] fArr7 = this.table.radii;
+                float[] fArr8 = this.table.radii;
+                if (!this.last || !this.left) {
+                    fDp = 0.0f;
+                }
+                fArr8[7] = fDp;
+                fArr7[6] = fDp;
                 this.table.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
+                if (!this.right) {
+                    rectF.right += this.table.w;
+                }
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
                 canvas.drawPath(this.table.path, this.table.borderPaint);
             }
@@ -640,15 +660,19 @@ public class TableView extends android.widget.TableLayout {
             if (getChildAt(i5) instanceof TableRow) {
                 TableRow tableRow = (TableRow) getChildAt(i5);
                 int childCount2 = tableRow.getChildCount();
-                for (int i6 = 0; i6 < childCount2; i6++) {
+                int i6 = 0;
+                while (i6 < childCount2) {
                     View childAt = tableRow.getChildAt(i6);
                     if (childAt instanceof TableRowTitle) {
                         ((TableRowTitle) childAt).setFirstLast(i5 == 0, i5 == childCount + (-1));
                     } else if (childAt instanceof TableRowContent) {
-                        ((TableRowContent) childAt).setFirstLast(i5 == 0, i5 == childCount + (-1));
+                        TableRowContent tableRowContent = (TableRowContent) childAt;
+                        tableRowContent.setFirstLast(i5 == 0, i5 == childCount + (-1));
+                        tableRowContent.setLeftRight(i6 == 0, i6 == childCount2 + (-1));
                     } else if (childAt instanceof TableRowFullContent) {
                         ((TableRowFullContent) childAt).setFirstLast(i5 == 0, i5 == childCount + (-1));
                     }
+                    i6++;
                 }
             }
             i5++;

@@ -90,7 +90,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() {
             @Override
             public final void run() {
-                ScreenCapturerAndroid.this.lambda$stopCapture$0();
+                this.f$0.lambda$stopCapture$0();
             }
         });
     }
@@ -127,7 +127,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() {
             @Override
             public final void run() {
-                ScreenCapturerAndroid.this.lambda$changeCaptureFormat$1();
+                this.f$0.lambda$changeCaptureFormat$1();
             }
         });
     }

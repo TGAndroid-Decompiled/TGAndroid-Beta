@@ -51,29 +51,29 @@ public class CollageLayout {
 
     public static int getMaxCount() {
         Iterator it = getLayouts().iterator();
-        int i = 0;
+        int iMax = 0;
         while (it.hasNext()) {
-            i = Math.max(i, ((CollageLayout) it.next()).parts.size());
+            iMax = Math.max(iMax, ((CollageLayout) it.next()).parts.size());
         }
-        return i;
+        return iMax;
     }
 
     public CollageLayout(String str) {
         str = str == null ? "." : str;
         this.src = str;
-        String[] split = str.split("/");
-        int length = split.length;
+        String[] strArrSplit = str.split("/");
+        int length = strArrSplit.length;
         this.h = length;
         this.columns = new int[length];
-        int i = 0;
-        for (int i2 = 0; i2 < split.length; i2++) {
-            this.columns[i2] = split[i2].length();
-            i = Math.max(i, split[i2].length());
+        int iMax = 0;
+        for (int i = 0; i < strArrSplit.length; i++) {
+            this.columns[i] = strArrSplit[i].length();
+            iMax = Math.max(iMax, strArrSplit[i].length());
         }
-        this.w = i;
-        for (int i3 = 0; i3 < split.length; i3++) {
-            for (int i4 = 0; i4 < split[i3].length(); i4++) {
-                this.parts.add(new Part(i4, i3));
+        this.w = iMax;
+        for (int i2 = 0; i2 < strArrSplit.length; i2++) {
+            for (int i3 = 0; i3 < strArrSplit[i2].length(); i3++) {
+                this.parts.add(new Part(i3, i2));
             }
         }
     }

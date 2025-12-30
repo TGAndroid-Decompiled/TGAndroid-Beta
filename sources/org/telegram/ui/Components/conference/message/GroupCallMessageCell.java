@@ -147,7 +147,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         this.onMessageStateUpdateListener = new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessageCell.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.senderNameSpan = new ClickableSpan() {
@@ -215,7 +215,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     }
 
     public void set(GroupCallMessage groupCallMessage) {
-        SpannableStringBuilder spannableStringBuilder;
+        SpannableStringBuilder spannableStringBuilderConcat;
         GroupCallMessage groupCallMessage2;
         GroupCallMessage groupCallMessage3;
         if (isAttachedToWindow() && (groupCallMessage3 = this.groupCallMessage) != null) {
@@ -236,35 +236,35 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             this.animatedReactionDrawable.removeView(this);
         }
         this.animatedReactionDrawable = null;
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(name);
-        spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder2.length(), 33);
-        spannableStringBuilder2.setSpan(this.senderNameSpan, 0, spannableStringBuilder2.length(), 33);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(this.senderNameSpan, 0, spannableStringBuilder.length(), 33);
         ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
         if (visibleReaction == null) {
-            spannableStringBuilder = concat(spannableStringBuilder2, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
+            spannableStringBuilderConcat = concat(spannableStringBuilder, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
         } else if (visibleReaction.emojicon != null) {
             TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.emojicon);
-            spannableStringBuilder = spannableStringBuilder2;
+            spannableStringBuilderConcat = spannableStringBuilder;
             if (tL_availableReaction != null) {
                 this.animatedReactionReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
-                spannableStringBuilder = spannableStringBuilder2;
+                spannableStringBuilderConcat = spannableStringBuilder;
             }
         } else {
-            spannableStringBuilder = spannableStringBuilder2;
+            spannableStringBuilderConcat = spannableStringBuilder;
             if (visibleReaction.documentId != 0) {
                 AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
                 this.animatedReactionDrawable = animatedEmojiDrawable;
                 animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                spannableStringBuilder = spannableStringBuilder2;
+                spannableStringBuilderConcat = spannableStringBuilder;
                 if (isAttachedToWindow()) {
                     this.animatedReactionDrawable.addView(this);
-                    spannableStringBuilder = spannableStringBuilder2;
+                    spannableStringBuilderConcat = spannableStringBuilder;
                 }
             }
         }
         this.messageReaction = groupCallMessage.visibleReaction;
         this.layoutInvalidated = true;
-        this.messageTextView.setText(spannableStringBuilder);
+        this.messageTextView.setText(spannableStringBuilderConcat);
         requestLayout();
     }
 
@@ -281,9 +281,9 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         int size = View.MeasureSpec.getSize(i);
         Layout layout = this.layout;
         if (layout == null || this.layoutInvalidated || layout.viewWidth != size) {
-            Layout build = Layout.build(size, getPaddingLeft(), getPaddingRight(), this.messageTextView, this.messageReaction);
-            this.layout = build;
-            this.avatarReceiver.setImageCoords(build.avatar);
+            Layout layoutBuild = Layout.build(size, getPaddingLeft(), getPaddingRight(), this.messageTextView, this.messageReaction);
+            this.layout = layoutBuild;
+            this.avatarReceiver.setImageCoords(layoutBuild.avatar);
             this.animatedReactionReceiver.setImageCoords(this.layout.reaction);
             if (this.animatedReactionDrawable != null) {
                 RectF rectF = this.layout.reaction;
@@ -302,10 +302,10 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         if (layout == null) {
             return;
         }
-        int round = Math.round(layout.text.x);
-        int round2 = Math.round(this.layout.text.y);
+        int iRound = Math.round(layout.text.x);
+        int iRound2 = Math.round(this.layout.text.y);
         SpoilersTextView spoilersTextView = this.messageTextView;
-        spoilersTextView.layout(round, round2, spoilersTextView.getMeasuredWidth() + round, this.messageTextView.getMeasuredHeight() + round2);
+        spoilersTextView.layout(iRound, iRound2, spoilersTextView.getMeasuredWidth() + iRound, this.messageTextView.getMeasuredHeight() + iRound2);
     }
 
     @Override
@@ -389,10 +389,10 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         }
         canvas.drawPath(layout.bubblePath, this.bgPaint);
         if (Build.VERSION.SDK_INT >= 29 && this.renderNode != null && canvas.isHardwareAccelerated()) {
-            float f = 0.0f;
+            float y = 0.0f;
             View view = this;
             while (view != this.blurRoot) {
-                f += view.getY();
+                y += view.getY();
                 Object parent = view.getParent();
                 if (!(parent instanceof View)) {
                     return;
@@ -402,9 +402,9 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             }
             canvas.save();
             canvas.clipPath(this.layout.bubblePath);
-            canvas.translate(0.0f, -f);
-            float f2 = this.renderNodeScale;
-            canvas.scale(f2, f2);
+            canvas.translate(0.0f, -y);
+            float f = this.renderNodeScale;
+            canvas.scale(f, f);
             canvas.drawRenderNode(this.renderNode);
             canvas.restore();
         }
@@ -448,7 +448,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         invalidate();
     }
 
-    public static class Layout {
+    private static class Layout {
         public int viewHeight;
         public int viewWidth;
         public final RectF bubble = new RectF();
@@ -461,20 +461,20 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         }
 
         public static Layout build(int i, int i2, int i3, SpoilersTextView spoilersTextView, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-            int dp;
+            int iDp;
             spoilersTextView.measure(View.MeasureSpec.makeMeasureSpec(((i - i2) - i3) - AndroidUtilities.dp(44.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
             float measuredWidth = spoilersTextView.getMeasuredWidth();
             if (visibleReaction == null) {
-                dp = ((int) Math.ceil(measuredWidth)) + AndroidUtilities.dp(44.0f);
+                iDp = ((int) Math.ceil(measuredWidth)) + AndroidUtilities.dp(44.0f);
             } else {
-                dp = AndroidUtilities.dp(70.0f) + ((int) Math.ceil(measuredWidth));
+                iDp = AndroidUtilities.dp(70.0f) + ((int) Math.ceil(measuredWidth));
             }
-            int max = Math.max(AndroidUtilities.dp(28.0f), spoilersTextView.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
+            int iMax = Math.max(AndroidUtilities.dp(28.0f), spoilersTextView.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
             Layout layout = new Layout();
             layout.viewWidth = i;
-            layout.viewHeight = max;
-            layout.bubble.set(0.0f, 0.0f, dp, max);
-            layout.bubble.offset((i - dp) / 2.0f, 0.0f);
+            layout.viewHeight = iMax;
+            layout.bubble.set(0.0f, 0.0f, iDp, iMax);
+            layout.bubble.offset((i - iDp) / 2.0f, 0.0f);
             layout.bubblePath.addRoundRect(layout.bubble, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
             boolean z = spoilersTextView.getLayout().getParagraphDirection(0) == -1;
             layout.avatar.set(0.0f, 0.0f, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
@@ -517,10 +517,10 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
 
     public static CharSequence concat(CharSequence charSequence, CharSequence charSequence2) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        boolean isRtlByFirstStrong = isRtlByFirstStrong(charSequence);
-        boolean isRtlByFirstStrong2 = isRtlByFirstStrong(charSequence2);
-        if (isRtlByFirstStrong != isRtlByFirstStrong2) {
-            spannableStringBuilder.append(isRtlByFirstStrong2 ? (char) 8295 : (char) 8294);
+        boolean zIsRtlByFirstStrong = isRtlByFirstStrong(charSequence);
+        boolean zIsRtlByFirstStrong2 = isRtlByFirstStrong(charSequence2);
+        if (zIsRtlByFirstStrong != zIsRtlByFirstStrong2) {
+            spannableStringBuilder.append(zIsRtlByFirstStrong2 ? (char) 8295 : (char) 8294);
             spannableStringBuilder.append(charSequence);
             spannableStringBuilder.append((char) 8297);
         } else {
@@ -533,11 +533,11 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
 
     private static boolean isRtlByFirstStrong(CharSequence charSequence) {
         int length = charSequence.length();
-        int i = 0;
-        while (i < length) {
-            int codePointAt = Character.codePointAt(charSequence, i);
-            i += Character.charCount(codePointAt);
-            byte directionality = Character.getDirectionality(codePointAt);
+        int iCharCount = 0;
+        while (iCharCount < length) {
+            int iCodePointAt = Character.codePointAt(charSequence, iCharCount);
+            iCharCount += Character.charCount(iCodePointAt);
+            byte directionality = Character.getDirectionality(iCodePointAt);
             if (directionality == 0) {
                 break;
             }

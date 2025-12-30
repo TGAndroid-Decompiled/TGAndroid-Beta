@@ -56,22 +56,22 @@ public abstract class TextSelectionHint extends View {
         this.dismissTunnable = new Runnable() {
             @Override
             public final void run() {
-                TextSelectionHint.this.hideInternal();
+                this.f$0.hideInternal();
             }
         };
         this.path = new Path();
         this.resourcesProvider = resourcesProvider;
         int themedColor = getThemedColor(Theme.key_undo_infoColor);
-        int alpha = Color.alpha(themedColor);
+        int iAlpha = Color.alpha(themedColor);
         this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         this.textPaint.setColor(themedColor);
         this.selectionPaint.setColor(themedColor);
-        this.selectionPaint.setAlpha((int) (alpha * 0.14d));
+        this.selectionPaint.setAlpha((int) (iAlpha * 0.14d));
         setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_undo_background)));
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
             Animator animator = this.a;
@@ -81,21 +81,21 @@ public abstract class TextSelectionHint extends View {
             }
             String string = LocaleController.getString(R.string.TextSelectionHint);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
-            String group = matcher.matches() ? matcher.group() : null;
-            String replace = string.replace("**", "");
-            this.textLayout = new StaticLayout(replace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            String strGroup = matcher.matches() ? matcher.group() : null;
+            String strReplace = string.replace("**", "");
+            this.textLayout = new StaticLayout(strReplace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.start = 0;
             this.end = 0;
-            if (group != null) {
-                this.start = replace.indexOf(group);
+            if (strGroup != null) {
+                this.start = strReplace.indexOf(strGroup);
             }
             int i3 = this.start;
             if (i3 > 0) {
-                this.end = i3 + group.length();
+                this.end = i3 + strGroup.length();
             } else {
                 int i4 = 0;
-                for (int i5 = 0; i5 < replace.length(); i5++) {
-                    if (replace.charAt(i5) == ' ') {
+                for (int i5 = 0; i5 < strReplace.length(); i5++) {
+                    if (strReplace.charAt(i5) == ' ') {
                         i4++;
                         if (i4 == 2) {
                             this.start = i5 + 1;
@@ -107,7 +107,7 @@ public abstract class TextSelectionHint extends View {
                 }
             }
             if (this.end == 0) {
-                this.end = replace.length();
+                this.end = strReplace.length();
             }
             this.animateToStart = 0;
             StaticLayout staticLayout = this.textLayout;
@@ -136,7 +136,7 @@ public abstract class TextSelectionHint extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         int i;
         Path.Direction direction;
         float f;
@@ -150,7 +150,7 @@ public abstract class TextSelectionHint extends View {
             drawSelection(canvas, this.textLayout, this.currentStart, this.currentEnd);
         }
         this.textLayout.draw(canvas);
-        int dp = AndroidUtilities.dp(14.0f);
+        int iDp = AndroidUtilities.dp(14.0f);
         int lineForOffset = this.textLayout.getLineForOffset(this.currentEnd);
         this.textLayout.getPrimaryHorizontal(this.currentEnd);
         int lineBottom = this.textLayout.getLineBottom(lineForOffset);
@@ -164,7 +164,7 @@ public abstract class TextSelectionHint extends View {
         int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
         canvas.save();
         canvas.translate(primaryHorizontal, lineBottom);
-        float f2 = dp;
+        float f2 = iDp;
         float f3 = f2 / 2.0f;
         canvas.scale(interpolation, interpolation, f3, f3);
         this.path.reset();
@@ -189,7 +189,7 @@ public abstract class TextSelectionHint extends View {
             f = f3;
         }
         canvas.save();
-        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - dp, i);
+        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, i);
         float f4 = f;
         canvas.scale(interpolation, interpolation, f4, f4);
         this.path.reset();
@@ -288,47 +288,47 @@ public abstract class TextSelectionHint extends View {
         this.startOffsetValue = 1.0f;
         this.endOffsetValue = 1.0f;
         invalidate();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$show$0(valueAnimator);
+                this.f$0.lambda$show$0(valueAnimator);
             }
         });
-        ofFloat.setDuration(210L);
-        ofFloat.setInterpolator(new DecelerateInterpolator());
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat.setDuration(210L);
+        valueAnimatorOfFloat.setInterpolator(new DecelerateInterpolator());
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$show$1(valueAnimator);
+                this.f$0.lambda$show$1(valueAnimator);
             }
         });
-        ofFloat2.setStartDelay(600L);
-        ofFloat2.setDuration(250L);
-        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
-        ofFloat3.setStartDelay(500L);
-        ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat2.setStartDelay(600L);
+        valueAnimatorOfFloat2.setDuration(250L);
+        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
+        valueAnimatorOfFloat3.setStartDelay(500L);
+        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$show$2(valueAnimator);
+                this.f$0.lambda$show$2(valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
-        ofFloat3.setInterpolator(cubicBezierInterpolator);
-        ofFloat3.setDuration(500L);
-        ValueAnimator ofFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
-        ofFloat4.setStartDelay(400L);
-        ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat3.setDuration(500L);
+        ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
+        valueAnimatorOfFloat4.setStartDelay(400L);
+        valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$show$3(valueAnimator);
+                this.f$0.lambda$show$3(valueAnimator);
             }
         });
-        ofFloat4.setInterpolator(cubicBezierInterpolator);
-        ofFloat4.setDuration(900L);
+        valueAnimatorOfFloat4.setInterpolator(cubicBezierInterpolator);
+        valueAnimatorOfFloat4.setDuration(900L);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playSequentially(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+        animatorSet.playSequentially(valueAnimatorOfFloat, valueAnimatorOfFloat2, valueAnimatorOfFloat3, valueAnimatorOfFloat4);
         this.a = animatorSet;
         animatorSet.start();
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
@@ -345,9 +345,9 @@ public abstract class TextSelectionHint extends View {
     }
 
     public void lambda$show$2(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.startOffsetValue = floatValue;
-        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * floatValue));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.startOffsetValue = fFloatValue;
+        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * fFloatValue));
         invalidate();
     }
 
@@ -369,21 +369,21 @@ public abstract class TextSelectionHint extends View {
             this.a.cancel();
         }
         this.showing = false;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$hideInternal$4(valueAnimator);
+                this.f$0.lambda$hideInternal$4(valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator2) {
                 TextSelectionHint.this.setVisibility(4);
             }
         });
-        this.a = ofFloat;
-        ofFloat.start();
+        this.a = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.start();
     }
 
     public void lambda$hideInternal$4(ValueAnimator valueAnimator) {

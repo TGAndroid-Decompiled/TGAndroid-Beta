@@ -40,9 +40,9 @@ public class PhotoViewerBlurDrawable extends CompatDrawable {
         this.path.rewind();
         float alpha = this.paint.getAlpha() / 255.0f;
         int i = this.rounding;
-        float min = i == -1 ? Math.min(bounds.width(), bounds.height()) / 2.0f : i;
+        float fMin = i == -1 ? Math.min(bounds.width(), bounds.height()) / 2.0f : i;
         this.rect.set(bounds);
-        this.path.addRoundRect(this.rect, min, min, Path.Direction.CW);
+        this.path.addRoundRect(this.rect, fMin, fMin, Path.Direction.CW);
         canvas.clipPath(this.path);
         for (View view = this.view; view != null && view != this.photoViewer.windowView && (view.getParent() instanceof View); view = (View) view.getParent()) {
             canvas.translate(-view.getX(), -view.getY());

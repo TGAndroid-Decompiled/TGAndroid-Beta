@@ -59,7 +59,6 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
@@ -144,7 +143,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public class AnimatingTextView extends FrameLayout {
+    private class AnimatingTextView extends FrameLayout {
         private ArrayList characterTextViews;
         private AnimatorSet currentAnimation;
         private Runnable dotRunnable;
@@ -472,7 +471,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public static class InnerAnimator {
+    private static class InnerAnimator {
         private AnimatorSet animatorSet;
         private float startRadius;
 
@@ -481,8 +480,8 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public PasscodeView(Context context) {
-        super(context);
         int i;
+        super(context);
         this.BUTTON_X_MARGIN = 28;
         this.BUTTON_Y_MARGIN = 16;
         this.BUTTON_SIZE = 60;
@@ -514,12 +513,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                         PasscodeView.this.backgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
                         PasscodeView.this.backgroundDrawable.draw(canvas);
                     } else {
-                        float max = Math.max(getMeasuredWidth() / PasscodeView.this.backgroundDrawable.getIntrinsicWidth(), (getMeasuredHeight() + PasscodeView.this.keyboardHeight) / PasscodeView.this.backgroundDrawable.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(PasscodeView.this.backgroundDrawable.getIntrinsicWidth() * max);
-                        int ceil2 = (int) Math.ceil(PasscodeView.this.backgroundDrawable.getIntrinsicHeight() * max);
-                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                        int measuredHeight = ((getMeasuredHeight() - ceil2) + PasscodeView.this.keyboardHeight) / 2;
-                        PasscodeView.this.backgroundDrawable.setBounds(measuredWidth, measuredHeight, ceil + measuredWidth, ceil2 + measuredHeight);
+                        float fMax = Math.max(getMeasuredWidth() / PasscodeView.this.backgroundDrawable.getIntrinsicWidth(), (getMeasuredHeight() + PasscodeView.this.keyboardHeight) / PasscodeView.this.backgroundDrawable.getIntrinsicHeight());
+                        int iCeil = (int) Math.ceil(PasscodeView.this.backgroundDrawable.getIntrinsicWidth() * fMax);
+                        int iCeil2 = (int) Math.ceil(PasscodeView.this.backgroundDrawable.getIntrinsicHeight() * fMax);
+                        int measuredWidth = (getMeasuredWidth() - iCeil) / 2;
+                        int measuredHeight = ((getMeasuredHeight() - iCeil2) + PasscodeView.this.keyboardHeight) / 2;
+                        PasscodeView.this.backgroundDrawable.setBounds(measuredWidth, measuredHeight, iCeil + measuredWidth, iCeil2 + measuredHeight);
                         PasscodeView.this.backgroundDrawable.draw(canvas);
                     }
                 } else {
@@ -579,9 +578,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
-                boolean lambda$new$0;
-                lambda$new$0 = PasscodeView.this.lambda$new$0(textView3, i2, keyEvent);
-                return lambda$new$0;
+                return this.f$0.lambda$new$0(textView3, i2, keyEvent);
             }
         });
         this.passwordEditText.addTextChangedListener(new AnonymousClass2());
@@ -619,7 +616,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.checkImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasscodeView.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         ImageView imageView4 = new ImageView(context);
@@ -632,7 +629,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.fingerprintImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasscodeView.this.lambda$new$2(view);
+                this.f$0.lambda$new$2(view);
             }
         });
         View view = new View(context);
@@ -647,11 +644,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 super.onLayout(z, i3, i4, i5, i6);
                 if (getParent() instanceof View) {
-                    float min = Math.min(((View) getParent()).getHeight() / getHeight(), 1.0f);
+                    float fMin = Math.min(((View) getParent()).getHeight() / getHeight(), 1.0f);
                     setPivotX(getWidth() / 2.0f);
                     setPivotY(((FrameLayout.LayoutParams) getLayoutParams()).gravity == 17 ? getHeight() / 2.0f : 0.0f);
-                    setScaleX(min);
-                    setScaleY(min);
+                    setScaleX(fMin);
+                    setScaleY(fMin);
                 }
             }
         };
@@ -687,9 +684,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 passcodeButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view2) {
-                        boolean lambda$new$3;
-                        lambda$new$3 = PasscodeView.this.lambda$new$3(view2);
-                        return lambda$new$3;
+                        return this.f$0.lambda$new$3(view2);
                     }
                 });
                 passcodeButton.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
@@ -720,7 +715,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             passcodeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    PasscodeView.this.lambda$new$6(view2);
+                    this.f$0.lambda$new$6(view2);
                 }
             });
             this.numberFrameLayouts.add(passcodeButton);
@@ -740,7 +735,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         return true;
     }
 
-    public class AnonymousClass2 implements TextWatcher {
+    class AnonymousClass2 implements TextWatcher {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
@@ -774,7 +769,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     PasscodeView.this.backgroundSpringQueue.offer(new Runnable() {
                         @Override
                         public final void run() {
-                            PasscodeView.AnonymousClass2.this.lambda$beforeTextChanged$0(z, motionBackgroundDrawable);
+                            this.f$0.lambda$beforeTextChanged$0(z, motionBackgroundDrawable);
                         }
                     });
                     PasscodeView.this.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
@@ -793,9 +788,9 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     }
                     Iterator it2 = arrayList2.iterator();
                     while (it2.hasNext()) {
-                        int intValue = ((Integer) it2.next()).intValue();
-                        if (intValue < PasscodeView.this.backgroundSpringNextQueue.size()) {
-                            PasscodeView.this.backgroundSpringNextQueue.remove(intValue);
+                        int iIntValue = ((Integer) it2.next()).intValue();
+                        if (iIntValue < PasscodeView.this.backgroundSpringNextQueue.size()) {
+                            PasscodeView.this.backgroundSpringNextQueue.remove(iIntValue);
                         }
                     }
                 }
@@ -838,66 +833,66 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public void lambda$new$6(View view) {
-        boolean z;
-        final boolean z2;
+        boolean zEraseLastCharacter;
+        final boolean z;
         if (this.pinShown) {
-            int intValue = ((Integer) view.getTag()).intValue();
-            switch (intValue) {
+            int iIntValue = ((Integer) view.getTag()).intValue();
+            switch (iIntValue) {
                 case 0:
                     this.passwordEditText2.appendCharacter("0");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 1:
                     this.passwordEditText2.appendCharacter("1");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 2:
                     this.passwordEditText2.appendCharacter("2");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 3:
                     this.passwordEditText2.appendCharacter("3");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 4:
                     this.passwordEditText2.appendCharacter("4");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 5:
                     this.passwordEditText2.appendCharacter("5");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 6:
                     this.passwordEditText2.appendCharacter("6");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 7:
                     this.passwordEditText2.appendCharacter("7");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 8:
                     this.passwordEditText2.appendCharacter("8");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 9:
                     this.passwordEditText2.appendCharacter("9");
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 10:
                     checkFingerprint();
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
                 case 11:
-                    z = this.passwordEditText2.eraseLastCharacter();
+                    zEraseLastCharacter = this.passwordEditText2.eraseLastCharacter();
                     break;
                 default:
-                    z = false;
+                    zEraseLastCharacter = false;
                     break;
             }
             if (this.passwordEditText2.length() == 4) {
                 processDone(false);
             }
-            if (intValue == 11) {
+            if (iIntValue == 11) {
                 return;
             }
             Drawable drawable = this.backgroundDrawable;
@@ -905,19 +900,19 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 final MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
                 motionBackgroundDrawable.setAnimationProgressProvider(null);
                 float posAnimationProgress = motionBackgroundDrawable.getPosAnimationProgress();
-                boolean z3 = true;
-                if (intValue == 10) {
-                    if (z) {
+                boolean z2 = true;
+                if (iIntValue == 10) {
+                    if (zEraseLastCharacter) {
                         motionBackgroundDrawable.switchToPrevPosition(true);
                     } else {
-                        z3 = false;
+                        z2 = false;
                     }
-                    z2 = false;
+                    z = false;
                 } else {
                     motionBackgroundDrawable.switchToNextPosition(true);
-                    z2 = true;
+                    z = true;
                 }
-                if (z3) {
+                if (z2) {
                     if (posAnimationProgress >= 1.0f) {
                         animateBackground(motionBackgroundDrawable);
                         return;
@@ -925,16 +920,16 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     this.backgroundSpringQueue.offer(new Runnable() {
                         @Override
                         public final void run() {
-                            PasscodeView.this.lambda$new$4(z2, motionBackgroundDrawable);
+                            this.f$0.lambda$new$4(z, motionBackgroundDrawable);
                         }
                     });
-                    this.backgroundSpringNextQueue.offer(Boolean.valueOf(z2));
+                    this.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     for (int i = 0; i < this.backgroundSpringQueue.size(); i++) {
                         Runnable runnable = (Runnable) this.backgroundSpringQueue.get(i);
                         Boolean bool = (Boolean) this.backgroundSpringNextQueue.get(i);
-                        if (bool != null && bool.booleanValue() != z2) {
+                        if (bool != null && bool.booleanValue() != z) {
                             arrayList.add(runnable);
                             arrayList2.add(Integer.valueOf(i));
                         }
@@ -946,9 +941,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     Collections.sort(arrayList2, new Comparator() {
                         @Override
                         public final int compare(Object obj, Object obj2) {
-                            int lambda$new$5;
-                            lambda$new$5 = PasscodeView.lambda$new$5((Integer) obj, (Integer) obj2);
-                            return lambda$new$5;
+                            return PasscodeView.lambda$new$5((Integer) obj, (Integer) obj2);
                         }
                     });
                     Iterator it2 = arrayList2.iterator();
@@ -982,9 +975,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         motionBackgroundDrawable.setAnimationProgressProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                Float lambda$animateBackground$7;
-                lambda$animateBackground$7 = PasscodeView.lambda$animateBackground$7(FloatValueHolder.this, (MotionBackgroundDrawable) obj);
-                return lambda$animateBackground$7;
+                return PasscodeView.lambda$animateBackground$7(floatValueHolder, (MotionBackgroundDrawable) obj);
             }
         });
         SpringAnimation spring = new SpringAnimation(floatValueHolder).setSpring(new SpringForce(100.0f).setStiffness(300.0f).setDampingRatio(1.0f));
@@ -992,13 +983,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         spring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                PasscodeView.this.lambda$animateBackground$8(motionBackgroundDrawable, dynamicAnimation, z, f, f2);
+                this.f$0.lambda$animateBackground$8(motionBackgroundDrawable, dynamicAnimation, z, f, f2);
             }
         });
         this.backgroundAnimationSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                MotionBackgroundDrawable.this.updateAnimation(true);
+                motionBackgroundDrawable.updateAnimation(true);
             }
         });
         this.backgroundAnimationSpring.start();
@@ -1034,22 +1025,22 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public void processDone(boolean z) {
-        String obj;
+        String string;
         if (!z) {
             if (SharedConfig.passcodeRetryInMs > 0) {
                 return;
             }
             int i = SharedConfig.passcodeType;
             if (i == 0) {
-                obj = this.passwordEditText2.getString();
+                string = this.passwordEditText2.getString();
             } else {
-                obj = i == 1 ? this.passwordEditText.getText().toString() : "";
+                string = i == 1 ? this.passwordEditText.getText().toString() : "";
             }
-            if (obj.length() == 0) {
+            if (string.length() == 0) {
                 onPasscodeError();
                 return;
             }
-            if (!SharedConfig.checkPasscode(obj)) {
+            if (!SharedConfig.checkPasscode(string)) {
                 SharedConfig.increaseBadPasscodeTries();
                 if (SharedConfig.passcodeRetryInMs > 0) {
                     checkRetryTextView();
@@ -1094,20 +1085,20 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PasscodeView.this.lambda$processDone$11();
+                this.f$0.lambda$processDone$11();
             }
         });
     }
 
     public void lambda$processDone$11() {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.shownT, 0.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.shownT, 0.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PasscodeView.this.lambda$processDone$10(valueAnimator);
+                this.f$0.lambda$processDone$10(valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 PasscodeView.this.setVisibility(8);
@@ -1117,15 +1108,15 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 PasscodeView.this.setAlpha(0.0f);
             }
         });
-        ofFloat.setDuration(420L);
-        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        ofFloat.start();
+        valueAnimatorOfFloat.setDuration(420L);
+        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        valueAnimatorOfFloat.start();
     }
 
     public void lambda$processDone$10(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.shownT = floatValue;
-        onAnimationUpdate(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.shownT = fFloatValue;
+        onAnimationUpdate(fFloatValue);
         setAlpha(this.shownT);
     }
 
@@ -1140,22 +1131,22 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public void checkRetryTextView() {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (elapsedRealtime > SharedConfig.lastUptimeMillis) {
-            long j = SharedConfig.passcodeRetryInMs - (elapsedRealtime - SharedConfig.lastUptimeMillis);
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        if (jElapsedRealtime > SharedConfig.lastUptimeMillis) {
+            long j = SharedConfig.passcodeRetryInMs - (jElapsedRealtime - SharedConfig.lastUptimeMillis);
             SharedConfig.passcodeRetryInMs = j;
             if (j < 0) {
                 SharedConfig.passcodeRetryInMs = 0L;
             }
         }
-        SharedConfig.lastUptimeMillis = elapsedRealtime;
+        SharedConfig.lastUptimeMillis = jElapsedRealtime;
         SharedConfig.saveConfig();
         long j2 = SharedConfig.passcodeRetryInMs;
         if (j2 > 0) {
-            int max = Math.max(1, (int) Math.ceil(j2 / 1000.0d));
-            if (max != this.lastValue) {
-                this.retryTextView.setText(LocaleController.formatString(R.string.TooManyTries, LocaleController.formatPluralString("Seconds", max, new Object[0])));
-                this.lastValue = max;
+            int iMax = Math.max(1, (int) Math.ceil(j2 / 1000.0d));
+            if (iMax != this.lastValue) {
+                this.retryTextView.setText(LocaleController.formatString(R.string.TooManyTries, LocaleController.formatPluralString("Seconds", iMax, new Object[0])));
+                this.lastValue = iMax;
             }
             if (this.retryTextView.getVisibility() != 0) {
                 this.retryTextView.setVisibility(0);
@@ -1195,7 +1186,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PasscodeView.this.lambda$onResume$12();
+                        this.f$0.lambda$onResume$12();
                     }
                 }, 200L);
             }
@@ -1234,7 +1225,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             this.keyboardNotifier = new KeyboardNotifier((View) getParent(), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PasscodeView.this.lambda$onAttachedToWindow$13((Integer) obj);
+                    this.f$0.lambda$onAttachedToWindow$13((Integer) obj);
                 }
             });
         }
@@ -1246,18 +1237,18 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             return;
         }
         boolean z = getContext().getResources().getConfiguration().orientation == 2;
-        int intValue = num.intValue() - AndroidUtilities.navigationBarHeight;
+        int iIntValue = num.intValue() - AndroidUtilities.navigationBarHeight;
         if (SharedConfig.passcodeType == 1) {
-            ViewPropertyAnimator animate = this.passwordFrameLayout.animate();
-            if (intValue <= AndroidUtilities.dp(20.0f)) {
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.passwordFrameLayout.animate();
+            if (iIntValue <= AndroidUtilities.dp(20.0f)) {
                 height = 0.0f;
             } else {
-                height = (((getHeight() - intValue) / 2.0f) - (this.passwordFrameLayout.getHeight() / (z ? 1.0f : 2.0f))) - this.passwordFrameLayout.getTop();
+                height = (((getHeight() - iIntValue) / 2.0f) - (this.passwordFrameLayout.getHeight() / (z ? 1.0f : 2.0f))) - this.passwordFrameLayout.getTop();
             }
-            ViewPropertyAnimator duration = animate.translationY(height).setDuration(320L);
+            ViewPropertyAnimator duration = viewPropertyAnimatorAnimate.translationY(height).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             duration.setInterpolator(cubicBezierInterpolator).start();
-            this.imageView.animate().alpha(intValue > AndroidUtilities.dp(20.0f) ? 0.0f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator);
+            this.imageView.animate().alpha(iIntValue > AndroidUtilities.dp(20.0f) ? 0.0f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator);
         }
     }
 
@@ -1274,12 +1265,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             valueAnimator.cancel();
         }
         this.pinShown = z;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.numbersFrameLayout.getAlpha(), z ? 1.0f : 0.0f);
-        this.pinAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.numbersFrameLayout.getAlpha(), z ? 1.0f : 0.0f);
+        this.pinAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PasscodeView.this.lambda$showPin$14(valueAnimator2);
+                this.f$0.lambda$showPin$14(valueAnimator2);
             }
         });
         this.pinAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1301,20 +1292,20 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public void lambda$showPin$14(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.numbersFrameLayout.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue));
-        this.numbersFrameLayout.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue));
-        this.numbersFrameLayout.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue));
-        this.passcodeTextView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue));
-        this.passcodeTextView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue));
-        this.passcodeTextView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue));
-        this.passwordEditText2.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.numbersFrameLayout.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
+        this.numbersFrameLayout.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
+        this.numbersFrameLayout.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
+        this.passcodeTextView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
+        this.passcodeTextView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
+        this.passcodeTextView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fFloatValue));
+        this.passwordEditText2.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
     }
 
     private void checkFingerprint() {
-        Activity findActivity;
-        if (Build.VERSION.SDK_INT >= 23 && (findActivity = AndroidUtilities.findActivity(getContext())) != null && this.fingerprintView.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
-            if (!(findActivity instanceof LaunchActivity) || ((LaunchActivity) findActivity).allowShowFingerprintDialog(this)) {
+        Activity activityFindActivity;
+        if (Build.VERSION.SDK_INT >= 23 && (activityFindActivity = AndroidUtilities.findActivity(getContext())) != null && this.fingerprintView.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
+            if (!(activityFindActivity instanceof LaunchActivity) || ((LaunchActivity) activityFindActivity).allowShowFingerprintDialog(this)) {
                 try {
                     if (BiometricManager.from(getContext()).canAuthenticate(15) == 0 && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
                         new BiometricPrompt(LaunchActivity.instance, ContextCompat.getMainExecutor(getContext()), new BiometricPrompt.AuthenticationCallback() {
@@ -1350,11 +1341,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     private boolean hasFingerprint() {
-        Activity findActivity = AndroidUtilities.findActivity(getContext());
-        if (Build.VERSION.SDK_INT >= 23 && findActivity != null && SharedConfig.useFingerprintLock) {
+        Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+        if (Build.VERSION.SDK_INT >= 23 && activityFindActivity != null && SharedConfig.useFingerprintLock) {
             try {
-                FingerprintManagerCompat from = FingerprintManagerCompat.from(ApplicationLoader.applicationContext);
-                if (from.isHardwareDetected() && from.hasEnrolledFingerprints() && FingerprintController.isKeyReady()) {
+                FingerprintManagerCompat fingerprintManagerCompatFrom = FingerprintManagerCompat.from(ApplicationLoader.applicationContext);
+                if (fingerprintManagerCompatFrom.isHardwareDetected() && fingerprintManagerCompatFrom.hasEnrolledFingerprints() && FingerprintController.isKeyReady()) {
                     return !FingerprintController.checkDeviceFingerprintsChanged();
                 }
                 return false;
@@ -1369,21 +1360,21 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PasscodeView.checkFingerprintButton():void");
     }
 
-    public void onShow(boolean z, boolean z2, int i, int i2, Runnable runnable, Runnable runnable2) {
+    public void onShow(boolean z, boolean z2, int i, int i2, Runnable runnable, Runnable runnable2) throws InterruptedException {
         View currentFocus;
         boolean z3;
         EditTextBoldCursor editTextBoldCursor;
         checkFingerprintButton();
         checkRetryTextView();
-        Activity findActivity = AndroidUtilities.findActivity(getContext());
+        Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
         if (SharedConfig.passcodeType == 1) {
             if (!z2 && this.retryTextView.getVisibility() != 0 && (editTextBoldCursor = this.passwordEditText) != null) {
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.showKeyboard(this.passwordEditText);
             }
-        } else if (findActivity != null && (currentFocus = findActivity.getCurrentFocus()) != null) {
+        } else if (activityFindActivity != null && (currentFocus = activityFindActivity.getCurrentFocus()) != null) {
             currentFocus.clearFocus();
-            AndroidUtilities.hideKeyboard(findActivity.getCurrentFocus());
+            AndroidUtilities.hideKeyboard(activityFindActivity.getCurrentFocus());
         }
         if (getVisibility() == 0) {
             return;
@@ -1503,14 +1494,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$onShow$15;
-                lambda$onShow$15 = PasscodeView.lambda$onShow$15(view, motionEvent);
-                return lambda$onShow$15;
+                return PasscodeView.lambda$onShow$15(view, motionEvent);
             }
         });
     }
 
-    public class AnonymousClass9 implements ViewTreeObserver.OnGlobalLayoutListener {
+    class AnonymousClass9 implements ViewTreeObserver.OnGlobalLayoutListener {
         final Runnable val$onShow;
         final int val$x;
         final int val$y;
@@ -1524,7 +1513,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         @Override
         public void onGlobalLayout() {
             float f;
-            int dp;
+            int iDp;
             int i = 2;
             float f2 = 1.0f;
             PasscodeView.this.setAlpha(1.0f);
@@ -1537,7 +1526,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasscodeView.AnonymousClass9.this.lambda$onGlobalLayout$0();
+                    this.f$0.lambda$onGlobalLayout$0();
                 }
             }, 350L);
             AnimatorSet animatorSet = new AnimatorSet();
@@ -1547,16 +1536,16 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             int i3 = point.y + AndroidUtilities.statusBarHeight;
             int i4 = i2 - this.val$x;
             int i5 = i3 - this.val$y;
-            double sqrt = Math.sqrt((i4 * i4) + (i5 * i5));
+            double dSqrt = Math.sqrt((i4 * i4) + (i5 * i5));
             int i6 = this.val$x;
             int i7 = i3 - this.val$y;
-            double sqrt2 = Math.sqrt((i6 * i6) + (i7 * i7));
+            double dSqrt2 = Math.sqrt((i6 * i6) + (i7 * i7));
             int i8 = this.val$x;
             int i9 = this.val$y;
-            double sqrt3 = Math.sqrt((i8 * i8) + (i9 * i9));
+            double dSqrt3 = Math.sqrt((i8 * i8) + (i9 * i9));
             int i10 = i2 - this.val$x;
             int i11 = this.val$y;
-            final double max = Math.max(Math.max(Math.max(sqrt, sqrt2), sqrt3), Math.sqrt((i10 * i10) + (i11 * i11)));
+            final double dMax = Math.max(Math.max(Math.max(dSqrt, dSqrt2), dSqrt3), Math.sqrt((i10 * i10) + (i11 * i11)));
             PasscodeView.this.innerAnimators.clear();
             int childCount = PasscodeView.this.numbersFrameLayout.getChildCount();
             int i12 = 0;
@@ -1578,14 +1567,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     Property property = View.SCALE_X;
                     float[] fArr = new float[1];
                     fArr[c] = f2;
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr);
+                    ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr);
                     Property property2 = View.SCALE_Y;
                     float[] fArr2 = new float[1];
                     fArr2[c] = f2;
-                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, fArr2);
+                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, fArr2);
                     Animator[] animatorArr = new Animator[2];
-                    animatorArr[c] = ofFloat;
-                    animatorArr[1] = ofFloat2;
+                    animatorArr[c] = objectAnimatorOfFloat;
+                    animatorArr[1] = objectAnimatorOfFloat2;
                     animatorSet2.playTogether(animatorArr);
                     animatorSet2.setDuration(140L);
                     animatorSet2.setInterpolator(new DecelerateInterpolator());
@@ -1598,14 +1587,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 float[] fArr3 = new float[2];
                 fArr3[c] = f3;
                 fArr3[1] = f4;
-                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property3, fArr3);
+                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property3, fArr3);
                 Property property4 = View.SCALE_Y;
                 float f5 = i12 == -1 ? 0.9f : 0.6f;
                 float f6 = i12 == -1 ? 1.0f : 1.04f;
                 float[] fArr4 = new float[2];
                 fArr4[c] = f5;
                 fArr4[1] = f6;
-                animatorSet3.playTogether(ofFloat3, ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property4, fArr4), ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f));
+                animatorSet3.playTogether(objectAnimatorOfFloat3, ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property4, fArr4), ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f));
                 innerAnimator.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
@@ -1624,34 +1613,34 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 c = 0;
             }
             arrayList.add(ObjectAnimator.ofFloat(PasscodeView.this.backgroundFrameLayout, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            arrayList.add(ofFloat4);
-            ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            arrayList.add(valueAnimatorOfFloat);
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PasscodeView.AnonymousClass9.this.lambda$onGlobalLayout$1(max, valueAnimator);
+                    this.f$0.lambda$onGlobalLayout$1(dMax, valueAnimator);
                 }
             });
             TimeInterpolator timeInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             animatorSet.setInterpolator(timeInterpolator);
             animatorSet.setDuration(500L);
-            ValueAnimator ofFloat5 = ValueAnimator.ofFloat(PasscodeView.this.shownT, 1.0f);
-            ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(PasscodeView.this.shownT, 1.0f);
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PasscodeView.AnonymousClass9.this.lambda$onGlobalLayout$2(valueAnimator);
+                    this.f$0.lambda$onGlobalLayout$2(valueAnimator);
                 }
             });
-            ofFloat5.addListener(new AnimatorListenerAdapter() {
+            valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     PasscodeView passcodeView = PasscodeView.this;
                     passcodeView.onAnimationUpdate(passcodeView.shownT = 1.0f);
                 }
             });
-            ofFloat5.setDuration(420L);
-            ofFloat5.setInterpolator(timeInterpolator);
-            arrayList.add(ofFloat5);
+            valueAnimatorOfFloat2.setDuration(420L);
+            valueAnimatorOfFloat2.setInterpolator(timeInterpolator);
+            arrayList.add(valueAnimatorOfFloat2);
             animatorSet.playTogether(arrayList);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -1672,12 +1661,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             animatorSet4.setDuration(332L);
             if (!AndroidUtilities.isTablet() && PasscodeView.this.getContext().getResources().getConfiguration().orientation == 2) {
                 f = (SharedConfig.passcodeType == 0 ? i2 / 2.0f : i2) / 2.0f;
-                dp = AndroidUtilities.dp(30.0f);
+                iDp = AndroidUtilities.dp(30.0f);
             } else {
                 f = i2 / 2.0f;
-                dp = AndroidUtilities.dp(29.0f);
+                iDp = AndroidUtilities.dp(29.0f);
             }
-            animatorSet4.playTogether(ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.TRANSLATION_X, this.val$x - AndroidUtilities.dp(29.0f), f - dp), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.TRANSLATION_Y, this.val$y - AndroidUtilities.dp(29.0f), PasscodeView.this.imageY), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.5f, 1.0f));
+            animatorSet4.playTogether(ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.TRANSLATION_X, this.val$x - AndroidUtilities.dp(29.0f), f - iDp), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.TRANSLATION_Y, this.val$y - AndroidUtilities.dp(29.0f), PasscodeView.this.imageY), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(PasscodeView.this.imageView, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.5f, 1.0f));
             animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             animatorSet4.start();
         }
@@ -1711,13 +1700,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3;
+        int iDp;
         int size = View.MeasureSpec.getSize(i);
-        int i4 = AndroidUtilities.displaySize.y;
-        int dp = AndroidUtilities.dp(28.0f);
-        int dp2 = AndroidUtilities.dp(16.0f);
-        int dp3 = AndroidUtilities.dp(60.0f);
-        int i5 = 0;
+        int iDp2 = AndroidUtilities.displaySize.y;
+        int iDp3 = AndroidUtilities.dp(28.0f);
+        int iDp4 = AndroidUtilities.dp(16.0f);
+        int iDp5 = AndroidUtilities.dp(60.0f);
+        int i3 = 0;
         boolean z = !AndroidUtilities.isTablet() && getContext().getResources().getConfiguration().orientation == 2;
         View view = this.border;
         if (view != null) {
@@ -1733,78 +1722,78 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.passwordFrameLayout.getLayoutParams();
             layoutParams.width = SharedConfig.passcodeType == 0 ? size / 2 : size;
             layoutParams.height = AndroidUtilities.dp(180.0f);
-            layoutParams.topMargin = ((i4 - AndroidUtilities.dp(140.0f)) / 2) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(40.0f) : 0);
+            layoutParams.topMargin = ((iDp2 - AndroidUtilities.dp(140.0f)) / 2) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(40.0f) : 0);
             this.passwordFrameLayout.setLayoutParams(layoutParams);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.numbersContainer.getLayoutParams();
-            layoutParams2.height = i4;
-            int i6 = size / 2;
-            layoutParams2.leftMargin = i6;
+            layoutParams2.height = iDp2;
+            int i4 = size / 2;
+            layoutParams2.leftMargin = i4;
             layoutParams2.topMargin = AndroidUtilities.statusBarHeight;
-            layoutParams2.width = i6;
+            layoutParams2.width = i4;
             this.numbersContainer.setLayoutParams(layoutParams2);
             FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.numbersFrameLayout.getLayoutParams();
-            layoutParams3.height = AndroidUtilities.dp(82.0f) + (dp3 * 4) + (Math.max(0, 3) * dp2);
-            layoutParams3.width = (dp3 * 3) + (Math.max(0, 2) * dp);
+            layoutParams3.height = AndroidUtilities.dp(82.0f) + (iDp5 * 4) + (Math.max(0, 3) * iDp4);
+            layoutParams3.width = (iDp5 * 3) + (Math.max(0, 2) * iDp3);
             layoutParams3.gravity = 17;
             this.numbersFrameLayout.setLayoutParams(layoutParams3);
         } else {
             this.imageView.setTranslationX((size / 2.0f) - AndroidUtilities.dp(29.0f));
-            int i7 = AndroidUtilities.statusBarHeight;
+            int iDp6 = AndroidUtilities.statusBarHeight;
             if (AndroidUtilities.isTablet()) {
                 if (size > AndroidUtilities.dp(498.0f)) {
-                    i3 = (size - AndroidUtilities.dp(498.0f)) / 2;
+                    iDp = (size - AndroidUtilities.dp(498.0f)) / 2;
                     size = AndroidUtilities.dp(498.0f);
                 } else {
-                    i3 = 0;
+                    iDp = 0;
                 }
-                if (i4 > AndroidUtilities.dp(528.0f)) {
-                    i7 = (i4 - AndroidUtilities.dp(528.0f)) / 2;
-                    i4 = AndroidUtilities.dp(528.0f);
+                if (iDp2 > AndroidUtilities.dp(528.0f)) {
+                    iDp6 = (iDp2 - AndroidUtilities.dp(528.0f)) / 2;
+                    iDp2 = AndroidUtilities.dp(528.0f);
                 }
             } else {
-                i3 = 0;
+                iDp = 0;
             }
             FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.passwordFrameLayout.getLayoutParams();
-            layoutParams4.height = (i4 / 3) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(40.0f) : 0);
+            layoutParams4.height = (iDp2 / 3) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(40.0f) : 0);
             layoutParams4.width = size;
-            layoutParams4.topMargin = i7;
-            layoutParams4.leftMargin = i3;
-            this.passwordFrameLayout.setTag(Integer.valueOf(i7));
+            layoutParams4.topMargin = iDp6;
+            layoutParams4.leftMargin = iDp;
+            this.passwordFrameLayout.setTag(Integer.valueOf(iDp6));
             this.passwordFrameLayout.setLayoutParams(layoutParams4);
-            int i8 = layoutParams4.topMargin + layoutParams4.height;
+            int i5 = layoutParams4.topMargin + layoutParams4.height;
             FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.numbersFrameLayout.getLayoutParams();
-            layoutParams5.height = AndroidUtilities.dp(82.0f) + (dp3 * 4) + (Math.max(0, 3) * dp2);
-            layoutParams5.width = (dp3 * 3) + (Math.max(0, 2) * dp);
+            layoutParams5.height = AndroidUtilities.dp(82.0f) + (iDp5 * 4) + (Math.max(0, 3) * iDp4);
+            layoutParams5.width = (iDp5 * 3) + (Math.max(0, 2) * iDp3);
             if (AndroidUtilities.isTablet()) {
                 layoutParams5.gravity = 17;
             } else {
                 layoutParams5.gravity = 49;
             }
             this.numbersFrameLayout.setLayoutParams(layoutParams5);
-            int i9 = i4 - layoutParams5.height;
+            int i6 = iDp2 - layoutParams5.height;
             FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) this.numbersContainer.getLayoutParams();
-            layoutParams6.leftMargin = i3;
+            layoutParams6.leftMargin = iDp;
             if (AndroidUtilities.isTablet()) {
-                layoutParams6.topMargin = (i4 - i9) / 2;
+                layoutParams6.topMargin = (iDp2 - i6) / 2;
             } else {
-                layoutParams6.topMargin = i8;
+                layoutParams6.topMargin = i5;
             }
             layoutParams6.width = size;
             layoutParams6.height = -1;
             this.numbersContainer.setLayoutParams(layoutParams6);
         }
-        int dp4 = AndroidUtilities.dp(z ? 52.0f : 82.0f);
-        while (i5 < 12) {
-            int i10 = 10;
-            if (i5 != 0) {
-                i10 = i5 == 10 ? 11 : i5 == 11 ? 9 : i5 - 1;
+        int iDp7 = AndroidUtilities.dp(z ? 52.0f : 82.0f);
+        while (i3 < 12) {
+            int i7 = 10;
+            if (i3 != 0) {
+                i7 = i3 == 10 ? 11 : i3 == 11 ? 9 : i3 - 1;
             }
-            FrameLayout frameLayout = (FrameLayout) this.numberFrameLayouts.get(i5);
+            FrameLayout frameLayout = (FrameLayout) this.numberFrameLayouts.get(i3);
             FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
-            layoutParams7.topMargin = ((dp3 + dp2) * (i10 / 3)) + dp4;
-            layoutParams7.leftMargin = (dp3 + dp) * (i10 % 3);
+            layoutParams7.topMargin = ((iDp5 + iDp4) * (i7 / 3)) + iDp7;
+            layoutParams7.leftMargin = (iDp5 + iDp3) * (i7 % 3);
             frameLayout.setLayoutParams(layoutParams7);
-            i5++;
+            i3++;
         }
         super.onMeasure(i, i2);
     }
@@ -1817,24 +1806,24 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         android.graphics.Rect rect = this.rect;
         this.keyboardHeight = height - (rect.bottom - rect.top);
         if (SharedConfig.passcodeType == 1 && (AndroidUtilities.isTablet() || getContext().getResources().getConfiguration().orientation != 2)) {
-            int intValue = this.passwordFrameLayout.getTag() != null ? ((Integer) this.passwordFrameLayout.getTag()).intValue() : 0;
+            int iIntValue = this.passwordFrameLayout.getTag() != null ? ((Integer) this.passwordFrameLayout.getTag()).intValue() : 0;
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.passwordFrameLayout.getLayoutParams();
-            layoutParams.topMargin = ((intValue + layoutParams.height) - (this.keyboardHeight / 2)) - AndroidUtilities.statusBarHeight;
+            layoutParams.topMargin = ((iIntValue + layoutParams.height) - (this.keyboardHeight / 2)) - AndroidUtilities.statusBarHeight;
             this.passwordFrameLayout.setLayoutParams(layoutParams);
         }
         super.onLayout(z, i, i2, i3, i4);
         this.passcodeTextView.getLocationInWindow(this.pos);
         if (!AndroidUtilities.isTablet() && getContext().getResources().getConfiguration().orientation == 2) {
             RLottieImageView rLottieImageView = this.imageView;
-            int dp = this.pos[1] - AndroidUtilities.dp(100.0f);
-            this.imageY = dp;
-            rLottieImageView.setTranslationY(dp);
+            int iDp = this.pos[1] - AndroidUtilities.dp(100.0f);
+            this.imageY = iDp;
+            rLottieImageView.setTranslationY(iDp);
             return;
         }
         RLottieImageView rLottieImageView2 = this.imageView;
-        int dp2 = this.pos[1] - AndroidUtilities.dp(100.0f);
-        this.imageY = dp2;
-        rLottieImageView2.setTranslationY(dp2);
+        int iDp2 = this.pos[1] - AndroidUtilities.dp(100.0f);
+        this.imageY = iDp2;
+        rLottieImageView2.setTranslationY(iDp2);
     }
 
     public static class PasscodeButton extends FrameLayout {

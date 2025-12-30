@@ -89,12 +89,12 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
             this.outDrawable = null;
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.animation = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.animation = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ReplaceableIconDrawable.this.lambda$setIcon$0(valueAnimator2);
+                this.f$0.lambda$setIcon$0(valueAnimator2);
             }
         });
         this.animation.addListener(this);
@@ -115,9 +115,9 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
     }
 
     private void updateBounds(Drawable drawable, android.graphics.Rect rect) {
-        int height;
+        int iHeight;
         int intrinsicHeight;
-        int width;
+        int iWidth;
         int intrinsicWidth;
         if (drawable == null) {
             return;
@@ -127,30 +127,30 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
             return;
         }
         if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
+            iHeight = rect.top;
             intrinsicHeight = rect.bottom;
         } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
+            iHeight = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + iHeight;
         }
         if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
+            iWidth = rect.left;
             intrinsicWidth = rect.right;
         } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
+            iWidth = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + iWidth;
         }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+        drawable.setBounds(iWidth, iHeight, intrinsicWidth, intrinsicHeight);
     }
 
     @Override
     public void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
+        int iCenterX = getBounds().centerX();
+        int iCenterY = getBounds().centerY();
         if (this.progress != 1.0f && this.currentDrawable != null) {
             canvas.save();
             float f = this.progress;
-            canvas.scale(f, f, centerX, centerY);
+            canvas.scale(f, f, iCenterX, iCenterY);
             this.currentDrawable.setAlpha((int) (this.progress * 255.0f));
             this.currentDrawable.draw(canvas);
             canvas.restore();
@@ -165,7 +165,7 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
         if (f2 != 1.0f && this.outDrawable != null) {
             float f3 = 1.0f - f2;
             canvas.save();
-            canvas.scale(f3, f3, centerX, centerY);
+            canvas.scale(f3, f3, iCenterX, iCenterY);
             this.outDrawable.setAlpha((int) (f3 * 255.0f));
             this.outDrawable.draw(canvas);
             canvas.restore();

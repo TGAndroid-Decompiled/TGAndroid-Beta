@@ -20,23 +20,23 @@ public class TLJsonParser {
     }
 
     public <T extends Deserializable> T readObject(String str, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {
-        JSONObject optJSONObject = this.jsonObject.optJSONObject(str);
-        if (optJSONObject != null) {
-            return (T) parse(new TLJsonParser(optJSONObject), callbackReturn);
+        JSONObject jSONObjectOptJSONObject = this.jsonObject.optJSONObject(str);
+        if (jSONObjectOptJSONObject != null) {
+            return (T) parse(new TLJsonParser(jSONObjectOptJSONObject), callbackReturn);
         }
         return null;
     }
 
     public <T extends Deserializable> ArrayList<T> readVector(String str, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {
         TableLayout.Assoc assoc = (ArrayList<T>) new ArrayList();
-        JSONArray optJSONArray = this.jsonObject.optJSONArray(str);
-        if (optJSONArray != null) {
-            int length = optJSONArray.length();
+        JSONArray jSONArrayOptJSONArray = this.jsonObject.optJSONArray(str);
+        if (jSONArrayOptJSONArray != null) {
+            int length = jSONArrayOptJSONArray.length();
             for (int i = 0; i < length; i++) {
                 try {
-                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i)), callbackReturn);
-                    if (parse != null) {
-                        assoc.add(parse);
+                    Deserializable deserializable = parse(new TLJsonParser(jSONArrayOptJSONArray.getJSONObject(i)), callbackReturn);
+                    if (deserializable != null) {
+                        assoc.add(deserializable);
                     }
                 } catch (JSONException e) {
                     FileLog.e(e);

@@ -49,7 +49,7 @@ public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout i
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         updateMaxTop();
     }
@@ -85,15 +85,15 @@ public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout i
             if (i2 < 0) {
                 if (top <= this.maxTop) {
                     RecyclerListView listView = this.childLayout.getListView();
-                    int findFirstVisibleItemPosition = ((LinearLayoutManager) listView.getLayoutManager()).findFirstVisibleItemPosition();
-                    if (findFirstVisibleItemPosition != -1) {
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = listView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                        int top2 = findViewHolderForAdapterPosition != null ? findViewHolderForAdapterPosition.itemView.getTop() : -1;
+                    int iFindFirstVisibleItemPosition = ((LinearLayoutManager) listView.getLayoutManager()).findFirstVisibleItemPosition();
+                    if (iFindFirstVisibleItemPosition != -1) {
+                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = listView.findViewHolderForAdapterPosition(iFindFirstVisibleItemPosition);
+                        int top2 = viewHolderFindViewHolderForAdapterPosition != null ? viewHolderFindViewHolderForAdapterPosition.itemView.getTop() : -1;
                         int paddingTop = listView.getPaddingTop();
-                        if (top2 == paddingTop && findFirstVisibleItemPosition == 0) {
+                        if (top2 == paddingTop && iFindFirstVisibleItemPosition == 0) {
                             return;
                         }
-                        iArr[1] = findFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
+                        iArr[1] = iFindFirstVisibleItemPosition != 0 ? i2 : Math.max(i2, top2 - paddingTop);
                         listView.scrollBy(0, i2);
                         return;
                     }
@@ -147,7 +147,7 @@ public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout i
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
         ChildLayout childLayout = this.childLayout;
@@ -157,7 +157,7 @@ public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout i
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
         ChildLayout childLayout = this.childLayout;

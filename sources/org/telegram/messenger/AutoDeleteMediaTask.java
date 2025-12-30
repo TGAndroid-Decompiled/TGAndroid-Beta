@@ -11,16 +11,16 @@ public class AutoDeleteMediaTask {
     public static Set<String> usingFilePaths = Collections.newSetFromMap(new ConcurrentHashMap());
 
     public static void run() {
-        final int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        if (Math.abs(currentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
+        final int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+        if (Math.abs(iCurrentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
             return;
         }
-        SharedConfig.lastKeepMediaCheckTime = currentTimeMillis;
-        final File checkDirectory = FileLoader.checkDirectory(4);
+        SharedConfig.lastKeepMediaCheckTime = iCurrentTimeMillis;
+        final File fileCheckDirectory = FileLoader.checkDirectory(4);
         Utilities.cacheClearQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                AutoDeleteMediaTask.lambda$run$1(currentTimeMillis, checkDirectory);
+                AutoDeleteMediaTask.lambda$run$1(iCurrentTimeMillis, fileCheckDirectory);
             }
         });
     }
@@ -39,11 +39,11 @@ public class AutoDeleteMediaTask {
     }
 
     private static void fillFilesRecursive(File file, ArrayList<FileInfoInternal> arrayList) {
-        File[] listFiles;
-        if (file == null || (listFiles = file.listFiles()) == null) {
+        File[] fileArrListFiles;
+        if (file == null || (fileArrListFiles = file.listFiles()) == null) {
             return;
         }
-        for (File file2 : listFiles) {
+        for (File file2 : fileArrListFiles) {
             if (file2.isDirectory()) {
                 fillFilesRecursive(file2, arrayList);
             } else if (!file2.getName().equals(".nomedia") && !usingFilePaths.contains(file2.getAbsolutePath())) {
@@ -52,7 +52,7 @@ public class AutoDeleteMediaTask {
         }
     }
 
-    public static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
+    static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
         final long lastUsageDate;
 
         private FileInfoInternal(File file) {

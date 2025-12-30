@@ -30,7 +30,7 @@ public abstract class SequencesKt___SequencesKt extends SequencesKt___SequencesJ
         return new Iterable() {
             @Override
             public Iterator iterator() {
-                return Sequence.this.iterator();
+                return sequence.iterator();
             }
         };
     }

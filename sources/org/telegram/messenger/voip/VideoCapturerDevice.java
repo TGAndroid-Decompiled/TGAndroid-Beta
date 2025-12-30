@@ -51,7 +51,7 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$new$0(z);
+                this.f$0.lambda$new$0(z);
             }
         });
     }
@@ -83,7 +83,7 @@ public class VideoCapturerDevice {
         videoCapturerDevice.handler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.lambda$checkScreenCapturerSize$1(VideoCapturerDevice.this, screenCaptureSize);
+                VideoCapturerDevice.lambda$checkScreenCapturerSize$1(this.f$0, screenCaptureSize);
             }
         });
     }
@@ -137,9 +137,9 @@ public class VideoCapturerDevice {
             }
         }
         if (i5 == -1 || f == 1.0f) {
-            float max = Math.max(point.x / 970.0f, point.y / 970.0f);
-            point.x = ((int) Math.ceil((point.x / max) / 4.0f)) * 4;
-            point.y = ((int) Math.ceil((point.y / max) / 4.0f)) * 4;
+            float fMax = Math.max(point.x / 970.0f, point.y / 970.0f);
+            point.x = ((int) Math.ceil((point.x / fMax) / 4.0f)) * 4;
+            point.y = ((int) Math.ceil((point.y / fMax) / 4.0f)) * 4;
         }
         return point;
     }
@@ -148,7 +148,7 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$init$5(j, str);
+                this.f$0.lambda$init$5(j, str);
             }
         });
     }
@@ -168,7 +168,7 @@ public class VideoCapturerDevice {
                 this.handler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        VideoCapturerDevice.this.lambda$init$2(j, screenCaptureSize);
+                        this.f$0.lambda$init$2(j, screenCaptureSize);
                     }
                 });
                 return;
@@ -198,7 +198,7 @@ public class VideoCapturerDevice {
             this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.this.lambda$init$3(j);
+                    this.f$0.lambda$init$3(j);
                 }
             });
         } else {
@@ -206,13 +206,13 @@ public class VideoCapturerDevice {
             this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.this.lambda$init$4(str2);
+                    this.f$0.lambda$init$4(str2);
                 }
             });
         }
     }
 
-    public class AnonymousClass1 extends MediaProjection.Callback {
+    class AnonymousClass1 extends MediaProjection.Callback {
         AnonymousClass1() {
         }
 
@@ -250,7 +250,7 @@ public class VideoCapturerDevice {
         }
     }
 
-    public class AnonymousClass2 implements CameraVideoCapturer.CameraEventsHandler {
+    class AnonymousClass2 implements CameraVideoCapturer.CameraEventsHandler {
         @Override
         public void onCameraClosed() {
         }
@@ -301,7 +301,7 @@ public class VideoCapturerDevice {
         this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
     }
 
-    public class AnonymousClass3 implements CameraVideoCapturer.CameraSwitchHandler {
+    class AnonymousClass3 implements CameraVideoCapturer.CameraSwitchHandler {
         @Override
         public void onCameraSwitchError(String str) {
         }
@@ -343,7 +343,7 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$onStateChanged$7(j, i);
+                this.f$0.lambda$onStateChanged$7(j, i);
             }
         });
     }
@@ -355,7 +355,7 @@ public class VideoCapturerDevice {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$onStateChanged$6(i, j);
+                this.f$0.lambda$onStateChanged$6(i, j);
             }
         });
     }
@@ -383,7 +383,7 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$onDestroy$9();
+                this.f$0.lambda$onDestroy$9();
             }
         });
     }
@@ -404,7 +404,7 @@ public class VideoCapturerDevice {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$onDestroy$8();
+                this.f$0.lambda$onDestroy$8();
             }
         });
         try {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/res_0x7f080010_tg_splash_320__0">
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/_tg_splash_320__0_res_0x7f080011">
     <target
         android:name="circle"
-        android:animation="@drawable/res_0x7f080011_tg_splash_320__1"/>
+        android:animation="@drawable/_tg_splash_320__1_res_0x7f080012"/>
     <target
         android:name="plane"
-        android:animation="@drawable/res_0x7f080012_tg_splash_320__2"/>
+        android:animation="@drawable/_tg_splash_320__2_res_0x7f080013"/>
     <target
         android:name="fg"
-        android:animation="@drawable/res_0x7f080013_tg_splash_320__3"/>
+        android:animation="@drawable/_tg_splash_320__3_res_0x7f080014"/>
 </animated-vector>

@@ -41,8 +41,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
     private final TextView titleView;
 
     public PermanentLinkBottomSheet(Context context, boolean z, final BaseFragment baseFragment, final TLRPC.ChatFull chatFull, long j, boolean z2) {
-        super(context, z);
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        super(context, z);
         this.chatId = j;
         setAllowNestedScroll(true);
         setApplyBottomPadding(false);
@@ -59,11 +59,11 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PermanentLinkBottomSheet.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
-        int dp = AndroidUtilities.dp(8.0f);
-        imageView.setPadding(dp, dp, dp, dp);
+        int iDp = AndroidUtilities.dp(8.0f);
+        imageView.setPadding(iDp, iDp, iDp, iDp);
         frameLayout.addView(imageView, LayoutHelper.createFrame(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
         LinkActionView linkActionView = new LinkActionView(context, baseFragment, this, j, true, z2);
         this.linkActionView = linkActionView;
@@ -90,7 +90,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
             @Override
             public final void revokeLink() {
-                PermanentLinkBottomSheet.this.lambda$new$1();
+                this.f$0.lambda$new$1();
             }
 
             @Override
@@ -127,7 +127,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PermanentLinkBottomSheet.this.lambda$new$2(chatFull, baseFragment, view);
+                this.f$0.lambda$new$2(chatFull, baseFragment, view);
             }
         });
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(90, 90, 1, 0, 33, 0, 0));
@@ -177,7 +177,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PermanentLinkBottomSheet.this.lambda$generateLink$4(z, tLObject, tL_error);
+                this.f$0.lambda$generateLink$4(z, tLObject, tL_error);
             }
         });
     }
@@ -186,7 +186,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$generateLink$3(tL_error, tLObject, z);
+                this.f$0.lambda$generateLink$3(tL_error, tLObject, z);
             }
         });
     }
@@ -216,7 +216,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$show$5();
+                this.f$0.lambda$show$5();
             }
         }, 50L);
     }
@@ -231,7 +231,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                PermanentLinkBottomSheet.this.updateColors();
+                this.f$0.updateColors();
             }
 
             @Override
@@ -253,9 +253,9 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
     public void updateColors() {
         RLottieImageView rLottieImageView = this.imageView;
-        int dp = AndroidUtilities.dp(90.0f);
+        int iDp = AndroidUtilities.dp(90.0f);
         int i = Theme.key_featuredStickers_addButton;
-        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        rLottieImageView.setBackground(Theme.createCircleDrawable(iDp, Theme.getColor(i)));
         this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
         int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
         this.linkIcon.setLayerColor("Top.**", color);

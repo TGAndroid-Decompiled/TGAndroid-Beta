@@ -27,7 +27,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.PullForegroundDrawable;
@@ -82,7 +81,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         return true;
     }
 
-    public void onArchiveSettingsClick() {
+    protected void onArchiveSettingsClick() {
     }
 
     @Override
@@ -96,7 +95,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     public void onCreateGroupForThisClick() {
     }
 
-    public void onOpenBot(TLRPC.User user) {
+    protected void onOpenBot(TLRPC.User user) {
     }
 
     protected boolean showOpenBotButton() {
@@ -188,22 +187,22 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public int fixScrollGap(RecyclerListView recyclerListView, int i, int i2, boolean z, boolean z2, boolean z3, boolean z4) {
         getItemCount();
-        int dp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+        int iDp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 76.0f : 70.0f);
         recyclerListView.getPaddingTop();
-        int paddingTop = ((recyclerListView.getPaddingTop() + i2) - (i * dp)) - i;
+        int paddingTop = ((recyclerListView.getPaddingTop() + i2) - (i * iDp)) - i;
         if (z2) {
             AndroidUtilities.dp(81.0f);
         } else if (z3) {
             AndroidUtilities.dp(44.0f);
         }
         if (z) {
-            paddingTop += dp;
+            paddingTop += iDp;
         }
         int paddingTop2 = recyclerListView.getPaddingTop();
         return paddingTop > paddingTop2 ? (i2 + paddingTop2) - paddingTop : i2;
     }
 
-    public class ItemInternal extends AdapterWithDiffUtils.Item {
+    private class ItemInternal extends AdapterWithDiffUtils.Item {
         TL_chatlists.TL_chatlists_chatlistUpdates chatlistUpdates;
         TLRPC.TL_contact contact;
         TLRPC.Dialog dialog;
@@ -364,9 +363,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     Collections.sort(this.onlineContacts, new Comparator() {
                         @Override
                         public final int compare(Object obj, Object obj2) {
-                            int lambda$sortOnlineContacts$0;
-                            lambda$sortOnlineContacts$0 = DialogsAdapter.lambda$sortOnlineContacts$0(MessagesController.this, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                            return lambda$sortOnlineContacts$0;
+                            return DialogsAdapter.lambda$sortOnlineContacts$0(messagesController, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
                         }
                     });
                     if (z) {
@@ -429,29 +426,29 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             }
         };
         if (this.itemInternals.size() < 50 || !ALLOW_UPDATE_IN_BACKGROUND) {
-            DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(callback);
+            DiffUtil.DiffResult diffResultCalculateDiff = DiffUtil.calculateDiff(callback);
             this.isCalculatingDiff = false;
             if (runnable != null) {
                 runnable.run();
             }
             this.itemInternals = arrayList2;
-            calculateDiff.dispatchUpdatesTo(this);
+            diffResultCalculateDiff.dispatchUpdatesTo(this);
             return;
         }
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DialogsAdapter.this.lambda$updateList$2(callback, runnable, arrayList2);
+                this.f$0.lambda$updateList$2(callback, runnable, arrayList2);
             }
         });
     }
 
     public void lambda$updateList$2(DiffUtil.Callback callback, final Runnable runnable, final ArrayList arrayList) {
-        final DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(callback);
+        final DiffUtil.DiffResult diffResultCalculateDiff = DiffUtil.calculateDiff(callback);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsAdapter.this.lambda$updateList$1(runnable, arrayList, calculateDiff);
+                this.f$0.lambda$updateList$1(runnable, arrayList, diffResultCalculateDiff);
             }
         });
     }
@@ -521,7 +518,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
@@ -552,10 +549,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public void moveDialogs(RecyclerListView recyclerListView, int i, int i2) {
         ArrayList dialogsArray = this.parentFragment.getDialogsArray(this.currentAccount, this.dialogsType, this.folderId, false);
-        int fixPosition = fixPosition(i);
-        int fixPosition2 = fixPosition(i2);
-        TLRPC.Dialog dialog = (TLRPC.Dialog) dialogsArray.get(fixPosition);
-        TLRPC.Dialog dialog2 = (TLRPC.Dialog) dialogsArray.get(fixPosition2);
+        int iFixPosition = fixPosition(i);
+        int iFixPosition2 = fixPosition(i2);
+        TLRPC.Dialog dialog = (TLRPC.Dialog) dialogsArray.get(iFixPosition);
+        TLRPC.Dialog dialog2 = (TLRPC.Dialog) dialogsArray.get(iFixPosition2);
         int i3 = this.dialogsType;
         if (i3 == 7 || i3 == 8) {
             MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(this.currentAccount).selectedDialogFilter[this.dialogsType == 8 ? (char) 1 : (char) 0];
@@ -567,7 +564,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             dialog.pinnedNum = dialog2.pinnedNum;
             dialog2.pinnedNum = i5;
         }
-        Collections.swap(dialogsArray, fixPosition, fixPosition2);
+        Collections.swap(dialogsArray, iFixPosition, iFixPosition2);
         updateList(null);
     }
 
@@ -679,7 +676,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         Runnable clearNetworkRequestCount = new Runnable() {
             @Override
             public final void run() {
-                DialogsAdapter.DialogsPreloader.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
 
@@ -708,13 +705,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 return;
             }
             Long l = (Long) this.preloadDialogsPool.remove(0);
-            long longValue = l.longValue();
+            long jLongValue = l.longValue();
             this.currentRequestCount++;
             this.loadingDialogs.add(l);
-            MessagesController.getInstance(UserConfig.selectedAccount).ensureMessagesLoaded(longValue, 0, new AnonymousClass1(longValue));
+            MessagesController.getInstance(UserConfig.selectedAccount).ensureMessagesLoaded(jLongValue, 0, new AnonymousClass1(jLongValue));
         }
 
-        public class AnonymousClass1 implements MessagesController.MessagesLoadedCallback {
+        class AnonymousClass1 implements MessagesController.MessagesLoadedCallback {
             final long val$dialog_id;
 
             AnonymousClass1(long j) {
@@ -727,7 +724,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsAdapter.DialogsPreloader.AnonymousClass1.this.lambda$onMessagesLoaded$0(z, j);
+                        this.f$0.lambda$onMessagesLoaded$0(z, j);
                     }
                 });
             }
@@ -756,7 +753,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsAdapter.DialogsPreloader.AnonymousClass1.this.lambda$onError$1(j);
+                        this.f$0.lambda$onError$1(j);
                     }
                 });
             }
@@ -823,7 +820,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         }
 
         @Override
-        protected void onMeasure(int r11, int r12) {
+        protected void onMeasure(int r12, int r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.LastEmptyView.onMeasure(int, int):void");
         }
     }
@@ -833,13 +830,15 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public int getItemHeight(int i) {
-        int dp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+        int iDp;
         if (((ItemInternal) this.itemInternals.get(i)).viewType != 0) {
             return 0;
         }
-        if (!((ItemInternal) this.itemInternals.get(i)).isForumCell || this.collapsedView) {
-            return dp;
+        if (((ItemInternal) this.itemInternals.get(i)).isForumCell && !this.collapsedView) {
+            iDp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
+        } else {
+            iDp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 76.0f : 70.0f);
         }
-        return AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
+        return iDp + 1;
     }
 }

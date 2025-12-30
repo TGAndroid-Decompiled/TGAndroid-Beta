@@ -37,7 +37,6 @@ import org.telegram.ui.Components.blur3.StrokeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
-import org.telegram.ui.Stories.PaidReactionButton;
 
 public class PaidReactionButton extends View {
     private float accumulatedRippleIntensity;
@@ -79,12 +78,12 @@ public class PaidReactionButton extends View {
                 this.focusAnimator = null;
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.focus, f);
-            this.focusAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.focus, f);
+            this.focusAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PaidReactionButton.PaidReactionButtonEffectsView.this.lambda$focusTo$0(valueAnimator2);
+                    this.f$0.lambda$focusTo$0(valueAnimator2);
                 }
             });
             this.focusAnimator.addListener(new AnimatorListenerAdapter() {
@@ -144,7 +143,7 @@ public class PaidReactionButton extends View {
             this.hideCounterRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PaidReactionButton.PaidReactionButtonEffectsView.this.lambda$new$1();
+                    this.f$0.lambda$new$1();
                 }
             };
         }
@@ -161,8 +160,8 @@ public class PaidReactionButton extends View {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            float lerp = AndroidUtilities.lerp(1.0f, 1.8f, this.focus);
-            int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
+            float fLerp = AndroidUtilities.lerp(1.0f, 1.8f, this.focus);
+            int iDp = (int) (AndroidUtilities.dp(90.0f) * fLerp);
             int i = 0;
             int i2 = 0;
             while (i2 < this.effects.size()) {
@@ -171,17 +170,17 @@ public class PaidReactionButton extends View {
                     this.effects.remove(i2);
                     i2--;
                 } else {
-                    float f = dp / 2.0f;
-                    rLottieDrawable.setBounds((int) ((this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp)) - f), (int) (this.reactionBounds.centerY() - f), (int) (this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp) + f), (int) (this.reactionBounds.centerY() + f));
+                    float f = iDp / 2.0f;
+                    rLottieDrawable.setBounds((int) ((this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * fLerp)) - f), (int) (this.reactionBounds.centerY() - f), (int) (this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * fLerp) + f), (int) (this.reactionBounds.centerY() + f));
                     rLottieDrawable.setAlpha((int) (this.focus * 255.0f));
                     rLottieDrawable.draw(canvas);
                 }
                 i2++;
             }
-            float centerX = this.reactionBounds.centerX();
-            float dp2 = this.reactionBounds.top - AndroidUtilities.dp(1.0f);
+            float fCenterX = this.reactionBounds.centerX();
+            float fDp = this.reactionBounds.top - AndroidUtilities.dp(1.0f);
             canvas.save();
-            canvas.translate(centerX, dp2);
+            canvas.translate(fCenterX, fDp);
             while (i < this.chips.size()) {
                 if (((Chip) this.chips.get(i)).draw(canvas)) {
                     ((Chip) this.chips.get(i)).detach();
@@ -230,7 +229,7 @@ public class PaidReactionButton extends View {
             focusTo(0.0f, new Runnable() {
                 @Override
                 public final void run() {
-                    PaidReactionButton.PaidReactionButtonEffectsView.this.lambda$hide$2();
+                    this.f$0.lambda$hide$2();
                 }
             });
         }
@@ -306,41 +305,41 @@ public class PaidReactionButton extends View {
             public boolean draw(Canvas canvas) {
                 float f = this.progress.set(1.0f);
                 float f2 = this.killProgress.set(this.isKilled);
-                float dp = AndroidUtilities.dp(23.0f) + this.text.getCurrentWidth();
-                float dp2 = AndroidUtilities.dp(18.0f);
-                float lerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(1.0f, 0.0f, f2), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(f, 1.0f, 0.85f), AndroidUtilities.ilerp(f, 0.0f, 0.12f))));
-                int i = (int) (255.0f * lerp);
+                float fDp = AndroidUtilities.dp(23.0f) + this.text.getCurrentWidth();
+                float fDp2 = AndroidUtilities.dp(18.0f);
+                float fLerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(1.0f, 0.0f, f2), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(f, 1.0f, 0.85f), AndroidUtilities.ilerp(f, 0.0f, 0.12f))));
+                int i = (int) (255.0f * fLerp);
                 this.backgroundPaint.setAlpha(i);
                 RLottieDrawable rLottieDrawable = this.effect;
                 if (rLottieDrawable != null) {
                     rLottieDrawable.setAlpha(i);
                 }
-                this.imageReceiver.setAlpha(lerp);
+                this.imageReceiver.setAlpha(fLerp);
                 canvas.save();
                 double d = f;
-                float sin = (float) Math.sin(Math.pow(d, 0.44999998807907104d) * 3.141592653589793d * 3.0d);
+                float fSin = (float) Math.sin(Math.pow(d, 0.44999998807907104d) * 3.141592653589793d * 3.0d);
                 canvas.translate(AndroidUtilities.dp(4.0f) * ((this.randomTranslation * 2.0f) - 1.0f), 0.0f);
                 canvas.rotate(((this.randomRotation * 2.0f) - 1.0f) * 1.5f);
                 canvas.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
-                canvas.translate(AndroidUtilities.dp(5.0f) * sin * ((float) Math.pow(d, 0.5d)), 0.0f);
+                canvas.translate(AndroidUtilities.dp(5.0f) * fSin * ((float) Math.pow(d, 0.5d)), 0.0f);
                 canvas.rotate(((float) (Math.sin((Math.pow(d, 0.44999998807907104d) - 0.15000000596046448d) * 3.141592653589793d * 3.0d) * Utilities.clamp01((float) Math.pow(d, 0.20000000298023224d)))) * (-6.0f));
-                float lerp2 = AndroidUtilities.lerp(0.4f, 1.0f, lerp);
-                canvas.scale(lerp2, lerp2);
-                canvas.translate((-dp) / 2.0f, (-dp2) / 2.0f);
-                float f3 = dp2 / 2.0f;
-                canvas.drawRoundRect(0.0f, 0.0f, dp, dp2, f3, f3, this.backgroundPaint);
+                float fLerp2 = AndroidUtilities.lerp(0.4f, 1.0f, fLerp);
+                canvas.scale(fLerp2, fLerp2);
+                canvas.translate((-fDp) / 2.0f, (-fDp2) / 2.0f);
+                float f3 = fDp2 / 2.0f;
+                canvas.drawRoundRect(0.0f, 0.0f, fDp, fDp2, f3, f3, this.backgroundPaint);
                 this.imageReceiver.draw(canvas);
-                this.text.draw(canvas, AndroidUtilities.dp(18.0f), f3, -1, lerp);
+                this.text.draw(canvas, AndroidUtilities.dp(18.0f), f3, -1, fLerp);
                 canvas.restore();
                 if (this.effect != null) {
                     canvas.save();
                     canvas.translate(AndroidUtilities.dp(4.0f) * ((this.randomTranslation * 2.0f) - 1.0f), 0.0f);
                     canvas.rotate(((this.randomRotation * 2.0f) - 1.0f) * 1.5f);
                     canvas.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
-                    canvas.translate(sin * AndroidUtilities.dp(5.0f) * ((float) Math.pow(d, 0.5d)), 0.0f);
-                    int dp3 = AndroidUtilities.dp(90.0f);
-                    int i2 = (-dp3) / 2;
-                    int i3 = dp3 / 2;
+                    canvas.translate(fSin * AndroidUtilities.dp(5.0f) * ((float) Math.pow(d, 0.5d)), 0.0f);
+                    int iDp = AndroidUtilities.dp(90.0f);
+                    int i2 = (-iDp) / 2;
+                    int i3 = iDp / 2;
                     this.effect.setBounds(i2, AndroidUtilities.dp(8.0f) + i2, i3, AndroidUtilities.dp(8.0f) + i3);
                     this.effect.draw(canvas);
                     canvas.restore();
@@ -410,19 +409,19 @@ public class PaidReactionButton extends View {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float dp = AndroidUtilities.dp(38.0f);
+        float fDp = AndroidUtilities.dp(38.0f);
         float f = this.animatedFilled.set(this.filled);
         float f2 = this.animatedShowCounter.set(this.stars > 0);
-        this.rect.set((getWidth() - dp) / 2.0f, (getHeight() - dp) / 2.0f, (getWidth() + dp) / 2.0f, (getHeight() + dp) / 2.0f);
-        int blendARGB = ColorUtils.blendARGB(-14670806, -548067, f);
-        this.backgroundPaint.setColor(blendARGB);
+        this.rect.set((getWidth() - fDp) / 2.0f, (getHeight() - fDp) / 2.0f, (getWidth() + fDp) / 2.0f, (getHeight() + fDp) / 2.0f);
+        int iBlendARGB = ColorUtils.blendARGB(-14670806, -548067, f);
+        this.backgroundPaint.setColor(iBlendARGB);
         StrokeDrawable strokeDrawable = this.strokeDrawable;
         RectF rectF = this.rect;
         strokeDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        this.strokeDrawable.setBackgroundColor(blendARGB);
+        this.strokeDrawable.setBackgroundColor(iBlendARGB);
         this.strokeDrawable.draw(canvas);
-        int dp2 = AndroidUtilities.dp(20.0f);
-        this.iconDrawable.setBounds((getWidth() - dp2) / 2, (getHeight() - dp2) / 2, (getWidth() + dp2) / 2, (getHeight() + dp2) / 2);
+        int iDp = AndroidUtilities.dp(20.0f);
+        this.iconDrawable.setBounds((getWidth() - iDp) / 2, (getHeight() - iDp) / 2, (getWidth() + iDp) / 2, (getHeight() + iDp) / 2);
         this.iconDrawable.draw(canvas);
         canvas.save();
         this.clipPath.rewind();
@@ -437,17 +436,17 @@ public class PaidReactionButton extends View {
         invalidate();
         canvas.restore();
         if (f2 > 0.0f) {
-            float max = Math.max(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f) + this.countText.getCurrentWidth());
-            float isNotEmpty = this.countScale * this.countText.isNotEmpty() * f2;
+            float fMax = Math.max(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f) + this.countText.getCurrentWidth());
+            float fIsNotEmpty = this.countScale * this.countText.isNotEmpty() * f2;
             canvas.save();
             RectF rectF3 = AndroidUtilities.rectTmp;
-            rectF3.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-            canvas.scale(isNotEmpty, isNotEmpty, rectF3.centerX(), rectF3.centerY());
+            rectF3.set(getWidth() - fMax, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+            canvas.scale(fIsNotEmpty, fIsNotEmpty, rectF3.centerX(), rectF3.centerY());
             rectF3.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
             canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.clearPaint);
-            rectF3.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+            rectF3.set(getWidth() - fMax, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.backgroundPaint);
-            canvas.translate(rectF3.left + ((max - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(6.33f));
+            canvas.translate(rectF3.left + ((fMax - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(6.33f));
             this.countText.setTextColor(ColorUtils.blendARGB(-9866632, -1, f));
             this.countText.draw(canvas);
             canvas.restore();
@@ -497,16 +496,15 @@ public class PaidReactionButton extends View {
 
     private void ripple() {
         getLocationInWindow(this.pos);
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastRippleTime;
-        if (j < 100) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (jCurrentTimeMillis - this.lastRippleTime < 100) {
             this.accumulatedRippleIntensity += 0.5f;
             return;
         }
-        this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - (((float) (j - 100)) / 200.0f), 1.0f, 0.0f);
+        this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((r2 - 100) / 200.0f), 1.0f, 0.0f);
         LaunchActivity.makeRipple(this.pos[0] + (getWidth() / 2.0f), this.pos[1] + (getHeight() / 2.0f), Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
         this.accumulatedRippleIntensity = 0.0f;
-        this.lastRippleTime = currentTimeMillis;
+        this.lastRippleTime = jCurrentTimeMillis;
     }
 
     public void stopEffects() {

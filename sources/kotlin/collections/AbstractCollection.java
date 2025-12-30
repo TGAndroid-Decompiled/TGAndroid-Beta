@@ -44,6 +44,9 @@ public abstract class AbstractCollection implements Collection {
         return getSize();
     }
 
+    protected AbstractCollection() {
+    }
+
     @Override
     public boolean containsAll(Collection elements) {
         Intrinsics.checkNotNullParameter(elements, "elements");
@@ -69,9 +72,7 @@ public abstract class AbstractCollection implements Collection {
         return CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
             @Override
             public final Object invoke(Object obj) {
-                CharSequence string$lambda$2;
-                string$lambda$2 = AbstractCollection.toString$lambda$2(AbstractCollection.this, obj);
-                return string$lambda$2;
+                return AbstractCollection.toString$lambda$2(this.f$0, obj);
             }
         }, 24, null);
     }

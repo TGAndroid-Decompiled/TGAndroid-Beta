@@ -91,7 +91,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.clipChangedListener = new ClipboardManager.OnPrimaryClipChangedListener() {
             @Override
             public final void onPrimaryClipChanged() {
-                ProxySettingsActivity.this.updatePasteCell();
+                this.f$0.updatePasteCell();
             }
         };
         this.currentProxyInfo = new SharedConfig.ProxyInfo("", 1080, "", "", "");
@@ -110,7 +110,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.clipChangedListener = new ClipboardManager.OnPrimaryClipChangedListener() {
             @Override
             public final void onPrimaryClipChanged() {
-                ProxySettingsActivity.this.updatePasteCell();
+                this.f$0.updatePasteCell();
             }
         };
         this.currentProxyInfo = proxyInfo;
@@ -131,7 +131,7 @@ public class ProxySettingsActivity extends BaseFragment {
     }
 
     @Override
-    public View createView(final Context context) {
+    public View createView(final Context context) throws NoSuchFieldException, SecurityException {
         this.actionBar.setTitle(LocaleController.getString(R.string.ProxyDetails));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
@@ -161,11 +161,11 @@ public class ProxySettingsActivity extends BaseFragment {
                     ProxySettingsActivity.this.currentProxyInfo.password = "";
                 }
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                SharedPreferences.Editor edit = globalMainSettings.edit();
+                SharedPreferences.Editor editorEdit = globalMainSettings.edit();
                 if (ProxySettingsActivity.this.addingNewProxy) {
                     SharedConfig.addProxy(ProxySettingsActivity.this.currentProxyInfo);
                     SharedConfig.currentProxy = ProxySettingsActivity.this.currentProxyInfo;
-                    edit.putBoolean("proxy_enabled", true);
+                    editorEdit.putBoolean("proxy_enabled", true);
                     z = true;
                 } else {
                     boolean z2 = globalMainSettings.getBoolean("proxy_enabled", false);
@@ -173,21 +173,21 @@ public class ProxySettingsActivity extends BaseFragment {
                     z = z2;
                 }
                 if (ProxySettingsActivity.this.addingNewProxy || SharedConfig.currentProxy == ProxySettingsActivity.this.currentProxyInfo) {
-                    edit.putString("proxy_ip", ProxySettingsActivity.this.currentProxyInfo.address);
-                    edit.putString("proxy_pass", ProxySettingsActivity.this.currentProxyInfo.password);
-                    edit.putString("proxy_user", ProxySettingsActivity.this.currentProxyInfo.username);
-                    edit.putInt("proxy_port", ProxySettingsActivity.this.currentProxyInfo.port);
-                    edit.putString("proxy_secret", ProxySettingsActivity.this.currentProxyInfo.secret);
+                    editorEdit.putString("proxy_ip", ProxySettingsActivity.this.currentProxyInfo.address);
+                    editorEdit.putString("proxy_pass", ProxySettingsActivity.this.currentProxyInfo.password);
+                    editorEdit.putString("proxy_user", ProxySettingsActivity.this.currentProxyInfo.username);
+                    editorEdit.putInt("proxy_port", ProxySettingsActivity.this.currentProxyInfo.port);
+                    editorEdit.putString("proxy_secret", ProxySettingsActivity.this.currentProxyInfo.secret);
                     ConnectionsManager.setProxySettings(z, ProxySettingsActivity.this.currentProxyInfo.address, ProxySettingsActivity.this.currentProxyInfo.port, ProxySettingsActivity.this.currentProxyInfo.username, ProxySettingsActivity.this.currentProxyInfo.password, ProxySettingsActivity.this.currentProxyInfo.secret);
                 }
-                edit.commit();
+                editorEdit.commit();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
                 ProxySettingsActivity.this.finishFragment();
             }
         });
-        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
-        this.doneItem = addItemWithWidth;
-        addItemWithWidth.setContentDescription(LocaleController.getString(R.string.Done));
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
+        this.doneItem = actionBarMenuItemAddItemWithWidth;
+        actionBarMenuItemAddItemWithWidth.setContentDescription(LocaleController.getString(R.string.Done));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -203,7 +203,7 @@ public class ProxySettingsActivity extends BaseFragment {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ProxySettingsActivity.this.lambda$createView$0(view);
+                this.f$0.lambda$createView$0(view);
             }
         };
         int i = 0;
@@ -284,23 +284,23 @@ public class ProxySettingsActivity extends BaseFragment {
                         }
                         EditTextBoldCursor editTextBoldCursor2 = ProxySettingsActivity.this.inputFields[1];
                         int selectionStart = editTextBoldCursor2.getSelectionStart();
-                        String obj = editTextBoldCursor2.getText().toString();
-                        StringBuilder sb = new StringBuilder(obj.length());
+                        String string = editTextBoldCursor2.getText().toString();
+                        StringBuilder sb = new StringBuilder(string.length());
                         int i5 = 0;
-                        while (i5 < obj.length()) {
+                        while (i5 < string.length()) {
                             int i6 = i5 + 1;
-                            String substring = obj.substring(i5, i6);
-                            if ("0123456789".contains(substring)) {
-                                sb.append(substring);
+                            String strSubstring = string.substring(i5, i6);
+                            if ("0123456789".contains(strSubstring)) {
+                                sb.append(strSubstring);
                             }
                             i5 = i6;
                         }
                         ProxySettingsActivity.this.ignoreOnTextChange = true;
-                        int intValue = Utilities.parseInt((CharSequence) sb.toString()).intValue();
-                        if (intValue < 0 || intValue > 65535 || !obj.equals(sb.toString())) {
-                            if (intValue < 0) {
+                        int iIntValue = Utilities.parseInt((CharSequence) sb.toString()).intValue();
+                        if (iIntValue < 0 || iIntValue > 65535 || !string.equals(sb.toString())) {
+                            if (iIntValue < 0) {
                                 editTextBoldCursor2.setText("0");
-                            } else if (intValue > 65535) {
+                            } else if (iIntValue > 65535) {
                                 editTextBoldCursor2.setText("65535");
                             } else {
                                 editTextBoldCursor2.setText(sb.toString());
@@ -343,9 +343,7 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                    boolean lambda$createView$1;
-                    lambda$createView$1 = ProxySettingsActivity.this.lambda$createView$1(textView, i5, keyEvent);
-                    return lambda$createView$1;
+                    return this.f$0.lambda$createView$1(textView, i5, keyEvent);
                 }
             });
             i2++;
@@ -371,7 +369,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.pasteCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ProxySettingsActivity.this.lambda$createView$3(view);
+                this.f$0.lambda$createView$3(view);
             }
         });
         this.linearLayout2.addView(this.pasteCell, 0, LayoutHelper.createLinear(-1, -2));
@@ -393,7 +391,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.shareCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ProxySettingsActivity.this.lambda$createView$4(context, view);
+                this.f$0.lambda$createView$4(context, view);
             }
         });
         this.sectionCell[1] = new ShadowSectionCell(context);
@@ -423,10 +421,10 @@ public class ProxySettingsActivity extends BaseFragment {
             finishFragment();
             return true;
         }
-        int intValue = ((Integer) textView.getTag()).intValue() + 1;
+        int iIntValue = ((Integer) textView.getTag()).intValue() + 1;
         EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-        if (intValue < editTextBoldCursorArr.length) {
-            editTextBoldCursorArr[intValue].requestFocus();
+        if (iIntValue < editTextBoldCursorArr.length) {
+            editTextBoldCursorArr[iIntValue].requestFocus();
         }
         return true;
     }
@@ -459,7 +457,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 setProxyType(this.pasteType, true, new Runnable() {
                     @Override
                     public final void run() {
-                        ProxySettingsActivity.this.lambda$createView$2();
+                        this.f$0.lambda$createView$2();
                     }
                 });
                 return;
@@ -480,22 +478,22 @@ public class ProxySettingsActivity extends BaseFragment {
     public void lambda$createView$4(Context context, View view) {
         String str;
         StringBuilder sb = new StringBuilder();
-        String obj = this.inputFields[0].getText().toString();
-        String obj2 = this.inputFields[3].getText().toString();
-        String obj3 = this.inputFields[2].getText().toString();
-        String obj4 = this.inputFields[1].getText().toString();
-        String obj5 = this.inputFields[4].getText().toString();
+        String string = this.inputFields[0].getText().toString();
+        String string2 = this.inputFields[3].getText().toString();
+        String string3 = this.inputFields[2].getText().toString();
+        String string4 = this.inputFields[1].getText().toString();
+        String string5 = this.inputFields[4].getText().toString();
         try {
-            if (!TextUtils.isEmpty(obj)) {
+            if (!TextUtils.isEmpty(string)) {
                 sb.append("server=");
-                sb.append(URLEncoder.encode(obj, "UTF-8"));
+                sb.append(URLEncoder.encode(string, "UTF-8"));
             }
-            if (!TextUtils.isEmpty(obj4)) {
+            if (!TextUtils.isEmpty(string4)) {
                 if (sb.length() != 0) {
                     sb.append("&");
                 }
                 sb.append("port=");
-                sb.append(URLEncoder.encode(obj4, "UTF-8"));
+                sb.append(URLEncoder.encode(string4, "UTF-8"));
             }
             if (this.currentType == 1) {
                 str = "https://t.me/proxy?";
@@ -503,22 +501,22 @@ public class ProxySettingsActivity extends BaseFragment {
                     sb.append("&");
                 }
                 sb.append("secret=");
-                sb.append(URLEncoder.encode(obj5, "UTF-8"));
+                sb.append(URLEncoder.encode(string5, "UTF-8"));
             } else {
                 str = "https://t.me/socks?";
-                if (!TextUtils.isEmpty(obj3)) {
+                if (!TextUtils.isEmpty(string3)) {
                     if (sb.length() != 0) {
                         sb.append("&");
                     }
                     sb.append("user=");
-                    sb.append(URLEncoder.encode(obj3, "UTF-8"));
+                    sb.append(URLEncoder.encode(string3, "UTF-8"));
                 }
-                if (!TextUtils.isEmpty(obj2)) {
+                if (!TextUtils.isEmpty(string2)) {
                     if (sb.length() != 0) {
                         sb.append("&");
                     }
                     sb.append("pass=");
-                    sb.append(URLEncoder.encode(obj2, "UTF-8"));
+                    sb.append(URLEncoder.encode(string2, "UTF-8"));
                 }
             }
             if (sb.length() == 0) {
@@ -541,13 +539,13 @@ public class ProxySettingsActivity extends BaseFragment {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             } else if (z2) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.shareDoneAnimator = ofFloat;
-                ofFloat.setDuration(200L);
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.shareDoneAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.setDuration(200L);
                 this.shareDoneAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ProxySettingsActivity.this.lambda$setShareDoneEnabled$5(valueAnimator2);
+                        this.f$0.lambda$setShareDoneEnabled$5(valueAnimator2);
                     }
                 });
             }
@@ -659,7 +657,7 @@ public class ProxySettingsActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ProxySettingsActivity.this.lambda$getThemeDescriptions$6();
+                this.f$0.lambda$getThemeDescriptions$6();
             }
 
             @Override

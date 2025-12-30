@@ -73,8 +73,16 @@ public class FactorAnimator {
         return true;
     }
 
+    public void setDuration(long j) {
+        this.duration = j;
+    }
+
     public void setStartDelay(long j) {
         this.startDelay = j;
+    }
+
+    public void setInterpolator(Interpolator interpolator) {
+        this.interpolator = interpolator;
     }
 
     public void animateTo(float f) {
@@ -95,7 +103,6 @@ public class FactorAnimator {
     }
 
     public void animateTo(float f, View view) {
-        boolean areAnimatorsEnabled;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             throw new AssertionError();
         }
@@ -118,11 +125,8 @@ public class FactorAnimator {
         final float f2 = this.factor;
         final float f3 = f - f2;
         long j = this.duration;
-        if (Build.VERSION.SDK_INT >= 26) {
-            areAnimatorsEnabled = ValueAnimator.areAnimatorsEnabled();
-            if (!areAnimatorsEnabled) {
-                j = 0;
-            }
+        if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
+            j = 0;
         }
         if (j <= 0) {
             setFactor(f, 1.0f);
@@ -131,25 +135,17 @@ public class FactorAnimator {
             return;
         }
         this.toFactor = f;
-        ValueAnimator simpleValueAnimator = AnimatorUtils.simpleValueAnimator();
-        this.animator = simpleValueAnimator;
-        simpleValueAnimator.setDuration(j);
+        ValueAnimator valueAnimatorSimpleValueAnimator = AnimatorUtils.simpleValueAnimator();
+        this.animator = valueAnimatorSimpleValueAnimator;
+        valueAnimatorSimpleValueAnimator.setDuration(j);
         this.animator.setInterpolator(this.interpolator);
         this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                FactorAnimator.this.lambda$animateTo$0(f2, f3, valueAnimator);
+                this.f$0.lambda$animateTo$0(f2, f3, valueAnimator);
             }
         });
         this.animator.addListener(new AnimatorListenerAdapter() {
-            final float val$factorDiff;
-            final float val$fromFactor;
-
-            AnonymousClass1(final float f22, final float f32) {
-                r2 = f22;
-                r3 = f32;
-            }
-
             @Override
             public void onAnimationStart(Animator animator) {
                 FactorAnimator.this.invokeStartRunnable();
@@ -157,7 +153,7 @@ public class FactorAnimator {
 
             private void finishAnimation() {
                 if (FactorAnimator.this.isAnimating) {
-                    FactorAnimator.this.setFactor(r2 + r3, 1.0f);
+                    FactorAnimator.this.setFactor(f2 + f3, 1.0f);
                     FactorAnimator.this.setAnimating(false);
                     FactorAnimator.this.target.onFactorChangeFinished(FactorAnimator.this.id, FactorAnimator.this.factor, FactorAnimator.this);
                 }
@@ -196,39 +192,6 @@ public class FactorAnimator {
         }
     }
 
-    public class AnonymousClass1 extends AnimatorListenerAdapter {
-        final float val$factorDiff;
-        final float val$fromFactor;
-
-        AnonymousClass1(final float f22, final float f32) {
-            r2 = f22;
-            r3 = f32;
-        }
-
-        @Override
-        public void onAnimationStart(Animator animator) {
-            FactorAnimator.this.invokeStartRunnable();
-        }
-
-        private void finishAnimation() {
-            if (FactorAnimator.this.isAnimating) {
-                FactorAnimator.this.setFactor(r2 + r3, 1.0f);
-                FactorAnimator.this.setAnimating(false);
-                FactorAnimator.this.target.onFactorChangeFinished(FactorAnimator.this.id, FactorAnimator.this.factor, FactorAnimator.this);
-            }
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animator) {
-            finishAnimation();
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animator) {
-            finishAnimation();
-        }
-    }
-
     public float getToFactor() {
         return this.isAnimating ? this.toFactor : this.factor;
     }
@@ -251,8 +214,8 @@ public class FactorAnimator {
     }
 
     public void forceFactor(float f) {
-        boolean cancel = cancel();
-        if (setFactor(f, 1.0f) || cancel) {
+        boolean zCancel = cancel();
+        if (setFactor(f, 1.0f) || zCancel) {
             this.target.onFactorChangeFinished(this.id, f, this);
         }
     }

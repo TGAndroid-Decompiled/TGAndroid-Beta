@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.io.File;
+import org.json.JSONException;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.web.HttpGetFileTask;
 import org.telegram.ui.web.HttpGetTask;
@@ -26,7 +27,7 @@ public class BetaUpdaterController {
     private final Runnable scheduledUpdateCheck = new Runnable() {
         @Override
         public final void run() {
-            BetaUpdaterController.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
 
@@ -63,35 +64,35 @@ public class BetaUpdaterController {
     }
 
     private void save() {
-        SharedPreferences.Editor edit = getSharedPreferences().edit();
+        SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
         if (TextUtils.isEmpty(this.version)) {
-            edit.remove("version");
+            editorEdit.remove("version");
         } else {
-            edit.putString("version", this.version);
+            editorEdit.putString("version", this.version);
         }
         if (TextUtils.isEmpty(this.changelog)) {
-            edit.remove("changelog");
+            editorEdit.remove("changelog");
         } else {
-            edit.putString("changelog", this.changelog);
+            editorEdit.putString("changelog", this.changelog);
         }
         int i = this.versionCode;
         if (i == 0) {
-            edit.remove("versionCode");
+            editorEdit.remove("versionCode");
         } else {
-            edit.putInt("versionCode", i);
+            editorEdit.putInt("versionCode", i);
         }
         if (TextUtils.isEmpty(this.path)) {
-            edit.remove("path");
+            editorEdit.remove("path");
         } else {
-            edit.putString("path", this.path);
+            editorEdit.putString("path", this.path);
         }
         long j = this.lastCheck;
         if (j == 0) {
-            edit.remove("lastCheck");
+            editorEdit.remove("lastCheck");
         } else {
-            edit.putLong("lastCheck", j);
+            editorEdit.putLong("lastCheck", j);
         }
-        edit.apply();
+        editorEdit.apply();
     }
 
     public void lambda$new$0() {
@@ -119,7 +120,7 @@ public class BetaUpdaterController {
         new HttpGetTask(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BetaUpdaterController.this.lambda$checkForUpdate$2(runnable, (String) obj);
+                this.f$0.lambda$checkForUpdate$2(runnable, (String) obj);
             }
         }).execute("https://telegram.org/dl/android/apk-public-beta.json");
     }
@@ -127,13 +128,13 @@ public class BetaUpdaterController {
     public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                BetaUpdaterController.this.lambda$checkForUpdate$1(str, runnable);
+            public final void run() throws JSONException {
+                this.f$0.lambda$checkForUpdate$1(str, runnable);
             }
         });
     }
 
-    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) {
+    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) throws org.json.JSONException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.BetaUpdaterController.lambda$checkForUpdate$1(java.lang.String, java.lang.Runnable):void");
     }
 
@@ -161,12 +162,12 @@ public class BetaUpdaterController {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BetaUpdaterController.this.lambda$downloadUpdate$5((File) obj);
+                    this.f$0.lambda$downloadUpdate$5((File) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BetaUpdaterController.this.lambda$downloadUpdate$6((Float) obj);
+                    this.f$0.lambda$downloadUpdate$6((Float) obj);
                 }
             }).setOverrideExtension("apk");
             this.downloadingTask = overrideExtension;
@@ -175,7 +176,7 @@ public class BetaUpdaterController {
             checkForUpdate(true, new Runnable() {
                 @Override
                 public final void run() {
-                    BetaUpdaterController.this.lambda$downloadUpdate$3();
+                    this.f$0.lambda$downloadUpdate$3();
                 }
             });
         } else {
@@ -191,7 +192,7 @@ public class BetaUpdaterController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BetaUpdaterController.this.lambda$downloadUpdate$4(file);
+                this.f$0.lambda$downloadUpdate$4(file);
             }
         });
     }

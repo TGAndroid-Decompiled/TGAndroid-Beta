@@ -23,7 +23,7 @@ public class VoIpHintView extends HintView2 {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         this.backgroundProvider.setDarkTranslation(getX(), getY());
         super.dispatchDraw(canvas);
     }

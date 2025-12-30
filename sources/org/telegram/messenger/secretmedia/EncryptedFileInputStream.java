@@ -2,6 +2,7 @@ package org.telegram.messenger.secretmedia;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import org.telegram.messenger.SecureDocumentKey;
 import org.telegram.messenger.Utilities;
@@ -14,7 +15,7 @@ public class EncryptedFileInputStream extends FileInputStream {
     private byte[] iv;
     private byte[] key;
 
-    public EncryptedFileInputStream(File file, File file2) {
+    public EncryptedFileInputStream(File file, File file2) throws IOException {
         super(file);
         this.key = new byte[32];
         this.iv = new byte[16];
@@ -38,22 +39,22 @@ public class EncryptedFileInputStream extends FileInputStream {
     }
 
     @Override
-    public int read(byte[] bArr, int i, int i2) {
+    public int read(byte[] bArr, int i, int i2) throws IOException {
         if (this.currentMode == 1 && this.fileOffset == 0) {
             super.read(new byte[32], 0, 32);
             Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i2, this.fileOffset, 0);
             this.fileOffset += 32;
             skip((r11[0] & 255) - 32);
         }
-        int read = super.read(bArr, i, i2);
-        int i3 = this.currentMode;
-        if (i3 == 1) {
+        int i3 = super.read(bArr, i, i2);
+        int i4 = this.currentMode;
+        if (i4 == 1) {
             Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i2, this.fileOffset, 0);
-        } else if (i3 == 0) {
+        } else if (i4 == 0) {
             Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i, i2, this.fileOffset);
         }
         this.fileOffset += i2;
-        return read;
+        return i3;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class EncryptedFileInputStream extends FileInputStream {
         Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i, i2, 0, 0);
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, File file) {
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, File file) throws IOException {
         byte[] bArr2 = new byte[32];
         byte[] bArr3 = new byte[16];
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");

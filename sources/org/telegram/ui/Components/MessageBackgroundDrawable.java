@@ -71,10 +71,10 @@ public class MessageBackgroundDrawable extends Drawable {
 
     private void calcRadius() {
         android.graphics.Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float f = bounds.left - centerX;
-        float centerY = bounds.top - bounds.centerY();
-        this.finalRadius = (float) Math.ceil(Math.sqrt((f * f) + (centerY * centerY)));
+        float fCenterX = bounds.centerX();
+        float f = bounds.left - fCenterX;
+        float fCenterY = bounds.top - bounds.centerY();
+        this.finalRadius = (float) Math.ceil(Math.sqrt((f * f) + (fCenterY * fCenterY)));
     }
 
     public void setTouchCoords(float f, float f2) {

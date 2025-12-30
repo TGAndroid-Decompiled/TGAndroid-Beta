@@ -42,9 +42,9 @@ public class StarGiveawayOptionCell extends FrameLayout {
         super(context);
         this.animatedStarsCount = new AnimatedFloat(this, 0L, 500L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.resourcesProvider = resourcesProvider;
-        Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.starDrawableOutline = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), PorterDuff.Mode.SRC_IN));
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
+        this.starDrawableOutline = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), PorterDuff.Mode.SRC_IN));
         this.starDrawable = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         AnimatedTextView animatedTextView = new AnimatedTextView(context);
@@ -116,26 +116,26 @@ public class StarGiveawayOptionCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float f = this.animatedStarsCount.set(this.starsCount);
-        float dp = AndroidUtilities.dp(24.0f);
-        float dp2 = AndroidUtilities.dp(24.0f);
-        float dp3 = AndroidUtilities.dp(2.5f);
-        float dp4 = AndroidUtilities.dp(64.0f);
-        float dp5 = AndroidUtilities.dp(8.0f);
-        for (int ceil = ((int) Math.ceil(f)) - 1; ceil >= 0; ceil--) {
-            float clamp = Utilities.clamp(f - ceil, 1.0f, 0.0f);
-            float f2 = (((ceil - 1) - (1.0f - clamp)) * dp3 * 1.0f) + dp4;
+        float fDp = AndroidUtilities.dp(24.0f);
+        float fDp2 = AndroidUtilities.dp(24.0f);
+        float fDp3 = AndroidUtilities.dp(2.5f);
+        float fDp4 = AndroidUtilities.dp(64.0f);
+        float fDp5 = AndroidUtilities.dp(8.0f);
+        for (int iCeil = ((int) Math.ceil(f)) - 1; iCeil >= 0; iCeil--) {
+            float fClamp = Utilities.clamp(f - iCeil, 1.0f, 0.0f);
+            float f2 = (((iCeil - 1) - (1.0f - fClamp)) * fDp3 * 1.0f) + fDp4;
             int i = (int) f2;
-            int i2 = (int) dp5;
-            int i3 = (int) (f2 + dp);
-            int i4 = (int) (dp5 + dp2);
+            int i2 = (int) fDp5;
+            int i3 = (int) (f2 + fDp);
+            int i4 = (int) (fDp5 + fDp2);
             this.starDrawableOutline.setBounds(i, i2, i3, i4);
-            int i5 = (int) (clamp * 255.0f);
+            int i5 = (int) (fClamp * 255.0f);
             this.starDrawableOutline.setAlpha(i5);
             this.starDrawableOutline.draw(canvas);
             this.starDrawable.setBounds(i, i2, i3, i4);
             this.starDrawable.setAlpha(i5);
             this.starDrawable.draw(canvas);
         }
-        this.titleView.setTranslationX(AndroidUtilities.dp(22.0f) + (dp3 * f));
+        this.titleView.setTranslationX(AndroidUtilities.dp(22.0f) + (fDp3 * f));
     }
 }

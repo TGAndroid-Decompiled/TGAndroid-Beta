@@ -30,7 +30,7 @@ public class QuoteHighlight extends Path {
     private final AnimatedFloat t;
     public final boolean todo;
 
-    public static class Rect {
+    private static class Rect {
         public float bottom;
         public boolean first;
         public boolean last;
@@ -54,7 +54,7 @@ public class QuoteHighlight extends Path {
         this.t = new AnimatedFloat(0.0f, new Runnable() {
             @Override
             public final void run() {
-                QuoteHighlight.lambda$new$0(ChatMessageCell.this);
+                QuoteHighlight.lambda$new$0(chatMessageCell);
             }
         }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.id = i;
@@ -62,9 +62,9 @@ public class QuoteHighlight extends Path {
         this.start = i3;
         this.end = i3;
         this.todo = true;
-        int dp = AndroidUtilities.dp(4.0f);
-        this.cornerPathEffectSize = dp;
-        paint.setPathEffect(new CornerPathEffect(dp));
+        int iDp = AndroidUtilities.dp(4.0f);
+        this.cornerPathEffectSize = iDp;
+        paint.setPathEffect(new CornerPathEffect(iDp));
     }
 
     public static void lambda$new$0(ChatMessageCell chatMessageCell) {
@@ -97,16 +97,16 @@ public class QuoteHighlight extends Path {
         if (arrayList == null) {
             return;
         }
-        int dp = AndroidUtilities.dp(4.0f);
-        this.cornerPathEffectSize = dp;
-        paint.setPathEffect(new CornerPathEffect(dp));
+        int iDp = AndroidUtilities.dp(4.0f);
+        this.cornerPathEffectSize = iDp;
+        paint.setPathEffect(new CornerPathEffect(iDp));
         boolean z = false;
         for (int i5 = 0; i5 < arrayList.size(); i5++) {
             MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) arrayList.get(i5);
             if (textLayoutBlock != null && i2 <= textLayoutBlock.charactersEnd && i3 >= (i4 = textLayoutBlock.charactersOffset)) {
-                int max = Math.max(0, i2 - i4);
+                int iMax = Math.max(0, i2 - i4);
                 int i6 = textLayoutBlock.charactersOffset;
-                int min = Math.min(i3 - i6, textLayoutBlock.charactersEnd - i6);
+                int iMin = Math.min(i3 - i6, textLayoutBlock.charactersEnd - i6);
                 float f2 = -f;
                 this.currentOffsetX = f2;
                 if (textLayoutBlock.code && !textLayoutBlock.quote) {
@@ -116,9 +116,9 @@ public class QuoteHighlight extends Path {
                 this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z = z || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
                 if (z) {
-                    textLayoutBlock.textLayout.getSelectionPath(max, min, this);
+                    textLayoutBlock.textLayout.getSelectionPath(iMax, iMin, this);
                 } else {
-                    getSelectionPath(textLayoutBlock.textLayout, max, min);
+                    getSelectionPath(textLayoutBlock.textLayout, iMax, iMin);
                 }
                 if (textLayoutBlock.quoteCollapse && textLayoutBlock.collapsed()) {
                     this.quotesToExpand.add(Integer.valueOf(textLayoutBlock.index));
@@ -184,11 +184,11 @@ public class QuoteHighlight extends Path {
         float f4 = this.t.set(1.0f);
         canvas.save();
         if (this.todo) {
-            int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
-            if (this.cornerPathEffectSize != lerp) {
+            int iLerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
+            if (this.cornerPathEffectSize != iLerp) {
                 Paint paint = this.paint;
-                this.cornerPathEffectSize = lerp;
-                paint.setPathEffect(new CornerPathEffect(lerp));
+                this.cornerPathEffectSize = iLerp;
+                paint.setPathEffect(new CornerPathEffect(iLerp));
             }
             this.path.rewind();
             int todoIndex = this.cell.getTodoIndex(-this.start);
@@ -226,13 +226,13 @@ public class QuoteHighlight extends Path {
         if (f >= f3) {
             return;
         }
-        float max = Math.max(this.minX, f);
-        float max2 = Math.max(this.minX, f3);
+        float fMax = Math.max(this.minX, f);
+        float fMax2 = Math.max(this.minX, f3);
         float f5 = this.currentOffsetX;
-        float f6 = max + f5;
+        float f6 = fMax + f5;
         float f7 = this.currentOffsetY;
         float f8 = f2 + f7;
-        float f9 = max2 + f5;
+        float f9 = fMax2 + f5;
         Rect rect = new Rect();
         rect.left = f6 - AndroidUtilities.dp(3.0f);
         rect.right = f9 + AndroidUtilities.dp(3.0f);

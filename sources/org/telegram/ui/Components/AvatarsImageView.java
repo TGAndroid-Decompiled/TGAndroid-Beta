@@ -22,7 +22,7 @@ public class AvatarsImageView extends View {
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         this.avatarsDrawable.width = getMeasuredWidth();
         this.avatarsDrawable.height = getMeasuredHeight();

@@ -18,12 +18,12 @@ public class DispatchQueuePool {
         @Override
         public void run() {
             if (!DispatchQueuePool.this.queues.isEmpty()) {
-                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long jElapsedRealtime = SystemClock.elapsedRealtime();
                 int size = DispatchQueuePool.this.queues.size();
                 int i = 0;
                 while (i < size) {
                     DispatchQueue dispatchQueue = (DispatchQueue) DispatchQueuePool.this.queues.get(i);
-                    if (dispatchQueue.getLastTaskTime() < elapsedRealtime - 30000) {
+                    if (dispatchQueue.getLastTaskTime() < jElapsedRealtime - 30000) {
                         dispatchQueue.recycle();
                         DispatchQueuePool.this.queues.remove(i);
                         DispatchQueuePool.access$110(DispatchQueuePool.this);
@@ -54,41 +54,41 @@ public class DispatchQueuePool {
     }
 
     public void lambda$execute$0(final Runnable runnable) {
-        final DispatchQueue remove;
+        final DispatchQueue dispatchQueueRemove;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DispatchQueuePool.this.lambda$execute$0(runnable);
+                    this.f$0.lambda$execute$0(runnable);
                 }
             });
             return;
         }
         if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
-            remove = this.busyQueues.remove(0);
+            dispatchQueueRemove = this.busyQueues.remove(0);
         } else if (this.queues.isEmpty()) {
-            remove = new DispatchQueue("DispatchQueuePool" + this.guid + "_" + Utilities.random.nextInt());
-            remove.setPriority(10);
+            dispatchQueueRemove = new DispatchQueue("DispatchQueuePool" + this.guid + "_" + Utilities.random.nextInt());
+            dispatchQueueRemove.setPriority(10);
             this.createdCount = this.createdCount + 1;
         } else {
-            remove = this.queues.remove(0);
+            dispatchQueueRemove = this.queues.remove(0);
         }
         if (!this.cleanupScheduled) {
             AndroidUtilities.runOnUIThread(this.cleanupRunnable, 30000L);
             this.cleanupScheduled = true;
         }
         this.totalTasksCount++;
-        this.busyQueues.add(remove);
-        this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+        this.busyQueues.add(dispatchQueueRemove);
+        this.busyQueuesMap.put(dispatchQueueRemove.index, this.busyQueuesMap.get(dispatchQueueRemove.index, 0) + 1);
         if (HwEmojis.isHwEnabled()) {
-            remove.setPriority(1);
-        } else if (remove.getPriority() != 10) {
-            remove.setPriority(10);
+            dispatchQueueRemove.setPriority(1);
+        } else if (dispatchQueueRemove.getPriority() != 10) {
+            dispatchQueueRemove.setPriority(10);
         }
-        remove.postRunnable(new Runnable() {
+        dispatchQueueRemove.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePool.this.lambda$execute$2(runnable, remove);
+                this.f$0.lambda$execute$2(runnable, dispatchQueueRemove);
             }
         });
     }
@@ -98,7 +98,7 @@ public class DispatchQueuePool {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePool.this.lambda$execute$1(dispatchQueue);
+                this.f$0.lambda$execute$1(dispatchQueue);
             }
         });
     }

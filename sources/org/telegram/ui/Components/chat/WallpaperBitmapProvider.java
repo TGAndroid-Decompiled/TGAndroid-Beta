@@ -23,9 +23,7 @@ public class WallpaperBitmapProvider {
     private final BitmapMemoizedMetadata blurredFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
         @Override
         public final Object get(Bitmap bitmap) {
-            Bitmap blurBitmap;
-            blurBitmap = WallpaperBitmapProvider.blurBitmap(bitmap);
-            return blurBitmap;
+            return WallpaperBitmapProvider.blurBitmap(bitmap);
         }
 
         @Override
@@ -36,9 +34,7 @@ public class WallpaperBitmapProvider {
     private final BitmapMemoizedMetadata navbarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
         @Override
         public final Object get(Bitmap bitmap) {
-            int averageBottomColor;
-            averageBottomColor = WallpaperBitmapProvider.averageBottomColor(bitmap);
-            return Integer.valueOf(averageBottomColor);
+            return Integer.valueOf(WallpaperBitmapProvider.averageBottomColor(bitmap));
         }
 
         @Override
@@ -69,11 +65,11 @@ public class WallpaperBitmapProvider {
             return updateSourceFromBackgroundViewDrawable(((ChatBackgroundDrawable) drawable).getDrawable(false));
         }
         if (drawable != null) {
-            Canvas beginRecording = this.sourceBitmap.beginRecording(120, 160);
+            Canvas canvasBeginRecording = this.sourceBitmap.beginRecording(120, 160);
             Rect rect = tmpRect;
             rect.set(drawable.getBounds());
             drawable.setBounds(0, 0, 120, 160);
-            drawable.draw(beginRecording);
+            drawable.draw(canvasBeginRecording);
             drawable.setBounds(rect);
             this.sourceBitmap.endRecording();
             BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
@@ -99,9 +95,9 @@ public class WallpaperBitmapProvider {
         if (bitmap == null || bitmap.isRecycled()) {
             return null;
         }
-        Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
-        stackBlurBitmapWithScaleFactor.setHasAlpha(false);
-        return stackBlurBitmapWithScaleFactor;
+        Bitmap bitmapStackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
+        bitmapStackBlurBitmapWithScaleFactor.setHasAlpha(false);
+        return bitmapStackBlurBitmapWithScaleFactor;
     }
 
     public static int averageBottomColor(Bitmap bitmap) {

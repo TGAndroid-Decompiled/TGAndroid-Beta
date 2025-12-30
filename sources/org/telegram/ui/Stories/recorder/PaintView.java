@@ -56,6 +56,7 @@ import com.google.android.gms.vision.face.FaceDetector;
 import com.google.zxing.common.detector.MathUtils;
 import j$.util.Objects;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -281,7 +282,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return IPhotoPaintView.CC.$default$getView(this);
     }
 
-    public abstract void onAudioSelect(MessageObject messageObject);
+    protected abstract void onAudioSelect(MessageObject messageObject);
 
     public abstract void onCreateRound(RoundView roundView);
 
@@ -314,10 +315,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public PaintView(final Context context, boolean z, File file, boolean z2, boolean z3, final StoryRecorder.WindowView windowView, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, final Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, final Runnable runnable, BlurringShader.BlurManager blurManager, final Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) {
-        super(context, activity, true);
         Bitmap bitmap4;
         BlurringShader.BlurManager blurManager2;
         int i5;
+        super(context, activity, true);
         this.tabsSelectedIndex = 0;
         this.tabsNewSelectedIndex = -1;
         PaintWeightChooserView.ValueOverride valueOverride = new PaintWeightChooserView.ValueOverride() {
@@ -385,16 +386,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
             @Override
             public int getColorOrDefault(int i6) {
-                int color;
-                color = getColor(i6);
-                return color;
+                return getColor(i6);
             }
 
             @Override
             public int getCurrentColor(int i6) {
-                int color;
-                color = getColor(i6);
-                return color;
+                return getColor(i6);
             }
 
             @Override
@@ -409,9 +406,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
             @Override
             public boolean isDark() {
-                boolean isCurrentThemeDark;
-                isCurrentThemeDark = Theme.isCurrentThemeDark();
-                return isCurrentThemeDark;
+                return Theme.isCurrentThemeDark();
             }
 
             @Override
@@ -506,7 +501,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         undoStore.setDelegate(new UndoStore.UndoStoreDelegate() {
             @Override
             public final void historyChanged() {
-                PaintView.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         });
         View view = new View(context);
@@ -527,12 +522,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         RenderView renderView = new RenderView(context, painting, bitmap5, bitmap4, blurManager2) {
             @Override
             public void selectBrush(Brush brush) {
-                int indexOf = Brush.BRUSHES_LIST.indexOf(brush);
-                int i6 = indexOf + 1;
+                int iIndexOf = Brush.BRUSHES_LIST.indexOf(brush);
+                int i6 = iIndexOf + 1;
                 if (i6 <= 1 || bitmap3 != null) {
-                    indexOf = i6;
+                    iIndexOf = i6;
                 }
-                PaintView.this.paintToolsView.select(indexOf);
+                PaintView.this.paintToolsView.select(iIndexOf);
                 PaintView.this.onBrushSelected(brush);
             }
         };
@@ -693,7 +688,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$1(view3);
+                this.f$0.lambda$new$1(view3);
             }
         });
         this.undoButton.setAlpha(0.6f);
@@ -735,7 +730,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$3(view3);
+                this.f$0.lambda$new$3(view3);
             }
         });
         this.undoAllButton.setAlpha(0.6f);
@@ -752,7 +747,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$4(view3);
+                this.f$0.lambda$new$4(view3);
             }
         });
         this.cancelTextButton.setAlpha(0.0f);
@@ -770,7 +765,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.doneTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$5(view3);
+                this.f$0.lambda$new$5(view3);
             }
         });
         this.doneTextButton.setAlpha(0.0f);
@@ -810,8 +805,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 ViewGroup barView = PaintView.this.getBarView();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(AndroidUtilities.lerp(barView.getLeft(), PaintView.this.colorsListView.getLeft(), PaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getTop(), PaintView.this.colorsListView.getTop(), PaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getRight(), PaintView.this.colorsListView.getRight(), PaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getBottom(), PaintView.this.colorsListView.getBottom(), PaintView.this.toolsTransformProgress));
-                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), PaintView.this.toolsTransformProgress);
-                canvas.drawRoundRect(rectF, lerp, lerp, PaintView.this.toolsPaint);
+                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), PaintView.this.toolsTransformProgress);
+                canvas.drawRoundRect(rectF, fLerp, fLerp, PaintView.this.toolsPaint);
                 if (barView.getChildCount() < 1 || PaintView.this.toolsTransformProgress == 1.0f) {
                     return;
                 }
@@ -829,7 +824,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     int height = (view3.getHeight() - view3.getPaddingTop()) - view3.getPaddingBottom();
                     float x = view3.getX() + view3.getPaddingLeft() + (width / 2.0f);
                     float y = view3.getY() + view3.getPaddingTop() + (height / 2.0f);
-                    int i6 = PaintView.this.colorSwatch.color;
+                    int iBlendARGB = PaintView.this.colorSwatch.color;
                     if (PaintView.this.tabsNewSelectedIndex != -1) {
                         PaintView paintView = PaintView.this;
                         ViewGroup viewGroup = (ViewGroup) paintView.getBarView(paintView.tabsNewSelectedIndex);
@@ -844,27 +839,27 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         View childAt3 = PaintView.this.colorsListView.getChildAt(0);
                         x = AndroidUtilities.lerp(x, (PaintView.this.colorsListView.getX() - barView.getLeft()) + childAt3.getX() + (childAt3.getWidth() / 2.0f), PaintView.this.toolsTransformProgress);
                         y = AndroidUtilities.lerp(y, (PaintView.this.colorsListView.getY() - barView.getTop()) + childAt3.getY() + (childAt3.getHeight() / 2.0f), PaintView.this.toolsTransformProgress);
-                        i6 = ColorUtils.blendARGB(PaintView.this.colorSwatch.color, persistColorPalette.getColor(0), PaintView.this.toolsTransformProgress);
+                        iBlendARGB = ColorUtils.blendARGB(PaintView.this.colorSwatch.color, persistColorPalette.getColor(0), PaintView.this.toolsTransformProgress);
                     }
                     float f = x;
                     checkRainbow(f, y);
-                    float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
+                    float fMin = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getChildCount() > 0) {
                         View childAt4 = PaintView.this.colorsListView.getChildAt(0);
-                        min = AndroidUtilities.lerp(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), PaintView.this.toolsTransformProgress);
+                        fMin = AndroidUtilities.lerp(fMin, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), PaintView.this.toolsTransformProgress);
                     }
-                    float f2 = min;
+                    float f2 = fMin;
                     rectF.set(f - f2, y - f2, f + f2, y + f2);
                     canvas.drawArc(rectF, 0.0f, 360.0f, false, PaintView.this.colorPickerRainbowPaint);
-                    PaintView.this.colorSwatchPaint.setColor(i6);
+                    PaintView.this.colorSwatchPaint.setColor(iBlendARGB);
                     PaintView.this.colorSwatchPaint.setAlpha((int) (PaintView.this.colorSwatchPaint.getAlpha() * view3.getAlpha()));
-                    PaintView.this.colorSwatchOutlinePaint.setColor(i6);
+                    PaintView.this.colorSwatchOutlinePaint.setColor(iBlendARGB);
                     PaintView.this.colorSwatchOutlinePaint.setAlpha((int) (view3.getAlpha() * 255.0f));
-                    float dp = f2 - AndroidUtilities.dp(3.0f);
+                    float fDp = f2 - AndroidUtilities.dp(3.0f);
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getSelectedColorIndex() != 0) {
-                        dp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, PaintView.this.toolsTransformProgress);
+                        fDp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, PaintView.this.toolsTransformProgress);
                     }
-                    PaintColorsListView.drawColorCircle(canvas, f, y, dp, PaintView.this.colorSwatchPaint.getColor());
+                    PaintColorsListView.drawColorCircle(canvas, f, y, fDp, PaintView.this.colorSwatchPaint.getColor());
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getSelectedColorIndex() == 0) {
                         PaintView.this.colorSwatchOutlinePaint.setAlpha((int) (PaintView.this.colorSwatchOutlinePaint.getAlpha() * PaintView.this.toolsTransformProgress * view3.getAlpha()));
                         canvas.drawCircle(f, y, f2 - ((AndroidUtilities.dp(3.0f) + PaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (1.0f - PaintView.this.toolsTransformProgress)), PaintView.this.colorSwatchOutlinePaint);
@@ -891,7 +886,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         post(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$new$6(i);
+                this.f$0.lambda$new$6(i);
             }
         });
         this.textOptionsView.setAlignment(PersistColorPalette.getInstance(i).getCurrentAlignment());
@@ -919,12 +914,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 paintTextOptionsView2.getTypefaceCellBounds(rectF);
                 float top = PaintView.this.bottomLayout.getTop() + PaintView.this.textOptionsView.getTop() + PaintView.this.bottomLayout.getTranslationY() + PaintView.this.textOptionsView.getTranslationY();
                 rectF.set(AndroidUtilities.lerp(rectF.left, PaintView.this.typefaceListView.getLeft(), PaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(rectF.top + top, PaintView.this.typefaceListView.getTop() - PaintView.this.typefaceListView.getTranslationY(), PaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(rectF.right, PaintView.this.typefaceListView.getRight(), PaintView.this.typefaceMenuTransformProgress), AndroidUtilities.lerp(top + rectF.bottom, PaintView.this.typefaceListView.getBottom() - PaintView.this.typefaceListView.getTranslationY(), PaintView.this.typefaceMenuTransformProgress));
-                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, PaintView.this.typefaceMenuTransformProgress));
+                float fDp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, PaintView.this.typefaceMenuTransformProgress));
                 int alpha = PaintView.this.typefaceMenuBackgroundPaint.getAlpha();
                 PaintView.this.typefaceMenuBackgroundPaint.setAlpha((int) (alpha * PaintView.this.typefaceMenuTransformProgress));
-                canvas.drawRoundRect(rectF, dp, dp, PaintView.this.typefaceMenuBackgroundPaint);
+                canvas.drawRoundRect(rectF, fDp, fDp, PaintView.this.typefaceMenuBackgroundPaint);
                 PaintView.this.typefaceMenuBackgroundPaint.setAlpha(alpha);
-                canvas.drawRoundRect(rectF, dp, dp, PaintView.this.typefaceMenuOutlinePaint);
+                canvas.drawRoundRect(rectF, fDp, fDp, PaintView.this.typefaceMenuOutlinePaint);
             }
         };
         this.overlayLayout = frameLayout4;
@@ -935,7 +930,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.typefaceListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i6) {
-                PaintView.this.lambda$new$7(view3, i6);
+                this.f$0.lambda$new$7(view3, i6);
             }
         });
         this.textOptionsView.setTypefaceListView(this.typefaceListView);
@@ -965,7 +960,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.colorsListView.setColorListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                PaintView.this.lambda$new$8((Integer) obj);
+                this.f$0.lambda$new$8((Integer) obj);
             }
         });
         this.bottomLayout.addView(this.colorsListView, LayoutHelper.createFrame(-1, 84.0f, 48, 56.0f, 0.0f, 56.0f, 6.0f));
@@ -978,7 +973,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$9(view3);
+                this.f$0.lambda$new$9(view3);
             }
         });
         PaintDoneView paintDoneView = new PaintDoneView(context);
@@ -988,7 +983,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.this.lambda$new$11(context, bitmap3, persistColorPalette, view3);
+                this.f$0.lambda$new$11(context, bitmap3, persistColorPalette, view3);
             }
         });
         this.bottomLayout.addView(this.doneButton, LayoutHelper.createFrame(32, 32.0f, 85, 0.0f, 0.0f, 12.0f, 4.0f));
@@ -1001,7 +996,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.weightChooserView.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$new$12(i);
+                this.f$0.lambda$new$12(i);
             }
         });
         addView(this.weightChooserView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1022,7 +1017,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.keyboardNotifier = new KeyboardNotifier(windowView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PaintView.this.lambda$new$13(windowView, (Integer) obj);
+                this.f$0.lambda$new$13(windowView, (Integer) obj);
             }
         }) {
             @Override
@@ -1037,13 +1032,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public void lambda$new$0() {
-        boolean canUndo = this.undoStore.canUndo();
+        boolean zCanUndo = this.undoStore.canUndo();
         this.undoButton.animate().cancel();
-        this.undoButton.animate().alpha(canUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoButton.setClickable(canUndo);
+        this.undoButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        this.undoButton.setClickable(zCanUndo);
         this.undoAllButton.animate().cancel();
-        this.undoAllButton.animate().alpha(canUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoAllButton.setClickable(canUndo);
+        this.undoAllButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        this.undoAllButton.setClickable(zCanUndo);
     }
 
     public void lambda$new$1(View view) {
@@ -1176,7 +1171,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }).setColorListener(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    PaintView.this.lambda$new$10(persistColorPalette, (Integer) obj);
+                    this.f$0.lambda$new$10(persistColorPalette, (Integer) obj);
                 }
             }).show();
         } else {
@@ -1214,9 +1209,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (view == null) {
             return;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, (((!this.keyboardNotifier.keyboardVisible() || this.keyboardNotifier.ignoring) && this.emojiPadding <= 0) || (entityView = this.currentEntityView) == null) ? 0.0f : (-(entityView.getPosition().y - (view.getMeasuredHeight() * 0.3f))) * view.getScaleY());
-        this.previewViewTranslationAnimator = ofFloat;
-        ofFloat.setDuration(350L);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, (((!this.keyboardNotifier.keyboardVisible() || this.keyboardNotifier.ignoring) && this.emojiPadding <= 0) || (entityView = this.currentEntityView) == null) ? 0.0f : (-(entityView.getPosition().y - (view.getMeasuredHeight() * 0.3f))) * view.getScaleY());
+        this.previewViewTranslationAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(350L);
         this.previewViewTranslationAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.previewViewTranslationAnimator.start();
     }
@@ -1246,15 +1241,15 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PaintView.this.lambda$setNewColor$14(i2, i, valueAnimator);
+                this.f$0.lambda$setNewColor$14(i2, i, valueAnimator);
             }
         });
         duration.start();
     }
 
     public void lambda$setNewColor$14(int i, int i2, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(i, i2, floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.colorSwatch.color = ColorUtils.blendARGB(i, i2, fFloatValue);
         this.bottomLayout.invalidate();
     }
 
@@ -1263,14 +1258,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onTextAdd();
         this.forceChanges = true;
         getPaintingSize();
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
-        int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        LocationView locationView = new LocationView(getContext(), startPositionRelativeToEntity, this.currentAccount, messageMedia, mediaArea, measuredWidth / 240.0f, dp);
-        if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        int iDp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
+        LocationView locationView = new LocationView(getContext(), pointStartPositionRelativeToEntity, this.currentAccount, messageMedia, mediaArea, measuredWidth / 240.0f, iDp);
+        if (pointStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             locationView.setStickyX(2);
         }
-        if (startPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             locationView.setStickyY(2);
         }
         Swatch swatch = this.colorSwatch;
@@ -1278,7 +1273,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             locationView.setColor(i);
         }
         locationView.setDelegate(this);
-        locationView.setMaxWidth(dp);
+        locationView.setMaxWidth(iDp);
         this.entitiesView.addView(locationView, LayoutHelper.createFrame(-2, -2.0f));
         checkEntitiesIsVideo();
         MediaController.CropState cropState = this.currentCropState;
@@ -1298,14 +1293,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onTextAdd();
         this.forceChanges = true;
         getPaintingSize();
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
-        int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        WeatherView weatherView = new WeatherView(getContext(), startPositionRelativeToEntity, this.currentAccount, state, measuredWidth / 240.0f, dp);
-        if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        int iDp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
+        WeatherView weatherView = new WeatherView(getContext(), pointStartPositionRelativeToEntity, this.currentAccount, state, measuredWidth / 240.0f, iDp);
+        if (pointStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             weatherView.setStickyX(2);
         }
-        if (startPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             weatherView.setStickyY(2);
         }
         Swatch swatch = this.colorSwatch;
@@ -1313,7 +1308,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             weatherView.setColor(i);
         }
         weatherView.setDelegate(this);
-        weatherView.setMaxWidth(dp);
+        weatherView.setMaxWidth(iDp);
         this.entitiesView.addView(weatherView, LayoutHelper.createFrame(-2, -2.0f));
         checkEntitiesIsVideo();
         MediaController.CropState cropState = this.currentCropState;
@@ -1333,14 +1328,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onTextAdd();
         this.forceChanges = true;
         getPaintingSize();
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
-        int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        LinkView linkView = new LinkView(getContext(), startPositionRelativeToEntity, this.currentAccount, webPagePreview, mediaArea, measuredWidth / 360.0f, dp, 3);
-        if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        int iDp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
+        LinkView linkView = new LinkView(getContext(), pointStartPositionRelativeToEntity, this.currentAccount, webPagePreview, mediaArea, measuredWidth / 360.0f, iDp, 3);
+        if (pointStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             linkView.setStickyX(2);
         }
-        if (startPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             linkView.setStickyY(2);
         }
         Swatch swatch = this.colorSwatch;
@@ -1348,7 +1343,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             linkView.setColor(i);
         }
         linkView.setDelegate(this);
-        linkView.setMaxWidth(dp);
+        linkView.setMaxWidth(iDp);
         this.entitiesView.addView(linkView, LayoutHelper.createFrame(-2, -2.0f));
         checkEntitiesIsVideo();
         MediaController.CropState cropState = this.currentCropState;
@@ -1366,19 +1361,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     private TextPaintView createText(boolean z) {
         onTextAdd();
         Size paintingSize = getPaintingSize();
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
+        TextPaintView textPaintView = new TextPaintView(getContext(), pointStartPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
         float f = paintingSize.width / 9.0f;
         textPaintView.setMinMaxFontSize((int) (0.5f * f), (int) (f * 2.0f), new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$createText$15();
+                this.f$0.lambda$createText$15();
             }
         });
-        if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setStickyX(2);
         }
-        if (startPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
+        if (pointStartPositionRelativeToEntity.y == this.entitiesView.getMeasuredHeight() / 2.0f) {
             textPaintView.setStickyY(2);
         }
         textPaintView.setDelegate(this);
@@ -1437,7 +1432,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.onCancelButtonClickedListener = runnable;
     }
 
-    public void editSelectedTextEntity() {
+    protected void editSelectedTextEntity() {
         EntityView entityView = this.currentEntityView;
         if (!(entityView instanceof TextPaintView) || this.editingText) {
             return;
@@ -1719,15 +1714,15 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 if (z) {
                     this.invalidateReactionPosition = true;
                     this.parent.invalidate();
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.reactionShowProgress, z ? 1.0f : 0.0f);
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.reactionShowProgress, z ? 1.0f : 0.0f);
                     this.reactionLayout.setTransitionProgress(this.reactionShowProgress);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PaintView.this.lambda$showReactionsLayout$16(valueAnimator);
+                            this.f$0.lambda$showReactionsLayout$16(valueAnimator);
                         }
                     });
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (z) {
@@ -1737,9 +1732,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                             PaintView.this.reactionLayout.reset();
                         }
                     });
-                    ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-                    ofFloat.start();
+                    valueAnimatorOfFloat.setDuration(200L);
+                    valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                    valueAnimatorOfFloat.start();
                     return;
                 }
                 if (this.reactionLayout.getReactionsWindow() != null) {
@@ -1759,17 +1754,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public void lambda$showReactionsLayout$16(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.reactionShowProgress = floatValue;
-        this.reactionLayout.setTransitionProgress(floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.reactionShowProgress = fFloatValue;
+        this.reactionLayout.setTransitionProgress(fFloatValue);
     }
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         if ((view == this.renderView || view == this.renderInputView || view == this.entitiesView || view == this.selectionContainerView) && this.currentCropState != null) {
             canvas.save();
-            r1 = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
-            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + r1;
+            i = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
+            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i;
             int measuredWidth = view.getMeasuredWidth();
             int measuredHeight = view.getMeasuredHeight();
             MediaController.CropState cropState = this.currentCropState;
@@ -1782,16 +1777,16 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             MediaController.CropState cropState2 = this.currentCropState;
             int i2 = (int) (scaleX / cropState2.cropScale);
             int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
-            float ceil = ((float) Math.ceil((getMeasuredWidth() - i2) / 2.0f)) + this.transformX;
-            float measuredHeight2 = (((((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + r1 + this.transformY;
-            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, measuredHeight2), Math.min(ceil + i2, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
-            r1 = 1;
+            float fCeil = ((float) Math.ceil((getMeasuredWidth() - i2) / 2.0f)) + this.transformX;
+            float measuredHeight2 = (((((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
+            canvas.clipRect(Math.max(0.0f, fCeil), Math.max(0.0f, measuredHeight2), Math.min(fCeil + i2, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
+            i = 1;
         }
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (r1 != 0) {
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        if (i != 0) {
             canvas.restore();
         }
-        return drawChild;
+        return zDrawChild;
     }
 
     public ViewGroup getBarView() {
@@ -1824,8 +1819,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 }
                 Layout layout2 = textView2 != null ? textView2.getLayout() : null;
                 float interpolation = layout2 == null ? 0.0f : CubicBezierInterpolator.DEFAULT.getInterpolation(PaintView.this.tabsSelectionProgress);
-                float lerp = AndroidUtilities.lerp(textView.getX() + layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? textView2.getX() + layout2.getPrimaryHorizontal(layout.getLineStart(0)) : 0.0f, interpolation);
-                canvas.drawLine(lerp, y, lerp + AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineEnd(0)) - layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? layout2.getPrimaryHorizontal(layout2.getLineEnd(0)) - layout2.getPrimaryHorizontal(layout2.getLineStart(0)) : 0.0f, interpolation), y, this.linePaint);
+                float fLerp = AndroidUtilities.lerp(textView.getX() + layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? textView2.getX() + layout2.getPrimaryHorizontal(layout.getLineStart(0)) : 0.0f, interpolation);
+                canvas.drawLine(fLerp, y, fLerp + AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineEnd(0)) - layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? layout2.getPrimaryHorizontal(layout2.getLineEnd(0)) - layout2.getPrimaryHorizontal(layout2.getLineStart(0)) : 0.0f, interpolation), y, this.linePaint);
             }
         };
         this.tabsLayout = linearLayout;
@@ -1847,7 +1842,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$17(view);
+                this.f$0.lambda$setupTabsLayout$17(view);
             }
         });
         this.tabsLayout.addView(this.drawTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1859,7 +1854,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.stickerTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$18(view);
+                this.f$0.lambda$setupTabsLayout$18(view);
             }
         });
         this.stickerTab.setTextColor(-1);
@@ -1883,7 +1878,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$19(view);
+                this.f$0.lambda$setupTabsLayout$19(view);
             }
         });
         this.tabsLayout.addView(this.textTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1940,7 +1935,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.tabsSelectionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PaintView.this.lambda$switchTab$20(barView, barView2, valueAnimator2);
+                this.f$0.lambda$switchTab$20(barView, barView2, valueAnimator2);
             }
         });
         this.tabsSelectionAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2013,7 +2008,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         postDelayed(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$openStickersView$21();
+                this.f$0.lambda$openStickersView$21();
             }
         }, 350L);
         final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
@@ -2082,30 +2077,26 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         emojiBottomSheet.setBlurDelegate(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StoryRecorder.WindowView.this.drawBlurBitmap((Bitmap) obj, ((Float) obj2).floatValue());
+                windowView.drawBlurBitmap((Bitmap) obj, ((Float) obj2).floatValue());
             }
         });
         final boolean[] zArr = {true};
         emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$openStickersView$22(zArr, i, dialogInterface);
+                this.f$0.lambda$openStickersView$22(zArr, i, dialogInterface);
             }
         });
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
-                Boolean lambda$openStickersView$23;
-                lambda$openStickersView$23 = PaintView.this.lambda$openStickersView$23(obj, (TLRPC.Document) obj2, (Boolean) obj3);
-                return lambda$openStickersView$23;
+                return this.f$0.lambda$openStickersView$23(obj, (TLRPC.Document) obj2, (Boolean) obj3);
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                Boolean lambda$openStickersView$27;
-                lambda$openStickersView$27 = PaintView.this.lambda$openStickersView$27(zArr, emojiBottomSheet, (Integer) obj);
-                return lambda$openStickersView$27;
+                return this.f$0.lambda$openStickersView$27(zArr, emojiBottomSheet, (Integer) obj);
             }
         });
         emojiBottomSheet.show();
@@ -2128,11 +2119,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
     public Boolean lambda$openStickersView$23(Object obj, TLRPC.Document document, Boolean bool) {
         this.forceChanges = true;
-        StickerView createSticker = createSticker(obj, document, false);
+        StickerView stickerViewCreateSticker = createSticker(obj, document, false);
         if (bool.booleanValue()) {
-            createSticker.setScale(1.5f);
+            stickerViewCreateSticker.setScale(1.5f);
         }
-        appearAnimation(createSticker);
+        appearAnimation(stickerViewCreateSticker);
         return Boolean.TRUE;
     }
 
@@ -2142,7 +2133,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             showLocationAlert(null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PaintView.this.lambda$openStickersView$24((TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
+                    this.f$0.lambda$openStickersView$24((TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
                 }
             });
             return Boolean.TRUE;
@@ -2152,7 +2143,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             Weather.fetch(true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PaintView.this.lambda$openStickersView$25(emojiBottomSheet, (Weather.State) obj);
+                    this.f$0.lambda$openStickersView$25(emojiBottomSheet, (Weather.State) obj);
                 }
             });
             return Boolean.FALSE;
@@ -2167,7 +2158,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             showAudioAlert(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PaintView.this.onAudioSelect((MessageObject) obj);
+                    this.f$0.onAudioSelect((MessageObject) obj);
                 }
             });
             return Boolean.TRUE;
@@ -2186,7 +2177,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 BulletinFactory.of(emojiBottomSheet.container, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.StoryLinkPremium), new Runnable() {
                     @Override
                     public final void run() {
-                        PaintView.this.lambda$openStickersView$26();
+                        this.f$0.lambda$openStickersView$26();
                     }
                 })).show(true);
                 return Boolean.FALSE;
@@ -2262,7 +2253,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         StoryLinkSheet storyLinkSheet = new StoryLinkSheet(getContext(), this.resourcesProvider, this.previewView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PaintView.this.lambda$showLinkAlert$28(linkView, (LinkPreview.WebPagePreview) obj);
+                this.f$0.lambda$showLinkAlert$28(linkView, (LinkPreview.WebPagePreview) obj);
             }
         });
         if (linkView != null) {
@@ -2271,7 +2262,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         storyLinkSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$showLinkAlert$29(dialogInterface);
+                this.f$0.lambda$showLinkAlert$29(dialogInterface);
             }
         });
         storyLinkSheet.show();
@@ -2291,7 +2282,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onOpenCloseStickersAlert(false);
     }
 
-    public class AnonymousClass24 extends ChatActivity {
+    class AnonymousClass24 extends ChatActivity {
         final Utilities.Callback2 val$onLocationSelected;
 
         @Override
@@ -2352,8 +2343,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     }
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() {
-                            PaintView.AnonymousClass24.lambda$didSelectLocation$0(TLRPC.MessageMedia.this, tL_mediaAreaGeoPoint3);
+                        public final void run() throws IOException {
+                            PaintView.AnonymousClass24.lambda$didSelectLocation$0(messageMedia, tL_mediaAreaGeoPoint3);
                         }
                     });
                     tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
@@ -2368,7 +2359,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.val$onLocationSelected.run(messageMedia, tL_mediaAreaGeoPoint2);
         }
 
-        public static void lambda$didSelectLocation$0(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
+        public static void lambda$didSelectLocation$0(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) throws IOException {
             try {
                 List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(messageMedia.title, 1);
                 if (fromLocationName.size() <= 0) {
@@ -2440,7 +2431,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         chatAttachAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$showLocationAlert$30(dialogInterface);
+                this.f$0.lambda$showLocationAlert$30(dialogInterface);
             }
         });
         chatAttachAlert.init();
@@ -2456,7 +2447,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         selectAudioAlert.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$showAudioAlert$31();
+                this.f$0.lambda$showAudioAlert$31();
             }
         });
         selectAudioAlert.show();
@@ -2477,7 +2468,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     @Override
     protected void onMeasure(int i, int i2) {
         float currentActionBarHeight;
-        float f;
+        float width;
         this.ignoreLayout = true;
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
@@ -2485,17 +2476,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         int currentActionBarHeight2 = (((AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - getAdditionalTop()) - getAdditionalBottom()) - AndroidUtilities.dp(48.0f);
         Bitmap bitmap = this.bitmapToEdit;
         if (bitmap != null) {
-            f = bitmap.getWidth();
+            width = bitmap.getWidth();
             currentActionBarHeight = this.bitmapToEdit.getHeight();
         } else {
             currentActionBarHeight = (size2 - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(48.0f);
-            f = size;
+            width = size;
         }
-        float f2 = size;
-        if (((float) Math.floor((f2 * currentActionBarHeight) / f)) > currentActionBarHeight2) {
-            f2 = (float) Math.floor((r3 * f) / currentActionBarHeight);
+        float fFloor = size;
+        if (((float) Math.floor((fFloor * currentActionBarHeight) / width)) > currentActionBarHeight2) {
+            fFloor = (float) Math.floor((r3 * width) / currentActionBarHeight);
         }
-        this.baseScale = f2 / this.paintingSize.width;
+        this.baseScale = fFloor / this.paintingSize.width;
         EntityView entityView = this.currentEntityView;
         if (entityView != null) {
             entityView.updateSelectionView();
@@ -2520,7 +2511,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
     }
 
@@ -2553,127 +2544,127 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i);
                 byte b = mediaEntity.type;
                 if (b == 0) {
-                    StickerView createSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
+                    StickerView stickerViewCreateSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
                     if ((2 & mediaEntity.subType) != 0) {
-                        createSticker.mirror();
+                        stickerViewCreateSticker.mirror();
                     }
-                    ViewGroup.LayoutParams layoutParams = createSticker.getLayoutParams();
+                    ViewGroup.LayoutParams layoutParams = stickerViewCreateSticker.getLayoutParams();
                     layoutParams.width = mediaEntity.viewWidth;
                     layoutParams.height = mediaEntity.viewHeight;
-                    roundView = createSticker;
+                    roundView = stickerViewCreateSticker;
                 } else if (b == 1) {
-                    TextPaintView createText = createText(false);
-                    createText.setType(mediaEntity.subType);
-                    createText.setTypeface(mediaEntity.textTypeface);
-                    createText.setBaseFontSize(mediaEntity.fontSize);
+                    TextPaintView textPaintViewCreateText = createText(false);
+                    textPaintViewCreateText.setType(mediaEntity.subType);
+                    textPaintViewCreateText.setTypeface(mediaEntity.textTypeface);
+                    textPaintViewCreateText.setBaseFontSize(mediaEntity.fontSize);
                     SpannableString spannableString = new SpannableString(mediaEntity.text);
                     Iterator<VideoEditedInfo.EmojiEntity> it = mediaEntity.entities.iterator();
                     while (it.hasNext()) {
                         VideoEditedInfo.EmojiEntity next = it.next();
-                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, 1.0f, createText.getFontMetricsInt());
+                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, 1.0f, textPaintViewCreateText.getFontMetricsInt());
                         int i2 = next.offset;
                         spannableString.setSpan(animatedEmojiSpan, i2, next.length + i2, 33);
                     }
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, createText.getFontMetricsInt(), false);
-                    if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableString, textPaintViewCreateText.getFontMetricsInt(), false);
+                    if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                         for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                             emojiSpan.scale = 0.85f;
                         }
                     }
-                    createText.setText(replaceEmoji);
-                    setTextAlignment(createText, mediaEntity.textAlign);
-                    Swatch swatch = createText.getSwatch();
+                    textPaintViewCreateText.setText(charSequenceReplaceEmoji);
+                    setTextAlignment(textPaintViewCreateText, mediaEntity.textAlign);
+                    Swatch swatch = textPaintViewCreateText.getSwatch();
                     swatch.color = mediaEntity.color;
-                    createText.setSwatch(swatch);
-                    roundView = createText;
+                    textPaintViewCreateText.setSwatch(swatch);
+                    roundView = textPaintViewCreateText;
                 } else if (b == 2) {
-                    PhotoView createPhoto = createPhoto(mediaEntity.text, false);
-                    createPhoto.crop = mediaEntity.crop;
-                    createPhoto.preloadSegmented(mediaEntity.segmentedPath);
+                    PhotoView photoViewCreatePhoto = createPhoto(mediaEntity.text, false);
+                    photoViewCreatePhoto.crop = mediaEntity.crop;
+                    photoViewCreatePhoto.preloadSegmented(mediaEntity.segmentedPath);
                     if ((2 & mediaEntity.subType) != 0) {
-                        createPhoto.mirror();
+                        photoViewCreatePhoto.mirror();
                     }
                     if ((mediaEntity.subType & 16) != 0) {
-                        createPhoto.toggleSegmented(false);
+                        photoViewCreatePhoto.toggleSegmented(false);
                     }
-                    ViewGroup.LayoutParams layoutParams2 = createPhoto.getLayoutParams();
+                    ViewGroup.LayoutParams layoutParams2 = photoViewCreatePhoto.getLayoutParams();
                     layoutParams2.width = mediaEntity.viewWidth;
                     layoutParams2.height = mediaEntity.viewHeight;
-                    roundView = createPhoto;
+                    roundView = photoViewCreatePhoto;
                 } else if (b == 6) {
-                    MessageEntityView createMessage = createMessage(storyEntry.messageObjects, false, storyEntry.isVideo);
-                    roundView = createMessage;
+                    MessageEntityView messageEntityViewCreateMessage = createMessage(storyEntry.messageObjects, false, storyEntry.isVideo);
+                    roundView = messageEntityViewCreateMessage;
                     if (mediaEntity.viewWidth > 0) {
-                        roundView = createMessage;
+                        roundView = messageEntityViewCreateMessage;
                         if (mediaEntity.viewHeight > 0) {
-                            ViewGroup.LayoutParams layoutParams3 = createMessage.getLayoutParams();
+                            ViewGroup.LayoutParams layoutParams3 = messageEntityViewCreateMessage.getLayoutParams();
                             layoutParams3.width = mediaEntity.viewWidth;
                             layoutParams3.height = mediaEntity.viewHeight;
-                            roundView = createMessage;
+                            roundView = messageEntityViewCreateMessage;
                         }
                     }
                 } else if (b == 3) {
-                    LocationView createLocationSticker = createLocationSticker(mediaEntity.media, mediaEntity.mediaArea, false);
+                    LocationView locationViewCreateLocationSticker = createLocationSticker(mediaEntity.media, mediaEntity.mediaArea, false);
                     int i3 = mediaEntity.color;
                     if (i3 != 0) {
-                        createLocationSticker.setColor(i3);
+                        locationViewCreateLocationSticker.setColor(i3);
                     }
-                    createLocationSticker.setType(mediaEntity.subType);
-                    roundView = createLocationSticker;
-                } else if (b == 8) {
-                    Weather.State state = mediaEntity.weather;
-                    if (state != null) {
-                        WeatherView createWeatherView = createWeatherView(state, false);
-                        int i4 = mediaEntity.color;
-                        if (i4 != 0) {
-                            createWeatherView.setColor(i4);
-                        }
-                        createWeatherView.setType(mediaEntity.subType);
-                        roundView = createWeatherView;
-                    }
-                } else if (b == 7) {
-                    LinkView createLinkSticker = createLinkSticker(mediaEntity.linkSettings, mediaEntity.mediaArea, false);
-                    int i5 = mediaEntity.color;
-                    if (i5 != 0) {
-                        createLinkSticker.setColor(i5);
-                    }
-                    if (createLinkSticker.marker.withPreview()) {
-                        createLinkSticker.marker.setPreviewType(mediaEntity.subType);
-                    }
-                    byte b2 = mediaEntity.subType;
-                    if (b2 == -1) {
-                        createLinkSticker.setType(3);
-                        createLinkSticker.marker.setupLayout();
-                        int ceil = createLinkSticker.marker.padx + ((int) Math.ceil(r7.w));
-                        LinkPreview linkPreview = createLinkSticker.marker;
-                        mediaEntity.viewWidth = ceil + linkPreview.padx;
-                        mediaEntity.viewHeight = linkPreview.pady + ((int) Math.ceil(linkPreview.h)) + createLinkSticker.marker.pady;
-                        Point position = createLinkSticker.getPosition();
-                        position.y += this.h * 0.3f;
-                        createLinkSticker.setPosition(position);
-                    } else {
-                        createLinkSticker.setType(b2);
-                        roundView = createLinkSticker;
-                    }
-                } else if (b == 4) {
-                    ReactionWidgetEntityView createReactionWidget = createReactionWidget(false);
-                    createReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(mediaEntity.mediaArea.reaction), false);
-                    if (mediaEntity.mediaArea.flipped) {
-                        createReactionWidget.mirror(false);
-                    }
-                    roundView = createReactionWidget;
-                    if (mediaEntity.mediaArea.dark) {
-                        createReactionWidget.changeStyle(false);
-                        roundView = createReactionWidget;
-                    }
+                    locationViewCreateLocationSticker.setType(mediaEntity.subType);
+                    roundView = locationViewCreateLocationSticker;
                 } else {
-                    if (b == 5 && storyEntry.round != null) {
-                        RoundView createRound = createRound(storyEntry.roundThumb, false);
-                        onCreateRound(createRound);
-                        roundView = createRound;
+                    if (b == 8) {
+                        Weather.State state = mediaEntity.weather;
+                        if (state != null) {
+                            WeatherView weatherViewCreateWeatherView = createWeatherView(state, false);
+                            int i4 = mediaEntity.color;
+                            if (i4 != 0) {
+                                weatherViewCreateWeatherView.setColor(i4);
+                            }
+                            weatherViewCreateWeatherView.setType(mediaEntity.subType);
+                            roundView = weatherViewCreateWeatherView;
+                        }
+                    } else if (b == 7) {
+                        LinkView linkViewCreateLinkSticker = createLinkSticker(mediaEntity.linkSettings, mediaEntity.mediaArea, false);
+                        int i5 = mediaEntity.color;
+                        if (i5 != 0) {
+                            linkViewCreateLinkSticker.setColor(i5);
+                        }
+                        if (linkViewCreateLinkSticker.marker.withPreview()) {
+                            linkViewCreateLinkSticker.marker.setPreviewType(mediaEntity.subType);
+                        }
+                        byte b2 = mediaEntity.subType;
+                        if (b2 == -1) {
+                            linkViewCreateLinkSticker.setType(3);
+                            linkViewCreateLinkSticker.marker.setupLayout();
+                            int iCeil = linkViewCreateLinkSticker.marker.padx + ((int) Math.ceil(r7.w));
+                            LinkPreview linkPreview = linkViewCreateLinkSticker.marker;
+                            mediaEntity.viewWidth = iCeil + linkPreview.padx;
+                            mediaEntity.viewHeight = linkPreview.pady + ((int) Math.ceil(linkPreview.h)) + linkViewCreateLinkSticker.marker.pady;
+                            Point position = linkViewCreateLinkSticker.getPosition();
+                            position.y += this.h * 0.3f;
+                            linkViewCreateLinkSticker.setPosition(position);
+                        } else {
+                            linkViewCreateLinkSticker.setType(b2);
+                            roundView = linkViewCreateLinkSticker;
+                        }
+                    } else if (b == 4) {
+                        ReactionWidgetEntityView reactionWidgetEntityViewCreateReactionWidget = createReactionWidget(false);
+                        reactionWidgetEntityViewCreateReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(mediaEntity.mediaArea.reaction), false);
+                        if (mediaEntity.mediaArea.flipped) {
+                            reactionWidgetEntityViewCreateReactionWidget.mirror(false);
+                        }
+                        roundView = reactionWidgetEntityViewCreateReactionWidget;
+                        if (mediaEntity.mediaArea.dark) {
+                            reactionWidgetEntityViewCreateReactionWidget.changeStyle(false);
+                            roundView = reactionWidgetEntityViewCreateReactionWidget;
+                        }
+                    } else if (b == 5 && storyEntry.round != null) {
+                        RoundView roundViewCreateRound = createRound(storyEntry.roundThumb, false);
+                        onCreateRound(roundViewCreateRound);
+                        roundView = roundViewCreateRound;
                         if ((2 & mediaEntity.subType) != 0) {
-                            createRound.mirror(false);
-                            roundView = createRound;
+                            roundViewCreateRound.mirror(false);
+                            roundView = roundViewCreateRound;
                         }
                     }
                 }
@@ -2707,49 +2698,49 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$detectFaces$32();
+                this.f$0.lambda$detectFaces$32();
             }
         }, 200L);
     }
 
     public void lambda$detectFaces$32() {
         int i;
-        FaceDetector faceDetector = null;
+        FaceDetector faceDetectorBuild = null;
         try {
             try {
-                faceDetector = new FaceDetector.Builder(getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
+                faceDetectorBuild = new FaceDetector.Builder(getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
             } catch (Exception e) {
                 FileLog.e(e);
                 if (0 == 0) {
                     return;
                 }
             }
-            if (!faceDetector.isOperational()) {
+            if (!faceDetectorBuild.isOperational()) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("face detection is not operational");
                 }
-                faceDetector.release();
+                faceDetectorBuild.release();
                 return;
             }
             try {
-                SparseArray detect = faceDetector.detect(new Frame.Builder().setBitmap(this.facesBitmap).setRotation(getFrameRotation()).build());
+                SparseArray sparseArrayDetect = faceDetectorBuild.detect(new Frame.Builder().setBitmap(this.facesBitmap).setRotation(getFrameRotation()).build());
                 ArrayList arrayList = new ArrayList();
                 Size paintingSize = getPaintingSize();
-                for (i = 0; i < detect.size(); i++) {
-                    PhotoFace photoFace = new PhotoFace((Face) detect.get(detect.keyAt(i)), this.facesBitmap, paintingSize, isSidewardOrientation());
+                for (i = 0; i < sparseArrayDetect.size(); i++) {
+                    PhotoFace photoFace = new PhotoFace((Face) sparseArrayDetect.get(sparseArrayDetect.keyAt(i)), this.facesBitmap, paintingSize, isSidewardOrientation());
                     if (photoFace.isSufficient()) {
                         arrayList.add(photoFace);
                     }
                 }
                 this.faces = arrayList;
-                faceDetector.release();
+                faceDetectorBuild.release();
             } catch (Throwable th) {
                 FileLog.e(th);
-                faceDetector.release();
+                faceDetectorBuild.release();
             }
         } catch (Throwable th2) {
             if (0 != 0) {
-                faceDetector.release();
+                faceDetectorBuild.release();
             }
             throw th2;
         }
@@ -2776,9 +2767,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public static void lambda$shutdown$33() {
-        Looper myLooper = Looper.myLooper();
-        if (myLooper != null) {
-            myLooper.quit();
+        Looper looperMyLooper = Looper.myLooper();
+        if (looperMyLooper != null) {
+            looperMyLooper.quit();
         }
     }
 
@@ -2886,7 +2877,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
                 imageReceiver.getAnimation();
                 if (lottieAnimation != null) {
-                    lottieAnimation.setCurrentFrame(Math.round(((((float) j) % ((float) lottieAnimation.getDuration())) / ((float) lottieAnimation.getDuration())) * lottieAnimation.getFramesCount()), true, false);
+                    lottieAnimation.setCurrentFrame(Math.round(((j % lottieAnimation.getDuration()) / lottieAnimation.getDuration()) * lottieAnimation.getFramesCount()), true, false);
                 }
             }
         }
@@ -2910,10 +2901,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setLocation(x, y);
-        this.renderView.onTouch(obtain);
-        obtain.recycle();
+        MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+        motionEventObtain.setLocation(x, y);
+        this.renderView.onTouch(motionEventObtain);
+        motionEventObtain.recycle();
         return true;
     }
 
@@ -2994,18 +2985,18 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 if ((text instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) != null) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
                         if (animatedEmojiSpan != null) {
-                            TLRPC.Document document = animatedEmojiSpan.document;
-                            if (document == null) {
-                                document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                            TLRPC.Document documentFindDocument = animatedEmojiSpan.document;
+                            if (documentFindDocument == null) {
+                                documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                             }
-                            if (document != null) {
+                            if (documentFindDocument != null) {
                                 if (arrayList == null) {
                                     arrayList = new ArrayList();
                                 }
                                 TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
-                                tL_inputDocument2.id = document.id;
-                                tL_inputDocument2.access_hash = document.access_hash;
-                                byte[] bArr2 = document.file_reference;
+                                tL_inputDocument2.id = documentFindDocument.id;
+                                tL_inputDocument2.access_hash = documentFindDocument.access_hash;
+                                byte[] bArr2 = documentFindDocument.file_reference;
                                 tL_inputDocument2.file_reference = bArr2;
                                 if (bArr2 == null) {
                                     tL_inputDocument2.file_reference = new byte[0];
@@ -3062,13 +3053,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.typefaceMenuTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    PaintView.this.lambda$showTypefaceMenu$36(dynamicAnimation, f, f2);
+                    this.f$0.lambda$showTypefaceMenu$36(dynamicAnimation, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    PaintView.this.lambda$showTypefaceMenu$37(z, dynamicAnimation, z2, f, f2);
+                    this.f$0.lambda$showTypefaceMenu$37(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.start();
@@ -3111,13 +3102,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.toolsTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    PaintView.this.lambda$showColorList$38(barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
+                    this.f$0.lambda$showColorList$38(barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
                 }
             });
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    PaintView.this.lambda$showColorList$39(z, dynamicAnimation, z2, f, f2);
+                    this.f$0.lambda$showColorList$39(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -3190,7 +3181,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PaintView.this.lambda$setCurrentSwatch$40(num, i, valueAnimator);
+                        this.f$0.lambda$setCurrentSwatch$40(num, i, valueAnimator);
                     }
                 });
                 duration.start();
@@ -3219,8 +3210,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public void lambda$setCurrentSwatch$40(Integer num, int i, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, floatValue);
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, fFloatValue);
         FrameLayout frameLayout = this.bottomLayout;
         if (frameLayout != null) {
             frameLayout.invalidate();
@@ -3357,9 +3348,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         this.path.rewind();
                         this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, measuredWidth, Path.Direction.CW);
                         canvas.clipPath(this.path);
-                        boolean drawChild = super.drawChild(canvas, view, j);
+                        boolean zDrawChild = super.drawChild(canvas, view, j);
                         canvas.restore();
-                        return drawChild;
+                        return zDrawChild;
                     }
                     return super.drawChild(canvas, view, j);
                 }
@@ -3420,12 +3411,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 this.image2View.setImageResource(i);
                 this.image2View.setVisibility(0);
                 this.image2View.setAlpha(1.0f);
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.imageSwitchAnimator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.imageSwitchAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        PaintView.PopupButton.this.lambda$setIcon$0(z, valueAnimator2);
+                        this.f$0.lambda$setIcon$0(z, valueAnimator2);
                     }
                 });
                 this.imageSwitchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -3450,10 +3441,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         public void lambda$setIcon$0(boolean z, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.imageSwitchT = floatValue;
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.imageSwitchT = fFloatValue;
             if (!z) {
-                this.imageView.setAlpha(1.0f - floatValue);
+                this.imageView.setAlpha(1.0f - fFloatValue);
             }
             this.imagesView.invalidate();
         }
@@ -3521,7 +3512,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$onAddButtonPressed$44();
+                this.f$0.lambda$onAddButtonPressed$44();
             }
         }, this, 53, 0, getHeight(), false);
     }
@@ -3531,21 +3522,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         for (int i = 0; i < Brush.Shape.SHAPES_LIST.size(); i++) {
             final Brush.Shape shape = (Brush.Shape) Brush.Shape.SHAPES_LIST.get(i);
             final int filledIconRes = fillShapes ? shape.getFilledIconRes() : shape.getIconRes();
-            PopupButton buttonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
+            PopupButton popupButtonButtonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
                 @Override
                 public final void run() {
-                    PaintView.this.lambda$onAddButtonPressed$42(shape, filledIconRes);
+                    this.f$0.lambda$onAddButtonPressed$42(shape, filledIconRes);
                 }
             });
-            buttonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
+            popupButtonButtonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$onAddButtonPressed$43;
-                    lambda$onAddButtonPressed$43 = PaintView.this.lambda$onAddButtonPressed$43(view);
-                    return lambda$onAddButtonPressed$43;
+                    return this.f$0.lambda$onAddButtonPressed$43(view);
                 }
             });
-            this.popupLayout.addView((View) buttonForPopup, LayoutHelper.createLinear(-1, 48));
+            this.popupLayout.addView((View) popupButtonButtonForPopup, LayoutHelper.createLinear(-1, 48));
         }
     }
 
@@ -3585,7 +3574,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$showMenuForEntity$55(entityView);
+                this.f$0.lambda$showMenuForEntity$55(entityView);
             }
         }, this, 51, centerLocationInWindow[0], centerLocationInWindow[1] - AndroidUtilities.dp(32.0f), true);
     }
@@ -3609,7 +3598,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$45(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$45(entityView, view);
                 }
             });
             linearLayout.addView(textView, LayoutHelper.createLinear(-2, 44));
@@ -3630,7 +3619,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.this.lambda$showMenuForEntity$46(entityView, view);
+                        this.f$0.lambda$showMenuForEntity$46(entityView, view);
                     }
                 });
             } else {
@@ -3639,52 +3628,52 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.this.lambda$showMenuForEntity$47(entityView, view);
+                        this.f$0.lambda$showMenuForEntity$47(entityView, view);
                     }
                 });
             }
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, 44));
         } else if (entityView instanceof LocationView) {
-            TextView createActionLayoutButton = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
-            createActionLayoutButton.setOnClickListener(new View.OnClickListener() {
+            TextView textViewCreateActionLayoutButton = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
+            textViewCreateActionLayoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$49(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$49(entityView, view);
                 }
             });
-            linearLayout.addView(createActionLayoutButton, LayoutHelper.createLinear(-2, 44));
+            linearLayout.addView(textViewCreateActionLayoutButton, LayoutHelper.createLinear(-2, 44));
         } else if (entityView instanceof LinkView) {
-            TextView createActionLayoutButton2 = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
-            createActionLayoutButton2.setOnClickListener(new View.OnClickListener() {
+            TextView textViewCreateActionLayoutButton2 = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
+            textViewCreateActionLayoutButton2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$50(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$50(entityView, view);
                 }
             });
-            linearLayout.addView(createActionLayoutButton2, LayoutHelper.createLinear(-2, 44));
+            linearLayout.addView(textViewCreateActionLayoutButton2, LayoutHelper.createLinear(-2, 44));
         }
         if ((entityView instanceof StickerView) || (entityView instanceof RoundView) || (entityView instanceof PhotoView) || (entityView instanceof ReactionWidgetEntityView)) {
-            TextView createActionLayoutButton3 = createActionLayoutButton(4, LocaleController.getString(R.string.Flip));
-            createActionLayoutButton3.setOnClickListener(new View.OnClickListener() {
+            TextView textViewCreateActionLayoutButton3 = createActionLayoutButton(4, LocaleController.getString(R.string.Flip));
+            textViewCreateActionLayoutButton3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$51(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$51(entityView, view);
                 }
             });
-            linearLayout.addView(createActionLayoutButton3, LayoutHelper.createLinear(-2, 44));
+            linearLayout.addView(textViewCreateActionLayoutButton3, LayoutHelper.createLinear(-2, 44));
         }
         boolean z2 = entityView instanceof PhotoView;
         if (z2) {
             final PhotoView photoView = (PhotoView) entityView;
             if (photoView.hasSegmentedImage()) {
-                TextView createActionLayoutButton4 = createActionLayoutButton(5, LocaleController.getString(photoView.isSegmented() ? R.string.SegmentationUndoCutOut : R.string.SegmentationCutOut));
-                createActionLayoutButton4.setOnClickListener(new View.OnClickListener() {
+                TextView textViewCreateActionLayoutButton4 = createActionLayoutButton(5, LocaleController.getString(photoView.isSegmented() ? R.string.SegmentationUndoCutOut : R.string.SegmentationCutOut));
+                textViewCreateActionLayoutButton4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.this.lambda$showMenuForEntity$52(photoView, view);
+                        this.f$0.lambda$showMenuForEntity$52(photoView, view);
                     }
                 });
-                linearLayout.addView(createActionLayoutButton4, LayoutHelper.createLinear(-2, 44));
+                linearLayout.addView(textViewCreateActionLayoutButton4, LayoutHelper.createLinear(-2, 44));
                 photoView.highlightSegmented();
             }
         }
@@ -3703,7 +3692,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$53(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$53(entityView, view);
                 }
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 44));
@@ -3722,7 +3711,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$54(entityView, view);
+                    this.f$0.lambda$showMenuForEntity$54(entityView, view);
                 }
             });
             linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 44));
@@ -3789,7 +3778,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PaintView.this.lambda$showMenuForEntity$48(entityView, (TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
+                this.f$0.lambda$showMenuForEntity$48(entityView, (TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
             }
         });
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -3881,9 +3870,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (entityView == null) {
             return;
         }
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(entityView);
+        Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(entityView);
         if (entityView instanceof StickerView) {
-            StickerView stickerView = new StickerView(getContext(), (StickerView) entityView, startPositionRelativeToEntity);
+            StickerView stickerView = new StickerView(getContext(), (StickerView) entityView, pointStartPositionRelativeToEntity);
             stickerView.setDelegate(this);
             this.entitiesView.addView(stickerView);
             checkEntitiesIsVideo();
@@ -3892,7 +3881,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             if (!(entityView instanceof TextPaintView)) {
                 return;
             }
-            TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) entityView, startPositionRelativeToEntity);
+            TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) entityView, pointStartPositionRelativeToEntity);
             textPaintView.setDelegate(this);
             textPaintView.setMaxWidth(this.w - AndroidUtilities.dp(32.0f));
             this.entitiesView.addView(textPaintView, LayoutHelper.createFrame(-2, -2.0f));
@@ -3907,14 +3896,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     private Point startPositionRelativeToEntity(EntityView entityView) {
         int i;
         MediaController.CropState cropState = this.currentCropState;
-        float f = cropState != null ? 200.0f / cropState.cropScale : 200.0f;
+        float fMin = cropState != null ? 200.0f / cropState.cropScale : 200.0f;
         if (entityView != null) {
             Point position = entityView.getPosition();
-            float min = Math.min(entityView.getHeight(), entityView.getWidth()) * 0.2f;
-            return new Point(position.x + min, position.y + min);
+            float fMin2 = Math.min(entityView.getHeight(), entityView.getWidth()) * 0.2f;
+            return new Point(position.x + fMin2, position.y + fMin2);
         }
-        float f2 = cropState != null ? 100.0f / cropState.cropScale : 100.0f;
-        Point centerPositionForEntity = centerPositionForEntity();
+        float f = cropState != null ? 100.0f / cropState.cropScale : 100.0f;
+        Point pointCenterPositionForEntity = centerPositionForEntity();
         int i2 = 0;
         while (i2 < 10) {
             int i3 = 0;
@@ -3926,8 +3915,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 } else {
                     Point position2 = ((EntityView) childAt).getPosition();
                     i = i2;
-                    if (((float) Math.sqrt(Math.pow(position2.x - centerPositionForEntity.x, 2.0d) + Math.pow(position2.y - centerPositionForEntity.y, 2.0d))) < f2) {
-                        f = Math.min(childAt.getHeight(), childAt.getWidth()) * 0.2f;
+                    if (((float) Math.sqrt(Math.pow(position2.x - pointCenterPositionForEntity.x, 2.0d) + Math.pow(position2.y - pointCenterPositionForEntity.y, 2.0d))) < f) {
+                        fMin = Math.min(childAt.getHeight(), childAt.getWidth()) * 0.2f;
                         z = true;
                     }
                 }
@@ -3939,12 +3928,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 break;
             }
             i2 = i4 + 1;
-            centerPositionForEntity = new Point(centerPositionForEntity.x + f, centerPositionForEntity.y + f);
+            pointCenterPositionForEntity = new Point(pointCenterPositionForEntity.x + fMin, pointCenterPositionForEntity.y + fMin);
         }
-        return centerPositionForEntity;
+        return pointCenterPositionForEntity;
     }
 
-    public class PopupWindowLayout extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+    private class PopupWindowLayout extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
         private final ButtonBounce bounce;
         private float cx;
         private float cy;
@@ -3969,7 +3958,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             float scale = this.bounce.getScale(0.05f);
             if (scale < 1.0f) {
                 canvas.save();
@@ -3982,7 +3971,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
         }
     }
@@ -4001,15 +3990,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    boolean lambda$showPopup$56;
-                    lambda$showPopup$56 = PaintView.this.lambda$showPopup$56(view2, motionEvent);
-                    return lambda$showPopup$56;
+                    return this.f$0.lambda$showPopup$56(view2, motionEvent);
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    PaintView.this.lambda$showPopup$57(keyEvent);
+                    this.f$0.lambda$showPopup$57(keyEvent);
                 }
             });
             this.popupLayout.setShownFromBottom(true);
@@ -4031,7 +4018,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    PaintView.this.lambda$showPopup$58();
+                    this.f$0.lambda$showPopup$58();
                 }
             });
         }
@@ -4043,12 +4030,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
         this.popupWindow.showAtLocation(view, i, i2, i3);
         ActionBarPopupWindow.startAnimation(this.popupLayout);
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert3).mutate();
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert3).mutate();
         if (z) {
             PopupWindowLayout popupWindowLayout3 = this.popupLayout;
-            popupWindowLayout3.setBackgroundDrawable(new BlurringShader.StoryBlurDrawer(this.blurManager, popupWindowLayout3, 5).makeDrawable(i2, i3, mutate, AndroidUtilities.dpf2(8.3f)));
+            popupWindowLayout3.setBackgroundDrawable(new BlurringShader.StoryBlurDrawer(this.blurManager, popupWindowLayout3, 5).makeDrawable(i2, i3, drawableMutate, AndroidUtilities.dpf2(8.3f)));
         } else {
-            this.popupLayout.setBackgroundDrawable(mutate);
+            this.popupLayout.setBackgroundDrawable(drawableMutate);
             this.popupLayout.setBackgroundColor(-14145495);
         }
     }
@@ -4087,8 +4074,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     private Size baseStickerSize() {
-        float floor = (float) Math.floor(getPaintingSize().width * 0.5d);
-        return new Size(floor, floor);
+        float fFloor = (float) Math.floor(getPaintingSize().width * 0.5d);
+        return new Size(fFloor, fFloor);
     }
 
     private Size basePhotoSize(String str) {
@@ -4103,11 +4090,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             f = 1.0f;
         }
         if (f > 1.0f) {
-            float floor = (float) Math.floor(Math.max(this.w, this.entitiesView.getMeasuredWidth()) * 0.5d);
-            return new Size(floor, floor / f);
+            float fFloor = (float) Math.floor(Math.max(this.w, this.entitiesView.getMeasuredWidth()) * 0.5d);
+            return new Size(fFloor, fFloor / f);
         }
-        float floor2 = (float) Math.floor(Math.max(this.h, this.entitiesView.getMeasuredHeight()) * 0.5d);
-        return new Size(f * floor2, floor2);
+        float fFloor2 = (float) Math.floor(Math.max(this.h, this.entitiesView.getMeasuredHeight()) * 0.5d);
+        return new Size(f * fFloor2, fFloor2);
     }
 
     private org.telegram.ui.Components.Size basePhotoSize(org.telegram.tgnet.TLObject r7) {
@@ -4123,7 +4110,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$appearAnimation$59(view);
+                this.f$0.lambda$appearAnimation$59(view);
             }
         }).start();
     }
@@ -4187,13 +4174,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (i >= 0 && i <= 3 && !this.faces.isEmpty()) {
             int size = this.faces.size();
-            int nextInt = Utilities.random.nextInt(size);
+            int iNextInt = Utilities.random.nextInt(size);
             for (int i2 = size; i2 > 0; i2--) {
-                PhotoFace photoFace = (PhotoFace) this.faces.get(nextInt);
+                PhotoFace photoFace = (PhotoFace) this.faces.get(iNextInt);
                 if (!isFaceAnchorOccupied(photoFace, i, j, tL_maskCoords)) {
                     return photoFace;
                 }
-                nextInt = (nextInt + 1) % size;
+                iNextInt = (iNextInt + 1) % size;
             }
         }
         return null;
@@ -4212,8 +4199,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     continue;
                 } else {
                     Point position = stickerView.getPosition();
-                    float hypot = (float) Math.hypot(position.x - r14.x, position.y - r14.y);
-                    if ((j == stickerView.getSticker().id || this.faces.size() > 1) && hypot < widthForAnchor) {
+                    float fHypot = (float) Math.hypot(position.x - r14.x, position.y - r14.y);
+                    if ((j == stickerView.getSticker().id || this.faces.size() > 1) && fHypot < widthForAnchor) {
                         return true;
                     }
                 }
@@ -4224,14 +4211,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
     public PhotoView createPhoto(String str, boolean z) {
         this.forceChanges = true;
-        Size basePhotoSize = basePhotoSize(str);
+        Size sizeBasePhotoSize = basePhotoSize(str);
         Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(str);
         if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == 1) {
-            float f = basePhotoSize.width;
-            basePhotoSize.width = basePhotoSize.height;
-            basePhotoSize.height = f;
+            float f = sizeBasePhotoSize.width;
+            sizeBasePhotoSize.width = sizeBasePhotoSize.height;
+            sizeBasePhotoSize.height = f;
         }
-        PhotoView photoView = new PhotoView(getContext(), centerPositionForEntity(), 0.0f, 1.0f, basePhotoSize, str, ((Integer) imageOrientation.first).intValue(), ((Integer) imageOrientation.second).intValue());
+        PhotoView photoView = new PhotoView(getContext(), centerPositionForEntity(), 0.0f, 1.0f, sizeBasePhotoSize, str, ((Integer) imageOrientation.first).intValue(), ((Integer) imageOrientation.second).intValue());
         photoView.setDelegate(this);
         this.entitiesView.addView(photoView);
         checkEntitiesIsVideo();
@@ -4252,7 +4239,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 childAt.animate().scaleX(0.0f).scaleY(0.0f).setDuration(280L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        PaintView.this.lambda$deleteRound$60(childAt);
+                        this.f$0.lambda$deleteRound$60(childAt);
                     }
                 }).start();
             }
@@ -4268,8 +4255,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (measuredWidth <= 0) {
             measuredWidth = this.w;
         }
-        float floor = (float) Math.floor(0.43f * r0);
-        Size size = new Size(floor, floor);
+        float fFloor = (float) Math.floor(0.43f * r0);
+        Size size = new Size(fFloor, fFloor);
         final RoundView roundView = new RoundView(getContext(), new Point((measuredWidth - (size.width / 2.0f)) - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(72.0f) + (size.height / 2.0f)), 0.0f, 1.0f, size, str);
         roundView.setDelegate(this);
         this.entitiesView.addView(roundView);
@@ -4279,7 +4266,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    PaintView.this.lambda$createRound$61(roundView);
+                    this.f$0.lambda$createRound$61(roundView);
                 }
             });
         }
@@ -4329,8 +4316,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     private StickerView createSticker(Object obj, TLRPC.Document document, boolean z) {
-        StickerPosition calculateStickerPosition = calculateStickerPosition(document);
-        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), document, obj) {
+        StickerPosition stickerPositionCalculateStickerPosition = calculateStickerPosition(document);
+        StickerView stickerView = new StickerView(getContext(), stickerPositionCalculateStickerPosition.position, stickerPositionCalculateStickerPosition.angle, stickerPositionCalculateStickerPosition.scale, baseStickerSize(), document, obj) {
             @Override
             protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
                 PaintView.this.didSetAnimatedSticker(rLottieDrawable);
@@ -4352,22 +4339,22 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
     private ReactionWidgetEntityView createReactionWidget(boolean z) {
         Size size = new Size(AndroidUtilities.dp(106.0f), AndroidUtilities.dp(106.0f));
-        Point centerPositionForEntity = centerPositionForEntity();
+        Point pointCenterPositionForEntity = centerPositionForEntity();
         if (this.entitiesView.getMeasuredHeight() > 0) {
             loop0: while (true) {
                 for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
                     View childAt = this.entitiesView.getChildAt(i);
-                    if (MathUtils.distance(centerPositionForEntity.x, centerPositionForEntity.y, childAt.getX() + (childAt.getMeasuredWidth() / 2.0f), childAt.getY() + (childAt.getMeasuredHeight() / 2.0f)) < AndroidUtilities.dp(6.0f)) {
+                    if (MathUtils.distance(pointCenterPositionForEntity.x, pointCenterPositionForEntity.y, childAt.getX() + (childAt.getMeasuredWidth() / 2.0f), childAt.getY() + (childAt.getMeasuredHeight() / 2.0f)) < AndroidUtilities.dp(6.0f)) {
                         break;
                     }
                 }
-                centerPositionForEntity.x += this.entitiesView.getMeasuredWidth() * 0.05f;
-                centerPositionForEntity.y += this.entitiesView.getMeasuredHeight() * 0.05f;
-                centerPositionForEntity.x = Utilities.clamp(centerPositionForEntity.x, this.entitiesView.getMeasuredWidth(), 0.0f);
-                centerPositionForEntity.y = Utilities.clamp(centerPositionForEntity.y, this.entitiesView.getMeasuredHeight(), 0.0f);
+                pointCenterPositionForEntity.x += this.entitiesView.getMeasuredWidth() * 0.05f;
+                pointCenterPositionForEntity.y += this.entitiesView.getMeasuredHeight() * 0.05f;
+                pointCenterPositionForEntity.x = Utilities.clamp(pointCenterPositionForEntity.x, this.entitiesView.getMeasuredWidth(), 0.0f);
+                pointCenterPositionForEntity.y = Utilities.clamp(pointCenterPositionForEntity.y, this.entitiesView.getMeasuredHeight(), 0.0f);
             }
         }
-        ReactionWidgetEntityView reactionWidgetEntityView = new ReactionWidgetEntityView(getContext(), centerPositionForEntity, size);
+        ReactionWidgetEntityView reactionWidgetEntityView = new ReactionWidgetEntityView(getContext(), pointCenterPositionForEntity, size);
         reactionWidgetEntityView.setDelegate(this);
         this.entitiesView.addView(reactionWidgetEntityView);
         checkEntitiesIsVideo();
@@ -4417,11 +4404,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     private void checkEntitiesIsVideo() {
-        boolean wouldBeVideo = wouldBeVideo();
+        boolean zWouldBeVideo = wouldBeVideo();
         for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
             View childAt = this.entitiesView.getChildAt(i);
             if (childAt instanceof EntityView) {
-                ((EntityView) childAt).setIsVideo(wouldBeVideo);
+                ((EntityView) childAt).setIsVideo(zWouldBeVideo);
             }
         }
     }
@@ -4436,14 +4423,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 CharSequence text = ((TextPaintView) childAt).getText();
                 if (text instanceof Spanned) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) {
-                        TLRPC.Document document = animatedEmojiSpan.document;
-                        if (document == null) {
-                            document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                        TLRPC.Document documentFindDocument = animatedEmojiSpan.document;
+                        if (documentFindDocument == null) {
+                            documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                         }
-                        if (document != null) {
-                            AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(document);
+                        if (documentFindDocument != null) {
+                            AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(documentFindDocument);
                         }
-                        if (StoryEntry.isAnimated(document, FileLoader.getInstance(this.currentAccount).getPathToAttach(document, true).getAbsolutePath())) {
+                        if (StoryEntry.isAnimated(documentFindDocument, FileLoader.getInstance(this.currentAccount).getPathToAttach(documentFindDocument, true).getAbsolutePath())) {
                             return true;
                         }
                     }
@@ -4469,7 +4456,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$registerRemovalUndo$62(entityView);
+                this.f$0.lambda$registerRemovalUndo$62(entityView);
             }
         });
     }
@@ -4546,7 +4533,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return 0.0f;
     }
 
-    public static class StickerPosition {
+    private static class StickerPosition {
         private float angle;
         private Point position;
         private float scale;
@@ -4612,22 +4599,22 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 if (this.keyboardVisible) {
                     this.translateBottomPanelAfterResize = true;
                 } else {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.emojiPadding, 0.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PaintView.this.lambda$showEmojiPopup$63(valueAnimator);
+                            this.f$0.lambda$showEmojiPopup$63(valueAnimator);
                         }
                     });
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             PaintView.this.emojiView.setTranslationY(0.0f);
                         }
                     });
-                    ofFloat.setDuration(250L);
-                    ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                    ofFloat.start();
+                    valueAnimatorOfFloat.setDuration(250L);
+                    valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                    valueAnimatorOfFloat.start();
                 }
             }
         } else {
@@ -4663,15 +4650,15 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (z) {
             EmojiView emojiView = this.emojiView;
             if (emojiView != null && emojiView.getVisibility() == 0 && !this.waitingForKeyboardOpen) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.emojiView.getMeasuredHeight());
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, this.emojiView.getMeasuredHeight());
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PaintView.this.lambda$hideEmojiPopup$64(valueAnimator);
+                        this.f$0.lambda$hideEmojiPopup$64(valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
-                ofFloat.addListener(new AnimatorListenerAdapter() {
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         PaintView.this.isAnimatePopupClosing = false;
@@ -4679,9 +4666,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         PaintView.this.hideEmojiView();
                     }
                 });
-                ofFloat.setDuration(250L);
-                ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                ofFloat.start();
+                valueAnimatorOfFloat.setDuration(250L);
+                valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                valueAnimatorOfFloat.start();
                 return;
             }
             hideEmojiView();
@@ -4775,7 +4762,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textDim.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$updateTextDim$65(z);
+                this.f$0.lambda$updateTextDim$65(z);
             }
         }).start();
     }
@@ -4827,7 +4814,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.parent.addView(this.emojiView);
     }
 
-    public class AnonymousClass31 implements EmojiView.EmojiViewDelegate {
+    class AnonymousClass31 implements EmojiView.EmojiViewDelegate {
         int innerTextChange;
 
         @Override
@@ -4960,14 +4947,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 try {
                     try {
                         this.innerTextChange = 2;
-                        CharSequence replaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
-                        if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
+                        if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                             for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                                 emojiSpan.scale = 0.85f;
                             }
                         }
-                        editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
-                        int length = selectionEnd + replaceEmoji.length();
+                        editText.setText(editText.getText().insert(selectionEnd, charSequenceReplaceEmoji));
+                        int length = selectionEnd + charSequenceReplaceEmoji.length();
                         editText.setSelection(length, length);
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -5022,7 +5009,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    PaintView.AnonymousClass31.this.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -5035,13 +5022,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         this.destroyed = false;
         super.onAttachedToWindow();
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         this.destroyed = true;
         ReactionsContainerLayout reactionsContainerLayout = this.reactionLayout;
         if (reactionsContainerLayout != null) {

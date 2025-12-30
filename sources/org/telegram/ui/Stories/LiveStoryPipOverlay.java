@@ -52,7 +52,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stories.LiveStoryPipOverlay;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.LivePlayerView;
 
@@ -60,9 +59,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     private static final FloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((LiveStoryPipOverlay) obj).pipX;
-            return f;
+            return ((LiveStoryPipOverlay) obj).pipX;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -73,9 +70,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     private static final FloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
-            float f;
-            f = ((LiveStoryPipOverlay) obj).pipY;
-            return f;
+            return ((LiveStoryPipOverlay) obj).pipY;
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
@@ -122,7 +117,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     private Runnable dismissControlsCallback = new Runnable() {
         @Override
         public final void run() {
-            LiveStoryPipOverlay.this.lambda$new$4();
+            this.f$0.lambda$new$4();
         }
     };
 
@@ -182,18 +177,18 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     }
 
     public int getSuggestedWidth() {
-        float min;
+        float fMin;
         float f;
         if (getRatio() >= 1.0f) {
             Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
+            fMin = Math.min(point.x, point.y);
             f = 0.35f;
         } else {
             Point point2 = AndroidUtilities.displaySize;
-            min = Math.min(point2.x, point2.y);
+            fMin = Math.min(point2.x, point2.y);
             f = 0.6f;
         }
-        return (int) (min * f);
+        return (int) (fMin * f);
     }
 
     public int getSuggestedHeight() {
@@ -216,7 +211,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         this.scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                LiveStoryPipOverlay.this.lambda$toggleControls$5(valueAnimator);
+                this.f$0.lambda$toggleControls$5(valueAnimator);
             }
         });
         this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -391,21 +386,21 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 int action = motionEvent.getAction();
                 if (LiveStoryPipOverlay.this.consumingChild != null) {
-                    MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                    obtain.offsetLocation(LiveStoryPipOverlay.this.consumingChild.getX(), LiveStoryPipOverlay.this.consumingChild.getY());
-                    boolean dispatchTouchEvent = LiveStoryPipOverlay.this.consumingChild.dispatchTouchEvent(motionEvent);
-                    obtain.recycle();
+                    MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                    motionEventObtain.offsetLocation(LiveStoryPipOverlay.this.consumingChild.getX(), LiveStoryPipOverlay.this.consumingChild.getY());
+                    boolean zDispatchTouchEvent = LiveStoryPipOverlay.this.consumingChild.dispatchTouchEvent(motionEvent);
+                    motionEventObtain.recycle();
                     if (action == 1 || action == 3) {
                         LiveStoryPipOverlay.this.consumingChild = null;
                     }
-                    if (dispatchTouchEvent) {
+                    if (zDispatchTouchEvent) {
                         return true;
                     }
                 }
-                MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
-                obtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
-                boolean onTouchEvent = LiveStoryPipOverlay.this.scaleGestureDetector.onTouchEvent(obtain2);
-                obtain2.recycle();
+                MotionEvent motionEventObtain2 = MotionEvent.obtain(motionEvent);
+                motionEventObtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
+                boolean zOnTouchEvent = LiveStoryPipOverlay.this.scaleGestureDetector.onTouchEvent(motionEventObtain2);
+                motionEventObtain2.recycle();
                 boolean z = !LiveStoryPipOverlay.this.scaleGestureDetector.isInProgress() && LiveStoryPipOverlay.this.gestureDetector.onTouchEvent(motionEvent);
                 if (action == 1 || action == 3) {
                     LiveStoryPipOverlay.this.isScrolling = false;
@@ -419,7 +414,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
                         LiveStoryPipOverlay.this.pipYSpring.start();
                     }
                 }
-                return onTouchEvent || z;
+                return zOnTouchEvent || z;
             }
 
             @Override
@@ -510,14 +505,14 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         gradientDrawable.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
         view2.setBackground(gradientDrawable);
         this.controlsView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-        int dp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
         int i3 = Theme.key_voipgroup_actionBarItems;
         imageView.setColorFilter(Theme.getColor(i3));
         int i4 = Theme.key_listSelector;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
-        imageView.setPadding(dp, dp, dp, dp);
+        imageView.setPadding(iDp, iDp, iDp, iDp);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -531,28 +526,28 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         imageView2.setImageResource(R.drawable.pip_video_expand);
         imageView2.setColorFilter(Theme.getColor(i3));
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
-        imageView2.setPadding(dp, dp, dp, dp);
+        imageView2.setPadding(iDp, iDp, iDp, iDp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                LiveStoryPipOverlay.lambda$showInternal$8(LivePlayer.this, context, view3);
+                LiveStoryPipOverlay.lambda$showInternal$8(livePlayer, context, view3);
             }
         });
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
         this.contentFrameLayout.addView(this.controlsView, LayoutHelper.createFrame(-1, -1.0f));
         this.windowManager = (WindowManager) context.getSystemService("window");
-        WindowManager.LayoutParams createWindowLayoutParams = PipUtils.createWindowLayoutParams(context, false);
-        this.windowLayoutParams = createWindowLayoutParams;
+        WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = PipUtils.createWindowLayoutParams(context, false);
+        this.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
         int i5 = this.pipWidth;
-        createWindowLayoutParams.width = i5;
-        createWindowLayoutParams.height = this.pipHeight;
-        float dp2 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.dp(16.0f);
-        this.pipX = dp2;
-        createWindowLayoutParams.x = (int) dp2;
+        layoutParamsCreateWindowLayoutParams.width = i5;
+        layoutParamsCreateWindowLayoutParams.height = this.pipHeight;
+        float fDp = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.dp(16.0f);
+        this.pipX = fDp;
+        layoutParamsCreateWindowLayoutParams.x = (int) fDp;
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        float dp3 = (AndroidUtilities.displaySize.y - this.pipHeight) - AndroidUtilities.dp(16.0f);
-        this.pipY = dp3;
-        layoutParams.y = (int) dp3;
+        float fDp2 = (AndroidUtilities.displaySize.y - this.pipHeight) - AndroidUtilities.dp(16.0f);
+        this.pipY = fDp2;
+        layoutParams.y = (int) fDp2;
         WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
         layoutParams2.dimAmount = 0.0f;
         layoutParams2.flags = 520;
@@ -587,7 +582,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         this.pipSource = new PipSource.Builder(activity, this).setTagPrefix("pip-live-story").setPriority(1).setCornerRadius(AndroidUtilities.dp(10.0f)).setContentView(this.contentView).setPlaceholderView(this.textureView.getPlaceholderView()).build();
     }
 
-    public class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
+    class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
         AnonymousClass3() {
         }
 
@@ -600,7 +595,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LiveStoryPipOverlay.AnonymousClass3.this.lambda$onScale$0();
+                    this.f$0.lambda$onScale$0();
                 }
             });
             ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring().setFinalPosition(scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r2 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
@@ -699,14 +694,14 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         if (safeLastFragment == null) {
             return;
         }
-        TL_stories.StoryItem findStory = MessagesController.getInstance(livePlayer.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId);
-        if (findStory == null) {
-            findStory = livePlayer.storyItem;
+        TL_stories.StoryItem storyItemFindStory = MessagesController.getInstance(livePlayer.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId);
+        if (storyItemFindStory == null) {
+            storyItemFindStory = livePlayer.storyItem;
         }
-        if (findStory == null) {
+        if (storyItemFindStory == null) {
             return;
         }
-        safeLastFragment.getOrCreateStoryViewer().open(livePlayer.currentAccount, context, findStory, (StoryViewer.PlaceProvider) null);
+        safeLastFragment.getOrCreateStoryViewer().open(livePlayer.currentAccount, context, storyItemFindStory, (StoryViewer.PlaceProvider) null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

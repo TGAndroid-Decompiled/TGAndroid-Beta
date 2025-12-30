@@ -36,7 +36,6 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
-import org.telegram.ui.DataAutoDownloadActivity;
 
 public class DataAutoDownloadActivity extends BaseFragment {
     private boolean animateChecked;
@@ -153,7 +152,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i2, float f, float f2) {
-                DataAutoDownloadActivity.this.lambda$createView$4(view, i2, f, f2);
+                this.f$0.lambda$createView$4(view, i2, f, f2);
             }
         });
         return this.fragmentView;
@@ -248,10 +247,10 @@ public class DataAutoDownloadActivity extends BaseFragment {
                 this.typePreset.preloadMusic = textCheckCell.isChecked();
             }
         }
-        SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
-        edit.putString(str, this.typePreset.toString());
+        SharedPreferences.Editor editorEdit = MessagesController.getMainSettings(this.currentAccount).edit();
+        editorEdit.putString(str, this.typePreset.toString());
         this.currentPresetNum = 3;
-        edit.putInt(str2, 3);
+        editorEdit.putInt(str2, 3);
         int i6 = this.currentType;
         if (i6 == 0) {
             DownloadController.getInstance(this.currentAccount).currentMobilePreset = this.currentPresetNum;
@@ -260,12 +259,12 @@ public class DataAutoDownloadActivity extends BaseFragment {
         } else {
             DownloadController.getInstance(this.currentAccount).currentRoamingPreset = this.currentPresetNum;
         }
-        edit.commit();
+        editorEdit.commit();
         builder.getDismissRunnable().run();
-        RecyclerView.ViewHolder findContainingViewHolder = this.listView.findContainingViewHolder(view);
-        if (findContainingViewHolder != null) {
+        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = this.listView.findContainingViewHolder(view);
+        if (viewHolderFindContainingViewHolder != null) {
             this.animateChecked = true;
-            this.listAdapter.onBindViewHolder(findContainingViewHolder, i3);
+            this.listAdapter.onBindViewHolder(viewHolderFindContainingViewHolder, i3);
             this.animateChecked = false;
         }
         DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
@@ -302,9 +301,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         Collections.sort(this.presets, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$fillPresets$5;
-                lambda$fillPresets$5 = DataAutoDownloadActivity.lambda$fillPresets$5((DownloadController.Preset) obj, (DownloadController.Preset) obj2);
-                return lambda$fillPresets$5;
+                return DataAutoDownloadActivity.lambda$fillPresets$5((DownloadController.Preset) obj, (DownloadController.Preset) obj2);
             }
         });
         int i = this.currentPresetNum;
@@ -325,9 +322,9 @@ public class DataAutoDownloadActivity extends BaseFragment {
         }
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
-            RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(this.usageProgressRow);
-            if (findViewHolderForAdapterPosition != null) {
-                View view = findViewHolderForAdapterPosition.itemView;
+            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(this.usageProgressRow);
+            if (viewHolderFindViewHolderForAdapterPosition != null) {
+                View view = viewHolderFindViewHolderForAdapterPosition.itemView;
                 if (view instanceof SlideChooseView) {
                     updatePresetChoseView((SlideChooseView) view);
                     return;
@@ -338,8 +335,8 @@ public class DataAutoDownloadActivity extends BaseFragment {
     }
 
     public static int lambda$fillPresets$5(DownloadController.Preset preset, DownloadController.Preset preset2) {
-        int typeToIndex = DownloadController.typeToIndex(4);
-        int typeToIndex2 = DownloadController.typeToIndex(8);
+        int iTypeToIndex = DownloadController.typeToIndex(4);
+        int iTypeToIndex2 = DownloadController.typeToIndex(8);
         int i = 0;
         boolean z = false;
         boolean z2 = false;
@@ -380,8 +377,8 @@ public class DataAutoDownloadActivity extends BaseFragment {
             }
             i3++;
         }
-        long j = (z ? preset.sizes[typeToIndex] : 0L) + (z2 ? preset.sizes[typeToIndex2] : 0L) + (preset.preloadStories ? 1L : 0L);
-        long j2 = (z3 ? preset2.sizes[typeToIndex] : 0L) + (z4 ? preset2.sizes[typeToIndex2] : 0L) + (preset2.preloadStories ? 1L : 0L);
+        long j = (z ? preset.sizes[iTypeToIndex] : 0L) + (z2 ? preset.sizes[iTypeToIndex2] : 0L) + (preset.preloadStories ? 1L : 0L);
+        long j2 = (z3 ? preset2.sizes[iTypeToIndex] : 0L) + (z4 ? preset2.sizes[iTypeToIndex2] : 0L) + (preset2.preloadStories ? 1L : 0L);
         if (j > j2) {
             return 1;
         }
@@ -416,7 +413,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         this.typeSectionRow = -1;
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
@@ -431,7 +428,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             String string;
-            String str;
+            String string2;
             int i2;
             StringBuilder sb;
             StringBuilder sb2;
@@ -512,13 +509,13 @@ public class DataAutoDownloadActivity extends BaseFragment {
                         string = LocaleController.getString(R.string.AutoDownloadFiles);
                         i3 = 8;
                     }
-                    str = string;
+                    string2 = string;
                 } else {
-                    str = LocaleController.getString(R.string.AutoDownloadVideos);
+                    string2 = LocaleController.getString(R.string.AutoDownloadVideos);
                     i3 = 4;
                 }
             } else {
-                str = LocaleController.getString(R.string.AutoDownloadPhotos);
+                string2 = LocaleController.getString(R.string.AutoDownloadPhotos);
                 i3 = 1;
             }
             DownloadController.Preset currentMobilePreset = DataAutoDownloadActivity.this.currentType == 0 ? DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentMobilePreset() : DataAutoDownloadActivity.this.currentType == 1 ? DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentWiFiPreset() : DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentRoamingPreset();
@@ -577,7 +574,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             if (DataAutoDownloadActivity.this.animateChecked) {
                 notificationsCheckCell.setChecked(i2 != 0);
             }
-            notificationsCheckCell.setTextAndValueAndCheck(str, sb2, i2 != 0, 0, true, i != DataAutoDownloadActivity.this.storiesRow);
+            notificationsCheckCell.setTextAndValueAndCheck(string2, sb2, i2 != 0, 0, true, i != DataAutoDownloadActivity.this.storiesRow);
         }
 
         @Override
@@ -604,14 +601,14 @@ public class DataAutoDownloadActivity extends BaseFragment {
             } else {
                 DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).currentRoamingPreset = DataAutoDownloadActivity.this.currentPresetNum;
             }
-            SharedPreferences.Editor edit = MessagesController.getMainSettings(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).edit();
-            edit.putInt(DataAutoDownloadActivity.this.key2, DataAutoDownloadActivity.this.currentPresetNum);
-            edit.commit();
+            SharedPreferences.Editor editorEdit = MessagesController.getMainSettings(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).edit();
+            editorEdit.putInt(DataAutoDownloadActivity.this.key2, DataAutoDownloadActivity.this.currentPresetNum);
+            editorEdit.commit();
             DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).checkAutodownloadSettings();
             for (int i2 = 0; i2 < 4; i2++) {
-                RecyclerView.ViewHolder findViewHolderForAdapterPosition = DataAutoDownloadActivity.this.listView.findViewHolderForAdapterPosition(DataAutoDownloadActivity.this.photosRow + i2);
-                if (findViewHolderForAdapterPosition != null) {
-                    DataAutoDownloadActivity.this.listAdapter.onBindViewHolder(findViewHolderForAdapterPosition, DataAutoDownloadActivity.this.photosRow + i2);
+                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = DataAutoDownloadActivity.this.listView.findViewHolderForAdapterPosition(DataAutoDownloadActivity.this.photosRow + i2);
+                if (viewHolderFindViewHolderForAdapterPosition != null) {
+                    DataAutoDownloadActivity.this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, DataAutoDownloadActivity.this.photosRow + i2);
                 }
             }
             DataAutoDownloadActivity.this.wereAnyChanges = true;
@@ -619,25 +616,25 @@ public class DataAutoDownloadActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View shadowSectionCell;
             if (i == 0) {
                 TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
                 textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
                 textCheckCell.setTypeface(AndroidUtilities.bold());
                 textCheckCell.setHeight(56);
-                view = textCheckCell;
+                shadowSectionCell = textCheckCell;
             } else if (i == 1) {
-                view = new ShadowSectionCell(this.mContext);
+                shadowSectionCell = new ShadowSectionCell(this.mContext);
             } else if (i == 2) {
                 View headerCell = new HeaderCell(this.mContext);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = headerCell;
+                shadowSectionCell = headerCell;
             } else if (i == 3) {
                 SlideChooseView slideChooseView = new SlideChooseView(this.mContext);
                 slideChooseView.setCallback(new SlideChooseView.Callback() {
                     @Override
                     public final void onOptionSelected(int i2) {
-                        DataAutoDownloadActivity.ListAdapter.this.lambda$onCreateViewHolder$0(i2);
+                        this.f$0.lambda$onCreateViewHolder$0(i2);
                     }
 
                     @Override
@@ -646,18 +643,18 @@ public class DataAutoDownloadActivity extends BaseFragment {
                     }
                 });
                 slideChooseView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = slideChooseView;
+                shadowSectionCell = slideChooseView;
             } else if (i == 4) {
                 View notificationsCheckCell = new NotificationsCheckCell(this.mContext);
                 notificationsCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = notificationsCheckCell;
+                shadowSectionCell = notificationsCheckCell;
             } else {
                 View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                view = textInfoPrivacyCell;
+                shadowSectionCell = textInfoPrivacyCell;
             }
-            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(view);
+            shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(shadowSectionCell);
         }
 
         @Override

@@ -75,7 +75,7 @@ public class BotInlineKeyboard {
         }
     }
 
-    public static class KeyboardSourceArray implements Source {
+    private static class KeyboardSourceArray implements Source {
         private final Button[][] buttons;
         private final int separators;
 
@@ -173,7 +173,7 @@ public class BotInlineKeyboard {
 
         public Source build() {
             ArrayList<Button[]> arrayList = this.buttons;
-            return new KeyboardSourceArray((Button[][]) arrayList.toArray(new Button[arrayList.size()]), this.separators);
+            return new KeyboardSourceArray((Button[][]) arrayList.toArray(new Button[arrayList.size()][]), this.separators);
         }
     }
 }

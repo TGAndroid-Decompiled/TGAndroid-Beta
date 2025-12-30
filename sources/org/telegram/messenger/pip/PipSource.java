@@ -48,7 +48,7 @@ public class PipSource {
         this.pipPositionObserver = new PipPositionObserver(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public final void onGlobalLayout() {
-                PipSource.this.invalidatePosition();
+                this.f$0.invalidatePosition();
             }
         });
         StringBuilder sb = new StringBuilder();
@@ -114,14 +114,12 @@ public class PipSource {
     }
 
     public PictureInPictureParams buildPictureInPictureParams() {
-        PictureInPictureParams build;
-        PictureInPictureParams.Builder build2 = this.params.build();
-        build2.setActions(this.remoteActions);
+        PictureInPictureParams.Builder builderBuild = this.params.build();
+        builderBuild.setActions(this.remoteActions);
         if (Build.VERSION.SDK_INT >= 31) {
-            build2.setAutoEnterEnabled(PipUtils.useAutoEnterInPictureInPictureMode());
+            builderBuild.setAutoEnterEnabled(PipUtils.useAutoEnterInPictureInPictureMode());
         }
-        build = build2.build();
-        return build;
+        return builderBuild.build();
     }
 
     private void checkAvailable(boolean z) {

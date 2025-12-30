@@ -15,25 +15,25 @@ public class DownsampleAudioResampler implements AudioResampler {
         if (i3 != 1 && i3 != 2) {
             throw new IllegalArgumentException("Illegal use of DownsampleAudioResampler. Channels:" + i3);
         }
-        int remaining = shortBuffer.remaining() / i3;
-        int ceil = (int) Math.ceil(remaining * (i2 / i));
-        int i4 = remaining - ceil;
-        float ratio = ratio(ceil, ceil);
-        float ratio2 = ratio(i4, i4);
-        int i5 = ceil;
+        int iRemaining = shortBuffer.remaining() / i3;
+        int iCeil = (int) Math.ceil(iRemaining * (i2 / i));
+        int i4 = iRemaining - iCeil;
+        float fRatio = ratio(iCeil, iCeil);
+        float fRatio2 = ratio(i4, i4);
+        int i5 = iCeil;
         int i6 = i4;
         while (i5 > 0 && i6 > 0) {
-            if (ratio >= ratio2) {
+            if (fRatio >= fRatio2) {
                 shortBuffer2.put(shortBuffer.get());
                 if (i3 == 2) {
                     shortBuffer2.put(shortBuffer.get());
                 }
                 i5--;
-                ratio = ratio(i5, ceil);
+                fRatio = ratio(i5, iCeil);
             } else {
                 shortBuffer.position(shortBuffer.position() + i3);
                 i6--;
-                ratio2 = ratio(i6, i4);
+                fRatio2 = ratio(i6, i4);
             }
         }
     }

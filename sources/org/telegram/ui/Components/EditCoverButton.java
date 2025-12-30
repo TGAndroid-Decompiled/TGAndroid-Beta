@@ -39,9 +39,9 @@ public class EditCoverButton extends View {
         this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
         this.blur = new PhotoViewerBlurDrawable(photoViewer, photoViewer.blurManager, this).setApplyBounds(false);
         if (z) {
-            Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
-            this.arrowDrawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
+            this.arrowDrawable = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
             return;
         }
         this.arrowDrawable = null;
@@ -80,24 +80,24 @@ public class EditCoverButton extends View {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    EditCoverButton.this.lambda$setImage$1(str);
+                    this.f$0.lambda$setImage$1(str);
                 }
             });
         }
     }
 
     public void lambda$setImage$1(String str) {
-        final Bitmap decodeFile = BitmapFactory.decodeFile(str);
+        final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(str);
         Canvas canvas = new Canvas(Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888));
         Paint paint = new Paint(3);
         canvas.translate(r0.getWidth() / 2.0f, r0.getHeight() / 2.0f);
-        float max = Math.max(r0.getWidth() / decodeFile.getWidth(), r0.getHeight() / decodeFile.getHeight());
-        canvas.scale(max, max);
-        canvas.drawBitmap(decodeFile, (-decodeFile.getWidth()) / 2.0f, (-decodeFile.getHeight()) / 2.0f, paint);
+        float fMax = Math.max(r0.getWidth() / bitmapDecodeFile.getWidth(), r0.getHeight() / bitmapDecodeFile.getHeight());
+        canvas.scale(fMax, fMax);
+        canvas.drawBitmap(bitmapDecodeFile, (-bitmapDecodeFile.getWidth()) / 2.0f, (-bitmapDecodeFile.getHeight()) / 2.0f, paint);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                EditCoverButton.this.lambda$setImage$0(decodeFile);
+                this.f$0.lambda$setImage$0(bitmapDecodeFile);
             }
         });
     }
@@ -107,16 +107,16 @@ public class EditCoverButton extends View {
         float scale = this.bounce.getScale(0.05f);
         canvas.save();
         canvas.scale(scale, scale, getWidth() / 2.0f, getHeight() / 2.0f);
-        boolean hasBitmapImage = this.imageReceiver.hasBitmapImage();
-        int ceil = ((int) Math.ceil(this.text.getCurrentWidth())) + AndroidUtilities.dp(hasBitmapImage ? 30.33f : 11.33f) + AndroidUtilities.dp(19.0f);
-        int dp = AndroidUtilities.dp(24.0f);
-        int width = (getWidth() - ceil) / 2;
+        boolean zHasBitmapImage = this.imageReceiver.hasBitmapImage();
+        int iCeil = ((int) Math.ceil(this.text.getCurrentWidth())) + AndroidUtilities.dp(zHasBitmapImage ? 30.33f : 11.33f) + AndroidUtilities.dp(19.0f);
+        int iDp = AndroidUtilities.dp(24.0f);
+        int width = (getWidth() - iCeil) / 2;
         int height = getHeight() / 2;
-        int i = dp / 2;
-        int i2 = ceil + width;
+        int i = iDp / 2;
+        int i2 = iCeil + width;
         this.blur.setBounds(width, height - i, i2, i + height);
         this.blur.draw(canvas);
-        if (hasBitmapImage) {
+        if (zHasBitmapImage) {
             this.imageBounds.set(AndroidUtilities.dp(0.66f) + width, height - (AndroidUtilities.dp(22.66f) / 2), AndroidUtilities.dp(23.32f) + width, (AndroidUtilities.dp(22.66f) / 2) + height);
             this.imageReceiver.setImageCoords(this.imageBounds);
             this.imageReceiver.draw(canvas);
@@ -134,11 +134,11 @@ public class EditCoverButton extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = this.blur.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        boolean zContains = this.blur.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
         if (motionEvent.getAction() == 0) {
-            this.bounce.setPressed(contains);
+            this.bounce.setPressed(zContains);
         } else if (motionEvent.getAction() == 2) {
-            if (!contains) {
+            if (!zContains) {
                 this.bounce.setPressed(false);
             }
         } else if (motionEvent.getAction() == 3) {

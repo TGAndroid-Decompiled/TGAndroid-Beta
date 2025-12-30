@@ -38,9 +38,7 @@ public class VideoFramesRewinder {
     private final TreeSet<Frame> frames = new TreeSet<>(new Comparator() {
         @Override
         public final int compare(Object obj, Object obj2) {
-            int lambda$new$0;
-            lambda$new$0 = VideoFramesRewinder.lambda$new$0((VideoFramesRewinder.Frame) obj, (VideoFramesRewinder.Frame) obj2);
-            return lambda$new$0;
+            return VideoFramesRewinder.lambda$new$0((VideoFramesRewinder.Frame) obj, (VideoFramesRewinder.Frame) obj2);
         }
     });
     private AtomicBoolean stop = new AtomicBoolean(false);
@@ -49,7 +47,7 @@ public class VideoFramesRewinder {
     private Runnable prepareRunnable = new Runnable() {
         @Override
         public final void run() {
-            VideoFramesRewinder.this.lambda$new$2();
+            this.f$0.lambda$new$2();
         }
     };
 
@@ -96,7 +94,7 @@ public class VideoFramesRewinder {
         return (int) (frame.position - frame2.position);
     }
 
-    public class Frame {
+    class Frame {
         Bitmap bitmap;
         long position;
 
@@ -105,82 +103,7 @@ public class VideoFramesRewinder {
     }
 
     public void lambda$new$2() {
-        Frame frame;
-        int i;
-        int i2;
-        int i3;
-        final ArrayList arrayList = new ArrayList();
-        final long currentTimeMillis = System.currentTimeMillis();
-        int[] iArr = this.meta;
-        int i4 = iArr[4];
-        int i5 = 0;
-        int min = Math.min(this.w / 4, iArr[0]);
-        int min2 = Math.min(this.h / 4, this.meta[1]);
-        int i6 = this.maxFrameSide;
-        if (min > i6 || min2 > i6) {
-            float max = i6 / Math.max(min, min2);
-            min = (int) (min * max);
-            min2 = (int) (min2 * max);
-        }
-        AnimatedFileDrawable.seekToMs(this.ptr, this.prepareToMs - (this.prepareWithSpeed * 350.0f), this.meta, false);
-        long j = this.meta[3];
-        int i7 = 0;
-        int i8 = 0;
-        for (char c = 3; this.meta[c] <= this.until.get() && i7 < this.maxFramesCount && !this.stop.get(); c = 3) {
-            float f = 1000.0f / i4;
-            long j2 = j;
-            long j3 = ((float) j) + (this.prepareWithSpeed * f);
-            if (!this.freeFrames.isEmpty()) {
-                frame = this.freeFrames.remove(i5);
-            } else {
-                frame = new Frame();
-            }
-            Bitmap bitmap = frame.bitmap;
-            if (bitmap == null || bitmap.getWidth() != min || frame.bitmap.getHeight() != min2) {
-                AndroidUtilities.recycleBitmap(frame.bitmap);
-                try {
-                    frame.bitmap = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
-                } catch (OutOfMemoryError unused) {
-                    FileLog.d("[VideoFramesRewinder] failed to create bitmap: out of memory");
-                }
-            }
-            while (true) {
-                i = i7;
-                i2 = i4;
-                i3 = min2;
-                if (this.meta[3] + ((long) Math.ceil(f)) >= j3) {
-                    break;
-                }
-                AnimatedFileDrawable.getVideoFrame(this.ptr, null, this.meta, 0, true, 0.0f, r8[4], false);
-                i4 = i2;
-                i7 = i;
-                min2 = i3;
-            }
-            long j4 = this.ptr;
-            Bitmap bitmap2 = frame.bitmap;
-            if (AnimatedFileDrawable.getVideoFrame(j4, bitmap2, this.meta, bitmap2.getRowBytes(), true, 0.0f, this.meta[4], false) == 0) {
-                i8++;
-                if (i8 > 6) {
-                    break;
-                }
-            } else {
-                long j5 = this.meta[3];
-                frame.position = j5;
-                arrayList.add(frame);
-                j2 = j5;
-            }
-            i7 = i + 1;
-            i4 = i2;
-            j = j2;
-            min2 = i3;
-            i5 = 0;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VideoFramesRewinder.this.lambda$new$1(arrayList, currentTimeMillis);
-            }
-        });
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoFramesRewinder.lambda$new$2():void");
     }
 
     public void lambda$new$1(ArrayList arrayList, long j) {
@@ -237,7 +160,7 @@ public class VideoFramesRewinder {
             Frame next = it.next();
             arrayList.add(Long.valueOf(next.position));
             float f2 = 25.0f * f;
-            if (((float) Math.abs(next.position - j)) < f2) {
+            if (Math.abs(next.position - j) < f2) {
                 if (this.currentFrame != next) {
                     FileLog.d("[VideoFramesRewinder] found a frame " + next.position + "ms to fit to " + j + "ms from " + this.frames.size() + " frames");
                     this.currentFrame = next;
@@ -253,10 +176,10 @@ public class VideoFramesRewinder {
                     }
                 }
                 for (int size = arrayList.size() - 2; size >= 0; size--) {
-                    long longValue = ((Long) arrayList.get(size + 1)).longValue();
-                    long longValue2 = ((Long) arrayList.get(size)).longValue();
-                    if (((float) Math.abs(longValue - longValue2)) > f2) {
-                        prepare(longValue2);
+                    long jLongValue = ((Long) arrayList.get(size + 1)).longValue();
+                    long jLongValue2 = ((Long) arrayList.get(size)).longValue();
+                    if (Math.abs(jLongValue - jLongValue2) > f2) {
+                        prepare(jLongValue2);
                         return;
                     }
                 }

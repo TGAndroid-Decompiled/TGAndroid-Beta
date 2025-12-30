@@ -22,26 +22,26 @@ public abstract class IntrinsicsKt__IntrinsicsJvmKt {
     public static Continuation createCoroutineUnintercepted(final Function2 function2, final Object obj, Continuation completion) {
         Intrinsics.checkNotNullParameter(function2, "<this>");
         Intrinsics.checkNotNullParameter(completion, "completion");
-        final Continuation probeCoroutineCreated = DebugProbesKt.probeCoroutineCreated(completion);
+        final Continuation continuationProbeCoroutineCreated = DebugProbesKt.probeCoroutineCreated(completion);
         if (function2 instanceof BaseContinuationImpl) {
-            return ((BaseContinuationImpl) function2).create(obj, probeCoroutineCreated);
+            return ((BaseContinuationImpl) function2).create(obj, continuationProbeCoroutineCreated);
         }
-        final CoroutineContext context = probeCoroutineCreated.getContext();
+        final CoroutineContext context = continuationProbeCoroutineCreated.getContext();
         if (context == EmptyCoroutineContext.INSTANCE) {
-            return new RestrictedContinuationImpl(probeCoroutineCreated, function2, obj) {
+            return new RestrictedContinuationImpl(continuationProbeCoroutineCreated, function2, obj) {
                 final Object $receiver$inlined;
                 final Function2 $this_createCoroutineUnintercepted$inlined;
                 private int label;
 
                 {
-                    super(probeCoroutineCreated);
+                    super(continuationProbeCoroutineCreated);
                     this.$this_createCoroutineUnintercepted$inlined = function2;
                     this.$receiver$inlined = obj;
-                    Intrinsics.checkNotNull(probeCoroutineCreated, "null cannot be cast to non-null type kotlin.coroutines.Continuation<kotlin.Any?>");
+                    Intrinsics.checkNotNull(continuationProbeCoroutineCreated, "null cannot be cast to non-null type kotlin.coroutines.Continuation<kotlin.Any?>");
                 }
 
                 @Override
-                protected Object invokeSuspend(Object obj2) {
+                protected Object invokeSuspend(Object obj2) throws Throwable {
                     int i = this.label;
                     if (i == 0) {
                         this.label = 1;
@@ -58,20 +58,20 @@ public abstract class IntrinsicsKt__IntrinsicsJvmKt {
                 }
             };
         }
-        return new ContinuationImpl(probeCoroutineCreated, context, function2, obj) {
+        return new ContinuationImpl(continuationProbeCoroutineCreated, context, function2, obj) {
             final Object $receiver$inlined;
             final Function2 $this_createCoroutineUnintercepted$inlined;
             private int label;
 
             {
-                super(probeCoroutineCreated, context);
+                super(continuationProbeCoroutineCreated, context);
                 this.$this_createCoroutineUnintercepted$inlined = function2;
                 this.$receiver$inlined = obj;
-                Intrinsics.checkNotNull(probeCoroutineCreated, "null cannot be cast to non-null type kotlin.coroutines.Continuation<kotlin.Any?>");
+                Intrinsics.checkNotNull(continuationProbeCoroutineCreated, "null cannot be cast to non-null type kotlin.coroutines.Continuation<kotlin.Any?>");
             }
 
             @Override
-            protected Object invokeSuspend(Object obj2) {
+            protected Object invokeSuspend(Object obj2) throws Throwable {
                 int i = this.label;
                 if (i == 0) {
                     this.label = 1;
@@ -90,10 +90,10 @@ public abstract class IntrinsicsKt__IntrinsicsJvmKt {
     }
 
     public static Continuation intercepted(Continuation continuation) {
-        Continuation intercepted;
+        Continuation continuationIntercepted;
         Intrinsics.checkNotNullParameter(continuation, "<this>");
         ContinuationImpl continuationImpl = continuation instanceof ContinuationImpl ? (ContinuationImpl) continuation : null;
-        return (continuationImpl == null || (intercepted = continuationImpl.intercepted()) == null) ? continuation : intercepted;
+        return (continuationImpl == null || (continuationIntercepted = continuationImpl.intercepted()) == null) ? continuation : continuationIntercepted;
     }
 
     private static final Continuation createSimpleCoroutineForSuspendFunction$IntrinsicsKt__IntrinsicsJvmKt(final Continuation continuation) {
@@ -106,7 +106,7 @@ public abstract class IntrinsicsKt__IntrinsicsJvmKt {
                 }
 
                 @Override
-                protected Object invokeSuspend(Object obj) {
+                protected Object invokeSuspend(Object obj) throws Throwable {
                     ResultKt.throwOnFailure(obj);
                     return obj;
                 }
@@ -119,7 +119,7 @@ public abstract class IntrinsicsKt__IntrinsicsJvmKt {
             }
 
             @Override
-            protected Object invokeSuspend(Object obj) {
+            protected Object invokeSuspend(Object obj) throws Throwable {
                 ResultKt.throwOnFailure(obj);
                 return obj;
             }

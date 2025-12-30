@@ -34,7 +34,7 @@ public abstract class HashtagHistoryView extends FrameLayout {
 
     protected abstract void onClick(String str);
 
-    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+    protected void onScrolled(RecyclerView recyclerView, int i, int i2) {
     }
 
     public HashtagHistoryView(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
@@ -45,19 +45,17 @@ public abstract class HashtagHistoryView extends FrameLayout {
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                HashtagHistoryView.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                HashtagHistoryView.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                boolean onLongClick;
-                onLongClick = HashtagHistoryView.this.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                return Boolean.valueOf(onLongClick);
+                return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
             }
         }, resourcesProvider);
         this.recyclerView = universalRecyclerView;
@@ -174,7 +172,7 @@ public abstract class HashtagHistoryView extends FrameLayout {
         builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                HashtagHistoryView.this.lambda$onLongClick$0(str, alertDialog, i3);
+                this.f$0.lambda$onLongClick$0(str, alertDialog, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);

@@ -4,8 +4,8 @@ import kotlin.text.StringsKt;
 
 public abstract class SystemPropsKt__SystemProps_commonKt {
     public static final boolean systemProp(String str, boolean z) {
-        String systemProp = SystemPropsKt.systemProp(str);
-        return systemProp != null ? Boolean.parseBoolean(systemProp) : z;
+        String strSystemProp = SystemPropsKt.systemProp(str);
+        return strSystemProp != null ? Boolean.parseBoolean(strSystemProp) : z;
     }
 
     public static int systemProp$default(String str, int i, int i2, int i3, int i4, Object obj) {
@@ -34,23 +34,23 @@ public abstract class SystemPropsKt__SystemProps_commonKt {
     }
 
     public static final long systemProp(String str, long j, long j2, long j3) {
-        String systemProp = SystemPropsKt.systemProp(str);
-        if (systemProp == null) {
+        String strSystemProp = SystemPropsKt.systemProp(str);
+        if (strSystemProp == null) {
             return j;
         }
-        Long longOrNull = StringsKt.toLongOrNull(systemProp);
+        Long longOrNull = StringsKt.toLongOrNull(strSystemProp);
         if (longOrNull == null) {
-            throw new IllegalStateException(("System property '" + str + "' has unrecognized value '" + systemProp + '\'').toString());
+            throw new IllegalStateException(("System property '" + str + "' has unrecognized value '" + strSystemProp + '\'').toString());
         }
-        long longValue = longOrNull.longValue();
-        if (j2 <= longValue && longValue <= j3) {
-            return longValue;
+        long jLongValue = longOrNull.longValue();
+        if (j2 <= jLongValue && jLongValue <= j3) {
+            return jLongValue;
         }
-        throw new IllegalStateException(("System property '" + str + "' should be in range " + j2 + ".." + j3 + ", but is '" + longValue + '\'').toString());
+        throw new IllegalStateException(("System property '" + str + "' should be in range " + j2 + ".." + j3 + ", but is '" + jLongValue + '\'').toString());
     }
 
     public static final String systemProp(String str, String str2) {
-        String systemProp = SystemPropsKt.systemProp(str);
-        return systemProp == null ? str2 : systemProp;
+        String strSystemProp = SystemPropsKt.systemProp(str);
+        return strSystemProp == null ? str2 : strSystemProp;
     }
 }

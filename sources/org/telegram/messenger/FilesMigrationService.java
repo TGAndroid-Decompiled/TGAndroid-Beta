@@ -19,13 +19,13 @@ import com.microsoft.appcenter.distribute.Distribute$$ExternalSyntheticApiModelO
 import j$.util.function.Consumer$CC;
 import j$.util.stream.Stream;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.messenger.FilesMigrationService;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -54,14 +54,14 @@ public class FilesMigrationService extends Service {
     public int onStartCommand(Intent intent, int i, int i2) {
         NotificationsController.checkOtherNotificationsChannel();
         Distribute$$ExternalSyntheticApiModelOutline1.m();
-        Notification build = Distribute$$ExternalSyntheticApiModelOutline0.m(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
+        Notification notificationBuild = Distribute$$ExternalSyntheticApiModelOutline0.m(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
         isRunning = true;
         new AnonymousClass1().start();
-        startForeground(301, build);
+        startForeground(301, notificationBuild);
         return super.onStartCommand(intent, i, i2);
     }
 
-    public class AnonymousClass1 extends Thread {
+    class AnonymousClass1 extends Thread {
         AnonymousClass1() {
         }
 
@@ -71,7 +71,7 @@ public class FilesMigrationService extends Service {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FilesMigrationService.AnonymousClass1.this.lambda$run$0();
+                    this.f$0.lambda$run$0();
                 }
             });
         }
@@ -104,46 +104,43 @@ public class FilesMigrationService extends Service {
         File file2 = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
         File file3 = new File(externalStorageDirectory, "Telegram");
         this.totalFilesCount = getFilesCount(file3);
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         if (file3.canRead() && file3.canWrite()) {
             moveDirectory(file3, file2);
         }
-        FileLog.d("move time = " + (System.currentTimeMillis() - currentTimeMillis));
+        FileLog.d("move time = " + (System.currentTimeMillis() - jCurrentTimeMillis));
         ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
     }
 
     private int getFilesCount(File file) {
-        File[] listFiles;
-        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+        File[] fileArrListFiles;
+        if (!file.exists() || (fileArrListFiles = file.listFiles()) == null) {
             return 0;
         }
-        int i = 0;
-        for (int i2 = 0; i2 < listFiles.length; i2++) {
-            i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
+        int filesCount = 0;
+        for (int i = 0; i < fileArrListFiles.length; i++) {
+            filesCount = fileArrListFiles[i].isDirectory() ? filesCount + getFilesCount(fileArrListFiles[i]) : filesCount + 1;
         }
-        return i;
+        return filesCount;
     }
 
     private void moveDirectory(File file, final File file2) {
-        Path path;
-        Stream convert;
         if (file.exists()) {
             if (file2.exists() || file2.mkdir()) {
                 try {
-                    path = file.toPath();
-                    convert = Stream.VivifiedWrapper.convert(Files.list(path));
+                    Stream streamConvert = Stream.VivifiedWrapper.convert(Files.list(file.toPath()));
                     try {
-                        convert.forEach(new Consumer() {
+                        streamConvert.forEach(new Consumer() {
                             @Override
-                            public final void p(Object obj) {
-                                FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
+                            public final void p(Object obj) throws IOException {
+                                this.f$0.lambda$moveDirectory$0(file2, (Path) obj);
                             }
 
                             public Consumer andThen(Consumer consumer) {
                                 return Consumer$CC.$default$andThen(this, consumer);
                             }
                         });
-                        convert.close();
+                        streamConvert.close();
                     } finally {
                     }
                 } catch (Exception e) {
@@ -158,30 +155,18 @@ public class FilesMigrationService extends Service {
         }
     }
 
-    public void lambda$moveDirectory$0(File file, Path path) {
-        Path fileName;
-        String path2;
-        boolean isDirectory;
-        File file2;
-        Path path3;
-        File file3;
-        fileName = path.getFileName();
-        path2 = fileName.toString();
-        File file4 = new File(file, path2);
-        isDirectory = Files.isDirectory(path, new LinkOption[0]);
-        if (isDirectory) {
-            file3 = path.toFile();
-            moveDirectory(file3, file4);
+    public void lambda$moveDirectory$0(File file, Path path) throws IOException {
+        File file2 = new File(file, path.getFileName().toString());
+        if (Files.isDirectory(path, new LinkOption[0])) {
+            moveDirectory(path.toFile(), file2);
             return;
         }
         try {
-            path3 = file4.toPath();
-            Files.move(path, path3, new CopyOption[0]);
+            Files.move(path, file2.toPath(), new CopyOption[0]);
         } catch (Exception e) {
             FileLog.e((Throwable) e, false);
             try {
-                file2 = path.toFile();
-                file2.delete();
+                path.toFile().delete();
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
@@ -196,7 +181,7 @@ public class FilesMigrationService extends Service {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FilesMigrationService.this.lambda$updateProgress$1(i);
+                    this.f$0.lambda$updateProgress$1(i);
                 }
             });
         }
@@ -208,11 +193,9 @@ public class FilesMigrationService extends Service {
     }
 
     public static void checkBottomSheet(BaseFragment baseFragment) {
-        boolean isExternalStorageLegacy;
         ArrayList<File> rootDirs;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
-        isExternalStorageLegacy = Environment.isExternalStorageLegacy();
-        if (!isExternalStorageLegacy || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
+        if (!Environment.isExternalStorageLegacy() || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
             return;
         }
         if (Build.VERSION.SDK_INT >= 30) {
@@ -249,7 +232,7 @@ public class FilesMigrationService extends Service {
         BaseFragment fragment;
 
         @Override
-        public boolean canDismissWithSwipe() {
+        protected boolean canDismissWithSwipe() {
             return false;
         }
 
@@ -300,7 +283,7 @@ public class FilesMigrationService extends Service {
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilesMigrationService.FilesMigrationBottomSheet.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
             ScrollView scrollView = new ScrollView(parentActivity);
@@ -313,7 +296,32 @@ public class FilesMigrationService extends Service {
         }
 
         public void migrateOldFolder() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilesMigrationService.FilesMigrationBottomSheet.migrateOldFolder():void");
+            Activity parentActivity = this.fragment.getParentActivity();
+            boolean z = false;
+            boolean z2 = parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0;
+            int i = Build.VERSION.SDK_INT;
+            if ((i >= 33 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0) || (i < 33 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0)) {
+                z = true;
+            }
+            if (!z || !z2) {
+                ArrayList arrayList = new ArrayList();
+                if (!z) {
+                    if (i >= 33) {
+                        arrayList.add("android.permission.READ_MEDIA_IMAGES");
+                        arrayList.add("android.permission.READ_MEDIA_VIDEO");
+                        arrayList.add("android.permission.READ_MEDIA_AUDIO");
+                    } else {
+                        arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
+                    }
+                }
+                if (!z2) {
+                    arrayList.add("android.permission.WRITE_EXTERNAL_STORAGE");
+                }
+                parentActivity.requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 4);
+                return;
+            }
+            FilesMigrationService.start();
+            lambda$new$0();
         }
 
         @Override

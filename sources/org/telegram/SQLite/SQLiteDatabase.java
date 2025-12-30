@@ -25,7 +25,7 @@ public class SQLiteDatabase {
         this.sqliteHandle = opendb(str, ApplicationLoader.getFilesDirFixed().getPath());
     }
 
-    public boolean tableExists(String str) {
+    public boolean tableExists(String str) throws SQLiteException {
         checkOpened();
         return executeInt("SELECT rowid FROM sqlite_master WHERE type='table' AND name=?;", str) != null;
     }
@@ -36,31 +36,31 @@ public class SQLiteDatabase {
 
     public Integer executeInt(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor queryFinalized = queryFinalized(str, objArr);
+        SQLiteCursor sQLiteCursorQueryFinalized = queryFinalized(str, objArr);
         try {
-            if (queryFinalized.next()) {
-                return Integer.valueOf(queryFinalized.intValue(0));
+            if (sQLiteCursorQueryFinalized.next()) {
+                return Integer.valueOf(sQLiteCursorQueryFinalized.intValue(0));
             }
-            queryFinalized.dispose();
+            sQLiteCursorQueryFinalized.dispose();
             return null;
         } finally {
-            queryFinalized.dispose();
+            sQLiteCursorQueryFinalized.dispose();
         }
     }
 
-    public void explainQuery(String str, Object... objArr) {
+    public void explainQuery(String str, Object... objArr) throws SQLiteException {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, "EXPLAIN QUERY PLAN " + str).query(objArr);
-        while (query.next()) {
-            int columnCount = query.getColumnCount();
+        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, "EXPLAIN QUERY PLAN " + str).query(objArr);
+        while (sQLiteCursorQuery.next()) {
+            int columnCount = sQLiteCursorQuery.getColumnCount();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < columnCount; i++) {
-                sb.append(query.stringValue(i));
+                sb.append(sQLiteCursorQuery.stringValue(i));
                 sb.append(", ");
             }
             FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
         }
-        query.dispose();
+        sQLiteCursorQuery.dispose();
     }
 
     public SQLiteCursor queryFinalized(String str, Object... objArr) {
@@ -82,13 +82,13 @@ public class SQLiteDatabase {
         }
     }
 
-    void checkOpened() {
+    void checkOpened() throws SQLiteException {
         if (!this.isOpen) {
             throw new SQLiteException("Database closed");
         }
     }
 
-    public void finalize() {
+    public void finalize() throws Throwable {
         super.finalize();
         close();
     }

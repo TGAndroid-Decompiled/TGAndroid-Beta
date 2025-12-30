@@ -28,7 +28,7 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
     }
 
     @Override
-    public boolean hasNext() {
+    public boolean hasNext() throws Throwable {
         while (true) {
             int i = this.state;
             if (i != 0) {
@@ -59,7 +59,7 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
     }
 
     @Override
-    public Object next() {
+    public Object next() throws Throwable {
         int i = this.state;
         if (i == 0 || i == 1) {
             return nextNotReady();
@@ -110,7 +110,7 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
     }
 
     @Override
-    public void resumeWith(Object obj) {
+    public void resumeWith(Object obj) throws Throwable {
         ResultKt.throwOnFailure(obj);
         this.state = 4;
     }

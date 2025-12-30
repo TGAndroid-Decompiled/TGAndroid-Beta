@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 import org.telegram.ui.ActionBar.ThemeColors;
@@ -29,7 +30,7 @@ public class ChartData {
     public int yTickFormatter;
     public int yTooltipFormatter;
 
-    public ChartData() {
+    protected ChartData() {
         this.lines = new ArrayList();
         this.maxValue = 0L;
         this.minValue = Long.MAX_VALUE;
@@ -41,7 +42,7 @@ public class ChartData {
         this.yTooltipFormatter = 0;
     }
 
-    public ChartData(JSONObject jSONObject) {
+    public ChartData(JSONObject jSONObject) throws JSONException {
         this.lines = new ArrayList();
         this.maxValue = 0L;
         this.minValue = Long.MAX_VALUE;
@@ -92,8 +93,8 @@ public class ChartData {
             }
             measure();
         }
-        JSONObject optJSONObject = jSONObject.optJSONObject("colors");
-        JSONObject optJSONObject2 = jSONObject.optJSONObject("names");
+        JSONObject jSONObjectOptJSONObject = jSONObject.optJSONObject("colors");
+        JSONObject jSONObjectOptJSONObject2 = jSONObject.optJSONObject("names");
         try {
             this.xTickFormatter = getFormatter(jSONObject.getString("xTickFormatter"));
             this.yTickFormatter = getFormatter(jSONObject.getString("yTickFormatter"));
@@ -101,22 +102,22 @@ public class ChartData {
             this.yTooltipFormatter = getFormatter(jSONObject.getString("yTooltipFormatter"));
         } catch (Exception unused) {
         }
-        Pattern compile = Pattern.compile("(.*)(#.*)");
+        Pattern patternCompile = Pattern.compile("(.*)(#.*)");
         for (int i6 = 0; i6 < this.lines.size(); i6++) {
             Line line2 = (Line) this.lines.get(i6);
-            if (optJSONObject != null) {
-                Matcher matcher = compile.matcher(optJSONObject.getString(line2.id));
+            if (jSONObjectOptJSONObject != null) {
+                Matcher matcher = patternCompile.matcher(jSONObjectOptJSONObject.getString(line2.id));
                 if (matcher.matches()) {
                     if (!TextUtils.isEmpty(matcher.group(1))) {
                         line2.colorKey = ThemeColors.stringKeyToInt("statisticChartLine_" + matcher.group(1).toLowerCase());
                     }
-                    int parseColor = Color.parseColor(matcher.group(2));
-                    line2.color = parseColor;
-                    line2.colorDark = ColorUtils.blendARGB(-1, parseColor, 0.85f);
+                    int color = Color.parseColor(matcher.group(2));
+                    line2.color = color;
+                    line2.colorDark = ColorUtils.blendARGB(-1, color, 0.85f);
                 }
             }
-            if (optJSONObject2 != null) {
-                line2.name = optJSONObject2.getString(line2.id);
+            if (jSONObjectOptJSONObject2 != null) {
+                line2.name = jSONObjectOptJSONObject2.getString(line2.id);
             }
         }
     }
@@ -131,7 +132,7 @@ public class ChartData {
         return str.contains("XTR") ? 2 : 0;
     }
 
-    public void measure() {
+    protected void measure() {
         SimpleDateFormat simpleDateFormat;
         long[] jArr = this.x;
         int length = jArr.length;
@@ -146,7 +147,7 @@ public class ChartData {
             fArr[0] = 1.0f;
         } else {
             for (int i = 0; i < length; i++) {
-                this.xPercentage[i] = ((float) (this.x[i] - j)) / ((float) (j2 - j));
+                this.xPercentage[i] = (this.x[i] - j) / (j2 - j);
             }
         }
         for (int i2 = 0; i2 < this.lines.size(); i2++) {
@@ -171,9 +172,9 @@ public class ChartData {
         while (true) {
             String[] strArr = this.daysLookup;
             if (i3 >= strArr.length) {
-                float f = (float) this.timeStep;
+                float f = this.timeStep;
                 long[] jArr2 = this.x;
-                this.oneDayPercentage = f / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
+                this.oneDayPercentage = f / (jArr2[jArr2.length - 1] - jArr2[0]);
                 return;
             } else {
                 if (this.timeStep == 1) {

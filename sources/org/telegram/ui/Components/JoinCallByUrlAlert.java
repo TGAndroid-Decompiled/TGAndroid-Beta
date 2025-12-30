@@ -102,7 +102,7 @@ public abstract class JoinCallByUrlAlert extends BottomSheet {
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinCallByUrlAlert.this.lambda$new$0(view);
+                this.f$0.lambda$new$0(view);
             }
         });
         linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 30, 0, 0));

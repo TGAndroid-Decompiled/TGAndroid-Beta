@@ -53,7 +53,7 @@ public abstract class StickersDialogs {
         frameLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(20.0f), 0);
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
             }
         };
@@ -69,9 +69,7 @@ public abstract class StickersDialogs {
         editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new InputFilter() {
             @Override
             public final CharSequence filter(CharSequence charSequence, int i2, int i3, Spanned spanned, int i4, int i5) {
-                CharSequence lambda$showNameEditorDialog$0;
-                lambda$showNameEditorDialog$0 = StickersDialogs.lambda$showNameEditorDialog$0(EditTextBoldCursor.this, charSequence, i2, i3, spanned, i4, i5);
-                return lambda$showNameEditorDialog$0;
+                return StickersDialogs.lambda$showNameEditorDialog$0(editTextBoldCursor, charSequence, i2, i3, spanned, i4, i5);
             }
         }});
         editTextBoldCursor.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), getThemedColor(Theme.key_text_RedRegular, resourcesProvider));
@@ -98,7 +96,7 @@ public abstract class StickersDialogs {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                NumberTextView.this.setNumber(50 - Character.codePointCount(editable, 0, editable.length()), true);
+                numberTextView.setNumber(50 - Character.codePointCount(editable, 0, editable.length()), true);
                 editTextBoldCursor.setErrorText(null);
             }
         });
@@ -111,23 +109,21 @@ public abstract class StickersDialogs {
         builder.setPositiveButton(LocaleController.getString(z ? R.string.Done : R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                StickersDialogs.lambda$showNameEditorDialog$2(EditTextBoldCursor.this, callback2, context, z, alertDialog, i2);
+                StickersDialogs.lambda$showNameEditorDialog$2(editTextBoldCursor, callback2, context, z, alertDialog, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                StickersDialogs.lambda$showNameEditorDialog$3(EditTextBoldCursor.this, alertDialog, i2);
+                StickersDialogs.lambda$showNameEditorDialog$3(editTextBoldCursor, alertDialog, i2);
             }
         });
-        final AlertDialog show = builder.show();
-        show.setDismissDialogByButtons(false);
+        final AlertDialog alertDialogShow = builder.show();
+        alertDialogShow.setDismissDialogByButtons(false);
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                boolean lambda$showNameEditorDialog$4;
-                lambda$showNameEditorDialog$4 = StickersDialogs.lambda$showNameEditorDialog$4(AlertDialog.this, textView, i2, keyEvent);
-                return lambda$showNameEditorDialog$4;
+                return StickersDialogs.lambda$showNameEditorDialog$4(alertDialogShow, textView, i2, keyEvent);
             }
         });
     }
@@ -137,8 +133,8 @@ public abstract class StickersDialogs {
     }
 
     public static void lambda$showNameEditorDialog$2(final EditTextBoldCursor editTextBoldCursor, Utilities.Callback2 callback2, Context context, boolean z, final AlertDialog alertDialog, int i) {
-        String trim = editTextBoldCursor.getText().toString().trim();
-        if (TextUtils.isEmpty(trim) || TextUtils.isEmpty(AndroidUtilities.translitSafe(trim.toString()))) {
+        String strTrim = editTextBoldCursor.getText().toString().trim();
+        if (TextUtils.isEmpty(strTrim) || TextUtils.isEmpty(AndroidUtilities.translitSafe(strTrim.toString()))) {
             editTextBoldCursor.setErrorText(".");
             AndroidUtilities.shakeViewSpring(editTextBoldCursor, -6.0f);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
@@ -151,10 +147,10 @@ public abstract class StickersDialogs {
         }
         final AlertDialog alertDialog2 = new AlertDialog(context, 3, z ? null : new DarkThemeResourceProvider());
         alertDialog2.showDelayed(250L);
-        callback2.run(trim, new Utilities.Callback() {
+        callback2.run(strTrim, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickersDialogs.lambda$showNameEditorDialog$1(AlertDialog.this, alertDialog, editTextBoldCursor, (Boolean) obj);
+                StickersDialogs.lambda$showNameEditorDialog$1(alertDialog2, alertDialog, editTextBoldCursor, (Boolean) obj);
             }
         });
     }
@@ -188,14 +184,14 @@ public abstract class StickersDialogs {
         if (stickerSet == null) {
             return;
         }
-        AlertDialog create = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StickersDeleteStickerSetTitle)).setMessage(LocaleController.getString(R.string.StickersDeleteStickerSetDescription)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StickersDeleteStickerSetTitle)).setMessage(LocaleController.getString(R.string.StickersDeleteStickerSetDescription)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
                 StickersDialogs.lambda$showDeleteForEveryOneDialog$7(runnable, stickerSet, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
-        create.show();
-        TextView textView = (TextView) create.getButton(-1);
+        alertDialogCreate.show();
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
         if (textView != null) {
             textView.setTextColor(getThemedColor(Theme.key_text_RedBold, resourcesProvider));
         }
@@ -229,9 +225,7 @@ public abstract class StickersDialogs {
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
-                Boolean lambda$openStickerPickerDialog$11;
-                lambda$openStickerPickerDialog$11 = StickersDialogs.lambda$openStickerPickerDialog$11(i, context, tL_messages_stickerSet, obj, (TLRPC.Document) obj2, (Boolean) obj3);
-                return lambda$openStickerPickerDialog$11;
+                return StickersDialogs.lambda$openStickerPickerDialog$11(i, context, tL_messages_stickerSet, obj, (TLRPC.Document) obj2, (Boolean) obj3);
             }
         });
         if (baseFragment.visibleDialog != null) {
@@ -242,8 +236,8 @@ public abstract class StickersDialogs {
     }
 
     public static Boolean lambda$openStickerPickerDialog$11(final int i, Context context, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final Object obj, final TLRPC.Document document, Boolean bool) {
-        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i));
-        String str = TextUtils.isEmpty(findAnimatedEmojiEmoticon) ? "😀" : findAnimatedEmojiEmoticon;
+        String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i));
+        String str = TextUtils.isEmpty(strFindAnimatedEmojiEmoticon) ? "😀" : strFindAnimatedEmojiEmoticon;
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         final TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
         tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(tL_messages_stickerSet.set);
@@ -251,7 +245,7 @@ public abstract class StickersDialogs {
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickersDialogs.lambda$openStickerPickerDialog$10(AlertDialog.this, i, document, obj, tL_stickers_addStickerToSet, tLObject, tL_error);
+                StickersDialogs.lambda$openStickerPickerDialog$10(alertDialog, i, document, obj, tL_stickers_addStickerToSet, tLObject, tL_error);
             }
         });
         try {
@@ -265,7 +259,7 @@ public abstract class StickersDialogs {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersDialogs.lambda$openStickerPickerDialog$9(AlertDialog.this, tLObject, i, document, tL_error, obj, tL_stickers_addStickerToSet);
+                StickersDialogs.lambda$openStickerPickerDialog$9(alertDialog, tLObject, i, document, tL_error, obj, tL_stickers_addStickerToSet);
             }
         });
     }
@@ -281,7 +275,7 @@ public abstract class StickersDialogs {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersDialogs.lambda$openStickerPickerDialog$8(TLObject.this, document);
+                    StickersDialogs.lambda$openStickerPickerDialog$8(tLObject, document);
                 }
             }, 250L);
             return;
@@ -325,13 +319,13 @@ public abstract class StickersDialogs {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersDialogs.lambda$showAddStickerDialog$12(ActionBarPopupWindow.this, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
+                StickersDialogs.lambda$showAddStickerDialog$12(actionBarPopupWindow, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
             }
         };
         for (int i = 0; i < arrayList.size(); i++) {
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i)).intValue(), (CharSequence) arrayList.get(i), false, resourcesProvider);
-            addItem.setTag(Integer.valueOf(i));
-            addItem.setOnClickListener(onClickListener);
+            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i)).intValue(), (CharSequence) arrayList.get(i), false, resourcesProvider);
+            actionBarMenuSubItemAddItem.setTag(Integer.valueOf(i));
+            actionBarMenuSubItemAddItem.setOnClickListener(onClickListener);
         }
         actionBarPopupWindow.setDismissAnimationDuration(100);
         actionBarPopupWindow.setScaleOut(true);
@@ -349,9 +343,9 @@ public abstract class StickersDialogs {
     }
 
     public static void lambda$showAddStickerDialog$12(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
-        int intValue = ((Integer) view.getTag()).intValue();
+        int iIntValue = ((Integer) view.getTag()).intValue();
         actionBarPopupWindow.dismiss();
-        if (((Integer) arrayList.get(intValue)).intValue() == 1) {
+        if (((Integer) arrayList.get(iIntValue)).intValue() == 1) {
             openStickerPickerDialog(tL_messages_stickerSet, baseFragment, resourcesProvider);
         } else {
             ((ChatActivity) baseFragment).openAttachMenuForCreatingSticker();

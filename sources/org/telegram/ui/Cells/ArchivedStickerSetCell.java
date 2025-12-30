@@ -62,12 +62,12 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             progressButton.setProgressColor(Theme.getColor(Theme.key_featuredStickers_buttonProgress));
             progressButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
             addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
-            int dp = AndroidUtilities.dp(60.0f);
+            int iDp = AndroidUtilities.dp(60.0f);
             ProgressButton progressButton2 = new ProgressButton(context);
             this.deleteButton = progressButton2;
             progressButton2.setAllCaps(false);
-            progressButton2.setMinWidth(dp);
-            progressButton2.setMinimumWidth(dp);
+            progressButton2.setMinWidth(iDp);
+            progressButton2.setMinimumWidth(iDp);
             progressButton2.setTextSize(1, 14.0f);
             int i = Theme.key_featuredStickers_removeButtonText;
             progressButton2.setTextColor(Theme.getColor(i));
@@ -80,7 +80,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ArchivedStickerSetCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             };
             progressButton.setOnClickListener(onClickListener);
@@ -246,13 +246,13 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
                 AnimatorSet animatorSet3 = this.animatorSet;
                 Button button = this.deleteButton;
                 Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(button, (Property<Button, Float>) property, f);
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(button, (Property<Button, Float>) property, f);
                 Button button2 = this.deleteButton;
                 Property property2 = View.SCALE_X;
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(button2, (Property<Button, Float>) property2, f);
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(button2, (Property<Button, Float>) property2, f);
                 Button button3 = this.deleteButton;
                 Property property3 = View.SCALE_Y;
-                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(button3, (Property<Button, Float>) property3, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, f2));
+                animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(button3, (Property<Button, Float>) property3, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, f2));
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {

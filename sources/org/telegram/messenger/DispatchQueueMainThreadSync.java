@@ -114,7 +114,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueueMainThreadSync.this.lambda$recycle$0();
+                this.f$0.lambda$recycle$0();
             }
         });
         this.isRecycled = true;
@@ -130,9 +130,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                boolean lambda$run$1;
-                lambda$run$1 = DispatchQueueMainThreadSync.this.lambda$run$1(message);
-                return lambda$run$1;
+                return this.f$0.lambda$run$1(message);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -161,7 +159,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         return this.handler;
     }
 
-    public class PostponedTask {
+    private class PostponedTask {
         long delay;
         Message message;
         Runnable runnable;

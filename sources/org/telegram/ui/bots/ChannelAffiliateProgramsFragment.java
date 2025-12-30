@@ -133,15 +133,13 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$0(context, view2, i);
+                this.f$0.lambda$createView$0(context, view2, i);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view2, int i) {
-                boolean lambda$createView$8;
-                lambda$createView$8 = ChannelAffiliateProgramsFragment.this.lambda$createView$8(context, view2, i);
-                return lambda$createView$8;
+                return this.f$0.lambda$createView$8(context, view2, i);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -186,28 +184,28 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
         final TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
         final TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        ItemOptions makeOptions = ItemOptions.makeOptions(this, view);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
         boolean z = user.bot_has_main_app;
         int i2 = R.drawable.msg_bot;
-        makeOptions.addIf(z, i2, LocaleController.getString(R.string.ProfileBotOpenApp), new Runnable() {
+        itemOptionsMakeOptions.addIf(z, i2, LocaleController.getString(R.string.ProfileBotOpenApp), new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$1(user);
+                this.f$0.lambda$createView$1(user);
             }
         }).addIf(!user.bot_has_main_app, i2, LocaleController.getString(R.string.BotWebViewOpenBot), new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$2(connectedbotstarref);
+                this.f$0.lambda$createView$2(connectedbotstarref);
             }
         }).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$3(connectedbotstarref, user);
+                this.f$0.lambda$createView$3(connectedbotstarref, user);
             }
         }).addIf(!connectedbotstarref.revoked, R.drawable.msg_leave, (CharSequence) LocaleController.getString(R.string.LeaveAffiliateLinkButton), true, new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$7(context, user, connectedbotstarref);
+                this.f$0.lambda$createView$7(context, user, connectedbotstarref);
             }
         }).setGravity(5).show();
         return true;
@@ -230,7 +228,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.LeaveAffiliateLink)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$6(connectedbotstarref, alertDialog, i);
+                this.f$0.lambda$createView$6(connectedbotstarref, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
@@ -245,7 +243,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         getConnectionsManager().sendRequest(editconnectedstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$5(alertDialog2, tLObject, tL_error);
+                this.f$0.lambda$createView$5(alertDialog2, tLObject, tL_error);
             }
         });
     }
@@ -254,7 +252,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.this.lambda$createView$4(tLObject, alertDialog);
+                this.f$0.lambda$createView$4(tLObject, alertDialog);
             }
         });
     }
@@ -282,7 +280,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         UniversalAdapter universalAdapter = new UniversalAdapter(this.listView, getContext(), this.currentAccount, this.classGuid, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChannelAffiliateProgramsFragment.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, getResourceProvider()) {
             @Override
@@ -360,7 +358,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         return spannableStringBuilder;
     }
 
-    public class AnonymousClass4 extends ClickableSpan {
+    class AnonymousClass4 extends ClickableSpan {
         final BotStarsController.ChannelSuggestedBots.Sort val$sort;
         final BotStarsController.ChannelSuggestedBots val$suggestedBots;
 
@@ -371,32 +369,32 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
 
         @Override
         public void onClick(View view) {
-            ItemOptions makeOptions = ItemOptions.makeOptions(ChannelAffiliateProgramsFragment.this, view);
+            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(ChannelAffiliateProgramsFragment.this, view);
             boolean z = this.val$sort == BotStarsController.ChannelSuggestedBots.Sort.BY_DATE;
             String string = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
             final BotStarsController.ChannelSuggestedBots channelSuggestedBots = this.val$suggestedBots;
-            ItemOptions addChecked = makeOptions.addChecked(z, string, new Runnable() {
+            ItemOptions itemOptionsAddChecked = itemOptionsMakeOptions.addChecked(z, string, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$0(BotStarsController.ChannelSuggestedBots.this);
+                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$0(channelSuggestedBots);
                 }
             });
             boolean z2 = this.val$sort == BotStarsController.ChannelSuggestedBots.Sort.BY_REVENUE;
             String string2 = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortRevenue);
             final BotStarsController.ChannelSuggestedBots channelSuggestedBots2 = this.val$suggestedBots;
-            ItemOptions addChecked2 = addChecked.addChecked(z2, string2, new Runnable() {
+            ItemOptions itemOptionsAddChecked2 = itemOptionsAddChecked.addChecked(z2, string2, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$1(BotStarsController.ChannelSuggestedBots.this);
+                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$1(channelSuggestedBots2);
                 }
             });
             boolean z3 = this.val$sort == BotStarsController.ChannelSuggestedBots.Sort.BY_PROFITABILITY;
             String string3 = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability);
             final BotStarsController.ChannelSuggestedBots channelSuggestedBots3 = this.val$suggestedBots;
-            addChecked2.addChecked(z3, string3, new Runnable() {
+            itemOptionsAddChecked2.addChecked(z3, string3, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$2(BotStarsController.ChannelSuggestedBots.this);
+                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$2(channelSuggestedBots3);
                 }
             }).setGravity(5).setDrawScrim(false).setDimAlpha(0).translate(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f)).show();
         }
@@ -432,7 +430,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
 
             @Override
-            public void configure() {
+            protected void configure() {
                 super.configure();
                 StarParticlesView.Drawable drawable = this.drawable;
                 drawable.useGradient = true;
@@ -657,15 +655,15 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
 
             public static UItem as(Object obj, boolean z) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = obj;
-                ofFactory.red = z;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = obj;
+                uItemOfFactory.red = z;
+                return uItemOfFactory;
             }
         }
     }
 
-    public static class HeaderSortCell extends HeaderCell {
+    private static class HeaderSortCell extends HeaderCell {
         private final LinkSpanDrawable.LinksTextView subtextView;
 
         public HeaderSortCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -705,10 +703,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
 
             public static UItem as(CharSequence charSequence, CharSequence charSequence2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.text = charSequence;
-                ofFactory.subtext = charSequence2;
-                return ofFactory;
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                return uItemOfFactory;
             }
         }
     }
@@ -716,7 +714,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     public static void showConnectAffiliateAlert(final Context context, final int i, final TL_payments.starRefProgram starrefprogram, final long j, final Theme.ResourcesProvider resourcesProvider, final boolean z) {
         long[] jArr;
         TLRPC.User user;
-        String formatPluralString;
+        String pluralString;
         LinearLayout linearLayout;
         BackupImageView backupImageView;
         TextView textView;
@@ -783,9 +781,9 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         backupImageView3.setRoundRadius(AndroidUtilities.dp(30.0f));
         frameLayout4.addView(backupImageView3, LayoutHelper.createFrame(60, 60, 119));
         FrameLayout frameLayout5 = new FrameLayout(context);
-        int dp = AndroidUtilities.dp(10.0f);
+        int iDp = AndroidUtilities.dp(10.0f);
         int i2 = Theme.key_dialogBackground;
-        frameLayout5.setBackground(Theme.createRoundRectDrawable(dp, Theme.getColor(i2, resourcesProvider)));
+        frameLayout5.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i2, resourcesProvider)));
         frameLayout5.setPadding(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
         TextView textView3 = new TextView(context);
         textView3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
@@ -814,9 +812,9 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linearLayout2.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 21.0f, 0.0f, 9.0f));
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
-        int dp2 = AndroidUtilities.dp(28.0f);
+        int iDp2 = AndroidUtilities.dp(28.0f);
         int i4 = Theme.key_windowBackgroundGray;
-        linearLayout3.setBackground(Theme.createRoundRectDrawable(dp2, Theme.getColor(i4, resourcesProvider)));
+        linearLayout3.setBackground(Theme.createRoundRectDrawable(iDp2, Theme.getColor(i4, resourcesProvider)));
         TextView textView5 = new TextView(context);
         textView5.setTextSize(1, 13.0f);
         textView5.setTextColor(Theme.getColor(i3, resourcesProvider));
@@ -848,19 +846,19 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         NotificationCenter.listenEmojiLoading(textView7);
         int i6 = R.string.ChannelAffiliateProgramJoinText;
         String userName = UserObject.getUserName(user2);
-        CharSequence percents = AffiliateProgramFragment.percents(starrefprogram.commission_permille);
+        CharSequence charSequencePercents = AffiliateProgramFragment.percents(starrefprogram.commission_permille);
         int i7 = starrefprogram.duration_months;
         if (i7 <= 0) {
-            formatPluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
+            pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
             user = user2;
         } else if (i7 < 12 || i7 % 12 != 0) {
             user = user2;
-            formatPluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]);
+            pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]);
         } else {
             user = user2;
-            formatPluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
+            pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
         }
-        textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, userName, percents, formatPluralString)), textView7.getPaint().getFontMetricsInt(), false));
+        textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, userName, charSequencePercents, pluralString)), textView7.getPaint().getFontMetricsInt(), false));
         linearLayout2.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
         if (j >= 0) {
             TextView textView8 = new TextView(context);
@@ -910,11 +908,11 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         linearLayout2.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 14, 14, 6));
         builder.setCustomView(linearLayout2);
-        final BottomSheet create = builder.create();
+        final BottomSheet bottomSheetCreate = builder.create();
         backupImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$10(BottomSheet.this, starrefprogram, view);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$10(bottomSheetCreate, starrefprogram, view);
             }
         });
         final long[] jArr3 = jArr;
@@ -923,10 +921,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$13(ButtonWithCounterView.this, jArr3, i, starrefprogram, create, j, z, context, resourcesProvider, user3, view);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$13(buttonWithCounterView, jArr3, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user3, view);
             }
         });
-        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$14(dialogInterface);
@@ -949,18 +947,18 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             linearLayout5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$17(i, create, resourcesProvider, linearLayout5, jArr5, runnable, view);
+                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$17(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr5, runnable, view);
                 }
             });
         }
         linearLayout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$18(BottomSheet.this, starrefprogram, view);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$18(bottomSheetCreate, starrefprogram, view);
             }
         });
-        create.fixNavigationBar(Theme.getColor(i2, resourcesProvider));
-        create.show();
+        bottomSheetCreate.fixNavigationBar(Theme.getColor(i2, resourcesProvider));
+        bottomSheetCreate.show();
     }
 
     public static void lambda$showConnectAffiliateAlert$9(Context context) {
@@ -987,7 +985,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         ConnectionsManager.getInstance(i).sendRequest(connectstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$12(ButtonWithCounterView.this, i, j2, bottomSheet, starrefprogram, j, z, context, resourcesProvider, user, tLObject, tL_error);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$12(buttonWithCounterView, i, j2, bottomSheet, starrefprogram, j, z, context, resourcesProvider, user, tLObject, tL_error);
             }
         });
     }
@@ -996,7 +994,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$11(ButtonWithCounterView.this, tLObject, i, j, bottomSheet, starrefprogram, j2, z, context, resourcesProvider, user, tL_error);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$11(buttonWithCounterView, tLObject, i, j, bottomSheet, starrefprogram, j2, z, context, resourcesProvider, user, tL_error);
             }
         });
     }
@@ -1077,7 +1075,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         final long j;
         ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
-        ItemOptions makeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
         Iterator it = admined.iterator();
         while (it.hasNext()) {
             TLObject tLObject = (TLObject) it.next();
@@ -1089,14 +1087,14 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                     j = -chat.id;
                 }
             }
-            makeOptions.addChat(tLObject, j == jArr[0], new Runnable() {
+            itemOptionsMakeOptions.addChat(tLObject, j == jArr[0], new Runnable() {
                 @Override
                 public final void run() {
                     ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$16(jArr, j, runnable);
                 }
             });
         }
-        makeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
+        itemOptionsMakeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
     }
 
     public static void lambda$showConnectAffiliateAlert$16(long[] jArr, long j, Runnable runnable) {
@@ -1129,14 +1127,14 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         LinearLayout linearLayout;
         TLRPC.User user;
         char c;
-        String formatPluralString;
+        String pluralString;
         int i3;
         char c2;
-        String formatPluralString2;
+        String pluralString2;
         int i4;
         LinearLayout linearLayout2;
         int i5;
-        String formatPluralString3;
+        String pluralString3;
         ImageView.ScaleType scaleType;
         if (connectedbotstarref == null || context == null) {
             return null;
@@ -1197,9 +1195,9 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linearLayout3.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
         LinearLayout linearLayout4 = new LinearLayout(context);
         linearLayout4.setOrientation(0);
-        int dp = AndroidUtilities.dp(28.0f);
+        int iDp = AndroidUtilities.dp(28.0f);
         int i7 = Theme.key_windowBackgroundGray;
-        linearLayout4.setBackground(Theme.createRoundRectDrawable(dp, Theme.getColor(i7, resourcesProvider)));
+        linearLayout4.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i7, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
@@ -1236,28 +1234,28 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         } else if (j < 0) {
             int i9 = R.string.ChannelAffiliateProgramLinkTextChannel;
             linearLayout = linearLayout4;
-            CharSequence percents = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
+            CharSequence charSequencePercents = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
             String userName = UserObject.getUserName(user2);
             mode = mode2;
             int i10 = connectedbotstarref.duration_months;
             if (i10 <= 0) {
-                formatPluralString2 = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
+                pluralString2 = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
                 i2 = i8;
                 c2 = 0;
             } else {
                 i2 = i8;
                 if (i10 < 12 || i10 % 12 != 0) {
                     c2 = 0;
-                    formatPluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i10, new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i10, new Object[0]);
                 } else {
                     c2 = 0;
-                    formatPluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i10 / 12, new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i10 / 12, new Object[0]);
                 }
             }
             Object[] objArr = new Object[3];
-            objArr[c2] = percents;
+            objArr[c2] = charSequencePercents;
             objArr[1] = userName;
-            objArr[2] = formatPluralString2;
+            objArr[2] = pluralString2;
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i9, objArr)));
             user = user2;
         } else {
@@ -1265,11 +1263,11 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             mode = mode2;
             linearLayout = linearLayout4;
             int i11 = R.string.ChannelAffiliateProgramLinkTextUser;
-            CharSequence percents2 = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
+            CharSequence charSequencePercents2 = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
             String userName2 = UserObject.getUserName(user2);
             int i12 = connectedbotstarref.duration_months;
             if (i12 <= 0) {
-                formatPluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
+                pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
                 user = user2;
                 i3 = 3;
                 c = 0;
@@ -1277,17 +1275,17 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 user = user2;
                 if (i12 < 12 || i12 % 12 != 0) {
                     c = 0;
-                    formatPluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i12, new Object[0]);
+                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i12, new Object[0]);
                 } else {
                     c = 0;
-                    formatPluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i12 / 12, new Object[0]);
+                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i12 / 12, new Object[0]);
                 }
                 i3 = 3;
             }
             Object[] objArr2 = new Object[i3];
-            objArr2[c] = percents2;
+            objArr2[c] = charSequencePercents2;
             objArr2[1] = userName2;
-            objArr2[2] = formatPluralString;
+            objArr2[2] = pluralString;
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i11, objArr2)));
         }
         linearLayout3.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
@@ -1358,12 +1356,12 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         long j2 = connectedbotstarref.participants;
         if (j2 <= 0) {
             i5 = 1;
-            formatPluralString3 = LocaleController.formatString(R.string.ChannelAffiliateProgramLinkOpenedNone, UserObject.getUserName(user));
+            pluralString3 = LocaleController.formatString(R.string.ChannelAffiliateProgramLinkOpenedNone, UserObject.getUserName(user));
         } else {
             i5 = 1;
-            formatPluralString3 = LocaleController.formatPluralString("ChannelAffiliateProgramLinkOpened", (int) j2, UserObject.getUserName(user));
+            pluralString3 = LocaleController.formatPluralString("ChannelAffiliateProgramLinkOpened", (int) j2, UserObject.getUserName(user));
         }
-        linksTextView.setText(formatPluralString3);
+        linksTextView.setText(pluralString3);
         linksTextView.setGravity(17);
         linksTextView.setTextSize(i5, 12.0f);
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
@@ -1371,12 +1369,12 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linearLayout3.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
         BottomSheet.Builder builder3 = builder;
         builder3.setCustomView(linearLayout3);
-        final BottomSheet create = builder3.create();
+        final BottomSheet bottomSheetCreate = builder3.create();
         final TLRPC.User user4 = user;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$19(TL_payments.connectedBotStarRef.this, create, resourcesProvider, user4);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$19(connectedbotstarref, bottomSheetCreate, resourcesProvider, user4);
             }
         };
         if (!connectedbotstarref.revoked) {
@@ -1390,10 +1388,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$23(TL_payments.connectedBotStarRef.this, i, create, context, j, resourcesProvider, runnable, view2);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$23(connectedbotstarref, i, bottomSheetCreate, context, j, resourcesProvider, runnable, view2);
             }
         });
-        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$24(dialogInterface);
@@ -1406,23 +1404,23 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             linearLayout2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$29(i, create, resourcesProvider, linearLayout6, j, context, connectedbotstarref, view2);
+                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$29(i, bottomSheetCreate, resourcesProvider, linearLayout6, j, context, connectedbotstarref, view2);
                 }
             });
         }
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$30(BottomSheet.this, connectedbotstarref, view2);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$30(bottomSheetCreate, connectedbotstarref, view2);
             }
         });
-        create.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+        bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!AndroidUtilities.isTablet() && safeLastFragment != null && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
-            create.makeAttached(safeLastFragment);
+            bottomSheetCreate.makeAttached(safeLastFragment);
         }
-        create.show();
-        return create;
+        bottomSheetCreate.show();
+        return bottomSheetCreate;
     }
 
     public static void lambda$showShareAffiliateAlert$19(TL_payments.connectedBotStarRef connectedbotstarref, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, TLRPC.User user) {
@@ -1437,7 +1435,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$22(BottomSheet.this, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
+                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$22(bottomSheet, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
                     }
                 });
                 return;
@@ -1451,7 +1449,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$21(TLRPC.UserFull.this, bottomSheet, context, i, j, resourcesProvider);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$21(userFull, bottomSheet, context, i, j, resourcesProvider);
             }
         });
     }
@@ -1468,7 +1466,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         long j2;
         ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
-        ItemOptions makeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
         Iterator it = admined.iterator();
         while (it.hasNext()) {
             TLObject tLObject = (TLObject) it.next();
@@ -1481,14 +1479,14 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 }
             }
             final long j3 = j2;
-            makeOptions.addChat(tLObject, j3 == j, new Runnable() {
+            itemOptionsMakeOptions.addChat(tLObject, j3 == j, new Runnable() {
                 @Override
                 public final void run() {
                     ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$28(i, context, j3, connectedbotstarref, bottomSheet, resourcesProvider);
                 }
             });
         }
-        makeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
+        itemOptionsMakeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
     }
 
     public static void lambda$showShareAffiliateAlert$28(final int i, final Context context, final long j, final TL_payments.connectedBotStarRef connectedbotstarref, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider) {
@@ -1507,7 +1505,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$26(BottomSheet.this, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
+                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$26(bottomSheet, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
                     }
                 });
                 return;
@@ -1522,7 +1520,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$25(TLRPC.UserFull.this, bottomSheet, context, i, j, resourcesProvider);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$25(userFull, bottomSheet, context, i, j, resourcesProvider);
             }
         });
     }

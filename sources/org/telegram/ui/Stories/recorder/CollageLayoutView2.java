@@ -13,7 +13,6 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
@@ -48,7 +47,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.recorder.CollageLayout;
-import org.telegram.ui.Stories.recorder.CollageLayoutView2;
 import org.telegram.ui.Stories.recorder.QRScanner;
 
 public abstract class CollageLayoutView2 extends FrameLayout implements ItemOptions.ScrimView {
@@ -131,7 +129,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         this.resetReordering = new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -148,7 +146,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         this.syncRunnable = new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.this.lambda$new$7();
+                this.f$0.lambda$new$7();
             }
         };
         this.blurManager = blurManager;
@@ -167,9 +165,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
         paint.setStrokeWidth(AndroidUtilities.dp(8.0f));
-        int dp = AndroidUtilities.dp(300.0f);
-        this.gradientWidth = dp;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{0, -1, -1, 0}, new float[]{0.0f, 0.2f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
+        int iDp = AndroidUtilities.dp(300.0f);
+        this.gradientWidth = iDp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, iDp, 0.0f, new int[]{0, -1, -1, 0}, new float[]{0.0f, 0.2f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
         this.gradient = linearGradient;
         this.gradientMatrix = new Matrix();
         paint.setShader(linearGradient);
@@ -346,8 +344,8 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     }
                     float f = i6;
                     float f2 = i5;
-                    float min = Math.min(1.0f, Math.max(f / size, f2 / size2));
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (f * min), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (f2 * min), 1073741824));
+                    float fMin = Math.min(1.0f, Math.max(f / size, f2 / size2));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (f * fMin), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (f2 * fMin), 1073741824));
                 }
             }
         }
@@ -390,37 +388,29 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     public Object getBlurRenderNode() {
-        Shader.TileMode tileMode;
-        RenderEffect createBlurEffect;
         if (this.renderNode == null && Build.VERSION.SDK_INT >= 31) {
             this.renderNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNode");
-            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNodeBlur");
-            this.blurRenderNode = m;
-            BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(m);
-            float dp = AndroidUtilities.dp(32.0f);
-            float dp2 = AndroidUtilities.dp(32.0f);
-            tileMode = Shader.TileMode.DECAL;
-            createBlurEffect = RenderEffect.createBlurEffect(dp, dp2, tileMode);
-            m.setRenderEffect(createBlurEffect);
+            RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNodeBlur");
+            this.blurRenderNode = renderNodeM;
+            BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(renderNodeM);
+            renderNodeM.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Shader.TileMode.DECAL));
         }
         return this.blurRenderNode;
     }
 
     private void finishNode(Canvas canvas) {
-        RecordingCanvas beginRecording;
         if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
             return;
         }
-        RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.renderNode);
-        m.endRecording();
-        canvas.drawRenderNode(m);
+        RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.renderNode);
+        renderNodeM.endRecording();
+        canvas.drawRenderNode(renderNodeM);
         Object obj = this.blurRenderNode;
         if (obj != null) {
-            RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
-            m2.setPosition(0, 0, getWidth(), getHeight());
-            beginRecording = m2.beginRecording();
-            beginRecording.drawRenderNode(m);
-            m2.endRecording();
+            RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
+            renderNodeM2.setPosition(0, 0, getWidth(), getHeight());
+            renderNodeM2.beginRecording().drawRenderNode(renderNodeM);
+            renderNodeM2.endRecording();
         }
     }
 
@@ -450,8 +440,6 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     private void drawPart(Canvas canvas, RectF rectF, Part part) {
         boolean z;
         ImageView imageView;
-        int width;
-        int height;
         if (AndroidUtilities.makingGlobalBlurBitmap && part == this.longPressedPart) {
             return;
         }
@@ -463,8 +451,8 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(rectF);
             rectF2.inset(AndroidUtilities.dp(10.0f) * this.animatedReordering.get(), AndroidUtilities.dp(10.0f) * this.animatedReordering.get());
-            float dp = AndroidUtilities.dp(12.0f) * this.animatedReordering.get();
-            this.clipPath.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
+            float fDp = AndroidUtilities.dp(12.0f) * this.animatedReordering.get();
+            this.clipPath.addRoundRect(rectF2, fDp, fDp, Path.Direction.CW);
             canvas.clipPath(this.clipPath);
             z = true;
         }
@@ -493,18 +481,13 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         } else {
             setCameraNeedsBlur(!this.preview);
             if (this.cameraViewBlurRenderNode != null && Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.cameraViewBlurRenderNode);
-                float width2 = rectF.width();
-                width = m.getWidth();
-                float f = width2 / width;
-                float height2 = rectF.height();
-                height = m.getHeight();
-                float max = Math.max(f, height2 / height);
+                RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.cameraViewBlurRenderNode);
+                float fMax = Math.max(rectF.width() / renderNodeM.getWidth(), rectF.height() / renderNodeM.getHeight());
                 canvas.save();
                 canvas.translate(rectF.left, rectF.top);
                 canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
-                canvas.scale(max, max);
-                canvas.drawRenderNode(m);
+                canvas.scale(fMax, fMax);
+                canvas.drawRenderNode(renderNodeM);
                 canvas.drawColor(1677721600);
                 canvas.restore();
             } else {
@@ -527,11 +510,11 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         if (view == null) {
             return;
         }
-        float max = Math.max(rectF.width() / view.getWidth(), rectF.height() / view.getHeight());
+        float fMax = Math.max(rectF.width() / view.getWidth(), rectF.height() / view.getHeight());
         canvas.save();
         canvas.translate(rectF.centerX(), rectF.centerY());
         canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
-        canvas.scale(max, max);
+        canvas.scale(fMax, fMax);
         canvas.translate((-view.getWidth()) / 2.0f, (-view.getHeight()) / 2.0f);
         if (AndroidUtilities.makingGlobalBlurBitmap) {
             if (view instanceof TextureView) {
@@ -562,11 +545,11 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
-        float max = Math.max(rectF.width() / intrinsicWidth, rectF.height() / intrinsicHeight);
+        float fMax = Math.max(rectF.width() / intrinsicWidth, rectF.height() / intrinsicHeight);
         canvas.save();
         canvas.translate(rectF.centerX(), rectF.centerY());
         canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
-        canvas.scale(max, max);
+        canvas.scale(fMax, fMax);
         canvas.translate((-intrinsicWidth) / 2.0f, (-intrinsicHeight) / 2.0f);
         drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
         drawable.draw(canvas);
@@ -780,26 +763,26 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 23, 47.0f, 8.0f, 24.0f, 8.0f));
-        ItemOptions makeOptions = ItemOptions.makeOptions(this.containerView, this.resourcesProvider, this);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, this.resourcesProvider, this);
         if (this.longPressedPart.content.isVideo) {
             SliderView onValueChange = new SliderView(getContext(), 0).setMinMax(0.0f, 1.5f).setValue(this.longPressedPart.content.videoVolume).setOnValueChange(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    CollageLayoutView2.this.lambda$onLongPress$1((Float) obj);
+                    this.f$0.lambda$onLongPress$1((Float) obj);
                 }
             });
             onValueChange.fixWidth = AndroidUtilities.dp(220.0f);
-            makeOptions.addView(onValueChange).addSpaceGap();
+            itemOptionsMakeOptions.addView(onValueChange).addSpaceGap();
         }
-        makeOptions.setFixedWidth(220).add(R.drawable.menu_camera_retake, LocaleController.getString(R.string.StoreCollageRetake), new Runnable() {
+        itemOptionsMakeOptions.setFixedWidth(220).add(R.drawable.menu_camera_retake, LocaleController.getString(R.string.StoreCollageRetake), new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.this.lambda$onLongPress$2();
+                this.f$0.lambda$onLongPress$2();
             }
         }).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.this.lambda$onLongPress$3();
+                this.f$0.lambda$onLongPress$3();
             }
         }).addSpaceGap().addView(frameLayout, LayoutHelper.createLinear(220, -2)).setOnDismiss(new Runnable() {
             @Override
@@ -809,7 +792,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }).setGravity(1).allowCenter(true).setBlur(true).setRoundRadius(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f)).setOnDismiss(new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.this.lambda$onLongPress$5();
+                this.f$0.lambda$onLongPress$5();
             }
         }).show();
         try {
@@ -860,12 +843,12 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     public void delete(Part part) {
         if (part != null && this.parts.indexOf(part) >= 0) {
             CollageLayout collageLayout = this.currentLayout;
-            CollageLayout delete = collageLayout.delete(collageLayout.parts.indexOf(part.part));
-            if (delete.parts.size() <= 1) {
+            CollageLayout collageLayoutDelete = collageLayout.delete(collageLayout.parts.indexOf(part.part));
+            if (collageLayoutDelete.parts.size() <= 1) {
                 clear(true);
                 invalidate();
             }
-            setLayout(delete, true);
+            setLayout(collageLayoutDelete, true);
             this.reordering = true;
             updatePartsState();
             invalidate();
@@ -873,7 +856,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             if (runnable != null) {
                 runnable.run();
             }
-            onLayoutUpdate(delete);
+            onLayoutUpdate(collageLayoutDelete);
         }
     }
 
@@ -902,7 +885,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        CollageLayoutView2.this.onLongPress();
+                        this.f$0.onLongPress();
                     }
                 };
                 this.onLongPressPart = runnable2;
@@ -928,9 +911,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 }
             } else if (this.reorderingTouch && this.reorderingPart != null) {
                 int partIndexAt = getPartIndexAt(motionEvent.getX(), motionEvent.getY());
-                int indexOf = this.parts.indexOf(this.reorderingPart);
-                if (partIndexAt >= 0 && indexOf >= 0 && partIndexAt != indexOf) {
-                    swap(indexOf, partIndexAt);
+                int iIndexOf = this.parts.indexOf(this.reorderingPart);
+                if (partIndexAt >= 0 && iIndexOf >= 0 && partIndexAt != iIndexOf) {
+                    swap(iIndexOf, partIndexAt);
                     float f = this.currentLayout.h;
                     float f2 = this.animatedColumns[this.reorderingPart.part.y].get();
                     this.rect.set((getMeasuredWidth() / f2) * r3.x, (getMeasuredHeight() / f) * r3.y, (getMeasuredWidth() / f2) * (r3.x + 1), (getMeasuredHeight() / f) * (r3.y + 1));
@@ -1043,9 +1026,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     CollageLayoutView2.this.layout(this.bounds, part);
                 }
                 this.boundsTransition = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.animator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.animator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         Part.this.boundsTransition = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -1087,7 +1070,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             sb.append((int) Math.ceil(AndroidUtilities.displaySize.y / AndroidUtilities.density));
             sb.append((storyEntry == null || !storyEntry.isVideo) ? "" : "_g");
             sb.append("_exif");
-            String sb2 = sb.toString();
+            String string = sb.toString();
             StoryEntry storyEntry2 = this.content;
             if (storyEntry2 == null) {
                 this.imageReceiver.clearImage();
@@ -1102,7 +1085,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     } else {
                         String str = storyEntry2.thumbPath;
                         if (str != null) {
-                            this.imageReceiver.setImage(str, sb2, null, null, 0L);
+                            this.imageReceiver.setImage(str, string, null, null, 0L);
                         } else {
                             this.imageReceiver.clearImage();
                         }
@@ -1125,12 +1108,12 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     this.videoPlayer.pause();
                 }
             } else {
-                this.imageReceiver.setImage(storyEntry2.file.getAbsolutePath(), sb2, null, null, 0L);
+                this.imageReceiver.setImage(storyEntry2.file.getAbsolutePath(), string, null, null, 0L);
             }
             CollageLayoutView2.this.invalidate();
         }
 
-        public class AnonymousClass3 extends VideoPlayerHolderBase {
+        class AnonymousClass3 extends VideoPlayerHolderBase {
             AnonymousClass3() {
             }
 
@@ -1146,7 +1129,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        CollageLayoutView2.Part.AnonymousClass3.this.lambda$onVideoSizeChanged$0(i, i2, i3);
+                        this.f$0.lambda$onVideoSizeChanged$0(i, i2, i3);
                     }
                 });
             }
@@ -1253,7 +1236,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
         if (z) {
             this.previewStartTime = System.currentTimeMillis();
-            AndroidUtilities.runOnUIThread(this.syncRunnable, 1000.0f / AndroidUtilities.screenRefreshRate);
+            AndroidUtilities.runOnUIThread(this.syncRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
         }
     }
 
@@ -1267,14 +1250,14 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         while (it.hasNext()) {
             Part part2 = (Part) it.next();
             if (part2.content != null && part2.content.isVideo) {
-                long j2 = part2.content.duration;
+                long duration = part2.content.duration;
                 VideoPlayerHolderBase videoPlayerHolderBase = part2.videoPlayer;
                 if (videoPlayerHolderBase != null && videoPlayerHolderBase.getDuration() > 0) {
-                    j2 = part2.videoPlayer.getDuration();
+                    duration = part2.videoPlayer.getDuration();
                 }
-                if (j2 > j) {
+                if (duration > j) {
                     part = part2;
-                    j = j2;
+                    j = duration;
                 }
             }
         }
@@ -1296,10 +1279,10 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         if (!this.playing) {
             return this.lastPausedPosition;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.previewStartTime;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.previewStartTime;
         if (j > getDuration()) {
-            this.previewStartTime = currentTimeMillis - (j % getDuration());
+            this.previewStartTime = jCurrentTimeMillis - (j % getDuration());
         }
         return j;
     }
@@ -1310,7 +1293,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
         getPosition();
         Part mainPart = getMainPart();
-        return getPosition() + (mainPart != null ? mainPart.content.videoOffset + (mainPart.content.videoLeft * ((float) mainPart.content.duration)) : 0L);
+        return getPosition() + (mainPart != null ? mainPart.content.videoOffset + ((long) (mainPart.content.videoLeft * mainPart.content.duration)) : 0L);
     }
 
     public void setPlaying(boolean z) {
@@ -1360,16 +1343,16 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         if (!this.preview || (mainPart = getMainPart()) == null || mainPart.content == null) {
             return 1L;
         }
-        return Math.max(Math.min(((float) mainPart.content.duration) * (mainPart.content.videoRight - mainPart.content.videoLeft), 59500L), 1L);
+        return Math.max(Math.min((long) (mainPart.content.duration * (mainPart.content.videoRight - mainPart.content.videoLeft)), 59500L), 1L);
     }
 
     public void seekTo(long j, boolean z) {
         if (this.preview) {
-            long clamp = Utilities.clamp(j, getDuration(), 0L);
+            long jClamp = Utilities.clamp(j, getDuration(), 0L);
             if (!this.playing) {
-                this.lastPausedPosition = clamp;
+                this.lastPausedPosition = jClamp;
             }
-            this.previewStartTime = System.currentTimeMillis() - clamp;
+            this.previewStartTime = System.currentTimeMillis() - jClamp;
             this.fastSeek = z;
             if (this.preview) {
                 AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);

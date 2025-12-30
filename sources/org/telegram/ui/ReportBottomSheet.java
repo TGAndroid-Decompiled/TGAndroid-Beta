@@ -59,7 +59,7 @@ public class ReportBottomSheet extends BottomSheet {
     private final boolean stories;
     private final ViewPagerFixed viewPager;
 
-    public interface Listener {
+    interface Listener {
 
         public abstract class CC {
             public static void $default$onHidden(Listener listener) {
@@ -138,7 +138,7 @@ public class ReportBottomSheet extends BottomSheet {
 
             @Override
             public View createView(int i3) {
-                return new Page(context);
+                return ReportBottomSheet.this.new Page(context);
             }
 
             @Override
@@ -245,7 +245,7 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
+    protected boolean canDismissWithSwipe() {
         View currentView = this.viewPager.getCurrentView();
         if (currentView instanceof Page) {
             return ((Page) currentView).atTop();
@@ -286,7 +286,7 @@ public class ReportBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_report, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.this.lambda$submitOption$4(charSequence, bArr, str, tLObject, tL_error);
+                this.f$0.lambda$submitOption$4(charSequence, bArr, str, tLObject, tL_error);
             }
         });
     }
@@ -295,7 +295,7 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReportBottomSheet.this.lambda$submitOption$3(tLObject, charSequence, tL_error, bArr, str);
+                this.f$0.lambda$submitOption$3(tLObject, charSequence, tL_error, bArr, str);
             }
         });
     }
@@ -394,11 +394,11 @@ public class ReportBottomSheet extends BottomSheet {
             this.top = Math.max(f2, this.top) - (AndroidUtilities.statusBarHeight * f);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(((BottomSheet) ReportBottomSheet.this).backgroundPaddingLeft, this.top, getWidth() - ((BottomSheet) ReportBottomSheet.this).backgroundPaddingLeft, getHeight() + AndroidUtilities.dp(8.0f));
-            float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, f);
-            canvas.drawRoundRect(rectF, lerp, lerp, ReportBottomSheet.this.backgroundPaint);
+            float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, f);
+            canvas.drawRoundRect(rectF, fLerp, fLerp, ReportBottomSheet.this.backgroundPaint);
             canvas.save();
             this.path.rewind();
-            this.path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
+            this.path.addRoundRect(rectF, fLerp, fLerp, Path.Direction.CW);
             canvas.clipPath(this.path);
             super.dispatchDraw(canvas);
             canvas.restore();
@@ -438,7 +438,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public class Page extends FrameLayout {
+    class Page extends FrameLayout {
         private ButtonWithCounterView button;
         private FrameLayout buttonContainer;
         TLRPC.TL_reportResultAddComment commentOption;
@@ -462,7 +462,7 @@ public class ReportBottomSheet extends BottomSheet {
             bigHeaderCell.setOnBackClickListener(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.Page.this.lambda$new$0();
+                    this.f$0.lambda$new$0();
                 }
             });
             if (!ReportBottomSheet.this.sponsored) {
@@ -480,12 +480,12 @@ public class ReportBottomSheet extends BottomSheet {
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) ReportBottomSheet.this).currentAccount, 0, true, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ReportBottomSheet.Page.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ReportBottomSheet.Page.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, null, ((BottomSheet) ReportBottomSheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
@@ -523,7 +523,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
 
         public void updateTops() {
-            float f = -this.headerView.getHeight();
+            float paddingTop = -this.headerView.getHeight();
             int i = 0;
             while (true) {
                 if (i >= this.listView.getChildCount()) {
@@ -531,12 +531,12 @@ public class ReportBottomSheet extends BottomSheet {
                 }
                 View childAt = this.listView.getChildAt(i);
                 if (this.listView.adapter.getItem(this.listView.layoutManager.getPosition(childAt)).viewType == 28) {
-                    f = this.contentView.getPaddingTop() + childAt.getY();
+                    paddingTop = this.contentView.getPaddingTop() + childAt.getY();
                     break;
                 }
                 i++;
             }
-            this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, f));
+            this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, paddingTop));
         }
 
         public void bind(int i) {
@@ -571,7 +571,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.Page.this.lambda$setOption$1();
+                        this.f$0.lambda$setOption$1();
                     }
                 }, 120L);
             }
@@ -595,10 +595,10 @@ public class ReportBottomSheet extends BottomSheet {
             if (this.headerView.getMeasuredHeight() <= 0) {
                 this.headerView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), Integer.MIN_VALUE));
             }
-            UItem asSpace = UItem.asSpace(this.headerView.getMeasuredHeight());
-            asSpace.id = -1;
-            asSpace.transparent = true;
-            arrayList.add(asSpace);
+            UItem uItemAsSpace = UItem.asSpace(this.headerView.getMeasuredHeight());
+            uItemAsSpace.id = -1;
+            uItemAsSpace.transparent = true;
+            arrayList.add(uItemAsSpace);
             int measuredHeight = (int) (0 + (this.headerView.getMeasuredHeight() / AndroidUtilities.density));
             TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = this.sponsoredOption;
             if (tL_channels_sponsoredMessageReportResultChooseOption != null || this.option != null || this.commentOption != null) {
@@ -614,9 +614,9 @@ public class ReportBottomSheet extends BottomSheet {
                         }
                     }
                     headerCell.setBackgroundColor(ReportBottomSheet.this.getThemedColor(Theme.key_dialogBackground));
-                    UItem asCustom = UItem.asCustom(headerCell);
-                    asCustom.id = -2;
-                    arrayList.add(asCustom);
+                    UItem uItemAsCustom = UItem.asCustom(headerCell);
+                    uItemAsCustom.id = -2;
+                    arrayList.add(uItemAsCustom);
                     measuredHeight += 40;
                 }
                 if (this.sponsoredOption != null) {
@@ -654,9 +654,9 @@ public class ReportBottomSheet extends BottomSheet {
                         editTextCell.setShowLimitWhenNear(100);
                     }
                     this.editTextCell.editText.setHint(LocaleController.getString(this.commentOption.optional ? R.string.Report2CommentOptional : R.string.Report2Comment));
-                    UItem asCustom2 = UItem.asCustom(this.editTextCell);
-                    asCustom2.id = -3;
-                    arrayList.add(asCustom2);
+                    UItem uItemAsCustom2 = UItem.asCustom(this.editTextCell);
+                    uItemAsCustom2.id = -3;
+                    arrayList.add(uItemAsCustom2);
                     if (ReportBottomSheet.this.messageIds != null && !ReportBottomSheet.this.messageIds.isEmpty()) {
                         arrayList.add(UItem.asShadow(LocaleController.getString(ReportBottomSheet.this.messageIds.size() > 1 ? R.string.Report2CommentInfoMany : R.string.Report2CommentInfo)));
                     } else if (!DialogObject.isUserDialog(ReportBottomSheet.this.dialogId)) {
@@ -684,12 +684,12 @@ public class ReportBottomSheet extends BottomSheet {
                     this.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            ReportBottomSheet.Page.this.lambda$fillItems$2(view2);
+                            this.f$0.lambda$fillItems$2(view2);
                         }
                     });
-                    UItem asCustom3 = UItem.asCustom(this.buttonContainer);
-                    asCustom3.id = -4;
-                    arrayList.add(asCustom3);
+                    UItem uItemAsCustom3 = UItem.asCustom(this.buttonContainer);
+                    uItemAsCustom3.id = -4;
+                    arrayList.add(uItemAsCustom3);
                     measuredHeight += 112;
                 }
                 ((UItem) arrayList.get(arrayList.size() - 1)).hideDivider = true;
@@ -704,9 +704,9 @@ public class ReportBottomSheet extends BottomSheet {
                     linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, ((BottomSheet) ReportBottomSheet.this).resourcesProvider));
                     linksTextView.setGravity(17);
                     frameLayout2.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 16.0f, 16.0f, 16.0f, 16.0f));
-                    UItem asCustom4 = UItem.asCustom(frameLayout2);
-                    asCustom4.id = -3;
-                    arrayList.add(asCustom4);
+                    UItem uItemAsCustom4 = UItem.asCustom(frameLayout2);
+                    uItemAsCustom4.id = -3;
+                    arrayList.add(uItemAsCustom4);
                     measuredHeight += 46;
                 }
             }
@@ -764,7 +764,7 @@ public class ReportBottomSheet extends BottomSheet {
             return !this.listView.canScrollVertically(-1);
         }
 
-        public class BigHeaderCell extends FrameLayout {
+        class BigHeaderCell extends FrameLayout {
             public BackDrawable backDrawable;
             private final ImageView btnBack;
             private Runnable onBackClickListener;
@@ -789,7 +789,7 @@ public class ReportBottomSheet extends BottomSheet {
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ReportBottomSheet.Page.BigHeaderCell.this.lambda$new$0(view);
+                        this.f$0.lambda$new$0(view);
                     }
                 });
                 setCloseImageVisible(true);
@@ -949,7 +949,7 @@ public class ReportBottomSheet extends BottomSheet {
         reportBottomSheet.show();
     }
 
-    public class AnonymousClass3 implements Listener {
+    class AnonymousClass3 implements Listener {
         final BulletinFactory val$bulletinFactory;
         final boolean[] val$done;
         final Utilities.Callback val$whenDone;
@@ -982,7 +982,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass3.lambda$onReported$0(BulletinFactory.this);
+                    ReportBottomSheet.AnonymousClass3.lambda$onReported$0(bulletinFactory);
                 }
             }, 200L);
         }
@@ -1023,12 +1023,12 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     public static void lambda$open$7() {
-        BulletinFactory of;
+        BulletinFactory bulletinFactoryOf;
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null || (of = BulletinFactory.of(safeLastFragment)) == null) {
+        if (safeLastFragment == null || (bulletinFactoryOf = BulletinFactory.of(safeLastFragment)) == null) {
             return;
         }
-        of.createSimpleBulletin(R.raw.msg_antispam, LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2)).setDuration(5000).show();
+        bulletinFactoryOf.createSimpleBulletin(R.raw.msg_antispam, LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2)).setDuration(5000).show();
     }
 
     public static void openSponsored(final ChatActivity chatActivity, final MessageObject messageObject, final Theme.ResourcesProvider resourcesProvider) {
@@ -1059,7 +1059,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$10(TLObject.this, context, resourcesProvider, j, bArr, chatActivity, messageObject);
+                        ReportBottomSheet.lambda$openSponsored$10(tLObject, context, resourcesProvider, j, bArr, chatActivity, messageObject);
                     }
                 });
                 return;
@@ -1067,7 +1067,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$12(ChatActivity.this, context, resourcesProvider, messageObject);
+                        ReportBottomSheet.lambda$openSponsored$12(chatActivity, context, resourcesProvider, messageObject);
                     }
                 }, 200L);
                 return;
@@ -1076,7 +1076,7 @@ public class ReportBottomSheet extends BottomSheet {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ReportBottomSheet.lambda$openSponsored$13(ChatActivity.this, i, messageObject);
+                            ReportBottomSheet.lambda$openSponsored$13(chatActivity, i, messageObject);
                         }
                     }, 200L);
                     return;
@@ -1090,7 +1090,7 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReportBottomSheet.lambda$openSponsored$15(ChatActivity.this, context, resourcesProvider, messageObject);
+                ReportBottomSheet.lambda$openSponsored$15(chatActivity, context, resourcesProvider, messageObject);
             }
         }, 200L);
     }
@@ -1099,7 +1099,7 @@ public class ReportBottomSheet extends BottomSheet {
         new ReportBottomSheet(context, resourcesProvider, j, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass4(chatActivity, context, resourcesProvider, messageObject)).show();
     }
 
-    public class AnonymousClass4 implements Listener {
+    class AnonymousClass4 implements Listener {
         final Context val$context;
         final ChatActivity val$fragment;
         final MessageObject val$message;
@@ -1121,7 +1121,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass4.lambda$onReported$1(ChatActivity.this, context, resourcesProvider, messageObject);
+                    ReportBottomSheet.AnonymousClass4.lambda$onReported$1(chatActivity, context, resourcesProvider, messageObject);
                 }
             }, 200L);
         }
@@ -1144,7 +1144,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass4.lambda$onHidden$2(ChatActivity.this, messageObject);
+                    ReportBottomSheet.AnonymousClass4.lambda$onHidden$2(chatActivity, messageObject);
                 }
             }, 200L);
         }
@@ -1212,7 +1212,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$17(TLObject.this, context, resourcesProvider, j, bArr, runnable, bulletinFactory, runnable2);
+                        ReportBottomSheet.lambda$openSponsored$17(tLObject, context, resourcesProvider, j, bArr, runnable, bulletinFactory, runnable2);
                     }
                 });
                 return;
@@ -1252,7 +1252,7 @@ public class ReportBottomSheet extends BottomSheet {
         new ReportBottomSheet(context, resourcesProvider, j, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass5(runnable, bulletinFactory, context, resourcesProvider, runnable2)).show();
     }
 
-    public class AnonymousClass5 implements Listener {
+    class AnonymousClass5 implements Listener {
         final BulletinFactory val$bulletinFactory;
         final Context val$context;
         final Runnable val$done;
@@ -1376,7 +1376,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsoredPeer$24(TLObject.this, context, resourcesProvider, bArr, baseFragment, runnable);
+                        ReportBottomSheet.lambda$openSponsoredPeer$24(tLObject, context, resourcesProvider, bArr, baseFragment, runnable);
                     }
                 });
                 return;
@@ -1384,7 +1384,7 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsoredPeer$26(BaseFragment.this, context, resourcesProvider, runnable);
+                        ReportBottomSheet.lambda$openSponsoredPeer$26(baseFragment, context, resourcesProvider, runnable);
                     }
                 }, 200L);
                 return;
@@ -1393,7 +1393,7 @@ public class ReportBottomSheet extends BottomSheet {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ReportBottomSheet.lambda$openSponsoredPeer$27(BaseFragment.this, i, runnable);
+                            ReportBottomSheet.lambda$openSponsoredPeer$27(baseFragment, i, runnable);
                         }
                     }, 200L);
                     return;
@@ -1407,7 +1407,7 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReportBottomSheet.lambda$openSponsoredPeer$29(BaseFragment.this, context, resourcesProvider, runnable);
+                ReportBottomSheet.lambda$openSponsoredPeer$29(baseFragment, context, resourcesProvider, runnable);
             }
         }, 200L);
     }
@@ -1416,7 +1416,7 @@ public class ReportBottomSheet extends BottomSheet {
         new ReportBottomSheet(context, resourcesProvider, 0L, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass6(baseFragment, context, resourcesProvider, runnable)).show();
     }
 
-    public class AnonymousClass6 implements Listener {
+    class AnonymousClass6 implements Listener {
         final Context val$context;
         final BaseFragment val$fragment;
         final Runnable val$remove;
@@ -1438,7 +1438,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass6.lambda$onReported$1(BaseFragment.this, context, resourcesProvider, runnable);
+                    ReportBottomSheet.AnonymousClass6.lambda$onReported$1(baseFragment, context, resourcesProvider, runnable);
                 }
             }, 200L);
         }
@@ -1460,7 +1460,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass6.lambda$onHidden$2(BaseFragment.this, runnable);
+                    ReportBottomSheet.AnonymousClass6.lambda$onHidden$2(baseFragment, runnable);
                 }
             }, 200L);
         }

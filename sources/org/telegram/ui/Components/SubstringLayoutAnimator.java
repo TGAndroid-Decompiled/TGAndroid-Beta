@@ -28,8 +28,8 @@ public class SubstringLayoutAnimator {
     }
 
     public void create(StaticLayout staticLayout, CharSequence charSequence, CharSequence charSequence2, TextPaint textPaint) {
-        String charSequence3;
-        String charSequence4;
+        String string;
+        String string2;
         boolean z;
         if (staticLayout == null || charSequence.equals(charSequence2)) {
             return;
@@ -39,39 +39,39 @@ public class SubstringLayoutAnimator {
             valueAnimator.cancel();
         }
         if (charSequence.length() > charSequence2.length()) {
-            charSequence3 = charSequence.toString();
-            charSequence4 = charSequence2.toString();
+            string = charSequence.toString();
+            string2 = charSequence2.toString();
             z = true;
         } else {
-            charSequence3 = charSequence2.toString();
-            charSequence4 = charSequence.toString();
+            string = charSequence2.toString();
+            string2 = charSequence.toString();
             z = false;
         }
-        int indexOf = charSequence3.indexOf(charSequence4);
-        if (indexOf >= 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence3);
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence3);
-            if (indexOf != 0) {
-                spannableStringBuilder2.setSpan(new EmptyStubSpan(), 0, indexOf, 0);
+        int iIndexOf = string.indexOf(string2);
+        if (iIndexOf >= 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(string);
+            if (iIndexOf != 0) {
+                spannableStringBuilder2.setSpan(new EmptyStubSpan(), 0, iIndexOf, 0);
             }
-            if (charSequence4.length() + indexOf != charSequence3.length()) {
-                spannableStringBuilder2.setSpan(new EmptyStubSpan(), charSequence4.length() + indexOf, charSequence3.length(), 0);
+            if (string2.length() + iIndexOf != string.length()) {
+                spannableStringBuilder2.setSpan(new EmptyStubSpan(), string2.length() + iIndexOf, string.length(), 0);
             }
-            spannableStringBuilder.setSpan(new EmptyStubSpan(), indexOf, charSequence4.length() + indexOf, 0);
-            int dp = AndroidUtilities.dp(400.0f);
+            spannableStringBuilder.setSpan(new EmptyStubSpan(), iIndexOf, string2.length() + iIndexOf, 0);
+            int iDp = AndroidUtilities.dp(400.0f);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            this.animateInLayout = new StaticLayout(spannableStringBuilder, textPaint, dp, alignment, 1.0f, 0.0f, false);
+            this.animateInLayout = new StaticLayout(spannableStringBuilder, textPaint, iDp, alignment, 1.0f, 0.0f, false);
             StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, AndroidUtilities.dp(400.0f), alignment, 1.0f, 0.0f, false);
             this.animateStableLayout = staticLayout2;
             this.animateTextChange = true;
             this.animateTextChangeOut = z;
-            this.xOffset = indexOf == 0 ? 0.0f : -staticLayout2.getPrimaryHorizontal(indexOf);
+            this.xOffset = iIndexOf == 0 ? 0.0f : -staticLayout2.getPrimaryHorizontal(iIndexOf);
             this.animateOutLayout = null;
             this.replaceAnimation = false;
         } else {
-            int dp2 = AndroidUtilities.dp(400.0f);
+            int iDp2 = AndroidUtilities.dp(400.0f);
             Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
-            this.animateInLayout = new StaticLayout(charSequence2, textPaint, dp2, alignment2, 1.0f, 0.0f, false);
+            this.animateInLayout = new StaticLayout(charSequence2, textPaint, iDp2, alignment2, 1.0f, 0.0f, false);
             this.animateOutLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.dp(400.0f), alignment2, 1.0f, 0.0f, false);
             this.animateStableLayout = null;
             this.animateTextChange = true;
@@ -79,12 +79,12 @@ public class SubstringLayoutAnimator {
             this.xOffset = 0.0f;
         }
         this.hintProgress = 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.valueAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                SubstringLayoutAnimator.this.lambda$create$0(valueAnimator2);
+                this.f$0.lambda$create$0(valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {

@@ -30,22 +30,22 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     private final ReactionsLayoutInBubble.VisibleReaction visibleReaction;
 
     public StoryReactionWidgetView(Context context, View view, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, EmojiAnimationsOverlay emojiAnimationsOverlay) {
-        super(context, view, tL_mediaAreaSuggestedReaction);
         TLRPC.TL_availableReaction tL_availableReaction;
+        super(context, view, tL_mediaAreaSuggestedReaction);
         this.storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.holder = new ReactionImageHolder(this);
         this.preloadSmallReaction = new ImageReceiver(this);
         this.progressToCount = new AnimatedFloat(this);
         this.animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction.reaction);
-        this.visibleReaction = fromTL;
+        ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction.reaction);
+        this.visibleReaction = visibleReactionFromTL;
         if (tL_mediaAreaSuggestedReaction.flipped) {
             this.storyReactionWidgetBackground.setMirror(true, false);
         }
         this.storyReactionWidgetBackground.updateShadowLayer(getScaleX());
-        this.holder.setVisibleReaction(fromTL);
-        emojiAnimationsOverlay.preload(fromTL);
-        if (fromTL.emojicon != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(fromTL.emojicon)) != null) {
+        this.holder.setVisibleReaction(visibleReactionFromTL);
+        emojiAnimationsOverlay.preload(visibleReactionFromTL);
+        if (visibleReactionFromTL.emojicon != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReactionFromTL.emojicon)) != null) {
             this.preloadSmallReaction.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         this.animatedTextDrawable.setGravity(17);
@@ -100,23 +100,23 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         this.storyReactionWidgetBackground.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         this.storyReactionWidgetBackground.draw(canvas);
         float measuredWidth = ((int) (getMeasuredWidth() * 0.61f)) / 2.0f;
-        float centerX = this.storyReactionWidgetBackground.getBounds().centerX() - measuredWidth;
-        float centerY = this.storyReactionWidgetBackground.getBounds().centerY() - measuredWidth;
-        float centerX2 = this.storyReactionWidgetBackground.getBounds().centerX() + measuredWidth;
-        float centerY2 = this.storyReactionWidgetBackground.getBounds().centerY() + measuredWidth;
-        float height = this.storyReactionWidgetBackground.getBounds().top + (this.storyReactionWidgetBackground.getBounds().height() * 0.427f);
-        float f = height - measuredWidth;
-        float f2 = height + measuredWidth;
+        float fCenterX = this.storyReactionWidgetBackground.getBounds().centerX() - measuredWidth;
+        float fCenterY = this.storyReactionWidgetBackground.getBounds().centerY() - measuredWidth;
+        float fCenterX2 = this.storyReactionWidgetBackground.getBounds().centerX() + measuredWidth;
+        float fCenterY2 = this.storyReactionWidgetBackground.getBounds().centerY() + measuredWidth;
+        float fHeight = this.storyReactionWidgetBackground.getBounds().top + (this.storyReactionWidgetBackground.getBounds().height() * 0.427f);
+        float f = fHeight - measuredWidth;
+        float f2 = fHeight + measuredWidth;
         float f3 = this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f, f3), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f2, f3));
+        rect.set((int) fCenterX, (int) AndroidUtilities.lerp(fCenterY, f, f3), (int) fCenterX2, (int) AndroidUtilities.lerp(fCenterY2, f2, f3));
         this.holder.setColor(this.storyReactionWidgetBackground.isDarkStyle() ? -1 : -16777216);
         this.holder.setBounds(rect);
         this.holder.draw(canvas);
-        float height2 = this.storyReactionWidgetBackground.getBounds().top + (this.storyReactionWidgetBackground.getBounds().height() * 0.839f);
-        this.animatedTextDrawable.setBounds(this.storyReactionWidgetBackground.getBounds().left, (int) (height2 - AndroidUtilities.dp(10.0f)), this.storyReactionWidgetBackground.getBounds().right, (int) (AndroidUtilities.dp(10.0f) + height2));
+        float fHeight2 = this.storyReactionWidgetBackground.getBounds().top + (this.storyReactionWidgetBackground.getBounds().height() * 0.839f);
+        this.animatedTextDrawable.setBounds(this.storyReactionWidgetBackground.getBounds().left, (int) (fHeight2 - AndroidUtilities.dp(10.0f)), this.storyReactionWidgetBackground.getBounds().right, (int) (AndroidUtilities.dp(10.0f) + fHeight2));
         canvas.save();
-        canvas.scale(f3, f3, this.storyReactionWidgetBackground.getBounds().centerX(), height2);
+        canvas.scale(f3, f3, this.storyReactionWidgetBackground.getBounds().centerX(), fHeight2);
         this.animatedTextDrawable.draw(canvas);
         canvas.restore();
     }

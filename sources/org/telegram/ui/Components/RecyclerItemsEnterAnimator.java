@@ -12,7 +12,6 @@ import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
 
 public class RecyclerItemsEnterAnimator {
     boolean alwaysCheckItemsAlpha;
@@ -49,7 +48,7 @@ public class RecyclerItemsEnterAnimator {
     }
 
     public void showItemsAnimated(int i) {
-        Animator ofFloat;
+        Animator animatorOfFloat;
         final View progressView = getProgressView();
         final RecyclerView.LayoutManager layoutManager = this.listView.getLayoutManager();
         if (progressView != null && layoutManager != null) {
@@ -58,11 +57,11 @@ public class RecyclerItemsEnterAnimator {
             this.listView.addView(progressView);
             layoutManager.ignoreView(progressView);
             if (this.animateAlphaProgressView) {
-                ofFloat = ObjectAnimator.ofFloat(progressView, (Property<View, Float>) View.ALPHA, progressView.getAlpha(), 0.0f);
+                animatorOfFloat = ObjectAnimator.ofFloat(progressView, (Property<View, Float>) View.ALPHA, progressView.getAlpha(), 0.0f);
             } else {
-                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                animatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             }
-            ofFloat.addListener(new AnimatorListenerAdapter() {
+            animatorOfFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     progressView.setAlpha(1.0f);
@@ -71,7 +70,7 @@ public class RecyclerItemsEnterAnimator {
                     RecyclerItemsEnterAnimator.this.listView.removeView(progressView);
                 }
             });
-            ofFloat.start();
+            animatorOfFloat.start();
             i--;
         }
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(progressView, i);
@@ -79,7 +78,7 @@ public class RecyclerItemsEnterAnimator {
         this.listView.getViewTreeObserver().addOnPreDrawListener(anonymousClass2);
     }
 
-    public class AnonymousClass2 implements ViewTreeObserver.OnPreDrawListener {
+    class AnonymousClass2 implements ViewTreeObserver.OnPreDrawListener {
         final int val$finalFrom;
         final View val$finalProgressView;
 
@@ -102,14 +101,14 @@ public class RecyclerItemsEnterAnimator {
                     RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = RecyclerItemsEnterAnimator.this;
                     recyclerItemsEnterAnimator.invalidateAlpha = true;
                     recyclerItemsEnterAnimator.listView.invalidate();
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            RecyclerItemsEnterAnimator.AnonymousClass2.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
+                            this.f$0.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
                         }
                     });
-                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             RecyclerItemsEnterAnimator.this.listAlphaItems.remove(childAdapterPosition);
@@ -118,9 +117,9 @@ public class RecyclerItemsEnterAnimator {
                             recyclerItemsEnterAnimator2.listView.invalidate();
                         }
                     });
-                    ofFloat.setStartDelay((int) ((Math.min(RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight()) * 100.0f));
-                    ofFloat.setDuration(200L);
-                    animatorSet.playTogether(ofFloat);
+                    valueAnimatorOfFloat.setStartDelay((int) ((Math.min(RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight()) * 100.0f));
+                    valueAnimatorOfFloat.setDuration(200L);
+                    animatorSet.playTogether(valueAnimatorOfFloat);
                 }
             }
             RecyclerItemsEnterAnimator.this.currentAnimations.add(animatorSet);

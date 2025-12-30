@@ -63,17 +63,17 @@ public class RoundView extends EntityView {
         setRotation(f);
         setScale(f2);
         this.baseSize = size;
-        Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.thumbBitmap = decodeFile;
-        if (decodeFile != null) {
-            this.a = decodeFile.getWidth() / this.thumbBitmap.getHeight();
+        Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(str);
+        this.thumbBitmap = bitmapDecodeFile;
+        if (bitmapDecodeFile != null) {
+            this.a = bitmapDecodeFile.getWidth() / this.thumbBitmap.getHeight();
             rect.set(0, 0, this.thumbBitmap.getWidth(), this.thumbBitmap.getHeight());
         }
         TextureView textureView = new TextureView(context);
         this.textureView = textureView;
-        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -1.0f);
-        this.textureViewParams = createFrame;
-        addView(textureView, createFrame);
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -1.0f);
+        this.textureViewParams = layoutParamsCreateFrame;
+        addView(textureView, layoutParamsCreateFrame);
         this.mirrorT = new AnimatedFloat(this, 0L, 500L, cubicBezierInterpolator);
         updatePosition();
         setWillNotDraw(false);
@@ -95,9 +95,9 @@ public class RoundView extends EntityView {
         TextureView textureView = this.textureView;
         if (textureView != null) {
             float f = this.a;
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(f >= 1.0f ? (int) (f * i4) : i3, 1073741824);
+            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(f >= 1.0f ? (int) (f * i4) : i3, 1073741824);
             float f2 = this.a;
-            textureView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(f2 >= 1.0f ? i4 : (int) (i3 / f2), 1073741824));
+            textureView.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(f2 >= 1.0f ? i4 : (int) (i3 / f2), 1073741824));
         }
         setMeasuredDimension(i3, i4);
     }
@@ -143,11 +143,11 @@ public class RoundView extends EntityView {
             float f2 = this.shownT.set(this.shown);
             float x = view.getX() + (view.getWidth() / 2.0f);
             float y = view.getY() + (view.getHeight() / 2.0f);
-            float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
+            float fMin = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
             if (f2 < 1.0f) {
                 canvas.saveLayerAlpha(view.getX(), view.getY(), view.getWidth() + view.getX(), view.getHeight() + view.getY(), 128, 31);
                 this.clipPath.rewind();
-                this.clipPath.addCircle(x, y, min, Path.Direction.CW);
+                this.clipPath.addCircle(x, y, fMin, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
                 if (this.thumbBitmap != null) {
                     this.dst.set(0, 0, view.getWidth(), view.getHeight());
@@ -158,16 +158,16 @@ public class RoundView extends EntityView {
             }
             canvas.save();
             this.clipPath.rewind();
-            this.clipPath.addCircle(x, y, min * f2, Path.Direction.CW);
+            this.clipPath.addCircle(x, y, fMin * f2, Path.Direction.CW);
             canvas.clipPath(this.clipPath);
             if (this.thumbBitmap != null) {
                 this.dst.set(0, 0, view.getWidth(), view.getHeight());
                 canvas.drawBitmap(this.thumbBitmap, this.src, this.dst, (Paint) null);
             }
-            boolean drawChild = ((getParent() instanceof EntitiesContainerView) && ((EntitiesContainerView) getParent()).drawForThumb) ? true : super.drawChild(canvas, view, j);
+            boolean zDrawChild = ((getParent() instanceof EntitiesContainerView) && ((EntitiesContainerView) getParent()).drawForThumb) ? true : super.drawChild(canvas, view, j);
             canvas.restore();
             canvas.restore();
-            return drawChild;
+            return zDrawChild;
         }
         return super.drawChild(canvas, view, j);
     }
@@ -190,7 +190,7 @@ public class RoundView extends EntityView {
     }
 
     @Override
-    public void updatePosition() {
+    protected void updatePosition() {
         Size size = this.baseSize;
         float f = size.width / 2.0f;
         float f2 = size.height / 2.0f;
@@ -231,15 +231,15 @@ public class RoundView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDp2 = AndroidUtilities.dp(19.5f);
+            float f3 = fDp + fDp2;
             float f4 = f3 * 2.0f;
             float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+            if (f > f3 - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + fDp2 && f2 < measuredHeight + fDp2) {
                 return 1;
             }
-            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
+            if (f > ((getMeasuredWidth() - f4) + f3) - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + (getMeasuredWidth() - f4) + fDp2 && f2 < measuredHeight + fDp2) {
                 return 2;
             }
             float measuredWidth = getMeasuredWidth() / 2.0f;
@@ -257,19 +257,19 @@ public class RoundView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
-            float dp = AndroidUtilities.dp(1.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2.0f) - dp2;
-            float f = dp2 + (2.0f * measuredWidth);
-            this.arcRect.set(dp2, dp2, f, f);
+            float fDp = AndroidUtilities.dp(1.0f);
+            float fDpf2 = AndroidUtilities.dpf2(5.66f);
+            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2.0f) - fDp2;
+            float f = fDp2 + (2.0f * measuredWidth);
+            this.arcRect.set(fDp2, fDp2, f, f);
             canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
             canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + dp2;
-            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
-            canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            float f2 = measuredWidth + fDp2;
+            canvas.drawCircle(fDp2, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(fDp2, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.drawCircle(f, f2, fDpf2, this.dotStrokePaint);
+            canvas.drawCircle(f, f2, fDpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.restoreToCount(saveCount);
         }
     }

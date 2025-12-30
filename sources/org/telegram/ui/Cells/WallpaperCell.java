@@ -21,7 +21,6 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -66,7 +65,7 @@ public abstract class WallpaperCell extends FrameLayout {
             setWillNotDraw(false);
             BackupImageView backupImageView = new BackupImageView(context) {
                 @Override
-                public void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     if ((WallpaperView.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) || (WallpaperView.this.currentWallpaper instanceof WallpapersListActivity.FileWallpaper)) {
                         canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, WallpaperCell.this.framePaint);
@@ -111,9 +110,7 @@ public abstract class WallpaperCell extends FrameLayout {
         public void setWallpaper(Object obj, Object obj2, Drawable drawable, boolean z) {
             TLRPC.PhotoSize photoSize;
             int patternColor;
-            BlendMode blendMode;
             int patternColor2;
-            BlendMode blendMode2;
             this.currentWallpaper = obj;
             this.imageView.setVisibility(0);
             this.imageView2.setVisibility(4);
@@ -147,9 +144,7 @@ public abstract class WallpaperCell extends FrameLayout {
                     if (tL_wallPaper.settings.intensity >= 0 || !Theme.getActiveTheme().isDark()) {
                         this.imageView.setBackground(motionBackgroundDrawable);
                         if (Build.VERSION.SDK_INT >= 29) {
-                            ImageReceiver imageReceiver = this.imageView.getImageReceiver();
-                            blendMode2 = BlendMode.SOFT_LIGHT;
-                            imageReceiver.setBlendMode(blendMode2);
+                            this.imageView.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
                         }
                     } else {
                         this.imageView.getImageReceiver().setGradientBitmap(motionBackgroundDrawable.getBitmap());
@@ -179,9 +174,7 @@ public abstract class WallpaperCell extends FrameLayout {
                         if (colorWallpaper.intensity >= 0.0f) {
                             this.imageView.setBackground(new MotionBackgroundDrawable(colorWallpaper.color, colorWallpaper.gradientColor1, colorWallpaper.gradientColor2, colorWallpaper.gradientColor3, true));
                             if (Build.VERSION.SDK_INT >= 29) {
-                                ImageReceiver imageReceiver2 = this.imageView.getImageReceiver();
-                                blendMode = BlendMode.SOFT_LIGHT;
-                                imageReceiver2.setBlendMode(blendMode);
+                                this.imageView.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
                             }
                         } else {
                             this.imageView.getImageReceiver().setGradientBitmap(motionBackgroundDrawable2.getBitmap());
@@ -348,15 +341,13 @@ public abstract class WallpaperCell extends FrameLayout {
                 wallpaperView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        WallpaperCell.this.lambda$new$0(wallpaperView, i2, view);
+                        this.f$0.lambda$new$0(wallpaperView, i2, view);
                     }
                 });
                 wallpaperView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        boolean lambda$new$1;
-                        lambda$new$1 = WallpaperCell.this.lambda$new$1(wallpaperView, i2, view);
-                        return lambda$new$1;
+                        return this.f$0.lambda$new$1(wallpaperView, i2, view);
                     }
                 });
                 i2++;
@@ -391,18 +382,18 @@ public abstract class WallpaperCell extends FrameLayout {
             return;
         }
         int size = View.MeasureSpec.getSize(i);
-        int dp = size - AndroidUtilities.dp(((this.spanCount - 1) * 6) + 28);
-        int i4 = dp / this.spanCount;
+        int iDp = size - AndroidUtilities.dp(((this.spanCount - 1) * 6) + 28);
+        int i4 = iDp / this.spanCount;
         int i5 = this.currentType;
-        int dp2 = (i5 == 0 || i5 == 2 || i5 == 3) ? AndroidUtilities.dp(180.0f) : i4;
-        setMeasuredDimension(size, (this.isTop ? AndroidUtilities.dp(14.0f) : 0) + dp2 + AndroidUtilities.dp(this.isBottom ? 14.0f : 6.0f));
+        int iDp2 = (i5 == 0 || i5 == 2 || i5 == 3) ? AndroidUtilities.dp(180.0f) : i4;
+        setMeasuredDimension(size, (this.isTop ? AndroidUtilities.dp(14.0f) : 0) + iDp2 + AndroidUtilities.dp(this.isBottom ? 14.0f : 6.0f));
         while (true) {
             int i6 = this.spanCount;
             if (i3 >= i6) {
                 return;
             }
-            this.wallpaperViews[i3].measure(View.MeasureSpec.makeMeasureSpec(i3 == i6 + (-1) ? dp : i4, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
-            dp -= i4;
+            this.wallpaperViews[i3].measure(View.MeasureSpec.makeMeasureSpec(i3 == i6 + (-1) ? iDp : i4, 1073741824), View.MeasureSpec.makeMeasureSpec(iDp2, 1073741824));
+            iDp -= i4;
             i3++;
         }
     }
@@ -413,13 +404,13 @@ public abstract class WallpaperCell extends FrameLayout {
             super.onLayout(z, i, i2, i3, i4);
             return;
         }
-        int dp = AndroidUtilities.dp(14.0f);
-        int dp2 = this.isTop ? AndroidUtilities.dp(14.0f) : 0;
+        int iDp = AndroidUtilities.dp(14.0f);
+        int iDp2 = this.isTop ? AndroidUtilities.dp(14.0f) : 0;
         for (int i5 = 0; i5 < this.spanCount; i5++) {
             int measuredWidth = this.wallpaperViews[i5].getMeasuredWidth();
             WallpaperView wallpaperView = this.wallpaperViews[i5];
-            wallpaperView.layout(dp, dp2, dp + measuredWidth, wallpaperView.getMeasuredHeight() + dp2);
-            dp += measuredWidth + AndroidUtilities.dp(6.0f);
+            wallpaperView.layout(iDp, iDp2, iDp + measuredWidth, wallpaperView.getMeasuredHeight() + iDp2);
+            iDp += measuredWidth + AndroidUtilities.dp(6.0f);
         }
     }
 

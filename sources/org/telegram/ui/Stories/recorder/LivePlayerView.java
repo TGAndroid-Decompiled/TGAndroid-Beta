@@ -190,7 +190,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         LivePlayerView$$ExternalSyntheticLambda0 livePlayerView$$ExternalSyntheticLambda0;
         LivePlayer livePlayer;
         LivePlayer livePlayer2;
-        int dp;
+        int iDp;
         int width;
         if (videoPlayerSharedScope == null) {
             long j2 = this.dialogId;
@@ -201,19 +201,19 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
                     Paint paint = new Paint(3);
                     if (bitmap.getWidth() > bitmap.getHeight()) {
                         width = AndroidUtilities.dp(100.0f);
-                        dp = (int) ((bitmap.getHeight() / bitmap.getWidth()) * AndroidUtilities.dp(100.0f));
+                        iDp = (int) ((bitmap.getHeight() / bitmap.getWidth()) * AndroidUtilities.dp(100.0f));
                     } else {
-                        dp = AndroidUtilities.dp(100.0f);
+                        iDp = AndroidUtilities.dp(100.0f);
                         width = (int) ((bitmap.getWidth() / bitmap.getHeight()) * AndroidUtilities.dp(100.0f));
                     }
-                    Bitmap createBitmap = Bitmap.createBitmap(width, dp, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width, iDp, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmapCreateBitmap);
                     float width2 = width / bitmap.getWidth();
                     canvas.scale(width2, width2);
                     canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
-                    Utilities.stackBlurBitmap(createBitmap, AndroidUtilities.dp(4.0f));
+                    Utilities.stackBlurBitmap(bitmapCreateBitmap, AndroidUtilities.dp(4.0f));
                     try {
-                        createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -300,12 +300,12 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         LivePlayer livePlayer;
         LivePlayerView$$ExternalSyntheticLambda0 livePlayerView$$ExternalSyntheticLambda0;
         if (i == NotificationCenter.liveStoryUpdated) {
-            long longValue = ((Long) objArr[0]).longValue();
+            long jLongValue = ((Long) objArr[0]).longValue();
             PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = this.scope;
-            if (videoPlayerSharedScope == null || (livePlayer = videoPlayerSharedScope.livePlayer) == null || livePlayer.getCallId() != longValue) {
+            if (videoPlayerSharedScope == null || (livePlayer = videoPlayerSharedScope.livePlayer) == null || livePlayer.getCallId() != jLongValue) {
                 return;
             }
-            boolean isEmptyStream = this.scope.livePlayer.isEmptyStream();
+            boolean zIsEmptyStream = this.scope.livePlayer.isEmptyStream();
             if (this.scope.livePlayer.canContinueEmptyStream()) {
                 LivePlayer livePlayer2 = this.scope.livePlayer;
                 Objects.requireNonNull(livePlayer2);
@@ -313,7 +313,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
             } else {
                 livePlayerView$$ExternalSyntheticLambda0 = null;
             }
-            setIsEmpty(isEmptyStream, livePlayerView$$ExternalSyntheticLambda0);
+            setIsEmpty(zIsEmptyStream, livePlayerView$$ExternalSyntheticLambda0);
         }
     }
 
@@ -406,18 +406,18 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         float f2 = measuredWidth2;
         float f3 = measuredHeight;
         float f4 = measuredHeight2;
-        float max = Math.max(f / f2, f3 / f4);
-        this.blurRenderer.setScaleX(max);
-        this.blurRenderer.setScaleY(max);
-        this.blurRenderer.setTranslationX((f - (f2 * max)) / 2.0f);
-        this.blurRenderer.setTranslationY(((f3 - (f4 * max)) / 2.0f) - (this.keyboardOffset / 2.0f));
+        float fMax = Math.max(f / f2, f3 / f4);
+        this.blurRenderer.setScaleX(fMax);
+        this.blurRenderer.setScaleY(fMax);
+        this.blurRenderer.setTranslationX((f - (f2 * fMax)) / 2.0f);
+        this.blurRenderer.setTranslationY(((f3 - (f4 * fMax)) / 2.0f) - (this.keyboardOffset / 2.0f));
         float measuredWidth3 = view.getMeasuredWidth();
         float measuredHeight3 = view.getMeasuredHeight();
-        float max2 = Math.max(measuredWidth3 / f, measuredHeight3 / f3);
-        view.setScaleX(max2);
-        view.setScaleY(max2);
-        view.setTranslationX((f - (measuredWidth3 * max2)) / 2.0f);
-        view.setTranslationY(((f3 - (measuredHeight3 * max2)) / 2.0f) - (this.keyboardOffset / 2.0f));
+        float fMax2 = Math.max(measuredWidth3 / f, measuredHeight3 / f3);
+        view.setScaleX(fMax2);
+        view.setScaleY(fMax2);
+        view.setTranslationX((f - (measuredWidth3 * fMax2)) / 2.0f);
+        view.setTranslationY(((f3 - (measuredHeight3 * fMax2)) / 2.0f) - (this.keyboardOffset / 2.0f));
     }
 
     public void setKeyboardOffset(float f) {
@@ -493,7 +493,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         this.emptyView.animate().alpha(this.isEmptyViewVisible ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                LivePlayerView.this.lambda$setIsEmpty$0(z);
+                this.f$0.lambda$setIsEmpty$0(z);
             }
         }).start();
         this.emptyView.buttonView.setVisibility((!z || runnable == null) ? 8 : 0);
@@ -521,7 +521,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         }
     }
 
-    public static class EmptyView extends FrameLayout {
+    static class EmptyView extends FrameLayout {
         public final ButtonWithCounterView buttonView;
         private boolean hasSetImage;
         public final BackupImageView imageView;

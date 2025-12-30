@@ -55,11 +55,11 @@ public class Timer {
     }
 
     private void finish() {
-        long currentTimeMillis = System.currentTimeMillis() - this.startTime;
+        long jCurrentTimeMillis = System.currentTimeMillis() - this.startTime;
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
         sb.append(" total=");
-        sb.append(currentTimeMillis);
+        sb.append(jCurrentTimeMillis);
         sb.append("ms\n");
         for (int i = 0; i < this.tasks.size(); i++) {
             if (this.tasks.get(i) != null) {

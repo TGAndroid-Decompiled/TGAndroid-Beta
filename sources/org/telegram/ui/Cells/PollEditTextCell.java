@@ -105,15 +105,15 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
             @Override
             public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+                InputConnection inputConnectionOnCreateInputConnection = super.onCreateInputConnection(editorInfo);
                 if (PollEditTextCell.this.showNextButton) {
                     editorInfo.imeOptions &= -1073741825;
                 }
-                return onCreateInputConnection;
+                return inputConnectionOnCreateInputConnection;
             }
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 PollEditTextCell.this.onEditTextDraw(this, canvas);
             }
@@ -130,23 +130,23 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             }
 
             @Override
-            public void onFocusChanged(boolean z2, int i2, Rect rect) {
+            protected void onFocusChanged(boolean z2, int i2, Rect rect) {
                 super.onFocusChanged(z2, i2, rect);
                 PollEditTextCell.this.onEditTextFocusChanged(z2);
             }
 
             @Override
             public ActionMode startActionMode(ActionMode.Callback callback, int i2) {
-                ActionMode startActionMode = super.startActionMode(callback, i2);
-                PollEditTextCell.this.onActionModeStart(this, startActionMode);
-                return startActionMode;
+                ActionMode actionModeStartActionMode = super.startActionMode(callback, i2);
+                PollEditTextCell.this.onActionModeStart(this, actionModeStartActionMode);
+                return actionModeStartActionMode;
             }
 
             @Override
             public ActionMode startActionMode(ActionMode.Callback callback) {
-                ActionMode startActionMode = super.startActionMode(callback);
-                PollEditTextCell.this.onActionModeStart(this, startActionMode);
-                return startActionMode;
+                ActionMode actionModeStartActionMode = super.startActionMode(callback);
+                PollEditTextCell.this.onActionModeStart(this, actionModeStartActionMode);
+                return actionModeStartActionMode;
             }
 
             @Override
@@ -157,12 +157,12 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                     ArrayList arrayList = new ArrayList();
                     StringBuilder sb = new StringBuilder();
                     for (int i3 = 0; i3 < text.length(); i3++) {
-                        char charAt = text.charAt(i3);
-                        if (charAt == '\n') {
+                        char cCharAt = text.charAt(i3);
+                        if (cCharAt == '\n') {
                             arrayList.add(sb.toString());
                             sb.setLength(0);
                         } else {
-                            sb.append(charAt);
+                            sb.append(cCharAt);
                         }
                     }
                     if (!TextUtils.isEmpty(sb)) {
@@ -237,7 +237,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PollEditTextCell.this.lambda$new$0(view);
+                    this.f$0.lambda$new$0(view);
                 }
             });
         } else {
@@ -252,8 +252,8 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             chatActivityEnterViewAnimatedIconView.setAlpha(0.8f);
             this.emojiButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
             this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
-            int dp = AndroidUtilities.dp(9.5f);
-            this.emojiButton.setPadding(dp, dp, dp, dp);
+            int iDp = AndroidUtilities.dp(9.5f);
+            this.emojiButton.setPadding(iDp, iDp, iDp, iDp);
             this.emojiButton.setVisibility(8);
             int i5 = this.deleteImageView == null ? 3 : 38;
             ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView2 = this.emojiButton;
@@ -263,7 +263,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.emojiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PollEditTextCell.this.lambda$new$1(view);
+                    this.f$0.lambda$new$1(view);
                 }
             });
             this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
@@ -338,7 +338,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         }
     }
 
-    public void onCheckBoxClick(PollEditTextCell pollEditTextCell, boolean z) {
+    protected void onCheckBoxClick(PollEditTextCell pollEditTextCell, boolean z) {
         this.checkBox.setChecked(z, true);
     }
 
@@ -444,12 +444,12 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.emojiButton.setScaleY(0.0f);
             this.emojiButton.setAlpha(0.0f);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
-        this.valueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
+        this.valueAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PollEditTextCell.this.lambda$setEmojiButtonVisibility$2(valueAnimator2);
+                this.f$0.lambda$setEmojiButtonVisibility$2(valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new Animator.AnimatorListener() {
@@ -481,34 +481,34 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
     }
 
     public void lambda$setEmojiButtonVisibility$2(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.emojiButton.setScaleX(floatValue);
-        this.emojiButton.setScaleY(floatValue);
-        this.emojiButton.setAlpha(Math.max(floatValue, 0.8f));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.emojiButton.setScaleX(fFloatValue);
+        this.emojiButton.setScaleY(fFloatValue);
+        this.emojiButton.setAlpha(Math.max(fFloatValue, 0.8f));
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null && this.deleteImageView == null && simpleTextView.getVisibility() == 0) {
-            this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * floatValue);
+            this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * fFloatValue);
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float dp;
-        int i;
+        float fDp;
+        int iDp;
         if (this.needDivider && drawDivider()) {
             if (LocaleController.isRTL) {
-                dp = 0.0f;
+                fDp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(this.moveImageView != null ? 63.0f : 20.0f);
+                fDp = AndroidUtilities.dp(this.moveImageView != null ? 63.0f : 20.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.moveImageView != null ? 63.0f : 20.0f);
+                iDp = AndroidUtilities.dp(this.moveImageView != null ? 63.0f : 20.0f);
             } else {
-                i = 0;
+                iDp = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(fDp, measuredHeight, measuredWidth - iDp, getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 

@@ -15,7 +15,7 @@ public class FireworksEffect {
     private ArrayList particles = new ArrayList();
     private ArrayList freeParticles = new ArrayList();
 
-    public class Particle {
+    private class Particle {
         float alpha;
         int color;
         float currentTime;
@@ -73,7 +73,7 @@ public class FireworksEffect {
                 float f3 = particle.x;
                 float f4 = particle.vx;
                 float f5 = particle.velocity;
-                float f6 = (float) j;
+                float f6 = j;
                 particle.x = f3 + (((f4 * f5) * f6) / 500.0f);
                 float f7 = particle.y;
                 float f8 = particle.vy;
@@ -96,24 +96,24 @@ public class FireworksEffect {
         }
         if (Utilities.random.nextBoolean() && this.particles.size() + 8 < 150) {
             int i2 = AndroidUtilities.statusBarHeight;
-            float nextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-            float nextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i2));
-            int nextInt = Utilities.random.nextInt(4);
-            int i3 = nextInt != 0 ? nextInt != 1 ? nextInt != 2 ? nextInt != 3 ? -5752 : -15088582 : -207021 : -843755 : -13357350;
+            float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
+            float fNextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i2));
+            int iNextInt = Utilities.random.nextInt(4);
+            int i3 = iNextInt != 0 ? iNextInt != 1 ? iNextInt != 2 ? iNextInt != 3 ? -5752 : -15088582 : -207021 : -843755 : -13357350;
             for (int i4 = 0; i4 < 8; i4++) {
-                double nextInt2 = (Utilities.random.nextInt(270) - 225) * 0.017453292519943295d;
-                float cos = (float) Math.cos(nextInt2);
-                float sin = (float) Math.sin(nextInt2);
+                double dNextInt = (Utilities.random.nextInt(270) - 225) * 0.017453292519943295d;
+                float fCos = (float) Math.cos(dNextInt);
+                float fSin = (float) Math.sin(dNextInt);
                 if (!this.freeParticles.isEmpty()) {
                     particle = (Particle) this.freeParticles.get(0);
                     this.freeParticles.remove(0);
                 } else {
                     particle = new Particle();
                 }
-                particle.x = nextFloat;
-                particle.y = nextFloat2;
-                particle.vx = cos * 1.5f;
-                particle.vy = sin;
+                particle.x = fNextFloat;
+                particle.y = fNextFloat2;
+                particle.vx = fCos * 1.5f;
+                particle.vy = fSin;
                 particle.color = i3;
                 particle.alpha = 1.0f;
                 particle.currentTime = 0.0f;
@@ -124,9 +124,9 @@ public class FireworksEffect {
                 this.particles.add(particle);
             }
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        updateParticles(Math.min(17L, currentTimeMillis - this.lastAnimationTime));
-        this.lastAnimationTime = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        updateParticles(Math.min(17L, jCurrentTimeMillis - this.lastAnimationTime));
+        this.lastAnimationTime = jCurrentTimeMillis;
         view.invalidate();
     }
 }

@@ -20,15 +20,13 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoCodecInfo[] getImplementations() {
-        VideoCodecInfo[] supportedCodecs;
-        supportedCodecs = getSupportedCodecs();
-        return supportedCodecs;
+        return getSupportedCodecs();
     }
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
-        if (nativeCreateEncoder == 0) {
+        final long jNativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
+        if (jNativeCreateEncoder == 0) {
             Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
             return null;
         }
@@ -40,7 +38,7 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
             @Override
             public long createNativeVideoEncoder() {
-                return nativeCreateEncoder;
+                return jNativeCreateEncoder;
             }
         };
     }

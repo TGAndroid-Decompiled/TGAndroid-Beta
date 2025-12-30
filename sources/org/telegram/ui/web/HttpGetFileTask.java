@@ -33,7 +33,7 @@ public class HttpGetFileTask extends AsyncTask {
     }
 
     @Override
-    public java.io.File doInBackground(java.lang.String... r18) {
+    public java.io.File doInBackground(java.lang.String... r18) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.HttpGetFileTask.doInBackground(java.lang.String[]):java.io.File");
     }
 

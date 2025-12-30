@@ -18,7 +18,7 @@ public class TimerParticles {
     private ArrayList particles;
     private final int particlesCount;
 
-    public static class Particle {
+    private static class Particle {
         float alpha;
         float currentTime;
         float lifeTime;
@@ -64,7 +64,7 @@ public class TimerParticles {
                 float f3 = particle.x;
                 float f4 = particle.vx;
                 float f5 = particle.velocity;
-                float f6 = (float) j;
+                float f6 = j;
                 particle.x = f3 + (((f4 * f5) * f6) / 200.0f);
                 particle.y += ((particle.vy * f5) * f6) / 200.0f;
                 particle.currentTime += f6;
@@ -84,14 +84,14 @@ public class TimerParticles {
         }
         double d = 0.017453292519943295d;
         double d2 = (f - 90.0f) * 0.017453292519943295d;
-        double sin = Math.sin(d2);
+        double dSin = Math.sin(d2);
         double d3 = -Math.cos(d2);
-        double width = rectF.width() / 2.0f;
-        float centerX = (float) (((-d3) * width) + rectF.centerX());
-        float centerY = (float) ((width * sin) + rectF.centerY());
-        int clamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
+        double dWidth = rectF.width() / 2.0f;
+        float fCenterX = (float) (((-d3) * dWidth) + rectF.centerX());
+        float fCenterY = (float) ((dWidth * dSin) + rectF.centerY());
+        int iClamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
         int i3 = 0;
-        while (i3 < clamp) {
+        while (i3 < iClamp) {
             if (!this.freeParticles.isEmpty()) {
                 particle = (Particle) this.freeParticles.get(i);
                 this.freeParticles.remove(i);
@@ -99,19 +99,19 @@ public class TimerParticles {
                 particle = new Particle();
             }
             if (this.big && this.hasLast) {
-                float f3 = (i3 + 1) / clamp;
-                particle.x = AndroidUtilities.lerp(this.lastCx, centerX, f3);
-                particle.y = AndroidUtilities.lerp(this.lastCy, centerY, f3);
+                float f3 = (i3 + 1) / iClamp;
+                particle.x = AndroidUtilities.lerp(this.lastCx, fCenterX, f3);
+                particle.y = AndroidUtilities.lerp(this.lastCy, fCenterY, f3);
             } else {
-                particle.x = centerX;
-                particle.y = centerY;
+                particle.x = fCenterX;
+                particle.y = fCenterY;
             }
-            double nextInt = (Utilities.random.nextInt(140) - 70) * d;
-            if (nextInt < 0.0d) {
-                nextInt += 6.283185307179586d;
+            double dNextInt = (Utilities.random.nextInt(140) - 70) * d;
+            if (dNextInt < 0.0d) {
+                dNextInt += 6.283185307179586d;
             }
-            particle.vx = (float) ((Math.cos(nextInt) * sin) - (Math.sin(nextInt) * d3));
-            particle.vy = (float) ((Math.sin(nextInt) * sin) + (Math.cos(nextInt) * d3));
+            particle.vx = (float) ((Math.cos(dNextInt) * dSin) - (Math.sin(dNextInt) * d3));
+            particle.vy = (float) ((Math.sin(dNextInt) * dSin) + (Math.cos(dNextInt) * d3));
             particle.alpha = 1.0f;
             particle.currentTime = 0.0f;
             if (this.big) {
@@ -127,10 +127,10 @@ public class TimerParticles {
             d = 0.017453292519943295d;
         }
         this.hasLast = true;
-        this.lastCx = centerX;
-        this.lastCy = centerY;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        updateParticles(Math.min(20L, elapsedRealtime - this.lastAnimationTime));
-        this.lastAnimationTime = elapsedRealtime;
+        this.lastCx = fCenterX;
+        this.lastCy = fCenterY;
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        updateParticles(Math.min(20L, jElapsedRealtime - this.lastAnimationTime));
+        this.lastAnimationTime = jElapsedRealtime;
     }
 }

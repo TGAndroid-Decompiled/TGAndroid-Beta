@@ -2,31 +2,28 @@ package org.telegram.messenger.pip.source;
 
 import android.graphics.Canvas;
 import android.graphics.Picture;
-import android.graphics.RecordingCanvas;
 import android.graphics.RenderNode;
 import android.os.Build;
 import android.view.View;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.Utilities;
 
-public class PipSourceSnapshot {
+class PipSourceSnapshot {
     private final RenderNode node;
     private final Picture picture;
 
     public PipSourceSnapshot(int i, int i2, Utilities.Callback callback) {
-        RecordingCanvas beginRecording;
         Picture picture = new Picture();
         this.picture = picture;
         callback.run(picture.beginRecording(i, i2));
         picture.endRecording();
         if (Build.VERSION.SDK_INT >= 29) {
             PipSourceSnapshot$$ExternalSyntheticApiModelOutline0.m();
-            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("pip-node-" + View.generateViewId());
-            this.node = m;
-            m.setPosition(0, 0, i, i2);
-            beginRecording = m.beginRecording();
-            beginRecording.drawPicture(picture);
-            m.endRecording();
+            RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("pip-node-" + View.generateViewId());
+            this.node = renderNodeM;
+            renderNodeM.setPosition(0, 0, i, i2);
+            renderNodeM.beginRecording().drawPicture(picture);
+            renderNodeM.endRecording();
             return;
         }
         this.node = null;

@@ -19,7 +19,7 @@ public class ViewsForPeerStoriesRequester {
     final Runnable scheduleRequestRunnable = new Runnable() {
         @Override
         public final void run() {
-            ViewsForPeerStoriesRequester.this.lambda$new$0();
+            this.f$0.lambda$new$0();
         }
     };
     final StoriesController storiesController;
@@ -73,10 +73,10 @@ public class ViewsForPeerStoriesRequester {
 
     public void lambda$new$0() {
         if (this.isRunning) {
-            long currentTimeMillis = 10000 - (System.currentTimeMillis() - lastRequestTime);
-            if (currentTimeMillis > 0) {
+            long jCurrentTimeMillis = 10000 - (System.currentTimeMillis() - lastRequestTime);
+            if (jCurrentTimeMillis > 0) {
                 AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
-                AndroidUtilities.runOnUIThread(this.scheduleRequestRunnable, currentTimeMillis);
+                AndroidUtilities.runOnUIThread(this.scheduleRequestRunnable, jCurrentTimeMillis);
             } else {
                 if (requestInternal()) {
                     return;
@@ -100,7 +100,7 @@ public class ViewsForPeerStoriesRequester {
         this.currentReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesViews, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ViewsForPeerStoriesRequester.this.lambda$requestInternal$2(tL_stories_getStoriesViews, tLObject, tL_error);
+                this.f$0.lambda$requestInternal$2(tL_stories_getStoriesViews, tLObject, tL_error);
             }
         });
         return true;
@@ -110,7 +110,7 @@ public class ViewsForPeerStoriesRequester {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ViewsForPeerStoriesRequester.this.lambda$requestInternal$1(tLObject, tL_stories_getStoriesViews);
+                this.f$0.lambda$requestInternal$1(tLObject, tL_stories_getStoriesViews);
             }
         });
     }

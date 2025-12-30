@@ -19,7 +19,7 @@ public class DarkFragmentWrapper extends BaseFragment {
         return false;
     }
 
-    public DarkFragmentWrapper(BaseFragment baseFragment) {
+    DarkFragmentWrapper(BaseFragment baseFragment) {
         this.parentFragment = baseFragment;
     }
 

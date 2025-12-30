@@ -81,12 +81,12 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TimezoneSelector.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                TimezoneSelector.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, null);
         this.listView = universalRecyclerView;
@@ -135,34 +135,8 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
         return this;
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        int i;
-        boolean z = this.searching && !TextUtils.isEmpty(this.query);
-        TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
-        if (!z) {
-            arrayList.add(UItem.asRippleCheck(-1, LocaleController.getString(R.string.TimezoneDetectAutomatically)).setChecked(this.useSystem));
-            arrayList.add(UItem.asShadow(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, timezonesController.getTimezoneName(this.currentTimezone, true))));
-            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TimezoneHeader)));
-        }
-        boolean z2 = true;
-        while (i < timezonesController.getTimezones().size()) {
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) timezonesController.getTimezones().get(i);
-            if (z) {
-                String replace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
-                String lowerCase = AndroidUtilities.translitSafe(this.query).toLowerCase();
-                StringBuilder sb = new StringBuilder();
-                sb.append(" ");
-                sb.append(lowerCase);
-                i = (replace.contains(sb.toString()) || replace.startsWith(lowerCase)) ? 0 : i + 1;
-            }
-            arrayList.add(UItem.asRadio(i, timezonesController.getTimezoneName(tL_timezone, false), timezonesController.getTimezoneOffsetName(tL_timezone)).setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone)).setEnabled(!this.useSystem || z));
-            z2 = false;
-        }
-        if (z2) {
-            arrayList.add(UItem.asCustom(this.emptyView));
-        } else {
-            arrayList.add(UItem.asShadow(null));
-        }
+    public void fillItems(java.util.ArrayList r11, org.telegram.ui.Components.UniversalAdapter r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.TimezoneSelector.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {

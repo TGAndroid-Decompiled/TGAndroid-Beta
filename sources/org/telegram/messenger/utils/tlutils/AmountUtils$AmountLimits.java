@@ -12,14 +12,10 @@ public class AmountUtils$AmountLimits {
     }
 
     public AmountUtils$Amount getMin(AmountUtils$Currency amountUtils$Currency) {
-        AmountUtils$Amount amountUtils$Amount;
-        amountUtils$Amount = this.limits[amountUtils$Currency.ordinal()].min;
-        return amountUtils$Amount;
+        return this.limits[amountUtils$Currency.ordinal()].min;
     }
 
     public AmountUtils$Amount getMax(AmountUtils$Currency amountUtils$Currency) {
-        AmountUtils$Amount amountUtils$Amount;
-        amountUtils$Amount = this.limits[amountUtils$Currency.ordinal()].max;
-        return amountUtils$Amount;
+        return this.limits[amountUtils$Currency.ordinal()].max;
     }
 }

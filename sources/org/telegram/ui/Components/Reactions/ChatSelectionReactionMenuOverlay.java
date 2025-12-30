@@ -19,7 +19,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 
@@ -69,7 +68,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
                 @Override
                 public void draw(Canvas canvas) {
-                    long min = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
+                    long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
                     this.lastUpdate = System.currentTimeMillis();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -79,7 +78,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
                     if (!isEnabled()) {
                         float f = this.enabledAlpha;
                         if (f != 0.0f) {
-                            this.enabledAlpha = Math.max(0.0f, f - (((float) min) / 150.0f));
+                            this.enabledAlpha = Math.max(0.0f, f - (jMin / 150.0f));
                             invalidate();
                             if (this.enabledAlpha == 0.0f) {
                                 setVisibility(8);
@@ -91,7 +90,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
                     if (isEnabled()) {
                         float f2 = this.enabledAlpha;
                         if (f2 != 1.0f) {
-                            this.enabledAlpha = Math.min(1.0f, f2 + (((float) min) / 150.0f));
+                            this.enabledAlpha = Math.min(1.0f, f2 + (jMin / 150.0f));
                             invalidate();
                         }
                     }
@@ -115,7 +114,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
     }
 
-    public class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
         public boolean allowLongPress() {
             return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
@@ -150,7 +149,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatSelectionReactionMenuOverlay.AnonymousClass3.this.lambda$onReactionClicked$0();
+                    this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
@@ -205,8 +204,32 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         return (messageObject == null || messageObject.needDrawBluredPreview() || ((!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) && (messageObject.getDocument() == null || (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument()))))) ? false : true;
     }
 
-    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.setSelectedMessages(java.util.List):void");
+    public void setSelectedMessages(List<MessageObject> list) {
+        this.selectedMessages = list;
+        boolean z = true;
+        if (this.parentFragment.getChatMode() == 1 || this.parentFragment.getChatMode() == 5 || this.parentFragment.getChatMode() == 6 || this.parentFragment.isReport() || this.parentFragment.isSecretChat() || ((this.parentFragment.getCurrentChatInfo() != null && (this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) || list.isEmpty())) {
+            z = false;
+            break;
+        }
+        long groupId = 0;
+        boolean z2 = false;
+        for (MessageObject messageObject : list) {
+            if (isMessageTypeAllowed(messageObject)) {
+                if (!z2) {
+                    groupId = messageObject.getGroupId();
+                    z2 = true;
+                } else if (groupId != messageObject.getGroupId() || groupId == 0) {
+                }
+            }
+            z = false;
+        }
+        if (z != this.isVisible) {
+            this.isVisible = z;
+            this.hiddenByScroll = false;
+            animateVisible(z);
+        } else if (z) {
+            this.currentPrimaryObject = findPrimaryObject();
+        }
     }
 
     private void animateVisible(boolean z) {
@@ -215,7 +238,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$0();
+                    this.f$0.lambda$animateVisible$0();
                 }
             });
             return;
@@ -225,7 +248,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$1(valueAnimator);
+                this.f$0.lambda$animateVisible$1(valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -258,10 +281,10 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     }
 
     public void lambda$animateVisible$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {
-            reactionsContainerLayout.setAlpha(floatValue);
+            reactionsContainerLayout.setAlpha(fFloatValue);
         }
     }
 

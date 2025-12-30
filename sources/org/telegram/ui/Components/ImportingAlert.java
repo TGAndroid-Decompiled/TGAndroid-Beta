@@ -47,9 +47,9 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.resourcesProvider = resourcesProvider;
             View view = new View(context);
             this.background = view;
-            int dp = AndroidUtilities.dp(4.0f);
+            int iDp = AndroidUtilities.dp(4.0f);
             int i = Theme.key_featuredStickers_addButton;
-            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
+            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
@@ -57,9 +57,9 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             addView(this.linearLayout, LayoutHelper.createFrame(-2, -2, 17));
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
-            int dp2 = AndroidUtilities.dp(20.0f);
+            int iDp2 = AndroidUtilities.dp(20.0f);
             int i2 = Theme.key_featuredStickers_buttonText;
-            rLottieImageView.setBackground(Theme.createCircleDrawable(dp2, getThemedColor(i2)));
+            rLottieImageView.setBackground(Theme.createCircleDrawable(iDp2, getThemedColor(i2)));
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
             this.imageView.setAnimation(R.raw.import_check, 26, 26);
@@ -116,7 +116,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ImportingAlert.this.lambda$new$0();
+                this.f$0.lambda$new$0();
             }
         };
         this.onFinishCallback = runnable;
@@ -164,7 +164,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         this.cell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ImportingAlert.this.lambda$new$1(view);
+                this.f$0.lambda$new$1(view);
             }
         });
         this.cell.background.setPivotY(AndroidUtilities.dp(48.0f));
@@ -224,10 +224,10 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         TextView textView = this.percentTextView;
         Property property = View.ALPHA;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f);
         TextView textView2 = this.percentTextView;
         Property property2 = View.TRANSLATION_Y;
-        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, (Property<LineProgressView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, (Property<LinearLayout, Float>) property2, AndroidUtilities.dp(8.0f), 0.0f));
+        animatorSet.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, (Property<LineProgressView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, (Property<LinearLayout, Float>) property2, AndroidUtilities.dp(8.0f), 0.0f));
         this.cell.background.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.playAnimation();
