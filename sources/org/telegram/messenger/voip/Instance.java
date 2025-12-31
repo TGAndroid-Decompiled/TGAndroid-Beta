@@ -1,7 +1,6 @@
 package org.telegram.messenger.voip;
 
 import com.google.android.exoplayer2.util.Util;
-import java.io.IOException;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,7 +83,7 @@ public final class Instance {
         return globalServerConfig;
     }
 
-    public static void setGlobalServerConfig(String str) throws IOException {
+    public static void setGlobalServerConfig(String str) {
         try {
             globalServerConfig = new ServerConfig(new JSONObject(str));
             NativeInstance nativeInstance = instance;
@@ -102,7 +101,7 @@ public final class Instance {
         instance = null;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i, EncryptionKey encryptionKey, VideoSink videoSink, long j, NativeInstance.AudioLevelsCallback audioLevelsCallback) throws IOException {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i, EncryptionKey encryptionKey, VideoSink videoSink, long j, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(ApplicationLoader.applicationContext);
         }

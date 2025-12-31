@@ -1,7 +1,6 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -220,12 +219,6 @@ public class DialogsHintCell extends BlurredFrameLayout {
             return false;
         }
         return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
     }
 
     @Override

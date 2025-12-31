@@ -1571,12 +1571,12 @@ public class ConnectionsManager extends BaseController {
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
-                public final void onSuccess(Object obj) throws IOException {
+                public final void onSuccess(Object obj) {
                     ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, jCurrentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public final void onFailure(Exception exc) throws IOException {
+                public final void onFailure(Exception exc) {
                     ConnectionsManager.lambda$onIntegrityCheckClassic$24(i, jCurrentTimeMillis, i2, str2, exc);
                 }
             });
@@ -1586,7 +1586,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) throws IOException {
+    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
@@ -1601,7 +1601,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$24(int i, long j, int i2, String str, Exception exc) throws IOException {
+    public static void lambda$onIntegrityCheckClassic$24(int i, long j, int i2, String str, Exception exc) {
         FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
         StringBuilder sb = new StringBuilder();
         sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");

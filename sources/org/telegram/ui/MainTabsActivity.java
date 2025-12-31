@@ -488,8 +488,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         public void selectTab(int i, boolean z) {
             int i2 = this.selectedTab;
             if (i2 != i) {
-                if (i2 != -1) {
-                    this.tabs[i2].setSelected(false, true);
+                if (i2 >= 0) {
+                    GlassTabView[] glassTabViewArr = this.tabs;
+                    if (i2 < glassTabViewArr.length) {
+                        glassTabViewArr[i2].setSelected(false, true);
+                    }
                 }
                 this.tabs[i].setSelected(true, true);
                 long jAbs = (Math.abs(this.selectedTab - i) * 100) + 320;
@@ -602,6 +605,10 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         bundle4.putBoolean("my_profile", true);
         bundle4.putBoolean("hasMainTabs", true);
         return new ProfileActivity(bundle4);
+    }
+
+    public DialogsActivity getDialogsActivity() {
+        return this.dialogsActivity;
     }
 
     @Override
@@ -781,6 +788,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     public void blur3_invalidateBlur() {
         View view;
+        View view2;
         BlurredBackgroundSourceRenderNode glassSource;
         if (Build.VERSION.SDK_INT < 31 || this.iBlur3SourceTabGlass == null || (view = this.fragmentView) == null) {
             return;
@@ -790,7 +798,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         RecordingCanvas recordingCanvasBeginRecording = this.iBlur3SourceTabGlass.beginRecording(measuredWidth, measuredHeight);
         recordingCanvasBeginRecording.drawColor(getThemedColor(Theme.key_windowBackgroundWhite));
         for (BaseFragment baseFragment : this.fragments) {
-            if (baseFragment != 0 && baseFragment.getFragmentView() != null && ViewPositionWatcher.computeRectInParent(baseFragment.getFragmentView(), this.contentView, this.fragmentPosition)) {
+            if (baseFragment != 0 && (view2 = baseFragment.fragmentView) != null && ViewPositionWatcher.computeRectInParent(view2, this.contentView, this.fragmentPosition)) {
                 RectF rectF = this.fragmentPosition;
                 if (rectF.right > 0.0f && rectF.left < this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && (glassSource = ((TabFragmentDelegate) baseFragment).getGlassSource()) != null) {
                     recordingCanvasBeginRecording.save();

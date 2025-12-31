@@ -18,7 +18,6 @@ import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.NotchInfoUtils;
@@ -120,7 +119,7 @@ public class ProfileGooeyView extends FrameLayout {
     }
 
     @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) throws IOException {
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
         this.notchInfo = info;

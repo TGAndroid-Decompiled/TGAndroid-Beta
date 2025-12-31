@@ -1,6 +1,5 @@
 package org.telegram.messenger.voip;
 
-import java.io.IOException;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.BuildVars;
@@ -11,7 +10,7 @@ public class VoIPServerConfig {
 
     private static native void nativeSetConfig(String str);
 
-    public static void setConfig(String str) throws IOException {
+    public static void setConfig(String str) {
         try {
             config = new JSONObject(str);
             nativeSetConfig(str);

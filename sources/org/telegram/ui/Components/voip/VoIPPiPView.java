@@ -24,7 +24,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
-import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -349,7 +348,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) throws InterruptedException, IOException {
+                public final void onClick(View view2) throws InterruptedException {
                     VoIPPiPView.lambda$new$1(view2);
                 }
             });
@@ -367,7 +366,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         updateViewState();
     }
 
-    public static void lambda$new$1(View view) throws InterruptedException, IOException {
+    public static void lambda$new$1(View view) throws InterruptedException {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             sharedInstance.hangUp();

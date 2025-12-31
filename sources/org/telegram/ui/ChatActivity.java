@@ -15247,12 +15247,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private void saveGeneralScroll() {
         ChatMessageCell chatMessageCell = null;
-        for (int i = 0; i < this.chatListView.getChildCount(); i++) {
-            View childAt = this.chatListView.getChildAt(i);
+        int i = 0;
+        for (int i2 = 0; i2 < this.chatListView.getChildCount(); i2++) {
+            View childAt = this.chatListView.getChildAt(i2);
             if (childAt instanceof ChatMessageCell) {
                 ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt;
-                if (Math.min(chatMessageCell2.getBottom(), this.chatListView.getHeight()) - Math.max(0, chatMessageCell2.getTop()) > 0) {
+                int iMin = Math.min(chatMessageCell2.getBottom(), this.chatListView.getHeight()) - Math.max(0, chatMessageCell2.getTop());
+                if (iMin > i) {
                     chatMessageCell = chatMessageCell2;
+                    i = iMin;
                 }
             }
         }
@@ -17485,7 +17488,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$updatePinnedMessageView$214(String str, View view) throws InterruptedException, IOException {
+    public void lambda$updatePinnedMessageView$214(String str, View view) throws InterruptedException {
         String str2 = Uri.parse(str).getPathSegments().get(r4.getPathSegments().size() - 1);
         TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
         tL_inputGroupCallSlug.slug = str2;
@@ -24864,13 +24867,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public void lambda$didPressOther$4(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final MessageObject messageObject, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException, IOException {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$didPressOther$3(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, messageObject, tL_error);
                 }
             });
         }
 
-        public void lambda$didPressOther$3(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+        public void lambda$didPressOther$3(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) throws InterruptedException {
             alertDialog.dismiss();
             if (tLObject instanceof TL_phone.groupCall) {
                 TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;

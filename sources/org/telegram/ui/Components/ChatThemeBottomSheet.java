@@ -72,13 +72,13 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeColors;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
-import org.telegram.ui.Cells.DrawerProfileCell;
 import org.telegram.ui.Cells.ThemesHorizontalListCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.ThemePreviewActivity;
@@ -1223,7 +1223,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             }
             ChatThemeItem chatThemeItem = (ChatThemeItem) this.items.get(i);
             ChatThemeItem chatThemeItem2 = themeSmallPreviewView.chatThemeItem;
-            boolean z = chatThemeItem2 != null && ThemeKey.equals(chatThemeItem2.chatTheme.getThemeKey(), chatThemeItem.chatTheme.getThemeKey()) && !DrawerProfileCell.switchingTheme && themeSmallPreviewView.lastThemeIndex == chatThemeItem.themeIndex;
+            boolean z = chatThemeItem2 != null && ThemeKey.equals(chatThemeItem2.chatTheme.getThemeKey(), chatThemeItem.chatTheme.getThemeKey()) && !DialogsActivity.switchingTheme && themeSmallPreviewView.lastThemeIndex == chatThemeItem.themeIndex;
             themeSmallPreviewView.setFocusable(true);
             themeSmallPreviewView.setEnabled(true);
             themeSmallPreviewView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray));

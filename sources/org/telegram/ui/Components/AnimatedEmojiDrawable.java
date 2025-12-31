@@ -14,7 +14,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -248,7 +247,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.fetchRunnable = null;
         }
 
-        private boolean checkThread() throws IOException {
+        private boolean checkThread() {
             if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
                 return true;
             }

@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -224,13 +223,13 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
     public void lambda$createCall$6(final ButtonWithCounterView buttonWithCounterView, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
             }
         });
     }
 
-    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);

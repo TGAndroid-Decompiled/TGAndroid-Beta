@@ -51,7 +51,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        return INavigationLayout.INavigationLayoutDelegate.CC.$default$needPresentFragment(this, iNavigationLayout, navigationParams);
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
     }
 
     @Override

@@ -80,7 +80,6 @@ import j$.util.Objects;
 import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -4459,7 +4458,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         profileGalleryView.setPinchToZoomHelper(this.pinchToZoomHelper);
         this.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view6) throws InterruptedException, IOException {
+            public final void onClick(View view6) throws InterruptedException {
                 this.f$0.lambda$new$50(activity, view6);
             }
         });
@@ -4556,7 +4555,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 builder.setDialogButtonColorKey(Theme.key_voipgroup_listeningText);
                 builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupEnd), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws InterruptedException, IOException {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws InterruptedException {
                         this.f$0.lambda$onItemClick$1(alertDialog, i3);
                     }
                 });
@@ -4731,7 +4730,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             if (i == 8) {
                 JoinCallAlert.open(GroupCallActivity.this.getContext(), -GroupCallActivity.this.getChatId(), GroupCallActivity.this.accountInstance, null, 2, GroupCallActivity.this.selfPeer, new JoinCallAlert.JoinCallAlertDelegate() {
                     @Override
-                    public final void didSelectChat(TLRPC.InputPeer inputPeer, boolean z2, boolean z3, boolean z4) throws InterruptedException, IOException {
+                    public final void didSelectChat(TLRPC.InputPeer inputPeer, boolean z2, boolean z3, boolean z4) throws InterruptedException {
                         this.f$0.lambda$onItemClick$9(inputPeer, z2, z3, z4);
                     }
                 });
@@ -4807,7 +4806,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
         }
 
-        public void lambda$onItemClick$1(AlertDialog alertDialog, int i) throws InterruptedException, IOException {
+        public void lambda$onItemClick$1(AlertDialog alertDialog, int i) throws InterruptedException {
             if (GroupCallActivity.this.call.isScheduled()) {
                 TLRPC.ChatFull chatFull = GroupCallActivity.this.accountInstance.getMessagesController().getChatFull(GroupCallActivity.this.getChatId());
                 if (chatFull != null) {
@@ -4956,7 +4955,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
         }
 
-        public void lambda$onItemClick$9(TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) throws InterruptedException, IOException {
+        public void lambda$onItemClick$9(TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) throws InterruptedException {
             TLObject chat;
             GroupCallActivity groupCallActivity = GroupCallActivity.this;
             if (groupCallActivity.call == null) {
@@ -5091,7 +5090,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (groupCallInvitedCell.hasAvatarSet()) {
                     bundle.putBoolean("expandPhoto", true);
                 }
-                this.parentActivity.lambda$runLinkRequest$96(new ProfileActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$98(new ProfileActivity(bundle));
                 lambda$new$0();
                 return;
             }
@@ -5219,7 +5218,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
             }).setOnUsersSelector(new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj, Object obj2) throws InterruptedException, IOException {
+                public final void run(Object obj, Object obj2) throws InterruptedException {
                     this.f$0.lambda$new$23(call, (Boolean) obj, (HashSet) obj2);
                 }
             }).show();
@@ -5288,7 +5287,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return Long.valueOf(DialogObject.getPeerDialogId(groupCallParticipant.peer));
     }
 
-    public void lambda$new$23(final ChatObject.Call call, Boolean bool, HashSet hashSet) throws InterruptedException, IOException {
+    public void lambda$new$23(final ChatObject.Call call, Boolean bool, HashSet hashSet) throws InterruptedException {
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance;
         ChatObject.Call call2 = this.call;
@@ -6048,7 +6047,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return String.format("%02d", Integer.valueOf(i));
     }
 
-    public void lambda$new$50(Activity activity, View view) throws InterruptedException, IOException {
+    public void lambda$new$50(Activity activity, View view) throws InterruptedException {
         LaunchActivity launchActivity;
         if (Build.VERSION.SDK_INT >= 23 && (launchActivity = this.parentActivity) != null && launchActivity.checkSelfPermission("android.permission.CAMERA") != 0) {
             this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, 104);
@@ -7609,7 +7608,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.buttonsContainer.invalidate();
     }
 
-    private static void processOnLeave(ChatObject.Call call, boolean z, long j, Runnable runnable) throws InterruptedException, IOException {
+    private static void processOnLeave(ChatObject.Call call, boolean z, long j, Runnable runnable) throws InterruptedException {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(z ? 1 : 0);
         }
@@ -7704,7 +7703,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         builder.setDialogButtonColorKey(Theme.key_voipgroup_listeningText);
         builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupLeave), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws InterruptedException, IOException {
+            public final void onClick(AlertDialog alertDialog, int i) throws InterruptedException {
                 GroupCallActivity.lambda$onLeaveClick$68(call, checkBoxCellArr, selfId, runnable, alertDialog, i);
             }
         });
@@ -7739,7 +7738,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         checkBoxCellArr[((Integer) view.getTag()).intValue()].setChecked(!checkBoxCellArr[r2.intValue()].isChecked(), true);
     }
 
-    public static void lambda$onLeaveClick$68(ChatObject.Call call, CheckBoxCell[] checkBoxCellArr, long j, Runnable runnable, AlertDialog alertDialog, int i) throws InterruptedException, IOException {
+    public static void lambda$onLeaveClick$68(ChatObject.Call call, CheckBoxCell[] checkBoxCellArr, long j, Runnable runnable, AlertDialog alertDialog, int i) throws InterruptedException {
         boolean z = false;
         CheckBoxCell checkBoxCell = checkBoxCellArr[0];
         if (checkBoxCell != null && checkBoxCell.isChecked()) {
@@ -7860,7 +7859,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$96(new ChatActivity(bundle));
+            this.parentActivity.lambda$runLinkRequest$98(new ChatActivity(bundle));
             lambda$new$0();
             return;
         }
@@ -7877,7 +7876,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle2.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$96(new ChatActivity(bundle2));
+            this.parentActivity.lambda$runLinkRequest$98(new ChatActivity(bundle2));
             lambda$new$0();
             return;
         }

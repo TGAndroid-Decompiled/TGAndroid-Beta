@@ -2612,7 +2612,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 public final void run(Object obj) {
                     this.f$0.lambda$onBindViewHolder$4((TL_account.TL_birthday) obj);
                 }
-            }, null, false, PrivacyControlActivity.this.getResourceProvider()).create());
+            }, null, false, false, PrivacyControlActivity.this.getResourceProvider()).create());
         }
 
         public void lambda$onBindViewHolder$4(TL_account.TL_birthday tL_birthday) {

@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -1300,14 +1299,14 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             this.error = null;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$processQr$4(str, runnable);
                 }
             }, 750L);
             return true;
         }
 
-        public void lambda$processQr$4(String str, final Runnable runnable) throws IOException {
+        public void lambda$processQr$4(String str, final Runnable runnable) {
             try {
                 byte[] bArrDecode = Base64.decode(str.substring(17).replaceAll("\\/", "_").replaceAll("\\+", "-"), 8);
                 TLRPC.TL_auth_acceptLoginToken tL_auth_acceptLoginToken = new TLRPC.TL_auth_acceptLoginToken();

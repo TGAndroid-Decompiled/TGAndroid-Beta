@@ -2222,7 +2222,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    storyPrivacyBottomSheet.dismiss();
+                    storyPrivacyBottomSheet.lambda$new$0();
                 }
             });
         }
@@ -2631,7 +2631,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public void lambda$createQualityItem$15(BottomSheet bottomSheet, View view) {
         this.delegate.showDialog(new PremiumFeatureBottomSheet(this.storyViewer.fragment, 14, false));
-        bottomSheet.dismiss();
+        bottomSheet.lambda$new$0();
     }
 
     public void showLikesReaction(final boolean z) {
@@ -4250,7 +4250,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (path != null && path.exists()) {
                 ShareAlert shareAlert = this.shareAlert;
                 if (shareAlert != null) {
-                    shareAlert.dismiss();
+                    shareAlert.lambda$new$0();
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -6106,7 +6106,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 ChatAttachAlert chatAttachAlert2 = this.chatAttachAlert;
                 if (chatAttachAlert2 != null) {
-                    chatAttachAlert2.dismiss();
+                    chatAttachAlert2.lambda$new$0();
                 }
                 afterMessageSend(true);
             }

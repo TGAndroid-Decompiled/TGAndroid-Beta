@@ -1216,7 +1216,10 @@ public class ActionBarMenuItem extends FrameLayout {
                 i3++;
             }
         }
-        this.searchFilterLayout.setTag(!zIsEmpty ? 1 : null);
+        LinearLayout linearLayout = this.searchFilterLayout;
+        if (linearLayout != null) {
+            linearLayout.setTag(!zIsEmpty ? 1 : null);
+        }
         final float x = this.searchField.getX();
         if (this.searchContainer.getTag() != null) {
             this.searchField.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {

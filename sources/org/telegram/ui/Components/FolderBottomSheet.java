@@ -59,6 +59,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.FiltersSetupActivity;
+import org.telegram.ui.MainTabsActivity;
 
 public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     private int alreadyHeaderRow;
@@ -651,7 +652,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         final BaseFragment baseFragment = null;
         for (int size = fragmentStack.size() - 1; size >= 0; size--) {
             baseFragment = (BaseFragment) fragmentStack.get(size);
-            if (baseFragment instanceof DialogsActivity) {
+            if ((baseFragment instanceof DialogsActivity) || (baseFragment instanceof MainTabsActivity)) {
                 break;
             }
             if (z) {
@@ -661,13 +662,14 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 baseFragment.removeSelfFromStack();
             }
         }
-        if (baseFragment instanceof DialogsActivity) {
-            final DialogsActivity dialogsActivity = (DialogsActivity) baseFragment;
-            dialogsActivity.closeSearching();
+        BaseFragment dialogsActivity = baseFragment instanceof MainTabsActivity ? ((MainTabsActivity) baseFragment).getDialogsActivity() : baseFragment;
+        if (dialogsActivity instanceof DialogsActivity) {
+            final DialogsActivity dialogsActivity2 = (DialogsActivity) dialogsActivity;
+            dialogsActivity2.closeSearching();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FolderBottomSheet.lambda$onJoinButtonClicked$14(dialogsActivity, num, callback, baseFragment);
+                    FolderBottomSheet.lambda$onJoinButtonClicked$14(dialogsActivity2, num, callback, baseFragment);
                 }
             }, 80L);
             return;

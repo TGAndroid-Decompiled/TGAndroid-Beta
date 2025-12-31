@@ -334,7 +334,7 @@ public class FileLog {
         }
     }
 
-    public static void e(final String str, final Throwable th) throws IOException {
+    public static void e(final String str, final Throwable th) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.e("tmessages", str, th);

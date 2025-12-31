@@ -558,7 +558,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void lambda$new$8(View view) throws NumberFormatException {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
-                dismiss();
+                lambda$new$0();
                 PhotoViewer.getInstance().closePhoto(true, false);
                 if (this.linkToCopy[0] == null && this.loadingLink) {
                     this.copyLinkOnEnd = true;
@@ -573,7 +573,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void lambda$new$9(View view) {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
-                dismiss();
+                lambda$new$0();
                 if (this.linkToCopy[0] == null && this.loadingLink) {
                     this.copyLinkOnEnd = true;
                     Toast.makeText(getContext(), LocaleController.getString(R.string.Loading), 0).show();
@@ -592,14 +592,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         if (safeLastFragment == null) {
             return;
         }
-        dismiss();
+        lambda$new$0();
         safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
     public void lambda$new$11(View view) {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
-                dismiss();
+                lambda$new$0();
                 if (this.linkToCopy[0] == null && this.loadingLink) {
                     this.copyLinkOnEnd = true;
                     Toast.makeText(getContext(), LocaleController.getString(R.string.Loading), 0).show();
@@ -618,7 +618,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         if (safeLastFragment == null) {
             return;
         }
-        dismiss();
+        lambda$new$0();
         safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
@@ -1649,7 +1649,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         if (shareAlertDelegate != null) {
             shareAlertDelegate.didShare();
         }
-        dismiss();
+        lambda$new$0();
     }
 
     public int getCurrentTop() {
@@ -1975,13 +1975,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         EditTextEmoji editTextEmoji = this.commentTextView;
         if (editTextEmoji != null) {
             AndroidUtilities.hideKeyboard(editTextEmoji.getEditText());
         }
         this.fullyShown = false;
-        super.dismiss();
+        super.lambda$new$0();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
     }
 

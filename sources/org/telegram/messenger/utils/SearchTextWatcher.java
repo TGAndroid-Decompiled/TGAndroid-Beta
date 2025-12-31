@@ -7,6 +7,7 @@ import android.widget.EditText;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 
 public class SearchTextWatcher implements TextWatcher {
+    private boolean doNotCloseAfterFieldEmpty;
     private final EditText editText;
     private final ActionBarMenuItem.ActionBarMenuItemSearchListener listener;
     private boolean searchIsExpanded;
@@ -31,6 +32,10 @@ public class SearchTextWatcher implements TextWatcher {
         this.toggleByFocus = z;
     }
 
+    public void setDoNotCloseAfterFieldEmpty() {
+        this.doNotCloseAfterFieldEmpty = true;
+    }
+
     @Override
     public void afterTextChanged(Editable editable) {
         String string = editable.toString();
@@ -41,7 +46,7 @@ public class SearchTextWatcher implements TextWatcher {
         }
         this.searchQuery = string;
         this.listener.onTextChanged(this.editText);
-        if (zIsEmpty || !zIsEmpty2) {
+        if (zIsEmpty || !zIsEmpty2 || this.doNotCloseAfterFieldEmpty) {
             return;
         }
         toggleSearch(false);

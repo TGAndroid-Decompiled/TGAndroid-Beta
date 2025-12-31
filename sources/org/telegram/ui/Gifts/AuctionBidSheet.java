@@ -488,7 +488,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                 if (runnable != null) {
                     runnable.run();
                 }
-                dismiss();
+                lambda$new$0();
             }
         }
         if (peerDialogId != 0) {
@@ -593,7 +593,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         if (runnable != null) {
             runnable.run();
         }
-        dismiss();
+        lambda$new$0();
     }
 
     public void onColorFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
@@ -700,7 +700,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     public void lambda$updateButtonText$8(View view) {
-        dismiss();
+        lambda$new$0();
     }
 
     public void lambda$updateButtonText$9(View view) {
@@ -769,10 +769,10 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.giftId, this);
         this.timer.stop();
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     @Override

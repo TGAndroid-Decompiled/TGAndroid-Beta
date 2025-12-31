@@ -582,7 +582,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             public final void run(Object obj) {
                 this.f$0.lambda$createView$13((TL_account.TL_birthday) obj);
             }
-        }, null, false, this.resourcesProvider).create());
+        }, null, false, false, this.resourcesProvider).create());
     }
 
     public void lambda$createView$13(TL_account.TL_birthday tL_birthday) {

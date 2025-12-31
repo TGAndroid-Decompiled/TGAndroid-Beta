@@ -43,7 +43,6 @@ import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import j$.util.Objects;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1418,7 +1417,7 @@ public final class FloatingToolbar {
             }
 
             @Override
-            public boolean dispatchTouchEvent(MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IOException, IllegalArgumentException, InvocationTargetException {
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
                 if (!zDispatchTouchEvent) {
                     getLocationOnScreen(this.p);

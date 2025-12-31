@@ -11,7 +11,6 @@ import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -125,13 +124,13 @@ public class CompoundEmoji {
             arrayList.add(Integer.valueOf(this.hash));
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$load$0();
                 }
             });
         }
 
-        public void lambda$load$0() throws IOException {
+        public void lambda$load$0() {
             Bitmap bitmapLoadBitmap = Emoji.loadBitmap("emoji/compound/" + this.emoji + "_" + this.skin + "_" + this.place + ".png");
             if (bitmapLoadBitmap != null) {
                 bitmaps.put(this.hash, bitmapLoadBitmap);

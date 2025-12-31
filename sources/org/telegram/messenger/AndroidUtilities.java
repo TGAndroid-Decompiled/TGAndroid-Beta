@@ -5406,7 +5406,7 @@ public class AndroidUtilities {
         return bitmapCreateBitmap;
     }
 
-    public static List<View> allGlobalViews() throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IOException, IllegalArgumentException, InvocationTargetException {
+    public static List<View> allGlobalViews() throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
         try {
             if (Build.VERSION.SDK_INT >= 29) {
                 return WindowInspector.getGlobalWindowViews();
@@ -6132,8 +6132,12 @@ public class AndroidUtilities {
     }
 
     public static void drawNavigationBarProtection(Canvas canvas, View view, int i, int i2) {
+        drawNavigationBarProtection(canvas, view, i, i2, 1.0f);
+    }
+
+    public static void drawNavigationBarProtection(Canvas canvas, View view, int i, int i2, float f) {
         Paint paint = navbarProtactionPaint;
-        paint.setColor(Theme.multAlpha(i, getNavigationBarThirdButtonsFactor(0.0f, 0.75f, i2)));
+        paint.setColor(Theme.multAlpha(i, f * getNavigationBarThirdButtonsFactor(0.0f, 0.75f, i2)));
         canvas.drawRect(0.0f, view.getMeasuredHeight() - i2, view.getMeasuredWidth(), view.getMeasuredHeight(), paint);
     }
 

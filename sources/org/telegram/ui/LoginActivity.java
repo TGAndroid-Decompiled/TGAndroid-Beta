@@ -1494,7 +1494,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public final void onFailure(Exception exc) throws IOException {
+                        public final void onFailure(Exception exc) {
                             this.f$0.lambda$fillNextCodeParams$25(bundle, auth_sentcode, exc);
                         }
                     });
@@ -1643,7 +1643,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         resendCodeFromSafetyNet(bundle, auth_sentcode, "PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE");
     }
 
-    public void lambda$fillNextCodeParams$25(Bundle bundle, TLRPC.auth_SentCode auth_sentcode, Exception exc) throws IOException {
+    public void lambda$fillNextCodeParams$25(Bundle bundle, TLRPC.auth_SentCode auth_sentcode, Exception exc) {
         String str = "PLAYINTEGRITY_EXCEPTION_" + errorString(exc);
         FileLog.e("{" + str + "} Resend firebase sms because integrity threw error", exc);
         resendCodeFromSafetyNet(bundle, auth_sentcode, str);

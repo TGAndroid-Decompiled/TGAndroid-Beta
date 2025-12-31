@@ -74,7 +74,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
 
     public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
         new AuctionBidSheet(context, resourcesProvider, null, auction).show();
-        dismiss();
+        lambda$new$0();
     }
 
     @Override
@@ -103,9 +103,9 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     @Override

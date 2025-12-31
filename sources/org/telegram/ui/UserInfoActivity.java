@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
@@ -20,6 +24,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -36,6 +41,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
@@ -70,13 +76,14 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.EditProfileInfo);
+        return LocaleController.getString(R.string.EditAccountInfo2);
     }
 
     @Override
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
         getContactsController().loadPrivacySettings();
         return super.onFragmentCreate();
     }
@@ -85,6 +92,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     public void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
         super.onFragmentDestroy();
         if (this.wasSaved) {
             return;
@@ -165,44 +173,39 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     @Override
     protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         ArrayList<TLRPC.PrivacyRule> privacyRules;
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileName)));
-        arrayList.add(UItem.asCustom(this.firstNameEdit));
-        arrayList.add(UItem.asCustom(this.lastNameEdit));
-        arrayList.add(UItem.asShadow(-1, null));
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileChannel)));
-        String string = LocaleController.getString(R.string.EditProfileChannelTitle);
-        TLRPC.Chat chat = this.channel;
-        arrayList.add(UItem.asButton(3, string, chat == null ? LocaleController.getString(R.string.EditProfileChannelAdd) : chat.title));
-        arrayList.add(UItem.asShadow(-2, null));
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileBio)));
-        arrayList.add(UItem.asCustom(this.bioEdit));
-        arrayList.add(UItem.asShadow(this.bioInfo));
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileBirthday)));
-        String string2 = LocaleController.getString(R.string.EditProfileBirthdayText);
+        TLRPC.User currentUser = getUserConfig().getCurrentUser();
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditAccountInfoHeader)));
+        int i = 0;
+        arrayList.add(InfoCell.Factory.of(6, R.drawable.menu_phone, PhoneFormat.getInstance().format("+" + currentUser.phone), LocaleController.getString(R.string.TapToChangePhone), 0));
+        if (UserObject.getPublicUsername(currentUser) != null) {
+            arrayList.add(InfoCell.Factory.of(7, R.drawable.menu_username_change, "@" + UserObject.getPublicUsername(currentUser), LocaleController.getString(R.string.Username), 0));
+        } else {
+            arrayList.add(InfoCell.Factory.of(7, R.drawable.menu_username_set, LocaleController.getString(R.string.AddUsername), null, 0).accent());
+        }
         TL_account.TL_birthday tL_birthday = this.birthday;
-        arrayList.add(UItem.asButton(1, string2, tL_birthday == null ? LocaleController.getString(R.string.EditProfileBirthdayAdd) : birthdayString(tL_birthday)));
-        if (this.birthday != null) {
-            arrayList.add(UItem.asButton(2, LocaleController.getString(R.string.EditProfileBirthdayRemove)).red());
+        if (tL_birthday != null) {
+            arrayList.add(InfoCell.Factory.of(8, R.drawable.menu_birthday, birthdayString(tL_birthday), LocaleController.getString(R.string.ContactBirthday), 0));
+        } else {
+            arrayList.add(InfoCell.Factory.of(8, R.drawable.menu_birthday, LocaleController.getString(R.string.AddBirthday), null, 0).accent());
         }
         if (!getContactsController().getLoadingPrivacyInfo(11) && (privacyRules = getContactsController().getPrivacyRules(11)) != null && this.birthdayInfo == null) {
-            String string3 = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+            String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
             if (!privacyRules.isEmpty()) {
-                int i = 0;
                 while (true) {
                     if (i >= privacyRules.size()) {
                         break;
                     }
                     if (privacyRules.get(i) instanceof TLRPC.TL_privacyValueAllowContacts) {
-                        string3 = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+                        string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                         break;
                     }
                     if ((privacyRules.get(i) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i) instanceof TLRPC.TL_privacyValueDisallowAll)) {
-                        string3 = LocaleController.getString(R.string.EditProfileBirthdayInfo);
+                        string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
                     }
                     i++;
                 }
             }
-            this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string3, new Runnable() {
+            this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$fillItems$1();
@@ -210,6 +213,18 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             }), true);
         }
         arrayList.add(UItem.asShadow(this.birthdayInfo));
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileName)));
+        arrayList.add(UItem.asCustom(this.firstNameEdit));
+        arrayList.add(UItem.asCustom(this.lastNameEdit));
+        arrayList.add(UItem.asShadow(-1, null));
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileBio)));
+        arrayList.add(UItem.asCustom(this.bioEdit));
+        arrayList.add(UItem.asShadow(this.bioInfo));
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileChannel)));
+        String string2 = LocaleController.getString(R.string.EditProfileChannelTitle);
+        TLRPC.Chat chat = this.channel;
+        arrayList.add(UItem.asButton(3, string2, chat == null ? LocaleController.getString(R.string.EditProfileChannelAdd) : chat.title));
+        arrayList.add(UItem.asShadow(-2, null));
         if (this.hadLocation) {
             arrayList.add(UItem.asButton(4, R.drawable.menu_premium_clock, LocaleController.getString(R.string.EditProfileHours)));
         }
@@ -245,13 +260,13 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     @Override
     protected void onClick(UItem uItem, View view, int i, float f, float f2) {
         int i2 = uItem.id;
-        if (i2 == 1) {
+        if (i2 == 1 || i2 == 8) {
             showDialog(AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), this.birthday, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     this.f$0.lambda$onClick$2((TL_account.TL_birthday) obj);
                 }
-            }, null, false, getResourceProvider()).create());
+            }, null, false, this.birthday != null, getResourceProvider()).create());
             return;
         }
         if (i2 == 2) {
@@ -272,10 +287,18 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     this.f$0.lambda$onClick$3((TLRPC.Chat) obj);
                 }
             }));
-        } else if (i2 == 5) {
-            presentFragment(new org.telegram.ui.Business.LocationActivity());
-        } else if (i2 == 4) {
-            presentFragment(new OpeningHoursActivity());
+        } else {
+            if (i2 == 5) {
+                presentFragment(new org.telegram.ui.Business.LocationActivity());
+                return;
+            }
+            if (i2 == 4) {
+                presentFragment(new OpeningHoursActivity());
+            } else if (i2 == 6) {
+                presentFragment(new ActionIntroActivity(3));
+            } else if (i2 == 7) {
+                presentFragment(new ChangeUsernameActivity());
+            }
         }
     }
 
@@ -308,12 +331,20 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         UniversalRecyclerView universalRecyclerView;
         if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
-        } else {
-            if (i != NotificationCenter.privacyRulesUpdated || (universalRecyclerView = this.listView) == null) {
+            return;
+        }
+        if (i == NotificationCenter.updateInterfaces) {
+            UniversalRecyclerView universalRecyclerView2 = this.listView;
+            if (universalRecyclerView2 != null) {
+                universalRecyclerView2.adapter.update(true);
                 return;
             }
-            universalRecyclerView.adapter.update(true);
+            return;
         }
+        if (i != NotificationCenter.privacyRulesUpdated || (universalRecyclerView = this.listView) == null) {
+            return;
+        }
+        universalRecyclerView.adapter.update(true);
     }
 
     @Override
@@ -637,6 +668,102 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 runnable.run();
             } else {
                 this.callbacks.add(runnable);
+            }
+        }
+    }
+
+    private static class InfoCell extends LinearLayout {
+        private boolean accent;
+        private final ImageView icon2View;
+        private final ImageView iconView;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final TextView subtitleView;
+        private final LinearLayout textLayout;
+        private final TextView titleView;
+
+        public InfoCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            setOrientation(0);
+            this.resourcesProvider = resourcesProvider;
+            ImageView imageView = new ImageView(context);
+            this.iconView = imageView;
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
+            addView(imageView, LayoutHelper.createLinear(40, 40, 19, 12, 0, 12, 0));
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.textLayout = linearLayout;
+            linearLayout.setOrientation(1);
+            linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+            addView(linearLayout, LayoutHelper.createLinear(0, -2, 1.0f, 23, 0, 0, 32, 0));
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 16.0f);
+            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 0));
+            TextView textView2 = new TextView(context);
+            this.subtitleView = textView2;
+            textView2.setTextSize(1, 13.0f);
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+            ImageView imageView2 = new ImageView(context);
+            this.icon2View = imageView2;
+            imageView2.setScaleType(scaleType);
+            addView(imageView2, LayoutHelper.createLinear(40, 40, 21, 12, 0, 12, 0));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+
+        private void updateColors() {
+            ImageView imageView = this.iconView;
+            int color = Theme.getColor(this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+            this.icon2View.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), mode));
+            this.titleView.setTextColor(Theme.getColor(this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.subtitleView.setTextColor(Theme.getColor(this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
+        }
+
+        public void set(int i, CharSequence charSequence, CharSequence charSequence2, boolean z, int i2) {
+            this.accent = z;
+            this.iconView.setImageResource(i);
+            if (i2 != 0) {
+                this.icon2View.setVisibility(0);
+                this.icon2View.setImageResource(i2);
+            } else {
+                this.icon2View.setVisibility(8);
+            }
+            this.titleView.setText(charSequence);
+            this.subtitleView.setText(charSequence2);
+            this.subtitleView.setVisibility(TextUtils.isEmpty(charSequence2) ? 8 : 0);
+            int iDp = AndroidUtilities.dp(TextUtils.isEmpty(charSequence2) ? 15.0f : 10.0f);
+            this.textLayout.setPadding(0, iDp, 0, iDp);
+            updateColors();
+        }
+
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public InfoCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new InfoCell(context, resourcesProvider);
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((InfoCell) view).set(uItem.iconResId, uItem.text, uItem.subtext, uItem.accent, uItem.intValue);
+            }
+
+            public static UItem of(int i, int i2, CharSequence charSequence, CharSequence charSequence2, int i3) {
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.iconResId = i2;
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                uItemOfFactory.intValue = i3;
+                return uItemOfFactory;
             }
         }
     }

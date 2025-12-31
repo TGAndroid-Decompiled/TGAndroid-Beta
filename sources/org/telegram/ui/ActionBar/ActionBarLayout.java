@@ -366,7 +366,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1254getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1255getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -899,7 +899,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
+    protected boolean drawChild(android.graphics.Canvas r22, android.view.View r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 

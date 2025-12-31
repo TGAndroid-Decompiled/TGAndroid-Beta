@@ -60,7 +60,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Cells.DrawerProfileCell;
 import org.telegram.ui.Components.BottomPagesView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -302,10 +301,10 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$0(RLottieImageView rLottieImageView, View view) {
         Theme.ThemeInfo theme;
-        if (DrawerProfileCell.switchingTheme) {
+        if (DialogsActivity.switchingTheme) {
             return;
         }
-        DrawerProfileCell.switchingTheme = true;
+        DialogsActivity.switchingTheme = true;
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         boolean z = !zIsCurrentThemeDark;
         if (!zIsCurrentThemeDark) {

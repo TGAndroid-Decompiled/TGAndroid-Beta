@@ -2308,7 +2308,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString(R.string.VoipEndCall2), false, z);
             this.bottomEndCallBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws InterruptedException, IOException {
+                public final void onClick(View view) throws InterruptedException {
                     this.f$0.lambda$updateButtons$35(view);
                 }
             });
@@ -2331,7 +2331,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         updateSpeakerPhoneIcon();
     }
 
-    public void lambda$updateButtons$35(View view) throws InterruptedException, IOException {
+    public void lambda$updateButtons$35(View view) throws InterruptedException {
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(this.hideUIRunnable);
             this.hideUiRunnableWaiting = false;

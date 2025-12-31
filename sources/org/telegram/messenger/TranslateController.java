@@ -59,7 +59,7 @@ public class TranslateController extends BaseController {
     private final HashSet<StoryKey> detectingStories;
     private final Set<Long> hideTranslateDialogs;
     private final HashMap<Long, HashMap<Integer, MessageObject>> keptReplyMessageObjects;
-    private final HashSet<Long> loadingSummarizations;
+    private final HashSet<Integer> loadingSummarizations;
     private final Set<Integer> loadingTranscriptionTranslations;
     private final Set<Integer> loadingTranslations;
     private MessagesController messagesController;
@@ -1000,11 +1000,11 @@ public class TranslateController extends BaseController {
     }
 
     private void pushToSummarize(MessageObject messageObject, String str, final Utilities.Callback<TLRPC.TL_textWithEntities> callback) {
-        final long dialogId = (messageObject.getDialogId() ^ (messageObject.getId() << 32)) ^ (str != null ? Long.MIN_VALUE : 0L);
-        if (this.loadingSummarizations.contains(Long.valueOf(dialogId))) {
+        final int iHash = Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(str != null ? 1 : 0));
+        if (this.loadingSummarizations.contains(Integer.valueOf(iHash))) {
             return;
         }
-        this.loadingSummarizations.add(Long.valueOf(dialogId));
+        this.loadingSummarizations.add(Integer.valueOf(iHash));
         TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
         tL_messages_summarizeText.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
         tL_messages_summarizeText.id = messageObject.getId();
@@ -1015,23 +1015,23 @@ public class TranslateController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$pushToSummarize$18(dialogId, callback, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$pushToSummarize$18(iHash, callback, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$pushToSummarize$18(final long j, final Utilities.Callback callback, final TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
+    public void lambda$pushToSummarize$18(final int i, final Utilities.Callback callback, final TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$pushToSummarize$17(tL_textWithEntities, j, callback);
+                this.f$0.lambda$pushToSummarize$17(tL_textWithEntities, i, callback);
             }
         });
     }
 
-    public void lambda$pushToSummarize$17(TLRPC.TL_textWithEntities tL_textWithEntities, long j, Utilities.Callback callback) {
+    public void lambda$pushToSummarize$17(TLRPC.TL_textWithEntities tL_textWithEntities, int i, Utilities.Callback callback) {
         if (tL_textWithEntities != null) {
-            this.loadingSummarizations.remove(Long.valueOf(j));
+            this.loadingSummarizations.remove(Integer.valueOf(i));
             callback.run(tL_textWithEntities);
         }
     }
@@ -1379,7 +1379,7 @@ public class TranslateController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TranslateController.lambda$pushPollToTranslate$24(org.telegram.messenger.TranslateController$PendingPollTranslation, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error, long):void");
     }
 
-    public boolean isTranslating(org.telegram.messenger.MessageObject r7) {
+    public boolean isTranslating(org.telegram.messenger.MessageObject r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TranslateController.isTranslating(org.telegram.messenger.MessageObject):boolean");
     }
 

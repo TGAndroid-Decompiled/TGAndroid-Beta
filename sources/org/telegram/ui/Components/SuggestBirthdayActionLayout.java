@@ -159,7 +159,7 @@ public class SuggestBirthdayActionLayout {
             public final void run(Object obj) {
                 this.f$0.lambda$open$2((TL_account.TL_birthday) obj);
             }
-        }, null, true, this.resourcesProvider).show();
+        }, null, true, false, this.resourcesProvider).show();
     }
 
     public void lambda$open$2(TL_account.TL_birthday tL_birthday) {

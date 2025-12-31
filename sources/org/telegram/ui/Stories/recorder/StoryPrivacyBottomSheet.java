@@ -413,7 +413,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$new$1() {
             if (this.pageType == 0) {
-                StoryPrivacyBottomSheet.this.dismiss();
+                StoryPrivacyBottomSheet.this.lambda$new$0();
             } else {
                 StoryPrivacyBottomSheet.this.onBackPressed();
             }
@@ -819,7 +819,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$new$11(CreateRtmpStreamBottomSheet[] createRtmpStreamBottomSheetArr, Browser.Progress progress) {
             StoryPrivacyBottomSheet.this.isRtmpStream = true;
-            createRtmpStreamBottomSheetArr[0].dismiss();
+            createRtmpStreamBottomSheetArr[0].lambda$new$0();
             updateItems(true);
         }
 
@@ -1053,7 +1053,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 if (StoryPrivacyBottomSheet.this.onDone2 != null) {
                     StoryPrivacyBottomSheet.this.onDone2.run(this.selectedUsers);
                 }
-                StoryPrivacyBottomSheet.this.dismiss();
+                StoryPrivacyBottomSheet.this.lambda$new$0();
                 return;
             }
             if (i == 1) {
@@ -1097,7 +1097,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     storyPrivacyBottomSheet3.done(storyPrivacy, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(storyPrivacyBottomSheet3));
                     return;
                 }
-                StoryPrivacyBottomSheet.this.dismiss();
+                StoryPrivacyBottomSheet.this.lambda$new$0();
                 return;
             }
             if (i == 2) {
@@ -1192,7 +1192,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$onButton1Click$18() {
             Bulletin.removeDelegate(StoryPrivacyBottomSheet.this.container);
-            StoryPrivacyBottomSheet.super.dismiss();
+            StoryPrivacyBottomSheet.super.lambda$new$0();
         }
 
         public void lambda$onButton1Click$19() {
@@ -2425,7 +2425,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         StoryPrivacy storyPrivacy;
         if (this.onDismiss != null) {
             int i = this.selectedType;
@@ -2451,7 +2451,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
         Bulletin.removeDelegate(this.container);
         save();
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     private class ContainerView extends FrameLayout {
@@ -2496,7 +2496,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 0 && motionEvent.getY() < this.top) {
-                StoryPrivacyBottomSheet.this.dismiss();
+                StoryPrivacyBottomSheet.this.lambda$new$0();
                 return true;
             }
             return super.dispatchTouchEvent(motionEvent);
@@ -4586,7 +4586,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 @Override
                 public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getY() < ChoosePeerSheet.this.top()) {
-                        ChoosePeerSheet.this.dismiss();
+                        ChoosePeerSheet.this.lambda$new$0();
                         return true;
                     }
                     return super.dispatchTouchEvent(motionEvent);
@@ -4631,7 +4631,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             final TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.peers.get(i2 - 2);
             if (inputPeer.channel_id == 0 && inputPeer.chat_id == 0) {
                 callback.run(inputPeer);
-                dismiss();
+                lambda$new$0();
             } else {
                 final AlertDialog alertDialog = new AlertDialog(getContext(), 3, resourcesProvider);
                 alertDialog.showDelayed(200L);
@@ -4641,7 +4641,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         StoryPrivacyBottomSheet.ChoosePeerSheet.lambda$new$0(alertDialog, callback, inputPeer, (Boolean) obj);
                     }
                 }, true, resourcesProvider);
-                dismiss();
+                lambda$new$0();
             }
         }
 

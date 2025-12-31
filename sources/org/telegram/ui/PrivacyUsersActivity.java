@@ -312,20 +312,22 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     private void updateRows() {
         int size;
         this.rowCount = 0;
+        this.blockUserRow = -1;
         this.usersHeaderRow = -1;
         this.blockUserDetailRow = -1;
         this.deleteAllRow = -1;
         if (!this.blockedUsersActivity || getMessagesController().totalBlockedCount >= 0) {
-            int i = this.rowCount;
-            int i2 = i + 1;
-            this.rowCount = i2;
-            this.blockUserRow = i;
-            int i3 = this.currentType;
-            if (i3 == 1) {
-                this.rowCount = i + 2;
+            int i = this.currentType;
+            if (i == 1) {
+                int i2 = this.rowCount;
+                this.rowCount = i2 + 1;
                 this.blockUserDetailRow = i2;
+            } else {
+                int i3 = this.rowCount;
+                this.rowCount = i3 + 1;
+                this.blockUserRow = i3;
             }
-            if (i3 == 1) {
+            if (i == 1) {
                 size = getMessagesController().blockePeers.size();
             } else {
                 size = this.uidArray.size();

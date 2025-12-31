@@ -44,7 +44,7 @@ public class UpdateLayout extends IUpdateLayout {
         }
         float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
         this.updateLayoutIcon.setProgress(downloadingUpdateProgress, true);
-        this.updateTextViews[0].setText(LocaleController.formatString(2131690091, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
+        this.updateTextViews[0].setText(LocaleController.formatString(2131690093, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
         this.updateLayout.invalidate();
     }
 
@@ -92,7 +92,7 @@ public class UpdateLayout extends IUpdateLayout {
             frameLayout.addView(this.updateTextViews[i3], LayoutHelper.createFrame(-2, -2.0f));
         }
         this.updateLayout.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 0, 0));
-        this.updateTextViews[0].setText(LocaleController.getString(2131690088));
+        this.updateTextViews[0].setText(LocaleController.getString(2131690090));
         this.updateTextViews[1].setAlpha(0.0f);
         this.updateTextViews[1].setVisibility(8);
         TextView textView = new TextView(this.activity);
@@ -130,14 +130,14 @@ public class UpdateLayout extends IUpdateLayout {
             File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
             if (downloadedUpdateFile != null && downloadedUpdateFile.exists()) {
                 this.updateLayoutIcon.setIcon(15, true, z);
-                setUpdateText(LocaleController.getString(2131690092), z);
+                setUpdateText(LocaleController.getString(2131690094), z);
             } else if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
                 this.updateLayoutIcon.setIcon(3, true, z);
                 this.updateLayoutIcon.setProgress(ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress(), true);
-                setUpdateText(LocaleController.formatString(2131690091, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z);
+                setUpdateText(LocaleController.formatString(2131690093, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z);
             } else {
                 this.updateLayoutIcon.setIcon(2, true, z);
-                setUpdateText(LocaleController.getString(2131690088), z);
+                setUpdateText(LocaleController.getString(2131690090), z);
             }
             if (this.updateSizeTextView.getTag() == null) {
                 if (z) {

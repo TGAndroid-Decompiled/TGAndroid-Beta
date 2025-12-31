@@ -140,7 +140,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_avatar_backgroundSaved] = -9847303;
         iArr[Theme.key_avatar_background2Saved] = -12541983;
         iArr[Theme.key_avatar_backgroundArchived] = -4668724;
-        iArr[Theme.key_avatar_backgroundArchivedHidden] = -10043398;
+        iArr[Theme.key_avatar_backgroundArchivedHidden] = -14509328;
         iArr[Theme.key_avatar_backgroundRed] = -31650;
         iArr[Theme.key_avatar_background2Red] = -2862522;
         iArr[Theme.key_avatar_backgroundOrange] = -83109;
@@ -209,7 +209,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chats_archiveIcon] = -1;
         iArr[Theme.key_chats_archiveText] = -1;
         iArr[Theme.key_chats_name] = -14540254;
-        iArr[Theme.key_chats_nameArchived] = -11382190;
+        iArr[Theme.key_chats_nameArchived] = -14540254;
         iArr[Theme.key_chats_secretName] = -16734706;
         iArr[Theme.key_chats_secretIcon] = -15093466;
         iArr[Theme.key_chats_pinnedIcon] = -5723992;
@@ -279,7 +279,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_status] = -14509328;
         iArr[Theme.key_chat_inGreenCall] = -16725933;
         iArr[Theme.key_chat_outGreenCall] = -16725933;
-        iArr[Theme.key_chat_lockIcon] = -1;
+        iArr[Theme.key_chat_lockIcon] = -14540254;
         iArr[Theme.key_chat_muteIcon] = -8814210;
         iArr[Theme.key_chat_inBubble] = -1;
         iArr[Theme.key_chat_inBubbleSelected] = -1247235;

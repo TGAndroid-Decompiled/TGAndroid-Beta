@@ -51,7 +51,6 @@ import j$.util.Collection;
 import j$.util.Objects;
 import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -167,7 +166,7 @@ public abstract class AlertsCreator {
         void didSelectDate(int i);
     }
 
-    public static boolean lambda$createAutoDeleteDatePickerDialog$132(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createAutoDeleteDatePickerDialog$133(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -175,7 +174,7 @@ public abstract class AlertsCreator {
         return true;
     }
 
-    public static boolean lambda$createCalendarPickerDialog$145(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createCalendarPickerDialog$146(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -185,7 +184,7 @@ public abstract class AlertsCreator {
     public static void lambda$createChangeNameAlert$64(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static boolean lambda$createCustomPicker$217(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createCustomPicker$218(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -193,29 +192,25 @@ public abstract class AlertsCreator {
         return true;
     }
 
-    public static boolean lambda$createMuteForPickerDialog$142(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createMuteForPickerDialog$143(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$createMuteForPickerDialog$143(NumberPicker numberPicker, int i, int i2) {
+    public static void lambda$createMuteForPickerDialog$144(NumberPicker numberPicker, int i, int i2) {
     }
 
     public static boolean lambda$createScheduleDatePickerDialog$95(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static boolean lambda$createSoundFrequencyPickerDialog$138(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createSoundFrequencyPickerDialog$139(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$createSoundFrequencyPickerDialog$139(NumberPicker numberPicker, int i, int i2) {
+    public static void lambda$createSoundFrequencyPickerDialog$140(NumberPicker numberPicker, int i, int i2) {
     }
 
-    public static boolean lambda$createStatusUntilDatePickerDialog$125(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    public static boolean lambda$createSuggestedMessageDatePickerDialog$202(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createStatusUntilDatePickerDialog$126(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -223,7 +218,11 @@ public abstract class AlertsCreator {
         return true;
     }
 
-    public static void lambda$createThemeCreateDialog$190(AlertDialog alertDialog, int i) {
+    public static boolean lambda$createSuggestedMessageDatePickerDialog$204(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public static void lambda$createThemeCreateDialog$191(AlertDialog alertDialog, int i) {
     }
 
     public static boolean lambda$createTimePickerDialog$85(View view, MotionEvent motionEvent) {
@@ -498,7 +497,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$10(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$96(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$98(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$11(TLRPC.TL_langPackLanguage tL_langPackLanguage, LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
@@ -2520,7 +2519,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                bottomSheetShow.dismiss();
+                bottomSheetShow.lambda$new$0();
             }
         });
     }
@@ -2934,7 +2933,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createTimePickerDialog$86(BottomSheet[] bottomSheetArr, View view) {
-        bottomSheetArr[0].dismiss();
+        bottomSheetArr[0].lambda$new$0();
     }
 
     public static void lambda$createTimePickerDialog$87(Utilities.Callback callback, NumberPicker numberPicker, NumberPicker numberPicker2, DialogInterface dialogInterface) {
@@ -3878,13 +3877,14 @@ public abstract class AlertsCreator {
         builder.getDismissRunnable().run();
     }
 
-    public static BottomSheet.Builder createBirthdayPickerDialog(Context context, String str, String str2, TL_account.TL_birthday tL_birthday, final Utilities.Callback callback, Runnable runnable, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        LinearLayout linearLayout;
+    public static BottomSheet.Builder createBirthdayPickerDialog(Context context, String str, String str2, TL_account.TL_birthday tL_birthday, final Utilities.Callback callback, Runnable runnable, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        int i;
+        BottomSheet.Builder builder;
         if (context == null) {
             return null;
         }
-        final BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
-        builder.setApplyBottomPadding(false);
+        final BottomSheet.Builder builder2 = new BottomSheet.Builder(context, false, resourcesProvider);
+        builder2.setApplyBottomPadding(false);
         final NumberPicker numberPicker = new NumberPicker(context, resourcesProvider);
         numberPicker.setTextOffset(AndroidUtilities.dp(10.0f));
         numberPicker.setItemCount(5);
@@ -3894,22 +3894,22 @@ public abstract class AlertsCreator {
         final NumberPicker numberPicker3 = new NumberPicker(context, resourcesProvider);
         numberPicker3.setItemCount(5);
         numberPicker3.setTextOffset(-AndroidUtilities.dp(24.0f));
-        LinearLayout linearLayout2 = new LinearLayout(context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
             @Override
-            protected void onMeasure(int i, int i2) {
+            protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
                 android.graphics.Point point = AndroidUtilities.displaySize;
-                int i3 = point.x > point.y ? 3 : 5;
-                numberPicker.setItemCount(i3);
-                numberPicker2.setItemCount(i3);
-                numberPicker3.setItemCount(i3);
-                numberPicker.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i3;
-                numberPicker2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i3;
-                numberPicker3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i3;
+                int i4 = point.x > point.y ? 3 : 5;
+                numberPicker.setItemCount(i4);
+                numberPicker2.setItemCount(i4);
+                numberPicker3.setItemCount(i4);
+                numberPicker.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i4;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i4;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i4;
                 this.ignoreLayout = false;
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
 
             @Override
@@ -3920,9 +3920,9 @@ public abstract class AlertsCreator {
                 super.requestLayout();
             }
         };
-        linearLayout2.setOrientation(1);
+        linearLayout.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
         TextView textView = new TextView(context);
         textView.setText(str);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -3935,22 +3935,22 @@ public abstract class AlertsCreator {
                 return AlertsCreator.lambda$createBirthdayPickerDialog$114(view, motionEvent);
             }
         });
-        LinearLayout linearLayout3 = new LinearLayout(context);
-        linearLayout3.setGravity(17);
-        linearLayout3.setOrientation(0);
-        linearLayout3.setWeightSum(1.0f);
-        linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setGravity(17);
+        linearLayout2.setOrientation(0);
+        linearLayout2.setWeightSum(1.0f);
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
         Calendar calendar = Calendar.getInstance();
-        int i = calendar.get(1) - 149;
+        int i2 = calendar.get(1) - 149;
         calendar.setTimeInMillis(System.currentTimeMillis());
-        final int i2 = calendar.get(5);
-        final int i3 = calendar.get(2);
-        final int i4 = calendar.get(1);
-        final int i5 = i4 + 1;
+        final int i3 = calendar.get(5);
+        final int i4 = calendar.get(2);
+        final int i5 = calendar.get(1);
+        final int i6 = i5 + 1;
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.lambda$createBirthdayPickerDialog$115(numberPicker3, i5, numberPicker, numberPicker2, i4, i3, i2);
+                AlertsCreator.lambda$createBirthdayPickerDialog$115(numberPicker3, i6, numberPicker, numberPicker2, i5, i4, i3);
             }
         };
         System.currentTimeMillis();
@@ -3960,44 +3960,44 @@ public abstract class AlertsCreator {
                 return Button.class.getName();
             }
         };
-        linearLayout3.addView(numberPicker, LayoutHelper.createLinear(0, 270, 0.25f));
+        linearLayout2.addView(numberPicker, LayoutHelper.createLinear(0, 270, 0.25f));
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(31);
         numberPicker.setWrapSelectorWheel(false);
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
-            public final String format(int i6) {
-                return AlertsCreator.lambda$createBirthdayPickerDialog$116(i6);
+            public final String format(int i7) {
+                return AlertsCreator.lambda$createBirthdayPickerDialog$116(i7);
             }
         });
         NumberPicker.OnScrollListener onScrollListener = new NumberPicker.OnScrollListener() {
             @Override
-            public final void onScrollStateChange(NumberPicker numberPicker4, int i6) {
-                AlertsCreator.lambda$createBirthdayPickerDialog$117(runnable2, numberPicker4, i6);
+            public final void onScrollStateChange(NumberPicker numberPicker4, int i7) {
+                AlertsCreator.lambda$createBirthdayPickerDialog$117(runnable2, numberPicker4, i7);
             }
         };
         numberPicker.setOnScrollListener(onScrollListener);
         numberPicker2.setMinValue(0);
         numberPicker2.setMaxValue(11);
         numberPicker2.setWrapSelectorWheel(false);
-        linearLayout3.addView(numberPicker2, LayoutHelper.createLinear(0, 270, 0.5f));
+        linearLayout2.addView(numberPicker2, LayoutHelper.createLinear(0, 270, 0.5f));
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
-            public final String format(int i6) {
-                return AlertsCreator.lambda$createBirthdayPickerDialog$118(i6);
+            public final String format(int i7) {
+                return AlertsCreator.lambda$createBirthdayPickerDialog$118(i7);
             }
         });
         numberPicker2.setOnScrollListener(onScrollListener);
-        numberPicker3.setMinValue(i);
-        numberPicker3.setMaxValue(i5);
+        numberPicker3.setMinValue(i2);
+        numberPicker3.setMaxValue(i6);
         numberPicker3.setWrapSelectorWheel(false);
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
-            public final String format(int i6) {
-                return AlertsCreator.lambda$createBirthdayPickerDialog$119(i5, i6);
+            public final String format(int i7) {
+                return AlertsCreator.lambda$createBirthdayPickerDialog$119(i6, i7);
             }
         });
-        linearLayout3.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.25f));
+        linearLayout2.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.25f));
         numberPicker3.setOnScrollListener(onScrollListener);
         if (tL_birthday != null) {
             numberPicker.setValue(tL_birthday.day);
@@ -4005,12 +4005,12 @@ public abstract class AlertsCreator {
             if ((tL_birthday.flags & 1) != 0) {
                 numberPicker3.setValue(tL_birthday.year);
             } else {
-                numberPicker3.setValue(i5);
+                numberPicker3.setValue(i6);
             }
         } else {
             numberPicker.setValue(calendar.get(5));
             numberPicker2.setValue(calendar.get(2));
-            numberPicker3.setValue(i5);
+            numberPicker3.setValue(i6);
         }
         runnable2.run();
         if (runnable != null) {
@@ -4020,27 +4020,27 @@ public abstract class AlertsCreator {
             linksTextView.setTextSize(1, 13.0f);
             linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray2, resourcesProvider));
             linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+            i = 17;
             linksTextView.setGravity(17);
             frameLayout2.addView(linksTextView, LayoutHelper.createFrame(-2, -2, 17));
-            linearLayout = linearLayout2;
             linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, -2));
-            final int i6 = UserConfig.selectedAccount;
+            final int i7 = UserConfig.selectedAccount;
             final Runnable runnable3 = new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.lambda$createBirthdayPickerDialog$121(i6, linksTextView);
+                    AlertsCreator.lambda$createBirthdayPickerDialog$121(i7, linksTextView);
                 }
             };
             runnable3.run();
-            NotificationCenter.getInstance(i6).listen(frameLayout2, NotificationCenter.privacyRulesUpdated, new Utilities.Callback() {
+            NotificationCenter.getInstance(i7).listen(frameLayout2, NotificationCenter.privacyRulesUpdated, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     runnable3.run();
                 }
             });
-            ContactsController.getInstance(i6).loadPrivacySettings();
+            ContactsController.getInstance(i7).loadPrivacySettings();
         } else {
-            linearLayout = linearLayout2;
+            i = 17;
         }
         if (z) {
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, resourcesProvider);
@@ -4048,25 +4048,41 @@ public abstract class AlertsCreator {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createBirthdayPickerDialog$123(numberPicker3, i5, runnable2, view);
+                    AlertsCreator.lambda$createBirthdayPickerDialog$123(numberPicker3, i6, runnable2, view);
                 }
             });
             linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 4));
         }
         textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        textView2.setGravity(17);
+        textView2.setGravity(i);
         textView2.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setText(str2);
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, resourcesProvider)));
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, z ? 0 : 15, 16, 16));
+        ScaleStateListAnimator.apply(textView2);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, z ? 0 : 15, 16, z2 ? 0 : 16));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createBirthdayPickerDialog$124(numberPicker, numberPicker2, numberPicker3, i5, builder, callback, view);
+                AlertsCreator.lambda$createBirthdayPickerDialog$124(numberPicker, numberPicker2, numberPicker3, i6, builder2, callback, view);
             }
         });
+        if (z2) {
+            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
+            buttonWithCounterView2.setText(LocaleController.getString(R.string.BirthdayRemove), false);
+            final BottomSheet.Builder builder3 = builder2;
+            buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    AlertsCreator.lambda$createBirthdayPickerDialog$125(builder3, callback, view);
+                }
+            });
+            linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 83, 16, 4, 16, 16));
+            builder = builder3;
+        } else {
+            builder = builder2;
+        }
         builder.setCustomView(linearLayout);
         return builder;
     }
@@ -4211,6 +4227,11 @@ public abstract class AlertsCreator {
         callback.run(tL_birthday);
     }
 
+    public static void lambda$createBirthdayPickerDialog$125(BottomSheet.Builder builder, Utilities.Callback callback, View view) {
+        builder.getDismissRunnable().run();
+        callback.run(null);
+    }
+
     public static BottomSheet.Builder createStatusUntilDatePickerDialog(Context context, long j, final StatusUntilDatePickerDelegate statusUntilDatePickerDelegate) {
         LinearLayout linearLayout;
         if (context == null) {
@@ -4279,7 +4300,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$125(view, motionEvent);
+                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$126(view, motionEvent);
             }
         });
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -4304,7 +4325,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$126(jCurrentTimeMillis, calendar, i, i2, i3);
+                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$127(jCurrentTimeMillis, calendar, i, i2, i3);
             }
         });
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
@@ -4320,7 +4341,7 @@ public abstract class AlertsCreator {
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$128(i3);
+                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$129(i3);
             }
         });
         numberPicker2.setOnValueChangedListener(onValueChangeListener);
@@ -4330,7 +4351,7 @@ public abstract class AlertsCreator {
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$129(i3);
+                return AlertsCreator.lambda$createStatusUntilDatePickerDialog$130(i3);
             }
         });
         linearLayout3.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.3f));
@@ -4366,7 +4387,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createStatusUntilDatePickerDialog$130(numberPicker, numberPicker2, numberPicker3, calendar, statusUntilDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createStatusUntilDatePickerDialog$131(numberPicker, numberPicker2, numberPicker3, calendar, statusUntilDatePickerDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout4);
@@ -4376,7 +4397,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String lambda$createStatusUntilDatePickerDialog$126(long j, Calendar calendar, int i, int i2, int i3) {
+    public static String lambda$createStatusUntilDatePickerDialog$127(long j, Calendar calendar, int i, int i2, int i3) {
         if (i3 == 0) {
             return LocaleController.getString(R.string.MessageScheduleToday);
         }
@@ -4393,15 +4414,15 @@ public abstract class AlertsCreator {
         return LocaleController.getInstance().getFormatterWeek().format(j2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(j2);
     }
 
-    public static String lambda$createStatusUntilDatePickerDialog$128(int i) {
-        return String.format("%02d", Integer.valueOf(i));
-    }
-
     public static String lambda$createStatusUntilDatePickerDialog$129(int i) {
         return String.format("%02d", Integer.valueOf(i));
     }
 
-    public static void lambda$createStatusUntilDatePickerDialog$130(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, StatusUntilDatePickerDelegate statusUntilDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static String lambda$createStatusUntilDatePickerDialog$130(int i) {
+        return String.format("%02d", Integer.valueOf(i));
+    }
+
+    public static void lambda$createStatusUntilDatePickerDialog$131(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, StatusUntilDatePickerDelegate statusUntilDatePickerDelegate, BottomSheet.Builder builder, View view) {
         boolean zCheckScheduleDate = checkScheduleDate(null, null, 0, numberPicker, numberPicker2, numberPicker3);
         calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
         calendar.set(11, numberPicker2.getValue());
@@ -4448,7 +4469,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i2) {
-                return AlertsCreator.lambda$createAutoDeleteDatePickerDialog$131(iArr, i2);
+                return AlertsCreator.lambda$createAutoDeleteDatePickerDialog$132(iArr, i2);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -4486,7 +4507,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createAutoDeleteDatePickerDialog$132(view, motionEvent);
+                return AlertsCreator.lambda$createAutoDeleteDatePickerDialog$133(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -4511,13 +4532,13 @@ public abstract class AlertsCreator {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker2, int i2, int i3) {
-                AlertsCreator.lambda$createAutoDeleteDatePickerDialog$133(animatedTextView, numberPicker2, i2, i3);
+                AlertsCreator.lambda$createAutoDeleteDatePickerDialog$134(animatedTextView, numberPicker2, i2, i3);
             }
         });
         animatedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createAutoDeleteDatePickerDialog$134(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createAutoDeleteDatePickerDialog$135(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
@@ -4527,7 +4548,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String lambda$createAutoDeleteDatePickerDialog$131(int[] iArr, int i) {
+    public static String lambda$createAutoDeleteDatePickerDialog$132(int[] iArr, int i) {
         int i2 = iArr[i];
         if (i2 == 0) {
             return LocaleController.getString(R.string.AutoDeleteNever);
@@ -4544,7 +4565,7 @@ public abstract class AlertsCreator {
         return LocaleController.formatPluralString("Years", i2 / 525600, new Object[0]);
     }
 
-    public static void lambda$createAutoDeleteDatePickerDialog$133(AnimatedTextView animatedTextView, NumberPicker numberPicker, int i, int i2) {
+    public static void lambda$createAutoDeleteDatePickerDialog$134(AnimatedTextView animatedTextView, NumberPicker numberPicker, int i, int i2) {
         try {
             if (i2 == 0) {
                 animatedTextView.setText(LocaleController.getString(R.string.DisableAutoDeleteTimer));
@@ -4555,7 +4576,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createAutoDeleteDatePickerDialog$134(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static void lambda$createAutoDeleteDatePickerDialog$135(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         scheduleDatePickerDelegate.didSelectDate(true, iArr[numberPicker.getValue()], 0);
         builder.getDismissRunnable().run();
     }
@@ -4581,7 +4602,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$135(i3);
+                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$136(i3);
             }
         });
         final NumberPicker numberPicker2 = new NumberPicker(context, resourcesProvider) {
@@ -4598,7 +4619,7 @@ public abstract class AlertsCreator {
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$136(i3);
+                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$137(i3);
             }
         });
         final NumberPicker numberPicker3 = new NumberPicker(context, resourcesProvider);
@@ -4610,7 +4631,7 @@ public abstract class AlertsCreator {
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$137(i3);
+                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$138(i3);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -4651,7 +4672,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$138(view, motionEvent);
+                return AlertsCreator.lambda$createSoundFrequencyPickerDialog$139(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -4678,7 +4699,7 @@ public abstract class AlertsCreator {
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker4, int i3, int i4) {
-                AlertsCreator.lambda$createSoundFrequencyPickerDialog$139(numberPicker4, i3, i4);
+                AlertsCreator.lambda$createSoundFrequencyPickerDialog$140(numberPicker4, i3, i4);
             }
         };
         numberPicker.setOnValueChangedListener(onValueChangeListener);
@@ -4686,7 +4707,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createSoundFrequencyPickerDialog$140(numberPicker, numberPicker2, soundFrequencyDelegate, builder, view);
+                AlertsCreator.lambda$createSoundFrequencyPickerDialog$141(numberPicker, numberPicker2, soundFrequencyDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
@@ -4696,19 +4717,19 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String lambda$createSoundFrequencyPickerDialog$135(int i) {
+    public static String lambda$createSoundFrequencyPickerDialog$136(int i) {
         return LocaleController.formatPluralString("Times", i + 1, new Object[0]);
     }
 
-    public static String lambda$createSoundFrequencyPickerDialog$136(int i) {
+    public static String lambda$createSoundFrequencyPickerDialog$137(int i) {
         return LocaleController.formatPluralString("Minutes", i + 1, new Object[0]);
     }
 
-    public static String lambda$createSoundFrequencyPickerDialog$137(int i) {
+    public static String lambda$createSoundFrequencyPickerDialog$138(int i) {
         return LocaleController.getString(R.string.NotificationsFrequencyDivider);
     }
 
-    public static void lambda$createSoundFrequencyPickerDialog$140(NumberPicker numberPicker, NumberPicker numberPicker2, SoundFrequencyDelegate soundFrequencyDelegate, BottomSheet.Builder builder, View view) {
+    public static void lambda$createSoundFrequencyPickerDialog$141(NumberPicker numberPicker, NumberPicker numberPicker2, SoundFrequencyDelegate soundFrequencyDelegate, BottomSheet.Builder builder, View view) {
         soundFrequencyDelegate.didSelectValues(numberPicker.getValue() + 1, (numberPicker2.getValue() + 1) * 60);
         builder.getDismissRunnable().run();
     }
@@ -4753,7 +4774,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return AlertsCreator.lambda$createMuteForPickerDialog$141(iArr, i);
+                return AlertsCreator.lambda$createMuteForPickerDialog$142(iArr, i);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -4790,7 +4811,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createMuteForPickerDialog$142(view, motionEvent);
+                return AlertsCreator.lambda$createMuteForPickerDialog$143(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -4807,7 +4828,7 @@ public abstract class AlertsCreator {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker2, int i, int i2) {
-                AlertsCreator.lambda$createMuteForPickerDialog$143(numberPicker2, i, i2);
+                AlertsCreator.lambda$createMuteForPickerDialog$144(numberPicker2, i, i2);
             }
         });
         textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -4821,7 +4842,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createMuteForPickerDialog$144(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createMuteForPickerDialog$145(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
@@ -4831,7 +4852,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String lambda$createMuteForPickerDialog$141(int[] iArr, int i) {
+    public static String lambda$createMuteForPickerDialog$142(int[] iArr, int i) {
         int i2 = iArr[i];
         if (i2 == 0) {
             return LocaleController.getString(R.string.MuteNever);
@@ -4854,7 +4875,7 @@ public abstract class AlertsCreator {
         return LocaleController.formatPluralString("Years", i2 / 525600, new Object[0]);
     }
 
-    public static void lambda$createMuteForPickerDialog$144(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static void lambda$createMuteForPickerDialog$145(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         scheduleDatePickerDelegate.didSelectDate(true, iArr[numberPicker.getValue()] * 60, 0);
         builder.getDismissRunnable().run();
     }
@@ -4942,7 +4963,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createCalendarPickerDialog$145(view, motionEvent);
+                return AlertsCreator.lambda$createCalendarPickerDialog$146(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -4963,7 +4984,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return AlertsCreator.lambda$createCalendarPickerDialog$146(i);
+                return AlertsCreator.lambda$createCalendarPickerDialog$147(i);
             }
         });
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
@@ -4980,7 +5001,7 @@ public abstract class AlertsCreator {
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return AlertsCreator.lambda$createCalendarPickerDialog$148(i);
+                return AlertsCreator.lambda$createCalendarPickerDialog$149(i);
             }
         });
         numberPicker2.setOnValueChangedListener(onValueChangeListener);
@@ -4995,7 +5016,7 @@ public abstract class AlertsCreator {
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createCalendarPickerDialog$149(i3);
+                return AlertsCreator.lambda$createCalendarPickerDialog$150(i3);
             }
         });
         linearLayout2.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.25f));
@@ -5015,18 +5036,18 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createCalendarPickerDialog$150(j, numberPicker, numberPicker2, numberPicker3, calendar, intCallback, builder, view);
+                AlertsCreator.lambda$createCalendarPickerDialog$151(j, numberPicker, numberPicker2, numberPicker3, calendar, intCallback, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
         return builder;
     }
 
-    public static String lambda$createCalendarPickerDialog$146(int i) {
+    public static String lambda$createCalendarPickerDialog$147(int i) {
         return "" + i;
     }
 
-    public static String lambda$createCalendarPickerDialog$148(int i) {
+    public static String lambda$createCalendarPickerDialog$149(int i) {
         switch (i) {
             case 0:
                 return LocaleController.getString(R.string.January);
@@ -5055,11 +5076,11 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static String lambda$createCalendarPickerDialog$149(int i) {
+    public static String lambda$createCalendarPickerDialog$150(int i) {
         return String.format("%02d", Integer.valueOf(i));
     }
 
-    public static void lambda$createCalendarPickerDialog$150(long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, MessagesStorage.IntCallback intCallback, BottomSheet.Builder builder, View view) {
+    public static void lambda$createCalendarPickerDialog$151(long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, MessagesStorage.IntCallback intCallback, BottomSheet.Builder builder, View view) {
         checkCalendarDate(j, numberPicker, numberPicker2, numberPicker3);
         calendar.set(1, numberPicker3.getValue());
         calendar.set(2, numberPicker2.getValue());
@@ -5081,13 +5102,13 @@ public abstract class AlertsCreator {
         builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString(R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                AlertsCreator.lambda$createMuteAlert$151(j, j2, baseFragment, resourcesProvider, dialogInterface, i2);
+                AlertsCreator.lambda$createMuteAlert$152(j, j2, baseFragment, resourcesProvider, dialogInterface, i2);
             }
         });
         return builder.create();
     }
 
-    public static void lambda$createMuteAlert$151(long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
+    public static void lambda$createMuteAlert$152(long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
         int i2;
         if (i == 0) {
             i2 = 0;
@@ -5116,13 +5137,13 @@ public abstract class AlertsCreator {
         builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString(R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                AlertsCreator.lambda$createMuteAlert$152(arrayList, i, baseFragment, resourcesProvider, dialogInterface, i3);
+                AlertsCreator.lambda$createMuteAlert$153(arrayList, i, baseFragment, resourcesProvider, dialogInterface, i3);
             }
         });
         return builder.create();
     }
 
-    public static void lambda$createMuteAlert$152(ArrayList arrayList, int i, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i2) {
+    public static void lambda$createMuteAlert$153(ArrayList arrayList, int i, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i2) {
         int i3;
         if (i2 == 0) {
             i3 = 0;
@@ -5152,7 +5173,7 @@ public abstract class AlertsCreator {
         final Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AlertsCreator.lambda$createReportPhotoAlert$153(i, j, photo, context, resourcesProvider, (Integer) obj, (String) obj2);
+                AlertsCreator.lambda$createReportPhotoAlert$154(i, j, photo, context, resourcesProvider, (Integer) obj, (String) obj2);
             }
         };
         BottomSheet.Builder builder = new BottomSheet.Builder(context, true, resourcesProvider);
@@ -5161,13 +5182,13 @@ public abstract class AlertsCreator {
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.ReportChatSpam), LocaleController.getString(R.string.ReportChatFakeAccount), LocaleController.getString(R.string.ReportChatViolence), LocaleController.getString(R.string.ReportChatChild), LocaleController.getString(R.string.ReportChatIllegalDrugs), LocaleController.getString(R.string.ReportChatPersonalDetails), LocaleController.getString(R.string.ReportChatPornography), LocaleController.getString(R.string.ReportChatOther)}, new int[]{R.drawable.msg_clearcache, R.drawable.msg_report_fake, R.drawable.msg_report_violence, R.drawable.msg_block2, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                AlertsCreator.lambda$createReportPhotoAlert$154(iArr, context, resourcesProvider, callback2, dialogInterface, i2);
+                AlertsCreator.lambda$createReportPhotoAlert$155(iArr, context, resourcesProvider, callback2, dialogInterface, i2);
             }
         });
         builder.show();
     }
 
-    public static void lambda$createReportPhotoAlert$153(int i, long j, TLRPC.Photo photo, Context context, Theme.ResourcesProvider resourcesProvider, Integer num, String str) {
+    public static void lambda$createReportPhotoAlert$154(int i, long j, TLRPC.Photo photo, Context context, Theme.ResourcesProvider resourcesProvider, Integer num, String str) {
         TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
         reportprofilephoto.peer = MessagesController.getInstance(i).getInputPeer(j);
         TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
@@ -5193,7 +5214,7 @@ public abstract class AlertsCreator {
         BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).createReportSent(resourcesProvider).show();
     }
 
-    public static void lambda$createReportPhotoAlert$154(int[] iArr, Context context, Theme.ResourcesProvider resourcesProvider, final Utilities.Callback2 callback2, DialogInterface dialogInterface, int i) {
+    public static void lambda$createReportPhotoAlert$155(int[] iArr, Context context, Theme.ResourcesProvider resourcesProvider, final Utilities.Callback2 callback2, DialogInterface dialogInterface, int i) {
         int i2 = iArr[i];
         if (i2 == 100) {
             new ReportAlert(context, i2, resourcesProvider) {
@@ -5326,7 +5347,7 @@ public abstract class AlertsCreator {
                 builder.setNegativeButton(LocaleController.getString(R.string.MoreInfo), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        AlertsCreator.lambda$showAddUserAlert$155(baseFragment, alertDialog, i);
+                        AlertsCreator.lambda$showAddUserAlert$156(baseFragment, alertDialog, i);
                     }
                 });
                 break;
@@ -5413,7 +5434,7 @@ public abstract class AlertsCreator {
         baseFragment.showDialog(builder.create(), true, null);
     }
 
-    public static void lambda$showAddUserAlert$155(BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+    public static void lambda$showAddUserAlert$156(BaseFragment baseFragment, AlertDialog alertDialog, int i) {
         MessagesController.getInstance(baseFragment.getCurrentAccount()).openByUserName("spambot", baseFragment, 1);
     }
 
@@ -5462,7 +5483,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createColorSelectDialog$156(linearLayout, iArr, view);
+                    AlertsCreator.lambda$createColorSelectDialog$157(linearLayout, iArr, view);
                 }
             });
             i4++;
@@ -5475,27 +5496,27 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Set), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i8) {
-                AlertsCreator.lambda$createColorSelectDialog$157(j, sharedPrefKey, iArr, j2, i, runnable, alertDialog, i8);
+                AlertsCreator.lambda$createColorSelectDialog$158(j, sharedPrefKey, iArr, j2, i, runnable, alertDialog, i8);
             }
         });
         builder.setNeutralButton(LocaleController.getString(R.string.LedDisabled), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i8) {
-                AlertsCreator.lambda$createColorSelectDialog$158(j, i, runnable, alertDialog, i8);
+                AlertsCreator.lambda$createColorSelectDialog$159(j, i, runnable, alertDialog, i8);
             }
         });
         if (i7 != 0) {
             builder.setNegativeButton(LocaleController.getString(R.string.Default), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i8) {
-                    AlertsCreator.lambda$createColorSelectDialog$159(sharedPrefKey, runnable, alertDialog, i8);
+                    AlertsCreator.lambda$createColorSelectDialog$160(sharedPrefKey, runnable, alertDialog, i8);
                 }
             });
         }
         return builder.create();
     }
 
-    public static void lambda$createColorSelectDialog$156(LinearLayout linearLayout, int[] iArr, View view) {
+    public static void lambda$createColorSelectDialog$157(LinearLayout linearLayout, int[] iArr, View view) {
         int childCount = linearLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
             RadioColorCell radioColorCell = (RadioColorCell) linearLayout.getChildAt(i);
@@ -5504,7 +5525,7 @@ public abstract class AlertsCreator {
         iArr[0] = TextColorCell.colorsToSave[((Integer) view.getTag()).intValue()];
     }
 
-    public static void lambda$createColorSelectDialog$157(long j, String str, int[] iArr, long j2, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
+    public static void lambda$createColorSelectDialog$158(long j, String str, int[] iArr, long j2, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
             editorEdit.putInt("color_" + str, iArr[0]);
@@ -5529,7 +5550,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createColorSelectDialog$158(long j, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
+    public static void lambda$createColorSelectDialog$159(long j, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
             editorEdit.putInt("color_" + j, 0);
@@ -5550,7 +5571,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createColorSelectDialog$159(String str, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void lambda$createColorSelectDialog$160(String str, Runnable runnable, AlertDialog alertDialog, int i) {
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         editorEdit.remove("color_" + str);
         editorEdit.commit();
@@ -5615,7 +5636,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createVibrationSelectDialog$160(iArr, j, str, j2, builder, runnable, view);
+                    AlertsCreator.lambda$createVibrationSelectDialog$161(iArr, j, str, j2, builder, runnable, view);
                 }
             });
             i4++;
@@ -5629,7 +5650,7 @@ public abstract class AlertsCreator {
         return builder.create();
     }
 
-    public static void lambda$createVibrationSelectDialog$160(int[] iArr, long j, String str, long j2, AlertDialog.Builder builder, Runnable runnable, View view) {
+    public static void lambda$createVibrationSelectDialog$161(int[] iArr, long j, String str, long j2, AlertDialog.Builder builder, Runnable runnable, View view) {
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
@@ -5704,7 +5725,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createLocationUpdateDialog$161(iArr, linearLayout, view);
+                    AlertsCreator.lambda$createLocationUpdateDialog$162(iArr, linearLayout, view);
                 }
             });
             i++;
@@ -5719,14 +5740,14 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.ShareFile), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                AlertsCreator.lambda$createLocationUpdateDialog$162(iArr, intCallback, alertDialog, i2);
+                AlertsCreator.lambda$createLocationUpdateDialog$163(iArr, intCallback, alertDialog, i2);
             }
         });
         builder.setNeutralButton(LocaleController.getString(R.string.Cancel), null);
         return builder.create();
     }
 
-    public static void lambda$createLocationUpdateDialog$161(int[] iArr, LinearLayout linearLayout, View view) {
+    public static void lambda$createLocationUpdateDialog$162(int[] iArr, LinearLayout linearLayout, View view) {
         iArr[0] = ((Integer) view.getTag()).intValue();
         int childCount = linearLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -5737,7 +5758,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createLocationUpdateDialog$162(int[] iArr, MessagesStorage.IntCallback intCallback, AlertDialog alertDialog, int i) {
+    public static void lambda$createLocationUpdateDialog$163(int[] iArr, MessagesStorage.IntCallback intCallback, AlertDialog alertDialog, int i) {
         int i2 = iArr[0];
         intCallback.run(i2 == 0 ? 900 : i2 == 1 ? 3600 : i2 == 2 ? 28800 : Integer.MAX_VALUE);
     }
@@ -5773,7 +5794,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createBackgroundLocationPermissionDialog$163(activity, alertDialog, i);
+                AlertsCreator.lambda$createBackgroundLocationPermissionDialog$164(activity, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -5785,7 +5806,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static void lambda$createBackgroundLocationPermissionDialog$163(Activity activity, AlertDialog alertDialog, int i) {
+    public static void lambda$createBackgroundLocationPermissionDialog$164(Activity activity, AlertDialog alertDialog, int i) {
         if (activity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
             activity.requestPermissions(new String[]{"android.permission.ACCESS_BACKGROUND_LOCATION"}, 30);
         }
@@ -5839,7 +5860,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createDrawOverlayPermissionDialog$165(activity, z, alertDialog, i);
+                AlertsCreator.lambda$createDrawOverlayPermissionDialog$166(activity, z, alertDialog, i);
             }
         });
         builder.notDrawBackgroundOnTopView(true);
@@ -5848,7 +5869,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static void lambda$createDrawOverlayPermissionDialog$165(Activity activity, boolean z, AlertDialog alertDialog, int i) {
+    public static void lambda$createDrawOverlayPermissionDialog$166(Activity activity, boolean z, AlertDialog alertDialog, int i) {
         if (activity == null || Build.VERSION.SDK_INT < 23) {
             return;
         }
@@ -5898,7 +5919,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createDrawOverlayGroupCallPermissionDialog$166(context, alertDialog, i);
+                AlertsCreator.lambda$createDrawOverlayGroupCallPermissionDialog$167(context, alertDialog, i);
             }
         });
         builder.notDrawBackgroundOnTopView(true);
@@ -5907,7 +5928,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static void lambda$createDrawOverlayGroupCallPermissionDialog$166(Context context, AlertDialog alertDialog, int i) {
+    public static void lambda$createDrawOverlayGroupCallPermissionDialog$167(Context context, AlertDialog alertDialog, int i) {
         if (context != null) {
             try {
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -5952,14 +5973,14 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.LowDiskSpaceButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createFreeSpaceDialog$169(launchActivity, alertDialog, i);
+                AlertsCreator.lambda$createFreeSpaceDialog$170(launchActivity, alertDialog, i);
             }
         });
         return builder.create();
     }
 
-    public static void lambda$createFreeSpaceDialog$169(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$96(new CacheControlActivity());
+    public static void lambda$createFreeSpaceDialog$170(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
+        launchActivity.lambda$runLinkRequest$98(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, long j, int i, int i2, Runnable runnable) {
@@ -6028,7 +6049,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createPrioritySelectDialog$170(iArr2, j, j2, i, notificationsSettings, builder2, runnable, view);
+                    AlertsCreator.lambda$createPrioritySelectDialog$171(iArr2, j, j2, i, notificationsSettings, builder2, runnable, view);
                 }
             });
             i5++;
@@ -6046,7 +6067,7 @@ public abstract class AlertsCreator {
         return builder3.create();
     }
 
-    public static void lambda$createPrioritySelectDialog$170(int[] iArr, long j, long j2, int i, SharedPreferences sharedPreferences, AlertDialog.Builder builder, Runnable runnable, View view) {
+    public static void lambda$createPrioritySelectDialog$171(int[] iArr, long j, long j2, int i, SharedPreferences sharedPreferences, AlertDialog.Builder builder, Runnable runnable, View view) {
         int i2 = 0;
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
@@ -6116,7 +6137,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createPopupSelectDialog$171(iArr, i, builder, runnable, view);
+                    AlertsCreator.lambda$createPopupSelectDialog$172(iArr, i, builder, runnable, view);
                 }
             });
             i2++;
@@ -6127,7 +6148,7 @@ public abstract class AlertsCreator {
         return builder.create();
     }
 
-    public static void lambda$createPopupSelectDialog$171(int[] iArr, int i, AlertDialog.Builder builder, Runnable runnable, View view) {
+    public static void lambda$createPopupSelectDialog$172(int[] iArr, int i, AlertDialog.Builder builder, Runnable runnable, View view) {
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (i == 1) {
@@ -6159,7 +6180,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.lambda$createSingleChoiceDialog$172(builder, onClickListener, view);
+                    AlertsCreator.lambda$createSingleChoiceDialog$173(builder, onClickListener, view);
                 }
             });
             i2++;
@@ -6170,7 +6191,7 @@ public abstract class AlertsCreator {
         return builder.create();
     }
 
-    public static void lambda$createSingleChoiceDialog$172(AlertDialog.Builder builder, DialogInterface.OnClickListener onClickListener, View view) {
+    public static void lambda$createSingleChoiceDialog$173(AlertDialog.Builder builder, DialogInterface.OnClickListener onClickListener, View view) {
         int iIntValue = ((Integer) view.getTag()).intValue();
         builder.getDismissRunnable().run();
         onClickListener.onClick(null, iIntValue);
@@ -6201,20 +6222,20 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i2) {
-                return AlertsCreator.lambda$createTTLAlert$173(i2);
+                return AlertsCreator.lambda$createTTLAlert$174(i2);
             }
         });
         builder.setView(numberPicker);
         builder.setNegativeButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                AlertsCreator.lambda$createTTLAlert$174(encryptedChat, numberPicker, alertDialog, i2);
+                AlertsCreator.lambda$createTTLAlert$175(encryptedChat, numberPicker, alertDialog, i2);
             }
         });
         return builder;
     }
 
-    public static String lambda$createTTLAlert$173(int i) {
+    public static String lambda$createTTLAlert$174(int i) {
         if (i == 0) {
             return LocaleController.getString(R.string.ShortMessageLifetimeForever);
         }
@@ -6239,7 +6260,7 @@ public abstract class AlertsCreator {
         return "";
     }
 
-    public static void lambda$createTTLAlert$174(TLRPC.EncryptedChat encryptedChat, NumberPicker numberPicker, AlertDialog alertDialog, int i) {
+    public static void lambda$createTTLAlert$175(TLRPC.EncryptedChat encryptedChat, NumberPicker numberPicker, AlertDialog alertDialog, int i) {
         int i2 = encryptedChat.ttl;
         int value = numberPicker.getValue();
         if (value >= 0 && value < 16) {
@@ -6280,7 +6301,7 @@ public abstract class AlertsCreator {
                 accountSelectCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AlertsCreator.lambda$createAccountSelectDialog$175(alertDialogArr, dismissRunnable, accountSelectDelegate, view);
+                        AlertsCreator.lambda$createAccountSelectDialog$176(alertDialogArr, dismissRunnable, accountSelectDelegate, view);
                     }
                 });
             }
@@ -6293,7 +6314,7 @@ public abstract class AlertsCreator {
         return alertDialogCreate;
     }
 
-    public static void lambda$createAccountSelectDialog$175(AlertDialog[] alertDialogArr, Runnable runnable, AccountSelectDelegate accountSelectDelegate, View view) {
+    public static void lambda$createAccountSelectDialog$176(AlertDialog[] alertDialogArr, Runnable runnable, AccountSelectDelegate accountSelectDelegate, View view) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog != null) {
             alertDialog.setOnDismissListener(null);
@@ -6385,17 +6406,17 @@ public abstract class AlertsCreator {
                     new AlertDialog.Builder(parentActivity, resourcesProvider).setTitle(LocaleController.getString(R.string.MessageScheduledRepeatDeleteTitle)).setMessage(LocaleController.getString(R.string.MessageScheduledRepeatDeleteText)).setNegativeButton(string, new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i13) {
-                            AlertsCreator.lambda$createDeleteMessagesAlert$176(groupedMessages, currentAccount, baseFragment, i10, i12, messageObject, alertDialog, i13);
+                            AlertsCreator.lambda$createDeleteMessagesAlert$177(groupedMessages, currentAccount, baseFragment, i10, i12, messageObject, alertDialog, i13);
                         }
                     }).setNeutralButton(LocaleController.getString(R.string.MessageScheduledRepeatDeleteAll), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i13) {
-                            AlertsCreator.lambda$createDeleteMessagesAlert$177(j2, z9, currentAccount, messageObject, groupedMessages, encryptedChat, j, i, i2, sparseArrayArr, runnable, alertDialog, i13);
+                            AlertsCreator.lambda$createDeleteMessagesAlert$178(j2, z9, currentAccount, messageObject, groupedMessages, encryptedChat, j, i, i2, sparseArrayArr, runnable, alertDialog, i13);
                         }
                     }).setPositiveButton(LocaleController.getString(R.string.Cancel), null).makeRed(-2).makeRed(-3).setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            AlertsCreator.lambda$createDeleteMessagesAlert$178(runnable2, dialogInterface);
+                            AlertsCreator.lambda$createDeleteMessagesAlert$179(runnable2, dialogInterface);
                         }
                     }).show();
                     return;
@@ -6497,7 +6518,7 @@ public abstract class AlertsCreator {
                 }).distinct().mapToObj(new LongFunction() {
                     @Override
                     public final Object apply(long j3) {
-                        return AlertsCreator.lambda$createDeleteMessagesAlert$179(i20, j3);
+                        return AlertsCreator.lambda$createDeleteMessagesAlert$180(i20, j3);
                     }
                 }).filter(new Predicate() {
                     public Predicate and(Predicate predicate) {
@@ -6531,7 +6552,7 @@ public abstract class AlertsCreator {
 
                     @Override
                     public final boolean test(Object obj) {
-                        return AlertsCreator.lambda$createDeleteMessagesAlert$180(clientUserId, (TLObject) obj);
+                        return AlertsCreator.lambda$createDeleteMessagesAlert$181(clientUserId, (TLObject) obj);
                     }
                 }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda242()));
                 if (!arrayList2.isEmpty()) {
@@ -6557,7 +6578,7 @@ public abstract class AlertsCreator {
                             iArr5[i24] = ConnectionsManager.getInstance(i20).sendRequest(tL_channels_getParticipant, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                    AlertsCreator.lambda$createDeleteMessagesAlert$182(iArr3, iArr4, i22, channelParticipantArr3, i23, alertDialogArr2, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i, i2, runnable, runnable2, resourcesProvider, tLObject, tL_error);
+                                    AlertsCreator.lambda$createDeleteMessagesAlert$183(iArr3, iArr4, i22, channelParticipantArr3, i23, alertDialogArr2, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i, i2, runnable, runnable2, resourcesProvider, tLObject, tL_error);
                                 }
                             });
                             i21 = i24 + 1;
@@ -6575,7 +6596,7 @@ public abstract class AlertsCreator {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                AlertsCreator.lambda$createDeleteMessagesAlert$184(alertDialogArr3, iArr6, i25, runnable2, baseFragment);
+                                AlertsCreator.lambda$createDeleteMessagesAlert$185(alertDialogArr3, iArr6, i25, runnable2, baseFragment);
                             }
                         }, 1000L);
                         return;
@@ -6618,7 +6639,7 @@ public abstract class AlertsCreator {
                     checkBoxCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AlertsCreator.lambda$createDeleteMessagesAlert$186(zArr3, view);
+                            AlertsCreator.lambda$createDeleteMessagesAlert$187(zArr3, view);
                         }
                     });
                     builder4.setView(frameLayout);
@@ -6675,7 +6696,7 @@ public abstract class AlertsCreator {
                             checkBoxCell2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    AlertsCreator.lambda$createDeleteMessagesAlert$187(zArr, view);
+                                    AlertsCreator.lambda$createDeleteMessagesAlert$188(zArr, view);
                                 }
                             });
                             builder = builder2;
@@ -6743,7 +6764,7 @@ public abstract class AlertsCreator {
             AlertDialog.OnButtonClickListener onButtonClickListener = new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i32) {
-                    AlertsCreator.lambda$createDeleteMessagesAlert$188(j2, z15, i29, messageObject, groupedMessages, encryptedChat, j, i, zArr5, i2, sparseArrayArr, runnable, alertDialog, i32);
+                    AlertsCreator.lambda$createDeleteMessagesAlert$189(j2, z15, i29, messageObject, groupedMessages, encryptedChat, j, i, zArr5, i2, sparseArrayArr, runnable, alertDialog, i32);
                 }
             };
             if (z8) {
@@ -6870,7 +6891,7 @@ public abstract class AlertsCreator {
             builder3.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    AlertsCreator.lambda$createDeleteMessagesAlert$189(runnable2, dialogInterface);
+                    AlertsCreator.lambda$createDeleteMessagesAlert$190(runnable2, dialogInterface);
                 }
             });
             AlertDialog alertDialogCreate = builder3.create();
@@ -6888,7 +6909,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$176(MessageObject.GroupedMessages groupedMessages, int i, BaseFragment baseFragment, int i2, int i3, MessageObject messageObject, AlertDialog alertDialog, int i4) {
+    public static void lambda$createDeleteMessagesAlert$177(MessageObject.GroupedMessages groupedMessages, int i, BaseFragment baseFragment, int i2, int i3, MessageObject messageObject, AlertDialog alertDialog, int i4) {
         if (groupedMessages != null && !groupedMessages.messages.isEmpty()) {
             SendMessagesHelper.getInstance(i).editMessage(groupedMessages.messages.get(0), null, false, baseFragment, null, i2 + i3, i3);
         } else {
@@ -6896,7 +6917,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$177(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
+    public static void lambda$createDeleteMessagesAlert$178(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
         ArrayList<Long> arrayList;
         TLRPC.Peer peer;
         long clientUserId = z ? UserConfig.getInstance(i).getClientUserId() : j;
@@ -6956,20 +6977,20 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$178(Runnable runnable, DialogInterface dialogInterface) {
+    public static void lambda$createDeleteMessagesAlert$179(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public static TLObject lambda$createDeleteMessagesAlert$179(int i, long j) {
+    public static TLObject lambda$createDeleteMessagesAlert$180(int i, long j) {
         if (j > 0) {
             return MessagesController.getInstance(i).getUser(Long.valueOf(j));
         }
         return MessagesController.getInstance(i).getChat(Long.valueOf(-j));
     }
 
-    public static boolean lambda$createDeleteMessagesAlert$180(long j, TLObject tLObject) {
+    public static boolean lambda$createDeleteMessagesAlert$181(long j, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             return ((TLRPC.User) tLObject).id != j;
         }
@@ -6979,16 +7000,16 @@ public abstract class AlertsCreator {
         return false;
     }
 
-    public static void lambda$createDeleteMessagesAlert$182(final int[] iArr, final int[] iArr2, final int i, final TLRPC.ChannelParticipant[] channelParticipantArr, final int i2, final AlertDialog[] alertDialogArr, final BaseFragment baseFragment, final TLRPC.User user, final TLRPC.Chat chat, final TLRPC.EncryptedChat encryptedChat, final TLRPC.ChatFull chatFull, final long j, final MessageObject messageObject, final SparseArray[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final int i3, final int i4, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$createDeleteMessagesAlert$183(final int[] iArr, final int[] iArr2, final int i, final TLRPC.ChannelParticipant[] channelParticipantArr, final int i2, final AlertDialog[] alertDialogArr, final BaseFragment baseFragment, final TLRPC.User user, final TLRPC.Chat chat, final TLRPC.EncryptedChat encryptedChat, final TLRPC.ChatFull chatFull, final long j, final MessageObject messageObject, final SparseArray[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final int i3, final int i4, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.lambda$createDeleteMessagesAlert$181(iArr, iArr2, i, tLObject, channelParticipantArr, i2, alertDialogArr, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i3, i4, runnable, runnable2, resourcesProvider);
+                AlertsCreator.lambda$createDeleteMessagesAlert$182(iArr, iArr2, i, tLObject, channelParticipantArr, i2, alertDialogArr, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i3, i4, runnable, runnable2, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$createDeleteMessagesAlert$181(int[] iArr, int[] iArr2, int i, TLObject tLObject, TLRPC.ChannelParticipant[] channelParticipantArr, int i2, AlertDialog[] alertDialogArr, BaseFragment baseFragment, TLRPC.User user, TLRPC.Chat chat, TLRPC.EncryptedChat encryptedChat, TLRPC.ChatFull chatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, int i3, int i4, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
+    public static void lambda$createDeleteMessagesAlert$182(int[] iArr, int[] iArr2, int i, TLObject tLObject, TLRPC.ChannelParticipant[] channelParticipantArr, int i2, AlertDialog[] alertDialogArr, BaseFragment baseFragment, TLRPC.User user, TLRPC.Chat chat, TLRPC.EncryptedChat encryptedChat, TLRPC.ChatFull chatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, int i3, int i4, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
         iArr[0] = iArr[0] + 1;
         iArr2[i] = 0;
         if (tLObject != null) {
@@ -7004,7 +7025,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$184(AlertDialog[] alertDialogArr, final int[] iArr, final int i, final Runnable runnable, BaseFragment baseFragment) {
+    public static void lambda$createDeleteMessagesAlert$185(AlertDialog[] alertDialogArr, final int[] iArr, final int i, final Runnable runnable, BaseFragment baseFragment) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
             return;
@@ -7012,13 +7033,13 @@ public abstract class AlertsCreator {
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                AlertsCreator.lambda$createDeleteMessagesAlert$183(iArr, i, runnable, dialogInterface);
+                AlertsCreator.lambda$createDeleteMessagesAlert$184(iArr, i, runnable, dialogInterface);
             }
         });
         baseFragment.showDialog(alertDialogArr[0]);
     }
 
-    public static void lambda$createDeleteMessagesAlert$183(int[] iArr, int i, Runnable runnable, DialogInterface dialogInterface) {
+    public static void lambda$createDeleteMessagesAlert$184(int[] iArr, int i, Runnable runnable, DialogInterface dialogInterface) {
         for (int i2 : iArr) {
             if (i2 != 0) {
                 ConnectionsManager.getInstance(i).cancelRequest(i2, true);
@@ -7029,19 +7050,19 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$186(boolean[] zArr, View view) {
-        boolean z = !zArr[0];
-        zArr[0] = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-    }
-
     public static void lambda$createDeleteMessagesAlert$187(boolean[] zArr, View view) {
         boolean z = !zArr[0];
         zArr[0] = z;
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public static void lambda$createDeleteMessagesAlert$188(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, boolean[] zArr, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
+    public static void lambda$createDeleteMessagesAlert$188(boolean[] zArr, View view) {
+        boolean z = !zArr[0];
+        zArr[0] = z;
+        ((CheckBoxCell) view).setChecked(z, true);
+    }
+
+    public static void lambda$createDeleteMessagesAlert$189(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, boolean[] zArr, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
         ArrayList<Long> arrayList;
         TLRPC.Peer peer;
         long clientUserId = z ? UserConfig.getInstance(i).getClientUserId() : j;
@@ -7101,7 +7122,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDeleteMessagesAlert$189(Runnable runnable, DialogInterface dialogInterface) {
+    public static void lambda$createDeleteMessagesAlert$190(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
@@ -7121,7 +7142,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                AlertsCreator.lambda$createThemeCreateDialog$190(alertDialog, i2);
+                AlertsCreator.lambda$createThemeCreateDialog$191(alertDialog, i2);
             }
         });
         LinearLayout linearLayout = new LinearLayout(parentActivity);
@@ -7154,7 +7175,7 @@ public abstract class AlertsCreator {
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView2, int i3, KeyEvent keyEvent) {
-                return AlertsCreator.lambda$createThemeCreateDialog$191(textView2, i3, keyEvent);
+                return AlertsCreator.lambda$createThemeCreateDialog$192(textView2, i3, keyEvent);
             }
         });
         editTextBoldCursor.setText(generateThemeName(themeAccent));
@@ -7163,7 +7184,7 @@ public abstract class AlertsCreator {
         alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                AlertsCreator.lambda$createThemeCreateDialog$193(editTextBoldCursor, dialogInterface);
+                AlertsCreator.lambda$createThemeCreateDialog$194(editTextBoldCursor, dialogInterface);
             }
         });
         baseFragment.showDialog(alertDialogCreate);
@@ -7171,31 +7192,31 @@ public abstract class AlertsCreator {
         alertDialogCreate.getButton(-1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) throws Throwable {
-                AlertsCreator.lambda$createThemeCreateDialog$196(baseFragment, editTextBoldCursor, themeAccent, themeInfo, alertDialogCreate, view);
+                AlertsCreator.lambda$createThemeCreateDialog$197(baseFragment, editTextBoldCursor, themeAccent, themeInfo, alertDialogCreate, view);
             }
         });
     }
 
-    public static boolean lambda$createThemeCreateDialog$191(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean lambda$createThemeCreateDialog$192(TextView textView, int i, KeyEvent keyEvent) {
         AndroidUtilities.hideKeyboard(textView);
         return false;
     }
 
-    public static void lambda$createThemeCreateDialog$193(final EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$createThemeCreateDialog$194(final EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.lambda$createThemeCreateDialog$192(editTextBoldCursor);
+                AlertsCreator.lambda$createThemeCreateDialog$193(editTextBoldCursor);
             }
         });
     }
 
-    public static void lambda$createThemeCreateDialog$192(EditTextBoldCursor editTextBoldCursor) {
+    public static void lambda$createThemeCreateDialog$193(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$createThemeCreateDialog$196(final BaseFragment baseFragment, final EditTextBoldCursor editTextBoldCursor, Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, final AlertDialog alertDialog, View view) throws Throwable {
+    public static void lambda$createThemeCreateDialog$197(final BaseFragment baseFragment, final EditTextBoldCursor editTextBoldCursor, Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, final AlertDialog alertDialog, View view) throws Throwable {
         if (baseFragment.getParentActivity() == null) {
             return;
         }
@@ -7217,7 +7238,7 @@ public abstract class AlertsCreator {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.lambda$createThemeCreateDialog$195(editTextBoldCursor, alertDialog, baseFragment);
+                    AlertsCreator.lambda$createThemeCreateDialog$196(editTextBoldCursor, alertDialog, baseFragment);
                 }
             });
             return;
@@ -7225,7 +7246,7 @@ public abstract class AlertsCreator {
         processCreate(editTextBoldCursor, alertDialog, baseFragment);
     }
 
-    public static void lambda$createThemeCreateDialog$195(final EditTextBoldCursor editTextBoldCursor, final AlertDialog alertDialog, final BaseFragment baseFragment) {
+    public static void lambda$createThemeCreateDialog$196(final EditTextBoldCursor editTextBoldCursor, final AlertDialog alertDialog, final BaseFragment baseFragment) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws Throwable {
@@ -7420,7 +7441,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Decline), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$showDeclineSuggestedPostDialog$199(callback, editText, alertDialog, i);
+                AlertsCreator.lambda$showDeclineSuggestedPostDialog$200(callback, editText, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -7446,7 +7467,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$showDeclineSuggestedPostDialog$199(Utilities.Callback callback, EditText editText, AlertDialog alertDialog, int i) {
+    public static void lambda$showDeclineSuggestedPostDialog$200(Utilities.Callback callback, EditText editText, AlertDialog alertDialog, int i) {
         alertDialog.dismiss();
         if (callback != null) {
             callback.run(editText.getText().toString());
@@ -7528,7 +7549,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$202(view, motionEvent);
+                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$203(view, motionEvent);
             }
         });
         TextView textView2 = new TextView(context);
@@ -7539,7 +7560,7 @@ public abstract class AlertsCreator {
         textView2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$203(view, motionEvent);
+                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$204(view, motionEvent);
             }
         });
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -7567,7 +7588,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$204(i2, i3);
+                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$205(i2, i3);
             }
         });
         int i3 = i == 1 ? 5 : 3;
@@ -7585,7 +7606,7 @@ public abstract class AlertsCreator {
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i5) {
-                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$206(i5);
+                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$207(i5);
             }
         });
         numberPicker2.setOnValueChangedListener(onValueChangeListener);
@@ -7595,7 +7616,7 @@ public abstract class AlertsCreator {
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i5) {
-                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$207(i5);
+                return AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$208(i5);
             }
         });
         linearLayout3.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.3f));
@@ -7628,7 +7649,7 @@ public abstract class AlertsCreator {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$208(zArr, j2, j3, i5, numberPicker, numberPicker2, numberPicker3, calendar, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$209(zArr, j2, j3, i5, numberPicker, numberPicker2, numberPicker3, calendar, scheduleDatePickerDelegate, builder, view);
             }
         });
         ScaleStateListAnimator.apply(textView3, 0.02f, 1.2f);
@@ -7648,7 +7669,7 @@ public abstract class AlertsCreator {
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$209(zArr, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$210(zArr, scheduleDatePickerDelegate, builder, view);
             }
         });
         ScaleStateListAnimator.apply(textView4, 0.02f, 1.2f);
@@ -7657,7 +7678,7 @@ public abstract class AlertsCreator {
         bottomSheetShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$210(runnable, zArr, dialogInterface);
+                AlertsCreator.lambda$createSuggestedMessageDatePickerDialog$211(runnable, zArr, dialogInterface);
             }
         });
         bottomSheetShow.setBackgroundColor(scheduleDatePickerColors.backgroundColor);
@@ -7665,7 +7686,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String lambda$createSuggestedMessageDatePickerDialog$204(int i, int i2) {
+    public static String lambda$createSuggestedMessageDatePickerDialog$205(int i, int i2) {
         if (i2 == 0) {
             return LocaleController.getString(R.string.MessageScheduleToday);
         }
@@ -7678,15 +7699,15 @@ public abstract class AlertsCreator {
         return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
     }
 
-    public static String lambda$createSuggestedMessageDatePickerDialog$206(int i) {
-        return String.format("%02d", Integer.valueOf(i));
-    }
-
     public static String lambda$createSuggestedMessageDatePickerDialog$207(int i) {
         return String.format("%02d", Integer.valueOf(i));
     }
 
-    public static void lambda$createSuggestedMessageDatePickerDialog$208(boolean[] zArr, long j, long j2, int i, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static String lambda$createSuggestedMessageDatePickerDialog$208(int i) {
+        return String.format("%02d", Integer.valueOf(i));
+    }
+
+    public static void lambda$createSuggestedMessageDatePickerDialog$209(boolean[] zArr, long j, long j2, int i, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         zArr[0] = false;
         boolean zCheckScheduleDate = checkScheduleDate(null, null, j, j2, i, numberPicker, numberPicker2, numberPicker3);
         calendar.setTimeInMillis(LocalDate.now().plusDays(numberPicker.getValue()).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
@@ -7699,13 +7720,13 @@ public abstract class AlertsCreator {
         builder.getDismissRunnable().run();
     }
 
-    public static void lambda$createSuggestedMessageDatePickerDialog$209(boolean[] zArr, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static void lambda$createSuggestedMessageDatePickerDialog$210(boolean[] zArr, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         zArr[0] = false;
         scheduleDatePickerDelegate.didSelectDate(true, -1, 0);
         builder.getDismissRunnable().run();
     }
 
-    public static void lambda$createSuggestedMessageDatePickerDialog$210(Runnable runnable, boolean[] zArr, DialogInterface dialogInterface) {
+    public static void lambda$createSuggestedMessageDatePickerDialog$211(Runnable runnable, boolean[] zArr, DialogInterface dialogInterface) {
         if (runnable == null || !zArr[0]) {
             return;
         }
@@ -7752,34 +7773,34 @@ public abstract class AlertsCreator {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$showCallsForbidden$214(i, buttonWithCounterView, bottomSheetCreate, j, resourcesProvider, view);
+                AlertsCreator.lambda$showCallsForbidden$215(i, buttonWithCounterView, bottomSheetCreate, j, resourcesProvider, view);
             }
         });
         bottomSheetCreate.fixNavigationBar();
         bottomSheetCreate.show();
     }
 
-    public static void lambda$showCallsForbidden$214(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void lambda$showCallsForbidden$215(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, View view) {
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
         createconferencecall.random_id = Utilities.random.nextInt();
         ConnectionsManager.getInstance(i).sendRequest(createconferencecall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AlertsCreator.lambda$showCallsForbidden$213(i, buttonWithCounterView, bottomSheet, j, resourcesProvider, tLObject, tL_error);
+                AlertsCreator.lambda$showCallsForbidden$214(i, buttonWithCounterView, bottomSheet, j, resourcesProvider, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$213(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$showCallsForbidden$214(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
-                AlertsCreator.lambda$showCallsForbidden$212(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
+            public final void run() throws InterruptedException {
+                AlertsCreator.lambda$showCallsForbidden$213(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$212(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException, IOException {
+    public static void lambda$showCallsForbidden$213(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);
@@ -7792,7 +7813,7 @@ public abstract class AlertsCreator {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.lambda$showCallsForbidden$211(i, updates);
+                    AlertsCreator.lambda$showCallsForbidden$212(i, updates);
                 }
             });
             if (groupCall == null || LaunchActivity.instance == null) {
@@ -7837,7 +7858,7 @@ public abstract class AlertsCreator {
         SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j));
     }
 
-    public static void lambda$showCallsForbidden$211(int i, TLRPC.Updates updates) {
+    public static void lambda$showCallsForbidden$212(int i, TLRPC.Updates updates) {
         MessagesController.getInstance(i).processUpdates(updates, false);
     }
 
@@ -7881,7 +7902,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i2) {
-                return AlertsCreator.lambda$createCustomPicker$216(strArr, i2);
+                return AlertsCreator.lambda$createCustomPicker$217(strArr, i2);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context) {
@@ -7914,7 +7935,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.lambda$createCustomPicker$217(view, motionEvent);
+                return AlertsCreator.lambda$createCustomPicker$218(view, motionEvent);
             }
         });
         linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
@@ -7924,7 +7945,7 @@ public abstract class AlertsCreator {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createCustomPicker$218(bottomSheetArr, view);
+                AlertsCreator.lambda$createCustomPicker$219(bottomSheetArr, view);
             }
         });
         linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0, 16, 12, 16, 12));
@@ -7933,7 +7954,7 @@ public abstract class AlertsCreator {
         bottomSheetShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AlertsCreator.lambda$createCustomPicker$219(callback, numberPicker, dialogInterface);
+                AlertsCreator.lambda$createCustomPicker$220(callback, numberPicker, dialogInterface);
             }
         });
         bottomSheetShow.setBackgroundColor(scheduleDatePickerColors.backgroundColor);
@@ -7943,15 +7964,15 @@ public abstract class AlertsCreator {
         return bottomSheetCreate;
     }
 
-    public static String lambda$createCustomPicker$216(String[] strArr, int i) {
+    public static String lambda$createCustomPicker$217(String[] strArr, int i) {
         return strArr[i];
     }
 
-    public static void lambda$createCustomPicker$218(BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$createCustomPicker$219(BottomSheet[] bottomSheetArr, View view) {
         bottomSheetArr[0].lambda$new$0();
     }
 
-    public static void lambda$createCustomPicker$219(Utilities.Callback callback, NumberPicker numberPicker, DialogInterface dialogInterface) {
+    public static void lambda$createCustomPicker$220(Utilities.Callback callback, NumberPicker numberPicker, DialogInterface dialogInterface) {
         callback.run(Integer.valueOf(numberPicker.getValue()));
     }
 }

@@ -7753,4 +7753,27 @@ public abstract class Theme {
     public static void lambda$turnOffAutoNight$14(BaseFragment baseFragment) {
         baseFragment.presentFragment(new ThemeActivity(1));
     }
+
+    public static void turnOffAutoNight(BulletinFactory bulletinFactory, Runnable runnable) {
+        String string;
+        int i = selectedAutoNightType;
+        if (i != 0) {
+            if (bulletinFactory != null && runnable != null) {
+                try {
+                    int i2 = R.raw.auto_night_off;
+                    if (i == 3) {
+                        string = LocaleController.getString("AutoNightSystemModeOff", R.string.AutoNightSystemModeOff);
+                    } else {
+                        string = LocaleController.getString("AutoNightModeOff", R.string.AutoNightModeOff);
+                    }
+                    bulletinFactory.createSimpleBulletin(i2, string, LocaleController.getString("Settings", R.string.Settings), 5000, runnable).show();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            selectedAutoNightType = 0;
+            saveAutoNightThemeConfig();
+            cancelAutoNightThemeCallbacks();
+        }
+    }
 }

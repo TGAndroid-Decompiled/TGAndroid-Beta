@@ -67,7 +67,7 @@ public class BotDownloads {
     private static final HashMap instances = new HashMap();
     private static HashMap cachedMimeAndSizes = new HashMap();
 
-    public static BotDownloads get(Context context, int i, long j) {
+    public static BotDownloads get(Context context, int i, long j) throws JSONException {
         Pair pair = new Pair(Integer.valueOf(i), Long.valueOf(j));
         HashMap map = instances;
         BotDownloads botDownloads = (BotDownloads) map.get(pair);
@@ -79,7 +79,7 @@ public class BotDownloads {
         return botDownloads2;
     }
 
-    private BotDownloads(Context context, int i, long j) {
+    private BotDownloads(Context context, int i, long j) throws JSONException {
         this.context = context;
         this.currentAccount = i;
         this.botId = j;

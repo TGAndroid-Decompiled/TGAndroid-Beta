@@ -10,7 +10,6 @@ import j$.util.Collection;
 import j$.util.function.Function$CC;
 import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -190,7 +189,7 @@ public abstract class GroupCallSheet {
         final BottomSheet bottomSheetCreate = builder.create();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws InterruptedException, IOException {
+            public final void onClick(View view2) throws InterruptedException {
                 GroupCallSheet.lambda$show$5(bottomSheetCreate, context, i, inputGroupCall, view2);
             }
         });
@@ -206,7 +205,7 @@ public abstract class GroupCallSheet {
         return (l.longValue() == UserConfig.getInstance(i).getClientUserId() || l.longValue() == j) ? false : true;
     }
 
-    public static void lambda$show$5(BottomSheet bottomSheet, Context context, int i, TLRPC.InputGroupCall inputGroupCall, View view) throws InterruptedException, IOException {
+    public static void lambda$show$5(BottomSheet bottomSheet, Context context, int i, TLRPC.InputGroupCall inputGroupCall, View view) throws InterruptedException {
         bottomSheet.lambda$new$0();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity == null) {
