@@ -349,7 +349,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         frameLayout2.addView(frameLayout3);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourceProvider);
         this.buyButton = buttonWithCounterView;
-        buttonWithCounterView.setText("", false);
+        buttonWithCounterView.setRound();
+        this.buyButton.setText("", false);
         this.buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -368,7 +369,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         };
         this.twoButtonsLayout = linearLayout2;
         frameLayout2.addView(linearLayout2);
-        this.topupButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        this.topupButton = buttonWithCounterView2;
+        buttonWithCounterView2.setRound();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_topup, 2), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StarsTopUp));
@@ -380,7 +383,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         });
         this.twoButtonsLayout.addView(this.topupButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 8, 0));
-        this.withdrawButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        ButtonWithCounterView buttonWithCounterView3 = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        this.withdrawButton = buttonWithCounterView3;
+        buttonWithCounterView3.setRound();
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
         spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.mini_stats, 2), 0, 1, 33);
         spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.StarsStats));
@@ -393,7 +398,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
         this.twoButtonsLayout.addView(this.withdrawButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 0, 0));
         this.balanceLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 48.0f, 17, 20.0f, 17.0f, 20.0f, 0.0f));
-        this.giftButton = new ButtonWithCounterView(getContext(), false, this.resourceProvider);
+        ButtonWithCounterView buttonWithCounterView4 = new ButtonWithCounterView(getContext(), false, this.resourceProvider);
+        this.giftButton = buttonWithCounterView4;
+        buttonWithCounterView4.setRound();
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
         spannableStringBuilder3.append((CharSequence) "G  ");
         spannableStringBuilder3.setSpan(new ColoredImageSpan(R.drawable.menu_stars_gift), 0, 1, 33);

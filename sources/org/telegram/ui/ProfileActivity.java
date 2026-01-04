@@ -2234,6 +2234,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             updateExceptions();
         }
+        long clientUserId = getUserConfig().getClientUserId();
+        if ((this.userId == clientUserId || this.dialogId == clientUserId) && !this.myProfile) {
+            this.myProfile = true;
+        }
         SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader = this.sharedMediaPreloader;
         if (sharedMediaPreloader != null && sharedMediaPreloader.getTopicId() != this.topicId) {
             this.sharedMediaPreloader.onDestroy(this);
@@ -2556,7 +2560,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         actionBar.setOccupyStatusBar(z);
         if (this.hasMainTabs) {
             actionBar.setBackButtonDrawable(new BackDrawable(false));
-            actionBar.backButtonImageView.setImageResource(R.drawable.msg_qr_mini);
+            actionBar.backButtonImageView.setImageResource(R.drawable.outline_header_qr_24);
             actionBar.backButtonImageView.setColorFilter(getThemedColor(i), PorterDuff.Mode.SRC_IN);
             actionBar.backButtonImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -2714,7 +2718,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                    public final void onClick(View view) throws IOException {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2756,7 +2760,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i10, float f4, float f5) throws Resources.NotFoundException, IOException {
+                public final void onClick(int i10, float f4, float f5) throws IOException {
                     this.f$0.lambda$createView$15(i10, f4, f5);
                 }
             });
@@ -3658,7 +3662,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (profileActionsView2 != null) {
                     profileActionsView2.beginApplyingActions();
                     this.actionsView.addCameraAction();
-                    this.actionsView.addAddStory();
+                    this.actionsView.addEditInfo();
                     this.actionsView.addSettings();
                     this.actionsView.commitActions();
                 } else {
@@ -4787,7 +4791,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$11(int i, View view) throws IOException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5099,7 +5103,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void openStoryRecorder() throws Resources.NotFoundException, IOException {
+        public void openStoryRecorder() throws IOException {
             StoryRecorder.getInstance(ProfileActivity.this.getParentActivity(), ((BaseFragment) ProfileActivity.this).currentAccount).selectedPeerId(ProfileActivity.this.getDialogId()).canChangePeer(false).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
                 @Override
                 public void preLayout(long j, Runnable runnable) {
@@ -5162,7 +5166,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$15(int i, float f, float f2) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$15(int i, float f, float f2) throws IOException {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -9993,20 +9997,20 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         checkPhotoDescriptionAlpha();
         if (this.playProfileAnimation == 2) {
             this.avatarImage.setProgressToExpand(f);
+            ProfileActionsView profileActionsView = this.actionsView;
+            if (profileActionsView != null) {
+                profileActionsView.setParentExpanded(f);
+            }
+            ProfileMusicView profileMusicView = this.musicView;
+            if (profileMusicView != null) {
+                profileMusicView.setParentExpanded(f);
+            }
+            StarRatingView starRatingView = this.ratingView;
+            if (starRatingView != null) {
+                starRatingView.setParentExpanded(f);
+            }
             updateActionsPosition();
             updateSuggestionsPosition();
-        }
-        StarRatingView starRatingView = this.ratingView;
-        if (starRatingView != null) {
-            starRatingView.setParentExpanded(f);
-        }
-        ProfileActionsView profileActionsView = this.actionsView;
-        if (profileActionsView != null) {
-            profileActionsView.setParentExpanded(f);
-        }
-        ProfileMusicView profileMusicView = this.musicView;
-        if (profileMusicView != null) {
-            profileMusicView.setParentExpanded(f);
         }
         this.listView.setAlpha(f);
         this.listView.setTranslationX(AndroidUtilities.dp(48.0f) - (AndroidUtilities.dp(48.0f) * f));
@@ -10593,6 +10597,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$updateProfileData$98(View view) {
         goToForum();
+    }
+
+    @Override
+    public void clearViews() {
+        this.peerColor = null;
+        super.clearViews();
     }
 
     private void updatedPeerColor() {
@@ -11567,6 +11577,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 25:
                     FrameLayout frameLayout = new FrameLayout(this.mContext);
                     ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this.mContext, ProfileActivity.this.resourcesProvider);
+                    buttonWithCounterView.setRound();
                     buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotOpenApp), false);
                     buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                         @Override

@@ -5028,13 +5028,13 @@ public class StarsController {
     public void lambda$stopPaidMessages$150(final long j, final long j2, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Throwable {
                 this.f$0.lambda$stopPaidMessages$149(tLObject, j, j2, z);
             }
         });
     }
 
-    public void lambda$stopPaidMessages$149(TLObject tLObject, long j, long j2, boolean z) {
+    public void lambda$stopPaidMessages$149(TLObject tLObject, long j, long j2, boolean z) throws Throwable {
         TLRPC.PeerSettings peerSettings;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             if (j != 0) {
@@ -5053,7 +5053,7 @@ public class StarsController {
         }
     }
 
-    public void processUpdateMonoForumNoPaidException(long j, long j2, boolean z) {
+    public void processUpdateMonoForumNoPaidException(long j, long j2, boolean z) throws Throwable {
         TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
         TLRPC.TL_forumTopic tL_forumTopicFindTopic = topicsController.findTopic(j, j2);
         if (tL_forumTopicFindTopic != null) {

@@ -90,6 +90,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private Runnable animationRunnable;
     private boolean attached;
     private AnimatorSet backAnimator;
+    private boolean backAnimatorIsBack;
     private View backgroundView;
     private boolean beginTrackingSent;
     private BottomSheetTabs bottomSheetTabs;
@@ -301,7 +302,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         removeFragmentFromStack(baseFragment, false);
     }
 
-    static float access$1616(ActionBarLayout actionBarLayout, float f) {
+    static float access$1716(ActionBarLayout actionBarLayout, float f) {
         float f2 = actionBarLayout.animationProgress + f;
         actionBarLayout.animationProgress = f2;
         return f2;
@@ -366,7 +367,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1255getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1260getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -1174,7 +1175,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (animatorSet == null) {
                 return;
             }
-            animatorSet.end();
+            if (!this.backAnimatorIsBack) {
+                animatorSet.cancel();
+            } else {
+                animatorSet.end();
+            }
             this.backAnimator = null;
             if (this.animationInProgress) {
                 return;
@@ -1276,14 +1281,30 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             animatorSet.playTogether(customSlideTransition);
         }
         animatorSet.addListener(new AnimatorListenerAdapter() {
+            private boolean cancelled;
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                this.cancelled = true;
+                ActionBarLayout.this.predictiveBackInProgress = false;
+                ActionBarLayout.this.containerView.setAlpha(1.0f);
+                ActionBarLayout.this.onSlideAnimationEnd(true);
+                ActionBarLayout.this.backAnimator = null;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
+                if (this.cancelled) {
+                    return;
+                }
                 ActionBarLayout.this.predictiveBackInProgress = false;
                 ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(z);
+                ActionBarLayout.this.backAnimator = null;
             }
         });
         this.backAnimator = animatorSet;
+        this.backAnimatorIsBack = z;
         animatorSet.start();
         this.animationInProgress = true;
         this.layoutToIgnore = this.containerViewBack;
@@ -1449,7 +1470,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     j = 18;
                 }
                 ActionBarLayout.this.lastFrameTime = jNanoTime;
-                ActionBarLayout.access$1616(ActionBarLayout.this, j / ((z3 && z) ? 190.0f : 150.0f));
+                ActionBarLayout.access$1716(ActionBarLayout.this, j / ((z3 && z) ? 190.0f : 150.0f));
                 if (ActionBarLayout.this.animationProgress > 1.0f) {
                     ActionBarLayout.this.animationProgress = 1.0f;
                 }

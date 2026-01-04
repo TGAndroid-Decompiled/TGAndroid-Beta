@@ -537,6 +537,9 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (i == 36 || i == 35) {
             return this.id == uItem.id;
         }
+        if (i == 28) {
+            return this.id == uItem.id;
+        }
         if (i == 31) {
             return TextUtils.equals(this.text, uItem.text);
         }
@@ -562,6 +565,9 @@ public class UItem extends AdapterWithDiffUtils.Item {
         }
         if (i == 31) {
             return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
+        }
+        if (i == 28) {
+            return this.intValue == uItem.intValue;
         }
         if (i == 35 || i == 37) {
             return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;

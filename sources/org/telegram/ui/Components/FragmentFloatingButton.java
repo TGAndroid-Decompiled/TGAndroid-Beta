@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -23,6 +24,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
     private final BoolAnimator animatorProgressVisible;
     public final RLottieImageView imageView;
     private float internalTranslationY;
+    private final boolean isSubButton;
     public final RadialProgressView progressView;
     private final Theme.ResourcesProvider resourcesProvider;
 
@@ -32,6 +34,10 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
     }
 
     public FragmentFloatingButton(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, resourcesProvider, false);
+    }
+
+    public FragmentFloatingButton(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
         this.ANIMATOR_ID_BUTTON_VISIBLE = 0;
         this.ANIMATOR_ID_PROGRESS_VISIBLE = 1;
@@ -39,6 +45,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
         this.animatorButtonVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, true);
         this.animatorProgressVisible = new BoolAnimator(1, this, cubicBezierInterpolator, 380L);
         this.resourcesProvider = resourcesProvider;
+        this.isSubButton = z;
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -51,7 +58,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
         setAnimatedVisibility(radialProgressView, 0.0f);
         ScaleStateListAnimator.apply(this);
         setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_OVAL);
-        setTranslationZ(AndroidUtilities.dpf2(1.0f));
+        setTranslationZ(AndroidUtilities.dpf2(z ? 0.5f : 1.0f));
         updateColors();
     }
 
@@ -76,7 +83,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
         if (i == 0) {
             setAnimatedVisibility(this, f);
             setClickable(f >= 0.99f);
-            setAdditionalTranslationY(AndroidUtilities.dp(40.0f) * (1.0f - f));
+            setAdditionalTranslationY(AndroidUtilities.dp(this.isSubButton ? 64.0f : 40.0f) * (1.0f - f));
         } else if (i == 1) {
             setAnimatedVisibility(this.progressView, f);
             float f3 = 1.0f - f;
@@ -100,11 +107,25 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
     }
 
     public void updateColors() {
-        RLottieImageView rLottieImageView = this.imageView;
-        int i = Theme.key_chats_actionIcon;
-        rLottieImageView.setColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
-        this.progressView.setProgressColor(Theme.getColor(i, this.resourcesProvider));
+        if (this.isSubButton) {
+            RLottieImageView rLottieImageView = this.imageView;
+            int i = Theme.key_actionBarDefaultIcon;
+            rLottieImageView.setColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
+            this.progressView.setProgressColor(Theme.getColor(i, this.resourcesProvider));
+            int iDp = AndroidUtilities.dp(36.0f);
+            int i2 = Theme.key_actionBarDefault;
+            setBackground(Theme.createSimpleSelectorCircleDrawable(iDp, Theme.getColor(i2, this.resourcesProvider), ColorUtils.compositeColors(Theme.getColor(Theme.key_listSelector), Theme.getColor(i2))));
+            return;
+        }
+        RLottieImageView rLottieImageView2 = this.imageView;
+        int i3 = Theme.key_chats_actionIcon;
+        rLottieImageView2.setColorFilter(Theme.getColor(i3, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
+        this.progressView.setProgressColor(Theme.getColor(i3, this.resourcesProvider));
         setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, this.resourcesProvider)));
+    }
+
+    public static FrameLayout.LayoutParams createSubButtonLayoutParams() {
+        return LayoutHelper.createFrame(36, 36.0f, (LocaleController.isRTL ? 3 : 5) | 80, 26.0f, 0.0f, 26.0f, 14.0f);
     }
 
     public static FrameLayout.LayoutParams createDefaultLayoutParams() {

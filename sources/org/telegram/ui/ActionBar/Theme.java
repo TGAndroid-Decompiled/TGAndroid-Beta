@@ -136,6 +136,7 @@ public abstract class Theme {
     public static Paint DEBUG_GREEN_STROKE;
     public static Paint DEBUG_RED;
     public static Paint DEBUG_RED_STROKE;
+    public static Paint PAINT_CLEAR;
     private static Method StateListDrawable_getStateDrawableMethod;
     private static SensorEventListener ambientSensorListener;
     private static HashMap animatedOutVisualizerDrawables;
@@ -921,6 +922,8 @@ public abstract class Theme {
     public static final int key_gift_ribbon_soldout;
     public static final int key_glass_defaultIcon;
     public static final int key_glass_defaultText;
+    public static final int key_glass_tabSelected;
+    public static final int key_glass_tabUnselected;
     public static final int key_graySection;
     public static final int key_graySectionText;
     public static final int key_groupcreate_cursor;
@@ -1065,6 +1068,8 @@ public abstract class Theme {
     public static final int key_table_background;
     public static final int key_table_border;
     public static final int key_telegram_color;
+    public static final int key_telegram_color_dialogsLogo;
+    public static final int key_telegram_color_text;
     public static final int key_text_RedBold;
     public static final int key_text_RedRegular;
     public static final int key_topics_unreadCounter;
@@ -5852,8 +5857,8 @@ public abstract class Theme {
             dialogs_scamDrawable = new ScamDrawable(11, 0);
             dialogs_fakeDrawable = new ScamDrawable(11, 1);
             dialogs_verifiedCheckDrawable = resources.getDrawable(R.drawable.verified_check).mutate();
-            dialogs_mentionDrawable = resources.getDrawable(R.drawable.mentionchatslist);
-            dialogs_reactionsMentionDrawable = resources.getDrawable(R.drawable.reactionchatslist);
+            dialogs_mentionDrawable = resources.getDrawable(R.drawable.mini_mention_filled_16);
+            dialogs_reactionsMentionDrawable = resources.getDrawable(R.drawable.mini_like_filled_16);
             dialogs_pinnedDrawable = resources.getDrawable(R.drawable.list_pin);
             dialogs_pinnedDrawable2 = resources.getDrawable(R.drawable.msg_pin_mini);
             dialogs_forum_arrowDrawable = resources.getDrawable(R.drawable.msg_mini_forumarrow);

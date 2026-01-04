@@ -158,6 +158,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         return true;
     }
 
+    protected void onBackgroundViewInvalidate() {
+    }
+
     public void onUpdateBackgroundDrawable(Drawable drawable) {
     }
 
@@ -399,6 +402,12 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             if (SizeNotifierFrameLayout.this.themeAnimationValue != 1.0f) {
                 SizeNotifierFrameLayout.this.backgroundView.invalidate();
             }
+        }
+
+        @Override
+        public void invalidate() {
+            super.invalidate();
+            SizeNotifierFrameLayout.this.onBackgroundViewInvalidate();
         }
     }
 
@@ -647,7 +656,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     public void checkSnowflake(Canvas canvas) {
         if (this.backgroundView != null && Theme.canStartHolidayAnimation() && LiteMode.isEnabled(32)) {
             if (this.snowflakesEffect == null) {
-                this.snowflakesEffect = new SnowflakesEffect(1);
+                SnowflakesEffect snowflakesEffect = new SnowflakesEffect(1);
+                this.snowflakesEffect = snowflakesEffect;
+                snowflakesEffect.setForcedColor(-1);
             }
             this.snowflakesEffect.onDraw(this.backgroundView, canvas);
         }

@@ -369,6 +369,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean drawContactAdd;
     private boolean drawContactSendMessage;
     private boolean drawContactView;
+    private boolean drawContinueBotTopic;
     public boolean drawForBlur;
     private boolean drawForwardedName;
     public boolean drawFromPinchToZoom;
@@ -386,6 +387,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean drawSelectionBackground;
     private int drawSideButton;
     private int drawSideButton2;
+    private boolean drawStartBotTopic;
     private boolean drawSummarizeButton;
     public boolean drawSummaryReply;
     private boolean drawTime;
@@ -9460,7 +9462,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private boolean hasInlineBotButtons() {
         MessageObject messageObject = this.currentMessageObject;
-        return (messageObject != null && messageObject.hasInlineBotButtons()) || (this.lastInChatList && this.isAllChats && this.isBotForum && !this.isPinnedChat);
+        return (messageObject != null && messageObject.hasInlineBotButtons()) || this.drawContinueBotTopic;
     }
 
     public boolean hasNameLayout() {

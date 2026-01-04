@@ -101,6 +101,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.BotForumHelper;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
@@ -2527,7 +2528,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if (ChatActivityEnterView.this.scheduledButton != null) {
-                int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp((ChatActivityEnterView.this.botButton == null || ChatActivityEnterView.this.botButton.getVisibility() != 0) ? 44.0f : 96.0f)) - AndroidUtilities.dp(44.0f);
+                int measuredWidth = getMeasuredWidth() - (AndroidUtilities.dp(44.0f) * 2);
                 ChatActivityEnterView.this.scheduledButton.layout(measuredWidth, ChatActivityEnterView.this.scheduledButton.getTop(), ChatActivityEnterView.this.scheduledButton.getMeasuredWidth() + measuredWidth, ChatActivityEnterView.this.scheduledButton.getBottom());
             }
             if (ChatActivityEnterView.this.animationParamsX.isEmpty()) {
@@ -3126,7 +3127,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             public void setTranslationX(float f) {
                 this.innerTranslationX = f;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                super.setTranslationX(f + chatActivityEnterView.attachLayoutPaddingTranslationX + chatActivityEnterView.attachLayoutTranslationX + (AndroidUtilities.dp((ChatActivityEnterView.this.giftButton == null || ChatActivityEnterView.this.giftButton.getVisibility() != 0) ? 0.0f : -44.0f) * (ChatActivityEnterView.this.giftButton == null ? 0.0f : ChatActivityEnterView.this.giftButton.getAlpha())) + (AndroidUtilities.dp((ChatActivityEnterView.this.botButton == null || ChatActivityEnterView.this.botButton.getVisibility() != 0) ? 0.0f : 44.0f) * (ChatActivityEnterView.this.botButton != null ? ChatActivityEnterView.this.botButton.getAlpha() : 0.0f)));
+                super.setTranslationX(f + chatActivityEnterView.attachLayoutPaddingTranslationX + chatActivityEnterView.attachLayoutTranslationX + (AndroidUtilities.dp((ChatActivityEnterView.this.giftButton == null || ChatActivityEnterView.this.giftButton.getVisibility() != 0) ? 0.0f : -44.0f) * (ChatActivityEnterView.this.giftButton == null ? 0.0f : ChatActivityEnterView.this.giftButton.getAlpha())) + (AndroidUtilities.dp((ChatActivityEnterView.this.botButton == null || ChatActivityEnterView.this.botButton.getVisibility() != 0) ? 0.0f : -44.0f) * (ChatActivityEnterView.this.botButton != null ? ChatActivityEnterView.this.botButton.getAlpha() : 0.0f)));
             }
         };
         this.scheduledButton = imageView;
@@ -3134,7 +3135,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.scheduledButton.setVisibility(8);
         this.scheduledButton.setContentDescription(LocaleController.getString(R.string.ScheduledMessages));
         this.scheduledButton.setScaleType(ImageView.ScaleType.CENTER);
-        this.scheduledButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        this.scheduledButton.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
         this.messageEditTextContainer.addView(this.scheduledButton, 2, LayoutHelper.createFrame(44, 44, 85));
         this.scheduledButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3377,7 +3378,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.botButtonDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_glass_defaultIcon), PorterDuff.Mode.MULTIPLY));
         this.botButtonDrawable.setIcon(R.drawable.input_bot2, false);
         this.botButton.setScaleType(ImageView.ScaleType.CENTER);
-        this.botButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        this.botButton.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
         this.botButton.setVisibility(8);
         AndroidUtilities.updateViewVisibilityAnimated(this.botButton, false, 0.1f, false);
         this.attachLayout.addView(this.botButton, 0, LayoutHelper.createLinear(44, 44));
@@ -7865,7 +7866,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         ImageView imageView;
         ImageView imageView2;
         ImageView imageView3;
-        LinearLayout linearLayout;
+        ImageView imageView4;
         this.lastAttachVisible = i;
         if (this.messageEditText != null) {
             MessageObject messageObject = this.editingMessageObject;
@@ -7875,20 +7876,20 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 if (this.isStories && this.isLiveComment) {
                     layoutParams.rightMargin = AndroidUtilities.dp(this.suggestButtonVisible ? 50.0f : 2.0f) + Math.max(0, this.sendButton.width() - AndroidUtilities.dp(44.0f));
                 } else if (i == 1 || i == 2) {
-                    ImageView imageView4 = this.botButton;
-                    if (imageView4 != null && imageView4.getVisibility() == 0 && (imageView3 = this.scheduledButton) != null && imageView3.getVisibility() == 0 && (linearLayout = this.attachLayout) != null && linearLayout.getVisibility() == 0) {
+                    ImageView imageView5 = this.botButton;
+                    if (imageView5 != null && imageView5.getVisibility() == 0 && (imageView3 = this.scheduledButton) != null && imageView3.getVisibility() == 0 && (imageView4 = this.attachButton) != null && imageView4.getVisibility() == 0) {
                         layoutParams.rightMargin = AndroidUtilities.dp(146.0f);
                     } else {
-                        ImageView imageView5 = this.botButton;
-                        if ((imageView5 != null && imageView5.getVisibility() == 0) || (((imageView = this.notifyButton) != null && imageView.getVisibility() == 0) || ((imageView2 = this.scheduledButton) != null && imageView2.getTag() != null))) {
+                        ImageView imageView6 = this.botButton;
+                        if ((imageView6 != null && imageView6.getVisibility() == 0) || (((imageView = this.notifyButton) != null && imageView.getVisibility() == 0) || ((imageView2 = this.scheduledButton) != null && imageView2.getTag() != null))) {
                             layoutParams.rightMargin = AndroidUtilities.dp(98.0f);
                         } else {
                             layoutParams.rightMargin = AndroidUtilities.dp(50.0f);
                         }
                     }
                 } else {
-                    ImageView imageView6 = this.scheduledButton;
-                    if (imageView6 != null && imageView6.getTag() != null) {
+                    ImageView imageView7 = this.scheduledButton;
+                    if (imageView7 != null && imageView7.getTag() != null) {
                         layoutParams.rightMargin = AndroidUtilities.dp(50.0f);
                     } else {
                         layoutParams.rightMargin = AndroidUtilities.dp(2.0f);
@@ -9868,10 +9869,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public void lambda$setButtons$71(TLRPC.KeyboardButton keyboardButton) {
         ChatActivity chatActivity;
         boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == ((long) this.replyingMessageObject.getId());
-        MessageObject messageObject = this.replyingMessageObject;
-        if (messageObject == null || z) {
-            messageObject = DialogObject.isChatDialog(this.dialog_id) ? this.botButtonsMessageObject : null;
-        }
+        MessageObject messageObject = ((this.replyingMessageObject == null || z) && !BotForumHelper.isBotForum(this.currentAccount, this.dialog_id)) ? DialogObject.isChatDialog(this.dialog_id) ? this.botButtonsMessageObject : null : this.replyingMessageObject;
         MessageObject messageObject2 = this.replyingMessageObject;
         if (messageObject2 == null || z) {
             messageObject2 = this.botButtonsMessageObject;

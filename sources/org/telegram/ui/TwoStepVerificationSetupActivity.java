@@ -1601,7 +1601,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 } else if (this.fromRegistration) {
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("afterSignup", true);
-                    presentFragment(new DialogsActivity(bundle), true);
+                    MainTabsActivity mainTabsActivity = new MainTabsActivity();
+                    mainTabsActivity.prepareDialogsActivity(bundle);
+                    presentFragment(mainTabsActivity, true);
                     break;
                 } else {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
@@ -2589,7 +2591,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         if (this.otherwiseReloginDays >= 0 && this.parentLayout.getFragmentStack().size() == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("afterSignup", true);
-            presentFragment(new DialogsActivity(bundle), true);
+            MainTabsActivity mainTabsActivity = new MainTabsActivity();
+            mainTabsActivity.prepareDialogsActivity(bundle);
+            presentFragment(mainTabsActivity, true);
             return;
         }
         super.finishFragment();

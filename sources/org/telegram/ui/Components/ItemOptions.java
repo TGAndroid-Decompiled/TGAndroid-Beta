@@ -363,11 +363,18 @@ public class ItemOptions {
 
     public ActionBarMenuSubItem add() {
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, false, false, this.resourcesProvider);
+        add(actionBarMenuSubItem);
+        return actionBarMenuSubItem;
+    }
+
+    public void add(ActionBarMenuSubItem actionBarMenuSubItem) {
+        AndroidUtilities.removeFromParent(actionBarMenuSubItem);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         Integer num = this.textColor;
         int iIntValue = num != null ? num.intValue() : Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider);
         Integer num2 = this.iconColor;
         actionBarMenuSubItem.setColors(iIntValue, num2 != null ? num2.intValue() : Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
+        actionBarMenuSubItem.setSelectorColor(Theme.getColor(Theme.key_groupcreate_sectionText, this.resourcesProvider));
         Integer num3 = this.selectorColor;
         actionBarMenuSubItem.setSelectorColor(num3 != null ? num3.intValue() : Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.12f));
         int i = this.minWidthDp;
@@ -377,7 +384,6 @@ public class ItemOptions {
         } else {
             addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
         }
-        return actionBarMenuSubItem;
     }
 
     public ItemOptions addChecked(boolean z, CharSequence charSequence, Runnable runnable) {

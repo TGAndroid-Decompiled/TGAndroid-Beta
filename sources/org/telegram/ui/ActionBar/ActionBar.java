@@ -34,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import me.vkryl.android.animator.ReplaceAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -121,6 +122,7 @@ public class ActionBar extends FrameLayout {
     private Runnable titleActionRunnable;
     private boolean titleAnimationRunning;
     private int titleColorToSet;
+    private ActionBarAnimatedSubtitleOverlayContainer titleOverlayContainer;
     private boolean titleOverlayShown;
     private int titleRightMargin;
     private final SimpleTextView[] titleTextView;
@@ -1272,127 +1274,8 @@ public class ActionBar extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int iDp;
-        SimpleTextView simpleTextView;
-        SimpleTextView simpleTextView2;
-        int iMakeMeasureSpec;
-        int size = View.MeasureSpec.getSize(i);
-        View.MeasureSpec.getSize(i2);
-        int currentActionBarHeight = getCurrentActionBarHeight();
-        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(currentActionBarHeight, 1073741824);
-        this.ignoreLayoutRequest = true;
-        View view = this.actionModeTop;
-        if (view != null) {
-            ((FrameLayout.LayoutParams) view.getLayoutParams()).height = AndroidUtilities.statusBarHeight;
-        }
-        ActionBarMenu actionBarMenu = this.actionMode;
-        if (actionBarMenu != null) {
-            actionBarMenu.setPadding(0, this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0, 0, 0);
-        }
-        this.ignoreLayoutRequest = false;
-        setMeasuredDimension(size, currentActionBarHeight + (this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0) + this.extraHeight);
-        ImageView imageView = this.backButtonImageView;
-        if (imageView != null && imageView.getVisibility() != 8) {
-            this.backButtonImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(54.0f), 1073741824), iMakeMeasureSpec2);
-            iDp = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 80.0f : 72.0f);
-        } else {
-            iDp = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 26.0f : 18.0f);
-        }
-        ActionBarMenu actionBarMenu2 = this.menu;
-        if (actionBarMenu2 != null && actionBarMenu2.getVisibility() != 8) {
-            if (this.menu.searchFieldVisible() && !this.isSearchFieldVisible) {
-                this.menu.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), iMakeMeasureSpec2);
-                int itemsMeasuredWidth = this.menu.getItemsMeasuredWidth(true);
-                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f)) + this.menu.getItemsMeasuredWidth(true), 1073741824);
-                if (!this.isMenuOffsetSuppressed) {
-                    this.menu.translateXItems(-itemsMeasuredWidth);
-                }
-            } else if (this.isSearchFieldVisible) {
-                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f), 1073741824);
-                if (!this.isMenuOffsetSuppressed) {
-                    this.menu.translateXItems(0.0f);
-                }
-            } else {
-                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
-                if (!this.isMenuOffsetSuppressed) {
-                    this.menu.translateXItems(0.0f);
-                }
-            }
-            this.menu.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-        }
-        for (int i3 = 0; i3 < 2; i3++) {
-            SimpleTextView simpleTextView3 = this.titleTextView[0];
-            if ((simpleTextView3 != null && simpleTextView3.getVisibility() != 8) || ((simpleTextView = this.subtitleTextView) != null && simpleTextView.getVisibility() != 8)) {
-                ActionBarMenu actionBarMenu3 = this.menu;
-                int measuredWidth = (((size - (actionBarMenu3 != null ? actionBarMenu3.getMeasuredWidth() : 0)) - AndroidUtilities.dp(16.0f)) - iDp) - this.titleRightMargin;
-                boolean z = this.fromBottom;
-                if (((z && i3 == 0) || (!z && i3 == 1)) && this.overlayTitleAnimation && this.titleAnimationRunning) {
-                    this.titleTextView[i3].setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20 : 18);
-                } else {
-                    SimpleTextView simpleTextView4 = this.titleTextView[0];
-                    if (simpleTextView4 != null && simpleTextView4.getVisibility() != 8 && (simpleTextView2 = this.subtitleTextView) != null && simpleTextView2.getVisibility() != 8) {
-                        SimpleTextView simpleTextView5 = this.titleTextView[i3];
-                        if (simpleTextView5 != null) {
-                            simpleTextView5.setTextSize(AndroidUtilities.isTablet() ? 20 : 18);
-                        }
-                        this.subtitleTextView.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
-                        SimpleTextView simpleTextView6 = this.additionalSubtitleTextView;
-                        if (simpleTextView6 != null) {
-                            simpleTextView6.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
-                        }
-                    } else {
-                        SimpleTextView simpleTextView7 = this.titleTextView[i3];
-                        if (simpleTextView7 != null && simpleTextView7.getVisibility() != 8) {
-                            this.titleTextView[i3].setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20 : 18);
-                        }
-                        SimpleTextView simpleTextView8 = this.subtitleTextView;
-                        if (simpleTextView8 != null && simpleTextView8.getVisibility() != 8) {
-                            this.subtitleTextView.setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 16 : 14);
-                        }
-                        SimpleTextView simpleTextView9 = this.additionalSubtitleTextView;
-                        if (simpleTextView9 != null) {
-                            simpleTextView9.setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 16 : 14);
-                        }
-                    }
-                }
-                SimpleTextView simpleTextView10 = this.titleTextView[i3];
-                if (simpleTextView10 != null && simpleTextView10.getVisibility() != 8) {
-                    this.titleTextView[i3].measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f) + this.titleTextView[i3].getPaddingTop() + this.titleTextView[i3].getPaddingBottom(), Integer.MIN_VALUE));
-                    if (this.centerScale) {
-                        CharSequence text = this.titleTextView[i3].getText();
-                        SimpleTextView simpleTextView11 = this.titleTextView[i3];
-                        simpleTextView11.setPivotX(simpleTextView11.getTextPaint().measureText(text, 0, text.length()) / 2.0f);
-                        this.titleTextView[i3].setPivotY(AndroidUtilities.dp(24.0f) >> 1);
-                    } else {
-                        this.titleTextView[i3].setPivotX(0.0f);
-                        this.titleTextView[i3].setPivotY(0.0f);
-                    }
-                }
-                SimpleTextView simpleTextView12 = this.subtitleTextView;
-                if (simpleTextView12 != null && simpleTextView12.getVisibility() != 8) {
-                    this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-                }
-                SimpleTextView simpleTextView13 = this.additionalSubtitleTextView;
-                if (simpleTextView13 != null && simpleTextView13.getVisibility() != 8) {
-                    this.additionalSubtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-                }
-            }
-        }
-        BackupImageView backupImageView = this.avatarSearchImageView;
-        if (backupImageView != null) {
-            backupImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
-        }
-        int childCount = getChildCount();
-        for (int i4 = 0; i4 < childCount; i4++) {
-            View childAt = getChildAt(i4);
-            if (childAt.getVisibility() != 8) {
-                SimpleTextView[] simpleTextViewArr = this.titleTextView;
-                if (childAt != simpleTextViewArr[0] && childAt != simpleTextViewArr[1] && childAt != this.subtitleTextView && childAt != this.menu && childAt != this.backButtonImageView && childAt != this.additionalSubtitleTextView && childAt != this.avatarSearchImageView) {
-                    measureChildWithMargins(childAt, i, 0, View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824), 0);
-                }
-            }
-        }
+    protected void onMeasure(int r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBar.onMeasure(int, int):void");
     }
 
     public void setMenuOffsetSuppressed(boolean z) {
@@ -1456,8 +1339,17 @@ public class ActionBar extends FrameLayout {
         }
         if (charSequence2 == null || !charSequence2.equals(str)) {
             this.lastOverlayTitle = str;
+            if (this.titleOverlayContainer != null) {
+                this.titleOverlayContainer.setText(str != null ? LocaleController.getString(str, i) : null, true);
+                if (runnable == null) {
+                    runnable = this.lastRunnable;
+                }
+                this.titleActionRunnable = runnable;
+                this.titleOverlayShown = str != null;
+                return;
+            }
             CharSequence string = str != null ? LocaleController.getString(str, i) : this.lastTitle;
-            Drawable drawable = str != null ? null : this.lastRightDrawable;
+            Drawable drawable = str == null ? this.lastRightDrawable : null;
             if (str == null || (iIndexOf = TextUtils.indexOf(string, "...")) < 0) {
                 z = false;
                 charSequence = string;
@@ -1904,5 +1796,35 @@ public class ActionBar extends FrameLayout {
 
     public FrameLayout getTitlesContainer() {
         return this.titlesContainer;
+    }
+
+    public void updateColors() {
+        ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.titleOverlayContainer;
+        if (actionBarAnimatedSubtitleOverlayContainer != null) {
+            actionBarAnimatedSubtitleOverlayContainer.updateColors();
+        }
+    }
+
+    public FrameLayout createTitleOverlayContainer() {
+        if (this.titleOverlayContainer == null) {
+            ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = new ActionBarAnimatedSubtitleOverlayContainer(getContext(), this.resourcesProvider, this.ellipsizeSpanAnimator) {
+                @Override
+                public void onItemChanged(ReplaceAnimator replaceAnimator) {
+                    super.onItemChanged(replaceAnimator);
+                    float totalVisibility = getTotalVisibility();
+                    if (ActionBar.this.titlesContainer != null) {
+                        ActionBar.this.titlesContainer.setTranslationY(totalVisibility * AndroidUtilities.dp(-9.0f));
+                    }
+                }
+            };
+            this.titleOverlayContainer = actionBarAnimatedSubtitleOverlayContainer;
+            actionBarAnimatedSubtitleOverlayContainer.setClipChildren(false);
+            addView(this.titleOverlayContainer);
+        }
+        return this.titleOverlayContainer;
+    }
+
+    public FrameLayout getTitleOverlayContainer() {
+        return this.titleOverlayContainer;
     }
 }

@@ -8,7 +8,6 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
     private float alpha;
     private int backgroundColor;
     private final int backgroundColorId;
-    private boolean backgroundOnly;
     private final Theme.ResourcesProvider resourcesProvider;
     private int shadowColor;
     private int strokeColorBottom;
@@ -25,14 +24,13 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
         updateColors();
     }
 
+    public boolean isDark() {
+        return AndroidUtilities.computePerceivedBrightness(Theme.getColor(this.backgroundColorId, this.resourcesProvider)) < 0.721f;
+    }
+
     public void updateColors() {
-        int color = Theme.getColor(this.backgroundColorId, this.resourcesProvider);
-        this.backgroundColor = Theme.multAlpha(color, this.alpha);
-        if (this.backgroundOnly) {
-            this.shadowColor = 0;
-            this.strokeColorBottom = 0;
-            this.strokeColorTop = 0;
-        } else if (AndroidUtilities.computePerceivedBrightness(color) < 0.721f) {
+        this.backgroundColor = Theme.multAlpha(Theme.getColor(this.backgroundColorId, this.resourcesProvider), this.alpha);
+        if (isDark()) {
             this.strokeColorTop = 687865855;
             this.strokeColorBottom = 352321535;
             this.shadowColor = 0;
@@ -41,11 +39,6 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
             this.strokeColorBottom = -1;
             this.shadowColor = 536870912;
         }
-    }
-
-    public BlurredBackgroundColorProviderThemed setBackgroundOnly() {
-        this.backgroundOnly = true;
-        return this;
     }
 
     @Override

@@ -224,6 +224,36 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     profileGiftsContainer.updateTabsY();
                 }
             });
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
+                @Override
+                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                    super.onMoveAnimationUpdate(viewHolder);
+                    profileGiftsContainer.updateTabsY();
+                }
+
+                @Override
+                protected void onAddAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                    super.onAddAnimationUpdate(viewHolder);
+                    profileGiftsContainer.updateTabsY();
+                }
+
+                @Override
+                protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                    super.onChangeAnimationUpdate(viewHolder);
+                    profileGiftsContainer.updateTabsY();
+                }
+
+                @Override
+                protected void onRemoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                    super.onRemoveAnimationUpdate(viewHolder);
+                    profileGiftsContainer.updateTabsY();
+                }
+            };
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDurations(350L);
+            universalRecyclerView.setItemAnimator(defaultItemAnimator);
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
                 @Override
                 public void onSwiped(RecyclerView.ViewHolder viewHolder, int i2) {
@@ -1336,11 +1366,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public void updateTabsY() {
-        ViewPagerFixed.TabsView tabsView = this.tabsView;
-        if (tabsView == null) {
+        if (this.tabsView == null) {
             return;
         }
-        tabsView.setTranslationY(Math.min(0.0f, getTabsHeight() - AndroidUtilities.dp(42.0f)));
+        float fMin = Math.min(0.0f, getTabsHeight() - AndroidUtilities.dp(42.0f));
+        float fClamp01 = Utilities.clamp01(AndroidUtilities.ilerp(fMin, -AndroidUtilities.dp(42.0f), 0.0f));
+        this.tabsView.setTranslationY(fMin);
+        this.tabsView.setAlpha(fClamp01);
     }
 
     public boolean isReordering() {

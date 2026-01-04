@@ -8,7 +8,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Camera;
@@ -1304,7 +1303,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             @Override
-            protected void onShareStory(View view2) throws Resources.NotFoundException, IOException {
+            protected void onShareStory(View view2) throws IOException {
                 StarGiftSheet.this.repostStory(view2);
             }
 
@@ -1592,7 +1591,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void repostStory(final View view) throws Resources.NotFoundException, IOException {
+    public void repostStory(final View view) throws IOException {
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity == null) {
             return;

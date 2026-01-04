@@ -9,7 +9,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 public class SearchTextWatcher implements TextWatcher {
     private boolean doNotCloseAfterFieldEmpty;
     private final EditText editText;
-    private final ActionBarMenuItem.ActionBarMenuItemSearchListener listener;
+    public final ActionBarMenuItem.ActionBarMenuItemSearchListener listener;
     private boolean searchIsExpanded;
     private String searchQuery;
     private final boolean toggleByFocus;

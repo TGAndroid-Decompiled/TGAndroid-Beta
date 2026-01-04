@@ -56,7 +56,6 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ViewPagerActivity;
 
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private static final boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
@@ -1844,7 +1843,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1255getWindowView() {
+    public View mo1260getWindowView() {
         return this.container;
     }
 
@@ -2128,7 +2127,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            AndroidUtilities.setLightNavigationBar(mo1255getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1260getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2184,10 +2183,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void makeAttached(BaseFragment baseFragment) {
-        if (AndroidUtilities.isTablet() || (baseFragment instanceof ViewPagerActivity)) {
+        if (AndroidUtilities.isTablet()) {
             return;
         }
-        this.attachedFragment = baseFragment;
+        if (baseFragment == null || !baseFragment.isSupportEdgeToEdge()) {
+            this.attachedFragment = baseFragment;
+        }
     }
 
     @Override

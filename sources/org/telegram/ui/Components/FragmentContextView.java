@@ -355,7 +355,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 if (FragmentContextView.this.currentStyle == 4 && FragmentContextView.this.notifyButtonEnabled) {
                     int iCeil = ((int) Math.ceil(FragmentContextView.this.notifyText.getCurrentWidth())) + AndroidUtilities.dp(24.0f);
                     if (iCeil != FragmentContextView.this.gradientWidth) {
-                        FragmentContextView.this.linearGradient = new LinearGradient(0.0f, 0.0f, iCeil * 1.7f, 0.0f, new int[]{-10187532, -7575089, -2860679, -2860679}, new float[]{0.0f, 0.294f, 0.588f, 1.0f}, Shader.TileMode.CLAMP);
+                        FragmentContextView.this.linearGradient = new LinearGradient(0.0f, 0.0f, iCeil, 0.0f, new int[]{-10121218, -6983683}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                         FragmentContextView.this.gradientPaint.setShader(FragmentContextView.this.linearGradient);
                         FragmentContextView.this.gradientWidth = iCeil;
                     }
@@ -447,7 +447,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         ImageView imageView3 = this.playButton;
-        PlayPauseDrawable playPauseDrawable = new PlayPauseDrawable(14);
+        PlayPauseDrawable playPauseDrawable = new PlayPauseDrawable(16);
         this.playPauseDrawable = playPauseDrawable;
         imageView3.setImageDrawable(playPauseDrawable);
         this.playButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i) & 436207615, 1, AndroidUtilities.dp(14.0f)));
@@ -1422,8 +1422,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 return;
             } else {
                 if (i == 0) {
-                    this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-                    this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                    this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 3.0f, 0.0f, 0.0f, 0.0f));
+                    this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 37.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
                     createPlaybackSpeedButton();
                     ActionBarMenuItem actionBarMenuItem2 = this.playbackSpeedButton;
                     if (actionBarMenuItem2 != null) {
@@ -2595,7 +2595,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 return;
             }
             int iMin = groupCall.call.rtmp_stream ? 0 : Math.min(3, groupCall.sortedParticipants.size());
-            int i4 = iMin == 0 ? 10 : ((iMin - 1) * 24) + 52;
+            int i4 = (iMin == 0 ? 10 : ((iMin - 1) * 24) + 52) + 3;
             if (z) {
                 int i5 = ((FrameLayout.LayoutParams) this.titleTextView.getLayoutParams()).leftMargin;
                 if (AndroidUtilities.dp(i4) != i5) {

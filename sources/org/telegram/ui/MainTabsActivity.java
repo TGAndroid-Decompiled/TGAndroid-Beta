@@ -26,9 +26,11 @@ import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.util.ClickHelper;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -42,6 +44,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
@@ -58,12 +61,12 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.glass.GlassTabView;
 import org.telegram.ui.Components.glass.GlassTabsView;
+import org.telegram.ui.ViewPagerActivity;
 
 public class MainTabsActivity extends ViewPagerActivity implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     private DialogsActivity dialogsActivity;
     private View fadeView;
     private final BlurredBackgroundColorProviderThemed iBlur3ColorProviderTabs;
-    private final BlurredBackgroundColorProviderThemed iBlur3ColorProviderWhite;
     private final BlurredBackgroundSourceColor iBlur3SourceColor;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceTabGlass;
     private int navigationBarHeight;
@@ -105,13 +108,28 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     public MainTabsActivity() {
+        Theme.ResourcesProvider resourcesProvider = null;
         if (Build.VERSION.SDK_INT >= 31) {
             this.iBlur3SourceTabGlass = new BlurredBackgroundSourceRenderNode(null);
         } else {
             this.iBlur3SourceTabGlass = null;
         }
-        this.iBlur3ColorProviderWhite = new BlurredBackgroundColorProviderThemed(null, Theme.key_windowBackgroundWhite);
-        this.iBlur3ColorProviderTabs = new BlurredBackgroundColorProviderThemed(null, Theme.key_dialogBackground).setBackgroundOnly();
+        this.iBlur3ColorProviderTabs = new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_dialogBackground) {
+            @Override
+            public int getStrokeColorTop() {
+                return isDark() ? 117440511 : 285212672;
+            }
+
+            @Override
+            public int getStrokeColorBottom() {
+                return isDark() ? 301989887 : 536870912;
+            }
+
+            @Override
+            public int getShadowColor() {
+                return isDark() ? 83886079 : 536870912;
+            }
+        };
         this.iBlur3SourceColor = new BlurredBackgroundSourceColor();
     }
 
@@ -137,6 +155,65 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public void onResume() {
         super.onResume();
         blur3_updateColors();
+        TabsSelectorView tabsSelectorView = this.tabsView;
+        if (tabsSelectorView != null && tabsSelectorView.tabs[0] != null) {
+            if (Build.VERSION.SDK_INT < 23 || !UserConfig.getInstance(this.currentAccount).syncContacts || ContactsController.hasContactsPermission()) {
+                this.tabsView.tabs[0].setCounter(null, true, true);
+            } else {
+                this.tabsView.tabs[0].setCounter("!", true, true);
+            }
+        }
+        checkUnreadCount(true);
+        Bulletin.Delegate delegate = new Bulletin.Delegate() {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+            }
+
+            @Override
+            public int getTopOffset(int i) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            @Override
+            public int getBottomOffset(int i) {
+                return MainTabsActivity.this.navigationBarHeight + AndroidUtilities.dp(64.0f);
+            }
+        };
+        Bulletin.addDelegate(this, delegate);
+        Bulletin.addDelegate(this.contentView, delegate);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Bulletin.removeDelegate(this);
+        Bulletin.removeDelegate(this.contentView);
     }
 
     @Override
@@ -146,7 +223,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.tabsView = tabsSelectorView;
         tabsSelectorView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(AndroidUtilities.dp(8.0f)));
         this.tabsView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        this.tabsView.tabs = new GlassTabView[]{GlassTabView.createLottie(context, this.resourceProvider, R.raw.tab_contacts, R.string.MainTabsContacts), GlassTabView.createLottie(context, this.resourceProvider, R.raw.tab_calls, R.string.MainTabsCalls), GlassTabView.createLottie(context, this.resourceProvider, R.raw.tab_chats, R.string.MainTabsChats), GlassTabView.createAvatar(context, this.resourceProvider, this.currentAccount, R.string.MainTabsProfile)};
+        this.tabsView.tabs = new GlassTabView[]{GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_contact_active_24, R.drawable.tabs_contacts_24, R.string.MainTabsContacts), GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_calls_active_24, R.drawable.tabs_calls_24, R.string.MainTabsCalls), GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_chats_active_24, R.drawable.tabs_chats_24, R.string.MainTabsChats), GlassTabView.createAvatar(context, this.resourceProvider, this.currentAccount, R.string.MainTabsProfile)};
         for (final int i = 0; i < this.tabsView.tabs.length; i++) {
             final GlassTabView glassTabView = this.tabsView.tabs[i];
             ScaleStateListAnimator.apply(glassTabView);
@@ -189,8 +266,10 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         blurredBackgroundDrawableViewFactory.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
         BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(this.tabsView, this.iBlur3ColorProviderTabs);
         this.tabsViewBackground = blurredBackgroundDrawableCreate;
-        blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(28.0f));
-        this.tabsViewBackground.setPadding(AndroidUtilities.dp(8.0f));
+        blurredBackgroundDrawableCreate.setShadowParams(AndroidUtilities.dpf2(2.667f), 0.0f, AndroidUtilities.dpf2(0.85f));
+        this.tabsViewBackground.setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f));
+        this.tabsViewBackground.setRadius(AndroidUtilities.dp(28.0f));
+        this.tabsViewBackground.setPadding(AndroidUtilities.dp(7.666f));
         this.tabsView.setBackground(this.tabsViewBackground);
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory2 = new BlurredBackgroundDrawableViewFactory(this.iBlur3SourceColor);
         blurredBackgroundDrawableViewFactory2.setSourceRootView(viewPositionWatcher, this.contentView);
@@ -208,6 +287,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         if (iUpdateLayoutTakeUpdateLayout != null) {
             iUpdateLayoutTakeUpdateLayout.updateAppUpdateViews(this.currentAccount, false);
         }
+        checkUnreadCount(false);
         return this.contentView;
     }
 
@@ -228,6 +308,18 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public boolean lambda$createView$1(View view) {
         openAccountSelector(view);
         return true;
+    }
+
+    private void checkUnreadCount(boolean z) {
+        if (this.tabsView == null) {
+            return;
+        }
+        int mainUnreadCount = MessagesStorage.getInstance(this.currentAccount).getMainUnreadCount();
+        if (mainUnreadCount > 0) {
+            this.tabsView.tabs[2].setCounter(LocaleController.formatNumber(mainUnreadCount, ','), false, z);
+        } else {
+            this.tabsView.tabs[2].setCounter(null, false, z);
+        }
     }
 
     public void openAccountSelector(View view) {
@@ -390,6 +482,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         public final BoolAnimator lensVisibilityByDrag;
         public final BoolAnimator lensVisibilityByLongClick;
         public final BoolAnimator lensVisibilityByMove;
+        public final Theme.ResourcesProvider resourcesProvider;
         private int selectedTab;
         private GlassTabView[] tabs;
 
@@ -406,9 +499,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             this.lensVisibilityByDrag = new BoolAnimator(3, this, AnimatorUtils.OVERSHOOT_INTERPOLATOR, 320L);
             this.lensVisibilityByLongClick = new BoolAnimator(1, this, cubicBezierInterpolator, 380L);
             this.selectedTab = -1;
-            int i = Theme.key_telegram_color;
-            setLensColor(Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.09411765f), Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1254902f));
             setLensVisibility(0.0f);
+            this.resourcesProvider = resourcesProvider;
             this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
                 @Override
                 public boolean forceEnableVibration() {
@@ -477,6 +569,12 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                     TabsSelectorView.this.lensVisibilityByLongClick.setValue(false, true);
                 }
             });
+            updateColors();
+        }
+
+        public void updateColors() {
+            int i = Theme.key_glass_tabSelected;
+            setLensColor(Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.09f), Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.09f));
         }
 
         @Override
@@ -659,11 +757,18 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         IUpdateLayout iUpdateLayout;
         IUpdateLayout iUpdateLayout2;
-        IUpdateLayout iUpdateLayout3;
+        if (i == NotificationCenter.notificationsCountUpdated || i == NotificationCenter.updateInterfaces) {
+            View view = this.fragmentView;
+            if (view != null && view.isAttachedToWindow()) {
+                z = true;
+            }
+            checkUnreadCount(z);
+            return;
+        }
         if (i == NotificationCenter.appUpdateLoading) {
-            IUpdateLayout iUpdateLayout4 = this.updateLayout;
-            if (iUpdateLayout4 != null) {
-                iUpdateLayout4.updateFileProgress(null);
+            IUpdateLayout iUpdateLayout3 = this.updateLayout;
+            if (iUpdateLayout3 != null) {
+                iUpdateLayout3.updateFileProgress(null);
                 this.updateLayout.updateAppUpdateViews(this.currentAccount, true);
                 return;
             }
@@ -671,32 +776,39 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         }
         if (i == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
-            if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout3 = this.updateLayout) != null) {
-                iUpdateLayout3.updateAppUpdateViews(this.currentAccount, true);
+            if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str) && (iUpdateLayout2 = this.updateLayout) != null) {
+                iUpdateLayout2.updateAppUpdateViews(this.currentAccount, true);
                 return;
             }
             return;
         }
         if (i == NotificationCenter.fileLoadFailed) {
             String str2 = (String) objArr[0];
-            if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout2 = this.updateLayout) != null) {
-                iUpdateLayout2.updateAppUpdateViews(this.currentAccount, true);
+            if (SharedConfig.isAppUpdateAvailable() && FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str2) && (iUpdateLayout = this.updateLayout) != null) {
+                iUpdateLayout.updateAppUpdateViews(this.currentAccount, true);
                 return;
             }
             return;
         }
         if (i == NotificationCenter.fileLoadProgressChanged) {
-            IUpdateLayout iUpdateLayout5 = this.updateLayout;
-            if (iUpdateLayout5 != null) {
-                iUpdateLayout5.updateFileProgress(objArr);
+            IUpdateLayout iUpdateLayout4 = this.updateLayout;
+            if (iUpdateLayout4 != null) {
+                iUpdateLayout4.updateFileProgress(objArr);
                 return;
             }
             return;
         }
-        if (i != NotificationCenter.appUpdateAvailable || (iUpdateLayout = this.updateLayout) == null) {
+        if (i == NotificationCenter.appUpdateAvailable) {
+            IUpdateLayout iUpdateLayout5 = this.updateLayout;
+            if (iUpdateLayout5 != null) {
+                iUpdateLayout5.updateAppUpdateViews(this.currentAccount, LaunchActivity.getMainFragmentsStackSize() == 1);
+                return;
+            }
             return;
         }
-        iUpdateLayout.updateAppUpdateViews(this.currentAccount, LaunchActivity.getMainFragmentsStackSize() == 1);
+        if (i == NotificationCenter.needSetDayNightTheme) {
+            clearAllHiddenFragments();
+        }
     }
 
     @Override
@@ -704,8 +816,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.notificationsCountUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateLoading);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needSetDayNightTheme);
         return super.onFragmentCreate();
     }
 
@@ -714,8 +829,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.notificationsCountUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateLoading);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needSetDayNightTheme);
         super.onFragmentDestroy();
     }
 
@@ -748,7 +866,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.tabsView.setScaleY(fLerp);
         this.tabsView.setClickable(floatValue > 1.0f);
         this.tabsView.setEnabled(floatValue > 1.0f);
-        this.tabsView.setTranslationZ(AndroidUtilities.dpf2(floatValue));
         this.tabsView.setAlpha(floatValue);
         this.tabsView.setVisibility(floatValue <= 0.0f ? 8 : 0);
     }
@@ -759,7 +876,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.blur3_updateColors();
+                this.f$0.lambda$getThemeDescriptions$5();
             }
 
             @Override
@@ -776,6 +893,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return themeDescriptions;
     }
 
+    public void lambda$getThemeDescriptions$5() {
+        this.tabsView.updateColors();
+        blur3_updateColors();
+    }
+
     private class MainTabsActivityControllerImpl implements MainTabsActivityController {
         private MainTabsActivityControllerImpl() {
         }
@@ -788,7 +910,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     public void blur3_invalidateBlur() {
         View view;
-        View view2;
         BlurredBackgroundSourceRenderNode glassSource;
         if (Build.VERSION.SDK_INT < 31 || this.iBlur3SourceTabGlass == null || (view = this.fragmentView) == null) {
             return;
@@ -797,8 +918,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         int measuredHeight = this.fragmentView.getMeasuredHeight();
         RecordingCanvas recordingCanvasBeginRecording = this.iBlur3SourceTabGlass.beginRecording(measuredWidth, measuredHeight);
         recordingCanvasBeginRecording.drawColor(getThemedColor(Theme.key_windowBackgroundWhite));
-        for (BaseFragment baseFragment : this.fragments) {
-            if (baseFragment != 0 && (view2 = baseFragment.fragmentView) != null && ViewPositionWatcher.computeRectInParent(view2, this.contentView, this.fragmentPosition)) {
+        int size = this.fragmentsArr.size();
+        for (int i = 0; i < size; i++) {
+            BaseFragment baseFragment = ((ViewPagerActivity.FragmentState) this.fragmentsArr.valueAt(i)).fragment;
+            View view2 = baseFragment.fragmentView;
+            if (view2 != null && ViewPositionWatcher.computeRectInParent(view2, this.contentView, this.fragmentPosition)) {
                 RectF rectF = this.fragmentPosition;
                 if (rectF.right > 0.0f && rectF.left < this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && (glassSource = ((TabFragmentDelegate) baseFragment).getGlassSource()) != null) {
                     recordingCanvasBeginRecording.save();
@@ -812,8 +936,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.iBlur3SourceTabGlass.endRecording();
     }
 
-    public void blur3_updateColors() {
-        this.iBlur3ColorProviderWhite.updateColors();
+    private void blur3_updateColors() {
         this.iBlur3ColorProviderTabs.updateColors();
         this.iBlur3SourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         this.tabsViewBackground.updateColors();

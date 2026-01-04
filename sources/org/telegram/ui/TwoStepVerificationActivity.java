@@ -1289,7 +1289,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         if (this.otherwiseReloginDays >= 0) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("afterSignup", true);
-            presentFragment(new DialogsActivity(bundle), true);
+            MainTabsActivity mainTabsActivity = new MainTabsActivity();
+            mainTabsActivity.prepareDialogsActivity(bundle);
+            presentFragment(mainTabsActivity, true);
             return;
         }
         super.finishFragment();

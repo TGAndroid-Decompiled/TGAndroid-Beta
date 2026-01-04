@@ -45,6 +45,9 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     protected boolean inAppKeyboardOptimization;
     private final Paint paintStrokeFill;
     protected int shadowColor;
+    protected float shadowLayerDx;
+    protected float shadowLayerDy;
+    protected float shadowLayerRadius;
     private final Paint shadowPaint;
     protected float sourceOffsetX;
     protected float sourceOffsetY;
@@ -87,6 +90,9 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.cmpRectF2 = new RectF();
         props.strokeWidthTop = AndroidUtilities.dpf2(1.0f);
         props.strokeWidthBottom = AndroidUtilities.dpf2(0.6666667f);
+        this.shadowLayerRadius = AndroidUtilities.dpf2(1.0f);
+        this.shadowLayerDx = 0.0f;
+        this.shadowLayerDy = AndroidUtilities.dpf2(0.33333334f);
     }
 
     public void setSourceOffset(float f, float f2) {
@@ -398,6 +404,18 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.inAppKeyboardOptimization = true;
     }
 
+    public void setShadowParams(float f, float f2, float f3) {
+        this.shadowLayerRadius = f;
+        this.shadowLayerDx = f2;
+        this.shadowLayerDy = f3;
+    }
+
+    public void setStrokeWidth(float f, float f2) {
+        Props props = this.boundProps;
+        props.strokeWidthTop = f;
+        props.strokeWidthBottom = f2;
+    }
+
     protected void drawSource(Canvas canvas, BlurredBackgroundSource blurredBackgroundSource) {
         if (this.boundProps.boundsWithPadding.isEmpty()) {
             return;
@@ -420,7 +438,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private void drawSourceColor(Canvas canvas, BlurredBackgroundSourceColor blurredBackgroundSourceColor) {
         int iMultAlpha = Theme.multAlpha(ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor()), this.alpha / 255.0f);
         if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
+            this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
             this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
         }
         this.backgroundColorPaint.setColor(iMultAlpha);
@@ -442,7 +460,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             }
         }
         if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
+            this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
             this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
         }
         if (this.bitmapShader != null && bitmap != null && !bitmap.isRecycled() && this.alpha > 0) {

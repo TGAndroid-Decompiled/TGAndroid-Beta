@@ -86,11 +86,13 @@ public abstract class FilterTabsView extends FrameLayout {
     private long lastEditingAnimationTime;
     private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
+    private final int listViewPaddingH;
     private Drawable lockDrawable;
     private int lockDrawableColor;
     private int manualScrollingToId;
     private int manualScrollingToPosition;
     private boolean orderChanged;
+    private SparseIntArray positionToCount;
     private SparseIntArray positionToId;
     private SparseIntArray positionToStableId;
     private SparseIntArray positionToWidth;
@@ -178,6 +180,7 @@ public abstract class FilterTabsView extends FrameLayout {
             int tabCounter;
             int iCeil = (int) Math.ceil(HintView2.measureCorrectly(this.title, FilterTabsView.this.textPaint));
             this.titleWidth = iCeil;
+            int iDp = 0;
             if (z) {
                 tabCounter = FilterTabsView.this.delegate.getTabCounter(this.id);
                 if (tabCounter < 0) {
@@ -190,9 +193,11 @@ public abstract class FilterTabsView extends FrameLayout {
                 tabCounter = this.counter;
             }
             if (tabCounter > 0) {
-                iCeil += Math.max(AndroidUtilities.dp(2.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(tabCounter))))) + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(4.0f);
+                iDp = AndroidUtilities.dp(5.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(tabCounter))))) + AndroidUtilities.dp(10.0f);
+            } else if (!this.isDefault && FilterTabsView.this.isEditing) {
+                iDp = AndroidUtilities.dp(12.333f);
             }
-            return Math.max(AndroidUtilities.dp(24.0f), iCeil);
+            return Math.max(AndroidUtilities.dp(16.0f), iCeil + iDp);
         }
 
         public boolean setTitle(String str, ArrayList arrayList, boolean z) {
@@ -246,6 +251,7 @@ public abstract class FilterTabsView extends FrameLayout {
         private float progressToLocked;
         private RectF rect;
         StaticLayout stableCounter;
+        private float tabCounterVisible;
         private int tabWidth;
         private int textHeight;
         private StaticLayout textLayout;
@@ -318,11 +324,11 @@ public abstract class FilterTabsView extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(21.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
+            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(20.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r38) {
+        protected void onDraw(android.graphics.Canvas r39) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.TabView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -387,7 +393,7 @@ public abstract class FilterTabsView extends FrameLayout {
             int i5 = this.currentTab.counter;
             if (i5 > 0) {
                 str = String.format("%d", Integer.valueOf(i5));
-                iMax = Math.max(AndroidUtilities.dp(10.0f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(str))) + AndroidUtilities.dp(10.0f);
+                iMax = Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(str))) + AndroidUtilities.dp(10.0f);
             } else {
                 str = null;
                 iMax = 0;
@@ -567,6 +573,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.positionToStableId = new SparseIntArray(5);
         this.idToPosition = new SparseIntArray(5);
         this.positionToWidth = new SparseIntArray(5);
+        this.positionToCount = new SparseIntArray(5);
         this.positionToX = new SparseIntArray(5);
         this.animationRunnable = new Runnable() {
             @Override
@@ -695,7 +702,9 @@ public abstract class FilterTabsView extends FrameLayout {
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.listView);
-        this.listView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        int iMax = Math.max(0, AndroidUtilities.dp(16.0f));
+        this.listViewPaddingH = iMax;
+        this.listView.setPadding(iMax, 0, iMax, 0);
         this.listView.setClipToPadding(false);
         this.listView.setDrawSelectorBehind(true);
         ListAdapter listAdapter = new ListAdapter(context);
@@ -975,6 +984,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.positionToId.clear();
         this.idToPosition.clear();
         this.positionToWidth.clear();
+        this.positionToCount.clear();
         this.positionToX.clear();
         this.allTabsWidth = 0;
     }
@@ -1002,7 +1012,7 @@ public abstract class FilterTabsView extends FrameLayout {
         Tab tab = new Tab(i, text(str, arrayList), z);
         tab.isDefault = z2;
         tab.isLocked = z3;
-        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(21.0f);
+        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(20.0f);
         this.tabs.add(tab);
     }
 
@@ -1076,25 +1086,27 @@ public abstract class FilterTabsView extends FrameLayout {
     public void updateTabsWidths() {
         this.positionToX.clear();
         this.positionToWidth.clear();
-        int iDp = AndroidUtilities.dp(7.0f);
+        this.positionToCount.clear();
+        int iDp = this.listViewPaddingH;
         int size = this.tabs.size();
         for (int i = 0; i < size; i++) {
             int width = ((Tab) this.tabs.get(i)).getWidth(false);
             this.positionToWidth.put(i, width);
+            this.positionToCount.put(i, ((Tab) this.tabs.get(i)).counter);
             this.positionToX.put(i, (this.additionalTabWidth / 2) + iDp);
-            iDp += width + AndroidUtilities.dp(21.0f) + this.additionalTabWidth;
+            iDp += width + AndroidUtilities.dp(20.0f) + this.additionalTabWidth;
         }
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r10, android.view.View r11, long r12) {
+    protected boolean drawChild(android.graphics.Canvas r18, android.view.View r19, long r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         if (!this.tabs.isEmpty()) {
-            int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
+            int size = View.MeasureSpec.getSize(i) - (this.listViewPaddingH * 2);
             Tab tabFindDefaultTab = findDefaultTab();
             if (tabFindDefaultTab != null) {
                 int i3 = R.string.FilterAllChats;
@@ -1200,6 +1212,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.isEditing = z;
         this.editingForwardAnimation = true;
         this.listView.invalidateViews();
+        this.adapter.notifyDataSetChanged();
         invalidate();
         if (this.isEditing || !this.orderChanged) {
             return;
@@ -1249,7 +1262,7 @@ public abstract class FilterTabsView extends FrameLayout {
             findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
             int size = this.tabs.size();
             for (int i3 = 0; i3 < size; i3++) {
-                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(21.0f);
+                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(20.0f);
             }
         }
     }

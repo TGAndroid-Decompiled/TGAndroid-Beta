@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -14,9 +15,10 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
-import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,9 +47,6 @@ public class ProfileActionsView extends View {
     private long downTime;
     private float downX;
     private float downY;
-    private final PorterDuffColorFilter filterColorBlack;
-    private final PorterDuffColorFilter filterColorWhite;
-    private boolean first;
     private Action firstAction;
     private boolean hasColorById;
     private Action hit;
@@ -57,7 +56,8 @@ public class ProfileActionsView extends View {
     private boolean isNotificationsEnabled;
     public boolean isOpeningLayout;
     private Action lastAction;
-    private boolean lastHasColor;
+    private ColorFilter lastColorFilter;
+    private int lastColorFilterColor;
     private final Matrix matrix;
     public int mode;
     private OnActionClickListener onActionClickListener;
@@ -69,9 +69,7 @@ public class ProfileActionsView extends View {
     private float renderNodeTranslateY;
     private final Paint shaderPaint;
     private final int targetHeight;
-    private final android.graphics.Rect textBounds;
     final float textPadding;
-    private final TextPaint textPaint;
     final float top;
     final float xpadding;
     final float ypadding;
@@ -86,9 +84,6 @@ public class ProfileActionsView extends View {
         Paint paint = new Paint();
         this.paint = paint;
         this.shaderPaint = new Paint();
-        TextPaint textPaint = new TextPaint();
-        this.textPaint = textPaint;
-        this.textBounds = new android.graphics.Rect();
         this.isAnimatingCallAction = false;
         this.isOpeningLayout = true;
         this.clipHeight = -1.0f;
@@ -103,9 +98,6 @@ public class ProfileActionsView extends View {
         this.callAction = null;
         this.color = 0;
         this.matrix = new Matrix();
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.filterColorWhite = new PorterDuffColorFilter(-1, mode);
-        this.filterColorBlack = new PorterDuffColorFilter(-16777216, mode);
         this.hit = null;
         this.callAnimationStateLoaded = false;
         this.callBackwardAnimateFromX = -1.0f;
@@ -119,9 +111,6 @@ public class ProfileActionsView extends View {
         this.top = fDpf22;
         this.textPadding = AndroidUtilities.dpf2(4.0f);
         this.targetHeight = (int) ((i - fDpf2) - fDpf22);
-        textPaint.setTextSize(AndroidUtilities.dpf2(11.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setColor(-1);
         setBackgroundColor(0);
     }
 
@@ -216,12 +205,6 @@ public class ProfileActionsView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        boolean z = !isButtonColorLight();
-        if (this.lastHasColor != z || !this.first) {
-            this.lastHasColor = z;
-            this.first = true;
-            updateHasColor(z);
-        }
         float f = this.clipHeight;
         if (f >= 0.0f) {
             float y = f - getY();
@@ -356,12 +339,22 @@ public class ProfileActionsView extends View {
         }
         action.textScale = f;
         float fMax = Math.max(0.0f, ((this.targetHeight - (action.text.getHeight() * action.textScale)) / 3.0f) + AndroidUtilities.dpf2(1.33f));
-        action.drawable.setBounds((int) (fCenterX - f2), (int) fMax, (int) (fCenterX + f2), (int) (fMax + fDp));
+        action.setBounds((int) (fCenterX - f2), (int) fMax, (int) (fCenterX + f2), (int) (fMax + fDp));
     }
 
     private void drawAction(Canvas canvas, Action action, float f, float f2) {
-        if (action == null || action.drawable == null || action.isDeleted) {
+        if (action == null || action.isDeleted) {
             return;
+        }
+        boolean zIsButtonColorLight = isButtonColorLight();
+        float fClamp = !zIsButtonColorLight ? 1.0f : MathUtils.clamp((this.parentExpanded - 0.75f) / 0.25f, 0.0f, 1.0f);
+        if (zIsButtonColorLight && Build.VERSION.SDK_INT < 31) {
+            fClamp = 0.0f;
+        }
+        int iBlendARGB = ColorUtils.blendARGB(-16777216, -1, fClamp);
+        if (this.lastColorFilter == null || this.lastColorFilterColor != iBlendARGB) {
+            this.lastColorFilterColor = iBlendARGB;
+            this.lastColorFilter = new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN);
         }
         canvas.save();
         float alpha = f2 * action.getAlpha();
@@ -371,10 +364,10 @@ public class ProfileActionsView extends View {
         canvas.scale(scale, scale, fCenterX, fCenterY);
         canvas.clipRect(action.rect);
         updateBounds(action);
-        float height = ((action.drawable.getBounds().bottom + action.drawable.getBounds().top) - ((action.text.getHeight() * action.textScale) / 2.0f)) - AndroidUtilities.dp(4.66f);
+        float height = ((action.bounds.bottom + action.bounds.top) - ((action.text.getHeight() * action.textScale) / 2.0f)) - AndroidUtilities.dp(4.66f);
         canvas.save();
         canvas.scale(action.textScale, action.textScale, fCenterX, ((action.text.getHeight() * action.textScale) / 2.0f) + height);
-        action.text.draw(canvas, fCenterX - (action.text.getWidth() / 2.0f), height, (!isButtonColorLight() || this.parentExpanded >= 0.5f) ? -1 : -16777216, alpha);
+        action.text.draw(canvas, fCenterX - (action.text.getWidth() / 2.0f), height, iBlendARGB, alpha);
         canvas.restore();
         int i = action.iconTranslationY;
         if (i != 0) {
@@ -382,15 +375,34 @@ public class ProfileActionsView extends View {
         }
         float f3 = action.iconScale;
         if (f3 != 1.0f) {
-            canvas.scale(f3, f3, action.drawable.getBounds().centerX(), action.drawable.getBounds().centerY());
+            canvas.scale(f3, f3, action.bounds.centerX(), action.bounds.centerY());
         }
         if (!this.isAnimatingCallAction || action.key != 5) {
-            action.drawable.setColorFilter((!isButtonColorLight() || this.parentExpanded >= 0.5f) ? this.filterColorWhite : this.filterColorBlack);
-            action.drawable.setAlpha((int) (255.0f * alpha));
-            action.drawable.draw(canvas);
+            float f4 = (1.0f - fClamp) * alpha;
+            float f5 = fClamp * alpha;
+            if (action.drawableAnimated != null) {
+                if (action.key == 1) {
+                    drawActionDrawable(canvas, action.drawableOutline, f4);
+                    drawActionDrawable(canvas, action.drawableAnimated, f5);
+                } else {
+                    drawActionDrawable(canvas, action.drawableAnimated, alpha);
+                }
+            } else {
+                drawActionDrawable(canvas, action.drawableOutline, f4);
+                drawActionDrawable(canvas, action.drawableFilled, f5);
+            }
         }
         canvas.restore();
         drawLoading(canvas, action, alpha);
+    }
+
+    private void drawActionDrawable(Canvas canvas, Drawable drawable, float f) {
+        if (drawable == null) {
+            return;
+        }
+        drawable.setColorFilter(this.lastColorFilter);
+        drawable.setAlpha((int) (f * 255.0f));
+        drawable.draw(canvas);
     }
 
     private void drawLoading(Canvas canvas, Action action, float f) {
@@ -426,7 +438,7 @@ public class ProfileActionsView extends View {
     }
 
     public float getRoundRadius() {
-        return AndroidUtilities.dp(10.0f);
+        return AndroidUtilities.dp(16.0f);
     }
 
     @Override
@@ -554,36 +566,21 @@ public class ProfileActionsView extends View {
     }
 
     public void addCameraAction() {
-        Action action = new Action(this, R.drawable.filled_profile_photo, R.string.SetPhoto);
+        Action action = new Action(ActionButton.SET_PHOTO);
         action.key = 14;
         this.actions.add(action);
     }
 
-    public void addAddStory() {
-        Action action = new Action(this, R.drawable.filled_profile_story, R.string.ProfileActionsAddStory);
-        action.key = 12;
+    public void addEditInfo() {
+        Action action = new Action(ActionButton.EDIT_INFO);
+        action.key = 16;
         this.actions.add(action);
     }
 
     public void addSettings() {
-        Action action = new Action(this, R.drawable.filled_profile_settings, R.string.Settings);
+        Action action = new Action(ActionButton.SETTINGS);
         action.key = 17;
         this.actions.add(action);
-    }
-
-    private void updateHasColor(boolean z) {
-        Action actionFindOrCreate = findOrCreate(14);
-        if (actionFindOrCreate != null) {
-            actionFindOrCreate.updateDrawable(false, z ? R.drawable.filled_profile_photo : R.drawable.msg_addphoto);
-        }
-        Action actionFindOrCreate2 = findOrCreate(12);
-        if (actionFindOrCreate2 != null) {
-            actionFindOrCreate2.updateDrawable(false, z ? R.drawable.filled_profile_story : R.drawable.story);
-        }
-        Action actionFindOrCreate3 = findOrCreate(17);
-        if (actionFindOrCreate3 != null) {
-            actionFindOrCreate3.updateDrawable(false, z ? R.drawable.filled_profile_settings : R.drawable.msg_settings);
-        }
     }
 
     public void startAnimatedActions() {
@@ -591,14 +588,13 @@ public class ProfileActionsView extends View {
             int size = this.actions.size();
             for (int i = 0; i < size; i++) {
                 Action action = (Action) this.actions.get(i);
-                if (action.drawable instanceof RLottieDrawable) {
-                    RLottieDrawable rLottieDrawable = (RLottieDrawable) action.drawable;
+                if (action.drawableAnimated != null) {
                     if (action.key == 15) {
-                        rLottieDrawable.setCurrentFrame(14);
+                        action.drawableAnimated.setCurrentFrame(14);
                     } else {
-                        rLottieDrawable.setCurrentFrame(0);
+                        action.drawableAnimated.setCurrentFrame(0);
                     }
-                    rLottieDrawable.start();
+                    action.drawableAnimated.start();
                 }
             }
         }
@@ -610,10 +606,10 @@ public class ProfileActionsView extends View {
 
     public void startCameraAnimation() {
         Action actionFind = find(14);
-        if (actionFind == null || !(actionFind.drawable instanceof RLottieDrawable)) {
+        if (actionFind == null || actionFind.drawableAnimated == null) {
             return;
         }
-        ((RLottieDrawable) actionFind.drawable).start();
+        actionFind.drawableAnimated.start();
     }
 
     public boolean canHaveJoinAction() {
@@ -624,18 +620,18 @@ public class ProfileActionsView extends View {
     private void updateNotification(Action action, boolean z) {
         if (z) {
             if (this.isNotificationsEnabled) {
-                action.update(true, R.raw.profile_unmuting, R.string.ProfileButtonMute);
+                ActionButton actionButton = ActionButton.NOTIFICATION_MUTE;
+                action.setText(LocaleController.getString(actionButton.title));
+                action.updateDrawable(R.raw.profile_unmuting, actionButton.filledIcon, actionButton.outlineIcon);
                 return;
             } else {
-                action.update(true, R.raw.profile_muting, R.string.ProfileButtonUnmute);
+                ActionButton actionButton2 = ActionButton.NOTIFICATION_UNMUTE;
+                action.setText(LocaleController.getString(actionButton2.title));
+                action.updateDrawable(R.raw.profile_muting, actionButton2.filledIcon, actionButton2.outlineIcon);
                 return;
             }
         }
-        if (this.isNotificationsEnabled) {
-            action.update(false, R.drawable.mute, R.string.ProfileButtonMute);
-        } else {
-            action.update(false, R.drawable.unmute, R.string.ProfileButtonUnmute);
-        }
+        action.update(this.isNotificationsEnabled ? ActionButton.NOTIFICATION_MUTE : ActionButton.NOTIFICATION_UNMUTE);
     }
 
     private void applyVisibleActions() {
@@ -762,67 +758,67 @@ public class ProfileActionsView extends View {
         }
         switch (i) {
             case 0:
-                actionFind = new Action(this, R.drawable.message, R.string.ProfileActionsMessage);
+                actionFind = new Action(ActionButton.MESSAGE);
                 break;
             case 1:
                 actionFind = new Action();
                 updateNotification(actionFind, false);
                 break;
             case 2:
-                actionFind = new Action(this, R.drawable.message, R.string.ProfileActionsDiscuss);
+                actionFind = new Action(ActionButton.DISCUSS);
                 break;
             case 3:
-                actionFind = new Action(this, R.drawable.gift, R.string.ProfileActionsGift);
+                actionFind = new Action(ActionButton.GIFT);
                 actionFind.supportsLoading = true;
                 actionFind.stopDelay = 200;
                 break;
             case 4:
-                actionFind = new Action(this, R.drawable.action_share, R.string.ProfileActionsShare);
+                actionFind = new Action(ActionButton.SHARE);
                 break;
             case 5:
-                actionFind = new Action(this, R.drawable.call, R.string.ProfileActionsCall);
+                actionFind = new Action(ActionButton.CALL);
                 this.callAction = actionFind;
                 actionFind.supportsLoading = true;
                 actionFind.stopDelay = 500;
                 break;
             case 6:
-                actionFind = new Action(this, R.drawable.video, R.string.ProfileActionsVideo);
+                actionFind = new Action(ActionButton.VIDEO);
                 actionFind.supportsLoading = true;
                 actionFind.stopDelay = 500;
                 break;
             case 7:
-                actionFind = new Action(this, R.drawable.join, R.string.ProfileActionsJoin);
+                actionFind = new Action(ActionButton.JOIN);
                 actionFind.supportsLoading = true;
                 actionFind.callDelay = 300;
                 break;
             case 8:
-                actionFind = new Action(this, R.drawable.report, R.string.ProfileActionsReport);
+                actionFind = new Action(ActionButton.REPORT);
                 actionFind.supportsLoading = true;
                 actionFind.stopDelay = 500;
                 break;
             case 9:
-                actionFind = new Action(this, R.drawable.leave, R.string.ProfileActionsLeave);
+                actionFind = new Action(ActionButton.LEAVE);
                 actionFind.supportsLoading = true;
                 actionFind.supportsAnimate = R.raw.profile_leave;
                 actionFind.stopDelay = 300;
                 break;
             case 10:
-                actionFind = new Action(this, R.drawable.live_stream, R.string.ProfileActionsVoiceChat);
+                actionFind = new Action(ActionButton.VOICE_CHAT);
                 actionFind.supportsLoading = true;
                 actionFind.supportsAnimate = R.raw.profile_voicechat;
                 actionFind.stopDelay = 500;
                 break;
             case 11:
-                actionFind = new Action(this, R.drawable.live_stream, R.string.ProfileActionsLiveStream);
+                actionFind = new Action(ActionButton.STREAM);
                 actionFind.supportsLoading = true;
                 actionFind.supportsAnimate = R.raw.profile_voicechat;
                 actionFind.stopDelay = 500;
                 break;
             case 12:
-                actionFind = new Action(this, R.drawable.story, R.string.ProfileActionsAddStory);
+                actionFind = new Action(ActionButton.STORY);
                 break;
             case 13:
-                actionFind = new Action(this, R.drawable.block, R.string.ProfileActionsStop);
+                actionFind = new Action(ActionButton.STOP);
                 actionFind.supportsLoading = true;
                 actionFind.stopDelay = 300;
                 break;
@@ -831,11 +827,6 @@ public class ProfileActionsView extends View {
             actionFind.key = i;
         }
         return actionFind;
-    }
-
-    private Action findOrCreate(int i) {
-        Action actionFind = find(i);
-        return actionFind == null ? getOrCreate(i) : actionFind;
     }
 
     private Action find(int i) {
@@ -886,14 +877,14 @@ public class ProfileActionsView extends View {
                 i++;
             }
             updateBounds(this.callAction);
-            float fCenterY = (((((f - this.targetHeight) - this.ypadding) - this.top) + this.callAction.drawable.getBounds().centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
-            view.setTranslationX(AndroidUtilities.lerp(0.0f, (this.callAction.drawable.getBounds().centerX() - (view.getMeasuredWidth() / 2.0f)) - left, f2));
+            float fCenterY = (((((f - this.targetHeight) - this.ypadding) - this.top) + this.callAction.bounds.centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
+            view.setTranslationX(AndroidUtilities.lerp(0.0f, (this.callAction.bounds.centerX() - (view.getMeasuredWidth() / 2.0f)) - left, f2));
             view.setTranslationY(AndroidUtilities.lerp(0.0f, fCenterY, f2));
         } else {
             if (!this.callAnimationStateLoaded) {
                 this.callAnimationStateLoaded = true;
-                this.callBackwardAnimateFromY = ((getTranslationY() + this.callAction.drawable.getBounds().centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
-                this.callBackwardAnimateFromX = (this.callAction.drawable.getBounds().centerX() - (view.getMeasuredWidth() / 2.0f)) - left;
+                this.callBackwardAnimateFromY = ((getTranslationY() + this.callAction.bounds.centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
+                this.callBackwardAnimateFromX = (this.callAction.bounds.centerX() - (view.getMeasuredWidth() / 2.0f)) - left;
             }
             view.setTranslationX(AndroidUtilities.lerp(0.0f, this.callBackwardAnimateFromX, f2));
             view.setTranslationY(AndroidUtilities.lerp(0.0f, this.callBackwardAnimateFromY, f2));
@@ -905,27 +896,50 @@ public class ProfileActionsView extends View {
 
     class Action {
         private final ButtonBounce bounce;
-        int callDelay;
-        private Drawable drawable;
-        private final RectF from;
-        float iconScale;
-        int iconTranslationY;
-        boolean isDeleted;
-        boolean isDeleting;
+        private RLottieDrawable drawableAnimated;
+        private Drawable drawableFilled;
+        private Drawable drawableOutline;
         boolean isLoading;
-        boolean isOpening;
         int key;
         LoadingDrawable loadingDrawable;
         private final AnimatedFloat positionFraction;
-        final RectF prevRect;
-        final RectF rect;
         long startTime;
         int stopDelay;
         int supportsAnimate;
         boolean supportsLoading;
         private Text text;
-        private float textScale;
-        private final RectF to;
+        final RectF prevRect = new RectF();
+        final RectF rect = new RectF();
+        private final RectF to = new RectF();
+        private final RectF from = new RectF();
+        private final android.graphics.Rect bounds = new android.graphics.Rect();
+        private float textScale = 1.0f;
+        boolean isOpening = false;
+        boolean isDeleting = false;
+        boolean isDeleted = false;
+        int iconTranslationY = 0;
+        float iconScale = 1.0f;
+        int callDelay = 0;
+
+        public void setBounds(int i, int i2, int i3, int i4) {
+            this.bounds.set(i, i2, i3, i4);
+            checkBounds();
+        }
+
+        private void checkBounds() {
+            RLottieDrawable rLottieDrawable = this.drawableAnimated;
+            if (rLottieDrawable != null) {
+                rLottieDrawable.setBounds(this.bounds);
+            }
+            Drawable drawable = this.drawableFilled;
+            if (drawable != null) {
+                drawable.setBounds(this.bounds);
+            }
+            Drawable drawable2 = this.drawableOutline;
+            if (drawable2 != null) {
+                drawable2.setBounds(this.bounds);
+            }
+        }
 
         public void setText(CharSequence charSequence) {
             this.text = new Text(charSequence, 11.0f, AndroidUtilities.bold()).multiline(3).align(Layout.Alignment.ALIGN_CENTER);
@@ -933,39 +947,13 @@ public class ProfileActionsView extends View {
 
         public Action() {
             this.bounce = new ButtonBounce(ProfileActionsView.this);
-            this.prevRect = new RectF();
-            this.rect = new RectF();
             this.positionFraction = new AnimatedFloat(ProfileActionsView.this, 0L, 250L, CubicBezierInterpolator.DEFAULT);
-            this.to = new RectF();
-            this.from = new RectF();
-            this.textScale = 1.0f;
-            this.isOpening = false;
-            this.isDeleting = false;
-            this.isDeleted = false;
-            this.iconTranslationY = 0;
-            this.iconScale = 1.0f;
-            this.callDelay = 0;
         }
 
-        public Action(ProfileActionsView profileActionsView, int i, int i2) {
-            this(false, i, i2);
-        }
-
-        public Action(boolean z, int i, int i2) {
+        public Action(ActionButton actionButton) {
             this.bounce = new ButtonBounce(ProfileActionsView.this);
-            this.prevRect = new RectF();
-            this.rect = new RectF();
             this.positionFraction = new AnimatedFloat(ProfileActionsView.this, 0L, 250L, CubicBezierInterpolator.DEFAULT);
-            this.to = new RectF();
-            this.from = new RectF();
-            this.textScale = 1.0f;
-            this.isOpening = false;
-            this.isDeleting = false;
-            this.isDeleted = false;
-            this.iconTranslationY = 0;
-            this.iconScale = 1.0f;
-            this.callDelay = 0;
-            update(z, i, i2);
+            update(actionButton);
         }
 
         public float getAlpha() {
@@ -1022,19 +1010,10 @@ public class ProfileActionsView extends View {
 
         public void updateDrawable(boolean z, int i) {
             if (z) {
-                RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
-                rLottieDrawable.setMasterParent(ProfileActionsView.this);
-                rLottieDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                rLottieDrawable.start();
-                this.drawable = rLottieDrawable;
-                return;
+                updateDrawable(i, 0, 0);
+            } else {
+                updateDrawable(0, i, i);
             }
-            this.drawable = ProfileActionsView.this.getResources().getDrawable(i).mutate();
-        }
-
-        public void update(boolean z, int i, int i2) {
-            updateDrawable(z, i);
-            setText(LocaleController.getString(i2));
         }
 
         public void updatePosition() {
@@ -1056,6 +1035,106 @@ public class ProfileActionsView extends View {
 
         public float getScale() {
             return this.bounce.getScale(0.04f);
+        }
+
+        public void update(ActionButton actionButton) {
+            updateDrawable(0, actionButton.filledIcon, actionButton.outlineIcon);
+            setText(LocaleController.getString(actionButton.title));
+        }
+
+        public void updateDrawable(int i, int i2, int i3) {
+            if (i != 0) {
+                RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
+                rLottieDrawable.setMasterParent(ProfileActionsView.this);
+                rLottieDrawable.start();
+                this.drawableAnimated = rLottieDrawable;
+            } else {
+                this.drawableAnimated = null;
+            }
+            this.drawableFilled = i2 != 0 ? ProfileActionsView.this.getResources().getDrawable(i2).mutate() : null;
+            this.drawableOutline = i3 != 0 ? ProfileActionsView.this.getResources().getDrawable(i3).mutate() : null;
+            checkBounds();
+        }
+    }
+
+    public static final class ActionButton {
+        private static final ActionButton[] $VALUES;
+        public static final ActionButton CALL;
+        public static final ActionButton DISCUSS;
+        public static final ActionButton EDIT_INFO;
+        public static final ActionButton EDIT_USERNAME;
+        public static final ActionButton GIFT;
+        public static final ActionButton JOIN;
+        public static final ActionButton LEAVE;
+        public static final ActionButton MESSAGE;
+        public static final ActionButton NOTIFICATION_MUTE;
+        public static final ActionButton NOTIFICATION_UNMUTE;
+        public static final ActionButton REPORT;
+        public static final ActionButton SETTINGS;
+        public static final ActionButton SET_PHOTO;
+        public static final ActionButton SHARE;
+        public static final ActionButton STOP;
+        public static final ActionButton STORY;
+        public static final ActionButton STREAM;
+        public static final ActionButton VIDEO;
+        public static final ActionButton VOICE_CHAT;
+        final int filledIcon;
+        final int outlineIcon;
+        final int title;
+
+        private static ActionButton[] $values() {
+            return new ActionButton[]{MESSAGE, NOTIFICATION_MUTE, NOTIFICATION_UNMUTE, DISCUSS, GIFT, SHARE, CALL, VIDEO, JOIN, REPORT, LEAVE, VOICE_CHAT, STREAM, STORY, STOP, SET_PHOTO, EDIT_USERNAME, EDIT_INFO, SETTINGS};
+        }
+
+        public static ActionButton valueOf(String str) {
+            return (ActionButton) Enum.valueOf(ActionButton.class, str);
+        }
+
+        public static ActionButton[] values() {
+            return (ActionButton[]) $VALUES.clone();
+        }
+
+        static {
+            int i = R.string.ProfileActionsMessage;
+            int i2 = R.drawable.filled_profile_message_24;
+            int i3 = R.drawable.outline_profile_message_24;
+            MESSAGE = new ActionButton("MESSAGE", 0, i, i2, i3);
+            NOTIFICATION_MUTE = new ActionButton("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
+            NOTIFICATION_UNMUTE = new ActionButton("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
+            DISCUSS = new ActionButton("DISCUSS", 3, R.string.ProfileActionsDiscuss, i2, i3);
+            GIFT = new ActionButton("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
+            SHARE = new ActionButton("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
+            CALL = new ActionButton("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
+            VIDEO = new ActionButton("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
+            int i4 = R.string.ProfileActionsJoin;
+            int i5 = R.drawable.join;
+            JOIN = new ActionButton("JOIN", 8, i4, i5, i5);
+            REPORT = new ActionButton("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
+            int i6 = R.string.ProfileActionsLeave;
+            int i7 = R.drawable.leave;
+            LEAVE = new ActionButton("LEAVE", 10, i6, i7, i7);
+            int i8 = R.string.ProfileActionsVoiceChat;
+            int i9 = R.drawable.live_stream;
+            VOICE_CHAT = new ActionButton("VOICE_CHAT", 11, i8, i9, i9);
+            STREAM = new ActionButton("STREAM", 12, R.string.ProfileActionsLiveStream, i9, i9);
+            STORY = new ActionButton("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
+            int i10 = R.string.ProfileActionsStop;
+            int i11 = R.drawable.block;
+            STOP = new ActionButton("STOP", 14, i10, i11, i11);
+            SET_PHOTO = new ActionButton("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
+            int i12 = R.string.ProfileActionsEditUsername;
+            int i13 = R.drawable.filled_profile_edit_24;
+            int i14 = R.drawable.outline_profile_edit_24;
+            EDIT_USERNAME = new ActionButton("EDIT_USERNAME", 16, i12, i13, i14);
+            EDIT_INFO = new ActionButton("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i13, i14);
+            SETTINGS = new ActionButton("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
+            $VALUES = $values();
+        }
+
+        private ActionButton(String str, int i, int i2, int i3, int i4) {
+            this.title = i2;
+            this.filledIcon = i3;
+            this.outlineIcon = i4;
         }
     }
 }

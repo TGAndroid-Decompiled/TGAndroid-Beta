@@ -877,6 +877,18 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         this.currentSearchFilters.remove(mediaFilterData);
     }
 
+    public boolean addSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
+        if (!this.currentSearchFilters.isEmpty()) {
+            for (int i = 0; i < this.currentSearchFilters.size(); i++) {
+                if (mediaFilterData.isSameType((FiltersView.MediaFilterData) this.currentSearchFilters.get(i))) {
+                    return false;
+                }
+            }
+        }
+        this.currentSearchFilters.add(mediaFilterData);
+        return true;
+    }
+
     public ArrayList<FiltersView.MediaFilterData> getCurrentSearchFilters() {
         return this.currentSearchFilters;
     }

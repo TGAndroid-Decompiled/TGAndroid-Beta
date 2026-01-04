@@ -38,7 +38,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.Bulletin;
 
 public class ContactsController extends BaseController {
-    private static volatile ContactsController[] Instance = new ContactsController[4];
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
     public static final int PRIVACY_RULES_TYPE_BIO = 9;
     public static final int PRIVACY_RULES_TYPE_BIRTHDAY = 11;
@@ -98,8 +97,6 @@ public class ContactsController extends BaseController {
     public HashMap<String, ArrayList<Object>> phoneBookSectionsDict;
     private ArrayList<TLRPC.PrivacyRule> phonePrivacyRules;
     private ArrayList<TLRPC.PrivacyRule> profilePhotoPrivacyRules;
-    private String[] projectionNames;
-    private String[] projectionPhones;
     private HashMap<String, String> sectionsToReplace;
     public ArrayList<String> sortedUsersMutualSectionsArray;
     public ArrayList<String> sortedUsersSectionsArray;
@@ -108,6 +105,9 @@ public class ContactsController extends BaseController {
     public HashMap<String, ArrayList<TLRPC.TL_contact>> usersMutualSectionsDict;
     public HashMap<String, ArrayList<TLRPC.TL_contact>> usersSectionsDict;
     private ArrayList<TLRPC.PrivacyRule> voiceMessagesRules;
+    private static final String[] projectionPhones = {"lookup", "data1", "data2", "data3", "display_name", "account_type"};
+    private static final String[] projectionNames = {"lookup", "data2", "data3", "data5"};
+    private static volatile ContactsController[] Instance = new ContactsController[4];
 
     public static void lambda$resetImportedContacts$10(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
@@ -258,8 +258,6 @@ public class ContactsController extends BaseController {
         this.delayedContactsUpdate = new ArrayList<>();
         this.sectionsToReplace = new HashMap<>();
         this.loadingPrivacyInfo = new int[15];
-        this.projectionPhones = new String[]{"lookup", "data1", "data2", "data3", "display_name", "account_type"};
-        this.projectionNames = new String[]{"lookup", "data2", "data3", "data5"};
         this.contactsBook = new HashMap<>();
         this.contactsBookSPhones = new HashMap<>();
         this.phoneBookContacts = new ArrayList<>();
@@ -1650,11 +1648,11 @@ public class ContactsController extends BaseController {
         return collator.compare(str, str2);
     }
 
-    private boolean hasContactsPermission() {
+    public static boolean hasContactsPermission() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ContactsController.hasContactsPermission():boolean");
     }
 
-    private boolean hasContactsWritePermission() {
+    public static boolean hasContactsWritePermission() {
         return Build.VERSION.SDK_INT < 23 || ApplicationLoader.applicationContext.checkSelfPermission("android.permission.WRITE_CONTACTS") == 0;
     }
 
@@ -2252,14 +2250,14 @@ public class ContactsController extends BaseController {
         if (tLObject instanceof Vector) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$reloadContactsStatuses$58(editor, tLObject);
                 }
             });
         }
     }
 
-    public void lambda$reloadContactsStatuses$58(SharedPreferences.Editor editor, TLObject tLObject) {
+    public void lambda$reloadContactsStatuses$58(SharedPreferences.Editor editor, TLObject tLObject) throws InterruptedException {
         editor.remove("needGetStatuses").commit();
         Vector vector = (Vector) tLObject;
         if (!vector.objects.isEmpty()) {

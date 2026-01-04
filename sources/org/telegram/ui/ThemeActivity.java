@@ -1413,7 +1413,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     }
                     currentNightThemeName = string + " " + currentNightThemeName;
                 }
-                notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.msg2_night_auto, z5, 0, false, true);
+                notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z5, 0, false, true);
                 return;
             }
             presentFragment(new ThemeActivity(1));
@@ -2818,7 +2818,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             }
                             currentNightThemeName = string3 + " " + currentNightThemeName;
                         }
-                        notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.msg2_night_auto, z, 0, false, true);
+                        notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z, 0, false, true);
                         break;
                     }
                     break;

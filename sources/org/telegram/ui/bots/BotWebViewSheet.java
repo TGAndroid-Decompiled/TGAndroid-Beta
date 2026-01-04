@@ -650,7 +650,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         });
         this.fullscreenButtons.setOnMenuClickListener(new Runnable() {
             @Override
-            public final void run() throws JSONException {
+            public final void run() {
                 this.f$0.openOptions();
             }
         });
@@ -1753,7 +1753,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.optionsItem = actionBarMenuItemAddItem;
         actionBarMenuItemAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws JSONException {
+            public final void onClick(View view) {
                 this.f$0.lambda$requestWebView$22(view);
             }
         });
@@ -1962,7 +1962,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         applyAppBotSettings(botappsettings, true);
     }
 
-    public void lambda$requestWebView$22(View view) throws JSONException {
+    public void lambda$requestWebView$22(View view) {
         openOptions();
     }
 
@@ -2051,7 +2051,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    public void openOptions() throws JSONException {
+    public void openOptions() {
         TLRPC.TL_attachMenuBot next;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
@@ -2207,7 +2207,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    private void updateDownloadBulletin() throws JSONException {
+    private void updateDownloadBulletin() {
         Bulletin bulletin;
         BotDownloads botDownloads = BotDownloads.get(getContext(), this.currentAccount, this.botId);
         BotDownloads.FileDownload current = botDownloads.getCurrent();
@@ -2628,7 +2628,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws JSONException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.webViewResultSent) {
             if (this.queryId == ((Long) objArr[0]).longValue()) {
                 lambda$openOptions$40();
@@ -2950,7 +2950,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1255getWindowView() {
+    public WindowView mo1260getWindowView() {
         return this.windowView;
     }
 

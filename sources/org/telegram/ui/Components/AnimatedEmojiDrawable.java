@@ -991,6 +991,7 @@ public class AnimatedEmojiDrawable extends Drawable {
     }
 
     public static class SwapAnimatedEmojiDrawable extends Drawable implements AnimatedEmojiSpan.InvalidateHolder {
+        private Integer account;
         private int alpha;
         boolean attached;
         private final android.graphics.Rect bounds;
@@ -1058,6 +1059,10 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.size = i;
             this.cacheType = i2;
             this.invalidateParent = z;
+        }
+
+        public void setCurrentAccount(int i) {
+            this.account = Integer.valueOf(i);
         }
 
         public void setParentView(View view) {
@@ -1252,7 +1257,8 @@ public class AnimatedEmojiDrawable extends Drawable {
                 }
                 Drawable[] drawableArr = this.drawables;
                 drawableArr[1] = drawableArr[0];
-                drawableArr[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, j);
+                Integer num = this.account;
+                drawableArr[0] = AnimatedEmojiDrawable.make(num != null ? num.intValue() : UserConfig.selectedAccount, i, j);
                 if (this.attached) {
                     ((AnimatedEmojiDrawable) this.drawables[0]).addView(this);
                 }
@@ -1262,7 +1268,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                 if (z2) {
                     detach();
                 }
-                this.drawables[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, j);
+                Drawable[] drawableArr2 = this.drawables;
+                Integer num2 = this.account;
+                drawableArr2[0] = AnimatedEmojiDrawable.make(num2 != null ? num2.intValue() : UserConfig.selectedAccount, i, j);
                 if (z2) {
                     attach();
                 }
@@ -1306,7 +1314,8 @@ public class AnimatedEmojiDrawable extends Drawable {
                 Drawable[] drawableArr = this.drawables;
                 drawableArr[1] = drawableArr[0];
                 if (document != null) {
-                    drawableArr[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, document);
+                    Integer num = this.account;
+                    drawableArr[0] = AnimatedEmojiDrawable.make(num != null ? num.intValue() : UserConfig.selectedAccount, i, document);
                     if (this.attached) {
                         ((AnimatedEmojiDrawable) this.drawables[0]).addView(this);
                     }
@@ -1320,7 +1329,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                     detach();
                 }
                 if (document != null) {
-                    this.drawables[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, document);
+                    Drawable[] drawableArr2 = this.drawables;
+                    Integer num2 = this.account;
+                    drawableArr2[0] = AnimatedEmojiDrawable.make(num2 != null ? num2.intValue() : UserConfig.selectedAccount, i, document);
                 } else {
                     this.drawables[0] = null;
                 }

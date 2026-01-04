@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
@@ -78,6 +79,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     private ArrayList reqMessageEntities;
     private int reqMessageId;
     private TLRPC.InputPeer reqPeer;
+    private boolean reqSum;
     private CharSequence reqText;
     private AnimatedFloat sheetTopAnimated;
     private boolean sheetTopNotAnimate;
@@ -91,10 +93,10 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider) {
-        this(context, str, str2, charSequence, arrayList, null, 0, resourcesProvider);
+        this(context, str, str2, charSequence, arrayList, null, 0, false, resourcesProvider);
     }
 
-    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, Theme.ResourcesProvider resourcesProvider) {
+    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         this.firstTranslation = true;
         this.backgroundPaddingLeft = 0;
@@ -102,6 +104,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.reqText = charSequence;
         this.reqPeer = inputPeer;
         this.reqMessageId = i;
+        this.reqSum = z;
         this.fromLanguage = str;
         this.toLanguage = str2;
         ContainerView containerView = new ContainerView(context);
@@ -267,7 +270,13 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             translateAlt();
             return;
         }
-        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
+        String str = this.toLanguage;
+        if (str != null) {
+            str = str.split("_")[0];
+        }
+        if ("nb".equals(str)) {
+            str = "no";
+        }
         final TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence charSequence = this.reqText;
         tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
@@ -275,6 +284,21 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         if (arrayList != null) {
             tL_textWithEntities.entities = arrayList;
         }
+        if (this.reqSum && this.reqPeer != null) {
+            TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
+            tL_messages_summarizeText.flags = 1 | tL_messages_summarizeText.flags;
+            tL_messages_summarizeText.peer = this.reqPeer;
+            tL_messages_summarizeText.id = this.reqMessageId;
+            tL_messages_summarizeText.to_lang = str;
+            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$translate$1(tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                }
+            }));
+            return;
+        }
+        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
         TLRPC.InputPeer inputPeer = this.reqPeer;
         if (inputPeer != null) {
             tL_messages_translateText.flags = 1 | tL_messages_translateText.flags;
@@ -284,32 +308,53 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             tL_messages_translateText.flags |= 2;
             tL_messages_translateText.text.add(tL_textWithEntities);
         }
-        String str = this.toLanguage;
-        if (str != null) {
-            str = str.split("_")[0];
-        }
-        if ("nb".equals(str)) {
-            str = "no";
-        }
         tL_messages_translateText.to_lang = str;
         this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$translate$2(tL_textWithEntities, tLObject, tL_error);
+                this.f$0.lambda$translate$3(tL_textWithEntities, tLObject, tL_error);
             }
         }));
     }
 
-    public void lambda$translate$2(final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$translate$1(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
+        this.reqId = null;
+        if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
+            translateAlt();
+            return;
+        }
+        if (tL_textWithEntities2 != null) {
+            this.firstTranslation = false;
+            TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_textWithEntities2);
+            SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
+            MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
+            this.textView.setText(preprocessText(spannableStringBuilderValueOf));
+            this.adapter.updateMainView(this.textViewContainer);
+            return;
+        }
+        if (this.firstTranslation) {
+            lambda$new$0();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
+            return;
+        }
+        BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
+        AnimatedTextView animatedTextView = this.headerView.toLanguageTextView;
+        String str = this.prevToLanguage;
+        this.toLanguage = str;
+        animatedTextView.setText(languageName(str));
+        this.adapter.updateMainView(this.textViewContainer);
+    }
+
+    public void lambda$translate$3(final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$translate$1(tL_error, tLObject, tL_textWithEntities);
+                this.f$0.lambda$translate$2(tL_error, tLObject, tL_textWithEntities);
             }
         });
     }
 
-    public void lambda$translate$1(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public void lambda$translate$2(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
         this.reqId = null;
         if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
             translateAlt();
@@ -357,12 +402,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         alternativeTranslate(string, str, "nb".equals(str2) ? "no" : str2, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$translateAlt$3((String) obj, (Boolean) obj2);
+                this.f$0.lambda$translateAlt$4((String) obj, (Boolean) obj2);
             }
         });
     }
 
-    public void lambda$translateAlt$3(String str, Boolean bool) {
+    public void lambda$translateAlt$4(String str, Boolean bool) {
         if (str != null) {
             this.firstTranslation = false;
             this.textView.setText(preprocessText(str));
@@ -441,7 +486,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 alternativeTranslateInternal((String) arrayListCut.get(i2), str2, str3, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        TranslateAlert2.lambda$alternativeTranslate$6(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
+                        TranslateAlert2.lambda$alternativeTranslate$7(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
                     }
                 });
             }
@@ -450,7 +495,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         alternativeTranslateInternal(strEncode, str2, str3, callback2);
     }
 
-    public static void lambda$alternativeTranslate$6(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
+    public static void lambda$alternativeTranslate$7(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
         if (zArr[0]) {
             return;
         }
@@ -1336,8 +1381,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
     }
 
-    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, null) {
+    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, boolean z, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z2, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
+        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, z, null) {
             @Override
             public void lambda$new$0() {
                 super.lambda$new$0();
@@ -1347,7 +1392,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 }
             }
         };
-        translateAlert2.setNoforwards(z);
+        translateAlert2.setNoforwards(z2);
         translateAlert2.setFragment(baseFragment);
         translateAlert2.setOnLinkPress(callbackReturn);
         if (baseFragment != null) {

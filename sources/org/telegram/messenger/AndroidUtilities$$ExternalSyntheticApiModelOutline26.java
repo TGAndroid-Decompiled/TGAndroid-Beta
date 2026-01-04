@@ -1,10 +1,9 @@
 package org.telegram.messenger;
 
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
+import android.app.PictureInPictureParams;
 
 public abstract class AndroidUtilities$$ExternalSyntheticApiModelOutline26 {
-    public static Typeface.Builder m(AssetManager assetManager, String str) {
-        return new Typeface.Builder(assetManager, str);
+    public static PictureInPictureParams.Builder m() {
+        return new PictureInPictureParams.Builder();
     }
 }

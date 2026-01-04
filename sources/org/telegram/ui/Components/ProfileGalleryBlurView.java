@@ -454,7 +454,7 @@ public class ProfileGalleryBlurView extends View {
                     return;
                 }
             }
-            if (avatarImageView != null) {
+            if (avatarImageView != null || AndroidUtilities.makingGlobalBlurBitmap) {
                 return;
             }
             this.usingRenderNode = false;

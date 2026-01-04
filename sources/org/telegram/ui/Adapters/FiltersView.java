@@ -570,11 +570,11 @@ public class FiltersView extends RecyclerListView {
             CombinedDrawable combinedDrawable = this.thumbDrawable;
             if (combinedDrawable != null) {
                 if (this.data.filterType == 7) {
-                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_backgroundArchived), false);
-                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
+                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_featuredStickers_addButton), false);
+                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_featuredStickers_buttonText), true);
                 } else {
-                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_backgroundBlue), false);
-                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
+                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_featuredStickers_addButton), false);
+                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_featuredStickers_buttonText), true);
                 }
             }
         }
@@ -586,18 +586,19 @@ public class FiltersView extends RecyclerListView {
                 CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
                 this.thumbDrawable = combinedDrawableCreateCircleDrawableWithIcon;
                 combinedDrawableCreateCircleDrawableWithIcon.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_backgroundArchived), false);
-                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_featuredStickers_addButton), false);
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_featuredStickers_buttonText), true);
                 this.avatarImageView.setImageDrawable(this.thumbDrawable);
                 this.titleView.setText(mediaFilterData.title);
                 return;
             }
             CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon2 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
             this.thumbDrawable = combinedDrawableCreateCircleDrawableWithIcon2;
-            Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon2, getThemedColor(Theme.key_avatar_backgroundBlue), false);
+            int i = Theme.key_featuredStickers_addButton;
+            Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon2, getThemedColor(i), false);
             CombinedDrawable combinedDrawable = this.thumbDrawable;
-            int i = Theme.key_avatar_actionBarIconBlue;
-            Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(i), true);
+            int i2 = Theme.key_featuredStickers_buttonText;
+            Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(i2), true);
             if (mediaFilterData.filterType == 4) {
                 TLObject tLObject = mediaFilterData.chat;
                 if (tLObject instanceof TLRPC.User) {
@@ -605,8 +606,8 @@ public class FiltersView extends RecyclerListView {
                     if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == user.id) {
                         CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon3 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                         combinedDrawableCreateCircleDrawableWithIcon3.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                        Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, getThemedColor(Theme.key_avatar_backgroundSaved), false);
-                        Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, getThemedColor(i), true);
+                        Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, getThemedColor(i), false);
+                        Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, getThemedColor(i2), true);
                         this.avatarImageView.setImageDrawable(combinedDrawableCreateCircleDrawableWithIcon3);
                     } else {
                         this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));

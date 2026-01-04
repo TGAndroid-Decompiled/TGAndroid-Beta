@@ -155,16 +155,18 @@ public class StarRatingView extends View {
                 reset();
                 return;
             }
-            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(this.resourcesProvider, peerColor.getBgColor2(Theme.isCurrentThemeDark()), peerColor.getBgColor1(Theme.isCurrentThemeDark()), this.parentExpanded);
+            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(this.resourcesProvider, peerColor.getBgColor2(Theme.isCurrentThemeDark()), peerColor.getBgColor1(Theme.isCurrentThemeDark()));
             this.backgroundColor = tabsViewBackgroundColor;
-            this.fillingColor = ColorUtils.blendARGB(AndroidUtilities.computePerceivedBrightness(tabsViewBackgroundColor) > 0.721f ? -16777216 : -1, Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider), this.parentExpanded);
+            this.fillingColor = AndroidUtilities.computePerceivedBrightness(tabsViewBackgroundColor) > 0.721f ? -16777216 : -1;
+            this.backgroundColor = ColorUtils.blendARGB(this.backgroundColor, 603979776, this.parentExpanded);
+            this.fillingColor = ColorUtils.blendARGB(this.fillingColor, -1, this.parentExpanded);
         }
 
         public void reset() {
-            int i = Theme.key_actionBarDefaultTitle;
-            int color = Theme.getColor(i, this.resourcesProvider);
-            this.backgroundColor = StarRatingView.getTabsViewBackgroundColor(this.resourcesProvider, Theme.getColor(i, this.resourcesProvider), color, this.parentExpanded);
+            this.backgroundColor = Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider);
             this.fillingColor = Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider);
+            this.backgroundColor = ColorUtils.blendARGB(this.backgroundColor, 603979776, this.parentExpanded);
+            this.fillingColor = ColorUtils.blendARGB(this.fillingColor, -1, this.parentExpanded);
         }
 
         public void setParentExpanded(float f) {
@@ -173,13 +175,11 @@ public class StarRatingView extends View {
         }
     }
 
-    public static int getTabsViewBackgroundColor(Theme.ResourcesProvider resourcesProvider, int i, int i2, float f) {
-        int iAdaptHSV;
-        if (AndroidUtilities.computePerceivedBrightness(ColorUtils.blendARGB(i, i2, 0.75f)) > 0.721f) {
-            iAdaptHSV = Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider);
-        } else {
-            iAdaptHSV = Theme.adaptHSV(ColorUtils.blendARGB(i, i2, 0.75f), 0.08f, -0.08f);
+    public static int getTabsViewBackgroundColor(Theme.ResourcesProvider resourcesProvider, int i, int i2) {
+        int iBlendARGB = ColorUtils.blendARGB(i, i2, 0.75f);
+        if (AndroidUtilities.computePerceivedBrightness(iBlendARGB) > 0.721f) {
+            return Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider);
         }
-        return ColorUtils.blendARGB(603979776, iAdaptHSV, 1.0f - f);
+        return Theme.adaptHSV(iBlendARGB, 0.08f, -0.08f);
     }
 }

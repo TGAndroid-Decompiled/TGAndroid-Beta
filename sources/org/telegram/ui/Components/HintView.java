@@ -53,6 +53,10 @@ public class HintView extends FrameLayout {
     public interface VisibilityListener {
     }
 
+    protected int offsetCx() {
+        return 0;
+    }
+
     public void setVisibleListener(VisibilityListener visibilityListener) {
     }
 

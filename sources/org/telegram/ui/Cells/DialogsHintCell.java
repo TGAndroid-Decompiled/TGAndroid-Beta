@@ -58,12 +58,13 @@ public class DialogsHintCell extends BlurredFrameLayout {
         textViewEmojis.setEllipsize(truncateAt);
         textViewEmojis.setTextSize(1, 15.0f);
         textViewEmojis.setTypeface(AndroidUtilities.bold());
-        textViewEmojis.setSingleLine();
+        textViewEmojis.setMaxLines(5);
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         this.messageView = linksTextView;
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setEllipsize(truncateAt);
+        linksTextView.setMaxLines(5);
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
         NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
@@ -76,11 +77,11 @@ public class DialogsHintCell extends BlurredFrameLayout {
         linearLayout2.setOrientation(0);
         if (LocaleController.isRTL) {
             linearLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
-            linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, -1.0f, 16, 2.0f, 0.0f, 8.0f, 0.0f));
+            linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, 36.0f, 16, 2.0f, 0.0f, 8.0f, 0.0f));
             linearLayout2.addView(backupImageView, LayoutHelper.createFrame(36, 36.0f, 21, 2.0f, 1.0f, 0.0f, 0.0f));
         } else {
             linearLayout2.addView(backupImageView, LayoutHelper.createFrame(36, 36.0f, 19, 0.0f, 1.0f, 2.0f, 0.0f));
-            linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, -1.0f, 16, 0.0f, 0.0f, 2.0f, 0.0f));
+            linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, 36.0f, 16, 0.0f, 0.0f, 2.0f, 0.0f));
             linearLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
         }
         addView(linearLayout2, LayoutHelper.createFrame(-1, -1.0f));
@@ -227,8 +228,8 @@ public class DialogsHintCell extends BlurredFrameLayout {
         if (size <= 0) {
             size = AndroidUtilities.displaySize.x;
         }
-        this.contentView.measure(View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        int measuredHeight = this.contentView.getMeasuredHeight() + getPaddingTop() + getPaddingBottom() + 1;
+        this.parentView.measure(View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+        int measuredHeight = this.parentView.getMeasuredHeight() + getPaddingTop() + getPaddingBottom() + 1;
         this.height = measuredHeight;
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
     }

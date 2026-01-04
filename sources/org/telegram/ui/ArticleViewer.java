@@ -6938,7 +6938,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View reportCell;
             if (i == 90) {
                 reportCell = ArticleViewer.this.new ReportCell(this.context, false);
@@ -9952,7 +9952,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             setWillNotDraw(false);
         }
 
-        public void setBlock(TL_pageBlockListItem tL_pageBlockListItem) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+        public void setBlock(TL_pageBlockListItem tL_pageBlockListItem) throws NoSuchFieldException, SecurityException {
             if (this.currentBlock != tL_pageBlockListItem) {
                 this.currentBlock = tL_pageBlockListItem;
                 RecyclerView.ViewHolder viewHolder = this.blockLayout;
@@ -10217,7 +10217,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             setWillNotDraw(false);
         }
 
-        public void setBlock(TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+        public void setBlock(TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem) throws NoSuchFieldException, SecurityException {
             if (this.currentBlock != tL_pageBlockOrderedListItem) {
                 this.currentBlock = tL_pageBlockOrderedListItem;
                 RecyclerView.ViewHolder viewHolder = this.blockLayout;
@@ -13844,7 +13844,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1255getWindowView() {
+        public WindowView mo1260getWindowView() {
             return this.windowView;
         }
 
@@ -14237,7 +14237,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1255getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1260getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

@@ -148,7 +148,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     @Override
     public void updateColors() {
         super.updateColors();
-        this.paintShadow.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
+        this.paintShadow.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
         this.paintStrokeTop.setColor(this.strokeColorTop);
         this.paintStrokeBottom.setColor(this.strokeColorBottom);
         this.renderNodeInvalidated = true;
@@ -172,7 +172,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.renderNodeInvalidated = false;
         int iMultAlpha = Theme.multAlpha(this.shadowColor, this.renderNode.getAlpha());
         if (Color.alpha(iMultAlpha) != 0) {
-            this.paintShadow.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), iMultAlpha);
+            this.paintShadow.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, iMultAlpha);
             this.boundProps.drawShadows(canvas, this.paintShadow, this.inAppKeyboardOptimization);
         }
         canvas.save();

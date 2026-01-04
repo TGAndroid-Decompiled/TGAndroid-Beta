@@ -48,6 +48,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.DataUsage2Activity;
+import org.telegram.ui.SettingsActivity;
 
 public class DataUsage2Activity extends BaseFragment {
     private boolean changeStatusBar;
@@ -55,6 +56,7 @@ public class DataUsage2Activity extends BaseFragment {
     private ViewPagerFixed pager;
     private Theme.ResourcesProvider resourcesProvider;
     private ViewPagerFixed.TabsView tabsView;
+    private static final int[][] colors2 = {new int[]{-14899731, -15431455}, new int[]{-11154873, -14175180}, new int[]{-11565578, -13276952}, new int[]{-1007845, -1996271}, new int[]{-765355, -2148011}, new int[]{-3903756, -6335009}, new int[]{-13451058, -14836538}};
     private static int[] colors = {Theme.key_statisticChartLine_blue, Theme.key_statisticChartLine_green, Theme.key_statisticChartLine_lightblue, Theme.key_statisticChartLine_golden, Theme.key_statisticChartLine_red, Theme.key_statisticChartLine_purple, Theme.key_statisticChartLine_cyan};
     private static int[] particles = {R.drawable.msg_filled_data_videos, R.drawable.msg_filled_data_files, R.drawable.msg_filled_data_photos, R.drawable.msg_filled_data_messages, R.drawable.msg_filled_data_music, R.drawable.msg_filled_data_voice, R.drawable.msg_filled_data_calls};
     private static int[] titles = {R.string.LocalVideoCache, R.string.LocalDocumentCache, R.string.LocalPhotoCache, R.string.MessagesSettings, R.string.LocalMusicCache, R.string.LocalAudioCache, R.string.CallsDataUsage};
@@ -341,10 +343,6 @@ public class DataUsage2Activity extends BaseFragment {
         private void updateRows(boolean z) {
             String string;
             String string2;
-            int i;
-            String str;
-            int i2;
-            CharSequence charSequenceConcat;
             this.oldItems.clear();
             this.oldItems.addAll(this.itemInners);
             this.itemInners.clear();
@@ -357,96 +355,75 @@ public class DataUsage2Activity extends BaseFragment {
             }
             this.itemInners.add(ItemInner.asSubtitle(string));
             ArrayList arrayList = new ArrayList();
-            int i3 = 0;
+            int i = 0;
             while (true) {
                 Size[] sizeArr = this.segments;
-                if (i3 >= sizeArr.length) {
+                if (i >= sizeArr.length) {
                     break;
                 }
-                Size size = sizeArr[i3];
+                Size size = sizeArr[i];
                 long j2 = size.size;
-                int i4 = size.index;
-                boolean z2 = this.empty || this.removedSegments.contains(Integer.valueOf(i4));
+                int i2 = size.index;
+                boolean z2 = this.empty || this.removedSegments.contains(Integer.valueOf(i2));
                 if (j2 > j || z2) {
-                    SpannableString spannableString = new SpannableString(formatPercent(this.tempPercents[i4]));
+                    SpannableString spannableString = new SpannableString(formatPercent(this.tempPercents[i2]));
                     spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                     spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, spannableString.length(), 33);
-                    str = string;
                     spannableString.setSpan(DataUsage2Activity.this.new CustomCharacterSpan(0.1d), 0, spannableString.length(), 33);
-                    int i5 = DataUsage2Activity.particles[i4];
-                    int themedColor = getThemedColor(DataUsage2Activity.colors[i4]);
-                    if (j2 == j) {
-                        charSequenceConcat = LocaleController.getString(DataUsage2Activity.titles[i4]);
-                        i2 = 1;
-                    } else {
-                        i2 = 1;
-                        charSequenceConcat = TextUtils.concat(LocaleController.getString(DataUsage2Activity.titles[i4]), "  ", spannableString);
-                    }
-                    arrayList.add(ItemInner.asCell(i3, i5, themedColor, charSequenceConcat, AndroidUtilities.formatFileSize(j2)));
-                } else {
-                    str = string;
-                    i2 = 1;
+                    arrayList.add(ItemInner.asCell(i, DataUsage2Activity.particles[i2], DataUsage2Activity.colors2[i2][0], DataUsage2Activity.colors2[i2][1], j2 == j ? LocaleController.getString(DataUsage2Activity.titles[i2]) : TextUtils.concat(LocaleController.getString(DataUsage2Activity.titles[i2]), "  ", spannableString), AndroidUtilities.formatFileSize(j2)));
                 }
-                i3 += i2;
-                string = str;
+                i++;
                 j = 0;
             }
-            String str2 = string;
             if (!arrayList.isEmpty()) {
                 SpannableString spannableString2 = new SpannableString("^");
                 Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
-                int i6 = Theme.key_windowBackgroundWhiteBlackText;
-                int themedColor2 = getThemedColor(i6);
+                int i3 = Theme.key_windowBackgroundWhiteBlackText;
+                int themedColor = getThemedColor(i3);
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
                 drawableMutate.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
                 spannableString2.setSpan(new ImageSpan(drawableMutate, 2), 0, 1, 33);
                 SpannableString spannableString3 = new SpannableString("v");
                 Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.msg_mini_download).mutate();
-                drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i6), mode));
+                drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
                 drawableMutate2.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
                 spannableString3.setSpan(new ImageSpan(drawableMutate2, 2), 0, 1, 33);
-                int i7 = 0;
-                while (i7 < arrayList.size()) {
-                    int i8 = ((ItemInner) arrayList.get(i7)).index;
-                    if (i8 < 0 || this.collapsed[i8]) {
-                        i = 1;
-                    } else {
-                        Size size2 = this.segments[i8];
+                int i4 = 0;
+                while (i4 < arrayList.size()) {
+                    int i5 = ((ItemInner) arrayList.get(i4)).index;
+                    if (i5 >= 0 && !this.collapsed[i5]) {
+                        Size size2 = this.segments[i5];
                         if (DataUsage2Activity.stats[size2.index] == 0) {
                             if (size2.outSize > 0 || size2.outCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("OutgoingCallsCount", size2.outCount), AndroidUtilities.formatFileSize(size2.outSize)));
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("OutgoingCallsCount", size2.outCount), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
                             if (size2.inSize > 0 || size2.inCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("IncomingCallsCount", size2.inCount), AndroidUtilities.formatFileSize(size2.inSize)));
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("IncomingCallsCount", size2.inCount), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
                         } else if (DataUsage2Activity.stats[size2.index] != 1) {
                             if (size2.outSize > 0 || size2.outCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", size2.outCount))), AndroidUtilities.formatFileSize(size2.outSize)));
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", size2.outCount))), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
                             if (size2.inSize > 0 || size2.inCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", size2.inCount))), AndroidUtilities.formatFileSize(size2.inSize)));
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", size2.inCount))), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
                         } else {
                             if (size2.outSize > 0 || size2.outCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", LocaleController.getString(R.string.BytesSent)), AndroidUtilities.formatFileSize(size2.outSize)));
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", LocaleController.getString(R.string.BytesSent)), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
                             if (size2.inSize > 0 || size2.inCount > 0) {
-                                i = 1;
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", LocaleController.getString(R.string.BytesReceived)), AndroidUtilities.formatFileSize(size2.inSize)));
-                            } else {
-                                i = 1;
+                                i4++;
+                                arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", LocaleController.getString(R.string.BytesReceived)), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
                         }
-                        i = 1;
                     }
-                    i7 += i;
+                    i4++;
                 }
                 this.itemInners.addAll(arrayList);
                 if (!this.empty) {
@@ -455,21 +432,21 @@ public class DataUsage2Activity extends BaseFragment {
             }
             if (!this.empty) {
                 this.itemInners.add(ItemInner.asHeader(LocaleController.getString(R.string.TotalNetworkUsage)));
-                this.itemInners.add(ItemInner.asCell(-1, R.drawable.msg_filled_data_sent, getThemedColor(Theme.key_statisticChartLine_lightblue), LocaleController.getString(R.string.BytesSent), AndroidUtilities.formatFileSize(this.totalSizeOut)));
-                this.itemInners.add(ItemInner.asCell(-1, R.drawable.msg_filled_data_received, getThemedColor(Theme.key_statisticChartLine_green), LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.totalSizeIn)));
+                this.itemInners.add(ItemInner.asCell(-1, R.drawable.msg_filled_data_sent, -11565578, -13276952, LocaleController.getString(R.string.BytesSent), AndroidUtilities.formatFileSize(this.totalSizeOut)));
+                this.itemInners.add(ItemInner.asCell(-1, R.drawable.msg_filled_data_received, -11154873, -14175180, LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.totalSizeIn)));
             }
             if (!arrayList.isEmpty()) {
-                this.itemInners.add(ItemInner.asSeparator(str2));
+                this.itemInners.add(ItemInner.asSeparator(string));
             }
             if (this.currentType != 0) {
                 if (arrayList.isEmpty()) {
                     this.itemInners.add(ItemInner.asSeparator());
                 }
-                this.itemInners.add(ItemInner.asCell(-2, R.drawable.msg_download_settings, getThemedColor(Theme.key_statisticChartLine_lightblue), LocaleController.getString(R.string.AutomaticDownloadSettings), null));
-                int i9 = this.currentType;
-                if (i9 == 1) {
+                this.itemInners.add(ItemInner.asCell(-2, R.drawable.msg_download_settings, -11565578, -13276952, LocaleController.getString(R.string.AutomaticDownloadSettings), null));
+                int i6 = this.currentType;
+                if (i6 == 1) {
                     string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoMobile);
-                } else if (i9 == 3) {
+                } else if (i6 == 3) {
                     string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoRoaming);
                 } else {
                     string2 = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoWiFi);
@@ -634,7 +611,7 @@ public class DataUsage2Activity extends BaseFragment {
                 if (itemViewType == 2) {
                     Cell cell = (Cell) viewHolder.itemView;
                     int i5 = i + 1;
-                    cell.set(itemInner.imageColor, itemInner.imageResId, itemInner.text, itemInner.valueText, i5 < getItemCount() && ((ItemInner) ListView.this.itemInners.get(i5)).viewType == itemViewType);
+                    cell.set(itemInner.imageColorTop, itemInner.imageColorBottom, itemInner.imageResId, itemInner.text, itemInner.valueText, i5 < getItemCount() && ((ItemInner) ListView.this.itemInners.get(i5)).viewType == itemViewType);
                     if (!itemInner.pad && (i2 = itemInner.index) >= 0 && (i2 >= ListView.this.segments.length || ListView.this.segments[itemInner.index].size > 0)) {
                         boolValueOf = Boolean.valueOf(ListView.this.collapsed[itemInner.index]);
                     }
@@ -741,7 +718,8 @@ public class DataUsage2Activity extends BaseFragment {
     }
 
     private static class ItemInner extends AdapterWithDiffUtils.Item {
-        public int imageColor;
+        public int imageColorBottom;
+        public int imageColorTop;
         public int imageResId;
         public int index;
         public int key;
@@ -758,11 +736,12 @@ public class DataUsage2Activity extends BaseFragment {
             this.text = charSequence;
         }
 
-        private ItemInner(int i, int i2, int i3, int i4, CharSequence charSequence, CharSequence charSequence2) {
+        private ItemInner(int i, int i2, int i3, int i4, int i5, CharSequence charSequence, CharSequence charSequence2) {
             super(i, false);
             this.index = i2;
             this.imageResId = i3;
-            this.imageColor = i4;
+            this.imageColorTop = i4;
+            this.imageColorBottom = i5;
             this.text = charSequence;
             this.valueText = charSequence2;
         }
@@ -783,8 +762,12 @@ public class DataUsage2Activity extends BaseFragment {
             return new ItemInner(1, str);
         }
 
+        public static ItemInner asCell(int i, int i2, int i3, int i4, CharSequence charSequence, CharSequence charSequence2) {
+            return new ItemInner(2, i, i2, i3, i4, charSequence, charSequence2);
+        }
+
         public static ItemInner asCell(int i, int i2, int i3, CharSequence charSequence, CharSequence charSequence2) {
-            return new ItemInner(2, i, i2, i3, charSequence, charSequence2);
+            return new ItemInner(2, i, i2, i3, i3, charSequence, charSequence2);
         }
 
         public boolean equals(Object obj) {
@@ -800,7 +783,7 @@ public class DataUsage2Activity extends BaseFragment {
             if (i2 == 1 || i2 == 4 || i2 == 3 || i2 == 5) {
                 return TextUtils.equals(this.text, itemInner.text);
             }
-            return i2 == 2 ? itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColor == this.imageColor && itemInner.imageResId == this.imageResId : itemInner.key == this.key;
+            return i2 == 2 ? itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColorTop == this.imageColorTop && itemInner.imageColorBottom == this.imageColorBottom && itemInner.imageResId == this.imageResId : itemInner.key == this.key;
         }
     }
 
@@ -942,13 +925,17 @@ public class DataUsage2Activity extends BaseFragment {
             }
         }
 
-        public void set(int i, int i2, CharSequence charSequence, CharSequence charSequence2, boolean z) {
-            if (i2 == 0) {
+        public void set(int i, int i2, int i3, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+            if (i3 == 0) {
                 this.imageView.setVisibility(8);
             } else {
                 this.imageView.setVisibility(0);
-                this.imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), i));
-                this.imageView.setImageResource(i2);
+                boolean zIsDark = DataUsage2Activity.this.resourcesProvider != null ? DataUsage2Activity.this.resourcesProvider.isDark() : Theme.isCurrentThemeDark();
+                SettingsActivity.SettingCell.Background background = new SettingsActivity.SettingCell.Background();
+                background.setColor(i, i2);
+                background.setDrawBorder(zIsDark);
+                this.imageView.setBackground(background);
+                this.imageView.setImageResource(i3);
             }
             this.textView.setText(charSequence);
             this.valueTextView.setText(charSequence2);

@@ -7751,8 +7751,14 @@ public class MessageObject {
     }
 
     public CharSequence getMessageTextToTranslate(GroupedMessages groupedMessages, int[] iArr) {
-        int i;
-        if (this.translated || this.summarized || this.isRestrictedMessage || (i = this.type) == 19 || i == 15 || i == 13) {
+        if (this.translated || this.isRestrictedMessage) {
+            return null;
+        }
+        if (this.summarized) {
+            return this.messageText;
+        }
+        int i = this.type;
+        if (i == 19 || i == 15 || i == 13) {
             return null;
         }
         CharSequence messageCaption = ChatActivity.getMessageCaption(this, groupedMessages, iArr);

@@ -68,7 +68,6 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -89,6 +88,7 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SettingsSearchCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
@@ -140,6 +140,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private ImageUpdater imageUpdater;
     private UniversalRecyclerView listView;
     private View navigationBar;
+    private int navigationBarHeight;
     private ActionBarMenuItem otherItem;
     private String query;
     private ProfileActivity.SearchAdapter search;
@@ -216,7 +217,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                AndroidUtilities.drawNavigationBarProtection(canvas, this, SettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                AndroidUtilities.drawNavigationBarProtection(canvas, this, SettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), SettingsActivity.this.navigationBarHeight);
             }
         };
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
@@ -546,7 +547,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         if (this.searchItem.isSearchFieldVisible2()) {
-            arrayList.add(UItem.asSpace(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()));
+            arrayList.add(UItem.asSpace(ActionBar.getCurrentActionBarHeight()));
             this.search.fillItems(arrayList);
             return;
         }
@@ -572,7 +573,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 }
             }));
             arrayList.add(UItem.asShadow(null));
-        } else if (set.contains("VALIDATE_PHONE_NUMBER")) {
+        } else if (set.contains("VALIDATE_PHONE_NUMBER") && getUserConfig().getCurrentUser() != null) {
             arrayList.add(SuggestionCell.Factory.of(LocaleController.formatString(R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + getUserConfig().getCurrentUser().phone)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CheckPhoneNumberInfo), new Runnable() {
                 @Override
                 public final void run() {
@@ -806,7 +807,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        this.listView.setPadding(0, windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0, AndroidUtilities.dp(15.0f) + windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+        int i = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+        this.listView.setPadding(0, i, 0, AndroidUtilities.dp(15.0f) + this.navigationBarHeight);
         return WindowInsetsCompat.CONSUMED;
     }
 
@@ -814,7 +817,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         private ImageView arrowView;
         private AvatarDrawable avatarDrawable;
         private BackupImageView avatarView;
+        private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable botDrawable;
         private TextView counterView;
+        private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatusDrawable;
         private final Theme.ResourcesProvider resourcesProvider;
         private SimpleTextView textView;
 
@@ -834,6 +839,21 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             this.textView.setGravity(19);
             addView(this.textView, LayoutHelper.createLinear(0, -1, 1.0f, 119, 0, 0, 18, 0));
+            this.botDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.dp(24.0f), 7);
+            this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.dp(24.0f), 7);
+            this.textView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view) {
+                    AccountCell.this.botDrawable.attach();
+                    AccountCell.this.emojiStatusDrawable.attach();
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View view) {
+                    AccountCell.this.botDrawable.detach();
+                    AccountCell.this.emojiStatusDrawable.detach();
+                }
+            });
             TextView textView = new TextView(context);
             this.counterView = textView;
             textView.setPadding(AndroidUtilities.dp(6.66f), 0, AndroidUtilities.dp(6.66f), 0);
@@ -851,15 +871,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             addView(this.arrowView, LayoutHelper.createLinear(24, 24, 0.0f, 21, 0, 0, 12, 0));
         }
 
-        public void set(int i) {
-            TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
-            this.avatarDrawable.setInfo(i, currentUser);
-            this.avatarView.getImageReceiver().setCurrentAccount(i);
-            this.avatarView.setForUserOrChat(currentUser, this.avatarDrawable);
-            this.textView.setText(UserObject.getUserName(currentUser));
-            int mainUnreadCount = MessagesStorage.getInstance(i).getMainUnreadCount();
-            this.counterView.setVisibility(mainUnreadCount > 0 ? 0 : 8);
-            this.counterView.setText(LocaleController.formatNumber(mainUnreadCount, ','));
+        public void set(int r10) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SettingsActivity.AccountCell.set(int):void");
         }
 
         @Override

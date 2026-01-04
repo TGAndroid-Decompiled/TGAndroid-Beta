@@ -4,24 +4,29 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.BatchParticlesDrawHelper;
 
 public class SnowflakesEffect {
+    private final BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
+    private final Paint batchParticlesPaint;
     private int color;
+    private int forcedColor;
     private long lastAnimationTime;
+    private final int maxCount;
     Bitmap particleBitmap;
-    private Paint particlePaint;
-    private Paint particleThinPaint;
-    private int viewType;
-    private Paint bitmapPaint = new Paint();
+    private final Paint particlePaint;
+    private final Paint particleThinPaint;
+    private final int viewType;
+    private final Paint bitmapPaint = new Paint();
     private int colorKey = Theme.key_actionBarDefaultTitle;
-    final float angleDiff = 1.0471976f;
-    private ArrayList particles = new ArrayList();
-    private ArrayList freeParticles = new ArrayList();
+    private final ArrayList particles = new ArrayList();
+    private final ArrayList freeParticles = new ArrayList();
 
     private class Particle {
         float alpha;
@@ -46,41 +51,12 @@ public class SnowflakesEffect {
             }
             SnowflakesEffect snowflakesEffect = SnowflakesEffect.this;
             if (snowflakesEffect.particleBitmap == null) {
-                snowflakesEffect.particleThinPaint.setAlpha(255);
-                SnowflakesEffect.this.particleBitmap = Bitmap.createBitmap(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Bitmap.Config.ARGB_8888);
-                Canvas canvas2 = new Canvas(SnowflakesEffect.this.particleBitmap);
-                float fDpf2 = AndroidUtilities.dpf2(2.0f) * 2.0f;
-                float f = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
-                float fDpf22 = 2.0f * AndroidUtilities.dpf2(1.55f);
-                float f2 = -1.5707964f;
-                int i = 0;
-                while (i < 6) {
-                    float fDp = AndroidUtilities.dp(8.0f);
-                    float fDp2 = AndroidUtilities.dp(8.0f);
-                    double d = f2;
-                    float fCos = ((float) Math.cos(d)) * fDpf2;
-                    float fSin = ((float) Math.sin(d)) * fDpf2;
-                    canvas2.drawLine(fDp, fDp2, fDp + fCos, fDp2 + fSin, SnowflakesEffect.this.particleThinPaint);
-                    double d2 = (float) (d - 1.5707963267948966d);
-                    double d3 = f;
-                    float f3 = fDpf2;
-                    double d4 = fDpf22;
-                    float f4 = fDpf22;
-                    float f5 = fDp + (fCos * 0.66f);
-                    float f6 = fDp2 + (fSin * 0.66f);
-                    canvas2.drawLine(f5, f6, fDp + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), fDp2 + ((float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4))), SnowflakesEffect.this.particleThinPaint);
-                    canvas2.drawLine(f5, f6, fDp + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), fDp2 + ((float) (((-Math.sin(d2)) * d3) + (Math.cos(d2) * d4))), SnowflakesEffect.this.particleThinPaint);
-                    f2 += 1.0471976f;
-                    i++;
-                    fDpf2 = f3;
-                    f = f;
-                    fDpf22 = f4;
-                }
+                snowflakesEffect.particleBitmap = SnowflakesEffect.createParticlesBitmap(false);
             }
             SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.save();
-            float f7 = this.scale;
-            canvas.scale(f7, f7, this.x, this.y);
+            float f = this.scale;
+            canvas.scale(f, f, this.x, this.y);
             SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
             canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.x, this.y, snowflakesEffect2.bitmapPaint);
             canvas.restore();
@@ -89,28 +65,43 @@ public class SnowflakesEffect {
 
     public SnowflakesEffect(int i) {
         this.viewType = i;
+        int i2 = i == 0 ? 100 : 300;
+        this.maxCount = i2;
         Paint paint = new Paint(1);
         this.particlePaint = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        Paint paint2 = this.particlePaint;
         Paint.Cap cap = Paint.Cap.ROUND;
-        paint2.setStrokeCap(cap);
-        Paint paint3 = this.particlePaint;
+        paint.setStrokeCap(cap);
         Paint.Style style = Paint.Style.STROKE;
-        paint3.setStyle(style);
-        Paint paint4 = new Paint(1);
-        this.particleThinPaint = paint4;
-        paint4.setStrokeWidth(AndroidUtilities.dp(0.5f));
-        this.particleThinPaint.setStrokeCap(cap);
-        this.particleThinPaint.setStyle(style);
+        paint.setStyle(style);
+        Paint paint2 = new Paint(1);
+        this.particleThinPaint = paint2;
+        paint2.setStrokeWidth(AndroidUtilities.dp(0.5f));
+        paint2.setStrokeCap(cap);
+        paint2.setStyle(style);
+        if (BatchParticlesDrawHelper.isAvailable()) {
+            this.batchParticlesBuffer = new BatchParticlesDrawHelper.BatchParticlesBuffer(i2);
+            this.batchParticlesPaint = BatchParticlesDrawHelper.createBatchParticlesPaint(createParticlesBitmap(true));
+        } else {
+            this.batchParticlesBuffer = null;
+            this.batchParticlesPaint = null;
+        }
         updateColors();
-        for (int i2 = 0; i2 < 20; i2++) {
+        for (int i3 = 0; i3 < 20; i3++) {
             this.freeParticles.add(new Particle());
         }
     }
 
+    public void setForcedColor(int i) {
+        this.forcedColor = i;
+        updateColors();
+    }
+
     public void updateColors() {
-        int color = Theme.getColor(this.colorKey) & (-1644826);
+        int color = this.forcedColor;
+        if (color == 0) {
+            color = Theme.getColor(this.colorKey) & (-1644826);
+        }
         if (this.color != color) {
             this.color = color;
             this.particlePaint.setColor(color);
@@ -160,23 +151,48 @@ public class SnowflakesEffect {
     }
 
     public void onDraw(View view, Canvas canvas) {
+        float measuredHeight;
         Particle particle;
         if (view == null || canvas == null || !LiteMode.isEnabled(32)) {
             return;
         }
-        int size = this.particles.size();
-        for (int i = 0; i < size; i++) {
-            ((Particle) this.particles.get(i)).draw(canvas);
+        if (this.batchParticlesBuffer != null) {
+            int iMin = Math.min(this.maxCount, this.particles.size());
+            int iDp = AndroidUtilities.dp(10.0f);
+            for (int i = 0; i < iMin; i++) {
+                Particle particle2 = (Particle) this.particles.get(i);
+                float f = particle2.x;
+                float f2 = particle2.y;
+                int i2 = particle2.type;
+                float f3 = iDp / 2.0f;
+                if (i2 != 0) {
+                    f3 *= particle2.scale;
+                }
+                float f4 = i2 == 0 ? iDp : 0.0f;
+                this.batchParticlesBuffer.setParticleColor(i, ColorUtils.setAlphaComponent(this.color, (int) (particle2.alpha * 255.0f)));
+                int i3 = i;
+                this.batchParticlesBuffer.setParticleVertexCords(i3, f - f3, f2 - f3, f + f3, f3 + f2);
+                float f5 = iDp;
+                this.batchParticlesBuffer.setParticleTextureCords(i3, f4, 0.0f, f4 + f5, f5);
+            }
+            BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, iMin, this.batchParticlesPaint);
+        } else {
+            int size = this.particles.size();
+            for (int i4 = 0; i4 < size; i4++) {
+                ((Particle) this.particles.get(i4)).draw(canvas);
+            }
         }
-        int i2 = this.viewType;
-        int i3 = i2 == 0 ? 100 : 300;
-        int i4 = i2 == 0 ? 1 : 10;
-        if (this.particles.size() < i3) {
-            for (int i5 = 0; i5 < i4; i5++) {
-                if (this.particles.size() < i3 && Utilities.random.nextFloat() > 0.7f) {
-                    int i6 = AndroidUtilities.statusBarHeight;
+        int i5 = this.viewType == 0 ? 1 : 10;
+        if (this.particles.size() < this.maxCount) {
+            for (int i6 = 0; i6 < i5; i6++) {
+                if (this.particles.size() < this.maxCount && Utilities.random.nextFloat() > 0.7f) {
+                    int i7 = AndroidUtilities.statusBarHeight;
                     float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-                    float fNextFloat2 = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i6));
+                    if (this.viewType == 0) {
+                        measuredHeight = i7 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i7));
+                    } else {
+                        measuredHeight = view.getMeasuredHeight() * Utilities.random.nextFloat();
+                    }
                     double dNextInt = (Utilities.random.nextInt(40) + 70) * 0.017453292519943295d;
                     float fCos = (float) Math.cos(dNextInt);
                     float fSin = (float) Math.sin(dNextInt);
@@ -187,7 +203,7 @@ public class SnowflakesEffect {
                         particle = new Particle();
                     }
                     particle.x = fNextFloat;
-                    particle.y = fNextFloat2;
+                    particle.y = measuredHeight;
                     particle.vx = fCos;
                     particle.vy = fSin;
                     particle.alpha = 0.0f;
@@ -208,5 +224,54 @@ public class SnowflakesEffect {
         updateParticles(Math.min(17L, jCurrentTimeMillis - this.lastAnimationTime));
         this.lastAnimationTime = jCurrentTimeMillis;
         view.invalidate();
+    }
+
+    public static Bitmap createParticlesBitmap(boolean z) {
+        Paint paint = new Paint(1);
+        paint.setStrokeWidth(AndroidUtilities.dp(0.5f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(z ? AndroidUtilities.dp(20.0f) : AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
+        float fDpf2 = AndroidUtilities.dpf2(2.0f) * 2.0f;
+        float f = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
+        float fDpf22 = AndroidUtilities.dpf2(1.55f) * 2.0f;
+        float fDp = AndroidUtilities.dp(5.0f);
+        float fDp2 = AndroidUtilities.dp(5.0f);
+        int i = 0;
+        float f2 = -1.5707964f;
+        while (i < 6) {
+            double d = f2;
+            Bitmap bitmap = bitmapCreateBitmap;
+            float fCos = ((float) Math.cos(d)) * fDpf2;
+            float fSin = ((float) Math.sin(d)) * fDpf2;
+            float f3 = 0.66f * fSin;
+            float f4 = fSin + fDp2;
+            float f5 = f2;
+            float f6 = fDp2;
+            canvas.drawLine(fDp, fDp2, fDp + fCos, f4, paint);
+            double d2 = (float) (d - 1.5707963267948966d);
+            double d3 = f;
+            double d4 = fDpf22;
+            float f7 = fDp + (fCos * 0.66f);
+            float f8 = f6 + f3;
+            canvas.drawLine(f7, f8, fDp + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), f6 + ((float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4))), paint);
+            canvas.drawLine(f7, f8, fDp + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), f6 + ((float) (((-Math.sin(d2)) * d3) + (Math.cos(d2) * d4))), paint);
+            f2 = f5 + 1.0471976f;
+            i++;
+            bitmapCreateBitmap = bitmap;
+            fDp2 = f6;
+        }
+        Bitmap bitmap2 = bitmapCreateBitmap;
+        if (z) {
+            Paint paint2 = new Paint(1);
+            paint2.setStrokeWidth(AndroidUtilities.dp(1.5f));
+            paint2.setStrokeCap(Paint.Cap.ROUND);
+            paint2.setStyle(Paint.Style.STROKE);
+            paint2.setColor(-1);
+            canvas.drawPoint(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(5.0f), paint2);
+        }
+        return bitmap2;
     }
 }

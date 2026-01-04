@@ -8808,7 +8808,6 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         int i2 = Theme.key_listSelector;
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i2)));
         this.proxyDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
-        this.proxyDrawable.setColorKey(i);
         this.proxyButtonView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i2)));
         RadialProgressView radialProgressView = this.radialProgressView;
         int i3 = Theme.key_chats_actionBackground;

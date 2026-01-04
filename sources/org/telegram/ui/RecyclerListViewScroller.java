@@ -26,20 +26,20 @@ public class RecyclerListViewScroller {
             valueAnimator.removeAllListeners();
             this.valueAnimator.cancel();
         }
+        final int[] iArr = new int[1];
         this.lastScrolled = 0;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, i);
+        this.valueAnimator = valueAnimatorOfInt;
+        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$smoothScrollBy$0(i, valueAnimator2);
+                this.f$0.lambda$smoothScrollBy$0(iArr, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                RecyclerListViewScroller recyclerListViewScroller = RecyclerListViewScroller.this;
-                recyclerListViewScroller.recyclerListView.scrollBy(0, i - recyclerListViewScroller.lastScrolled);
+                RecyclerListViewScroller.this.recyclerListView.scrollBy(0, i - iArr[0]);
                 RecyclerListViewScroller.this.valueAnimator = null;
             }
         });
@@ -48,10 +48,12 @@ public class RecyclerListViewScroller {
         this.valueAnimator.start();
     }
 
-    public void lambda$smoothScrollBy$0(int i, ValueAnimator valueAnimator) {
-        int iFloatValue = (int) (i * ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        this.recyclerListView.scrollBy(0, iFloatValue - this.lastScrolled);
-        this.lastScrolled = iFloatValue;
+    public void lambda$smoothScrollBy$0(int[] iArr, ValueAnimator valueAnimator) {
+        int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        int i = iIntValue - this.lastScrolled;
+        this.recyclerListView.scrollBy(0, i);
+        iArr[0] = iArr[0] + i;
+        this.lastScrolled = iIntValue;
     }
 
     public void cancel() {
