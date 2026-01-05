@@ -1059,7 +1059,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             } else {
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         this.f$0.lambda$updatedPhone$18(tL_contact, callback);
                     }
                 });
@@ -1118,7 +1118,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public void lambda$updatedPhone$18(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) throws InterruptedException {
+    public void lambda$updatedPhone$18(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
         final TLRPC.User user = MessagesStorage.getInstance(this.currentAccount).getUser(tL_contact.user_id);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

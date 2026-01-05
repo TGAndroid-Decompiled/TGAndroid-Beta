@@ -34,7 +34,7 @@ public class SQLiteDatabase {
         return new SQLitePreparedStatement(this, str);
     }
 
-    public Integer executeInt(String str, Object... objArr) {
+    public Integer executeInt(String str, Object... objArr) throws SQLiteException {
         checkOpened();
         SQLiteCursor sQLiteCursorQueryFinalized = queryFinalized(str, objArr);
         try {

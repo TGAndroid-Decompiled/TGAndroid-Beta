@@ -1169,7 +1169,6 @@
     <string name="TosUpdateDecline">Lamentablemente, no hay otras opciones. A diferencia de otras apps, Telegram no usa los datos de los usuarios para publicidad dirigida u otros propósitos comerciales. Telegram sólo almacena la información que necesita para funcionar como un servicio en la nube. Puedes ajustar cómo usamos tus datos en los ajustes de privacidad y seguridad.\n\nSi no estás de acuerdo con los modestos requisitos de Telegram, no podremos brindarte este servicio.</string>
     <string name="TranslateMessages">Traducir mensajes</string>
     <string name="TranslateMessagesInfo1">El botón “Traducir” aparecerá al realizar un solo toque en un mensaje de texto.</string>
-    <string name="TranslateMessagesInfo2">Google puede tener acceso al texto de los mensajes que traduzcas.</string>
     <string name="TurnPasswordOff">Desactivar contraseña</string>
     <string name="TurnPasswordOffPassport">Todos los datos guardados en tu Telegram Passport se perderán.</string>
     <string name="TurnPasswordOffQuestion">¿Quieres desactivar tu contraseña?</string>

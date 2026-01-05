@@ -6,14 +6,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.IDN;
 import java.net.URISyntaxException;
@@ -370,7 +367,7 @@ public abstract class Browser {
         return true;
     }
 
-    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) {
         BottomSheetTabs bottomSheetTabs;
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null && bottomSheetTabs.tryReopenTab(str) != null) {

@@ -634,7 +634,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.overrideText = i2;
     }
 
-    public void setMessageObject(MessageObject messageObject) {
+    public void setMessageObject(MessageObject messageObject) throws Resources.NotFoundException {
         setMessageObject(messageObject, false);
     }
 

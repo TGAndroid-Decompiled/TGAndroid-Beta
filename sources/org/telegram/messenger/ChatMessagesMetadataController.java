@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import android.content.res.Resources;
 import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -113,14 +114,14 @@ public class ChatMessagesMetadataController {
             storyItem.id = i;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
                 }
             });
         }
     }
 
-    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
+    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) throws Resources.NotFoundException, NumberFormatException {
         boolean zIsExpiredStory = messageObject.isExpiredStory();
         StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();
@@ -128,7 +129,7 @@ public class ChatMessagesMetadataController {
         arrayList.add(messageObject);
         this.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$loadStoriesForMessages$0(arrayList);
             }
         });
@@ -139,7 +140,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadStoriesForMessages$0(ArrayList arrayList) throws InterruptedException {
+    public void lambda$loadStoriesForMessages$0(ArrayList arrayList) {
         this.chatActivity.getMessagesController().getStoriesController().getStoriesStorage().lambda$fillMessagesWithStories$13(arrayList);
     }
 

@@ -3609,13 +3609,13 @@ public class StoriesController {
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$invalidateCache$6(messagesStorage);
                 }
             });
         }
 
-        public void lambda$invalidateCache$6(MessagesStorage messagesStorage) throws InterruptedException {
+        public void lambda$invalidateCache$6(MessagesStorage messagesStorage) {
             try {
                 messagesStorage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM profile_stories WHERE dialog_id = %d AND type = %d", Long.valueOf(this.dialogId), Integer.valueOf(this.type))).stepThis().dispose();
             } catch (Throwable th) {

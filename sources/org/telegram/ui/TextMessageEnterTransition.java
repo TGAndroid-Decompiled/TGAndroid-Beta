@@ -68,6 +68,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     float lastMessageY;
     StaticLayout layout;
     RecyclerListView listView;
+    private float listViewTargetBottomPadding;
     private int messageId;
     private final RectF messageReplySelectorRect;
     ChatMessageCell messageView;
@@ -355,6 +356,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
             this.replayObjectFromColor = replyObjectTextView.getTextColor();
             this.drawableFromTop -= AndroidUtilities.dp(46.0f);
         }
+        this.listViewTargetBottomPadding = recyclerListView.getPaddingBottom() - (chatActivity.getInputIslandHeightTarget() - AndroidUtilities.dp(44.0f));
         this.gradientMatrix = new Matrix();
         Paint paint = new Paint(1);
         this.gradientPaint = paint;

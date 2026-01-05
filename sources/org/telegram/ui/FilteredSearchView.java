@@ -552,7 +552,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         final boolean z5 = z3;
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws Throwable {
+            public final void run() {
                 this.f$0.lambda$search$4(j, str2, mediaFilterData, i2, j2, j3, z5, z, str3, i);
             }
         };
@@ -583,7 +583,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) throws Throwable {
+    public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) {
         TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
         ArrayList<Object> arrayList = null;
         if (j != 0) {

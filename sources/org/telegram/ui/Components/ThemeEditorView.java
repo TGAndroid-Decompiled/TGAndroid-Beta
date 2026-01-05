@@ -347,7 +347,7 @@ public class ThemeEditorView {
                         }
 
                         @Override
-                        public void afterTextChanged(android.text.Editable r7) {
+                        public void afterTextChanged(android.text.Editable r7) throws java.lang.NoSuchFieldException, java.io.IOException, java.lang.SecurityException {
                             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThemeEditorView.EditorAlert.ColorPicker.AnonymousClass1.afterTextChanged(android.text.Editable):void");
                         }
                     });
@@ -480,7 +480,7 @@ public class ThemeEditorView {
             }
 
             @Override
-            public boolean onTouchEvent(android.view.MotionEvent r16) {
+            public boolean onTouchEvent(android.view.MotionEvent r16) throws java.lang.NoSuchFieldException, java.io.IOException, java.lang.SecurityException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThemeEditorView.EditorAlert.ColorPicker.onTouchEvent(android.view.MotionEvent):boolean");
             }
 

@@ -5528,7 +5528,7 @@ public abstract class Theme {
         callback.run(getThemeFileValues(file, str, strArr));
     }
 
-    public static SparseIntArray getThemeFileValues(File file, String str, String[] strArr) {
+    public static SparseIntArray getThemeFileValues(File file, String str, String[] strArr) throws IOException {
         FileInputStream fileInputStream;
         int iIntValue;
         SparseIntArray sparseIntArray = new SparseIntArray();

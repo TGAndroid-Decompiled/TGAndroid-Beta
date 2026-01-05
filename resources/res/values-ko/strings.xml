@@ -1000,7 +1000,6 @@
     <string name="TosUpdateDecline">유감스럽지만, 다른 방법이 없습니다. 다른 앱과 달리, 텔레그램은 광고 타겟팅이나 다른 상업적 목적으로 사용자 데이터를 사용하지 않습니다. 텔레그램은 기능이 풍부한 클라우드 서비스로서 작동하는 데 필요한 정보만을 저장합니다. 개인 정보 및 보안 설정에서 내 데이터에 대한 제어를 할 수 있습니다.\n\n만약 텔레그램의 간소한 요구 사항에 두루 동의하실 수 없다면 저희로서 이 서비스를 제공해 드리기가 어렵습니다.</string>
     <string name="TranslateMessages">메시지 번역</string>
     <string name="TranslateMessagesInfo1">텍스트 메시지를 한번 탭 할 경우 \'번역\' 버튼이 나타나게 됩니다.</string>
-    <string name="TranslateMessagesInfo2">번역하는 메시지에 대해 구글이 접근을 할 수도 있습니다.</string>
     <string name="TurnPasswordOff">비밀번호 비활성</string>
     <string name="TurnPasswordOffPassport">텔레그램 패스포트에 저장된 데이터가 모두 사라지게됩니다.</string>
     <string name="TurnPasswordOffQuestion">정말 비밀번호를 사용하지 않도록 하시겠습니까?</string>

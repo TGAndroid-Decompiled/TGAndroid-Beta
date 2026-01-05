@@ -35,7 +35,7 @@ public class SQLiteCursor {
         this.preparedStatement = sQLitePreparedStatement;
     }
 
-    public boolean isNull(int i) {
+    public boolean isNull(int i) throws SQLiteException {
         checkRow();
         return columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1;
     }
@@ -83,7 +83,7 @@ public class SQLiteCursor {
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean next() {
+    public boolean next() throws InterruptedException, SQLiteException {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int iStep = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (iStep == -1) {

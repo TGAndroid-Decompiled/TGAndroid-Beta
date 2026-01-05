@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import me.vkryl.android.util.ClickHelper;
+import me.vkryl.android.animator.ReplaceAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
@@ -36,7 +36,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -219,11 +218,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     @Override
     public View createView(Context context) {
         super.createView(context);
-        TabsSelectorView tabsSelectorView = new TabsSelectorView(context, this.resourceProvider, null);
+        TabsSelectorView tabsSelectorView = new TabsSelectorView(context, this.resourceProvider);
         this.tabsView = tabsSelectorView;
         tabsSelectorView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(AndroidUtilities.dp(8.0f)));
         this.tabsView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        this.tabsView.tabs = new GlassTabView[]{GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_contact_active_24, R.drawable.tabs_contacts_24, R.string.MainTabsContacts), GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_calls_active_24, R.drawable.tabs_calls_24, R.string.MainTabsCalls), GlassTabView.createMainTab(context, this.resourceProvider, R.drawable.tabs_chats_active_24, R.drawable.tabs_chats_24, R.string.MainTabsChats), GlassTabView.createAvatar(context, this.resourceProvider, this.currentAccount, R.string.MainTabsProfile)};
+        this.tabsView.tabs = new GlassTabView[]{GlassTabView.createMainTab(context, this.resourceProvider, GlassTabView.TabAnimation.CONTACTS, R.string.MainTabsContacts), GlassTabView.createMainTab(context, this.resourceProvider, GlassTabView.TabAnimation.CALLS, R.string.MainTabsCalls), GlassTabView.createMainTab(context, this.resourceProvider, GlassTabView.TabAnimation.CHATS, R.string.MainTabsChats), GlassTabView.createAvatar(context, this.resourceProvider, this.currentAccount, R.string.MainTabsProfile)};
         for (final int i = 0; i < this.tabsView.tabs.length; i++) {
             final GlassTabView glassTabView = this.tabsView.tabs[i];
             ScaleStateListAnimator.apply(glassTabView);
@@ -242,11 +241,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 });
             }
         }
-        int currentPosition = this.viewPager.getCurrentPosition();
-        if (currentPosition >= 0 && currentPosition < this.tabsView.tabs.length) {
-            this.tabsView.animator.forceFactor(currentPosition);
-            this.tabsView.tabs[currentPosition].setSelected(true, false);
-        }
         TabsSelectorView tabsSelectorView2 = this.tabsView;
         tabsSelectorView2.linearLayout.addView(tabsSelectorView2.tabs[0], LayoutHelper.createLinear(0, -1, 1.0f));
         TabsSelectorView tabsSelectorView3 = this.tabsView;
@@ -255,6 +249,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         tabsSelectorView4.linearLayout.addView(tabsSelectorView4.tabs[2], LayoutHelper.createLinear(0, -1, 1.0f));
         TabsSelectorView tabsSelectorView5 = this.tabsView;
         tabsSelectorView5.linearLayout.addView(tabsSelectorView5.tabs[3], LayoutHelper.createLinear(0, -1, 1.0f));
+        this.tabsView.selectTab(this.viewPager.getCurrentPosition(), false, true);
         this.iBlur3SourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         ViewPositionWatcher viewPositionWatcher = new ViewPositionWatcher(this.contentView);
         BlurredBackgroundSource blurredBackgroundSource = this.iBlur3SourceTabGlass;
@@ -300,7 +295,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             }
             return;
         }
-        this.tabsView.selectTab(i, true);
+        this.tabsView.selectTab(i, true, true);
         glassTabView.playAnimationOnce();
         this.viewPager.scrollToPosition(i);
     }
@@ -457,31 +452,32 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     protected void onViewPagerScrollEnd() {
         TabsSelectorView tabsSelectorView = this.tabsView;
         if (tabsSelectorView != null) {
-            tabsSelectorView.lensVisibilityByDrag.setInterpolator(AnimatorUtils.DECELERATE_INTERPOLATOR);
-            this.tabsView.lensVisibilityByDrag.setValue(false, true);
+            tabsSelectorView.selectTab(this.viewPager.getCurrentPosition(), true, false);
+            this.tabsView.setGestureSelectedOverride(0.0f, false);
         }
         blur3_invalidateBlur();
     }
 
     @Override
     protected void onViewPagerTabAnimationUpdate(boolean z) {
+        Log.i("WTF_DEBUG", "onViewPagerTabAnimationUpdate " + this.viewPager.getPositionAnimated() + " " + z);
+        boolean z2 = z ^ true;
         if (this.tabsView != null) {
             float positionAnimated = this.viewPager.getPositionAnimated();
-            this.tabsView.lensVisibilityByDrag.setInterpolator(AnimatorUtils.OVERSHOOT_INTERPOLATOR);
-            this.tabsView.lensVisibilityByDrag.setValue(true, true);
             this.tabsView.animator.forceFactor(positionAnimated);
-            this.tabsView.selectTab(Math.round(positionAnimated), false);
+            this.tabsView.setGestureSelectedOverride(positionAnimated, z2);
+            if (!z) {
+                this.tabsView.selectTab(Math.round(positionAnimated), true, false);
+            }
         }
         checkUi_fadeView();
         blur3_invalidateBlur();
     }
 
-    private static class TabsSelectorView extends GlassTabsView implements FactorAnimator.Target {
+    static class TabsSelectorView extends GlassTabsView implements FactorAnimator.Target {
         public final FactorAnimator animator;
-        private final ClickHelper clickHelper;
-        public final BoolAnimator lensVisibilityByDrag;
-        public final BoolAnimator lensVisibilityByLongClick;
-        public final BoolAnimator lensVisibilityByMove;
+        public final ReplaceAnimator animatorSelectedTab;
+        private boolean hasGestureSelectedOverride;
         public final Theme.ResourcesProvider resourcesProvider;
         private int selectedTab;
         private GlassTabView[] tabs;
@@ -491,84 +487,48 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
         }
 
-        public TabsSelectorView(Context context, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback) {
+        public void lambda$new$0(ReplaceAnimator replaceAnimator) {
+            invalidate();
+        }
+
+        public TabsSelectorView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.animator = new FactorAnimator(0, this, cubicBezierInterpolator, 0L);
-            this.lensVisibilityByMove = new BoolAnimator(2, this, AnimatorUtils.LINEAR_INTERPOLATOR, 0L);
-            this.lensVisibilityByDrag = new BoolAnimator(3, this, AnimatorUtils.OVERSHOOT_INTERPOLATOR, 320L);
-            this.lensVisibilityByLongClick = new BoolAnimator(1, this, cubicBezierInterpolator, 380L);
+            this.animatorSelectedTab = new ReplaceAnimator(new ReplaceAnimator.Callback() {
+                @Override
+                public boolean hasChanges(ReplaceAnimator replaceAnimator) {
+                    return ReplaceAnimator.Callback.CC.$default$hasChanges(this, replaceAnimator);
+                }
+
+                @Override
+                public boolean onApplyMetadataAnimation(ReplaceAnimator replaceAnimator, float f) {
+                    return ReplaceAnimator.Callback.CC.$default$onApplyMetadataAnimation(this, replaceAnimator, f);
+                }
+
+                @Override
+                public void onFinishMetadataAnimation(ReplaceAnimator replaceAnimator, boolean z) {
+                    ReplaceAnimator.Callback.CC.$default$onFinishMetadataAnimation(this, replaceAnimator, z);
+                }
+
+                @Override
+                public void onForceApplyChanges(ReplaceAnimator replaceAnimator) {
+                    ReplaceAnimator.Callback.CC.$default$onForceApplyChanges(this, replaceAnimator);
+                }
+
+                @Override
+                public final void onItemChanged(ReplaceAnimator replaceAnimator) {
+                    this.f$0.lambda$new$0(replaceAnimator);
+                }
+
+                @Override
+                public void onPrepareMetadataAnimation(ReplaceAnimator replaceAnimator) {
+                    ReplaceAnimator.Callback.CC.$default$onPrepareMetadataAnimation(this, replaceAnimator);
+                }
+            }, cubicBezierInterpolator, 320L);
             this.selectedTab = -1;
             setLensVisibility(0.0f);
             this.resourcesProvider = resourcesProvider;
-            this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
-                @Override
-                public boolean forceEnableVibration() {
-                    return ClickHelper.Delegate.CC.$default$forceEnableVibration(this);
-                }
-
-                @Override
-                public long getLongPressDuration() {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsActivity.TabsSelectorView.AnonymousClass1.getLongPressDuration():long");
-                }
-
-                @Override
-                public boolean ignoreHapticFeedbackSettings(float f, float f2) {
-                    return ClickHelper.Delegate.CC.$default$ignoreHapticFeedbackSettings(this, f, f2);
-                }
-
-                @Override
-                public boolean needClickAt(View view, float f, float f2) {
-                    return true;
-                }
-
-                @Override
-                public boolean needLongPress(float f, float f2) {
-                    return true;
-                }
-
-                @Override
-                public void onClickAt(View view, float f, float f2) {
-                }
-
-                @Override
-                public void onClickTouchDown(View view, float f, float f2) {
-                    ClickHelper.Delegate.CC.$default$onClickTouchDown(this, view, f, f2);
-                }
-
-                @Override
-                public void onClickTouchMove(View view, float f, float f2) {
-                    ClickHelper.Delegate.CC.$default$onClickTouchMove(this, view, f, f2);
-                }
-
-                @Override
-                public void onClickTouchUp(View view, float f, float f2) {
-                    ClickHelper.Delegate.CC.$default$onClickTouchUp(this, view, f, f2);
-                }
-
-                @Override
-                public void onLongPressFinish(View view, float f, float f2) {
-                    ClickHelper.Delegate.CC.$default$onLongPressFinish(this, view, f, f2);
-                }
-
-                @Override
-                public void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
-                    ClickHelper.Delegate.CC.$default$onLongPressMove(this, view, motionEvent, f, f2, f3, f4);
-                }
-
-                @Override
-                public boolean onLongPressRequestedAt(View view, float f, float f2) {
-                    TabsSelectorView.this.lensVisibilityByLongClick.setInterpolator(AnimatorUtils.OVERSHOOT_INTERPOLATOR);
-                    TabsSelectorView.this.lensVisibilityByLongClick.setValue(true, true);
-                    return false;
-                }
-
-                @Override
-                public void onLongPressCancelled(View view, float f, float f2) {
-                    TabsSelectorView.this.lensVisibilityByLongClick.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                    TabsSelectorView.this.lensVisibilityByLongClick.setValue(false, true);
-                }
-            });
             updateColors();
         }
 
@@ -577,47 +537,49 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             setLensColor(Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.09f), Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.09f));
         }
 
-        @Override
-        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            this.clickHelper.onTouchEvent(this, motionEvent);
-            return super.dispatchTouchEvent(motionEvent);
-        }
-
-        public void selectTab(int i, boolean z) {
+        public void selectTab(int i, boolean z, boolean z2) {
             int i2 = this.selectedTab;
             if (i2 != i) {
                 if (i2 >= 0) {
                     GlassTabView[] glassTabViewArr = this.tabs;
                     if (i2 < glassTabViewArr.length) {
-                        glassTabViewArr[i2].setSelected(false, true);
+                        glassTabViewArr[i2].setSelected(false, z);
                     }
                 }
-                this.tabs[i].setSelected(true, true);
-                long jAbs = (Math.abs(this.selectedTab - i) * 100) + 320;
+                if (i >= 0) {
+                    GlassTabView[] glassTabViewArr2 = this.tabs;
+                    if (i < glassTabViewArr2.length) {
+                        glassTabViewArr2[i].setSelected(true, z);
+                    }
+                }
+                if (z2) {
+                    if (z) {
+                        this.animator.setDuration((Math.abs(this.selectedTab - i) * 100) + 320);
+                        this.animator.animateTo(i);
+                    } else {
+                        this.animator.forceFactor(i);
+                    }
+                }
                 this.selectedTab = i;
-                if (z) {
-                    this.animator.setDuration(jAbs);
-                    this.animator.animateTo(i);
-                }
-                this.lensVisibilityByMove.setDuration(jAbs);
-                if (!this.lensVisibilityByMove.isAnimating()) {
-                    this.lensVisibilityByMove.setValue(false, false);
-                }
-                this.lensVisibilityByMove.setValue(true, true);
             }
+        }
+
+        public void setGestureSelectedOverride(float f, boolean z) {
+            this.hasGestureSelectedOverride = z;
+            for (int i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].setGestureSelectedOverride(Math.max(0.0f, 1.0f - Math.abs(i - f)), z);
+            }
+            invalidate();
         }
 
         private void updateLens() {
             float factor = this.animator.getFactor();
             setLensBounds(AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), factor / 4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), (factor + 1.0f) / 4.0f), getMeasuredHeight() - AndroidUtilities.dp(12.0f));
-            this.lensVisibilityByLongClick.getFloatValue();
-            this.lensVisibilityByDrag.getFloatValue();
-            float floatValue = this.lensVisibilityByMove.getFloatValue() * 2.0f;
-            if (floatValue < 1.0f) {
-                CubicBezierInterpolator.DEFAULT.getInterpolation(floatValue);
-            } else {
-                CubicBezierInterpolator.DEFAULT.getInterpolation(1.0f - (1.0f - (floatValue - 1.0f)));
-            }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
         }
 
         @Override
@@ -629,17 +591,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         @Override
         public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
             if (i == 0) {
-                updateLens();
-                invalidate();
-                return;
-            }
-            if (i == 1) {
-                updateLens();
-                invalidate();
-            } else if (i == 2) {
-                updateLens();
-                invalidate();
-            } else if (i == 3) {
                 updateLens();
                 invalidate();
             }

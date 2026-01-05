@@ -1638,7 +1638,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         final int[] iArr = new int[11];
         final Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$onEventReceived$31(iArr, file, alertDialog, str, str2, str3);
             }
         };
@@ -1650,7 +1650,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         });
     }
 
-    public void lambda$onEventReceived$31(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) throws IOException {
+    public void lambda$onEventReceived$31(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) {
         StoryRecorder.SourceView sourceView;
         StoryEntry storyEntryFromPhotoShoot;
         File file2;

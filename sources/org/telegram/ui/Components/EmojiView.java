@@ -4403,9 +4403,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         arrayList.add(tL_inputStickerSetID);
         new EmojiPacksAlert(this.fragment, getContext(), this.resourcesProvider, arrayList) {
             @Override
-            public void lambda$new$0() {
+            public void dismiss() {
                 EmojiView.this.emojiPackAlertOpened = false;
-                super.lambda$new$0();
+                super.dismiss();
             }
 
             @Override

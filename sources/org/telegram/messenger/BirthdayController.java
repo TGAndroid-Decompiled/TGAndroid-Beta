@@ -65,7 +65,7 @@ public class BirthdayController {
                     }
                     MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() {
                             this.f$0.lambda$new$1(i, arrayList, tL_birthdaysTLdeserialize);
                         }
                     });
@@ -77,7 +77,7 @@ public class BirthdayController {
         this.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
     }
 
-    public void lambda$new$1(int i, ArrayList arrayList, final TL_birthdays tL_birthdays) throws InterruptedException {
+    public void lambda$new$1(int i, ArrayList arrayList, final TL_birthdays tL_birthdays) {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

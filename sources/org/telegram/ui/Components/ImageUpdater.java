@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -800,18 +799,18 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
             photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$98(photoCropActivity);
+            launchActivity.lambda$runLinkRequest$97(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
             processBitmap(false, ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
         }
     }
 
-    public void openPhotoForEdit(String str, String str2, int i, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public void openPhotoForEdit(String str, String str2, int i, boolean z) {
         openPhotoForEdit(str, str2, new Pair(Integer.valueOf(i), 0), z);
     }
 
-    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) {
         final ArrayList arrayList = new ArrayList();
         MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
         orientation.isVideo = z;
@@ -845,7 +844,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation = true;
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) throws Resources.NotFoundException, NumberFormatException {
+    public void onActivityResult(int i, int i2, Intent intent) {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();

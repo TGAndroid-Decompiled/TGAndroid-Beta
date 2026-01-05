@@ -578,7 +578,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
     private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private int infoPosition1;
-        private int infoPosition2;
         private int languagesStartsPosition;
         private Context mContext;
         private boolean search;
@@ -617,9 +616,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     i2++;
                 }
                 i = i2 + 1;
-                if (!"system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) || !"system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
-                    i = i2 + 2;
-                }
             } else {
                 i = 1;
             }
@@ -709,29 +705,19 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     this.infoPosition1 = i;
                     return 6;
                 }
-                if ("system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) && "system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
-                    this.infoPosition2 = -1;
-                } else {
-                    int i7 = i3 - 2;
-                    if (i2 == 0) {
-                        this.infoPosition2 = i;
-                        return 6;
-                    }
-                    i2 = i7;
-                }
             } else {
                 this.settingsFromPosition = -1;
                 this.settingsToPosition = -1;
                 i2 = i;
             }
-            int i8 = i2 - 1;
+            int i7 = i2 - 1;
             if (i2 == 0) {
                 return 3;
             }
-            if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i8 == LanguageSelectActivity.this.unofficialLanguages.size() || i8 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i8 == LanguageSelectActivity.this.sortedLanguages.size())) {
+            if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i7 == LanguageSelectActivity.this.unofficialLanguages.size() || i7 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i7 == LanguageSelectActivity.this.sortedLanguages.size())) {
                 return 1;
             }
-            this.languagesStartsPosition = i - i8;
+            this.languagesStartsPosition = i - i7;
             return 0;
         }
     }

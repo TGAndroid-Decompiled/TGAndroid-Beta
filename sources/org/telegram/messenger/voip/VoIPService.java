@@ -1821,7 +1821,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return -inputPeer.chat_id;
     }
 
-    public void onGroupCallParticipantsUpdate(TLRPC.TL_updateGroupCallParticipants tL_updateGroupCallParticipants) throws InterruptedException {
+    public void onGroupCallParticipantsUpdate(TLRPC.TL_updateGroupCallParticipants tL_updateGroupCallParticipants) {
         ChatObject.Call call = this.groupCall;
         if (call == null || call.call.id != tL_updateGroupCallParticipants.call.id) {
             return;
@@ -1882,7 +1882,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void onGroupCallUpdated(TLRPC.GroupCall groupCall) throws InterruptedException {
+    public void onGroupCallUpdated(TLRPC.GroupCall groupCall) {
         boolean zOptBoolean;
         TLRPC.TL_dataJSON tL_dataJSON;
         ChatObject.Call call = this.groupCall;
@@ -1939,7 +1939,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.lastGroupCallUpdate = groupCall;
     }
 
-    public void onCallUpdated(org.telegram.tgnet.tl.TL_phone.PhoneCall r8) throws java.lang.Exception {
+    public void onCallUpdated(org.telegram.tgnet.tl.TL_phone.PhoneCall r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.onCallUpdated(org.telegram.tgnet.tl.TL_phone$PhoneCall):void");
     }
 

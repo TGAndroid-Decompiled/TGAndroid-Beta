@@ -977,14 +977,14 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         } else {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$searchDialogsInternal$13(lowerCase, i, str);
                 }
             });
         }
     }
 
-    public void lambda$searchDialogsInternal$13(String str, int i, String str2) throws Throwable {
+    public void lambda$searchDialogsInternal$13(String str, int i, String str2) {
         ArrayList<Object> arrayList = new ArrayList<>();
         ArrayList<CharSequence> arrayList2 = new ArrayList<>();
         ArrayList<TLRPC.User> arrayList3 = new ArrayList<>();

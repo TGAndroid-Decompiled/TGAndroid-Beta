@@ -145,7 +145,7 @@ public class LiteMode {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.updatePresets(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
     }
 
-    public static void loadPreference() {
+    public static void loadPreference() throws IOException {
         int i = PRESET_HIGH;
         int i2 = BATTERY_HIGH;
         if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -210,7 +210,7 @@ public class LiteMode {
         MessagesController.getGlobalMainSettings().edit().putInt("lite_mode6", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
-    public static int getPowerSaverLevel() {
+    public static int getPowerSaverLevel() throws IOException {
         if (!loaded) {
             loadPreference();
         }

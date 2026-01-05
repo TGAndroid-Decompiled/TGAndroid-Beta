@@ -791,7 +791,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, NumberFormatException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);

@@ -131,9 +131,10 @@ import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.MainTabsActivity;
+import org.telegram.ui.RightSlidingDialogContainer;
 import org.telegram.ui.TopicsFragment;
 
-public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, MainTabsActivity.TabFragmentDelegate {
+public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, RightSlidingDialogContainer.BaseFragmentWithFullscreen, MainTabsActivity.TabFragmentDelegate {
     private static HashSet settingsPreloaded = new HashSet();
     Adapter adapter;
     private ActionBarMenuSubItem addMemberSubMenu;
@@ -311,6 +312,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     @Override
     public boolean shouldShowImport() {
         return ChatActivityInterface.CC.$default$shouldShowImport(this);
+    }
+
+    @Override
+    public View getFullscreenView() {
+        return this.fullscreenView;
     }
 
     public TopicsFragment(Bundle bundle) {
@@ -1569,6 +1575,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     public void setTransitionPadding(int i) {
         this.transitionPadding = i;
         updateFloatingButtonOffset();
+    }
+
+    public void setParentDialogsActivity(DialogsActivity dialogsActivity) {
+        this.parentDialogsActivity = dialogsActivity;
     }
 
     class TopicsRecyclerView extends BlurredRecyclerView {
@@ -3887,7 +3897,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (dialogsActivity2 == null || (rightSlidingDialogContainer = dialogsActivity2.rightSlidingDialogContainer) == null || !rightSlidingDialogContainer.hasFragment()) {
                 return;
             }
-            this.parentDialogsActivity.rightSlidingDialogContainer.finishPreview();
+            this.parentDialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
         }
     }
 

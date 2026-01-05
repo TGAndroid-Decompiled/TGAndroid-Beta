@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
 import java.io.File;
+import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
@@ -27,7 +28,7 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         this.themeDocument = themeDocument;
     }
 
-    private static Bitmap createPreview(File file, DocumentObject.ThemeDocument themeDocument) {
+    private static Bitmap createPreview(File file, DocumentObject.ThemeDocument themeDocument) throws IOException {
         BitmapDrawable bitmapDrawableCreateDitheredGradientBitmapDrawable;
         MotionBackgroundDrawable motionBackgroundDrawable;
         boolean z;

@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -249,14 +248,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             final MemberRequestCell memberRequestCell = (MemberRequestCell) view;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$onItemClick$1(memberRequestCell);
                 }
             }, this.isSearchExpanded ? 100L : 0L);
         }
     }
 
-    public void lambda$onItemClick$1(MemberRequestCell memberRequestCell) throws Resources.NotFoundException {
+    public void lambda$onItemClick$1(MemberRequestCell memberRequestCell) {
         TLRPC.TL_chatInviteImporter importer = memberRequestCell.getImporter();
         this.importer = importer;
         TLRPC.User user = (TLRPC.User) this.users.get(importer.user_id);
@@ -1060,7 +1059,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             getWindow().setAttributes(attributes);
         }
 
-        public void setImporter(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, BackupImageView backupImageView) throws Resources.NotFoundException {
+        public void setImporter(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, BackupImageView backupImageView) {
             this.importer = tL_chatInviteImporter;
             this.imageView = backupImageView;
             TLRPC.User user = MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUser(Long.valueOf(tL_chatInviteImporter.user_id));

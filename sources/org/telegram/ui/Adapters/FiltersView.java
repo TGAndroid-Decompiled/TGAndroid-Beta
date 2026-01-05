@@ -258,7 +258,7 @@ public class FiltersView extends RecyclerListView {
         }
     }
 
-    public static void fillTipDates(String str, ArrayList arrayList) throws NumberFormatException {
+    public static void fillTipDates(String str, ArrayList arrayList) {
         arrayList.clear();
         if (str == null) {
             return;

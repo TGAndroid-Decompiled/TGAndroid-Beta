@@ -40,7 +40,7 @@ public class WebmEncoder {
 
     private static native boolean writeFrame(long j, ByteBuffer byteBuffer, int i, int i2);
 
-    public static boolean convert(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r19, int r20) throws java.lang.Throwable {
+    public static boolean convert(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r19, int r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.WebmEncoder.convert(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, int):boolean");
     }
 

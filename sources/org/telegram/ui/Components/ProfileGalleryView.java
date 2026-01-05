@@ -886,11 +886,11 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
     }
 
-    public void setData(long j) throws Resources.NotFoundException {
+    public void setData(long j) {
         setData(j, false);
     }
 
-    public void setData(long j, boolean z) throws Resources.NotFoundException {
+    public void setData(long j, boolean z) {
         if (this.dialogId == j && !z) {
             resetCurrentItem();
             return;

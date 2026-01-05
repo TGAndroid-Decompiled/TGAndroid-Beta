@@ -5660,11 +5660,11 @@ public class AndroidUtilities {
         return Math.max(i, i2) >= Math.min(i3, i4) && Math.max(i3, i4) >= Math.min(i, i2);
     }
 
-    public static java.lang.String getSysInfoString(java.lang.String r3) throws java.lang.Throwable {
+    public static java.lang.String getSysInfoString(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.getSysInfoString(java.lang.String):java.lang.String");
     }
 
-    public static Long getSysInfoLong(String str) throws Throwable {
+    public static Long getSysInfoLong(String str) {
         String sysInfoString = getSysInfoString(str);
         if (sysInfoString == null) {
             return null;

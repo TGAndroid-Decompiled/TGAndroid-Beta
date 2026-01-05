@@ -152,13 +152,13 @@ public class StoriesStorage {
     public void saveAllStories(final ArrayList arrayList, final boolean z, final boolean z2, final Runnable runnable) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$saveAllStories$4(arrayList, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) throws InterruptedException {
+    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
         SQLiteDatabase database = this.storage.getDatabase();
         for (int i = 0; i < arrayList.size(); i++) {
             TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i);
@@ -314,13 +314,13 @@ public class StoriesStorage {
         }
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$updateMaxReadId$8(j, i);
             }
         });
     }
 
-    public void lambda$updateMaxReadId$8(long j, int i) throws InterruptedException {
+    public void lambda$updateMaxReadId$8(long j, int i) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, 0, %d)", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -331,13 +331,13 @@ public class StoriesStorage {
     public void processUpdate(final TL_stories.TL_updateStory tL_updateStory) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$processUpdate$9(tL_updateStory);
             }
         });
     }
 
-    public void lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories.TL_updateStory r12) throws java.lang.InterruptedException {
+    public void lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories.TL_updateStory r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories$TL_updateStory):void");
     }
 
@@ -359,13 +359,13 @@ public class StoriesStorage {
     public void deleteStory(final long j, final int i) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteStory$11(j, i);
             }
         });
     }
 
-    public void lambda$deleteStory$11(long j, int i) throws InterruptedException {
+    public void lambda$deleteStory$11(long j, int i) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -376,13 +376,13 @@ public class StoriesStorage {
     public void deleteStories(final long j, final ArrayList arrayList) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteStories$12(arrayList, j);
             }
         });
     }
 
-    public void lambda$deleteStories$12(ArrayList arrayList, long j) throws InterruptedException {
+    public void lambda$deleteStories$12(ArrayList arrayList, long j) {
         SQLiteDatabase database = this.storage.getDatabase();
         try {
             database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id IN (%s)", Long.valueOf(j), TextUtils.join(", ", arrayList))).stepThis().dispose();
@@ -488,7 +488,7 @@ public class StoriesStorage {
                 if (z) {
                     this.storage.getStorageQueue().postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() {
                             this.f$0.lambda$fillMessagesWithStories$13(arrayList);
                         }
                     });
@@ -557,7 +557,7 @@ public class StoriesStorage {
         return messageObject.messageOwner.reply_to.story_id;
     }
 
-    public void lambda$fillMessagesWithStories$13(List list) throws InterruptedException {
+    public void lambda$fillMessagesWithStories$13(List list) {
         try {
             SQLiteDatabase database = this.storage.getDatabase();
             if (list.isEmpty()) {
@@ -624,13 +624,13 @@ public class StoriesStorage {
     public void getMaxReadIds(final Consumer consumer) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$getMaxReadIds$16(consumer);
             }
         });
     }
 
-    public void lambda$getMaxReadIds$16(final Consumer consumer) throws InterruptedException {
+    public void lambda$getMaxReadIds$16(final Consumer consumer) {
         SQLiteDatabase database = this.storage.getDatabase();
         final LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         try {
@@ -665,13 +665,13 @@ public class StoriesStorage {
     public void deleteAllUserStories(final long j) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteAllUserStories$18(j);
             }
         });
     }
 
-    public void lambda$deleteAllUserStories$18(long j) throws InterruptedException {
+    public void lambda$deleteAllUserStories$18(long j) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d", Long.valueOf(j))).stepThis().dispose();
         } catch (Throwable th) {

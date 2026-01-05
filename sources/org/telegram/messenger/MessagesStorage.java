@@ -265,13 +265,13 @@ public class MessagesStorage extends BaseController {
         dispatchQueue.setPriority(8);
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws Exception {
                 this.f$0.lambda$new$0();
             }
         });
     }
 
-    public void lambda$new$0() throws InterruptedException {
+    public void lambda$new$0() throws Exception {
         openDatabase(1);
     }
 
@@ -322,7 +322,7 @@ public class MessagesStorage extends BaseController {
         return file2 != null ? length + file2.length() : length;
     }
 
-    public void openDatabase(int i) throws InterruptedException {
+    public void openDatabase(int i) throws Exception {
         if (!NativeLoader.loaded()) {
             int i2 = 0;
             while (!NativeLoader.loaded()) {
@@ -467,7 +467,7 @@ public class MessagesStorage extends BaseController {
         getUserConfig().saveConfig(false);
     }
 
-    private boolean recoverDatabase() throws InterruptedException {
+    private boolean recoverDatabase() throws Exception {
         this.database.close();
         boolean zRecoverDatabase = DatabaseMigrationHelper.recoverDatabase(this.cacheFile, this.walCacheFile, this.shmCacheFile, this.currentAccount);
         FileLog.e("Database restored = " + zRecoverDatabase);
@@ -764,13 +764,13 @@ public class MessagesStorage extends BaseController {
     public void cleanup(final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws Exception {
                 this.f$0.lambda$cleanup$6(z);
             }
         });
     }
 
-    public void lambda$cleanup$6(boolean z) throws InterruptedException {
+    public void lambda$cleanup$6(boolean z) throws Exception {
         cleanupInternal(true);
         openDatabase(1);
         if (z) {
@@ -790,13 +790,13 @@ public class MessagesStorage extends BaseController {
     public void saveSecretParams(final int i, final int i2, final byte[] bArr) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$saveSecretParams$7(i, i2, bArr);
             }
         });
     }
 
-    public void lambda$saveSecretParams$7(int i, int i2, byte[] bArr) throws InterruptedException {
+    public void lambda$saveSecretParams$7(int i, int i2, byte[] bArr) {
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.database.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
             sQLitePreparedStatementExecuteFast.bindInteger(1, i);
@@ -814,11 +814,11 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void checkSQLException(Throwable th) throws InterruptedException {
+    public void checkSQLException(Throwable th) {
         checkSQLException(th, true);
     }
 
-    private void checkSQLException(Throwable th, boolean z) throws InterruptedException {
+    private void checkSQLException(Throwable th, boolean z) {
         if ((th instanceof SQLiteException) && th.getMessage() != null && th.getMessage().contains("is malformed") && !this.tryRecover) {
             this.tryRecover = true;
             FileLog.e("disk image malformed detected, try recover");
@@ -847,13 +847,13 @@ public class MessagesStorage extends BaseController {
     public void fixNotificationSettings() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$fixNotificationSettings$9();
             }
         });
     }
 
-    public void lambda$fixNotificationSettings$9() throws InterruptedException {
+    public void lambda$fixNotificationSettings$9() {
         try {
             LongSparseArray longSparseArray = new LongSparseArray();
             Map<String, ?> all = MessagesController.getNotificationsSettings(this.currentAccount).getAll();
@@ -929,13 +929,13 @@ public class MessagesStorage extends BaseController {
     public void removePendingTask(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$removePendingTask$11(j);
             }
         });
     }
 
-    public void lambda$removePendingTask$11(long j) throws InterruptedException {
+    public void lambda$removePendingTask$11(long j) {
         try {
             this.database.executeFast("DELETE FROM pending_tasks WHERE id = " + j).stepThis().dispose();
         } catch (Exception e) {
@@ -946,13 +946,13 @@ public class MessagesStorage extends BaseController {
     private void loadPendingTasks() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$loadPendingTasks$33();
             }
         });
     }
 
-    public void lambda$loadPendingTasks$33() throws java.lang.InterruptedException {
+    public void lambda$loadPendingTasks$33() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadPendingTasks$33():void");
     }
 
@@ -1043,13 +1043,13 @@ public class MessagesStorage extends BaseController {
     public void saveChannelPts(final long j, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$saveChannelPts$34(i, j);
             }
         });
     }
 
-    public void lambda$saveChannelPts$34(int i, long j) throws InterruptedException {
+    public void lambda$saveChannelPts$34(int i, long j) {
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.database.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
             sQLitePreparedStatementExecuteFast.bindInteger(1, i);
@@ -1061,7 +1061,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$saveDiffParams$35(int i, int i2, int i3, int i4) throws InterruptedException {
+    public void lambda$saveDiffParams$35(int i, int i2, int i3, int i4) {
         try {
             if (this.lastSavedSeq == i && this.lastSavedPts == i2 && this.lastSavedDate == i3 && this.lastQtsValue == i4) {
                 return;
@@ -1085,7 +1085,7 @@ public class MessagesStorage extends BaseController {
     public void saveDiffParams(final int i, final int i2, final int i3, final int i4) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$saveDiffParams$35(i, i2, i3, i4);
             }
         });
@@ -1107,13 +1107,13 @@ public class MessagesStorage extends BaseController {
     public void setDialogFlags(final long j, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$setDialogFlags$37(j, j2);
             }
         });
     }
 
-    public void lambda$setDialogFlags$37(long j, long j2) throws InterruptedException {
+    public void lambda$setDialogFlags$37(long j, long j2) {
         try {
             SQLiteCursor sQLiteCursorQueryFinalized = this.database.queryFinalized("SELECT flags FROM dialog_settings WHERE did = " + j, new Object[0]);
             int iIntValue = sQLiteCursorQueryFinalized.next() ? sQLiteCursorQueryFinalized.intValue(0) : 0;
@@ -1131,13 +1131,13 @@ public class MessagesStorage extends BaseController {
     public void putStoryPushMessage(final NotificationsController.StoryNotification storyNotification) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$putStoryPushMessage$38(storyNotification);
             }
         });
     }
 
-    public void lambda$putStoryPushMessage$38(NotificationsController.StoryNotification storyNotification) throws InterruptedException {
+    public void lambda$putStoryPushMessage$38(NotificationsController.StoryNotification storyNotification) {
         try {
             this.database.executeFast("DELETE FROM story_pushes WHERE uid = " + storyNotification.dialogId).stepThis().dispose();
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.database.executeFast("REPLACE INTO story_pushes VALUES(?, ?, ?, ?, ?, ?)");
@@ -1166,13 +1166,13 @@ public class MessagesStorage extends BaseController {
     public void deleteStoryPushMessage(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteStoryPushMessage$39(j);
             }
         });
     }
 
-    public void lambda$deleteStoryPushMessage$39(long j) throws InterruptedException {
+    public void lambda$deleteStoryPushMessage$39(long j) {
         try {
             this.database.executeFast("DELETE FROM story_pushes WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
@@ -1183,13 +1183,13 @@ public class MessagesStorage extends BaseController {
     public void deleteAllStoryPushMessages() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteAllStoryPushMessages$40();
             }
         });
     }
 
-    public void lambda$deleteAllStoryPushMessages$40() throws InterruptedException {
+    public void lambda$deleteAllStoryPushMessages$40() {
         try {
             this.database.executeFast("DELETE FROM story_pushes").stepThis().dispose();
         } catch (Exception e) {
@@ -1200,13 +1200,13 @@ public class MessagesStorage extends BaseController {
     public void deleteAllStoryReactionPushMessages() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteAllStoryReactionPushMessages$41();
             }
         });
     }
 
-    public void lambda$deleteAllStoryReactionPushMessages$41() throws InterruptedException {
+    public void lambda$deleteAllStoryReactionPushMessages$41() {
         try {
             this.database.executeFast("DELETE FROM unread_push_messages WHERE is_reaction = 2").stepThis().dispose();
         } catch (Exception e) {
@@ -1217,13 +1217,13 @@ public class MessagesStorage extends BaseController {
     public void putPushMessage(final MessageObject messageObject) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$putPushMessage$42(messageObject);
             }
         });
     }
 
-    public void lambda$putPushMessage$42(MessageObject messageObject) throws InterruptedException {
+    public void lambda$putPushMessage$42(MessageObject messageObject) {
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageObject.messageOwner.getObjectSize());
             messageObject.messageOwner.serializeToStream(nativeByteBuffer);
@@ -1352,7 +1352,7 @@ public class MessagesStorage extends BaseController {
         getMessagesController().putChats(arrayList2, true);
     }
 
-    public void loadGroupedMessagesForTopicUpdates(ArrayList<TopicsController.TopicUpdate> arrayList) throws InterruptedException {
+    public void loadGroupedMessagesForTopicUpdates(ArrayList<TopicsController.TopicUpdate> arrayList) {
         if (arrayList == null) {
             return;
         }
@@ -1397,7 +1397,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void loadGroupedMessagesForTopics(long j, ArrayList<TLRPC.TL_forumTopic> arrayList) throws InterruptedException {
+    public void loadGroupedMessagesForTopics(long j, ArrayList<TLRPC.TL_forumTopic> arrayList) {
         if (arrayList == null) {
             return;
         }
@@ -1608,13 +1608,13 @@ public class MessagesStorage extends BaseController {
     public void updateTopicsWithReadMessages(final HashMap<TopicKey, Integer> map) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$updateTopicsWithReadMessages$56(map);
             }
         });
     }
 
-    public void lambda$updateTopicsWithReadMessages$56(HashMap map) throws InterruptedException {
+    public void lambda$updateTopicsWithReadMessages$56(HashMap map) {
         for (TopicKey topicKey : map.keySet()) {
             Integer num = (Integer) map.get(topicKey);
             num.intValue();
@@ -1629,13 +1629,13 @@ public class MessagesStorage extends BaseController {
     public void setDialogTtl(final long j, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$setDialogTtl$57(i, j);
             }
         });
     }
 
-    public void lambda$setDialogTtl$57(int i, long j) throws InterruptedException {
+    public void lambda$setDialogTtl$57(int i, long j) {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE dialogs SET ttl_period = %d WHERE did = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (SQLiteException e) {
@@ -1677,13 +1677,13 @@ public class MessagesStorage extends BaseController {
     public void fullReset() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws Exception {
                 this.f$0.lambda$fullReset$60();
             }
         });
     }
 
-    public void lambda$fullReset$60() throws InterruptedException {
+    public void lambda$fullReset$60() throws Exception {
         cleanupInternal(true);
         clearLoadingDialogsOffsets();
         openDatabase(1);
@@ -2079,7 +2079,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$deleteDialogFilter$69(MessagesController.DialogFilter dialogFilter) throws InterruptedException {
+    public void lambda$deleteDialogFilter$69(MessagesController.DialogFilter dialogFilter) {
         try {
             this.dialogFilters.remove(dialogFilter);
             this.dialogFiltersMap.remove(dialogFilter.id);
@@ -2094,7 +2094,7 @@ public class MessagesStorage extends BaseController {
     public void deleteDialogFilter(final MessagesController.DialogFilter dialogFilter) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteDialogFilter$69(dialogFilter);
             }
         });
@@ -2242,13 +2242,13 @@ public class MessagesStorage extends BaseController {
     public void deleteWallpaper(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteWallpaper$76(j);
             }
         });
     }
 
-    public void lambda$deleteWallpaper$76(long j) throws InterruptedException {
+    public void lambda$deleteWallpaper$76(long j) {
         try {
             this.database.executeFast("DELETE FROM wallpapers2 WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
@@ -2486,13 +2486,13 @@ public class MessagesStorage extends BaseController {
     public void onDeleteQueryComplete(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$onDeleteQueryComplete$86(j);
             }
         });
     }
 
-    public void lambda$onDeleteQueryComplete$86(long j) throws InterruptedException {
+    public void lambda$onDeleteQueryComplete$86(long j) {
         try {
             this.database.executeFast("DELETE FROM media_counts_v2 WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
@@ -2503,13 +2503,13 @@ public class MessagesStorage extends BaseController {
     public void clearUserPhotos(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$clearUserPhotos$87(j);
             }
         });
     }
 
-    public void lambda$clearUserPhotos$87(long j) throws InterruptedException {
+    public void lambda$clearUserPhotos$87(long j) {
         try {
             this.database.executeFast("DELETE FROM dialog_photos WHERE uid = " + j).stepThis().dispose();
             this.database.executeFast("DELETE FROM dialog_photos_count WHERE uid = " + j).stepThis().dispose();
@@ -2521,13 +2521,13 @@ public class MessagesStorage extends BaseController {
     public void clearUserPhoto(final long j, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$clearUserPhoto$88(j, j2);
             }
         });
     }
 
-    public void lambda$clearUserPhoto$88(long j, long j2) throws InterruptedException {
+    public void lambda$clearUserPhoto$88(long j, long j2) {
         try {
             this.database.executeFast("DELETE FROM dialog_photos WHERE uid = " + j + " AND id = " + j2).stepThis().dispose();
             this.database.executeFast("UPDATE dialog_photos_count SET count = count - 1 WHERE uid = " + j + " AND count > 0").stepThis().dispose();
@@ -3262,13 +3262,13 @@ public class MessagesStorage extends BaseController {
     public void markMessageAsMention(final long j, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$markMessageAsMention$108(i, j);
             }
         });
     }
 
-    public void lambda$markMessageAsMention$108(int i, long j) throws InterruptedException {
+    public void lambda$markMessageAsMention$108(int i, long j) {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE messages_v2 SET mention = 1, read_state = read_state & ~2 WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (Exception e) {
@@ -3384,7 +3384,7 @@ public class MessagesStorage extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesReadContent, Long.valueOf(j), arrayList);
     }
 
-    private void updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray r29, org.telegram.messenger.support.LongSparseIntArray r30, boolean r31) throws java.lang.InterruptedException {
+    private void updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray r29, org.telegram.messenger.support.LongSparseIntArray r30, boolean r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, boolean):void");
     }
 
@@ -3398,7 +3398,7 @@ public class MessagesStorage extends BaseController {
         this.archiveUnreadCount = this.pendingArchiveUnreadCount;
     }
 
-    private void updateDialogsWithReadMessagesInternal(ArrayList<Integer> arrayList, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) throws InterruptedException {
+    private void updateDialogsWithReadMessagesInternal(ArrayList<Integer> arrayList, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
         LongSparseIntArray longSparseIntArray4;
         ArrayList<Long> arrayList2;
         ArrayList<Long> arrayList3;
@@ -3667,7 +3667,7 @@ public class MessagesStorage extends BaseController {
         if (z) {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$updateDialogsWithReadMessages$115(longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
                 }
             });
@@ -3676,7 +3676,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateDialogsWithReadMessages$115(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) throws InterruptedException {
+    public void lambda$updateDialogsWithReadMessages$115(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
         updateDialogsWithReadMessagesInternal(null, longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
     }
 
@@ -4045,7 +4045,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getBotCache$122(int, java.lang.String, org.telegram.tgnet.RequestDelegate):void");
     }
 
-    public ArrayList<TLRPC.UserFull> loadUserInfos(HashSet<Long> hashSet) throws InterruptedException {
+    public ArrayList<TLRPC.UserFull> loadUserInfos(HashSet<Long> hashSet) {
         ArrayList<TLRPC.UserFull> arrayList = new ArrayList<>();
         try {
             String strJoin = TextUtils.join(",", hashSet);
@@ -4731,13 +4731,13 @@ public class MessagesStorage extends BaseController {
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$deleteContacts$142(arrayList);
             }
         });
     }
 
-    public void lambda$deleteContacts$142(ArrayList arrayList) throws InterruptedException {
+    public void lambda$deleteContacts$142(ArrayList arrayList) {
         try {
             String strJoin = TextUtils.join(",", arrayList);
             this.database.executeFast("DELETE FROM contacts WHERE uid IN(" + strJoin + ")").stepThis().dispose();
@@ -4752,13 +4752,13 @@ public class MessagesStorage extends BaseController {
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$applyPhoneBookUpdates$143(str, str2);
             }
         });
     }
 
-    public void lambda$applyPhoneBookUpdates$143(String str, String str2) throws InterruptedException {
+    public void lambda$applyPhoneBookUpdates$143(String str, String str2) {
         try {
             if (str.length() != 0) {
                 this.database.executeFast(String.format(Locale.US, "UPDATE user_phones_v7 SET deleted = 0 WHERE sphone IN(%s)", str)).stepThis().dispose();
@@ -5085,13 +5085,13 @@ public class MessagesStorage extends BaseController {
     public void clearSentMedia() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$clearSentMedia$158();
             }
         });
     }
 
-    public void lambda$clearSentMedia$158() throws InterruptedException {
+    public void lambda$clearSentMedia$158() {
         try {
             this.database.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
         } catch (Exception e) {
@@ -5153,13 +5153,13 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void updateWidgets(long j) throws InterruptedException {
+    private void updateWidgets(long j) {
         ArrayList<Long> arrayList = new ArrayList<>();
         arrayList.add(Long.valueOf(j));
         updateWidgets(arrayList);
     }
 
-    private void updateWidgets(ArrayList<Long> arrayList) throws InterruptedException {
+    private void updateWidgets(ArrayList<Long> arrayList) {
         if (arrayList.isEmpty()) {
             return;
         }
@@ -5182,13 +5182,13 @@ public class MessagesStorage extends BaseController {
     public void putWidgetDialogs(final int i, final ArrayList<TopicKey> arrayList) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$putWidgetDialogs$160(i, arrayList);
             }
         });
     }
 
-    public void lambda$putWidgetDialogs$160(int i, ArrayList arrayList) throws InterruptedException {
+    public void lambda$putWidgetDialogs$160(int i, ArrayList arrayList) {
         try {
             this.database.beginTransaction();
             this.database.executeFast("DELETE FROM shortcut_widget WHERE id = " + i).stepThis().dispose();
@@ -5220,13 +5220,13 @@ public class MessagesStorage extends BaseController {
     public void clearWidgetDialogs(final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$clearWidgetDialogs$161(i);
             }
         });
     }
 
-    public void lambda$clearWidgetDialogs$161(int i) throws InterruptedException {
+    public void lambda$clearWidgetDialogs$161(int i) {
         try {
             this.database.executeFast("DELETE FROM shortcut_widget WHERE id = " + i).stepThis().dispose();
         } catch (Exception e) {
@@ -5913,7 +5913,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void putUsersInternal(List<TLRPC.User> list) throws InterruptedException {
+    private void putUsersInternal(List<TLRPC.User> list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -6084,11 +6084,11 @@ public class MessagesStorage extends BaseController {
         sQLitePreparedStatementExecuteFast.dispose();
     }
 
-    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2) throws InterruptedException {
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2) {
         getUsersInternal(arrayList, arrayList2, false);
     }
 
-    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2, boolean z) throws InterruptedException {
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2, boolean z) {
         if (arrayList == null || arrayList.isEmpty() || arrayList2 == null) {
             return;
         }
@@ -6134,7 +6134,7 @@ public class MessagesStorage extends BaseController {
         sQLiteCursorQueryFinalized.dispose();
     }
 
-    public void getUsersInternal(HashSet<Long> hashSet, ArrayList<TLRPC.User> arrayList) throws InterruptedException {
+    public void getUsersInternal(HashSet<Long> hashSet, ArrayList<TLRPC.User> arrayList) {
         if (hashSet == null || hashSet.isEmpty() || arrayList == null) {
             return;
         }
@@ -6173,11 +6173,11 @@ public class MessagesStorage extends BaseController {
         sQLiteCursorQueryFinalized.dispose();
     }
 
-    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList) throws InterruptedException {
+    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList) {
         getChatsInternal(str, arrayList, true);
     }
 
-    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList, boolean z) throws InterruptedException {
+    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList, boolean z) {
         if (str == null || str.length() == 0 || arrayList == null) {
             return;
         }
@@ -6224,7 +6224,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void getEncryptedChatsInternal(String str, ArrayList<TLRPC.EncryptedChat> arrayList, ArrayList<Long> arrayList2) throws InterruptedException {
+    public void getEncryptedChatsInternal(String str, ArrayList<TLRPC.EncryptedChat> arrayList, ArrayList<Long> arrayList2) {
         if (str == null || str.length() == 0 || arrayList == null) {
             return;
         }
@@ -6384,13 +6384,13 @@ public class MessagesStorage extends BaseController {
     public void clearDownloadQueue(final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$clearDownloadQueue$178(i);
             }
         });
     }
 
-    public void lambda$clearDownloadQueue$178(int i) throws InterruptedException {
+    public void lambda$clearDownloadQueue$178(int i) {
         try {
             if (i == 0) {
                 this.database.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
@@ -6737,13 +6737,13 @@ public class MessagesStorage extends BaseController {
     public void markMessageAsSendError(final TLRPC.Message message, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$markMessageAsSendError$195(i, message);
             }
         });
     }
 
-    public void lambda$markMessageAsSendError$195(int i, TLRPC.Message message) throws InterruptedException {
+    public void lambda$markMessageAsSendError$195(int i, TLRPC.Message message) {
         try {
             long j = message.id;
             if (MessageObject.isQuickReply(message)) {
@@ -6911,7 +6911,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateUsers$201(ArrayList<TLRPC.User> arrayList, boolean z, boolean z2) throws InterruptedException {
+    public void lambda$updateUsers$201(ArrayList<TLRPC.User> arrayList, boolean z, boolean z2) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -7020,14 +7020,14 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void updateUsers(final ArrayList<TLRPC.User> arrayList, final boolean z, final boolean z2, boolean z3) throws InterruptedException {
+    public void updateUsers(final ArrayList<TLRPC.User> arrayList, final boolean z, final boolean z2, boolean z3) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
         if (z3) {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws Throwable {
                     this.f$0.lambda$updateUsers$201(arrayList, z, z2);
                 }
             });
@@ -8238,13 +8238,13 @@ public class MessagesStorage extends BaseController {
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$putDialogs$237(messages_dialogs, i);
             }
         });
     }
 
-    public void lambda$putDialogs$237(TLRPC.messages_Dialogs messages_dialogs, int i) throws InterruptedException {
+    public void lambda$putDialogs$237(TLRPC.messages_Dialogs messages_dialogs, int i) {
         putDialogsInternal(messages_dialogs, i);
         try {
             loadUnreadMessages();
@@ -8388,7 +8388,7 @@ public class MessagesStorage extends BaseController {
         final Integer[] numArr = {0};
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$getChannelPtsSync$241(j, numArr, countDownLatch);
             }
         });
@@ -8400,7 +8400,7 @@ public class MessagesStorage extends BaseController {
         return numArr[0].intValue();
     }
 
-    public void lambda$getChannelPtsSync$241(long j, Integer[] numArr, CountDownLatch countDownLatch) throws InterruptedException {
+    public void lambda$getChannelPtsSync$241(long j, Integer[] numArr, CountDownLatch countDownLatch) {
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
             try {
@@ -8471,7 +8471,7 @@ public class MessagesStorage extends BaseController {
         countDownLatch.countDown();
     }
 
-    public TLRPC.User getUser(long j) throws InterruptedException {
+    public TLRPC.User getUser(long j) {
         try {
             ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             ArrayList<Long> arrayList2 = new ArrayList<>();
@@ -8486,7 +8486,7 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public ArrayList<TLRPC.User> getUsers(ArrayList<Long> arrayList) throws InterruptedException {
+    public ArrayList<TLRPC.User> getUsers(ArrayList<Long> arrayList) {
         ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
         try {
             getUsersInternal(arrayList, arrayList2);
@@ -8497,7 +8497,7 @@ public class MessagesStorage extends BaseController {
         return arrayList2;
     }
 
-    public ArrayList<TLRPC.Chat> getChats(ArrayList<Long> arrayList) throws InterruptedException {
+    public ArrayList<TLRPC.Chat> getChats(ArrayList<Long> arrayList) {
         ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
         try {
             getChatsInternal(TextUtils.join(",", arrayList), arrayList2);
@@ -8521,7 +8521,7 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public TLRPC.EncryptedChat getEncryptedChat(long j) throws InterruptedException {
+    public TLRPC.EncryptedChat getEncryptedChat(long j) {
         try {
             ArrayList<TLRPC.EncryptedChat> arrayList = new ArrayList<>();
             getEncryptedChatsInternal("" + j, arrayList, null);
@@ -8535,7 +8535,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void localSearch(int r29, java.lang.String r30, java.util.ArrayList<java.lang.Object> r31, java.util.ArrayList<java.lang.CharSequence> r32, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r33, java.util.ArrayList<java.lang.Long> r34, int r35) throws java.lang.Throwable {
+    public void localSearch(int r29, java.lang.String r30, java.util.ArrayList<java.lang.Object> r31, java.util.ArrayList<java.lang.CharSequence> r32, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r33, java.util.ArrayList<java.lang.Long> r34, int r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.localSearch(int, java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
@@ -8795,7 +8795,7 @@ public class MessagesStorage extends BaseController {
         return isForum(j, 4);
     }
 
-    public int getForumTypeFlags(long j) throws InterruptedException {
+    public int getForumTypeFlags(long j) {
         int i = this.dialogIsForumTyped.get(j, -1);
         if (i == -1) {
             int i2 = 0;

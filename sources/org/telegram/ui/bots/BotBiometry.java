@@ -436,14 +436,14 @@ public class BotBiometry {
         } else {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     BotBiometry.lambda$getBots$3(i, arrayList, map, callback);
                 }
             });
         }
     }
 
-    public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) throws InterruptedException {
+    public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

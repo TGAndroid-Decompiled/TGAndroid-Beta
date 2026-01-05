@@ -408,7 +408,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte readByte(boolean z) {
+    public byte readByte(boolean z) throws IOException {
         try {
             byte b = this.in.readByte();
             this.len++;
@@ -450,7 +450,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public String readString(boolean z) throws IOException {
+    public String readString(boolean z) {
         int i;
         try {
             int i2 = this.in.read();

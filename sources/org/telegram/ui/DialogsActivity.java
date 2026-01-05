@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -524,10 +525,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void updateCommentView() {
     }
 
-    public boolean isPremiumRestoreHintVisible() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.isPremiumRestoreHintVisible():boolean");
-    }
-
     @Override
     public boolean isSupportEdgeToEdge() {
         return true;
@@ -537,11 +534,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$23700(DialogsActivity dialogsActivity) {
+    public static void access$24000(DialogsActivity dialogsActivity) {
         dialogsActivity.updateSelectedCount();
     }
 
-    static float access$5524(DialogsActivity dialogsActivity, float f) {
+    static float access$5724(DialogsActivity dialogsActivity, float f) {
         float f2 = dialogsActivity.tabsYOffset - f;
         dialogsActivity.tabsYOffset = f2;
         return f2;
@@ -1107,6 +1104,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
+    public float getSearchFieldAdditionOffset() {
+        return getRightSlidingProgress() * this.animatorSearchVisible.getFloatValue() * (-AndroidUtilities.dp(48.0f));
+    }
+
     public void updateTopPadding() {
         SearchViewPager searchViewPager;
         this.topPadding = this.fragmentContextTopPadding;
@@ -1217,6 +1218,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.alwaysDrawChild = true;
             this.parentPage = viewPage;
             this.additionalClipBottom = AndroidUtilities.dp(200.0f);
+        }
+
+        public void prepareSelectorForAnimation() {
+            this.selectorPositionProgress = 0.0f;
+            this.animateFromSelectorPosition = this.lastDrawSelectorY;
+            this.animateSwitchingSelector = this.rightFragmentOpenedProgress != 0.0f;
         }
 
         public void setViewsOffset(float f) {
@@ -1626,6 +1633,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 int top3 = dialogCell4.getTop() - getPaddingTop();
                 if (z2 && DialogsActivity.this.hasStories) {
                     top3 += AndroidUtilities.dp(81.0f);
+                }
+                if (z2) {
+                    top3 += AndroidUtilities.dp(48.0f);
                 }
                 if (iFindDialogPosition2 >= 0) {
                     ((LinearLayoutManager) getLayoutManager()).scrollToPositionWithOffset(iFindDialogPosition2, top3);
@@ -2221,6 +2231,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void updateStatus(TLRPC.User user, boolean z) {
+        DialogStoriesCell dialogStoriesCell = this.dialogStoriesCell;
+        if (dialogStoriesCell != null) {
+            dialogStoriesCell.updateStatus(user, z);
+        }
         if (this.statusDrawable == null || this.actionBar == null) {
             return;
         }
@@ -2405,6 +2419,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     return super.drawChild(canvas, view, j);
                 }
                 return false;
+            }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                RightSlidingDialogContainer rightSlidingDialogContainer;
+                if (DialogsActivity.this.animatorSearchVisible.getValue() && (rightSlidingDialogContainer = DialogsActivity.this.rightSlidingDialogContainer) != null && rightSlidingDialogContainer.hasFragment()) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
             }
 
             @Override
@@ -2892,7 +2915,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 @Override
-                public final void onItemClick(View view, int i10, float f2, float f3) {
+                public final void onItemClick(View view, int i10, float f2, float f3) throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$createView$14(viewPage, view, i10, f2, f3);
                 }
             });
@@ -3113,7 +3136,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 @Override
-                public void onButtonLongPress(DialogCell dialogCell) {
+                public void onButtonLongPress(DialogCell dialogCell) throws Resources.NotFoundException, NumberFormatException {
                     DialogsActivity dialogsActivity = DialogsActivity.this;
                     DialogsRecyclerView dialogsRecyclerView = viewPage.listView;
                     dialogsActivity.onItemLongClick(dialogsRecyclerView, dialogCell, dialogsRecyclerView.getChildAdapterPosition(dialogCell), 0.0f, 0.0f, viewPage.dialogsType, viewPage.dialogsAdapter);
@@ -3188,7 +3211,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         fragmentFloatingButton.setImageResource(R.drawable.outline_fab_story_24);
         this.floatingButtonStories.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IOException {
+            public final void onClick(View view) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$createView$17(view);
             }
         });
@@ -3463,7 +3486,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             FragmentSearchField fragmentSearchField2 = this.fragmentSearchField;
             if (fragmentSearchField2 != null) {
-                fragmentSearchField2.setTranslationY(-AndroidUtilities.dp(35.0f));
+                fragmentSearchField2.setTranslationY((-AndroidUtilities.dp(35.0f)) + getSearchFieldAdditionOffset());
             }
         } else {
             showSearch(false, false, false);
@@ -3626,6 +3649,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     viewPage2.listView.setOpenRightFragmentProgress(f2);
                 }
                 DialogsActivity.this.checkUi_menuItems();
+                DialogsActivity.this.checkUi_searchFieldVisibility();
             }
         };
         updateFilterTabs(true, false);
@@ -3635,8 +3659,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateStoriesVisibility(false);
         updateFloatingButtonVisibility(false);
         checkUi_menuItems();
-        checkUi_searchFieldHint();
         checkUi_searchFieldVisibility();
+        checkUi_searchFieldHint();
         ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view3, WindowInsetsCompat windowInsetsCompat) {
@@ -3727,9 +3751,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 View view = DialogsActivity.this.fragmentView;
                 if (view != null) {
                     view.invalidate();
-                }
-                if (DialogsActivity.this.fragmentSearchField != null) {
-                    DialogsActivity.this.fragmentSearchField.setTranslationY(f);
                 }
             }
         }
@@ -3974,7 +3995,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         return;
                     }
                 }
-                DialogsActivity.this.rightSlidingDialogContainer.finishPreview();
+                DialogsActivity.this.rightSlidingDialogContainer.lambda$presentFragment$1();
                 if (DialogsActivity.this.searchViewPager != null) {
                     DialogsActivity.this.searchViewPager.updateTabs();
                     return;
@@ -4266,7 +4287,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) {
+    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -4348,7 +4369,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$17(View view) throws IOException {
+    public void lambda$createView$17(View view) throws Resources.NotFoundException, IOException {
         openStoriesRecorder();
     }
 
@@ -4601,7 +4622,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.access$23700(dialogsActivity);
+                    DialogsActivity.access$24000(dialogsActivity);
                 }
             }, 100L);
         }
@@ -5054,6 +5075,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public boolean isStarsSubscriptionHintVisible() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.isStarsSubscriptionHintVisible():boolean");
+    }
+
+    public boolean isPremiumRestoreHintVisible() {
+        return (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || this.folderId != 0 || !MessagesController.getInstance(this.currentAccount).pendingSuggestions.contains("PREMIUM_RESTORE") || getUserConfig().isPremium() || MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false) == null) ? false : true;
     }
 
     public boolean isPremiumChristmasHintVisible() {
@@ -6647,6 +6672,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateProxyButton(false, true);
         updateStoriesVisibility(false);
         checkSuggestClearDatabase();
+        checkUi_mainTabsVisible();
         if (this.filterTabsView == null || (viewPage = this.viewPages[0]) == null || viewPage.dialogsAdapter == null) {
             return;
         }
@@ -6835,9 +6861,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             return false;
         }
+        if (this.animatorSearchVisible.getValue()) {
+            if (z) {
+                this.fragmentSearchField.editText.getText().clear();
+                this.fragmentSearchFieldWatcher.toggleSearch(false);
+                this.fragmentSearchField.editText.clearFocus();
+            }
+            return false;
+        }
         if (this.rightSlidingDialogContainer.hasFragment() && this.rightSlidingDialogContainer.getFragment().onBackPressed(z)) {
             if (z) {
-                this.rightSlidingDialogContainer.finishPreview();
+                this.rightSlidingDialogContainer.lambda$presentFragment$1();
                 SearchViewPager searchViewPager = this.searchViewPager;
                 if (searchViewPager != null) {
                     searchViewPager.updateTabs();
@@ -6889,15 +6923,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (this.dialogStoriesCell.isFullExpanded() && this.dialogStoriesCell.scrollToFirst()) {
             return false;
         }
-        if (!this.animatorSearchVisible.getValue()) {
-            return super.onBackPressed(z);
-        }
-        if (z) {
-            this.fragmentSearchField.editText.getText().clear();
-            this.fragmentSearchFieldWatcher.toggleSearch(false);
-            this.fragmentSearchField.editText.clearFocus();
-        }
-        return false;
+        return super.onBackPressed(z);
     }
 
     @Override
@@ -7314,7 +7340,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -7374,7 +7400,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -7751,6 +7777,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void setScrollY(float f) {
+        AndroidUtilities.printStackTrace("setScrollY: " + f);
         ViewPage[] viewPageArr = this.viewPages;
         if (viewPageArr != null) {
             int i = 0;
@@ -8229,15 +8256,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void scrollToTop(boolean z, boolean z2) {
-        int i = (this.viewPages[0].dialogsType == 0 && hasHiddenArchive() && this.viewPages[0].archivePullViewState == 2) ? 1 : 0;
-        int i2 = (!this.hasStories || z2 || this.dialogStoriesCell.isExpanded()) ? 0 : -AndroidUtilities.dp(81.0f);
-        if (z) {
-            this.viewPages[0].scrollHelper.setScrollDirection(1);
-            this.viewPages[0].scrollHelper.scrollToPosition(i, i2, false, true);
-            resetScroll();
-        } else {
-            this.viewPages[0].layoutManager.scrollToPositionWithOffset(i, i2);
-            resetScroll();
+        RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
+        if (rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment()) {
+            int i = (this.viewPages[0].dialogsType == 0 && hasHiddenArchive() && this.viewPages[0].archivePullViewState == 2) ? 1 : 0;
+            int i2 = (!this.hasStories || z2 || this.dialogStoriesCell.isExpanded()) ? 0 : -AndroidUtilities.dp(81.0f);
+            if (z) {
+                this.viewPages[0].scrollHelper.setScrollDirection(1);
+                this.viewPages[0].scrollHelper.scrollToPosition(i, i2, false, true);
+                resetScroll();
+            } else {
+                this.viewPages[0].layoutManager.scrollToPositionWithOffset(i, i2);
+                resetScroll();
+            }
         }
     }
 
@@ -10233,7 +10263,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }, resourcesProvider);
     }
 
-    private float getRightSlidingProgress() {
+    public float getRightSlidingProgress() {
         RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
         if (rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment()) {
             return 0.0f;
@@ -10525,7 +10555,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public boolean closeLastFragment() {
         if (this.rightSlidingDialogContainer.hasFragment()) {
-            this.rightSlidingDialogContainer.finishPreview();
+            this.rightSlidingDialogContainer.lambda$presentFragment$1();
             SearchViewPager searchViewPager = this.searchViewPager;
             if (searchViewPager == null) {
                 return true;
@@ -10851,7 +10881,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createSearchViewPager$154(view, i2, f, f2);
             }
         });
@@ -11140,7 +11170,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$154(View view, int i, float f, float f2) {
+    public void lambda$createSearchViewPager$154(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -11441,7 +11471,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws IOException {
+    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -11451,15 +11481,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     AndroidUtilities.removeFromParent(this.storyPremiumHint);
                 }
             }
-            HintView2 bgColor = new HintView2(getContext(), 1).setRounding(8.0f).setDuration(8000L).setCloseButton(true).setMultilineText(true).setMaxWidthPx(AndroidUtilities.displaySize.x - AndroidUtilities.dp(148.0f)).setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
+            HintView2 bgColor = new HintView2(getContext(), 2).setRounding(8.0f).setDuration(8000L).setCloseButton(true).setMultilineText(true).setMaxWidthPx(AndroidUtilities.displaySize.x - AndroidUtilities.dp(148.0f)).setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$openStoriesRecorder$158();
                 }
-            })).setJoint(1.0f, -60.0f).setBgColor(getThemedColor(Theme.key_undo_background));
+            })).setJoint(1.0f, -40.0f).setBgColor(getThemedColor(Theme.key_undo_background));
             this.storyPremiumHint = bgColor;
-            bgColor.setTranslationY((-this.navigationBarHeight) - this.additionFloatingButtonOffset);
-            ((ViewGroup) this.fragmentView).addView(this.storyPremiumHint, LayoutHelper.createFrame(-1, 240.0f, 87, 12.0f, 0.0f, 68.0f, 50.0f));
+            bgColor.setTranslationY((-this.navigationBarHeight) - this.additionNavigationBarHeight);
+            ((ViewGroup) this.fragmentView).addView(this.storyPremiumHint, LayoutHelper.createFrame(-1, 240.0f, 87, 12.0f, 0.0f, 68.0f, 40.0f));
             this.storyPremiumHint.show();
             return;
         }
@@ -11850,12 +11880,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void checkUi_searchFieldVisibility() {
+    public void checkUi_searchFieldVisibility() {
         if (this.fragmentSearchField == null) {
             return;
         }
-        FilterTabsView filterTabsView = this.filterTabsView;
-        float fMax = (isSupportSearch() ? 1.0f : 0.0f) * Math.max(this.animatorSearchVisible.getFloatValue(), (1.0f - this.progressToActionMode) * (1.0f - this.animatorDoneButtonVisible.getFloatValue()) * (1.0f - MathUtils.clamp(Math.max(0.0f, (-this.scrollYOffset) - ((filterTabsView != null && filterTabsView.getVisibility() == 0 && this.filterTabsViewIsVisible) ? getMaxScrollYOffsetWithoutSearch() : 0)) / AndroidUtilities.dp(48.0f), 0.0f, 1.0f)));
+        float fMax = (isSupportSearch() ? 1.0f : 0.0f) * Math.max(Math.max(this.animatorSearchVisible.getFloatValue(), getRightSlidingProgress()), (1.0f - this.progressToActionMode) * (1.0f - this.animatorDoneButtonVisible.getFloatValue()) * (1.0f - MathUtils.clamp(((-this.scrollYOffset) - getMaxScrollYOffsetWithoutSearch()) / AndroidUtilities.dp(48.0f), 0.0f, 1.0f)));
         this.fragmentSearchField.setAlpha(fMax);
         this.fragmentSearchField.setVisibility(fMax > 0.0f ? 0 : 8);
         this.animatorSearchButtonVisible.setValue(fMax <= 0.01f, true);

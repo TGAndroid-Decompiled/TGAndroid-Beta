@@ -570,13 +570,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         public void lambda$new$1(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$new$0(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, z, tL_error);
                 }
             });
         }
 
-        public void lambda$new$0(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$new$0(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z, TLRPC.TL_error tL_error) {
             alertDialog.dismiss();
             if (tLObject instanceof TL_phone.groupCall) {
                 TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
@@ -1010,13 +1010,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createView$1(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$createView$0(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, z, tL_error);
             }
         });
     }
 
-    public void lambda$createView$0(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$createView$0(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
@@ -1944,7 +1944,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             linearLayout.addView(textView, LayoutHelper.createLinear(190, -2, 1, 28, 12, 28, 8));
             final Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     CallLogActivity.lambda$showCallLinkSheet$17(str, i, bottomSheetArr);
                 }
             };
@@ -2004,7 +2004,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void lambda$showCallLinkSheet$17(String str, int i, BottomSheet[] bottomSheetArr) throws InterruptedException {
+    public static void lambda$showCallLinkSheet$17(String str, int i, BottomSheet[] bottomSheetArr) {
         TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
         tL_inputGroupCallSlug.slug = Uri.parse(str).getPathSegments().get(r3.getPathSegments().size() - 1);
         VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCallSlug, false, null);

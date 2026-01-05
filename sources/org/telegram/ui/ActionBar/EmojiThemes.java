@@ -299,7 +299,7 @@ public class EmojiThemes {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.EmojiThemes.getPreviewColors(int, int):android.util.SparseIntArray");
     }
 
-    public SparseIntArray createColors(int i, int i2) {
+    public SparseIntArray createColors(int i, int i2) throws IOException {
         Theme.ThemeAccent themeAccentCreateNewAccent;
         SparseIntArray sparseIntArray;
         int iIndexOfKey;

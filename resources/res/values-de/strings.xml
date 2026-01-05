@@ -1237,7 +1237,6 @@
     <string name="TosUpdateDecline">Leider gibt es keine anderen Alternativen. Im Gegensatz zu anderen Apps verwendet Telegram die Nutzerdaten nicht für Werbezwecke oder andere kommerzielle Zwecke. Telegram speichert nur die Informationen, die es braucht, um als funktionsreicher Clouddienst zu funktionieren. Du kannst in den Privatsphäre- und Sicherheitseinstellungen einstellen, wie deine Daten verwendet werden.\n\nWenn du mit diesen bescheidenen Anforderungen von Telegram nicht einverstanden bist, ist es uns nicht möglich, dir den Dienst zur Verfügung zu stellen.</string>
     <string name="TranslateMessages">Nachrichten übersetzen</string>
     <string name="TranslateMessagesInfo1">Der Übersetzen-Knopf erscheint in der App, sobald du eine einzelne Nachricht 1x kurz antippst.</string>
-    <string name="TranslateMessagesInfo2">Google hat unter Umständen Zugriff auf die Texte der Nachrichten, die du im Chat übersetzt.</string>
     <string name="TurnPasswordOff">Passwort deaktivieren</string>
     <string name="TurnPasswordOffPassport">Alle Daten in deinem Telegram Passport gehen verloren!</string>
     <string name="TurnPasswordOffQuestion">Ganz sicher dein Passwort deaktivieren?</string>

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -48,6 +49,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -58,6 +60,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -105,6 +108,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     private CharSequence currentTitle;
     boolean drawCircleForce;
     EllipsizeSpanAnimator ellipsizeSpanAnimator;
+    ImageView emojiStatusView;
     BaseFragment fragment;
     private StoriesUtilities.EnsureStoryFileLoadedObject globalCancelable;
     Paint grayPaint;
@@ -125,8 +129,10 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     private int overscrollSelectedPosition;
     private StoryCell overscrollSelectedView;
     private HintView2 premiumHint;
+    private Drawable premiumStar;
     public RadialProgress radialProgress;
     public RecyclerListView recyclerListView;
+    AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable statusDrawable;
     StoriesController storiesController;
     ActionBarAnimatedSubtitleOverlayContainer subtitleOverlayContainer;
     ImageView telegramLogoView;
@@ -270,6 +276,15 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.telegramLogoView.setImageResource(R.drawable.telegram_logo_2);
         this.telegramLogoView.setColorFilter(getTextLogoColor(), PorterDuff.Mode.MULTIPLY);
         addView(this.telegramLogoView, LayoutHelper.createFrame(90, 22.0f));
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(null, AndroidUtilities.dp(26.0f));
+        this.statusDrawable = swapAnimatedEmojiDrawable;
+        swapAnimatedEmojiDrawable.center = true;
+        swapAnimatedEmojiDrawable.setCallback(this);
+        ImageView imageView2 = new ImageView(context);
+        this.emojiStatusView = imageView2;
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        this.emojiStatusView.setImageDrawable(this.statusDrawable);
+        addView(this.emojiStatusView, LayoutHelper.createFrame(40, 40.0f));
         ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = new ActionBarAnimatedSubtitleOverlayContainer(context, null, this.ellipsizeSpanAnimator) {
             @Override
             public void onItemChanged(ReplaceAnimator replaceAnimator) {
@@ -552,6 +567,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         updateItems(false, false);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesUpdated);
         this.ellipsizeSpanAnimator.onAttachedToWindow();
+        this.statusDrawable.attach();
     }
 
     @Override
@@ -564,6 +580,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             ensureStoryFileLoadedObject.cancel();
             this.globalCancelable = null;
         }
+        this.statusDrawable.detach();
     }
 
     @Override
@@ -778,7 +795,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             alertDialog.showDelayed(500L);
             MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
                 @Override
-                public final void accept(Object obj) throws IOException {
+                public final void accept(Object obj) throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$openStoryRecorder$9(alertDialog, j, storyCell, (Boolean) obj);
                 }
             }, true, resourceProvider);
@@ -787,7 +804,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
     }
 
-    public void lambda$openStoryRecorder$9(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws IOException {
+    public void lambda$openStoryRecorder$9(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException, IOException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
@@ -1782,6 +1799,39 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         return super.onTouchEvent(motionEvent);
     }
 
+    public void updateStatus(TLRPC.User user, boolean z) {
+        if (this.statusDrawable == null || this.actionBar == null) {
+            return;
+        }
+        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(user);
+        if (emojiStatusDocumentId != null) {
+            boolean z2 = user.emoji_status instanceof TLRPC.TL_emojiStatusCollectible;
+            this.statusDrawable.set(emojiStatusDocumentId.longValue(), z);
+            this.statusDrawable.setParticles(z2, z);
+        } else if (user != null && MessagesController.getInstance(this.currentAccount).isPremiumUser(user)) {
+            if (this.premiumStar == null) {
+                this.premiumStar = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
+                this.premiumStar = new AnimatedEmojiDrawable.WrapSizeDrawable(this.premiumStar, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f)) {
+                    @Override
+                    public void draw(Canvas canvas) {
+                        canvas.save();
+                        canvas.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
+                        super.draw(canvas);
+                        canvas.restore();
+                    }
+                };
+            }
+            this.premiumStar.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedBackground), PorterDuff.Mode.MULTIPLY));
+            this.statusDrawable.set(this.premiumStar, z);
+            this.statusDrawable.setParticles(false, z);
+        } else {
+            this.statusDrawable.set((Drawable) null, z);
+            this.statusDrawable.setParticles(false, z);
+        }
+        this.statusDrawable.setColor(Integer.valueOf(getThemedColor(Theme.key_profile_verifiedBackground)));
+        this.emojiStatusView.invalidate();
+    }
+
     public int getThemedColor(int i) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getResourceProvider() == null) {
@@ -1812,6 +1862,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         if (imageView != null) {
             imageView.setAlpha(f3);
             this.telegramLogoView.setVisibility(f3 > 0.0f ? 0 : 8);
+        }
+        ImageView imageView2 = this.emojiStatusView;
+        if (imageView2 != null) {
+            imageView2.setAlpha(f3);
+            this.emojiStatusView.setVisibility(f3 > 0.0f ? 0 : 8);
         }
         ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.subtitleOverlayContainer;
         if (actionBarAnimatedSubtitleOverlayContainer != null) {

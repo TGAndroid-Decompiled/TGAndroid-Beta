@@ -1,6 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,7 @@ public abstract class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    public void onResume() {
+    public void onResume() throws Resources.NotFoundException, NumberFormatException {
         this.isActive = true;
         if (this.fragmentView != null) {
             this.chatActivity.onResume();

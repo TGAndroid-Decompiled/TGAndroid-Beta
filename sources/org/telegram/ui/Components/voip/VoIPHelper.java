@@ -258,7 +258,7 @@ public abstract class VoIPHelper {
         doInitiateCall(user, chat, str, inputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
     }
 
-    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) throws InterruptedException {
+    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
@@ -527,7 +527,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) throws NumberFormatException {
+    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
         while (it.hasNext()) {
             String[] strArrSplit = it.next().split(" ");

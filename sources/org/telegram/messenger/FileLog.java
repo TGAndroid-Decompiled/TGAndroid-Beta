@@ -288,7 +288,7 @@ public class FileLog {
         if (BuildVars.DEBUG_VERSION) {
             new ANRDetector(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.dumpANR();
                 }
             });
@@ -448,7 +448,7 @@ public class FileLog {
         fatal(th, true);
     }
 
-    public void dumpMemory(boolean z) throws IOException {
+    public void dumpMemory(boolean z) {
         if (z || System.currentTimeMillis() - dumpedHeap >= 30000) {
             dumpedHeap = System.currentTimeMillis();
             try {
@@ -459,7 +459,7 @@ public class FileLog {
         }
     }
 
-    public void dumpANR() throws IOException {
+    public void dumpANR() {
         StringBuilder sb = new StringBuilder();
         Iterator<Map.Entry<Thread, StackTraceElement[]>> it = Thread.getAllStackTraces().entrySet().iterator();
         while (true) {
@@ -587,7 +587,7 @@ public class FileLog {
         }
     }
 
-    public static void cleanupLogs() throws IOException {
+    public static void cleanupLogs() {
         File[] fileArrListFiles;
         ensureInitied();
         File logsDir = AndroidUtilities.getLogsDir();

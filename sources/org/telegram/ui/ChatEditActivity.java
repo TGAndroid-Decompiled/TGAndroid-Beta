@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -216,7 +215,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
 
         @Override
-        public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, NumberFormatException {
+        public void openPhotoForEdit(String str, String str2, boolean z) {
             ChatEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
         }
 
@@ -281,7 +280,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public boolean onFragmentCreate() throws java.lang.InterruptedException {
+    public boolean onFragmentCreate() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.onFragmentCreate():boolean");
     }
 
@@ -1053,7 +1052,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                     i--;
                 }
             } else if (this.forumTabs && (fragmentStack.get(i) instanceof DialogsActivity) && (dialogsActivity = (DialogsActivity) fragmentStack.get(i)) != null && (rightSlidingDialogContainer = dialogsActivity.rightSlidingDialogContainer) != null && rightSlidingDialogContainer.hasFragment()) {
-                dialogsActivity.rightSlidingDialogContainer.finishPreview();
+                dialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
             }
             i++;
         }
@@ -1689,7 +1688,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, NumberFormatException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

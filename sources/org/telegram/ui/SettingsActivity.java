@@ -48,7 +48,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -280,7 +279,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws IOException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -652,7 +651,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.SettingsHelp)));
         arrayList.add(SettingCell.Factory.of(17, -1007845, -1996271, R.drawable.settings_ask, LocaleController.getString(R.string.AskAQuestion)));
-        arrayList.add(SettingCell.Factory.of(18, -14965523, -15431455, R.drawable.settings_faq, LocaleController.getString(R.string.TelegramFAQ)));
+        int i4 = R.drawable.settings_faq;
+        arrayList.add(SettingCell.Factory.of(18, -14965523, -15431455, i4, LocaleController.getString(R.string.TelegramFAQ)));
+        arrayList.add(SettingCell.Factory.of(23, -3903756, -6335009, i4, LocaleController.getString(R.string.TelegramFeatures)));
         arrayList.add(SettingCell.Factory.of(19, -11154873, -14175180, R.drawable.settings_policy, LocaleController.getString(R.string.PrivacyPolicy)));
         if (BuildVars.LOGS_ENABLED || BuildVars.DEBUG_PRIVATE_VERSION) {
             arrayList.add(UItem.asShadow(null));
@@ -698,7 +699,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
     }
 
-    public void onClick(UItem uItem, View view, int i, float f, float f2) throws IOException {
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(AccountCell.Factory.class)) {
             int i2 = uItem.intValue;
             LaunchActivity launchActivity = LaunchActivity.instance;
@@ -782,6 +783,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             case 22:
                 FileLog.cleanupLogs();
                 break;
+            case 23:
+                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(this.currentAccount);
+                    break;
+                } else {
+                    Browser.openUrl(getContext(), LocaleController.getString(R.string.TelegramFeaturesUrl));
+                    break;
+                }
         }
     }
 
@@ -831,14 +840,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
-            addView(this.avatarView, LayoutHelper.createLinear(28, 28, 19, 18, 0, 18, 0));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView = simpleTextView;
             simpleTextView.setTextSize(15);
             this.textView.setTypeface(AndroidUtilities.bold());
             this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            this.textView.setGravity(19);
-            addView(this.textView, LayoutHelper.createLinear(0, -1, 1.0f, 119, 0, 0, 18, 0));
             this.botDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.dp(24.0f), 7);
             this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.dp(24.0f), 7);
             this.textView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -862,12 +868,24 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.counterView.setGravity(17);
             this.counterView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.counterView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
-            addView(this.counterView, LayoutHelper.createLinear(-2, 20, 0.0f, 16, 0, 0, 0, 0));
             ImageView imageView = new ImageView(context);
             this.arrowView = imageView;
             imageView.setImageResource(R.drawable.msg_arrowright);
             this.arrowView.setScaleType(ImageView.ScaleType.CENTER);
             this.arrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            if (LocaleController.isRTL) {
+                this.textView.setGravity(21);
+                this.arrowView.setScaleX(-1.0f);
+                addView(this.arrowView, LayoutHelper.createLinear(24, 24, 0.0f, 19, 12, 0, 0, 0));
+                addView(this.counterView, LayoutHelper.createLinear(-2, 20, 0.0f, 16, 0, 0, 0, 0));
+                addView(this.textView, LayoutHelper.createLinear(0, -1, 1.0f, 119, 18, 0, 0, 0));
+                addView(this.avatarView, LayoutHelper.createLinear(28, 28, 21, 18, 0, 18, 0));
+                return;
+            }
+            this.textView.setGravity(19);
+            addView(this.avatarView, LayoutHelper.createLinear(28, 28, 19, 18, 0, 18, 0));
+            addView(this.textView, LayoutHelper.createLinear(0, -1, 1.0f, 119, 0, 0, 18, 0));
+            addView(this.counterView, LayoutHelper.createLinear(-2, 20, 0.0f, 16, 0, 0, 0, 0));
             addView(this.arrowView, LayoutHelper.createLinear(24, 24, 0.0f, 21, 0, 0, 12, 0));
         }
 
@@ -934,11 +952,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             Background background = new Background();
             this.iconBackground = background;
             imageView.setBackground(background);
-            addView(imageView, LayoutHelper.createLinear(28, 28, 19, 18, 0, 0, 0));
             LinearLayout linearLayout = new LinearLayout(context);
             this.textLayout = linearLayout;
             linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createLinear(0, -2, 1.0f, 23, 18, 0, 20, 0));
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 16.0f);
@@ -950,7 +966,15 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             TextView textView3 = new TextView(context);
             this.valueView = textView3;
             textView3.setTextSize(1, 16.0f);
-            addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
+            if (LocaleController.isRTL) {
+                addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
+                addView(linearLayout, LayoutHelper.createLinear(0, -2, 1.0f, 23, 20, 0, 18, 0));
+                addView(imageView, LayoutHelper.createLinear(28, 28, 21, 0, 0, 18, 0));
+            } else {
+                addView(imageView, LayoutHelper.createLinear(28, 28, 19, 18, 0, 0, 0));
+                addView(linearLayout, LayoutHelper.createLinear(0, -2, 1.0f, 23, 18, 0, 20, 0));
+                addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
+            }
             updateColors();
         }
 
@@ -1228,7 +1252,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null}, new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i3) throws Throwable {
+            public final void onClick(DialogInterface dialogInterface, int i3) {
                 this.f$0.lambda$openDebugMenu$15(dialogInterface, i3);
             }
         });
@@ -1236,7 +1260,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         showDialog(builder.create());
     }
 
-    public void lambda$openDebugMenu$15(DialogInterface dialogInterface, int i) throws Throwable {
+    public void lambda$openDebugMenu$15(DialogInterface dialogInterface, int i) {
         int i2;
         int i3;
         int i4 = 0;

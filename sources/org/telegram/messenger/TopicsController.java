@@ -389,13 +389,13 @@ public class TopicsController extends BaseController {
     public void lambda$updateTopicsWithDeletedMessages$12(final long j, final ArrayList arrayList, final boolean z, final long j2) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$updateTopicsWithDeletedMessages$11(j, arrayList, z, j2);
             }
         });
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$11(long r17, java.util.ArrayList r19, boolean r20, final long r21) throws java.lang.InterruptedException {
+    public void lambda$updateTopicsWithDeletedMessages$11(long r17, java.util.ArrayList r19, boolean r20, final long r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$11(long, java.util.ArrayList, boolean, long):void");
     }
 

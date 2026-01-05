@@ -942,7 +942,6 @@
     <string name="TosUpdateDecline">Er zijn helaas geen andere mogelijkheden. In tegenstelling tot veel andere apps, gebruik Telegram de gegevens van onze gebruikers niet voor het tonen van gerichte advertenties of andere commerciële doeleinden. Telegram slaat alleen de informatie op die het nodig heeft om te functioneren als een veelzijdige clouddienst. Je kunt zelf aanpassen hoe je gegevens worden gebruikt in de Privacy- en Beveiligingsinstellingen.\n\nAls je niet akkoord gaat met de beperkte vereisten van Telegram, zullen we niet in staat zijn om je deze dienst aan te bieden.</string>
     <string name="TranslateMessages">Berichten vertalen</string>
     <string name="TranslateMessagesInfo1">De vertaalknop zal verschijnen wanneer je één keer tikt op een bericht dat tekst bevat.</string>
-    <string name="TranslateMessagesInfo2">Google heeft mogelijk toegang tot de inhoud van berichten die je vertaalt.</string>
     <string name="TurnPasswordOff">Wachtwoord uitschakelen</string>
     <string name="TurnPasswordOffPassport">Alle gegevens in je Telegram Passport zullen verloren gaan.</string>
     <string name="TurnPasswordOffQuestion">Weet je zeker dat je je wachtwoord wilt uitschakelen?</string>

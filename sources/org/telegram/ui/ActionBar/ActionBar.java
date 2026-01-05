@@ -1096,6 +1096,10 @@ public class ActionBar extends FrameLayout {
         return this.actionMode != null && this.actionModeVisible && (((str2 = this.actionModeTag) == null && str == null) || (str2 != null && str2.equals(str)));
     }
 
+    public void listenToBackgroundUpdate(Runnable runnable) {
+        this.backgroundUpdateListener = runnable;
+    }
+
     public void onSearchFieldVisibilityChanged(final boolean z) {
         this.isSearchFieldVisible = z;
         AnimatorSet animatorSet = this.searchVisibleAnimator;

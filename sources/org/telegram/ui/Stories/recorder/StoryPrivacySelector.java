@@ -130,7 +130,7 @@ public abstract class StoryPrivacySelector extends View {
                 final MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
                 messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         StoryPrivacySelector.lambda$getSaved$5(messagesStorage, hashSet, i);
                     }
                 });
@@ -142,7 +142,7 @@ public abstract class StoryPrivacySelector extends View {
         }
     }
 
-    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) throws InterruptedException {
+    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
         final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

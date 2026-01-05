@@ -35,6 +35,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -1305,7 +1306,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void updateThemeColors() {
+    public void updateThemeColors() throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.updateThemeColors():void");
     }
 
@@ -3419,13 +3420,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$toggleTheme$11();
             }
         });
     }
 
-    public void lambda$toggleTheme$11() {
+    public void lambda$toggleTheme$11() throws IOException {
         this.isDark = !this.isDark;
         updateThemeColors();
         setForceDark(this.isDark, true);

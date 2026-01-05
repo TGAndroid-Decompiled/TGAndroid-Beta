@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.BlendMode;
@@ -334,7 +333,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return this.themeDelegate;
     }
 
-    public void lambda$new$0() throws IOException {
+    public void lambda$new$0() throws NoSuchFieldException, IOException, SecurityException {
         this.applyColorScheduled = false;
         applyColor(this.lastPickedColor, this.lastPickedColorNum);
         this.lastPickedColorNum = -1;
@@ -461,7 +460,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$new$0();
             }
         };
@@ -581,7 +580,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$new$0();
             }
         };
@@ -739,7 +738,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+        public void onItemClick(int i) throws IOException {
             File file;
             Theme.ThemeAccent accent;
             String url;
@@ -2542,7 +2541,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    private void applyColor(int i, int i2) throws IOException {
+    private void applyColor(int i, int i2) throws NoSuchFieldException, IOException, SecurityException {
         int i3 = this.colorType;
         if (i3 == 1) {
             if (i2 == 0) {
@@ -4604,7 +4603,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.MessagesAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -5540,13 +5539,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$toggleTheme$36();
             }
         });
     }
 
-    public void lambda$toggleTheme$36() {
+    public void lambda$toggleTheme$36() throws NoSuchFieldException, IOException, SecurityException {
         this.onSwitchDayNightDelegate.switchDayNight(false);
         setForceDark(this.themeDelegate.isDark(), true);
         setCurrentImage(false);

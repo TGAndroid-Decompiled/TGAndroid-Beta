@@ -1991,7 +1991,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, NumberFormatException {
+            public void openPhotoForEdit(String str, String str2, boolean z) {
                 ProfileActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -2718,7 +2718,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws IOException {
+                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2760,7 +2760,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i10, float f4, float f5) throws IOException {
+                public final void onClick(int i10, float f4, float f5) throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$createView$15(i10, f4, f5);
                 }
             });
@@ -3106,7 +3106,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i11, float f4, float f5) throws IOException {
+            public final void onItemClick(View view, int i11, float f4, float f5) {
                 this.f$0.lambda$createView$28(context2, j2, view, i11, f4, f5);
             }
         });
@@ -3929,7 +3929,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, NumberFormatException {
+        public void onItemClick(int i) {
             long jMakeEncryptedDialogId;
             SharedMediaLayout.ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner;
             if (ProfileActivity.this.getParentActivity() == null) {
@@ -4791,7 +4791,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws IOException {
+    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5103,7 +5103,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void openStoryRecorder() throws IOException {
+        public void openStoryRecorder() throws Resources.NotFoundException, IOException {
             StoryRecorder.getInstance(ProfileActivity.this.getParentActivity(), ((BaseFragment) ProfileActivity.this).currentAccount).selectedPeerId(ProfileActivity.this.getDialogId()).canChangePeer(false).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
                 @Override
                 public void preLayout(long j, Runnable runnable) {
@@ -5166,7 +5166,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$15(int i, float f, float f2) throws IOException {
+    public void lambda$createView$15(int i, float f, float f2) throws Resources.NotFoundException, IOException {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -5340,7 +5340,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$28(final Context context, long j, final View view, int i, float f, float f2) throws IOException {
+    public void lambda$createView$28(final Context context, long j, final View view, int i, float f, float f2) {
         TLRPC.Document document;
         TLRPC.ChatParticipant chatParticipant;
         ListAdapter listAdapter;
@@ -5974,7 +5974,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i5) throws Throwable {
+                    public final void onClick(DialogInterface dialogInterface, int i5) {
                         this.f$0.lambda$onItemClick$3(context, dialogInterface, i5);
                     }
                 });
@@ -5991,7 +5991,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) throws Throwable {
+        public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) {
             int i2;
             int i3;
             int i4 = 0;
@@ -7328,7 +7328,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     if (rightSlidingDialogContainer != null) {
                         BaseFragment fragment = rightSlidingDialogContainer.getFragment();
                         if ((fragment instanceof TopicsFragment) && ((TopicsFragment) fragment).getDialogId() == getDialogId()) {
-                            dialogsActivity.rightSlidingDialogContainer.finishPreview();
+                            dialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
                         }
                     }
                 } else if (baseFragment instanceof ChatActivity) {
@@ -11293,7 +11293,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, NumberFormatException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);

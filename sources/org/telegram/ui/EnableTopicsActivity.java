@@ -148,7 +148,7 @@ public class EnableTopicsActivity extends BaseFragment {
             if (baseFragment instanceof DialogsActivity) {
                 RightSlidingDialogContainer rightSlidingDialogContainer = ((DialogsActivity) baseFragment).rightSlidingDialogContainer;
                 if (rightSlidingDialogContainer.hasFragment()) {
-                    rightSlidingDialogContainer.finishPreview();
+                    rightSlidingDialogContainer.lambda$presentFragment$1();
                 }
             }
         }

@@ -2201,7 +2201,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r106) {
+    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r107) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(org.telegram.messenger.SendMessagesHelper$SendMessageParams):void");
     }
 
@@ -4227,7 +4227,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         prepareSendingMedia(accountInstance, arrayList3, j, messageObject, messageObject2, null, replyQuote, z2, false, messageObject3, z, i2, 0, i4, false, inputContentInfoCompat, str3, i5, j2, false, j3, j4, messageSuggestionParams);
     }
 
-    public static void prepareSendingBotContextResult(final BaseFragment baseFragment, final AccountInstance accountInstance, final TLRPC.BotInlineResult botInlineResult, final HashMap<String, String> map, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final boolean z, final int i, final int i2, final String str, final int i3, final long j2) {
+    public static void prepareSendingBotContextResult(BaseFragment baseFragment, AccountInstance accountInstance, TLRPC.BotInlineResult botInlineResult, HashMap<String, String> map, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, boolean z, int i, int i2, String str, int i3, long j2) {
+        prepareSendingBotContextResult(baseFragment, accountInstance, botInlineResult, map, j, messageObject, messageObject2, storyItem, replyQuote, z, i, i2, str, i3, j2, 0L);
+    }
+
+    public static void prepareSendingBotContextResult(final BaseFragment baseFragment, final AccountInstance accountInstance, final TLRPC.BotInlineResult botInlineResult, final HashMap<String, String> map, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final boolean z, final int i, final int i2, final String str, final int i3, final long j2, final long j3) {
         SendMessageParams sendMessageParamsOf;
         TLRPC.TL_webPagePending tL_webPagePending;
         if (botInlineResult == null) {
@@ -4238,7 +4242,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             new Thread(new Runnable() {
                 @Override
                 public final void run() {
-                    SendMessagesHelper.lambda$prepareSendingBotContextResult$103(j, botInlineResult, accountInstance, map, baseFragment, messageObject, messageObject2, z, i, i2, str, i3, storyItem, replyQuote, j2);
+                    SendMessagesHelper.lambda$prepareSendingBotContextResult$103(j, botInlineResult, accountInstance, map, baseFragment, messageObject, messageObject2, z, i, i2, str, i3, storyItem, replyQuote, j2, j3);
                 }
             }).run();
             return;
@@ -4266,6 +4270,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf2.quick_reply_shortcut_id = i3;
             sendMessageParamsOf2.replyQuote = replyQuote;
             sendMessageParamsOf2.payStars = j2;
+            sendMessageParamsOf2.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf2);
             return;
         }
@@ -4287,6 +4292,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf3.quick_reply_shortcut_id = i3;
             sendMessageParamsOf3.replyQuote = replyQuote;
             sendMessageParamsOf3.payStars = j2;
+            sendMessageParamsOf3.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf3);
             return;
         }
@@ -4314,6 +4320,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf.quick_reply_shortcut_id = i3;
             sendMessageParamsOf.replyQuote = replyQuote;
             sendMessageParamsOf.payStars = j2;
+            sendMessageParamsOf.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
             return;
         }
@@ -4333,6 +4340,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf4.quick_reply_shortcut_id = i3;
             sendMessageParamsOf4.replyQuote = replyQuote;
             sendMessageParamsOf4.payStars = j2;
+            sendMessageParamsOf4.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf4);
             return;
         }
@@ -4359,6 +4367,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf5.quick_reply_shortcut_id = i3;
             sendMessageParamsOf5.replyQuote = replyQuote;
             sendMessageParamsOf5.payStars = j2;
+            sendMessageParamsOf5.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf5);
             return;
         }
@@ -4371,15 +4380,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf6.quick_reply_shortcut_id = i3;
             sendMessageParamsOf6.replyQuote = replyQuote;
             sendMessageParamsOf6.payStars = j2;
+            sendMessageParamsOf6.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf6);
         }
     }
 
-    public static void lambda$prepareSendingBotContextResult$103(final long r26, final org.telegram.tgnet.TLRPC.BotInlineResult r28, final org.telegram.messenger.AccountInstance r29, final java.util.HashMap r30, final org.telegram.ui.ActionBar.BaseFragment r31, final org.telegram.messenger.MessageObject r32, final org.telegram.messenger.MessageObject r33, final boolean r34, final int r35, final int r36, final java.lang.String r37, final int r38, final org.telegram.tgnet.tl.TL_stories.StoryItem r39, final org.telegram.ui.ChatActivity.ReplyQuote r40, final long r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingBotContextResult$103(long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.messenger.AccountInstance, java.util.HashMap, org.telegram.ui.ActionBar.BaseFragment, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, int, java.lang.String, int, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, long):void");
+    public static void lambda$prepareSendingBotContextResult$103(final long r28, final org.telegram.tgnet.TLRPC.BotInlineResult r30, final org.telegram.messenger.AccountInstance r31, final java.util.HashMap r32, final org.telegram.ui.ActionBar.BaseFragment r33, final org.telegram.messenger.MessageObject r34, final org.telegram.messenger.MessageObject r35, final boolean r36, final int r37, final int r38, final java.lang.String r39, final int r40, final org.telegram.tgnet.tl.TL_stories.StoryItem r41, final org.telegram.ui.ChatActivity.ReplyQuote r42, final long r43, final long r45) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingBotContextResult$103(long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.messenger.AccountInstance, java.util.HashMap, org.telegram.ui.ActionBar.BaseFragment, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, int, java.lang.String, int, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, long, long):void");
     }
 
-    public static void lambda$prepareSendingBotContextResult$102(TLRPC.TL_document tL_document, Bitmap[] bitmapArr, String[] strArr, String str, long j, MessageObject messageObject, MessageObject messageObject2, TLRPC.BotInlineResult botInlineResult, HashMap map, boolean z, int i, int i2, TLRPC.TL_photo tL_photo, TLRPC.TL_game tL_game, String str2, int i3, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, long j2, AccountInstance accountInstance) {
+    public static void lambda$prepareSendingBotContextResult$102(TLRPC.TL_document tL_document, Bitmap[] bitmapArr, String[] strArr, String str, long j, MessageObject messageObject, MessageObject messageObject2, TLRPC.BotInlineResult botInlineResult, HashMap map, boolean z, int i, int i2, TLRPC.TL_photo tL_photo, TLRPC.TL_game tL_game, String str2, int i3, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, long j2, long j3, AccountInstance accountInstance) {
         SendMessageParams sendMessageParamsOf;
         if (tL_document != null) {
             if (bitmapArr[0] != null && strArr[0] != null) {
@@ -4404,6 +4414,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf.replyToStoryItem = storyItem;
             sendMessageParamsOf.replyQuote = replyQuote;
             sendMessageParamsOf.payStars = j2;
+            sendMessageParamsOf.monoForumPeer = j3;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
         }
     }
@@ -5041,6 +5052,25 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             return ((TLRPC.TL_updateQuickReplyMessage) update).message;
         }
         return null;
+    }
+
+    private void applyMonoForumPeerId(TLRPC.TL_messages_sendInlineBotResult tL_messages_sendInlineBotResult, long j) {
+        if (j != 0) {
+            TLRPC.InputPeer inputPeer = getMessagesController().getInputPeer(j);
+            TLRPC.InputReplyTo inputReplyTo = tL_messages_sendInlineBotResult.reply_to;
+            if (inputReplyTo != null) {
+                if (inputReplyTo instanceof TLRPC.TL_inputReplyToMessage) {
+                    inputReplyTo.monoforum_peer_id = inputPeer;
+                    inputReplyTo.flags |= 32;
+                    return;
+                }
+                return;
+            }
+            TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
+            tL_messages_sendInlineBotResult.reply_to = tL_inputReplyToMonoForum;
+            tL_inputReplyToMonoForum.monoforum_peer_id = inputPeer;
+            tL_messages_sendInlineBotResult.flags |= 1;
+        }
     }
 
     private void applyMonoForumPeerId(TLRPC.TL_messages_sendMessage tL_messages_sendMessage, long j) {

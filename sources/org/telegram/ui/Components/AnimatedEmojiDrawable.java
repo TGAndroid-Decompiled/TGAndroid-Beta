@@ -227,7 +227,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                         }
                         Runnable runnable = new Runnable() {
                             @Override
-                            public final void run() throws InterruptedException {
+                            public final void run() {
                                 this.f$0.lambda$fetchDocument$0();
                             }
                         };
@@ -240,7 +240,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$fetchDocument$0() throws InterruptedException {
+        public void lambda$fetchDocument$0() {
             ArrayList arrayList = new ArrayList(this.toFetchDocuments);
             this.toFetchDocuments.clear();
             loadFromDatabase(arrayList, this.uiDbCallback == null);
@@ -258,11 +258,11 @@ public class AnimatedEmojiDrawable extends Drawable {
             return false;
         }
 
-        private void loadFromDatabase(final ArrayList arrayList, boolean z) throws InterruptedException {
+        private void loadFromDatabase(final ArrayList arrayList, boolean z) {
             if (z) {
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         this.f$0.lambda$loadFromDatabase$1(arrayList);
                     }
                 });
@@ -271,7 +271,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$loadFromDatabase$1(ArrayList arrayList) throws InterruptedException {
+        public void lambda$loadFromDatabase$1(ArrayList arrayList) {
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (database == null) {

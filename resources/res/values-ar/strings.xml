@@ -1090,7 +1090,6 @@
     <string name="TosUpdateDecline">للأسف، لا توجد خيارات أخرى. على عكس التطبيقات الأخرى؛ لا تستخدم تيليجرام بيانات المستخدمين لاستهدافهم بالإعلانات أو لأغراض تجارية أخرى. يخزن تيليجرام فقط المعلومات التي يحتاجها للعمل كخدمة سحابية غنية بالميزات. يمكنك ضبط كيفية استخدام بياناتك في إعدادات الخصوصية والأمان.\n\nإذا لم تكن مرتاحًا لاحتياجات تيليجرام المتواضعة؛ لن نتمكن من تزويدك بهذه الخدمة.</string>
     <string name="TranslateMessages">ترجمة الرسائل</string>
     <string name="TranslateMessagesInfo1">سيظهر زر «الترجمة» عند الضغط مرة واحدة على رسالة نصيّة.</string>
-    <string name="TranslateMessagesInfo2">قد تتمكن Google من الوصول إلى نص الرسائل التي ترجمتها.</string>
     <string name="TurnPasswordOff">تعطيل كلمة المرور</string>
     <string name="TurnPasswordOffPassport">سيتم فقدان كل البيانات المحفوظة في جواز تيليجرام.</string>
     <string name="TurnPasswordOffQuestion">هل ترغب حقًا في تعطيل كلمة مرورك؟</string>

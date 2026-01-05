@@ -2402,7 +2402,7 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadRecents(int, boolean, boolean, boolean):void");
     }
 
-    public void lambda$loadRecents$49(final boolean z, final int i) throws InterruptedException {
+    public void lambda$loadRecents$49(final boolean z, final int i) {
         int i2;
         NativeByteBuffer nativeByteBufferByteBufferValue;
         if (z) {

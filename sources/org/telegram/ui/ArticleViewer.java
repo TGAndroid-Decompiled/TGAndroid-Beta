@@ -1035,7 +1035,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void requestDisallowInterceptTouchEvent(boolean z) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+        public void requestDisallowInterceptTouchEvent(boolean z) throws PackageManager.NameNotFoundException {
             handleTouchEvent(null);
             super.requestDisallowInterceptTouchEvent(z);
         }
@@ -1086,7 +1086,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             return this.innerTranslationX;
         }
 
-        private void prepareForMoving(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+        private void prepareForMoving(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
             this.maybeStartTracking = false;
             this.startedTracking = true;
             this.startedTrackingX = (int) motionEvent.getX();
@@ -1111,7 +1111,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             ArticleViewer.this.cancelCheckLongPress();
         }
 
-        public boolean handleTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+        public boolean handleTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
             Sheet sheet;
             PageLayout pageLayout;
             if (ArticleViewer.this.pageSwitchAnimation != null || ArticleViewer.this.closeAnimationInProgress || ArticleViewer.this.fullscreenVideoContainer.getVisibility() == 0 || ArticleViewer.this.textSelectionHelper.isInSelectionMode()) {
@@ -1199,7 +1199,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                     animatorSet.addListener(new AnimatorListenerAdapter() {
                         @Override
-                        public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                        public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException {
                             if (WindowView.this.movingPage) {
                                 Object objRemove = null;
                                 ArticleViewer.this.pages[0].setBackgroundDrawable(null);
@@ -1848,7 +1848,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return tL_pageBlockOrderedListItem2;
     }
 
-    public void updateInterfaceForCurrentPage(Object obj, boolean z, int i) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    public void updateInterfaceForCurrentPage(Object obj, boolean z, int i) throws PackageManager.NameNotFoundException {
         int iDp;
         if (obj != null) {
             if ((!(obj instanceof TLRPC.WebPage) || ((TLRPC.WebPage) obj).cached_page == null) && !(obj instanceof CachedWeb)) {
@@ -2006,7 +2006,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return this.pages[0].getWebView();
     }
 
-    private boolean addPageToStack(TLRPC.WebPage webPage, String str, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    private boolean addPageToStack(TLRPC.WebPage webPage, String str, int i) throws PackageManager.NameNotFoundException {
         saveCurrentPagePosition();
         this.pagesStack.add(webPage);
         this.actionBar.showSearch(false, true);
@@ -2014,7 +2014,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return scrollToAnchor(str, false);
     }
 
-    private boolean addPageToStack(String str, int i) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    private boolean addPageToStack(String str, int i) throws PackageManager.NameNotFoundException {
         saveCurrentPagePosition();
         CachedWeb cachedWeb = new CachedWeb(str);
         this.pagesStack.add(cachedWeb);
@@ -2023,7 +2023,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return false;
     }
 
-    public void goBack() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    public void goBack() throws PackageManager.NameNotFoundException {
         boolean z = false;
         if (this.pagesStack.size() <= 1) {
             this.windowView.movingPage = false;
@@ -2043,7 +2043,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException {
                     if (ArticleViewer.this.windowView.movingPage) {
                         ArticleViewer.this.pages[0].setBackgroundDrawable(null);
                         ArticleViewer articleViewer = ArticleViewer.this;
@@ -2114,7 +2114,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         animatorSet2.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+            public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException {
                 if (!ArticleViewer.this.windowView.openingPage) {
                     ArticleViewer.this.saveCurrentPagePosition();
                     ArticleViewer.this.onClosed();
@@ -2172,7 +2172,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.closeAnimationInProgress = true;
     }
 
-    public void lambda$setParentActivity$26(final int i) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    public void lambda$setParentActivity$26(final int i) throws PackageManager.NameNotFoundException {
         boolean z = false;
         if (this.pagesStack.size() <= 1) {
             this.windowView.movingPage = false;
@@ -2192,7 +2192,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException {
                     if (ArticleViewer.this.windowView.movingPage) {
                         ArticleViewer.this.pages[0].setBackgroundDrawable(null);
                         ArticleViewer articleViewer = ArticleViewer.this;
@@ -2260,7 +2260,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         animatorSet2.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+            public void onAnimationEnd(Animator animator) throws PackageManager.NameNotFoundException {
                 if (!ArticleViewer.this.windowView.openingPage) {
                     ArticleViewer.this.saveCurrentPagePosition();
                     ArticleViewer.this.onClosed();
@@ -2461,7 +2461,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return false;
     }
 
-    private boolean removeLastPageFromStack() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    private boolean removeLastPageFromStack() throws PackageManager.NameNotFoundException {
         if (this.pagesStack.size() < 2) {
             return false;
         }
@@ -3381,13 +3381,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$openWebpageUrl$9(final int i, final Browser.Progress progress, final String str, final Utilities.Callback0Return callback0Return, final TLRPC.TL_messages_getWebPage tL_messages_getWebPage, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run() throws PackageManager.NameNotFoundException {
                 this.f$0.lambda$openWebpageUrl$8(i, progress, tLObject, str, callback0Return, tL_messages_getWebPage);
             }
         });
     }
 
-    public void lambda$openWebpageUrl$8(int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$openWebpageUrl$8(int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) throws PackageManager.NameNotFoundException {
         if (this.openUrlReqId == 0 || i != this.lastReqId) {
             return;
         }
@@ -3990,7 +3990,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         };
         this.actionBar.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+            public final void onClick(View view) throws PackageManager.NameNotFoundException {
                 this.f$0.lambda$setParentActivity$23(view);
             }
         });
@@ -4002,7 +4002,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         });
         this.actionBar.setMenuListener(new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run(Object obj) throws PackageManager.NameNotFoundException {
                 this.f$0.lambda$setParentActivity$39(activity, (Integer) obj);
             }
         });
@@ -4446,7 +4446,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$setParentActivity$23(View view) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+    public void lambda$setParentActivity$23(View view) throws PackageManager.NameNotFoundException {
         if (this.actionBar.isSearching()) {
             this.actionBar.showSearch(false, true);
             return;
@@ -4553,7 +4553,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 CachedWeb cachedWeb = (CachedWeb) obj;
                 itemOptionsMakeOptions.add(cachedWeb.getTitle(), new Runnable() {
                     @Override
-                    public final void run() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                    public final void run() throws PackageManager.NameNotFoundException {
                         this.f$0.lambda$setParentActivity$25(size);
                     }
                 });
@@ -4608,7 +4608,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj;
                 itemOptionsMakeOptions.add(webPage.title, new Runnable() {
                     @Override
-                    public final void run() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                    public final void run() throws PackageManager.NameNotFoundException {
                         this.f$0.lambda$setParentActivity$26(size);
                     }
                 });
@@ -4663,7 +4663,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.actionBar.backButtonDrawable.setRotation(f, true);
     }
 
-    public void lambda$setParentActivity$39(Activity activity, Integer num) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$setParentActivity$39(Activity activity, Integer num) throws PackageManager.NameNotFoundException {
         WebInstantView.Loader loader;
         final String url;
         String openURL;
@@ -5397,11 +5397,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return open(null, null, null, str, null);
     }
 
-    public boolean open(String str, Browser.Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public boolean open(String str, Browser.Progress progress) {
         return open(null, null, null, str, progress);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws PackageManager.NameNotFoundException {
         final TLRPC.WebPage webPage2;
         int iLastIndexOf;
         String strSubstring;
@@ -5568,13 +5568,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$open$53(final int i, final TLRPC.WebPage webPage, final MessageObject messageObject, final boolean z, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException {
                 this.f$0.lambda$open$52(tLObject, i, webPage, messageObject, z, str);
             }
         });
     }
 
-    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException {
         TLRPC.Page page;
         TLObject tLObject2 = tLObject;
         int i2 = 0;
@@ -8626,7 +8626,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
 
             @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+            public boolean onTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
                 BlockEmbedCell.this.wasUserInteraction = true;
                 if (BlockEmbedCell.this.currentBlock != null) {
                     if (!BlockEmbedCell.this.currentBlock.allow_scrolling) {
@@ -9053,7 +9053,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.parentAdapter = webpageAdapter;
             HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context) {
                 @Override
-                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
                     boolean zOnInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
                     if (BlockTableCell.this.tableLayout.getMeasuredWidth() > getMeasuredWidth() - AndroidUtilities.dp(36.0f) && zOnInterceptTouchEvent) {
                         ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
@@ -9514,7 +9514,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws InterruptedException, Resources.NotFoundException {
+                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws InterruptedException {
                     TLRPC.PageBlock pageBlock = BlockCollageCell.this.currentBlock.items.get((BlockCollageCell.this.currentBlock.items.size() - i) - 1);
                     if (viewHolder.getItemViewType() == 0) {
                         BlockPhotoCell blockPhotoCell = (BlockPhotoCell) viewHolder.itemView;
@@ -9696,7 +9696,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
                     ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
                     ArticleViewer.this.cancelCheckLongPress();
                     return super.onInterceptTouchEvent(motionEvent);
@@ -9754,7 +9754,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public Object instantiateItem(ViewGroup viewGroup, int i) throws InterruptedException, Resources.NotFoundException {
+                public Object instantiateItem(ViewGroup viewGroup, int i) throws InterruptedException {
                     BlockVideoCell blockVideoCell;
                     TLRPC.PageBlock pageBlock = BlockSlideshowCell.this.currentBlock.items.get(i);
                     if (pageBlock instanceof TLRPC.TL_pageBlockPhoto) {
@@ -11253,7 +11253,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.currentType = i;
         }
 
-        public void setBlock(TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto, boolean z, boolean z2, boolean z3) throws Resources.NotFoundException {
+        public void setBlock(TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto, boolean z, boolean z2, boolean z3) {
             TLRPC.Photo photoWithId;
             this.parentBlock = null;
             this.currentBlock = tL_pageBlockPhoto;
@@ -12146,7 +12146,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.parentAdapter = webpageAdapter;
             HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context) {
                 @Override
-                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
                     if (BlockPreformattedCell.this.textContainer.getMeasuredWidth() > getMeasuredWidth()) {
                         ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
                     }
@@ -12751,7 +12751,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void updateTitle(boolean z) throws UnsupportedEncodingException {
+    public void updateTitle(boolean z) {
         this.actionBar.setTitle(0, this.pages[0].getTitle(), z);
         this.actionBar.setSubtitle(0, this.pages[0].getSubtitle(), false);
         this.actionBar.setIsDangerous(0, this.pages[0].isWeb() && this.pages[0].getWebView() != null && this.pages[0].getWebView().isUrlDangerous(), false);
@@ -12931,7 +12931,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                protected void onURLChanged(String str, boolean z, boolean z2) throws UnsupportedEncodingException {
+                protected void onURLChanged(String str, boolean z, boolean z2) {
                     PageLayout pageLayout = PageLayout.this;
                     pageLayout.backButton = !z;
                     pageLayout.forwardButton = !z2;
@@ -12960,7 +12960,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                protected void onTitleChanged(String str) throws UnsupportedEncodingException {
+                protected void onTitleChanged(String str) {
                     ArticleViewer.this.updateTitle(true);
                 }
 
@@ -13106,7 +13106,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void onCloseRequested(Runnable runnable) throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public void onCloseRequested(Runnable runnable) throws PackageManager.NameNotFoundException {
                     PageLayout pageLayout = PageLayout.this;
                     ArticleViewer articleViewer = ArticleViewer.this;
                     if (articleViewer.pages[0] == pageLayout) {
@@ -13123,7 +13123,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void onInstantClose() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+                public void onInstantClose() throws PackageManager.NameNotFoundException {
                     PageLayout pageLayout = PageLayout.this;
                     ArticleViewer articleViewer = ArticleViewer.this;
                     Sheet sheet2 = articleViewer.sheet;
@@ -13844,7 +13844,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1260getWindowView() {
+        public WindowView mo1259getWindowView() {
             return this.windowView;
         }
 
@@ -14041,7 +14041,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onAttachedBackPressed() throws PackageManager.NameNotFoundException, UnsupportedEncodingException {
+        public boolean onAttachedBackPressed() throws PackageManager.NameNotFoundException {
             if (!ArticleViewer.this.keyboardVisible) {
                 if (ArticleViewer.this.actionBar.isSearching()) {
                     ArticleViewer.this.actionBar.showSearch(false, true);
@@ -14237,7 +14237,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1260getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1259getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

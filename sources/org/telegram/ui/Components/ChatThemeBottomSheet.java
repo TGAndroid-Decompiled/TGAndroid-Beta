@@ -652,7 +652,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     @Override
-    public void onBackPressed() throws InterruptedException {
+    public void onBackPressed() {
         close();
     }
 
@@ -690,7 +690,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void close() throws InterruptedException {
+    public void close() {
         if (hasChanges()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
             builder.setTitle(LocaleController.getString(R.string.ChatThemeSaveDialogTitle));

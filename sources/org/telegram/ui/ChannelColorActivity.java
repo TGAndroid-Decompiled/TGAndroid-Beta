@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -352,7 +353,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             return ChannelColorActivity.this.isDark;
         }
 
-        public void toggle() {
+        public void toggle() throws IOException {
             ChannelColorActivity.this.isDark = !r0.isDark;
             ChannelColorActivity.this.updateThemeColors();
             ChannelColorActivity.this.updateColors();
@@ -623,7 +624,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             EmojiCell emojiCell = (EmojiCell) view;
             showSelectStatusDialog(emojiCell, j, i == this.statusEmojiRow, new Utilities.Callback3() {
                 @Override
-                public final void run(Object obj, Object obj2, Object obj3) {
+                public final void run(Object obj, Object obj2, Object obj3) throws IOException {
                     this.f$0.lambda$createView$1(i, view, (Long) obj, (Integer) obj2, (TL_stars.TL_starGiftUnique) obj3);
                 }
             }, this.selectedStatusEmoji instanceof TLRPC.TL_emojiStatusCollectible ? Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, this.resourceProvider) : emojiCell.getColor());
@@ -643,7 +644,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         if (i == this.wallpaperRow) {
             ChatThemeBottomSheet.openGalleryForBackground(getParentActivity(), this, this.dialogId, this.resourceProvider, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws IOException {
                     this.f$0.lambda$createView$3((TLRPC.WallPaper) obj);
                 }
             }, new ThemePreviewActivity.DayNightSwitchDelegate() {
@@ -658,7 +659,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 }
 
                 @Override
-                public void switchDayNight(boolean z) {
+                public void switchDayNight(boolean z) throws IOException {
                     if (((BaseFragment) ChannelColorActivity.this).resourceProvider instanceof ThemeDelegate) {
                         ((ThemeDelegate) ((BaseFragment) ChannelColorActivity.this).resourceProvider).toggle();
                     }
@@ -669,7 +670,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$1(int i, View view, Long l, Integer num, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+    public void lambda$createView$1(int i, View view, Long l, Integer num, TL_stars.TL_starGiftUnique tL_starGiftUnique) throws IOException {
         if (i == this.replyEmojiRow) {
             this.selectedReplyEmoji = l.longValue();
             updateMessagesPreview(true);
@@ -703,7 +704,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         ((EmojiCell) view).setEmoji(l.longValue(), tL_starGiftUnique != null, true);
     }
 
-    public void lambda$createView$3(TLRPC.WallPaper wallPaper) {
+    public void lambda$createView$3(TLRPC.WallPaper wallPaper) throws IOException {
         this.currentWallpaper = wallPaper;
         this.selectedWallpaper = wallPaper;
         this.galleryWallpaper = wallPaper;
@@ -1196,7 +1197,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) throws IOException {
             FrameLayout textInfoPrivacyCell;
             if (i == 0) {
                 Context context = ChannelColorActivity.this.getContext();
@@ -1222,7 +1223,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 themeChooser.setGalleryWallpaper(ChannelColorActivity.this.galleryWallpaper);
                 themeChooser.setOnEmoticonSelected(new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws IOException {
                         this.f$0.lambda$onCreateViewHolder$0((String) obj);
                     }
                 });
@@ -1240,7 +1241,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 final PeerColorPicker peerColorPicker = new PeerColorPicker(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorPicker.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
-                    public final void onItemClick(View view, int i3) {
+                    public final void onItemClick(View view, int i3) throws IOException {
                         this.f$0.lambda$onCreateViewHolder$1(peerColorPicker, view, i3);
                     }
                 });
@@ -1277,7 +1278,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             return new RecyclerListView.Holder(textInfoPrivacyCell);
         }
 
-        public void lambda$onCreateViewHolder$0(String str) {
+        public void lambda$onCreateViewHolder$0(String str) throws IOException {
             if (str == null) {
                 ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
                 channelColorActivity.selectedWallpaper = channelColorActivity.galleryWallpaper;
@@ -1295,7 +1296,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ChannelColorActivity.this.updateMessagesPreview(true);
         }
 
-        public void lambda$onCreateViewHolder$1(PeerColorPicker peerColorPicker, View view, int i) {
+        public void lambda$onCreateViewHolder$1(PeerColorPicker peerColorPicker, View view, int i) throws IOException {
             ChannelColorActivity.this.selectedReplyColor = peerColorPicker.toColorId(i);
             ChannelColorActivity.this.updateButton(true);
             ChannelColorActivity.this.updateMessagesPreview(true);
@@ -1517,7 +1518,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void updateMessagesPreview(boolean z) {
+    public void updateMessagesPreview(boolean z) throws IOException {
         MessageObject messageObject;
         View viewFindChildAt = findChildAt(this.messagesPreviewRow);
         View viewFindChildAt2 = findChildAt(this.replyColorListRow);
@@ -2763,13 +2764,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$toggleTheme$17();
             }
         });
     }
 
-    public void lambda$toggleTheme$17() {
+    public void lambda$toggleTheme$17() throws IOException {
         Theme.ResourcesProvider resourcesProvider = this.resourceProvider;
         if (resourcesProvider instanceof ThemeDelegate) {
             ((ThemeDelegate) resourcesProvider).toggle();
@@ -2805,7 +2806,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void updateThemeColors() {
+    public void updateThemeColors() throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelColorActivity.updateThemeColors():void");
     }
 

@@ -1447,7 +1447,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             paint.setAlpha((int) ((1.0f - this.reorderIconProgress) * i4));
             Theme.dialogs_countTextPaint.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
-            this.rect.set(i2 - AndroidUtilities.dp(7.0f), i, r9 + this.countWidth + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.66f) + i);
+            this.rect.set(i2 - AndroidUtilities.dp(4.33f), i, r9 + this.countWidth + AndroidUtilities.dp(8.66f), AndroidUtilities.dp(20.66f) + i);
             int iSave = canvas.save();
             if (f != 1.0f) {
                 canvas.scale(f, f, this.rect.centerX(), this.rect.centerY());
@@ -1492,9 +1492,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             float f5 = f4 > 1.0f ? 1.0f : f4;
             float f6 = 1.0f - f5;
             float f7 = (i2 * f5) + (i3 * f6);
-            float fDp = f7 - AndroidUtilities.dp(7.0f);
+            float fDp = f7 - AndroidUtilities.dp(4.33f);
             float f8 = i;
-            this.rect.set(fDp, f8, (this.countWidth * f5) + fDp + (this.countWidthOld * f6) + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.66f) + i);
+            this.rect.set(fDp, f8, (this.countWidth * f5) + fDp + (this.countWidthOld * f6) + AndroidUtilities.dp(8.66f), AndroidUtilities.dp(20.66f) + i);
             if (f3 <= 0.5f) {
                 interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(f4) * 0.1f;
                 f2 = 1.0f;

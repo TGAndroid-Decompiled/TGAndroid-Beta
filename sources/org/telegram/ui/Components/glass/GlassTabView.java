@@ -12,11 +12,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -33,14 +35,18 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
     private int colorDefault;
     private int colorSelected;
     private final AnimatedTextView.AnimatedTextDrawable counter;
+    private float gestureSelectedOverride;
+    private boolean hasGestureSelectedOverride;
     private Drawable iconFilled;
     private Drawable iconOutline;
     private final RLottieImageView imageView;
     private final BoolAnimator isHasCounterAnimator;
     private final BoolAnimator isHasCounterErrorAnimator;
     private final BoolAnimator isSelectedAnimator;
+    private int lastAnimation;
     private final Paint paintCounterBackground;
     private Theme.ResourcesProvider resourcesProvider;
+    private TabAnimation tabAnimation;
     private final TextView textView;
 
     @Override
@@ -77,27 +83,45 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(10.0f));
     }
 
+    public void setGestureSelectedOverride(float f, boolean z) {
+        this.gestureSelectedOverride = f;
+        this.hasGestureSelectedOverride = z;
+        invalidate();
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float floatValue = this.isHasCounterAnimator.getFloatValue();
-        boolean z = floatValue > 0.0f;
+        float floatValue = this.hasGestureSelectedOverride ? this.gestureSelectedOverride : this.isSelectedAnimator.getFloatValue();
+        if (floatValue > 0.0f) {
+            this.paintCounterBackground.setColor(Theme.multAlpha(this.colorSelected, AnimatorUtils.DECELERATE_INTERPOLATOR.getInterpolation(floatValue) * 0.09f));
+            RectF rectF = tmpRectF;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            float fMin = Math.min(rectF.width(), rectF.height()) / 2.0f;
+            float fLerp = AndroidUtilities.lerp(0.4f, 1.0f, floatValue);
+            canvas.save();
+            canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
+            canvas.drawRoundRect(rectF, fMin, fMin, this.paintCounterBackground);
+            canvas.restore();
+        }
+        float floatValue2 = this.isHasCounterAnimator.getFloatValue();
+        boolean z = floatValue2 > 0.0f;
         if (z) {
             canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
         }
         super.dispatchDraw(canvas);
         if (this.iconFilled != null && this.iconOutline != null) {
-            int floatValue2 = (int) ((1.0f - this.isSelectedAnimator.getFloatValue()) * 255.0f);
-            int floatValue3 = (int) (this.isSelectedAnimator.getFloatValue() * 255.0f);
-            if (floatValue2 > 0) {
-                this.iconOutline.setAlpha(floatValue2);
+            int floatValue3 = (int) ((1.0f - this.isSelectedAnimator.getFloatValue()) * 255.0f);
+            int floatValue4 = (int) (this.isSelectedAnimator.getFloatValue() * 255.0f);
+            if (floatValue3 > 0) {
+                this.iconOutline.setAlpha(floatValue3);
                 this.iconOutline.draw(canvas);
             }
-            if (floatValue3 > 0) {
-                this.iconFilled.setAlpha(floatValue3);
+            if (floatValue4 > 0) {
+                this.iconFilled.setAlpha(floatValue4);
                 this.iconFilled.draw(canvas);
             }
         }
-        if (floatValue > 0.0f) {
+        if (floatValue2 > 0.0f) {
             canvas.save();
             float fDpf2 = AndroidUtilities.dpf2(1.33f);
             float width = (getWidth() / 2.0f) + AndroidUtilities.dpf2(11.0f);
@@ -106,16 +130,16 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
             float fMax = Math.max(fDpf23, this.counter.getCurrentWidth() + AndroidUtilities.dp(8.0f));
             float fDpf24 = AndroidUtilities.dpf2(9.333f);
             float fDpf25 = AndroidUtilities.dpf2(8.0f);
-            RectF rectF = tmpRectF;
+            RectF rectF2 = tmpRectF;
             float f = fMax / 2.0f;
             float f2 = fDpf23 / 2.0f;
-            rectF.set((width - f) - fDpf2, (fDpf22 - f2) - fDpf2, f + width + fDpf2, f2 + fDpf22 + fDpf2);
-            canvas.scale(floatValue, floatValue, width, fDpf22);
-            canvas.drawRoundRect(rectF, fDpf24, fDpf24, Theme.PAINT_CLEAR);
-            rectF.inset(fDpf2, fDpf2);
+            rectF2.set((width - f) - fDpf2, (fDpf22 - f2) - fDpf2, f + width + fDpf2, f2 + fDpf22 + fDpf2);
+            canvas.scale(floatValue2, floatValue2, width, fDpf22);
+            canvas.drawRoundRect(rectF2, fDpf24, fDpf24, Theme.PAINT_CLEAR);
+            rectF2.inset(fDpf2, fDpf2);
             this.paintCounterBackground.setColor(ColorUtils.blendARGB(this.colorSelected, Theme.getColor(Theme.key_fill_RedNormal), this.isHasCounterErrorAnimator.getFloatValue()));
-            canvas.drawRoundRect(rectF, fDpf25, fDpf25, this.paintCounterBackground);
-            this.counter.setBounds(rectF);
+            canvas.drawRoundRect(rectF2, fDpf25, fDpf25, this.paintCounterBackground);
+            this.counter.setBounds(rectF2);
             this.counter.draw(canvas);
             canvas.restore();
         }
@@ -132,6 +156,7 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
 
     public void setSelected(boolean z, boolean z2) {
         this.isSelectedAnimator.setValue(z, z2);
+        checkPlayAnimation(z2);
     }
 
     @Override
@@ -213,13 +238,37 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
         invalidate();
     }
 
-    public static GlassTabView createMainTab(Context context, Theme.ResourcesProvider resourcesProvider, int i, int i2, int i3) {
+    private void checkPlayAnimation(boolean z) {
+        if (this.tabAnimation == null) {
+            return;
+        }
+        int i = this.isSelectedAnimator.getValue() ? this.tabAnimation.fromOutlineToFilled : this.tabAnimation.fromFilledToOutline;
+        if (this.lastAnimation != i) {
+            this.lastAnimation = i;
+            this.imageView.setAnimation(i, 24, 24);
+            if (z) {
+                this.imageView.getAnimatedDrawable().setCurrentFrame(0);
+                this.imageView.playAnimation();
+                return;
+            } else {
+                this.imageView.getAnimatedDrawable().setProgress(0.99f);
+                return;
+            }
+        }
+        if (!z || this.imageView.isPlaying()) {
+            return;
+        }
+        this.imageView.getAnimatedDrawable().setCurrentFrame(0);
+        this.imageView.playAnimation();
+    }
+
+    public static GlassTabView createMainTab(Context context, Theme.ResourcesProvider resourcesProvider, TabAnimation tabAnimation, int i) {
         GlassTabView glassTabView = new GlassTabView(context);
         glassTabView.resourcesProvider = resourcesProvider;
-        glassTabView.textView.setText(LocaleController.getString(i3));
-        glassTabView.imageView.setVisibility(8);
-        glassTabView.iconFilled = context.getResources().getDrawable(i);
-        glassTabView.iconOutline = context.getResources().getDrawable(i2);
+        glassTabView.tabAnimation = tabAnimation;
+        glassTabView.textView.setText(LocaleController.getString(i));
+        glassTabView.checkPlayAnimation(false);
+        glassTabView.imageView.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
         glassTabView.colorDefault = Theme.getColor(Theme.key_glass_tabUnselected, resourcesProvider);
         glassTabView.colorSelected = Theme.getColor(Theme.key_glass_tabSelected, resourcesProvider);
         glassTabView.updateColors();
@@ -240,5 +289,19 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
         glassTabView.colorSelected = ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), 255);
         glassTabView.updateColors();
         return glassTabView;
+    }
+
+    public enum TabAnimation {
+        CONTACTS(R.raw.tab_contacts, R.raw.tab_contacts_reverse),
+        CALLS(R.raw.tab_calls, R.raw.tab_calls_reverse),
+        CHATS(R.raw.tab_chats, R.raw.tab_chats_reverse);
+
+        public final int fromFilledToOutline;
+        public final int fromOutlineToFilled;
+
+        TabAnimation(int i, int i2) {
+            this.fromOutlineToFilled = i;
+            this.fromFilledToOutline = i2;
+        }
     }
 }
