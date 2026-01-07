@@ -651,9 +651,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.SettingsHelp)));
         arrayList.add(SettingCell.Factory.of(17, -1007845, -1996271, R.drawable.settings_ask, LocaleController.getString(R.string.AskAQuestion)));
-        int i4 = R.drawable.settings_faq;
-        arrayList.add(SettingCell.Factory.of(18, -14965523, -15431455, i4, LocaleController.getString(R.string.TelegramFAQ)));
-        arrayList.add(SettingCell.Factory.of(23, -3903756, -6335009, i4, LocaleController.getString(R.string.TelegramFeatures)));
+        arrayList.add(SettingCell.Factory.of(18, -14965523, -15431455, R.drawable.settings_faq, LocaleController.getString(R.string.TelegramFAQ)));
+        arrayList.add(SettingCell.Factory.of(23, -3903756, -6335009, R.drawable.settings_features, LocaleController.getString(R.string.TelegramFeatures)));
         arrayList.add(SettingCell.Factory.of(19, -11154873, -14175180, R.drawable.settings_policy, LocaleController.getString(R.string.PrivacyPolicy)));
         if (BuildVars.LOGS_ENABLED || BuildVars.DEBUG_PRIVATE_VERSION) {
             arrayList.add(UItem.asShadow(null));

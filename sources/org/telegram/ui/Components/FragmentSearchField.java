@@ -37,6 +37,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
 
 public class FragmentSearchField extends FrameLayout implements FactorAnimator.Target {
+    private final LinearLayout additionalIconsLayout;
     private final BoolAnimator animatorCloseIconVisible;
     private final FactorAnimator animatorSearchFiltersWidth;
     private final BoolAnimator animatorSearchIconVisible;
@@ -138,6 +139,10 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.outline_search_1_24);
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.additionalIconsLayout = linearLayout;
+        linearLayout.setOrientation(0);
+        addView(linearLayout, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 32.0f, 0.0f, 32.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.closeIcon = imageView2;
         imageView2.setScaleType(scaleType);
@@ -150,17 +155,17 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
             }
         });
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(getContext()) {
+        LinearLayout linearLayout2 = new LinearLayout(getContext()) {
             @Override
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 FragmentSearchField.this.animatorSearchFiltersWidth.animateTo(getMeasuredWidth());
                 super.onLayout(z, i, i2, i3, i4);
             }
         };
-        this.searchFilterLayout = linearLayout;
-        linearLayout.setOrientation(0);
-        linearLayout.setVisibility(0);
-        addView(linearLayout, LayoutHelper.createFrame(-2, 32.0f, (LocaleController.isRTL ? 5 : 3) | 16, 4.0f, 0.0f, 4.0f, 0.0f));
+        this.searchFilterLayout = linearLayout2;
+        linearLayout2.setOrientation(0);
+        linearLayout2.setVisibility(0);
+        addView(linearLayout2, LayoutHelper.createFrame(-2, 32.0f, (LocaleController.isRTL ? 5 : 3) | 16, 4.0f, 0.0f, 4.0f, 0.0f));
         setWillNotDraw(false);
         checkUi_editTextPaddings();
         updateColors();
@@ -186,6 +191,10 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         } else {
             this.editText.getText().clear();
         }
+    }
+
+    public void addAdditionalIcon(View view) {
+        this.additionalIconsLayout.addView(view);
     }
 
     public void setClipHeight(float f) {
@@ -220,19 +229,23 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
     }
 
     @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
         checkUi_editTextPaddings();
     }
 
     private void checkUi_editTextPaddings() {
-        int factor = ((int) this.animatorSearchFiltersWidth.getFactor()) + AndroidUtilities.dp(6.0f);
-        int iDp = LocaleController.isRTL ? AndroidUtilities.dp(48.0f) : Math.max(factor, AndroidUtilities.dp(48.0f));
-        int iMax = LocaleController.isRTL ? Math.max(factor, AndroidUtilities.dp(48.0f)) : AndroidUtilities.dp(48.0f);
+        int iMax = Math.max(((int) this.animatorSearchFiltersWidth.getFactor()) + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        int iDp = AndroidUtilities.dp(48.0f) + this.additionalIconsLayout.getMeasuredWidth();
+        boolean z = LocaleController.isRTL;
+        int i = z ? iDp : iMax;
+        if (!z) {
+            iMax = iDp;
+        }
         android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(iDp, 0, this.editText.getMeasuredWidth() - iMax, this.editText.getMeasuredHeight());
+        rect.set(i, 0, this.editText.getMeasuredWidth() - iMax, this.editText.getMeasuredHeight());
         this.editText.setClipBounds(rect);
-        this.editText.setPadding(iDp, 0, iMax, 0);
+        this.editText.setPadding(i, 0, iMax, 0);
     }
 
     public void updateColors() {
@@ -244,13 +257,25 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(themedColor, mode);
         this.closeIcon.setColorFilter(getThemedColor(i, 0.6f), mode);
-        this.closeIcon.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 5, AndroidUtilities.dp(12.0f)));
+        this.closeIcon.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(17.0f)));
         this.editText.setHintTextColor(getThemedColor(i, 0.5f));
         this.editText.setTextColor(getThemedColor(i));
         this.editText.setCursorColor(getThemedColor(Theme.key_groupcreate_cursor));
-        for (int i2 = 0; i2 < this.searchFilterLayout.getChildCount(); i2++) {
-            if (this.searchFilterLayout.getChildAt(i2) instanceof ActionBarMenuItem.SearchFilterView) {
-                ((ActionBarMenuItem.SearchFilterView) this.searchFilterLayout.getChildAt(i2)).updateColors();
+        int childCount = this.additionalIconsLayout.getChildCount();
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = this.additionalIconsLayout.getChildAt(i2);
+            if (childAt instanceof ActionBarMenuItem) {
+                ActionBarMenuItem actionBarMenuItem = (ActionBarMenuItem) childAt;
+                if (actionBarMenuItem.getIconView() != null) {
+                    actionBarMenuItem.getIconView().setColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText, 0.6f), PorterDuff.Mode.MULTIPLY);
+                }
+                childAt.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(17.0f)));
+            }
+        }
+        int childCount2 = this.searchFilterLayout.getChildCount();
+        for (int i3 = 0; i3 < childCount2; i3++) {
+            if (this.searchFilterLayout.getChildAt(i3) instanceof ActionBarMenuItem.SearchFilterView) {
+                ((ActionBarMenuItem.SearchFilterView) this.searchFilterLayout.getChildAt(i3)).updateColors();
             }
         }
         invalidate();

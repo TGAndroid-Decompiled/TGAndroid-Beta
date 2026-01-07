@@ -1,5 +1,6 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,7 +9,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -240,15 +240,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                     }
                 });
             }
+            TabsSelectorView tabsSelectorView2 = this.tabsView;
+            tabsSelectorView2.linearLayout.addView(tabsSelectorView2.tabs[i], LayoutHelper.createLinear(0, -1, 1.0f));
         }
-        TabsSelectorView tabsSelectorView2 = this.tabsView;
-        tabsSelectorView2.linearLayout.addView(tabsSelectorView2.tabs[0], LayoutHelper.createLinear(0, -1, 1.0f));
-        TabsSelectorView tabsSelectorView3 = this.tabsView;
-        tabsSelectorView3.linearLayout.addView(tabsSelectorView3.tabs[1], LayoutHelper.createLinear(0, -1, 1.0f));
-        TabsSelectorView tabsSelectorView4 = this.tabsView;
-        tabsSelectorView4.linearLayout.addView(tabsSelectorView4.tabs[2], LayoutHelper.createLinear(0, -1, 1.0f));
-        TabsSelectorView tabsSelectorView5 = this.tabsView;
-        tabsSelectorView5.linearLayout.addView(tabsSelectorView5.tabs[3], LayoutHelper.createLinear(0, -1, 1.0f));
         this.tabsView.selectTab(this.viewPager.getCurrentPosition(), false, true);
         this.iBlur3SourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         ViewPositionWatcher viewPositionWatcher = new ViewPositionWatcher(this.contentView);
@@ -460,8 +454,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     @Override
     protected void onViewPagerTabAnimationUpdate(boolean z) {
-        Log.i("WTF_DEBUG", "onViewPagerTabAnimationUpdate " + this.viewPager.getPositionAnimated() + " " + z);
-        boolean z2 = z ^ true;
+        boolean z2 = !z;
         if (this.tabsView != null) {
             float positionAnimated = this.viewPager.getPositionAnimated();
             this.tabsView.animator.forceFactor(positionAnimated);
@@ -647,6 +640,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             return this.dialogsActivity;
         }
         if (i != 3) {
+            if (i == 4) {
+                return new SettingsActivity();
+            }
             return null;
         }
         Bundle bundle4 = new Bundle();
@@ -856,6 +852,46 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         @Override
         public void setTabsVisible(boolean z) {
             MainTabsActivity.this.animatorTabsVisible.setValue(z, true);
+        }
+    }
+
+    @Override
+    public boolean canBeginSlide() {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        return currentVisibleFragment != null && currentVisibleFragment.canBeginSlide();
+    }
+
+    @Override
+    public void onBeginSlide() {
+        super.onBeginSlide();
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            currentVisibleFragment.onBeginSlide();
+        }
+    }
+
+    @Override
+    public void onSlideProgress(boolean z, float f) {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            currentVisibleFragment.onSlideProgress(z, f);
+        }
+    }
+
+    @Override
+    public Animator getCustomSlideTransition(boolean z, boolean z2, float f) {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            return currentVisibleFragment.getCustomSlideTransition(z, z2, f);
+        }
+        return null;
+    }
+
+    @Override
+    public void prepareFragmentToSlide(boolean z, boolean z2) {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            currentVisibleFragment.prepareFragmentToSlide(z, z2);
         }
     }
 

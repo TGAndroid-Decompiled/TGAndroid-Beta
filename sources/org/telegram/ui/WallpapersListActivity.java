@@ -945,7 +945,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         themePreviewActivity.setResourceProvider(this.resourceProvider);
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 WallpapersListActivity.lambda$showAsSheet$6();
             }
         };
@@ -953,7 +953,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         showAsSheet(themePreviewActivity, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$6() throws NumberFormatException {
+    public static void lambda$showAsSheet$6() {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 

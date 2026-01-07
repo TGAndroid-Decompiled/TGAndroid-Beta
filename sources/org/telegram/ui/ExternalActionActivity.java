@@ -211,7 +211,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         return false;
     }
 
-    public void showPasscodeActivity() throws NumberFormatException {
+    public void showPasscodeActivity() {
         if (this.passcodeView == null) {
             return;
         }
@@ -260,7 +260,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         }
     }
 
-    protected boolean checkPasscode(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws NumberFormatException {
+    protected boolean checkPasscode(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
         if (z3 || !(AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             return true;
         }
@@ -574,7 +574,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     }
 
     @Override
-    protected void onResume() throws NumberFormatException {
+    protected void onResume() {
         super.onResume();
         this.actionBarLayout.onResume();
         if (AndroidUtilities.isTablet()) {
@@ -607,7 +607,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable2 = new Runnable() {
                 @Override
-                public void run() throws NumberFormatException {
+                public void run() {
                     if (ExternalActionActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
@@ -636,7 +636,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         SharedConfig.saveConfig();
     }
 
-    private void onPasscodeResume() throws NumberFormatException {
+    private void onPasscodeResume() {
         Runnable runnable = this.lockRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -660,7 +660,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     }
 
     @Override
-    public void onBackPressed() throws NumberFormatException {
+    public void onBackPressed() {
         if (this.passcodeView.getVisibility() == 0) {
             finish();
             return;

@@ -226,6 +226,7 @@ import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Business.QuickRepliesEmptyView;
 import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.BotAskCell;
 import org.telegram.ui.Cells.BotHelpCell;
 import org.telegram.ui.Cells.BotSwitchCell;
 import org.telegram.ui.Cells.ChatActionCell;
@@ -1228,7 +1229,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$58010(ChatActivity chatActivity) {
+    static int access$58110(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -5721,7 +5722,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, this.mentionContainer.getListView(), 0, this.mentionsOnItemClickListener, this.mentionContainer.getAdapter().isStickers() ? this.contentPreviewViewerDelegate : null, this.themeDelegate);
     }
 
-    public void lambda$createView$37(View view, int i) throws NumberFormatException {
+    public void lambda$createView$37(View view, int i) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         AnimatedEmojiSpan animatedEmojiSpan;
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
@@ -6453,7 +6454,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$52(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, FrameLayout frameLayout, View view) {
+    public void lambda$createView$52(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, FrameLayout frameLayout, View view) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null && messageObject.canEditMedia() && this.editingMessageObjectReqId == 0) {
             if (editViewButton.isEditButton()) {
@@ -7823,6 +7824,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             if (view instanceof ChatUnreadCell) {
                 ((ChatUnreadCell) view).getTextView().setTranslationX(ChatActivity.this.getSideMenuWidth() / 2.0f);
+            } else if (view instanceof BotAskCell) {
+                view.invalidate();
+            } else if (view instanceof BotHelpCell) {
+                view.invalidate();
             }
         }
     }
@@ -7895,11 +7900,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             hideFloatingDateView(true);
             hideFieldPanel(true);
             applyDraftMaybe(true, true);
-            ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
-            if (chatActivityEnterView != null) {
-                chatActivityEnterView.hidePopup(false);
+            if (this.chatActivityEnterView != null) {
+                if (!UserObject.isBotForum(this.currentUser)) {
+                    this.chatActivityEnterView.hidePopup(false);
+                }
                 this.chatActivityEnterView.updateFieldHint(true);
-                if (getParentActivity() != null) {
+                if (getParentActivity() != null && !UserObject.isBotForum(this.currentUser)) {
                     AndroidUtilities.hideKeyboard(getParentActivity().getCurrentFocus());
                 }
             }
@@ -7909,10 +7915,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.reactionsMentionCount = topic != null ? topic.unread_reactions_count : 0;
             updateReactionsMentionButton(false);
             updateTopicButtons();
-            if (this.searchItemListener == null || !this.actionBar.isSearchFieldVisible()) {
-                return;
+            if (this.searchItemListener != null && this.actionBar.isSearchFieldVisible()) {
+                this.searchItemListener.onSearchPressed(null);
             }
-            this.searchItemListener.onSearchPressed(null);
+            if (UserObject.isBotForum(this.currentUser)) {
+                getMediaDataController().loadBotKeyboard(MessagesStorage.TopicKey.of(this.dialog_id, num.intValue()), true);
+            }
         }
     }
 
@@ -9202,7 +9210,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         UndoView undoView = new UndoView(getContext(), this, true, this.themeDelegate) {
             @Override
-            public void didPressUrl(CharacterStyle characterStyle) throws UnsupportedEncodingException {
+            public void didPressUrl(CharacterStyle characterStyle) throws Resources.NotFoundException, UnsupportedEncodingException {
                 ChatActivity.this.didPressMessageUrl(characterStyle, false, null, null);
             }
 
@@ -13086,7 +13094,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessagesVisiblePart(boolean):void");
     }
 
-    public void lambda$updateMessagesVisiblePart$144(MessageObject messageObject) {
+    public void lambda$updateMessagesVisiblePart$144(MessageObject messageObject) throws Resources.NotFoundException {
         if (messageObject.isVideo()) {
             openPhotoViewerForMessage(null, messageObject);
         } else {
@@ -14563,7 +14571,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void openVideoEditor(String str, String str2) throws NumberFormatException {
+    public void openVideoEditor(String str, String str2) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         if (getParentActivity() != null) {
             final Bitmap bitmapCreateVideoThumbnail = SendMessagesHelper.createVideoThumbnail(str, 1);
             PhotoViewer.getInstance().setParentActivity(this, this.themeDelegate);
@@ -14649,7 +14657,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return arrayList2;
     }
 
-    public boolean openPhotosEditor(ArrayList arrayList, CharSequence charSequence) throws IOException {
+    public boolean openPhotosEditor(ArrayList arrayList, CharSequence charSequence) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException {
         final ArrayList arrayListCreateEntriesFromMedia = createEntriesFromMedia(arrayList, isSecretChat(), charSequence);
         if (arrayListCreateEntriesFromMedia.isEmpty()) {
             return false;
@@ -14744,7 +14752,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void openEditingMessageInPhotoEditor() {
+    private void openEditingMessageInPhotoEditor() throws java.lang.IllegalAccessException, java.lang.NoSuchFieldException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openEditingMessageInPhotoEditor():void");
     }
 
@@ -14795,7 +14803,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, final Intent intent) throws NumberFormatException {
+    public void onActivityResultFragment(int i, int i2, final Intent intent) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         String path;
         if (i2 == -1) {
             if (i == 0 || i == 2) {
@@ -18011,7 +18019,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.startVideoEdit != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
                     this.f$0.lambda$onResume$236();
                 }
             });
@@ -18042,7 +18050,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onResume$236() throws NumberFormatException {
+    public void lambda$onResume$236() throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         openVideoEditor(this.startVideoEdit, null);
         this.startVideoEdit = null;
     }
@@ -18579,7 +18587,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) throws NumberFormatException {
+    public void onConfigurationChanged(Configuration configuration) throws Resources.NotFoundException {
         MessageObject playingMessageObject;
         fixLayout();
         Dialog dialog = this.visibleDialog;
@@ -19140,7 +19148,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processSelectedOption(((Integer) arrayList.get(i)).intValue());
     }
 
-    public Boolean lambda$createMenu$272(View view, URLSpan uRLSpan) throws UnsupportedEncodingException {
+    public Boolean lambda$createMenu$272(View view, URLSpan uRLSpan) throws Resources.NotFoundException, UnsupportedEncodingException {
         didPressMessageUrl(uRLSpan, false, this.selectedObject, view instanceof ChatMessageCell ? (ChatMessageCell) view : null);
         return Boolean.TRUE;
     }
@@ -22387,7 +22395,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openClickableLink(android.text.style.CharacterStyle, java.lang.String, boolean, org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$openClickableLink$365(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws java.io.UnsupportedEncodingException {
+    public void lambda$openClickableLink$365(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws android.content.res.Resources.NotFoundException, java.io.UnsupportedEncodingException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$openClickableLink$365(java.lang.String, android.text.style.CharacterStyle, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, int, android.content.DialogInterface, int):void");
     }
 
@@ -22640,7 +22648,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
-    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws UnsupportedEncodingException {
+    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws Resources.NotFoundException, UnsupportedEncodingException {
         TLRPC.WebPage webPage;
         MessageObject messageObject2;
         MessageObject messageObject3;
@@ -22817,7 +22825,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processExternalUrl(2, url2, characterStyle, chatMessageCell, Browser.urlMustNotHaveConfirmation(url2) ? false : z2, false);
     }
 
-    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) {
+    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) throws Resources.NotFoundException {
         ChatMessageCell chatMessageCell2;
         AnimatedFileDrawable animation;
         Bitmap animatedBitmap;
@@ -23081,7 +23089,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else if (i == 2) {
                 chatActionCell = new ChatUnreadCell(this.mContext, ChatActivity.this.themeDelegate);
             } else if (i == 3) {
-                BotHelpCell botHelpCell = new BotHelpCell(this.mContext, ChatActivity.this.themeDelegate);
+                BotHelpCell botHelpCell = new BotHelpCell(this.mContext, ChatActivity.this.themeDelegate) {
+                    @Override
+                    public int getSideMenuWidth() {
+                        return ChatActivity.this.getSideMenuWidth();
+                    }
+                };
                 botHelpCell.setDelegate(new BotHelpCell.BotHelpCellDelegate() {
                     @Override
                     public final void didPressUrl(String str) {
@@ -23098,14 +23111,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else if (i == 7) {
                 chatActionCell = new ChatActionCell(this.mContext, false, ChatActivity.this.themeDelegate);
             } else if (i == 8) {
-                View view2 = new View(this.mContext) {
+                chatActionCell = new BotAskCell(this.mContext, ((BaseFragment) ChatActivity.this).currentAccount, ChatActivity.this.themeDelegate) {
                     @Override
-                    protected void onMeasure(int i3, int i4) {
-                        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                    public int getSideMenuWidth() {
+                        return ChatActivity.this.getSideMenuWidth();
                     }
                 };
-                view2.setBackgroundColor(-16711936);
-                chatActionCell = view2;
             }
             chatActionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(chatActionCell);
@@ -23263,7 +23274,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) {
+            public void didClickImage(ChatActionCell chatActionCell) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
                 TLRPC.VideoSize closestVideoSizeWithSize;
                 TLRPC.VideoSize emojiMarkup;
                 String str;
@@ -23537,10 +23548,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        class AnonymousClass4 implements ViewTreeObserver.OnPreDrawListener {
+        class AnonymousClass5 implements ViewTreeObserver.OnPreDrawListener {
             final ChatMessageCell val$messageCell;
 
-            AnonymousClass4(ChatMessageCell chatMessageCell) {
+            AnonymousClass5(ChatMessageCell chatMessageCell) {
                 this.val$messageCell = chatMessageCell;
             }
 
@@ -23586,8 +23597,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 animatorSet2.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        AnonymousClass4.this.val$messageCell.setAlpha(1.0f);
-                        AnonymousClass4.this.val$messageCell.getTransitionParams().ignoreAlpha = false;
+                        AnonymousClass5.this.val$messageCell.setAlpha(1.0f);
+                        AnonymousClass5.this.val$messageCell.getTransitionParams().ignoreAlpha = false;
                         AnimationProperties.FloatProperty floatProperty = new AnimationProperties.FloatProperty("alpha") {
                             @Override
                             public void setValue(ChatMessageCell chatMessageCell, float f2) {
@@ -23600,7 +23611,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             }
                         };
                         AnimatorSet animatorSet3 = new AnimatorSet();
-                        animatorSet3.playTogether(ObjectAnimator.ofFloat(cameraContainer, (Property<InstantCameraView.InstantViewCameraContainer, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(AnonymousClass4.this.val$messageCell, floatProperty, 1.0f));
+                        animatorSet3.playTogether(ObjectAnimator.ofFloat(cameraContainer, (Property<InstantCameraView.InstantViewCameraContainer, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(AnonymousClass5.this.val$messageCell, floatProperty, 1.0f));
                         animatorSet3.setDuration(100L);
                         animatorSet3.setInterpolator(new DecelerateInterpolator());
                         animatorSet3.addListener(new AnimatorListenerAdapter() {
@@ -25703,7 +25714,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws UnsupportedEncodingException {
+        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException, UnsupportedEncodingException {
             ChatActivity.this.didPressMessageUrl(characterStyle, z, chatMessageCell.getMessageObject(), chatMessageCell);
         }
 
@@ -26028,7 +26039,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) throws Resources.NotFoundException {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                 Browser.Progress progressMakeProgressForPaidMedia = ChatActivity.this.makeProgressForPaidMedia(chatMessageCell);
@@ -29478,7 +29489,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final boolean z5 = z3;
             itemOptionsMakeOptions.add(R.drawable.msg_openin, LocaleController.getString((!z2 || z3) ? R.string.Open : R.string.OpenInTelegramBrowser), new Runnable() {
                 @Override
-                public final void run() throws UnsupportedEncodingException {
+                public final void run() throws Resources.NotFoundException, UnsupportedEncodingException {
                     this.f$0.lambda$didLongPressLink$382(str, characterStyle, messageObject, chatMessageCell, z4, z5);
                 }
             });
@@ -29542,7 +29553,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions3);
     }
 
-    public void lambda$didLongPressLink$382(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws UnsupportedEncodingException {
+    public void lambda$didLongPressLink$382(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws Resources.NotFoundException, UnsupportedEncodingException {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
         } else if (z && !z2) {

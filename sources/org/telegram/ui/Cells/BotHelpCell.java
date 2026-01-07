@@ -32,7 +32,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
 
-public class BotHelpCell extends View {
+public abstract class BotHelpCell extends View {
     private boolean animating;
     private String currentPhotoKey;
     private BotHelpCellDelegate delegate;
@@ -56,6 +56,10 @@ public class BotHelpCell extends View {
 
     public interface BotHelpCellDelegate {
         void didPressUrl(String str);
+    }
+
+    public int getSideMenuWidth() {
+        return 0;
     }
 
     public BotHelpCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -212,6 +216,8 @@ public class BotHelpCell extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(getSideMenuWidth() / 2.0f, 0.0f);
         int width = (getWidth() - this.width) / 2;
         int iDp = this.photoHeight + AndroidUtilities.dp(2.0f);
         Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
@@ -261,6 +267,7 @@ public class BotHelpCell extends View {
         if (staticLayout != null) {
             staticLayout.draw(canvas);
         }
+        canvas.restore();
         canvas.restore();
         this.wasDraw = true;
     }

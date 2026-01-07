@@ -8535,7 +8535,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void localSearch(int r29, java.lang.String r30, java.util.ArrayList<java.lang.Object> r31, java.util.ArrayList<java.lang.CharSequence> r32, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r33, java.util.ArrayList<java.lang.Long> r34, int r35) {
+    public void localSearch(int r29, java.lang.String r30, java.util.ArrayList<java.lang.Object> r31, java.util.ArrayList<java.lang.CharSequence> r32, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r33, java.util.ArrayList<java.lang.Long> r34, int r35) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.localSearch(int, java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 

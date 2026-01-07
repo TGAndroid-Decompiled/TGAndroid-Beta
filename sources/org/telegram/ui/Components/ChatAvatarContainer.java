@@ -177,11 +177,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.val$baseFragment = baseFragment;
             this.val$avatarClickable = z;
             this.val$resourcesProvider = resourcesProvider;
-            this.params = new C00271(true);
+            this.params = new C00261(true);
         }
 
-        class C00271 extends StoriesUtilities.AvatarStoryParams {
-            C00271(boolean z) {
+        class C00261 extends StoriesUtilities.AvatarStoryParams {
+            C00261(boolean z) {
                 super(z);
             }
 

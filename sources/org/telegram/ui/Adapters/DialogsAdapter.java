@@ -186,15 +186,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public int fixScrollGap(RecyclerListView recyclerListView, int i, int i2, boolean z, boolean z2, boolean z3, boolean z4) {
-        getItemCount();
         int iDp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 76.0f : 70.0f);
-        recyclerListView.getPaddingTop();
         int paddingTop = ((recyclerListView.getPaddingTop() + i2) - (i * iDp)) - i;
-        if (z2) {
-            AndroidUtilities.dp(81.0f);
-        } else if (z3) {
-            AndroidUtilities.dp(44.0f);
-        }
         if (z) {
             paddingTop += iDp;
         }

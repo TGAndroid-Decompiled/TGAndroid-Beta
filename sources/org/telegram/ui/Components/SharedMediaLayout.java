@@ -2234,7 +2234,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
 
                 @Override
-                public final void onItemClick(View view, int i24, float f, float f2) {
+                public final void onItemClick(View view, int i24, float f, float f2) throws Resources.NotFoundException {
                     this.f$0.lambda$new$17(mediaPage2, context, view, i24, f, f2);
                 }
             });
@@ -3502,7 +3502,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         openStoryRecorder();
     }
 
-    public void lambda$new$17(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) {
+    public void lambda$new$17(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) throws Resources.NotFoundException {
         long peerId;
         if (mediaPage.selectedType != 7) {
             if (mediaPage.selectedType != 6 || !(view instanceof ProfileSearchCell)) {
@@ -6745,7 +6745,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         closeActionMode(false);
     }
 
-    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) {
+    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) throws Resources.NotFoundException {
         if (messageObject == null || this.photoVideoChangeColumnsAnimation) {
             return;
         }

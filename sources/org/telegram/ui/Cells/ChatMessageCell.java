@@ -2196,7 +2196,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     if (user != null && user.bot_inline_placeholder == null) {
                         chatMessageCellDelegate.didPressViaBotNotInline(this, user.id);
                     } else {
-                        chatMessageCellDelegate.didPressViaBot(this, user != null ? user.username : this.currentMessageObject.messageOwner.via_bot_name);
+                        String publicUsername = UserObject.getPublicUsername(user);
+                        ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
+                        if (publicUsername == null) {
+                            publicUsername = this.currentMessageObject.messageOwner.via_bot_name;
+                        }
+                        chatMessageCellDelegate2.didPressViaBot(this, publicUsername);
                     }
                 } else {
                     TLRPC.User user2 = this.currentUser;

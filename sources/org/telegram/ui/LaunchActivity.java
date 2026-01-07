@@ -1778,7 +1778,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private void openDialogsToSend(boolean z) throws NumberFormatException {
+    private void openDialogsToSend(boolean z) {
         Bundle bundle = new Bundle();
         bundle.putBoolean("onlySelect", true);
         bundle.putBoolean("canSelectTopics", true);
@@ -1925,13 +1925,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runImportRequest$33(final Uri uri, final int i, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$runImportRequest$32(tLObject, uri, i, alertDialog);
             }
         }, 2L);
     }
 
-    public void lambda$runImportRequest$32(TLObject tLObject, Uri uri, int i, AlertDialog alertDialog) throws NumberFormatException {
+    public void lambda$runImportRequest$32(TLObject tLObject, Uri uri, int i, AlertDialog alertDialog) {
         boolean z;
         if (isFinishing()) {
             return;
@@ -2397,7 +2397,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$79(final java.lang.Runnable r67, final boolean r68, final int r69, final int r70, final java.lang.String r71, final java.lang.String r72, final boolean r73, final java.lang.String r74, final java.lang.String r75, final int r76, final java.lang.String r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final boolean r89, final java.lang.Integer r90, final java.lang.Long r91, final java.lang.Long r92, final java.lang.Integer r93, final java.util.HashMap r94, final java.lang.String r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final org.telegram.tgnet.TLRPC.TL_wallPaper r99, final java.lang.String r100, final java.lang.String r101, final java.lang.String r102, final int r103, final int r104, final java.lang.String r105, final java.lang.String r106, final java.lang.String r107, final org.telegram.messenger.browser.Browser.Progress r108, final boolean r109, final int r110, final java.lang.String r111, final java.lang.String r112, final boolean r113, final java.lang.String r114, final boolean r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final java.lang.String r120, final java.lang.Integer r121, final boolean r122, final java.lang.String r123, int[] r124, final java.lang.Long r125) throws java.lang.NumberFormatException {
+    public void lambda$runLinkRequest$79(final java.lang.Runnable r67, final boolean r68, final int r69, final int r70, final java.lang.String r71, final java.lang.String r72, final boolean r73, final java.lang.String r74, final java.lang.String r75, final int r76, final java.lang.String r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final boolean r89, final java.lang.Integer r90, final java.lang.Long r91, final java.lang.Long r92, final java.lang.Integer r93, final java.util.HashMap r94, final java.lang.String r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final org.telegram.tgnet.TLRPC.TL_wallPaper r99, final java.lang.String r100, final java.lang.String r101, final java.lang.String r102, final int r103, final int r104, final java.lang.String r105, final java.lang.String r106, final java.lang.String r107, final org.telegram.messenger.browser.Browser.Progress r108, final boolean r109, final int r110, final java.lang.String r111, final java.lang.String r112, final boolean r113, final java.lang.String r114, final boolean r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final java.lang.String r120, final java.lang.Integer r121, final boolean r122, final java.lang.String r123, int[] r124, final java.lang.Long r125) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$79(java.lang.Runnable, boolean, int, int, java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.Integer, java.lang.Long, java.lang.Long, java.lang.Integer, java.util.HashMap, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_wallPaper, java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, org.telegram.messenger.browser.Browser$Progress, boolean, int, java.lang.String, java.lang.String, boolean, java.lang.String, boolean, boolean, boolean, boolean, boolean, java.lang.String, java.lang.Integer, boolean, java.lang.String, int[], java.lang.Long):void");
     }
 
@@ -4069,11 +4069,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, final int r50, org.telegram.ui.TopicsFragment r51) throws java.lang.NumberFormatException, java.io.IOException {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, final int r50, org.telegram.ui.TopicsFragment r51) throws java.lang.IllegalAccessException, java.lang.NoSuchFieldException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.io.IOException, java.lang.IllegalArgumentException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
-    public void lambda$didSelectDialogs$139(int i, DialogsActivity dialogsActivity, boolean z, ArrayList arrayList, Uri uri, AlertDialog alertDialog, long j) throws NumberFormatException {
+    public void lambda$didSelectDialogs$139(int i, DialogsActivity dialogsActivity, boolean z, ArrayList arrayList, Uri uri, AlertDialog alertDialog, long j) {
         if (j != 0) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("scrollToTopOnResume", true);
@@ -4342,7 +4342,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onPause() throws NumberFormatException {
+    protected void onPause() {
         super.onPause();
         isResumed = false;
         this.pipActivityHandler.onPause();
@@ -4435,7 +4435,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onPictureInPictureModeChanged(boolean z, Configuration configuration) throws NumberFormatException {
+    public void onPictureInPictureModeChanged(boolean z, Configuration configuration) {
         super.onPictureInPictureModeChanged(z, configuration);
         this.pipActivityHandler.onPictureInPictureModeChanged(z, configuration);
         if (z || this.isStarted) {
@@ -5448,7 +5448,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public boolean onBackPressed(boolean z) throws NumberFormatException {
+    public boolean onBackPressed(boolean z) {
         if (FloatingDebugController.onBackPressed(z)) {
             return false;
         }
@@ -5552,7 +5552,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean onPreIme() throws NumberFormatException {
+    public boolean onPreIme() {
         if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
             SecretMediaViewer.getInstance().closePhoto(true, false);
             return true;

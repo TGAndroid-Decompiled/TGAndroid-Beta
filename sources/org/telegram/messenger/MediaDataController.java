@@ -8093,7 +8093,11 @@ public class MediaDataController extends BaseController {
         this.botDialogKeyboards.remove(j);
     }
 
-    public void loadBotKeyboard(final MessagesStorage.TopicKey topicKey) {
+    public void loadBotKeyboard(MessagesStorage.TopicKey topicKey) {
+        loadBotKeyboard(topicKey, false);
+    }
+
+    public void loadBotKeyboard(final MessagesStorage.TopicKey topicKey, final boolean z) {
         TLRPC.Message message = this.botKeyboards.get(topicKey);
         if (message != null) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, message, topicKey);
@@ -8101,13 +8105,13 @@ public class MediaDataController extends BaseController {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadBotKeyboard$198(topicKey);
+                    this.f$0.lambda$loadBotKeyboard$198(topicKey, z);
                 }
             });
         }
     }
 
-    public void lambda$loadBotKeyboard$198(final MessagesStorage.TopicKey topicKey) {
+    public void lambda$loadBotKeyboard$198(final MessagesStorage.TopicKey topicKey, boolean z) {
         SQLiteCursor sQLiteCursorQueryFinalized;
         final TLRPC.Message messageTLdeserialize;
         NativeByteBuffer nativeByteBufferByteBufferValue;
@@ -8124,7 +8128,7 @@ public class MediaDataController extends BaseController {
                 nativeByteBufferByteBufferValue.reuse();
             }
             sQLiteCursorQueryFinalized.dispose();
-            if (messageTLdeserialize != null) {
+            if (messageTLdeserialize != null || z) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

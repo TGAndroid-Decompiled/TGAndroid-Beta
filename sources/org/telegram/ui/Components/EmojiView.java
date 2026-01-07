@@ -2529,9 +2529,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         } else {
             addView(frameLayout2, LayoutHelper.createFrame(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         }
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.bottomTabContainer = frameLayout3;
-        frameLayout3.setClickable(true);
+        this.bottomTabContainer = new FrameLayout(context);
         View view3 = new View(context);
         this.bottomTabContainerBackground = view3;
         this.bottomTabContainer.addView(view3, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(40.0f), 83));
@@ -4619,7 +4617,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             invalidateBlurCaptures();
             RecordingCanvas recordingCanvasBeginRecording = this.blurredBackgroundSourceRenderNode.beginRecording(getMeasuredWidth(), getMeasuredHeight());
             recordingCanvasBeginRecording.drawColor(getThemedColor(Theme.key_windowBackgroundWhite));
-            this.scrollableViewNoiseSuppressor.draw(recordingCanvasBeginRecording, -2);
+            if (SharedConfig.chatBlurEnabled()) {
+                this.scrollableViewNoiseSuppressor.draw(recordingCanvasBeginRecording, -2);
+            }
             this.blurredBackgroundSourceRenderNode.endRecording();
         }
         updateBottomTabContainerPosition();

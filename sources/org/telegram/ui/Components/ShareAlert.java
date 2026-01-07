@@ -555,7 +555,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$new$8(View view) throws NumberFormatException {
+    public void lambda$new$8(View view) {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
                 lambda$new$0();

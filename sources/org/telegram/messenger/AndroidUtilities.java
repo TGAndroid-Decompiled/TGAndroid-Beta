@@ -6149,7 +6149,7 @@ public class AndroidUtilities {
     }
 
     public static float getNavigationBarThirdButtonsFactor(int i) {
-        return MathUtils.clamp((i - dp(24.0f)) / dp(24.0f), 0.0f, 1.0f);
+        return MathUtils.clamp((i - dp(32.0f)) / dp(16.0f), 0.0f, 1.0f);
     }
 
     public static float getNavigationBarThirdButtonsFactor(float f, float f2, int i) {

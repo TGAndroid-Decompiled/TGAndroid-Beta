@@ -1620,7 +1620,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             final boolean z4 = z2;
             Runnable runnable2 = new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Throwable {
                     this.f$0.lambda$searchGlobal$4(j, str, accountInstance, j2, j3, z4, str2, i);
                 }
             };
@@ -1629,7 +1629,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             ChatAttachAlertDocumentLayout.this.loadingView.setViewType(3);
         }
 
-        public void lambda$searchGlobal$4(final long r22, final java.lang.String r24, final org.telegram.messenger.AccountInstance r25, final long r26, long r28, final boolean r30, java.lang.String r31, final int r32) {
+        public void lambda$searchGlobal$4(final long r22, final java.lang.String r24, final org.telegram.messenger.AccountInstance r25, final long r26, long r28, final boolean r30, java.lang.String r31, final int r32) throws java.lang.Throwable {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertDocumentLayout.SearchAdapter.lambda$searchGlobal$4(long, java.lang.String, org.telegram.messenger.AccountInstance, long, long, boolean, java.lang.String, int):void");
         }
 

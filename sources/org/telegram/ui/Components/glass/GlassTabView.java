@@ -294,7 +294,8 @@ public class GlassTabView extends FrameLayout implements FactorAnimator.Target {
     public enum TabAnimation {
         CONTACTS(R.raw.tab_contacts, R.raw.tab_contacts_reverse),
         CALLS(R.raw.tab_calls, R.raw.tab_calls_reverse),
-        CHATS(R.raw.tab_chats, R.raw.tab_chats_reverse);
+        CHATS(R.raw.tab_chats, R.raw.tab_chats_reverse),
+        SETTINGS(R.raw.tab_settings, R.raw.tab_settings_reverse);
 
         public final int fromFilledToOutline;
         public final int fromOutlineToFilled;

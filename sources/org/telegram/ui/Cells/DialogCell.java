@@ -7,11 +7,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -307,6 +309,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private float reactionsMentionsChangeProgress;
     private int readOutboxMaxId;
     private RectF rect;
+    private int reorderGradientLastColor;
+    private Paint reorderGradientPaint;
     private float reorderIconProgress;
     public ShareDialogCell.RepostStoryDrawable repostStoryDrawable;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -1395,6 +1399,18 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (dialogCellDelegate != null) {
             dialogCellDelegate.onButtonLongPress(this);
         }
+    }
+
+    private Paint getPaintReorderGradient() {
+        int color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
+        if (this.reorderGradientLastColor != color || this.reorderGradientPaint == null) {
+            this.reorderGradientLastColor = color;
+            if (this.reorderGradientPaint == null) {
+                this.reorderGradientPaint = new Paint(1);
+            }
+            this.reorderGradientPaint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(24.0f), 0.0f, new int[]{0, color}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        }
+        return this.reorderGradientPaint;
     }
 
     @Override

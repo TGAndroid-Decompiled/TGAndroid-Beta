@@ -246,6 +246,7 @@ public class ProfileActionsView extends View {
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(action3.rect);
                     rectF2.inset((action3.rect.width() / 2.0f) * (1.0f - action3.getScale()), (action3.rect.height() / 2.0f) * (1.0f - action3.getScale()));
+                    rectF2.inset(-1.0f, -1.0f);
                     this.clipPath.addRoundRect(rectF2, roundRadius, roundRadius, Path.Direction.CCW);
                 }
             }
@@ -1121,7 +1122,7 @@ public class ProfileActionsView extends View {
             int i10 = R.string.ProfileActionsStop;
             int i11 = R.drawable.block;
             STOP = new ActionButton("STOP", 14, i10, i11, i11);
-            SET_PHOTO = new ActionButton("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
+            SET_PHOTO = new ActionButton("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
             int i12 = R.string.ProfileActionsEditUsername;
             int i13 = R.drawable.filled_profile_edit_24;
             int i14 = R.drawable.outline_profile_edit_24;

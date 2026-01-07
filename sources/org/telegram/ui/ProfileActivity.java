@@ -1991,7 +1991,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) {
+            public void openPhotoForEdit(String str, String str2, boolean z) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
                 ProfileActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -2945,7 +2945,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
+            public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
                 VelocityTracker velocityTracker;
                 View viewFindViewByPosition2;
                 int action = motionEvent.getAction();
@@ -3278,7 +3278,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer.addView(this.avatarImage, LayoutHelper.createFrame(-1, -1.0f));
         this.avatarImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createView$36(view);
             }
         });
@@ -3621,7 +3621,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void lambda$new$4() {
+            protected void lambda$new$4() throws Resources.NotFoundException {
                 ProfileActivity.this.openAvatar(false);
             }
         };
@@ -3929,7 +3929,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) {
+        public void onItemClick(int i) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
             long jMakeEncryptedDialogId;
             SharedMediaLayout.ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner;
             if (ProfileActivity.this.getParentActivity() == null) {
@@ -6665,7 +6665,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$36(View view) {
+    public void lambda$createView$36(View view) throws Resources.NotFoundException {
         TLRPC.Document documentFindDocument;
         Bulletin bulletinCreateContainsEmojiBulletin;
         if (this.avatarBig != null) {
@@ -6710,7 +6710,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new EmojiPacksAlert(this, getParentActivity(), this.resourcesProvider, arrayList));
     }
 
-    public boolean lambda$createView$37(View view) {
+    public boolean lambda$createView$37(View view) throws Resources.NotFoundException {
         if (this.avatarBig == null && !this.isTopic) {
             openAvatar();
         }
@@ -7130,8 +7130,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
         final long j3 = j2;
-        if (z && this.isTopic) {
-            boolean zIsDialogMuted = getMessagesController().isDialogMuted(j3, this.topicId);
+        boolean zIsDialogMuted = getMessagesController().isDialogMuted(j3, this.topicId);
+        if (z && (this.isTopic || zIsDialogMuted)) {
             boolean z2 = !zIsDialogMuted;
             getNotificationsController().muteDialog(j3, this.topicId, z2);
             BulletinFactory.createMuteBulletin(this, z2, null).show();
@@ -7486,11 +7486,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return this.isFragmentOpened;
     }
 
-    private void openAvatar() {
+    private void openAvatar() throws Resources.NotFoundException {
         openAvatar(false);
     }
 
-    public void openAvatar(boolean r5) {
+    public void openAvatar(boolean r5) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.openAvatar(boolean):void");
     }
 
@@ -11293,7 +11293,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);
