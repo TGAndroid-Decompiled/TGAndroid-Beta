@@ -32,7 +32,6 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.google.zxing.common.detector.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
@@ -775,12 +774,12 @@ public class BottomSheetTabsOverlay extends View {
         return drawable == this.closeAllButtonBackground || super.verifyDrawable(drawable);
     }
 
-    private void drawTabsPreview(android.graphics.Canvas r38) throws java.io.IOException {
+    private void drawTabsPreview(android.graphics.Canvas r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheetTabsOverlay.drawTabsPreview(android.graphics.Canvas):void");
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) throws IOException {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         drawDismissingTab(canvas);
         drawTabsPreview(canvas);

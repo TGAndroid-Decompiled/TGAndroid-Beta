@@ -2,12 +2,10 @@ package org.telegram.messenger;
 
 import android.graphics.Paint;
 import android.graphics.Path;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.xml.sax.SAXException;
 
 public class DocumentObject {
 
@@ -161,7 +159,7 @@ public class DocumentObject {
         return drawableByPath;
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(int i, int i2, float f) throws SAXException, IOException {
+    public static SvgHelper.SvgDrawable getSvgThumb(int i, int i2, float f) {
         SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(i, -65536);
         if (drawable != null) {
             drawable.setupGradient(i2, f, false);

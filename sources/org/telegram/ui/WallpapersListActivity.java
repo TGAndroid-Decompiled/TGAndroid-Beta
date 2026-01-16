@@ -756,7 +756,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void onResume() throws IOException {
+    public void onResume() {
         TLRPC.WallPaper wallPaper;
         super.onResume();
         MessagesController.getGlobalMainSettings();
@@ -984,7 +984,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) throws java.io.IOException {
+    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.WallpapersListActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -1017,13 +1017,13 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     public void lambda$loadWallpapers$8(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$loadWallpapers$7(tLObject, z);
             }
         });
     }
 
-    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) throws IOException {
+    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) {
         ColorWallpaper colorWallpaper;
         int i;
         TLRPC.WallPaperSettings wallPaperSettings;
@@ -1087,7 +1087,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
     }
 
-    private void fillWallpapersWithCustom() throws IOException {
+    private void fillWallpapersWithCustom() {
         TLRPC.TL_wallPaper tL_wallPaper;
         final String str;
         Object obj;

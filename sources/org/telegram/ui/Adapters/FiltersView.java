@@ -3,7 +3,6 @@ package org.telegram.ui.Adapters;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
@@ -535,7 +534,7 @@ public class FiltersView extends RecyclerListView {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
         }
 
@@ -580,7 +579,7 @@ public class FiltersView extends RecyclerListView {
             }
         }
 
-        public void setData(MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+        public void setData(MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
             this.avatarImageView.getImageReceiver().clearImage();
             if (mediaFilterData.filterType == 7) {

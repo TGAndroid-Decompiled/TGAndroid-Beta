@@ -8,7 +8,6 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -43,7 +42,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -416,7 +414,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+                    public final void run() {
                         this.f$0.lambda$editSticker$2(pathToAttach, arrayList, chatActivity, document);
                     }
                 }, 300L);
@@ -424,13 +422,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+                public final void run() {
                     this.f$0.lambda$editSticker$3(document, chatActivity);
                 }
             }, 300L);
         }
 
-        public void lambda$editSticker$2(File file, ArrayList arrayList, ChatActivity chatActivity, TLRPC.Document document) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+        public void lambda$editSticker$2(File file, ArrayList arrayList, ChatActivity chatActivity, TLRPC.Document document) {
             arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L));
             PhotoViewer.getInstance().setParentActivity(StickersAlert.this.parentFragment.getParentActivity(), ((BottomSheet) StickersAlert.this).resourcesProvider);
             PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -443,7 +441,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(StickersAlert.this.stickerSet);
         }
 
-        public void lambda$editSticker$3(TLRPC.Document document, ChatActivity chatActivity) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+        public void lambda$editSticker$3(TLRPC.Document document, ChatActivity chatActivity) {
             File fileMakeCacheFile = StoryEntry.makeCacheFile(((BottomSheet) StickersAlert.this).currentAccount, "webp");
             int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
             int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;

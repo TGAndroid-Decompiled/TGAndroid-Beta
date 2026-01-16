@@ -64,21 +64,22 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             }
             i6 = this.visibleChildCount;
         }
-        if (f > paddingLeft) {
-            float f3 = (i6 - paddingLeft) / f;
+        float f3 = paddingLeft;
+        if (f > f3) {
+            float f4 = f3 / f;
             int childCount3 = getChildCount();
             for (int i9 = 0; i9 < childCount3; i9++) {
                 float[] fArr2 = this.tabsTextWidthWithMargin;
-                fArr2[i9] = fArr2[i9] * f3;
+                fArr2[i9] = fArr2[i9] * f4;
             }
         } else {
-            float f4 = iMin;
-            if (f < f4) {
-                float f5 = (f4 - f) / i6;
+            float f5 = iMin;
+            if (f < f5) {
+                float f6 = (f5 - f) / i6;
                 int childCount4 = getChildCount();
                 for (int i10 = 0; i10 < childCount4; i10++) {
                     float[] fArr3 = this.tabsTextWidthWithMargin;
-                    fArr3[i10] = fArr3[i10] + (this.tabsWeight[i10] * f5);
+                    fArr3[i10] = fArr3[i10] + (this.tabsWeight[i10] * f6);
                 }
             }
         }

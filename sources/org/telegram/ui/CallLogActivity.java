@@ -1203,7 +1203,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (this.hideCallTabsHintWasShown || MessagesController.getGlobalMainSettings().getInt("hidecallshint", 0) >= 2) {
+        if (this.hideCallTabsHintWasShown || !getUserConfig().showCallsTab || MessagesController.getGlobalMainSettings().getInt("hidecallshint", 0) >= 2) {
             return;
         }
         HintView2 hintView2 = new HintView2(getContext(), 1);
@@ -1212,7 +1212,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.hideCallTabsHintView.setJoint(1.0f, -25.0f);
         this.hideCallTabsHintView.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
         this.hideCallTabsHintView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.TapToHideCallsTab)));
-        this.hideCallTabsHintView.setRounding(AndroidUtilities.dp(12.0f));
         this.contentView.addView(this.hideCallTabsHintView, LayoutHelper.createFrame(-1, 80, 48));
         this.hideCallTabsHintView.setTranslationY((AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(16.0f));
         this.hideCallTabsHintView.show();
