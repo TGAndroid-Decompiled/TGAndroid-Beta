@@ -76,30 +76,44 @@ import org.telegram.ui.ProfileNotificationsActivity;
 
 public class NotificationsCustomSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ListAdapter adapter;
+    public int addExceptionRow;
     private AnimatorSet animatorSet;
     private ArrayList autoExceptions;
     private int currentType;
+    public int deleteExceptionsRow;
     private EmptyTextProgressView emptyView;
     private ArrayList exceptions;
     private HashMap exceptionsDict;
     private int exceptionsEnd;
     private int exceptionsStart;
-    boolean expanded;
+    public boolean expanded;
+    public int importantRow;
     private final ArrayList items;
+    public int lightColorRow;
     private RecyclerListView listView;
+    public int messagesRow;
+    public int newRow;
     private final ArrayList oldItems;
     private final int[] popupOptions;
+    public int popupRow;
+    public int previewRow;
     private final int[] priorityOptions;
+    public int priorityRow;
     private SearchAdapter searchAdapter;
     private boolean searchWas;
     private boolean searching;
     private int settingsEnd;
     private int settingsStart;
     private boolean showAutoExceptions;
+    public int showRow;
+    public int showSenderRow;
+    public int soundRow;
     private boolean storiesAuto;
     private Boolean storiesEnabled;
+    public int storiesRow;
     int topicId;
     private final int[] vibrateLabels;
+    public int vibrateRow;
 
     public void toggleShowAutoExceptions() {
         if (this.listView == null || this.adapter == null) {
@@ -123,6 +137,20 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         int i3 = R.string.NotificationsPriorityUrgent;
         int i4 = R.string.NotificationsPriorityMedium;
         this.priorityOptions = new int[]{i2, i3, i3, i4, R.string.NotificationsPriorityLow, i4};
+        this.newRow = -1;
+        this.showRow = -1;
+        this.importantRow = -1;
+        this.messagesRow = -1;
+        this.storiesRow = -1;
+        this.previewRow = -1;
+        this.showSenderRow = -1;
+        this.soundRow = -1;
+        this.addExceptionRow = -1;
+        this.deleteExceptionsRow = -1;
+        this.lightColorRow = -1;
+        this.vibrateRow = -1;
+        this.popupRow = -1;
+        this.priorityRow = -1;
         this.oldItems = new ArrayList();
         this.items = new ArrayList();
         this.currentType = i;
@@ -761,6 +789,20 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         boolean z2;
         int i4;
         Boolean bool;
+        this.newRow = -1;
+        this.showRow = -1;
+        this.importantRow = -1;
+        this.messagesRow = -1;
+        this.storiesRow = -1;
+        this.previewRow = -1;
+        this.showSenderRow = -1;
+        this.soundRow = -1;
+        this.addExceptionRow = -1;
+        this.deleteExceptionsRow = -1;
+        this.lightColorRow = -1;
+        this.popupRow = -1;
+        this.vibrateRow = -1;
+        this.priorityRow = -1;
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
@@ -769,12 +811,15 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.NotifyMeAbout)));
             int i5 = this.currentType;
             if (i5 == 3) {
+                this.newRow = this.items.size();
                 this.items.add(ItemInner.asCheck(101, LocaleController.getString(R.string.NotifyMeAboutNewStories), notificationsSettings.getBoolean("EnableAllStories", false)));
                 if (!notificationsSettings.getBoolean("EnableAllStories", false)) {
+                    this.importantRow = this.items.size();
                     this.items.add(ItemInner.asCheck(102, LocaleController.getString(R.string.NotifyMeAboutImportantStories), this.storiesAuto && ((bool = this.storiesEnabled) == null || !bool.booleanValue())));
                 }
                 this.items.add(ItemInner.asShadow(-1, LocaleController.getString(R.string.StoryAutoExceptionsInfo)));
             } else if (i5 == 4 || i5 == 5) {
+                this.messagesRow = this.items.size();
                 ArrayList arrayList2 = this.items;
                 int i6 = R.drawable.msg_markunread;
                 String string = LocaleController.getString(R.string.NotifyMeAboutMessagesReactions);
@@ -786,6 +831,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     i = R.string.NotifyFromEveryone;
                 }
                 arrayList2.add(ItemInner.asCheck2(103, i6, string, LocaleController.getString(i), notificationsSettings.getBoolean("EnableReactionsMessages", true)));
+                this.storiesRow = this.items.size();
                 ArrayList arrayList3 = this.items;
                 int i7 = R.drawable.msg_stories_saved;
                 String string2 = LocaleController.getString(R.string.NotifyMeAboutStoriesReactions);
@@ -806,6 +852,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 } else {
                     i3 = R.string.NotifyMeAboutChannels;
                 }
+                this.showRow = this.items.size();
                 this.items.add(ItemInner.asCheck(100, LocaleController.getString(i3), getNotificationsController().isGlobalNotificationsEnabled(this.currentType)));
                 this.items.add(ItemInner.asShadow(-1, null));
             }
@@ -813,8 +860,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             this.settingsStart = this.items.size() - 1;
             int i8 = this.currentType;
             if (i8 == 3) {
+                this.showSenderRow = this.items.size();
                 this.items.add(ItemInner.asCheck(0, LocaleController.getString(R.string.NotificationShowSenderNames), !notificationsSettings.getBoolean("EnableHideStoriesSenders", false)));
             } else if (i8 == 4 || i8 == 5) {
+                this.showSenderRow = this.items.size();
                 this.items.add(ItemInner.asCheck(0, LocaleController.getString(R.string.NotificationShowSenderNames), notificationsSettings.getBoolean("EnableReactionsPreview", true)));
             } else {
                 if (i8 == 0) {
@@ -824,10 +873,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 } else {
                     z2 = i8 != 2 ? false : notificationsSettings.getBoolean("EnablePreviewChannel", true);
                 }
+                this.previewRow = this.items.size();
                 this.items.add(ItemInner.asCheck(0, LocaleController.getString(R.string.MessagePreview), z2));
             }
+            this.soundRow = this.items.size();
             this.items.add(ItemInner.asSetting(3, LocaleController.getString("Sound", R.string.Sound), getSound()));
             if (this.expanded) {
+                this.lightColorRow = this.items.size();
                 this.items.add(ItemInner.asColor(LocaleController.getString("LedColor", R.string.LedColor), getLedColor()));
                 int i9 = this.currentType;
                 if (i9 == 0) {
@@ -841,14 +893,17 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 } else {
                     i4 = (i9 == 4 || i9 == 5) ? notificationsSettings.getInt("vibrate_react", 0) : 0;
                 }
+                this.vibrateRow = this.items.size();
                 ArrayList arrayList4 = this.items;
                 String string3 = LocaleController.getString("Vibrate", R.string.Vibrate);
                 int[] iArr = this.vibrateLabels;
                 arrayList4.add(ItemInner.asSetting(1, string3, LocaleController.getString(iArr[Utilities.clamp(i4, iArr.length - 1, 0)])));
                 int i10 = this.currentType;
                 if (i10 == 1 || i10 == 0) {
+                    this.popupRow = this.items.size();
                     this.items.add(ItemInner.asSetting(2, LocaleController.getString("PopupNotification", R.string.PopupNotification), getPopupOption()));
                 }
+                this.priorityRow = this.items.size();
                 this.items.add(ItemInner.asSetting(4, LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), getPriorityOption()));
                 this.items.add(ItemInner.asExpand(LocaleController.getString(R.string.NotifyLessOptions), false));
             } else {
@@ -860,6 +915,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         int i11 = this.currentType;
         if (i11 != 4 && i11 != 5) {
             if (i11 != -1) {
+                this.addExceptionRow = this.items.size();
                 this.items.add(ItemInner.asButton(6, R.drawable.msg_contact_add, LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException)));
             }
             this.exceptionsStart = this.items.size() - 1;
@@ -879,6 +935,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             }
             ArrayList arrayList5 = this.exceptions;
             if (arrayList5 != null && !arrayList5.isEmpty()) {
+                this.deleteExceptionsRow = this.items.size();
                 this.items.add(ItemInner.asButton(7, 0, LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException)));
             }
         } else {

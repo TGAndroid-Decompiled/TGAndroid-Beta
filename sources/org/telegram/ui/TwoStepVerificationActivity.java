@@ -64,6 +64,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     private int delegateType;
     private String delegateTypeString;
     private boolean destroyed;
+    private int emailRow;
     private EmptyTextProgressView emptyView;
     private FragmentFloatingButton floatingButton;
     private TransformableLoginButtonView floatingButtonIcon;
@@ -602,6 +603,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         this.setPasswordDetailRow = -1;
         this.changePasswordRow = -1;
         this.turnPasswordOffRow = -1;
+        this.emailRow = -1;
         this.setRecoveryEmailRow = -1;
         this.changeRecoveryEmailRow = -1;
         this.passwordEnabledDetailRow = -1;
@@ -610,6 +612,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 this.changePasswordRow = 0;
                 this.rowCount = 2;
                 this.turnPasswordOffRow = 1;
+                this.emailRow = 2;
                 if (password.has_recovery) {
                     this.rowCount = 3;
                     this.changeRecoveryEmailRow = 2;

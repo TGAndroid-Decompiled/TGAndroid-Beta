@@ -67,6 +67,7 @@ public class UserConfig extends BaseController {
     public volatile long savedPasswordTime;
     public volatile byte[] savedSaltedPassword;
     public int sharingMyLocationUntil;
+    public boolean showCallsTab;
     public boolean suggestContacts;
     private final Object sync;
     public boolean syncContacts;
@@ -178,6 +179,7 @@ public class UserConfig extends BaseController {
                         editorEdit.putBoolean("contactsReimported", this.contactsReimported);
                         editorEdit.putInt("loginTime", this.loginTime);
                         editorEdit.putBoolean("syncContacts", this.syncContacts);
+                        editorEdit.putBoolean("showCallsTab", this.showCallsTab);
                         editorEdit.putBoolean("suggestContacts", this.suggestContacts);
                         editorEdit.putBoolean("hasSecureData", this.hasSecureData);
                         editorEdit.putBoolean("notificationsSettingsLoaded4", this.notificationsSettingsLoaded);
@@ -355,6 +357,7 @@ public class UserConfig extends BaseController {
                 this.webappRatingLoadTime = preferences.getInt("webappRatingLoadTime", 0);
                 this.loginTime = preferences.getInt("loginTime", this.currentAccount);
                 this.syncContacts = preferences.getBoolean("syncContacts", true);
+                this.showCallsTab = preferences.getBoolean("showCallsTab", false);
                 this.suggestContacts = preferences.getBoolean("suggestContacts", true);
                 this.hasSecureData = preferences.getBoolean("hasSecureData", false);
                 this.notificationsSettingsLoaded = preferences.getBoolean("notificationsSettingsLoaded4", false);
@@ -510,6 +513,7 @@ public class UserConfig extends BaseController {
         this.draftsLoaded = false;
         this.contactsReimported = true;
         this.syncContacts = true;
+        this.showCallsTab = false;
         this.suggestContacts = true;
         this.unreadDialogsLoaded = true;
         this.hasValidDialogLoadIds = true;
@@ -625,6 +629,13 @@ public class UserConfig extends BaseController {
         editorEdit.putLong(sb6.toString(), j4);
         editorEdit.putBoolean("hasValidDialogLoadIds", true);
         editorEdit.commit();
+    }
+
+    public void setShowCallsTab(boolean z) {
+        if (this.showCallsTab != z) {
+            this.showCallsTab = z;
+            saveConfig(false);
+        }
     }
 
     public boolean isPremium() {

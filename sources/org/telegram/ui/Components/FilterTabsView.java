@@ -702,7 +702,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.listView);
-        int iMax = Math.max(0, AndroidUtilities.dp(16.0f));
+        int iMax = Math.max(0, AndroidUtilities.dp(13.5f));
         this.listViewPaddingH = iMax;
         this.listView.setPadding(iMax, 0, iMax, 0);
         this.listView.setClipToPadding(false);

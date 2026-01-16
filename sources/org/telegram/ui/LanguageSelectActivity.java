@@ -51,6 +51,8 @@ import org.telegram.ui.Components.RecyclerListView;
 
 public class LanguageSelectActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
+    private int infoPosition1;
+    private int languagesStartsPosition;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private ActionBarMenuItem searchItem;
@@ -61,6 +63,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     private ArrayList sortedLanguages;
     private int translateSettingsBackgroundHeight;
     private ArrayList unofficialLanguages;
+    private int settingsFromPosition = -1;
+    private int settingsToPosition = -1;
+    private int manualTranslationPosition = -1;
+    private int autoTranslationPosition = -1;
+    private int doNotTranslatePosition = -1;
 
     @Override
     public boolean onFragmentCreate() {
@@ -148,8 +155,8 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 if (getAdapter() == LanguageSelectActivity.this.listAdapter && getItemAnimator() != null && getItemAnimator().isRunning()) {
                     int color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
                     drawItemBackground(canvas, 0, LanguageSelectActivity.this.translateSettingsBackgroundHeight, color);
-                    if (LanguageSelectActivity.this.listAdapter.settingsFromPosition != -1 && LanguageSelectActivity.this.listAdapter.settingsToPosition != -1) {
-                        drawSectionBackground(canvas, LanguageSelectActivity.this.listAdapter.settingsFromPosition, LanguageSelectActivity.this.listAdapter.settingsToPosition, color);
+                    if (LanguageSelectActivity.this.settingsFromPosition != -1 && LanguageSelectActivity.this.settingsToPosition != -1) {
+                        drawSectionBackground(canvas, LanguageSelectActivity.this.settingsFromPosition, LanguageSelectActivity.this.settingsToPosition, color);
                     }
                 }
                 super.dispatchDraw(canvas);
@@ -200,12 +207,12 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         try {
             if (view instanceof TextCheckCell) {
                 boolean z = getContextValue() || getChatValue();
-                if (i == this.listAdapter.manualTranslationPosition) {
+                if (i == this.manualTranslationPosition) {
                     boolean z2 = !getContextValue();
                     getMessagesController().getTranslateController().setContextTranslateEnabled(z2);
                     ((TextCheckCell) view).setChecked(z2);
                     NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateSearchSettings, new Object[0]);
-                } else if (i == this.listAdapter.autoTranslationPosition) {
+                } else if (i == this.autoTranslationPosition) {
                     boolean chatValue = getChatValue();
                     boolean z3 = !chatValue;
                     if (!chatValue && !getUserConfig().isPremium()) {
@@ -219,7 +226,10 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 }
                 boolean z4 = getContextValue() || getChatValue();
                 if (z4 != z) {
-                    int i2 = this.listAdapter.autoTranslationPosition >= 0 ? this.listAdapter.autoTranslationPosition : this.listAdapter.manualTranslationPosition;
+                    int i2 = this.autoTranslationPosition;
+                    if (i2 < 0) {
+                        i2 = this.manualTranslationPosition;
+                    }
                     TextCheckCell textCheckCell = null;
                     for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
                         View childAt = this.listView.getChildAt(i3);
@@ -247,7 +257,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
                 boolean z5 = this.listView.getAdapter() == this.searchListViewAdapter;
                 if (!z5) {
-                    i -= this.listAdapter.languagesStartsPosition;
+                    i -= this.languagesStartsPosition;
                 }
                 if (z5) {
                     localeInfo = (LocaleController.LocaleInfo) this.searchResult.get(i);
@@ -354,7 +364,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
             boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
             if (!z) {
-                i -= this.listAdapter.languagesStartsPosition;
+                i -= this.languagesStartsPosition;
             }
             if (z) {
                 localeInfo = (LocaleController.LocaleInfo) this.searchResult.get(i);
@@ -577,15 +587,8 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     }
 
     private class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private int infoPosition1;
-        private int languagesStartsPosition;
         private Context mContext;
         private boolean search;
-        private int settingsFromPosition = -1;
-        private int settingsToPosition = -1;
-        private int manualTranslationPosition = -1;
-        private int autoTranslationPosition = -1;
-        private int doNotTranslatePosition = -1;
 
         public ListAdapter(Context context, boolean z) {
             this.mContext = context;
@@ -666,7 +669,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 return 0;
             }
             if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
-                this.settingsFromPosition = 0;
+                LanguageSelectActivity.this.settingsFromPosition = 0;
                 int i3 = i - 1;
                 if (i == 0) {
                     return 3;
@@ -674,40 +677,40 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled()) {
                     int i4 = i - 2;
                     if (i3 == 0) {
-                        this.manualTranslationPosition = i;
+                        LanguageSelectActivity.this.manualTranslationPosition = i;
                         return 2;
                     }
                     i3 = i4;
                 } else {
-                    this.manualTranslationPosition = -1;
+                    LanguageSelectActivity.this.manualTranslationPosition = -1;
                 }
                 if (!LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() || LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                    this.autoTranslationPosition = -1;
+                    LanguageSelectActivity.this.autoTranslationPosition = -1;
                 } else {
                     int i5 = i3 - 1;
                     if (i3 == 0) {
-                        this.autoTranslationPosition = i;
+                        LanguageSelectActivity.this.autoTranslationPosition = i;
                         return 2;
                     }
                     i3 = i5;
                 }
                 if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
-                    this.doNotTranslatePosition = i;
+                    LanguageSelectActivity.this.doNotTranslatePosition = i;
                     int i6 = i3 - 1;
                     if (i3 == 0) {
                         return 4;
                     }
                     i3 = i6;
                 }
-                this.settingsToPosition = (i - i3) - 1;
+                LanguageSelectActivity.this.settingsToPosition = (i - i3) - 1;
                 i2 = i3 - 1;
                 if (i3 == 0) {
-                    this.infoPosition1 = i;
+                    LanguageSelectActivity.this.infoPosition1 = i;
                     return 6;
                 }
             } else {
-                this.settingsFromPosition = -1;
-                this.settingsToPosition = -1;
+                LanguageSelectActivity.this.settingsFromPosition = -1;
+                LanguageSelectActivity.this.settingsToPosition = -1;
                 i2 = i;
             }
             int i7 = i2 - 1;
@@ -717,7 +720,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i7 == LanguageSelectActivity.this.unofficialLanguages.size() || i7 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i7 == LanguageSelectActivity.this.sortedLanguages.size())) {
                 return 1;
             }
-            this.languagesStartsPosition = i - i7;
+            LanguageSelectActivity.this.languagesStartsPosition = i - i7;
             return 0;
         }
     }

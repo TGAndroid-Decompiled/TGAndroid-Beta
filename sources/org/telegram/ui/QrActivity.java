@@ -68,6 +68,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserNameResolver;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
@@ -206,7 +207,7 @@ public class QrActivity extends BaseFragment {
         if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
             getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
         } else {
-            openCameraScanActivity();
+            openCameraScanActivity(this);
         }
     }
 
@@ -678,6 +679,9 @@ public class QrActivity extends BaseFragment {
     }
 
     class AnonymousClass6 implements CameraScanActivity.CameraScanActivityDelegate {
+        final int val$currentAccount;
+        final BaseFragment val$fragment;
+
         @Override
         public void didFindMrzInfo(MrzRecognizer.Result result) {
             CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
@@ -698,31 +702,35 @@ public class QrActivity extends BaseFragment {
             return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
         }
 
-        AnonymousClass6() {
+        AnonymousClass6(int i, BaseFragment baseFragment) {
+            this.val$currentAccount = i;
+            this.val$fragment = baseFragment;
         }
 
         @Override
         public void didFindQr(String str) {
             String strExtractUsername = Browser.extractUsername(str);
             if (!TextUtils.isEmpty(strExtractUsername)) {
-                MessagesController.getInstance(((BaseFragment) QrActivity.this).currentAccount).getUserNameResolver().resolve(strExtractUsername, new Consumer() {
+                UserNameResolver userNameResolver = MessagesController.getInstance(this.val$currentAccount).getUserNameResolver();
+                final BaseFragment baseFragment = this.val$fragment;
+                userNameResolver.resolve(strExtractUsername, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$didFindQr$1((Long) obj);
+                        QrActivity.AnonymousClass6.lambda$didFindQr$1(baseFragment, (Long) obj);
                     }
                 });
-            } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        QrActivity.AnonymousClass6.lambda$didFindQr$2();
-                    }
-                });
+                return;
             }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    QrActivity.AnonymousClass6.lambda$didFindQr$2();
+                }
+            });
         }
 
-        public void lambda$didFindQr$1(Long l) {
-            if (((BaseFragment) QrActivity.this).isFinished) {
+        public static void lambda$didFindQr$1(BaseFragment baseFragment, Long l) {
+            if (baseFragment.isFinished) {
                 return;
             }
             if (l == null || l.longValue() == Long.MAX_VALUE) {
@@ -733,7 +741,7 @@ public class QrActivity extends BaseFragment {
                     }
                 });
             } else {
-                QrActivity.this.presentFragment(ProfileActivity.of(l.longValue()), true);
+                baseFragment.presentFragment(ProfileActivity.of(l.longValue()), true);
             }
         }
 
@@ -746,15 +754,15 @@ public class QrActivity extends BaseFragment {
         }
     }
 
-    private void openCameraScanActivity() {
-        CameraScanActivity.showAsSheet((BaseFragment) this, false, 1, (CameraScanActivity.CameraScanActivityDelegate) new AnonymousClass6());
+    public static void openCameraScanActivity(BaseFragment baseFragment) {
+        CameraScanActivity.showAsSheet(baseFragment, false, 1, (CameraScanActivity.CameraScanActivityDelegate) new AnonymousClass6(baseFragment.getCurrentAccount(), baseFragment));
     }
 
     @Override
     public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
         if (getParentActivity() != null && i == 34) {
             if (iArr.length > 0 && iArr[0] == 0) {
-                openCameraScanActivity();
+                openCameraScanActivity(this);
             } else {
                 new AlertDialog.Builder(getParentActivity()).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                     @Override

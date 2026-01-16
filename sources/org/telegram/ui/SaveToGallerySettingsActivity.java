@@ -61,11 +61,14 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
     private final int VIEW_TYPE_HEADER;
     private final int VIEW_TYPE_TOGGLE;
     Adapter adapter;
+    public int addExceptionRow;
+    public int deleteAllExceptionsRow;
     SaveToGallerySettingsHelper.DialogException dialogException;
     long dialogId;
     LongSparseArray exceptionsDialogs;
     boolean isNewException;
     ArrayList items;
+    public int maxVideoSizeRow;
     RecyclerListView recyclerListView;
     int savePhotosRow;
     int saveVideosRow;
@@ -342,6 +345,9 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
     private void updateRows() {
         ArrayList arrayList;
         String string;
+        this.maxVideoSizeRow = -1;
+        this.addExceptionRow = -1;
+        this.deleteAllExceptionsRow = -1;
         int i = 0;
         int i2 = 1;
         if ((this.isPaused || this.adapter == null) ? false : true) {
@@ -381,6 +387,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
         this.items.add(new Item(i9, string));
         if (getSettings().saveVideo) {
             this.items.add(new Item(i4, LocaleController.getString(R.string.MaxVideoSize)));
+            this.maxVideoSizeRow = this.items.size();
             this.items.add(new Item(8));
             this.videoDividerRow = this.items.size();
             this.items.add(new Item(i9));
@@ -389,6 +396,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
         }
         if (this.dialogException == null) {
             this.exceptionsDialogs = getUserConfig().getSaveGalleryExceptions(this.type);
+            this.addExceptionRow = this.items.size();
             this.items.add(new Item(i2));
             boolean z = false;
             while (i < this.exceptionsDialogs.size()) {
@@ -398,6 +406,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             }
             if (z) {
                 this.items.add(new Item(i3));
+                this.deleteAllExceptionsRow = this.items.size();
                 this.items.add(new Item(i7));
             }
             this.items.add(new Item(10));

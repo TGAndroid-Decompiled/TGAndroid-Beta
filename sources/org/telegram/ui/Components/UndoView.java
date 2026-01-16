@@ -220,7 +220,7 @@ public class UndoView extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         this.undoTextView.setTypeface(AndroidUtilities.bold());
         this.undoTextView.setTextColor(getThemedColor(i2));
-        this.undoTextView.setText(LocaleController.getString(R.string.Undo));
+        this.undoTextView.setText(LocaleController.getString(R.string.UndoNoCaps));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
         this.rect = new RectF(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(33.0f), AndroidUtilities.dp(33.0f));
         Paint paint = new Paint(1);

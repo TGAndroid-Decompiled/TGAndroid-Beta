@@ -892,7 +892,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         imageView2.setPadding(iDp, iDp, iDp, iDp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view4) {
+            public final void onClick(View view4) throws NumberFormatException {
                 this.f$0.lambda$showInternal$10(z3, view4);
             }
         });
@@ -1216,7 +1216,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         }
     }
 
-    public void lambda$showInternal$10(boolean z, View view) {
+    public void lambda$showInternal$10(boolean z, View view) throws NumberFormatException {
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) view.getContext().getSystemService("activity")).getRunningAppProcesses();
         boolean z2 = true;
         if (runningAppProcesses != null && !runningAppProcesses.isEmpty() && runningAppProcesses.get(0).importance != 100) {

@@ -345,7 +345,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
 
     protected static void getOutline(Outline outline, Rect rect, float[] fArr) {
         if (radiiAreSame(fArr)) {
-            outline.setRoundRect(rect, fArr[0]);
+            outline.setRoundRect(rect, Math.min(fArr[0], Math.min(rect.width(), rect.height()) / 2.0f));
             return;
         }
         Path path = tmpPath;

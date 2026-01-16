@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -1505,7 +1504,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         builder.setTitleMultipleLines(true);
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void onClick(DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
                 this.f$0.lambda$showCopyPopup$0(str, dialogInterface, i);
             }
         });
@@ -1518,7 +1517,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         showDialog(builder.create());
     }
 
-    public void lambda$showCopyPopup$0(String str, DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$showCopyPopup$0(String str, DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
         String strDecode;
         if (this.parentActivity != null) {
             if (this.pages[0].adapter.currentPage == null) {
@@ -2324,7 +2323,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.closeAnimationInProgress = true;
     }
 
-    private boolean scrollToAnchor(String str, boolean z) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+    private boolean scrollToAnchor(String str, boolean z) throws NoSuchFieldException, InterruptedException, SecurityException {
         Integer num = 0;
         if (TextUtils.isEmpty(str)) {
             return false;
@@ -3107,7 +3106,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return drawingText;
     }
 
-    public boolean checkLayoutForLinks(WebpageAdapter webpageAdapter, MotionEvent motionEvent, View view, DrawingText drawingText, int i, int i2) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+    public boolean checkLayoutForLinks(WebpageAdapter webpageAdapter, MotionEvent motionEvent, View view, DrawingText drawingText, int i, int i2) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
         ActionBarPopupWindow actionBarPopupWindow;
         String strDecode;
         boolean z;
@@ -3890,7 +3889,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.navigationBarPaint.setColor(-16777216);
         WebActionBar webActionBar = new WebActionBar(activity, getResourcesProvider()) {
             @Override
-            protected void onSearchUpdated(String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+            protected void onSearchUpdated(String str) throws NoSuchFieldException, InterruptedException, SecurityException {
                 ArticleViewer.this.processSearch(str.toLowerCase());
             }
 
@@ -4058,7 +4057,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchPanel.addView(this.searchUpButton, LayoutHelper.createFrame(48, 48.0f, 53, 0.0f, 0.0f, 48.0f, 0.0f));
         this.searchUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+            public final void onClick(View view) throws NoSuchFieldException, InterruptedException, SecurityException {
                 this.f$0.lambda$setParentActivity$43(view);
             }
         });
@@ -4072,7 +4071,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchPanel.addView(this.searchDownButton, LayoutHelper.createFrame(48, 48.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
         this.searchDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+            public final void onClick(View view) throws NoSuchFieldException, InterruptedException, SecurityException {
                 this.f$0.lambda$setParentActivity$44(view);
             }
         });
@@ -4998,7 +4997,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         frameLayout.setTranslationY(f + (AndroidUtilities.dp(51.0f) * (1.0f - this.searchPanelAlpha)));
     }
 
-    public void lambda$setParentActivity$43(View view) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+    public void lambda$setParentActivity$43(View view) throws NoSuchFieldException, InterruptedException, SecurityException {
         if (this.pages[0].isWeb()) {
             if (this.pages[0].getWebView() != null) {
                 this.pages[0].getWebView().findNext(false);
@@ -5009,7 +5008,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         scrollToSearchIndex(this.currentSearchIndex - 1);
     }
 
-    public void lambda$setParentActivity$44(View view) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+    public void lambda$setParentActivity$44(View view) throws NoSuchFieldException, InterruptedException, SecurityException {
         if (this.pages[0].isWeb()) {
             if (this.pages[0].getWebView() != null) {
                 this.pages[0].getWebView().findNext(true);
@@ -5186,7 +5185,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void processSearch(final String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+    public void processSearch(final String str) throws NoSuchFieldException, InterruptedException, SecurityException {
         Runnable runnable = this.searchRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -5256,7 +5255,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.lambda$processSearch$48(java.util.ArrayList, java.util.HashMap, java.lang.String, int):void");
     }
 
-    public void lambda$processSearch$47(int i, ArrayList arrayList, String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+    public void lambda$processSearch$47(int i, ArrayList arrayList, String str) throws NoSuchFieldException, InterruptedException, SecurityException {
         if (i == this.lastSearchIndex) {
             showSearchPanel(true);
             this.searchResults = arrayList;
@@ -5303,7 +5302,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchPanel.setTranslationY(this.searchPanelTranslation + ((1.0f - fFloatValue) * AndroidUtilities.dp(51.0f)));
     }
 
-    private void scrollToSearchIndex(int r13) throws java.lang.NoSuchFieldException, java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.SecurityException {
+    private void scrollToSearchIndex(int r13) throws java.lang.NoSuchFieldException, java.lang.InterruptedException, java.lang.SecurityException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.scrollToSearchIndex(int):void");
     }
 
@@ -5568,13 +5567,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$open$53(final int i, final TLRPC.WebPage webPage, final MessageObject messageObject, final boolean z, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException {
+            public final void run() throws NoSuchFieldException, InterruptedException, PackageManager.NameNotFoundException, SecurityException {
                 this.f$0.lambda$open$52(tLObject, i, webPage, messageObject, z, str);
             }
         });
     }
 
-    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException {
+    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, InterruptedException, PackageManager.NameNotFoundException, SecurityException {
         TLRPC.Page page;
         TLObject tLObject2 = tLObject;
         int i2 = 0;
@@ -6214,7 +6213,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private HashMap searchTextOffset = new HashMap();
         private final Runnable calculateContentHeightRunnable = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+            public final void run() throws NoSuchFieldException, InterruptedException, SecurityException {
                 this.f$0.lambda$new$1();
             }
         };
@@ -7061,7 +7060,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NoSuchFieldException, InterruptedException, SecurityException {
             if (this.padding) {
                 i--;
             }
@@ -7081,7 +7080,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
         }
 
-        public void bindBlockToHolder(int i, RecyclerView.ViewHolder viewHolder, TLRPC.PageBlock pageBlock, int i2, int i3, boolean z) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
+        public void bindBlockToHolder(int i, RecyclerView.ViewHolder viewHolder, TLRPC.PageBlock pageBlock, int i2, int i3, boolean z) throws NoSuchFieldException, InterruptedException, SecurityException {
             TLRPC.PageBlock pageBlock2;
             if (pageBlock instanceof TLRPC.TL_pageBlockCover) {
                 pageBlock2 = ((TLRPC.TL_pageBlockCover) pageBlock).cover;
@@ -7348,7 +7347,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             Utilities.globalQueue.postRunnable(this.calculateContentHeightRunnable, 100L);
         }
 
-        public void lambda$new$1() throws java.lang.NoSuchFieldException, java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.SecurityException {
+        public void lambda$new$1() throws java.lang.NoSuchFieldException, java.lang.InterruptedException, java.lang.SecurityException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.WebpageAdapter.lambda$new$1():void");
         }
 
@@ -7576,7 +7575,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException {
+        public boolean onTouchEvent(android.view.MotionEvent r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockVideoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -7684,7 +7683,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             invalidate();
         }
 
-        private void didPressedButton(boolean z) throws Resources.NotFoundException {
+        private void didPressedButton(boolean z) {
             int i = this.buttonState;
             if (i == 0) {
                 this.cancelLoading = false;
@@ -7815,7 +7814,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onSuccessDownload(String str) throws Resources.NotFoundException {
+        public void onSuccessDownload(String str) {
             this.radialProgress.setProgress(1.0f, true);
             if (this.isGif) {
                 this.buttonState = 2;
@@ -9681,7 +9680,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private int textX;
         private int textY;
 
-        public BlockSlideshowCell(Context context, WebpageAdapter webpageAdapter) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+        public BlockSlideshowCell(Context context, WebpageAdapter webpageAdapter) throws NoSuchFieldException, SecurityException {
             super(context);
             this.textX = AndroidUtilities.dp(18.0f);
             this.parentAdapter = webpageAdapter;
@@ -9832,7 +9831,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             setWillNotDraw(false);
         }
 
-        public void setBlock(TLRPC.TL_pageBlockSlideshow tL_pageBlockSlideshow) throws Resources.NotFoundException {
+        public void setBlock(TLRPC.TL_pageBlockSlideshow tL_pageBlockSlideshow) {
             this.currentBlock = tL_pageBlockSlideshow;
             this.innerAdapter.notifyDataSetChanged();
             this.innerListView.setCurrentItem(0, false);
@@ -11282,7 +11281,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException {
+        public boolean onTouchEvent(android.view.MotionEvent r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -12412,7 +12411,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException {
+    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;
@@ -12526,7 +12525,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void updateSlideshowCell(TLRPC.PageBlock pageBlock) throws Resources.NotFoundException {
+        public void updateSlideshowCell(TLRPC.PageBlock pageBlock) {
             int childCount = ArticleViewer.this.pages[0].listView.getChildCount();
             for (int i = 0; i < childCount; i++) {
                 View childAt = ArticleViewer.this.pages[0].listView.getChildAt(i);
@@ -13022,8 +13021,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public String onFullscreenRequested(boolean z) {
-                    return BotWebViewContainer.Delegate.CC.$default$onFullscreenRequested(this, z);
+                public String onFullscreenRequested(boolean z, boolean z2) {
+                    return BotWebViewContainer.Delegate.CC.$default$onFullscreenRequested(this, z, z2);
                 }
 
                 @Override
@@ -13737,7 +13736,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
             if (ArticleViewer.this.pressedLinkOwnerLayout == null || ArticleViewer.this.pressedLink != null || ((ArticleViewer.this.popupWindow != null && ArticleViewer.this.popupWindow.isShowing()) || (motionEvent.getAction() != 1 && motionEvent.getAction() != 3))) {
                 if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink != null && motionEvent.getAction() == 1 && (getAdapter() instanceof WebpageAdapter)) {
                     ArticleViewer.this.checkLayoutForLinks((WebpageAdapter) getAdapter(), motionEvent, ArticleViewer.this.pressedLinkOwnerView, ArticleViewer.this.pressedLinkOwnerLayout, 0, 0);
@@ -13844,7 +13843,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1259getWindowView() {
+        public WindowView mo1260getWindowView() {
             return this.windowView;
         }
 
@@ -14237,7 +14236,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1259getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1260getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

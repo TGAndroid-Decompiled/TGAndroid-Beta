@@ -225,7 +225,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(iDp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
             }
 
-            private boolean processTap(MotionEvent motionEvent, boolean z3) throws Resources.NotFoundException {
+            private boolean processTap(MotionEvent motionEvent, boolean z3) {
                 Scroller scroller;
                 if (motionEvent.getAction() == 0) {
                     this.lastTapTime = System.currentTimeMillis();

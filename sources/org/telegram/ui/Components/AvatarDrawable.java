@@ -515,11 +515,6 @@ public class AvatarDrawable extends Drawable {
         this.customIconDrawable = drawable;
     }
 
-    public void setIconTranslation(int i, int i2) {
-        this.iconTx = i;
-        this.iconTy = i2;
-    }
-
     public Drawable getCustomIcon() {
         return this.customIconDrawable;
     }

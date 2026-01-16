@@ -28,8 +28,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_dialogGrayLine] = -2960686;
         iArr[Theme.key_dialogTopBackground] = -14054705;
         iArr[Theme.key_dialogInputField] = -2368549;
-        iArr[Theme.key_dialogInputFieldActivated] = -13129232;
-        iArr[Theme.key_dialogCheckboxSquareBackground] = -12345121;
+        iArr[Theme.key_dialogInputFieldActivated] = -14509328;
+        iArr[Theme.key_dialogCheckboxSquareBackground] = -14509328;
         iArr[Theme.key_dialogCheckboxSquareCheck] = -1;
         iArr[Theme.key_dialogCheckboxSquareUnchecked] = -9211021;
         iArr[Theme.key_dialogCheckboxSquareDisabled] = -5197648;
@@ -86,7 +86,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_text_RedRegular] = -3397335;
         iArr[Theme.key_text_RedBold] = -3389625;
         iArr[Theme.key_fill_RedNormal] = -1352098;
-        iArr[Theme.key_windowBackgroundWhiteGrayText] = -8156010;
+        iArr[Theme.key_windowBackgroundWhiteGrayText] = -8354940;
         iArr[Theme.key_windowBackgroundWhiteGrayText2] = -8223094;
         iArr[Theme.key_windowBackgroundWhiteGrayText3] = -6710887;
         iArr[Theme.key_windowBackgroundWhiteGrayText4] = -8355712;
@@ -101,7 +101,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_windowBackgroundWhiteLinkSelection] = 862104035;
         iArr[Theme.key_windowBackgroundWhiteBlueHeader] = -14054705;
         iArr[Theme.key_windowBackgroundWhiteInputField] = -2368549;
-        iArr[Theme.key_windowBackgroundWhiteInputFieldActivated] = -13129232;
+        iArr[Theme.key_windowBackgroundWhiteInputFieldActivated] = -14509328;
         iArr[Theme.key_switchTrack] = -5196358;
         iArr[Theme.key_switchTrackChecked] = -14509328;
         iArr[Theme.key_switchTrackBlue] = -8221031;
@@ -112,7 +112,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_switchTrackBlueSelectorChecked] = 553797505;
         iArr[Theme.key_switch2Track] = -688514;
         iArr[Theme.key_switch2TrackChecked] = -14509328;
-        iArr[Theme.key_checkboxSquareBackground] = -12345121;
+        iArr[Theme.key_checkboxSquareBackground] = -14509328;
         iArr[Theme.key_checkboxSquareCheck] = -1;
         iArr[Theme.key_checkboxSquareUnchecked] = -9211021;
         iArr[Theme.key_checkboxSquareDisabled] = -5197648;
@@ -488,7 +488,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_gifSaveHintBackground] = -501273800;
         iArr[Theme.key_chat_goDownButton] = -1;
         iArr[Theme.key_chat_goDownButtonCounter] = -1;
-        iArr[Theme.key_chat_goDownButtonCounterBackground] = -11689240;
+        iArr[Theme.key_chat_goDownButtonCounterBackground] = -14509328;
         iArr[Theme.key_chat_messagePanelCancelInlineBot] = -5395027;
         iArr[Theme.key_chat_messagePanelVoicePressed] = -1;
         iArr[Theme.key_chat_messagePanelVoiceBackground] = -14509328;
@@ -496,10 +496,10 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_messagePanelVoiceDuration] = -1;
         iArr[Theme.key_chat_inlineResultIcon] = -11037236;
         iArr[Theme.key_chat_topPanelBackground] = -1;
-        iArr[Theme.key_chat_topPanelClose] = -7763066;
+        iArr[Theme.key_chat_topPanelClose] = -8288378;
         iArr[Theme.key_chat_topPanelLine] = -12605201;
         iArr[Theme.key_chat_topPanelTitle] = -14054705;
-        iArr[Theme.key_chat_topPanelMessage] = -8879746;
+        iArr[Theme.key_chat_topPanelMessage] = -9011588;
         iArr[Theme.key_chat_addContact] = -14054705;
         iArr[Theme.key_chat_inLoader] = -9259544;
         iArr[Theme.key_chat_inLoaderSelected] = -10114080;
@@ -704,7 +704,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_voipgroup_mutedByAdminMuteButton] = 2138612735;
         iArr[Theme.key_voipgroup_mutedByAdminMuteButtonDisabled] = 863544319;
         iArr[Theme.key_voipgroup_windowBackgroundWhiteInputField] = -2368549;
-        iArr[Theme.key_voipgroup_windowBackgroundWhiteInputFieldActivated] = -13129232;
+        iArr[Theme.key_voipgroup_windowBackgroundWhiteInputFieldActivated] = -14509328;
         iArr[Theme.key_chat_outReactionButtonBackground] = -8863118;
         iArr[Theme.key_chat_inReactionButtonBackground] = -14509328;
         iArr[Theme.key_chat_inReactionButtonText] = -14054705;
@@ -760,7 +760,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_reactionStarSelector] = 1089514271;
         iArr[Theme.key_glass_defaultIcon] = -1726275033;
         iArr[Theme.key_glass_defaultText] = -1726275033;
-        iArr[Theme.key_glass_tabSelected] = -15233051;
+        iArr[Theme.key_glass_tabSelected] = -15035930;
+        iArr[Theme.key_glass_tabSelectedText] = -15892529;
         iArr[Theme.key_glass_tabUnselected] = -15065823;
         iArr[Theme.key_telegram_color_dialogsLogo] = -15299621;
         iArr[Theme.key_telegram_color] = -14509328;
@@ -1534,6 +1535,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_glass_defaultIcon, "glass_defaultIcon");
         sparseArray.put(Theme.key_glass_defaultText, "glass_defaultText");
         sparseArray.put(Theme.key_glass_tabSelected, "glass_tabSelected");
+        sparseArray.put(Theme.key_glass_tabSelectedText, "glass_tabSelectedText");
         sparseArray.put(Theme.key_glass_tabUnselected, "glass_tabUnselected");
         sparseArray.put(Theme.key_telegram_color, "telegram_color");
         sparseArray.put(Theme.key_telegram_color_text, "telegram_color_text");

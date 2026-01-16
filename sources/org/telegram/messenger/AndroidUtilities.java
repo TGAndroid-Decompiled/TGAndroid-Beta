@@ -221,6 +221,7 @@ public class AndroidUtilities {
     public static final String STICKERS_PLACEHOLDER_PACK_NAME_2 = "tg_superplaceholders_android_2";
     public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
     public static final String TYPEFACE_MERRIWEATHER_BOLD = "fonts/mw_bold.ttf";
+    public static final String TYPEFACE_ROBOTO_EXTRA_BOLD = "fonts/rextrabold.ttf";
     public static final String TYPEFACE_ROBOTO_MEDIUM = "fonts/rmedium.ttf";
     public static final String TYPEFACE_ROBOTO_MEDIUM_ITALIC = "fonts/rmediumitalic.ttf";
     public static final String TYPEFACE_ROBOTO_MONO = "fonts/rmono.ttf";
@@ -622,7 +623,7 @@ public class AndroidUtilities {
             i3 = i4 - 2;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(strReplace);
-        if (runnable != null && iIndexOf >= 0) {
+        if (iIndexOf >= 0) {
             if (i2 == 3) {
                 int i5 = iIndexOf + i3;
                 spannableStringBuilder.replace(iIndexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(iIndexOf, i5), " "));
@@ -2365,7 +2366,10 @@ public class AndroidUtilities {
                         if (Build.VERSION.SDK_INT >= 26) {
                             AndroidUtilities$$ExternalSyntheticApiModelOutline28.m();
                             Typeface.Builder builderM = AndroidUtilities$$ExternalSyntheticApiModelOutline27.m(ApplicationLoader.applicationContext.getAssets(), str);
-                            if (str.contains("medium")) {
+                            if (str.contains("rextrabold")) {
+                                builderM.setWeight(800);
+                            }
+                            if (str.contains("medium") || str.contains("rbold")) {
                                 builderM.setWeight(700);
                             }
                             if (str.contains("italic")) {
@@ -2996,34 +3000,31 @@ public class AndroidUtilities {
     }
 
     public static int getViewInset(View view) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
-        if (view != null) {
-            int i = Build.VERSION.SDK_INT;
-            if (view.getHeight() != displaySize.y && view.getHeight() != displaySize.y - statusBarHeight) {
-                try {
-                    if (i >= 23) {
-                        WindowInsets rootWindowInsets = view.getRootWindowInsets();
-                        if (rootWindowInsets != null) {
-                            return rootWindowInsets.getStableInsetBottom();
-                        }
-                        return 0;
+        if (view != null && view.getHeight() != displaySize.y && view.getHeight() != displaySize.y - statusBarHeight) {
+            try {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    WindowInsets rootWindowInsets = view.getRootWindowInsets();
+                    if (rootWindowInsets != null) {
+                        return rootWindowInsets.getStableInsetBottom();
                     }
-                    if (mAttachInfoField == null) {
-                        Field declaredField = View.class.getDeclaredField("mAttachInfo");
-                        mAttachInfoField = declaredField;
-                        declaredField.setAccessible(true);
-                    }
-                    Object obj = mAttachInfoField.get(view);
-                    if (obj != null) {
-                        if (mStableInsetsField == null) {
-                            Field declaredField2 = obj.getClass().getDeclaredField("mStableInsets");
-                            mStableInsetsField = declaredField2;
-                            declaredField2.setAccessible(true);
-                        }
-                        return ((Rect) mStableInsetsField.get(obj)).bottom;
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    return 0;
                 }
+                if (mAttachInfoField == null) {
+                    Field declaredField = View.class.getDeclaredField("mAttachInfo");
+                    mAttachInfoField = declaredField;
+                    declaredField.setAccessible(true);
+                }
+                Object obj = mAttachInfoField.get(view);
+                if (obj != null) {
+                    if (mStableInsetsField == null) {
+                        Field declaredField2 = obj.getClass().getDeclaredField("mStableInsets");
+                        mStableInsetsField = declaredField2;
+                        declaredField2.setAccessible(true);
+                    }
+                    return ((Rect) mStableInsetsField.get(obj)).bottom;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         return 0;
@@ -4226,8 +4227,16 @@ public class AndroidUtilities {
         return accessibilityManager.isEnabled() && accessibilityManager.isTouchExplorationEnabled();
     }
 
-    public static boolean handleProxyIntent(android.app.Activity r13, android.content.Intent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.handleProxyIntent(android.app.Activity, android.content.Intent):boolean");
+    public static boolean isProxyLink(Uri uri) {
+        Activity activity = getActivity();
+        if (activity == null) {
+            return false;
+        }
+        return handleProxyIntent(activity, new Intent("android.intent.action.VIEW", uri), false);
+    }
+
+    public static boolean handleProxyIntent(android.app.Activity r13, android.content.Intent r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.handleProxyIntent(android.app.Activity, android.content.Intent, boolean):boolean");
     }
 
     public static float getAnimatorDurationScale() {

@@ -137,7 +137,7 @@ public class BotForumHelper extends BaseController {
         if (list != null && !list.isEmpty()) {
             TLRPC.InputPeer inputPeerFromSendMessageRequest = TlUtils.getInputPeerFromSendMessageRequest(tLObject);
             final long peerDialogId = DialogObject.getPeerDialogId(inputPeerFromSendMessageRequest);
-            if (inputPeerFromSendMessageRequest == null || peerDialogId <= 0 || !UserObject.isBotForum(getMessagesController().getUser(Long.valueOf(peerDialogId)))) {
+            if (inputPeerFromSendMessageRequest == null || peerDialogId <= 0 || !UserObject.isBotForumWithEditableTopics(getMessagesController().getUser(Long.valueOf(peerDialogId)))) {
                 return true;
             }
             final long[] jArr = new long[list.size()];

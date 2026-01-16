@@ -218,6 +218,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
+        buttonWithCounterView.setRound();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

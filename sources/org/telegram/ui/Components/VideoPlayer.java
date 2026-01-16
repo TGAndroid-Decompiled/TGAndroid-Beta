@@ -1026,7 +1026,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.player.prepare();
     }
 
-    public void preparePlayer(ArrayList arrayList, Quality quality) {
+    public void preparePlayer(ArrayList arrayList, Quality quality) throws NumberFormatException {
         ArrayList arrayList2;
         this.videoQualities = arrayList;
         this.videoQualityToSelect = quality;
@@ -2268,13 +2268,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public void onPlayerError(final PlaybackException playbackException) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$onPlayerError$1(playbackException);
             }
         });
     }
 
-    public void lambda$onPlayerError$1(PlaybackException playbackException) {
+    public void lambda$onPlayerError$1(PlaybackException playbackException) throws NumberFormatException {
         Throwable cause = playbackException.getCause();
         if ((cause instanceof MediaCodecDecoderException) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
             FileLog.e(playbackException);
@@ -2306,7 +2306,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 if (dispatchQueue != null) {
                     dispatchQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws NumberFormatException {
                             this.f$0.lambda$onPlayerError$0();
                         }
                     });
@@ -2330,7 +2330,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.delegate.onError(this, playbackException);
     }
 
-    public void lambda$onPlayerError$0() {
+    public void lambda$onPlayerError$0() throws NumberFormatException {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             exoPlayer.clearVideoTextureView(this.textureView);

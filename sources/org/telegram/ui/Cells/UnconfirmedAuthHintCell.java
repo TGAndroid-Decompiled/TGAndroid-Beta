@@ -26,7 +26,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
@@ -35,12 +34,11 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
+public class UnconfirmedAuthHintCell extends FrameLayout {
     private final LinearLayout buttonsLayout;
     private int height;
     private final LinearLayout linearLayout;
@@ -52,8 +50,8 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
     public static void lambda$set$1(ArrayList arrayList) {
     }
 
-    public UnconfirmedAuthHintCell(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
-        super(context, sizeNotifierFrameLayout);
+    public UnconfirmedAuthHintCell(Context context) {
+        super(context);
         setClickable(true);
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
@@ -64,12 +62,13 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 11, 28, 0));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 8, 28, 0));
         TextView textView2 = new TextView(context);
         this.messageTextView = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 13.0f);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 5, 28, 0));
+        textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 2, 28, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.buttonsLayout = linearLayout2;
         linearLayout2.setOrientation(0);
@@ -91,7 +90,7 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         textViewWithLoading2.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
         linearLayout2.addView(textViewWithLoading2, LayoutHelper.createLinear(-2, 30));
         linearLayout2.addView(new Space(context), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 28.0f, 7.0f, 28.0f, 8.0f));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 28.0f, 4.0f, 28.0f, 8.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -1, 119));
         updateColors();
     }
@@ -192,7 +191,6 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
     }
 
     public void updateColors() {
-        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         this.titleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.messageTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         TextViewWithLoading textViewWithLoading = this.yesButton;

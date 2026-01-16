@@ -121,7 +121,7 @@ import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda271;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda326;
 import org.telegram.ui.ChatActivityContainer;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
@@ -2234,7 +2234,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
 
                 @Override
-                public final void onItemClick(View view, int i24, float f, float f2) throws Resources.NotFoundException {
+                public final void onItemClick(View view, int i24, float f, float f2) {
                     this.f$0.lambda$new$17(mediaPage2, context, view, i24, f, f2);
                 }
             });
@@ -2566,7 +2566,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
+        public void onSearchCollapse() throws Resources.NotFoundException {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2606,7 +2606,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) throws Resources.NotFoundException, NumberFormatException {
+        public void onTextChanged(EditText editText) throws Resources.NotFoundException {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -3502,7 +3502,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         openStoryRecorder();
     }
 
-    public void lambda$new$17(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) throws Resources.NotFoundException {
+    public void lambda$new$17(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) {
         long peerId;
         if (mediaPage.selectedType != 7) {
             if (mediaPage.selectedType != 6 || !(view instanceof ProfileSearchCell)) {
@@ -3565,7 +3565,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                                     public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                         if (this.firstCreateView) {
                                                             if (this.searchItem != null) {
-                                                                lambda$openSearchWithText$342("");
+                                                                lambda$openSearchWithText$341("");
                                                                 this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                             }
                                                             SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -6512,7 +6512,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             boolean zIsStoryAlbumPageType = isStoryAlbumPageType(getClosestTab());
             final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.profileActivity, view, true);
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda271(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda326(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             ItemOptions.addAlbumsItemOptions(itemOptionsMakeSwipeback, getStoriesController().getStoryAlbumsList(this.dialog_id), hashSet, true, new Runnable() {
                 @Override
@@ -6700,7 +6700,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             }
         };
         getStoriesController().removeStoryFromAlbum(this.dialog_id, i, storyItem);
-        BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.chats_archived, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StoryRemovedFromAlbumTitle", 1, str)), LocaleController.getString(R.string.Undo), runnable).show();
+        BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.chats_archived, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StoryRemovedFromAlbumTitle", 1, str)), LocaleController.getString(R.string.UndoNoCaps), runnable).show();
     }
 
     public void lambda$onItemLongClick$47(TL_stories.StoryItem storyItem) {
@@ -6745,7 +6745,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         closeActionMode(false);
     }
 
-    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) throws Resources.NotFoundException {
+    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) {
         if (messageObject == null || this.photoVideoChangeColumnsAnimation) {
             return;
         }

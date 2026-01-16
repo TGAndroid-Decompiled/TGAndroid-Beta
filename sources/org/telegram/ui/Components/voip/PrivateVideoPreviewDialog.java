@@ -253,7 +253,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             }
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$new$1(i2, view);
                 }
             });
@@ -310,7 +310,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
     }
 
-    public void lambda$new$1(int i, View view) throws Resources.NotFoundException {
+    public void lambda$new$1(int i, View view) {
         this.viewPager.setCurrentItem(i, true);
     }
 

@@ -37,10 +37,10 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.paintStrokeTop = paint2;
         Paint paint3 = new Paint(1);
         this.paintStrokeBottom = paint3;
-        RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode");
+        RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredNode");
         this.renderNode = renderNodeM;
-        this.renderNodeFill = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Fill");
-        this.renderNodeStroke = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Stroke");
+        this.renderNodeFill = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredFill");
+        this.renderNodeStroke = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredStroke");
         renderNodeM.setClipToOutline(true);
         renderNodeM.setClipToBounds(true);
         this.source = blurredBackgroundSourceRenderNode;

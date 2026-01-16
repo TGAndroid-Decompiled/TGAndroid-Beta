@@ -82,6 +82,7 @@ public class SharedConfig {
     public static boolean forceDisableTabletMode = false;
     public static boolean forceForumTabs = false;
     public static boolean forwardingOptionsHintShown = false;
+    public static boolean frameMetricsEnabled = false;
     private static String goodHevcEncoder = null;
     public static boolean hasCameraCache = false;
     public static boolean hasEmailLogin = false;
@@ -921,6 +922,13 @@ public class SharedConfig {
         fastWallpaperDisabled = !fastWallpaperDisabled;
         SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         editorEdit.putBoolean("fastWallpaperDisabled", fastWallpaperDisabled);
+        editorEdit.apply();
+    }
+
+    public static void toggleFrameMetricsEnabled() {
+        frameMetricsEnabled = !frameMetricsEnabled;
+        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
+        editorEdit.putBoolean("frameMetricsEnabled", frameMetricsEnabled);
         editorEdit.apply();
     }
 

@@ -756,7 +756,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws IOException {
         TLRPC.WallPaper wallPaper;
         super.onResume();
         MessagesController.getGlobalMainSettings();
@@ -945,7 +945,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         themePreviewActivity.setResourceProvider(this.resourceProvider);
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 WallpapersListActivity.lambda$showAsSheet$6();
             }
         };
@@ -953,7 +953,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         showAsSheet(themePreviewActivity, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$6() {
+    public static void lambda$showAsSheet$6() throws NumberFormatException {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 
@@ -984,7 +984,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) {
+    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.WallpapersListActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -1017,13 +1017,13 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     public void lambda$loadWallpapers$8(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$loadWallpapers$7(tLObject, z);
             }
         });
     }
 
-    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) {
+    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) throws IOException {
         ColorWallpaper colorWallpaper;
         int i;
         TLRPC.WallPaperSettings wallPaperSettings;
@@ -1087,7 +1087,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
     }
 
-    private void fillWallpapersWithCustom() {
+    private void fillWallpapersWithCustom() throws IOException {
         TLRPC.TL_wallPaper tL_wallPaper;
         final String str;
         Object obj;

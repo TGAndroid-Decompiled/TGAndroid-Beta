@@ -46,20 +46,23 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         this.currentAccount = i;
         this.downloadImageReceiver.ignoreNotifications = true;
         imageReceiver.ignoreNotifications = true;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.downloadDrawable = rLottieDrawable;
-        int i2 = Theme.key_actionBarDefaultIcon;
-        int color = Theme.getColor(i2);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(color, mode));
-        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.downloadCompleteDrawable = rLottieDrawable2;
-        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
+        this.downloadDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.downloadCompleteDrawable = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);
         this.downloadDrawable.setAutoRepeat(1);
         this.downloadDrawable.start();
+    }
+
+    public void updateColors() {
+        RLottieDrawable rLottieDrawable = this.downloadDrawable;
+        int i = Theme.key_actionBarDefaultIcon;
+        int color = Theme.getColor(i);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+        this.downloadCompleteDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+        invalidate();
     }
 
     @Override

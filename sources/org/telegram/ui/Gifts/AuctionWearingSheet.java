@@ -119,6 +119,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         linearLayout.addView(frameLayout);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
+        buttonWithCounterView.setRound();
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i = layoutParamsCreateFrame.leftMargin;
         int i2 = this.backgroundPaddingLeft;

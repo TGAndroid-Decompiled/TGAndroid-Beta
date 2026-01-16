@@ -6,7 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.Theme;
@@ -146,6 +148,10 @@ public class ActionBarMenu extends LinearLayout {
         return lazilyAddItem(i, i2, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, null, AndroidUtilities.dp(48.0f), null, resourcesProvider);
     }
 
+    public LazyItem lazilyAddItem(int i, Drawable drawable, Theme.ResourcesProvider resourcesProvider) {
+        return lazilyAddItem(i, 0, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, drawable, AndroidUtilities.dp(48.0f), null, resourcesProvider);
+    }
+
     public LazyItem lazilyAddItem(int i, int i2, CharSequence charSequence, int i3, Drawable drawable, int i4, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
         if (this.ids == null) {
             this.ids = new ArrayList();
@@ -163,6 +169,7 @@ public class ActionBarMenu extends LinearLayout {
         int icon;
         int id;
         Boolean isSearchField;
+        ArrayList onViews;
         Boolean overrideMenuClick;
         ActionBarMenu parent;
         Theme.ResourcesProvider resourcesProvider;
@@ -225,6 +232,22 @@ public class ActionBarMenu extends LinearLayout {
             }
         }
 
+        public void setOverrideMenuClick(boolean z) {
+            this.overrideMenuClick = Boolean.valueOf(z);
+            ActionBarMenuItem actionBarMenuItem = this.cell;
+            if (actionBarMenuItem != null) {
+                actionBarMenuItem.setOverrideMenuClick(z);
+            }
+        }
+
+        public void setAllowCloseAnimation(boolean z) {
+            this.allowCloseAnimation = Boolean.valueOf(z);
+            ActionBarMenuItem actionBarMenuItem = this.cell;
+            if (actionBarMenuItem != null) {
+                actionBarMenuItem.setAllowCloseAnimation(z);
+            }
+        }
+
         public void setAlpha(float f) {
             this.alpha = f;
             ActionBarMenuItem actionBarMenuItem = this.cell;
@@ -284,6 +307,26 @@ public class ActionBarMenu extends LinearLayout {
                 this.cell.setSearchFieldHint(charSequence2);
             }
             this.cell.setAlpha(this.alpha);
+            ArrayList arrayList = this.onViews;
+            if (arrayList != null) {
+                Iterator it = arrayList.iterator();
+                while (it.hasNext()) {
+                    ((Utilities.Callback) it.next()).run(this.cell);
+                }
+                this.onViews = null;
+            }
+        }
+
+        public void onView(Utilities.Callback callback) {
+            ActionBarMenuItem actionBarMenuItem = this.cell;
+            if (actionBarMenuItem != null) {
+                callback.run(actionBarMenuItem);
+                return;
+            }
+            if (this.onViews == null) {
+                this.onViews = new ArrayList();
+            }
+            this.onViews.add(callback);
         }
     }
 

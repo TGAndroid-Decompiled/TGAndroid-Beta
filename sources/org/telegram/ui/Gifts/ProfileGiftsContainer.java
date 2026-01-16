@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.ChatObject;
@@ -99,6 +101,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     private static final HashMap cachedLastEmojis = new HashMap();
     private CharSequence addCollectionTabText;
     private final CharSequence addGiftsText;
+    private final BoolAnimator animatorBottomButtonVisibility;
     private int backgroundColor;
     private final FrameLayout bulletinContainer;
     private final ButtonWithCounterView button;
@@ -1480,6 +1483,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         return listByIndex.gifts.isEmpty();
     }
 
+    public void lambda$new$13(int i, float f, float f2, FactorAnimator factorAnimator) {
+        updateButton();
+    }
+
     public void updateButton() {
         float currentPositionAlpha;
         ViewPagerFixed viewPagerFixed = this.viewPager;
@@ -1492,11 +1499,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             currentPositionAlpha = (((shouldHideButton(this.viewPager.getCurrentPosition()) ? 1.0f : 0.0f) * this.viewPager.getCurrentPositionAlpha()) + ((shouldHideButton(this.viewPager.getNextPosition()) ? 1.0f : 0.0f) * this.viewPager.getNextPositionAlpha())) * (AndroidUtilities.dp(68.0f) + 2);
         }
         float fDp = currentPositionAlpha + ((((-this.buttonContainer.getTop()) + this.visibleHeight) - AndroidUtilities.dp(this.buttonContainerHeightDp)) - 1);
-        if (this.visibleHeight < AndroidUtilities.dp(220.0f)) {
-            fDp += Math.min(AndroidUtilities.dp(220.0f) - this.visibleHeight, AndroidUtilities.dp(64.0f));
-        }
-        this.bulletinContainer.setTranslationY(fDp - AndroidUtilities.dp(200.0f));
-        this.buttonContainer.setTranslationY(fDp - this.buttonContainerOffset);
+        this.animatorBottomButtonVisibility.setValue(this.visibleHeight > AndroidUtilities.dp(184.0f), true);
+        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(60.0f) + fDp, fDp, this.animatorBottomButtonVisibility.getFloatValue());
+        this.bulletinContainer.setTranslationY(fLerp - AndroidUtilities.dp(200.0f));
+        this.buttonContainer.setTranslationY(fLerp - this.buttonContainerOffset);
         this.button.setText((!this.collections.isMine() || this.viewPager.getPositionAnimated() < 0.5f) ? this.sendGiftsToFriendsText : this.addGiftsText, true);
         Bulletin.updateCurrentPosition();
     }
@@ -2018,7 +2024,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         builder.setPositiveButton(LocaleController.getString(str != null ? R.string.Edit : R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$13(editTextCaption, callback, alertDialog, i);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$14(editTextCaption, callback, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2036,13 +2042,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$openEnterNameAlert$15(editTextCaption, activityFindActivity, dialogInterface);
+                this.f$0.lambda$openEnterNameAlert$16(editTextCaption, activityFindActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$16(editTextCaption, dialogInterface);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$17(editTextCaption, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -2051,7 +2057,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         editTextCaption.setSelection(editTextCaption.getText().length());
     }
 
-    public static void lambda$openEnterNameAlert$13(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void lambda$openEnterNameAlert$14(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
         String string = editTextCaption.getText().toString();
         if (string.length() <= 0 || string.length() > 12) {
             AndroidUtilities.shakeView(editTextCaption);
@@ -2061,12 +2067,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public void lambda$openEnterNameAlert$15(EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
+    public void lambda$openEnterNameAlert$16(EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
         AndroidUtilities.hideKeyboard(editTextCaption);
         AndroidUtilities.requestAdjustResize(activity, this.fragment.getClassGuid());
     }
 
-    public static void lambda$openEnterNameAlert$16(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void lambda$openEnterNameAlert$17(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }
@@ -2075,21 +2081,21 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         openEnterNameAlert(null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createCollection$18((String) obj);
+                this.f$0.lambda$createCollection$19((String) obj);
             }
         });
     }
 
-    public void lambda$createCollection$18(String str) {
+    public void lambda$createCollection$19(String str) {
         this.collections.createCollection(str, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createCollection$17((TL_stars.TL_starGiftCollection) obj);
+                this.f$0.lambda$createCollection$18((TL_stars.TL_starGiftCollection) obj);
             }
         });
     }
 
-    public void lambda$createCollection$17(TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+    public void lambda$createCollection$18(TL_stars.TL_starGiftCollection tL_starGiftCollection) {
         fillTabs(true);
         ViewPagerFixed.TabsView tabsView = this.tabsView;
         int i = tL_starGiftCollection.collection_id;
@@ -2111,12 +2117,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         new SelectGiftsBottomSheet(this.fragment, this.dialogId, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) throws IOException {
-                this.f$0.lambda$addGifts$19(i, currentPage, (ArrayList) obj);
+                this.f$0.lambda$addGifts$20(i, currentPage, (ArrayList) obj);
             }
         }).show();
     }
 
-    public void lambda$addGifts$19(int i, Page page, ArrayList arrayList) throws IOException {
+    public void lambda$addGifts$20(int i, Page page, ArrayList arrayList) throws IOException {
         this.collections.addGifts(i, arrayList, true);
         page.update(true);
         fillTabs(true);
@@ -2487,23 +2493,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$20(giftsList, i, runnable, view2);
+                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$21(giftsList, i, runnable, view2);
             }
         });
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                return ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$21(giftsList, i, runnable, view2);
+                return ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$22(giftsList, i, runnable, view2);
             }
         });
     }
 
-    public static void lambda$setGiftFilterOptionsClickListeners$20(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+    public static void lambda$setGiftFilterOptionsClickListeners$21(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
         giftsList.toggleTypeIncludeFlag(i);
         runnable.run();
     }
 
-    public static boolean lambda$setGiftFilterOptionsClickListeners$21(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+    public static boolean lambda$setGiftFilterOptionsClickListeners$22(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
         giftsList.forceTypeIncludeFlag(i, true);
         runnable.run();
         return true;
@@ -2514,26 +2520,21 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF) {
-                this.f$0.lambda$initBlurCapture$22(canvas, rectF);
+                this.f$0.lambda$initBlurCapture$23(canvas, rectF);
             }
         };
     }
 
-    public void lambda$initBlurCapture$22(Canvas canvas, RectF rectF) {
+    public void lambda$initBlurCapture$23(Canvas canvas, RectF rectF) {
         for (View view : this.viewPager.getViewPages()) {
             if (view instanceof Page) {
                 Page page = (Page) view;
                 if (page.iBlur3Capture == null) {
                     UniversalRecyclerView universalRecyclerView = page.listView;
                     ViewGroup viewGroup = this.iBlur3CaptureParent;
-                    final UniversalRecyclerView universalRecyclerView2 = page.listView;
+                    UniversalRecyclerView universalRecyclerView2 = page.listView;
                     Objects.requireNonNull(universalRecyclerView2);
-                    page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new ViewGroupPartRenderer.DrawChildMethod() {
-                        @Override
-                        public final boolean drawChild(Canvas canvas2, View view2, long j) {
-                            return universalRecyclerView2.drawChild(canvas2, view2, j);
-                        }
-                    });
+                    page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new ProfileGiftsContainer$$ExternalSyntheticLambda17(universalRecyclerView2));
                 }
                 page.iBlur3Capture.capture(canvas, rectF);
             }

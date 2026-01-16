@@ -122,6 +122,17 @@ public class DataUsage2Activity extends BaseFragment {
         return frameLayout;
     }
 
+    public void selectTab(int i) {
+        this.tabsView.scrollToTab(i, i);
+    }
+
+    public void scrollToReset() {
+        View currentView = this.pager.getCurrentView();
+        if (currentView instanceof ListView) {
+            ((ListView) currentView).scrollTo(5);
+        }
+    }
+
     @Override
     public Theme.ResourcesProvider getResourceProvider() {
         return this.resourcesProvider;
@@ -349,9 +360,9 @@ public class DataUsage2Activity extends BaseFragment {
             this.itemInners.add(new ItemInner(0));
             long j = 0;
             if (this.totalSize > 0) {
-                string = LocaleController.formatString("YourNetworkUsageSince", R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
+                string = LocaleController.formatString(R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             } else {
-                string = LocaleController.formatString("NoNetworkUsageSince", R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
+                string = LocaleController.formatString(R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(getResetStatsDate()));
             }
             this.itemInners.add(ItemInner.asSubtitle(string));
             ArrayList arrayList = new ArrayList();
@@ -465,6 +476,34 @@ public class DataUsage2Activity extends BaseFragment {
                     adapter.notifyDataSetChanged();
                 }
             }
+        }
+
+        public void scrollTo(final int i) {
+            highlightRow(new RecyclerListView.IntReturnCallback() {
+                @Override
+                public final int run() {
+                    return this.f$0.lambda$scrollTo$3(i);
+                }
+            });
+        }
+
+        public int lambda$scrollTo$3(int i) {
+            int i2 = 0;
+            while (true) {
+                if (i2 >= this.itemInners.size()) {
+                    i2 = -1;
+                    break;
+                }
+                if (((ItemInner) this.itemInners.get(i2)).viewType == i) {
+                    break;
+                }
+                i2++;
+            }
+            if (i2 < 0) {
+                return -1;
+            }
+            this.layoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(60.0f));
+            return i2;
         }
 
         class Adapter extends AdapterWithDiffUtils {

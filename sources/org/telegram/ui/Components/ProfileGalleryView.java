@@ -907,7 +907,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         return this.dialogId;
     }
 
-    private void reset() throws Resources.NotFoundException {
+    private void reset() {
         this.videoFileNames.clear();
         this.thumbsFileNames.clear();
         this.photos.clear();

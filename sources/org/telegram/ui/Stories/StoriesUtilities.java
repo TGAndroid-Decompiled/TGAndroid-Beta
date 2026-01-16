@@ -68,9 +68,9 @@ public abstract class StoriesUtilities {
     public static Paint livePaint;
     public static RectF liveRect;
     public static Text liveText;
-    public static int storyCellGrayLastColor;
     public static GradientTools[] storiesGradientTools = new GradientTools[2];
     public static Paint[] storyCellGreyPaint = new Paint[2];
+    private static final int[] storyCellGrayLastColor = new int[2];
     private static final RectF rectTmp = new RectF();
     static boolean scheduled = false;
     static int debugState = 0;
@@ -543,8 +543,9 @@ public abstract class StoriesUtilities {
             storyCellGreyPaint[z ? 1 : 0].setStrokeCap(Paint.Cap.ROUND);
         }
         int color = Theme.getColor(!z ? Theme.key_actionBarDefault : Theme.key_actionBarDefaultArchived, resourcesProvider);
-        if (storyCellGrayLastColor != color) {
-            storyCellGrayLastColor = color;
+        int[] iArr = storyCellGrayLastColor;
+        if (iArr[z ? 1 : 0] != color) {
+            iArr[z ? 1 : 0] = color;
             float fComputePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(color);
             if (fComputePerceivedBrightness >= 0.721f) {
                 storyCellGreyPaint[z ? 1 : 0].setColor(ColorUtils.blendARGB(color, -16777216, 0.2f));
@@ -600,8 +601,6 @@ public abstract class StoriesUtilities {
             float fHeight = rectF.height() * 0.32f;
             float f3 = ((((int) f) / 90) * 90) + 90;
             float f4 = (-199.0f) + f3;
-            float f5 = (f - f4) / 360.0f;
-            float f6 = (f2 - f4) / 360.0f;
             Path path = forumRoundRectPath;
             path.rewind();
             path.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
@@ -614,29 +613,38 @@ public abstract class StoriesUtilities {
             float length = pathMeasure.getLength();
             Path path2 = forumSegmentPath;
             path2.reset();
-            pathMeasure.getSegment(f5 * length, length * f6, path2, true);
+            pathMeasure.getSegment(((f - f4) / 360.0f) * length, length * ((f2 - f4) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
             canvas.drawPath(path2, paint);
             return;
         }
+        if (!avatarStoryParams.useArcProgress) {
+            if (f < 90.0f) {
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, avatarStoryParams.rightTopAngleToExclude, avatarStoryParams.rightBottomAngleToExclude);
+                return;
+            } else {
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, -avatarStoryParams.leftTopAngleToExclude, avatarStoryParams.leftBottomAngleToExclude);
+                return;
+            }
+        }
         boolean z2 = avatarStoryParams.isFirst;
         if (!z2 && !avatarStoryParams.isLast) {
             if (f < 90.0f) {
-                float f7 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f7) / 2.0f, f7 / 2.0f);
+                float f5 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f5) / 2.0f, f5 / 2.0f);
                 return;
             } else {
-                float f8 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f8) / 2.0f) + 180.0f, (f8 / 2.0f) + 180.0f);
+                float f6 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f6) / 2.0f) + 180.0f, 180.0f + (f6 / 2.0f));
                 return;
             }
         }
         if (avatarStoryParams.isLast) {
-            float f9 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f9) / 2.0f) + 180.0f, (f9 / 2.0f) + 180.0f);
+            float f7 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f7) / 2.0f) + 180.0f, 180.0f + (f7 / 2.0f));
         } else if (z2) {
-            float f10 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f10) / 2.0f, f10 / 2.0f);
+            float f8 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f8) / 2.0f, f8 / 2.0f);
         } else {
             canvas.drawArc(rectF, f, f2 - f, false, paint);
         }
@@ -1145,6 +1153,8 @@ public abstract class StoriesUtilities {
         public boolean isFirst;
         public boolean isLast;
         public final boolean isStoryCell;
+        public float leftBottomAngleToExclude;
+        public float leftTopAngleToExclude;
         Runnable longPressRunnable;
         UserStoriesLoadOperation operation;
         public RectF originalAvatarRect;
@@ -1156,6 +1166,8 @@ public abstract class StoriesUtilities {
         public float progressToSate;
         public float progressToSegments;
         public Theme.ResourcesProvider resourcesProvider;
+        public float rightBottomAngleToExclude;
+        public float rightTopAngleToExclude;
         public boolean showProgress;
         float startX;
         float startY;
@@ -1163,6 +1175,7 @@ public abstract class StoriesUtilities {
         public TL_stories.StoryItem storyItem;
         float sweepAngle;
         public int unreadState;
+        public boolean useArcProgress;
 
         public void onLongPress() {
         }
@@ -1176,6 +1189,11 @@ public abstract class StoriesUtilities {
             this.animate = true;
             this.progressToSegments = 1.0f;
             this.progressToArc = 0.0f;
+            this.rightTopAngleToExclude = 0.0f;
+            this.rightBottomAngleToExclude = 0.0f;
+            this.leftTopAngleToExclude = 0.0f;
+            this.leftBottomAngleToExclude = 0.0f;
+            this.useArcProgress = true;
             this.alpha = 1.0f;
             this.progressToSate = 1.0f;
             this.showProgress = false;

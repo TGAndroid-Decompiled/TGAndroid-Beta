@@ -75,7 +75,7 @@ public class BusinessBotButton extends FrameLayout {
         animatedTextView2.getDrawable().setHacks(true, true, false);
         animatedTextView2.setTextSize(AndroidUtilities.dp(13.0f));
         animatedTextView2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        animatedTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        animatedTextView2.setTextColor(Theme.getColor(Theme.key_chat_topPanelMessage, resourcesProvider));
         animatedTextView2.setEllipsizeByGradient(true);
         linearLayout.addView(animatedTextView2, LayoutHelper.createLinear(-1, 17));
         addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
@@ -105,20 +105,20 @@ public class BusinessBotButton extends FrameLayout {
             }
         });
         clickableAnimatedTextView.setText(LocaleController.getString(this.paused ? R.string.BizBotStart : R.string.BizBotStop));
-        addView(clickableAnimatedTextView, LayoutHelper.createFrame(64, 28.0f, 21, 0.0f, 0.0f, 49.0f, 0.0f));
+        addView(clickableAnimatedTextView, LayoutHelper.createFrame(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.menuView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 7));
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        imageView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_topPanelClose, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$3(chatActivity, resourcesProvider, view);
             }
         });
-        addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 0.0f, 9.0f, 0.0f));
+        addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
     public void lambda$new$0(View view) {

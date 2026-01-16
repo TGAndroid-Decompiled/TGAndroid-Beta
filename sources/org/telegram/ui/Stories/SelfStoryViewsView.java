@@ -2,7 +2,6 @@ package org.telegram.ui.Stories;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -56,7 +55,7 @@ public class SelfStoryViewsView extends FrameLayout {
     ViewPagerInner viewPager;
     ContainerView viewPagerContainer;
 
-    public SelfStoryViewsView(Context context, final StoryViewer storyViewer) throws Resources.NotFoundException {
+    public SelfStoryViewsView(Context context, final StoryViewer storyViewer) {
         super(context);
         this.storyItems = new ArrayList();
         this.itemViews = new ArrayList();
@@ -70,7 +69,7 @@ public class SelfStoryViewsView extends FrameLayout {
             }
 
             @Override
-            public void onClosestPositionChanged(int i) throws Resources.NotFoundException {
+            public void onClosestPositionChanged(int i) {
                 StoryViewer.PlaceProvider placeProvider;
                 super.onClosestPositionChanged(i);
                 SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;

@@ -150,7 +150,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
             this.iBlur3ColorProviderTabs.updateColors();
             this.iBlur3Background.updateColors();
             invalidate();
-            setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(18.0f), 0, Theme.getColor(Theme.key_listSelector, this.resourcesProvider), AndroidUtilities.dp(6.0f)));
+            setBackground(Theme.createInsetRoundRectDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f)));
             return;
         }
         RLottieImageView rLottieImageView2 = this.imageView;

@@ -14,7 +14,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -22,7 +21,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -38,15 +36,12 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.ContactsEmptyView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Stories.DialogStoriesCell;
-import org.telegram.ui.Stories.StoriesController;
 
 public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
-    DialogStoriesCell dialogStoriesCell;
+    private final int currentAccount = UserConfig.selectedAccount;
     private boolean disableSections;
     BaseFragment fragment;
     private boolean hasPhonebook;
-    public boolean hasStories;
     private final LongSparseArray ignoreUsers;
     private final boolean isAdmin;
     private final boolean isChannel;
@@ -58,16 +53,8 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     private final int onlyUsers;
     private final LongSparseArray selectedContacts;
     private int sortType;
-    private final int currentAccount = UserConfig.selectedAccount;
-    public ArrayList userStories = new ArrayList();
 
-    public void onStoryLongPressed(View view, long j) {
-    }
-
-    public void setStories(ArrayList arrayList, boolean z) {
-    }
-
-    public ContactsAdapter(Context context, BaseFragment baseFragment, int i, boolean z, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, int i2, boolean z2) {
+    public ContactsAdapter(Context context, BaseFragment baseFragment, int i, boolean z, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, int i2) {
         this.mContext = context;
         this.onlyUsers = i;
         this.needPhonebook = z;
@@ -141,14 +128,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             return ContactsController.getInstance(this.currentAccount).phoneBookContacts.get(i3);
         }
         if (getItemViewType(i, i2) == 2) {
-            return this.hasStories ? "Stories" : "Header";
-        }
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            return i2 == this.userStories.size() ? "Header" : Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.PeerStories) this.userStories.get(i2)).peer));
-        }
-        if (z && i > 1) {
-            i--;
+            return "Header";
         }
         HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
@@ -187,11 +167,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public int getHash(int i, int i2) {
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            return i2 == this.userStories.size() ? Objects.hash(Integer.valueOf((-49612) * i), getItem(i, i2)) : Objects.hash(Integer.valueOf((-54323) * i), getItem(i, i2));
-        }
-        return Objects.hash(Integer.valueOf(((!z || i <= 1) ? i : i - 1) * (-49612)), getItem(i, i2));
+        return Objects.hash(Integer.valueOf(i * (-49612)), getItem(i, i2));
     }
 
     @Override
@@ -199,20 +175,13 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (this.isEmptyWithMainTabs) {
             return i == 1 && i2 > 1;
         }
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            return i2 != this.userStories.size();
-        }
-        if (z && i > 1) {
-            i--;
-        }
         HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (this.onlyUsers != 0 && !this.isAdmin) {
             return !this.isEmpty && i2 < map.get(arrayList.get(i)).size();
         }
         if (i == 0) {
-            return this.isAdmin ? i2 != 1 : this.needPhonebook ? i2 != 1 : i2 != 3;
+            return this.isAdmin ? i2 < 1 : this.needPhonebook ? i2 < 2 : i2 < 3;
         }
         if (this.isEmpty) {
             return false;
@@ -247,19 +216,15 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
         HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            return this.userStories.size() + 1;
-        }
-        if (z && i > 1) {
-            i--;
-        }
         if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
                 if (this.isEmpty) {
                     return 1;
                 }
-                return (this.isAdmin || this.needPhonebook) ? 2 : 4;
+                if (this.isAdmin) {
+                    return 3;
+                }
+                return this.needPhonebook ? 4 : 5;
             }
             if (this.isEmpty) {
                 return 1;
@@ -268,13 +233,14 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 int i2 = i - 1;
                 if (i2 < arrayList.size()) {
                     int size = map.get(arrayList.get(i2)).size();
-                    return (i2 != arrayList.size() - 1 || this.needPhonebook) ? size + 1 : size;
+                    arrayList.size();
+                    return size;
                 }
             } else if (i == 1) {
                 if (this.onlineContacts.isEmpty()) {
                     return 0;
                 }
-                return this.onlineContacts.size() + 1;
+                return this.onlineContacts.size();
             }
         } else {
             if (this.isEmpty) {
@@ -304,14 +270,6 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             view = new LetterSectionCell(this.mContext);
         }
         LetterSectionCell letterSectionCell = (LetterSectionCell) view;
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            letterSectionCell.setLetter("");
-            return letterSectionCell;
-        }
-        if (z && i > 1) {
-            i--;
-        }
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
             letterSectionCell.setLetter("");
         } else if (this.onlyUsers != 0 && !this.isAdmin) {
@@ -320,7 +278,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             } else {
                 letterSectionCell.setLetter("");
             }
-        } else if (i != 0 && (i2 = i - 1) < arrayList.size()) {
+        } else if (i != 0 && i - 1 < arrayList.size()) {
             letterSectionCell.setLetter(arrayList.get(i2));
         } else {
             letterSectionCell.setLetter("");
@@ -330,104 +288,94 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
-        View graySectionCell;
-        switch (i) {
-            case 0:
-                UserCell userCell = new UserCell(this.mContext, 58, 1, false);
-                userCell.setCallCellStyle(58);
-                graySectionCell = userCell;
-                break;
-            case 1:
-                TextCell textCell = new TextCell(this.mContext);
-                int i2 = Theme.key_telegram_color_text;
-                textCell.setColors(i2, i2);
-                graySectionCell = textCell;
-                break;
-            case 2:
-                graySectionCell = new GraySectionCell(this.mContext);
-                break;
-            case 3:
-                View dividerCell = new DividerCell(this.mContext);
-                dividerCell.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.dp(8.0f));
-                graySectionCell = dividerCell;
-                break;
-            case 4:
-                FrameLayout frameLayout = new FrameLayout(this.mContext) {
-                    @Override
-                    protected void onMeasure(int i3, int i4) {
-                        if (ContactsAdapter.this.isEmptyWithMainTabs && ContactsAdapter.this.hasPhonebook) {
-                            super.onMeasure(i3, i4);
-                            return;
-                        }
-                        int size = View.MeasureSpec.getSize(i4);
-                        if (size == 0) {
-                            size = viewGroup.getMeasuredHeight();
-                        }
-                        if (size == 0) {
-                            size = (AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight;
-                        }
-                        int iDp = AndroidUtilities.dp(50.0f);
-                        int iDp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.dp(30.0f) + iDp;
-                        if (!ContactsAdapter.this.isAdmin && !ContactsAdapter.this.needPhonebook) {
-                            iDp2 += iDp;
-                        }
-                        int paddingTop = (size - viewGroup.getPaddingTop()) - viewGroup.getPaddingBottom();
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(iDp2 < paddingTop ? paddingTop - iDp2 : 0, 1073741824));
+        View textCell;
+        if (i == 0) {
+            UserCell userCell = new UserCell(this.mContext, 58, 1, false);
+            userCell.setCallCellStyle(58);
+            textCell = userCell;
+        } else if (i == 1) {
+            textCell = new TextCell(this.mContext);
+        } else if (i == 2) {
+            textCell = new GraySectionCell(this.mContext);
+        } else if (i == 3) {
+            View dividerCell = new DividerCell(this.mContext);
+            dividerCell.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.dp(8.0f));
+            textCell = dividerCell;
+        } else if (i == 4) {
+            FrameLayout frameLayout = new FrameLayout(this.mContext) {
+                @Override
+                protected void onMeasure(int i2, int i3) {
+                    if (ContactsAdapter.this.isEmptyWithMainTabs && ContactsAdapter.this.hasPhonebook) {
+                        super.onMeasure(i2, i3);
+                        return;
                     }
-                };
-                frameLayout.addView(new ContactsEmptyView(this.mContext), LayoutHelper.createFrame(-1, -2, 17));
-                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                graySectionCell = frameLayout;
-                break;
-            case 5:
-            default:
-                View shadowSectionCell = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                combinedDrawable.setFullsize(true);
-                shadowSectionCell.setBackgroundDrawable(combinedDrawable);
-                graySectionCell = shadowSectionCell;
-                break;
-            case 6:
-                DialogStoriesCell dialogStoriesCell = this.dialogStoriesCell;
-                if (dialogStoriesCell == null) {
-                    DialogStoriesCell dialogStoriesCell2 = new DialogStoriesCell(this.mContext, this.fragment, this.currentAccount, 1) {
-                        @Override
-                        public void onUserLongPressed(View view, long j) {
-                            ContactsAdapter.this.onStoryLongPressed(view, j);
-                        }
-                    };
-                    this.dialogStoriesCell = dialogStoriesCell2;
-                    dialogStoriesCell2.setProgressToCollapse(0.0f, false);
-                } else {
-                    AndroidUtilities.removeFromParent(dialogStoriesCell);
+                    int size = View.MeasureSpec.getSize(i3);
+                    if (size == 0) {
+                        size = viewGroup.getMeasuredHeight();
+                    }
+                    if (size == 0) {
+                        size = (AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight;
+                    }
+                    int iDp = AndroidUtilities.dp(50.0f);
+                    int iDp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.dp(30.0f) + iDp;
+                    if (!ContactsAdapter.this.isAdmin && !ContactsAdapter.this.needPhonebook) {
+                        iDp2 += iDp;
+                    }
+                    int paddingTop = (size - viewGroup.getPaddingTop()) - viewGroup.getPaddingBottom();
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(iDp2 < paddingTop ? paddingTop - iDp2 : 0, 1073741824));
                 }
-                FrameLayout frameLayout2 = new FrameLayout(this.mContext);
-                frameLayout2.addView(this.dialogStoriesCell, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-                graySectionCell = frameLayout2;
-                break;
-            case 7:
-                HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 14, 5, false, null);
-                headerCell.setText(LocaleController.getString(R.string.InviteFriends));
-                graySectionCell = headerCell;
-                break;
-            case 8:
-                graySectionCell = new InviteUserCell(this.mContext, false);
-                break;
+            };
+            frameLayout.addView(new ContactsEmptyView(this.mContext), LayoutHelper.createFrame(-1, -2, 17));
+            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            textCell = frameLayout;
+        } else if (i == 7) {
+            textCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 14, 5, false, null);
+        } else if (i == 8) {
+            textCell = new InviteUserCell(this.mContext, false);
+        } else {
+            View shadowSectionCell = new ShadowSectionCell(this.mContext);
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            combinedDrawable.setFullsize(true);
+            shadowSectionCell.setBackgroundDrawable(combinedDrawable);
+            textCell = shadowSectionCell;
         }
-        return new RecyclerListView.Holder(graySectionCell);
+        return new RecyclerListView.Holder(textCell);
     }
 
     @Override
     public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
         ArrayList<TLRPC.TL_contact> arrayList;
-        boolean z = this.hasStories;
+        int itemViewType = viewHolder.getItemViewType();
         int i3 = 7;
-        if (z && i == 1) {
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType != 0) {
-                if (itemViewType != 2) {
+        if (itemViewType == 0) {
+            UserCell userCell = (UserCell) viewHolder.itemView;
+            userCell.storyParams.drawSegments = false;
+            if (this.sortType != 2 && !this.disableSections) {
+                i3 = 58;
+            }
+            userCell.setAvatarPadding(i3, 1);
+            if (this.sortType == 2) {
+                arrayList = this.onlineContacts;
+            } else {
+                arrayList = (this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict).get((this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray).get(i - ((this.onlyUsers == 0 || this.isAdmin) ? 1 : 0)));
+            }
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i2).user_id));
+            userCell.setData(user, null, null, 0);
+            userCell.setChecked(this.selectedContacts.indexOfKey(user.id) >= 0, false);
+            LongSparseArray longSparseArray = this.ignoreUsers;
+            if (longSparseArray != null) {
+                if (longSparseArray.indexOfKey(user.id) >= 0) {
+                    userCell.setAlpha(0.5f);
+                    return;
+                } else {
+                    userCell.setAlpha(1.0f);
                     return;
                 }
+            }
+            return;
+        }
+        if (itemViewType != 1) {
+            if (itemViewType == 2) {
                 GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
                 int i4 = this.sortType;
                 if (i4 == 0) {
@@ -441,59 +389,12 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                     return;
                 }
             }
-            UserCell userCell = (UserCell) viewHolder.itemView;
-            userCell.setAvatarPadding(7, 1);
-            userCell.storyParams.drawSegments = true;
-            StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
-            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.PeerStories) this.userStories.get(i2)).peer)));
-            if (storiesController.hasUnreadStories(user.id)) {
-                int unreadStoriesCount = storiesController.getUnreadStoriesCount(user.id);
-                userCell.setData(user, ContactsController.formatName(user), LocaleController.formatPluralString("NewStories", unreadStoriesCount, Integer.valueOf(unreadStoriesCount)).toLowerCase(), 0);
-                return;
-            } else {
-                int size = ((TL_stories.PeerStories) this.userStories.get(i2)).stories.size();
-                userCell.setData(user, ContactsController.formatName(user), LocaleController.formatPluralString("Stories", size, Integer.valueOf(size)).toLowerCase(), 0);
+            if (itemViewType == 4) {
+                viewHolder.itemView.setPadding(0, AndroidUtilities.dp(!this.hasPhonebook ? 96.0f : 25.0f), 0, AndroidUtilities.dp(18.0f));
                 return;
             }
-        }
-        if (z && i > 1) {
-            i--;
-        }
-        int itemViewType2 = viewHolder.getItemViewType();
-        if (itemViewType2 == 0) {
-            UserCell userCell2 = (UserCell) viewHolder.itemView;
-            userCell2.storyParams.drawSegments = false;
-            if (this.sortType != 2 && !this.disableSections) {
-                i3 = 58;
-            }
-            userCell2.setAvatarPadding(i3, 1);
-            if (this.sortType == 2) {
-                arrayList = this.onlineContacts;
-            } else {
-                arrayList = (this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict).get((this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray).get(i - ((this.onlyUsers == 0 || this.isAdmin) ? 1 : 0)));
-            }
-            TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i2).user_id));
-            userCell2.setData(user2, null, null, 0);
-            userCell2.setChecked(this.selectedContacts.indexOfKey(user2.id) >= 0, false);
-            LongSparseArray longSparseArray = this.ignoreUsers;
-            if (longSparseArray != null) {
-                if (longSparseArray.indexOfKey(user2.id) >= 0) {
-                    userCell2.setAlpha(0.5f);
-                    return;
-                } else {
-                    userCell2.setAlpha(1.0f);
-                    return;
-                }
-            }
-            return;
-        }
-        if (itemViewType2 != 1) {
-            if (itemViewType2 != 2) {
-                if (itemViewType2 == 4) {
-                    viewHolder.itemView.setPadding(0, AndroidUtilities.dp(!this.hasPhonebook ? 96.0f : 25.0f), 0, AndroidUtilities.dp(18.0f));
-                    return;
-                }
-                if (itemViewType2 != 8) {
+            if (itemViewType != 7) {
+                if (itemViewType != 8) {
                     return;
                 }
                 InviteUserCell inviteUserCell = (InviteUserCell) viewHolder.itemView;
@@ -504,31 +405,38 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 inviteUserCell.setUser(ContactsController.getInstance(this.currentAccount).phoneBookContacts.get(i5), null);
                 return;
             }
-            GraySectionCell graySectionCell2 = (GraySectionCell) viewHolder.itemView;
-            if (this.hasStories) {
-                graySectionCell2.setText(LocaleController.getString(R.string.HiddenStories));
+            HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+            if (this.isEmptyWithMainTabs && i2 == 1 && i == 1) {
+                headerCell.setText(LocaleController.getString(R.string.InviteFriends));
                 return;
-            }
-            int i6 = this.sortType;
-            if (i6 == 0) {
-                graySectionCell2.setText(LocaleController.getString(R.string.Contacts));
-                return;
-            } else if (i6 == 1) {
-                graySectionCell2.setText(LocaleController.getString(R.string.SortedByName));
+            } else if (this.sortType == 1) {
+                headerCell.setText(LocaleController.getString(R.string.SortedByName));
                 return;
             } else {
-                graySectionCell2.setText(LocaleController.getString(R.string.SortedByLastSeen));
+                headerCell.setText(LocaleController.getString(R.string.SortedByLastSeen));
                 return;
             }
         }
         TextCell textCell = (TextCell) viewHolder.itemView;
+        if (this.needPhonebook) {
+            int i6 = Theme.key_windowBackgroundWhiteBlackText;
+            textCell.setColors(i6, i6);
+        } else {
+            int i7 = Theme.key_telegram_color_text;
+            textCell.setColors(i7, i7);
+        }
         if (i == 0) {
             if (this.needPhonebook) {
                 if (i2 == 0) {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.InviteFriends), R.drawable.msg_invite, false);
+                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.InviteFriends), "", false, R.drawable.join, -14899731, -15431455, false);
+                    return;
+                } else {
+                    if (i2 == 1) {
+                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.filled_profile_call_24, -11154873, -14175180, false);
+                        return;
+                    }
                     return;
                 }
-                return;
             }
             if (this.isAdmin) {
                 if (this.isChannel) {
@@ -582,13 +490,6 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
         HashMap<String, ArrayList<TLRPC.TL_contact>> map = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict : ContactsController.getInstance(this.currentAccount).usersSectionsDict;
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
-        boolean z = this.hasStories;
-        if (z && i == 1) {
-            return i2 == this.userStories.size() ? 2 : 0;
-        }
-        if (z && i > 1) {
-            i--;
-        }
         if (this.onlyUsers != 0 && !this.isAdmin) {
             if (this.isEmpty) {
                 return 4;
@@ -598,23 +499,46 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (i == 0) {
             if (this.isAdmin) {
                 if (i2 == 1) {
-                    return 2;
+                    return 5;
+                }
+                if (i2 == 2) {
+                    int i3 = this.sortType;
+                    return (i3 == 1 || i3 == 2) ? 7 : 2;
                 }
             } else if (this.needPhonebook) {
-                if (i2 == 1) {
-                    return this.isEmpty ? 5 : 2;
+                if (i2 < 2) {
+                    return 1;
                 }
-            } else if (i2 == 3) {
-                return this.isEmpty ? 5 : 2;
+                if (i2 == 2) {
+                    return 5;
+                }
+                if (i2 == 3) {
+                    if (this.isEmpty) {
+                        return 5;
+                    }
+                    int i4 = this.sortType;
+                    return (i4 == 1 || i4 == 2) ? 7 : 2;
+                }
+            } else {
+                if (i2 == 3) {
+                    return 5;
+                }
+                if (i2 == 4) {
+                    if (this.isEmpty) {
+                        return 5;
+                    }
+                    int i5 = this.sortType;
+                    return (i5 == 1 || i5 == 2) ? 7 : 2;
+                }
             }
         } else {
             if (this.isEmpty) {
                 return 4;
             }
             if (this.sortType != 2) {
-                int i3 = i - 1;
-                if (i3 < arrayList.size()) {
-                    return i2 < map.get(arrayList.get(i3)).size() ? 0 : 3;
+                int i6 = i - 1;
+                if (i6 < arrayList.size()) {
+                    return i2 < map.get(arrayList.get(i6)).size() ? 0 : 3;
                 }
             } else if (i == 1) {
                 return i2 < this.onlineContacts.size() ? 0 : 3;

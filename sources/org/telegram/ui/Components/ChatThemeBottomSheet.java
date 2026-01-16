@@ -1809,7 +1809,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         baseFragment.setResourceProvider(this.chatActivity.getResourceProvider());
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 ChatThemeBottomSheet.lambda$showAsSheet$17();
             }
         };
@@ -1831,7 +1831,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         chatActivity.showAsSheet(baseFragment, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$17() {
+    public static void lambda$showAsSheet$17() throws NumberFormatException {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 
@@ -1873,7 +1873,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         });
         bottomSheetParams.onOpenAnimationFinished = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 ChatThemeBottomSheet.lambda$showAsSheet$20();
             }
         };
@@ -1894,7 +1894,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chatActivity.showAsSheet(themePreviewActivity, bottomSheetParams);
     }
 
-    public static void lambda$showAsSheet$20() {
+    public static void lambda$showAsSheet$20() throws NumberFormatException {
         PhotoViewer.getInstance().closePhoto(false, false);
     }
 

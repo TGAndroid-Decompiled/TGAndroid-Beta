@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,21 +17,21 @@ public abstract class CircularViewPager extends ViewPager {
             }
 
             @Override
-            public void onPageScrolled(int i, float f, int i2) throws Resources.NotFoundException {
+            public void onPageScrolled(int i, float f, int i2) {
                 if (i == CircularViewPager.this.getCurrentItem() && f == 0.0f && this.scrollState == 1) {
                     checkCurrentItem();
                 }
             }
 
             @Override
-            public void onPageScrollStateChanged(int i) throws Resources.NotFoundException {
+            public void onPageScrollStateChanged(int i) {
                 if (i == 0) {
                     checkCurrentItem();
                 }
                 this.scrollState = i;
             }
 
-            private void checkCurrentItem() throws Resources.NotFoundException {
+            private void checkCurrentItem() {
                 if (CircularViewPager.this.adapter != null) {
                     int currentItem = CircularViewPager.this.getCurrentItem();
                     int extraCount = CircularViewPager.this.adapter.getExtraCount() + CircularViewPager.this.adapter.getRealPosition(currentItem);
@@ -46,7 +45,7 @@ public abstract class CircularViewPager extends ViewPager {
 
     @Override
     @Deprecated
-    public void setAdapter(PagerAdapter pagerAdapter) throws Resources.NotFoundException {
+    public void setAdapter(PagerAdapter pagerAdapter) {
         if (pagerAdapter instanceof Adapter) {
             setAdapter((Adapter) pagerAdapter);
             return;
@@ -54,7 +53,7 @@ public abstract class CircularViewPager extends ViewPager {
         throw new IllegalArgumentException();
     }
 
-    public void setAdapter(Adapter adapter) throws Resources.NotFoundException {
+    public void setAdapter(Adapter adapter) {
         this.adapter = adapter;
         super.setAdapter((PagerAdapter) adapter);
         if (adapter != null) {

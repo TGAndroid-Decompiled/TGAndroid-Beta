@@ -67,10 +67,18 @@ public abstract class TranslateButton extends FrameLayout {
         this.dialogId = j;
         this.fragment = baseFragment;
         this.resourcesProvider = resourcesProvider;
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, false) {
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
+            }
+        };
         this.textView = animatedTextView;
         animatedTextView.setAnimationProperties(0.3f, 0L, 450L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.textView.setTextSize(AndroidUtilities.dp(15.0f));
+        this.textView.setTextSize(AndroidUtilities.dp(14.0f));
         this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         this.textView.setGravity(1);
@@ -83,10 +91,10 @@ public abstract class TranslateButton extends FrameLayout {
                 this.f$0.lambda$new$0(view);
             }
         });
-        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 3, 0.0f, 0.0f, 34.0f, 0.0f));
         Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_translate).mutate();
         this.translateDrawable = drawableMutate;
-        drawableMutate.setBounds(0, AndroidUtilities.dp(-8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f));
+        drawableMutate.setBounds(0, AndroidUtilities.dp(-6.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(14.0f));
         SpannableString spannableString = new SpannableString("x");
         this.translateIcon = spannableString;
         spannableString.setSpan(new ImageSpan(drawableMutate, 0), 0, 1, 33);
@@ -100,7 +108,7 @@ public abstract class TranslateButton extends FrameLayout {
                 this.f$0.lambda$new$1(i, j, view);
             }
         });
-        addView(this.menuView, LayoutHelper.createFrame(32, 32.0f, 21, 0.0f, 0.0f, 8.0f, 0.0f));
+        addView(this.menuView, LayoutHelper.createFrame(30, 30.0f, 21, 0.0f, 0.0f, 7.0f, 0.0f));
         updateColors();
     }
 
@@ -121,10 +129,10 @@ public abstract class TranslateButton extends FrameLayout {
         AnimatedTextView animatedTextView = this.textView;
         int i = Theme.key_chat_addContact;
         animatedTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
-        this.textView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 3));
-        this.menuView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 7));
+        this.textView.setBackground(Theme.createInsetRoundRectDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(3.0f)));
+        this.menuView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 0, 0));
         ImageView imageView = this.menuView;
-        int color = Theme.getColor(i, this.resourcesProvider);
+        int color = Theme.getColor(Theme.key_chat_topPanelClose, this.resourcesProvider);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
         this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
@@ -388,7 +396,7 @@ public abstract class TranslateButton extends FrameLayout {
         } else {
             string = LocaleController.getString(R.string.TranslationBarHiddenForChat);
         }
-        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.Undo), new Runnable() {
+        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.UndoNoCaps), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMenuClick$9(translateController);

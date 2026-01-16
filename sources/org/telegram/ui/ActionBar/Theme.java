@@ -337,6 +337,7 @@ public abstract class Theme {
     public static Paint dialogs_countGrayPaint;
     public static Paint dialogs_countPaint;
     public static TextPaint dialogs_countTextPaint;
+    public static TextPaint dialogs_countTextPaint2;
     public static Drawable dialogs_errorDrawable;
     public static Paint dialogs_errorPaint;
     public static ScamDrawable dialogs_fakeDrawable;
@@ -923,6 +924,7 @@ public abstract class Theme {
     public static final int key_glass_defaultIcon;
     public static final int key_glass_defaultText;
     public static final int key_glass_tabSelected;
+    public static final int key_glass_tabSelectedText;
     public static final int key_glass_tabUnselected;
     public static final int key_graySection;
     public static final int key_graySectionText;
@@ -1371,11 +1373,11 @@ public abstract class Theme {
         public void setColorFilter(ColorFilter colorFilter) {
         }
 
-        public MessageDrawable(int i, boolean z, boolean z2) {
+        public MessageDrawable(int i, boolean z, boolean z2) throws IllegalArgumentException, NegativeArraySizeException {
             this(i, z, z2, null);
         }
 
-        public MessageDrawable(int i, boolean z, boolean z2, ResourcesProvider resourcesProvider) {
+        public MessageDrawable(int i, boolean z, boolean z2, ResourcesProvider resourcesProvider) throws IllegalArgumentException, NegativeArraySizeException {
             this.paint = new Paint(1);
             this.rect = new RectF();
             this.matrix = new Matrix();
@@ -2125,7 +2127,7 @@ public abstract class Theme {
         ThemeAccent() {
         }
 
-        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) {
+        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) throws java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.ThemeAccent.fillAccentColors(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
         }
 
@@ -2760,7 +2762,7 @@ public abstract class Theme {
             return this.defaultAccentCount != 0;
         }
 
-        public boolean isDark() {
+        public boolean isDark() throws IOException {
             int i = this.isDark;
             if (i != -1) {
                 return i == 1;
@@ -3520,11 +3522,11 @@ public abstract class Theme {
         return shapeDrawable;
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) throws Resources.NotFoundException {
         return createCircleDrawableWithIcon(i, i2, 0);
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) throws Resources.NotFoundException {
         return createCircleDrawableWithIcon(i, i2 != 0 ? ApplicationLoader.applicationContext.getResources().getDrawable(i2).mutate() : null, i3);
     }
 
@@ -3661,11 +3663,6 @@ public abstract class Theme {
         };
     }
 
-    public static Drawable createSimpleSelectorRoundRectDrawableWithInset(int i, int i2, int i3, int i4) {
-        float f = i;
-        return createSimpleSelectorRoundRectDrawable(new float[]{f, f, f, f, f, f, f, f}, i2, i3, i3, i4);
-    }
-
     public static Drawable createSimpleSelectorRoundRectDrawable(int i, int i2, int i3) {
         return createSimpleSelectorRoundRectDrawable(i, i2, i3, i3);
     }
@@ -3682,11 +3679,11 @@ public abstract class Theme {
         return createSimpleSelectorRoundRectDrawable(new float[]{f, f, f2, f2, f3, f3, f4, f4}, i5, i6, i7);
     }
 
-    public static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3) {
+    private static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3) {
         return createSimpleSelectorRoundRectDrawable(fArr, i, i2, i3, 0);
     }
 
-    public static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3, int i4) {
+    private static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3, int i4) {
         ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(fArr, null, null));
         shapeDrawable.setPadding(i4, i4, i4, i4);
         shapeDrawable.getPaint().setColor(i);
@@ -3758,6 +3755,37 @@ public abstract class Theme {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.createSelectorDrawable(int, int, int):android.graphics.drawable.Drawable");
     }
 
+    public static Drawable createInsetRoundRectDrawable(int i, final float f, final int i2) {
+        maskPaint.setColor(-1);
+        return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
+            private final RectF rectF = new RectF();
+
+            @Override
+            public int getOpacity() {
+                return 0;
+            }
+
+            @Override
+            public void setAlpha(int i3) {
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                this.rectF.set(getBounds());
+                RectF rectF = this.rectF;
+                float f2 = i2;
+                rectF.inset(f2, f2);
+                RectF rectF2 = this.rectF;
+                float f3 = f;
+                canvas.drawRoundRect(rectF2, f3, f3, Theme.maskPaint);
+            }
+        });
+    }
+
     public static Drawable createCircleSelectorDrawable(int i, final int i2, final int i3) {
         maskPaint.setColor(-1);
         return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
@@ -3812,10 +3840,6 @@ public abstract class Theme {
 
         public static Drawable rect(int i, float... fArr) {
             return createRect(0, calcRippleColor(i), fArr);
-        }
-
-        public static Drawable filledRect() {
-            return filledRect(Theme.getColor(defaultBackgroundColorKey), 0.0f);
         }
 
         public static Drawable filledRectByKey(int i) {
@@ -4964,7 +4988,7 @@ public abstract class Theme {
         return currentTheme == currentNightTheme;
     }
 
-    public static boolean isCurrentThemeDark() {
+    public static boolean isCurrentThemeDark() throws IOException {
         return currentTheme.isDark();
     }
 
@@ -5274,13 +5298,13 @@ public abstract class Theme {
     public static void lambda$checkCurrentRemoteTheme$7(final ThemeAccent themeAccent, final ThemeInfo themeInfo, final TLRPC.TL_theme tL_theme, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, IOException {
+            public final void run() throws JSONException, Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 Theme.lambda$checkCurrentRemoteTheme$6(tLObject, themeAccent, themeInfo, tL_theme);
             }
         });
     }
 
-    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, java.io.IOException {
+    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.Theme$ThemeAccent, org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.tgnet.TLRPC$TL_theme):void");
     }
 
@@ -5790,12 +5814,16 @@ public abstract class Theme {
             TextPaint textPaint = new TextPaint(1);
             dialogs_countTextPaint = textPaint;
             textPaint.setTypeface(AndroidUtilities.bold());
+            TextPaint textPaint2 = new TextPaint(1);
+            dialogs_countTextPaint2 = textPaint2;
+            textPaint2.setTypeface(AndroidUtilities.bold());
             dialogs_countPaint = new Paint(1);
             dialogs_reactionsCountPaint = new Paint(1);
             dialogs_onlineCirclePaint = new Paint(1);
             dialogs_tagPaint = new Paint(1);
         }
         dialogs_countTextPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        dialogs_countTextPaint2.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
     public static void createDialogsResources(Context context) {
@@ -5914,11 +5942,14 @@ public abstract class Theme {
         dialogs_tabletSeletedPaint.setColor(getColor(key_chats_tabletSelectedOverlay));
         dialogs_pinnedPaint.setColor(getColor(key_chats_pinnedOverlay));
         dialogs_timePaint.setColor(getColor(key_chats_date));
-        dialogs_countTextPaint.setColor(getColor(key_chats_unreadCounterText));
-        TextPaint textPaint3 = dialogs_archiveTextPaint;
-        int i2 = key_chats_archiveText;
+        TextPaint textPaint3 = dialogs_countTextPaint;
+        int i2 = key_chats_unreadCounterText;
         textPaint3.setColor(getColor(i2));
-        dialogs_archiveTextPaintSmall.setColor(getColor(i2));
+        dialogs_countTextPaint2.setColor(getColor(i2));
+        TextPaint textPaint4 = dialogs_archiveTextPaint;
+        int i3 = key_chats_archiveText;
+        textPaint4.setColor(getColor(i3));
+        dialogs_archiveTextPaintSmall.setColor(getColor(i3));
         dialogs_countPaint.setColor(getColor(key_chats_unreadCounter));
         dialogs_reactionsCountPaint.setColor(getColor(key_dialogReactionMentionBackground));
         dialogs_countGrayPaint.setColor(getColor(key_chats_unreadCounterMuted));
@@ -5928,37 +5959,37 @@ public abstract class Theme {
         dialogs_offlinePaint.setColor(getColor(key_windowBackgroundWhiteGrayText3));
         setDrawableColorByKey(dialogs_lockDrawable, key_chats_secretIcon);
         Drawable drawable = dialogs_lock2Drawable;
-        int i3 = key_chats_pinnedIcon;
-        setDrawableColorByKey(drawable, i3);
+        int i4 = key_chats_pinnedIcon;
+        setDrawableColorByKey(drawable, i4);
         setDrawableColorByKey(dialogs_checkDrawable, key_chats_sentCheck);
         Drawable drawable2 = dialogs_checkReadDrawable;
-        int i4 = key_chats_sentReadCheck;
-        setDrawableColorByKey(drawable2, i4);
-        setDrawableColorByKey(dialogs_halfCheckDrawable, i4);
+        int i5 = key_chats_sentReadCheck;
+        setDrawableColorByKey(drawable2, i5);
+        setDrawableColorByKey(dialogs_halfCheckDrawable, i5);
         setDrawableColorByKey(dialogs_clockDrawable, key_chats_sentClock);
         setDrawableColorByKey(dialogs_errorDrawable, key_chats_sentErrorIcon);
-        setDrawableColorByKey(dialogs_pinnedDrawable, i3);
-        setDrawableColorByKey(dialogs_pinnedDrawable2, i3);
-        setDrawableColorByKey(dialogs_reorderDrawable, i3);
+        setDrawableColorByKey(dialogs_pinnedDrawable, i4);
+        setDrawableColorByKey(dialogs_pinnedDrawable2, i4);
+        setDrawableColorByKey(dialogs_reorderDrawable, i4);
         Drawable drawable3 = dialogs_muteDrawable;
-        int i5 = key_chats_muteIcon;
-        setDrawableColorByKey(drawable3, i5);
-        setDrawableColorByKey(dialogs_unmuteDrawable, i5);
+        int i6 = key_chats_muteIcon;
+        setDrawableColorByKey(drawable3, i6);
+        setDrawableColorByKey(dialogs_unmuteDrawable, i6);
         Drawable drawable4 = dialogs_mentionDrawable;
-        int i6 = key_chats_mentionIcon;
-        setDrawableColorByKey(drawable4, i6);
+        int i7 = key_chats_mentionIcon;
+        setDrawableColorByKey(drawable4, i7);
         setDrawableColorByKey(dialogs_forum_arrowDrawable, key_chats_message);
-        setDrawableColorByKey(dialogs_reactionsMentionDrawable, i6);
+        setDrawableColorByKey(dialogs_reactionsMentionDrawable, i7);
         setDrawableColorByKey(dialogs_verifiedDrawable, key_chats_verifiedBackground);
         setDrawableColorByKey(dialogs_verifiedCheckDrawable, key_chats_verifiedCheck);
         setDrawableColorByKey(dialogs_holidayDrawable, key_actionBarDefaultTitle);
         ScamDrawable scamDrawable = dialogs_scamDrawable;
-        int i7 = key_chats_draft;
-        setDrawableColorByKey(scamDrawable, i7);
-        setDrawableColorByKey(dialogs_fakeDrawable, i7);
+        int i8 = key_chats_draft;
+        setDrawableColorByKey(scamDrawable, i8);
+        setDrawableColorByKey(dialogs_fakeDrawable, i8);
     }
 
-    public static void reloadAllResources(Context context) {
+    public static void reloadAllResources(Context context) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         destroyResources();
         if (chat_msgInDrawable != null) {
             chat_msgInDrawable = null;
@@ -6186,7 +6217,7 @@ public abstract class Theme {
         }
     }
 
-    public static void createChatResources(Context context, boolean z) {
+    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         TextPaint textPaint;
         createCommonChatResources();
         if (!z && chat_msgInDrawable == null) {
@@ -6534,7 +6565,7 @@ public abstract class Theme {
         }
     }
 
-    public static void applyChatTheme(boolean z, boolean z2) {
+    public static void applyChatTheme(boolean z, boolean z2) throws IOException {
         if (chat_msgTextPaint == null || chat_msgInDrawable == null || z) {
             return;
         }
@@ -6704,7 +6735,7 @@ public abstract class Theme {
         refreshAttachButtonsColors();
     }
 
-    public static void applyChatServiceMessageColor() {
+    public static void applyChatServiceMessageColor() throws IOException {
         Drawable drawable = wallpaper;
         if (drawable != null) {
             applyChatServiceMessageColor(null, null, drawable);
@@ -6766,7 +6797,7 @@ public abstract class Theme {
         bitmapShader.setLocalMatrix(matrix);
     }
 
-    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) {
+    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) throws IOException {
         int iValueAt;
         int i;
         int iValueAt2;
@@ -7371,13 +7402,13 @@ public abstract class Theme {
         final Drawable drawableLoadWallpaperInternal = loadWallpaperInternal(overrideWallpaperInfo, file, i, z, document, z2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 Theme.lambda$loadWallpaper$11(drawableLoadWallpaperInternal);
             }
         });
     }
 
-    public static void lambda$loadWallpaper$11(Drawable drawable) {
+    public static void lambda$loadWallpaper$11(Drawable drawable) throws IOException {
         wallpaperLoadTask = null;
         createCommonChatResources();
         if (!disallowChangeServiceMessageColor) {

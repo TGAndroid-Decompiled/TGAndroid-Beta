@@ -227,7 +227,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
         animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
         animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle, resourcesProvider));
+        animatedTextDrawable.setTextColor(-1);
         animatedTextDrawable.setEllipsizeByGradient(true);
         animatedTextDrawable.setCallback(this);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));

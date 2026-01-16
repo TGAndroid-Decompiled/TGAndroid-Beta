@@ -13,16 +13,18 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.pip.source.PipSourceSnapshot$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 
 public class DownscaleScrollableNoiseSuppressor {
+    public final boolean isLiquidGlassEnabled;
     private int recordingIndex;
     private RectF recordingPos;
+    private final ArrayList rectRenderNodes;
     private int rectRenderNodesCount;
+    private final RenderNode[] resultRenderNodes;
     private final RenderEffect saturationUpEffect;
-    private final RenderNode[] resultRenderNodes = {BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null), BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null)};
-    private final ArrayList rectRenderNodes = new ArrayList();
-    public final boolean isLiquidGlassEnabled = LiteMode.isEnabled(262144);
+    private final boolean simpleMode;
 
     public static float convertRadiusToSigma(float f) {
         if (f > 0.0f) {
@@ -39,17 +41,41 @@ public class DownscaleScrollableNoiseSuppressor {
     }
 
     public DownscaleScrollableNoiseSuppressor() {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        colorMatrix.setSaturation(2.0f);
-        this.saturationUpEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+        this(true);
+    }
+
+    public DownscaleScrollableNoiseSuppressor(boolean z) {
+        this.rectRenderNodes = new ArrayList();
+        boolean zIsEnabled = LiteMode.isEnabled(262144);
+        this.isLiquidGlassEnabled = zIsEnabled;
+        this.simpleMode = z;
+        this.resultRenderNodes = new RenderNode[(zIsEnabled || !z) ? 2 : 1];
+        int i = 0;
+        while (true) {
+            RenderNode[] renderNodeArr = this.resultRenderNodes;
+            if (i < renderNodeArr.length) {
+                renderNodeArr[i] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
+                i++;
+            } else {
+                ColorMatrix colorMatrix = new ColorMatrix();
+                colorMatrix.setSaturation(2.0f);
+                this.saturationUpEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+                return;
+            }
+        }
     }
 
     public void draw(Canvas canvas, int i) {
         if (!canvas.isHardwareAccelerated()) {
             throw new IllegalStateException();
         }
+        boolean z = this.isLiquidGlassEnabled;
+        if (!z && this.simpleMode) {
+            canvas.drawRenderNode(this.resultRenderNodes[0]);
+            return;
+        }
         if (i == -2) {
-            canvas.drawRenderNode(this.resultRenderNodes[!this.isLiquidGlassEnabled ? 1 : 0]);
+            canvas.drawRenderNode(this.resultRenderNodes[!z ? 1 : 0]);
         } else if (i == -4) {
             canvas.drawRenderNode(this.resultRenderNodes[0]);
         } else if (i == -3) {
@@ -59,23 +85,36 @@ public class DownscaleScrollableNoiseSuppressor {
 
     public static class DownscaledRenderNode {
         private final RenderNode[] renderNodeDownsampled;
-        private final RenderNode renderNodeOriginalWithOffset = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
+        private final RenderNode renderNodeOriginalWithOffset;
         private final RenderNode[] renderNodeRestored;
         private int scaleX;
         private int scaleY;
         private float scrollX;
         private float scrollY;
+        private final boolean simpleMode;
 
-        public DownscaledRenderNode(int i) {
+        public DownscaledRenderNode(String str, int i) {
+            this(str, i, false);
+        }
+
+        public DownscaledRenderNode(String str, int i, boolean z) {
+            this.renderNodeOriginalWithOffset = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
             int i2 = i + 1;
             this.renderNodeDownsampled = new RenderNode[i2];
-            this.renderNodeRestored = new RenderNode[i2];
             for (int i3 = 0; i3 < i2; i3++) {
-                this.renderNodeDownsampled[i3] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
-                this.renderNodeDownsampled[i3].setClipToBounds(true);
-                this.renderNodeRestored[i3] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
-                this.renderNodeRestored[i3].setClipToBounds(true);
+                RenderNode[] renderNodeArr = this.renderNodeDownsampled;
+                PipSourceSnapshot$$ExternalSyntheticApiModelOutline0.m();
+                renderNodeArr[i3] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(str + "_down_" + i);
             }
+            if (i > 0 || z) {
+                this.renderNodeRestored = new RenderNode[i2];
+                for (int i4 = 0; i4 < i2; i4++) {
+                    this.renderNodeRestored[i4] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
+                }
+            } else {
+                this.renderNodeRestored = this.renderNodeDownsampled;
+            }
+            this.simpleMode = this.renderNodeRestored == this.renderNodeDownsampled;
             this.scaleY = 1;
             this.scaleX = 1;
         }
@@ -132,11 +171,18 @@ public class DownscaleScrollableNoiseSuppressor {
                     recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeOriginalWithOffset);
                 }
                 this.renderNodeDownsampled[i].endRecording();
-                this.renderNodeRestored[i].setPosition(0, 0, width, height);
-                RecordingCanvas recordingCanvasBeginRecording3 = this.renderNodeRestored[i].beginRecording(width, height);
-                recordingCanvasBeginRecording3.scale(f7, f8);
-                recordingCanvasBeginRecording3.drawRenderNode(this.renderNodeDownsampled[i]);
-                this.renderNodeRestored[i].endRecording();
+                if (this.simpleMode) {
+                    this.renderNodeDownsampled[i].setScaleX(f7);
+                    this.renderNodeDownsampled[i].setScaleY(f8);
+                    this.renderNodeDownsampled[i].setPivotX(0.0f);
+                    this.renderNodeDownsampled[i].setPivotY(0.0f);
+                } else {
+                    this.renderNodeRestored[i].setPosition(0, 0, width, height);
+                    RecordingCanvas recordingCanvasBeginRecording3 = this.renderNodeRestored[i].beginRecording(width, height);
+                    recordingCanvasBeginRecording3.scale(f7, f8);
+                    recordingCanvasBeginRecording3.drawRenderNode(this.renderNodeDownsampled[i]);
+                    this.renderNodeRestored[i].endRecording();
+                }
                 i++;
             }
         }
@@ -178,8 +224,13 @@ public class DownscaleScrollableNoiseSuppressor {
 
     private void invalidateResultRenderNodes(int i, int i2) {
         DownscaledRenderNode downscaledRenderNode;
-        for (int i3 = 0; i3 < 2; i3++) {
-            RenderNode renderNode = this.resultRenderNodes[i3];
+        int i3 = 0;
+        while (true) {
+            RenderNode[] renderNodeArr = this.resultRenderNodes;
+            if (i3 >= renderNodeArr.length) {
+                return;
+            }
+            RenderNode renderNode = renderNodeArr[i3];
             renderNode.setPosition(0, 0, i, i2);
             RecordingCanvas recordingCanvasBeginRecording = renderNode.beginRecording(i, i2);
             for (int i4 = 0; i4 < this.rectRenderNodesCount; i4++) {
@@ -188,7 +239,7 @@ public class DownscaleScrollableNoiseSuppressor {
                 RectF rectF = sourcePart.position;
                 recordingCanvasBeginRecording.translate(rectF.left, rectF.top);
                 if (!this.isLiquidGlassEnabled || (downscaledRenderNode = sourcePart.renderNodesForGlass) == null) {
-                    recordingCanvasBeginRecording.drawRenderNode(sourcePart.renderNodesForBlur.renderNodeRestored[Math.min(i3, sourcePart.renderNodesForBlur.renderNodeRestored.length)]);
+                    recordingCanvasBeginRecording.drawRenderNode(sourcePart.renderNodesForBlur.renderNodeRestored[Math.min(i3, sourcePart.renderNodesForBlur.renderNodeRestored.length - 1)]);
                 } else if (i3 == 0) {
                     recordingCanvasBeginRecording.drawRenderNode(downscaledRenderNode.renderNodeRestored[0]);
                 } else {
@@ -197,6 +248,7 @@ public class DownscaleScrollableNoiseSuppressor {
                 recordingCanvasBeginRecording.restore();
             }
             renderNode.endRecording();
+            i3++;
         }
     }
 
@@ -220,29 +272,33 @@ public class DownscaleScrollableNoiseSuppressor {
         final DownscaledRenderNode renderNodesForGlass;
 
         private SourcePart() {
-            RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
-            this.renderNode = renderNodeM;
+            this.renderNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
             this.position = new RectF();
-            renderNodeM.setClipToBounds(true);
-            if (DownscaleScrollableNoiseSuppressor.this.isLiquidGlassEnabled) {
-                DownscaledRenderNode downscaledRenderNode = new DownscaledRenderNode(0);
-                this.renderNodesForGlass = downscaledRenderNode;
-                downscaledRenderNode.renderNodeDownsampled[0].setUseCompositingLayer(true, null);
-                downscaledRenderNode.setScale(4, 4);
-                downscaledRenderNode.setPrimaryEffectBlur(AndroidUtilities.dpf2(1.66f), DownscaleScrollableNoiseSuppressor.this.saturationUpEffect);
-                DownscaledRenderNode downscaledRenderNode2 = new DownscaledRenderNode(0);
+            if (!DownscaleScrollableNoiseSuppressor.this.isLiquidGlassEnabled) {
+                if (DownscaleScrollableNoiseSuppressor.this.simpleMode) {
+                    DownscaledRenderNode downscaledRenderNode = new DownscaledRenderNode("blur", 0);
+                    this.renderNodesForBlur = downscaledRenderNode;
+                    downscaledRenderNode.setScale(16, 16);
+                    downscaledRenderNode.setPrimaryEffectBlur(AndroidUtilities.dpf2(28.34f), DownscaleScrollableNoiseSuppressor.this.saturationUpEffect);
+                    this.renderNodesForGlass = null;
+                    return;
+                }
+                DownscaledRenderNode downscaledRenderNode2 = new DownscaledRenderNode("blur", 1);
                 this.renderNodesForBlur = downscaledRenderNode2;
                 downscaledRenderNode2.setScale(16, 16);
-                downscaledRenderNode2.setPrimaryEffectBlur(AndroidUtilities.dpf2(28.34f));
-            } else {
-                DownscaledRenderNode downscaledRenderNode3 = new DownscaledRenderNode(1);
-                this.renderNodesForBlur = downscaledRenderNode3;
-                downscaledRenderNode3.setScale(16, 16);
-                downscaledRenderNode3.setPrimaryEffectBlur(AndroidUtilities.dpf2(30.0f));
-                downscaledRenderNode3.setSecondaryEffect(0, DownscaleScrollableNoiseSuppressor.this.saturationUpEffect);
+                downscaledRenderNode2.setPrimaryEffectBlur(AndroidUtilities.dpf2(30.0f));
+                downscaledRenderNode2.setSecondaryEffect(0, DownscaleScrollableNoiseSuppressor.this.saturationUpEffect);
                 this.renderNodesForGlass = null;
+                return;
             }
-            this.renderNodesForBlur.renderNodeDownsampled[0].setUseCompositingLayer(true, null);
+            DownscaledRenderNode downscaledRenderNode3 = new DownscaledRenderNode("glass", 0, true);
+            this.renderNodesForGlass = downscaledRenderNode3;
+            downscaledRenderNode3.setScale(4, 4);
+            downscaledRenderNode3.setPrimaryEffectBlur(AndroidUtilities.dpf2(1.66f), DownscaleScrollableNoiseSuppressor.this.saturationUpEffect);
+            DownscaledRenderNode downscaledRenderNode4 = new DownscaledRenderNode("blur", 0);
+            this.renderNodesForBlur = downscaledRenderNode4;
+            downscaledRenderNode4.setScale(16, 16);
+            downscaledRenderNode4.setPrimaryEffectBlur(AndroidUtilities.dpf2(28.34f));
         }
 
         public void setPosition(RectF rectF) {

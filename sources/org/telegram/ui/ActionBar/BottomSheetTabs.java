@@ -904,6 +904,7 @@ public class BottomSheetTabs extends FrameLayout {
         public boolean expanded;
         public Bitmap favicon;
         public boolean fullscreen;
+        public boolean fullscreenBlur;
         public boolean fullsize;
         public boolean isWeb;
         public String lastUrl;

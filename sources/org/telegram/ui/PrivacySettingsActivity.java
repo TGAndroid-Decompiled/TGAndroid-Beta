@@ -259,8 +259,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         String string;
         String str;
         if (view.isEnabled()) {
-            if (i == this.autoDeleteMesages && getUserConfig().getGlobalTTl() >= 0) {
-                presentFragment(new AutoDeleteMessagesActivity());
+            if (i == this.autoDeleteMesages) {
+                if (getUserConfig().getGlobalTTl() >= 0) {
+                    presentFragment(new AutoDeleteMessagesActivity());
+                    return;
+                }
+                return;
             }
             if (i == this.blockedRow) {
                 presentFragment(new PrivacyUsersActivity());

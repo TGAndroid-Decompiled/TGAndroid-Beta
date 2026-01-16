@@ -49,6 +49,7 @@ public class NotificationCenter {
     public static final int businessLinkCreated = 125;
     public static final int businessLinksUpdated = 124;
     public static final int businessMessagesUpdated = 119;
+    public static final int callTabsVisibleToggled = 334;
     public static final int cameraInitied = 255;
     public static final int changeRepliesCounter = 13;
     public static final int channelConnectedBotsUpdate = 236;
@@ -317,7 +318,7 @@ public class NotificationCenter {
     public static final int timezonesUpdated = 213;
     public static final int tlSchemeParseException = 333;
     public static final int topicsDidLoaded = 311;
-    private static int totalEvents = 334;
+    private static int totalEvents = 335;
     public static final int translationModelDownloaded = 329;
     public static final int translationModelDownloading = 328;
     public static final int twoStepPasswordChanged = 52;

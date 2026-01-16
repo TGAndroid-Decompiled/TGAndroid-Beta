@@ -357,7 +357,7 @@ public abstract class StoriesViewPager extends ViewPager {
         return this.storyViewer.USE_SURFACE_VIEW && Build.VERSION.SDK_INT < 33;
     }
 
-    public boolean switchToNext(boolean z) throws Resources.NotFoundException {
+    public boolean switchToNext(boolean z) {
         if (z) {
             int currentItem = getCurrentItem();
             ArrayList arrayList = this.days;
@@ -490,7 +490,7 @@ public abstract class StoriesViewPager extends ViewPager {
         }
     }
 
-    public void setCurrentDate(long j, int i) throws Resources.NotFoundException {
+    public void setCurrentDate(long j, int i) {
         for (int i2 = 0; i2 < this.days.size(); i2++) {
             if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(((Integer) ((ArrayList) this.days.get(i2)).get(0)).intValue()))) {
                 int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;

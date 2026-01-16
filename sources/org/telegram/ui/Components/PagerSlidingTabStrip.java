@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -159,7 +158,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException {
+            public final void onClick(View view) {
                 this.f$0.lambda$addIconTab$0(i, view);
             }
         });
@@ -168,7 +167,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setContentDescription(charSequence);
     }
 
-    public void lambda$addIconTab$0(int i, View view) throws Resources.NotFoundException {
+    public void lambda$addIconTab$0(int i, View view) {
         if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
             this.pager.setCurrentItem(i, false);
         }
@@ -185,7 +184,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         ScaleStateListAnimator.apply(textTab, 0.025f, 1.2f);
         textTab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException {
+            public final void onClick(View view) {
                 this.f$0.lambda$addTab$1(i, view);
             }
         });
@@ -194,7 +193,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         textTab.setSelected(i == this.currentPosition);
     }
 
-    public void lambda$addTab$1(int i, View view) throws Resources.NotFoundException {
+    public void lambda$addTab$1(int i, View view) {
         if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
             this.pager.setCurrentItem(i, false);
         }

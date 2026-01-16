@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -107,7 +106,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda2;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.FeaturedStickerSetInfoCell;
@@ -652,7 +651,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     return;
                 }
             }
-            (EmojiView.this.fragment != null ? BulletinFactory.of(EmojiView.this.fragment) : BulletinFactory.of(EmojiView.this.bulletinContainer, EmojiView.this.resourcesProvider)).createEmojiBulletin(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable).show();
+            (EmojiView.this.fragment != null ? BulletinFactory.of(EmojiView.this.fragment) : BulletinFactory.of(EmojiView.this.bulletinContainer, EmojiView.this.resourcesProvider)).createEmojiBulletin(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), runnable).show();
         }
 
         public void lambda$setAsEmojiStatus$0(TLRPC.EmojiStatus emojiStatus) {
@@ -1349,7 +1348,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
             if (isDragging()) {
                 return super.onInterceptTouchEvent(motionEvent);
             }
@@ -1375,7 +1374,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (isDragging()) {
                 return super.onTouchEvent(motionEvent);
             }
@@ -1700,7 +1699,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws Resources.NotFoundException {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
         final boolean z8;
         Theme.ResourcesProvider resourcesProvider2;
         final Theme.ResourcesProvider resourcesProvider3;
@@ -1779,13 +1778,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             @Override
             public final void onFactorChanged(int i2, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$17(i2, f, f2, factorAnimator);
+                this.f$0.lambda$new$20(i2, f, f2, factorAnimator);
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 380L, true);
         this.updateStickersLoadedDelayed = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$23();
+                this.f$0.lambda$new$26();
             }
         };
         this.shouldDrawBackground = z5;
@@ -2452,7 +2451,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
 
             @Override
-            public void setCurrentItem(int i8, boolean z9) throws Resources.NotFoundException {
+            public void setCurrentItem(int i8, boolean z9) {
                 EmojiView.this.startStopVisibleGifs(i8 == 1);
                 if (i8 != getCurrentItem()) {
                     super.setCurrentItem(i8, z9);
@@ -2696,32 +2695,54 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         this.blurredBackgroundDrawableFactory.setSourceRootView(viewPositionWatcher, this);
         final IBlur3Capture[] iBlur3CaptureArr = new IBlur3Capture[3];
-        final EmojiGridView emojiGridView4 = this.emojiGridView;
+        EmojiGridView emojiGridView4 = this.emojiGridView;
         if (emojiGridView4 != null) {
-            iBlur3CaptureArr[0] = new ViewGroupPartRenderer(emojiGridView4, this, new ViewGroupPartRenderer.DrawChildMethod() {
+            emojiGridView4.setOverScrollListener(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$15();
+                }
+            });
+            final EmojiGridView emojiGridView5 = this.emojiGridView;
+            Objects.requireNonNull(emojiGridView5);
+            iBlur3CaptureArr[0] = new ViewGroupPartRenderer(emojiGridView5, this, new ViewGroupPartRenderer.DrawChildMethod() {
                 @Override
                 public final boolean drawChild(Canvas canvas, View view4, long j) {
-                    return emojiGridView4.drawChild(canvas, view4, j);
+                    return emojiGridView5.drawChild(canvas, view4, j);
                 }
             });
         }
         RecyclerListView recyclerListView5 = this.gifGridView;
         if (recyclerListView5 != null) {
-            iBlur3CaptureArr[1] = new ViewGroupPartRenderer(recyclerListView5, this, new CallLogActivity$$ExternalSyntheticLambda2(recyclerListView5));
+            recyclerListView5.setOverScrollListener(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$16();
+                }
+            });
+            RecyclerListView recyclerListView6 = this.gifGridView;
+            Objects.requireNonNull(recyclerListView6);
+            iBlur3CaptureArr[1] = new ViewGroupPartRenderer(recyclerListView6, this, new CallLogActivity$$ExternalSyntheticLambda3(recyclerListView6));
         }
-        RecyclerListView recyclerListView6 = this.stickersGridView;
-        if (recyclerListView6 != null) {
-            iBlur3CaptureArr[2] = new ViewGroupPartRenderer(recyclerListView6, this, new ViewGroupPartRenderer.DrawChildMethod() {
+        RecyclerListView recyclerListView7 = this.stickersGridView;
+        if (recyclerListView7 != null) {
+            recyclerListView7.setOverScrollListener(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$17();
+                }
+            });
+            iBlur3CaptureArr[2] = new ViewGroupPartRenderer(this.stickersGridView, this, new ViewGroupPartRenderer.DrawChildMethod() {
                 @Override
                 public final boolean drawChild(Canvas canvas, View view4, long j) {
-                    return this.f$0.lambda$new$15(canvas, view4, j);
+                    return this.f$0.lambda$new$18(canvas, view4, j);
                 }
             });
         }
         this.blurCaptureMethod = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF2) {
-                EmojiView.lambda$new$16(iBlur3CaptureArr, canvas, rectF2);
+                EmojiView.lambda$new$19(iBlur3CaptureArr, canvas, rectF2);
             }
         };
         setBlurredBackgroundDrawableFactory(this.blurredBackgroundDrawableFactory);
@@ -3149,7 +3170,19 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         invalidateBlurCaptures();
     }
 
-    public boolean lambda$new$15(Canvas canvas, View view, long j) {
+    public void lambda$new$15() {
+        this.emojiGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+    }
+
+    public void lambda$new$16() {
+        this.gifGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+    }
+
+    public void lambda$new$17() {
+        this.stickersGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+    }
+
+    public boolean lambda$new$18(Canvas canvas, View view, long j) {
         if (view instanceof RecyclerListViewWithOverlayDraw.OverlayView) {
             canvas.save();
             canvas.translate(view.getX(), view.getY());
@@ -3159,7 +3192,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         return this.stickersGridView.drawChild(canvas, view, j);
     }
 
-    public static void lambda$new$16(IBlur3Capture[] iBlur3CaptureArr, Canvas canvas, RectF rectF) {
+    public static void lambda$new$19(IBlur3Capture[] iBlur3CaptureArr, Canvas canvas, RectF rectF) {
         for (IBlur3Capture iBlur3Capture : iBlur3CaptureArr) {
             if (iBlur3Capture != null) {
                 iBlur3Capture.capture(canvas, rectF);
@@ -5200,7 +5233,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void lambda$new$17(int i, float f, float f2, FactorAnimator factorAnimator) {
+    public void lambda$new$20(int i, float f, float f2, FactorAnimator factorAnimator) {
         updateBottomTabContainerPosition();
     }
 
@@ -5279,7 +5312,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 this.tabsYAnimators[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$animateTabsY$18(i, valueAnimator);
+                        this.f$0.lambda$animateTabsY$21(i, valueAnimator);
                     }
                 });
                 this.tabsYAnimators[i].setDuration(200L);
@@ -5290,7 +5323,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void lambda$animateTabsY$18(int i, ValueAnimator valueAnimator) {
+    public void lambda$animateTabsY$21(int i, ValueAnimator valueAnimator) {
         this.tabsMinusDy[i] = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
     }
 
@@ -5560,12 +5593,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$postBackspaceRunnable$19(i);
+                this.f$0.lambda$postBackspaceRunnable$22(i);
             }
         }, i);
     }
 
-    public void lambda$postBackspaceRunnable$19(int i) {
+    public void lambda$postBackspaceRunnable$22(int i) {
         if (this.backspacePressed) {
             EmojiViewDelegate emojiViewDelegate = this.delegate;
             if (emojiViewDelegate != null && emojiViewDelegate.onBackspace()) {
@@ -5973,7 +6006,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onOpen$20();
+                        this.f$0.lambda$onOpen$23();
                     }
                 }, 350L);
             }
@@ -6021,7 +6054,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         showBottomTab(true, true);
     }
 
-    public void lambda$onOpen$20() {
+    public void lambda$onOpen$23() {
         ArrayList<EmojiPack> emojipacks = getEmojipacks();
         for (int i = 0; i < emojipacks.size(); i++) {
             if (emojipacks.get(i).forGroup) {
@@ -6049,13 +6082,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAttachedToWindow$21();
+                    this.f$0.lambda$onAttachedToWindow$24();
                 }
             });
         }
     }
 
-    public void lambda$onAttachedToWindow$21() {
+    public void lambda$onAttachedToWindow$24() {
         updateStickerTabs(false);
         reloadStickersAdapter();
     }
@@ -6281,7 +6314,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showStickerBanHint$22(z2, z3);
+                    this.f$0.lambda$showStickerBanHint$25(z2, z3);
                 }
             };
             this.hideStickersBan = runnable2;
@@ -6292,7 +6325,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this.showStickersBanAnimator.start();
     }
 
-    public void lambda$showStickerBanHint$22(boolean z, boolean z2) {
+    public void lambda$showStickerBanHint$25(boolean z, boolean z2) {
         showStickerBanHint(false, z, z2);
     }
 
@@ -6352,7 +6385,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         return stickersGridAdapter != null && stickersGridAdapter.getItemCount() > 0;
     }
 
-    public void lambda$new$23() {
+    public void lambda$new$26() {
         EmojiGridAdapter emojiGridAdapter = this.emojiAdapter;
         if (emojiGridAdapter != null) {
             emojiGridAdapter.notifyDataSetChanged(true);

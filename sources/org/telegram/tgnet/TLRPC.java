@@ -34283,6 +34283,7 @@ public class TLRPC {
         public boolean bot_business;
         public boolean bot_can_edit;
         public boolean bot_chat_history;
+        public boolean bot_forum_can_manage_topics;
         public boolean bot_forum_view;
         public boolean bot_has_main_app;
         public int bot_info_version;
@@ -34544,7 +34545,7 @@ public class TLRPC {
             this.bot = (int32 & 16384) != 0;
             this.bot_chat_history = (int32 & 32768) != 0;
             this.bot_nochats = (int32 & 65536) != 0;
-            this.verified = (131072 & int32) != 0;
+            this.verified = (int32 & 131072) != 0;
             this.restricted = (int32 & 262144) != 0;
             this.min = (1048576 & int32) != 0;
             this.bot_inline_geo = (2097152 & int32) != 0;
@@ -34565,6 +34566,7 @@ public class TLRPC {
             this.bot_business = (int322 & 2048) != 0;
             this.bot_has_main_app = (int322 & 8192) != 0;
             this.bot_forum_view = TLObject.hasFlag(int322, 65536);
+            this.bot_forum_can_manage_topics = TLObject.hasFlag(this.flags2, 131072);
             this.id = inputSerializedData.readInt64(z);
             if ((this.flags & 1) != 0) {
                 this.access_hash = inputSerializedData.readInt64(z);
@@ -34688,7 +34690,9 @@ public class TLRPC {
             this.flags2 = i25;
             int flag = TLObject.setFlag(i25, 65536, this.bot_forum_view);
             this.flags2 = flag;
-            outputSerializedData.writeInt32(flag);
+            int flag2 = TLObject.setFlag(flag, 131072, this.bot_forum_can_manage_topics);
+            this.flags2 = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 1) != 0) {
                 outputSerializedData.writeInt64(this.access_hash);

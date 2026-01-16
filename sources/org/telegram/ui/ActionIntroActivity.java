@@ -54,6 +54,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
     private TextView descriptionText2;
     private boolean flickerButton;
     private RLottieImageView imageView;
+    private Runnable openedSettings;
     private ActionIntroQRLoginDelegate qrLoginDelegate;
     private boolean showingAsBottomSheet;
     private GradientDrawable startMessagingButtonBackground;
@@ -66,6 +67,10 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
 
     public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
         return true;
+    }
+
+    public void setOnOpenedSettings(Runnable runnable) {
+        this.openedSettings = runnable;
     }
 
     public ActionIntroActivity(int i) {
@@ -604,20 +609,26 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             showDialog(builder.create());
             return;
         }
-        if (i != 5) {
-            if (i != 6) {
-                return;
-            }
-            presentFragment(new PasscodeActivity(1), true);
-        } else {
+        if (i == 5) {
             if (getParentActivity() == null) {
                 return;
             }
             if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                 getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+                return;
             } else {
                 processOpenQrReader();
+                return;
             }
+        }
+        if (i != 6) {
+            return;
+        }
+        presentFragment(new PasscodeActivity(1), true);
+        Runnable runnable = this.openedSettings;
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+            this.openedSettings = null;
         }
     }
 

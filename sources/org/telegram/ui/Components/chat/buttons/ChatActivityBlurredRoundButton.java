@@ -156,7 +156,7 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
         chatActivityBlurredRoundButton.resourcesProvider = resourcesProvider;
         chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider));
         chatActivityBlurredRoundButton.setIconColor(color);
-        chatActivityBlurredRoundButton.setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(22.0f), 0, Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(6.0f)));
+        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f)));
         return chatActivityBlurredRoundButton;
     }
 
@@ -167,7 +167,7 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
         chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider));
         chatActivityBlurredRoundButton.setIcon(i, i2);
         chatActivityBlurredRoundButton.setIconColor(color);
-        chatActivityBlurredRoundButton.setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(22.0f), 0, Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(6.0f)));
+        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f)));
         return chatActivityBlurredRoundButton;
     }
 
@@ -180,7 +180,7 @@ public class ChatActivityBlurredRoundButton extends FrameLayout implements Facto
         int i = Theme.key_glass_defaultIcon;
         int color = Theme.getColor(i, this.resourcesProvider);
         setIconColor(Theme.getColor(i, this.resourcesProvider));
-        setBackground(Theme.createSimpleSelectorRoundRectDrawableWithInset(AndroidUtilities.dp(22.0f), 0, Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(6.0f)));
+        setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(color, 0.15f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f)));
     }
 
     private void checkUi_IconViewVisibility() {

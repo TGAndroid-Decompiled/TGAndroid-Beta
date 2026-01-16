@@ -556,13 +556,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlert chatAttachAlert3 = ChatAttachAlertPhotoLayout.this.parentAlert;
             AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert3.currentAccount, chatAttachAlert3.getDialogId(), getSelectedPhotos().size() + ChatAttachAlertPhotoLayout.this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
                 @Override
-                public final void run(Object obj2) {
+                public final void run(Object obj2) throws NumberFormatException {
                     this.f$0.lambda$sendButtonPressed$1(z, i2, z2, (Long) obj2);
                 }
             });
         }
 
-        public void lambda$sendButtonPressed$1(boolean z, int i, boolean z2, Long l) {
+        public void lambda$sendButtonPressed$1(boolean z, int i, boolean z2, Long l) throws NumberFormatException {
             ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
             if (chatAttachAlert != null) {
                 chatAttachAlert.setButtonPressed(true);
@@ -942,7 +942,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
 
             @Override
-            public final void onItemClick(View view, int i3, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i3, float f, float f2) {
                 this.f$0.lambda$new$3(z2, resourcesProvider, view, i3, f, f2);
             }
         });
@@ -1088,7 +1088,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         container.addView(this.counterTextView, LayoutHelper.createFrame(-2, 38.0f, 51, 0.0f, 0.0f, 0.0f, 116.0f));
         this.counterTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+            public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 this.f$0.lambda$new$5(view);
             }
         });
@@ -1185,7 +1185,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.dropDownContainer.toggleSubMenu();
     }
 
-    public void lambda$new$3(boolean z, Theme.ResourcesProvider resourcesProvider, View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$new$3(boolean z, Theme.ResourcesProvider resourcesProvider, View view, int i, float f, float f2) {
         final int i2;
         if (this.mediaEnabled) {
             ChatAttachAlert chatAttachAlert = this.parentAlert;
@@ -1302,7 +1302,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+                    public final void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                         this.f$0.lambda$new$2(i2, baseFragment, allPhotosArray, i5, chatActivity);
                     }
                 }, z2 ? 250L : 0L);
@@ -1320,7 +1320,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public void lambda$new$2(int i, BaseFragment baseFragment, ArrayList arrayList, int i2, ChatActivity chatActivity) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+    public void lambda$new$2(int i, BaseFragment baseFragment, ArrayList arrayList, int i2, ChatActivity chatActivity) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         int i3;
         ChatAttachAlert chatAttachAlert = this.parentAlert;
         if (!chatAttachAlert.isPhotoPicker || chatAttachAlert.isStickerMode) {
@@ -1368,7 +1368,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         return false;
     }
 
-    public void lambda$new$5(View view) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+    public void lambda$new$5(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         if (this.cameraView == null) {
             return;
         }
@@ -1437,7 +1437,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         AndroidUtilities.lockOrientation(lastFragment.getParentActivity());
                         CameraController.getInstance().recordVideo(ChatAttachAlertPhotoLayout.this.cameraView.getCameraSessionObject(), this.outputFile, ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker != 0, new CameraController.VideoTakeCallback() {
                             @Override
-                            public final void onFinishVideoRecording(String str, long j) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+                            public final void onFinishVideoRecording(String str, long j) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                                 this.f$0.lambda$shutterLongPressed$1(str, j);
                             }
                         }, new Runnable() {
@@ -1467,7 +1467,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             AndroidUtilities.runOnUIThread(ChatAttachAlertPhotoLayout.this.videoRecordRunnable, 1000L);
         }
 
-        public void lambda$shutterLongPressed$1(String str, long j) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+        public void lambda$shutterLongPressed$1(String str, long j) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             int i;
             int i2;
             int i3;
@@ -1564,7 +1564,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 cameraSession.setFlipFront((chatAttachAlert.baseFragment instanceof ChatActivity) || chatAttachAlert.avatarPicker == 2);
                 ChatAttachAlertPhotoLayout.this.takingPhoto = CameraController.getInstance().takePicture(fileGeneratePicturePath, false, ChatAttachAlertPhotoLayout.this.cameraView.getCameraSessionObject(), new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+                    public final void run(Object obj) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                         this.f$0.lambda$shutterReleased$3(fileGeneratePicturePath, zIsSameTakePictureOrientation, (Integer) obj);
                     }
                 });
@@ -1572,7 +1572,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
         }
 
-        public void lambda$shutterReleased$3(java.io.File r18, boolean r19, java.lang.Integer r20) throws java.lang.IllegalAccessException, java.lang.NoSuchFieldException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException {
+        public void lambda$shutterReleased$3(java.io.File r18, boolean r19, java.lang.Integer r20) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.AnonymousClass10.lambda$shutterReleased$3(java.io.File, boolean, java.lang.Integer):void");
         }
 
@@ -2189,7 +2189,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         AndroidUtilities.unlockOrientation(AndroidUtilities.findActivity(getContext()));
     }
 
-    protected void openPhotoViewer(MediaController.PhotoEntry photoEntry, boolean z, boolean z2) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+    protected void openPhotoViewer(MediaController.PhotoEntry photoEntry, boolean z, boolean z2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         ChatActivity chatActivity;
         int i;
         ArrayList<Object> allPhotosArray;
@@ -2391,13 +2391,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
             AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), getSelectedCount() + ChatAttachAlertPhotoLayout.this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws NumberFormatException {
                     this.f$0.lambda$sendButtonPressed$1(z2, z, i2, (Long) obj);
                 }
             });
         }
 
-        public void lambda$sendButtonPressed$1(boolean z, boolean z2, int i, Long l) {
+        public void lambda$sendButtonPressed$1(boolean z, boolean z2, int i, Long l) throws NumberFormatException {
             if (PhotoViewer.getInstance() != null) {
                 PhotoViewer.getInstance().closePhotoAfterSelect = false;
                 PhotoViewer.getInstance().doneButtonPressed = false;

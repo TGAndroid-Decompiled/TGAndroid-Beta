@@ -58,6 +58,11 @@ public abstract class ViewPagerActivity extends BaseFragment {
         this.contentView = createContentView(context);
         this.viewPager = new ViewPagerFixed(context) {
             @Override
+            protected long getManualScrollDuration() {
+                return 380L;
+            }
+
+            @Override
             protected void onScrollEnd() {
                 super.onScrollEnd();
                 ViewPagerActivity.this.onViewPagerScrollEnd();
@@ -217,6 +222,14 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
+    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            currentVisibleFragment.onRequestPermissionsResultFragment(i, strArr, iArr);
+        }
+    }
+
+    @Override
     public boolean onBackPressed(boolean z) {
         if (hasShownSheet()) {
             if (z) {
@@ -302,6 +315,21 @@ public abstract class ViewPagerActivity extends BaseFragment {
         }
     }
 
+    protected void dropFragmentAtPosition(int i) {
+        FragmentState fragmentState = (FragmentState) this.fragmentsArr.get(i);
+        if (fragmentState != null) {
+            if (fragmentState.isFullyVisible) {
+                fragmentState.fragment.onBecomeFullyHidden();
+            }
+            if (fragmentState.isResumed) {
+                fragmentState.fragment.onPause();
+            }
+            fragmentState.fragment.onFragmentDestroy();
+            fragmentState.fragment.setParentLayout(null);
+        }
+        this.fragmentsArr.remove(i);
+    }
+
     @Override
     public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
         setTitleOverlayText(str, i, runnable);
@@ -335,7 +363,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
             float f4 = f2 * f;
             this.lastVisibility = f4;
             boolean z3 = f4 > f3;
-            if (!this.isResumed && f4 > 0.0f) {
+            if (!this.isResumed && f > 0.0f) {
                 this.fragment.onResume();
                 this.isResumed = true;
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="63899"
+    android:versionCode="64079"
     android:versionName="12.3.1"
     android:installLocation="auto"
     android:compileSdkVersion="35"
@@ -154,7 +154,7 @@
         android:backupAgent="org.telegram.messenger.BackupAgent"
         android:allowBackup="true"
         android:restoreAnyVersion="true"
-        android:hardwareAccelerated="@bool/useHardwareAcceleration"
+        android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:supportsRtl="false"
         android:extractNativeLibs="true"
@@ -238,7 +238,7 @@
             android:launchMode="singleTask"
             android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustResize"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration"
+            android:hardwareAccelerated="true"
             android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -444,7 +444,7 @@
             android:name="org.telegram.ui.BubbleActivity"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustResize"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration"
+            android:hardwareAccelerated="true"
             android:allowEmbedded="true"
             android:documentLaunchMode="always"
             android:resizeableActivity="true"/>
@@ -456,7 +456,7 @@
             android:excludeFromRecents="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration">
+            android:hardwareAccelerated="true">
             <intent-filter
                 android:icon="@mipmap/ic_launcher"
                 android:priority="1"
@@ -472,7 +472,7 @@
             android:exported="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration">
+            android:hardwareAccelerated="true">
             <intent-filter
                 android:icon="@mipmap/ic_launcher"
                 android:roundIcon="@mipmap/ic_launcher_round">
@@ -485,7 +485,7 @@
             android:exported="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration">
+            android:hardwareAccelerated="true">
             <intent-filter
                 android:icon="@mipmap/ic_launcher"
                 android:roundIcon="@mipmap/ic_launcher_round">
@@ -497,7 +497,7 @@
             android:exported="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustPan"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration">
+            android:hardwareAccelerated="true">
             <intent-filter
                 android:icon="@mipmap/ic_launcher"
                 android:roundIcon="@mipmap/ic_launcher_round">

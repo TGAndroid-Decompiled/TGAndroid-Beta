@@ -943,7 +943,7 @@ public class Bulletin {
             setMinimumHeight(AndroidUtilities.dp(48.0f));
             setBackground(getThemedColor(Theme.key_undo_background));
             updateSize();
-            setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
             setWillNotDraw(false);
             ScaleStateListAnimator.apply(this, 0.02f, 1.5f);
         }
@@ -954,7 +954,7 @@ public class Bulletin {
         }
 
         protected void setBackground(int i) {
-            setBackground(i, 10);
+            setBackground(i, 16);
         }
 
         public void setBackground(int i, int i2) {
@@ -2280,7 +2280,7 @@ public class Bulletin {
                 this.undoTextView.setTextSize(1, 14.0f);
                 this.undoTextView.setTypeface(AndroidUtilities.bold());
                 this.undoTextView.setTextColor(themedColor);
-                this.undoTextView.setText(LocaleController.getString(R.string.Undo));
+                this.undoTextView.setText(LocaleController.getString(R.string.UndoNoCaps));
                 this.undoTextView.setGravity(16);
                 ViewHelper.setPaddingRelative(this.undoTextView, z2 ? 34.0f : 12.0f, 8.0f, 12.0f, 8.0f);
                 addView(this.undoTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));

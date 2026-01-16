@@ -65,7 +65,7 @@ public abstract class BaseFragment {
     protected boolean inBubbleMode;
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
-    protected boolean isFinished;
+    public boolean isFinished;
     private boolean isFullyVisible;
     protected Dialog parentDialog;
     protected INavigationLayout parentLayout;
@@ -236,7 +236,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1259getWindowView();
+        View mo1260getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -1278,8 +1278,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1259getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1259getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1260getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1260getWindowView());
                 }
             }
         }
@@ -1290,7 +1290,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1259getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1260getWindowView());
                 }
             }
         }
@@ -1300,7 +1300,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1259getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1260getWindowView()) {
                     return true;
                 }
             }

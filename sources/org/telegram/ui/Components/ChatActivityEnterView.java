@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -4830,7 +4829,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+                            public final void run() {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -4842,7 +4841,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -4910,7 +4909,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException {
+                    public void run() {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -5928,6 +5927,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     public void updateFieldHint(boolean z) {
         boolean zIsChannelAndNotMegaGroup;
+        ChatActivity chatActivity;
         String str;
         TLRPC.TL_forumTopic tL_forumTopic;
         String str2;
@@ -5961,15 +5961,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.messageEditText.setInputType(i);
         }
         updateSendButtonPaid();
-        ChatActivity chatActivity = this.parentFragment;
-        boolean z3 = chatActivity != null && chatActivity.getChatMode() == 8 && this.parentFragment.isSubscriberSuggestions;
         ChatActivity chatActivity2 = this.parentFragment;
-        long sendPaidMessagesStars = chatActivity2 != null ? chatActivity2.getMessagesController().getSendPaidMessagesStars(this.parentFragment.getDialogId()) : 0L;
+        boolean z3 = chatActivity2 != null && chatActivity2.getChatMode() == 8 && this.parentFragment.isSubscriberSuggestions;
+        ChatActivity chatActivity3 = this.parentFragment;
+        long sendPaidMessagesStars = chatActivity3 != null ? chatActivity3.getMessagesController().getSendPaidMessagesStars(this.parentFragment.getDialogId()) : 0L;
         if (sendPaidMessagesStars > 0) {
             sendPaidMessagesStars *= getMessagesCount();
         }
-        ChatActivity chatActivity3 = this.parentFragment;
-        if (chatActivity3 != null && chatActivity3.getChatMode() == 5) {
+        ChatActivity chatActivity4 = this.parentFragment;
+        if (chatActivity4 != null && chatActivity4.getChatMode() == 5) {
             if ("hello".equalsIgnoreCase(this.parentFragment.quickReplyShortcut)) {
                 this.messageEditText.setHintText(LocaleController.getString(R.string.BusinessGreetingEnter));
                 return;
@@ -6016,8 +6016,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.messageEditText.setHintText(this.botButtonsMessageObject.messageOwner.reply_markup.placeholder, z);
             return;
         }
-        ChatActivity chatActivity4 = this.parentFragment;
-        if (chatActivity4 != null && chatActivity4.isForumInViewAsMessagesMode()) {
+        ChatActivity chatActivity5 = this.parentFragment;
+        if (chatActivity5 != null && chatActivity5.isForumInViewAsMessagesMode()) {
             MessageObject messageObject3 = this.replyingTopMessage;
             if (messageObject3 != null && (tL_forumTopic = messageObject3.replyToForumTopic) != null && (str2 = tL_forumTopic.title) != null) {
                 this.messageEditText.setHintText(LocaleController.formatString(R.string.TypeMessageIn, str2), z);
@@ -6046,11 +6046,16 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.messageEditText.setHintText(LocaleController.getString("SendAnonymously", R.string.SendAnonymously));
             return;
         }
-        ChatActivity chatActivity5 = this.parentFragment;
-        if (chatActivity5 != null && chatActivity5.isThreadChat()) {
-            ChatActivity chatActivity6 = this.parentFragment;
-            if (!chatActivity6.isTopic) {
-                if (chatActivity6.isReplyChatComment()) {
+        TLRPC.User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(this.dialog_id));
+        if (user != null && user.bot_forum_view && !user.bot_forum_can_manage_topics && (chatActivity = this.parentFragment) != null && !chatActivity.isTopic) {
+            this.messageEditText.setHintText(LocaleController.getString(R.string.SendBotNoThread));
+            return;
+        }
+        ChatActivity chatActivity6 = this.parentFragment;
+        if (chatActivity6 != null && chatActivity6.isThreadChat()) {
+            ChatActivity chatActivity7 = this.parentFragment;
+            if (!chatActivity7.isTopic) {
+                if (chatActivity7.isReplyChatComment()) {
                     this.messageEditText.setHintText(LocaleController.getString(R.string.Comment));
                     return;
                 } else {

@@ -236,7 +236,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.recyclerListView = blurredRecyclerView;
         blurredRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i) {
                 this.f$0.lambda$new$1(view, i);
             }
         });
@@ -309,7 +309,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.emptyView.setVisibility(8);
     }
 
-    public void lambda$new$1(View view, int i) throws Resources.NotFoundException {
+    public void lambda$new$1(View view, int i) {
         if (view instanceof SharedDocumentCell) {
             onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
             return;
@@ -552,7 +552,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         final boolean z5 = z3;
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws Throwable {
+            public final void run() {
                 this.f$0.lambda$search$4(j, str2, mediaFilterData, i2, j2, j3, z5, z, str3, i);
             }
         };
@@ -583,7 +583,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) throws Throwable {
+    public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) {
         TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
         ArrayList<Object> arrayList = null;
         if (j != 0) {
@@ -906,12 +906,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 SharedPhotoVideoCell sharedPhotoVideoCell = new SharedPhotoVideoCell(this.mContext, 1);
                 sharedPhotoVideoCell.setDelegate(new SharedPhotoVideoCell.SharedPhotoVideoCellDelegate() {
                     @Override
-                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException {
+                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
                         FilteredSearchView.this.onItemClick(i2, sharedPhotoVideoCell2, messageObject, i3);
                     }
 
                     @Override
-                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException {
+                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
                         if (!FilteredSearchView.this.uiCallback.actionModeShowing()) {
                             return FilteredSearchView.this.onItemLongClick(messageObject, sharedPhotoVideoCell2, i3);
                         }
@@ -996,7 +996,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.useFromUserAsAvatar = z;
     }
 
-    public void onItemClick(int i, View view, MessageObject messageObject, int i2) throws Resources.NotFoundException {
+    public void onItemClick(int i, View view, MessageObject messageObject, int i2) {
         if (messageObject == null) {
             return;
         }

@@ -54,8 +54,16 @@ import org.telegram.ui.web.WebMetadataCache;
 public class WebBrowserSettings extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private Drawable addIcon;
     private long cacheSize;
+    public int clearCacheRow;
+    public int clearCookiesRow;
+    public int clearHistoryRow;
+    public int clearListRow;
     private long cookiesSize;
+    public int enableRow;
+    public int historyRow;
     private long historySize;
+    public int neverOpenRow;
+    public int searchRow;
     private Utilities.Callback whenHistoryClicked;
 
     @Override

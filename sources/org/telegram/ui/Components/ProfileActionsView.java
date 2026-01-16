@@ -78,6 +78,9 @@ public class ProfileActionsView extends View {
         void onClick(int i, float f, float f2);
     }
 
+    private void checkPaints() {
+    }
+
     public ProfileActionsView(Context context, int i) {
         super(context);
         this.actions = new ArrayList();
@@ -157,14 +160,6 @@ public class ProfileActionsView extends View {
 
     private boolean isButtonColorLight() {
         return AndroidUtilities.computePerceivedBrightness(this.color) > 0.72f;
-    }
-
-    private void checkPaints() {
-        if (isButtonColorLight() && this.parentExpanded < 0.5f) {
-            this.paint.setShadowLayer(AndroidUtilities.dpf2(1.5f), 0.0f, 0.0f, 536870912);
-        } else {
-            this.paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        }
     }
 
     private void createColorShader() {
@@ -266,15 +261,21 @@ public class ProfileActionsView extends View {
                     rectF3.set(action4.rect);
                     rectF3.inset((action4.rect.width() / 2.0f) * (1.0f - action4.getScale()), (action4.rect.height() / 2.0f) * (1.0f - action4.getScale()));
                     int alpha = this.paint.getAlpha();
-                    this.paint.setAlpha((int) (((int) (action4.getAlpha() * fClamp012 * alpha)) * (this.radialGradient != null ? 0.1f : 1.0f)));
+                    float alpha2 = (int) (action4.getAlpha() * fClamp012 * alpha);
+                    this.paint.setAlpha((int) ((this.radialGradient != null ? 0.1f : 1.0f) * alpha2));
+                    if (isButtonColorLight() && this.parentExpanded < 0.5f) {
+                        this.paint.setShadowLayer(AndroidUtilities.dpf2(1.5f), 0.0f, 0.0f, Theme.multAlpha(536870912, (alpha2 / 255.0f) * (this.radialGradient == null ? 1.0f : 0.1f)));
+                    } else {
+                        this.paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    }
                     canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.paint);
                     if (this.radialGradient != null) {
-                        int alpha2 = this.shaderPaint.getAlpha();
-                        this.shaderPaint.setAlpha((int) (action4.getAlpha() * fClamp012 * alpha2));
+                        int alpha3 = this.shaderPaint.getAlpha();
+                        this.shaderPaint.setAlpha((int) (action4.getAlpha() * fClamp012 * alpha3));
                         this.matrix.setTranslate(rectF3.left, rectF3.top);
                         this.radialGradient.setLocalMatrix(this.matrix);
                         canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.shaderPaint);
-                        this.shaderPaint.setAlpha(alpha2);
+                        this.shaderPaint.setAlpha(alpha3);
                     }
                     this.paint.setAlpha(alpha);
                 }
@@ -1107,27 +1108,23 @@ public class ProfileActionsView extends View {
             SHARE = new ActionButton("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
             CALL = new ActionButton("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
             VIDEO = new ActionButton("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
-            int i4 = R.string.ProfileActionsJoin;
-            int i5 = R.drawable.join;
-            JOIN = new ActionButton("JOIN", 8, i4, i5, i5);
+            JOIN = new ActionButton("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
             REPORT = new ActionButton("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-            int i6 = R.string.ProfileActionsLeave;
-            int i7 = R.drawable.leave;
-            LEAVE = new ActionButton("LEAVE", 10, i6, i7, i7);
-            int i8 = R.string.ProfileActionsVoiceChat;
-            int i9 = R.drawable.live_stream;
-            VOICE_CHAT = new ActionButton("VOICE_CHAT", 11, i8, i9, i9);
-            STREAM = new ActionButton("STREAM", 12, R.string.ProfileActionsLiveStream, i9, i9);
+            int i4 = R.string.ProfileActionsLeave;
+            int i5 = R.drawable.leave;
+            LEAVE = new ActionButton("LEAVE", 10, i4, i5, i5);
+            int i6 = R.string.ProfileActionsVoiceChat;
+            int i7 = R.drawable.live_stream;
+            VOICE_CHAT = new ActionButton("VOICE_CHAT", 11, i6, i7, i7);
+            STREAM = new ActionButton("STREAM", 12, R.string.ProfileActionsLiveStream, i7, i7);
             STORY = new ActionButton("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
-            int i10 = R.string.ProfileActionsStop;
-            int i11 = R.drawable.block;
-            STOP = new ActionButton("STOP", 14, i10, i11, i11);
+            STOP = new ActionButton("STOP", 14, R.string.ProfileActionsStop, R.drawable.filled_profile_stop_24, R.drawable.outline_profile_stop_24);
             SET_PHOTO = new ActionButton("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
-            int i12 = R.string.ProfileActionsEditUsername;
-            int i13 = R.drawable.filled_profile_edit_24;
-            int i14 = R.drawable.outline_profile_edit_24;
-            EDIT_USERNAME = new ActionButton("EDIT_USERNAME", 16, i12, i13, i14);
-            EDIT_INFO = new ActionButton("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i13, i14);
+            int i8 = R.string.ProfileActionsEditUsername;
+            int i9 = R.drawable.filled_profile_edit_24;
+            int i10 = R.drawable.outline_profile_edit_24;
+            EDIT_USERNAME = new ActionButton("EDIT_USERNAME", 16, i8, i9, i10);
+            EDIT_INFO = new ActionButton("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i9, i10);
             SETTINGS = new ActionButton("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
             $VALUES = $values();
         }

@@ -282,7 +282,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), 2048));
         this.items.add(Item.asSwitch(R.drawable.photo_star, LocaleController.getString(R.string.LiteOptionsParticles), 131072));
         this.items.add(Item.asInfo(""));
-        this.items.add(Item.asSwitch(LocaleController.getString("LiteSmoothTransitions"), 1));
+        this.items.add(Item.asSwitch(LocaleController.getString(R.string.LiteSmoothTransitions), 1));
         this.items.add(Item.asInfo(LocaleController.getString("LiteSmoothTransitionsInfo")));
         this.adapter.setItems(this.oldItems, this.items);
     }

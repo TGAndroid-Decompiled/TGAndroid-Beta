@@ -83,7 +83,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 
 public abstract class DialogStoriesCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
-    float K;
+    public float K;
     private ActionBar actionBar;
     Adapter adapter;
     Paint addCirclePaint;
@@ -98,9 +98,12 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     private long checkedStoryNotificationDeletion;
     private int clipTop;
     boolean collapsed;
+    private ValueAnimator collapsedOvershootAnimator;
+    private float collapsedOvershootProgress;
     float collapsedProgress;
     private float collapsedProgress1;
     private float collapsedProgress2;
+    private float collapsedSpringCoef;
     Comparator comparator;
     int currentAccount;
     public int currentCellWidth;
@@ -109,6 +112,9 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     boolean drawCircleForce;
     EllipsizeSpanAnimator ellipsizeSpanAnimator;
     ImageView emojiStatusView;
+    private ValueAnimator expandOvershootAnimator;
+    private float expandOvershootAnimatorProgress;
+    private float expandedSpringCoef;
     BaseFragment fragment;
     private StoriesUtilities.EnsureStoryFileLoadedObject globalCancelable;
     Paint grayPaint;
@@ -125,6 +131,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     CanvasButton miniItemsClickArea;
     ArrayList oldItems;
     ArrayList oldMiniItems;
+    private float overScrollCoef;
     private float overscrollProgress;
     private int overscrollSelectedPosition;
     private StoryCell overscrollSelectedView;
@@ -133,7 +140,10 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     public RadialProgress radialProgress;
     public RecyclerListView recyclerListView;
     AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable statusDrawable;
+    AnimatorSet storiesAnimatorSet;
+    private OvershootInterpolator storiesCollapseInterpolator;
     StoriesController storiesController;
+    private OvershootInterpolator storiesExpandInterpolator;
     ActionBarAnimatedSubtitleOverlayContainer subtitleOverlayContainer;
     ImageView telegramLogoView;
     private ValueAnimator textAnimator;
@@ -141,21 +151,22 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     private final int type;
     boolean updateOnIdleState;
     private SpannableStringBuilder uploadingString;
-    ValueAnimator valueAnimator;
+    private ValueAnimator valueAnimator;
     ArrayList viewsDrawInParent;
+    private ValueAnimator yStoriesAnimator;
+    private float yStoriesProgress;
+
+    public void lambda$new$0() {
+    }
 
     @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
-    public void onMiniListClicked() {
-    }
+    public abstract void onMiniListClicked();
 
     public abstract void onUserLongPressed(View view, long j);
-
-    public void updateCollapsedProgress() {
-    }
 
     public DialogStoriesCell(Context context, BaseFragment baseFragment, int i, int i2) {
         super(context);
@@ -177,13 +188,19 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.afterNextLayout = new ArrayList();
         this.collapsedProgress1 = -1.0f;
         this.allowGlobalUpdates = true;
+        this.overScrollCoef = 1.0f;
+        this.collapsedSpringCoef = 0.95f;
+        this.expandedSpringCoef = 0.9f;
         this.comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return DialogStoriesCell.lambda$new$5((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
+                return DialogStoriesCell.lambda$new$6((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
             }
         };
         this.K = 0.3f;
+        this.collapsedOvershootProgress = 1.0f;
+        this.storiesExpandInterpolator = new OvershootInterpolator(this.expandedSpringCoef);
+        this.storiesCollapseInterpolator = new OvershootInterpolator(this.collapsedSpringCoef);
         this.ellipsizeSpanAnimator = new EllipsizeSpanAnimator(this);
         this.type = i2;
         this.currentAccount = i;
@@ -226,6 +243,12 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 this.f$0.onMiniListClicked();
             }
         });
+        this.miniItemsClickArea.setLongPress(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$0();
+            }
+        });
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
@@ -250,13 +273,13 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$0(view, i3);
+                this.f$0.lambda$new$1(view, i3);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i3) {
-                return this.f$0.lambda$new$1(view, i3);
+                return this.f$0.lambda$new$2(view, i3);
             }
         });
         this.recyclerListView.setAdapter(this.adapter);
@@ -386,11 +409,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         updateItems(false, false);
     }
 
-    public void lambda$new$0(View view, int i) {
+    public void lambda$new$1(View view, int i) {
         openStoryForCell((StoryCell) view, false);
     }
 
-    public boolean lambda$new$1(View view, int i) {
+    public boolean lambda$new$2(View view, int i) {
         if (this.collapsedProgress != 0.0f || this.overscrollProgress != 0.0f) {
             return false;
         }
@@ -407,8 +430,13 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     }
 
     private void openStoryForCell(final StoryCell storyCell, boolean z) {
-        if (storyCell == null) {
+        ValueAnimator valueAnimator;
+        if ((z && (valueAnimator = this.expandOvershootAnimator) != null && valueAnimator.isRunning()) || storyCell == null) {
             return;
+        }
+        try {
+            performHapticFeedback(3);
+        } catch (Exception unused) {
         }
         if (storyCell.isSelf && !this.storiesController.hasSelfStories()) {
             if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
@@ -430,7 +458,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$openStoryForCell$4(storyCell, j);
+                    this.f$0.lambda$openStoryForCell$5(storyCell, j);
                 }
             };
             if (z) {
@@ -446,15 +474,15 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
+    public void lambda$openStoryForCell$5(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$5(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
     }
 
-    public void lambda$openStoryForCell$2(long j) {
+    public void lambda$openStoryForCell$3(long j) {
         this.storiesController.setLoading(j, false);
     }
 
-    public void lambda$openStoryForCell$3(boolean z, boolean z2) {
+    public void lambda$openStoryForCell$4(boolean z, boolean z2) {
         if (!z && z2) {
             this.storiesController.loadNextStories(this.type == 1);
         }
@@ -468,6 +496,10 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
 
     private boolean isReadAtPosition(int i) {
         return i < this.items.size() && this.storiesController.getUnreadState(((Item) this.items.get(i)).dialogId) == 0;
+    }
+
+    public float getOverScrollCoef() {
+        return this.overScrollCoef;
     }
 
     public void updateItems(boolean z, boolean z2) {
@@ -552,12 +584,12 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         return this.storiesController.hasUnreadStories(UserConfig.getInstance(this.currentAccount).clientUserId) || (this.storiesController.hasSelfStories() && this.storiesController.getDialogListStories().size() <= 3);
     }
 
-    public static int lambda$new$5(StoryCell storyCell, StoryCell storyCell2) {
+    public static int lambda$new$6(StoryCell storyCell, StoryCell storyCell2) {
         return storyCell2.position - storyCell.position;
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r21) {
+    protected void dispatchDraw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -617,48 +649,117 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         final boolean z2 = f > this.K;
         if (z2 != this.collapsed) {
             this.collapsed = z2;
-            ValueAnimator valueAnimator = this.valueAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.valueAnimator.cancel();
-                this.valueAnimator = null;
+            AnimatorSet animatorSet = this.storiesAnimatorSet;
+            if (animatorSet != null) {
+                animatorSet.removeAllListeners();
+                this.storiesAnimatorSet.cancel();
+                this.storiesAnimatorSet = null;
             }
             if (z) {
-                this.valueAnimator = ValueAnimator.ofFloat(this.collapsedProgress2, z2 ? 1.0f : 0.0f);
-            } else {
-                this.collapsedProgress2 = z2 ? 1.0f : 0.0f;
-                checkCollapsedProgress();
-            }
-            ValueAnimator valueAnimator2 = this.valueAnimator;
-            if (valueAnimator2 != null) {
-                valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.collapsedProgress2, z2 ? 1.0f : 0.0f);
+                this.valueAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        this.f$0.lambda$setProgressToCollapse$6(valueAnimator3);
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        this.f$0.lambda$setProgressToCollapse$7(valueAnimator);
                     }
                 });
-                this.valueAnimator.addListener(new AnimatorListenerAdapter() {
+                this.valueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                float f2 = this.collapsedProgress1;
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f2, z2 ? f2 : 0.0f);
+                this.yStoriesAnimator = valueAnimatorOfFloat2;
+                valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        this.f$0.lambda$setProgressToCollapse$8(valueAnimator);
+                    }
+                });
+                this.yStoriesAnimator.setDuration(100L);
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.storiesAnimatorSet = animatorSet2;
+                animatorSet2.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         DialogStoriesCell.this.collapsedProgress2 = z2 ? 1.0f : 0.0f;
                         DialogStoriesCell.this.checkCollapsedProgress();
                     }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        super.onAnimationStart(animator);
+                        try {
+                            DialogStoriesCell.this.performHapticFeedback(3);
+                        } catch (Exception unused) {
+                        }
+                    }
                 });
-                this.valueAnimator.setDuration(450L);
-                this.valueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.valueAnimator.start();
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(this.valueAnimator);
+                arrayList.add(this.yStoriesAnimator);
+                if (this.collapsed) {
+                    this.storiesAnimatorSet.setDuration(1000L);
+                    ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(this.collapsedProgress2, z2 ? 1.0f : 0.0f);
+                    this.collapsedOvershootAnimator = valueAnimatorOfFloat3;
+                    valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            this.f$0.lambda$setProgressToCollapse$9(valueAnimator);
+                        }
+                    });
+                    OvershootInterpolator overshootInterpolator = new OvershootInterpolator(this.collapsedSpringCoef);
+                    this.storiesCollapseInterpolator = overshootInterpolator;
+                    this.collapsedOvershootAnimator.setInterpolator(overshootInterpolator);
+                    this.collapsedOvershootAnimator.setDuration(750L);
+                    arrayList.add(this.collapsedOvershootAnimator);
+                } else {
+                    this.expandOvershootAnimator = ValueAnimator.ofFloat(this.collapsedProgress2, z2 ? 1.0f : 0.0f);
+                    OvershootInterpolator overshootInterpolator2 = new OvershootInterpolator(this.expandedSpringCoef);
+                    this.storiesExpandInterpolator = overshootInterpolator2;
+                    this.expandOvershootAnimator.setInterpolator(overshootInterpolator2);
+                    this.expandOvershootAnimator.setDuration(350L);
+                    this.expandOvershootAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            this.f$0.lambda$setProgressToCollapse$10(valueAnimator);
+                        }
+                    });
+                    arrayList.add(this.expandOvershootAnimator);
+                }
+                this.storiesAnimatorSet.playTogether(arrayList);
+                this.storiesAnimatorSet.start();
+                return;
             }
+            this.collapsedProgress2 = z2 ? 1.0f : 0.0f;
+            checkCollapsedProgress();
+            AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    ((View) obj).setTranslationY(0.0f);
+                }
+            });
         }
     }
 
-    public void lambda$setProgressToCollapse$6(ValueAnimator valueAnimator) {
+    public void lambda$setProgressToCollapse$7(ValueAnimator valueAnimator) {
         this.collapsedProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         checkCollapsedProgress();
     }
 
+    public void lambda$setProgressToCollapse$8(ValueAnimator valueAnimator) {
+        this.yStoriesProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    }
+
+    public void lambda$setProgressToCollapse$9(ValueAnimator valueAnimator) {
+        this.collapsedOvershootProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    }
+
+    public void lambda$setProgressToCollapse$10(ValueAnimator valueAnimator) {
+        this.expandOvershootAnimatorProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
     public void checkCollapsedProgress() {
         this.collapsedProgress = 1.0f - AndroidUtilities.lerp(1.0f - this.collapsedProgress1, 1.0f, 1.0f - this.collapsedProgress2);
-        updateCollapsedProgress();
         checkUi_titleVisibility();
         float f = this.collapsedProgress;
         updateCurrentState(f == 1.0f ? 2 : f != 0.0f ? 1 : 0);
@@ -681,24 +782,24 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$7(textColor, (View) obj);
+                DialogStoriesCell.lambda$updateColors$12(textColor, (View) obj);
             }
         });
         AndroidUtilities.forEachViews((RecyclerView) this.listViewMini, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$8((View) obj);
+                DialogStoriesCell.lambda$updateColors$13((View) obj);
             }
         });
     }
 
-    public static void lambda$updateColors$7(int i, View view) {
+    public static void lambda$updateColors$12(int i, View view) {
         StoryCell storyCell = (StoryCell) view;
         storyCell.invalidate();
         storyCell.textView.setTextColor(i);
     }
 
-    public static void lambda$updateColors$8(View view) {
+    public static void lambda$updateColors$13(View view) {
         ((StoryCell) view).invalidate();
     }
 
@@ -796,7 +897,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
                 @Override
                 public final void accept(Object obj) throws Resources.NotFoundException, IOException {
-                    this.f$0.lambda$openStoryRecorder$9(alertDialog, j, storyCell, (Boolean) obj);
+                    this.f$0.lambda$openStoryRecorder$14(alertDialog, j, storyCell, (Boolean) obj);
                 }
             }, true, resourceProvider);
             return;
@@ -804,7 +905,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
     }
 
-    public void lambda$openStoryRecorder$9(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException, IOException {
+    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException, IOException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
@@ -847,18 +948,15 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.overscrollProgress = f / AndroidUtilities.dp(90.0f);
         invalidate();
         this.recyclerListView.invalidate();
-        if (this.overscrollProgress != 0.0f) {
-            setClipChildren(false);
-            this.recyclerListView.setClipChildren(false);
-            ((ViewGroup) getParent()).setClipChildren(false);
-            return;
-        }
-        ((ViewGroup) getParent()).setClipChildren(true);
     }
 
-    public void openOverscrollSelectedStory() {
+    public boolean openOverscrollSelectedStory() {
+        ValueAnimator valueAnimator = this.expandOvershootAnimator;
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            return false;
+        }
         openStoryForCell(this.overscrollSelectedView, true);
-        performHapticFeedback(3);
+        return true;
     }
 
     public void setActionBar(ActionBar actionBar) {
@@ -1282,7 +1380,6 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 float f13 = this.failT.set(this.isFail);
                 if (this.drawAvatar) {
                     if (this.progressWasDrawn) {
-                        animateBounce();
                         StoriesUtilities.AvatarStoryParams avatarStoryParams2 = this.params;
                         avatarStoryParams2.forceAnimateProgressToSegments = true;
                         avatarStoryParams2.progressToSegments = 0.0f;
@@ -1383,45 +1480,6 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
 
         public void lambda$dispatchDraw$2(ValueAnimator valueAnimator) {
             this.params.progressToSegments = AndroidUtilities.lerp(0.0f, 1.0f - DialogStoriesCell.this.collapsedProgress2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            invalidate();
-        }
-
-        private void animateBounce() {
-            AnimatorSet animatorSet = new AnimatorSet();
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 1.05f);
-            valueAnimatorOfFloat.setDuration(100L);
-            valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(1.05f, 1.0f);
-            valueAnimatorOfFloat2.setDuration(250L);
-            valueAnimatorOfFloat2.setInterpolator(new OvershootInterpolator());
-            ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$animateBounce$3(valueAnimator);
-                }
-            };
-            setClipInParent(false);
-            valueAnimatorOfFloat.addUpdateListener(animatorUpdateListener);
-            valueAnimatorOfFloat2.addUpdateListener(animatorUpdateListener);
-            animatorSet.playSequentially(valueAnimatorOfFloat, valueAnimatorOfFloat2);
-            animatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    StoryCell.this.bounceScale = 1.0f;
-                    StoryCell.this.invalidate();
-                    StoryCell.this.setClipInParent(true);
-                }
-            });
-            animatorSet.start();
-            if (DialogStoriesCell.this.animationRunnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(DialogStoriesCell.this.animationRunnable);
-                DialogStoriesCell.this.animationRunnable.run();
-                DialogStoriesCell.this.animationRunnable = null;
-            }
-        }
-
-        public void lambda$animateBounce$3(ValueAnimator valueAnimator) {
-            this.bounceScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             invalidate();
         }
 
@@ -1666,7 +1724,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateCurrentState$10();
+                    this.f$0.lambda$updateCurrentState$15();
                 }
             });
         }
@@ -1675,7 +1733,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    DialogStoriesCell.lambda$updateCurrentState$11((View) obj);
+                    DialogStoriesCell.lambda$updateCurrentState$16((View) obj);
                 }
             });
             this.listViewMini.setVisibility(4);
@@ -1707,11 +1765,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         invalidate();
     }
 
-    public void lambda$updateCurrentState$10() {
+    public void lambda$updateCurrentState$15() {
         updateItems(true, false);
     }
 
-    public static void lambda$updateCurrentState$11(View view) {
+    public static void lambda$updateCurrentState$16(View view) {
         view.setAlpha(1.0f);
         view.setTranslationX(0.0f);
         view.setTranslationY(0.0f);
@@ -1751,7 +1809,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$makePremiumHint$12();
+                this.f$0.lambda$makePremiumHint$17();
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannableStringBuilderReplaceSingleTag.getSpans(0, spannableStringBuilderReplaceSingleTag.length(), ClickableSpan.class);
@@ -1768,7 +1826,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         return this.premiumHint;
     }
 
-    public void lambda$makePremiumHint$12() {
+    public void lambda$makePremiumHint$17() {
         HintView2 hintView2 = this.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();

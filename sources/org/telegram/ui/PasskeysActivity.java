@@ -43,6 +43,7 @@ import org.telegram.ui.Stars.ExplainStarsSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class PasskeysActivity extends BaseFragment {
+    public int addPasskeyRow;
     private UniversalRecyclerView listView;
     private ArrayList passkeys;
 
@@ -83,6 +84,7 @@ public class PasskeysActivity extends BaseFragment {
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        this.addPasskeyRow = -1;
         arrayList.add(UItem.asTopView(LocaleController.getString(R.string.PasskeyTopInfo), R.raw.passkey));
         for (int i = 0; i < this.passkeys.size(); i++) {
             arrayList.add(PasskeyCell.Factory.of((TL_account.Passkey) this.passkeys.get(i), new View.OnClickListener() {
@@ -93,6 +95,7 @@ public class PasskeysActivity extends BaseFragment {
             }));
         }
         if (this.passkeys.size() + 1 <= getMessagesController().config.passkeysAccountPasskeysMax.get()) {
+            this.addPasskeyRow = arrayList.size();
             arrayList.add(UItem.asButton(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd)).accent());
         }
         arrayList.add(UItem.asShadow(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new Runnable() {

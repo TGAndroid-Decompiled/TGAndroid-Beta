@@ -710,7 +710,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     @Override
-    public android.view.View createView(android.content.Context r46) throws java.lang.NoSuchFieldException, android.content.res.Resources.NotFoundException, java.lang.SecurityException {
+    public android.view.View createView(android.content.Context r46) throws java.lang.NoSuchFieldException, java.lang.SecurityException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -739,7 +739,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws IllegalAccessException, NoSuchFieldException, Resources.NotFoundException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException {
+        public void onItemClick(int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             File file;
             Theme.ThemeAccent accent;
             String url;

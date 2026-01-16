@@ -15,6 +15,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -113,6 +114,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private float animatingArchiveAvatarProgress;
     private boolean applyName;
     private float archiveBackgroundProgress;
+    private GradientDrawable archiveFadeGradientDrawable;
+    private int archiveFadeGradientDrawableColor;
     private boolean archiveHidden;
     protected PullForegroundDrawable archivedChatsDrawable;
     private boolean attachedToWindow;
@@ -200,7 +203,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean[] drawSpoiler;
     private boolean drawUnmute;
     private boolean drawVerified;
-    public boolean drawingForBlur;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
     private final View emojiStatusView;
     private TLRPC.EncryptedChat encryptedChat;
@@ -1377,13 +1379,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         invalidate();
     }
 
-    public boolean isDrawArchive() {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        return this.drawArchive && (this.currentDialogFolderId != 0 || (this.isTopic && (tL_forumTopic = this.forumTopic) != null && tL_forumTopic.id == 1)) && this.translationX == 0.0f && this.archivedChatsDrawable != null;
-    }
-
     @Override
-    protected void onDraw(android.graphics.Canvas r56) {
+    protected void onDraw(android.graphics.Canvas r60) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1449,7 +1446,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             paint = this.topicCounterPaint;
             int color = Theme.getColor(z ? Theme.key_topics_unreadCounterMuted : Theme.key_topics_unreadCounter, this.resourcesProvider);
             paint.setColor(color);
-            Theme.dialogs_countTextPaint.setColor(color);
+            Theme.dialogs_countTextPaint2.setColor(color);
             i4 = z ? 30 : 40;
             z3 = true;
         } else {
@@ -1462,8 +1459,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 staticLayout = this.countLayout;
             }
             paint.setAlpha((int) ((1.0f - this.reorderIconProgress) * i4));
-            Theme.dialogs_countTextPaint.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
-            this.rect.set(i2 - AndroidUtilities.dp(4.33f), i, r9 + this.countWidth + AndroidUtilities.dp(8.66f), AndroidUtilities.dp(20.66f) + i);
+            Theme.dialogs_countTextPaint2.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
+            float f4 = i;
+            this.rect.set(i2, f4, this.countWidth + i2 + AndroidUtilities.dp(12.666f), i + AndroidUtilities.dp(20.666f));
             int iSave = canvas.save();
             if (f != 1.0f) {
                 canvas.scale(f, f, this.rect.centerX(), this.rect.centerY());
@@ -1496,32 +1494,31 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             if (staticLayout != null) {
                 canvas.save();
-                canvas.translate(i2, i + AndroidUtilities.dp(4.0f));
+                canvas.translate(i2 + AndroidUtilities.dp(6.333f), f4 + AndroidUtilities.dpf2(3.0f));
                 staticLayout.draw(canvas);
                 canvas.restore();
             }
             canvas.restoreToCount(iSave);
         } else {
             paint.setAlpha((int) ((1.0f - this.reorderIconProgress) * i4));
-            Theme.dialogs_countTextPaint.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
-            float f4 = f3 * 2.0f;
-            float f5 = f4 > 1.0f ? 1.0f : f4;
-            float f6 = 1.0f - f5;
-            float f7 = (i2 * f5) + (i3 * f6);
-            float fDp = f7 - AndroidUtilities.dp(4.33f);
-            float f8 = i;
-            this.rect.set(fDp, f8, (this.countWidth * f5) + fDp + (this.countWidthOld * f6) + AndroidUtilities.dp(8.66f), AndroidUtilities.dp(20.66f) + i);
+            Theme.dialogs_countTextPaint2.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
+            float f5 = f3 * 2.0f;
+            float f6 = f5 > 1.0f ? 1.0f : f5;
+            float f7 = 1.0f - f6;
+            float f8 = (i2 * f6) + (i3 * f7);
+            float f9 = i;
+            this.rect.set(f8, f9, (this.countWidth * f6) + f8 + (this.countWidthOld * f7) + AndroidUtilities.dp(12.666f), i + AndroidUtilities.dp(20.666f));
             if (f3 <= 0.5f) {
-                interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(f4) * 0.1f;
+                interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(f5) * 0.1f;
                 f2 = 1.0f;
             } else {
                 f2 = 1.0f;
                 interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(1.0f - ((f3 - 0.5f) * 2.0f)) * 0.1f;
             }
-            float f9 = interpolation + f2;
+            float f10 = interpolation + f2;
             canvas.save();
-            float f10 = f9 * f;
-            canvas.scale(f10, f10, this.rect.centerX(), this.rect.centerY());
+            float f11 = f10 * f;
+            canvas.scale(f11, f11, this.rect.centerX(), this.rect.centerY());
             if (z4) {
                 if (this.counterPath == null || (rectF2 = this.counterPathRect) == null || !rectF2.equals(this.rect)) {
                     RectF rectF4 = this.counterPathRect;
@@ -1547,36 +1544,36 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             if (this.countAnimationStableLayout != null) {
                 canvas.save();
-                canvas.translate(f7, i + AndroidUtilities.dp(4.0f));
+                canvas.translate(AndroidUtilities.dpf2(6.333f) + f8, AndroidUtilities.dpf2(3.0f) + f9);
                 this.countAnimationStableLayout.draw(canvas);
                 canvas.restore();
             }
-            int alpha = Theme.dialogs_countTextPaint.getAlpha();
-            float f11 = alpha;
-            Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f5));
+            int alpha = Theme.dialogs_countTextPaint2.getAlpha();
+            float f12 = alpha;
+            Theme.dialogs_countTextPaint2.setAlpha((int) (f12 * f6));
             if (this.countAnimationInLayout != null) {
                 canvas.save();
-                canvas.translate(f7, ((this.countAnimationIncrement ? AndroidUtilities.dp(13.0f) : -AndroidUtilities.dp(13.0f)) * f6) + f8 + AndroidUtilities.dp(4.0f));
+                canvas.translate(AndroidUtilities.dpf2(6.333f) + f8, ((this.countAnimationIncrement ? AndroidUtilities.dp(17.0f) : -AndroidUtilities.dp(17.0f)) * f7) + f9 + AndroidUtilities.dpf2(3.0f));
                 this.countAnimationInLayout.draw(canvas);
                 canvas.restore();
             } else if (this.countLayout != null) {
                 canvas.save();
-                canvas.translate(f7, ((this.countAnimationIncrement ? AndroidUtilities.dp(13.0f) : -AndroidUtilities.dp(13.0f)) * f6) + f8 + AndroidUtilities.dp(4.0f));
+                canvas.translate(AndroidUtilities.dpf2(6.333f) + f8, ((this.countAnimationIncrement ? AndroidUtilities.dp(17.0f) : -AndroidUtilities.dp(17.0f)) * f7) + f9 + AndroidUtilities.dpf2(3.0f));
                 this.countLayout.draw(canvas);
                 canvas.restore();
             }
             if (this.countOldLayout != null) {
-                Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f6));
+                Theme.dialogs_countTextPaint2.setAlpha((int) (f12 * f7));
                 canvas.save();
-                canvas.translate(f7, ((this.countAnimationIncrement ? -AndroidUtilities.dp(13.0f) : AndroidUtilities.dp(13.0f)) * f5) + f8 + AndroidUtilities.dp(4.0f));
+                canvas.translate(f8 + AndroidUtilities.dpf2(6.333f), ((this.countAnimationIncrement ? -AndroidUtilities.dp(17.0f) : AndroidUtilities.dp(17.0f)) * f6) + f9 + AndroidUtilities.dpf2(3.0f));
                 this.countOldLayout.draw(canvas);
                 canvas.restore();
             }
-            Theme.dialogs_countTextPaint.setAlpha(alpha);
+            Theme.dialogs_countTextPaint2.setAlpha(alpha);
             canvas.restore();
         }
         if (z3) {
-            Theme.dialogs_countTextPaint.setColor(Theme.getColor(Theme.key_chats_unreadCounterText));
+            Theme.dialogs_countTextPaint2.setColor(Theme.getColor(Theme.key_chats_unreadCounterText));
         }
     }
 
@@ -1684,7 +1681,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         PullForegroundDrawable pullForegroundDrawable;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (isFolderCell() && (pullForegroundDrawable = this.archivedChatsDrawable) != null && SharedConfig.archiveHidden && pullForegroundDrawable.pullProgress == 0.0f) {
+        if (isFolderCell() && (pullForegroundDrawable = this.archivedChatsDrawable) != null && SharedConfig.archiveHidden && pullForegroundDrawable.getPullProgress() == 0.0f) {
             accessibilityNodeInfo.setVisibleToUser(false);
         } else {
             accessibilityNodeInfo.addAction(16);

@@ -1737,16 +1737,6 @@ public class StoriesController {
         return this.hiddenListStories;
     }
 
-    public int getUnreadStoriesCount(long j) {
-        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.allStoriesMap.get(j);
-        for (int i = 0; i < peerStories.stories.size(); i++) {
-            if (peerStories.max_read_id < peerStories.stories.get(i).id) {
-                return peerStories.stories.size() - i;
-            }
-        }
-        return 0;
-    }
-
     public int getTotalStoriesCount(boolean z) {
         return z ? this.hasMoreHidden ? Math.max(1, this.totalStoriesCountHidden) : this.hiddenListStories.size() : this.hasMore ? Math.max(1, this.totalStoriesCount) : this.dialogListStories.size();
     }

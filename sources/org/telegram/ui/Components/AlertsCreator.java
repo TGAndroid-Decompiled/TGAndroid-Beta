@@ -118,7 +118,7 @@ import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.RadioColorCell;
 import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda242;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda243;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -1136,8 +1136,9 @@ public abstract class AlertsCreator {
             return;
         }
         final long inlineReturn = baseFragment instanceof ChatActivity ? ((ChatActivity) baseFragment).getInlineReturn() : 0L;
+        boolean zIsProxyLink = AndroidUtilities.isProxyLink(Uri.parse(str));
         String scheme = str == null ? null : Uri.parse(str).getScheme();
-        if (Browser.isInternalUrl(str, null) || !z3 || "mailto".equalsIgnoreCase(scheme)) {
+        if (!zIsProxyLink && (Browser.isInternalUrl(str, null) || !z3 || "mailto".equalsIgnoreCase(scheme))) {
             Browser.openUrl(baseFragment.getParentActivity(), Uri.parse(str), inlineReturn == 0, z2, z4 && checkInternalBotApp(str), progress, null, false, true, false);
             return;
         }
@@ -1171,7 +1172,7 @@ public abstract class AlertsCreator {
                 }
             }
         }, 0, spannableString.length(), 33);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.OpenUrlAlert2));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(zIsProxyLink ? R.string.OpenUrlAlert3 : R.string.OpenUrlAlert2));
         int iIndexOf = spannableStringBuilder.toString().indexOf("%1$s");
         if (iIndexOf >= 0) {
             spannableStringBuilder.replace(iIndexOf, iIndexOf + 4, (CharSequence) spannableString);
@@ -6554,7 +6555,7 @@ public abstract class AlertsCreator {
                     public final boolean test(Object obj) {
                         return AlertsCreator.lambda$createDeleteMessagesAlert$181(clientUserId, (TLObject) obj);
                     }
-                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda242()));
+                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda243()));
                 if (!arrayList2.isEmpty()) {
                     if (channelParticipantArr == null) {
                         AlertDialog[] alertDialogArr = {new AlertDialog(parentActivity, 3)};

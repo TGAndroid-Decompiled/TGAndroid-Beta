@@ -223,7 +223,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             }
             this.titles[i3].setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view3) throws Resources.NotFoundException {
+                public final void onClick(View view3) {
                     this.f$0.lambda$new$1(i3, view3);
                 }
             });
@@ -239,7 +239,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         dismiss();
     }
 
-    public void lambda$new$1(int i, View view) throws Resources.NotFoundException {
+    public void lambda$new$1(int i, View view) {
         this.viewPager.setCurrentItem(i, true);
     }
 
@@ -307,7 +307,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             int i2;
             ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext()) {
                 @Override
-                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) throws Resources.NotFoundException {
+                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
                     super.onInitializeAccessibilityEvent(accessibilityEvent);
                     if (accessibilityEvent.getEventType() == 32768) {
                         GroupCallRecordAlert.this.viewPager.setCurrentItem(i, true);

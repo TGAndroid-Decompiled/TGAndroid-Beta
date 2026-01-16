@@ -36,6 +36,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -70,6 +71,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private boolean loadedColors;
     private boolean loadingFiltersForColors;
     private boolean orderChanged;
+    private int showTagsRow;
     private UndoView undoView;
     private ArrayList oldItems = new ArrayList();
     private ArrayList items = new ArrayList();
@@ -454,6 +456,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     }
 
     public void updateRows(boolean z) {
+        this.showTagsRow = -1;
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
@@ -487,6 +490,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
         this.items.add(ItemInner.asShadow(null));
         this.folderTagsPosition = this.items.size();
+        this.showTagsRow = this.items.size();
         this.items.add(ItemInner.asCheck(LocaleController.getString(R.string.FolderShowTags)));
         this.items.add(ItemInner.asShadow(!getUserConfig().isPremium() ? AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FolderShowTagsInfoPremium), Theme.key_windowBackgroundWhiteBlueHeader, 2, new Runnable() {
             @Override
@@ -652,26 +656,21 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             listAdapter.notifyItemRangeChanged(i3, this.filtersSectionEnd - i3);
             return;
         }
-        if (i2 == 2) {
-            MessagesController.DialogFilter dialogFilter = itemInner.filter;
-            if (dialogFilter == null || dialogFilter.isDefault()) {
+        if (i2 != 2) {
+            if (i2 == 4) {
+                createFolder(getParentLayout());
                 return;
             }
-            if (dialogFilter.locked) {
-                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
-                return;
-            } else {
-                presentFragment(new FilterCreateActivity(dialogFilter));
-                return;
-            }
+            return;
         }
-        if (i2 == 4) {
-            int size = getMessagesController().getDialogFilters().size();
-            if ((size - 1 >= getMessagesController().dialogFiltersLimitDefault && !getUserConfig().isPremium()) || size >= getMessagesController().dialogFiltersLimitPremium) {
-                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
-            } else {
-                presentFragment(new FilterCreateActivity());
-            }
+        MessagesController.DialogFilter dialogFilter = itemInner.filter;
+        if (dialogFilter == null || dialogFilter.isDefault()) {
+            return;
+        }
+        if (dialogFilter.locked) {
+            showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
+        } else {
+            presentFragment(new FilterCreateActivity(dialogFilter));
         }
     }
 
@@ -704,6 +703,15 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 return this.f$0.lambda$createView$5();
             }
         });
+    }
+
+    public void createFolder(INavigationLayout iNavigationLayout) {
+        int size = getMessagesController().getDialogFilters().size();
+        if ((size - 1 >= getMessagesController().dialogFiltersLimitDefault && !getUserConfig().isPremium()) || size >= getMessagesController().dialogFiltersLimitPremium) {
+            showDialog(new LimitReachedBottomSheet(this, getContext(), 3, this.currentAccount, null));
+        } else if (iNavigationLayout != null) {
+            iNavigationLayout.presentFragment(new FilterCreateActivity());
+        }
     }
 
     public UndoView getUndoView() {

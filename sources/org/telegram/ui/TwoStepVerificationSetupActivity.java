@@ -110,6 +110,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     private CustomPhoneKeyboardView keyboardView;
     private Runnable monkeyEndCallback;
     private boolean needPasswordButton;
+    private Runnable openedSettings;
     private int otherwiseReloginDays;
     private OutlineTextContainerView outlineTextFirstRow;
     private OutlineTextContainerView outlineTextSecondRow;
@@ -162,6 +163,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             return;
         }
         setRandomMonkeyIdleAnimation(true);
+    }
+
+    public void setOnOpenedSettings(Runnable runnable) {
+        this.openedSettings = runnable;
     }
 
     public TwoStepVerificationSetupActivity(int i, TL_account.Password password) {
@@ -1284,6 +1289,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             twoStepVerificationActivity.setPassword(this.currentPassword);
             twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
             presentFragment(twoStepVerificationActivity, true);
+            Runnable runnable = this.openedSettings;
+            if (runnable != null) {
+                AndroidUtilities.runOnUIThread(runnable);
+                this.openedSettings = null;
+            }
         }
     }
 
@@ -1610,8 +1620,14 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     twoStepVerificationActivity.setCurrentPasswordParams(this.currentPassword, this.currentPasswordHash, this.currentSecretId, this.currentSecret);
                     twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
                     presentFragment(twoStepVerificationActivity, true);
-                    break;
+                    Runnable runnable = this.openedSettings;
+                    if (runnable != null) {
+                        AndroidUtilities.runOnUIThread(runnable);
+                        this.openedSettings = null;
+                        break;
+                    }
                 }
+                break;
             case 8:
                 if (this.currentPassword == null) {
                     needShowProgress();
@@ -1901,6 +1917,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
         presentFragment(twoStepVerificationActivity, true);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        Runnable runnable = this.openedSettings;
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+            this.openedSettings = null;
+        }
     }
 
     private void onCodeFieldError(boolean z) {
@@ -2251,6 +2272,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
             presentFragment(twoStepVerificationActivity, true);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
+            Runnable runnable = this.openedSettings;
+            if (runnable != null) {
+                AndroidUtilities.runOnUIThread(runnable);
+                this.openedSettings = null;
+            }
         }
     }
 
@@ -2489,6 +2515,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
         presentFragment(twoStepVerificationActivity, true);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        Runnable runnable = this.openedSettings;
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+            this.openedSettings = null;
+        }
     }
 
     protected TLRPC.TL_inputCheckPasswordSRP getNewSrpPassword() {

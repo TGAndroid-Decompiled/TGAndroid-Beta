@@ -75,7 +75,7 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda242;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda243;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -846,7 +846,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return this.f$0.lambda$fillItems$24((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda242()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda243()));
         }
         if (this.dialogId < 0) {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
@@ -866,7 +866,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return GiftSheet.lambda$fillItems$25((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda242()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda243()));
         }
         if (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || (giftsList3 = this.myGifts) == null) {
             z2 = false;

@@ -37,6 +37,18 @@ public class VariableRect implements Animatable {
         this.bottom = new VariableFloat(f4);
     }
 
+    public float getLeft() {
+        return this.left.get();
+    }
+
+    public float getTop() {
+        return this.top.get();
+    }
+
+    public float getRight() {
+        return this.right.get();
+    }
+
     public float getBottom() {
         return this.bottom.get();
     }
@@ -57,6 +69,11 @@ public class VariableRect implements Animatable {
         this.top.setTo(f2);
         this.right.setTo(f3);
         this.bottom.setTo(f4);
+    }
+
+    public RectF toRectF() {
+        this.rectF.set(getLeft(), getTop(), getRight(), getBottom());
+        return this.rectF;
     }
 
     @Override

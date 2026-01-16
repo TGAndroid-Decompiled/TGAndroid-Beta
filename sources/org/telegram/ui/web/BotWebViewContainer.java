@@ -2276,7 +2276,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onEmojiStatusSet(TLRPC.Document document);
 
-        String onFullscreenRequested(boolean z);
+        String onFullscreenRequested(boolean z, boolean z2);
 
         void onInstantClose();
 
@@ -2357,7 +2357,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             public static void $default$onWebAppSetNavigationBarColor(Delegate delegate, int i) {
             }
 
-            public static String $default$onFullscreenRequested(Delegate delegate, boolean z) {
+            public static String $default$onFullscreenRequested(Delegate delegate, boolean z, boolean z2) {
                 return "UNSUPPORTED";
             }
         }

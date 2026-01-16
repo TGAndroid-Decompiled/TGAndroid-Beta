@@ -121,7 +121,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     @Override
     public boolean onFragmentCreate() {
         MessagesController.getInstance(this.currentAccount).loadSignUpNotificationsSettings();
-        loadExceptions();
+        loadExceptions(null);
         if (UserConfig.getActivatedAccountsCount() > 1) {
             int i = this.rowCount;
             this.accountsSectionRow = i;
@@ -178,22 +178,22 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         return super.onFragmentCreate();
     }
 
-    private void loadExceptions() {
+    public void loadExceptions(final Runnable runnable) {
         MediaDataController.getInstance(this.currentAccount).loadHints(true);
         final ArrayList arrayList = new ArrayList(MediaDataController.getInstance(this.currentAccount).hints);
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() throws NumberFormatException {
-                this.f$0.lambda$loadExceptions$2(arrayList);
+                this.f$0.lambda$loadExceptions$2(arrayList, runnable);
             }
         });
     }
 
-    public void lambda$loadExceptions$2(java.util.ArrayList r29) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.lambda$loadExceptions$2(java.util.ArrayList):void");
+    public void lambda$loadExceptions$2(java.util.ArrayList r30, final java.lang.Runnable r31) throws java.lang.NumberFormatException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.lambda$loadExceptions$2(java.util.ArrayList, java.lang.Runnable):void");
     }
 
-    public void lambda$loadExceptions$1(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
+    public void lambda$loadExceptions$1(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8, Runnable runnable) {
         MessagesController.getInstance(this.currentAccount).putUsers(arrayList, true);
         MessagesController.getInstance(this.currentAccount).putChats(arrayList2, true);
         MessagesController.getInstance(this.currentAccount).putEncryptedChats(arrayList3, true);
@@ -202,10 +202,40 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         this.exceptionChannels = arrayList6;
         this.exceptionStories = arrayList7;
         this.exceptionAutoStories = arrayList8;
-        this.adapter.notifyItemChanged(this.privateRow);
-        this.adapter.notifyItemChanged(this.groupRow);
-        this.adapter.notifyItemChanged(this.channelsRow);
-        this.adapter.notifyItemChanged(this.storiesRow);
+        ListAdapter listAdapter = this.adapter;
+        if (listAdapter != null) {
+            listAdapter.notifyItemChanged(this.privateRow);
+            this.adapter.notifyItemChanged(this.groupRow);
+            this.adapter.notifyItemChanged(this.channelsRow);
+            this.adapter.notifyItemChanged(this.storiesRow);
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public NotificationsCustomSettingsActivity makeNotificationsCustomSettingsActivity(int i) {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3 = null;
+        if (i == 1) {
+            arrayList = this.exceptionUsers;
+        } else if (i == 0) {
+            arrayList = this.exceptionChats;
+        } else {
+            if (i == 4) {
+                arrayList2 = null;
+            } else if (i == 3) {
+                arrayList3 = this.exceptionStories;
+                arrayList2 = this.exceptionAutoStories;
+            } else {
+                arrayList = this.exceptionChannels;
+            }
+            return new NotificationsCustomSettingsActivity(i, arrayList3, arrayList2);
+        }
+        arrayList3 = arrayList;
+        arrayList2 = null;
+        return new NotificationsCustomSettingsActivity(i, arrayList3, arrayList2);
     }
 
     @Override

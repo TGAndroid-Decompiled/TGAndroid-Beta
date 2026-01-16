@@ -343,7 +343,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                     Bulletin.make(parentFragment, simpleLayout, 1500).show();
                     return;
                 }
-                BulletinFactory.of(parentFragment).createEmojiBulletin(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable).show();
+                BulletinFactory.of(parentFragment).createEmojiBulletin(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), runnable).show();
             }
         }
 
