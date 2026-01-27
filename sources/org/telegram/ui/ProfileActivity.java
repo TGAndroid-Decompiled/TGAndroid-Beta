@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -93,6 +94,7 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -2660,7 +2662,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) {
+    public View createView(final Context context) throws Resources.NotFoundException, IOException {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -10712,7 +10714,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return dontApplyPeerColor(i, z, null);
     }
 
-    private int applyPeerColor(int i, boolean z, Boolean bool) {
+    private int applyPeerColor(int i, boolean z, Boolean bool) throws IOException {
         if ((!z && isSettings()) || this.peerColor == null) {
             return i;
         }

@@ -763,7 +763,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(0, AppCompatDelegateImpl$Api33Impl$$ExternalSyntheticApiModelOutline0.m(this.onBackInvokedCallback));
         }
-        this.refreshRateController = new RefreshRateController(this);
+        if (i2 >= 24) {
+            this.refreshRateController = new RefreshRateController(this);
+        }
         checkFrameMetrics();
     }
 
@@ -4100,7 +4102,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, final int r50, org.telegram.ui.TopicsFragment r51) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException, java.io.IOException {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, final int r50, org.telegram.ui.TopicsFragment r51) throws java.lang.NumberFormatException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
@@ -4415,7 +4417,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             VoIPFragment.onPause();
         }
         SpoilerEffect2.pause(true);
-        this.refreshRateController.stop();
+        RefreshRateController refreshRateController = this.refreshRateController;
+        if (refreshRateController == null || Build.VERSION.SDK_INT < 24) {
+            return;
+        }
+        refreshRateController.stop();
     }
 
     public static void lambda$onPause$143(int i) {
@@ -4664,7 +4670,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         }
         checkAppUpdate(false, null);
-        if (Build.VERSION.SDK_INT >= 23) {
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 23) {
             ApplicationLoader.canDrawOverlays = Settings.canDrawOverlays(this);
         }
         if (VoIPFragment.getInstance() != null) {
@@ -4684,7 +4691,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (MessagesController.getInstance(this.currentAccount).hasSetupEmailSuggestion()) {
             MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         }
-        this.refreshRateController.start();
+        RefreshRateController refreshRateController = this.refreshRateController;
+        if (refreshRateController == null || i2 < 24) {
+            return;
+        }
+        refreshRateController.start();
     }
 
     public static void lambda$onResume$144() {

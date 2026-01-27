@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -604,7 +603,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
+        public void sendEmoji(TLRPC.Document document) {
             if (EmojiView.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiView.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -1569,7 +1568,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {

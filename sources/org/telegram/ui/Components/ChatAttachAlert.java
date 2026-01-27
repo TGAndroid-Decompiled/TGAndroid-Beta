@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -2981,7 +2980,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) throws Resources.NotFoundException {
+            public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) {
                 if (z2 || map.isEmpty() || this.sendPressed) {
                     return;
                 }
@@ -3186,7 +3185,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
                         chatAttachAlertLocationLayout.setDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
                             @Override
-                            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i4, boolean z, int i5, long j) throws Resources.NotFoundException {
+                            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i4, boolean z, int i5, long j) {
                                 this.f$0.lambda$new$7(messageMedia, i4, z, i5, j);
                             }
                         });
@@ -3209,7 +3208,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr2[1] = chatAttachAlertPollLayout;
                         chatAttachAlertPollLayout.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
                             @Override
-                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) throws Resources.NotFoundException {
+                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) {
                                 this.f$0.lambda$new$8(messageMedia, map, z, i4, j);
                             }
                         });
@@ -3234,7 +3233,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr3[1] = chatAttachAlertPollLayout2;
                         chatAttachAlertPollLayout2.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
                             @Override
-                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) throws Resources.NotFoundException {
+                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) {
                                 this.f$0.lambda$new$9(messageMedia, map, z, i4, j);
                             }
                         });
@@ -3280,15 +3279,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$new$7(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) throws Resources.NotFoundException {
+    public void lambda$new$7(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2, j);
     }
 
-    public void lambda$new$8(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) throws Resources.NotFoundException {
+    public void lambda$new$8(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) {
         ((ChatActivity) this.baseFragment).sendPoll((TLRPC.TL_messageMediaPoll) messageMedia, map, z, i, j);
     }
 
-    public void lambda$new$9(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) throws Resources.NotFoundException {
+    public void lambda$new$9(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) {
         ((ChatActivity) this.baseFragment).sendTodo((TLRPC.TL_messageMediaToDo) messageMedia, z, i, j);
     }
 
@@ -4383,12 +4382,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attachAlertLayoutArr[2] = chatAttachAlertContactsLayout;
             chatAttachAlertContactsLayout.setDelegate(new ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate() {
                 @Override
-                public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) throws Resources.NotFoundException {
+                public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
                     ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(user, z, i, j, z2, j2);
                 }
 
                 @Override
-                public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) throws Resources.NotFoundException {
+                public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) {
                     ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContacts(arrayList, str, z, i, j, z2, 0L);
                 }
             });
@@ -4429,7 +4428,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attachAlertLayoutArr[3] = chatAttachAlertAudioLayout;
             chatAttachAlertAudioLayout.setDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
                 @Override
-                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) throws Resources.NotFoundException {
+                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) {
                     this.f$0.lambda$openAudioLayout$41(arrayList, charSequence, z2, i, i2, j, z3, j2);
                 }
             });
@@ -4444,7 +4443,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) throws Resources.NotFoundException {
+    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment != null && (baseFragment instanceof ChatActivity)) {
             ((ChatActivity) baseFragment).sendAudio(arrayList, charSequence, z, i, i2, j, z2, j2);
@@ -4506,7 +4505,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
 
                 @Override
-                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) throws Resources.NotFoundException {
+                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) {
                     if (ChatAttachAlert.this.documentsDelegate != null) {
                         ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, i3, j);
                         return;
@@ -5237,7 +5236,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.init():void");
     }
 
-    public void lambda$init$50(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) throws Resources.NotFoundException {
+    public void lambda$init$50(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2, 0L);
     }
 

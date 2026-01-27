@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -1789,7 +1788,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         AndroidUtilities.runOnUIThread(this.updateCallRecordRunnable, 1000L);
     }
 
-    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) throws Resources.NotFoundException {
+    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) {
         if (this.enterEventSent) {
             return;
         }
@@ -3249,7 +3248,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
 
             @Override
-            public final void onItemClick(View view, int i7, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i7, float f, float f2) {
                 this.f$0.lambda$new$24(activity, call, view, i7, f, f2);
             }
         });
@@ -3350,7 +3349,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivityButtonsLayout.addButton(voIPToggleButton);
         voIPToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$27(view);
             }
         });
@@ -4511,7 +4510,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException {
+        public void onItemClick(int i) {
             VoIPService sharedInstance;
             int i2;
             int color;
@@ -4712,7 +4711,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate3.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate3.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) throws Resources.NotFoundException {
+                    public final void onShow(DialogInterface dialogInterface) {
                         this.f$0.lambda$onItemClick$6(alertDialogCreate3, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4890,7 +4889,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) throws Resources.NotFoundException {
+                    public final void onShow(DialogInterface dialogInterface) {
                         this.f$0.lambda$onStartRecord$1(alertDialogCreate, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4925,7 +4924,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 return false;
             }
 
-            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws Resources.NotFoundException {
+            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
                 GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
             }
 
@@ -4951,7 +4950,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             builder.getDismissRunnable().run();
         }
 
-        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws Resources.NotFoundException {
+        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
             GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
         }
 
@@ -5062,7 +5061,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) {
         TLRPC.Chat chat;
         final ChatObject.Call.InvitedUser invitedUser;
         if (view instanceof GroupCallGridCell) {
@@ -5165,7 +5164,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             });
             this.groupVoipInviteAlert.setDelegate(new GroupVoipInviteAlert.GroupVoipInviteAlertDelegate() {
                 @Override
-                public void copyInviteLink() throws Resources.NotFoundException {
+                public void copyInviteLink() {
                     GroupCallActivity.this.getLink(true);
                 }
 
@@ -5175,7 +5174,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
+                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) {
                     if (GroupCallActivity.this.enterEventSent) {
                         return;
                     }
@@ -5486,7 +5485,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$27(View view) throws Resources.NotFoundException {
+    public void lambda$new$27(View view) {
         ChatObject.Call call = this.call;
         if (call == null || call.isScheduled() || isRtmpStream()) {
             getLink(false);
@@ -6809,7 +6808,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.container.invalidate();
     }
 
-    public void getLink(final boolean z) throws Resources.NotFoundException {
+    public void getLink(final boolean z) {
         String str;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         TLRPC.Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(getChatId()));
@@ -6856,13 +6855,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$56(final TLRPC.ChatFull chatFull, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 this.f$0.lambda$getLink$55(tLObject, chatFull, z);
             }
         });
     }
 
-    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) throws Resources.NotFoundException {
+    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) {
         if (tLObject instanceof TLRPC.TL_chatInviteExported) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tLObject;
             if (chatFull != null) {
@@ -6876,13 +6875,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$58(final int i, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 this.f$0.lambda$getLink$57(tLObject, i, z);
             }
         });
     }
 
-    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) throws Resources.NotFoundException {
+    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) {
         if (tLObject instanceof TL_phone.exportedGroupCallInvite) {
             this.invites[i] = ((TL_phone.exportedGroupCallInvite) tLObject).link;
         } else {
@@ -6909,7 +6908,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         openShareAlert(false, strArr2[0], strArr2[1], z);
     }
 
-    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) throws android.content.res.Resources.NotFoundException {
+    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCallActivity.openShareAlert(boolean, java.lang.String, java.lang.String, boolean):void");
     }
 

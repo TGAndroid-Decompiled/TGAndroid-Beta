@@ -57,6 +57,7 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -523,7 +524,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$21800(DialogsActivity dialogsActivity) throws Resources.NotFoundException {
+    public static void access$21800(DialogsActivity dialogsActivity) {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -2618,7 +2619,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r32) throws android.content.res.Resources.NotFoundException {
+    public android.view.View createView(final android.content.Context r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2665,7 +2666,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(View view) {
+    public void lambda$createView$11(View view) throws IOException {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
     }
@@ -3565,7 +3566,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             final DialogsActivity dialogsActivity = DialogsActivity.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     DialogsActivity.access$21800(dialogsActivity);
                 }
             }, 100L);
@@ -7527,7 +7528,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.doneItemAnimator.start();
     }
 
-    public void updateSelectedCount() throws Resources.NotFoundException {
+    public void updateSelectedCount() {
         if (this.commentView != null) {
             this.animatorForwardButtonVisible.setValue(!this.selectedDialogs.isEmpty(), true);
             if (this.selectedDialogs.isEmpty()) {
@@ -9533,7 +9534,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didPressedOnSubDialog(long j) throws Resources.NotFoundException {
+        public void didPressedOnSubDialog(long j) {
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (!DialogsActivity.this.selectedDialogs.isEmpty()) {
@@ -10182,7 +10183,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return z ? z3 && !z2 : z2;
     }
 
-    private void showItemOptions() {
+    private void showItemOptions() throws IOException {
         boolean zIsCurrentThemeDark;
         ArrayList<TLRPC.TL_attachMenuBot> arrayList;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.optionsItem);

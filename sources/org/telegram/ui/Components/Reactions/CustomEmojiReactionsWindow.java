@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -309,7 +308,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onInputFocus() throws Resources.NotFoundException {
+        protected void onInputFocus() {
             if (CustomEmojiReactionsWindow.this.wasFocused) {
                 return;
             }

@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
@@ -698,7 +697,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.y = this.scrollOffsetY;

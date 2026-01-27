@@ -3,7 +3,6 @@ package org.telegram.ui.Gifts;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ShapeDrawable;
@@ -1028,7 +1027,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() throws Resources.NotFoundException {
+            public void onBecomeFullyVisible() {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;
