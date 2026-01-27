@@ -113,7 +113,9 @@ public class PostSuggestionsEditActivity extends BaseFragment {
             }
         }, null, this.resourceProvider);
         this.listView = universalRecyclerView;
-        frameLayout2.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 51));
+        universalRecyclerView.setSections();
+        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        this.actionBar.setAdaptiveBackground(this.listView);
         return this.fragmentView;
     }
 

@@ -373,7 +373,9 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         View userCell;
         if (i != 0) {
             if (i == 1) {
-                userCell = new GraySectionCell(this.mContext);
+                GraySectionCell graySectionCell = new GraySectionCell(this.mContext, 26, null);
+                graySectionCell.setNoBackground(true);
+                userCell = graySectionCell;
             } else if (i != 3) {
                 userCell = new TextCell(this.mContext, 16, false);
             } else {

@@ -118,6 +118,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         android.graphics.Point point = AndroidUtilities.displaySize;
         this.isPortrait = point.y > point.x;
         this.themeDelegate = resourcesProvider;
+        this.occupyNavigationBar = true;
         setWillNotDraw(false);
         ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
         this.header = new TextView(context);
@@ -192,7 +193,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.listView.setClipToPadding(false);
         this.listView.setOverScrollMode(2);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(46.0f));
         PreviewGroupsView previewGroupsView = new PreviewGroupsView(context);
         this.groupsView = previewGroupsView;
         previewGroupsView.setClipToPadding(true);

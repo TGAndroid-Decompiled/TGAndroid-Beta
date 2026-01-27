@@ -49,7 +49,6 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         this.currentAccount = i;
         setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         setFocusable(false);
-        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         setItemAnimator(null);
         setLayoutAnimation(null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false);

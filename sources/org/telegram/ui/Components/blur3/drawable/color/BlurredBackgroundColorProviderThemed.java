@@ -14,7 +14,7 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
     private int strokeColorTop;
 
     public BlurredBackgroundColorProviderThemed(Theme.ResourcesProvider resourcesProvider, int i) {
-        this(resourcesProvider, i, LiteMode.isEnabled(262144) ? 0.84f : 0.76f);
+        this(resourcesProvider, i, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
     public BlurredBackgroundColorProviderThemed(Theme.ResourcesProvider resourcesProvider, int i, float f) {

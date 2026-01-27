@@ -37,15 +37,16 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 
 public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private PhonebookShareAlertDelegate delegate;
     private EmptyTextProgressView emptyView;
     private FrameLayout frameLayout;
-    private boolean ignoreLayout;
     private FillLastLinearLayoutManager layoutManager;
     private ShareAdapter listAdapter;
     private RecyclerListView listView;
@@ -358,8 +359,13 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.listView = recyclerListView;
-        recyclerListView.setClipToPadding(false);
+        ViewGroup containerView = chatAttachAlert.getContainerView();
         RecyclerListView recyclerListView2 = this.listView;
+        Objects.requireNonNull(recyclerListView2);
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.occupyNavigationBar = true;
+        this.listView.setClipToPadding(false);
+        RecyclerListView recyclerListView3 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.dp(9.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
@@ -379,17 +385,16 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
+        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
         this.layoutManager.setBind(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        RecyclerListView recyclerListView3 = this.listView;
+        RecyclerListView recyclerListView4 = this.listView;
         ShareAdapter shareAdapter = new ShareAdapter(context);
         this.listAdapter = shareAdapter;
-        recyclerListView3.setAdapter(shareAdapter);
+        recyclerListView4.setAdapter(shareAdapter);
         this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -623,16 +628,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
+    public void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.onPreMeasure(int, int):void");
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
     }
 
     private void runShadowAnimation(final boolean z) {

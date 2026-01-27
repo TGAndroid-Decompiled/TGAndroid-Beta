@@ -38,7 +38,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.TranslateAlert2;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 
 public class TranslateController extends BaseController {
@@ -681,15 +685,25 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$checkTranslation$4(MessageObject messageObject, long j, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        messageObject.messageOwner.summaryText = tL_textWithEntities;
+        TLRPC.Message message = messageObject.messageOwner;
+        message.summaryText = tL_textWithEntities;
+        if (tL_textWithEntities == null) {
+            message.summarizedOpen = false;
+        }
         getMessagesStorage().updateMessageCustomParams(j, messageObject.messageOwner);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageTranslated, messageObject, Boolean.TRUE);
     }
 
     public void lambda$checkTranslation$5(MessageObject messageObject, String str, long j, TLRPC.TL_textWithEntities tL_textWithEntities) {
         TLRPC.Message message = messageObject.messageOwner;
+        if (tL_textWithEntities == null) {
+            str = null;
+        }
         message.translatedSummaryLanguage = str;
         message.translatedSummaryText = tL_textWithEntities;
+        if (tL_textWithEntities == null) {
+            message.summarizedOpen = false;
+        }
         getMessagesStorage().updateMessageCustomParams(j, messageObject.messageOwner);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageTranslated, messageObject, Boolean.TRUE);
     }
@@ -1012,7 +1026,7 @@ public class TranslateController extends BaseController {
             tL_messages_summarizeText.flags |= 1;
             tL_messages_summarizeText.to_lang = str;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new Utilities.Callback2() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$pushToSummarize$18(iHash, callback, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
@@ -1020,20 +1034,27 @@ public class TranslateController extends BaseController {
         });
     }
 
-    public void lambda$pushToSummarize$18(final int i, final Utilities.Callback callback, final TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$pushToSummarize$17(tL_textWithEntities, i, callback);
-            }
-        });
-    }
-
-    public void lambda$pushToSummarize$17(TLRPC.TL_textWithEntities tL_textWithEntities, int i, Utilities.Callback callback) {
+    public void lambda$pushToSummarize$18(int i, Utilities.Callback callback, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
+        final BaseFragment safeLastFragment;
         if (tL_textWithEntities != null) {
             this.loadingSummarizations.remove(Integer.valueOf(i));
             callback.run(tL_textWithEntities);
+        } else if (tL_error != null) {
+            if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (safeLastFragment = LaunchActivity.getSafeLastFragment()) != null) {
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new Runnable() {
+                    @Override
+                    public final void run() {
+                        TranslateController.lambda$pushToSummarize$17(safeLastFragment);
+                    }
+                }).setDuration(5000).show(true);
+            }
+            this.loadingSummarizations.remove(Integer.valueOf(i));
+            callback.run(null);
         }
+    }
+
+    public static void lambda$pushToSummarize$17(BaseFragment baseFragment) {
+        baseFragment.presentFragment(new PremiumPreviewFragment("summarize_limit"));
     }
 
     static class PendingTranslation {

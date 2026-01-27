@@ -83,7 +83,7 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda10;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda14;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda10;
@@ -284,7 +284,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
         gLIconRenderer.updateColors();
         this.iconTextureView.setStarParticlesView(this.particlesView);
-        this.aboveTitleView.addView(this.iconTextureView, LayoutHelper.createFrame(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+        this.aboveTitleView.addView(this.iconTextureView, LayoutHelper.createFrame(190, 190.0f, 17, 0.0f, 12.0f, 0.0f, 24.0f));
         configureHeader(LocaleController.getString(R.string.TelegramStars), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TelegramStarsInfo2), new Runnable() {
             @Override
             public final void run() {
@@ -311,7 +311,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         LinearLayout linearLayout = new LinearLayout(getContext());
         this.balanceLayout = linearLayout;
         linearLayout.setOrientation(1);
-        this.balanceLayout.setPadding(0, 0, 0, AndroidUtilities.dp(10.0f));
+        this.balanceLayout.setPadding(0, AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(10.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, false);
         this.starBalanceTextView = animatedTextView;
         animatedTextView.setTypeface(AndroidUtilities.bold());
@@ -770,7 +770,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         };
         this.adapter = universalAdapter;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -804,7 +805,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         boolean zHasTransactions = starsController.hasTransactions();
         this.hadTransactions = zHasTransactions;
         if (zHasTransactions) {
-            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight));
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(12.0f)));
         } else {
             arrayList.add(UItem.asCustom(this.emptyLayout));
         }
@@ -3756,7 +3757,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static void lambda$showTransactionSheet$36(Context context, int i, long j, BottomSheet[] bottomSheetArr) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         Objects.requireNonNull(bottomSheet);
-        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda10(bottomSheet)).show();
+        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda14(bottomSheet)).show();
     }
 
     public static void lambda$showTransactionSheet$37(BottomSheet[] bottomSheetArr, int i) {
@@ -3798,7 +3799,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static void lambda$showTransactionSheet$40(Context context, int i, long j, BottomSheet[] bottomSheetArr) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         Objects.requireNonNull(bottomSheet);
-        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda10(bottomSheet)).show();
+        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda14(bottomSheet)).show();
     }
 
     public static void lambda$showTransactionSheet$41(BottomSheet[] bottomSheetArr, long j) {

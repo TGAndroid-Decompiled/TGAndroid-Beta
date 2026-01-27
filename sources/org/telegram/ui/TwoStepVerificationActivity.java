@@ -1173,13 +1173,11 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 if (i != TwoStepVerificationActivity.this.setPasswordDetailRow) {
                     if (i == TwoStepVerificationActivity.this.passwordEnabledDetailRow) {
                         textInfoPrivacyCell.setText(LocaleController.getString(R.string.EnabledPasswordText));
-                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                         return;
                     }
                     return;
                 }
                 textInfoPrivacyCell.setText(LocaleController.getString(R.string.SetAdditionalPasswordInfo));
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 return;
             }
             TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
@@ -1238,7 +1236,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{EditTextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
         int i5 = Theme.key_windowBackgroundWhiteHintText;
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_HINTTEXTCOLOR, new Class[]{EditTextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         TextView textView = this.titleTextView;
         int i6 = ThemeDescription.FLAG_TEXTCOLOR;

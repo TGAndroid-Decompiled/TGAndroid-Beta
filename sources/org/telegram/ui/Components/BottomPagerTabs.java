@@ -30,7 +30,7 @@ public abstract class BottomPagerTabs extends View {
 
     public abstract Tab[] createTabs();
 
-    public class Tab {
+    protected class Tab {
         private boolean active;
         final RectF clickRect;
         public int customEndFrameEnd;
@@ -45,11 +45,6 @@ public abstract class BottomPagerTabs extends View {
         final AnimatedFloat nonscrollingT;
         final TextPaint paint;
         final Drawable ripple;
-
-        public Tab customFrameInvert() {
-            this.customFrameInvert = true;
-            return this;
-        }
 
         public Tab(int i, int i2, int i3, int i4, CharSequence charSequence) {
             TextPaint textPaint = new TextPaint(1);

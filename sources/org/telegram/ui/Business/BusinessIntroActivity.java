@@ -233,6 +233,9 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         this.messageEdit.hideKeyboardOnEnter();
         this.greetingsView.setPreview("", "");
         super.createView(context);
+        this.listView.setSections();
+        this.listView.adapter.setApplyBackground(false);
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {

@@ -324,6 +324,15 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             }
         } else {
             switch (i) {
+                case -4:
+                case -1:
+                    fullscreenCustomFrameLayout = new FrameLayout(this.context) {
+                        @Override
+                        protected void onMeasure(int i3, int i4) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
+                        }
+                    };
+                    break;
                 case -3:
                     fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(this.context);
                     break;
@@ -338,14 +347,6 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                                 iMax = Math.max(iMax, getChildAt(i5).getMeasuredHeight());
                             }
                             super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(iMax, 1073741824));
-                        }
-                    };
-                    break;
-                case -1:
-                    fullscreenCustomFrameLayout = new FrameLayout(this.context) {
-                        @Override
-                        protected void onMeasure(int i3, int i4) {
-                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
                         }
                     };
                     break;
@@ -449,7 +450,17 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     fullscreenCustomFrameLayout = new TextRightIconCell(this.context, this.resourcesProvider);
                     break;
                 case 31:
-                    fullscreenCustomFrameLayout = new GraySectionCell(this.context, this.resourcesProvider);
+                    GraySectionCell graySectionCell = new GraySectionCell(this.context, 28, this.resourcesProvider);
+                    RecyclerListView recyclerListView = this.listView;
+                    fullscreenCustomFrameLayout = graySectionCell;
+                    if (recyclerListView != null) {
+                        fullscreenCustomFrameLayout = graySectionCell;
+                        if (recyclerListView.hasSections()) {
+                            graySectionCell.setNoBackground(true);
+                            fullscreenCustomFrameLayout = graySectionCell;
+                            break;
+                        }
+                    }
                     break;
                 case 32:
                     fullscreenCustomFrameLayout = new ProfileSearchCell(this.context);
@@ -503,9 +514,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         return (item == null || item.hideDivider || item2 == null || isShadow(item2.viewType) != isShadow(item.viewType)) ? false : true;
     }
 
-    public boolean isShadow(int i) {
+    public static boolean isShadow(int i) {
         if (i < UItem.factoryViewTypeStartsWith) {
-            return i == 7 || i == 8 || i == 38 || i == 31 || i == 34;
+            return i == 7 || i == 8 || i == 38 || i == 31 || i == -4 || i == 28 || i == 2 || i == -2;
         }
         UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
         return uItemFactoryFindFactory != null && uItemFactoryFindFactory.isShadow();
@@ -624,8 +635,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    private class FullscreenCustomFrameLayout extends FrameLayout {
+    private static class FullscreenCustomFrameLayout extends FrameLayout {
         private int minusHeight;
+        private boolean minusPadding;
 
         public FullscreenCustomFrameLayout(Context context) {
             super(context);
@@ -634,12 +646,17 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            if ((getParent() instanceof View) && ((View) getParent()).getMeasuredHeight() > 0) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((View) getParent()).getMeasuredHeight() - this.minusHeight, 1073741824));
+            int paddingTop = this.minusHeight;
+            View view = getParent() instanceof View ? (View) getParent() : null;
+            if (this.minusPadding && view != null) {
+                paddingTop = paddingTop + view.getPaddingTop() + view.getPaddingBottom();
+            }
+            if (view != null && view.getMeasuredHeight() > 0) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - paddingTop, 1073741824));
                 return;
             }
             if (View.MeasureSpec.getMode(i2) != 0) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) - this.minusHeight, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) - paddingTop, 1073741824));
                 return;
             }
             int size = View.MeasureSpec.getSize(i2);
@@ -650,13 +667,17 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 iMin = Math.max(iMin, getChildAt(i3).getMeasuredHeight());
             }
             if (size > 0) {
-                iMin = Math.min(iMin, size - this.minusHeight);
+                iMin = Math.min(iMin, size - paddingTop);
             }
             super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(iMin, 1073741824));
         }
 
         public void setMinusHeight(int i) {
             this.minusHeight = i;
+        }
+
+        public void setMinusPadding(boolean z) {
+            this.minusPadding = z;
         }
     }
 }

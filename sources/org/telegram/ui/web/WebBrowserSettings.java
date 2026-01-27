@@ -180,7 +180,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 this.translateX = AndroidUtilities.dp(2.0f);
             }
         };
-        return super.createView(context);
+        this.fragmentView = super.createView(context);
+        this.listView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        return this.fragmentView;
     }
 
     @Override
@@ -194,7 +197,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    protected void fillItems(java.util.ArrayList r9, org.telegram.ui.Components.UniversalAdapter r10) throws org.json.JSONException {
+    protected void fillItems(java.util.ArrayList r8, org.telegram.ui.Components.UniversalAdapter r9) throws org.json.JSONException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 

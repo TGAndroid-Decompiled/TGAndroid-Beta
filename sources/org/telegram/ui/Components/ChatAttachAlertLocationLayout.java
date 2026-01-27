@@ -21,6 +21,7 @@ import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +65,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.BaseLocationAdapter;
 import org.telegram.ui.Adapters.LocationActivityAdapter;
 import org.telegram.ui.Adapters.LocationActivitySearchAdapter;
+import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LocationCell;
 import org.telegram.ui.Cells.LocationDirectionCell;
@@ -75,6 +78,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 
 public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private LocationActivityAdapter adapter;
@@ -99,7 +103,6 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     private boolean firstWas;
     private IMapsProvider.ICameraUpdate forceUpdate;
     private boolean ignoreIdleCamera;
-    private boolean ignoreLayout;
     private boolean isFirstLocation;
     private IMapsProvider.IMarker lastPressedMarker;
     private FrameLayout lastPressedMarkerView;
@@ -620,14 +623,19 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.listView = recyclerListView;
-        recyclerListView.setClipToPadding(false);
+        ViewGroup containerView = chatAttachAlert.getContainerView();
         RecyclerListView recyclerListView2 = this.listView;
+        Objects.requireNonNull(recyclerListView2);
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.occupyNavigationBar = true;
+        this.listView.setClipToPadding(false);
+        RecyclerListView recyclerListView3 = this.listView;
         int i7 = this.locationType;
         long j = this.dialogId;
         ChatAttachAlert chatAttachAlert3 = this.parentAlert;
         LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
         this.adapter = locationActivityAdapter2;
-        recyclerListView2.setAdapter(locationActivityAdapter2);
+        recyclerListView3.setAdapter(locationActivityAdapter2);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -642,8 +650,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         });
         this.adapter.setMyLocationDenied(this.locationDenied, this.askedForLocation);
         this.listView.setVerticalScrollBarEnabled(false);
-        RecyclerListView recyclerListView3 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView3) {
+        RecyclerListView recyclerListView4 = this.listView;
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView4) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i8) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
@@ -662,7 +670,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
+        recyclerListView4.setLayoutManager(fillLastLinearLayoutManager);
         addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -731,9 +739,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.markerImageView = imageView3;
         imageView3.setImageResource(R.drawable.map_pin2);
         this.mapViewClip.addView(this.markerImageView, LayoutHelper.createFrame(28, 48, 49));
-        RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider);
-        this.searchListView = recyclerListView4;
-        recyclerListView4.setVisibility(8);
+        RecyclerListView recyclerListView5 = new RecyclerListView(context, resourcesProvider);
+        this.searchListView = recyclerListView5;
+        recyclerListView5.setVisibility(8);
         this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         ChatAttachAlert chatAttachAlert4 = this.parentAlert;
         LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, chatAttachAlert4.isBizLocationPicker) {
@@ -1189,7 +1197,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
+    public void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertLocationLayout.onPreMeasure(int, int):void");
     }
 
@@ -1205,14 +1213,6 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     @Override
     public int getButtonsHideOffset() {
         return AndroidUtilities.dp(56.0f);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
     }
 
     @Override

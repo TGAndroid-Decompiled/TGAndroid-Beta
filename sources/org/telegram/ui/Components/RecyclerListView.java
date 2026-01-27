@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -13,11 +14,13 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.Build;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.Pair;
 import android.util.SparseIntArray;
 import android.util.StateSet;
 import android.view.MotionEvent;
@@ -43,27 +46,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.EdgeEffectTrackerFactory;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
-import org.telegram.ui.Components.OverscrollTrackerFactory;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.FiltersSetupActivity;
 
 public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private static int[] attributes;
     private static boolean gotAttributes;
     private static final Method initializeScrollbars;
+    private static final Paint sectionBackgroundPaint;
     private View.AccessibilityDelegate accessibilityDelegate;
     private boolean accessibilityEnabled;
     private boolean allowItemsInteractionDuringAnimation;
     private boolean allowStopHeaveOperations;
     private boolean animateEmptyView;
+    public boolean applyPaddingToSections;
     private Paint backgroundPaint;
     private Runnable clickRunnable;
+    private final Path clipPath;
     private int currentChildPosition;
     private View currentChildView;
     private int currentFirst;
@@ -71,8 +83,10 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private int currentVisible;
     private boolean disableHighlightState;
     private boolean disallowInterceptTouchEvents;
+    private Utilities.Callback4 drawSectionBackground;
     private boolean drawSelection;
     private boolean drawSelectorBehind;
+    private final EdgeEffectTrackerFactory edgeEffectTrackerFactory;
     private View emptyView;
     int emptyViewAnimateToVisibility;
     private int emptyViewAnimationType;
@@ -85,10 +99,13 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private boolean hiddenByEmptyView;
     private boolean hideIfEmpty;
     private int highlightPosition;
+    private boolean ignoreClipChild;
+    private boolean ignoreLayout;
     private boolean instantClick;
     private boolean interceptedByChild;
     private boolean isChildViewEnabled;
     private boolean isHidden;
+    private Utilities.CallbackReturn isViewTypeSection;
     RecyclerItemsEnterAnimator itemsEnterAnimator;
     private long lastAlphaAnimationTime;
     float lastX;
@@ -107,9 +124,6 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private OnItemLongClickListener onItemLongClickListener;
     private OnItemLongClickListenerExtended onItemLongClickListenerExtended;
     private RecyclerView.OnScrollListener onScrollListener;
-    private OverscrollTrackerFactory.Listener overScrollListener;
-    private OverscrollTrackerFactory.Listener overScrollListenerInternal;
-    private int overScrollsCounter;
     private FrameLayout overlayContainer;
     private IntReturnCallback pendingHighlightPosition;
     private View pinnedHeader;
@@ -124,8 +138,12 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     Runnable scroller;
     public boolean scrollingByUser;
     private int sectionOffset;
+    private float sectionRadius;
+    private float[] sectionRadiusBottom;
+    private float[] sectionRadiusTop;
     private SectionsAdapter sectionsAdapter;
     private int sectionsCount;
+    private ListSectionsDecoration sectionsItemDecoration;
     private int sectionsType;
     private Runnable selectChildRunnable;
     HashSet selectedPositions;
@@ -244,18 +262,6 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return false;
     }
 
-    static int access$3608(RecyclerListView recyclerListView) {
-        int i = recyclerListView.overScrollsCounter;
-        recyclerListView.overScrollsCounter = i + 1;
-        return i;
-    }
-
-    static int access$3610(RecyclerListView recyclerListView) {
-        int i = recyclerListView.overScrollsCounter;
-        recyclerListView.overScrollsCounter = i - 1;
-        return i;
-    }
-
     static {
         Method declaredMethod;
         try {
@@ -264,6 +270,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             declaredMethod = null;
         }
         initializeScrollbars = declaredMethod;
+        sectionBackgroundPaint = new Paint(1);
     }
 
     public void setSelectorTransformer(Consumer consumer) {
@@ -590,6 +597,9 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 this.radii[i3] = AndroidUtilities.dp(44.0f);
             }
             this.scrollX = AndroidUtilities.dp(this.isRtl ? 10.0f : (i == 0 ? 132 : 240) - 15);
+            if (RecyclerListView.this.hasSections()) {
+                this.scrollX += AndroidUtilities.dp(this.isRtl ? -4.0f : 6.0f);
+            }
             updateColors();
             setFocusableInTouchMode(true);
             this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -1104,7 +1114,12 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 }
             }
         };
+        this.applyPaddingToSections = false;
+        this.clipPath = new Path();
         this.resourcesProvider = resourcesProvider;
+        EdgeEffectTrackerFactory edgeEffectTrackerFactory = new EdgeEffectTrackerFactory();
+        this.edgeEffectTrackerFactory = edgeEffectTrackerFactory;
+        setEdgeEffectFactory(edgeEffectTrackerFactory);
         setGlowColor(getThemedColor(Theme.key_actionBarDefault));
         Drawable selectorDrawable = Theme.getSelectorDrawable(getThemedColor(Theme.key_listSelector), false);
         this.selectorDrawable = selectorDrawable;
@@ -1218,53 +1233,6 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             }
             this.backgroundPaint.setColor(i3);
             canvas.drawRect(0.0f, iMin - i4, getWidth(), iMax + i5, this.backgroundPaint);
-        }
-    }
-
-    protected void drawSectionBackgroundExclusive(Canvas canvas, int i, int i2, int i3) {
-        int iMin = Integer.MAX_VALUE;
-        int iMax = Integer.MIN_VALUE;
-        for (int i4 = 0; i4 < getChildCount(); i4++) {
-            View childAt = getChildAt(i4);
-            if (childAt != null) {
-                int childAdapterPosition = getChildAdapterPosition(childAt);
-                if (childAdapterPosition > i && childAdapterPosition < i2) {
-                    iMin = Math.min((int) childAt.getY(), iMin);
-                    iMax = Math.max(((int) childAt.getY()) + childAt.getHeight(), iMax);
-                } else if (childAdapterPosition == i) {
-                    iMin = Math.min(((int) childAt.getY()) + childAt.getHeight(), iMin);
-                    iMax = Math.max(((int) childAt.getY()) + childAt.getHeight(), iMax);
-                } else if (childAdapterPosition == i2) {
-                    iMin = Math.min((int) childAt.getY(), iMin);
-                    iMax = Math.max((int) childAt.getY(), iMax);
-                }
-            }
-        }
-        if (iMin < iMax) {
-            if (this.backgroundPaint == null) {
-                this.backgroundPaint = new Paint(1);
-            }
-            this.backgroundPaint.setColor(i3);
-            canvas.drawRect(0.0f, iMin, getWidth(), iMax, this.backgroundPaint);
-        }
-    }
-
-    protected void drawItemBackground(Canvas canvas, int i, int i2, int i3) {
-        int y = Integer.MAX_VALUE;
-        int height = Integer.MIN_VALUE;
-        for (int i4 = 0; i4 < getChildCount(); i4++) {
-            View childAt = getChildAt(i4);
-            if (childAt != null && getChildAdapterPosition(childAt) == i) {
-                y = (int) childAt.getY();
-                height = i2 <= 0 ? childAt.getHeight() + y : y + i2;
-            }
-        }
-        if (y < height) {
-            if (this.backgroundPaint == null) {
-                this.backgroundPaint = new Paint(1);
-            }
-            this.backgroundPaint.setColor(i3);
-            canvas.drawRect(0.0f, y, getWidth(), height, this.backgroundPaint);
         }
     }
 
@@ -2263,8 +2231,31 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             canvas.translate(view.getX() - this.selectorRect.left, this.selectorView.getY() - this.selectorRect.top);
             this.selectorDrawable.setAlpha((int) (this.selectorView.getAlpha() * 255.0f));
         }
-        this.selectorDrawable.draw(canvas);
+        drawSelector(canvas);
         canvas.restore();
+    }
+
+    private void drawSelector(Canvas canvas) {
+        if (hasSections()) {
+            canvas.save();
+            clipChild(canvas, this.selectorView);
+            this.selectorDrawable.draw(canvas);
+            canvas.restore();
+            return;
+        }
+        this.selectorDrawable.draw(canvas);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        if (hasSections() && !this.ignoreClipChild) {
+            canvas.save();
+            clipChild(canvas, view);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return zDrawChild;
+        }
+        return super.drawChild(canvas, view, j);
     }
 
     @Override
@@ -2397,10 +2388,19 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
 
     @Override
     public void requestLayout() {
-        if (this.fastScrollAnimationRunning) {
+        if (this.fastScrollAnimationRunning || this.ignoreLayout) {
             return;
         }
         super.requestLayout();
+    }
+
+    public void setPaddingWithoutRequestLayout(int i, int i2, int i3, int i4) {
+        if (getPaddingLeft() == i && getPaddingTop() == i2 && getPaddingRight() == i3 && getPaddingBottom() == i4) {
+            return;
+        }
+        this.ignoreLayout = true;
+        setPadding(i, i2, i3, i4);
+        this.ignoreLayout = false;
     }
 
     private void requestDisallowInterceptTouchEvent(View view, boolean z) {
@@ -2630,94 +2630,26 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         this.drawSelection = z;
     }
 
-    public boolean hasActiveOverScroll() {
-        return this.overScrollsCounter != 0;
+    public boolean hasActiveEdgeEffects() {
+        return this.edgeEffectTrackerFactory.hasVisibleEdges();
     }
 
-    public void setOverScrollListener(final Runnable runnable) {
-        setOverScrollListener(new OverscrollTrackerFactory.Listener() {
+    public void addEdgeEffectListener(final Runnable runnable) {
+        addEdgeEffectListener(new EdgeEffectTrackerFactory.OnEdgeEffectListener() {
             @Override
-            public void onOverscrollAbsorb(int i, int i2) {
-                OverscrollTrackerFactory.Listener.CC.$default$onOverscrollAbsorb(this, i, i2);
-            }
-
-            @Override
-            public void onOverscrollPull(int i, float f) {
-                OverscrollTrackerFactory.Listener.CC.$default$onOverscrollPull(this, i, f);
-            }
-
-            @Override
-            public void onOverscrollRelease(int i) {
-                OverscrollTrackerFactory.Listener.CC.$default$onOverscrollRelease(this, i);
-            }
-
-            @Override
-            public void onOverscrollStart(int i) {
-                runnable.run();
-            }
-
-            @Override
-            public void onOverscrollEnd(int i) {
+            public final void onEdgeEffectVisibilityChange(int i, boolean z) {
                 runnable.run();
             }
         });
     }
 
-    public void setOverScrollListener(OverscrollTrackerFactory.Listener listener) {
-        this.overScrollListener = listener;
-        initOverScrollTracker();
+    public void addEdgeEffectListener(EdgeEffectTrackerFactory.OnEdgeEffectListener onEdgeEffectListener) {
+        this.edgeEffectTrackerFactory.addEdgeEffectListener(onEdgeEffectListener);
     }
 
-    private void initOverScrollTracker() {
-        if (this.overScrollListenerInternal != null) {
-            return;
-        }
-        OverscrollTrackerFactory.Listener listener = new OverscrollTrackerFactory.Listener() {
-            @Override
-            public void onOverscrollStart(int i) {
-                RecyclerListView.access$3608(RecyclerListView.this);
-                if (RecyclerListView.this.overScrollListener != null) {
-                    RecyclerListView.this.overScrollListener.onOverscrollStart(i);
-                }
-            }
-
-            @Override
-            public void onOverscrollEnd(int i) {
-                RecyclerListView.access$3610(RecyclerListView.this);
-                if (RecyclerListView.this.overScrollListener != null) {
-                    RecyclerListView.this.overScrollListener.onOverscrollEnd(i);
-                }
-            }
-
-            @Override
-            public void onOverscrollRelease(int i) {
-                if (RecyclerListView.this.overScrollListener != null) {
-                    RecyclerListView.this.overScrollListener.onOverscrollRelease(i);
-                }
-            }
-
-            @Override
-            public void onOverscrollPull(int i, float f) {
-                if (RecyclerListView.this.overScrollListener != null) {
-                    RecyclerListView.this.overScrollListener.onOverscrollPull(i, f);
-                }
-            }
-
-            @Override
-            public void onOverscrollAbsorb(int i, int i2) {
-                if (RecyclerListView.this.overScrollListener != null) {
-                    RecyclerListView.this.overScrollListener.onOverscrollAbsorb(i, i2);
-                }
-            }
-        };
-        this.overScrollListenerInternal = listener;
-        setEdgeEffectFactory(new OverscrollTrackerFactory(listener));
-    }
-
-    @Override
     public void capture(Canvas canvas, RectF rectF) {
         long jUptimeMillis = SystemClock.uptimeMillis();
-        if (hasActiveOverScroll() && getOverScrollMode() != 2) {
+        if (hasActiveEdgeEffects() && getOverScrollMode() != 2) {
             if (this.selfTransformationsMatrix == null) {
                 this.selfTransformationsMatrix = new Matrix();
             }
@@ -2726,7 +2658,11 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 canvas.concat(this.selfTransformationsMatrix);
             }
             canvas.translate(-getX(), -getY());
-            drawChild(canvas, this, jUptimeMillis);
+            try {
+                super.drawChild(canvas, this, jUptimeMillis);
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
             canvas.restore();
             return;
         }
@@ -2736,8 +2672,362 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             float x = childAt.getX();
             float y = childAt.getY();
             if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
+                this.ignoreClipChild = true;
                 drawChild(canvas, childAt, jUptimeMillis);
+                this.ignoreClipChild = false;
             }
         }
+    }
+
+    @Override
+    public long captureCalculateHash(RectF rectF) {
+        if (Build.VERSION.SDK_INT < 29) {
+            return -1L;
+        }
+        if (hasActiveEdgeEffects() && getOverScrollMode() != 2) {
+            return -1L;
+        }
+        int childCount = getChildCount();
+        long jCalcHash = 0;
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            float x = childAt.getX();
+            float y = childAt.getY();
+            if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
+                jCalcHash = MediaDataController.calcHash(jCalcHash, childAt.getUniqueDrawingId());
+            }
+        }
+        return jCalcHash;
+    }
+
+    public View findViewByPosition(int i) {
+        if (i == -1) {
+            return null;
+        }
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            View childAt = getChildAt(i2);
+            int childAdapterPosition = getChildAdapterPosition(childAt);
+            if (childAdapterPosition != -1 && childAdapterPosition == i) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
+    public boolean hasSections() {
+        return this.sectionsItemDecoration != null;
+    }
+
+    public void setSections() {
+        setSections(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
+    }
+
+    public void setSections(boolean z) {
+        setSections(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), z);
+    }
+
+    public void setSections(int i, float f, boolean z) {
+        setSections(new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return RecyclerListView.lambda$setSections$2((View) obj);
+            }
+        }, i, f, new RecyclerListView$$ExternalSyntheticLambda2(this), z);
+    }
+
+    public static Boolean lambda$setSections$2(View view) {
+        return Boolean.valueOf(((view instanceof TextInfoPrivacyCell) || (view instanceof ShadowSectionCell) || (view instanceof FiltersSetupActivity.HintInnerCell) || (view instanceof GraySectionCell) || Objects.equals(view.getTag(), -33024)) ? false : true);
+    }
+
+    private static Pair cachedIsViewTypeShadow(final RecyclerListView recyclerListView, final Utilities.CallbackReturn callbackReturn) {
+        final SparseIntArray sparseIntArray = new SparseIntArray();
+        return new Pair(new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return RecyclerListView.lambda$cachedIsViewTypeShadow$3(callbackReturn, recyclerListView, sparseIntArray, (View) obj);
+            }
+        }, new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return RecyclerListView.lambda$cachedIsViewTypeShadow$4(sparseIntArray, (Integer) obj);
+            }
+        });
+    }
+
+    public static Boolean lambda$cachedIsViewTypeShadow$3(Utilities.CallbackReturn callbackReturn, RecyclerListView recyclerListView, SparseIntArray sparseIntArray, View view) {
+        Boolean bool = (Boolean) callbackReturn.run(view);
+        boolean zBooleanValue = bool.booleanValue();
+        RecyclerView.ViewHolder childViewHolder = recyclerListView.getChildViewHolder(view);
+        if (childViewHolder != null) {
+            sparseIntArray.put(childViewHolder.getItemViewType(), zBooleanValue ? 1 : 0);
+        }
+        return bool;
+    }
+
+    public static Boolean lambda$cachedIsViewTypeShadow$4(SparseIntArray sparseIntArray, Integer num) {
+        int i = sparseIntArray.get(num.intValue(), -1);
+        if (i == -1) {
+            return Boolean.TRUE;
+        }
+        return Boolean.valueOf(i == 1);
+    }
+
+    public void setSections(Utilities.CallbackReturn callbackReturn, int i, float f, Utilities.Callback4 callback4, boolean z) {
+        Pair pairCachedIsViewTypeShadow = cachedIsViewTypeShadow(this, callbackReturn);
+        setSections((Utilities.CallbackReturn) pairCachedIsViewTypeShadow.first, (Utilities.CallbackReturn) pairCachedIsViewTypeShadow.second, i, f, callback4, z);
+    }
+
+    public void setSections(Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i, float f, Utilities.Callback4 callback4, boolean z) {
+        this.isViewTypeSection = callbackReturn2;
+        this.sectionRadius = f;
+        this.sectionRadiusTop = new float[]{f, f, f, f, 0.0f, 0.0f, 0.0f, 0.0f};
+        this.sectionRadiusBottom = new float[]{0.0f, 0.0f, 0.0f, 0.0f, f, f, f, f};
+        this.drawSectionBackground = callback4;
+        RecyclerView.ItemDecoration itemDecoration = this.sectionsItemDecoration;
+        if (itemDecoration != null) {
+            removeItemDecoration(itemDecoration);
+        }
+        ListSectionsDecoration listSectionsDecoration = new ListSectionsDecoration(callbackReturn, i, z);
+        this.sectionsItemDecoration = listSectionsDecoration;
+        addItemDecoration(listSectionsDecoration);
+    }
+
+    @Override
+    public void setItemAnimator(RecyclerView.ItemAnimator itemAnimator) {
+        super.setItemAnimator(itemAnimator);
+    }
+
+    public static class ListSectionsDecoration extends RecyclerView.ItemDecoration {
+        private boolean enableTopPadding;
+        public final Utilities.CallbackReturn isSectionItem;
+        private int padding;
+
+        public ListSectionsDecoration(Utilities.CallbackReturn callbackReturn, int i, boolean z) {
+            this.isSectionItem = callbackReturn;
+            this.padding = i;
+            this.enableTopPadding = z;
+        }
+
+        @Override
+        public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+            int adapterPosition;
+            if (((Boolean) this.isSectionItem.run(view)).booleanValue()) {
+                int i = this.padding;
+                rect.right = i;
+                rect.left = i;
+                RecyclerView.ViewHolder childViewHolder = recyclerView.getChildViewHolder(view);
+                RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                if (childViewHolder == null || adapter == null || (adapterPosition = childViewHolder.getAdapterPosition()) == -1) {
+                    return;
+                }
+                boolean z = adapterPosition == 0;
+                boolean z2 = adapterPosition == adapter.getItemCount() - 1;
+                if (z) {
+                    rect.top = this.enableTopPadding ? this.padding : AndroidUtilities.dp(4.0f);
+                }
+                if (z2) {
+                    rect.bottom = this.padding;
+                }
+            }
+        }
+
+        @Override
+        public void onDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
+            if (recyclerView instanceof RecyclerListView) {
+                ((RecyclerListView) recyclerView).drawSectionsBackgrounds(canvas);
+            }
+        }
+    }
+
+    private void drawSectionBackground(Canvas canvas, View view, View view2, boolean z, boolean z2) {
+        if (view == null || view2 == null) {
+            return;
+        }
+        float bottomInfoMargin = view2 instanceof JoinToSendSettingsView ? ((JoinToSendSettingsView) view2).getBottomInfoMargin() : 0.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(view.getLeft(), Math.max(this.applyPaddingToSections ? getPaddingTop() : -this.sectionRadius, view.getY() - (z ? this.sectionRadius : 0.0f)), view.getRight(), Math.min(getHeight() - (this.applyPaddingToSections ? getPaddingBottom() : -this.sectionRadius), ((view2.getY() + view2.getHeight()) + (z2 ? this.sectionRadius : 0.0f)) - bottomInfoMargin));
+        if (rectF.bottom < rectF.top) {
+            return;
+        }
+        this.drawSectionBackground.run(canvas, rectF, Float.valueOf(this.sectionRadius), Float.valueOf(view.getAlpha()));
+    }
+
+    private boolean hasAbove(View view, int i) {
+        int childAdapterPosition;
+        if (view == null || i > 0 || getAdapter() == null || this.isViewTypeSection == null || (childAdapterPosition = getChildAdapterPosition(view)) == -1 || childAdapterPosition == 0) {
+            return false;
+        }
+        return ((Boolean) this.isViewTypeSection.run(Integer.valueOf(getAdapter().getItemViewType(childAdapterPosition - 1)))).booleanValue();
+    }
+
+    private boolean hasBelow(View view, int i) {
+        int childAdapterPosition;
+        if (view == null || i < getChildCount() - 1 || getAdapter() == null || this.isViewTypeSection == null || (childAdapterPosition = getChildAdapterPosition(view)) == -1 || childAdapterPosition == getAdapter().getItemCount() - 1) {
+            return false;
+        }
+        return ((Boolean) this.isViewTypeSection.run(Integer.valueOf(getAdapter().getItemViewType(childAdapterPosition + 1)))).booleanValue();
+    }
+
+    public void drawSectionsBackgrounds(Canvas canvas) {
+        if (this.drawSectionBackground == null) {
+            return;
+        }
+        View view = null;
+        View view2 = null;
+        int i = -1;
+        int i2 = -1;
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            View childAt = getChildAt(i3);
+            if (childAt.getVisibility() == 0 && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt)).booleanValue()) {
+                if (view != null && Math.abs(view2.getAlpha() - childAt.getAlpha()) > 0.1f) {
+                    drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
+                    view = null;
+                    i = -1;
+                }
+                if (view == null) {
+                    i = i3;
+                    view = childAt;
+                }
+                i2 = i3;
+                view2 = childAt;
+            } else {
+                drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
+                view = null;
+                view2 = null;
+                i = -1;
+                i2 = -1;
+            }
+        }
+        drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
+    }
+
+    public static void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
+        Paint paint = sectionBackgroundPaint;
+        paint.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.multAlpha(285212672, f2));
+        paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), f2));
+        canvas.drawRoundRect(rectF, f, f, paint);
+    }
+
+    public void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2) {
+        Paint paint = sectionBackgroundPaint;
+        paint.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.multAlpha(285212672, f2));
+        paint.setColor(Theme.multAlpha(getThemedColor(Theme.key_windowBackgroundWhite), f2));
+        canvas.drawRoundRect(rectF, f, f, paint);
+    }
+
+    private void clipChild(Canvas canvas, View view) {
+        boolean z;
+        boolean z2;
+        if (view == null || !((Boolean) this.sectionsItemDecoration.isSectionItem.run(view)).booleanValue()) {
+            return;
+        }
+        int childAdapterPosition = getChildAdapterPosition(view);
+        if (childAdapterPosition == -1) {
+            z2 = false;
+            z = false;
+        } else {
+            View viewFindViewByPosition = findViewByPosition(childAdapterPosition - 1);
+            View viewFindViewByPosition2 = findViewByPosition(childAdapterPosition + 1);
+            z = viewFindViewByPosition != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition)).booleanValue();
+            z2 = viewFindViewByPosition2 != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition2)).booleanValue();
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(view.getX(), Math.max(this.applyPaddingToSections ? getPaddingTop() : -this.sectionRadius, view.getY()), view.getX() + view.getWidth(), Math.min(getHeight() - (this.applyPaddingToSections ? getPaddingBottom() : -this.sectionRadius), view.getY() + view.getHeight()));
+        if (z && z2) {
+            z = view.getY() >= rectF.top;
+            boolean z3 = view.getY() + ((float) view.getHeight()) <= rectF.bottom;
+            if (z && z3) {
+                return;
+            } else {
+                z2 = z3;
+            }
+        }
+        if (!z && !z2) {
+            this.clipPath.rewind();
+            Path path = this.clipPath;
+            float f = this.sectionRadius;
+            path.addRoundRect(rectF, f, f, Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+            return;
+        }
+        if (!z) {
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(rectF, this.sectionRadiusTop, Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+        } else {
+            if (z2) {
+                return;
+            }
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(rectF, this.sectionRadiusBottom, Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+        }
+    }
+
+    public Drawable getClipBackground(final View view) {
+        boolean z;
+        boolean z2;
+        if (!hasSections() || !((Boolean) this.sectionsItemDecoration.isSectionItem.run(view)).booleanValue()) {
+            return null;
+        }
+        int childAdapterPosition = getChildAdapterPosition(view);
+        if (childAdapterPosition == -1) {
+            z2 = false;
+            z = false;
+        } else {
+            View viewFindViewByPosition = findViewByPosition(childAdapterPosition - 1);
+            View viewFindViewByPosition2 = findViewByPosition(childAdapterPosition + 1);
+            z = viewFindViewByPosition != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition)).booleanValue();
+            z2 = viewFindViewByPosition2 != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition2)).booleanValue();
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(view.getX(), Math.max(this.applyPaddingToSections ? getPaddingTop() : 0.0f, view.getY()), view.getX() + view.getWidth(), Math.min(getHeight() - (this.applyPaddingToSections ? getPaddingBottom() : 0), view.getY() + view.getHeight()));
+        if (z && z2) {
+            z = view.getY() >= rectF.top;
+            boolean z3 = view.getY() + ((float) view.getHeight()) <= rectF.bottom;
+            if (z && z3) {
+                return Theme.createRoundRectDrawable(0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+            }
+            z2 = z3;
+        }
+        final Path path = new Path();
+        if (!z && !z2) {
+            path.rewind();
+            float f = this.sectionRadius;
+            path.addRoundRect(rectF, f, f, Path.Direction.CW);
+        } else if (!z) {
+            path.rewind();
+            path.addRoundRect(rectF, this.sectionRadiusTop, Path.Direction.CW);
+        } else if (!z2) {
+            path.rewind();
+            path.addRoundRect(rectF, this.sectionRadiusBottom, Path.Direction.CW);
+        }
+        return new Drawable() {
+            private final Paint paint = new Paint(1);
+
+            @Override
+            public int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                canvas.save();
+                canvas.translate(-view.getX(), -view.getY());
+                canvas.clipPath(path);
+                this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite, RecyclerListView.this.resourcesProvider), this.paint.getAlpha()));
+                canvas.drawRect(AndroidUtilities.rectTmp, this.paint);
+                canvas.restore();
+            }
+
+            @Override
+            public void setAlpha(int i) {
+                this.paint.setAlpha(i);
+            }
+        };
     }
 }

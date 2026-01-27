@@ -189,11 +189,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     View childAt = getChildAt(i2);
                     if (childAt instanceof HorizontalTabView) {
                         HorizontalTabView horizontalTabView3 = (HorizontalTabView) childAt;
-                        if (horizontalTabView3.getTopicId() == TopicsTabsView.this.currentTopicId) {
-                            horizontalTabView = horizontalTabView3;
-                        }
-                        if (horizontalTabView3.getTopicId() == TopicsTabsView.this.animateFromSelectedTopicId) {
-                            horizontalTabView2 = horizontalTabView3;
+                        if (!horizontalTabView3.isAdd) {
+                            if (horizontalTabView3.getTopicId() == TopicsTabsView.this.currentTopicId) {
+                                horizontalTabView = horizontalTabView3;
+                            }
+                            if (horizontalTabView3.getTopicId() == TopicsTabsView.this.animateFromSelectedTopicId) {
+                                horizontalTabView2 = horizontalTabView3;
+                            }
                         }
                     }
                 }

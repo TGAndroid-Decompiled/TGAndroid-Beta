@@ -3,6 +3,7 @@ package org.telegram.ui.Gifts;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ShapeDrawable;
@@ -12,6 +13,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -19,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,11 +32,15 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -41,13 +49,17 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -58,6 +70,7 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -65,6 +78,7 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
+import org.telegram.ui.Gifts.ResaleGiftsFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
@@ -226,6 +240,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         this.filterScrollView.addView(this.filtersContainer);
         this.filterScrollView.setBackgroundColor(iBlendOver);
+        this.filterScrollView.setClipChildren(false);
         sizeNotifierFrameLayout.addView(this.filterScrollView, LayoutHelper.createFrame(-1, 47, 55));
         View view = new View(context);
         this.filtersDivider = view;
@@ -924,7 +939,7 @@ public class ResaleGiftsFragment extends BaseFragment {
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         Iterator it = this.list.gifts.iterator();
         while (it.hasNext()) {
-            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, false, false, true));
+            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, false, false, true, false));
         }
         ResaleGiftsList resaleGiftsList = this.list;
         if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
@@ -1013,7 +1028,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() {
+            public void onBecomeFullyVisible() throws Resources.NotFoundException {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;
@@ -1045,6 +1060,7 @@ public class ResaleGiftsFragment extends BaseFragment {
     public static class ResaleGiftsList implements StarsController.IGiftsList {
         private final int account;
         private long attributes_hash;
+        private boolean for_craft;
         public final long gift_id;
         private String last_offset;
         public boolean loading;
@@ -1104,6 +1120,11 @@ public class ResaleGiftsFragment extends BaseFragment {
             this.onUpdate = callback;
         }
 
+        public ResaleGiftsList forCraft() {
+            this.for_craft = this.for_craft;
+            return this;
+        }
+
         @Override
         public void load() {
             load(false);
@@ -1123,6 +1144,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                 }
                 getresalestargifts.offset = str;
                 getresalestargifts.limit = 15;
+                getresalestargifts.for_craft = this.for_craft;
                 Sorting sorting = this.sorting;
                 if (sorting == Sorting.BY_NUMBER) {
                     getresalestargifts.sort_by_num = true;
@@ -1580,8 +1602,10 @@ public class ResaleGiftsFragment extends BaseFragment {
             super(context, false, false, resourcesProvider);
             this.currentAccount = i;
             setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-            setColors(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider));
-            setIconColor(-1);
+            int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
+            int i2 = Theme.key_actionBarDefaultSubmenuItemIcon;
+            setColors(color, Theme.getColor(i2, resourcesProvider));
+            setIconColor(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.SRC_IN);
             this.imageView.setTranslationX(AndroidUtilities.dp(2.0f));
             makeCheckView(2);
             setBackground(null);
@@ -1735,6 +1759,893 @@ public class ResaleGiftsFragment extends BaseFragment {
                 uItemOfFactory.text = str;
                 uItemOfFactory.intValue = i;
                 return uItemOfFactory;
+            }
+        }
+    }
+
+    public static class SelectGiftSheet extends BottomSheetWithRecyclerListView {
+        private StarGiftSheet.ActionView actionView;
+        private UniversalAdapter adapter;
+        private Filter backdropButton;
+        private final String collectionName;
+        private HorizontalScrollView filterScrollView;
+        private LinearLayout filtersContainer;
+        private boolean hadResaleGifts;
+        private Filter modelButton;
+        private Utilities.Callback onSelect;
+        private Filter patternButton;
+        private Filter sortButton;
+        private final State state;
+        private HashSet without;
+
+        public static class State implements NotificationCenter.NotificationCenterDelegate {
+            private boolean attached;
+            public final int currentAccount;
+            private Runnable currentListener;
+            public final long giftId;
+            private final StarsController.GiftsList list;
+            private final ResaleGiftsList resaleList;
+
+            public State(int i, long j) {
+                this.currentAccount = i;
+                this.giftId = j;
+                StarsController.GiftsList giftsList = new StarsController.GiftsList(i, 0L, false);
+                this.list = giftsList;
+                giftsList.forCrafting(j);
+                this.resaleList = new ResaleGiftsList(i, j, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        this.f$0.update(((Boolean) obj).booleanValue());
+                    }
+                }).forCraft();
+            }
+
+            public void update(boolean z) {
+                Runnable runnable = this.currentListener;
+                if (runnable != null) {
+                    runnable.run();
+                }
+            }
+
+            public void listen(Runnable runnable) {
+                this.currentListener = runnable;
+            }
+
+            public void attach() {
+                if (this.attached) {
+                    return;
+                }
+                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+                this.list.load();
+                this.resaleList.load();
+                this.attached = true;
+            }
+
+            public void detach() {
+                if (this.attached) {
+                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+                    this.list.cancel();
+                    this.resaleList.cancel();
+                    this.attached = false;
+                }
+            }
+
+            @Override
+            public void didReceivedNotification(int i, int i2, Object... objArr) {
+                if (i == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.list) {
+                    update(true);
+                }
+            }
+        }
+
+        public SelectGiftSheet(final Context context, String str, final State state) {
+            super(context, null, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
+            this.without = new HashSet();
+            this.collectionName = str;
+            this.state = state;
+            this.actionBar.setTitle(getTitle());
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.filtersContainer = linearLayout;
+            linearLayout.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f));
+            this.filtersContainer.setOrientation(0);
+            this.filtersContainer.setClipChildren(false);
+            this.filtersContainer.setClipToPadding(false);
+            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
+            this.filterScrollView = horizontalScrollView;
+            horizontalScrollView.setHorizontalScrollBarEnabled(false);
+            this.filterScrollView.setClipChildren(false);
+            this.filterScrollView.setClipToPadding(false);
+            this.filterScrollView.addView(this.filtersContainer);
+            Filter filter = new Filter(context, this.resourcesProvider);
+            this.sortButton = filter;
+            filter.setSorting(state.resaleList.getSorting());
+            this.filtersContainer.addView(this.sortButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
+            this.sortButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$3(state, view);
+                }
+            });
+            Filter filter2 = new Filter(context, this.resourcesProvider);
+            this.modelButton = filter2;
+            filter2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
+            this.filtersContainer.addView(this.modelButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
+            this.modelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$9(state, context, view);
+                }
+            });
+            Filter filter3 = new Filter(context, this.resourcesProvider);
+            this.backdropButton = filter3;
+            filter3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
+            this.filtersContainer.addView(this.backdropButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
+            this.backdropButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$15(state, context, view);
+                }
+            });
+            Filter filter4 = new Filter(context, this.resourcesProvider);
+            this.patternButton = filter4;
+            filter4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
+            this.filtersContainer.addView(this.patternButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 0, 0));
+            this.patternButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$21(state, context, view);
+                }
+            });
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int i) {
+                    int i2;
+                    UItem item = SelectGiftSheet.this.adapter.getItem(i - 1);
+                    if (item == null || (i2 = item.spanCount) == -1) {
+                        return 3;
+                    }
+                    return i2;
+                }
+            });
+            this.recyclerListView.setLayoutManager(gridLayoutManager);
+            this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+                @Override
+                public boolean hasDoubleTap(View view, int i) {
+                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+                }
+
+                @Override
+                public void onDoubleTap(View view, int i, float f, float f2) {
+                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+                }
+
+                @Override
+                public final void onItemClick(View view, int i, float f, float f2) {
+                    this.f$0.lambda$new$22(view, i, f, f2);
+                }
+            });
+            this.recyclerListView.setPadding(this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0, this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0);
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDurations(350L);
+            this.recyclerListView.setItemAnimator(defaultItemAnimator);
+            this.recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$23((Integer) obj);
+                }
+            });
+            StarGiftSheet.ActionView actionView = new StarGiftSheet.ActionView(context);
+            this.actionView = actionView;
+            actionView.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(9.0f));
+            this.actionView.setRoundRadius(AndroidUtilities.dp(22.0f));
+            this.actionView.setFullRect(true);
+            this.actionView.prepareBlur(null);
+            this.actionView.setPivotY(0.0f);
+            this.container.addView(this.actionView, LayoutHelper.createFrame(-1, -2, 55));
+            this.adapter.update(false);
+            state.listen(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$24();
+                }
+            });
+        }
+
+        public void lambda$new$3(final State state, View view) {
+            ItemOptions.makeOptions(this.container, this.resourcesProvider, this.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$0(state);
+                }
+            }).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$1(state);
+                }
+            }).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$2(state);
+                }
+            }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
+        }
+
+        public static void lambda$new$0(State state) {
+            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_PRICE);
+        }
+
+        public static void lambda$new$1(State state) {
+            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_DATE);
+        }
+
+        public static void lambda$new$2(State state) {
+            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_NUMBER);
+        }
+
+        public void lambda$new$9(final State state, Context context, View view) {
+            if (state.resaleList.modelAttributes.isEmpty()) {
+                return;
+            }
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions(this.container, this.resourcesProvider, this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$4(itemOptionsNeedsFocus);
+                }
+            });
+            final String[] strArr = {""};
+            final ArrayList arrayList = new ArrayList(state.resaleList.modelAttributes);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$5(state, (TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
+                }
+            });
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$6(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                }
+            }, new Utilities.Callback5() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$7(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                }
+            }, null, this.resourcesProvider) {
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
+                }
+            };
+            universalRecyclerView.adapter.setApplyBackground(false);
+            FrameLayout frameLayout = new FrameLayout(context);
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setImageResource(R.drawable.smiles_inputsearch);
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourcesProvider);
+            editTextCaption.setTextSize(1, 16.0f);
+            editTextCaption.setInputType(573441);
+            editTextCaption.setRawInputType(573441);
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
+            editTextCaption.setCursorWidth(1.5f);
+            editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
+            editTextCaption.setBackground(null);
+            frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+            editTextCaption.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    strArr[0] = editable.toString();
+                    universalRecyclerView.adapter.update(true);
+                }
+            });
+            if (arrayList.size() > 8) {
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
+            }
+            if (!state.resaleList.notSelectedModelAttributes.isEmpty()) {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$8(state);
+                    }
+                });
+            }
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
+        }
+
+        public static void lambda$new$4(ItemOptions itemOptions) {
+            ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
+            if (actionBarPopupWindow != null) {
+                AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
+            }
+        }
+
+        public static int lambda$new$5(State state, TL_stars.starGiftAttributeModel stargiftattributemodel, TL_stars.starGiftAttributeModel stargiftattributemodel2) {
+            Integer num = (Integer) state.resaleList.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
+            Integer num2 = (Integer) state.resaleList.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel2.document.id));
+            if (num == null) {
+                return 1;
+            }
+            if (num2 == null) {
+                return -1;
+            }
+            return num2.intValue() - num.intValue();
+        }
+
+        public static void lambda$new$6(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+            String lowerCase = strArr[0].toLowerCase();
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            boolean zIsEmpty = state.resaleList.notSelectedModelAttributes.isEmpty();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
+                boolean zContains = state.resaleList.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
+                boolean z = !zContains;
+                if (!TextUtils.isEmpty(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(strTranslitSafe)) {
+                    if (!stargiftattributemodel.name.toLowerCase().contains(" " + lowerCase)) {
+                        if (stargiftattributemodel.name.toLowerCase().contains(" " + strTranslitSafe)) {
+                        }
+                    }
+                }
+                Integer num = (Integer) state.resaleList.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
+                UItem uItemAsModel = ModelItem.Factory.asModel(stargiftattributemodel, num == null ? 0 : num.intValue(), lowerCase);
+                if (!TextUtils.isEmpty(lowerCase)) {
+                    z = (zIsEmpty || zContains) ? false : true;
+                }
+                arrayList2.add(uItemAsModel.setChecked(z));
+            }
+            if (arrayList2.isEmpty()) {
+                arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersModelEmpty)));
+            }
+        }
+
+        public static void lambda$new$7(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+            long j = ((TL_stars.starGiftAttributeModel) uItem.object).document.id;
+            if (!state.resaleList.notSelectedModelAttributes.contains(Long.valueOf(j))) {
+                if (state.resaleList.notSelectedModelAttributes.isEmpty()) {
+                    Iterator it = state.resaleList.modelAttributes.iterator();
+                    while (it.hasNext()) {
+                        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
+                        if (stargiftattributemodel.document.id != j) {
+                            state.resaleList.notSelectedModelAttributes.add(Long.valueOf(stargiftattributemodel.document.id));
+                        }
+                    }
+                } else {
+                    state.resaleList.notSelectedModelAttributes.add(Long.valueOf(j));
+                }
+            } else {
+                state.resaleList.notSelectedModelAttributes.remove(Long.valueOf(j));
+            }
+            state.resaleList.reload();
+            itemOptions.dismiss();
+        }
+
+        public static void lambda$new$8(State state) {
+            if (state.resaleList.notSelectedModelAttributes.isEmpty()) {
+                return;
+            }
+            state.resaleList.notSelectedModelAttributes.clear();
+            state.resaleList.reload();
+        }
+
+        public void lambda$new$15(final State state, Context context, View view) {
+            if (state.resaleList.backdropAttributes.isEmpty()) {
+                return;
+            }
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions(this.container, this.resourcesProvider, this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$10(itemOptionsNeedsFocus);
+                }
+            });
+            final String[] strArr = {""};
+            final ArrayList arrayList = new ArrayList(state.resaleList.backdropAttributes);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$11(state, (TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
+                }
+            });
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$12(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                }
+            }, new Utilities.Callback5() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$13(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                }
+            }, null, this.resourcesProvider) {
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
+                }
+            };
+            universalRecyclerView.adapter.setApplyBackground(false);
+            FrameLayout frameLayout = new FrameLayout(context);
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setImageResource(R.drawable.smiles_inputsearch);
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourcesProvider);
+            editTextCaption.setTextSize(1, 16.0f);
+            editTextCaption.setInputType(573441);
+            editTextCaption.setRawInputType(573441);
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
+            editTextCaption.setCursorWidth(1.5f);
+            editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
+            editTextCaption.setBackground(null);
+            frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+            editTextCaption.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    strArr[0] = editable.toString();
+                    universalRecyclerView.adapter.update(true);
+                }
+            });
+            if (arrayList.size() > 8) {
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
+            }
+            if (!state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$14(state);
+                    }
+                });
+            }
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
+        }
+
+        public static void lambda$new$10(ItemOptions itemOptions) {
+            ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
+            if (actionBarPopupWindow != null) {
+                AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
+            }
+        }
+
+        public static int lambda$new$11(State state, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2) {
+            Integer num = (Integer) state.resaleList.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+            Integer num2 = (Integer) state.resaleList.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop2.backdrop_id));
+            if (num == null) {
+                return 1;
+            }
+            if (num2 == null) {
+                return -1;
+            }
+            return num2.intValue() - num.intValue();
+        }
+
+        public static void lambda$new$12(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+            String lowerCase = strArr[0].toLowerCase();
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            boolean zIsEmpty = state.resaleList.notSelectedBackdropAttributes.isEmpty();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
+                boolean zContains = state.resaleList.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                boolean z = !zContains;
+                if (!TextUtils.isEmpty(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(strTranslitSafe)) {
+                    if (!stargiftattributebackdrop.name.toLowerCase().contains(" " + lowerCase)) {
+                        if (stargiftattributebackdrop.name.toLowerCase().contains(" " + strTranslitSafe)) {
+                        }
+                    }
+                }
+                Integer num = (Integer) state.resaleList.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                UItem uItemAsBackdrop = BackdropItem.Factory.asBackdrop(stargiftattributebackdrop, num == null ? 0 : num.intValue(), lowerCase);
+                if (!TextUtils.isEmpty(lowerCase)) {
+                    z = (zIsEmpty || zContains) ? false : true;
+                }
+                arrayList2.add(uItemAsBackdrop.setChecked(z));
+            }
+            if (arrayList2.isEmpty()) {
+                arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersBackdropEmpty)));
+            }
+        }
+
+        public static void lambda$new$13(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+            int i = ((TL_stars.starGiftAttributeBackdrop) uItem.object).backdrop_id;
+            if (!state.resaleList.notSelectedBackdropAttributes.contains(Integer.valueOf(i))) {
+                if (state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
+                    Iterator it = state.resaleList.backdropAttributes.iterator();
+                    while (it.hasNext()) {
+                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
+                        if (stargiftattributebackdrop.backdrop_id != i) {
+                            state.resaleList.notSelectedBackdropAttributes.add(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                        }
+                    }
+                } else {
+                    state.resaleList.notSelectedBackdropAttributes.add(Integer.valueOf(i));
+                }
+            } else {
+                state.resaleList.notSelectedBackdropAttributes.remove(Integer.valueOf(i));
+            }
+            state.resaleList.reload();
+            itemOptions.dismiss();
+        }
+
+        public static void lambda$new$14(State state) {
+            if (state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
+                return;
+            }
+            state.resaleList.notSelectedBackdropAttributes.clear();
+            state.resaleList.reload();
+        }
+
+        public void lambda$new$21(final State state, Context context, View view) {
+            if (state.resaleList.patternAttributes.isEmpty()) {
+                return;
+            }
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions(this.container, this.resourcesProvider, this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
+                @Override
+                public final void run() {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$16(itemOptionsNeedsFocus);
+                }
+            });
+            final String[] strArr = {""};
+            final ArrayList arrayList = new ArrayList(state.resaleList.patternAttributes);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$17(state, (TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
+                }
+            });
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$18(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                }
+            }, new Utilities.Callback5() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$19(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                }
+            }, null, this.resourcesProvider) {
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
+                }
+            };
+            universalRecyclerView.adapter.setApplyBackground(false);
+            FrameLayout frameLayout = new FrameLayout(context);
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setImageResource(R.drawable.smiles_inputsearch);
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourcesProvider);
+            editTextCaption.setTextSize(1, 16.0f);
+            editTextCaption.setInputType(573441);
+            editTextCaption.setRawInputType(573441);
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
+            editTextCaption.setCursorWidth(1.5f);
+            editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
+            editTextCaption.setBackground(null);
+            frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+            editTextCaption.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    strArr[0] = editable.toString();
+                    universalRecyclerView.adapter.update(true);
+                }
+            });
+            if (arrayList.size() > 8) {
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
+            }
+            if (!state.resaleList.notSelectedPatternAttributes.isEmpty()) {
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$20(state);
+                    }
+                });
+            }
+            itemOptionsNeedsFocus.addView(universalRecyclerView);
+            itemOptionsNeedsFocus.show();
+        }
+
+        public static void lambda$new$16(ItemOptions itemOptions) {
+            ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
+            if (actionBarPopupWindow != null) {
+                AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
+            }
+        }
+
+        public static int lambda$new$17(State state, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributePattern stargiftattributepattern2) {
+            Integer num = (Integer) state.resaleList.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
+            Integer num2 = (Integer) state.resaleList.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern2.document.id));
+            if (num == null) {
+                return 1;
+            }
+            if (num2 == null) {
+                return -1;
+            }
+            return num2.intValue() - num.intValue();
+        }
+
+        public static void lambda$new$18(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+            String lowerCase = strArr[0].toLowerCase();
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            boolean zIsEmpty = state.resaleList.notSelectedPatternAttributes.isEmpty();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
+                boolean zContains = state.resaleList.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
+                boolean z = !zContains;
+                if (!TextUtils.isEmpty(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(strTranslitSafe)) {
+                    if (!stargiftattributepattern.name.toLowerCase().contains(" " + lowerCase)) {
+                        if (stargiftattributepattern.name.toLowerCase().contains(" " + strTranslitSafe)) {
+                        }
+                    }
+                }
+                Integer num = (Integer) state.resaleList.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
+                UItem uItemAsPattern = PatternItem.Factory.asPattern(stargiftattributepattern, num == null ? 0 : num.intValue(), lowerCase);
+                if (!TextUtils.isEmpty(lowerCase)) {
+                    z = (zIsEmpty || zContains) ? false : true;
+                }
+                arrayList2.add(uItemAsPattern.setChecked(z));
+            }
+            if (arrayList2.isEmpty()) {
+                arrayList2.add(EmptyView.Factory.asEmptyView(LocaleController.getString(R.string.Gift2ResaleFiltersSymbolEmpty)));
+            }
+        }
+
+        public static void lambda$new$19(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+            long j = ((TL_stars.starGiftAttributePattern) uItem.object).document.id;
+            if (!state.resaleList.notSelectedPatternAttributes.contains(Long.valueOf(j))) {
+                if (state.resaleList.notSelectedPatternAttributes.isEmpty()) {
+                    Iterator it = state.resaleList.patternAttributes.iterator();
+                    while (it.hasNext()) {
+                        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
+                        if (stargiftattributepattern.document.id != j) {
+                            state.resaleList.notSelectedPatternAttributes.add(Long.valueOf(stargiftattributepattern.document.id));
+                        }
+                    }
+                } else {
+                    state.resaleList.notSelectedPatternAttributes.add(Long.valueOf(j));
+                }
+            } else {
+                state.resaleList.notSelectedPatternAttributes.remove(Long.valueOf(j));
+            }
+            state.resaleList.reload();
+            itemOptions.dismiss();
+        }
+
+        public static void lambda$new$20(State state) {
+            if (state.resaleList.notSelectedPatternAttributes.isEmpty()) {
+                return;
+            }
+            state.resaleList.notSelectedPatternAttributes.clear();
+            state.resaleList.reload();
+        }
+
+        public void lambda$new$22(View view, int i, float f, float f2) {
+            UItem item = this.adapter.getItem(i - 1);
+            if (item == null) {
+                return;
+            }
+            Object obj = item.object;
+            if (obj instanceof TL_stars.StarGift) {
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                if (item.red && (starGift instanceof TL_stars.TL_starGiftUnique)) {
+                    buyGift((TL_stars.TL_starGiftUnique) obj);
+                } else {
+                    this.onSelect.run(starGift);
+                    lambda$new$0();
+                }
+            }
+        }
+
+        public static Integer lambda$new$23(Integer num) {
+            return 0;
+        }
+
+        public void lambda$new$24() {
+            this.adapter.update(true);
+        }
+
+        private void buyGift(final TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+            final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+            alertDialog.showDelayed(400L);
+            final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            final AmountUtils$Currency amountUtils$Currency = tL_starGiftUnique.resale_ton_only ? AmountUtils$Currency.TON : AmountUtils$Currency.STARS;
+            StarsController.getInstance(this.currentAccount, amountUtils$Currency).getResellingGiftForm(tL_starGiftUnique, clientUserId, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    this.f$0.lambda$buyGift$27(alertDialog, amountUtils$Currency, tL_starGiftUnique, clientUserId, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                }
+            });
+        }
+
+        public void lambda$buyGift$27(AlertDialog alertDialog, AmountUtils$Currency amountUtils$Currency, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+            alertDialog.dismiss();
+            if (tL_payments_paymentFormStarGift == null) {
+                return;
+            }
+            StarGiftSheet.PaymentFormState paymentFormState = new StarGiftSheet.PaymentFormState(amountUtils$Currency, tL_payments_paymentFormStarGift);
+            new StarGiftSheet.ResaleBuyTransferAlert(getContext(), this.resourcesProvider, tL_starGiftUnique, paymentFormState, this.currentAccount, j, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), true, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$buyGift$26(tL_starGiftUnique, j, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);
+                }
+            }).show();
+        }
+
+        public void lambda$buyGift$26(final TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, StarGiftSheet.PaymentFormState paymentFormState, final Browser.Progress progress) {
+            progress.init();
+            StarsController.getInstance(this.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$buyGift$25(progress, tL_starGiftUnique, (Boolean) obj, (String) obj2);
+                }
+            });
+        }
+
+        public void lambda$buyGift$25(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, Boolean bool, String str) {
+            progress.end();
+            if (bool.booleanValue()) {
+                Utilities.Callback callback = this.onSelect;
+                if (callback != null) {
+                    callback.run(tL_starGiftUnique);
+                }
+                lambda$new$0();
+            }
+        }
+
+        @Override
+        public void onSheetTop(float f) {
+            float y = (f + this.containerView.getY()) - this.actionView.getMeasuredHeight();
+            float fClamp01 = 1.0f - Utilities.clamp01(Math.max(0.0f, (-y) + AndroidUtilities.dp(8.0f)) / this.actionView.getMeasuredHeight());
+            float height = this.container.getHeight() / 2.0f;
+            if (y > height) {
+                fClamp01 = Math.min(fClamp01, Utilities.clamp01(1.0f - ((y - height) / AndroidUtilities.dpf2(128.0f))));
+            }
+            this.actionView.setScaleX(fClamp01);
+            this.actionView.setScaleY(fClamp01);
+            this.actionView.setAlpha(AndroidUtilities.ilerp(fClamp01, 0.5f, 1.0f));
+            this.actionView.setTranslationY(y);
+        }
+
+        public SelectGiftSheet setOnSelect(Utilities.Callback callback) {
+            this.onSelect = callback;
+            return this;
+        }
+
+        public SelectGiftSheet without(HashSet hashSet) {
+            this.without.addAll(hashSet);
+            updateList(false);
+            return this;
+        }
+
+        public SelectGiftSheet setActionText(CharSequence charSequence) {
+            this.actionView.set(charSequence);
+            return this;
+        }
+
+        private void updateList(boolean z) {
+            this.adapter.update(true);
+        }
+
+        @Override
+        protected CharSequence getTitle() {
+            String str = this.collectionName;
+            return str != null ? str : "Select Gift";
+        }
+
+        @Override
+        protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+            UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                }
+            }, this.resourcesProvider) {
+                @Override
+                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                    if (i == 0) {
+                        return new RecyclerListView.Holder(new HeaderCell(SelectGiftSheet.this.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 13, 12, 4, false, ((BottomSheet) SelectGiftSheet.this).resourcesProvider));
+                    }
+                    if (i == 42) {
+                        return new RecyclerListView.Holder(new HeaderCell(SelectGiftSheet.this.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 13, 12, 4, false, true, ((BottomSheet) SelectGiftSheet.this).resourcesProvider));
+                    }
+                    return super.onCreateViewHolder(viewGroup, i);
+                }
+            };
+            this.adapter = universalAdapter;
+            return universalAdapter;
+        }
+
+        public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+            State state = this.state;
+            if (state == null || state.list == null || this.state.resaleList == null) {
+                return;
+            }
+            arrayList.add(UItem.asHeader(-1, "Your gifts"));
+            Iterator it = this.state.list.gifts.iterator();
+            boolean z = true;
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true));
+                    z = false;
+                }
+            }
+            if (this.state.list.loading || (this.state.list.gifts.isEmpty() && !this.state.list.endReached)) {
+                arrayList.add(UItem.asFlicker(1, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(2, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(3, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(4, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(5, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(6, 34).setSpanCount(1));
+            } else if (z) {
+                arrayList.add(UItem.asCenterShadow("You don't have other gifts\nfrom this collection."));
+            }
+            if (this.state.resaleList.getTotalCount() > 0 || this.hadResaleGifts) {
+                this.hadResaleGifts = true;
+                arrayList.add(UItem.asAnimatedHeader(-2, this.state.resaleList.getTotalCount() + " suitable gifts for resale"));
+                HorizontalScrollView horizontalScrollView = this.filterScrollView;
+                if (horizontalScrollView != null) {
+                    arrayList.add(UItem.asCustom(-3, horizontalScrollView));
+                }
+                Iterator it2 = this.state.resaleList.gifts.iterator();
+                while (it2.hasNext()) {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it2.next(), false, true, false, true, true));
+                }
+                if (this.state.resaleList.loading || (this.state.resaleList.gifts.isEmpty() && !this.state.resaleList.endReached)) {
+                    arrayList.add(UItem.asFlicker(10, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(11, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(12, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(13, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(14, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(15, 34).setSpanCount(1));
+                }
             }
         }
     }

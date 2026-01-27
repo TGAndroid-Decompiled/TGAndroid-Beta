@@ -20,7 +20,6 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +49,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.SectionsScrollView;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 
 public class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -71,7 +71,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     private boolean paid;
     private TextCheckCell paidCheckCell;
     private int reactionsCount;
-    private ScrollView scrollView;
+    private SectionsScrollView scrollView;
     private SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
     private int selectedCustomReactions;
     private SlideIntChooseView slideView;
@@ -136,7 +136,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     @Override
-    public android.view.View createView(android.content.Context r25) {
+    public android.view.View createView(android.content.Context r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity.createView(android.content.Context):android.view.View");
     }
 

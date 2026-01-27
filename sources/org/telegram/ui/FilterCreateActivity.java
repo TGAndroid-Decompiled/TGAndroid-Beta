@@ -521,7 +521,9 @@ public class FilterCreateActivity extends BaseFragment {
             }
         };
         this.listView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView2 = this.listView;
@@ -1554,12 +1556,10 @@ public class FilterCreateActivity extends BaseFragment {
             switch (i) {
                 case 0:
                     headerCell = new HeaderCell(this.mContext, 22);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 1:
                     UserCell userCell2 = new UserCell(this.mContext, 6, 0, false);
                     userCell2.setSelfAsSavedMessages(true);
-                    userCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     userCell = userCell2;
                     headerCell = userCell;
                     break;
@@ -1612,7 +1612,6 @@ public class FilterCreateActivity extends BaseFragment {
                         }
                     });
                     editText.setPadding(AndroidUtilities.dp(7.0f), editText.getPaddingTop(), editText.getPaddingRight(), editText.getPaddingBottom());
-                    editEmojiTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     editEmojiTextCell.editTextEmoji.getEditText().setImeOptions(268435462);
                     userCell = editEmojiTextCell;
                     headerCell = userCell;
@@ -1622,7 +1621,6 @@ public class FilterCreateActivity extends BaseFragment {
                     break;
                 case 4:
                     headerCell = new ButtonCell(this.mContext);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 5:
                     headerCell = new HintInnerCell(this.mContext);
@@ -1643,20 +1641,16 @@ public class FilterCreateActivity extends BaseFragment {
                     break;
                 case 8:
                     headerCell = new CreateLinkCell(this.mContext);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 9:
                     headerCell = FilterCreateActivity.this.new HeaderCellColorPreview(this.mContext);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 10:
                     headerCell = new PeerColorActivity.PeerColorGrid(FilterCreateActivity.this.getContext(), 2, ((BaseFragment) FilterCreateActivity.this).currentAccount, ((BaseFragment) FilterCreateActivity.this).resourceProvider);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 11:
                     FilterCreateActivity filterCreateActivity2 = FilterCreateActivity.this;
                     headerCell = filterCreateActivity2.new HeaderCellWithRight(this.mContext, ((BaseFragment) filterCreateActivity2).resourceProvider);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
             }
             return new RecyclerListView.Holder(headerCell);
@@ -1685,108 +1679,107 @@ public class FilterCreateActivity extends BaseFragment {
             String string2;
             ItemInner itemInner = (ItemInner) FilterCreateActivity.this.items.get(i);
             if (itemInner == null) {
+                return;
             }
             int i2 = i + 1;
             boolean z = i2 < FilterCreateActivity.this.items.size() && !((ItemInner) FilterCreateActivity.this.items.get(i2)).isShadow();
-            switch (viewHolder.getItemViewType()) {
-                case 0:
-                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                    if (itemInner.newSpan) {
-                        headerCell.setText(FilterCreateActivity.withNew(0, itemInner.text, false));
-                        break;
-                    } else {
-                        headerCell.setText(itemInner.text);
-                        break;
-                    }
-                case 1:
-                    UserCell userCell = (UserCell) viewHolder.itemView;
-                    if (itemInner.chatType != null) {
-                        userCell.setData(itemInner.chatType, itemInner.text, null, 0, z);
-                        break;
-                    } else {
-                        long j = itemInner.did;
-                        if (j > 0) {
-                            TLRPC.User user = FilterCreateActivity.this.getMessagesController().getUser(Long.valueOf(j));
-                            if (user != null) {
-                                if (user.bot) {
-                                    string2 = LocaleController.getString(R.string.Bot);
-                                } else if (user.contact) {
-                                    string2 = LocaleController.getString(R.string.FilterContact);
-                                } else {
-                                    string2 = LocaleController.getString(R.string.FilterNonContact);
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                if (itemInner.newSpan) {
+                    headerCell.setText(FilterCreateActivity.withNew(0, itemInner.text, false));
+                    return;
+                } else {
+                    headerCell.setText(itemInner.text);
+                    return;
+                }
+            }
+            if (itemViewType != 1) {
+                if (itemViewType != 4) {
+                    switch (itemViewType) {
+                        case 6:
+                            ((TextInfoPrivacyCell) viewHolder.itemView).setText(itemInner.text);
+                            break;
+                        case 7:
+                            ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
+                            break;
+                        case 8:
+                            FilterCreateActivity.this.createLinkCell = (CreateLinkCell) viewHolder.itemView;
+                            FilterCreateActivity.this.createLinkCell.setDivider(z);
+                            break;
+                        case 9:
+                            FilterCreateActivity.this.folderTagsHeader = (HeaderCellColorPreview) viewHolder.itemView;
+                            FilterCreateActivity.this.folderTagsHeader.setPreviewText(AnimatedEmojiSpan.cloneSpans(FilterCreateActivity.this.newFilterName, -1, FilterCreateActivity.this.folderTagsHeader.getPreviewTextPaint().getFontMetricsInt(), 0.5f), false);
+                            FilterCreateActivity.this.folderTagsHeader.setPreviewColor(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
+                            FilterCreateActivity.this.folderTagsHeader.setText(LocaleController.getString(R.string.FolderTagColor));
+                            break;
+                        case 10:
+                            final PeerColorActivity.PeerColorGrid peerColorGrid = (PeerColorActivity.PeerColorGrid) viewHolder.itemView;
+                            peerColorGrid.setCloseAsLock(!FilterCreateActivity.this.getUserConfig().isPremium());
+                            peerColorGrid.setSelected(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
+                            peerColorGrid.setOnColorClick(new Utilities.Callback() {
+                                @Override
+                                public final void run(Object obj) {
+                                    this.f$0.lambda$onBindViewHolder$0(peerColorGrid, (Integer) obj);
                                 }
-                                userCell.setData(user, null, string2, 0, z);
-                                break;
-                            }
-                        } else {
-                            TLRPC.Chat chat = FilterCreateActivity.this.getMessagesController().getChat(Long.valueOf(-j));
-                            if (chat != null) {
-                                if (chat.participants_count != 0) {
-                                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                        string = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
-                                    } else {
-                                        string = LocaleController.formatPluralStringComma("Members", chat.participants_count);
-                                    }
-                                } else if (!ChatObject.isPublic(chat)) {
-                                    if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                                        string = LocaleController.getString(R.string.ChannelPrivate);
-                                    } else {
-                                        string = LocaleController.getString(R.string.MegaPrivate);
-                                    }
-                                } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                                    string = LocaleController.getString(R.string.ChannelPublic);
-                                } else {
-                                    string = LocaleController.getString(R.string.MegaPublic);
-                                }
-                                userCell.setData(chat, null, string, 0, z);
-                                break;
-                            }
-                        }
+                            });
+                            break;
+                        case 11:
+                            HeaderCellWithRight headerCellWithRight = (HeaderCellWithRight) viewHolder.itemView;
+                            FilterCreateActivity.this.nameHeaderCell = headerCellWithRight;
+                            headerCellWithRight.setText(itemInner.text);
+                            headerCellWithRight.rightTextView.setText(itemInner.subtext);
+                            headerCellWithRight.rightTextView.setOnClickListener(itemInner.onClickListener);
+                            break;
                     }
-                    break;
-                case 3:
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    break;
-                case 4:
-                    ButtonCell buttonCell = (ButtonCell) viewHolder.itemView;
-                    buttonCell.setRed(itemInner.isRed);
-                    buttonCell.set(itemInner.iconResId, itemInner.text, z);
-                    break;
-                case 6:
-                    ((TextInfoPrivacyCell) viewHolder.itemView).setText(itemInner.text);
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    break;
-                case 7:
-                    ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
-                    break;
-                case 8:
-                    FilterCreateActivity.this.createLinkCell = (CreateLinkCell) viewHolder.itemView;
-                    FilterCreateActivity.this.createLinkCell.setDivider(z);
-                    break;
-                case 9:
-                    FilterCreateActivity.this.folderTagsHeader = (HeaderCellColorPreview) viewHolder.itemView;
-                    FilterCreateActivity.this.folderTagsHeader.setPreviewText(AnimatedEmojiSpan.cloneSpans(FilterCreateActivity.this.newFilterName, -1, FilterCreateActivity.this.folderTagsHeader.getPreviewTextPaint().getFontMetricsInt(), 0.5f), false);
-                    FilterCreateActivity.this.folderTagsHeader.setPreviewColor(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
-                    FilterCreateActivity.this.folderTagsHeader.setText(LocaleController.getString(R.string.FolderTagColor));
-                    break;
-                case 10:
-                    final PeerColorActivity.PeerColorGrid peerColorGrid = (PeerColorActivity.PeerColorGrid) viewHolder.itemView;
-                    peerColorGrid.setCloseAsLock(!FilterCreateActivity.this.getUserConfig().isPremium());
-                    peerColorGrid.setSelected(FilterCreateActivity.this.getUserConfig().isPremium() ? FilterCreateActivity.this.newFilterColor : -1, false);
-                    peerColorGrid.setOnColorClick(new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            this.f$0.lambda$onBindViewHolder$0(peerColorGrid, (Integer) obj);
-                        }
-                    });
-                    break;
-                case 11:
-                    HeaderCellWithRight headerCellWithRight = (HeaderCellWithRight) viewHolder.itemView;
-                    FilterCreateActivity.this.nameHeaderCell = headerCellWithRight;
-                    headerCellWithRight.setText(itemInner.text);
-                    headerCellWithRight.rightTextView.setText(itemInner.subtext);
-                    headerCellWithRight.rightTextView.setOnClickListener(itemInner.onClickListener);
-                    break;
+                    return;
+                }
+                ButtonCell buttonCell = (ButtonCell) viewHolder.itemView;
+                buttonCell.setRed(itemInner.isRed);
+                buttonCell.set(itemInner.iconResId, itemInner.text, z);
+                return;
+            }
+            UserCell userCell = (UserCell) viewHolder.itemView;
+            if (itemInner.chatType != null) {
+                userCell.setData(itemInner.chatType, itemInner.text, null, 0, z);
+                return;
+            }
+            long j = itemInner.did;
+            if (j > 0) {
+                TLRPC.User user = FilterCreateActivity.this.getMessagesController().getUser(Long.valueOf(j));
+                if (user != null) {
+                    if (user.bot) {
+                        string2 = LocaleController.getString(R.string.Bot);
+                    } else if (user.contact) {
+                        string2 = LocaleController.getString(R.string.FilterContact);
+                    } else {
+                        string2 = LocaleController.getString(R.string.FilterNonContact);
+                    }
+                    userCell.setData(user, null, string2, 0, z);
+                    return;
+                }
+                return;
+            }
+            TLRPC.Chat chat = FilterCreateActivity.this.getMessagesController().getChat(Long.valueOf(-j));
+            if (chat != null) {
+                if (chat.participants_count != 0) {
+                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                        string = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
+                    } else {
+                        string = LocaleController.formatPluralStringComma("Members", chat.participants_count);
+                    }
+                } else if (!ChatObject.isPublic(chat)) {
+                    if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                        string = LocaleController.getString(R.string.ChannelPrivate);
+                    } else {
+                        string = LocaleController.getString(R.string.MegaPrivate);
+                    }
+                } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    string = LocaleController.getString(R.string.ChannelPublic);
+                } else {
+                    string = LocaleController.getString(R.string.MegaPublic);
+                }
+                userCell.setData(chat, null, string, 0, z);
             }
         }
 
@@ -1828,29 +1821,22 @@ public class FilterCreateActivity extends BaseFragment {
         };
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, TextCell.class, UserCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        ActionBar actionBar = this.actionBar;
-        int i = ThemeDescription.FLAG_BACKGROUND;
-        int i2 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_text_RedRegular));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText4));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"ImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
-        int i4 = Theme.key_windowBackgroundGrayShadow;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i4));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{UserCell.class}, new String[]{"adminTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_profile_creatorIcon));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayIcon));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteGrayText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusOnlineColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlueText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, null, Theme.avatarDrawables, null, Theme.key_avatar_text));
@@ -2049,7 +2035,6 @@ public class FilterCreateActivity extends BaseFragment {
             this.currentAccount = i;
             this.filterId = i2;
             setImportantForAccessibility(1);
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, false);
             this.titleTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(15.66f));
@@ -2820,7 +2805,6 @@ public class FilterCreateActivity extends BaseFragment {
                         textInfoPrivacyCell.setFixedSize(12);
                         textInfoPrivacyCell.setText("");
                     }
-                    textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 }
 
                 @Override

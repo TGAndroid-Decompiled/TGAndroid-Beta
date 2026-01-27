@@ -188,9 +188,9 @@ public class ThanosEffect extends TextureView {
     }
 
     public void destroy() {
-        this.destroyed = true;
         Runnable runnable = this.whenDone;
         if (runnable != null) {
+            this.destroyed = true;
             this.whenDone = null;
             ensureRunOnUIThread(runnable);
         }
@@ -588,8 +588,7 @@ public class ThanosEffect extends TextureView {
             this.scaleHandle = GLES20.glGetUniformLocation(this.drawProgram, "scale");
             this.uvOffsetHandle = GLES20.glGetUniformLocation(this.drawProgram, "uvOffset");
             GLES20.glViewport(0, 0, this.width, this.height);
-            GLES20.glEnable(3042);
-            GLES20.glBlendFunc(770, 771);
+            GLES20.glDisable(3042);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glUseProgram(this.drawProgram);
             GLES20.glUniform2f(this.sizeHandle, this.width, this.height);
@@ -637,7 +636,8 @@ public class ThanosEffect extends TextureView {
                     if (this.pendingAnimations.isEmpty() && this.drawnAnimations) {
                         killInternal();
                     }
-                } catch (Exception unused) {
+                } catch (Exception e) {
+                    FileLog.e(e);
                     for (int i3 = 0; i3 < this.toRunStartCallback.size(); i3++) {
                         AndroidUtilities.runOnUIThread(((Animation) this.toRunStartCallback.get(i3)).startCallback);
                     }

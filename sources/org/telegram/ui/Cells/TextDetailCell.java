@@ -44,6 +44,10 @@ public class TextDetailCell extends FrameLayout {
     }
 
     public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
+        this(context, 23, resourcesProvider, z, z2);
+    }
+
+    public TextDetailCell(Context context, int i, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
         this.showMoreTextView = null;
         this.resourcesProvider = resourcesProvider;
@@ -69,11 +73,12 @@ public class TextDetailCell extends FrameLayout {
         spoilersTextView.setEllipsize(truncateAt);
         spoilersTextView.setImportantForAccessibility(2);
         spoilersTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
-        addView(spoilersTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, z ? 27.0f : 0.0f));
+        float f = i - 6;
+        addView(spoilersTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, f, 6.0f, f, z ? 27.0f : 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
-            protected int processColor(int i) {
-                return TextDetailCell.this.processColor(i);
+            protected int processColor(int i2) {
+                return TextDetailCell.this.processColor(i2);
             }
 
             @Override
@@ -100,14 +105,16 @@ public class TextDetailCell extends FrameLayout {
         linksTextView.setEllipsize(truncateAt);
         linksTextView.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
         if (z) {
-            addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 32.0f, 23.0f, 4.0f));
+            float f2 = i;
+            addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, f2, 32.0f, f2, 4.0f));
         } else {
-            addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+            float f3 = i;
+            addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, f3, 32.0f, f3, 4.0f));
         }
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
-            protected int processColor(int i) {
-                return TextDetailCell.this.processColor(i);
+            protected int processColor(int i2) {
+                return TextDetailCell.this.processColor(i2);
             }
 
             @Override
@@ -136,9 +143,11 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setEllipsize(truncateAt);
         linksTextView2.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
         if (z) {
-            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 32.0f, 23.0f, 4.0f));
+            float f4 = i;
+            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, f4, 32.0f, f4, 4.0f));
         } else {
-            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+            float f5 = i;
+            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, f5, 32.0f, f5, 4.0f));
         }
         updateColors();
         ImageView imageView = new ImageView(context);

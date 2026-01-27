@@ -357,10 +357,12 @@ import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
 import org.telegram.ui.Components.chat.ChatActivityBottomViewsVisibilityController;
+import org.telegram.ui.Components.chat.ChatActivityTopFadeView;
 import org.telegram.ui.Components.chat.ChatInputViewsContainer;
 import org.telegram.ui.Components.chat.ChatListViewPaddingsAnimator;
 import org.telegram.ui.Components.chat.WallpaperBitmapProvider;
@@ -1071,7 +1073,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean toPullingDownTransition;
     private FrameLayout topChatPanelView;
     private ChatActivityTopPanelLayout topPanelLayout;
-    private View topPanelLayoutFade;
+    private ChatActivityTopFadeView topPanelLayoutFade;
     private UndoView topUndoView;
     private float topViewOffset;
     private int topViewWasVisible;
@@ -1170,7 +1172,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
     }
 
-    public static void access$11300(ChatActivity chatActivity, int i) throws Resources.NotFoundException, NumberFormatException {
+    public static void access$11300(ChatActivity chatActivity, int i) throws Resources.NotFoundException {
         chatActivity.processSelectedOption(i);
     }
 
@@ -1200,7 +1202,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i;
     }
 
-    static int access$34804(ChatActivity chatActivity) {
+    static int access$34904(ChatActivity chatActivity) {
         int i = chatActivity.pinBullerinTag + 1;
         chatActivity.pinBullerinTag = i;
         return i;
@@ -1218,11 +1220,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$52500(ChatActivity chatActivity) {
+    public static void access$52600(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$57210(ChatActivity chatActivity) {
+    static int access$57310(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -1468,7 +1470,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.shareAlertDebugTopicsSlowMotion = !this.shareAlertDebugTopicsSlowMotion;
     }
 
-    public void updateMessages(ArrayList arrayList, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public void updateMessages(ArrayList arrayList, boolean z) {
         for (int i = 0; i < arrayList.size(); i++) {
             this.chatAdapter.updateRowWithMessageObject((MessageObject) arrayList.get(i), false, z);
         }
@@ -1494,7 +1496,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 boolean limitReached;
 
                 @Override
-                public void onSelectionChanged(int i5, boolean z2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+                public void onSelectionChanged(int i5, boolean z2, float f, float f2) throws Resources.NotFoundException {
                     int i6 = i5 - ChatActivity.this.chatAdapter.messagesStartRow;
                     if (z) {
                         z2 = !z2;
@@ -1579,7 +1581,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+        public void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException {
             ChatMessageCell chatMessageCell;
             MessageObject messageObject;
             boolean z = false;
@@ -1618,7 +1620,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     final int replyMsgId = chatActionCell3.getMessageObject().getReplyMsgId();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() throws Resources.NotFoundException, NumberFormatException {
+                        public final void run() throws Resources.NotFoundException {
                             this.f$0.lambda$onItemClick$0(replyMsgId);
                         }
                     }, 16L);
@@ -1650,7 +1652,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$onItemClick$0(int i) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$onItemClick$0(int i) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, 0, true, 0, true, 0);
         }
 
@@ -1776,7 +1778,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onMessageSend(CharSequence charSequence, boolean z, int i, int i2, long j) {
+        public void onMessageSend(CharSequence charSequence, boolean z, int i, int i2, long j) throws Resources.NotFoundException {
             MessagePreviewParams messagePreviewParams;
             MessagePreviewParams.Messages messages;
             TLRPC.Message message;
@@ -2033,7 +2035,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onTextChanged(final CharSequence charSequence, boolean z, boolean z2) {
+        public void onTextChanged(final CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException {
             MediaController.getInstance().setInputFieldHasText(!TextUtils.isEmpty(charSequence) || ChatActivity.this.chatActivityEnterView.isEditingMessage());
             if (ChatActivity.this.mentionContainer != null && ChatActivity.this.mentionContainer.getAdapter() != null) {
                 ChatActivity.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, ChatActivity.this.chatActivityEnterView.getCursorPosition(), ChatActivity.this.messages, false, false);
@@ -2050,7 +2052,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity.this.checkEditLinkRemoved(charSequence);
                     ChatActivity.this.waitingForCharaterEnterRunnable = new Runnable() {
                         @Override
-                        public void run() {
+                        public void run() throws Resources.NotFoundException {
                             if (this == ChatActivity.this.waitingForCharaterEnterRunnable) {
                                 ChatActivity.this.searchLinks(charSequence, false);
                                 ChatActivity.this.waitingForCharaterEnterRunnable = null;
@@ -2076,7 +2078,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onTextSpansChanged(CharSequence charSequence) {
+        public void onTextSpansChanged(CharSequence charSequence) throws Resources.NotFoundException {
             ChatActivity.this.searchLinks(charSequence, true);
         }
 
@@ -2129,7 +2131,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onMessageEditEnd(boolean z) throws Resources.NotFoundException, NumberFormatException {
+        public void onMessageEditEnd(boolean z) throws Resources.NotFoundException {
             boolean z2;
             if (ChatActivity.this.chatListItemAnimator != null) {
                 ChatActivity chatActivity = ChatActivity.this;
@@ -2147,7 +2149,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (ChatActivity.this.editingMessageObject != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$onMessageEditEnd$2();
                     }
                 }, 30L);
@@ -2168,7 +2170,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.updateVisibleRows();
         }
 
-        public void lambda$onMessageEditEnd$2() {
+        public void lambda$onMessageEditEnd$2() throws Resources.NotFoundException {
             ChatActivity.this.hideFieldPanel(true);
         }
 
@@ -2223,7 +2225,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             MessageSuggestionParams messageSuggestionParams = messageSuggestionParamsEmpty;
             ChatActivity chatActivity = ChatActivity.this;
-            new MessageSuggestionOfferSheet(context, i, j, messageSuggestionParams, chatActivity, chatActivity.getResourceProvider(), 0, new ChatActivity$$ExternalSyntheticLambda186(ChatActivity.this)).show();
+            new MessageSuggestionOfferSheet(context, i, j, messageSuggestionParams, chatActivity, chatActivity.getResourceProvider(), 0, new ChatActivity$$ExternalSyntheticLambda181(ChatActivity.this)).show();
         }
 
         @Override
@@ -2316,7 +2318,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void scrollToSendingMessage() throws Resources.NotFoundException, NumberFormatException {
+        public void scrollToSendingMessage() throws Resources.NotFoundException {
             int sendingMessageId = ChatActivity.this.getSendMessagesHelper().getSendingMessageId(ChatActivity.this.dialog_id);
             if (sendingMessageId != 0) {
                 ChatActivity.this.scrollToMessageId(sendingMessageId, 0, true, 0, true, 0);
@@ -2352,7 +2354,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void bottomPanelTranslationYChanged(float f) throws Resources.NotFoundException, NumberFormatException {
+        public void bottomPanelTranslationYChanged(float f) throws Resources.NotFoundException {
             if (f != 0.0f) {
                 ChatActivity.this.wasManualScroll = true;
             }
@@ -2679,7 +2681,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) throws Resources.NotFoundException {
                 if (i < 0 || i >= ChatActivity.this.botContextResults.size()) {
                     return;
                 }
@@ -2699,7 +2701,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public boolean onItemClick(android.view.View r12, int r13, float r14, float r15) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+            public boolean onItemClick(android.view.View r12, int r13, float r14, float r15) throws android.content.res.Resources.NotFoundException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass10.onItemClick(android.view.View, int, float, float):boolean");
             }
         };
@@ -2808,7 +2810,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public boolean onFragmentCreate() throws java.lang.InterruptedException {
+    public boolean onFragmentCreate() throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.onFragmentCreate():boolean");
     }
 
@@ -3410,7 +3412,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onQuoteClick(MessageObject messageObject, int i, int i2, CharSequence charSequence) throws Resources.NotFoundException, NumberFormatException {
+        protected void onQuoteClick(MessageObject messageObject, int i, int i2, CharSequence charSequence) throws Resources.NotFoundException {
             ChatActivity chatActivity;
             MessageObject.GroupedMessages group;
             if (messageObject == null || (chatActivity = this.chatActivity) == null) {
@@ -3459,7 +3461,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r47) throws java.lang.InterruptedException {
+    public android.view.View createView(final android.content.Context r54) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -3471,7 +3473,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onItemClick(final int i) throws Resources.NotFoundException, NumberFormatException {
+        public void onItemClick(final int i) throws Resources.NotFoundException {
             TLRPC.User user;
             TLRPC.ChatFull chatFull;
             final TLRPC.User user2;
@@ -4158,9 +4160,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$createView$20() {
         invalidateChatListViewTopPadding();
         invalidateMessagesVisiblePart();
+        checkUi_topFade();
     }
 
-    public void lambda$createView$21(int i, View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$21(int i, View view) throws Resources.NotFoundException {
         jumpToDate(i);
     }
 
@@ -4418,7 +4421,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             ChatActivity.this.textSelectionHelper.checkSelectionCancel(motionEvent);
             if (isFastScrollAnimationRunning()) {
                 return false;
@@ -4445,7 +4448,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass20.drawReplyButton(android.graphics.Canvas):void");
         }
 
-        private void processTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+        private void processTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             TLRPC.Chat chat;
             if (motionEvent != null) {
                 ChatActivity.this.wasManualScroll = true;
@@ -4542,7 +4545,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             ChatActivity.this.textSelectionHelper.checkSelectionCancel(motionEvent);
             if (motionEvent.getAction() == 0) {
                 ChatActivity.this.scrollByTouch = true;
@@ -4651,7 +4654,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void requestDisallowInterceptTouchEvent(boolean z) throws Resources.NotFoundException, NumberFormatException {
+        public void requestDisallowInterceptTouchEvent(boolean z) throws Resources.NotFoundException {
             super.requestDisallowInterceptTouchEvent(z);
             if (ChatActivity.this.slidingView != null) {
                 processTouchEvent(null);
@@ -4682,7 +4685,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
+        public void onDraw(Canvas canvas) throws Resources.NotFoundException {
             float measuredHeight;
             super.onDraw(canvas);
             if (ChatActivity.this.slidingView != null) {
@@ -5528,7 +5531,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int i) throws Resources.NotFoundException, NumberFormatException {
+        public void onScrollStateChanged(RecyclerView recyclerView, int i) throws Resources.NotFoundException {
             if (i == 0) {
                 if (ChatActivity.this.pollHintCell != null) {
                     ChatActivity.this.pollHintView.showForMessageCell(ChatActivity.this.pollHintCell, -1, ChatActivity.this.pollHintX, ChatActivity.this.pollHintY, true);
@@ -5581,7 +5584,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) throws Resources.NotFoundException, NumberFormatException {
+        public void onScrolled(RecyclerView recyclerView, int i, int i2) throws Resources.NotFoundException {
             boolean z;
             ChatActivity.this.chatListView.invalidate();
             ChatActivityFragmentView chatActivityFragmentView = ChatActivity.this.contentView;
@@ -5748,7 +5751,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$31(View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$31(View view) throws Resources.NotFoundException {
         if (this.floatingDateView.getAlpha() == 0.0f || this.actionBar.isActionModeShowed() || isReport()) {
             return;
         }
@@ -5815,7 +5818,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tL_document);
             AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$createView$36(tL_document, strFindAnimatedEmojiEmoticon, itemParent, sendAnimationData, (Long) obj);
                 }
             });
@@ -5854,7 +5857,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (this.chatMode == 1) {
                     AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z, int i3, int i4) {
+                        public final void didSelectDate(boolean z, int i3, int i4) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$37(item, z, i3, i4);
                         }
                     }, this.themeDelegate);
@@ -5865,7 +5868,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, this.dialog_id, 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) {
+                        public final void run(Object obj) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$38(item, (Long) obj);
                         }
                     });
@@ -5907,7 +5910,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) {
+                        public final void run(Object obj) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$40(botInlineResult, (Long) obj);
                         }
                     });
@@ -5966,7 +5969,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) {
+    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) throws Resources.NotFoundException {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
@@ -5986,13 +5989,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tL_document, str, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, null, z, i, 0, false, obj, this.quickReplyShortcut, getQuickReplyId(), 0L, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
     }
 
-    public void lambda$createView$37(Object obj, boolean z, int i, int i2) {
+    public void lambda$createView$37(Object obj, boolean z, int i, int i2) throws Resources.NotFoundException {
         getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, z, i, 0, null, false));
         this.chatActivityEnterView.setFieldText("");
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$38(Object obj, Long l) {
+    public void lambda$createView$38(Object obj, Long l) throws Resources.NotFoundException {
         SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, true, 0, 0, null, false);
         sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
         sendMessageParamsOf.quick_reply_shortcut_id = getQuickReplyId();
@@ -6004,11 +6007,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) {
+    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) throws Resources.NotFoundException {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i, int i2) {
+                public final void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
                     this.f$0.lambda$createView$39(botInlineResult, l, z, i, i2);
                 }
             }, this.themeDelegate);
@@ -6017,7 +6020,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) {
+    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) throws Resources.NotFoundException {
         sendBotInlineResult(botInlineResult, z, i, l.longValue());
     }
 
@@ -6096,7 +6099,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             updateSearchButtons(getMediaDataController().getMask(), getMediaDataController().getSearchPosition(), getMediaDataController().getSearchCount());
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$createView$46(messageObject);
                 }
             });
@@ -6106,7 +6109,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showMessagesSearchListView(false);
     }
 
-    public void lambda$createView$46(MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$46(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0, null, new Runnable() {
             @Override
             public final void run() {
@@ -6155,11 +6158,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         protected void onChangedIslandTotalHeight(float f) {
             ChatActivity.this.checkUi_inputIslandHeight();
-        }
-
-        @Override
-        public void setAlpha(float f) {
-            super.setAlpha(f);
         }
 
         @Override
@@ -6330,19 +6328,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.onHideFieldPanelRunnable = null;
             }
         }
-
-        @Override
-        protected void createEmojiView() {
-            super.createEmojiView();
-            getEmojiView();
-        }
     }
 
     public void lambda$createView$49(View view) {
         openForward(false);
     }
 
-    public void lambda$createView$50(View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$50(View view) throws Resources.NotFoundException {
         int i;
         MessageObject messageObject = null;
         for (int i2 = 1; i2 >= 0; i2--) {
@@ -6362,7 +6354,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateSelectedMessageReactions();
     }
 
-    public void lambda$createView$52(boolean[] zArr, Context context, View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$52(boolean[] zArr, Context context, View view) throws Resources.NotFoundException {
         MessageObject messageObject;
         boolean z = zArr[0];
         if (z) {
@@ -6376,7 +6368,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (messageSuggestionParamsEmpty == null) {
                 messageSuggestionParamsEmpty = MessageSuggestionParams.empty();
             }
-            new MessageSuggestionOfferSheet(context, i2, j, messageSuggestionParamsEmpty, this, getResourceProvider(), 0, new ChatActivity$$ExternalSyntheticLambda186(this)).show();
+            new MessageSuggestionOfferSheet(context, i2, j, messageSuggestionParamsEmpty, this, getResourceProvider(), 0, new ChatActivity$$ExternalSyntheticLambda181(this)).show();
             return;
         }
         if (i == 1 && (messageObject = this.editingMessageObject) != null) {
@@ -6440,7 +6432,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openAttachMenu();
     }
 
-    public boolean lambda$createView$53(View view) throws Resources.NotFoundException, NumberFormatException {
+    public boolean lambda$createView$53(View view) throws Resources.NotFoundException {
         MessageObject messageObject;
         MessageObject messageObject2;
         int i = this.fieldPanelShown;
@@ -6455,7 +6447,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$createView$54(View view) {
+    public void lambda$createView$54(View view) throws Resources.NotFoundException {
         MessageObject messageObject;
         this.messageSuggestionParams = null;
         int i = this.fieldPanelShown;
@@ -6495,7 +6487,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(false, null, null, null, null, true, 0, null, true, 0L, true);
     }
 
-    public void lambda$createView$55(View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$55(View view) throws Resources.NotFoundException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null) {
             scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0);
@@ -6972,7 +6964,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateSearchUpDownButtonVisibility(true);
     }
 
-    public void clearSearch() throws Resources.NotFoundException, NumberFormatException {
+    public void clearSearch() throws Resources.NotFoundException {
         SearchItemListener searchItemListener = this.searchItemListener;
         if (searchItemListener != null) {
             searchItemListener.onSearchCollapse();
@@ -7653,9 +7645,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         AnonymousClass56 anonymousClass56 = new AnonymousClass56(getContext(), this, this.currentAccount, getDialogId(), getResourceProvider());
         this.topicsTabs = anonymousClass56;
-        anonymousClass56.setSideMenuBackgroundDrawable(this.glassBackgroundDrawableFactory.create(anonymousClass56, this.blurredBackgroundColorProvider));
+        anonymousClass56.setSideMenuBackgroundDrawable(this.glassBackgroundDrawableFactory.create(anonymousClass56, BlurredBackgroundProviderImpl.topPanelChatActivity(this.themeDelegate)));
         TopicsTabsView topicsTabsView = this.topicsTabs;
-        topicsTabsView.setTopMenuBackgroundDrawable(this.glassBackgroundDrawableFactory.create(topicsTabsView, this.blurredBackgroundColorProvider));
+        topicsTabsView.setTopMenuBackgroundDrawable(this.glassBackgroundDrawableFactory.create(topicsTabsView, BlurredBackgroundProviderImpl.topPanelChatActivity(this.themeDelegate)));
         this.topicsTabs.setCurrentTopic(getTopicId());
         this.topicsTabs.setOnNewTopicSelected(new Runnable() {
             @Override
@@ -7665,13 +7657,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
         this.topicsTabs.setOnTopicSelected(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws Resources.NotFoundException {
                 this.f$0.lambda$createTopicsTabs$92((Integer) obj, (Boolean) obj2);
             }
         });
         this.topicsTabs.setOnDialogSelected(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws Resources.NotFoundException {
                 this.f$0.lambda$createTopicsTabs$93((Long) obj, (Boolean) obj2);
             }
         });
@@ -7710,6 +7702,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (ChatActivity.this.emptyViewContainer != null) {
                 ChatActivity.this.emptyViewContainer.setTranslationX(ChatActivity.this.getSideMenuWidth() / 2.0f);
             }
+            ChatActivity.this.checkUi_topFade();
         }
 
         public void lambda$updateSidemenuPosition$0(View view) {
@@ -7764,7 +7757,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         presentFragment(TopicCreateFragment.create(-this.dialog_id, 0L).setOpenInChatActivity(this));
     }
 
-    public void lambda$createTopicsTabs$92(Integer num, Boolean bool) {
+    public void lambda$createTopicsTabs$92(Integer num, Boolean bool) throws Resources.NotFoundException {
         TLRPC.TL_forumTopic tL_forumTopicFindTopic;
         if (num.intValue() == getTopicId()) {
             return;
@@ -7852,7 +7845,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createTopicsTabs$93(Long l, Boolean bool) {
+    public void lambda$createTopicsTabs$93(Long l, Boolean bool) throws Resources.NotFoundException {
         if (l.longValue() == getTopicId()) {
             return;
         }
@@ -8090,7 +8083,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onReactionClicked(android.view.View r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+                public void onReactionClicked(android.view.View r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28) throws android.content.res.Resources.NotFoundException {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass58.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
                 }
             });
@@ -8322,13 +8315,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         showDialog(AlertsCreator.createCalendarPickerDialog(getParentActivity(), 1375315200000L, new MessagesStorage.IntCallback() {
             @Override
-            public void run(int i) throws Resources.NotFoundException, NumberFormatException {
+            public void run(int i) throws Resources.NotFoundException {
                 ChatActivity.this.jumpToDate(i);
             }
         }, this.themeDelegate).create());
     }
 
-    public void onPageDownClicked() throws Resources.NotFoundException, NumberFormatException {
+    public void onPageDownClicked() throws Resources.NotFoundException {
         this.wasManualScroll = true;
         this.textSelectionHelper.cancelTextSelectionRunnable();
         Runnable runnable = new Runnable() {
@@ -8629,7 +8622,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.sideControlsButtonsLayout.setButtonCount(3, this.reactionsMentionCount, z);
     }
 
-    public void fallbackFieldPanel() {
+    public void fallbackFieldPanel() throws Resources.NotFoundException {
         MessagePreviewParams.Messages messages;
         MessageSuggestionParams messageSuggestionParams = this.messageSuggestionParams;
         if (messageSuggestionParams != null) {
@@ -8664,7 +8657,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void openForwardingPreview(int i) {
+    private void openForwardingPreview(int i) throws Resources.NotFoundException {
         TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers;
         MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
         if (messagePreviewParams == null || this.forwardingPreviewView != null) {
@@ -8717,7 +8710,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void removeLink() {
+        protected void removeLink() throws Resources.NotFoundException {
             dismiss(true);
             ChatActivity chatActivity = ChatActivity.this;
             chatActivity.foundWebPage = null;
@@ -8742,7 +8735,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void removeReply() {
+        protected void removeReply() throws Resources.NotFoundException {
             dismiss(true);
             ChatActivity.this.replyingMessageObject = null;
             ChatActivity.this.replyingQuote = null;
@@ -8752,7 +8745,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void removeForward() {
+        protected void removeForward() throws Resources.NotFoundException {
             super.removeForward();
             dismiss(true);
             ChatActivity chatActivity = ChatActivity.this;
@@ -8797,7 +8790,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onDismiss(boolean z) {
+        protected void onDismiss(boolean z) throws Resources.NotFoundException {
             ChatActivity chatActivity = ChatActivity.this;
             chatActivity.forwardingPreviewView = null;
             chatActivity.checkShowBlur(true);
@@ -9137,7 +9130,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         UndoView undoView = new UndoView(getContext(), this, true, this.themeDelegate) {
             @Override
-            public void didPressUrl(CharacterStyle characterStyle) throws UnsupportedEncodingException {
+            public void didPressUrl(CharacterStyle characterStyle) throws Resources.NotFoundException, UnsupportedEncodingException {
                 ChatActivity.this.didPressMessageUrl(characterStyle, false, null, null);
             }
 
@@ -9161,7 +9154,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.topPanelLayout.setDebugName(this.pinnedMessageView, "pinned message view");
             this.pinnedMessageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException, NumberFormatException {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$createPinnedMessageView$107(view);
                 }
             });
@@ -9375,7 +9368,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createPinnedMessageView$107(View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createPinnedMessageView$107(View view) throws Resources.NotFoundException {
         int iIntValue;
         this.wasManualScroll = true;
         if (isThreadChat() && !this.isTopic) {
@@ -9461,13 +9454,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.setTitle(LocaleController.formatPluralString("messages", this.messagePreviewParams.forwardMessages.messages.size(), new Object[0]));
         builder.setPositiveButton(LocaleController.getString(R.string.CancelForwarding), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) throws Resources.NotFoundException {
                 this.f$0.lambda$openAnotherForward$111(alertDialog, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.ShowForwardingOptions), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) throws Resources.NotFoundException {
                 this.f$0.lambda$openAnotherForward$112(alertDialog, i2);
             }
         });
@@ -9479,7 +9472,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openAnotherForward$111(AlertDialog alertDialog, int i) {
+    public void lambda$openAnotherForward$111(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         this.forbidForwardingWithDismiss = false;
         MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
         if (messagePreviewParams != null) {
@@ -9488,7 +9481,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         fallbackFieldPanel();
     }
 
-    public void lambda$openAnotherForward$112(AlertDialog alertDialog, int i) {
+    public void lambda$openAnotherForward$112(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         openForwardingPreview(1);
     }
 
@@ -9543,7 +9536,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void openReplyMessage(int i) throws Resources.NotFoundException, NumberFormatException {
+        public void openReplyMessage(int i) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, 0, true, 0, true, 0);
         }
 
@@ -9579,18 +9572,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.pinBulletin.hide();
             }
             ChatActivity.this.showPinBulletin = true;
-            final int iAccess$34804 = ChatActivity.access$34804(ChatActivity.this);
+            final int iAccess$34904 = ChatActivity.access$34904(ChatActivity.this);
             final int pinnedMessagesCount = ChatActivity.this.getPinnedMessagesCount();
             ChatActivity chatActivity = ChatActivity.this;
             chatActivity.pinBulletin = BulletinFactory.createUnpinAllMessagesBulletin(chatActivity, pinnedMessagesCount, z2, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, iAccess$34804);
+                    this.f$0.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, iAccess$34904);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onUnpin$1(z2, iAccess$34804);
+                    this.f$0.lambda$onUnpin$1(z2, iAccess$34904);
                 }
             }, ChatActivity.this.themeDelegate);
         }
@@ -9931,7 +9924,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         ChatActivityTopPanelLayout chatActivityTopPanelLayout = this.topPanelLayout;
         if (chatActivityTopPanelLayout != null) {
-            chatActivityTopPanelLayout.setTranslationY(this.topicsTabs != null ? AndroidUtilities.dp(55.0f) * (1.0f - this.topicsTabs.sidemenuT) : 0.0f);
+            chatActivityTopPanelLayout.setTranslationY(this.contentPanTranslation + (this.topicsTabs != null ? AndroidUtilities.dp(55.0f) * (1.0f - this.topicsTabs.sidemenuT) : 0.0f));
         }
     }
 
@@ -10018,7 +10011,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return false;
     }
 
-    public void share() throws Resources.NotFoundException, NumberFormatException {
+    public void share() throws Resources.NotFoundException {
         MessageObject messageObject = null;
         for (int i = 1; i >= 0; i--) {
             if (messageObject == null && this.selectedMessagesIds[i].size() != 0) {
@@ -10229,7 +10222,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) {
+    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) throws Resources.NotFoundException {
         MentionsContainerView mentionsContainerView = this.mentionContainer;
         if (mentionsContainerView == null) {
             return;
@@ -10287,7 +10280,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return null;
     }
 
-    public void jumpToDate(int i) throws Resources.NotFoundException, NumberFormatException {
+    public void jumpToDate(int i) throws Resources.NotFoundException {
         int i2;
         TLRPC.Message message;
         if (this.messages.isEmpty()) {
@@ -10484,7 +10477,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void didPressedButton(int i, boolean z2, boolean z3, int i2, int i3, long j, boolean z4, boolean z5, long j2) {
+            public void didPressedButton(int i, boolean z2, boolean z3, int i2, int i3, long j, boolean z4, boolean z5, long j2) throws Resources.NotFoundException {
                 ChatActivity chatActivity;
                 ChatAttachAlert chatAttachAlert2;
                 boolean z6;
@@ -10640,7 +10633,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public boolean needEnterText() {
+    public boolean needEnterText() throws Resources.NotFoundException {
         boolean zIsKeyboardVisible = this.chatActivityEnterView.isKeyboardVisible();
         if (zIsKeyboardVisible) {
             this.chatActivityEnterView.showEmojiView();
@@ -10690,7 +10683,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         undoView.showWithAction(this.dialog_id, 0, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$performHistoryClear$118(j, z);
             }
         }, new Runnable() {
@@ -10702,7 +10695,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.chatAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$performHistoryClear$118(long j, boolean z) {
+    public void lambda$performHistoryClear$118(long j, boolean z) throws Resources.NotFoundException {
         if (!this.pinnedMessageIds.isEmpty()) {
             MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("pin_" + this.dialog_id, ((Integer) this.pinnedMessageIds.get(0)).intValue()).commit();
             this.pinnedMessageIds.clear();
@@ -10784,7 +10777,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateBottomOverlay();
     }
 
-    public void afterMessageSend() {
+    public void afterMessageSend() throws Resources.NotFoundException {
         this.messageSuggestionParams = null;
         if (this.threadMessageId == 0 || this.isTopic) {
             if (this.isTopic) {
@@ -10871,7 +10864,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void openReplyMessage(int i2) throws Resources.NotFoundException, NumberFormatException {
+            public void openReplyMessage(int i2) throws Resources.NotFoundException {
                 ChatActivity.this.scrollToMessageId(i2, 0, true, 0, true, 0);
             }
 
@@ -10901,7 +10894,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
+            public final void onClick(AlertDialog alertDialog, int i3) throws Resources.NotFoundException {
                 this.f$0.lambda$shareMyContact$121(i, messageObject, alertDialog, i3);
             }
         });
@@ -10909,7 +10902,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(builder.create());
     }
 
-    public void lambda$shareMyContact$121(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) {
+    public void lambda$shareMyContact$121(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) throws Resources.NotFoundException {
         if (i == 1) {
             TLRPC.TL_contacts_acceptContact tL_contacts_acceptContact = new TLRPC.TL_contacts_acceptContact();
             tL_contacts_acceptContact.id = getMessagesController().getInputUser(this.currentUser);
@@ -11919,14 +11912,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         PollCreateActivity pollCreateActivity = new PollCreateActivity(this, false, bool);
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
-            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) {
+            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$openPollCreate$125(messageMedia, map, z, i);
             }
         });
         presentFragment(pollCreateActivity);
     }
 
-    public void lambda$openPollCreate$125(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) {
+    public void lambda$openPollCreate$125(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) throws Resources.NotFoundException {
         if (checkSlowModeAlert()) {
             SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(messageMedia, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC.ReplyMarkup) null, (HashMap<String, String>) map, z, i, 0);
             sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
@@ -11937,7 +11930,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, int i2, long j, boolean z2, long j2) throws Resources.NotFoundException {
         String str2 = null;
         fillEditingMediaWithCaption(str, null);
         if (checkSlowModeAlert()) {
@@ -11960,7 +11953,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void didSelectPhotos(ArrayList arrayList, boolean z, int i, int i2, long j) {
+    public void didSelectPhotos(ArrayList arrayList, boolean z, int i, int i2, long j) throws Resources.NotFoundException {
         fillEditingMediaWithCaption(((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)).entities);
         SendMessagesHelper.prepareSendingMedia(getAccountInstance(), arrayList, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, true, false, this.editingMessageObject, z, i, i2, this.chatMode, ((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)).updateStickersOrder, null, this.quickReplyShortcut, getQuickReplyId(), 0L, false, j, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
         afterMessageSend();
@@ -11973,7 +11966,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void didSelectSearchPhotos(ArrayList arrayList, boolean z, int i) {
+    public void didSelectSearchPhotos(ArrayList arrayList, boolean z, int i) throws Resources.NotFoundException {
         ArrayList arrayList2;
         int i2;
         ChatActivity chatActivity = this;
@@ -12062,7 +12055,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageMedia.manual = false;
     }
 
-    public void checkEditLinkRemoved(CharSequence charSequence) {
+    public void checkEditLinkRemoved(CharSequence charSequence) throws Resources.NotFoundException {
         TLRPC.WebPage webPage;
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
@@ -12092,7 +12085,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void searchLinks(final java.lang.CharSequence r18, final boolean r19) {
+    public void searchLinks(final java.lang.CharSequence r18, final boolean r19) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.searchLinks(java.lang.CharSequence, boolean):void");
     }
 
@@ -12144,7 +12137,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (charSequence.length() < 13 || !(lowerCase.contains("http://") || lowerCase.contains("https://"))) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$searchLinks$127();
                     }
                 });
@@ -12155,7 +12148,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (arrayList == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$searchLinks$126();
                 }
             });
@@ -12193,12 +12186,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$searchLinks$126() {
+    public void lambda$searchLinks$126() throws Resources.NotFoundException {
         this.foundWebPage = null;
         fallbackFieldPanel();
     }
 
-    public void lambda$searchLinks$127() {
+    public void lambda$searchLinks$127() throws Resources.NotFoundException {
         this.foundWebPage = null;
         fallbackFieldPanel();
     }
@@ -12208,7 +12201,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.setTitle(LocaleController.getString(R.string.AppName));
         builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$searchLinks$128(messagesController, charSequence, z, alertDialog, i);
             }
         });
@@ -12219,7 +12212,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", messagesController.secretWebpagePreview).commit();
     }
 
-    public void lambda$searchLinks$128(MessagesController messagesController, CharSequence charSequence, boolean z, AlertDialog alertDialog, int i) {
+    public void lambda$searchLinks$128(MessagesController messagesController, CharSequence charSequence, boolean z, AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         messagesController.secretWebpagePreview = 1;
         MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", getMessagesController().secretWebpagePreview).commit();
         this.foundUrls = null;
@@ -12229,13 +12222,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$searchLinks$131(final int i, final TL_account.getWebPagePreview getwebpagepreview, final Boolean bool, final TLRPC.WebPage webPage) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$searchLinks$130(i, bool, webPage, getwebpagepreview);
             }
         });
     }
 
-    public void lambda$searchLinks$130(int i, Boolean bool, TLRPC.WebPage webPage, TL_account.getWebPagePreview getwebpagepreview) {
+    public void lambda$searchLinks$130(int i, Boolean bool, TLRPC.WebPage webPage, TL_account.getWebPagePreview getwebpagepreview) throws Resources.NotFoundException {
         if (this.waitingForWebpageId != i) {
             return;
         }
@@ -12397,14 +12390,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (iSendMessage != 0) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$forwardMessages$140();
                 }
             });
         }
     }
 
-    public void lambda$forwardMessages$140() {
+    public void lambda$forwardMessages$140() throws Resources.NotFoundException {
         this.waitingForSendingMessageLoad = false;
         hideFieldPanel(true);
     }
@@ -12418,7 +12411,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.openImport = true;
     }
 
-    private void checkBotKeyboard() {
+    private void checkBotKeyboard() throws Resources.NotFoundException {
         MessageObject messageObject;
         StringBuilder sb;
         long topicId;
@@ -12664,11 +12657,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void hideFieldPanel(boolean z) {
+    public void hideFieldPanel(boolean z) throws Resources.NotFoundException {
         showFieldPanel(false, null, null, null, null, true, 0, null, false, 0L, z);
     }
 
-    public void hideFieldPanel(boolean z, int i, long j, boolean z2) {
+    public void hideFieldPanel(boolean z, int i, long j, boolean z2) throws Resources.NotFoundException {
         showFieldPanel(false, null, null, null, null, z, i, null, false, j, z2);
     }
 
@@ -12692,15 +12685,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(z, null, messageObject, null, null, true, 0, null, false, 0L, true);
     }
 
-    public void showFieldPanelForSuggestionParams(MessageSuggestionParams messageSuggestionParams) {
+    public void showFieldPanelForSuggestionParams(MessageSuggestionParams messageSuggestionParams) throws Resources.NotFoundException {
         showFieldPanel(true, null, null, null, null, true, 0, null, false, 0L, messageSuggestionParams, true);
     }
 
-    public void showFieldPanel(boolean z, MessageObject messageObject, MessageObject messageObject2, ArrayList arrayList, TLRPC.WebPage webPage, boolean z2, int i, ReplyQuote replyQuote, boolean z3, long j, boolean z4) {
+    public void showFieldPanel(boolean z, MessageObject messageObject, MessageObject messageObject2, ArrayList arrayList, TLRPC.WebPage webPage, boolean z2, int i, ReplyQuote replyQuote, boolean z3, long j, boolean z4) throws Resources.NotFoundException {
         showFieldPanel(z, messageObject, messageObject2, arrayList, webPage, z2, i, replyQuote, z3, j, null, z4);
     }
 
-    public void showFieldPanel(boolean r28, org.telegram.messenger.MessageObject r29, org.telegram.messenger.MessageObject r30, java.util.ArrayList r31, org.telegram.tgnet.TLRPC.WebPage r32, boolean r33, int r34, org.telegram.ui.ChatActivity.ReplyQuote r35, boolean r36, long r37, org.telegram.messenger.MessageSuggestionParams r39, boolean r40) {
+    public void showFieldPanel(boolean r28, org.telegram.messenger.MessageObject r29, org.telegram.messenger.MessageObject r30, java.util.ArrayList r31, org.telegram.tgnet.TLRPC.WebPage r32, boolean r33, int r34, org.telegram.ui.ChatActivity.ReplyQuote r35, boolean r36, long r37, org.telegram.messenger.MessageSuggestionParams r39, boolean r40) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.showFieldPanel(boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$WebPage, boolean, int, org.telegram.ui.ChatActivity$ReplyQuote, boolean, long, org.telegram.messenger.MessageSuggestionParams, boolean):void");
     }
 
@@ -12780,7 +12773,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public Runnable sendSecretMediaDelete(final MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    public Runnable sendSecretMediaDelete(final MessageObject messageObject) {
         if (messageObject == null || messageObject.isOut() || !messageObject.isSecretMedia() || messageObject.messageOwner.ttl != Integer.MAX_VALUE) {
             return null;
         }
@@ -12854,11 +12847,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivityAdapter2.notifyDataSetChanged(false);
     }
 
-    public void scrollToLastMessage(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+    public void scrollToLastMessage(boolean z, boolean z2) throws Resources.NotFoundException {
         scrollToLastMessage(z, z2, null);
     }
 
-    public void scrollToLastMessage(boolean z, final boolean z2, Runnable runnable) throws Resources.NotFoundException, NumberFormatException {
+    public void scrollToLastMessage(boolean z, final boolean z2, Runnable runnable) throws Resources.NotFoundException {
         ArrayList arrayList;
         int i;
         if (this.chatListView.isFastScrollAnimationRunning()) {
@@ -12953,7 +12946,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messagesController.loadMessages(j, j2, false, 30, 0, 0, true, 0, i, 0, 0, i2, j3, i3, i4, this.isTopic);
     }
 
-    public void updateTextureViewPosition(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+    public void updateTextureViewPosition(boolean z, boolean z2) throws Resources.NotFoundException {
         boolean z3;
         MessageObject playingMessageObject;
         if (this.fragmentView == null || this.paused) {
@@ -13168,7 +13161,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(bottomSheetCreateMuteAlert);
     }
 
-    private int getScrollOffsetForMessage(MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    private int getScrollOffsetForMessage(MessageObject messageObject) {
         return getScrollOffsetForMessage(getHeightForMessage(messageObject, !TextUtils.isEmpty(this.highlightMessageQuote))) - scrollOffsetForQuote(messageObject);
     }
 
@@ -13250,7 +13243,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return 0;
     }
 
-    private int getHeightForMessage(MessageObject messageObject, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    private int getHeightForMessage(MessageObject messageObject, boolean z) {
         boolean z2 = false;
         if (getParentActivity() == null) {
             return 0;
@@ -13282,7 +13275,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startMessageUnselect$152();
             }
         };
@@ -13290,7 +13283,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(runnable2, this.highlightMessageQuote != null ? 2500L : 1000L);
     }
 
-    public void lambda$startMessageUnselect$152() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$startMessageUnselect$152() throws Resources.NotFoundException {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuoteFirstTime = 0L;
@@ -13327,15 +13320,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4) throws Resources.NotFoundException, NumberFormatException {
+    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4) throws Resources.NotFoundException {
         scrollToMessageId(i, i2, z, i3, z2, i4, null, null);
     }
 
-    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Integer r33, java.lang.Runnable r34) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Integer r33, java.lang.Runnable r34) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.scrollToMessageId(int, int, boolean, int, boolean, int, java.lang.Integer, java.lang.Runnable):void");
     }
 
-    public void lambda$scrollToMessageId$153() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$scrollToMessageId$153() throws Resources.NotFoundException {
         int i = this.nextScrollToMessageId;
         if (i != 0) {
             scrollToMessageId(i, this.nextScrollFromMessageId, this.nextScrollSelect, this.nextScrollLoadIndex, this.nextScrollForce, this.nextScrollForcePinnedMessageId);
@@ -13659,7 +13652,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         public void drawList(Canvas canvas, RectF rectF) {
             long jUptimeMillis = SystemClock.uptimeMillis();
-            if (ChatActivity.this.chatListView.hasActiveOverScroll()) {
+            if (ChatActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();
                 canvas.clipRect(rectF);
                 drawChild(canvas, ChatActivity.this.chatListView, jUptimeMillis);
@@ -13845,7 +13838,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r38) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        protected void dispatchDraw(android.graphics.Canvas r38) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -13875,7 +13868,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -14252,7 +14245,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void processRowSelect(View view, boolean z, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void processRowSelect(View view, boolean z, float f, float f2) throws Resources.NotFoundException {
         MessageObject messageObject;
         int i;
         if (view instanceof ChatMessageCell) {
@@ -14266,9 +14259,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if ((messageObject == null || !messageObject.isAnyGift()) && messageType >= 2 && messageType != 20 && messageType != 21) {
             if (messageObject == null || !((i = messageObject.type) == 27 || i == 30)) {
                 if (messageObject == null || !messageObject.isWallpaperAction()) {
-                    addToSelectedMessages(messageObject, z);
-                    updateActionModeTitle();
-                    updateVisibleRows();
+                    if (messageObject == null || !messageObject.isSponsored()) {
+                        addToSelectedMessages(messageObject, z);
+                        updateActionModeTitle();
+                        updateVisibleRows();
+                    }
                 }
             }
         }
@@ -14588,7 +14583,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void openVideoEditor(String str, String str2) throws NumberFormatException {
+    public void openVideoEditor(String str, String str2) throws Resources.NotFoundException, NumberFormatException {
         if (getParentActivity() != null) {
             final Bitmap bitmapCreateVideoThumbnail = SendMessagesHelper.createVideoThumbnail(str, 1);
             PhotoViewer.getInstance().setParentActivity(this, this.themeDelegate);
@@ -14674,7 +14669,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return arrayList2;
     }
 
-    public boolean openPhotosEditor(ArrayList arrayList, CharSequence charSequence) throws IOException {
+    public boolean openPhotosEditor(ArrayList arrayList, CharSequence charSequence) throws Resources.NotFoundException, IOException {
         final ArrayList arrayListCreateEntriesFromMedia = createEntriesFromMedia(arrayList, isSecretChat(), charSequence);
         if (arrayListCreateEntriesFromMedia.isEmpty()) {
             return false;
@@ -14700,7 +14695,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) {
+                public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) throws Resources.NotFoundException {
                     for (int size = arrayListCreateEntriesFromMedia.size() - 1; size >= 0; size--) {
                         if (!zArr[size]) {
                             arrayListCreateEntriesFromMedia.remove(size);
@@ -14722,7 +14717,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void sendPhotosGroup(ArrayList arrayList, boolean z, int i, boolean z2) {
+    public void sendPhotosGroup(ArrayList arrayList, boolean z, int i, boolean z2) throws Resources.NotFoundException {
         String str;
         if (!arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
@@ -14811,16 +14806,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void sendUriAsDocument(Uri uri) {
+    private void sendUriAsDocument(Uri uri) throws Resources.NotFoundException {
         sendUriAsDocument(uri, true, 0);
     }
 
-    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) {
+    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.sendUriAsDocument(android.net.Uri, boolean, int):void");
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, final Intent intent) throws NumberFormatException {
+    public void onActivityResultFragment(int i, int i2, final Intent intent) throws Resources.NotFoundException, NumberFormatException {
         String path;
         if (i2 == -1) {
             if (i == 0 || i == 2) {
@@ -14880,7 +14875,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                         AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
-                            public final void didSelectDate(boolean z, int i3, int i4) {
+                            public final void didSelectDate(boolean z, int i3, int i4) throws Resources.NotFoundException {
                                 this.f$0.lambda$onActivityResultFragment$160(intent, z, i3, i4);
                             }
                         }, this.themeDelegate);
@@ -14893,7 +14888,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                         AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
-                            public final void didSelectDate(boolean z, int i3, int i4) {
+                            public final void didSelectDate(boolean z, int i3, int i4) throws Resources.NotFoundException {
                                 this.f$0.lambda$onActivityResultFragment$161(intent, z, i3, i4);
                             }
                         }, this.themeDelegate);
@@ -14927,13 +14922,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SendMessagesHelper.prepareSendingPhoto(getAccountInstance(), null, uri, this.dialog_id, this.replyingMessageObject, getThreadMessage(), this.replyingQuote, null, null, null, null, 0, this.editingMessageObject, z, i, this.chatMode, this.quickReplyShortcut, getQuickReplyId());
     }
 
-    public void lambda$onActivityResultFragment$160(Intent intent, boolean z, int i, int i2) {
+    public void lambda$onActivityResultFragment$160(Intent intent, boolean z, int i, int i2) throws Resources.NotFoundException {
         fillEditingMediaWithCaption(null, null);
         sendUriAsDocument(intent.getData(), z, i);
         afterMessageSend();
     }
 
-    public void lambda$onActivityResultFragment$161(Intent intent, boolean z, int i, int i2) {
+    public void lambda$onActivityResultFragment$161(Intent intent, boolean z, int i, int i2) throws Resources.NotFoundException {
         fillEditingMediaWithCaption(null, null);
         ClipData clipData = intent.getClipData();
         for (int i3 = 0; i3 < clipData.getItemCount(); i3++) {
@@ -15085,7 +15080,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.messageOwner.replies.read_max_id = i;
     }
 
-    public void lambda$didReceivedNotification$167(int i) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$didReceivedNotification$167(int i) throws Resources.NotFoundException {
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout == null) {
             return;
@@ -15198,7 +15193,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateMessagesVisiblePart(false);
     }
 
-    public void lambda$didReceivedNotification$178(ArrayList arrayList, int i) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$didReceivedNotification$178(ArrayList arrayList, int i) {
         replaceMessageObjects(arrayList, i, false);
     }
 
@@ -15241,12 +15236,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         this.quoteMessageUpdateAlert = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.UpdatedQuoteTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UpdatedQuoteMessage, this.replyingMessageObject != null ? getMessagesController().getFullName(this.replyingMessageObject.getSenderId()) : ""))).setPositiveButton(LocaleController.getString(R.string.Edit), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$showQuoteMessageUpdate$185(alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$showQuoteMessageUpdate$186(alertDialog, i);
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -15257,7 +15252,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }).show();
     }
 
-    public void lambda$showQuoteMessageUpdate$185(AlertDialog alertDialog, int i) {
+    public void lambda$showQuoteMessageUpdate$185(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
         if (messagePreviewParams == null || messagePreviewParams.quote == null) {
             return;
@@ -15265,7 +15260,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForwardingPreview(0);
     }
 
-    public void lambda$showQuoteMessageUpdate$186(AlertDialog alertDialog, int i) {
+    public void lambda$showQuoteMessageUpdate$186(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         hideFieldPanel(true);
     }
 
@@ -15297,11 +15292,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return (this.chatListView.getMeasuredHeight() - view.getBottom()) - this.chatListView.getPaddingBottom();
     }
 
-    private boolean updateMessageTranslation(org.telegram.messenger.MessageObject r18, boolean r19) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private boolean updateMessageTranslation(org.telegram.messenger.MessageObject r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessageTranslation(org.telegram.messenger.MessageObject, boolean):boolean");
     }
 
-    private boolean updateMessagesReplyTranslation(ArrayList arrayList, MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    private boolean updateMessagesReplyTranslation(ArrayList arrayList, MessageObject messageObject) {
         ChatMessageCell chatMessageCell;
         MessageObject messageObject2;
         MessageObject messageObject3;
@@ -15422,7 +15417,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void addSponsoredMessages(boolean z) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    private void addSponsoredMessages(boolean z) throws InterruptedException, Resources.NotFoundException {
         MessagesController.SponsoredMessagesInfo sponsoredMessages;
         MessageObject messageObject;
         long j;
@@ -15615,7 +15610,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void clearHistory(boolean z, TLRPC.TL_updates_channelDifferenceTooLong tL_updates_channelDifferenceTooLong) {
+    private void clearHistory(boolean z, TLRPC.TL_updates_channelDifferenceTooLong tL_updates_channelDifferenceTooLong) throws Resources.NotFoundException {
         TLRPC.User user;
         if (z) {
             if (BuildVars.LOGS_ENABLED) {
@@ -15857,7 +15852,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void updateReplyMessageOwners(int i, MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    private void updateReplyMessageOwners(int i, MessageObject messageObject) {
         ArrayList arrayList = (ArrayList) this.replyMessageOwners.get(i);
         if (arrayList == null) {
             return;
@@ -15906,15 +15901,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         motionBackgroundDrawable.switchToNextPosition();
     }
 
-    private void processNewMessages(ArrayList arrayList) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    private void processNewMessages(ArrayList arrayList) throws InterruptedException, Resources.NotFoundException {
         processNewMessages(arrayList, true);
     }
 
-    private void processNewMessages(java.util.ArrayList r31, boolean r32) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void processNewMessages(java.util.ArrayList r31, boolean r32) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processNewMessages(java.util.ArrayList, boolean):void");
     }
 
-    public void lambda$processNewMessages$193(int i) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$processNewMessages$193(int i) throws Resources.NotFoundException {
         scrollToMessageId(i, 0, false, 0, true, 0);
     }
 
@@ -15956,7 +15951,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processDeletedMessages(java.util.ArrayList, long, boolean, boolean):void");
     }
 
-    private void replaceMessageObjects(ArrayList arrayList, int i, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    private void replaceMessageObjects(ArrayList arrayList, int i, boolean z) {
         ChatActivityAdapter chatActivityAdapter;
         int i2;
         int i3;
@@ -16415,7 +16410,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onBecomeFullyVisible() {
+    public void onBecomeFullyVisible() throws Resources.NotFoundException {
         this.isFullyVisible = true;
         super.onBecomeFullyVisible();
         if (this.showCloseChatDialogLater) {
@@ -16445,7 +16440,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         this.convertingToastShown = true;
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.convert_video, LocaleController.getString(R.string.VideoConversionTitle), LocaleController.getString(R.string.VideoConversionText)).setDuration(5000).setOnHideListener(new ChatActivity$$ExternalSyntheticLambda106(this)).show(true);
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.convert_video, LocaleController.getString(R.string.VideoConversionTitle), LocaleController.getString(R.string.VideoConversionText)).setDuration(5000).setOnHideListener(new ChatActivity$$ExternalSyntheticLambda103(this)).show(true);
     }
 
     public void checkConversionDateTimeToast() {
@@ -16499,8 +16494,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.videoConversionTimeHint.show();
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda106(this));
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda106(this), 2000L);
+        AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda103(this));
+        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda103(this), 2000L);
     }
 
     public void checkSavedMessagesHint() {
@@ -17024,7 +17019,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         menu.add(i3, R.id.menu_regular, i4, LocaleController.getString(R.string.Regular));
     }
 
-    public void updateScheduledInterface(boolean z) {
+    public void updateScheduledInterface(boolean z) throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.updateScheduleButton(z);
@@ -17035,7 +17030,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateBottomOverlay(false);
     }
 
-    public void updateBottomOverlay(boolean r22) {
+    public void updateBottomOverlay(boolean r22) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateBottomOverlay(boolean):void");
     }
 
@@ -17085,7 +17080,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return tL_forumTopic != null && (!tL_forumTopic.closed || ChatObject.canManageTopic(this.currentAccount, this.currentChat, tL_forumTopic));
     }
 
-    public void updateReplyMessageHeader(boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public void updateReplyMessageHeader(boolean z) {
         String string;
         if (this.chatMode == 3 || UserObject.isBotForum(this.currentUser)) {
             return;
@@ -17723,7 +17718,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onResume() throws Resources.NotFoundException, NumberFormatException {
+    public void onResume() throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView;
         MessageObject messageObject;
         boolean z;
@@ -17863,7 +17858,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.startVideoEdit != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$onResume$235();
                 }
             });
@@ -17894,7 +17889,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onResume$235() throws NumberFormatException {
+    public void lambda$onResume$235() throws Resources.NotFoundException, NumberFormatException {
         openVideoEditor(this.startVideoEdit, null);
         this.startVideoEdit = null;
     }
@@ -18006,7 +18001,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 public final boolean test(Object obj) {
                     return this.f$0.lambda$applyChatLinkMessageMaybe$236((TLRPC.MessageEntity) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda243()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda238()));
         } else {
             arrayList = this.resolvedChatLink.entities;
         }
@@ -18022,11 +18017,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$applyChatLinkMessageMaybe$236(org.telegram.tgnet.TLRPC$MessageEntity):boolean");
     }
 
-    public void applyDraftMaybe(boolean z) {
+    public void applyDraftMaybe(boolean z) throws Resources.NotFoundException {
         applyDraftMaybe(z, false);
     }
 
-    public void applyDraftMaybe(boolean z, boolean z2) {
+    public void applyDraftMaybe(boolean z, boolean z2) throws Resources.NotFoundException {
         TLRPC.DraftMessage draft;
         Long l;
         TLRPC.Message draftMessage;
@@ -18225,7 +18220,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.chatActivityEnterView.openKeyboard();
     }
 
-    private void checkNewMessagesOnQuoteEdit(boolean z) {
+    private void checkNewMessagesOnQuoteEdit(boolean z) throws Resources.NotFoundException {
         if (this.replyingMessageObject == null) {
             return;
         }
@@ -18584,11 +18579,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return createMenu(view, z, z2, f, f2, z3, z4, false);
     }
 
-    public boolean createMenu(final android.view.View r90, boolean r91, boolean r92, float r93, float r94, boolean r95, boolean r96, boolean r97) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean createMenu(final android.view.View r90, boolean r91, boolean r92, float r93, float r94, boolean r95, boolean r96, boolean r97) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean, boolean, boolean):boolean");
     }
 
-    public void lambda$createMenu$240(MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createMenu$240(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getReplyMsgId(), messageObject.messageOwner.id, true, messageObject.getDialogId() == this.mergeDialogId ? 1 : 0, false, 0);
     }
 
@@ -18719,7 +18714,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             });
             if (i2 < 0) {
                 onHeightChangedListener.setPredictiveCount(this.val$finalCount);
-                this.val$reactedView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda228(onHeightChangedListener));
+                this.val$reactedView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda223(onHeightChangedListener));
             }
             viewGroup.addView(onHeightChangedListener);
             this.val$cachedViews.put(i, onHeightChangedListener);
@@ -18985,14 +18980,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.show();
     }
 
-    public void lambda$createMenu$270(int i, ArrayList arrayList, View view) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createMenu$270(int i, ArrayList arrayList, View view) throws Resources.NotFoundException {
         if (this.selectedObject == null || i >= arrayList.size()) {
             return;
         }
         processSelectedOption(((Integer) arrayList.get(i)).intValue());
     }
 
-    public Boolean lambda$createMenu$271(View view, URLSpan uRLSpan) throws UnsupportedEncodingException {
+    public Boolean lambda$createMenu$271(View view, URLSpan uRLSpan) throws Resources.NotFoundException, UnsupportedEncodingException {
         didPressMessageUrl(uRLSpan, false, this.selectedObject, view instanceof ChatMessageCell ? (ChatMessageCell) view : null);
         return Boolean.TRUE;
     }
@@ -19228,7 +19223,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$updateGreetingLock$288(long j, View view) {
         if (StarsController.getInstance(this.currentAccount).getBalance().amount < j) {
-            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda304(this), getDialogId()).show();
+            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda298(this), getDialogId()).show();
         } else {
             new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourceProvider).show();
         }
@@ -19243,7 +19238,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$updateGreetingLock$290(long j, View view) {
         if (StarsController.getInstance(this.currentAccount).getBalance().amount < j) {
-            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda304(this), getDialogId()).show();
+            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda298(this), getDialogId()).show();
         } else {
             new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourceProvider).show();
         }
@@ -19588,11 +19583,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return null;
     }
 
-    public void startEditingMessageObject(MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    public void startEditingMessageObject(MessageObject messageObject) throws Resources.NotFoundException {
         startEditingMessageObject(messageObject, false);
     }
 
-    private void startEditingMessageObject(MessageObject messageObject, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    private void startEditingMessageObject(MessageObject messageObject, boolean z) throws Resources.NotFoundException {
         if (messageObject == null || getParentActivity() == null) {
             return;
         }
@@ -19635,13 +19630,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$startEditingMessageObject$295(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startEditingMessageObject$294(tLObject);
             }
         });
     }
 
-    public void lambda$startEditingMessageObject$294(TLObject tLObject) {
+    public void lambda$startEditingMessageObject$294(TLObject tLObject) throws Resources.NotFoundException {
         this.editingMessageObjectReqId = 0;
         if (tLObject != null || getParentActivity() == null) {
             return;
@@ -19830,11 +19825,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         MediaController.saveFile(path, getParentActivity(), messageObject.isVideo() ? 1 : 0, null, null);
     }
 
-    public void processSelectedOption(int r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void processSelectedOption(int r23) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processSelectedOption(int):void");
     }
 
-    public void lambda$processSelectedOption$298(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, Long l) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$processSelectedOption$298(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, Long l) throws Resources.NotFoundException {
         if (groupedMessages != null) {
             boolean z = true;
             for (int i = 0; i < groupedMessages.messages.size(); i++) {
@@ -20280,7 +20275,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public boolean didSelectDialogs(final DialogsActivity dialogsActivity, final ArrayList arrayList, final CharSequence charSequence, boolean z, final boolean z2, final int i, final int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException, NumberFormatException {
+    public boolean didSelectDialogs(final DialogsActivity dialogsActivity, final ArrayList arrayList, final CharSequence charSequence, boolean z, final boolean z2, final int i, final int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView;
         ChatActivityEnterView chatActivityEnterView2;
         MessageObject messageObject;
@@ -20326,7 +20321,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (!dialogsActivity.isQuote && (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == getUserConfig().getClientUserId() || charSequence != null || i != 0 || !z2)) {
             return !AlertsCreator.ensurePaidMessagesMultiConfirmationTopicKeys(this.currentAccount, arrayList, arrayList2.size() + (!TextUtils.isEmpty(charSequence) ? 1 : 0), new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws Resources.NotFoundException, NumberFormatException {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$didSelectDialogs$336(dialogsActivity, arrayList, charSequence, z2, i, i2, arrayList2, (HashMap) obj);
                 }
             });
@@ -20451,7 +20446,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$didSelectDialogs$336(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, ArrayList arrayList2, HashMap map) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$didSelectDialogs$336(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, ArrayList arrayList2, HashMap map) throws Resources.NotFoundException {
         long j;
         if (dialogsActivity.resetDelegate) {
             dialogsActivity.setDelegate(null);
@@ -20548,7 +20543,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public boolean onBackPressed(boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public boolean onBackPressed(boolean z) throws Resources.NotFoundException {
         Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
         if (visibleBulletin != null && (visibleBulletin.getLayout() instanceof Bulletin.LottieLayoutWithReactions)) {
             if (z) {
@@ -20703,11 +20698,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void clearSelectionMode() throws Resources.NotFoundException, NumberFormatException {
+    public void clearSelectionMode() throws Resources.NotFoundException {
         clearSelectionMode(false);
     }
 
-    public void clearSelectionMode(boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public void clearSelectionMode(boolean z) throws Resources.NotFoundException {
         for (int i = 1; i >= 0; i--) {
             this.selectedMessagesIds[i].clear();
             this.selectedMessagesCanCopyIds[i].clear();
@@ -20808,15 +20803,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return this.threadMessageObject != null && this.isComments;
     }
 
-    public void updateVisibleRows() throws Resources.NotFoundException, NumberFormatException {
+    public void updateVisibleRows() throws Resources.NotFoundException {
         updateVisibleRows(false);
     }
 
-    private void updateVisibleRows(boolean r22) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void updateVisibleRows(boolean r22) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateVisibleRows(boolean):void");
     }
 
-    private void updateVisibleRows(Utilities.CallbackReturn callbackReturn) throws Resources.NotFoundException, NumberFormatException {
+    private void updateVisibleRows(Utilities.CallbackReturn callbackReturn) {
         int iIndexOf;
         int scrollingOffsetForView;
         ChatListRecyclerView chatListRecyclerView = this.chatListView;
@@ -21302,7 +21297,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) throws Resources.NotFoundException {
         SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(messageMedia, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2, 0);
         sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
         sendMessageParamsOf.quick_reply_shortcut_id = getQuickReplyId();
@@ -21444,7 +21439,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return this.userInfo;
     }
 
-    public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) throws Resources.NotFoundException {
         if (checkSlowModeAlert()) {
             fillEditingMediaWithCaption(charSequence, null);
             SendMessagesHelper.prepareSendingAudioDocuments(getAccountInstance(), arrayList, charSequence != null ? charSequence : null, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, z, i, i2, this.editingMessageObject, this.quickReplyShortcut, getQuickReplyId(), j, z2, j2);
@@ -21452,7 +21447,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
+    public void sendContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) throws Resources.NotFoundException {
         if (checkSlowModeAlert()) {
             SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(user, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i, 0);
             sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
@@ -21467,7 +21462,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) {
+    public void sendContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) throws Resources.NotFoundException {
         long j3;
         if (checkSlowModeAlert()) {
             if (TextUtils.isEmpty(str)) {
@@ -21501,7 +21496,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendPoll(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap map, boolean z, int i, long j) {
+    public void sendPoll(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap map, boolean z, int i, long j) throws Resources.NotFoundException {
         if (checkSlowModeAlert()) {
             SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(tL_messageMediaPoll, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC.ReplyMarkup) null, (HashMap<String, String>) map, z, i, 0);
             sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
@@ -21514,7 +21509,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendTodo(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, long j) {
+    public void sendTodo(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, long j) throws Resources.NotFoundException {
         if (checkSlowModeAlert()) {
             SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of((TLRPC.TL_messageMediaPoll) null, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i, 0);
             sendMessageParamsOf.todo = tL_messageMediaToDo;
@@ -21558,7 +21553,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         fillEditingMediaWithCaption(photoEntry.caption, photoEntry.entities);
         AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws Resources.NotFoundException {
                 this.f$0.lambda$sendMedia$346(photoEntry, videoEditedInfo, z, i, i2, z2, (Long) obj);
             }
         }, j);
@@ -21569,7 +21564,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         runCloseInstantCameraAnimation();
     }
 
-    public void lambda$sendMedia$346(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2, boolean z2, Long l) {
+    public void lambda$sendMedia$346(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2, boolean z2, Long l) throws Resources.NotFoundException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null && messageObject.needResendWhenEdit()) {
             MessageSuggestionParams messageSuggestionParamsOf = this.messageSuggestionParams;
@@ -21619,7 +21614,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         animatorSet.start();
     }
 
-    public void sendAnimatedEmoji(TLRPC.Document document, boolean z, int i) {
+    public void sendAnimatedEmoji(TLRPC.Document document, boolean z, int i) throws Resources.NotFoundException {
         String strFindAnimatedEmojiEmoticon;
         if (document == null || (strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, null)) == null) {
             return;
@@ -21680,7 +21675,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processLoadedDiscussionMessage(boolean, org.telegram.tgnet.TLRPC$TL_messages_discussionMessage, boolean, org.telegram.tgnet.TLRPC$messages_Messages, int, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.messenger.MessageObject):void");
     }
 
-    public void lambda$processLoadedDiscussionMessage$351(final ArrayList arrayList, TLRPC.TL_messages_discussionMessage tL_messages_discussionMessage, final TLRPC.messages_Messages messages_messages, TLRPC.Chat chat, TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final int i, MessageObject messageObject, final int i2, final int i3, MessageObject messageObject2) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$processLoadedDiscussionMessage$351(final ArrayList arrayList, TLRPC.TL_messages_discussionMessage tL_messages_discussionMessage, final TLRPC.messages_Messages messages_messages, TLRPC.Chat chat, TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final int i, MessageObject messageObject, final int i2, final int i3, MessageObject messageObject2) throws Resources.NotFoundException {
         int i4;
         TLRPC.TL_messageReactions tL_messageReactions;
         TLRPC.MessageReplies messageReplies;
@@ -21980,7 +21975,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void openOriginalReplyChat(MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
+    public void openOriginalReplyChat(MessageObject messageObject) throws Resources.NotFoundException {
         if (UserObject.isUserSelf(this.currentUser)) {
             TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
             if (messageFwdHeader.saved_from_peer.user_id == this.currentUser.id) {
@@ -22008,171 +22003,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (getMessagesController().checkCanOpenChat(bundle, this)) {
             presentFragment(new ChatActivity(bundle));
         }
-    }
-
-    public void showRequestUrlAlert(final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final boolean z) {
-        int i = 2;
-        if (getParentActivity() == null) {
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.themeDelegate);
-        builder.setTitle(LocaleController.getString(R.string.OpenUrlTitle));
-        String string = LocaleController.getString(R.string.OpenUrlAlert2);
-        int iIndexOf = string.indexOf("%");
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(String.format(string, str));
-        if (iIndexOf >= 0) {
-            spannableStringBuilder.setSpan(new URLSpan(str), iIndexOf, str.length() + iIndexOf, 33);
-        }
-        builder.setMessage(spannableStringBuilder);
-        builder.setMessageTextViewClickable(false);
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[2];
-        LinearLayout linearLayout = new LinearLayout(getParentActivity());
-        linearLayout.setOrientation(1);
-        TLRPC.User currentUser = getUserConfig().getCurrentUser();
-        int i2 = 0;
-        while (true) {
-            if (i2 < (tL_urlAuthResultRequest.request_write_access ? 2 : 1)) {
-                CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 5, this.themeDelegate);
-                checkBoxCellArr[i2] = checkBoxCell;
-                checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                checkBoxCellArr[i2].setMultiline(true);
-                checkBoxCellArr[i2].setTag(Integer.valueOf(i2));
-                if (i2 == 0) {
-                    int i3 = R.string.OpenUrlOption1;
-                    String str2 = tL_urlAuthResultRequest.domain;
-                    String name = ContactsController.formatName(currentUser.first_name, currentUser.last_name);
-                    Object[] objArr = new Object[i];
-                    objArr[0] = str2;
-                    objArr[1] = name;
-                    SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption1", i3, objArr));
-                    int iIndexOf2 = TextUtils.indexOf(spannableStringBuilderReplaceTags, tL_urlAuthResultRequest.domain);
-                    if (iIndexOf2 >= 0) {
-                        spannableStringBuilderReplaceTags.setSpan(new URLSpan(""), iIndexOf2, tL_urlAuthResultRequest.domain.length() + iIndexOf2, 33);
-                    }
-                    checkBoxCellArr[i2].setText(spannableStringBuilderReplaceTags, "", true, false);
-                } else {
-                    checkBoxCellArr[i2].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getFirstName(tL_urlAuthResultRequest.bot))), "", true, false);
-                }
-                checkBoxCellArr[i2].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
-                linearLayout.addView(checkBoxCellArr[i2], LayoutHelper.createLinear(-1, -2));
-                checkBoxCellArr[i2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        ChatActivity.lambda$showRequestUrlAlert$358(checkBoxCellArr, view);
-                    }
-                });
-                i2++;
-                i = 2;
-            } else {
-                builder.setView(linearLayout);
-                builder.setPositiveButton(LocaleController.getString(R.string.Open), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i4) {
-                        this.f$0.lambda$showRequestUrlAlert$363(checkBoxCellArr, str, tL_messages_requestUrlAuth, tL_urlAuthResultRequest, z, alertDialog, i4);
-                    }
-                });
-                showDialog(builder.create());
-                return;
-            }
-        }
-    }
-
-    public static void lambda$showRequestUrlAlert$358(CheckBoxCell[] checkBoxCellArr, View view) {
-        if (view.isEnabled()) {
-            Integer num = (Integer) view.getTag();
-            checkBoxCellArr[num.intValue()].setChecked(!checkBoxCellArr[num.intValue()].isChecked(), true);
-            if (num.intValue() != 0 || checkBoxCellArr[1] == null) {
-                return;
-            }
-            if (checkBoxCellArr[num.intValue()].isChecked()) {
-                checkBoxCellArr[1].setEnabled(true);
-            } else {
-                checkBoxCellArr[1].setChecked(false, true);
-                checkBoxCellArr[1].setEnabled(false);
-            }
-        }
-    }
-
-    public void lambda$showRequestUrlAlert$363(CheckBoxCell[] checkBoxCellArr, final String str, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final boolean z, AlertDialog alertDialog, int i) {
-        if (!checkBoxCellArr[0].isChecked()) {
-            Browser.openUrl((Context) getParentActivity(), str, false);
-            return;
-        }
-        final AlertDialog[] alertDialogArr = {new AlertDialog(getParentActivity(), 3, this.themeDelegate)};
-        TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth = new TLRPC.TL_messages_acceptUrlAuth();
-        String str2 = tL_messages_requestUrlAuth.url;
-        if (str2 != null) {
-            tL_messages_acceptUrlAuth.url = str2;
-            tL_messages_acceptUrlAuth.flags |= 4;
-        } else {
-            tL_messages_acceptUrlAuth.button_id = tL_messages_requestUrlAuth.button_id;
-            tL_messages_acceptUrlAuth.msg_id = tL_messages_requestUrlAuth.msg_id;
-            tL_messages_acceptUrlAuth.peer = tL_messages_requestUrlAuth.peer;
-            tL_messages_acceptUrlAuth.flags |= 2;
-        }
-        if (tL_urlAuthResultRequest.request_write_access) {
-            tL_messages_acceptUrlAuth.write_allowed = checkBoxCellArr[1].isChecked();
-        }
-        try {
-            alertDialogArr[0].dismiss();
-        } catch (Throwable unused) {
-        }
-        alertDialogArr[0] = null;
-        final int iSendRequest = getConnectionsManager().sendRequest(tL_messages_acceptUrlAuth, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$showRequestUrlAlert$360(str, tL_messages_requestUrlAuth, z, tLObject, tL_error);
-            }
-        });
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showRequestUrlAlert$362(alertDialogArr, iSendRequest);
-            }
-        }, 500L);
-    }
-
-    public void lambda$showRequestUrlAlert$360(final String str, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showRequestUrlAlert$359(tLObject, str, tL_messages_requestUrlAuth, z);
-            }
-        });
-    }
-
-    public void lambda$showRequestUrlAlert$359(TLObject tLObject, String str, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean z) {
-        if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
-            Browser.openUrl((Context) getParentActivity(), ((TLRPC.TL_urlAuthResultAccepted) tLObject).url, false);
-            return;
-        }
-        if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
-            Browser.openUrl((Context) getParentActivity(), str, false);
-            return;
-        }
-        String str2 = tL_messages_requestUrlAuth.url;
-        if (str2 != null) {
-            AlertsCreator.showOpenUrlAlert(this, str2, false, z, this.themeDelegate);
-        }
-    }
-
-    public void lambda$showRequestUrlAlert$362(AlertDialog[] alertDialogArr, final int i) {
-        AlertDialog alertDialog = alertDialogArr[0];
-        if (alertDialog == null) {
-            return;
-        }
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public final void onCancel(DialogInterface dialogInterface) {
-                this.f$0.lambda$showRequestUrlAlert$361(i, dialogInterface);
-            }
-        });
-        showDialog(alertDialogArr[0]);
-    }
-
-    public void lambda$showRequestUrlAlert$361(int i, DialogInterface dialogInterface) {
-        getConnectionsManager().cancelRequest(i, true);
     }
 
     public void removeMessageObject(MessageObject messageObject) {
@@ -22255,7 +22085,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openClickableLink(android.text.style.CharacterStyle, java.lang.String, boolean, org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$openClickableLink$364(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws java.io.UnsupportedEncodingException {
+    public void lambda$openClickableLink$364(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws android.content.res.Resources.NotFoundException, java.io.UnsupportedEncodingException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$openClickableLink$364(java.lang.String, android.text.style.CharacterStyle, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, int, android.content.DialogInterface, int):void");
     }
 
@@ -22508,7 +22338,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
-    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws UnsupportedEncodingException {
+    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws Resources.NotFoundException, UnsupportedEncodingException {
         TLRPC.WebPage webPage;
         MessageObject messageObject2;
         MessageObject messageObject3;
@@ -22958,7 +22788,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 };
                 botHelpCell.setDelegate(new BotHelpCell.BotHelpCellDelegate() {
                     @Override
-                    public final void didPressUrl(String str) {
+                    public final void didPressUrl(String str) throws Resources.NotFoundException {
                         this.f$0.lambda$onCreateViewHolder$0(str);
                     }
                 });
@@ -23344,7 +23174,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             public void didPressReplyMessage(final ChatActionCell chatActionCell, final int i) {
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$didPressReplyMessage$1(chatActionCell, i);
                     }
                 };
@@ -23356,7 +23186,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             }
 
-            public void lambda$didPressReplyMessage$1(ChatActionCell chatActionCell, int i) throws Resources.NotFoundException, NumberFormatException {
+            public void lambda$didPressReplyMessage$1(ChatActionCell chatActionCell, int i) throws Resources.NotFoundException {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0);
             }
@@ -23365,7 +23195,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             public void didPressTaskLink(final ChatActionCell chatActionCell, final int i, final int i2) {
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$didPressTaskLink$2(chatActionCell, i, i2);
                     }
                 };
@@ -23377,13 +23207,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             }
 
-            public void lambda$didPressTaskLink$2(ChatActionCell chatActionCell, int i, int i2) throws Resources.NotFoundException, NumberFormatException {
+            public void lambda$didPressTaskLink$2(ChatActionCell chatActionCell, int i, int i2) throws Resources.NotFoundException {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, Integer.valueOf(i2), null);
             }
         }
 
-        public void lambda$onCreateViewHolder$0(String str) {
+        public void lambda$onCreateViewHolder$0(String str) throws Resources.NotFoundException {
             if (str.startsWith("@")) {
                 ChatActivity.this.getMessagesController().openByUserName(str.substring(1), ChatActivity.this, 0);
                 return;
@@ -23405,7 +23235,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r24, int r25) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r24, int r25) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -23527,7 +23357,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onViewAttachedToWindow(androidx.recyclerview.widget.RecyclerView.ViewHolder r18) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public void onViewAttachedToWindow(androidx.recyclerview.widget.RecyclerView.ViewHolder r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityAdapter.onViewAttachedToWindow(androidx.recyclerview.widget.RecyclerView$ViewHolder):void");
         }
 
@@ -23581,7 +23411,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public View updateRowWithMessageObject(MessageObject messageObject, boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+        public View updateRowWithMessageObject(MessageObject messageObject, boolean z, boolean z2) {
             ArrayList arrayList;
             if (z) {
                 int childCount = ChatActivity.this.chatListView.getChildCount();
@@ -23814,7 +23644,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
+        public void onSearchCollapse() throws Resources.NotFoundException {
             TLRPC.Chat chat;
             ChatActivity.this.searching = false;
             ChatActivity.this.updatePagedownButtonVisibility(true);
@@ -24472,7 +24302,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressSideButton(ChatMessageCell chatMessageCell) throws Resources.NotFoundException, NumberFormatException {
+        public void didPressSideButton(ChatMessageCell chatMessageCell) throws Resources.NotFoundException {
             MessageObject messageObject;
             int i;
             TLRPC.MessageFwdHeader messageFwdHeader;
@@ -24681,7 +24511,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) throws Resources.NotFoundException, NumberFormatException {
+        public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) throws Resources.NotFoundException {
             MessageObject messageObject;
             if (chat == null) {
                 return;
@@ -24872,7 +24702,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) throws Resources.NotFoundException, IOException, NumberFormatException {
+        public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) throws Resources.NotFoundException, IOException {
             boolean z2 = true;
             if (((BaseFragment) ChatActivity.this).actionBar.isActionModeShowed() || ChatActivity.this.isReport()) {
                 ChatActivity.this.processRowSelect(chatMessageCell, true, f, f2);
@@ -25052,7 +24882,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didLongPressChannelAvatar(org.telegram.ui.Cells.ChatMessageCell, org.telegram.tgnet.TLRPC$Chat, int, float, float):boolean");
         }
 
-        public void lambda$didLongPressChannelAvatar$13(TLRPC.Chat chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$didLongPressChannelAvatar$13(TLRPC.Chat chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) throws Resources.NotFoundException {
             int i = AnonymousClass140.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
             if (i == 1) {
                 lambda$didLongPressChannelAvatar$14(chat);
@@ -25069,7 +24899,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressChannelAvatar$15(ChatMessageCell chatMessageCell, TLRPC.Chat chat) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$didLongPressChannelAvatar$15(ChatMessageCell chatMessageCell, TLRPC.Chat chat) throws Resources.NotFoundException {
             openChat(chatMessageCell, chat, 0, false);
         }
 
@@ -25126,7 +24956,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        private void openChat(ChatMessageCell chatMessageCell, final TLRPC.Chat chat, final int i, boolean z) throws Resources.NotFoundException, NumberFormatException {
+        private void openChat(ChatMessageCell chatMessageCell, final TLRPC.Chat chat, final int i, boolean z) throws Resources.NotFoundException {
             ChatActivity chatActivity = ChatActivity.this;
             TLRPC.Chat chat2 = chatActivity.currentChat;
             if (chat2 != null && chat.id == chat2.id) {
@@ -25199,7 +25029,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) throws Resources.NotFoundException, NumberFormatException {
+        public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) throws Resources.NotFoundException {
             final TLRPC.Message message;
             final MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageObject == null || (message = messageObject.messageOwner) == null) {
@@ -25448,7 +25278,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final ChatActivity chatActivity = ChatActivity.this;
             todoItemMenu.setupMessageOptions(chatActivity, arrayList, arrayList2, arrayList3, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws Resources.NotFoundException, NumberFormatException {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     ChatActivity.access$11300(chatActivity, ((Integer) obj).intValue());
                 }
             });
@@ -25587,7 +25417,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws UnsupportedEncodingException {
+        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException, UnsupportedEncodingException {
             ChatActivity.this.didPressMessageUrl(characterStyle, z, chatMessageCell.getMessageObject(), chatMessageCell);
         }
 
@@ -25700,7 +25530,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell) throws Resources.NotFoundException, NumberFormatException {
+        public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell) {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageObject == null || messageObject.type != 27) {
                 return;
@@ -25797,14 +25627,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
         }
 
         @Override
-        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r21, final int r22, float r23, float r24, boolean r25) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r21, final int r22, float r23, float r24, boolean r25) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell, int, float, float, boolean):void");
         }
 
@@ -25834,13 +25664,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
         }
 
-        public void lambda$didPressReplyMessage$40(int i, final MessageObject messageObject, Integer num) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$didPressReplyMessage$40(int i, final MessageObject messageObject, Integer num) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, num, new Runnable() {
                 @Override
                 public final void run() {
@@ -26034,7 +25864,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r22, float r23, float r24, boolean r25) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r22, float r23, float r24, boolean r25) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
         }
 
@@ -26062,7 +25892,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26134,7 +25964,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26336,7 +26166,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26366,7 +26196,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26396,7 +26226,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26470,7 +26300,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26500,7 +26330,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52500(chatActivity);
+                        ChatActivity.access$52600(chatActivity);
                     }
                 }, 250L);
             }
@@ -26642,7 +26472,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressRevealSensitiveContent(final ChatMessageCell chatMessageCell) throws Resources.NotFoundException, NumberFormatException {
+        public void didPressRevealSensitiveContent(final ChatMessageCell chatMessageCell) throws Resources.NotFoundException {
             if (!ChatActivity.this.getMessagesController().showSensitiveContent()) {
                 final AlertDialog alertDialog = new AlertDialog(ChatActivity.this.getContext(), 3);
                 alertDialog.showDelayed(200L);
@@ -26702,7 +26532,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public void lambda$didPressRevealSensitiveContent$51(final ChatMessageCell chatMessageCell, boolean[] zArr, boolean z, TL_account.contentSettings contentsettings, AlertDialog alertDialog, int i) {
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws Resources.NotFoundException, NumberFormatException {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$didPressRevealSensitiveContent$48(chatMessageCell, (Boolean) obj);
                 }
             };
@@ -26723,7 +26553,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             callback.run(Boolean.FALSE);
         }
 
-        public void lambda$didPressRevealSensitiveContent$48(ChatMessageCell chatMessageCell, Boolean bool) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$didPressRevealSensitiveContent$48(ChatMessageCell chatMessageCell, Boolean bool) throws Resources.NotFoundException {
             if (bool.booleanValue()) {
                 for (int i = 0; i < ChatActivity.this.chatListView.getChildCount(); i++) {
                     View childAt = ChatActivity.this.chatListView.getChildAt(i);
@@ -27035,7 +26865,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onEndAnimation() throws Resources.NotFoundException, NumberFormatException {
+        public void onEndAnimation() throws Resources.NotFoundException {
             if (this.scrollTo != null) {
                 ChatActivity.this.chatAdapter.updateRowsSafe();
                 int iIndexOf = ChatActivity.this.chatAdapter.messagesStartRow + ChatActivity.this.messages.indexOf(this.scrollTo);
@@ -27514,126 +27344,118 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{FragmentContextView.class}, new String[]{"playButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_inappPlayerPlayPause));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FragmentContextView.class}, new String[]{"titleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_inappPlayerTitle));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FragmentContextView.class}, new String[]{"titleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_inappPlayerPerformer));
-        int i28 = Theme.key_inappPlayerClose;
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_FASTSCROLL, new Class[]{FragmentContextView.class}, new String[]{"subtitleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i28));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{FragmentContextView.class}, new String[]{"closeButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i28));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, new Class[]{FragmentContextView.class}, new String[]{"frameLayout"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_returnToCallBackground));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FragmentContextView.class}, new String[]{"titleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_returnToCallText));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{FragmentContextView.class}, new String[]{"closeButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_inappPlayerClose));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, new Class[]{FragmentContextView.class}, new String[]{"frameLayout"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_returnToCallBackground));
         arrayList.add(new ThemeDescription(this.pinnedLineView, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_topPanelLine));
         arrayList.add(new ThemeDescription(this.pinnedLineView, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.pinnedCounterTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
-        for (int i29 = 0; i29 < 2; i29++) {
-            arrayList.add(new ThemeDescription(this.pinnedNameTextView[i29], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
-            arrayList.add(new ThemeDescription(this.pinnedMessageTextView[i29], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelMessage));
+        for (int i28 = 0; i28 < 2; i28++) {
+            arrayList.add(new ThemeDescription(this.pinnedNameTextView[i28], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
+            arrayList.add(new ThemeDescription(this.pinnedMessageTextView[i28], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelMessage));
         }
         arrayList.add(new ThemeDescription(this.alertNameTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
         arrayList.add(new ThemeDescription(this.alertTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelMessage));
         ImageView imageView = this.closePinned;
-        int i30 = ThemeDescription.FLAG_IMAGECOLOR;
-        int i31 = Theme.key_chat_topPanelClose;
-        arrayList.add(new ThemeDescription(imageView, i30, null, null, null, null, i31));
-        arrayList.add(new ThemeDescription(this.pinnedListButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i31));
-        arrayList.add(new ThemeDescription(this.closeReportSpam, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i31));
+        int i29 = ThemeDescription.FLAG_IMAGECOLOR;
+        int i30 = Theme.key_chat_topPanelClose;
+        arrayList.add(new ThemeDescription(imageView, i29, null, null, null, null, i30));
+        arrayList.add(new ThemeDescription(this.pinnedListButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i30));
+        arrayList.add(new ThemeDescription(this.closeReportSpam, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i30));
         TextView textView = this.addToContactsButton;
-        int i32 = ThemeDescription.FLAG_TEXTCOLOR;
-        int i33 = Theme.key_chat_addContact;
-        arrayList.add(new ThemeDescription(textView, i32, null, null, null, null, i33));
+        int i31 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i32 = Theme.key_chat_addContact;
+        arrayList.add(new ThemeDescription(textView, i31, null, null, null, null, i32));
         arrayList.add(new ThemeDescription(this.reportSpamButton, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, Theme.key_text_RedBold));
-        arrayList.add(new ThemeDescription(this.reportSpamButton, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i33));
+        arrayList.add(new ThemeDescription(this.reportSpamButton, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i32));
         SimpleTextView simpleTextView = this.replyNameTextView;
-        int i34 = ThemeDescription.FLAG_TEXTCOLOR;
-        int i35 = Theme.key_chat_replyPanelName;
-        arrayList.add(new ThemeDescription(simpleTextView, i34, null, null, null, null, i35));
+        int i33 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i34 = Theme.key_chat_replyPanelName;
+        arrayList.add(new ThemeDescription(simpleTextView, i33, null, null, null, null, i34));
         SimpleTextView simpleTextView2 = this.replyObjectTextView;
-        int i36 = ThemeDescription.FLAG_TEXTCOLOR;
-        int i37 = Theme.key_glass_defaultText;
-        arrayList.add(new ThemeDescription(simpleTextView2, i36, null, null, null, null, i37));
-        arrayList.add(new ThemeDescription(this.replyObjectHintTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i37));
+        int i35 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i36 = Theme.key_glass_defaultText;
+        arrayList.add(new ThemeDescription(simpleTextView2, i35, null, null, null, null, i36));
+        arrayList.add(new ThemeDescription(this.replyObjectHintTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i36));
         arrayList.add(new ThemeDescription(this.replyIconImageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chat_replyPanelIcons));
         ImageView imageView2 = this.replyCloseImageView;
-        int i38 = ThemeDescription.FLAG_IMAGECOLOR;
-        int i39 = Theme.key_glass_defaultIcon;
-        arrayList.add(new ThemeDescription(imageView2, i38, null, null, null, null, i39));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i35));
+        int i37 = ThemeDescription.FLAG_IMAGECOLOR;
+        int i38 = Theme.key_glass_defaultIcon;
+        arrayList.add(new ThemeDescription(imageView2, i37, null, null, null, null, i38));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i34));
         ImageView imageView3 = this.searchCalendarButton;
-        int i40 = ThemeDescription.FLAG_IMAGECOLOR;
-        int i41 = Theme.key_chat_searchPanelIcons;
-        arrayList.add(new ThemeDescription(imageView3, i40, null, null, null, null, i41));
+        int i39 = ThemeDescription.FLAG_IMAGECOLOR;
+        int i40 = Theme.key_chat_searchPanelIcons;
+        arrayList.add(new ThemeDescription(imageView3, i39, null, null, null, null, i40));
         ImageView imageView4 = this.searchCalendarButton;
-        int i42 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
-        int i43 = Theme.key_actionBarActionModeDefaultSelector;
-        arrayList.add(new ThemeDescription(imageView4, i42, null, null, null, null, i43));
-        arrayList.add(new ThemeDescription(this.searchUserButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i41));
-        arrayList.add(new ThemeDescription(this.searchUserButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i43));
+        int i41 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
+        int i42 = Theme.key_actionBarActionModeDefaultSelector;
+        arrayList.add(new ThemeDescription(imageView4, i41, null, null, null, null, i42));
+        arrayList.add(new ThemeDescription(this.searchUserButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i40));
+        arrayList.add(new ThemeDescription(this.searchUserButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i42));
         arrayList.add(new ThemeDescription(this.bottomOverlayText, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_secretChatStatusText));
-        arrayList.add(new ThemeDescription(this.bottomOverlayChatText, 0, null, null, null, null, i37));
+        arrayList.add(new ThemeDescription(this.bottomOverlayChatText, 0, null, null, null, null, i36));
         arrayList.add(new ThemeDescription(this.bottomOverlayChatText, 0, null, null, null, null, Theme.key_chat_goDownButtonCounterBackground));
         arrayList.add(new ThemeDescription(this.bottomOverlayChatText, 0, null, null, null, null, Theme.key_chat_messagePanelBackground));
-        arrayList.add(new ThemeDescription(this.bottomOverlayProgress, 0, null, null, null, null, i39));
+        arrayList.add(new ThemeDescription(this.bottomOverlayProgress, 0, null, null, null, null, i38));
         ChatBigEmptyView chatBigEmptyView = this.bigEmptyView;
-        int i44 = ThemeDescription.FLAG_TEXTCOLOR;
-        int i45 = Theme.key_chat_serviceText;
-        arrayList.add(new ThemeDescription(chatBigEmptyView, i44, null, null, null, null, i45));
-        arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i45));
-        arrayList.add(new ThemeDescription(this.progressBar, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, i45));
+        int i43 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i44 = Theme.key_chat_serviceText;
+        arrayList.add(new ThemeDescription(chatBigEmptyView, i43, null, null, null, null, i44));
+        arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i44));
+        arrayList.add(new ThemeDescription(this.progressBar, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, i44));
         arrayList.add(new ThemeDescription(this.chatListView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, new Class[]{ChatUnreadCell.class}, new String[]{"backgroundLayout"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_unreadMessagesStartBackground));
         arrayList.add(new ThemeDescription(this.chatListView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{ChatUnreadCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_unreadMessagesStartArrowIcon));
         arrayList.add(new ThemeDescription(this.chatListView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{ChatUnreadCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_unreadMessagesStartText));
         View view = this.progressView2;
-        int i46 = ThemeDescription.FLAG_SERVICEBACKGROUND;
-        int i47 = Theme.key_chat_serviceBackground;
-        arrayList.add(new ThemeDescription(view, i46, null, null, null, null, i47));
-        arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_SERVICEBACKGROUND, null, null, null, null, i47));
-        arrayList.add(new ThemeDescription(this.bigEmptyView, ThemeDescription.FLAG_SERVICEBACKGROUND, null, null, null, null, i47));
+        int i45 = ThemeDescription.FLAG_SERVICEBACKGROUND;
+        int i46 = Theme.key_chat_serviceBackground;
+        arrayList.add(new ThemeDescription(view, i45, null, null, null, null, i46));
+        arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_SERVICEBACKGROUND, null, null, null, null, i46));
+        arrayList.add(new ThemeDescription(this.bigEmptyView, ThemeDescription.FLAG_SERVICEBACKGROUND, null, null, null, null, i46));
         if (this.mentionContainer != null) {
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), ThemeDescription.FLAG_TEXTCOLOR, new Class[]{BotSwitchCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_botSwitchToInlineText));
-            int i48 = Theme.key_windowBackgroundWhiteBlackText;
-            arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), ThemeDescription.FLAG_TEXTCOLOR, new Class[]{MentionCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i48));
+            int i47 = Theme.key_windowBackgroundWhiteBlackText;
+            arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), ThemeDescription.FLAG_TEXTCOLOR, new Class[]{MentionCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i47));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), ThemeDescription.FLAG_TEXTCOLOR, new Class[]{MentionCell.class}, new String[]{"usernameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText3));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, new Drawable[]{Theme.chat_inlineResultFile, Theme.chat_inlineResultAudio, Theme.chat_inlineResultLocation}, null, Theme.key_chat_inlineResultIcon));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, Theme.key_windowBackgroundWhiteGrayText2));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, Theme.key_windowBackgroundWhiteLinkText));
-            arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, i48));
+            arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, i47));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, Theme.key_chat_inAudioProgress));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, Theme.key_chat_inAudioSelectedProgress));
             arrayList.add(new ThemeDescription(this.mentionContainer.getListView(), 0, new Class[]{ContextLinkCell.class}, null, null, null, Theme.key_divider));
         }
         HintView hintView = this.gifHintTextView;
-        int i49 = ThemeDescription.FLAG_BACKGROUNDFILTER;
-        int i50 = Theme.key_chat_gifSaveHintBackground;
-        arrayList.add(new ThemeDescription(hintView, i49, null, null, null, null, i50));
+        int i48 = ThemeDescription.FLAG_BACKGROUNDFILTER;
+        int i49 = Theme.key_chat_gifSaveHintBackground;
+        arrayList.add(new ThemeDescription(hintView, i48, null, null, null, null, i49));
         HintView hintView2 = this.gifHintTextView;
-        int i51 = ThemeDescription.FLAG_TEXTCOLOR;
-        int i52 = Theme.key_chat_gifSaveHintText;
-        arrayList.add(new ThemeDescription(hintView2, i51, null, null, null, null, i52));
-        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i52));
-        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{HintView.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i52));
-        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"arrowImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i50));
-        arrayList.add(new ThemeDescription(this.forwardHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i52));
-        arrayList.add(new ThemeDescription(this.forwardHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"arrowImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i50));
-        arrayList.add(new ThemeDescription(this.floatingDateView, 0, null, null, null, null, i45));
-        arrayList.add(new ThemeDescription(this.floatingDateView, 0, null, null, null, null, i47));
-        arrayList.add(new ThemeDescription(this.infoTopView, 0, null, null, null, null, i45));
-        arrayList.add(new ThemeDescription(this.infoTopView, 0, null, null, null, null, i47));
-        int i53 = Theme.key_chat_attachIcon;
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
+        int i50 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i51 = Theme.key_chat_gifSaveHintText;
+        arrayList.add(new ThemeDescription(hintView2, i50, null, null, null, null, i51));
+        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i51));
+        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{HintView.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i51));
+        arrayList.add(new ThemeDescription(this.noSoundHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"arrowImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i49));
+        arrayList.add(new ThemeDescription(this.forwardHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i51));
+        arrayList.add(new ThemeDescription(this.forwardHintView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HintView.class}, new String[]{"arrowImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i49));
+        arrayList.add(new ThemeDescription(this.floatingDateView, 0, null, null, null, null, i44));
+        arrayList.add(new ThemeDescription(this.floatingDateView, 0, null, null, null, null, i46));
+        arrayList.add(new ThemeDescription(this.infoTopView, 0, null, null, null, null, i44));
+        arrayList.add(new ThemeDescription(this.infoTopView, 0, null, null, null, null, i46));
+        int i52 = Theme.key_chat_attachIcon;
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachGalleryBackground));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachGalleryText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachAudioBackground));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachAudioText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachFileBackground));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachFileText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachContactBackground));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachContactText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachLocationBackground));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachLocationText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i53));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i52));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachPollBackground));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachPollText));
         arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{Theme.chat_attachEmptyDrawable}, null, Theme.key_chat_attachEmptyImage));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_attachPhotoBackground));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogBackground));
@@ -27641,7 +27463,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogTextGray2));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogScrollGlow));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogGrayLine));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogCameraIcon));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogButtonSelector));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_windowBackgroundWhiteLinkSelection));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_windowBackgroundWhiteInputField));
@@ -27671,9 +27492,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         arrayList.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_chat_inReactionButtonBackground));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_chat_inReactionButtonText));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_chat_outReactionButtonText));
-        int i54 = Theme.key_chat_inReactionButtonTextSelected;
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, null, i54));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, null, i54));
+        int i53 = Theme.key_chat_inReactionButtonTextSelected;
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, null, i53));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, null, i53));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_BlurAlpha));
         ChatActivityEnterView chatActivityEnterView16 = this.chatActivityEnterView;
         if (chatActivityEnterView16 != null && chatActivityEnterView16.botCommandsMenuContainer != null) {
@@ -27704,7 +27525,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (chatActivityEnterView != null) {
             chatActivityEnterView.updateColors();
         }
-        Theme.refreshAttachButtonsColors();
         ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
         if (chatAttachAlert != null) {
             chatAttachAlert.checkColors();
@@ -29313,7 +29133,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         TLRPC.WebPage webPage;
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         ScrimOptions scrimOptions2 = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions2));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda106(scrimOptions2));
         boolean z2 = (!SharedConfig.inappBrowser || str.startsWith("video?") || Browser.isInternalUri(Uri.parse(str), null)) ? false : true;
         boolean z3 = str.startsWith("#") || str.startsWith("$");
         boolean zStartsWith = str.startsWith("mailto:");
@@ -29325,7 +29145,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final boolean z5 = z3;
             itemOptionsMakeOptions.add(R.drawable.msg_openin, LocaleController.getString((!z2 || z3) ? R.string.Open : R.string.OpenInTelegramBrowser), new Runnable() {
                 @Override
-                public final void run() throws UnsupportedEncodingException {
+                public final void run() throws Resources.NotFoundException, UnsupportedEncodingException {
                     this.f$0.lambda$didLongPressLink$381(str, characterStyle, messageObject, chatMessageCell, z4, z5);
                 }
             });
@@ -29389,7 +29209,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions3);
     }
 
-    public void lambda$didLongPressLink$381(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws UnsupportedEncodingException {
+    public void lambda$didLongPressLink$381(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws Resources.NotFoundException, UnsupportedEncodingException {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
         } else if (z && !z2) {
@@ -29452,7 +29272,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         progress.end();
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda106(scrimOptions));
         itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyCardNumber), new Runnable() {
             @Override
             public final void run() {
@@ -29542,7 +29362,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda106(scrimOptions));
         if (j != 0) {
             itemOptionsMakeOptions.add(zIsChannelAndNotMegaGroup ? R.drawable.msg_channel : R.drawable.msg_discussion, LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.ViewChannel : R.string.SendMessage), new Runnable() {
                 @Override
@@ -29733,7 +29553,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         };
         final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda326(itemOptionsMakeOptions));
+        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda320(itemOptionsMakeOptions));
         itemOptionsMakeSwipeback.addGap();
         itemOptionsMakeSwipeback.add(R.drawable.msg_addbot, LocaleController.getString(R.string.CreateNewContact), new Runnable() {
             @Override
@@ -30070,7 +29890,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return (this.fragmentView.getBottom() - this.chatListView.getBottom()) + (((this.fragmentTransition == null || (this.fromPullingDownTransition && !this.toPullingDownTransition)) && !this.isInsideContainer) ? this.blurredViewBottomOffset : 0);
     }
 
-    private void gotChatInfo() {
+    private void gotChatInfo() throws Resources.NotFoundException {
         TLRPC.ChatFull chatFull = this.chatInfo;
         if (chatFull != null && chatFull.paid_reactions_available) {
             getMessagesController().getPaidReactionsDialogId();
@@ -30434,6 +30254,31 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
+    public void checkUi_topFade() {
+        float fDp;
+        float totalVisibility;
+        if (this.topPanelLayoutFade == null) {
+            return;
+        }
+        if (this.topPanelLayout != null) {
+            fDp = (AndroidUtilities.dp(58.0f) * this.topPanelLayout.getMetadata().getTotalVisibility()) + 0.0f;
+            totalVisibility = (1.0f - this.topPanelLayout.getMetadata().getTotalVisibility()) * 1.0f;
+        } else {
+            fDp = 0.0f;
+            totalVisibility = 1.0f;
+        }
+        if (this.topicsTabs != null) {
+            float fDp2 = AndroidUtilities.dp(55.0f);
+            float f = this.topicsTabs.sidemenuT;
+            fDp += fDp2 * (1.0f - f);
+            totalVisibility *= f;
+        }
+        float f2 = 1.0f - totalVisibility;
+        this.topPanelLayoutFade.setFadeHeight((int) fDp);
+        this.topPanelLayoutFade.setAlpha(f2);
+        this.topPanelLayoutFade.setVisibility(f2 > 0.0f ? 0 : 4);
+    }
+
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         if (i == 0) {
@@ -30512,7 +30357,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void onSideControlButtonOnClick(int i, View view) throws Resources.NotFoundException, NumberFormatException {
+    public void onSideControlButtonOnClick(int i, View view) throws Resources.NotFoundException {
         if (i == 1) {
             onPageDownClicked();
             return;
@@ -30525,7 +30370,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.wasManualScroll = true;
             getMessagesController().getNextReactionMention(this.dialog_id, getTopicId(), this.reactionsMentionCount, new androidx.core.util.Consumer() {
                 @Override
-                public final void accept(Object obj) throws Resources.NotFoundException, NumberFormatException {
+                public final void accept(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$onSideControlButtonOnClick$430((Integer) obj);
                 }
             });
@@ -30546,7 +30391,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onSideControlButtonOnClick$430(Integer num) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$onSideControlButtonOnClick$430(Integer num) throws Resources.NotFoundException {
         if (num.intValue() == 0) {
             this.reactionsMentionCount = 0;
             updateReactionsMentionButton(true);
@@ -30576,7 +30421,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.hasAllMentionsLocal) {
             getMessagesStorage().getUnreadMention(this.dialog_id, getTopicId(), new MessagesStorage.IntCallback() {
                 @Override
-                public final void run(int i) throws Resources.NotFoundException, NumberFormatException {
+                public final void run(int i) throws Resources.NotFoundException {
                     this.f$0.lambda$loadLastUnreadMention$431(i);
                 }
             });
@@ -30599,7 +30444,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public void lambda$loadLastUnreadMention$431(int i) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$loadLastUnreadMention$431(int i) throws Resources.NotFoundException {
         if (i == 0) {
             this.hasAllMentionsLocal = false;
             loadLastUnreadMention();
@@ -30611,13 +30456,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$loadLastUnreadMention$433(final MessagesStorage messagesStorage, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$loadLastUnreadMention$432(tLObject, tL_error, messagesStorage);
             }
         });
     }
 
-    public void lambda$loadLastUnreadMention$432(TLObject tLObject, TLRPC.TL_error tL_error, MessagesStorage messagesStorage) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$loadLastUnreadMention$432(TLObject tLObject, TLRPC.TL_error tL_error, MessagesStorage messagesStorage) throws Resources.NotFoundException {
         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
         if (tL_error != null || messages_messages.messages.isEmpty()) {
             if (messages_messages != null) {
@@ -30771,6 +30616,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             public final void capture(Canvas canvas, RectF rectF) {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
+
+            @Override
+            public long captureCalculateHash(RectF rectF) {
+                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
+            }
         }, this.contentView.getWidth(), this.contentView.getHeight());
     }
 
@@ -30826,7 +30676,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.clipBoundsTmp.set(0, currentActionBarHeight, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight() - iMax);
             this.clipBoundsTmp.offset(0, -this.chatListView.getTop());
             ChatListRecyclerView chatListRecyclerView = this.chatListView;
-            chatListRecyclerView.setClipBounds(chatListRecyclerView.hasActiveOverScroll() ? null : this.clipBoundsTmp);
+            chatListRecyclerView.setClipBounds(chatListRecyclerView.hasActiveEdgeEffects() ? null : this.clipBoundsTmp);
         }
         ChatInputViewsContainer chatInputViewsContainer = this.chatInputViewsContainer;
         if (chatInputViewsContainer == null || chatInputViewsContainer.getFadeView() == null) {

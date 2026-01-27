@@ -217,38 +217,19 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
         this.fragmentView = new FrameLayout(context);
-        this.listView = new RecyclerListView(context) {
-            private Paint backgroundPaint = new Paint(1);
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                int childAdapterPosition;
-                int size = ChangeUsernameActivity.this.usernames.size() + 3;
-                int iMin = Integer.MAX_VALUE;
-                int iMax = Integer.MIN_VALUE;
-                for (int i4 = 0; i4 < getChildCount(); i4++) {
-                    View childAt = getChildAt(i4);
-                    if (childAt != null && (childAdapterPosition = getChildAdapterPosition(childAt)) >= 4 && childAdapterPosition <= size) {
-                        iMin = Math.min(childAt.getTop(), iMin);
-                        iMax = Math.max(childAt.getBottom(), iMax);
-                    }
-                }
-                if (iMin < iMax) {
-                    this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-                    canvas.drawRect(0.0f, iMin, getWidth(), iMax, this.backgroundPaint);
-                }
-                super.dispatchDraw(canvas);
-            }
-        };
+        RecyclerListView recyclerListView = new RecyclerListView(context);
+        this.listView = recyclerListView;
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.fragmentView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
-        RecyclerListView recyclerListView = this.listView;
+        RecyclerListView recyclerListView2 = this.listView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         this.layoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
-        RecyclerListView recyclerListView2 = this.listView;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
+        RecyclerListView recyclerListView3 = this.listView;
         Adapter adapter = new Adapter();
         this.adapter = adapter;
-        recyclerListView2.setAdapter(adapter);
+        recyclerListView3.setAdapter(adapter);
         this.listView.setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
@@ -260,7 +241,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 return ChangeUsernameActivity.lambda$createView$0(view, motionEvent);
             }
         });
-        this.listView.setOnItemClickListener(new AnonymousClass3());
+        this.listView.setOnItemClickListener(new AnonymousClass2());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -270,8 +251,8 @@ public class ChangeUsernameActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    class AnonymousClass3 implements RecyclerListView.OnItemClickListener {
-        AnonymousClass3() {
+    class AnonymousClass2 implements RecyclerListView.OnItemClickListener {
+        AnonymousClass2() {
         }
 
         @Override
@@ -500,13 +481,13 @@ public class ChangeUsernameActivity extends BaseFragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             if (i == 0) {
-                HeaderCell headerCell = new HeaderCell(ChangeUsernameActivity.this.getContext());
-                headerCell.setBackgroundColor(ChangeUsernameActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                return new RecyclerListView.Holder(headerCell);
+                return new RecyclerListView.Holder(new HeaderCell(ChangeUsernameActivity.this.getContext()));
             }
             if (i == 1) {
                 ChangeUsernameActivity changeUsernameActivity = ChangeUsernameActivity.this;
-                return new RecyclerListView.Holder(changeUsernameActivity.new UsernameHelpCell(changeUsernameActivity.getContext()));
+                UsernameHelpCell usernameHelpCell = changeUsernameActivity.new UsernameHelpCell(changeUsernameActivity.getContext());
+                usernameHelpCell.setTag(-33024);
+                return new RecyclerListView.Holder(usernameHelpCell);
             }
             if (i == 2) {
                 return new RecyclerListView.Holder(new TextInfoPrivacyCell(ChangeUsernameActivity.this.getContext()));
@@ -539,7 +520,6 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
             if (itemViewType == 2) {
                 ((TextInfoPrivacyCell) viewHolder.itemView).setText(LocaleController.getString(ChangeUsernameActivity.this.botId != 0 ? R.string.BotUsernamesHelp : R.string.UsernamesProfileHelp));
-                ((TextInfoPrivacyCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawableByKey(ChangeUsernameActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 return;
             }
             if (itemViewType == 3) {
@@ -684,7 +664,6 @@ public class ChangeUsernameActivity extends BaseFragment {
             super(context);
             ChangeUsernameActivity.this.helpCell = this;
             setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
-            setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             setClipChildren(false);
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.text1View = linksTextView;
@@ -893,7 +872,6 @@ public class ChangeUsernameActivity extends BaseFragment {
             linearLayout.addView(this.tme, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 21, 15, 0, 15));
             linearLayout.addView(this.field, LayoutHelper.createLinear(-2, -2, 1.0f, 16, 0, 15, 21, 15));
             addView(linearLayout, LayoutHelper.createFrame(-1, -1, 48));
-            setBackgroundColor(ChangeUsernameActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
             if (ChangeUsernameActivity.this.botId != 0) {
                 this.field.setAlpha(0.6f);
                 this.tme.setAlpha(0.6f);
@@ -1590,7 +1568,6 @@ public class ChangeUsernameActivity extends BaseFragment {
     public ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));

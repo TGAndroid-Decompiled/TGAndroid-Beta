@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import j$.util.Collection;
 import j$.util.function.Function$CC;
 import j$.util.function.Predicate$CC;
@@ -34,8 +35,10 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
@@ -182,6 +185,30 @@ public abstract class GroupCallSheet {
             linksTextViewMakeLinkTextView3.setMaxWidth(HintView2.cutInFancyHalf(linksTextViewMakeLinkTextView3.getText(), linksTextViewMakeLinkTextView3.getPaint()));
             linearLayout.addView(linksTextViewMakeLinkTextView3, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 25));
         }
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        linearLayout2.setClipToPadding(false);
+        linearLayout2.setOrientation(0);
+        linearLayout2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, darkThemeResourceProvider), 6, 6));
+        final CheckBox2 checkBox2 = new CheckBox2(context, 24, darkThemeResourceProvider);
+        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
+        checkBox2.setDrawUnchecked(true);
+        checkBox2.setChecked(MessagesController.getGlobalMainSettings().getBoolean("callmiconstart", true), false);
+        checkBox2.setDrawBackgroundAsArc(10);
+        linearLayout2.addView(checkBox2, LayoutHelper.createLinear(26, 26, 16, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, darkThemeResourceProvider));
+        textView.setTextSize(1, 14.0f);
+        textView.setText("Turn on the microphone");
+        linearLayout2.addView(textView, LayoutHelper.createLinear(-2, -2, 16, 9, 0, 0, 0));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, 38, 1, 0, 4, 0, 12));
+        ScaleStateListAnimator.apply(linearLayout2, 0.025f, 1.5f);
+        linearLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                GroupCallSheet.lambda$show$5(checkBox2, view2);
+            }
+        });
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, darkThemeResourceProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.GroupCallLinkJoin), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 2.0f, 0.0f, 2.0f, 0.0f));
@@ -190,7 +217,7 @@ public abstract class GroupCallSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                GroupCallSheet.lambda$show$5(bottomSheetCreate, context, i, inputGroupCall, view2);
+                GroupCallSheet.lambda$show$6(bottomSheetCreate, context, checkBox2, i, inputGroupCall, view2);
             }
         });
         bottomSheetCreate.fixNavigationBar();
@@ -205,12 +232,18 @@ public abstract class GroupCallSheet {
         return (l.longValue() == UserConfig.getInstance(i).getClientUserId() || l.longValue() == j) ? false : true;
     }
 
-    public static void lambda$show$5(BottomSheet bottomSheet, Context context, int i, TLRPC.InputGroupCall inputGroupCall, View view) {
+    public static void lambda$show$5(CheckBox2 checkBox2, View view) {
+        checkBox2.setChecked(!checkBox2.isChecked(), true);
+        MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", checkBox2.isChecked()).apply();
+    }
+
+    public static void lambda$show$6(BottomSheet bottomSheet, Context context, CheckBox2 checkBox2, int i, TLRPC.InputGroupCall inputGroupCall, View view) {
         bottomSheet.lambda$new$0();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity == null) {
             return;
         }
+        MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", checkBox2.isChecked()).apply();
         VoIPHelper.joinConference(activityFindActivity, i, inputGroupCall, false, null);
     }
 }

@@ -745,6 +745,10 @@ public class LinkSpanDrawable {
             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spanned.getSpans(0, spanned.length(), ClickableSpan.class);
             return clickableSpanArr != null && clickableSpanArr.length > 0;
         }
+
+        public void clear() {
+            this.links.clear(false);
+        }
     }
 
     public static class LinksSimpleTextView extends SimpleTextView {

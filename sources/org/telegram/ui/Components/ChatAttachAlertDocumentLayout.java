@@ -31,6 +31,7 @@ import android.widget.EditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,6 +67,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.FiltersView;
+import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
@@ -75,6 +77,7 @@ import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoPickerActivity;
 
@@ -92,7 +95,6 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     private FiltersView filtersView;
     private AnimatorSet filtersViewAnimator;
     private boolean hasFiles;
-    private boolean ignoreLayout;
     public boolean isSoundPicker;
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
@@ -345,7 +347,6 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         ListAdapter listAdapter = new ListAdapter(context);
         this.backgroundListAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
-        this.backgroundListView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.backgroundListView, LayoutHelper.createFrame(-1, -1.0f));
         this.backgroundListView.setVisibility(8);
         RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider) {
@@ -366,9 +367,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.listView = recyclerListView4;
-        recyclerListView4.setSectionsType(2);
-        this.listView.setVerticalScrollBarEnabled(false);
+        ViewGroup containerView = chatAttachAlert.getContainerView();
         RecyclerListView recyclerListView5 = this.listView;
+        Objects.requireNonNull(recyclerListView5);
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView5));
+        this.occupyNavigationBar = true;
+        this.listView.setSectionsType(2);
+        this.listView.setVerticalScrollBarEnabled(false);
+        RecyclerListView recyclerListView6 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i4) {
@@ -388,10 +394,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.layoutManager = fillLastLinearLayoutManager2;
-        recyclerListView5.setLayoutManager(fillLastLinearLayoutManager2);
+        recyclerListView6.setLayoutManager(fillLastLinearLayoutManager2);
         this.listView.setClipToPadding(false);
         this.listView.setAdapter(this.listAdapter);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.searchAdapter = new SearchAdapter(context);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -760,21 +765,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
+    public void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertDocumentLayout.onPreMeasure(int, int):void");
     }
 
     @Override
     public int getButtonsHideOffset() {
         return AndroidUtilities.dp(62.0f);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
     }
 
     @Override

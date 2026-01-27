@@ -78,6 +78,7 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Stars.BotStarsActivity;
 import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -104,11 +105,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     public final long dialogId;
     private DecimalFormat formatter;
     private final BaseFragment fragment;
+    public IBlur3Capture iBlur3Capture;
     private StatisticActivity.ChartViewData impressionsChart;
     private boolean initialSwitchOffValue;
     private final ProceedOverview lastWithdrawalValue;
     private final ProceedOverview lifetimeValue;
-    private final UniversalRecyclerView listView;
+    public final UniversalRecyclerView listView;
     private SpannableStringBuilder lock;
     private NestedScrollingParentHelper nestedScrollingParentHelper;
     private boolean proceedsAvailable;
@@ -274,18 +276,18 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         animatedTextView2.setTextColor(Theme.getColor(i6, resourcesProvider));
         animatedTextView2.setTextSize(AndroidUtilities.dp(14.0f));
         linearLayout.addView(animatedTextView2, LayoutHelper.createFrame(-1, 17.0f, 49, 22.0f, 4.0f, 22.0f, 0.0f));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.balanceButton = buttonWithCounterView;
-        buttonWithCounterView.setEnabled(MessagesController.getInstance(i).channelRevenueWithdrawalEnabled);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.MonetizationWithdraw), false);
-        buttonWithCounterView.setVisibility(8);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        this.balanceButton = round;
+        round.setEnabled(MessagesController.getInstance(i).channelRevenueWithdrawalEnabled);
+        round.setText(LocaleController.getString(R.string.MonetizationWithdraw), false);
+        round.setVisibility(8);
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$6(baseFragment, view);
             }
         });
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
+        linearLayout.addView(round, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         LinearLayout linearLayout2 = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i7, int i8) {
@@ -401,36 +403,36 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         LinearLayout linearLayout4 = new LinearLayout(context);
         this.starsBalanceButtonsLayout = linearLayout4;
         linearLayout4.setOrientation(0);
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider) {
+        ButtonWithCounterView round2 = new ButtonWithCounterView(context, resourcesProvider) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
             }
-        };
-        this.starsBalanceButton = buttonWithCounterView2;
-        buttonWithCounterView2.setEnabled(false);
-        buttonWithCounterView2.setText(LocaleController.formatPluralString("MonetizationStarsWithdraw", 0, new Object[0]), false);
-        buttonWithCounterView2.setVisibility(0);
-        buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+        }.setRound();
+        this.starsBalanceButton = round2;
+        round2.setEnabled(false);
+        round2.setText(LocaleController.formatPluralString("MonetizationStarsWithdraw", 0, new Object[0]), false);
+        round2.setVisibility(0);
+        round2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$11(i, baseFragment, view);
             }
         });
-        ButtonWithCounterView buttonWithCounterView3 = new ButtonWithCounterView(context, resourcesProvider);
-        this.starsAdsButton = buttonWithCounterView3;
-        buttonWithCounterView3.setEnabled(false);
-        buttonWithCounterView3.setText(LocaleController.getString(R.string.MonetizationStarsAds), false);
-        buttonWithCounterView3.setOnClickListener(new View.OnClickListener() {
+        ButtonWithCounterView round3 = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        this.starsAdsButton = round3;
+        round3.setEnabled(false);
+        round3.setText(LocaleController.getString(R.string.MonetizationStarsAds), false);
+        round3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$15(i, j, context, view);
             }
         });
-        linearLayout4.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
+        linearLayout4.addView(round2, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             linearLayout4.addView(new Space(context), LayoutHelper.createLinear(8, 48, 0.0f, 119));
-            linearLayout4.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
+            linearLayout4.addView(round3, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
         }
         linearLayout2.addView(linearLayout4, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         this.starsBalanceEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -462,6 +464,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         });
         this.listView = universalRecyclerView;
+        universalRecyclerView.setClipToPadding(false);
+        universalRecyclerView.setSections();
         addView(universalRecyclerView);
         LinearLayout linearLayout5 = new LinearLayout(context);
         linearLayout5.setOrientation(1);
@@ -1244,7 +1248,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 arrayList.add(UItem.asCustom(this.balanceLayout));
                 arrayList.add(UItem.asShadow(-5, this.balanceInfo));
                 int i2 = MessagesController.getInstance(this.currentAccount).channelRestrictSponsoredLevelMin;
-                arrayList.add(UItem.asCheck(1, PeerColorActivity.withLevelLock(LocaleController.getString(R.string.MonetizationSwitchOff), this.currentBoostLevel < i2 ? i2 : 0)).setChecked(this.currentBoostLevel >= i2 && this.switchOffValue));
+                boolean z = false;
+                UItem uItemAsCheck = UItem.asCheck(1, PeerColorActivity.withLevelLock(LocaleController.getString(R.string.MonetizationSwitchOff), this.currentBoostLevel < i2 ? i2 : 0));
+                if (this.currentBoostLevel >= i2 && this.switchOffValue) {
+                    z = true;
+                }
+                arrayList.add(uItemAsCheck.setChecked(z));
                 arrayList.add(UItem.asShadow(-8, LocaleController.getString(R.string.MonetizationSwitchOffInfo)));
             }
             if (this.starsRevenueAvailable) {
@@ -1258,7 +1267,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             arrayList.add(UItem.asShadow(-7, null));
         }
         if (this.transactionsLayout.hasTransactions()) {
-            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, 0));
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, AndroidUtilities.dp(24.0f), true));
         } else {
             arrayList.add(UItem.asShadow(-10, null));
         }
@@ -1684,15 +1693,15 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         }));
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 28.0f, 9.0f, 28.0f, 0.0f));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.GotIt), false);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setText(LocaleController.getString(R.string.GotIt), false);
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 bottomSheet.lambda$new$0();
             }
         });
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 10, 25, 10, 14));
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 55, 10, 25, 10, 14));
         bottomSheet.setCustomView(linearLayout);
         return bottomSheet;
     }
@@ -2129,7 +2138,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 if (actionBar != null) {
                     actionBar.setCastShadows(!isAttachedToWindow() || this.listView.getHeight() - bottom < 0);
                 }
-                if (this.listView.getHeight() - bottom >= 0) {
+                if (this.listView.getHeight() - bottom >= this.listView.getPaddingBottom() + AndroidUtilities.dp(8.0f)) {
                     iArr[1] = i4;
                     currentListView.scrollBy(0, i4);
                 }
@@ -2171,7 +2180,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             if (i2 >= 0) {
                 if (i2 > 0) {
                     RecyclerListView currentListView = this.transactionsLayout.getCurrentListView();
-                    if (this.listView.getHeight() - bottom < 0 || currentListView == null || currentListView.canScrollVertically(1)) {
+                    if (this.listView.getHeight() - bottom < this.listView.getPaddingBottom() + AndroidUtilities.dp(8.0f) || currentListView == null || currentListView.canScrollVertically(1)) {
                         return;
                     }
                     iArr[1] = i2;
@@ -2184,7 +2193,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             if (actionBar != null) {
                 actionBar.setCastShadows(!isAttachedToWindow() || this.listView.getHeight() - bottom < 0);
             }
-            if (this.listView.getHeight() - bottom >= 0) {
+            if (this.listView.getHeight() - bottom >= this.listView.getPaddingBottom() + AndroidUtilities.dp(8.0f)) {
                 RecyclerListView currentListView2 = this.transactionsLayout.getCurrentListView();
                 int iFindFirstVisibleItemPosition = ((LinearLayoutManager) currentListView2.getLayoutManager()).findFirstVisibleItemPosition();
                 if (iFindFirstVisibleItemPosition != -1) {

@@ -61,6 +61,8 @@ import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.blur3.StrokeDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
@@ -80,6 +82,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     public final RectF bounds;
     protected final BlurringShader.StoryBlurDrawer captionBlur;
     private final RectF clickBounds;
+    private final Path clipPath;
     private int codePointCount;
     private RadialGradient collapseGradient;
     private Matrix collapseGradientMatrix;
@@ -133,6 +136,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     private ObjectAnimator scrollAnimator;
     private int shiftDp;
     private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    protected final StrokeDrawable strokeDrawable;
     private final Runnable textChangeRunnable;
     public boolean toKeyboardShow;
     private Runnable updateShowKeyboard;
@@ -167,7 +171,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     protected float forceRound() {
-        return 0.0f;
+        return 1.0f;
     }
 
     protected int getCaptionDefaultLimit() {
@@ -212,6 +216,8 @@ public abstract class CaptionContainerView extends FrameLayout {
 
     public CaptionContainerView(Context context, FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, final BlurringShader.BlurManager blurManager) {
         super(context);
+        StrokeDrawable strokeDrawable = new StrokeDrawable();
+        this.strokeDrawable = strokeDrawable;
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
         Paint paint2 = new Paint(1);
@@ -243,6 +249,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.rectF = new RectF();
         this.bounds = new RectF();
         this.clickBounds = new RectF();
+        this.clipPath = new Path();
         this.collapsedT = new AnimatedFloat(this, 500L, cubicBezierInterpolator);
         this.resourcesProvider = resourcesProvider;
         this.rootView = frameLayout;
@@ -252,6 +259,14 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.backgroundBlur = new BlurringShader.StoryBlurDrawer(blurManager, this, 0, !customBlur());
         this.replyBackgroundBlur = new BlurringShader.StoryBlurDrawer(blurManager, this, 8);
         this.replyTextBlur = new BlurringShader.StoryBlurDrawer(blurManager, this, 9);
+        strokeDrawable.nonRound = true;
+        strokeDrawable.setColorProvider(new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_windowBackgroundWhite, 0.0f) {
+            @Override
+            public boolean isDark() {
+                return true;
+            }
+        });
+        strokeDrawable.setBackgroundColor(0);
         paint.setColor(Integer.MIN_VALUE);
         this.keyboardNotifier = new KeyboardNotifier(frameLayout, new Utilities.Callback() {
             @Override
@@ -387,18 +402,20 @@ public abstract class CaptionContainerView extends FrameLayout {
             editTextEmoji.getEditText().setGravity(48);
         }
         editTextEmoji.getEmojiButton().setAlpha(0.0f);
-        editTextEmoji.getEditText().addTextChangedListener(new AnonymousClass2());
+        editTextEmoji.getEmojiButton().setTranslationY(AndroidUtilities.dp(isAtTop() ? 1.0f : -1.0f));
+        editTextEmoji.setTranslationY(AndroidUtilities.dp(isAtTop() ? 1.0f : -1.0f));
+        editTextEmoji.getEditText().addTextChangedListener(new AnonymousClass3());
         editTextEmoji.getEditText().setLinkTextColor(-1);
-        addView(editTextEmoji, LayoutHelper.createFrame(-1, -2.0f, (isAtTop() ? 48 : 80) | 7, 12.0f, 12.0f, additionalRightMargin() + 12, 12.0f));
+        addView(editTextEmoji, LayoutHelper.createFrame(-1, -2.0f, (isAtTop() ? 48 : 80) | 7, 12.0f, 8.0f, additionalRightMargin() + 12, 8.0f));
         BounceableImageView bounceableImageView = new BounceableImageView(context);
         this.applyButton = bounceableImageView;
         ScaleStateListAnimator.apply(bounceableImageView, 0.05f, 1.25f);
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
         this.applyButtonCheck = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(18.0f), Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
         this.applyButtonDrawable = combinedDrawable;
-        combinedDrawable.setCustomSize(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
+        combinedDrawable.setCustomSize(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
         this.applyButton.setImageDrawable(this.applyButtonDrawable);
         this.applyButton.setScaleType(ImageView.ScaleType.CENTER);
         this.applyButton.setAlpha(0.0f);
@@ -409,8 +426,7 @@ public abstract class CaptionContainerView extends FrameLayout {
                 this.f$0.lambda$new$0(view);
             }
         });
-        this.applyButton.setTranslationY(-AndroidUtilities.dp(1.0f));
-        addView(this.applyButton, LayoutHelper.createFrame(44, 44, (isAtTop() ? 48 : 80) | 5));
+        addView(this.applyButton, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 5, 8.0f, 8.0f, 8.0f, 8.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
         this.limitTextView = animatedTextView;
         animatedTextView.setGravity(17);
@@ -427,11 +443,11 @@ public abstract class CaptionContainerView extends FrameLayout {
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
-    class AnonymousClass2 implements TextWatcher {
+    class AnonymousClass3 implements TextWatcher {
         private int lastLength;
         private boolean lastOverLimit;
 
-        AnonymousClass2() {
+        AnonymousClass3() {
         }
 
         @Override
@@ -813,8 +829,6 @@ public abstract class CaptionContainerView extends FrameLayout {
         } else {
             this.keyboardT = z ? 1.0f : 0.0f;
             this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
-            this.editText.setTranslationX(AndroidUtilities.lerp(0, AndroidUtilities.dp(-8.0f), this.keyboardT));
-            this.editText.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(isAtTop() ? -10.0f : 10.0f), this.keyboardT));
             this.limitTextContainer.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
             this.limitTextContainer.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
             this.editText.getEmojiButton().setAlpha(this.keyboardT);
@@ -865,8 +879,6 @@ public abstract class CaptionContainerView extends FrameLayout {
     public void lambda$updateShowKeyboard$3(ValueAnimator valueAnimator) {
         this.keyboardT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
-        this.editText.setTranslationX(AndroidUtilities.lerp(0, AndroidUtilities.dp(-8.0f), this.keyboardT));
-        this.editText.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(isAtTop() ? -10.0f : 10.0f), this.keyboardT));
         this.limitTextContainer.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
         this.limitTextContainer.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
         this.editText.getEmojiButton().setAlpha(this.keyboardT);

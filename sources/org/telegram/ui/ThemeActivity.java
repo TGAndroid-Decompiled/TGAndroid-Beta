@@ -1030,13 +1030,16 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         this.fragmentView = frameLayout;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
+        recyclerListView.setSections();
+        RecyclerListView recyclerListView2 = this.listView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setAdapter(this.listAdapter);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
             public boolean hasDoubleTap(View view, int i3) {
@@ -2360,34 +2363,26 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell;
+            View notificationsCheckCell;
             int i2 = 0;
             switch (i) {
                 case 1:
-                    View textSettingsCell = new TextSettingsCell(this.mContext);
-                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textSettingsCell;
+                    notificationsCheckCell = new TextSettingsCell(this.mContext);
                     break;
                 case 2:
-                    View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    shadowSectionCell = textInfoPrivacyCell;
+                    notificationsCheckCell = new TextInfoPrivacyCell(this.mContext);
                     break;
                 case 3:
-                    shadowSectionCell = new ShadowSectionCell(this.mContext);
+                    notificationsCheckCell = new ShadowSectionCell(this.mContext);
                     break;
                 case 4:
-                    View themeTypeCell = new ThemeTypeCell(this.mContext);
-                    themeTypeCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = themeTypeCell;
+                    notificationsCheckCell = new ThemeTypeCell(this.mContext);
                     break;
                 case 5:
-                    View headerCell = new HeaderCell(this.mContext);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = headerCell;
+                    notificationsCheckCell = new HeaderCell(this.mContext);
                     break;
                 case 6:
-                    View view = new BrightnessControlCell(this.mContext, i2) {
+                    notificationsCheckCell = new BrightnessControlCell(this.mContext, i2) {
                         @Override
                         protected void didChangedValue(float f) {
                             int i3 = (int) (Theme.autoNightBrighnessThreshold * 100.0f);
@@ -2402,33 +2397,23 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             }
                         }
                     };
-                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view;
                     break;
                 case 7:
-                    View textCheckCell = new TextCheckCell(this.mContext);
-                    textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCheckCell;
+                    notificationsCheckCell = new TextCheckCell(this.mContext);
                     break;
                 case 8:
-                    View textSizeCell = ThemeActivity.this.new TextSizeCell(this.mContext);
-                    textSizeCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textSizeCell;
+                    notificationsCheckCell = ThemeActivity.this.new TextSizeCell(this.mContext);
                     break;
                 case 9:
-                    View view2 = new ChatListCell(this.mContext) {
+                    notificationsCheckCell = new ChatListCell(this.mContext) {
                         @Override
                         protected void didSelectChatType(boolean z) {
                             SharedConfig.setUseThreeLinesLayout(z);
                         }
                     };
-                    view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view2;
                     break;
                 case 10:
-                    View notificationsCheckCell = new NotificationsCheckCell(this.mContext, 21, 60, true);
-                    notificationsCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = notificationsCheckCell;
+                    notificationsCheckCell = new NotificationsCheckCell(this.mContext, 21, 60, true);
                     break;
                 case 11:
                     this.first = true;
@@ -2448,9 +2433,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     };
                     ThemeActivity.this.themesHorizontalListCell.setDrawDivider(ThemeActivity.this.hasThemeAccents);
                     ThemeActivity.this.themesHorizontalListCell.setFocusable(false);
-                    View view3 = ThemeActivity.this.themesHorizontalListCell;
-                    view3.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(148.0f)));
-                    shadowSectionCell = view3;
+                    View view = ThemeActivity.this.themesHorizontalListCell;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(148.0f)));
+                    notificationsCheckCell = view;
                     break;
                 case 12:
                     final TintRecyclerListView tintRecyclerListView = new TintRecyclerListView(this.mContext) {
@@ -2463,7 +2448,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         }
                     };
                     tintRecyclerListView.setFocusable(false);
-                    tintRecyclerListView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     tintRecyclerListView.setItemAnimator(null);
                     tintRecyclerListView.setLayoutAnimation(null);
                     tintRecyclerListView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
@@ -2475,36 +2459,32 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setAdapter(themeAccentsListAdapter);
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view4, int i3) {
-                            this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view4, i3);
+                        public final void onItemClick(View view2, int i3) {
+                            this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view2, i3);
                         }
                     });
                     tintRecyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                         @Override
-                        public final boolean onItemClick(View view4, int i3) {
-                            return this.f$0.lambda$onCreateViewHolder$5(themeAccentsListAdapter, view4, i3);
+                        public final boolean onItemClick(View view2, int i3) {
+                            return this.f$0.lambda$onCreateViewHolder$5(themeAccentsListAdapter, view2, i3);
                         }
                     });
                     tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(62.0f)));
-                    shadowSectionCell = tintRecyclerListView;
+                    notificationsCheckCell = tintRecyclerListView;
                     break;
                 case 13:
-                    View bubbleRadiusCell = ThemeActivity.this.new BubbleRadiusCell(this.mContext);
-                    bubbleRadiusCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = bubbleRadiusCell;
+                    notificationsCheckCell = ThemeActivity.this.new BubbleRadiusCell(this.mContext);
                     break;
                 case 14:
                 case 18:
                 default:
-                    View textCell = new TextCell(this.mContext);
-                    textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCell;
+                    notificationsCheckCell = new TextCell(this.mContext);
                     break;
                 case 15:
-                    shadowSectionCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
+                    notificationsCheckCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
                     break;
                 case 16:
-                    View view4 = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, i2) {
+                    View view2 = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, i2) {
                         @Override
                         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                             if (getParent() != null && getParent().getParent() != null) {
@@ -2513,8 +2493,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return super.onInterceptTouchEvent(motionEvent);
                         }
                     };
-                    view4.setImportantForAccessibility(4);
-                    shadowSectionCell = view4;
+                    view2.setImportantForAccessibility(4);
+                    notificationsCheckCell = view2;
                     break;
                 case 17:
                     Context context2 = this.mContext;
@@ -2522,21 +2502,21 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     View defaultThemesPreviewCell = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
                     defaultThemesPreviewCell.setFocusable(false);
                     defaultThemesPreviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    shadowSectionCell = defaultThemesPreviewCell;
+                    notificationsCheckCell = defaultThemesPreviewCell;
                     break;
                 case 19:
-                    shadowSectionCell = new RadioButtonCell(this.mContext);
+                    notificationsCheckCell = new RadioButtonCell(this.mContext);
                     break;
                 case 20:
                     Context context3 = this.mContext;
                     ThemeActivity themeActivity4 = ThemeActivity.this;
-                    shadowSectionCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
+                    notificationsCheckCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
                     break;
                 case 21:
-                    shadowSectionCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
+                    notificationsCheckCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
                     break;
             }
-            return new RecyclerListView.Holder(shadowSectionCell);
+            return new RecyclerListView.Holder(notificationsCheckCell);
         }
 
         @Override
@@ -2544,379 +2524,349 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             String string;
             String string2;
             String string3;
-            switch (viewHolder.getItemViewType()) {
-                case 1:
-                    TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-                    if (i != ThemeActivity.this.nightThemeRow) {
-                        if (i != ThemeActivity.this.scheduleFromRow) {
-                            if (i != ThemeActivity.this.scheduleToRow) {
-                                if (i != ThemeActivity.this.scheduleUpdateLocationRow) {
-                                    if (i != ThemeActivity.this.contactsSortRow) {
-                                        if (i != ThemeActivity.this.contactsReimportRow) {
-                                            if (i != ThemeActivity.this.distanceRow) {
-                                                if (i == ThemeActivity.this.searchEngineRow) {
-                                                    textSettingsCell.setTextAndValue(LocaleController.getString(R.string.SearchEngine), SearchEngine.getCurrent().name, ThemeActivity.this.updateSearchEngine, false);
-                                                    break;
-                                                } else if (i == ThemeActivity.this.bluetoothScoRow) {
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 1) {
+                TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
+                if (i != ThemeActivity.this.nightThemeRow) {
+                    if (i != ThemeActivity.this.scheduleFromRow) {
+                        if (i != ThemeActivity.this.scheduleToRow) {
+                            if (i != ThemeActivity.this.scheduleUpdateLocationRow) {
+                                if (i != ThemeActivity.this.contactsSortRow) {
+                                    if (i != ThemeActivity.this.contactsReimportRow) {
+                                        if (i != ThemeActivity.this.distanceRow) {
+                                            if (i == ThemeActivity.this.searchEngineRow) {
+                                                textSettingsCell.setTextAndValue(LocaleController.getString(R.string.SearchEngine), SearchEngine.getCurrent().name, ThemeActivity.this.updateSearchEngine, false);
+                                                return;
+                                            } else {
+                                                if (i == ThemeActivity.this.bluetoothScoRow) {
                                                     textSettingsCell.setTextAndValue(LocaleController.getString(R.string.MicrophoneForVoiceMessages), LocaleController.getString(SharedConfig.recordViaSco ? R.string.MicrophoneForVoiceMessagesSco : R.string.MicrophoneForVoiceMessagesBuiltIn), ThemeActivity.this.updateRecordViaSco, false);
                                                     ThemeActivity.this.updateRecordViaSco = false;
-                                                    break;
+                                                    return;
                                                 }
-                                            } else {
-                                                int i2 = SharedConfig.distanceSystemType;
-                                                if (i2 == 0) {
-                                                    string = LocaleController.getString("DistanceUnitsAutomatic", R.string.DistanceUnitsAutomatic);
-                                                } else if (i2 == 1) {
-                                                    string = LocaleController.getString("DistanceUnitsKilometers", R.string.DistanceUnitsKilometers);
-                                                } else {
-                                                    string = LocaleController.getString("DistanceUnitsMiles", R.string.DistanceUnitsMiles);
-                                                }
-                                                textSettingsCell.setTextAndValue(LocaleController.getString("DistanceUnits", R.string.DistanceUnits), string, ThemeActivity.this.updateDistance, true);
-                                                ThemeActivity.this.updateDistance = false;
-                                                break;
+                                                return;
                                             }
-                                        } else {
-                                            textSettingsCell.setText(LocaleController.getString("ImportContacts", R.string.ImportContacts), true);
-                                            break;
                                         }
-                                    } else {
-                                        int i3 = MessagesController.getGlobalMainSettings().getInt("sortContactsBy", 0);
-                                        if (i3 == 0) {
-                                            string2 = LocaleController.getString("Default", R.string.Default);
-                                        } else if (i3 == 1) {
-                                            string2 = LocaleController.getString("FirstName", R.string.SortFirstName);
+                                        int i2 = SharedConfig.distanceSystemType;
+                                        if (i2 == 0) {
+                                            string = LocaleController.getString("DistanceUnitsAutomatic", R.string.DistanceUnitsAutomatic);
+                                        } else if (i2 == 1) {
+                                            string = LocaleController.getString("DistanceUnitsKilometers", R.string.DistanceUnitsKilometers);
                                         } else {
-                                            string2 = LocaleController.getString("LastName", R.string.SortLastName);
+                                            string = LocaleController.getString("DistanceUnitsMiles", R.string.DistanceUnitsMiles);
                                         }
-                                        textSettingsCell.setTextAndValue(LocaleController.getString("SortBy", R.string.SortBy), string2, true);
-                                        break;
+                                        textSettingsCell.setTextAndValue(LocaleController.getString("DistanceUnits", R.string.DistanceUnits), string, ThemeActivity.this.updateDistance, ThemeActivity.this.otherSectionRow >= 0);
+                                        ThemeActivity.this.updateDistance = false;
+                                        return;
                                     }
-                                } else {
-                                    textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
-                                    break;
+                                    textSettingsCell.setText(LocaleController.getString("ImportContacts", R.string.ImportContacts), true);
+                                    return;
                                 }
-                            } else {
-                                int i4 = Theme.autoNightDayEndTime;
-                                int i5 = i4 / 60;
-                                textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i5), Integer.valueOf(i4 - (i5 * 60))), false);
-                                break;
-                            }
-                        } else {
-                            int i6 = Theme.autoNightDayStartTime;
-                            int i7 = i6 / 60;
-                            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i7), Integer.valueOf(i6 - (i7 * 60))), true);
-                            break;
-                        }
-                    } else if (Theme.selectedAutoNightType == 0 || Theme.getCurrentNightTheme() == null) {
-                        textSettingsCell.setTextAndValue(LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.AutoNightThemeOff), false);
-                        break;
-                    } else {
-                        textSettingsCell.setTextAndValue(LocaleController.getString(R.string.AutoNightTheme), Theme.getCurrentNightThemeName(), false);
-                        break;
-                    }
-                    break;
-                case 2:
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                    textInfoPrivacyCell.setFixedSize(0);
-                    if (i != ThemeActivity.this.automaticBrightnessInfoRow) {
-                        if (i == ThemeActivity.this.scheduleLocationInfoRow) {
-                            textInfoPrivacyCell.setText(ThemeActivity.this.getLocationSunString());
-                            break;
-                        } else if (i != ThemeActivity.this.swipeGestureInfoRow) {
-                            if (i == ThemeActivity.this.liteModeInfoRow) {
-                                textInfoPrivacyCell.setText(LocaleController.getString("LiteModeInfo", R.string.LiteModeInfo));
-                                break;
-                            } else {
-                                textInfoPrivacyCell.setFixedSize(12);
-                                textInfoPrivacyCell.setText("");
-                                break;
-                            }
-                        } else {
-                            textInfoPrivacyCell.setText(LocaleController.getString("ChatListSwipeGestureInfo", R.string.ChatListSwipeGestureInfo));
-                            break;
-                        }
-                    } else {
-                        textInfoPrivacyCell.setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
-                        break;
-                    }
-                case 3:
-                    if ((i == ThemeActivity.this.nightTypeInfoRow && ThemeActivity.this.themeInfoRow == -1) || i == ThemeActivity.this.lastShadowRow || ((i == ThemeActivity.this.themeInfoRow && ThemeActivity.this.nightTypeInfoRow != -1) || i == ThemeActivity.this.saveToGallerySectionRow || i == ThemeActivity.this.settings2Row)) {
-                        viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                        break;
-                    } else {
-                        viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                        break;
-                    }
-                case 4:
-                    ThemeTypeCell themeTypeCell = (ThemeTypeCell) viewHolder.itemView;
-                    if (i != ThemeActivity.this.nightDisabledRow) {
-                        if (i != ThemeActivity.this.nightScheduledRow) {
-                            if (i == ThemeActivity.this.nightAutomaticRow) {
-                                themeTypeCell.setValue(LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive), Theme.selectedAutoNightType == 2, ThemeActivity.this.nightSystemDefaultRow != -1);
-                                break;
-                            } else if (i == ThemeActivity.this.nightSystemDefaultRow) {
-                                themeTypeCell.setValue(LocaleController.getString("AutoNightSystemDefault", R.string.AutoNightSystemDefault), Theme.selectedAutoNightType == 3, false);
-                                break;
-                            }
-                        } else {
-                            themeTypeCell.setValue(LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled), Theme.selectedAutoNightType == 1, true);
-                            break;
-                        }
-                    } else {
-                        themeTypeCell.setValue(LocaleController.getString("AutoNightDisabled", R.string.AutoNightDisabled), Theme.selectedAutoNightType == 0, true);
-                        break;
-                    }
-                    break;
-                case 5:
-                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                    if (i != ThemeActivity.this.scheduleHeaderRow) {
-                        if (i != ThemeActivity.this.automaticHeaderRow) {
-                            if (i != ThemeActivity.this.preferedHeaderRow) {
-                                if (i != ThemeActivity.this.settingsRow) {
-                                    if (i == ThemeActivity.this.themeHeaderRow) {
-                                        if (ThemeActivity.this.currentType == 3) {
-                                            headerCell.setText(LocaleController.getString("BuildMyOwnTheme", R.string.BuildMyOwnTheme));
-                                            break;
-                                        } else {
-                                            headerCell.setText(LocaleController.getString("ColorTheme", R.string.ColorTheme));
-                                            break;
-                                        }
-                                    } else if (i != ThemeActivity.this.textSizeHeaderRow) {
-                                        if (i != ThemeActivity.this.chatListHeaderRow) {
-                                            if (i != ThemeActivity.this.bubbleRadiusHeaderRow) {
-                                                if (i != ThemeActivity.this.swipeGestureHeaderRow) {
-                                                    if (i != ThemeActivity.this.selectThemeHeaderRow) {
-                                                        if (i != ThemeActivity.this.appIconHeaderRow) {
-                                                            if (i != ThemeActivity.this.otherHeaderRow) {
-                                                                if (i == ThemeActivity.this.mediaSoundHeaderRow) {
-                                                                    headerCell.setText(LocaleController.getString("MediaAndSoundSettings", R.string.MediaAndSoundSettings));
-                                                                    break;
-                                                                }
-                                                            } else {
-                                                                headerCell.setText(LocaleController.getString("OtherSettings", R.string.OtherSettings));
-                                                                break;
-                                                            }
-                                                        } else {
-                                                            headerCell.setText(LocaleController.getString(R.string.AppIcon));
-                                                            break;
-                                                        }
-                                                    } else {
-                                                        headerCell.setText(LocaleController.getString("SelectTheme", R.string.SelectTheme));
-                                                        break;
-                                                    }
-                                                } else {
-                                                    headerCell.setText(LocaleController.getString("ChatListSwipeGesture", R.string.ChatListSwipeGesture));
-                                                    break;
-                                                }
-                                            } else {
-                                                headerCell.setText(LocaleController.getString("BubbleRadius", R.string.BubbleRadius));
-                                                break;
-                                            }
-                                        } else {
-                                            headerCell.setText(LocaleController.getString("ChatList", R.string.ChatList));
-                                            break;
-                                        }
-                                    } else {
-                                        headerCell.setText(LocaleController.getString("TextSizeHeader", R.string.TextSizeHeader));
-                                        break;
-                                    }
+                                int i3 = MessagesController.getGlobalMainSettings().getInt("sortContactsBy", 0);
+                                if (i3 == 0) {
+                                    string2 = LocaleController.getString("Default", R.string.Default);
+                                } else if (i3 == 1) {
+                                    string2 = LocaleController.getString("FirstName", R.string.SortFirstName);
                                 } else {
-                                    headerCell.setText(LocaleController.getString("SETTINGS", R.string.SETTINGS));
-                                    break;
+                                    string2 = LocaleController.getString("LastName", R.string.SortLastName);
                                 }
-                            } else {
-                                headerCell.setText(LocaleController.getString("AutoNightPreferred", R.string.AutoNightPreferred));
-                                break;
+                                textSettingsCell.setTextAndValue(LocaleController.getString("SortBy", R.string.SortBy), string2, true);
+                                return;
                             }
-                        } else {
-                            headerCell.setText(LocaleController.getString("AutoNightBrightness", R.string.AutoNightBrightness));
-                            break;
+                            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
+                            return;
                         }
-                    } else {
-                        headerCell.setText(LocaleController.getString("AutoNightSchedule", R.string.AutoNightSchedule));
-                        break;
+                        int i4 = Theme.autoNightDayEndTime;
+                        int i5 = i4 / 60;
+                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i5), Integer.valueOf(i4 - (i5 * 60))), false);
+                        return;
                     }
-                    break;
-                case 6:
-                    ((BrightnessControlCell) viewHolder.itemView).setProgress(Theme.autoNightBrighnessThreshold);
-                    break;
-                case 7:
-                    TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
-                    if (i != ThemeActivity.this.scheduleLocationRow) {
-                        if (i != ThemeActivity.this.enableAnimationsRow) {
-                            if (i != ThemeActivity.this.sendByEnterRow) {
-                                if (i != ThemeActivity.this.raiseToSpeakRow) {
-                                    if (i != ThemeActivity.this.raiseToListenRow) {
-                                        if (i != ThemeActivity.this.nextMediaTapRow) {
-                                            if (i != ThemeActivity.this.pauseOnRecordRow) {
-                                                if (i != ThemeActivity.this.pauseOnMediaRow) {
-                                                    if (i != ThemeActivity.this.directShareRow) {
-                                                        if (i != ThemeActivity.this.sensitiveContentRow) {
-                                                            if (i == ThemeActivity.this.chatBlurRow) {
-                                                                textCheckCell.setTextAndCheck(LocaleController.getString("BlurInChat", R.string.BlurInChat), SharedConfig.chatBlurEnabled(), true);
-                                                                break;
-                                                            }
-                                                        } else {
-                                                            textCheckCell.setTextAndValueAndCheck(LocaleController.getString(R.string.ShowSensitiveContent), LocaleController.getString(R.string.ShowSensitiveContentInfo), ThemeActivity.this.getMessagesController().showSensitiveContent(), true, true);
-                                                            break;
-                                                        }
-                                                    } else {
-                                                        textCheckCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", R.string.DirectShare), LocaleController.getString("DirectShareInfo", R.string.DirectShareInfo), SharedConfig.directShare, false, true);
-                                                        break;
-                                                    }
-                                                } else {
-                                                    textCheckCell.setTextAndCheck(LocaleController.getString(R.string.PauseMusicOnMedia), SharedConfig.pauseMusicOnMedia, true);
-                                                    break;
-                                                }
-                                            } else {
-                                                textCheckCell.setTextAndValueAndCheck(LocaleController.getString(R.string.PauseMusicOnRecord), LocaleController.getString("PauseMusicOnRecordInfo", R.string.PauseMusicOnRecordInfo), SharedConfig.pauseMusicOnRecord, true, true);
-                                                break;
-                                            }
-                                        } else {
-                                            textCheckCell.setTextAndValueAndCheck(LocaleController.getString("NextMediaTap", R.string.NextMediaTap), LocaleController.getString("NextMediaTapInfo", R.string.NextMediaTapInfo), SharedConfig.nextMediaTap, true, true);
-                                            break;
-                                        }
-                                    } else {
-                                        textCheckCell.setTextAndValueAndCheck(LocaleController.getString("RaiseToListen", R.string.RaiseToListen), LocaleController.getString("RaiseToListenInfo", R.string.RaiseToListenInfo), SharedConfig.raiseToListen, true, true);
-                                        break;
-                                    }
-                                } else {
-                                    textCheckCell.setTextAndValueAndCheck(LocaleController.getString("RaiseToSpeak", R.string.RaiseToSpeak), LocaleController.getString("RaiseToSpeakInfo", R.string.RaiseToSpeakInfo), SharedConfig.raiseToSpeak, true, true);
-                                    break;
-                                }
-                            } else {
-                                textCheckCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), MessagesController.getGlobalMainSettings().getBoolean("send_by_enter", false), true);
-                                break;
-                            }
-                        } else {
-                            textCheckCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), true);
-                            break;
-                        }
-                    } else {
-                        textCheckCell.setTextAndCheck(LocaleController.getString("AutoNightLocation", R.string.AutoNightLocation), Theme.autoNightScheduleByLocation, true);
-                        break;
-                    }
-                    break;
-                case 10:
-                    NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
-                    if (i != ThemeActivity.this.nightThemeRow) {
-                        if (i == ThemeActivity.this.browserRow) {
-                            notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString(R.string.InappBrowser), LocaleController.getString(R.string.InappBrowserInfo), R.drawable.msg2_language, SharedConfig.inappBrowser, 0, false, true);
-                            break;
-                        }
-                    } else {
-                        boolean z = Theme.selectedAutoNightType != 0;
-                        String currentNightThemeName = z ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", R.string.AutoNightThemeOff);
-                        if (z) {
-                            int i8 = Theme.selectedAutoNightType;
-                            if (i8 == 1) {
-                                string3 = LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled);
-                            } else if (i8 == 3) {
-                                string3 = LocaleController.getString("AutoNightSystemDefault", R.string.AutoNightSystemDefault);
-                            } else {
-                                string3 = LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive);
-                            }
-                            currentNightThemeName = string3 + " " + currentNightThemeName;
-                        }
-                        notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z, 0, false, true);
-                        break;
-                    }
-                    break;
-                case 11:
-                    if (this.first) {
-                        ThemeActivity.this.themesHorizontalListCell.scrollToCurrentTheme(ThemeActivity.this.listView.getMeasuredWidth(), false);
-                        this.first = false;
-                        break;
-                    }
-                    break;
-                case 12:
-                    RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView;
-                    ThemeAccentsListAdapter themeAccentsListAdapter = (ThemeAccentsListAdapter) recyclerListView.getAdapter();
-                    themeAccentsListAdapter.notifyDataSetChanged();
-                    int iFindCurrentAccent = themeAccentsListAdapter.findCurrentAccent();
-                    if (iFindCurrentAccent == -1) {
-                        iFindCurrentAccent = themeAccentsListAdapter.getItemCount() - 1;
-                    }
-                    if (iFindCurrentAccent != -1) {
-                        ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(iFindCurrentAccent, (ThemeActivity.this.listView.getMeasuredWidth() / 2) - AndroidUtilities.dp(42.0f));
-                        break;
-                    }
-                    break;
-                case 14:
-                    TextCell textCell = (TextCell) viewHolder.itemView;
-                    textCell.heightDp = 48;
-                    if (i != ThemeActivity.this.backgroundRow) {
-                        if (i != ThemeActivity.this.editThemeRow) {
-                            if (i != ThemeActivity.this.createNewThemeRow) {
-                                if (i != ThemeActivity.this.liteModeRow) {
-                                    if (i == ThemeActivity.this.stickersRow) {
-                                        textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
-                                        textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, false);
-                                        textCell.setSubtitle(LocaleController.getString(R.string.StickersNameInfo2));
-                                        textCell.offsetFromImage = 64;
-                                        textCell.heightDp = 60;
-                                        textCell.imageLeft = 20;
-                                        break;
-                                    }
-                                } else {
-                                    textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
-                                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.LiteMode), R.drawable.msg2_animations, true);
-                                    textCell.setSubtitle(LocaleController.getString(R.string.LiteModeInfo));
-                                    textCell.heightDp = 60;
-                                    textCell.offsetFromImage = 64;
-                                    textCell.imageLeft = 20;
-                                    break;
-                                }
-                            } else {
-                                textCell.setSubtitle(null);
-                                int i9 = Theme.key_windowBackgroundWhiteBlueText4;
-                                textCell.setColors(i9, i9);
-                                textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.CreateNewTheme), R.drawable.msg_colors, false);
-                                break;
-                            }
-                        } else {
-                            textCell.setSubtitle(null);
-                            int i10 = Theme.key_windowBackgroundWhiteBlueText4;
-                            textCell.setColors(i10, i10);
-                            textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.EditCurrentTheme), R.drawable.msg_theme, true);
-                            break;
-                        }
-                    } else {
-                        textCell.setSubtitle(null);
-                        int i11 = Theme.key_windowBackgroundWhiteBlueText4;
-                        textCell.setColors(i11, i11);
-                        textCell.setTextAndIcon(LocaleController.getString(R.string.ChangeChatBackground), R.drawable.msg_background, ThemeActivity.this.changeUserColor >= 0);
-                        break;
-                    }
-                    break;
-                case 17:
-                    ((DefaultThemesPreviewCell) viewHolder.itemView).updateDayNightMode();
-                    break;
-                case 19:
-                    RadioButtonCell radioButtonCell = (RadioButtonCell) viewHolder.itemView;
-                    if (i == ThemeActivity.this.saveToGalleryOption1Row) {
-                        radioButtonCell.setTextAndValue("save media only from peer chats", "", true, false);
-                        break;
-                    } else {
-                        radioButtonCell.setTextAndValue("save media from all chats", "", true, false);
-                        break;
-                    }
-                case 21:
-                    ((PeerColorActivity.ChangeNameColorCell) viewHolder.itemView).set(ThemeActivity.this.getUserConfig().getCurrentUser());
-                    break;
+                    int i6 = Theme.autoNightDayStartTime;
+                    int i7 = i6 / 60;
+                    textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i7), Integer.valueOf(i6 - (i7 * 60))), true);
+                    return;
+                }
+                if (Theme.selectedAutoNightType == 0 || Theme.getCurrentNightTheme() == null) {
+                    textSettingsCell.setTextAndValue(LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.AutoNightThemeOff), false);
+                    return;
+                } else {
+                    textSettingsCell.setTextAndValue(LocaleController.getString(R.string.AutoNightTheme), Theme.getCurrentNightThemeName(), false);
+                    return;
+                }
             }
+            if (itemViewType == 2) {
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                textInfoPrivacyCell.setFixedSize(0);
+                if (i == ThemeActivity.this.automaticBrightnessInfoRow) {
+                    textInfoPrivacyCell.setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
+                    return;
+                }
+                if (i == ThemeActivity.this.scheduleLocationInfoRow) {
+                    textInfoPrivacyCell.setText(ThemeActivity.this.getLocationSunString());
+                    return;
+                }
+                if (i != ThemeActivity.this.swipeGestureInfoRow) {
+                    if (i == ThemeActivity.this.liteModeInfoRow) {
+                        textInfoPrivacyCell.setText(LocaleController.getString("LiteModeInfo", R.string.LiteModeInfo));
+                        return;
+                    } else {
+                        textInfoPrivacyCell.setFixedSize(12);
+                        textInfoPrivacyCell.setText("");
+                        return;
+                    }
+                }
+                textInfoPrivacyCell.setText(LocaleController.getString("ChatListSwipeGestureInfo", R.string.ChatListSwipeGestureInfo));
+                return;
+            }
+            if (itemViewType == 4) {
+                ThemeTypeCell themeTypeCell = (ThemeTypeCell) viewHolder.itemView;
+                if (i != ThemeActivity.this.nightDisabledRow) {
+                    if (i != ThemeActivity.this.nightScheduledRow) {
+                        if (i == ThemeActivity.this.nightAutomaticRow) {
+                            themeTypeCell.setValue(LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive), Theme.selectedAutoNightType == 2, ThemeActivity.this.nightSystemDefaultRow != -1);
+                            return;
+                        } else {
+                            if (i == ThemeActivity.this.nightSystemDefaultRow) {
+                                themeTypeCell.setValue(LocaleController.getString("AutoNightSystemDefault", R.string.AutoNightSystemDefault), Theme.selectedAutoNightType == 3, false);
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                    themeTypeCell.setValue(LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled), Theme.selectedAutoNightType == 1, true);
+                    return;
+                }
+                themeTypeCell.setValue(LocaleController.getString("AutoNightDisabled", R.string.AutoNightDisabled), Theme.selectedAutoNightType == 0, true);
+                return;
+            }
+            if (itemViewType == 5) {
+                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                if (i != ThemeActivity.this.scheduleHeaderRow) {
+                    if (i != ThemeActivity.this.automaticHeaderRow) {
+                        if (i != ThemeActivity.this.preferedHeaderRow) {
+                            if (i != ThemeActivity.this.settingsRow) {
+                                if (i == ThemeActivity.this.themeHeaderRow) {
+                                    if (ThemeActivity.this.currentType == 3) {
+                                        headerCell.setText(LocaleController.getString("BuildMyOwnTheme", R.string.BuildMyOwnTheme));
+                                        return;
+                                    } else {
+                                        headerCell.setText(LocaleController.getString("ColorTheme", R.string.ColorTheme));
+                                        return;
+                                    }
+                                }
+                                if (i != ThemeActivity.this.textSizeHeaderRow) {
+                                    if (i != ThemeActivity.this.chatListHeaderRow) {
+                                        if (i != ThemeActivity.this.bubbleRadiusHeaderRow) {
+                                            if (i != ThemeActivity.this.swipeGestureHeaderRow) {
+                                                if (i != ThemeActivity.this.selectThemeHeaderRow) {
+                                                    if (i != ThemeActivity.this.appIconHeaderRow) {
+                                                        if (i != ThemeActivity.this.otherHeaderRow) {
+                                                            if (i == ThemeActivity.this.mediaSoundHeaderRow) {
+                                                                headerCell.setText(LocaleController.getString("MediaAndSoundSettings", R.string.MediaAndSoundSettings));
+                                                                return;
+                                                            }
+                                                            return;
+                                                        }
+                                                        headerCell.setText(LocaleController.getString("OtherSettings", R.string.OtherSettings));
+                                                        return;
+                                                    }
+                                                    headerCell.setText(LocaleController.getString(R.string.AppIcon));
+                                                    return;
+                                                }
+                                                headerCell.setText(LocaleController.getString("SelectTheme", R.string.SelectTheme));
+                                                return;
+                                            }
+                                            headerCell.setText(LocaleController.getString("ChatListSwipeGesture", R.string.ChatListSwipeGesture));
+                                            return;
+                                        }
+                                        headerCell.setText(LocaleController.getString("BubbleRadius", R.string.BubbleRadius));
+                                        return;
+                                    }
+                                    headerCell.setText(LocaleController.getString("ChatList", R.string.ChatList));
+                                    return;
+                                }
+                                headerCell.setText(LocaleController.getString("TextSizeHeader", R.string.TextSizeHeader));
+                                return;
+                            }
+                            headerCell.setText(LocaleController.getString("SETTINGS", R.string.SETTINGS));
+                            return;
+                        }
+                        headerCell.setText(LocaleController.getString("AutoNightPreferred", R.string.AutoNightPreferred));
+                        return;
+                    }
+                    headerCell.setText(LocaleController.getString("AutoNightBrightness", R.string.AutoNightBrightness));
+                    return;
+                }
+                headerCell.setText(LocaleController.getString("AutoNightSchedule", R.string.AutoNightSchedule));
+                return;
+            }
+            if (itemViewType == 6) {
+                ((BrightnessControlCell) viewHolder.itemView).setProgress(Theme.autoNightBrighnessThreshold);
+                return;
+            }
+            if (itemViewType == 7) {
+                TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
+                if (i != ThemeActivity.this.scheduleLocationRow) {
+                    if (i != ThemeActivity.this.enableAnimationsRow) {
+                        if (i != ThemeActivity.this.sendByEnterRow) {
+                            if (i != ThemeActivity.this.raiseToSpeakRow) {
+                                if (i != ThemeActivity.this.raiseToListenRow) {
+                                    if (i != ThemeActivity.this.nextMediaTapRow) {
+                                        if (i != ThemeActivity.this.pauseOnRecordRow) {
+                                            if (i != ThemeActivity.this.pauseOnMediaRow) {
+                                                if (i != ThemeActivity.this.directShareRow) {
+                                                    if (i != ThemeActivity.this.sensitiveContentRow) {
+                                                        if (i == ThemeActivity.this.chatBlurRow) {
+                                                            textCheckCell.setTextAndCheck(LocaleController.getString("BlurInChat", R.string.BlurInChat), SharedConfig.chatBlurEnabled(), true);
+                                                            return;
+                                                        }
+                                                        return;
+                                                    }
+                                                    textCheckCell.setTextAndValueAndCheck(LocaleController.getString(R.string.ShowSensitiveContent), LocaleController.getString(R.string.ShowSensitiveContentInfo), ThemeActivity.this.getMessagesController().showSensitiveContent(), true, true);
+                                                    return;
+                                                }
+                                                textCheckCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", R.string.DirectShare), LocaleController.getString("DirectShareInfo", R.string.DirectShareInfo), SharedConfig.directShare, false, true);
+                                                return;
+                                            }
+                                            textCheckCell.setTextAndCheck(LocaleController.getString(R.string.PauseMusicOnMedia), SharedConfig.pauseMusicOnMedia, true);
+                                            return;
+                                        }
+                                        textCheckCell.setTextAndValueAndCheck(LocaleController.getString(R.string.PauseMusicOnRecord), LocaleController.getString("PauseMusicOnRecordInfo", R.string.PauseMusicOnRecordInfo), SharedConfig.pauseMusicOnRecord, true, true);
+                                        return;
+                                    }
+                                    textCheckCell.setTextAndValueAndCheck(LocaleController.getString("NextMediaTap", R.string.NextMediaTap), LocaleController.getString("NextMediaTapInfo", R.string.NextMediaTapInfo), SharedConfig.nextMediaTap, true, true);
+                                    return;
+                                }
+                                textCheckCell.setTextAndValueAndCheck(LocaleController.getString("RaiseToListen", R.string.RaiseToListen), LocaleController.getString("RaiseToListenInfo", R.string.RaiseToListenInfo), SharedConfig.raiseToListen, true, true);
+                                return;
+                            }
+                            textCheckCell.setTextAndValueAndCheck(LocaleController.getString("RaiseToSpeak", R.string.RaiseToSpeak), LocaleController.getString("RaiseToSpeakInfo", R.string.RaiseToSpeakInfo), SharedConfig.raiseToSpeak, true, true);
+                            return;
+                        }
+                        textCheckCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), MessagesController.getGlobalMainSettings().getBoolean("send_by_enter", false), true);
+                        return;
+                    }
+                    textCheckCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), true);
+                    return;
+                }
+                textCheckCell.setTextAndCheck(LocaleController.getString("AutoNightLocation", R.string.AutoNightLocation), Theme.autoNightScheduleByLocation, true);
+                return;
+            }
+            if (itemViewType == 14) {
+                TextCell textCell = (TextCell) viewHolder.itemView;
+                textCell.heightDp = 48;
+                if (i != ThemeActivity.this.backgroundRow) {
+                    if (i != ThemeActivity.this.editThemeRow) {
+                        if (i != ThemeActivity.this.createNewThemeRow) {
+                            if (i != ThemeActivity.this.liteModeRow) {
+                                if (i == ThemeActivity.this.stickersRow) {
+                                    textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
+                                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, false);
+                                    textCell.setSubtitle(LocaleController.getString(R.string.StickersNameInfo2));
+                                    textCell.offsetFromImage = 64;
+                                    textCell.heightDp = 60;
+                                    textCell.imageLeft = 20;
+                                    return;
+                                }
+                                return;
+                            }
+                            textCell.setColors(Theme.key_dialogIcon, Theme.key_windowBackgroundWhiteBlackText);
+                            textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.LiteMode), R.drawable.msg2_animations, true);
+                            textCell.setSubtitle(LocaleController.getString(R.string.LiteModeInfo));
+                            textCell.heightDp = 60;
+                            textCell.offsetFromImage = 64;
+                            textCell.imageLeft = 20;
+                            return;
+                        }
+                        textCell.setSubtitle(null);
+                        int i8 = Theme.key_windowBackgroundWhiteBlueText4;
+                        textCell.setColors(i8, i8);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.CreateNewTheme), R.drawable.msg_colors, false);
+                        return;
+                    }
+                    textCell.setSubtitle(null);
+                    int i9 = Theme.key_windowBackgroundWhiteBlueText4;
+                    textCell.setColors(i9, i9);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.EditCurrentTheme), R.drawable.msg_theme, true);
+                    return;
+                }
+                textCell.setSubtitle(null);
+                int i10 = Theme.key_windowBackgroundWhiteBlueText4;
+                textCell.setColors(i10, i10);
+                textCell.setTextAndIcon(LocaleController.getString(R.string.ChangeChatBackground), R.drawable.msg_background, ThemeActivity.this.changeUserColor >= 0);
+                return;
+            }
+            if (itemViewType == 17) {
+                ((DefaultThemesPreviewCell) viewHolder.itemView).updateDayNightMode();
+                return;
+            }
+            if (itemViewType == 19) {
+                RadioButtonCell radioButtonCell = (RadioButtonCell) viewHolder.itemView;
+                if (i == ThemeActivity.this.saveToGalleryOption1Row) {
+                    radioButtonCell.setTextAndValue("save media only from peer chats", "", true, false);
+                    return;
+                } else {
+                    radioButtonCell.setTextAndValue("save media from all chats", "", true, false);
+                    return;
+                }
+            }
+            if (itemViewType != 21) {
+                switch (itemViewType) {
+                    case 10:
+                        NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
+                        if (i != ThemeActivity.this.nightThemeRow) {
+                            if (i == ThemeActivity.this.browserRow) {
+                                notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString(R.string.InappBrowser), LocaleController.getString(R.string.InappBrowserInfo), R.drawable.msg2_language, SharedConfig.inappBrowser, 0, false, true);
+                                break;
+                            }
+                        } else {
+                            boolean z = Theme.selectedAutoNightType != 0;
+                            String currentNightThemeName = z ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", R.string.AutoNightThemeOff);
+                            if (z) {
+                                int i11 = Theme.selectedAutoNightType;
+                                if (i11 == 1) {
+                                    string3 = LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled);
+                                } else if (i11 == 3) {
+                                    string3 = LocaleController.getString("AutoNightSystemDefault", R.string.AutoNightSystemDefault);
+                                } else {
+                                    string3 = LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive);
+                                }
+                                currentNightThemeName = string3 + " " + currentNightThemeName;
+                            }
+                            notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z, 0, false, true);
+                            break;
+                        }
+                        break;
+                    case 11:
+                        if (this.first) {
+                            ThemeActivity.this.themesHorizontalListCell.scrollToCurrentTheme(ThemeActivity.this.listView.getMeasuredWidth(), false);
+                            this.first = false;
+                            break;
+                        }
+                        break;
+                    case 12:
+                        RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView;
+                        ThemeAccentsListAdapter themeAccentsListAdapter = (ThemeAccentsListAdapter) recyclerListView.getAdapter();
+                        themeAccentsListAdapter.notifyDataSetChanged();
+                        int iFindCurrentAccent = themeAccentsListAdapter.findCurrentAccent();
+                        if (iFindCurrentAccent == -1) {
+                            iFindCurrentAccent = themeAccentsListAdapter.getItemCount() - 1;
+                        }
+                        if (iFindCurrentAccent != -1) {
+                            ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(iFindCurrentAccent, (ThemeActivity.this.listView.getMeasuredWidth() / 2) - AndroidUtilities.dp(42.0f));
+                            break;
+                        }
+                        break;
+                }
+                return;
+            }
+            ((PeerColorActivity.ChangeNameColorCell) viewHolder.itemView).set(ThemeActivity.this.getUserConfig().getCurrentUser());
         }
 
         @Override
         public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 4) {
+            if (viewHolder.getItemViewType() == 4) {
                 ((ThemeTypeCell) viewHolder.itemView).setTypeChecked(viewHolder.getAdapterPosition() == Theme.selectedAutoNightType);
             }
-            if (itemViewType == 2 || itemViewType == 3) {
-                return;
-            }
-            viewHolder.itemView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
 
         @Override
@@ -2994,11 +2944,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         int i = Theme.key_windowBackgroundWhite;
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextSettingsCell.class, TextCheckCell.class, HeaderCell.class, BrightnessControlCell.class, ThemeTypeCell.class, TextSizeCell.class, BubbleRadiusCell.class, ChatListCell.class, NotificationsCheckCell.class, ThemesHorizontalListCell.class, TintRecyclerListView.class, TextCell.class, PeerColorActivity.ChangeNameColorCell.class, SwipeGestureSettingsView.class, DefaultThemesPreviewCell.class, AppIconsSelectorCell.class}, null, null, null, i));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        ActionBar actionBar = this.actionBar;
-        int i2 = ThemeDescription.FLAG_BACKGROUND;
-        int i3 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i2, null, null, null, null, i3));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
@@ -3007,55 +2953,52 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
-        int i4 = Theme.key_windowBackgroundGrayShadow;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i4));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
-        int i5 = Theme.key_windowBackgroundWhiteBlackText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
-        int i6 = Theme.key_windowBackgroundWhiteValueText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i6));
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
+        int i3 = Theme.key_windowBackgroundWhiteValueText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
-        int i7 = Theme.key_windowBackgroundWhiteBlueText4;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i7));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i7));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
-        int i8 = Theme.key_switchTrack;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i8));
-        int i9 = Theme.key_switchTrackChecked;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i9));
-        int i10 = Theme.key_windowBackgroundWhiteGrayIcon;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{BrightnessControlCell.class}, new String[]{"leftImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{BrightnessControlCell.class}, new String[]{"rightImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
-        int i11 = Theme.key_player_progressBackground;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{BrightnessControlCell.class}, new String[]{"seekBarView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
-        int i12 = Theme.key_player_progress;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{BrightnessControlCell.class}, new String[]{"seekBarView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i12));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ThemeTypeCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        int i4 = Theme.key_windowBackgroundWhiteBlueText4;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
+        int i5 = Theme.key_switchTrack;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        int i6 = Theme.key_switchTrackChecked;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i6));
+        int i7 = Theme.key_windowBackgroundWhiteGrayIcon;
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{BrightnessControlCell.class}, new String[]{"leftImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i7));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{BrightnessControlCell.class}, new String[]{"rightImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i7));
+        int i8 = Theme.key_player_progressBackground;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{BrightnessControlCell.class}, new String[]{"seekBarView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i8));
+        int i9 = Theme.key_player_progress;
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{BrightnessControlCell.class}, new String[]{"seekBarView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i9));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ThemeTypeCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ThemeTypeCell.class}, new String[]{"checkImage"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_featuredStickers_addedIcon));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{TextSizeCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i12));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{BubbleRadiusCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i12));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{BubbleRadiusCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i11));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{TextSizeCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i9));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i8));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_PROGRESSBAR, new Class[]{BubbleRadiusCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i9));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{BubbleRadiusCell.class}, new String[]{"sizeBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i8));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ChatListCell.class}, null, null, null, Theme.key_radioBackground));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ChatListCell.class}, null, null, null, Theme.key_radioBackgroundChecked));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText2));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i8));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i9));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i6));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgInDrawable, Theme.chat_msgInMediaDrawable}, null, Theme.key_chat_inBubble));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgInSelectedDrawable, Theme.chat_msgInMediaSelectedDrawable}, null, Theme.key_chat_inBubbleSelected));
         Drawable[] shadowDrawables = Theme.chat_msgInDrawable.getShadowDrawables();
-        int i13 = Theme.key_chat_inBubbleShadow;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, shadowDrawables, null, i13));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, Theme.chat_msgInMediaDrawable.getShadowDrawables(), null, i13));
+        int i10 = Theme.key_chat_inBubbleShadow;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, shadowDrawables, null, i10));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, Theme.chat_msgInMediaDrawable.getShadowDrawables(), null, i10));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubble));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient1));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutSelectedDrawable, Theme.chat_msgOutMediaSelectedDrawable}, null, Theme.key_chat_outBubbleSelected));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleShadow));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgInDrawable, Theme.chat_msgInMediaDrawable}, null, i13));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgInDrawable, Theme.chat_msgInMediaDrawable}, null, i10));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, null, null, Theme.key_chat_messageTextIn));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, null, null, Theme.key_chat_messageTextOut));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, new Drawable[]{Theme.chat_msgOutCheckDrawable}, null, Theme.key_chat_outSentCheck));
@@ -3076,10 +3019,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, null, null, Theme.key_chat_inTimeSelectedText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSizeCell.class}, null, null, null, Theme.key_chat_outTimeSelectedText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i5));
-        int i14 = Theme.key_windowBackgroundWhiteHintText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i14));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i2));
+        int i11 = Theme.key_windowBackgroundWhiteHintText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i11));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AppIconsSelectorCell.class}, null, null, null, i3));
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -3090,7 +3033,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, i14, i5, i6));
+        }, i11, i2, i3));
         return arrayList;
     }
 

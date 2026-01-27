@@ -100,6 +100,7 @@ import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.DialogsActivityTopPanelLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -122,10 +123,15 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UnreadCounterTextView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
 import org.telegram.ui.FilteredSearchView;
@@ -176,6 +182,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     ArrayList forumTopics;
     private boolean forumTopicsListFrozen;
     FragmentContextView fragmentContextView;
+    private FrameLayout fragmentContextViewWrapper;
     private ArrayList frozenForumTopicsList;
     FrameLayout fullscreenView;
     private View generalTopicViewMoving;
@@ -184,10 +191,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private boolean hiddenShown;
     private ActionBarMenuItem hideItem;
     private IBlur3Capture iBlur3Capture;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
     private boolean iBlur3Invalidated;
     private final RectF iBlur3PositionActionBar;
     private final RectF iBlur3PositionMainTabs;
     private final ArrayList iBlur3Positions;
+    private final BlurredBackgroundSourceColor iBlur3SourceColor;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
     private boolean ignoreDiffUtil;
@@ -244,7 +253,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     float slideFragmentProgress;
     private long startArchivePullingTime;
     ChatActivity.ThemeDelegate themeDelegate;
-    private FrameLayout topView;
+    private DialogsActivityTopPanelLayout topPanelLayout;
     private final TopicsController topicsController;
     StickerEmptyView topicsEmptyView;
     float transitionPadding;
@@ -257,11 +266,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         void onTopicSelected(TLRPC.TL_forumTopic tL_forumTopic);
     }
 
-    public static boolean lambda$chekActionMode$20(View view, MotionEvent motionEvent) {
+    public static boolean lambda$chekActionMode$23(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$onDialogAnimationFinished$8() {
+    public static void lambda$onDialogAnimationFinished$11() {
     }
 
     @Override
@@ -353,15 +362,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.topicsController = getMessagesController().getTopicsController();
         SharedPreferences preferences = getUserConfig().getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + r2, false);
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
+        this.iBlur3SourceColor = blurredBackgroundSourceColor;
+        blurredBackgroundSourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         if (Build.VERSION.SDK_INT >= 31) {
             this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor();
             this.iBlur3SourceGlassFrosted = new BlurredBackgroundSourceRenderNode(null);
-            this.iBlur3SourceGlass = new BlurredBackgroundSourceRenderNode(null);
-        } else {
-            this.scrollableViewNoiseSuppressor = null;
-            this.iBlur3SourceGlassFrosted = null;
-            this.iBlur3SourceGlass = null;
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode;
+            BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceRenderNode);
+            this.iBlur3FactoryLiquidGlass = blurredBackgroundDrawableViewFactory;
+            blurredBackgroundDrawableViewFactory.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
+            return;
         }
+        this.scrollableViewNoiseSuppressor = null;
+        this.iBlur3SourceGlassFrosted = null;
+        this.iBlur3SourceGlass = null;
+        this.iBlur3FactoryLiquidGlass = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
     }
 
     private void checkGroupCallJoin(boolean z) {
@@ -474,7 +491,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
 
             @Override
-            protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.AnonymousClass1.onLayout(boolean, int, int, int, int):void");
             }
 
@@ -561,12 +578,19 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         });
         ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
-        ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
-        this.searchItem = actionBarMenuItemAddItem;
         if (this.parentDialogsActivity != null) {
-            actionBarMenuItemAddItem.setVisibility(8);
+            ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
+            this.searchItem = actionBarMenuItemAddItem;
+            actionBarMenuItemAddItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$createView$1(view);
+                }
+            });
         } else {
-            actionBarMenuItemAddItem.setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
+            this.searchItem = actionBarMenuItemAddItem2;
+            actionBarMenuItemAddItem2.setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
                 public void onSearchFilterCleared(FiltersView.MediaFilterData mediaFilterData) {
                 }
@@ -596,9 +620,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             searchField.setHintTextColor(getThemedColor(Theme.key_player_time));
             searchField.setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
         }
-        ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
-        this.other = actionBarMenuItemAddItem2;
-        actionBarMenuItemAddItem2.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
+        ActionBarMenuItem actionBarMenuItemAddItem3 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
+        this.other = actionBarMenuItemAddItem3;
+        actionBarMenuItemAddItem3.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
         this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;
         int i = R.raw.boosts;
@@ -624,7 +648,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             });
         }
-        TopicsRecyclerView topicsRecyclerView = new TopicsRecyclerView(context) {
+        this.recyclerListView = new TopicsRecyclerView(context) {
             @Override
             protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
                 super.onLayout(z, i4, i5, i6, i7);
@@ -640,7 +664,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 return (arrayList == null || arrayList.size() != 1 || TopicsFragment.this.forumTopics.get(0) == null || ((Item) TopicsFragment.this.forumTopics.get(0)).topic == null || ((Item) TopicsFragment.this.forumTopics.get(0)).topic.id != 1) ? getAdapter().getItemCount() <= 1 : getAdapter().getItemCount() <= 2;
             }
         };
-        this.recyclerListView = topicsRecyclerView;
+        this.iBlur3FactoryLiquidGlass.setSourceRootView(new ViewPositionWatcher(this.contentView), this.contentView);
+        TopicsRecyclerView topicsRecyclerView = this.recyclerListView;
         DialogsActivity dialogsActivity = this.parentDialogsActivity;
         ViewGroup viewGroup = dialogsActivity != null ? (ViewGroup) dialogsActivity.getFragmentView() : this.contentView;
         final TopicsRecyclerView topicsRecyclerView2 = this.recyclerListView;
@@ -651,10 +676,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 return topicsRecyclerView2.drawChild(canvas, view, j);
             }
         });
-        this.recyclerListView.setOverScrollListener(new Runnable() {
+        this.recyclerListView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$1();
+                this.f$0.lambda$createView$2();
             }
         });
         SpannableString spannableString = new SpannableString("#");
@@ -693,13 +718,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                this.f$0.lambda$createView$2(view, i5);
+                this.f$0.lambda$createView$3(view, i5);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
             @Override
             public final boolean onItemClick(View view, int i5, float f, float f2) {
-                return this.f$0.lambda$createView$3(view, i5, f, f2);
+                return this.f$0.lambda$createView$4(view, i5, f, f2);
             }
 
             @Override
@@ -773,7 +798,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$4(view);
+                this.f$0.lambda$createView$5(view);
             }
         });
         this.floatingButton.imageView.setImageResource(R.drawable.ic_chatlist_add_2);
@@ -844,7 +869,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.closeReportSpam.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$5(view);
+                this.f$0.lambda$createView$6(view);
             }
         });
         this.closeReportSpam.setVisibility(8);
@@ -871,31 +896,51 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         messagesSearchContainer2.setBackgroundColor(getThemedColor(i6));
         this.actionBar.setDrawBlurBackground(this.contentView);
         getMessagesStorage().loadChatInfo(this.chatId, true, null, true, false, 0);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.topView = frameLayout2;
-        this.contentView.addView(frameLayout2, LayoutHelper.createFrame(-1, 200, 48));
+        DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout = new DialogsActivityTopPanelLayout(context);
+        this.topPanelLayout = dialogsActivityTopPanelLayout;
+        dialogsActivityTopPanelLayout.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f));
+        BlurredBackgroundDrawable blurredBackgroundDrawableCreate = this.iBlur3FactoryLiquidGlass.create(this.topPanelLayout, BlurredBackgroundProviderImpl.topPanel(this.resourceProvider));
+        blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(24.0f));
+        blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(7.0f));
+        this.topPanelLayout.setBlurredBackground(blurredBackgroundDrawableCreate);
+        this.topPanelLayout.setOnAnimatedHeightChangedListener(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createView$7();
+            }
+        });
+        this.contentView.addView(this.topPanelLayout, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, -14.0f, 0.0f, 0.0f));
         TLRPC.Chat currentChat = getCurrentChat();
         if (currentChat != null) {
-            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, currentChat, new ChatActivityMemberRequestsDelegate.Callback() {
+            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, currentChat);
+            this.pendingRequestsDelegate = chatActivityMemberRequestsDelegate;
+            chatActivityMemberRequestsDelegate.setDelegate(new ChatActivityMemberRequestsDelegate.ChangeVisibilityDelegate() {
                 @Override
-                public final void onEnterOffsetChanged() {
-                    this.f$0.updateTopView();
+                public final void setVisible(boolean z, boolean z2) {
+                    this.f$0.lambda$createView$8(z, z2);
                 }
             });
-            this.pendingRequestsDelegate = chatActivityMemberRequestsDelegate;
-            chatActivityMemberRequestsDelegate.setChatInfo(this.chatFull, false);
-            this.topView.addView(this.pendingRequestsDelegate.getView(), -1, this.pendingRequestsDelegate.getViewHeight());
+            this.pendingRequestsDelegate.setChatInfo(this.chatFull, false);
+            this.topPanelLayout.addView(this.pendingRequestsDelegate.getView(), LayoutHelper.createLinear(-1, 40));
+            this.topPanelLayout.setPriority(this.pendingRequestsDelegate.getView(), 3);
+            this.topPanelLayout.setDebugName(this.pendingRequestsDelegate.getView(), "pendingRequestsDelegate");
         }
         if (!this.inPreviewMode) {
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.fragmentContextViewWrapper = frameLayout2;
+            this.topPanelLayout.addView(frameLayout2);
+            this.topPanelLayout.setPriority(this.fragmentContextViewWrapper, 4);
+            this.topPanelLayout.setDebugName(this.fragmentContextViewWrapper, "fragment context");
+            this.topPanelLayout.setViewVisible(this.fragmentContextViewWrapper, true, false);
             FragmentContextView fragmentContextView = new FragmentContextView(context, this, false, this.themeDelegate) {
                 @Override
-                public void setTopPadding(float f) {
-                    this.topPadding = f;
-                    TopicsFragment.this.updateTopView();
+                public void setVisibility(int i7) {
+                    TopicsFragment.this.topPanelLayout.setViewVisible(TopicsFragment.this.fragmentContextViewWrapper, i7 == 0, true);
                 }
             };
             this.fragmentContextView = fragmentContextView;
-            this.topView.addView(fragmentContextView, LayoutHelper.createFrame(-1, 38, 51));
+            fragmentContextView.isInsideBubble = true;
+            this.fragmentContextViewWrapper.addView(fragmentContextView);
         }
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -2.0f);
         if (this.inPreviewMode) {
@@ -924,7 +969,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.blurredView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$6(view2);
+                this.f$0.lambda$createView$9(view2);
             }
         });
         this.blurredView.setFitsSystemWindows(true);
@@ -957,7 +1002,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             getMessagesController().getBoostsController().getBoostsStats(-this.chatId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$createView$7((TL_stories.TL_premium_boostsStatus) obj);
+                    this.f$0.lambda$createView$10((TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
         }
@@ -1239,7 +1284,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         openProfile(false);
     }
 
-    public void lambda$createView$1() {
+    public void lambda$createView$1(View view) {
+        openParentSearch();
+    }
+
+    public void lambda$createView$2() {
         this.recyclerListView.postOnAnimation(new Runnable() {
             @Override
             public final void run() {
@@ -1333,7 +1382,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$2(View view, int i) {
+    public void lambda$createView$3(View view, int i) {
         if (getParentLayout() == null || getParentLayout().isInPreviewMode() || !(view instanceof TopicDialogCell)) {
             return;
         }
@@ -1375,7 +1424,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
     }
 
-    public boolean lambda$createView$3(View view, int i, float f, float f2) {
+    public boolean lambda$createView$4(View view, int i, float f, float f2) {
         if (this.openedForSelect || getParentLayout() == null || getParentLayout().isInPreviewMode()) {
             return false;
         }
@@ -1462,7 +1511,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$4(View view) {
+    public void lambda$createView$5(View view) {
         presentFragment(TopicCreateFragment.create(this.chatId, 0L));
     }
 
@@ -1494,16 +1543,25 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$5(View view) {
+    public void lambda$createView$6(View view) {
         getMessagesController().hidePeerSettingsBar(-this.chatId, null, getCurrentChat());
         updateChatInfo();
     }
 
-    public void lambda$createView$6(View view) {
+    public void lambda$createView$7() {
+        blur3_InvalidateBlur();
+        checkUi_listViewPadding();
+    }
+
+    public void lambda$createView$8(boolean z, boolean z2) {
+        this.topPanelLayout.setViewVisible(this.pendingRequestsDelegate.getView(), z, z2);
+    }
+
+    public void lambda$createView$9(View view) {
         finishPreviewFragment();
     }
 
-    public void lambda$createView$7(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public void lambda$createView$10(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         this.boostsStatus = tL_premium_boostsStatus;
     }
 
@@ -1568,23 +1626,17 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         presentFragment(chatActivity);
     }
 
-    public void updateTopView() {
-        float viewEnterOffset;
-        FragmentContextView fragmentContextView = this.fragmentContextView;
-        if (fragmentContextView != null) {
-            viewEnterOffset = Math.max(0.0f, fragmentContextView.getTopPadding()) + 0.0f;
-            this.fragmentContextView.setTranslationY(viewEnterOffset);
-        } else {
-            viewEnterOffset = 0.0f;
+    private void openParentSearch() {
+        ActionBarMenuItem actionBarMenuItem;
+        DialogsActivity dialogsActivity = this.parentDialogsActivity;
+        if (dialogsActivity == null || (actionBarMenuItem = dialogsActivity.searchItem) == null) {
+            return;
         }
-        ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.pendingRequestsDelegate;
-        View view = chatActivityMemberRequestsDelegate != null ? chatActivityMemberRequestsDelegate.getView() : null;
-        if (view != null) {
-            view.setTranslationY(this.pendingRequestsDelegate.getViewEnterOffset() + viewEnterOffset);
-            viewEnterOffset += this.pendingRequestsDelegate.getViewEnterOffset() + this.pendingRequestsDelegate.getViewHeight();
-        }
-        this.recyclerListView.setTranslationY(Math.max(0.0f, viewEnterOffset));
-        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(this.bottomPannelVisible ? 51.0f : 0.0f) + this.navigationBarHeight + this.additionNavigationBarHeight + ((int) viewEnterOffset));
+        actionBarMenuItem.performClick();
+    }
+
+    public void checkUi_listViewPadding() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.checkUi_listViewPadding():void");
     }
 
     public void setTransitionPadding(int i) {
@@ -1608,7 +1660,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.firstLayout = true;
             this.paint = new Paint();
             this.rectF = new RectF();
-            this.alwaysDrawChild = true;
             this.useLayoutPositionOnClick = true;
             this.additionalClipBottom = AndroidUtilities.dp(200.0f);
         }
@@ -1888,7 +1939,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.lambda$onDialogAnimationFinished$8();
+                TopicsFragment.lambda$onDialogAnimationFinished$11();
             }
         });
     }
@@ -1905,7 +1956,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$deleteTopics$11(hashSet, arrayList, runnable, alertDialog, i);
+                this.f$0.lambda$deleteTopics$14(hashSet, arrayList, runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -1922,7 +1973,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$deleteTopics$11(HashSet hashSet, final ArrayList arrayList, final Runnable runnable, AlertDialog alertDialog, int i) {
+    public void lambda$deleteTopics$14(HashSet hashSet, final ArrayList arrayList, final Runnable runnable, AlertDialog alertDialog, int i) {
         HashSet hashSet2 = new HashSet();
         this.excludeTopics = hashSet2;
         hashSet2.addAll(hashSet);
@@ -1930,24 +1981,24 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         BulletinFactory.of(this).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteTopics$9();
+                this.f$0.lambda$deleteTopics$12();
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteTopics$10(arrayList, runnable);
+                this.f$0.lambda$deleteTopics$13(arrayList, runnable);
             }
         }).show();
         clearSelectedTopics();
         alertDialog.dismiss();
     }
 
-    public void lambda$deleteTopics$9() {
+    public void lambda$deleteTopics$12() {
         this.excludeTopics = null;
         updateTopicsList(true, false);
     }
 
-    public void lambda$deleteTopics$10(ArrayList arrayList, Runnable runnable) {
+    public void lambda$deleteTopics$13(ArrayList arrayList, Runnable runnable) {
         this.topicsController.deleteTopics(this.chatId, arrayList);
         runnable.run();
     }
@@ -1974,7 +2025,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showChatPreview$13(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$16(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem);
@@ -1989,7 +2040,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$showChatPreview$14(tL_forumTopic, actionBarPopupWindowLayoutArr, iAddViewToSwipeBack, view);
+                this.f$0.lambda$showChatPreview$17(tL_forumTopic, actionBarPopupWindowLayoutArr, iAddViewToSwipeBack, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem2);
@@ -2004,7 +2055,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showChatPreview$15(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$18(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem3);
@@ -2018,7 +2069,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showChatPreview$16(tL_forumTopic, view);
+                    this.f$0.lambda$showChatPreview$19(tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem4);
@@ -2116,14 +2167,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$showChatPreview$13(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$16(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         this.scrollToTop = true;
         this.updateAnimated = true;
         this.topicsController.pinTopic(this.chatId, tL_forumTopic.id, !tL_forumTopic.pinned, this);
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$14(TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
+    public void lambda$showChatPreview$17(TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
         if (getMessagesController().isDialogMuted(-this.chatId, tL_forumTopic.id)) {
             getNotificationsController().muteDialog(-this.chatId, tL_forumTopic.id, false);
             finishPreviewFragment();
@@ -2136,13 +2187,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         actionBarPopupWindowLayoutArr[0].getSwipeBack().openForeground(i);
     }
 
-    public void lambda$showChatPreview$15(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$18(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         this.updateAnimated = true;
         this.topicsController.toggleCloseTopic(this.chatId, tL_forumTopic.id, !tL_forumTopic.closed);
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$16(TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public void lambda$showChatPreview$19(TLRPC.TL_forumTopic tL_forumTopic, View view) {
         HashSet hashSet = new HashSet();
         hashSet.add(Integer.valueOf(tL_forumTopic.id));
         deleteTopics(hashSet, new Runnable() {
@@ -2191,7 +2242,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateToSearchView$17(valueAnimator2);
+                this.f$0.lambda$animateToSearchView$20(valueAnimator2);
             }
         });
         this.searchContainer.setVisibility(0);
@@ -2221,7 +2272,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
     }
 
-    public void lambda$animateToSearchView$17(ValueAnimator valueAnimator) {
+    public void lambda$animateToSearchView$20(ValueAnimator valueAnimator) {
         updateSearchProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -2272,24 +2323,24 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         getMessagesController().addUserToChat(this.chatId, getUserConfig().getCurrentUser(), 0, null, this, false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$joinToGroup$18();
+                this.f$0.lambda$joinToGroup$21();
             }
         }, new MessagesController.ErrorDelegate() {
             @Override
             public final boolean run(TLRPC.TL_error tL_error) {
-                return this.f$0.lambda$joinToGroup$19(tL_error);
+                return this.f$0.lambda$joinToGroup$22(tL_error);
             }
         });
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
         updateChatInfo();
     }
 
-    public void lambda$joinToGroup$18() {
+    public void lambda$joinToGroup$21() {
         this.joinRequested = false;
         updateChatInfo(true);
     }
 
-    public boolean lambda$joinToGroup$19(TLRPC.TL_error tL_error) {
+    public boolean lambda$joinToGroup$22(TLRPC.TL_error tL_error) {
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
@@ -2349,7 +2400,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return TopicsFragment.lambda$chekActionMode$20(view, motionEvent);
+                return TopicsFragment.lambda$chekActionMode$23(view, motionEvent);
             }
         });
         this.pinItem = actionBarMenuCreateActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));
@@ -3858,10 +3909,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             topicsRecyclerView.setPivotY(0.0f);
             topicsRecyclerView.setScaleX(f2);
             topicsRecyclerView.setScaleY(f2);
-            this.topView.setPivotX(0.0f);
-            this.topView.setPivotY(0.0f);
-            this.topView.setScaleX(f2);
-            this.topView.setScaleY(f2);
             this.actionBar.setPivotX(0.0f);
             this.actionBar.setPivotY(0.0f);
             this.actionBar.setScaleX(f2);
@@ -3914,23 +3961,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             this.parentDialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
         }
-    }
-
-    @Override
-    public void drawOverlay(Canvas canvas, View view) {
-        canvas.save();
-        canvas.translate(this.contentView.getX(), this.contentView.getY());
-        FragmentContextView fragmentContextView = this.fragmentContextView;
-        if (fragmentContextView != null && fragmentContextView.isCallStyle()) {
-            canvas.save();
-            canvas.translate(this.fragmentContextView.getX(), this.topView.getY() + this.fragmentContextView.getY());
-            this.fragmentContextView.setDrawOverlay(true);
-            this.fragmentContextView.draw(canvas);
-            this.fragmentContextView.setDrawOverlay(false);
-            canvas.restore();
-            view.invalidate();
-        }
-        canvas.restore();
     }
 
     private void prepareBlurBitmap() {
@@ -4038,7 +4068,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$21();
+                this.f$0.lambda$getThemeDescriptions$24();
             }
 
             @Override
@@ -4063,7 +4093,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$21() {
+    public void lambda$getThemeDescriptions$24() {
         ViewGroup viewGroup;
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
@@ -4108,7 +4138,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             messagesSearchContainer.setPadding(0, 0, 0, i);
         }
         updateFloatingButtonOffset();
-        updateTopView();
+        checkUi_listViewPadding();
         return WindowInsetsCompat.CONSUMED;
     }
 
@@ -4117,7 +4147,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             return;
         }
         int iDp = AndroidUtilities.dp(48.0f);
-        int iDp2 = AndroidUtilities.dp(48.0f);
+        int iDp2 = AndroidUtilities.dp(44.0f) + ((int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(14.0f)));
         DialogsActivity dialogsActivity = this.parentDialogsActivity;
         View view = dialogsActivity != null ? dialogsActivity.fragmentView : this.fragmentView;
         ActionBar actionBar = dialogsActivity != null ? dialogsActivity.getActionBar() : this.actionBar;

@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -21,6 +22,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Components.blur3.StrokeDrawable;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -30,6 +32,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     private final ImageView addPhotoButton;
     private boolean addPhotoVisible;
     private final Runnable applyCaption;
+    private final Path clipPath;
     private final Runnable collapseMoveButton;
     private final HintView2 hint;
     private boolean isVideo;
@@ -83,6 +86,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
                 this.f$0.lambda$new$2();
             }
         };
+        this.clipPath = new Path();
         this.applyCaption = runnable;
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
@@ -102,7 +106,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         setAddPhotoVisible(false, false);
-        addView(imageView, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 3, 14.0f, isAtTop() ? 10.0f : 0.0f, 0.0f, isAtTop() ? 0.0f : 10.0f));
+        addView(imageView, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 3, 14.0f, isAtTop() ? 6.0f : 0.0f, 0.0f, isAtTop() ? 0.0f : 6.0f));
         ImageView imageView2 = new ImageView(context);
         this.timerButton = imageView2;
         CaptionContainerView.PeriodDrawable periodDrawable = new CaptionContainerView.PeriodDrawable();
@@ -111,7 +115,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         imageView2.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         imageView2.setScaleType(scaleType);
         setTimerVisible(false, false);
-        addView(imageView2, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 5, 0.0f, isAtTop() ? 10.0f : 0.0f, 11.0f, isAtTop() ? 0.0f : 10.0f));
+        addView(imageView2, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 5, 0.0f, isAtTop() ? 6.0f : 0.0f, 8.0f, isAtTop() ? 0.0f : 6.0f));
         HintView2 hintView2 = new HintView2(context, isAtTop() ? 1 : 3);
         this.hint = hintView2;
         hintView2.setRounding(12.0f);
@@ -192,54 +196,67 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        float f;
         super.dispatchDraw(canvas);
-        float f = this.moveButtonAnimated.set(this.moveButtonVisible, !showMoveButton());
-        float f2 = this.moveButtonExpandedAnimated.set(this.moveButtonExpanded);
-        if (f > 0.0f) {
+        float f2 = this.moveButtonAnimated.set(this.moveButtonVisible, !showMoveButton());
+        float f3 = this.moveButtonExpandedAnimated.set(this.moveButtonExpanded);
+        if (f2 > 0.0f) {
             float scale = this.moveButtonBounce.getScale(0.03f);
             if (isAtTop()) {
-                this.moveButtonBounds.set(AndroidUtilities.dp(10.0f), this.bounds.bottom + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(44.0f) + ((this.moveButtonText.getCurrentWidth() + AndroidUtilities.dp(11.0f)) * f2), this.bounds.bottom + AndroidUtilities.dp(42.0f));
+                this.moveButtonBounds.set(AndroidUtilities.dp(7.0f), this.bounds.bottom + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(44.0f) + ((this.moveButtonText.getCurrentWidth() + AndroidUtilities.dp(11.0f)) * f3), this.bounds.bottom + AndroidUtilities.dp(42.0f));
             } else {
-                this.moveButtonBounds.set(AndroidUtilities.dp(10.0f), this.bounds.top - AndroidUtilities.dp(42.0f), AndroidUtilities.dp(44.0f) + ((this.moveButtonText.getCurrentWidth() + AndroidUtilities.dp(11.0f)) * f2), this.bounds.top - AndroidUtilities.dp(10.0f));
+                this.moveButtonBounds.set(AndroidUtilities.dp(7.0f), this.bounds.top - AndroidUtilities.dp(42.0f), AndroidUtilities.dp(44.0f) + ((this.moveButtonText.getCurrentWidth() + AndroidUtilities.dp(11.0f)) * f3), this.bounds.top - AndroidUtilities.dp(10.0f));
             }
-            if (f < 1.0f) {
-                canvas.saveLayerAlpha(this.moveButtonBounds, (int) (f * 255.0f), 31);
+            if (f2 < 1.0f) {
+                canvas.saveLayerAlpha(this.moveButtonBounds, (int) (f2 * 255.0f), 31);
             } else {
                 canvas.save();
             }
             canvas.scale(scale, scale, this.moveButtonBounds.centerX(), this.moveButtonBounds.centerY());
             canvas.clipRect(this.moveButtonBounds);
-            float fDpf2 = AndroidUtilities.dpf2(8.33f);
+            float fDpf2 = AndroidUtilities.dpf2(16.0f);
             if (customBlur()) {
+                f = fDpf2;
                 drawBlur(this.backgroundBlur, canvas, this.moveButtonBounds, fDpf2, false, 0.0f, 0.0f, true, 1.0f);
-                this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 64, f));
-                canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
+                this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 64, f2));
+                canvas.drawRoundRect(this.moveButtonBounds, f, f, this.backgroundPaint);
             } else {
-                Paint[] paints = this.backgroundBlur.getPaints(f, 0.0f, 0.0f);
+                f = fDpf2;
+                Paint[] paints = this.backgroundBlur.getPaints(f2, 0.0f, 0.0f);
                 if (paints == null || paints[1] == null) {
-                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 128, f));
-                    canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
+                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 128, f2));
+                    canvas.drawRoundRect(this.moveButtonBounds, f, f, this.backgroundPaint);
                 } else {
                     Paint paint = paints[0];
                     if (paint != null) {
-                        canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, paint);
+                        canvas.drawRoundRect(this.moveButtonBounds, f, f, paint);
                     }
                     Paint paint2 = paints[1];
                     if (paint2 != null) {
-                        canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, paint2);
+                        canvas.drawRoundRect(this.moveButtonBounds, f, f, paint2);
                     }
-                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 51, f));
-                    canvas.drawRoundRect(this.moveButtonBounds, fDpf2, fDpf2, this.backgroundPaint);
+                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 51, f2));
+                    canvas.drawRoundRect(this.moveButtonBounds, f, f, this.backgroundPaint);
                 }
             }
-            this.moveButtonIcon.setBounds((int) (this.moveButtonBounds.left + AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.centerY() - AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.left + AndroidUtilities.dp(27.0f)), (int) (this.moveButtonBounds.centerY() + AndroidUtilities.dp(9.0f)));
+            this.moveButtonIcon.setBounds((int) (this.moveButtonBounds.left + AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.centerY() - AndroidUtilities.dp(10.0f)), (int) (this.moveButtonBounds.left + AndroidUtilities.dp(29.0f)), (int) (this.moveButtonBounds.centerY() + AndroidUtilities.dp(10.0f)));
             this.moveButtonIcon.draw(canvas);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.moveButtonText;
-            float fDp = this.moveButtonBounds.left + AndroidUtilities.dp(34.0f);
+            float fDp = this.moveButtonBounds.left + AndroidUtilities.dp(37.0f);
             RectF rectF = this.moveButtonBounds;
             animatedTextDrawable.setBounds(fDp, rectF.top, rectF.right, rectF.bottom);
-            this.moveButtonText.setAlpha((int) (f2 * 255.0f));
+            this.moveButtonText.setAlpha((int) (f3 * 255.0f));
             this.moveButtonText.draw(canvas);
+            canvas.restore();
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(this.bounds, f, f, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(this.clipPath);
+            StrokeDrawable strokeDrawable = this.strokeDrawable;
+            strokeDrawable.radius = f;
+            RectF rectF2 = this.moveButtonBounds;
+            strokeDrawable.setBounds((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
+            this.strokeDrawable.draw(canvas);
             canvas.restore();
         }
     }
@@ -270,7 +287,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         if (this.addPhotoVisible && this.timerVisible) {
             i = 33;
         }
-        marginLayoutParams.rightMargin = AndroidUtilities.dp(12 + i);
+        marginLayoutParams.rightMargin = AndroidUtilities.dp(32 + i);
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
@@ -322,7 +339,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         if (this.addPhotoVisible && this.timerVisible) {
             i = 33;
         }
-        marginLayoutParams.rightMargin = AndroidUtilities.dp(12 + i);
+        marginLayoutParams.rightMargin = AndroidUtilities.dp(32 + i);
         this.editText.setLayoutParams(marginLayoutParams);
     }
 

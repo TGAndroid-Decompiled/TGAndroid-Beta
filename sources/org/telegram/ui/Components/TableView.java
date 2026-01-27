@@ -372,12 +372,16 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRow(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Runnable runnable) {
+        return addRow(charSequence, charSequence2, charSequence3, runnable, null);
+    }
+
+    public TableRow addRow(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Runnable runnable, Integer num) {
         ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext());
         textViewButtons.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         textViewButtons.setTextSize(1, 14.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(charSequence2, textViewButtons.getPaint().getFontMetricsInt(), false));
         if (charSequence3 != null) {
-            spannableStringBuilder.append((CharSequence) " ").append(ButtonSpan.make(charSequence3, runnable, this.resourcesProvider));
+            spannableStringBuilder.append((CharSequence) " ").append(ButtonSpan.make(charSequence3, runnable, this.resourcesProvider, num));
         }
         textViewButtons.setText(spannableStringBuilder);
         NotificationCenter.listenEmojiLoading(textViewButtons);

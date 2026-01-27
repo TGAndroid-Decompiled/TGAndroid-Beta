@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
+import org.telegram.ui.Components.blur3.RenderNodeWithHash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
 
@@ -20,12 +21,27 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
     private Runnable onDrawablesRelativePositionChangeListener;
     private RecordingCanvas recordingCanvas;
     private final RenderNode renderNode;
+    private RenderNodeWithHash renderNodeWithHash;
 
     public BlurredBackgroundSourceRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
         this.fallbackSource = blurredBackgroundSource;
         RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
         this.renderNode = renderNodeM;
         renderNodeM.setClipToBounds(true);
+    }
+
+    public void setupRenderer(RenderNodeWithHash.Renderer renderer) {
+        if (this.renderNodeWithHash == null) {
+            this.renderNodeWithHash = new RenderNodeWithHash(this.renderNode, renderer);
+        }
+    }
+
+    public void updateDisplayListIfNeeded() {
+        this.renderNodeWithHash.updateDisplayListIfNeeded();
+    }
+
+    public void setSize(int i, int i2) {
+        this.renderNode.setPosition(0, 0, i, i2);
     }
 
     public void setBlur(float f) {

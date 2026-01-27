@@ -65,6 +65,7 @@ import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -226,6 +227,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     @Override
     public void dismiss(boolean z) {
         dismiss();
+    }
+
+    @Override
+    public BulletinFactory getBulletinFactory() {
+        return BaseFragment.AttachedSheet.CC.$default$getBulletinFactory(this);
     }
 
     @Override
@@ -2381,7 +2387,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1260getWindowView() {
+    public View mo1267getWindowView() {
         return this.windowView;
     }
 

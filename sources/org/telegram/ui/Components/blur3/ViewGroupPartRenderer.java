@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
@@ -54,5 +55,22 @@ public class ViewGroupPartRenderer implements IBlur3Capture {
             }
             canvas.restore();
         }
+    }
+
+    @Override
+    public long captureCalculateHash(RectF rectF) {
+        if (!ViewPositionWatcher.computeCoordinatesInParent(this.listView, this.listViewParent, this.tmpDrawListViewPointF)) {
+            return -1L;
+        }
+        ViewParent viewParent = this.listView;
+        if (!(viewParent instanceof IBlur3Capture) || this.ignoreBlurCap) {
+            return -1L;
+        }
+        this.savedPos.set(rectF);
+        PointF pointF = this.tmpDrawListViewPointF;
+        rectF.offset(-pointF.x, -pointF.y);
+        long jCaptureCalculateHash = ((IBlur3Capture) viewParent).captureCalculateHash(rectF);
+        rectF.set(this.savedPos);
+        return MediaDataController.calcHash(MediaDataController.calcHash(jCaptureCalculateHash, Float.floatToIntBits(this.tmpDrawListViewPointF.x)), Float.floatToIntBits(this.tmpDrawListViewPointF.y));
     }
 }

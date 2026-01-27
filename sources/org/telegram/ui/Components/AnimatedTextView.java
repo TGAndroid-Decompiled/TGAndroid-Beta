@@ -1026,7 +1026,7 @@ public class AnimatedTextView extends View {
     protected void onDraw(Canvas canvas) {
         if (this.backgroundDrawable != null && (!this.hideBackgroundIfEmpty || this.drawable.isNotEmpty() > 0.0f)) {
             int paddingLeft = (int) (getPaddingLeft() + this.drawable.getCurrentWidth() + getPaddingRight());
-            if (this.drawable.gravity == 5) {
+            if ((this.drawable.gravity & 7) == 5) {
                 this.backgroundDrawable.setBounds(getWidth() - paddingLeft, 0, getWidth(), getHeight());
             } else {
                 this.backgroundDrawable.setBounds(0, 0, paddingLeft, getHeight());

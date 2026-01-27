@@ -620,7 +620,7 @@ public class QrActivity extends BaseFragment {
         this.resourcesProvider.initColors(this.currentTheme, this.isCurrentThemeDark);
     }
 
-    private void performShare() throws IOException {
+    public void performShare() throws IOException {
         Point point = AndroidUtilities.displaySize;
         int iMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;

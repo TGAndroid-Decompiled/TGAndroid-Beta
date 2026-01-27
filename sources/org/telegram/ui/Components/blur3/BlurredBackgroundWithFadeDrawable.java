@@ -59,10 +59,9 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         paint.setShader(linearGradientCreateGradient);
         this.colorStaticPaint.setShader(null);
         this.matrix.reset();
-        float f = i;
-        this.matrix.setScale(1.0f, f);
+        this.matrix.setScale(1.0f, i);
         if (i < 0) {
-            this.matrix.preTranslate(0.0f, f);
+            this.matrix.postTranslate(0.0f, -i);
         }
         this.shader.setLocalMatrix(this.matrix);
     }
@@ -75,7 +74,8 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        if (getBounds().isEmpty()) {
+        Rect bounds = getBounds();
+        if (bounds.isEmpty()) {
             return;
         }
         BlurredBackgroundSource unwrappedSource = this.drawable.getUnwrappedSource();
@@ -88,16 +88,17 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
                 linearGradientCreateGradient.setLocalMatrix(this.matrix);
             }
             canvas.save();
-            canvas.translate(r0.left, r0.top);
-            canvas.drawRect(0.0f, 0.0f, r0.width(), r0.height(), this.colorStaticPaint);
+            canvas.translate(bounds.left, bounds.top);
+            canvas.drawRect(0.0f, 0.0f, bounds.width(), bounds.height(), this.colorStaticPaint);
             canvas.restore();
             return;
         }
         this.colorStaticPaint.setShader(null);
-        int iSaveLayer = canvas.saveLayer(r0.left, r0.top, r0.right, r0.bottom, null);
+        int iSaveLayer = canvas.saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom, null);
+        int iHeight = this.fadeHeight < 0 ? bounds.height() + this.fadeHeight : 0;
         this.drawable.draw(canvas);
-        canvas.translate(r0.left, r0.top);
-        canvas.drawRect(0.0f, 0.0f, r0.width(), r0.height(), this.maskFadeGradientPaint);
+        canvas.translate(bounds.left, bounds.top + iHeight);
+        canvas.drawRect(0.0f, -iHeight, bounds.width(), bounds.height() - iHeight, this.maskFadeGradientPaint);
         canvas.restoreToCount(iSaveLayer);
     }
 

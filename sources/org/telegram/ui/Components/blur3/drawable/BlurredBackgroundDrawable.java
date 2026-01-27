@@ -23,6 +23,7 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
@@ -206,6 +207,11 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     public void setColorProvider(BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         this.colorProvider = blurredBackgroundColorProvider;
         updateColors();
+        if (blurredBackgroundColorProvider instanceof BlurredBackgroundProvider) {
+            BlurredBackgroundProvider blurredBackgroundProvider = (BlurredBackgroundProvider) blurredBackgroundColorProvider;
+            setStrokeWidth(blurredBackgroundProvider.getStrokeWidthTop(), blurredBackgroundProvider.getStrokeWidthBottom());
+            setShadowParams(blurredBackgroundProvider.getShadowRadius(), blurredBackgroundProvider.getShadowDx(), blurredBackgroundProvider.getShadowDy());
+        }
     }
 
     public void updateColors() {
@@ -387,13 +393,13 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         if (z) {
             float f8 = f - f7;
             float f9 = f3 + f7;
-            if (canvas.clipRect(f8, f2, f9, MathUtils.clamp(f2 + f5, f2, f4))) {
+            if (canvas.clipRect(f8, f2, f9, MathUtils.clamp((2.0f * f5) + f2, f2, f4))) {
                 canvas.drawRoundRect(f8, f2 + f7, f9, f4 + f7, f5, f5, paint);
             }
         } else {
             float f10 = f - f7;
             float f11 = f3 + f7;
-            if (canvas.clipRect(f10, MathUtils.clamp(f4 - f5, f2, f4), f11, f4)) {
+            if (canvas.clipRect(f10, MathUtils.clamp(f4 - (2.0f * f5), f2, f4), f11, f4)) {
                 canvas.drawRoundRect(f10, f2 - f7, f11, f4 - f7, f5, f5, paint);
             }
         }

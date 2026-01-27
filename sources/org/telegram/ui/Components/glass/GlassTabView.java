@@ -16,7 +16,11 @@ import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -34,6 +38,8 @@ import org.telegram.ui.MainTabsLayout;
 
 public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, FactorAnimator.Target {
     private static final RectF tmpRectF = new RectF();
+    private AvatarDrawable avatarDrawable;
+    private BackupImageView backupImageView;
     private int colorDefault;
     private int colorSelected;
     private int colorSelectedText;
@@ -46,9 +52,12 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
     private final BoolAnimator isHasCounterAnimator;
     private final BoolAnimator isHasCounterErrorAnimator;
     private final BoolAnimator isSelectedAnimator;
+    private int lastIconAnimationRaw;
     private boolean lastIsSelected;
+    private boolean needUpdateBackupViewColor;
     private final Paint paintCounterBackground;
     private Theme.ResourcesProvider resourcesProvider;
+    private boolean selfMeasure;
     private TabAnimation tabAnimation;
     private final TextView textView;
     private float visualWidth;
@@ -193,7 +202,12 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
     private void updateColors() {
         int iBlendARGB = ColorUtils.blendARGB(this.colorDefault, this.colorSelected, this.isSelectedAnimator.getFloatValue());
         int iBlendARGB2 = ColorUtils.blendARGB(this.colorDefault, this.colorSelectedText, this.isSelectedAnimator.getFloatValue());
-        this.imageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN);
+        BackupImageView backupImageView = this.backupImageView;
+        if (backupImageView != null && this.needUpdateBackupViewColor) {
+            backupImageView.setColorFilter(porterDuffColorFilter);
+        }
+        this.imageView.setColorFilter(porterDuffColorFilter);
         this.textView.setTextColor(iBlendARGB2);
     }
 
@@ -230,22 +244,79 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             return;
         }
         boolean value = this.isSelectedAnimator.getValue();
-        if (this.imageView.getAnimatedDrawable() == null) {
-            this.imageView.setAnimation(this.tabAnimation.icon, 24, 24);
+        int i = value ? this.tabAnimation.iconToFilled : this.tabAnimation.iconToOutline;
+        TabAnimation tabAnimation = this.tabAnimation;
+        if (tabAnimation.endFrameMid != -1) {
+            boolean z2 = this.lastIsSelected != value;
+            if (this.lastIconAnimationRaw != i) {
+                this.lastIconAnimationRaw = i;
+                this.imageView.setAnimation(i, 24, 24);
+                z2 = true;
+            }
+            if (z2) {
+                RLottieDrawable animatedDrawable = this.imageView.getAnimatedDrawable();
+                if (animatedDrawable == null) {
+                    return;
+                }
+                if (value) {
+                    animatedDrawable.setCustomEndFrame(this.tabAnimation.endFrameMid);
+                    if (animatedDrawable.getCurrentFrame() >= this.tabAnimation.endFrameEnd - 2) {
+                        animatedDrawable.setCurrentFrame(0, false);
+                    }
+                    int currentFrame = animatedDrawable.getCurrentFrame();
+                    int i2 = this.tabAnimation.endFrameMid;
+                    if (currentFrame <= i2) {
+                        animatedDrawable.start();
+                    } else {
+                        animatedDrawable.setCurrentFrame(i2);
+                    }
+                } else {
+                    int currentFrame2 = animatedDrawable.getCurrentFrame();
+                    TabAnimation tabAnimation2 = this.tabAnimation;
+                    if (currentFrame2 >= tabAnimation2.endFrameMid - 1) {
+                        animatedDrawable.setCustomEndFrame(tabAnimation2.endFrameEnd - 1);
+                        animatedDrawable.start();
+                    } else {
+                        animatedDrawable.setCustomEndFrame(0);
+                        animatedDrawable.setCurrentFrame(0);
+                    }
+                }
+            }
+            this.lastIsSelected = value;
+            return;
         }
-        RLottieDrawable animatedDrawable = this.imageView.getAnimatedDrawable();
-        if (animatedDrawable == null || this.lastIsSelected == value) {
+        if (tabAnimation.iconToFilled != tabAnimation.iconToOutline) {
+            if (this.lastIconAnimationRaw != i) {
+                this.lastIconAnimationRaw = i;
+                this.imageView.setAnimation(i, 24, 24);
+                this.imageView.getAnimatedDrawable().setPlayInDirectionOfCustomEndFrame(false);
+                if (z) {
+                    this.imageView.getAnimatedDrawable().setCurrentFrame(0);
+                    this.imageView.playAnimation();
+                    return;
+                } else {
+                    this.imageView.getAnimatedDrawable().setProgress(0.99f);
+                    return;
+                }
+            }
+            return;
+        }
+        if (this.imageView.getAnimatedDrawable() == null) {
+            this.imageView.setAnimation(this.tabAnimation.iconToFilled, 24, 24);
+        }
+        RLottieDrawable animatedDrawable2 = this.imageView.getAnimatedDrawable();
+        if (animatedDrawable2 == null || this.lastIsSelected == value) {
             return;
         }
         this.lastIsSelected = value;
         if (value) {
-            animatedDrawable.setPlayInDirectionOfCustomEndFrame(false);
-            animatedDrawable.setCurrentFrame(0);
-            animatedDrawable.setCustomEndFrame(animatedDrawable.getFramesCount());
+            animatedDrawable2.setPlayInDirectionOfCustomEndFrame(false);
+            animatedDrawable2.setCurrentFrame(0);
+            animatedDrawable2.setCustomEndFrame(animatedDrawable2.getFramesCount());
         } else {
-            animatedDrawable.setPlayInDirectionOfCustomEndFrame(true);
-            animatedDrawable.setCurrentFrame(animatedDrawable.getFramesCount());
-            animatedDrawable.setCustomEndFrame(0);
+            animatedDrawable2.setPlayInDirectionOfCustomEndFrame(true);
+            animatedDrawable2.setCurrentFrame(animatedDrawable2.getFramesCount());
+            animatedDrawable2.setCustomEndFrame(0);
         }
         this.imageView.playAnimation();
     }
@@ -281,6 +352,52 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         return glassTabView;
     }
 
+    public static GlassTabView createAttachTab(Context context, Theme.ResourcesProvider resourcesProvider) {
+        GlassTabView glassTabView = new GlassTabView(context);
+        glassTabView.resourcesProvider = resourcesProvider;
+        glassTabView.selfMeasure = true;
+        glassTabView.textView.setTextSize(1, 11.0f);
+        glassTabView.textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        glassTabView.checkPlayAnimation(false);
+        glassTabView.imageView.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        glassTabView.colorDefault = Theme.getColor(Theme.key_glass_tabUnselected, resourcesProvider);
+        glassTabView.colorSelected = Theme.getColor(Theme.key_glass_tabSelected, resourcesProvider);
+        glassTabView.colorSelectedText = Theme.getColor(Theme.key_glass_tabSelectedText, resourcesProvider);
+        glassTabView.updateColors();
+        return glassTabView;
+    }
+
+    public static GlassTabView createAttachBotTab(Context context, Theme.ResourcesProvider resourcesProvider) {
+        GlassTabView glassTabView = new GlassTabView(context);
+        glassTabView.resourcesProvider = resourcesProvider;
+        glassTabView.selfMeasure = true;
+        glassTabView.textView.setTextSize(1, 11.0f);
+        glassTabView.textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        glassTabView.imageView.setVisibility(8);
+        glassTabView.checkPlayAnimation(false);
+        BackupImageView backupImageView = new BackupImageView(context);
+        glassTabView.backupImageView = backupImageView;
+        glassTabView.addView(backupImageView, LayoutHelper.createFrame(22, 22.0f, 49, 0.0f, 5.0f, 0.0f, 0.0f));
+        glassTabView.colorDefault = Theme.getColor(Theme.key_glass_tabUnselected, resourcesProvider);
+        glassTabView.colorSelected = Theme.getColor(Theme.key_glass_tabSelected, resourcesProvider);
+        glassTabView.colorSelectedText = Theme.getColor(Theme.key_glass_tabSelectedText, resourcesProvider);
+        glassTabView.updateColors();
+        return glassTabView;
+    }
+
+    public BackupImageView getBackupImageView() {
+        return this.backupImageView;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        if (this.selfMeasure) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(84.0f), (int) (measureTextWidth() + AndroidUtilities.dpf2(32.0f))), 1073741824), i2);
+        } else {
+            super.onMeasure(i, i2);
+        }
+    }
+
     @Override
     public float measureTextWidth() {
         return this.defaultTextPaint.measureText(this.textView.getText().toString());
@@ -290,12 +407,103 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         CONTACTS(R.raw.tab_contacts),
         CALLS(R.raw.tab_calls),
         CHATS(R.raw.tab_chats),
-        SETTINGS(R.raw.tab_settings);
+        SETTINGS(R.raw.tab_settings),
+        CHECKLIST(R.raw.tab_checklist, R.raw.tab_checklist_reverse),
+        COLORS(R.raw.tab_colors, R.raw.tab_colors_reverse),
+        FILES(R.raw.tab_files, R.raw.tab_files_reverse),
+        GALLERY(R.raw.tab_gallery, R.raw.tab_gallery_reverse),
+        GIFT(R.raw.tab_gift, R.raw.tab_gift_reverse),
+        LOCATION(R.raw.tab_location, R.raw.tab_location_reverse),
+        MODELS(R.raw.tab_models, R.raw.tab_models_reverse),
+        MUSIC(R.raw.tab_music, R.raw.tab_music_reverse),
+        POLL(R.raw.tab_poll, R.raw.tab_poll_reverse),
+        SYMBOLS(R.raw.tab_symbols, R.raw.tab_symbols_reverse),
+        REPLIES(R.raw.tab_reply, R.raw.tab_reply_reverse),
+        WALLET(R.raw.tab_wallet, R.raw.tab_wallet_reverse),
+        BOOSTS(R.raw.boosts, 25, 49),
+        MONETIZATION(R.raw.monetize, 19, 45);
 
-        public final int icon;
+        public final int endFrameEnd;
+        public final int endFrameMid;
+        public final int iconToFilled;
+        public final int iconToOutline;
+
+        TabAnimation(int i, int i2, int i3) {
+            this.iconToFilled = i;
+            this.iconToOutline = i;
+            this.endFrameMid = i2;
+            this.endFrameEnd = i3;
+        }
 
         TabAnimation(int i) {
-            this.icon = i;
+            this.iconToFilled = i;
+            this.iconToOutline = i;
+            this.endFrameMid = -1;
+            this.endFrameEnd = -1;
         }
+
+        TabAnimation(int i, int i2) {
+            this.iconToFilled = i;
+            this.iconToOutline = i2;
+            this.endFrameMid = -1;
+            this.endFrameEnd = -1;
+        }
+    }
+
+    public void setTabAnimation(TabAnimation tabAnimation) {
+        this.tabAnimation = tabAnimation;
+        this.lastIconAnimationRaw = 0;
+        this.imageView.clearAnimationDrawable();
+        checkPlayAnimation(false);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.textView.setText(charSequence);
+    }
+
+    public void setAttachBot(TLRPC.User user, TLRPC.TL_attachMenuBot tL_attachMenuBot, int i) {
+        boolean z;
+        if (user == null || tL_attachMenuBot == null) {
+            return;
+        }
+        this.textView.setText(tL_attachMenuBot.short_name);
+        if (this.avatarDrawable == null) {
+            this.avatarDrawable = new AvatarDrawable();
+        }
+        this.avatarDrawable.setInfo(i, user);
+        TLRPC.TL_attachMenuBotIcon animatedAttachMenuBotIcon = MediaDataController.getAnimatedAttachMenuBotIcon(tL_attachMenuBot);
+        if (animatedAttachMenuBotIcon == null) {
+            animatedAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
+            z = false;
+        } else {
+            z = true;
+        }
+        if (animatedAttachMenuBotIcon != null) {
+            TLRPC.Document document = animatedAttachMenuBotIcon.icon;
+            this.backupImageView.getImageReceiver().setAllowStartLottieAnimation(false);
+            this.backupImageView.setImage(ImageLocation.getForDocument(document), String.valueOf(tL_attachMenuBot.bot_id), z ? "tgs" : "svg", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 1.0f), tL_attachMenuBot);
+        }
+        this.backupImageView.setRoundRadius(0);
+        this.backupImageView.setSize(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
+        this.needUpdateBackupViewColor = true;
+        updateColors();
+        invalidate();
+    }
+
+    public void setAttachBotUser(TLRPC.User user, int i) {
+        if (user == null) {
+            return;
+        }
+        this.textView.setText(ContactsController.formatName(user.first_name, user.last_name));
+        if (this.avatarDrawable == null) {
+            this.avatarDrawable = new AvatarDrawable();
+        }
+        this.avatarDrawable.setInfo(i, user);
+        this.backupImageView.setForUserOrChat(user, this.avatarDrawable);
+        this.backupImageView.setSize(-1, -1);
+        this.backupImageView.setRoundRadius(AndroidUtilities.dp(11.0f));
+        this.backupImageView.setColorFilter(null);
+        this.needUpdateBackupViewColor = false;
+        invalidate();
     }
 }

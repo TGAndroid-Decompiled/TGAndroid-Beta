@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +40,6 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
 import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
@@ -53,6 +51,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.statistics.GiveawayCell;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StatisticActivity;
@@ -69,12 +68,13 @@ public class ChannelBoostLayout extends FrameLayout {
     private final ArrayList gifts;
     private boolean hasBoostsNext;
     private boolean hasGiftsNext;
+    public IBlur3Capture iBlur3Capture;
     private final ArrayList items;
     private String lastBoostsOffset;
     private String lastGiftsOffset;
     private int limitBoosts;
     private int limitGifts;
-    RecyclerListView listView;
+    public final RecyclerListView listView;
     private int nextBoostRemaining;
     private int nextGiftsRemaining;
     private LinearLayout progressLayout;
@@ -130,10 +130,8 @@ public class ChannelBoostLayout extends FrameLayout {
                     case 4:
                         LimitPreviewView limitPreviewView = new LimitPreviewView(ChannelBoostLayout.this.getContext(), R.drawable.filled_limit_boost, 0, 0, ChannelBoostLayout.this.resourcesProvider);
                         limitPreviewView.isStatistic = true;
-                        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(ChannelBoostLayout.this.getContext(), R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ChannelBoostLayout.this.resourcesProvider)), 0, 0);
-                        combinedDrawable.setFullsize(true);
+                        limitPreviewView.setTag(-33024);
                         limitPreviewView.setPadding(0, AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f));
-                        limitPreviewView.setBackground(combinedDrawable);
                         limitPreviewView.setBoosts(ChannelBoostLayout.this.boostsStatus, false);
                         overviewCell = limitPreviewView;
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -144,9 +142,6 @@ public class ChannelBoostLayout extends FrameLayout {
                         return new RecyclerListView.Holder(overviewCell);
                     case 6:
                         shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext(), 20, ChannelBoostLayout.this.resourcesProvider);
-                        CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(ChannelBoostLayout.this.getContext(), R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ChannelBoostLayout.this.resourcesProvider)), 0, 0);
-                        combinedDrawable2.setFullsize(true);
-                        shadowSectionCell.setBackground(combinedDrawable2);
                         overviewCell = shadowSectionCell;
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(overviewCell);
@@ -273,20 +268,23 @@ public class ChannelBoostLayout extends FrameLayout {
         this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
+        recyclerListView.setSections(true);
+        recyclerListView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
         recyclerListView.setLayoutManager(new LinearLayoutManager(context));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setSupportsChangeAnimations(false);
         defaultItemAnimator.setDelayAnimations(false);
-        this.listView.setItemAnimator(defaultItemAnimator);
-        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        recyclerListView.setItemAnimator(defaultItemAnimator);
+        recyclerListView.setClipToPadding(false);
+        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
                 this.f$0.lambda$new$0(context, j, resourcesProvider, baseFragment, view, i);
             }
         });
-        addView(this.listView);
+        addView(recyclerListView);
         loadStatistic();
-        this.listView.setAdapter(this.adapter);
+        recyclerListView.setAdapter(this.adapter);
         updateRows(false);
         createEmptyView(getContext());
         this.progressLayout.setAlpha(0.0f);

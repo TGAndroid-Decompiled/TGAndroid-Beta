@@ -361,6 +361,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         @Override
         protected boolean drawChild(Canvas canvas, View view, long j) {
+            int shadowAlpha;
             int measuredHeight;
             int y;
             BaseFragment baseFragment = !ActionBarLayout.this.fragmentsStack.isEmpty() ? (BaseFragment) ActionBarLayout.this.fragmentsStack.get(ActionBarLayout.this.fragmentsStack.size() - 1) : null;
@@ -368,7 +369,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1260getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1267getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -381,20 +382,29 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     break;
                 }
                 View childAt = getChildAt(i);
-                if (childAt == view || !(childAt instanceof ActionBar) || childAt.getVisibility() != 0) {
-                    i++;
-                } else if (((ActionBar) childAt).getCastShadows()) {
+                if (childAt != view && (childAt instanceof ActionBar) && childAt.getVisibility() == 0) {
+                    ActionBar actionBar = (ActionBar) childAt;
+                    if (!actionBar.getCastShadows() || actionBar.getShadowAlpha() <= 0) {
+                        break;
+                    }
                     measuredHeight = childAt.getMeasuredHeight();
                     y = (int) childAt.getY();
+                    shadowAlpha = actionBar.getShadowAlpha();
+                } else {
+                    i++;
                 }
             }
+            shadowAlpha = 0;
             measuredHeight = 0;
             y = 0;
             boolean zDrawChild = super.drawChild(canvas, view, j);
             if (measuredHeight != 0 && ActionBarLayout.headerShadowDrawable != null) {
+                int alpha = ActionBarLayout.headerShadowDrawable.getAlpha();
                 int i2 = y + measuredHeight;
                 ActionBarLayout.headerShadowDrawable.setBounds(0, i2, getMeasuredWidth(), ActionBarLayout.headerShadowDrawable.getIntrinsicHeight() + i2);
+                ActionBarLayout.headerShadowDrawable.setAlpha(shadowAlpha);
                 ActionBarLayout.headerShadowDrawable.draw(canvas);
+                ActionBarLayout.headerShadowDrawable.setAlpha(alpha);
             }
             return zDrawChild;
         }
@@ -1006,6 +1016,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.animationInProgress = false;
         this.containerView.setTranslationX(0.0f);
         this.containerViewBack.setTranslationX(0.0f);
+        this.containerView.setLayerType(0, null);
         setInnerTranslationX(0.0f);
     }
 
@@ -1016,7 +1027,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.layoutToIgnore = layoutContainer;
         layoutContainer.setVisibility(0);
         this.beginTrackingSent = false;
-        BaseFragment baseFragment = (BaseFragment) this.fragmentsStack.get(r2.size() - 2);
+        List list = this.fragmentsStack;
+        BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 2);
         View viewCreateView = baseFragment.fragmentView;
         if (viewCreateView == null) {
             viewCreateView = baseFragment.createView(this.parentActivity);
@@ -1053,8 +1065,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (this.themeAnimatorSet != null) {
             this.presentingFragmentDescriptions = baseFragment.getThemeDescriptions();
         }
-        List list = this.fragmentsStack;
-        ((BaseFragment) list.get(list.size() - 1)).prepareFragmentToSlide(true, true);
+        this.containerView.setLayerType(2, null);
+        List list2 = this.fragmentsStack;
+        ((BaseFragment) list2.get(list2.size() - 1)).prepareFragmentToSlide(true, true);
         baseFragment.prepareFragmentToSlide(false, true);
     }
 
@@ -1070,6 +1083,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (!((BaseFragment) list.get(list.size() - 1)).isSwipeBackEnabled(motionEvent)) {
                     this.maybeStartTracking = false;
                     this.startedTracking = false;
+                    LayoutContainer layoutContainer = this.containerView;
+                    if (layoutContainer != null) {
+                        layoutContainer.setLayerType(0, null);
+                    }
                     return false;
                 }
                 this.startedTrackingPointerId = motionEvent.getPointerId(0);
@@ -1150,6 +1167,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.maybeStartTracking = false;
                     this.startedTracking = false;
                     this.layoutToIgnore = null;
+                    LayoutContainer layoutContainer2 = this.containerView;
+                    if (layoutContainer2 != null) {
+                        layoutContainer2.setLayerType(0, null);
+                    }
                 }
                 VelocityTracker velocityTracker2 = this.velocityTracker;
                 if (velocityTracker2 != null) {
@@ -1160,6 +1181,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.maybeStartTracking = false;
                 this.startedTracking = false;
                 this.layoutToIgnore = null;
+                LayoutContainer layoutContainer3 = this.containerView;
+                if (layoutContainer3 != null) {
+                    layoutContainer3.setLayerType(0, null);
+                }
                 VelocityTracker velocityTracker3 = this.velocityTracker;
                 if (velocityTracker3 != null) {
                     velocityTracker3.recycle();
@@ -2559,6 +2584,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (iNavigationLayoutDelegate != null) {
             iNavigationLayoutDelegate.onThemeProgress(f);
         }
+        globallyUpdateColors(this);
     }
 
     @Override
@@ -2777,6 +2803,21 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         if (runnable != null) {
             runnable.run();
+        }
+    }
+
+    private void globallyUpdateColors(ViewGroup viewGroup) {
+        if (viewGroup == null) {
+            return;
+        }
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            KeyEvent.Callback childAt = viewGroup.getChildAt(i);
+            if (childAt instanceof Theme.Colorable) {
+                ((Theme.Colorable) childAt).updateColors();
+            }
+            if (childAt instanceof ViewGroup) {
+                globallyUpdateColors((ViewGroup) childAt);
+            }
         }
     }
 

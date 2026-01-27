@@ -377,7 +377,10 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         frameLayout.setBackgroundColor(Theme.getColor(i));
         this.fragmentView.setTag(Integer.valueOf(i));
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
-        this.listView = new RecyclerListView(context);
+        RecyclerListView recyclerListView = new RecyclerListView(context);
+        this.listView = recyclerListView;
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
@@ -385,10 +388,10 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             }
         };
         this.listView.setLayoutManager(linearLayoutManager);
-        RecyclerListView recyclerListView = this.listView;
+        RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.listViewAdapter = listAdapter;
-        recyclerListView.setAdapter(listAdapter);
+        recyclerListView2.setAdapter(listAdapter);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
@@ -613,12 +616,10 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FlickerLoadingView flickerLoadingView;
-            View shadowSectionCell;
+            View headerCell;
             switch (i) {
                 case 1:
-                    View headerCell = new HeaderCell(this.mContext, 23);
-                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = headerCell;
+                    headerCell = new HeaderCell(this.mContext, 23);
                     break;
                 case 2:
                     Context context = this.mContext;
@@ -653,63 +654,52 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                             ManageLinksActivity.this.inviteLinkBottomSheet.show();
                         }
                     });
-                    linkActionView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     flickerLoadingView = linkActionView;
-                    shadowSectionCell = flickerLoadingView;
+                    headerCell = flickerLoadingView;
                     break;
                 case 3:
-                    View creationTextCell = new CreationTextCell(this.mContext, 64, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
-                    creationTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = creationTextCell;
+                    headerCell = new CreationTextCell(this.mContext, 64, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
                     break;
                 case 4:
-                    shadowSectionCell = new ShadowSectionCell(this.mContext);
+                    headerCell = new ShadowSectionCell(this.mContext);
                     break;
                 case 5:
-                    shadowSectionCell = ManageLinksActivity.this.new LinkCell(this.mContext);
+                    headerCell = ManageLinksActivity.this.new LinkCell(this.mContext);
                     break;
                 case 6:
                     FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(this.mContext);
                     flickerLoadingView2.setIsSingleCell(true);
                     flickerLoadingView2.setViewType(9);
                     flickerLoadingView2.showDate(false);
-                    flickerLoadingView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     flickerLoadingView = flickerLoadingView2;
-                    shadowSectionCell = flickerLoadingView;
+                    headerCell = flickerLoadingView;
                     break;
                 case 7:
-                    View shadowSectionCell2 = new ShadowSectionCell(this.mContext);
-                    shadowSectionCell2.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    shadowSectionCell = shadowSectionCell2;
+                    headerCell = new ShadowSectionCell(this.mContext);
                     break;
                 case 8:
                     TextSettingsCell textSettingsCell = new TextSettingsCell(this.mContext);
-                    textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     textSettingsCell.setText(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
                     textSettingsCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-                    shadowSectionCell = textSettingsCell;
+                    headerCell = textSettingsCell;
                     break;
                 case 9:
-                    View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    shadowSectionCell = textInfoPrivacyCell;
+                    headerCell = new TextInfoPrivacyCell(this.mContext);
                     break;
                 case 10:
-                    View manageChatUserCell = new ManageChatUserCell(this.mContext, 8, 6, false);
-                    manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = manageChatUserCell;
+                    headerCell = new ManageChatUserCell(this.mContext, 8, 6, false);
                     break;
                 case 11:
-                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
+                    headerCell = new TextInfoPrivacyCell(this.mContext, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
                     break;
                 default:
                     View hintInnerCell = ManageLinksActivity.this.new HintInnerCell(this.mContext);
-                    hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = hintInnerCell;
+                    hintInnerCell.setTag(-33024);
+                    headerCell = hintInnerCell;
                     break;
             }
-            shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(shadowSectionCell);
+            headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(headerCell);
         }
 
         @Override
@@ -950,6 +940,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                         }
                     });
                 }
+                itemOptionsMakeOptions.setScrimViewBackground(ManageLinksActivity.this.listView.getClipBackground(this));
                 itemOptionsMakeOptions.show();
             }
         }
@@ -1482,11 +1473,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, CreationTextCell.class, LinkActionView.class, LinkCell.class}, null, null, null, i));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, Theme.key_windowBackgroundGray));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i));
-        ActionBar actionBar = this.actionBar;
-        int i2 = ThemeDescription.FLAG_BACKGROUND;
-        int i3 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i2, null, null, null, null, i3));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
@@ -1494,10 +1481,10 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
-        int i4 = Theme.key_windowBackgroundWhiteBlackText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
-        int i5 = Theme.key_windowBackgroundWhiteGrayText;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i5));
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
+        int i3 = Theme.key_windowBackgroundWhiteGrayText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, new String[]{"statusOnlineColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlueText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{ManageChatUserCell.class}, null, Theme.avatarDrawables, null, Theme.key_avatar_text));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundRed));
@@ -1508,7 +1495,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HintInnerCell.class}, new String[]{"messageTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_message));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_unreadCounterMuted));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueButton));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueIcon));
@@ -1516,8 +1503,8 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{CreationTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CreationTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkboxCheck));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LinkCell.class}, new String[]{"titleView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LinkCell.class}, new String[]{"subtitleView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LinkCell.class}, new String[]{"titleView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i2));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LinkCell.class}, new String[]{"subtitleView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{LinkCell.class}, new String[]{"optionsView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_stickers_menu));
         return arrayList;
     }

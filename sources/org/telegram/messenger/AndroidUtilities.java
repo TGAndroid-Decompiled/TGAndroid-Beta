@@ -155,7 +155,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPOutputStream;
@@ -176,26 +175,28 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.TextDetailSettingsCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
+import org.telegram.ui.Components.ButtonSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EllipsizeSpanAnimator;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.Components.HideViewAfterAnimation;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
-import org.telegram.ui.Components.PickerBottomLayout;
 import org.telegram.ui.Components.PipRoundVideoView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ShareAlert;
+import org.telegram.ui.Components.TableView;
+import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.ThemePreviewActivity;
 import org.telegram.ui.WallpapersListActivity;
 
@@ -294,6 +295,8 @@ public class AndroidUtilities {
     public static final int[] pointTmp2 = new int[2];
     public static Pattern REMOVE_RTL = null;
     private static Pattern singleTagPatter = null;
+    public static final Paint strokeTop = new Paint(1);
+    public static final Paint strokeBottom = new Paint(1);
 
     public interface IntColorCallback {
         void run(int i);
@@ -2774,12 +2777,16 @@ public class AndroidUtilities {
     }
 
     public static void setPreferredMaxRefreshRate(Window window) {
+        setPreferredMaxRefreshRate(window, screenMaxRefreshRate);
+    }
+
+    public static void setPreferredMaxRefreshRate(Window window, float f) {
         WindowManager windowManager;
         if (window == null || (windowManager = window.getWindowManager()) == null) {
             return;
         }
         WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.preferredRefreshRate = screenMaxRefreshRate;
+        attributes.preferredRefreshRate = f;
         try {
             windowManager.updateViewLayout(window.getDecorView(), attributes);
         } catch (Exception e) {
@@ -4134,6 +4141,15 @@ public class AndroidUtilities {
         return tL_chatBannedRights == null || Math.abs(((long) tL_chatBannedRights.until_date) - (System.currentTimeMillis() / 1000)) > 157680000;
     }
 
+    public static void setRectR(RectF rectF, float f, float f2, float f3) {
+        rectF.set(f - f3, f2 - f3, f + f3, f2 + f3);
+    }
+
+    public static void setRectD(RectF rectF, float f, float f2, float f3) {
+        float f4 = f3 / 2.0f;
+        rectF.set(f - f4, f2 - f4, f + f4, f2 + f4);
+    }
+
     public static void setRectToRect(Matrix matrix, RectF rectF, RectF rectF2, int i, int i2, boolean z) {
         float fHeight;
         float fWidth;
@@ -4253,151 +4269,132 @@ public class AndroidUtilities {
     }
 
     public static void showProxyAlert(final Activity activity, final String str, final String str2, final String str3, final String str4, final String str5) {
-        CharSequence string;
-        CharSequence string2;
         BottomSheet.Builder builder = new BottomSheet.Builder(activity);
-        final Runnable dismissRunnable = builder.getDismissRunnable();
         builder.setApplyTopPadding(false);
         builder.setApplyBottomPadding(false);
+        final Runnable dismissRunnable = builder.getDismissRunnable();
         LinearLayout linearLayout = new LinearLayout(activity);
-        builder.setCustomView(linearLayout);
         linearLayout.setOrientation(1);
-        int i = 3;
-        int i2 = 5;
+        builder.setCustomView(linearLayout);
+        TextView textViewMakeTextView = TextHelper.makeTextView(activity, 20.0f, Theme.key_dialogTextBlack, true);
+        textViewMakeTextView.setText(LocaleController.getString(R.string.UseProxyTitle));
+        linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 55, 22, 18, 22, 0));
+        TableView tableView = new TableView(activity, null);
+        linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 55, 14, 18, 14, 0));
+        if (!TextUtils.isEmpty(str)) {
+            tableView.addRow(LocaleController.getString(R.string.UseProxyAddress), str);
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            tableView.addRow(LocaleController.getString(R.string.UseProxyPort), str2);
+        }
         if (!TextUtils.isEmpty(str5)) {
-            TextView textView = new TextView(activity);
-            textView.setText(LocaleController.getString(R.string.UseProxyTelegramInfo2));
-            textView.setTextColor(Theme.getColor(Theme.key_dialogTextGray4));
-            textView.setTextSize(1, 14.0f);
-            textView.setGravity(49);
-            linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 17, 8, 17, 8));
-            View view = new View(activity);
-            view.setBackgroundColor(Theme.getColor(Theme.key_divider));
-            linearLayout.addView(view, new LinearLayout.LayoutParams(-1, 1));
+            tableView.addRow(LocaleController.getString(R.string.UseProxySecret), str5);
         }
-        int i3 = 0;
-        while (i3 < 6) {
-            if (i3 == 0) {
-                string2 = LocaleController.getString("UseProxyAddress", R.string.UseProxyAddress);
-                string = str;
-            } else if (i3 == 1) {
-                string = "" + str2;
-                string2 = LocaleController.getString("UseProxyPort", R.string.UseProxyPort);
-            } else if (i3 == 2) {
-                string2 = LocaleController.getString("UseProxySecret", R.string.UseProxySecret);
-                string = str5;
-            } else if (i3 == i) {
-                string2 = LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername);
-                string = str3;
-            } else if (i3 == 4) {
-                string2 = LocaleController.getString("UseProxyPassword", R.string.UseProxyPassword);
-                string = str4;
-            } else if (i3 == i2) {
-                string = LocaleController.getString(R.string.ProxyBottomSheetChecking);
-                string2 = LocaleController.getString(R.string.ProxyStatus);
-            } else {
-                string = null;
-                string2 = null;
-            }
-            if (!TextUtils.isEmpty(string)) {
-                final AtomicReference atomicReference = new AtomicReference();
-                final TextDetailSettingsCell textDetailSettingsCell = new TextDetailSettingsCell(activity) {
-                    @Override
-                    protected void onAttachedToWindow() {
-                        super.onAttachedToWindow();
-                        if (atomicReference.get() != null) {
-                            ((EllipsizeSpanAnimator) atomicReference.get()).onAttachedToWindow();
-                        }
-                    }
-
-                    @Override
-                    protected void onDetachedFromWindow() {
-                        super.onDetachedFromWindow();
-                        if (atomicReference.get() != null) {
-                            ((EllipsizeSpanAnimator) atomicReference.get()).onDetachedFromWindow();
-                        }
-                    }
-                };
-                if (i3 == i2) {
-                    SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(string);
-                    EllipsizeSpanAnimator ellipsizeSpanAnimator = new EllipsizeSpanAnimator(textDetailSettingsCell);
-                    ellipsizeSpanAnimator.addView(textDetailSettingsCell);
-                    SpannableString spannableString = new SpannableString("...");
-                    ellipsizeSpanAnimator.wrap(spannableString, 0);
-                    spannableStringBuilderValueOf.append((CharSequence) spannableString);
-                    atomicReference.set(ellipsizeSpanAnimator);
-                    textDetailSettingsCell.setTextAndValue(spannableStringBuilderValueOf, string2, true);
-                } else {
-                    textDetailSettingsCell.setTextAndValue(string, string2, true);
-                }
-                textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-                textDetailSettingsCell.getValueTextView().setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
-                linearLayout.addView(textDetailSettingsCell, LayoutHelper.createLinear(-1, -2));
-                if (i3 == 5) {
-                    try {
-                        ConnectionsManager.getInstance(UserConfig.selectedAccount).checkProxy(str, Integer.parseInt(str2), str3, str4, str5, new RequestTimeDelegate() {
-                            @Override
-                            public final void run(long j) {
-                                AndroidUtilities.lambda$showProxyAlert$18(textDetailSettingsCell, j);
-                            }
-                        });
-                    } catch (NumberFormatException unused) {
-                        textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
-                        textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-                    }
-                }
-            }
-            i3++;
-            i = 3;
-            i2 = 5;
+        if (!TextUtils.isEmpty(str3)) {
+            tableView.addRow(LocaleController.getString(R.string.UseProxyUsername), str3);
         }
-        PickerBottomLayout pickerBottomLayout = new PickerBottomLayout(activity, false);
-        pickerBottomLayout.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-        linearLayout.addView(pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
-        pickerBottomLayout.cancelButton.setPadding(dp(18.0f), 0, dp(18.0f), 0);
-        TextView textView2 = pickerBottomLayout.cancelButton;
-        int i4 = Theme.key_dialogTextBlue2;
-        textView2.setTextColor(Theme.getColor(i4));
-        pickerBottomLayout.cancelButton.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
+        if (!TextUtils.isEmpty(str4)) {
+            tableView.addRow(LocaleController.getString(R.string.UseProxyPassword), str3);
+        }
+        final ButtonSpan.TextViewButtons[] textViewButtonsArr = new ButtonSpan.TextViewButtons[1];
+        tableView.addRow(LocaleController.getString(R.string.ProxyStatus), "", textViewButtonsArr);
+        ((View) textViewButtonsArr[0].getParent()).setPadding(0, 0, 0, 0);
+        textViewButtonsArr[0].setDisablePaddingsOffsetY(true);
+        textViewButtonsArr[0].setPadding(dp(12.66f), dp(9.33f), dp(12.66f), dp(9.33f));
+        final boolean[] zArr = new boolean[1];
+        textViewButtonsArr[0].setText(replaceSingleLink(LocaleController.getString(R.string.ProxyBottomSheetCheckStatus), Theme.getColor(Theme.key_chat_messageLinkIn), new Runnable() {
             @Override
-            public final void onClick(View view2) {
-                dismissRunnable.run();
+            public final void run() {
+                AndroidUtilities.lambda$showProxyAlert$21(zArr, textViewButtonsArr, str, str2, str3, str4, str5, activity);
+            }
+        }));
+        if (!TextUtils.isEmpty(str5)) {
+            TableView.TableRowFullContent tableRowFullContentAddFullRow = tableView.addFullRow(LocaleController.getString(R.string.UseProxyTelegramInfo2));
+            tableRowFullContentAddFullRow.setFilled(true);
+            SpoilersTextView spoilersTextView = (SpoilersTextView) tableRowFullContentAddFullRow.getChildAt(0);
+            spoilersTextView.setTextSize(1, 11.0f);
+            spoilersTextView.setGravity(17);
+        }
+        ButtonWithCounterView round = new ButtonWithCounterView(activity, null).setRound();
+        round.setText(LocaleController.getString(R.string.ConnectingConnectProxy));
+        round.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AndroidUtilities.lambda$showProxyAlert$22(str, str2, str5, str4, str3, activity, dismissRunnable, view);
             }
         });
-        pickerBottomLayout.doneButtonTextView.setTextColor(Theme.getColor(i4));
-        pickerBottomLayout.doneButton.setPadding(dp(18.0f), 0, dp(18.0f), 0);
-        pickerBottomLayout.doneButtonBadgeTextView.setVisibility(8);
-        pickerBottomLayout.doneButtonTextView.setText(LocaleController.getString(R.string.ConnectingConnectProxy).toUpperCase());
-        pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                AndroidUtilities.lambda$showProxyAlert$20(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
-            }
-        });
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 55, 14, 18, 14, 14));
         builder.show();
     }
 
-    public static void lambda$showProxyAlert$18(final TextDetailSettingsCell textDetailSettingsCell, final long j) {
+    public static void lambda$showProxyAlert$21(final boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, final String str, final String str2, final String str3, final String str4, final String str5, Activity activity) {
+        if (zArr[0]) {
+            return;
+        }
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                AndroidUtilities.lambda$showProxyAlert$19(zArr, textViewButtonsArr, str, str2, str3, str4, str5);
+            }
+        };
+        final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+        if (globalMainSettings.getBoolean("proxycheckstatusip", false)) {
+            runnable.run();
+        } else {
+            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(R.string.ProxyBottomSheetCheckWarning)).setMessage(LocaleController.getString(R.string.ProxyBottomSheetCheckWarningText)).setPositiveButton(LocaleController.getString(R.string.Proceed), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    AndroidUtilities.lambda$showProxyAlert$20(globalMainSettings, runnable, alertDialog, i);
+                }
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
+        }
+    }
+
+    public static void lambda$showProxyAlert$19(boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, String str, String str2, String str3, String str4, String str5) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        textViewButtonsArr[0].setText(LocaleController.getString(R.string.ProxyBottomSheetChecking) + "...");
+        textViewButtonsArr[0].clear();
+        try {
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).checkProxy(str, Integer.parseInt(str2), str3, str4, str5, new RequestTimeDelegate() {
+                @Override
+                public final void run(long j) {
+                    AndroidUtilities.lambda$showProxyAlert$18(textViewButtonsArr, j);
+                }
+            });
+        } catch (NumberFormatException unused) {
+            textViewButtonsArr[0].setText(LocaleController.getString(R.string.Unavailable));
+            textViewButtonsArr[0].setTextColor(Theme.getColor(Theme.key_text_RedRegular));
+        }
+    }
+
+    public static void lambda$showProxyAlert$18(final ButtonSpan.TextViewButtons[] textViewButtonsArr, final long j) {
         runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.lambda$showProxyAlert$17(j, textDetailSettingsCell);
+                AndroidUtilities.lambda$showProxyAlert$17(j, textViewButtonsArr);
             }
         });
     }
 
-    public static void lambda$showProxyAlert$17(long j, TextDetailSettingsCell textDetailSettingsCell) {
+    public static void lambda$showProxyAlert$17(long j, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
         if (j == -1) {
-            textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
-            textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-            return;
+            textViewButtonsArr[0].setText(LocaleController.getString(R.string.Unavailable));
+            textViewButtonsArr[0].setTextColor(Theme.getColor(Theme.key_text_RedRegular));
+        } else {
+            textViewButtonsArr[0].setText(LocaleController.formatString(R.string.Ping2, Long.valueOf(j)));
+            textViewButtonsArr[0].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGreenText));
         }
-        textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Available) + ", " + LocaleController.formatString(R.string.Ping, Long.valueOf(j)));
-        textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGreenText));
     }
 
-    public static void lambda$showProxyAlert$20(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
+    public static void lambda$showProxyAlert$20(SharedPreferences sharedPreferences, Runnable runnable, AlertDialog alertDialog, int i) {
+        sharedPreferences.edit().putBoolean("proxycheckstatusip", true).apply();
+        runnable.run();
+    }
+
+    public static void lambda$showProxyAlert$22(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
         SharedConfig.ProxyInfo proxyInfo;
         UndoView undoView;
         SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
@@ -4675,6 +4672,24 @@ public class AndroidUtilities {
             return lerp(f, f2, f5 / f4);
         }
         return lerp(f2, f3, (f5 - f4) / (1.0f - f4));
+    }
+
+    public static float lerp3(float f, float f2, float f3, float f4) {
+        if (f4 < 0.0f) {
+            return lerp(f2, f, -f4);
+        }
+        return lerp(f2, f3, f4);
+    }
+
+    public static int lerpColor(int i, int i2, float f) {
+        return Color.argb(lerp(Color.alpha(i), Color.alpha(i2), f), lerp(Color.red(i), Color.red(i2), f), lerp(Color.green(i), Color.green(i2), f), lerp(Color.blue(i), Color.blue(i2), f));
+    }
+
+    public static int lerpColor3(int i, int i2, int i3, float f) {
+        if (f < 0.0f) {
+            return lerpColor(i2, i, -f);
+        }
+        return lerpColor(i2, i3, f);
     }
 
     public static float lerp(float[] fArr, float f) {
@@ -4966,7 +4981,7 @@ public class AndroidUtilities {
         valueAnimatorOfArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                AndroidUtilities.lambda$setNavigationBarColor$21(intColorCallback, window, valueAnimator2);
+                AndroidUtilities.lambda$setNavigationBarColor$23(intColorCallback, window, valueAnimator2);
             }
         });
         valueAnimatorOfArgb.addListener(new AnimatorListenerAdapter() {
@@ -4986,7 +5001,7 @@ public class AndroidUtilities {
         navigationBarColorAnimators.put(window, valueAnimatorOfArgb);
     }
 
-    public static void lambda$setNavigationBarColor$21(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
+    public static void lambda$setNavigationBarColor$23(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (intColorCallback != null) {
             intColorCallback.run(iIntValue);
@@ -5057,7 +5072,7 @@ public class AndroidUtilities {
             recyclerListView.highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    return AndroidUtilities.lambda$scrollToFragmentRow$22(baseFragment, str, recyclerListView);
+                    return AndroidUtilities.lambda$scrollToFragmentRow$24(baseFragment, str, recyclerListView);
                 }
             });
             declaredField.setAccessible(false);
@@ -5065,7 +5080,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int lambda$scrollToFragmentRow$22(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
+    public static int lambda$scrollToFragmentRow$24(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
         try {
             Field declaredField = baseFragment.getClass().getDeclaredField(str);
             declaredField.setAccessible(true);
@@ -5173,13 +5188,13 @@ public class AndroidUtilities {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.lambda$updateImageViewImageAnimated$23(imageView, atomicBoolean, drawable, valueAnimator);
+                AndroidUtilities.lambda$updateImageViewImageAnimated$25(imageView, atomicBoolean, drawable, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public static void lambda$updateImageViewImageAnimated$23(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
+    public static void lambda$updateImageViewImageAnimated$25(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fAbs = Math.abs(fFloatValue - 0.5f) + 0.5f;
         imageView.setScaleX(fAbs);
@@ -6007,10 +6022,6 @@ public class AndroidUtilities {
         });
     }
 
-    public static boolean isWebAppLink(java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.isWebAppLink(java.lang.String):boolean");
-    }
-
     public static CharSequence removeSpans(CharSequence charSequence, Class cls) {
         if (!(charSequence instanceof Spannable)) {
             return charSequence;
@@ -6030,7 +6041,7 @@ public class AndroidUtilities {
             recyclerView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    AndroidUtilities.lambda$notifyDataSetChanged$24(recyclerView);
+                    AndroidUtilities.lambda$notifyDataSetChanged$26(recyclerView);
                 }
             });
         } else {
@@ -6038,7 +6049,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void lambda$notifyDataSetChanged$24(RecyclerView recyclerView) {
+    public static void lambda$notifyDataSetChanged$26(RecyclerView recyclerView) {
         if (recyclerView.getAdapter() != null) {
             recyclerView.getAdapter().notifyDataSetChanged();
         }
@@ -6051,13 +6062,13 @@ public class AndroidUtilities {
         ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public final boolean onPreDraw() {
-                return AndroidUtilities.lambda$doOnPreDraw$25(viewTreeObserver, onPreDrawListenerArr, zArr, runnable);
+                return AndroidUtilities.lambda$doOnPreDraw$27(viewTreeObserver, onPreDrawListenerArr, zArr, runnable);
             }
         };
         viewTreeObserver.addOnPreDrawListener(onPreDrawListener);
     }
 
-    public static boolean lambda$doOnPreDraw$25(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr, boolean[] zArr, Runnable runnable) {
+    public static boolean lambda$doOnPreDraw$27(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr, boolean[] zArr, Runnable runnable) {
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.removeOnPreDrawListener(onPreDrawListenerArr[0]);
         }
@@ -6214,5 +6225,45 @@ public class AndroidUtilities {
             window.setStatusBarContrastEnforced(false);
             window.setNavigationBarContrastEnforced(false);
         }
+    }
+
+    public static void drawStroke(Canvas canvas, RectF rectF, float f) {
+        drawStroke(canvas, rectF, f, 1.0f);
+    }
+
+    public static void drawStroke(Canvas canvas, RectF rectF, float f, float f2) {
+        if (f2 <= 0.0f) {
+            return;
+        }
+        float fMin = Math.min(f, Math.min(rectF.width(), rectF.height()) / 2.0f);
+        float fDpf2 = dpf2(1.0f);
+        float f3 = fDpf2 / 2.0f;
+        float fMax = Math.max(0.0f, fMin - fDpf2);
+        Paint paint = strokeTop;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(fDpf2);
+        paint.setColor(Theme.multAlpha(570425343, f2));
+        canvas.save();
+        float f4 = rectF.left - f3;
+        float f5 = rectF.top;
+        if (canvas.clipRect(f4, f5, rectF.right + f3, MathUtils.clamp(f5 + fMax, f5, rectF.bottom))) {
+            canvas.drawRoundRect(rectF.left, rectF.top + f3, rectF.right, rectF.bottom + f3, fMax, fMax, paint);
+        }
+        canvas.restore();
+        float fDpf22 = dpf2(0.6666667f);
+        float f6 = fDpf22 / 2.0f;
+        float fMax2 = Math.max(0.0f, fMin - fDpf22);
+        Paint paint2 = strokeBottom;
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(fDpf22);
+        paint2.setColor(Theme.multAlpha(385875967, f2));
+        canvas.save();
+        float f7 = rectF.left - f6;
+        float f8 = rectF.bottom;
+        if (canvas.clipRect(f7, MathUtils.clamp(f8 - fMax2, rectF.top, f8), rectF.right + f6, rectF.bottom)) {
+            canvas.drawRoundRect(rectF.left, rectF.top - f6, rectF.right, rectF.bottom - f6, fMax2, fMax2, paint2);
+        }
+        canvas.restore();
     }
 }

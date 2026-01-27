@@ -201,6 +201,28 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
+    public static ArrayList<TL_stars.StarGiftAttribute> filterAttributes(ArrayList<TL_stars.StarGiftAttribute> arrayList, boolean z) {
+        boolean z2;
+        ArrayList<TL_stars.StarGiftAttribute> arrayList2 = new ArrayList<>();
+        Iterator<TL_stars.StarGiftAttribute> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TL_stars.StarGiftAttribute next = it.next();
+            if (next.rarity instanceof TL_stars.TL_starGiftAttributeRarity) {
+                z2 = z && (next instanceof TL_stars.starGiftAttributeModel);
+            } else {
+                z2 = !z;
+            }
+            if (!z2) {
+                arrayList2.add(next);
+            }
+        }
+        return arrayList2;
+    }
+
+    public static boolean hasAllAttributes(ArrayList<TL_stars.StarGiftAttribute> arrayList) {
+        return (StarsController.findAttribute(arrayList, TL_stars.starGiftAttributeModel.class) == null || StarsController.findAttribute(arrayList, TL_stars.starGiftAttributePattern.class) == null || StarsController.findAttribute(arrayList, TL_stars.starGiftAttributeBackdrop.class) == null) ? false : true;
+    }
+
     public void sendBid(final long j, final AuctionBidSheet.Params params, final long j2, final Utilities.Callback2<Boolean, String> callback2) {
         final AuctionInternal auctionInternal = this.auctions.get(j);
         if (auctionInternal == null || auctionInternal.pendingBid) {

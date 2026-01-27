@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
@@ -49,8 +48,9 @@ import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
+import org.telegram.ui.Components.blur3.RenderNodeWithHash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
-import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
@@ -62,7 +62,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     private DialogsActivity dialogsActivity;
     private boolean dropCallsFragmentAfterPageScroll;
     private View fadeView;
-    private final BlurredBackgroundColorProviderThemed iBlur3ColorProviderTabs;
     private final BlurredBackgroundSourceColor iBlur3SourceColor;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceTabGlass;
     private int navigationBarHeight;
@@ -109,28 +108,54 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     public MainTabsActivity() {
-        Theme.ResourcesProvider resourcesProvider = null;
         if (Build.VERSION.SDK_INT >= 31) {
-            this.iBlur3SourceTabGlass = new BlurredBackgroundSourceRenderNode(null);
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceTabGlass = blurredBackgroundSourceRenderNode;
+            blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
+                @Override
+                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
+                    hashBuilder.add(MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                    int size = MainTabsActivity.this.fragmentsArr.size();
+                    for (int i = 0; i < size; i++) {
+                        BaseFragment baseFragment = ((ViewPagerActivity.FragmentState) MainTabsActivity.this.fragmentsArr.valueAt(i)).fragment;
+                        View view = baseFragment.fragmentView;
+                        if (view != null) {
+                            MainTabsActivity mainTabsActivity = MainTabsActivity.this;
+                            if (ViewPositionWatcher.computeRectInParent(view, mainTabsActivity.contentView, mainTabsActivity.fragmentPosition) && MainTabsActivity.this.fragmentPosition.right > 0.0f && MainTabsActivity.this.fragmentPosition.left < MainTabsActivity.this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && ((TabFragmentDelegate) baseFragment).getGlassSource() != null) {
+                                hashBuilder.addF(MainTabsActivity.this.fragmentPosition.left);
+                                hashBuilder.addF(MainTabsActivity.this.fragmentPosition.top);
+                                hashBuilder.add(baseFragment.getClassGuid());
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void renderNodeUpdateDisplayList(Canvas canvas) {
+                    BlurredBackgroundSourceRenderNode glassSource;
+                    int measuredWidth = MainTabsActivity.this.fragmentView.getMeasuredWidth();
+                    int measuredHeight = MainTabsActivity.this.fragmentView.getMeasuredHeight();
+                    canvas.drawColor(MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    int size = MainTabsActivity.this.fragmentsArr.size();
+                    for (int i = 0; i < size; i++) {
+                        BaseFragment baseFragment = ((ViewPagerActivity.FragmentState) MainTabsActivity.this.fragmentsArr.valueAt(i)).fragment;
+                        View view = baseFragment.fragmentView;
+                        if (view != null) {
+                            MainTabsActivity mainTabsActivity = MainTabsActivity.this;
+                            if (ViewPositionWatcher.computeRectInParent(view, mainTabsActivity.contentView, mainTabsActivity.fragmentPosition) && MainTabsActivity.this.fragmentPosition.right > 0.0f && MainTabsActivity.this.fragmentPosition.left < MainTabsActivity.this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && (glassSource = ((TabFragmentDelegate) baseFragment).getGlassSource()) != null) {
+                                canvas.save();
+                                canvas.translate(MainTabsActivity.this.fragmentPosition.left, MainTabsActivity.this.fragmentPosition.top);
+                                glassSource.draw(canvas, 0.0f, 0.0f, measuredWidth, measuredHeight);
+                                canvas.restore();
+                            }
+                        }
+                    }
+                }
+            });
         } else {
             this.iBlur3SourceTabGlass = null;
         }
-        this.iBlur3ColorProviderTabs = new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_dialogBackground) {
-            @Override
-            public int getStrokeColorTop() {
-                return isDark() ? 117440511 : 285212672;
-            }
-
-            @Override
-            public int getStrokeColorBottom() {
-                return isDark() ? 301989887 : 536870912;
-            }
-
-            @Override
-            public int getShadowColor() {
-                return isDark() ? 83886079 : 536870912;
-            }
-        };
         this.iBlur3SourceColor = new BlurredBackgroundSourceColor();
     }
 
@@ -265,11 +290,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSource);
         blurredBackgroundDrawableViewFactory.setSourceRootView(viewPositionWatcher, this.contentView);
         blurredBackgroundDrawableViewFactory.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
-        BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(this.tabsView, this.iBlur3ColorProviderTabs);
+        BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(this.tabsView, BlurredBackgroundProviderImpl.mainTabs(this.resourceProvider));
         this.tabsViewBackground = blurredBackgroundDrawableCreate;
-        blurredBackgroundDrawableCreate.setShadowParams(AndroidUtilities.dpf2(2.667f), 0.0f, AndroidUtilities.dpf2(0.85f));
-        this.tabsViewBackground.setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f));
-        this.tabsViewBackground.setRadius(AndroidUtilities.dp(28.0f));
+        blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(28.0f));
         this.tabsViewBackground.setPadding(AndroidUtilities.dp(7.666f));
         this.tabsView.setBackground(this.tabsViewBackground);
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory2 = new BlurredBackgroundDrawableViewFactory(this.iBlur3SourceColor);
@@ -499,8 +522,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public DialogsActivity prepareDialogsActivity(Bundle bundle) {
         if (bundle == null) {
             bundle = new Bundle();
-            bundle.putBoolean("hasMainTabs", true);
         }
+        bundle.putBoolean("hasMainTabs", true);
         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
         this.dialogsActivity = dialogsActivity;
         dialogsActivity.setMainTabsActivityController(new MainTabsActivityControllerImpl());
@@ -827,34 +850,14 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     public void blur3_invalidateBlur() {
         View view;
-        BlurredBackgroundSourceRenderNode glassSource;
         if (Build.VERSION.SDK_INT < 31 || this.iBlur3SourceTabGlass == null || (view = this.fragmentView) == null) {
             return;
         }
-        int measuredWidth = view.getMeasuredWidth();
-        int measuredHeight = this.fragmentView.getMeasuredHeight();
-        RecordingCanvas recordingCanvasBeginRecording = this.iBlur3SourceTabGlass.beginRecording(measuredWidth, measuredHeight);
-        recordingCanvasBeginRecording.drawColor(getThemedColor(Theme.key_windowBackgroundWhite));
-        int size = this.fragmentsArr.size();
-        for (int i = 0; i < size; i++) {
-            BaseFragment baseFragment = ((ViewPagerActivity.FragmentState) this.fragmentsArr.valueAt(i)).fragment;
-            View view2 = baseFragment.fragmentView;
-            if (view2 != null && ViewPositionWatcher.computeRectInParent(view2, this.contentView, this.fragmentPosition)) {
-                RectF rectF = this.fragmentPosition;
-                if (rectF.right > 0.0f && rectF.left < this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && (glassSource = ((TabFragmentDelegate) baseFragment).getGlassSource()) != null) {
-                    recordingCanvasBeginRecording.save();
-                    RectF rectF2 = this.fragmentPosition;
-                    recordingCanvasBeginRecording.translate(rectF2.left, rectF2.top);
-                    glassSource.draw(recordingCanvasBeginRecording, 0.0f, 0.0f, measuredWidth, measuredHeight);
-                    recordingCanvasBeginRecording.restore();
-                }
-            }
-        }
-        this.iBlur3SourceTabGlass.endRecording();
+        this.iBlur3SourceTabGlass.setSize(view.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
+        this.iBlur3SourceTabGlass.updateDisplayListIfNeeded();
     }
 
     public void blur3_updateColors() {
-        this.iBlur3ColorProviderTabs.updateColors();
         this.iBlur3SourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         this.tabsViewBackground.updateColors();
         blur3_invalidateBlur();

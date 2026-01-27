@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
@@ -36,11 +37,11 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchField;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 
 public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
     private FrameLayout frameLayout;
-    private boolean ignoreLayout;
     private FillLastLinearLayoutManager layoutManager;
     private ShareAdapter listAdapter;
     private RecyclerListView listView;
@@ -125,7 +126,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
-        this.listView = new RecyclerListView(context, resourcesProvider) {
+        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
                 return f2 >= ((float) ((((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).parentAlert.scrollOffsetY[0] + AndroidUtilities.dp(30.0f)) + (!((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).parentAlert.inBubbleMode ? AndroidUtilities.statusBarHeight : 0)));
@@ -136,6 +137,12 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 super.onScrolled(i, i2);
             }
         };
+        this.listView = recyclerListView;
+        ViewGroup containerView = chatAttachAlert.getContainerView();
+        RecyclerListView recyclerListView2 = this.listView;
+        Objects.requireNonNull(recyclerListView2);
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.occupyNavigationBar = true;
         NotificationCenter.getInstance(UserConfig.selectedAccount).listenGlobal(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -143,7 +150,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             }
         });
         this.listView.setClipToPadding(false);
-        RecyclerListView recyclerListView = this.listView;
+        RecyclerListView recyclerListView3 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.dp(9.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
@@ -163,17 +170,16 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             }
         };
         this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView.setLayoutManager(fillLastLinearLayoutManager);
+        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
         this.layoutManager.setBind(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        RecyclerListView recyclerListView2 = this.listView;
+        RecyclerListView recyclerListView4 = this.listView;
         ShareAdapter shareAdapter = new ShareAdapter(context);
         this.listAdapter = shareAdapter;
-        recyclerListView2.setAdapter(shareAdapter);
+        recyclerListView4.setAdapter(shareAdapter);
         this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -293,16 +299,8 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
+    public void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout.onPreMeasure(int, int):void");
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
     }
 
     private void runShadowAnimation(final boolean z) {

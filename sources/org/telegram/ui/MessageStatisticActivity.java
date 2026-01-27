@@ -312,16 +312,19 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         frameLayout2.addView(this.progressLayout, LayoutHelper.createFrame(240, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, getResourceProvider());
         this.listView = recyclerListView;
+        recyclerListView.setSections();
+        RecyclerListView recyclerListView2 = this.listView;
         boolean z = false;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         ((SimpleItemAnimator) this.listView.getItemAnimator()).setSupportsChangeAnimations(false);
-        RecyclerListView recyclerListView2 = this.listView;
+        RecyclerListView recyclerListView3 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.listViewAdapter = listAdapter;
-        recyclerListView2.setAdapter(listAdapter);
+        recyclerListView3.setAdapter(listAdapter);
         this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
@@ -451,7 +454,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
         this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, getResourceProvider()), false);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector, getResourceProvider()), false);
-        this.actionBar.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -1026,7 +1028,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
 
         @Override
-        public androidx.recyclerview.widget.RecyclerView.ViewHolder onCreateViewHolder(android.view.ViewGroup r16, int r17) {
+        public androidx.recyclerview.widget.RecyclerView.ViewHolder onCreateViewHolder(android.view.ViewGroup r17, int r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.ListAdapter.onCreateViewHolder(android.view.ViewGroup, int):androidx.recyclerview.widget.RecyclerView$ViewHolder");
         }
 
@@ -1175,10 +1177,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        int i = Theme.key_windowBackgroundWhite;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, ManageChatUserCell.class}, null, null, null, i));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, ManageChatUserCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i));
         ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
         arrayList.add(new ThemeDescription(chatAvatarContainer != null ? chatAvatarContainer.getTitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_player_actionBarTitle));
         ChatAvatarContainer chatAvatarContainer2 = this.avatarContainer;

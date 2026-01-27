@@ -93,7 +93,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -456,10 +455,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private boolean hoursExpanded;
     private boolean hoursShownMine;
     private IBlur3Capture iBlur3Capture;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
     private boolean iBlur3Invalidated;
     private final RectF iBlur3PositionActionBar;
     private final RectF iBlur3PositionMainTabs;
     private final ArrayList iBlur3Positions;
+    private final BlurredBackgroundSourceColor iBlur3SourceColor;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
     private boolean ignoreScrollOnFullExpand;
     private ImageUpdater imageUpdater;
@@ -731,7 +732,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i2;
     }
 
-    public static void access$40100(ProfileActivity profileActivity, View view) {
+    public static void access$39700(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -2114,13 +2115,21 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.iBlur3PositionMainTabs = rectF;
         arrayList.add(rectF);
         this.sharedMediaPreloader = sharedMediaPreloader;
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
+        this.iBlur3SourceColor = blurredBackgroundSourceColor;
+        blurredBackgroundSourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         if (Build.VERSION.SDK_INT >= 31) {
             this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor();
-            this.iBlur3SourceGlass = new BlurredBackgroundSourceRenderNode(null);
-        } else {
-            this.scrollableViewNoiseSuppressor = null;
-            this.iBlur3SourceGlass = null;
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode;
+            BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceRenderNode);
+            this.iBlur3FactoryLiquidGlass = blurredBackgroundDrawableViewFactory;
+            blurredBackgroundDrawableViewFactory.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
+            return;
         }
+        this.scrollableViewNoiseSuppressor = null;
+        this.iBlur3SourceGlass = null;
+        this.iBlur3FactoryLiquidGlass = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
     }
 
     @Override
@@ -2670,11 +2679,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ChatAvatarContainer avatarContainer;
         TLRPC.UserFull userFull2;
         TLRPC.ChatParticipants chatParticipants;
+        Button2 button2;
         ChatActivity chatActivity;
         ChatActivity.ThemeDelegate themeDelegate;
         float f3 = 16.0f;
         Theme.createProfileResources(context);
-        ?? r5 = 0;
         Theme.createChatResources(context, false);
         BaseFragment lastFragment = this.parentLayout.getLastFragment();
         if ((lastFragment instanceof ChatActivity) && (themeDelegate = (chatActivity = (ChatActivity) lastFragment).themeDelegate) != null && themeDelegate.getCurrentTheme() != null && !chatActivity.themeDelegate.isGiftTheme()) {
@@ -2709,32 +2718,34 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 int i9 = Theme.key_windowBackgroundWhite;
                 blurredBackgroundSourceColor.setColor(getThemedColor(i9));
                 BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
-                Button2 button2 = new Button2(context);
-                BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(button2, new BlurredBackgroundColorProviderThemed(this.resourcesProvider, i9));
+                Button2 button22 = new Button2(context);
+                BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(button22, new BlurredBackgroundColorProviderThemed(this.resourcesProvider, i9));
                 blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(8.0f));
                 blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(22.0f));
-                button2.setBackground(blurredBackgroundDrawableCreate);
+                button22.setBackground(blurredBackgroundDrawableCreate);
                 this.bottomButtonContainer[i7] = new FrameLayout(context);
                 this.bottomButton[i7] = new ButtonWithCounterView(context, this.resourcesProvider);
                 this.bottomButton[i7].setRoundRadius(AndroidUtilities.dp(19.0f));
                 this.bottomButton[i7].setUseWrapContent(true);
-                this.bottomButton[i7].setPadding(AndroidUtilities.dp(f3), r5, AndroidUtilities.dp(f3), r5);
+                this.bottomButton[i7].setPadding(AndroidUtilities.dp(f3), 0, AndroidUtilities.dp(f3), 0);
                 if (i7 == 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
                     this.bottomButtonPostText = spannableStringBuilder;
-                    spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_premium_camera), r5, 1, 33);
+                    spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_premium_camera), 0, 1, 33);
+                    button2 = button22;
                     this.bottomButtonPostText.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.StoriesAddPost));
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
                     this.bottomButtonPostTextAlbum = spannableStringBuilder2;
-                    spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_add_album), r5, 1, 33);
+                    spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_add_album), 0, 1, 33);
                     this.bottomButtonPostTextAlbum.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.StoriesAlbumBottomButtonAddStories));
-                    this.bottomButton[i7].setText(this.bottomButtonPostText, r5);
+                    this.bottomButton[i7].setText(this.bottomButtonPostText, false);
                 } else {
-                    this.bottomButton[i7].setText(LocaleController.getString(R.string.StorySave), r5);
+                    button2 = button22;
+                    this.bottomButton[i7].setText(LocaleController.getString(R.string.StorySave), false);
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws IOException {
+                    public final void onClick(View view) {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2748,7 +2759,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 i7++;
                 f3 = 16.0f;
-                r5 = 0;
             }
         }
         TLRPC.ChatFull chatFull2 = this.chatInfo;
@@ -2764,7 +2774,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader = this.sharedMediaPreloader;
         TLRPC.UserFull userFull3 = this.userInfo;
         final long j2 = j;
-        AnonymousClass9 anonymousClass9 = new AnonymousClass9(context, j, sharedMediaPreloader, userFull3 != null ? userFull3.common_chats_count : 0, this.sortedUsers, this.chatInfo, userFull3, i, this.initialStoryAlbum, this, this, 1, this.resourcesProvider);
+        AnonymousClass9 anonymousClass9 = new AnonymousClass9(context, j, sharedMediaPreloader, userFull3 != null ? userFull3.common_chats_count : 0, this.sortedUsers, this.chatInfo, userFull3, i, this.initialStoryAlbum, this, this, 1, this.resourcesProvider, this.iBlur3FactoryLiquidGlass);
         this.sharedMediaLayout = anonymousClass9;
         anonymousClass9.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
         this.sharedMediaLayout.initBlurCapture((ViewGroup) this.fragmentView);
@@ -2776,7 +2786,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i10, float f4, float f5) throws IOException {
+                public final void onClick(int i10, float f4, float f5) {
                     this.f$0.lambda$createView$15(i10, f4, f5);
                 }
             });
@@ -2893,8 +2903,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else {
                 iFindFirstVisibleItemPosition = -1;
             }
-            i2 = iFindFirstVisibleItemPosition;
             tag = this.writeButton.getTag();
+            i2 = iFindFirstVisibleItemPosition;
         }
         createActionBarMenu(r10);
         this.listAdapter = new ListAdapter(context2);
@@ -3416,11 +3426,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (iNavigationLayout == null || !(iNavigationLayout.getLastFragment() instanceof ChatActivity) || (avatarContainer = ((ChatActivity) this.parentLayout.getLastFragment()).getAvatarContainer()) == null) {
             z = false;
         } else {
-            boolean z2 = avatarContainer.getTitleTextView().getPaddingRight() != 0;
+            z = avatarContainer.getTitleTextView().getPaddingRight() != 0;
             if (avatarContainer.getLayoutParams() != null && avatarContainer.getTitleTextView() != null) {
                 width = (((ViewGroup.MarginLayoutParams) avatarContainer.getLayoutParams()).rightMargin + (avatarContainer.getWidth() - avatarContainer.getTitleTextView().getRight())) / AndroidUtilities.density;
             }
-            z = z2;
         }
         int i12 = 0;
         while (true) {
@@ -3930,6 +3939,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             @Override
             public final void capture(Canvas canvas, RectF rectF) {
                 this.f$0.lambda$createView$43(viewGroupPartRenderer, canvas, rectF);
+            }
+
+            @Override
+            public long captureCalculateHash(RectF rectF) {
+                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
             }
         };
         ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
@@ -4789,7 +4803,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws IOException {
+    public void lambda$createView$11(int i, View view) {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -4956,8 +4970,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return 8;
         }
 
-        AnonymousClass9(Context context, long j, SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader, int i, ArrayList arrayList, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i2, int i3, BaseFragment baseFragment, SharedMediaLayout.Delegate delegate, int i4, Theme.ResourcesProvider resourcesProvider) {
-            super(context, j, sharedMediaPreloader, i, arrayList, chatFull, userFull, i2, i3, baseFragment, delegate, i4, resourcesProvider);
+        AnonymousClass9(Context context, long j, SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader, int i, ArrayList arrayList, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i2, int i3, BaseFragment baseFragment, SharedMediaLayout.Delegate delegate, int i4, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
+            super(context, j, sharedMediaPreloader, i, arrayList, chatFull, userFull, i2, i3, baseFragment, delegate, i4, resourcesProvider, blurredBackgroundDrawableViewFactory);
         }
 
         @Override
@@ -5101,29 +5115,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void openStoryRecorder() throws IOException {
-            StoryRecorder.getInstance(ProfileActivity.this.getParentActivity(), ((BaseFragment) ProfileActivity.this).currentAccount).selectedPeerId(ProfileActivity.this.getDialogId()).canChangePeer(false).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
-                @Override
-                public void preLayout(long j, Runnable runnable) {
-                    ProfileActivity.this.avatarImage.setHasStories(ProfileActivity.this.needInsetForStories());
-                    if (j == ProfileActivity.this.getDialogId()) {
-                        ProfileActivity.this.collapseAvatarInstant();
-                    }
-                    AndroidUtilities.runOnUIThread(runnable, 30L);
-                }
-
-                @Override
-                public StoryRecorder.SourceView getView(long j) {
-                    if (j != ProfileActivity.this.getDialogId()) {
-                        return null;
-                    }
-                    ProfileActivity.this.updateAvatarRoundRadius();
-                    return StoryRecorder.SourceView.fromAvatarImage(ProfileActivity.this.avatarImage, ChatObject.isForum(ProfileActivity.this.currentChat));
-                }
-            }).open(null, true);
-        }
-
-        @Override
         public void updateTabs(boolean z) {
             int i;
             ProfileGiftsContainer profileGiftsContainer;
@@ -5164,7 +5155,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$15(int i, float f, float f2) throws IOException {
+    public void lambda$createView$15(int i, float f, float f2) {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -6819,7 +6810,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             fDp = AndroidUtilities.dp(72.0f);
         }
         this.animatorBottomButtonVisibility.setValue(fDp <= 0.0f, true);
-        this.bottomButtonsContainer.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(60.0f), 0, this.animatorBottomButtonVisibility.getFloatValue()));
+        float floatValue = this.animatorBottomButtonVisibility.getFloatValue();
+        this.bottomButtonsContainer.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(60.0f), 0, floatValue));
+        this.bottomButtonsContainer.setAlpha(floatValue);
+        this.bottomButtonsContainer.setVisibility(floatValue <= 0.0f ? 4 : 0);
         Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
         if (visibleBulletin != null) {
             visibleBulletin.updatePosition();
@@ -11483,7 +11477,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     textInfoPrivacyCell.getTextView().setMovementMethod(null);
                     textInfoPrivacyCell.setText(AndroidUtilities.getBuildVersionInfo());
                     textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
-                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGrayShadow)));
+                    textInfoPrivacyCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
                     shadowSectionCell = textInfoPrivacyCell;
                     break;
                 case 11:
@@ -11688,7 +11682,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public void setBackground(View view, int i) {
             if (i != 8) {
                 if (i == 14) {
-                    view.setBackground(Theme.getThemedDrawable(ProfileActivity.this.getContext(), R.drawable.greydivider_bottom, ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGrayShadow)));
+                    view.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
                     return;
                 } else if (i != 30 && i != 27 && i != 28) {
                     switch (i) {
@@ -12018,6 +12012,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public static class SearchResult {
             public int guid;
             public int iconResId;
+            public String link;
             public int num;
             public Runnable openRunnable;
             public String[] path;
@@ -12047,6 +12042,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 } else if (str3 != null) {
                     this.path = new String[]{str3};
                 }
+            }
+
+            public SearchResult withLink(String str) {
+                this.link = str;
+                return this;
             }
 
             public boolean equals(Object obj) {
@@ -12140,6 +12140,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public static SearchResult[] onCreateSearchArray(final BaseFragment baseFragment) {
             SearchResult searchResult;
+            SearchResult searchResultWithLink;
             SearchResult searchResult2;
             SearchResult searchResult3;
             SearchResult searchResult4;
@@ -12165,103 +12166,102 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             SearchResult searchResult24;
             SearchResult searchResult25;
             SearchResult searchResult26;
-            SearchResult searchResult27;
             final int currentAccount = baseFragment.getCurrentAccount();
             final Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
-            SearchResult searchResult28 = new SearchResult(500, LocaleController.getString(R.string.EditName), 0, new Runnable() {
+            SearchResult searchResult27 = new SearchResult(500, LocaleController.getString(R.string.EditName), 0, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$1(baseFragment, resourceProvider);
                 }
             });
-            SearchResult searchResult29 = new SearchResult(501, LocaleController.getString(R.string.ChangePhoneNumber), 0, new Runnable() {
+            SearchResult searchResultWithLink2 = new SearchResult(501, LocaleController.getString(R.string.ChangePhoneNumber), 0, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$2(baseFragment);
                 }
-            });
-            SearchResult searchResult30 = new SearchResult(502, LocaleController.getString(R.string.AddAnotherAccount), 0, new Runnable() {
+            }).withLink("tg://settings/edit/change-number");
+            SearchResult searchResultWithLink3 = new SearchResult(502, LocaleController.getString(R.string.AddAnotherAccount), 0, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$3(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/edit/add-account");
             int i = R.string.NotificationsAndSounds;
             String string = LocaleController.getString(i);
             int i2 = R.drawable.msg_notifications;
-            SearchResult searchResult31 = new SearchResult(1, string, i2, new Runnable() {
+            SearchResult searchResultWithLink4 = new SearchResult(1, string, i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$4(baseFragment);
                 }
-            });
-            SearchResult searchResult32 = new SearchResult(2, LocaleController.getString(R.string.NotificationsPrivateChats), LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications");
+            SearchResult searchResultWithLink5 = new SearchResult(2, LocaleController.getString(R.string.NotificationsPrivateChats), LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$5(baseFragment);
                 }
-            });
-            SearchResult searchResult33 = new SearchResult(3, LocaleController.getString(R.string.NotificationsGroups), LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/private-chats");
+            SearchResult searchResultWithLink6 = new SearchResult(3, LocaleController.getString(R.string.NotificationsGroups), LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$6(baseFragment);
                 }
-            });
-            SearchResult searchResult34 = new SearchResult(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/groups");
+            SearchResult searchResultWithLink7 = new SearchResult(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$7(baseFragment);
                 }
-            });
-            SearchResult searchResult35 = new SearchResult(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/channels");
+            SearchResult searchResult28 = new SearchResult(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$8(baseFragment);
                 }
             });
-            SearchResult searchResult36 = new SearchResult(6, LocaleController.getString(R.string.BadgeNumber), "badgeNumberSection", LocaleController.getString(i), i2, new Runnable() {
+            SearchResult searchResult29 = new SearchResult(6, LocaleController.getString(R.string.BadgeNumber), "badgeNumberSection", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$9(baseFragment);
                 }
             });
-            SearchResult searchResult37 = new SearchResult(7, LocaleController.getString(R.string.InAppNotifications), "inappSectionRow", LocaleController.getString(i), i2, new Runnable() {
+            SearchResult searchResult30 = new SearchResult(7, LocaleController.getString(R.string.InAppNotifications), "inappSectionRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$10(baseFragment);
                 }
             });
-            SearchResult searchResult38 = new SearchResult(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(i), i2, new Runnable() {
+            SearchResult searchResultWithLink8 = new SearchResult(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$11(baseFragment);
                 }
-            });
-            SearchResult searchResult39 = new SearchResult(9, LocaleController.getString(R.string.PinnedMessages), "pinnedMessageRow", LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/new-contacts");
+            SearchResult searchResultWithLink9 = new SearchResult(9, LocaleController.getString(R.string.PinnedMessages), "pinnedMessageRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$12(baseFragment);
                 }
-            });
-            SearchResult searchResult40 = new SearchResult(10, LocaleController.getString(R.string.ResetAllNotifications), "resetNotificationsRow", LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/pinned-messages");
+            SearchResult searchResultWithLink10 = new SearchResult(10, LocaleController.getString(R.string.ResetAllNotifications), "resetNotificationsRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$13(baseFragment);
                 }
-            });
-            SearchResult searchResult41 = new SearchResult(11, LocaleController.getString(R.string.NotificationsService), "notificationsServiceRow", LocaleController.getString(i), i2, new Runnable() {
+            }).withLink("tg://settings/notifications/reset");
+            SearchResult searchResult31 = new SearchResult(11, LocaleController.getString(R.string.NotificationsService), "notificationsServiceRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$14(baseFragment);
                 }
             });
-            SearchResult searchResult42 = new SearchResult(12, LocaleController.getString(R.string.NotificationsServiceConnection), "notificationsServiceConnectionRow", LocaleController.getString(i), i2, new Runnable() {
+            SearchResult searchResult32 = new SearchResult(12, LocaleController.getString(R.string.NotificationsServiceConnection), "notificationsServiceConnectionRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$15(baseFragment);
                 }
             });
-            SearchResult searchResult43 = new SearchResult(13, LocaleController.getString(R.string.RepeatNotifications), "repeatRow", LocaleController.getString(i), i2, new Runnable() {
+            SearchResult searchResult33 = new SearchResult(13, LocaleController.getString(R.string.RepeatNotifications), "repeatRow", LocaleController.getString(i), i2, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$16(baseFragment);
@@ -12270,460 +12270,460 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             int i3 = R.string.PrivacySettings;
             String string2 = LocaleController.getString(i3);
             int i4 = R.drawable.msg_secret;
-            SearchResult searchResult44 = new SearchResult(100, string2, i4, new Runnable() {
+            SearchResult searchResultWithLink11 = new SearchResult(100, string2, i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$17(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/privacy");
             String string3 = LocaleController.getString(R.string.TwoStepVerification);
             String string4 = LocaleController.getString(i3);
             int i5 = R.drawable.msg2_secret;
-            SearchResult searchResult45 = new SearchResult(109, string3, string4, i5, new Runnable() {
+            SearchResult searchResultWithLink12 = new SearchResult(109, string3, string4, i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$18(baseFragment);
                 }
-            });
-            SearchResult searchResult46 = new SearchResult(124, LocaleController.getString(R.string.AutoDeleteMessages), LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/2sv");
+            SearchResult searchResultWithLink13 = new SearchResult(124, LocaleController.getString(R.string.AutoDeleteMessages), LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$19(currentAccount, baseFragment);
                 }
-            });
-            SearchResult searchResult47 = new SearchResult(108, LocaleController.getString(R.string.Passcode), LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/auto-delete");
+            SearchResult searchResultWithLink14 = new SearchResult(108, LocaleController.getString(R.string.Passcode), LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$20(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/privacy/passcode");
             if (SharedConfig.hasEmailLogin) {
-                searchResult = searchResult47;
-                searchResult2 = new SearchResult(125, LocaleController.getString(R.string.EmailLogin), "emailLoginRow", LocaleController.getString(i3), i5, new Runnable() {
+                searchResult = searchResultWithLink14;
+                searchResultWithLink = new SearchResult(125, LocaleController.getString(R.string.EmailLogin), "emailLoginRow", LocaleController.getString(i3), i5, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$21(baseFragment);
                     }
-                });
+                }).withLink("tg://settings/privacy/login-email");
             } else {
-                searchResult = searchResult47;
-                searchResult2 = null;
+                searchResult = searchResultWithLink14;
+                searchResultWithLink = null;
             }
-            SearchResult searchResult48 = searchResult2;
-            SearchResult searchResult49 = new SearchResult(101, LocaleController.getString(R.string.BlockedUsers), LocaleController.getString(i3), i4, new Runnable() {
+            SearchResult searchResult34 = searchResultWithLink;
+            SearchResult searchResultWithLink15 = new SearchResult(101, LocaleController.getString(R.string.BlockedUsers), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$22(baseFragment);
                 }
-            });
-            SearchResult searchResult50 = new SearchResult(110, LocaleController.getString(R.string.SessionsTitle), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/blocked");
+            SearchResult searchResultWithLink16 = new SearchResult(110, LocaleController.getString(R.string.SessionsTitle), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$23(baseFragment);
                 }
-            });
-            SearchResult searchResult51 = new SearchResult(105, LocaleController.getString(R.string.PrivacyPhone), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/devices");
+            SearchResult searchResultWithLink17 = new SearchResult(105, LocaleController.getString(R.string.PrivacyPhone), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$24(baseFragment);
                 }
-            });
-            SearchResult searchResult52 = new SearchResult(102, LocaleController.getString(R.string.PrivacyLastSeen), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/phone-number/");
+            SearchResult searchResultWithLink18 = new SearchResult(102, LocaleController.getString(R.string.PrivacyLastSeen), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$25(baseFragment);
                 }
-            });
-            SearchResult searchResult53 = new SearchResult(103, LocaleController.getString(R.string.PrivacyProfilePhoto), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/last-seen");
+            SearchResult searchResultWithLink19 = new SearchResult(103, LocaleController.getString(R.string.PrivacyProfilePhoto), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$26(baseFragment);
                 }
-            });
-            SearchResult searchResult54 = new SearchResult(104, LocaleController.getString(R.string.PrivacyForwards), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/profile-photos");
+            SearchResult searchResultWithLink20 = new SearchResult(104, LocaleController.getString(R.string.PrivacyForwards), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$27(baseFragment);
                 }
-            });
-            SearchResult searchResult55 = new SearchResult(122, LocaleController.getString(R.string.PrivacyP2P), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/forwards");
+            SearchResult searchResultWithLink21 = new SearchResult(122, LocaleController.getString(R.string.PrivacyP2P), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$28(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/privacy/calls/p2p");
             int i6 = R.string.Calls;
-            SearchResult searchResult56 = new SearchResult(106, LocaleController.getString(i6), LocaleController.getString(i3), i4, new Runnable() {
+            SearchResult searchResultWithLink22 = new SearchResult(106, LocaleController.getString(i6), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$29(baseFragment);
                 }
-            });
-            SearchResult searchResult57 = new SearchResult(107, LocaleController.getString(R.string.PrivacyInvites), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/calls");
+            SearchResult searchResultWithLink23 = new SearchResult(107, LocaleController.getString(R.string.PrivacyInvites), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$30(baseFragment);
                 }
-            });
-            SearchResult searchResult58 = new SearchResult(123, LocaleController.getString(R.string.PrivacyVoiceMessages), LocaleController.getString(i3), i4, new Runnable() {
+            }).withLink("tg://settings/privacy/invites");
+            SearchResult searchResultWithLink24 = new SearchResult(123, LocaleController.getString(R.string.PrivacyVoiceMessages), LocaleController.getString(i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$31(currentAccount, baseFragment);
                 }
-            });
-            SearchResult searchResult59 = MessagesController.getInstance(currentAccount).autoarchiveAvailable ? new SearchResult(121, LocaleController.getString(R.string.ArchiveAndMute), "newChatsRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/voice");
+            SearchResult searchResultWithLink25 = MessagesController.getInstance(currentAccount).autoarchiveAvailable ? new SearchResult(121, LocaleController.getString(R.string.ArchiveAndMute), "newChatsRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$32(baseFragment);
                 }
-            }) : null;
-            SearchResult searchResult60 = new SearchResult(112, LocaleController.getString(R.string.DeleteAccountIfAwayFor2), "deleteAccountRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/archive-and-mute") : null;
+            SearchResult searchResultWithLink26 = new SearchResult(112, LocaleController.getString(R.string.DeleteAccountIfAwayFor2), "deleteAccountRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$33(baseFragment);
                 }
-            });
-            SearchResult searchResult61 = new SearchResult(113, LocaleController.getString(R.string.PrivacyPaymentsClear), "paymentsClearRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/self-destruct");
+            SearchResult searchResultWithLink27 = new SearchResult(113, LocaleController.getString(R.string.PrivacyPaymentsClear), "paymentsClearRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$34(baseFragment);
                 }
-            });
-            SearchResult searchResult62 = new SearchResult(114, LocaleController.getString(R.string.WebSessionsTitle), LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings/clear-payment-info");
+            SearchResult searchResultWithLink28 = new SearchResult(114, LocaleController.getString(R.string.WebSessionsTitle), LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$35(baseFragment);
                 }
-            });
-            SearchResult searchResult63 = new SearchResult(115, LocaleController.getString(R.string.SyncContactsDelete), "contactsDeleteRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/active-websites");
+            SearchResult searchResultWithLink29 = new SearchResult(115, LocaleController.getString(R.string.SyncContactsDelete), "contactsDeleteRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$36(baseFragment);
                 }
-            });
-            SearchResult searchResult64 = new SearchResult(116, LocaleController.getString(R.string.SyncContacts), "contactsSyncRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings/delete-synced");
+            SearchResult searchResultWithLink30 = new SearchResult(116, LocaleController.getString(R.string.SyncContacts), "contactsSyncRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$37(baseFragment);
                 }
-            });
-            SearchResult searchResult65 = new SearchResult(117, LocaleController.getString(R.string.SuggestContacts), "contactsSuggestRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings/sync-contacts");
+            SearchResult searchResultWithLink31 = new SearchResult(117, LocaleController.getString(R.string.SuggestContacts), "contactsSuggestRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$38(baseFragment);
                 }
-            });
-            SearchResult searchResult66 = new SearchResult(118, LocaleController.getString(R.string.MapPreviewProvider), "secretMapRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings/suggest-contacts");
+            SearchResult searchResultWithLink32 = new SearchResult(118, LocaleController.getString(R.string.MapPreviewProvider), "secretMapRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$39(baseFragment);
                 }
-            });
-            SearchResult searchResult67 = new SearchResult(119, LocaleController.getString(R.string.SecretWebPage), "secretWebpageRow", LocaleController.getString(i3), i5, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings/map-provider");
+            SearchResult searchResultWithLink33 = new SearchResult(119, LocaleController.getString(R.string.SecretWebPage), "secretWebpageRow", LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$40(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/privacy/data-settings/link-previews");
             int i7 = R.string.Devices;
             String string5 = LocaleController.getString(i7);
             int i8 = R.drawable.msg2_devices;
-            SearchResult searchResult68 = new SearchResult(120, string5, i8, new Runnable() {
+            SearchResult searchResultWithLink34 = new SearchResult(120, string5, i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$41(baseFragment);
                 }
-            });
-            SearchResult searchResult69 = new SearchResult(121, LocaleController.getString(R.string.TerminateAllSessions), "terminateAllSessionsRow", LocaleController.getString(i7), i8, new Runnable() {
+            }).withLink("tg://settings/devices");
+            SearchResult searchResultWithLink35 = new SearchResult(121, LocaleController.getString(R.string.TerminateAllSessions), "terminateAllSessionsRow", LocaleController.getString(i7), i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$42(baseFragment);
                 }
-            });
-            SearchResult searchResult70 = new SearchResult(122, LocaleController.getString(R.string.LinkDesktopDevice), LocaleController.getString(i7), i8, new Runnable() {
+            }).withLink("tg://settings/devices/terminate-sessions");
+            SearchResult searchResultWithLink36 = new SearchResult(122, LocaleController.getString(R.string.LinkDesktopDevice), LocaleController.getString(i7), i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$43(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/devices/link-desktop");
             int i9 = R.string.DataSettings;
             String string6 = LocaleController.getString(i9);
             int i10 = R.drawable.msg2_data;
-            SearchResult searchResult71 = new SearchResult(200, string6, i10, new Runnable() {
+            SearchResult searchResultWithLink37 = new SearchResult(200, string6, i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$44(baseFragment);
                 }
-            });
-            SearchResult searchResult72 = new SearchResult(201, LocaleController.getString(R.string.DataUsage), "usageSectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            }).withLink("tg://settings/privacy/data-settings");
+            SearchResult searchResult35 = new SearchResult(201, LocaleController.getString(R.string.DataUsage), "usageSectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$45(baseFragment);
                 }
             });
             int i11 = R.string.StorageUsage;
-            SearchResult searchResult73 = new SearchResult(202, LocaleController.getString(i11), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResultWithLink38 = new SearchResult(202, LocaleController.getString(i11), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$46(baseFragment);
                 }
-            });
-            SearchResult searchResult74 = new SearchResult(203, LocaleController.getString(R.string.KeepMedia), "keepMediaRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
+            }).withLink("tg://settings/data/storage");
+            SearchResult searchResult36 = new SearchResult(203, LocaleController.getString(R.string.KeepMedia), "keepMediaRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$47(baseFragment);
                 }
             });
-            SearchResult searchResult75 = new SearchResult(204, LocaleController.getString(R.string.ClearMediaCache), "cacheRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
+            SearchResult searchResult37 = new SearchResult(204, LocaleController.getString(R.string.ClearMediaCache), "cacheRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$48(baseFragment);
                 }
             });
-            SearchResult searchResult76 = new SearchResult(205, LocaleController.getString(R.string.LocalDatabase), "databaseRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
+            SearchResult searchResult38 = new SearchResult(205, LocaleController.getString(R.string.LocalDatabase), "databaseRow", LocaleController.getString(i9), LocaleController.getString(i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$49(baseFragment);
                 }
             });
-            SearchResult searchResult77 = new SearchResult(206, LocaleController.getString(R.string.NetworkUsage), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResultWithLink39 = new SearchResult(206, LocaleController.getString(R.string.NetworkUsage), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$50(baseFragment);
                 }
-            });
-            SearchResult searchResult78 = new SearchResult(207, LocaleController.getString(R.string.AutomaticMediaDownload), "mediaDownloadSectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            }).withLink("tg://settings/data/usage");
+            SearchResult searchResult39 = new SearchResult(207, LocaleController.getString(R.string.AutomaticMediaDownload), "mediaDownloadSectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$51(baseFragment);
                 }
             });
-            SearchResult searchResult79 = new SearchResult(208, LocaleController.getString(R.string.WhenUsingMobileData), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult40 = new SearchResult(208, LocaleController.getString(R.string.WhenUsingMobileData), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$52(baseFragment);
                 }
             });
-            SearchResult searchResult80 = new SearchResult(209, LocaleController.getString(R.string.WhenConnectedOnWiFi), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult41 = new SearchResult(209, LocaleController.getString(R.string.WhenConnectedOnWiFi), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$53(baseFragment);
                 }
             });
-            SearchResult searchResult81 = new SearchResult(210, LocaleController.getString(R.string.WhenRoaming), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult42 = new SearchResult(210, LocaleController.getString(R.string.WhenRoaming), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$54(baseFragment);
                 }
             });
-            SearchResult searchResult82 = new SearchResult(211, LocaleController.getString(R.string.ResetAutomaticMediaDownload), "resetDownloadRow", LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResultWithLink40 = new SearchResult(211, LocaleController.getString(R.string.ResetAutomaticMediaDownload), "resetDownloadRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$55(baseFragment);
                 }
-            });
-            SearchResult searchResult83 = new SearchResult(215, LocaleController.getString(R.string.Streaming), "streamSectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            }).withLink("tg://settings/data/auto-download/reset");
+            SearchResult searchResult43 = new SearchResult(215, LocaleController.getString(R.string.Streaming), "streamSectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$56(baseFragment);
                 }
             });
-            SearchResult searchResult84 = new SearchResult(216, LocaleController.getString(R.string.EnableStreaming), "enableStreamRow", LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult44 = new SearchResult(216, LocaleController.getString(R.string.EnableStreaming), "enableStreamRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$57(baseFragment);
                 }
             });
-            SearchResult searchResult85 = new SearchResult(217, LocaleController.getString(i6), "callsSectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult45 = new SearchResult(217, LocaleController.getString(i6), "callsSectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$58(baseFragment);
                 }
             });
-            SearchResult searchResult86 = new SearchResult(218, LocaleController.getString(R.string.VoipUseLessData), "useLessDataForCallsRow", LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResultWithLink41 = new SearchResult(218, LocaleController.getString(R.string.VoipUseLessData), "useLessDataForCallsRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$59(baseFragment);
                 }
-            });
-            SearchResult searchResult87 = new SearchResult(219, LocaleController.getString(R.string.VoipQuickReplies), "quickRepliesRow", LocaleController.getString(i9), i10, new Runnable() {
+            }).withLink("tg://settings/data/use-less-data");
+            SearchResult searchResult46 = new SearchResult(219, LocaleController.getString(R.string.VoipQuickReplies), "quickRepliesRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$60(baseFragment);
                 }
             });
             int i12 = R.string.ProxySettings;
-            SearchResult searchResult88 = new SearchResult(220, LocaleController.getString(i12), LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResultWithLink42 = new SearchResult(220, LocaleController.getString(i12), LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$61(baseFragment);
                 }
-            });
-            SearchResult searchResult89 = new SearchResult(221, LocaleController.getString(R.string.UseProxyForCalls), "callsRow", LocaleController.getString(i9), LocaleController.getString(i12), i10, new Runnable() {
+            }).withLink("tg://settings/data/proxy");
+            SearchResult searchResultWithLink43 = new SearchResult(221, LocaleController.getString(R.string.UseProxyForCalls), "callsRow", LocaleController.getString(i9), LocaleController.getString(i12), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$62(baseFragment);
                 }
-            });
-            SearchResult searchResult90 = new SearchResult(111, LocaleController.getString(R.string.PrivacyDeleteCloudDrafts), "clearDraftsRow", LocaleController.getString(i9), i10, new Runnable() {
+            }).withLink("tg://settings/data/proxy/use-for-calls");
+            SearchResult searchResultWithLink44 = new SearchResult(111, LocaleController.getString(R.string.PrivacyDeleteCloudDrafts), "clearDraftsRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$63(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/privacy/data-settings/delete-cloud-drafts");
             int i13 = R.string.SaveToGallery;
-            SearchResult searchResult91 = new SearchResult(222, LocaleController.getString(i13), "saveToGallerySectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            SearchResult searchResult47 = new SearchResult(222, LocaleController.getString(i13), "saveToGallerySectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$64(baseFragment);
                 }
             });
-            SearchResult searchResult92 = new SearchResult(223, LocaleController.getString(R.string.SaveToGalleryPrivate), "saveToGalleryPeerRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            SearchResult searchResultWithLink45 = new SearchResult(223, LocaleController.getString(R.string.SaveToGalleryPrivate), "saveToGalleryPeerRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$65(baseFragment);
                 }
-            });
-            SearchResult searchResult93 = new SearchResult(224, LocaleController.getString(R.string.SaveToGalleryGroups), "saveToGalleryGroupsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            }).withLink("tg://settings/data/save-to-photos/chats");
+            SearchResult searchResultWithLink46 = new SearchResult(224, LocaleController.getString(R.string.SaveToGalleryGroups), "saveToGalleryGroupsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$66(baseFragment);
                 }
-            });
-            SearchResult searchResult94 = new SearchResult(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            }).withLink("tg://settings/data/save-to-photos/groups");
+            SearchResult searchResultWithLink47 = new SearchResult(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$67(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/data/save-to-photos/channels");
             int i14 = R.string.ChatSettings;
             String string7 = LocaleController.getString(i14);
             int i15 = R.drawable.msg2_discussion;
-            SearchResult searchResult95 = new SearchResult(300, string7, i15, new Runnable() {
+            SearchResult searchResultWithLink48 = new SearchResult(300, string7, i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$68(baseFragment);
                 }
-            });
-            SearchResult searchResult96 = new SearchResult(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/themes");
+            SearchResult searchResultWithLink49 = new SearchResult(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$69(baseFragment);
                 }
-            });
-            SearchResult searchResult97 = new SearchResult(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/text-size");
+            SearchResult searchResultWithLink50 = new SearchResult(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$70(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/appearance/wallpapers");
             String string8 = LocaleController.getString(R.string.SetColor);
             String string9 = LocaleController.getString(i14);
             int i16 = R.string.ChatBackground;
-            SearchResult searchResult98 = new SearchResult(303, string8, null, string9, LocaleController.getString(i16), i15, new Runnable() {
+            SearchResult searchResult48 = new SearchResult(303, string8, null, string9, LocaleController.getString(i16), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$71(baseFragment);
                 }
             });
-            SearchResult searchResult99 = new SearchResult(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(i14), LocaleController.getString(i16), i15, new Runnable() {
+            SearchResult searchResult49 = new SearchResult(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(i14), LocaleController.getString(i16), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$72(baseFragment);
                 }
             });
-            SearchResult searchResult100 = new SearchResult(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult50 = new SearchResult(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$73(baseFragment);
                 }
             });
             int i17 = R.string.BrowseThemes;
-            SearchResult searchResult101 = new SearchResult(319, LocaleController.getString(i17), null, LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult51 = new SearchResult(319, LocaleController.getString(i17), null, LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$74(baseFragment);
                 }
             });
-            SearchResult searchResult102 = new SearchResult(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(i14), LocaleController.getString(i17), i15, new Runnable() {
+            SearchResult searchResultWithLink51 = new SearchResult(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(i14), LocaleController.getString(i17), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$75(baseFragment);
                 }
-            });
-            SearchResult searchResult103 = new SearchResult(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/themes/create");
+            SearchResult searchResultWithLink52 = new SearchResult(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$76(baseFragment);
                 }
-            });
-            SearchResult searchResult104 = new SearchResult(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/message-corners");
+            SearchResult searchResult52 = new SearchResult(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$77(baseFragment);
                 }
             });
-            SearchResult searchResult105 = new SearchResult(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult53 = new SearchResult(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$78(baseFragment);
                 }
             });
-            SearchResult searchResult106 = new SearchResult(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResultWithLink53 = new SearchResult(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$79(baseFragment);
                 }
-            });
-            SearchResult searchResult107 = new SearchResult(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/app-icon");
+            SearchResult searchResult54 = new SearchResult(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$80(baseFragment);
                 }
             });
-            SearchResult searchResult108 = new SearchResult(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResultWithLink54 = new SearchResult(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$81(baseFragment);
                 }
-            });
-            SearchResult searchResult109 = new SearchResult(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/appearance/tap-for-next-media");
+            SearchResult searchResultWithLink55 = new SearchResult(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$82(baseFragment);
                 }
-            });
-            SearchResult searchResult110 = new SearchResult(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/data/raise-to-listen");
+            SearchResult searchResultWithLink56 = new SearchResult(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$83(baseFragment);
                 }
-            });
-            SearchResult searchResult111 = new SearchResult(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/data/raise-to-speak");
+            SearchResult searchResultWithLink57 = new SearchResult(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$84(baseFragment);
                 }
-            });
-            SearchResult searchResult112 = new SearchResult(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(i14), i15, new Runnable() {
+            }).withLink("tg://settings/data/pause-music");
+            SearchResult searchResult55 = new SearchResult(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$85(baseFragment);
                 }
             });
-            SearchResult searchResult113 = new SearchResult(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult56 = new SearchResult(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$86(baseFragment);
                 }
             });
-            SearchResult searchResult114 = new SearchResult(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult57 = new SearchResult(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$87(baseFragment);
                 }
             });
-            SearchResult searchResult115 = new SearchResult(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(i14), i15, new Runnable() {
+            SearchResult searchResult58 = new SearchResult(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$88(baseFragment);
@@ -12732,49 +12732,49 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             int i18 = R.string.StickersName;
             String string10 = LocaleController.getString(i18);
             int i19 = R.drawable.msg2_sticker;
-            SearchResult searchResult116 = new SearchResult(600, string10, i19, new Runnable() {
+            SearchResult searchResultWithLink58 = new SearchResult(600, string10, i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$89(baseFragment);
                 }
-            });
-            SearchResult searchResult117 = new SearchResult(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(i18), i19, new Runnable() {
+            }).withLink("tg://settings/appearance/stickers-and-emoji");
+            SearchResult searchResult59 = new SearchResult(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$90(baseFragment);
                 }
             });
-            SearchResult searchResult118 = new SearchResult(602, LocaleController.getString(R.string.FeaturedStickers), "featuredStickersHeaderRow", LocaleController.getString(i18), i19, new Runnable() {
+            SearchResult searchResult60 = new SearchResult(602, LocaleController.getString(R.string.FeaturedStickers), "featuredStickersHeaderRow", LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$91(baseFragment);
                 }
             });
-            SearchResult searchResult119 = new SearchResult(603, LocaleController.getString(R.string.Masks), null, LocaleController.getString(i18), i19, new Runnable() {
+            SearchResult searchResult61 = new SearchResult(603, LocaleController.getString(R.string.Masks), null, LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$92(baseFragment);
                 }
             });
-            SearchResult searchResult120 = new SearchResult(604, LocaleController.getString(R.string.ArchivedStickers), null, LocaleController.getString(i18), i19, new Runnable() {
+            SearchResult searchResultWithLink59 = new SearchResult(604, LocaleController.getString(R.string.ArchivedStickers), null, LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$93(baseFragment);
                 }
-            });
-            SearchResult searchResult121 = new SearchResult(605, LocaleController.getString(R.string.ArchivedMasks), null, LocaleController.getString(i18), i19, new Runnable() {
+            }).withLink("tg://settings/appearance/stickers-and-emoji/archived");
+            SearchResult searchResult62 = new SearchResult(605, LocaleController.getString(R.string.ArchivedMasks), null, LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$94(baseFragment);
                 }
             });
-            SearchResult searchResult122 = new SearchResult(606, LocaleController.getString(R.string.LargeEmoji), "largeEmojiRow", LocaleController.getString(i18), i19, new Runnable() {
+            SearchResult searchResultWithLink60 = new SearchResult(606, LocaleController.getString(R.string.LargeEmoji), "largeEmojiRow", LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$95(baseFragment);
                 }
-            });
-            SearchResult searchResult123 = new SearchResult(607, LocaleController.getString(R.string.LoopAnimatedStickers), "loopRow", LocaleController.getString(i18), i19, new Runnable() {
+            }).withLink("tg://settings/appearance/stickers-and-emoji/emoji/large");
+            SearchResult searchResult63 = new SearchResult(607, LocaleController.getString(R.string.LoopAnimatedStickers), "loopRow", LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$96(baseFragment);
@@ -12784,283 +12784,283 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String string11 = LocaleController.getString(i20);
             String string12 = LocaleController.getString(i18);
             int i21 = R.drawable.input_smile;
-            SearchResult searchResult124 = new SearchResult(608, string11, null, string12, i21, new Runnable() {
+            SearchResult searchResultWithLink61 = new SearchResult(608, string11, null, string12, i21, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$97(baseFragment);
                 }
-            });
-            SearchResult searchResult125 = new SearchResult(609, LocaleController.getString(R.string.SuggestAnimatedEmoji), "suggestAnimatedEmojiRow", LocaleController.getString(i18), LocaleController.getString(i20), i21, new Runnable() {
+            }).withLink("tg://settings/appearance/stickers-and-emoji/emoji");
+            SearchResult searchResultWithLink62 = new SearchResult(609, LocaleController.getString(R.string.SuggestAnimatedEmoji), "suggestAnimatedEmojiRow", LocaleController.getString(i18), LocaleController.getString(i20), i21, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$98(baseFragment);
                 }
-            });
-            SearchResult searchResult126 = new SearchResult(610, LocaleController.getString(R.string.FeaturedEmojiPacks), "featuredStickersHeaderRow", LocaleController.getString(i18), LocaleController.getString(i20), i21, new Runnable() {
+            }).withLink("tg://settings/appearance/stickers-and-emoji/emoji/suggest");
+            SearchResult searchResult64 = new SearchResult(610, LocaleController.getString(R.string.FeaturedEmojiPacks), "featuredStickersHeaderRow", LocaleController.getString(i18), LocaleController.getString(i20), i21, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$99(baseFragment);
                 }
             });
-            SearchResult searchResult127 = new SearchResult(611, LocaleController.getString(R.string.DoubleTapSetting), null, LocaleController.getString(i18), i19, new Runnable() {
+            SearchResult searchResultWithLink63 = new SearchResult(611, LocaleController.getString(R.string.DoubleTapSetting), null, LocaleController.getString(i18), i19, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$100(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/appearance/stickers-and-emoji/emoji/quick-reaction");
             int i22 = R.string.Filters;
             String string13 = LocaleController.getString(i22);
             int i23 = R.drawable.msg2_folder;
-            SearchResult searchResult128 = new SearchResult(700, string13, null, i23, new Runnable() {
+            SearchResult searchResultWithLink64 = new SearchResult(700, string13, null, i23, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$101(baseFragment);
                 }
-            });
-            SearchResult searchResult129 = new SearchResult(701, LocaleController.getString(R.string.CreateNewFilter), "createFilterRow", LocaleController.getString(i22), i23, new Runnable() {
+            }).withLink("tg://settings/folders");
+            SearchResult searchResultWithLink65 = new SearchResult(701, LocaleController.getString(R.string.CreateNewFilter), "createFilterRow", LocaleController.getString(i22), i23, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$102(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/folders/create");
             if (isPremiumFeatureAvailable(currentAccount, -1)) {
-                searchResult5 = searchResult129;
-                searchResult6 = searchResult128;
-                searchResult4 = searchResult126;
-                searchResult3 = searchResult117;
-                searchResult7 = new SearchResult(800, LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult5 = searchResultWithLink65;
+                searchResult3 = searchResultWithLink64;
+                searchResult4 = searchResult64;
+                searchResult2 = searchResult59;
+                searchResult6 = new SearchResult(800, LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$103(baseFragment);
                     }
                 });
             } else {
-                searchResult3 = searchResult117;
-                searchResult4 = searchResult126;
-                searchResult5 = searchResult129;
-                searchResult6 = searchResult128;
-                searchResult7 = null;
+                searchResult2 = searchResult59;
+                searchResult3 = searchResultWithLink64;
+                searchResult4 = searchResult64;
+                searchResult5 = searchResultWithLink65;
+                searchResult6 = null;
             }
-            SearchResult searchResult130 = isPremiumFeatureAvailable(currentAccount, 0) ? new SearchResult(801, LocaleController.getString(R.string.PremiumPreviewLimits), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+            SearchResult searchResult65 = isPremiumFeatureAvailable(currentAccount, 0) ? new SearchResult(801, LocaleController.getString(R.string.PremiumPreviewLimits), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$104(baseFragment);
                 }
             }) : null;
-            SearchResult searchResult131 = isPremiumFeatureAvailable(currentAccount, 11) ? new SearchResult(802, LocaleController.getString(R.string.PremiumPreviewEmoji), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+            SearchResult searchResult66 = isPremiumFeatureAvailable(currentAccount, 11) ? new SearchResult(802, LocaleController.getString(R.string.PremiumPreviewEmoji), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$105(baseFragment);
                 }
             }) : null;
-            SearchResult searchResult132 = isPremiumFeatureAvailable(currentAccount, 1) ? new SearchResult(803, LocaleController.getString(R.string.PremiumPreviewUploads), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+            SearchResult searchResult67 = isPremiumFeatureAvailable(currentAccount, 1) ? new SearchResult(803, LocaleController.getString(R.string.PremiumPreviewUploads), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$106(baseFragment);
                 }
             }) : null;
             if (isPremiumFeatureAvailable(currentAccount, 2)) {
-                searchResult8 = searchResult132;
-                searchResult9 = new SearchResult(804, LocaleController.getString(R.string.PremiumPreviewDownloadSpeed), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult7 = searchResult67;
+                searchResult8 = new SearchResult(804, LocaleController.getString(R.string.PremiumPreviewDownloadSpeed), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$107(baseFragment);
                     }
                 });
             } else {
-                searchResult8 = searchResult132;
-                searchResult9 = null;
+                searchResult7 = searchResult67;
+                searchResult8 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 8)) {
-                searchResult10 = searchResult9;
-                searchResult11 = new SearchResult(805, LocaleController.getString(R.string.PremiumPreviewVoiceToText), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult9 = searchResult8;
+                searchResult10 = new SearchResult(805, LocaleController.getString(R.string.PremiumPreviewVoiceToText), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$108(baseFragment);
                     }
                 });
             } else {
-                searchResult10 = searchResult9;
-                searchResult11 = null;
+                searchResult9 = searchResult8;
+                searchResult10 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 3)) {
-                searchResult12 = searchResult11;
-                searchResult13 = new SearchResult(806, LocaleController.getString(R.string.PremiumPreviewNoAds), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult11 = searchResult10;
+                searchResult12 = new SearchResult(806, LocaleController.getString(R.string.PremiumPreviewNoAds), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$109(baseFragment);
                     }
                 });
             } else {
-                searchResult12 = searchResult11;
-                searchResult13 = null;
+                searchResult11 = searchResult10;
+                searchResult12 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 4)) {
-                searchResult14 = searchResult13;
-                searchResult15 = new SearchResult(807, LocaleController.getString(R.string.PremiumPreviewReactions), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult13 = searchResult12;
+                searchResult14 = new SearchResult(807, LocaleController.getString(R.string.PremiumPreviewReactions), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$110(baseFragment);
                     }
                 });
             } else {
-                searchResult14 = searchResult13;
-                searchResult15 = null;
+                searchResult13 = searchResult12;
+                searchResult14 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 5)) {
-                searchResult16 = searchResult15;
-                searchResult17 = new SearchResult(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult15 = searchResult14;
+                searchResult16 = new SearchResult(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$111(baseFragment);
                     }
                 });
             } else {
-                searchResult16 = searchResult15;
-                searchResult17 = null;
+                searchResult15 = searchResult14;
+                searchResult16 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 9)) {
-                searchResult18 = searchResult17;
-                searchResult19 = new SearchResult(809, LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult17 = searchResult16;
+                searchResult18 = new SearchResult(809, LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$112(baseFragment);
                     }
                 });
             } else {
-                searchResult18 = searchResult17;
-                searchResult19 = null;
+                searchResult17 = searchResult16;
+                searchResult18 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 6)) {
-                searchResult20 = searchResult19;
-                searchResult21 = new SearchResult(810, LocaleController.getString(R.string.PremiumPreviewProfileBadge), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult19 = searchResult18;
+                searchResult20 = new SearchResult(810, LocaleController.getString(R.string.PremiumPreviewProfileBadge), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$113(baseFragment);
                     }
                 });
             } else {
-                searchResult20 = searchResult19;
-                searchResult21 = null;
+                searchResult19 = searchResult18;
+                searchResult20 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 7)) {
-                searchResult22 = searchResult21;
-                searchResult23 = new SearchResult(811, LocaleController.getString(R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult21 = searchResult20;
+                searchResult22 = new SearchResult(811, LocaleController.getString(R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$114(baseFragment);
                     }
                 });
             } else {
-                searchResult22 = searchResult21;
-                searchResult23 = null;
+                searchResult21 = searchResult20;
+                searchResult22 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 10)) {
-                searchResult24 = searchResult23;
-                searchResult25 = new SearchResult(812, LocaleController.getString(R.string.PremiumPreviewAppIcon), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult23 = searchResult22;
+                searchResult24 = new SearchResult(812, LocaleController.getString(R.string.PremiumPreviewAppIcon), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$115(baseFragment);
                     }
                 });
             } else {
-                searchResult24 = searchResult23;
-                searchResult25 = null;
+                searchResult23 = searchResult22;
+                searchResult24 = null;
             }
             if (isPremiumFeatureAvailable(currentAccount, 12)) {
-                searchResult26 = searchResult25;
-                searchResult27 = new SearchResult(813, LocaleController.getString(R.string.PremiumPreviewEmojiStatus), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
+                searchResult25 = searchResult24;
+                searchResult26 = new SearchResult(813, LocaleController.getString(R.string.PremiumPreviewEmojiStatus), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$116(baseFragment);
                     }
                 });
             } else {
-                searchResult26 = searchResult25;
-                searchResult27 = null;
+                searchResult25 = searchResult24;
+                searchResult26 = null;
             }
             int i24 = R.string.PowerUsage;
             String string14 = LocaleController.getString(i24);
             int i25 = R.drawable.msg2_battery;
-            SearchResult searchResult133 = searchResult27;
-            SearchResult searchResult134 = new SearchResult(900, string14, null, i25, new Runnable() {
+            SearchResult searchResult68 = searchResult26;
+            SearchResult searchResultWithLink66 = new SearchResult(900, string14, null, i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$117(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/power-saving");
             int i26 = R.string.LiteOptionsStickers;
-            SearchResult searchResult135 = new SearchResult(901, LocaleController.getString(i26), LocaleController.getString(i24), i25, new Runnable() {
+            SearchResult searchResultWithLink67 = new SearchResult(901, LocaleController.getString(i26), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$118(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/power-saving/stickers");
             int i27 = R.string.LiteOptionsAutoplayKeyboard;
-            SearchResult searchResult136 = new SearchResult(902, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
+            SearchResult searchResult69 = new SearchResult(902, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$119(baseFragment);
                 }
             });
             int i28 = R.string.LiteOptionsAutoplayChat;
-            SearchResult searchResult137 = new SearchResult(903, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
+            SearchResult searchResult70 = new SearchResult(903, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$120(baseFragment);
                 }
             });
             int i29 = R.string.LiteOptionsEmoji;
-            SearchResult searchResult138 = new SearchResult(904, LocaleController.getString(i29), LocaleController.getString(i24), i25, new Runnable() {
+            SearchResult searchResultWithLink68 = new SearchResult(904, LocaleController.getString(i29), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$121(baseFragment);
                 }
-            });
-            SearchResult searchResult139 = new SearchResult(905, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/emoji");
+            SearchResult searchResult71 = new SearchResult(905, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$122(baseFragment);
                 }
             });
-            SearchResult searchResult140 = new SearchResult(906, LocaleController.getString(R.string.LiteOptionsAutoplayReactions), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
+            SearchResult searchResult72 = new SearchResult(906, LocaleController.getString(R.string.LiteOptionsAutoplayReactions), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$123(baseFragment);
                 }
             });
-            SearchResult searchResult141 = new SearchResult(907, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
+            SearchResult searchResult73 = new SearchResult(907, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$124(baseFragment);
                 }
             });
             int i30 = R.string.LiteOptionsChat;
-            SearchResult searchResult142 = new SearchResult(908, LocaleController.getString(i30), LocaleController.getString(i24), i25, new Runnable() {
+            SearchResult searchResultWithLink69 = new SearchResult(908, LocaleController.getString(i30), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$125(baseFragment);
                 }
-            });
-            SearchResult searchResult143 = new SearchResult(909, LocaleController.getString(R.string.LiteOptionsBackground), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/effects");
+            SearchResult searchResultWithLink70 = new SearchResult(909, LocaleController.getString(R.string.LiteOptionsBackground), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$126(baseFragment);
                 }
-            });
-            SearchResult searchResult144 = new SearchResult(910, LocaleController.getString(R.string.LiteOptionsTopics), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/background");
+            SearchResult searchResult74 = new SearchResult(910, LocaleController.getString(R.string.LiteOptionsTopics), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$127(baseFragment);
                 }
             });
-            SearchResult searchResult145 = new SearchResult(911, LocaleController.getString(R.string.LiteOptionsSpoiler), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+            SearchResult searchResult75 = new SearchResult(911, LocaleController.getString(R.string.LiteOptionsSpoiler), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$128(baseFragment);
                 }
             });
-            SearchResult searchResult146 = SharedConfig.getDevicePerformanceClass() >= 1 ? new SearchResult(326, LocaleController.getString(R.string.LiteOptionsBlur2), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+            SearchResult searchResult76 = SharedConfig.getDevicePerformanceClass() >= 1 ? new SearchResult(326, LocaleController.getString(R.string.LiteOptionsBlur2), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$129(baseFragment);
@@ -13069,81 +13069,81 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String string15 = LocaleController.getString(R.string.LiteOptionsScale);
             String string16 = LocaleController.getString(i24);
             String string17 = LocaleController.getString(i30);
-            SearchResult searchResult147 = searchResult146;
-            SearchResult searchResult148 = new SearchResult(912, string15, null, string16, string17, i25, new Runnable() {
+            SearchResult searchResult77 = searchResult76;
+            SearchResult searchResult78 = new SearchResult(912, string15, null, string16, string17, i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$130(baseFragment);
                 }
             });
-            SearchResult searchResult149 = new SearchResult(913, LocaleController.getString(R.string.LiteOptionsCalls), LocaleController.getString(i24), i25, new Runnable() {
+            SearchResult searchResultWithLink71 = new SearchResult(913, LocaleController.getString(R.string.LiteOptionsCalls), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$131(baseFragment);
                 }
-            });
-            SearchResult searchResult150 = new SearchResult(214, LocaleController.getString(R.string.LiteOptionsAutoplayVideo), LocaleController.getString(i24), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/call-animations");
+            SearchResult searchResultWithLink72 = new SearchResult(214, LocaleController.getString(R.string.LiteOptionsAutoplayVideo), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$132(baseFragment);
                 }
-            });
-            SearchResult searchResult151 = new SearchResult(213, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), LocaleController.getString(i24), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/videos");
+            SearchResult searchResultWithLink73 = new SearchResult(213, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$133(baseFragment);
                 }
-            });
-            SearchResult searchResult152 = new SearchResult(914, LocaleController.getString(R.string.LiteSmoothTransitions), LocaleController.getString(i24), i25, new Runnable() {
+            }).withLink("tg://settings/power-saving/gifs");
+            SearchResult searchResultWithLink74 = new SearchResult(914, LocaleController.getString(R.string.LiteSmoothTransitions), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$134(baseFragment);
                 }
-            });
+            }).withLink("tg://settings/power-saving/transitions");
             int i31 = R.string.Language;
             String string18 = LocaleController.getString(i31);
-            SearchResult searchResult153 = searchResult131;
+            SearchResult searchResult79 = searchResult66;
             int i32 = R.drawable.msg2_language;
-            SearchResult searchResult154 = searchResult130;
-            SearchResult searchResult155 = searchResult7;
-            SearchResult searchResult156 = new SearchResult(400, string18, i32, new Runnable() {
+            SearchResult searchResult80 = searchResult65;
+            SearchResult searchResult81 = searchResult6;
+            SearchResult searchResultWithLink75 = new SearchResult(400, string18, i32, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$135(baseFragment);
                 }
-            });
-            SearchResult searchResult157 = new SearchResult(405, LocaleController.getString(R.string.ShowTranslateButton), LocaleController.getString(i31), i32, new Runnable() {
+            }).withLink("tg://settings/language");
+            SearchResult searchResultWithLink76 = new SearchResult(405, LocaleController.getString(R.string.ShowTranslateButton), LocaleController.getString(i31), i32, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$136(baseFragment);
                 }
-            });
-            SearchResult searchResult158 = MessagesController.getInstance(currentAccount).getTranslateController().isContextTranslateEnabled() ? new SearchResult(406, LocaleController.getString(R.string.DoNotTranslate), LocaleController.getString(i31), i32, new Runnable() {
+            }).withLink("tg://settings/language/show-button");
+            SearchResult searchResultWithLink77 = MessagesController.getInstance(currentAccount).getTranslateController().isContextTranslateEnabled() ? new SearchResult(406, LocaleController.getString(R.string.DoNotTranslate), LocaleController.getString(i31), i32, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$137(baseFragment);
                 }
-            }) : null;
+            }).withLink("tg://settings/language/do-not-translate") : null;
             String string19 = LocaleController.getString(R.string.AskAQuestion);
             int i33 = R.string.SettingsHelp;
             String string20 = LocaleController.getString(i33);
             int i34 = R.drawable.msg2_help;
-            return new SearchResult[]{searchResult28, searchResult29, searchResult30, searchResult31, searchResult32, searchResult33, searchResult34, searchResult35, searchResult36, searchResult37, searchResult38, searchResult39, searchResult40, searchResult41, searchResult42, searchResult43, searchResult44, searchResult45, searchResult46, searchResult, searchResult48, searchResult49, searchResult50, searchResult51, searchResult52, searchResult53, searchResult54, searchResult55, searchResult56, searchResult57, searchResult58, searchResult59, searchResult60, searchResult61, searchResult62, searchResult63, searchResult64, searchResult65, searchResult66, searchResult67, searchResult68, searchResult69, searchResult70, searchResult71, searchResult72, searchResult73, searchResult74, searchResult75, searchResult76, searchResult77, searchResult78, searchResult79, searchResult80, searchResult81, searchResult82, searchResult83, searchResult84, searchResult85, searchResult86, searchResult87, searchResult88, searchResult89, searchResult90, searchResult91, searchResult92, searchResult93, searchResult94, searchResult95, searchResult96, searchResult97, searchResult98, searchResult99, searchResult100, searchResult101, searchResult102, searchResult103, searchResult104, searchResult105, searchResult106, searchResult107, searchResult108, searchResult109, searchResult110, searchResult111, searchResult112, searchResult113, searchResult114, searchResult115, searchResult116, searchResult3, searchResult118, searchResult119, searchResult120, searchResult121, searchResult122, searchResult123, searchResult124, searchResult125, searchResult4, searchResult127, searchResult6, searchResult5, searchResult155, searchResult154, searchResult153, searchResult8, searchResult10, searchResult12, searchResult14, searchResult16, searchResult18, searchResult20, searchResult22, searchResult24, searchResult26, searchResult133, searchResult134, searchResult135, searchResult136, searchResult137, searchResult138, searchResult139, searchResult140, searchResult141, searchResult142, searchResult143, searchResult144, searchResult145, searchResult147, searchResult148, searchResult149, searchResult150, searchResult151, searchResult152, searchResult156, searchResult157, searchResult158, new SearchResult(402, string19, string20, i34, new Runnable() {
+            return new SearchResult[]{searchResult27, searchResultWithLink2, searchResultWithLink3, searchResultWithLink4, searchResultWithLink5, searchResultWithLink6, searchResultWithLink7, searchResult28, searchResult29, searchResult30, searchResultWithLink8, searchResultWithLink9, searchResultWithLink10, searchResult31, searchResult32, searchResult33, searchResultWithLink11, searchResultWithLink12, searchResultWithLink13, searchResult, searchResult34, searchResultWithLink15, searchResultWithLink16, searchResultWithLink17, searchResultWithLink18, searchResultWithLink19, searchResultWithLink20, searchResultWithLink21, searchResultWithLink22, searchResultWithLink23, searchResultWithLink24, searchResultWithLink25, searchResultWithLink26, searchResultWithLink27, searchResultWithLink28, searchResultWithLink29, searchResultWithLink30, searchResultWithLink31, searchResultWithLink32, searchResultWithLink33, searchResultWithLink34, searchResultWithLink35, searchResultWithLink36, searchResultWithLink37, searchResult35, searchResultWithLink38, searchResult36, searchResult37, searchResult38, searchResultWithLink39, searchResult39, searchResult40, searchResult41, searchResult42, searchResultWithLink40, searchResult43, searchResult44, searchResult45, searchResultWithLink41, searchResult46, searchResultWithLink42, searchResultWithLink43, searchResultWithLink44, searchResult47, searchResultWithLink45, searchResultWithLink46, searchResultWithLink47, searchResultWithLink48, searchResultWithLink49, searchResultWithLink50, searchResult48, searchResult49, searchResult50, searchResult51, searchResultWithLink51, searchResultWithLink52, searchResult52, searchResult53, searchResultWithLink53, searchResult54, searchResultWithLink54, searchResultWithLink55, searchResultWithLink56, searchResultWithLink57, searchResult55, searchResult56, searchResult57, searchResult58, searchResultWithLink58, searchResult2, searchResult60, searchResult61, searchResultWithLink59, searchResult62, searchResultWithLink60, searchResult63, searchResultWithLink61, searchResultWithLink62, searchResult4, searchResultWithLink63, searchResult3, searchResult5, searchResult81, searchResult80, searchResult79, searchResult7, searchResult9, searchResult11, searchResult13, searchResult15, searchResult17, searchResult19, searchResult21, searchResult23, searchResult25, searchResult68, searchResultWithLink66, searchResultWithLink67, searchResult69, searchResult70, searchResultWithLink68, searchResult71, searchResult72, searchResult73, searchResultWithLink69, searchResultWithLink70, searchResult74, searchResult75, searchResult77, searchResult78, searchResultWithLink71, searchResultWithLink72, searchResultWithLink73, searchResultWithLink74, searchResultWithLink75, searchResultWithLink76, searchResultWithLink77, new SearchResult(402, string19, string20, i34, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$138(baseFragment);
                 }
-            }), new SearchResult(403, LocaleController.getString(R.string.TelegramFAQ), LocaleController.getString(i33), i34, new Runnable() {
+            }).withLink("tg://settings/ask-question"), new SearchResult(403, LocaleController.getString(R.string.TelegramFAQ), LocaleController.getString(i33), i34, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$139(baseFragment);
                 }
-            }), new SearchResult(404, LocaleController.getString(R.string.PrivacyPolicy), LocaleController.getString(i33), i34, new Runnable() {
+            }).withLink("tg://settings/faq"), new SearchResult(404, LocaleController.getString(R.string.PrivacyPolicy), LocaleController.getString(i33), i34, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.lambda$onCreateSearchArray$140(baseFragment);
                 }
-            })};
+            }).withLink("tg://settings/privacy-policy")};
         }
 
         public static void lambda$onCreateSearchArray$1(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
@@ -14005,8 +14005,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.resultNames.clear();
                 BaseFragment baseFragment = this.fragment;
                 if (baseFragment instanceof ProfileActivity) {
-                    ((ProfileActivity) baseFragment).emptyView.stickerView.getImageReceiver().startAnimation();
-                    ((ProfileActivity) this.fragment).emptyView.title.setText(LocaleController.getString(R.string.SettingsNoRecent));
+                    try {
+                        ((ProfileActivity) baseFragment).emptyView.stickerView.getImageReceiver().startAnimation();
+                        ((ProfileActivity) this.fragment).emptyView.title.setText(LocaleController.getString(R.string.SettingsNoRecent));
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
                 }
                 notifyDataSetChanged();
                 return;
@@ -14031,8 +14035,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (!this.searchWas) {
                     BaseFragment baseFragment = this.fragment;
                     if (baseFragment instanceof ProfileActivity) {
-                        ((ProfileActivity) baseFragment).emptyView.stickerView.getImageReceiver().startAnimation();
-                        ((ProfileActivity) this.fragment).emptyView.title.setText(LocaleController.getString(R.string.SettingsNoResults));
+                        try {
+                            ((ProfileActivity) baseFragment).emptyView.stickerView.getImageReceiver().startAnimation();
+                            ((ProfileActivity) this.fragment).emptyView.title.setText(LocaleController.getString(R.string.SettingsNoResults));
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
                     }
                 }
                 this.searchWas = true;
@@ -14042,7 +14050,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 notifyDataSetChanged();
                 BaseFragment baseFragment2 = this.fragment;
                 if (baseFragment2 instanceof ProfileActivity) {
-                    ((ProfileActivity) baseFragment2).emptyView.stickerView.getImageReceiver().startAnimation();
+                    try {
+                        ((ProfileActivity) baseFragment2).emptyView.stickerView.getImageReceiver().startAnimation();
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                    }
                 }
             }
         }
@@ -14233,9 +14245,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{AboutLinkCell.class}, Theme.profile_aboutTextPaint, null, null, i7));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LINKCOLOR, new Class[]{AboutLinkCell.class}, Theme.profile_aboutTextPaint, null, null, i11));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AboutLinkCell.class}, Theme.linkSelectionPaint, null, null, Theme.key_windowBackgroundWhiteLinkSelection));
-        int i17 = Theme.key_windowBackgroundGrayShadow;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i17));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i17));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i10));
         arrayList.add(new ThemeDescription(this.searchListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_graySectionText));

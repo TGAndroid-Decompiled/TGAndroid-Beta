@@ -34,6 +34,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     private ValueAnimator enabledAnimator;
     boolean expandIfMultiline;
     private int iconColor;
+    private PorterDuff.Mode iconColorMode;
     private int iconResId;
     public RLottieImageView imageView;
     private int itemHeight;
@@ -72,13 +73,15 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.bottom = z2;
         this.textColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItem);
         this.iconColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        this.iconColorMode = mode;
         this.selectorColor = getThemedColor(Theme.key_dialogButtonSelector);
         updateBackground();
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(this.iconColor, PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(this.iconColor, mode));
         addView(this.imageView, LayoutHelper.createFrame(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
         this.textView = textViewEmojis;
@@ -270,11 +273,17 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void setIconColor(int i) {
-        if (this.iconColor != i) {
-            RLottieImageView rLottieImageView = this.imageView;
-            this.iconColor = i;
-            rLottieImageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        setIconColor(i, PorterDuff.Mode.MULTIPLY);
+    }
+
+    public void setIconColor(int i, PorterDuff.Mode mode) {
+        if (this.iconColor == i && this.iconColorMode == mode) {
+            return;
         }
+        RLottieImageView rLottieImageView = this.imageView;
+        this.iconColor = i;
+        this.iconColorMode = mode;
+        rLottieImageView.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
     public void setEnabledByColor(final boolean z, final int i, final int i2) {

@@ -510,6 +510,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public TLRPC.EmojiGameInfo stakeDiceInfo;
     public boolean stargiftsBlocked;
     public int stargiftsConvertPeriodMax;
+    public int[] stargiftsCraftAttributesPermilles;
     public int stargiftsMessageLengthMax;
     public int stargiftsPinnedToTopLimit;
     public boolean starrefConnectAllowed;
@@ -2102,6 +2103,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 return Long.parseLong((String) obj);
             }
         }).toArray();
+        this.stargiftsCraftAttributesPermilles = DesugarArrays.stream(this.mainPreferences.getString("stargiftsCraftAttributesPermilles", "60,180,450,1000").split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda86()).toArray();
         appGlobalConfig.load(this.mainPreferences);
         System.currentTimeMillis();
         this.paidReactionsPrivacy = null;

@@ -275,7 +275,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             Adapter adapter = new Adapter(context, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, this.searchField, new Runnable() {
                 @Override
                 public final void run() {
-                    storyPrivacyBottomSheet.onBackPressed();
+                    storyPrivacyBottomSheet.lambda$openCrafting$8();
                 }
             });
             this.adapter = adapter;
@@ -417,7 +417,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (this.pageType == 0) {
                 StoryPrivacyBottomSheet.this.lambda$new$0();
             } else {
-                StoryPrivacyBottomSheet.this.onBackPressed();
+                StoryPrivacyBottomSheet.this.lambda$openCrafting$8();
             }
         }
 
@@ -2511,13 +2511,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     @Override
-    public void onBackPressed() {
+    public void lambda$openCrafting$8() {
         if (this.viewPager.getCurrentPosition() > 0) {
             closeKeyboard();
             this.viewPager.scrollToPosition(r0.getCurrentPosition() - 1);
             return;
         }
-        super.onBackPressed();
+        super.lambda$openCrafting$8();
     }
 
     @Override

@@ -1,8 +1,5 @@
 package org.telegram.ui.Delegates;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
@@ -26,7 +23,6 @@ import org.telegram.ui.Components.MemberRequestsBottomSheet;
 public class ChatActivityMemberRequestsDelegate {
     private AvatarsImageView avatarsView;
     private MemberRequestsBottomSheet bottomSheet;
-    private final Callback callback;
     private TLRPC.ChatFull chatInfo;
     private int closePendingRequestsCount = -1;
     private ImageView closeView;
@@ -34,44 +30,30 @@ public class ChatActivityMemberRequestsDelegate {
     private final TLRPC.Chat currentChat;
     private ChangeVisibilityDelegate delegate;
     private final BaseFragment fragment;
-    private boolean isInsideBubble;
-    private ValueAnimator pendingRequestsAnimator;
     private int pendingRequestsCount;
-    private float pendingRequestsEnterOffset;
     private TextView requestsCountTextView;
     private LinearLayout requestsDataLayout;
     public FrameLayout root;
-
-    public interface Callback {
-        void onEnterOffsetChanged();
-    }
 
     public interface ChangeVisibilityDelegate {
         void setVisible(boolean z, boolean z2);
     }
 
-    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, TLRPC.Chat chat, Callback callback) {
+    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, TLRPC.Chat chat) {
         this.fragment = baseFragment;
         this.currentChat = chat;
         this.currentAccount = baseFragment.getCurrentAccount();
-        this.callback = callback;
     }
 
     public void setDelegate(ChangeVisibilityDelegate changeVisibilityDelegate) {
         this.delegate = changeVisibilityDelegate;
-        this.isInsideBubble = true;
     }
 
     public View getView() {
         if (this.root == null) {
             FrameLayout frameLayout = new FrameLayout(this.fragment.getParentActivity());
             this.root = frameLayout;
-            if (!this.isInsideBubble) {
-                frameLayout.setBackgroundColor(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground));
-                this.root.setVisibility(8);
-            }
-            this.pendingRequestsEnterOffset = -getViewHeight();
-            this.root.setBackground(Theme.getSelectorDrawable(false));
+            frameLayout.setBackground(Theme.getSelectorDrawable(false));
             this.root.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -140,14 +122,6 @@ public class ChatActivityMemberRequestsDelegate {
         }
     }
 
-    public int getViewHeight() {
-        return AndroidUtilities.dp(40.0f);
-    }
-
-    public float getViewEnterOffset() {
-        return this.pendingRequestsEnterOffset;
-    }
-
     public void onBackToScreen() {
         MemberRequestsBottomSheet memberRequestsBottomSheet = this.bottomSheet;
         if (memberRequestsBottomSheet == null || !memberRequestsBottomSheet.isNeedRestoreDialog()) {
@@ -203,7 +177,7 @@ public class ChatActivityMemberRequestsDelegate {
         }
     }
 
-    private void animatePendingRequests(final boolean z, boolean z2) {
+    private void animatePendingRequests(boolean z, boolean z2) {
         if (z == (this.root.getVisibility() == 0)) {
             return;
         }
@@ -220,61 +194,9 @@ public class ChatActivityMemberRequestsDelegate {
                 this.fragment.getMessagesController().setChatPendingRequestsOnClose(this.currentChat.id, 0);
             }
         }
-        ValueAnimator valueAnimator = this.pendingRequestsAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
         ChangeVisibilityDelegate changeVisibilityDelegate = this.delegate;
         if (changeVisibilityDelegate != null) {
             changeVisibilityDelegate.setVisible(z, z2);
-        }
-        if (z2) {
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
-            this.pendingRequestsAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animatePendingRequests$2(valueAnimator2);
-                }
-            });
-            this.pendingRequestsAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    if (!z || ChatActivityMemberRequestsDelegate.this.isInsideBubble) {
-                        return;
-                    }
-                    ChatActivityMemberRequestsDelegate.this.root.setVisibility(0);
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (!z && !ChatActivityMemberRequestsDelegate.this.isInsideBubble) {
-                        ChatActivityMemberRequestsDelegate.this.root.setVisibility(8);
-                    }
-                    if (ChatActivityMemberRequestsDelegate.this.callback != null) {
-                        ChatActivityMemberRequestsDelegate.this.callback.onEnterOffsetChanged();
-                    }
-                }
-            });
-            this.pendingRequestsAnimator.setDuration(200L);
-            this.pendingRequestsAnimator.start();
-            return;
-        }
-        if (!this.isInsideBubble) {
-            this.root.setVisibility(z ? 0 : 8);
-        }
-        this.pendingRequestsEnterOffset = z ? 0.0f : -getViewHeight();
-        Callback callback = this.callback;
-        if (callback != null) {
-            callback.onEnterOffsetChanged();
-        }
-    }
-
-    public void lambda$animatePendingRequests$2(ValueAnimator valueAnimator) {
-        this.pendingRequestsEnterOffset = (-getViewHeight()) * (1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        Callback callback = this.callback;
-        if (callback != null) {
-            callback.onEnterOffsetChanged();
         }
     }
 

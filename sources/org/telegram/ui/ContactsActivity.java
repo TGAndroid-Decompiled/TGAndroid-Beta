@@ -1,7 +1,5 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -21,7 +19,6 @@ import android.text.Editable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -315,7 +312,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             }
             if (i == 0) {
                 ContactsActivity.this.animatorSearchFieldVisible.setValue(true, true);
-                ContactsActivity.this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(48.0f));
+                ContactsActivity.this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(44.0f));
                 AndroidUtilities.doOnPreDraw(ContactsActivity.this.searchField.editText, new Runnable() {
                     @Override
                     public final void run() {
@@ -1068,42 +1065,13 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         this.initialSearchString = str;
     }
 
-    public void showItemsAnimated() {
-        LinearLayoutManager linearLayoutManager = this.layoutManager;
-        final int iFindLastVisibleItemPosition = linearLayoutManager == null ? 0 : linearLayoutManager.findLastVisibleItemPosition();
-        this.listView.invalidate();
-        AndroidUtilities.doOnPreDraw(this.listView, new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showItemsAnimated$14(iFindLastVisibleItemPosition);
-            }
-        });
-    }
-
-    public void lambda$showItemsAnimated$14(int i) {
-        AnimatorSet animatorSet = new AnimatorSet();
-        int childCount = this.listView.getChildCount();
-        for (int i2 = 0; i2 < childCount; i2++) {
-            View childAt = this.listView.getChildAt(i2);
-            if (this.listView.getChildAdapterPosition(childAt) > i) {
-                childAt.setAlpha(0.0f);
-                int iMin = (int) ((Math.min(this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / this.listView.getMeasuredHeight()) * 100.0f);
-                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
-                objectAnimatorOfFloat.setStartDelay(iMin);
-                objectAnimatorOfFloat.setDuration(200L);
-                animatorSet.playTogether(objectAnimatorOfFloat);
-            }
-        }
-        animatorSet.start();
-    }
-
     @Override
     public ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$15();
+                this.f$0.lambda$getThemeDescriptions$14();
             }
 
             @Override
@@ -1159,7 +1127,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$15() {
+    public void lambda$getThemeDescriptions$14() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -1185,12 +1153,16 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         if (actionBar != null) {
             actionBar.updateColors();
         }
+        RecyclerListView recyclerListView2 = this.listView;
+        if (recyclerListView2 != null) {
+            recyclerListView2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        }
     }
 
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         if (i == 0) {
-            this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(48.0f)));
+            this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(44.0f)));
             this.searchField.setVisibility(f <= 0.0f ? 8 : 0);
             checkUi_searchButton();
             return;
@@ -1203,9 +1175,9 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             }
             return;
         }
-        this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(48.0f)));
+        this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(44.0f)));
         this.headerShadowView.setTranslationY(f);
-        this.searchField.setClipHeight(f / AndroidUtilities.dp(48.0f));
+        this.searchField.setClipHeight(f / AndroidUtilities.dp(44.0f));
         this.actionBarBackgroundView.invalidate();
         if (this.canScrollByAnimation && this.lastListScrollState == 0) {
             float f3 = this.scrollByAcc + (this.lastSearchFieldHeight - f);
@@ -1262,7 +1234,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     public void checkUi_listViewPadding() {
-        this.listView.setPadding(0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP + 48) + this.actionBar.getMeasuredHeight(), 0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP) + this.navigationBarHeight + this.additionNavigationBarHeight);
+        this.listView.setPadding(0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP + 44) + this.actionBar.getMeasuredHeight(), 0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP) + this.navigationBarHeight + this.additionNavigationBarHeight);
     }
 
     public void checkUi_searchFieldHint() {
@@ -1302,7 +1274,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     public void checkUi_listClip() {
-        if (this.listView.hasActiveOverScroll()) {
+        if (this.listView.hasActiveEdgeEffects()) {
             this.listView.setClipBounds(null);
         } else {
             this.tmpClipRect.set(0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP) + this.actionBar.getMeasuredHeight() + ((int) this.animatorSearchFieldHeight.getFactor()), this.listView.getMeasuredWidth(), this.listView.getMeasuredHeight() - AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP));
@@ -1315,7 +1287,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             return;
         }
         int iDp = AndroidUtilities.dp(48.0f);
-        int iDp2 = AndroidUtilities.dp(48.0f);
+        int iDp2 = AndroidUtilities.dp(44.0f);
         int measuredHeight = (this.fragmentView.getMeasuredHeight() - this.navigationBarHeight) - AndroidUtilities.dp(8.0f);
         int iDp3 = measuredHeight - AndroidUtilities.dp(56.0f);
         this.iBlur3PositionActionBar.set(0.0f, -iDp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + iDp + iDp2);
@@ -1338,7 +1310,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             this.scrollHelper.setScrollDirection(1);
             this.scrollHelper.scrollToPosition(0, 0, false, true);
         }
-        this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(48.0f));
+        this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(44.0f));
         this.animatorSearchFieldVisible.setValue(true, true);
     }
 }

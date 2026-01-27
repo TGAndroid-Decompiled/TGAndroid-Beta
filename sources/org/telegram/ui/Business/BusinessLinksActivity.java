@@ -61,6 +61,15 @@ import org.telegram.ui.LaunchActivity;
 public class BusinessLinksActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private static AlertDialog currentDialog;
 
+    @Override
+    public View createView(Context context) {
+        super.createView(context);
+        this.listView.setSections();
+        this.listView.adapter.setApplyBackground(false);
+        this.actionBar.setAdaptiveBackground(this.listView);
+        return this.fragmentView;
+    }
+
     public static void openRenameAlert(Context context, final int i, final TL_account.TL_businessChatLink tL_businessChatLink, final Theme.ResourcesProvider resourcesProvider, boolean z) {
         Object builder;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -423,6 +432,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
                 this.f$0.lambda$onLongClick$12(tL_businessChatLink);
             }
         });
+        itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
         itemOptionsMakeOptions.show();
         return true;
     }

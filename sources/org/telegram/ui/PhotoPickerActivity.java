@@ -477,7 +477,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 if (PhotoPickerActivity.this.listSort) {
                     PhotoPickerActivity.this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
                 } else {
-                    PhotoPickerActivity.this.listView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f));
+                    PhotoPickerActivity.this.listView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(50.0f));
                 }
                 PhotoPickerActivity.this.listView.stopScroll();
                 PhotoPickerActivity.this.layoutManager.scrollToPositionWithOffset(0, 0);
@@ -522,7 +522,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.fragmentView = this.sizeNotifierFrameLayout;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f));
+        recyclerListView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(50.0f));
         this.listView.setClipToPadding(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
@@ -543,7 +543,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 if (PhotoPickerActivity.this.listAdapter.getItemViewType(i4) == 1 || PhotoPickerActivity.this.listSort || (PhotoPickerActivity.this.selectedAlbum == null && TextUtils.isEmpty(PhotoPickerActivity.this.lastSearchString))) {
                     return PhotoPickerActivity.this.layoutManager.getSpanCount();
                 }
-                return PhotoPickerActivity.this.itemSize + (i4 % PhotoPickerActivity.this.itemsPerRow != PhotoPickerActivity.this.itemsPerRow - 1 ? AndroidUtilities.dp(5.0f) : 0);
+                return PhotoPickerActivity.this.itemSize + (i4 % PhotoPickerActivity.this.itemsPerRow != PhotoPickerActivity.this.itemsPerRow - 1 ? AndroidUtilities.dp(2.0f) : 0);
             }
         });
         this.sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
@@ -863,7 +863,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 }
             }
             this.ignoreLayout = true;
-            PhotoPickerActivity.this.itemSize = ((size2 - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(10.0f)) / PhotoPickerActivity.this.itemsPerRow;
+            PhotoPickerActivity.this.itemSize = ((size2 - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(4.0f)) / PhotoPickerActivity.this.itemsPerRow;
             if (this.lastItemSize != PhotoPickerActivity.this.itemSize) {
                 this.lastItemSize = PhotoPickerActivity.this.itemSize;
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -876,7 +876,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             if (PhotoPickerActivity.this.listSort) {
                 PhotoPickerActivity.this.layoutManager.setSpanCount(1);
             } else {
-                PhotoPickerActivity.this.layoutManager.setSpanCount((PhotoPickerActivity.this.itemSize * PhotoPickerActivity.this.itemsPerRow) + (AndroidUtilities.dp(5.0f) * (PhotoPickerActivity.this.itemsPerRow - 1)));
+                PhotoPickerActivity.this.layoutManager.setSpanCount(Math.max(1, (PhotoPickerActivity.this.itemSize * PhotoPickerActivity.this.itemsPerRow) + (AndroidUtilities.dp(2.0f) * (PhotoPickerActivity.this.itemsPerRow - 1))));
             }
             this.ignoreLayout = false;
             onMeasureInternal(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));

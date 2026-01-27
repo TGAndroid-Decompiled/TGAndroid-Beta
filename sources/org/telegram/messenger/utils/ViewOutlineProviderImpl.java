@@ -17,4 +17,14 @@ public abstract class ViewOutlineProviderImpl {
             outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), Math.min(view.getWidth(), view.getHeight()) / 2.0f);
         }
     };
+
+    public static ViewOutlineProvider boundsWithPaddingRoundRect(final int i, final float f) {
+        return new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                int i2 = i;
+                outline.setRoundRect(i2, i2, view.getWidth() - i, view.getHeight() - i, f);
+            }
+        };
+    }
 }

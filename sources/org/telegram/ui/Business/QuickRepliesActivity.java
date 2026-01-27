@@ -136,13 +136,16 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             }
         });
         this.listView = universalRecyclerView;
-        universalRecyclerView.listenReorder(new Utilities.Callback2() {
+        universalRecyclerView.setSections();
+        this.listView.adapter.setApplyBackground(false);
+        this.listView.listenReorder(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
             }
         });
         sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.fragmentView = sizeNotifierFrameLayout;
         return sizeNotifierFrameLayout;
     }

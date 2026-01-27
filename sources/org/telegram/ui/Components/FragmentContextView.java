@@ -24,6 +24,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -86,7 +87,7 @@ import org.telegram.ui.LocationActivity;
 import org.telegram.ui.Stories.LivePlayer;
 import org.telegram.ui.Stories.StoryViewer;
 
-public class FragmentContextView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener, GroupCallMessagesController.CallMessageListener {
+public abstract class FragmentContextView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener, GroupCallMessagesController.CallMessageListener {
     private static final float[] speeds = {0.5f, 1.0f, 1.2f, 1.5f, 1.7f, 2.0f};
     private final int account;
     private AnimatorSet animatorSet;
@@ -1202,6 +1203,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     }
 
     public void updateColors() {
+        TypefaceSpan[] typefaceSpanArr;
         int themedColor = getThemedColor(!equals(MediaController.getInstance().getPlaybackSpeed(this.isMusic), 1.0f) ? Theme.key_featuredStickers_addButtonPressed : Theme.key_inappPlayerClose);
         SpeedIconDrawable speedIconDrawable = this.speedIcon;
         if (speedIconDrawable != null) {
@@ -1210,6 +1212,45 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         ActionBarMenuItem actionBarMenuItem = this.playbackSpeedButton;
         if (actionBarMenuItem != null) {
             actionBarMenuItem.setBackground(Theme.createSelectorDrawable(themedColor & 436207615, 1, AndroidUtilities.dp(14.0f)));
+        }
+        ImageView imageView = this.playButton;
+        if (imageView != null) {
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_inappPlayerPlayPause), PorterDuff.Mode.MULTIPLY));
+        }
+        ImageView imageView2 = this.closeButton;
+        if (imageView2 != null) {
+            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_inappPlayerClose), PorterDuff.Mode.MULTIPLY));
+        }
+        if (this.subtitleTextView != null) {
+            int i = 0;
+            while (i < 2) {
+                TextView textView = i == 0 ? this.subtitleTextView.getTextView() : this.subtitleTextView.getNextTextView();
+                if (textView != null) {
+                    textView.setTextColor(getThemedColor(Theme.key_inappPlayerClose));
+                }
+                i++;
+            }
+        }
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = this.titleTextView;
+        if (clippingTextViewSwitcher != null) {
+            Object tag = clippingTextViewSwitcher.getTag();
+            if (tag instanceof Integer) {
+                int iIntValue = ((Integer) tag).intValue();
+                int i2 = 0;
+                while (i2 < 2) {
+                    TextView textView2 = i2 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView2 != null) {
+                        textView2.setTextColor(getThemedColor(iIntValue));
+                        CharSequence text = textView2.getText();
+                        if ((text instanceof Spanned) && (typefaceSpanArr = (TypefaceSpan[]) ((Spanned) text).getSpans(0, text.length(), TypefaceSpan.class)) != null) {
+                            for (TypefaceSpan typefaceSpan : typefaceSpanArr) {
+                                typefaceSpan.setColor(getThemedColor(Theme.key_inappPlayerPerformer));
+                            }
+                        }
+                    }
+                    i2++;
+                }
+            }
         }
     }
 
@@ -1290,236 +1331,239 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     }
 
     private void updateStyle(int i) {
-        if (this.currentStyle == i) {
-            return;
-        }
-        checkCreateView();
-        int i2 = this.currentStyle;
-        if (i2 == 3 || i2 == 1) {
-            Theme.getFragmentContextViewWavesDrawable().removeParent(this);
-            if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().unregisterStateListener(this);
-            }
-            ReplaceAnimator replaceAnimator = this.callMessagesAnimator;
-            if (replaceAnimator != null) {
-                replaceAnimator.replace(null, true);
-            }
-        }
-        this.currentStyle = i;
-        this.frameLayout.setWillNotDraw(i != 4);
-        if (i != 4) {
-            this.notifyButtonEnabled = false;
-        }
-        AvatarsImageView avatarsImageView = this.avatars;
-        if (avatarsImageView != null) {
-            avatarsImageView.setStyle(this.currentStyle);
-            this.avatars.setLayoutParams(LayoutHelper.createFrame(108, getStyleHeight(), 51));
-        }
-        this.frameLayout.setLayoutParams(LayoutHelper.createFrame(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        if (!this.isInsideBubble) {
-            this.shadow.setLayoutParams(LayoutHelper.createFrame(-1, 2.0f, 51, 0.0f, getStyleHeight(), 0.0f, 0.0f));
-        }
-        float f = this.topPadding;
-        if (f > 0.0f && f != AndroidUtilities.dp2(getStyleHeight())) {
-            updatePaddings();
-            setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
-        }
-        if (i == 6) {
-            this.selector.setBackground(Theme.getSelectorDrawable(false));
-            this.frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{getThemedColor(Theme.key_stories_circle_live1), getThemedColor(Theme.key_stories_circle_live2)}));
-            this.frameLayout.setTag(null);
-            this.subtitleTextView.setVisibility(8);
-            this.joinButton.setVisibility(8);
-            this.closeButton.setVisibility(8);
-            this.playButton.setVisibility(8);
-            this.muteButton.setVisibility(8);
-            this.importingImageView.setVisibility(8);
-            this.importingImageView.stopAnimation();
-            this.avatars.setVisibility(8);
-            this.titleTextView.setTag(Integer.valueOf(Theme.key_returnToCallText));
-            int i3 = 0;
-            while (i3 < 2) {
-                TextView textView = i3 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
-                if (textView != null) {
-                    textView.setGravity(19);
-                    textView.setTextColor(getThemedColor(Theme.key_returnToCallText));
-                    textView.setTypeface(AndroidUtilities.bold());
-                    textView.setTextSize(1, 15.0f);
+        updateStyle(i, false);
+    }
+
+    private void updateStyle(int i, boolean z) {
+        if (this.currentStyle != i || z) {
+            checkCreateView();
+            int i2 = this.currentStyle;
+            if (i2 == 3 || i2 == 1) {
+                Theme.getFragmentContextViewWavesDrawable().removeParent(this);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().unregisterStateListener(this);
                 }
-                i3++;
-            }
-            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, -1.0f, this.isSideMenued ? 64 : 0, 0.0f));
-            return;
-        }
-        if (i == 5) {
-            this.selector.setBackground(Theme.getSelectorDrawable(false));
-            this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
-            this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
-            int i4 = 0;
-            while (i4 < 2) {
-                TextView textView2 = i4 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
-                if (textView2 != null) {
-                    textView2.setGravity(19);
-                    textView2.setTextColor(getThemedColor(Theme.key_inappPlayerTitle));
-                    textView2.setTypeface(Typeface.DEFAULT);
-                    textView2.setTextSize(1, 15.0f);
+                ReplaceAnimator replaceAnimator = this.callMessagesAnimator;
+                if (replaceAnimator != null) {
+                    replaceAnimator.replace(null, true);
                 }
-                i4++;
             }
-            this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerTitle));
-            this.subtitleTextView.setVisibility(8);
-            this.joinButton.setVisibility(8);
-            this.closeButton.setVisibility(8);
-            this.playButton.setVisibility(8);
-            this.muteButton.setVisibility(8);
-            this.avatars.setVisibility(8);
-            this.importingImageView.setVisibility(0);
-            this.importingImageView.playAnimation();
-            this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrClosePlayer));
-            ActionBarMenuItem actionBarMenuItem = this.playbackSpeedButton;
-            if (actionBarMenuItem != null) {
-                actionBarMenuItem.setVisibility(8);
-                this.playbackSpeedButton.setTag(null);
+            this.currentStyle = i;
+            this.frameLayout.setWillNotDraw(i != 4);
+            if (i != 4) {
+                this.notifyButtonEnabled = false;
             }
-            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
-            return;
-        }
-        if (i == 0 || i == 2) {
-            this.selector.setBackground(Theme.getSelectorDrawable(false));
-            this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
-            this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
-            this.subtitleTextView.setVisibility(8);
-            this.joinButton.setVisibility(8);
-            this.closeButton.setVisibility(0);
-            this.playButton.setVisibility(0);
-            this.muteButton.setVisibility(8);
-            this.importingImageView.setVisibility(8);
-            this.importingImageView.stopAnimation();
-            this.avatars.setVisibility(8);
-            int i5 = 0;
-            while (i5 < 2) {
-                TextView textView3 = i5 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
-                if (textView3 != null) {
-                    textView3.setGravity(19);
-                    textView3.setTextColor(getThemedColor(Theme.key_inappPlayerTitle));
-                    textView3.setTypeface(Typeface.DEFAULT);
-                    textView3.setTextSize(1, 15.0f);
-                }
-                i5++;
+            AvatarsImageView avatarsImageView = this.avatars;
+            if (avatarsImageView != null) {
+                avatarsImageView.setStyle(this.currentStyle);
+                this.avatars.setLayoutParams(LayoutHelper.createFrame(108, getStyleHeight(), 51));
             }
-            this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerTitle));
+            this.frameLayout.setLayoutParams(LayoutHelper.createFrame(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
+            if (!this.isInsideBubble) {
+                this.shadow.setLayoutParams(LayoutHelper.createFrame(-1, 2.0f, 51, 0.0f, getStyleHeight(), 0.0f, 0.0f));
+            }
+            float f = this.topPadding;
+            if (f > 0.0f && f != AndroidUtilities.dp2(getStyleHeight())) {
+                updatePaddings();
+                setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
+            }
             if (i == 6) {
-                this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
-                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                this.selector.setBackground(Theme.getSelectorDrawable(false));
+                this.frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{getThemedColor(Theme.key_stories_circle_live1), getThemedColor(Theme.key_stories_circle_live2)}));
+                this.frameLayout.setTag(null);
+                this.subtitleTextView.setVisibility(8);
+                this.joinButton.setVisibility(8);
                 this.closeButton.setVisibility(8);
-                return;
-            } else {
-                if (i == 0) {
-                    this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 3.0f, 0.0f, 0.0f, 0.0f));
-                    this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 37.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
-                    createPlaybackSpeedButton();
-                    ActionBarMenuItem actionBarMenuItem2 = this.playbackSpeedButton;
-                    if (actionBarMenuItem2 != null) {
-                        actionBarMenuItem2.setVisibility(0);
-                        this.playbackSpeedButton.setTag(1);
+                this.playButton.setVisibility(8);
+                this.muteButton.setVisibility(8);
+                this.importingImageView.setVisibility(8);
+                this.importingImageView.stopAnimation();
+                this.avatars.setVisibility(8);
+                this.titleTextView.setTag(Integer.valueOf(Theme.key_returnToCallText));
+                int i3 = 0;
+                while (i3 < 2) {
+                    TextView textView = i3 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView != null) {
+                        textView.setGravity(19);
+                        textView.setTextColor(getThemedColor(Theme.key_returnToCallText));
+                        textView.setTypeface(AndroidUtilities.bold());
+                        textView.setTextSize(1, 15.0f);
                     }
-                    this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrClosePlayer));
+                    i3++;
+                }
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, -1.0f, this.isSideMenued ? 64 : 0, 0.0f));
+                return;
+            }
+            if (i == 5) {
+                this.selector.setBackground(Theme.getSelectorDrawable(false));
+                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
+                int i4 = 0;
+                while (i4 < 2) {
+                    TextView textView2 = i4 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView2 != null) {
+                        textView2.setGravity(19);
+                        textView2.setTextColor(getThemedColor(Theme.key_inappPlayerTitle));
+                        textView2.setTypeface(Typeface.DEFAULT);
+                        textView2.setTextSize(1, 15.0f);
+                    }
+                    i4++;
+                }
+                this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerTitle));
+                this.subtitleTextView.setVisibility(8);
+                this.joinButton.setVisibility(8);
+                this.closeButton.setVisibility(8);
+                this.playButton.setVisibility(8);
+                this.muteButton.setVisibility(8);
+                this.avatars.setVisibility(8);
+                this.importingImageView.setVisibility(0);
+                this.importingImageView.playAnimation();
+                this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrClosePlayer));
+                ActionBarMenuItem actionBarMenuItem = this.playbackSpeedButton;
+                if (actionBarMenuItem != null) {
+                    actionBarMenuItem.setVisibility(8);
+                    this.playbackSpeedButton.setTag(null);
+                }
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                return;
+            }
+            if (i == 0 || i == 2) {
+                this.selector.setBackground(Theme.getSelectorDrawable(false));
+                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
+                this.subtitleTextView.setVisibility(8);
+                this.joinButton.setVisibility(8);
+                this.closeButton.setVisibility(0);
+                this.playButton.setVisibility(0);
+                this.muteButton.setVisibility(8);
+                this.importingImageView.setVisibility(8);
+                this.importingImageView.stopAnimation();
+                this.avatars.setVisibility(8);
+                int i5 = 0;
+                while (i5 < 2) {
+                    TextView textView3 = i5 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView3 != null) {
+                        textView3.setGravity(19);
+                        textView3.setTextColor(getThemedColor(Theme.key_inappPlayerTitle));
+                        textView3.setTypeface(Typeface.DEFAULT);
+                        textView3.setTextSize(1, 15.0f);
+                    }
+                    i5++;
+                }
+                this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerTitle));
+                if (i == 6) {
+                    this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
+                    this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                    this.closeButton.setVisibility(8);
+                    return;
+                } else {
+                    if (i == 0) {
+                        this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 3.0f, 0.0f, 0.0f, 0.0f));
+                        this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 37.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                        createPlaybackSpeedButton();
+                        ActionBarMenuItem actionBarMenuItem2 = this.playbackSpeedButton;
+                        if (actionBarMenuItem2 != null) {
+                            actionBarMenuItem2.setVisibility(0);
+                            this.playbackSpeedButton.setTag(1);
+                        }
+                        this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrClosePlayer));
+                        return;
+                    }
+                    this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
+                    this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
+                    this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrStopLiveLocation));
                     return;
                 }
-                this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
-                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
-                this.closeButton.setContentDescription(LocaleController.getString(R.string.AccDescrStopLiveLocation));
+            }
+            if (i == 4) {
+                this.selector.setBackground(Theme.getSelectorDrawable(false));
+                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
+                this.muteButton.setVisibility(8);
+                this.subtitleTextView.setVisibility(0);
+                int i6 = 0;
+                while (i6 < 2) {
+                    TextView textView4 = i6 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView4 != null) {
+                        textView4.setGravity(51);
+                        textView4.setTextColor(getThemedColor(Theme.key_inappPlayerPerformer));
+                        textView4.setTypeface(AndroidUtilities.bold());
+                        textView4.setTextSize(1, 15.0f);
+                    }
+                    i6++;
+                }
+                this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerPerformer));
+                this.titleTextView.setPadding(0, 0, this.joinButtonWidth, 0);
+                this.importingImageView.setVisibility(8);
+                this.importingImageView.stopAnimation();
+                ChatActivityInterface chatActivityInterface = this.chatActivity;
+                this.avatars.setVisibility(!((chatActivityInterface == null || chatActivityInterface.getGroupCall() == null || this.chatActivity.getGroupCall().call == null || !this.chatActivity.getGroupCall().call.rtmp_stream) ? false : true) ? 0 : 8);
+                if (this.avatars.getVisibility() != 8) {
+                    updateAvatars(false);
+                } else {
+                    this.titleTextView.setTranslationX(-AndroidUtilities.dp(36.0f));
+                    this.subtitleTextView.setTranslationX(-AndroidUtilities.dp(36.0f));
+                }
+                this.closeButton.setVisibility(8);
+                this.playButton.setVisibility(8);
+                ActionBarMenuItem actionBarMenuItem3 = this.playbackSpeedButton;
+                if (actionBarMenuItem3 != null) {
+                    actionBarMenuItem3.setVisibility(8);
+                    this.playbackSpeedButton.setTag(null);
+                    return;
+                }
                 return;
             }
-        }
-        if (i == 4) {
-            this.selector.setBackground(Theme.getSelectorDrawable(false));
-            this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
-            this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
-            this.muteButton.setVisibility(8);
-            this.subtitleTextView.setVisibility(0);
-            int i6 = 0;
-            while (i6 < 2) {
-                TextView textView4 = i6 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
-                if (textView4 != null) {
-                    textView4.setGravity(51);
-                    textView4.setTextColor(getThemedColor(Theme.key_inappPlayerPerformer));
-                    textView4.setTypeface(AndroidUtilities.bold());
-                    textView4.setTextSize(1, 15.0f);
+            if (i == 1 || i == 3) {
+                this.selector.setBackground(null);
+                updateCallTitle();
+                boolean zHasRtmpStream = VoIPService.hasRtmpStream();
+                this.avatars.setVisibility(!zHasRtmpStream ? 0 : 8);
+                if (i == 3 && VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().registerStateListener(this);
                 }
-                i6++;
-            }
-            this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerPerformer));
-            this.titleTextView.setPadding(0, 0, this.joinButtonWidth, 0);
-            this.importingImageView.setVisibility(8);
-            this.importingImageView.stopAnimation();
-            ChatActivityInterface chatActivityInterface = this.chatActivity;
-            this.avatars.setVisibility(!((chatActivityInterface == null || chatActivityInterface.getGroupCall() == null || this.chatActivity.getGroupCall().call == null || !this.chatActivity.getGroupCall().call.rtmp_stream) ? false : true) ? 0 : 8);
-            if (this.avatars.getVisibility() != 8) {
-                updateAvatars(false);
-            } else {
-                this.titleTextView.setTranslationX(-AndroidUtilities.dp(36.0f));
-                this.subtitleTextView.setTranslationX(-AndroidUtilities.dp(36.0f));
-            }
-            this.closeButton.setVisibility(8);
-            this.playButton.setVisibility(8);
-            ActionBarMenuItem actionBarMenuItem3 = this.playbackSpeedButton;
-            if (actionBarMenuItem3 != null) {
-                actionBarMenuItem3.setVisibility(8);
-                this.playbackSpeedButton.setTag(null);
-                return;
-            }
-            return;
-        }
-        if (i == 1 || i == 3) {
-            this.selector.setBackground(null);
-            updateCallTitle();
-            boolean zHasRtmpStream = VoIPService.hasRtmpStream();
-            this.avatars.setVisibility(!zHasRtmpStream ? 0 : 8);
-            if (i == 3 && VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().registerStateListener(this);
-            }
-            if (this.avatars.getVisibility() != 8) {
-                updateAvatars(false);
-            } else {
-                this.titleTextView.setTranslationX(0.0f);
-                this.subtitleTextView.setTranslationX(0.0f);
-            }
-            this.muteButton.setVisibility(!zHasRtmpStream ? 0 : 8);
-            boolean z = VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute();
-            this.isMuted = z;
-            this.muteDrawable.setCustomEndFrame(z ? 15 : 29);
-            RLottieDrawable rLottieDrawable = this.muteDrawable;
-            rLottieDrawable.setCurrentFrame(rLottieDrawable.getCustomEndFrame() - 1, false, true);
-            this.muteButton.invalidate();
-            this.frameLayout.setBackground(null);
-            this.frameLayout.setBackgroundColor(0);
-            this.importingImageView.setVisibility(8);
-            this.importingImageView.stopAnimation();
-            Theme.getFragmentContextViewWavesDrawable().addParent(this);
-            invalidate();
-            int i7 = 0;
-            while (i7 < 2) {
-                TextView textView5 = i7 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
-                if (textView5 != null) {
-                    textView5.setGravity(19);
-                    textView5.setTextColor(getThemedColor(Theme.key_returnToCallText));
-                    textView5.setTypeface(AndroidUtilities.bold());
-                    textView5.setTextSize(1, 14.0f);
+                if (this.avatars.getVisibility() != 8) {
+                    updateAvatars(false);
+                } else {
+                    this.titleTextView.setTranslationX(0.0f);
+                    this.subtitleTextView.setTranslationX(0.0f);
                 }
-                i7++;
-            }
-            this.titleTextView.setTag(Integer.valueOf(Theme.key_returnToCallText));
-            this.closeButton.setVisibility(8);
-            this.playButton.setVisibility(8);
-            this.subtitleTextView.setVisibility(8);
-            this.joinButton.setVisibility(8);
-            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, this.isSideMenued ? 64 : 0, this.isInsideBubble ? 0.0f : 2.0f));
-            this.titleTextView.setPadding(AndroidUtilities.dp(88.0f), 0, AndroidUtilities.dp(88.0f) + this.joinButtonWidth, 0);
-            ActionBarMenuItem actionBarMenuItem4 = this.playbackSpeedButton;
-            if (actionBarMenuItem4 != null) {
-                actionBarMenuItem4.setVisibility(8);
-                this.playbackSpeedButton.setTag(null);
+                this.muteButton.setVisibility(!zHasRtmpStream ? 0 : 8);
+                boolean z2 = VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute();
+                this.isMuted = z2;
+                this.muteDrawable.setCustomEndFrame(z2 ? 15 : 29);
+                RLottieDrawable rLottieDrawable = this.muteDrawable;
+                rLottieDrawable.setCurrentFrame(rLottieDrawable.getCustomEndFrame() - 1, false, true);
+                this.muteButton.invalidate();
+                this.frameLayout.setBackground(null);
+                this.frameLayout.setBackgroundColor(0);
+                this.importingImageView.setVisibility(8);
+                this.importingImageView.stopAnimation();
+                Theme.getFragmentContextViewWavesDrawable().addParent(this);
+                invalidate();
+                int i7 = 0;
+                while (i7 < 2) {
+                    TextView textView5 = i7 == 0 ? this.titleTextView.getTextView() : this.titleTextView.getNextTextView();
+                    if (textView5 != null) {
+                        textView5.setGravity(19);
+                        textView5.setTextColor(getThemedColor(Theme.key_returnToCallText));
+                        textView5.setTypeface(AndroidUtilities.bold());
+                        textView5.setTextSize(1, 14.0f);
+                    }
+                    i7++;
+                }
+                this.titleTextView.setTag(Integer.valueOf(Theme.key_returnToCallText));
+                this.closeButton.setVisibility(8);
+                this.playButton.setVisibility(8);
+                this.subtitleTextView.setVisibility(8);
+                this.joinButton.setVisibility(8);
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, this.isSideMenued ? 64 : 0, this.isInsideBubble ? 0.0f : 2.0f));
+                this.titleTextView.setPadding(AndroidUtilities.dp(88.0f), 0, AndroidUtilities.dp(88.0f) + this.joinButtonWidth, 0);
+                ActionBarMenuItem actionBarMenuItem4 = this.playbackSpeedButton;
+                if (actionBarMenuItem4 != null) {
+                    actionBarMenuItem4.setVisibility(8);
+                    this.playbackSpeedButton.setTag(null);
+                }
             }
         }
     }

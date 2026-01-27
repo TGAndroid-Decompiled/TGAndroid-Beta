@@ -5,6 +5,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -123,7 +124,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    protected void onCreate(Bundle bundle) throws Resources.NotFoundException {
         super.onCreate(bundle);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
@@ -408,7 +409,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void onMessageSend(CharSequence charSequence, boolean z, int i2, int i3, long j) {
+            public void onMessageSend(CharSequence charSequence, boolean z, int i2, int i3, long j) throws Resources.NotFoundException {
                 if (PopupNotificationActivity.this.currentMessageObject == null) {
                     return;
                 }
@@ -507,7 +508,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         this.onlineTextView.setLayoutParams(layoutParams5);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i3) {
+            public void onItemClick(int i3) throws Resources.NotFoundException {
                 if (i3 == -1) {
                     PopupNotificationActivity.this.onFinish();
                     PopupNotificationActivity.this.finish();
@@ -533,7 +534,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent) throws Resources.NotFoundException {
         super.onNewIntent(intent);
         handleIntent(intent);
     }
@@ -567,7 +568,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    public void switchToNextMessage() {
+    public void switchToNextMessage() throws Resources.NotFoundException {
         if (this.popupMessages.size() > 1) {
             if (this.currentMessageNum < this.popupMessages.size() - 1) {
                 this.currentMessageNum++;
@@ -580,7 +581,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private void switchToPreviousMessage() {
+    private void switchToPreviousMessage() throws Resources.NotFoundException {
         if (this.popupMessages.size() > 1) {
             int i = this.currentMessageNum;
             if (i > 0) {
@@ -610,13 +611,13 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PopupNotificationActivity.onTouchEventMy(android.view.MotionEvent):boolean");
     }
 
-    public void lambda$onTouchEventMy$1() {
+    public void lambda$onTouchEventMy$1() throws Resources.NotFoundException {
         this.animationInProgress = false;
         switchToPreviousMessage();
         AndroidUtilities.unlockOrientation(this);
     }
 
-    public void lambda$onTouchEventMy$2() {
+    public void lambda$onTouchEventMy$2() throws Resources.NotFoundException {
         this.animationInProgress = false;
         switchToNextMessage();
         AndroidUtilities.unlockOrientation(this);
@@ -965,7 +966,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private void handleIntent(Intent intent) {
+    private void handleIntent(Intent intent) throws Resources.NotFoundException {
         this.isReply = intent != null && intent.getBooleanExtra("force", false);
         this.popupMessages.clear();
         if (this.isReply) {
@@ -994,7 +995,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         getNewMessage();
     }
 
-    public void getNewMessage() {
+    public void getNewMessage() throws Resources.NotFoundException {
         if (this.popupMessages.isEmpty()) {
             onFinish();
             finish();
@@ -1047,7 +1048,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         finish();
     }
 
-    private void updateInterfaceForCurrentMessage(int i) {
+    private void updateInterfaceForCurrentMessage(int i) throws Resources.NotFoundException {
         if (this.actionBar == null) {
             return;
         }
@@ -1243,7 +1244,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         TextView textView;
         PopupAudioView popupAudioView;
         MessageObject messageObject;

@@ -285,11 +285,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00471(this);
+                this.imageReceiver = new C00461(this);
             }
 
-            class C00471 extends ImageReceiver {
-                C00471(View view) {
+            class C00461 extends ImageReceiver {
+                C00461(View view) {
                     super(view);
                 }
 

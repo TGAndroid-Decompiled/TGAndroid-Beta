@@ -5868,13 +5868,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         }
 
-        public void lambda$onItemClick$7(AlertDialog alertDialog, int i) {
+        public void lambda$onItemClick$7(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(PhotoViewer.this.currentMessageObject);
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public void lambda$onItemClick$8(ArrayList arrayList, AlertDialog alertDialog, int i) {
+        public void lambda$onItemClick$8(ArrayList arrayList, AlertDialog alertDialog, int i) throws Resources.NotFoundException {
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
@@ -7789,7 +7789,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return captionView != null && (captionView.keyboardNotifier.keyboardVisible() || captionView.editText.isPopupShowing());
     }
 
-    public void showShareAlert(ArrayList arrayList) {
+    public void showShareAlert(ArrayList arrayList) throws Resources.NotFoundException {
         boolean z;
         VideoPlayer videoPlayer;
         MessageObject messageObject;

@@ -452,8 +452,19 @@ public class ViewPagerFixed extends FrameLayout {
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
+            boolean canceled;
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                super.onAnimationCancel(animator);
+                this.canceled = true;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
+                if (this.canceled) {
+                    return;
+                }
                 ViewPagerFixed.this.setTranslationX(view, f);
             }
         });

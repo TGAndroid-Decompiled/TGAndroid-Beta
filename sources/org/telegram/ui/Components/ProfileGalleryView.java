@@ -282,8 +282,10 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.customAvatarIndex = -1;
         this.fallbackPhotoIndex = -1;
         this.blurView = profileGalleryBlurView;
-        setPadding(0, 0, 0, profileGalleryBlurView.actionSize);
-        profileGalleryBlurView.setView(this);
+        setPadding(0, 0, 0, profileGalleryBlurView == null ? 0 : profileGalleryBlurView.actionSize);
+        if (profileGalleryBlurView != null) {
+            profileGalleryBlurView.setView(this);
+        }
         setVisibility(8);
         setOverScrollMode(2);
         setOffscreenPageLimit(2);
@@ -460,7 +462,10 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(this.chatInfo.chat_photo.video_sizes, 1000);
             this.videoLocations.set(0, ImageLocation.getForPhoto(closestVideoSizeWithSize, this.chatInfo.chat_photo));
             this.videoFileNames.set(0, FileLoader.getAttachFileName(closestVideoSizeWithSize));
-            this.callback.onPhotosLoaded();
+            Callback callback = this.callback;
+            if (callback != null) {
+                callback.onPhotosLoaded();
+            }
         } else {
             this.videoLocations.set(0, null);
             this.videoFileNames.add(0, null);

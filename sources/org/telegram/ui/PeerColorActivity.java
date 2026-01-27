@@ -439,7 +439,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                         int i6 = i - page4.giftsStartRow;
                         if (page4.resaleGifts != null && i6 >= 0 && i6 < Page.this.uniqueGifts.size()) {
                             TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) Page.this.uniqueGifts.get(i6);
-                            giftCell2.setStarsGift(tL_starGiftUnique2, false, false, false, true);
+                            giftCell2.setStarsGift(tL_starGiftUnique2, false, false, false, true, false);
                             if ((Page.this.selectedEmojiCollectible == null || Page.this.selectedEmojiCollectible.collectible_id != tL_starGiftUnique2.id) && (Page.this.selectedPeerCollectible == null || Page.this.selectedPeerCollectible.collectible_id != tL_starGiftUnique2.id)) {
                                 z = false;
                             }
@@ -506,7 +506,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     int i2 = adapterPosition2 - page2.giftsStartRow;
                     if (page2.resaleGifts != null && i2 >= 0 && i2 < Page.this.uniqueGifts.size()) {
                         TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) Page.this.uniqueGifts.get(i2);
-                        giftCell2.setStarsGift(tL_starGiftUnique2, false, false, false, true);
+                        giftCell2.setStarsGift(tL_starGiftUnique2, false, false, false, true, false);
                         if ((Page.this.selectedEmojiCollectible == null || Page.this.selectedEmojiCollectible.collectible_id != tL_starGiftUnique2.id) && (Page.this.selectedPeerCollectible == null || Page.this.selectedPeerCollectible.collectible_id != tL_starGiftUnique2.id)) {
                             z = false;
                         }
@@ -1761,7 +1761,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         final boolean[] zArr = new boolean[1];
-        StarGiftSheet.ResaleBuyTransferAlert resaleBuyTransferAlert = new StarGiftSheet.ResaleBuyTransferAlert(getContext(), this.resourceProvider, tL_starGiftUnique, new StarGiftSheet.PaymentFormState(amountUtils$Currency, tL_payments_paymentFormStarGift), this.currentAccount, j, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), new Utilities.Callback2() {
+        StarGiftSheet.ResaleBuyTransferAlert resaleBuyTransferAlert = new StarGiftSheet.ResaleBuyTransferAlert(getContext(), this.resourceProvider, tL_starGiftUnique, new StarGiftSheet.PaymentFormState(amountUtils$Currency, tL_payments_paymentFormStarGift), this.currentAccount, j, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), false, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$buy$7(zArr, tL_starGiftUnique, j, callback, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);

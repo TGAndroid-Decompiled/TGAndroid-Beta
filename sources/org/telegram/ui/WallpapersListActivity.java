@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -64,7 +63,6 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.WallpaperCell;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
@@ -389,26 +387,19 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        RecyclerListView recyclerListView = new RecyclerListView(context) {
-            private Paint paint = new Paint();
-
-            @Override
-            public boolean hasOverlappingRendering() {
-                return false;
-            }
-
-            @Override
-            public void onDraw(android.graphics.Canvas r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.WallpapersListActivity.AnonymousClass4.onDraw(android.graphics.Canvas):void");
-            }
-        };
+        RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setClipToPadding(false);
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        RecyclerListView recyclerListView2 = this.listView;
+        int i4 = Theme.key_windowBackgroundGray;
+        recyclerListView2.setBackgroundColor(getThemedColor(i4));
+        this.listView.setClipToPadding(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setItemAnimator(null);
         this.listView.setLayoutAnimation(null);
-        RecyclerListView recyclerListView2 = this.listView;
+        RecyclerListView recyclerListView3 = this.listView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, i, z) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
@@ -416,31 +407,31 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
         };
         this.layoutManager = linearLayoutManager;
-        recyclerListView2.setLayoutManager(linearLayoutManager);
+        recyclerListView3.setLayoutManager(linearLayoutManager);
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
-        RecyclerListView recyclerListView3 = this.listView;
+        RecyclerListView recyclerListView4 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.listAdapter = listAdapter;
-        recyclerListView3.setAdapter(listAdapter);
+        recyclerListView4.setAdapter(listAdapter);
         this.searchAdapter = new SearchAdapter(context);
         this.listView.setGlowColor(Theme.getColor(Theme.key_avatar_backgroundActionBarBlue));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) {
-                this.f$0.lambda$createView$4(view, i4);
+            public final void onItemClick(View view, int i5) {
+                this.f$0.lambda$createView$4(view, i5);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
-                if (i4 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i5) {
+                if (i5 == 1) {
                     AndroidUtilities.hideKeyboard(WallpapersListActivity.this.getParentActivity().getCurrentFocus());
                 }
-                WallpapersListActivity.this.scrolling = i4 != 0;
+                WallpapersListActivity.this.scrolling = i5 != 0;
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
                 if (WallpapersListActivity.this.listView.getAdapter() == WallpapersListActivity.this.searchAdapter) {
                     int iFindFirstVisibleItemPosition = WallpapersListActivity.this.layoutManager.findFirstVisibleItemPosition();
                     int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(WallpapersListActivity.this.layoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
@@ -458,7 +449,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         this.searchEmptyView = emptyTextProgressView;
         emptyTextProgressView.setVisibility(8);
         this.searchEmptyView.setShowAtCenter(true);
-        this.searchEmptyView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.searchEmptyView.setBackgroundColor(Theme.getColor(i4));
         this.searchEmptyView.setText(LocaleController.getString(R.string.NoResult));
         this.listView.setEmptyView(this.searchEmptyView);
         frameLayout.addView(this.searchEmptyView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1800,34 +1791,24 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View textCell;
-            View shadowSectionCell;
-            if (i != 0) {
-                if (i == 1) {
-                    shadowSectionCell = new ShadowSectionCell(this.mContext);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, WallpapersListActivity.this.wallPaperStartRow == -1 ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    combinedDrawable.setFullsize(true);
-                    shadowSectionCell.setBackgroundDrawable(combinedDrawable);
-                } else if (i == 3) {
-                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
-                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    combinedDrawable2.setFullsize(true);
-                    shadowSectionCell.setBackgroundDrawable(combinedDrawable2);
-                } else {
-                    textCell = new WallpaperCell(this.mContext) {
-                        @Override
-                        protected void onWallpaperClick(Object obj, int i2) {
-                            WallpapersListActivity.this.onItemClick(this, obj, i2);
-                        }
-
-                        @Override
-                        protected boolean onWallpaperLongClick(Object obj, int i2) {
-                            return WallpapersListActivity.this.onItemLongClick(this, obj, i2);
-                        }
-                    };
-                }
-                textCell = shadowSectionCell;
-            } else {
+            if (i == 0) {
                 textCell = new TextCell(this.mContext);
+            } else if (i == 1) {
+                textCell = new ShadowSectionCell(this.mContext);
+            } else if (i == 3) {
+                textCell = new TextInfoPrivacyCell(this.mContext);
+            } else {
+                textCell = new WallpaperCell(this.mContext) {
+                    @Override
+                    protected void onWallpaperClick(Object obj, int i2) {
+                        WallpapersListActivity.this.onItemClick(this, obj, i2);
+                    }
+
+                    @Override
+                    protected boolean onWallpaperLongClick(Object obj, int i2) {
+                        return WallpapersListActivity.this.onItemLongClick(this, obj, i2);
+                    }
+                };
             }
             return new RecyclerListView.Holder(textCell);
         }
@@ -1858,20 +1839,14 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         View view2 = this.fragmentView;
         int i2 = Theme.key_windowBackgroundGray;
         arrayList.add(new ThemeDescription(view2, 0, null, null, null, null, i2));
-        ActionBar actionBar = this.actionBar;
-        int i3 = ThemeDescription.FLAG_BACKGROUND;
-        int i4 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i3, null, null, null, null, i4));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
-        int i5 = Theme.key_windowBackgroundGrayShadow;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i5));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i5));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteValueText));

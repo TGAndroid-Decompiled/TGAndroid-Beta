@@ -688,11 +688,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             ImageView imageView2 = this.imageView;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, 51, 20.0f, 4.66f, 0.0f, 0.0f));
+            addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             this.textLayout = linearLayout;
             linearLayout.setOrientation(1);
-            addView(this.textLayout, LayoutHelper.createFrame(-1, -2.0f, 23, 64.0f, z ? 2.0f : 3.0f, 24.0f, z ? 4.0f : 12.66f));
+            addView(this.textLayout, LayoutHelper.createFrame(-1, -2.0f, 23, 64.0f, z ? 2.0f : 9.8f, 24.0f, z ? 4.0f : 9.8f));
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextColor(Theme.getColor(i, resourcesProvider));

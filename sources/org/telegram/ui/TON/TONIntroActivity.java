@@ -236,7 +236,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         LinearLayout linearLayout = new LinearLayout(getContext());
         this.balanceLayout = linearLayout;
         linearLayout.setOrientation(1);
-        this.balanceLayout.setPadding(0, 0, 0, AndroidUtilities.dp(10.0f));
+        this.balanceLayout.setPadding(0, AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(10.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, false);
         this.starBalanceTextView = animatedTextView;
         animatedTextView.setTypeface(AndroidUtilities.bold());
@@ -270,9 +270,9 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.oneButtonsLayout = frameLayout3;
         frameLayout2.addView(frameLayout3);
         if (this.allowTopUp) {
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourceProvider);
-            this.buyButton = buttonWithCounterView;
-            buttonWithCounterView.setRound();
+            ButtonWithCounterView round = new ButtonWithCounterView(getContext(), this.resourceProvider).setRound();
+            this.buyButton = round;
+            round.setRound();
             this.buyButton.setText(LocaleController.getString(R.string.TopUpViaFragment), false);
             this.buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -293,7 +293,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         };
         this.twoButtonsLayout = linearLayout2;
         frameLayout2.addView(linearLayout2);
-        this.topUpButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        this.topUpButton = new ButtonWithCounterView(getContext(), this.resourceProvider).setRound();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_topup, 2), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.TonTopUp));
@@ -307,7 +307,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         if (this.allowTopUp) {
             this.twoButtonsLayout.addView(this.topUpButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 8, 0));
         }
-        this.withdrawButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+        this.withdrawButton = new ButtonWithCounterView(getContext(), this.resourceProvider).setRound();
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
         spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.mini_stats, 2), 0, 1, 33);
         spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.TonStats));
@@ -681,7 +681,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             }
         };
         this.adapter = universalAdapter;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -700,7 +701,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             if (!this.allowTopUp) {
                 arrayList.add(UItem.asShadow(null));
             }
-            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight));
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(12.0f)));
             return;
         }
         arrayList.add(UItem.asCustom(this.emptyLayout));

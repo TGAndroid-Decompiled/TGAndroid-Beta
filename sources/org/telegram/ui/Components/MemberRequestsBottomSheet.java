@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -72,9 +73,9 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void onBackPressed() {
+    public void lambda$openCrafting$8() {
         if (this.delegate.onBackPressed(true)) {
-            super.onBackPressed();
+            super.lambda$openCrafting$8();
         }
     }
 
@@ -112,7 +113,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.yOffset = this.scrollOffsetY;

@@ -59,6 +59,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -116,6 +117,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     private final int currentAccount;
     public ItemOptions currentMenu;
     private final long dialogId;
+    private int externalPaddingTop;
     private final BaseFragment fragment;
     public IBlur3Capture iBlur3Capture;
     private ViewGroup iBlur3CaptureParent;
@@ -144,6 +146,18 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
         viewPagerFixed.fillTabs(z);
         checkScrollToCollection();
+    }
+
+    public void setPaddingTop(int i) {
+        if (this.externalPaddingTop != i) {
+            this.externalPaddingTop = i;
+            for (View view : this.viewPager.getViewPages()) {
+                if (view instanceof Page) {
+                    ((Page) view).listView.setPadding(AndroidUtilities.dp(9.0f), this.externalPaddingTop, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
+                }
+            }
+            updateButton();
+        }
     }
 
     public static class Page extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -214,7 +228,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             universalRecyclerView.adapter.setApplyBackground(false);
             universalRecyclerView.setSelectorType(9);
             universalRecyclerView.setSelectorDrawableColor(0);
-            universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
+            universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), profileGiftsContainer.externalPaddingTop, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
             universalRecyclerView.setClipToPadding(false);
             universalRecyclerView.setClipChildren(false);
             addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
@@ -1500,9 +1514,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
         float fDp = currentPositionAlpha + ((((-this.buttonContainer.getTop()) + this.visibleHeight) - AndroidUtilities.dp(this.buttonContainerHeightDp)) - 1);
         this.animatorBottomButtonVisibility.setValue(this.visibleHeight > AndroidUtilities.dp(184.0f), true);
-        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(60.0f) + fDp, fDp, this.animatorBottomButtonVisibility.getFloatValue());
+        float floatValue = this.animatorBottomButtonVisibility.getFloatValue();
+        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(60.0f) + fDp, fDp, floatValue);
         this.bulletinContainer.setTranslationY(fLerp - AndroidUtilities.dp(200.0f));
         this.buttonContainer.setTranslationY(fLerp - this.buttonContainerOffset);
+        this.buttonContainer.setAlpha(floatValue);
+        this.buttonContainer.setVisibility(floatValue <= 0.0f ? 4 : 0);
         this.button.setText((!this.collections.isMine() || this.viewPager.getPositionAnimated() < 0.5f) ? this.sendGiftsToFriendsText : this.addGiftsText, true);
         Bulletin.updateCurrentPosition();
     }
@@ -2522,6 +2539,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             public final void capture(Canvas canvas, RectF rectF) {
                 this.f$0.lambda$initBlurCapture$23(canvas, rectF);
             }
+
+            @Override
+            public long captureCalculateHash(RectF rectF) {
+                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
+            }
         };
     }
 
@@ -2534,7 +2556,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     ViewGroup viewGroup = this.iBlur3CaptureParent;
                     UniversalRecyclerView universalRecyclerView2 = page.listView;
                     Objects.requireNonNull(universalRecyclerView2);
-                    page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new ProfileGiftsContainer$$ExternalSyntheticLambda17(universalRecyclerView2));
+                    page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new CallLogActivity$$ExternalSyntheticLambda6(universalRecyclerView2));
                 }
                 page.iBlur3Capture.capture(canvas, rectF);
             }

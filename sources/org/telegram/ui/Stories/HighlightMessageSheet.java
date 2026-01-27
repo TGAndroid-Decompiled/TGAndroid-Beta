@@ -10,14 +10,14 @@ import android.widget.TextView;
 import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
-import java.util.function.IntFunction;
-import java.util.function.ToIntFunction;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda133;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda86;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
@@ -70,12 +70,7 @@ public abstract class HighlightMessageSheet {
             return getDefaultTiers();
         }
         try {
-            return DesugarArrays.stream(str.split(",")).mapToInt(new ToIntFunction() {
-                @Override
-                public final int applyAsInt(Object obj) {
-                    return Integer.parseInt((String) obj);
-                }
-            }).toArray();
+            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda86()).toArray();
         } catch (Exception e) {
             FileLog.e(e);
             return getDefaultTiers();
@@ -83,12 +78,7 @@ public abstract class HighlightMessageSheet {
     }
 
     public static String tiersToString(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new IntFunction() {
-            @Override
-            public final Object apply(int i) {
-                return String.valueOf(i);
-            }
-        }).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda133()).collect(Collectors.joining(","));
     }
 
     public static int getTierOption(int i, int i2, int i3) {

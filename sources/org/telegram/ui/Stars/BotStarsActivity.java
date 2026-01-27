@@ -326,14 +326,14 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         LinearLayout linearLayout3 = new LinearLayout(context);
         this.balanceButtonsLayout = linearLayout3;
         linearLayout3.setOrientation(0);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, getResourceProvider()) {
+        ButtonWithCounterView round = new ButtonWithCounterView(context, getResourceProvider()) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
             }
-        };
-        this.balanceButton = buttonWithCounterView;
-        buttonWithCounterView.setEnabled(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled);
+        }.setRound();
+        this.balanceButton = round;
+        round.setEnabled(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled);
         this.balanceButton.setText(LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll), false);
         this.balanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,9 +341,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 this.f$0.lambda$createView$3(view);
             }
         });
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, getResourceProvider());
-        this.adsButton = buttonWithCounterView2;
-        buttonWithCounterView2.setEnabled(true);
+        ButtonWithCounterView round2 = new ButtonWithCounterView(context, getResourceProvider()).setRound();
+        this.adsButton = round2;
+        round2.setEnabled(true);
         this.adsButton.setText(LocaleController.getString(R.string.MonetizationStarsAds), false);
         this.adsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,9 +381,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.tonBalanceSubtitle.setTextColor(Theme.getColor(i4, this.resourceProvider));
         this.tonBalanceSubtitle.setTextSize(AndroidUtilities.dp(14.0f));
         this.tonBalanceLayout.addView(this.tonBalanceSubtitle, LayoutHelper.createFrame(-1, 17.0f, 49, 22.0f, 4.0f, 22.0f, 0.0f));
-        ButtonWithCounterView buttonWithCounterView3 = new ButtonWithCounterView(context, this.resourceProvider);
-        this.tonBalanceButton = buttonWithCounterView3;
-        buttonWithCounterView3.setEnabled(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourceProvider);
+        this.tonBalanceButton = buttonWithCounterView;
+        buttonWithCounterView.setEnabled(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled);
         this.tonBalanceButton.setText(LocaleController.getString(this.self ? R.string.MonetizationSelfWithdraw : R.string.MonetizationWithdraw), false);
         this.tonBalanceButton.setVisibility(8);
         this.tonBalanceButton.setOnClickListener(new View.OnClickListener() {
@@ -411,6 +411,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         });
         this.listView = universalRecyclerView;
         universalRecyclerView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        this.listView.setSections();
         nestedFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -423,6 +424,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 }
             }
         });
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.fragmentView = nestedFrameLayout;
         return nestedFrameLayout;
     }

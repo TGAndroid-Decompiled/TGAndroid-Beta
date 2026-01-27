@@ -12,12 +12,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -31,7 +30,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +57,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -95,6 +94,13 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ShareAlert;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
+import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.MessageStatisticActivity;
 import org.telegram.ui.PhotoViewer;
@@ -102,8 +108,10 @@ import org.telegram.ui.PremiumPreviewFragment;
 
 public class ShareAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private AnimatorSet animatorSet;
+    private View bottomFadeView;
     private FrameLayout bulletinContainer;
     public FrameLayout bulletinContainer2;
+    private BlurredBackgroundDrawable captionContainerBg;
     private float captionEditTextTopOffset;
     private float chatActivityEnterViewAnimateFromTop;
     private EditTextEmoji commentTextView;
@@ -112,13 +120,24 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private float currentPanTranslationY;
     private boolean darkTheme;
     private ShareAlertDelegate delegate;
+    private BlurredBackgroundDrawable emojiViewChildBg;
     private TLRPC.TL_exportedMessageLink exportedMessageLink;
+    private BlurredBackgroundWithFadeDrawable fadeDrawable;
     public boolean forceDarkThemeForHint;
     private FrameLayout frameLayout;
-    private BlurredFrameLayout frameLayout2;
+    private FrameLayout frameLayout2;
     private boolean fullyShown;
     private RecyclerListView gridView;
     private int hasPoll;
+    private IBlur3Capture iBlur3Capture;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryFade;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryFrostedLiquidGlass;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
+    private final RectF iBlur3PositionMainTabs;
+    private final ArrayList iBlur3Positions;
+    private final BlurredBackgroundSourceColor iBlur3SourceColor;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
     private boolean includeStory;
     public boolean includeStoryFromMessage;
     private boolean isChannel;
@@ -132,25 +151,25 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private String[] linkToCopy;
     private ShareDialogsAdapter listAdapter;
     private boolean loadingLink;
-    public BlurredFrameLayout navigationBar;
     private Paint paint;
     private boolean panTranslationMoveLayout;
     private Activity parentActivity;
     private ChatActivity parentFragment;
     private FrameLayout pickerBottom;
-    private BlurredFrameLayout pickerBottomLayout;
+    private FrameLayout pickerBottomLayout;
     private int previousScrollOffsetY;
     private ArrayList recentSearchObjects;
     private LongSparseArray recentSearchObjectsById;
     private RectF rect;
     RecyclerItemsEnterAnimator recyclerItemsEnterAnimator;
     private int scrollOffsetY;
+    private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
     private ShareSearchAdapter searchAdapter;
     private StickerEmptyView searchEmptyView;
     private RecyclerListView searchGridView;
     private boolean searchIsVisible;
     private FillLastGridLayoutManager searchLayoutManager;
-    SearchField searchView;
+    FragmentSearchField searchView;
     private boolean searchWasVisibleBeforeTopics;
     protected Map selectedDialogTopics;
     protected LongSparseArray selectedDialogs;
@@ -171,7 +190,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private TextPaint textPaint;
     public int timestamp;
     public CheckBox2 timestampCheckbox;
-    public BlurredFrameLayout timestampFrameLayout;
+    public FrameLayout timestampFrameLayout;
     public LinearLayout timestampLayout;
     public TextView timestampTextView;
     private ValueAnimator topBackgroundAnimator;
@@ -203,7 +222,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         void didShare();
     }
 
-    public static boolean lambda$new$13(View view, MotionEvent motionEvent) {
+    public static boolean lambda$new$15(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -346,135 +365,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    class SearchField extends FrameLayout {
-        private ImageView clearSearchImageView;
-        private CloseProgressDrawable2 progressDrawable;
-        private View searchBackground;
-        private EditTextBoldCursor searchEditText;
-        private ImageView searchIconImageView;
-
-        public SearchField(Context context) {
-            super(context);
-            View view = new View(context);
-            this.searchBackground = view;
-            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), ShareAlert.this.getThemedColor(Theme.key_dialogSearchBackground)));
-            addView(this.searchBackground, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
-            ImageView imageView = new ImageView(context);
-            this.searchIconImageView = imageView;
-            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-            imageView.setScaleType(scaleType);
-            this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
-            this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(ShareAlert.this.getThemedColor(Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
-            addView(this.searchIconImageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView2 = new ImageView(context);
-            this.clearSearchImageView = imageView2;
-            imageView2.setScaleType(scaleType);
-            ImageView imageView3 = this.clearSearchImageView;
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2() {
-                @Override
-                protected int getCurrentColor() {
-                    return ShareAlert.this.getThemedColor(Theme.key_dialogSearchIcon);
-                }
-            };
-            this.progressDrawable = closeProgressDrawable2;
-            imageView3.setImageDrawable(closeProgressDrawable2);
-            this.progressDrawable.setSide(AndroidUtilities.dp(7.0f));
-            this.clearSearchImageView.setScaleX(0.1f);
-            this.clearSearchImageView.setScaleY(0.1f);
-            this.clearSearchImageView.setAlpha(0.0f);
-            addView(this.clearSearchImageView, LayoutHelper.createFrame(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
-            this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    this.f$0.lambda$new$0(view2);
-                }
-            });
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-            this.searchEditText = editTextBoldCursor;
-            editTextBoldCursor.setTextSize(1, 16.0f);
-            this.searchEditText.setHintTextColor(ShareAlert.this.getThemedColor(Theme.key_dialogSearchHint));
-            this.searchEditText.setTextColor(ShareAlert.this.getThemedColor(Theme.key_dialogSearchText));
-            this.searchEditText.setBackgroundDrawable(null);
-            this.searchEditText.setPadding(0, 0, 0, 0);
-            this.searchEditText.setMaxLines(1);
-            this.searchEditText.setLines(1);
-            this.searchEditText.setSingleLine(true);
-            this.searchEditText.setImeOptions(268435459);
-            this.searchEditText.setHint(LocaleController.getString(R.string.ShareSendTo));
-            this.searchEditText.setCursorColor(ShareAlert.this.getThemedColor(Theme.key_featuredStickers_addedIcon));
-            this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
-            this.searchEditText.setCursorWidth(1.5f);
-            addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    boolean z = SearchField.this.searchEditText.length() > 0;
-                    if (z != (SearchField.this.clearSearchImageView.getAlpha() != 0.0f)) {
-                        SearchField.this.clearSearchImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).start();
-                    }
-                    if (!TextUtils.isEmpty(SearchField.this.searchEditText.getText())) {
-                        ShareAlert.this.checkCurrentList(false);
-                    }
-                    if (ShareAlert.this.updateSearchAdapter) {
-                        String string = SearchField.this.searchEditText.getText().toString();
-                        if (string.length() != 0) {
-                            if (ShareAlert.this.searchEmptyView != null) {
-                                ShareAlert.this.searchEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
-                            }
-                        } else if (ShareAlert.this.gridView.getAdapter() != ShareAlert.this.listAdapter) {
-                            int currentTop = ShareAlert.this.getCurrentTop();
-                            ShareAlert.this.searchEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
-                            ShareAlert.this.searchEmptyView.showProgress(false, true);
-                            ShareAlert.this.checkCurrentList(false);
-                            ShareAlert.this.listAdapter.notifyDataSetChanged();
-                            if (currentTop > 0) {
-                                ShareAlert.this.layoutManager.scrollToPositionWithOffset(0, -currentTop);
-                            }
-                        }
-                        if (ShareAlert.this.searchAdapter != null) {
-                            ShareAlert.this.searchAdapter.searchDialogs(string);
-                        }
-                    }
-                }
-            });
-            this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    return this.f$0.lambda$new$1(textView, i, keyEvent);
-                }
-            });
-        }
-
-        public void lambda$new$0(View view) {
-            ShareAlert.this.updateSearchAdapter = true;
-            this.searchEditText.setText("");
-            AndroidUtilities.showKeyboard(this.searchEditText);
-        }
-
-        public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-            if (keyEvent == null) {
-                return false;
-            }
-            if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
-                return false;
-            }
-            AndroidUtilities.hideKeyboard(this.searchEditText);
-            return false;
-        }
-
-        public void hideKeyboard() {
-            AndroidUtilities.hideKeyboard(this.searchEditText);
-        }
-    }
-
     public static ShareAlert createShareAlert(Context context, MessageObject messageObject, String str, boolean z, String str2, boolean z2) {
         ArrayList arrayList;
         if (messageObject != null) {
@@ -498,7 +388,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this(context, chatActivity, arrayList, str, str2, z, str3, str4, z2, z3, false, null, null);
     }
 
-    public ShareAlert(final android.content.Context r35, org.telegram.ui.ChatActivity r36, java.util.ArrayList r37, java.lang.String r38, java.lang.String r39, boolean r40, java.lang.String r41, java.lang.String r42, boolean r43, boolean r44, boolean r45, java.lang.Integer r46, org.telegram.ui.ActionBar.Theme.ResourcesProvider r47) {
+    public ShareAlert(final android.content.Context r31, org.telegram.ui.ChatActivity r32, java.util.ArrayList r33, java.lang.String r34, java.lang.String r35, boolean r36, java.lang.String r37, java.lang.String r38, boolean r39, boolean r40, boolean r41, java.lang.Integer r42, org.telegram.ui.ActionBar.Theme.ResourcesProvider r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareAlert.<init>(android.content.Context, org.telegram.ui.ChatActivity, java.util.ArrayList, java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.Integer, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -522,15 +412,21 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.loadingLink = false;
     }
 
-    public static Integer lambda$new$2(Integer num) {
-        return 0;
+    public boolean lambda$new$2(TextView textView, int i, KeyEvent keyEvent) {
+        if (keyEvent == null) {
+            return false;
+        }
+        if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
+            return false;
+        }
+        AndroidUtilities.hideKeyboard(this.searchView.editText);
+        return false;
     }
 
-    public void lambda$new$3(View view, int i) {
-        TLRPC.TL_forumTopic itemTopic = this.shareTopicsAdapter.getItemTopic(i);
-        if (itemTopic != null) {
-            onTopicCellClick(itemTopic);
-        }
+    public void lambda$new$3() {
+        this.updateSearchAdapter = true;
+        this.searchView.editText.setText("");
+        AndroidUtilities.showKeyboard(this.searchView.editText);
     }
 
     public static Integer lambda$new$4(Integer num) {
@@ -538,9 +434,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$5(View view, int i) {
-        TLRPC.Dialog item;
-        if (i >= 0 && (item = this.listAdapter.getItem(i)) != null) {
-            selectDialog(view, item);
+        TLRPC.TL_forumTopic itemTopic = this.shareTopicsAdapter.getItemTopic(i);
+        if (itemTopic != null) {
+            onTopicCellClick(itemTopic);
         }
     }
 
@@ -550,12 +446,23 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public void lambda$new$7(View view, int i) {
         TLRPC.Dialog item;
+        if (i >= 0 && (item = this.listAdapter.getItem(i)) != null) {
+            selectDialog(view, item);
+        }
+    }
+
+    public static Integer lambda$new$8(Integer num) {
+        return 0;
+    }
+
+    public void lambda$new$9(View view, int i) {
+        TLRPC.Dialog item;
         if (i >= 0 && (item = this.searchAdapter.getItem(i)) != null) {
             selectDialog(view, item);
         }
     }
 
-    public void lambda$new$8(View view) throws NumberFormatException {
+    public void lambda$new$10(View view) throws NumberFormatException {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
                 lambda$new$0();
@@ -568,32 +475,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 }
             }
         }
-    }
-
-    public void lambda$new$9(View view) {
-        if (this.selectedDialogs.size() == 0) {
-            if (this.isChannel || this.linkToCopy[0] != null) {
-                lambda$new$0();
-                if (this.linkToCopy[0] == null && this.loadingLink) {
-                    this.copyLinkOnEnd = true;
-                    Toast.makeText(getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                } else {
-                    copyLink(getContext());
-                }
-            }
-        }
-    }
-
-    public void lambda$new$10(MessageObject messageObject, View view) {
-        BaseFragment safeLastFragment = this.parentFragment;
-        if (safeLastFragment == null) {
-            safeLastFragment = LaunchActivity.getSafeLastFragment();
-        }
-        if (safeLastFragment == null) {
-            return;
-        }
-        lambda$new$0();
-        safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
     public void lambda$new$11(View view) {
@@ -622,14 +503,35 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
-    class AnonymousClass17 extends BlurredFrameLayout {
-        private final Paint dividerPaint;
-        private final Paint p;
+    public void lambda$new$13(View view) {
+        if (this.selectedDialogs.size() == 0) {
+            if (this.isChannel || this.linkToCopy[0] != null) {
+                lambda$new$0();
+                if (this.linkToCopy[0] == null && this.loadingLink) {
+                    this.copyLinkOnEnd = true;
+                    Toast.makeText(getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                } else {
+                    copyLink(getContext());
+                }
+            }
+        }
+    }
 
-        AnonymousClass17(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
-            super(context, sizeNotifierFrameLayout);
-            this.p = new Paint();
-            this.dividerPaint = new Paint(1);
+    public void lambda$new$14(MessageObject messageObject, View view) {
+        BaseFragment safeLastFragment = this.parentFragment;
+        if (safeLastFragment == null) {
+            safeLastFragment = LaunchActivity.getSafeLastFragment();
+        }
+        if (safeLastFragment == null) {
+            return;
+        }
+        lambda$new$0();
+        safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
+    }
+
+    class AnonymousClass22 extends FrameLayout {
+        AnonymousClass22(Context context) {
+            super(context);
         }
 
         @Override
@@ -678,22 +580,22 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
+            ShareAlert.this.captionContainerBg.setBounds(0, (int) ShareAlert.this.captionEditTextTopOffset, getMeasuredWidth(), getMeasuredHeight());
+            ShareAlert.this.captionContainerBg.draw(canvas);
             canvas.save();
             canvas.clipRect(0.0f, ShareAlert.this.captionEditTextTopOffset, getMeasuredWidth(), getMeasuredHeight());
-            this.dividerPaint.setColor(ShareAlert.this.getThemedColor(Theme.key_divider));
-            canvas.drawRect(0.0f, ShareAlert.this.captionEditTextTopOffset, getMeasuredWidth(), AndroidUtilities.dpf2(0.66f), this.dividerPaint);
             super.dispatchDraw(canvas);
             canvas.restore();
         }
     }
 
-    class AnonymousClass18 extends EditTextEmoji {
+    class AnonymousClass23 extends EditTextEmoji {
         private ValueAnimator messageEditTextAnimator;
         private int messageEditTextPredrawHeigth;
         private int messageEditTextPredrawScrollY;
         private boolean shouldAnimateEditTextWithBounds;
 
-        AnonymousClass18(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, BaseFragment baseFragment, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass23(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, BaseFragment baseFragment, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context, sizeNotifierFrameLayout, baseFragment, i, z, resourcesProvider);
         }
 
@@ -712,7 +614,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ShareAlert.AnonymousClass18.lambda$dispatchDraw$0(editText, valueAnimator);
+                        ShareAlert.AnonymousClass23.lambda$dispatchDraw$0(editText, valueAnimator);
                     }
                 });
                 ValueAnimator valueAnimator = this.messageEditTextAnimator;
@@ -761,13 +663,16 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         @Override
         protected void createEmojiView() {
             super.createEmojiView();
-            BlurredFrameLayout blurredFrameLayout = ShareAlert.this.navigationBar;
-            if (blurredFrameLayout != null) {
-                blurredFrameLayout.bringToFront();
+            EmojiView emojiView = getEmojiView();
+            if (emojiView != null) {
+                emojiView.shouldLightenBackground = false;
+                emojiView.fixBottomTabContainerTranslation = false;
+                emojiView.setShouldDrawBackground(false);
+                emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
             }
-            BlurredFrameLayout blurredFrameLayout2 = ShareAlert.this.timestampFrameLayout;
-            if (blurredFrameLayout2 != null) {
-                blurredFrameLayout2.bringToFront();
+            FrameLayout frameLayout = ShareAlert.this.timestampFrameLayout;
+            if (frameLayout != null) {
+                frameLayout.bringToFront();
             }
             if (ShareAlert.this.frameLayout2 != null) {
                 ShareAlert.this.frameLayout2.bringToFront();
@@ -778,7 +683,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    class AnonymousClass19 implements TextWatcher {
+    class AnonymousClass24 implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
@@ -787,7 +692,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        AnonymousClass19() {
+        AnonymousClass24() {
         }
 
         @Override
@@ -805,15 +710,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$new$14(View view) {
+    public void lambda$new$16(View view) {
         sendInternal(true);
     }
 
-    public boolean lambda$new$15(View view) {
+    public boolean lambda$new$17(View view) {
         return onSendLongClick(this.writeButton);
     }
 
-    public void lambda$new$16(View view) {
+    public void lambda$new$18(View view) {
         this.timestampCheckbox.setChecked(!r3.isChecked(), true);
         updateLinkTextView();
     }
@@ -836,24 +741,24 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             bulletinCreateSimpleBulletin = BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showPremiumBlockedToast$18();
+                    this.f$0.lambda$showPremiumBlockedToast$20();
                 }
             });
         }
         bulletinCreateSimpleBulletin.show();
     }
 
-    public void lambda$showPremiumBlockedToast$18() {
+    public void lambda$showPremiumBlockedToast$20() {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ShareAlert.lambda$showPremiumBlockedToast$17();
+                ShareAlert.lambda$showPremiumBlockedToast$19();
             }
         };
         if (isKeyboardVisible()) {
-            SearchField searchField = this.searchView;
-            if (searchField != null) {
-                AndroidUtilities.hideKeyboard(searchField.searchEditText);
+            FragmentSearchField fragmentSearchField = this.searchView;
+            if (fragmentSearchField != null) {
+                AndroidUtilities.hideKeyboard(fragmentSearchField.editText);
             }
             AndroidUtilities.runOnUIThread(runnable, 300L);
             return;
@@ -861,7 +766,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         runnable.run();
     }
 
-    public static void lambda$showPremiumBlockedToast$17() {
+    public static void lambda$showPremiumBlockedToast$19() {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
@@ -942,18 +847,18 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();
-                final AnonymousClass23 anonymousClass23 = new AnonymousClass23(dialog, atomicReference, view);
+                final AnonymousClass28 anonymousClass28 = new AnonymousClass28(dialog, atomicReference, view);
                 atomicReference.set(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$selectDialog$19(atomicReference, anonymousClass23, dialog);
+                        this.f$0.lambda$selectDialog$21(atomicReference, anonymousClass28, dialog);
                     }
                 });
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
                 int i4 = NotificationCenter.topicsDidLoaded;
-                notificationCenter.addObserver(anonymousClass23, i4);
+                notificationCenter.addObserver(anonymousClass28, i4);
                 if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-dialog.id) != null) {
-                    anonymousClass23.didReceivedNotification(i4, this.currentAccount, Long.valueOf(-dialog.id));
+                    anonymousClass28.didReceivedNotification(i4, this.currentAccount, Long.valueOf(-dialog.id));
                     return;
                 } else {
                     MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-dialog.id);
@@ -980,9 +885,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 }
                 this.listAdapter.notifyDataSetChanged();
                 this.updateSearchAdapter = false;
-                this.searchView.searchEditText.setText("");
+                this.searchView.editText.setText("");
                 checkCurrentList(false);
-                this.searchView.hideKeyboard();
+                AndroidUtilities.hideKeyboard(this.searchView.editText);
             }
         }
         ShareSearchAdapter shareSearchAdapter = this.searchAdapter;
@@ -992,12 +897,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         categoryAdapterRecycler.notifyItemRangeChanged(0, categoryAdapterRecycler.getItemCount());
     }
 
-    class AnonymousClass23 implements NotificationCenter.NotificationCenterDelegate {
+    class AnonymousClass28 implements NotificationCenter.NotificationCenterDelegate {
         final View val$cell;
         final TLRPC.Dialog val$dialog;
         final AtomicReference val$timeoutRef;
 
-        AnonymousClass23(TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+        AnonymousClass28(TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
             this.val$dialog = dialog;
             this.val$timeoutRef = atomicReference;
             this.val$cell = view;
@@ -1070,7 +975,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$selectDialog$19(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
+    public void lambda$selectDialog$21(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
         atomicReference.set(null);
         notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-dialog.id));
     }
@@ -1099,8 +1004,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.searchView.setVisibility(0);
         if (this.searchIsVisible || this.searchWasVisibleBeforeTopics) {
             this.sizeNotifierFrameLayout.adjustPanLayoutHelper.ignoreOnce();
-            this.searchView.searchEditText.requestFocus();
-            AndroidUtilities.showKeyboard(this.searchView.searchEditText);
+            this.searchView.editText.requestFocus();
+            AndroidUtilities.showKeyboard(this.searchView.editText);
         }
         final int[] iArr = new int[2];
         SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder(1000.0f));
@@ -1111,23 +1016,23 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                this.f$0.lambda$collapseTopics$20(view, iArr, dynamicAnimation, f, f2);
+                this.f$0.lambda$collapseTopics$22(view, iArr, dynamicAnimation, f, f2);
             }
         });
         this.topicsAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                this.f$0.lambda$collapseTopics$21(dynamicAnimation, z, f, f2);
+                this.f$0.lambda$collapseTopics$23(dynamicAnimation, z, f, f2);
             }
         });
         this.topicsAnimation.start();
     }
 
-    public void lambda$collapseTopics$20(View view, int[] iArr, DynamicAnimation dynamicAnimation, float f, float f2) {
+    public void lambda$collapseTopics$22(View view, int[] iArr, DynamicAnimation dynamicAnimation, float f, float f2) {
         invalidateTopicsAnimation(view, iArr, f / 1000.0f);
     }
 
-    public void lambda$collapseTopics$21(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public void lambda$collapseTopics$23(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         this.topicsGridView.setVisibility(8);
         this.topicsBackActionBar.setVisibility(8);
         this.shareTopicsAdapter.topics = null;
@@ -1226,7 +1131,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    this.f$0.lambda$onSendLongClick$22(keyEvent);
+                    this.f$0.lambda$onSendLongClick$24(keyEvent);
                 }
             });
             actionBarPopupWindowLayout.setShownFromBottom(false);
@@ -1248,13 +1153,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$onSendLongClick$23(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    this.f$0.lambda$onSendLongClick$25(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$onSendLongClick$24(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    this.f$0.lambda$onSendLongClick$26(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarPopupWindowLayout.setupRadialSelectors(getThemedColor(Theme.key_dialogButtonSelector));
@@ -1284,7 +1189,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarPopupWindowLayout2.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                this.f$0.lambda$onSendLongClick$25(keyEvent);
+                this.f$0.lambda$onSendLongClick$27(keyEvent);
             }
         });
         actionBarPopupWindowLayout2.setShownFromBottom(false);
@@ -1299,7 +1204,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$onSendLongClick$26(view2);
+                this.f$0.lambda$onSendLongClick$28(view2);
             }
         });
         ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getContext(), true, true, this.resourcesProvider);
@@ -1313,7 +1218,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$onSendLongClick$27(view2);
+                this.f$0.lambda$onSendLongClick$29(view2);
             }
         });
         actionBarPopupWindowLayout2.setupRadialSelectors(getThemedColor(Theme.key_dialogButtonSelector));
@@ -1346,33 +1251,33 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         return true;
     }
 
-    public void lambda$onSendLongClick$22(KeyEvent keyEvent) {
+    public void lambda$onSendLongClick$24(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
         }
     }
 
-    public void lambda$onSendLongClick$23(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+    public void lambda$onSendLongClick$25(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
         this.showSendersName = true;
         actionBarMenuSubItem.setChecked(true);
         actionBarMenuSubItem2.setChecked(!this.showSendersName);
     }
 
-    public void lambda$onSendLongClick$24(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+    public void lambda$onSendLongClick$26(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
         this.showSendersName = false;
         actionBarMenuSubItem.setChecked(false);
         actionBarMenuSubItem2.setChecked(!this.showSendersName);
     }
 
-    public void lambda$onSendLongClick$25(KeyEvent keyEvent) {
+    public void lambda$onSendLongClick$27(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
         }
     }
 
-    public void lambda$onSendLongClick$26(View view) {
+    public void lambda$onSendLongClick$28(View view) {
         ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
@@ -1380,7 +1285,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         sendInternal(false);
     }
 
-    public void lambda$onSendLongClick$27(View view) {
+    public void lambda$onSendLongClick$29(View view) {
         ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
@@ -1467,7 +1372,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             AlertsCreator.ensurePaidMessagesMultiConfirmation(this.currentAccount, arrayList, i, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$sendInternal$28(charSequenceArr, entities, z, i5, (HashMap) obj);
+                    this.f$0.lambda$sendInternal$30(charSequenceArr, entities, z, i5, (HashMap) obj);
                 }
             });
         }
@@ -1475,12 +1380,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         AlertsCreator.ensurePaidMessagesMultiConfirmation(this.currentAccount, arrayList, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$sendInternal$28(charSequenceArr, entities, z, i5, (HashMap) obj);
+                this.f$0.lambda$sendInternal$30(charSequenceArr, entities, z, i5, (HashMap) obj);
             }
         });
     }
 
-    public void lambda$sendInternal$28(CharSequence[] charSequenceArr, ArrayList arrayList, boolean z, int i, HashMap map) {
+    public void lambda$sendInternal$30(CharSequence[] charSequenceArr, ArrayList arrayList, boolean z, int i, HashMap map) {
         boolean z2;
         long j;
         char c;
@@ -1687,7 +1592,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     @Override
-    public void onBackPressed() {
+    public void lambda$openCrafting$8() {
         if (this.selectedTopicDialog != null) {
             collapseTopics();
             return;
@@ -1696,7 +1601,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         if (editTextEmoji != null && editTextEmoji.isPopupShowing()) {
             this.commentTextView.hidePopup(true);
         } else {
-            super.onBackPressed();
+            super.lambda$openCrafting$8();
         }
     }
 
@@ -1845,7 +1750,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ((LaunchActivity) this.parentActivity).showBulletin(new Function() {
                     @Override
                     public final Object apply(Object obj) {
-                        return ShareAlert.lambda$copyLink$29(z, (BulletinFactory) obj);
+                        return ShareAlert.lambda$copyLink$31(z, (BulletinFactory) obj);
                     }
                 });
             }
@@ -1854,7 +1759,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public static Bulletin lambda$copyLink$29(boolean z, BulletinFactory bulletinFactory) {
+    public static Bulletin lambda$copyLink$31(boolean z, BulletinFactory bulletinFactory) {
         return bulletinFactory.createCopyLinkBulletin(z);
     }
 
@@ -1873,20 +1778,20 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.commentTextView.hidePopup(true);
         if (z) {
             this.frameLayout2.setVisibility(0);
-            BlurredFrameLayout blurredFrameLayout = this.timestampFrameLayout;
-            if (blurredFrameLayout != null && this.pickerBottom == null) {
-                blurredFrameLayout.setVisibility(0);
+            FrameLayout frameLayout = this.timestampFrameLayout;
+            if (frameLayout != null && this.pickerBottom == null) {
+                frameLayout.setVisibility(0);
             }
             this.writeButtonContainer.setVisibility(0);
         } else {
-            FrameLayout frameLayout = this.pickerBottom;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
+            FrameLayout frameLayout2 = this.pickerBottom;
+            if (frameLayout2 != null) {
+                frameLayout2.setVisibility(0);
             }
         }
-        FrameLayout frameLayout2 = this.pickerBottom;
-        if (frameLayout2 != null) {
-            ViewCompat.setImportantForAccessibility(frameLayout2, z ? 4 : 1);
+        FrameLayout frameLayout3 = this.pickerBottom;
+        if (frameLayout3 != null) {
+            ViewCompat.setImportantForAccessibility(frameLayout3, z ? 4 : 1);
         }
         LinearLayout linearLayout = this.sharesCountLayout;
         if (linearLayout != null) {
@@ -1894,28 +1799,28 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
         this.animatorSet = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
-        BlurredFrameLayout blurredFrameLayout2 = this.frameLayout2;
+        FrameLayout frameLayout4 = this.frameLayout2;
         Property property = View.ALPHA;
         float fDp = 0.0f;
-        arrayList.add(ObjectAnimator.ofFloat(blurredFrameLayout2, (Property<BlurredFrameLayout, Float>) property, z ? 1.0f : 0.0f));
-        BlurredFrameLayout blurredFrameLayout3 = this.timestampFrameLayout;
-        if (blurredFrameLayout3 != null && this.pickerBottom == null) {
-            arrayList.add(ObjectAnimator.ofFloat(blurredFrameLayout3, (Property<BlurredFrameLayout, Float>) property, z ? 1.0f : 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(frameLayout4, (Property<FrameLayout, Float>) property, z ? 1.0f : 0.0f));
+        FrameLayout frameLayout5 = this.timestampFrameLayout;
+        if (frameLayout5 != null && this.pickerBottom == null) {
+            arrayList.add(ObjectAnimator.ofFloat(frameLayout5, (Property<FrameLayout, Float>) property, z ? 1.0f : 0.0f));
         }
         arrayList.add(ObjectAnimator.ofFloat(this.writeButtonContainer, (Property<FrameLayout, Float>) View.SCALE_X, z ? 1.0f : 0.2f));
         arrayList.add(ObjectAnimator.ofFloat(this.writeButtonContainer, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 1.0f : 0.2f));
         arrayList.add(ObjectAnimator.ofFloat(this.writeButtonContainer, (Property<FrameLayout, Float>) property, z ? 1.0f : 0.0f));
-        FrameLayout frameLayout3 = this.pickerBottom;
-        if (frameLayout3 == null || frameLayout3.getVisibility() != 0) {
+        FrameLayout frameLayout6 = this.pickerBottom;
+        if (frameLayout6 == null || frameLayout6.getVisibility() != 0) {
             arrayList.add(ObjectAnimator.ofFloat(this.shadow[1], (Property<View, Float>) property, z ? 1.0f : 0.0f));
         }
-        BlurredFrameLayout blurredFrameLayout4 = this.pickerBottomLayout;
-        if (blurredFrameLayout4 != null) {
+        FrameLayout frameLayout7 = this.pickerBottomLayout;
+        if (frameLayout7 != null) {
             Property property2 = View.TRANSLATION_Y;
             if (this.darkTheme && z) {
                 fDp = AndroidUtilities.dp(this.timestampLayout != null ? 5.0f : 16.0f);
             }
-            arrayList.add(ObjectAnimator.ofFloat(blurredFrameLayout4, (Property<BlurredFrameLayout, Float>) property2, fDp));
+            arrayList.add(ObjectAnimator.ofFloat(frameLayout7, (Property<FrameLayout, Float>) property2, fDp));
         }
         this.animatorSet.playTogether(arrayList);
         this.animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -2716,7 +2621,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public void checkCurrentList(boolean z) {
         boolean z2 = true;
-        if (!TextUtils.isEmpty(this.searchView.searchEditText.getText()) || ((this.keyboardVisible && this.searchView.searchEditText.hasFocus()) || this.searchWasVisibleBeforeTopics)) {
+        if (!TextUtils.isEmpty(this.searchView.editText.getText()) || ((this.keyboardVisible && this.searchView.editText.hasFocus()) || this.searchWasVisibleBeforeTopics)) {
             this.updateSearchAdapter = true;
             if (this.selectedTopicDialog == null) {
                 AndroidUtilities.updateViewVisibilityAnimated(this.gridView, false, 0.98f, true);
@@ -2739,7 +2644,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 } else {
                     ((LinearLayoutManager) this.searchGridView.getLayoutManager()).scrollToPositionWithOffset(0, this.lastOffset - this.searchGridView.getPaddingTop());
                 }
-                this.searchAdapter.searchDialogs(this.searchView.searchEditText.getText().toString());
+                this.searchAdapter.searchDialogs(this.searchView.editText.getText().toString());
                 return;
             }
             if (this.lastOffset == Integer.MAX_VALUE) {
@@ -2795,28 +2700,22 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         EditTextEmoji editTextEmoji = this.commentTextView;
         float fDp = 0.0f;
         if (editTextEmoji != null && editTextEmoji.isPopupVisible()) {
-            float emojiPaddingShown = this.commentTextView.getEmojiPaddingShown();
-            this.keyboardT = emojiPaddingShown;
-            this.navigationBar.setAlpha(1.0f - emojiPaddingShown);
+            this.keyboardT = this.commentTextView.getEmojiPaddingShown();
         } else {
             SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
             if (sizeNotifierFrameLayout != null && (adjustPanLayoutHelper = sizeNotifierFrameLayout.adjustPanLayoutHelper) != null && !adjustPanLayoutHelper.animationInProgress()) {
                 this.keyboardT = this.keyboardSize2 > AndroidUtilities.dp(20.0f) ? 1.0f : 0.0f;
-                this.navigationBar.setAlpha(1.0f);
-            } else {
-                this.navigationBar.setAlpha(1.0f - this.keyboardT);
             }
         }
-        this.navigationBar.setTranslationY(this.navigationBarHeight);
-        BlurredFrameLayout blurredFrameLayout = this.timestampFrameLayout;
-        if (blurredFrameLayout != null) {
-            blurredFrameLayout.setTranslationY(-0.0f);
+        FrameLayout frameLayout = this.timestampFrameLayout;
+        if (frameLayout != null) {
+            frameLayout.setTranslationY(-0.0f);
             fDp = 0.0f + AndroidUtilities.dp(48.0f);
         }
-        FrameLayout frameLayout = this.pickerBottom;
-        if (frameLayout != null) {
+        FrameLayout frameLayout2 = this.pickerBottom;
+        if (frameLayout2 != null) {
             float f = -fDp;
-            frameLayout.setTranslationY(f);
+            frameLayout2.setTranslationY(f);
             LinearLayout linearLayout = this.sharesCountLayout;
             if (linearLayout != null) {
                 linearLayout.setTranslationY(f);
@@ -2845,7 +2744,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             this.listAdapter.notifyDataSetChanged();
             this.updateSearchAdapter = false;
-            this.searchView.searchEditText.setText("");
+            this.searchView.editText.setText("");
             checkCurrentList(false);
         }
         for (int i = 0; i < getMainGridView().getChildCount(); i++) {
@@ -2859,5 +2758,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         }
         collapseTopics();
+    }
+
+    public void blur3_InvalidateBlur() {
+        if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
+            return;
+        }
+        this.iBlur3PositionMainTabs.set(0.0f, 0.0f, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+        this.iBlur3PositionMainTabs.inset(0.0f, LiteMode.isEnabled(262144) ? 0.0f : -AndroidUtilities.dp(48.0f));
+        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, 1);
+        this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
     }
 }

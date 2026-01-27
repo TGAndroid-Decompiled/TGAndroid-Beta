@@ -101,6 +101,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private static Map monthsToEmoticon;
     private int TAG;
     private SpannableStringBuilder accessibilityText;
+    private boolean actionPressed;
     private int adaptiveEmojiColor;
     private ColorFilter adaptiveEmojiColorFilter;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
@@ -186,6 +187,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private ArrayList lineWidths;
     private LoadingDrawable loadingDrawable;
     private boolean offerExpired;
+    private View.OnClickListener onActionClick;
     private int overriddenMaxWidth;
     private int overrideBackground;
     private Paint overrideBackgroundPaint;
@@ -843,6 +845,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return false;
     }
 
+    public void setOnActionClickListener(View.OnClickListener onClickListener) {
+        this.onActionClick = onClickListener;
+    }
+
     private boolean isGiftCode() {
         MessageObject messageObject = this.currentMessageObject;
         return messageObject != null && (messageObject.messageOwner.action instanceof TLRPC.TL_messageActionGiftCode);
@@ -1388,6 +1394,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private void createGiftPremiumLayouts(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, boolean z, CharSequence charSequence5, int i, CharSequence charSequence6, int i2, boolean z2, boolean z3) {
         ?? r6;
         int i3;
+        boolean z4;
         int iCutInFancyHalf;
         int i4;
         CharSequence charSequenceReplaceEmoji = charSequence4;
@@ -1472,11 +1479,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (charSequence5 != null) {
             SpannableStringBuilder spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(charSequence5);
             spannableStringBuilderValueOf2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), i3, spannableStringBuilderValueOf2.length(), 33);
-            StaticLayout staticLayout = new StaticLayout(spannableStringBuilderValueOf2, (TextPaint) getThemedPaint("paintChatActionText"), iDp, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            int i5 = iDp;
+            z4 = false;
+            StaticLayout staticLayout = new StaticLayout(spannableStringBuilderValueOf2, (TextPaint) getThemedPaint("paintChatActionText"), i5, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             this.giftPremiumButtonLayout = staticLayout;
             this.buttonClickableAsImage = z2 && !this.giftPremiumTextCollapsed;
             this.giftPremiumButtonWidth = measureLayoutWidth(staticLayout);
         } else {
+            z4 = false;
             this.giftPremiumButtonLayout = r6;
             this.buttonClickableAsImage = false;
             this.giftPremiumButtonWidth = 0.0f;
@@ -1488,7 +1498,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             if (this.giftRibbonPath == null) {
                 Path path = new Path();
                 this.giftRibbonPath = path;
-                GiftSheet.RibbonDrawable.fillRibbonPath(path, 1.35f);
+                GiftSheet.RibbonDrawable.fillRibbonPath(path, 1.35f, z4);
             }
             Text text2 = new Text(charSequence6, i, AndroidUtilities.bold());
             this.giftRibbonText = text2;

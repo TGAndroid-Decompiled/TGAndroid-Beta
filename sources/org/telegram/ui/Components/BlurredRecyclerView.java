@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
@@ -39,12 +40,16 @@ public class BlurredRecyclerView extends RecyclerListView {
             return;
         }
         if (SharedConfig.chatBlurEnabled()) {
-            this.blurTopPadding = AndroidUtilities.dp(203.0f);
+            this.blurTopPadding = measureBlurTopPadding();
             ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
         } else {
             this.blurTopPadding = 0;
             ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
         }
+    }
+
+    protected int measureBlurTopPadding() {
+        return AndroidUtilities.dp(203.0f);
     }
 
     @Override
@@ -57,9 +62,8 @@ public class BlurredRecyclerView extends RecyclerListView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        int i = this.blurTopPadding;
-        if (i != 0) {
-            canvas.clipRect(0, i, getMeasuredWidth(), getMeasuredHeight() + this.additionalClipBottom);
+        if (this.blurTopPadding != 0 && !hasActiveEdgeEffects()) {
+            canvas.clipRect(0, this.blurTopPadding, getMeasuredWidth(), getMeasuredHeight() + this.additionalClipBottom);
             super.dispatchDraw(canvas);
         } else {
             super.dispatchDraw(canvas);
@@ -67,8 +71,15 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
+    public void capture(Canvas canvas, RectF rectF) {
+        this.alwaysDrawChild = true;
+        super.capture(canvas, rectF);
+        this.alwaysDrawChild = false;
+    }
+
+    @Override
     public boolean drawChild(Canvas canvas, View view, long j) {
-        if (view.getY() + view.getMeasuredHeight() >= this.blurTopPadding || this.alwaysDrawChild) {
+        if (view.getY() + view.getMeasuredHeight() >= this.blurTopPadding || this.alwaysDrawChild || hasActiveEdgeEffects()) {
             return super.drawChild(canvas, view, j);
         }
         return true;

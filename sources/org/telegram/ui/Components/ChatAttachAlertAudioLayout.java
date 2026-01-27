@@ -24,6 +24,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -41,9 +42,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 
 public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private ArrayList audioEntries;
@@ -55,7 +58,6 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     private TextView emptyTitleTextView;
     private LinearLayout emptyView;
     private FrameLayout frameLayout;
-    private boolean ignoreLayout;
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
@@ -170,8 +172,13 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.listView = recyclerListView;
-        recyclerListView.setClipToPadding(false);
+        ViewGroup containerView = chatAttachAlert.getContainerView();
         RecyclerListView recyclerListView2 = this.listView;
+        Objects.requireNonNull(recyclerListView2);
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.occupyNavigationBar = true;
+        this.listView.setClipToPadding(false);
+        RecyclerListView recyclerListView3 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.dp(9.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i2) {
@@ -191,14 +198,14 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
+        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        RecyclerListView recyclerListView3 = this.listView;
+        RecyclerListView recyclerListView4 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.listAdapter = listAdapter;
-        recyclerListView3.setAdapter(listAdapter);
+        recyclerListView4.setAdapter(listAdapter);
         this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -350,7 +357,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
+    public void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onPreMeasure(int, int):void");
     }
 
@@ -364,14 +371,6 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     public void onHidden() {
         this.selectedAudios.clear();
         this.selectedAudiosOrder.clear();
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
     }
 
     private void runShadowAnimation(final boolean z) {

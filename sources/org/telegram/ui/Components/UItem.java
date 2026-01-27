@@ -88,8 +88,15 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asCustom(View view, int i) {
-        UItem uItem = new UItem(-1, false);
+    public static UItem asCustomShadow(View view) {
+        UItem uItem = new UItem(-4, false);
+        uItem.view = view;
+        uItem.intValue = -1;
+        return uItem;
+    }
+
+    public static UItem asCustomShadow(View view, int i) {
+        UItem uItem = new UItem(-4, false);
         uItem.view = view;
         uItem.intValue = i;
         return uItem;
@@ -102,14 +109,26 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static UItem asFullscreenCustom(View view, int i) {
+        return asFullscreenCustom(view, i, false);
+    }
+
+    public static UItem asFullscreenCustom(View view, int i, boolean z) {
         UItem uItem = new UItem(-3, false);
         uItem.view = view;
         uItem.intValue = i;
+        uItem.flags = z ? 1 : 0;
         return uItem;
     }
 
     public static UItem asHeader(CharSequence charSequence) {
         UItem uItem = new UItem(0, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asHeader(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(0, false);
+        uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }

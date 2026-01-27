@@ -46,19 +46,16 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.isJoinRequest = chat.join_request;
         boolean z = true;
         setOrientation(1);
-        HeaderCell headerCell = new HeaderCell(context, 23);
+        HeaderCell headerCell = new HeaderCell(context, 20);
         this.joinHeaderCell = headerCell;
         headerCell.setText(LocaleController.getString(R.string.ChannelSettingsJoinTitle));
         this.joinHeaderCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         addView(this.joinHeaderCell);
-        TextCheckCell textCheckCell = new TextCheckCell(context) {
-        };
+        TextCheckCell textCheckCell = new TextCheckCell(context, 20);
         this.joinToSendCell = textCheckCell;
-        textCheckCell.setBackground(Theme.getSelectorDrawable(true));
-        TextCheckCell textCheckCell2 = this.joinToSendCell;
         String string = LocaleController.getString(R.string.ChannelSettingsJoinToSend);
         boolean z2 = this.isJoinToSend;
-        textCheckCell2.setTextAndCheck(string, z2, z2);
+        textCheckCell.setTextAndCheck(string, z2, z2);
         this.joinToSendCell.setEnabled(chat.creator || ((tL_chatAdminRights2 = chat.admin_rights) != null && tL_chatAdminRights2.ban_users));
         this.joinToSendCell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,17 +64,15 @@ public class JoinToSendSettingsView extends LinearLayout {
             }
         });
         addView(this.joinToSendCell);
-        TextCheckCell textCheckCell3 = new TextCheckCell(context) {
-        };
-        this.joinRequestCell = textCheckCell3;
-        textCheckCell3.setBackground(Theme.getSelectorDrawable(true));
-        this.joinRequestCell.setTextAndCheck(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.isJoinRequest, false);
+        TextCheckCell textCheckCell2 = new TextCheckCell(context, 20);
+        this.joinRequestCell = textCheckCell2;
+        textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.isJoinRequest, false);
         this.joinRequestCell.setPivotY(0.0f);
-        TextCheckCell textCheckCell4 = this.joinRequestCell;
+        TextCheckCell textCheckCell3 = this.joinRequestCell;
         if (!chat.creator && ((tL_chatAdminRights = chat.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
             z = false;
         }
-        textCheckCell4.setEnabled(z);
+        textCheckCell3.setEnabled(z);
         this.joinRequestCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -85,11 +80,11 @@ public class JoinToSendSettingsView extends LinearLayout {
             }
         });
         addView(this.joinRequestCell);
-        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
+        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12);
         this.joinToSendInfoCell = textInfoPrivacyCell;
         textInfoPrivacyCell.setText(LocaleController.getString(R.string.ChannelSettingsJoinToSendInfo));
         addView(this.joinToSendInfoCell);
-        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
+        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 12);
         this.joinRequestInfoCell = textInfoPrivacyCell2;
         textInfoPrivacyCell2.setText(LocaleController.getString(R.string.ChannelSettingsJoinRequestInfo));
         addView(this.joinRequestInfoCell);
@@ -148,6 +143,10 @@ public class JoinToSendSettingsView extends LinearLayout {
                 this.f$0.lambda$new$3(z);
             }
         });
+    }
+
+    public float getBottomInfoMargin() {
+        return (this.joinToSendInfoCell.getAlpha() * this.joinToSendInfoCell.getHeight()) + (this.joinRequestInfoCell.getAlpha() * this.joinRequestInfoCell.getHeight());
     }
 
     public void setChat(TLRPC.Chat chat) {

@@ -30,19 +30,19 @@ public class HeaderCell extends FrameLayout {
     private SimpleTextView textView2;
 
     public HeaderCell(Context context) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 20, 6, false, null);
     }
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 20, 6, false, resourcesProvider);
     }
 
     public HeaderCell(Context context, int i) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 15, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 6, false, null);
     }
 
     public HeaderCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 15, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 6, false, resourcesProvider);
     }
 
     public HeaderCell(Context context, int i, int i2, int i3, boolean z) {

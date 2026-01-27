@@ -698,13 +698,13 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     @Override
-    public void onBackPressed() {
+    public void lambda$openCrafting$8() {
         if (this.messageEdit.editTextEmoji.getEmojiPadding() > 0) {
             this.messageEdit.editTextEmoji.hidePopup(true);
         } else if (this.messageEdit.editTextEmoji.isKeyboardVisible()) {
             this.messageEdit.editTextEmoji.closeKeyboard();
         } else {
-            super.onBackPressed();
+            super.lambda$openCrafting$8();
         }
     }
 }

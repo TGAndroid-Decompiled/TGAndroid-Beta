@@ -220,7 +220,7 @@ public abstract class TranslateButton extends FrameLayout {
             }
         });
         if (UserConfig.getInstance(this.currentAccount).isPremium() && strLanguageName != null) {
-            ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
+            ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), false, false, this.resourcesProvider);
             if (this.accusative[0]) {
                 string = LocaleController.formatString(R.string.DoNotTranslateLanguage, strLanguageName);
             } else {
@@ -236,7 +236,7 @@ public abstract class TranslateButton extends FrameLayout {
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
         }
-        ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
+        ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getContext(), false, false, this.resourcesProvider);
         actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString(R.string.Hide), R.drawable.msg_cancel);
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override

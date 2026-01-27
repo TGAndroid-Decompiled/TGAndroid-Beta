@@ -283,7 +283,10 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
         }, null);
         this.listView = universalRecyclerView;
-        frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
+        universalRecyclerView.setSections();
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView);
         setValue();
         this.fragmentView = frameLayout;
         return frameLayout;

@@ -53,6 +53,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AttachableDrawable;
@@ -118,6 +119,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private TextView messageTextView;
     private boolean messageTextViewClickable;
     private boolean needStarsBalance;
+    private OnButtonClickListener negative2ButtonListener;
+    private CharSequence negative2ButtonText;
     private OnButtonClickListener negativeButtonListener;
     private CharSequence negativeButtonText;
     private OnButtonClickListener neutralButtonListener;
@@ -515,6 +518,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
     protected View inflateContent(boolean z) throws NoSuchFieldException, SecurityException {
         int iDp;
+        float f;
         AlertDialogView alertDialogView = new AlertDialogView(getContext());
         this.containerView = alertDialogView;
         alertDialogView.setOrientation(1);
@@ -534,6 +538,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.containerView.setBackground(null);
             this.containerView.setPadding(0, 0, 0, 0);
             this.containerView.setBackground(this.shadowDrawable);
+            this.containerView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f)));
+            this.containerView.setClipToOutline(true);
             this.drawBackground = false;
         }
         View view = this.containerView;
@@ -578,7 +584,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 setContentView(view);
             }
         }
-        boolean z2 = (this.positiveButtonText == null && this.negativeButtonText == null && this.neutralButtonText == null) ? false : true;
+        boolean z2 = (this.positiveButtonText == null && this.negativeButtonText == null && this.negative2ButtonText == null && this.neutralButtonText == null) ? false : true;
         if (this.topResId != 0 || this.topAnimationId != 0 || this.topDrawable != null) {
             RLottieImageView rLottieImageView = new RLottieImageView(getContext());
             this.topImageView = rLottieImageView;
@@ -844,12 +850,19 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     CharSequence charSequence3 = this.negativeButtonText;
                     iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence3, 0, charSequence3.length()) + AndroidUtilities.dp(24.0f));
                 }
+                if (this.negative2ButtonText != null) {
+                    if (iMeasureText > 0) {
+                        iMeasureText += AndroidUtilities.dp(8.0f);
+                    }
+                    CharSequence charSequence4 = this.negative2ButtonText;
+                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence4, 0, charSequence4.length()) + AndroidUtilities.dp(24.0f));
+                }
                 if (this.neutralButtonText != null) {
                     if (iMeasureText > 0) {
                         iMeasureText += AndroidUtilities.dp(8.0f);
                     }
-                    CharSequence charSequence4 = this.neutralButtonText;
-                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence4, 0, charSequence4.length()) + AndroidUtilities.dp(24.0f));
+                    CharSequence charSequence5 = this.neutralButtonText;
+                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence5, 0, charSequence5.length()) + AndroidUtilities.dp(24.0f));
                 }
                 if (iMeasureText > AndroidUtilities.displaySize.x - AndroidUtilities.dp(64.0f)) {
                     this.verticalButtons = true;
@@ -879,7 +892,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                                         childAt.layout((i10 - getPaddingRight()) - childAt.getMeasuredWidth(), getPaddingTop(), i10 - getPaddingRight(), getPaddingTop() + childAt.getMeasuredHeight());
                                     }
                                     view6 = childAt;
-                                } else if (num.intValue() == -2) {
+                                } else if (num.intValue() == -2 || num.intValue() == -4) {
                                     if (LocaleController.isRTL) {
                                         int paddingLeft = getPaddingLeft();
                                         if (view6 != null) {
@@ -929,14 +942,24 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                         }
                         if (measuredWidth2 > measuredWidth) {
                             View viewFindViewWithTag = findViewWithTag(-2);
-                            View viewFindViewWithTag2 = findViewWithTag(-3);
-                            if (viewFindViewWithTag == null || viewFindViewWithTag2 == null) {
+                            View viewFindViewWithTag2 = findViewWithTag(-4);
+                            View viewFindViewWithTag3 = findViewWithTag(-3);
+                            if (viewFindViewWithTag != null && viewFindViewWithTag3 != null) {
+                                if (viewFindViewWithTag.getMeasuredWidth() < viewFindViewWithTag3.getMeasuredWidth()) {
+                                    viewFindViewWithTag3.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredHeight(), 1073741824));
+                                    return;
+                                } else {
+                                    viewFindViewWithTag.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredHeight(), 1073741824));
+                                    return;
+                                }
+                            }
+                            if (viewFindViewWithTag2 == null || viewFindViewWithTag3 == null) {
                                 return;
                             }
-                            if (viewFindViewWithTag.getMeasuredWidth() < viewFindViewWithTag2.getMeasuredWidth()) {
-                                viewFindViewWithTag2.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredHeight(), 1073741824));
+                            if (viewFindViewWithTag2.getMeasuredWidth() < viewFindViewWithTag3.getMeasuredWidth()) {
+                                viewFindViewWithTag3.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredHeight(), 1073741824));
                             } else {
-                                viewFindViewWithTag.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredHeight(), 1073741824));
+                                viewFindViewWithTag2.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredHeight(), 1073741824));
                             }
                         }
                     }
@@ -945,12 +968,14 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             if (this.bottomView != null) {
                 this.buttonsLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
                 this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(6.0f));
+                f = 8.0f;
             } else {
+                f = 8.0f;
                 this.buttonsLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             }
             this.containerView.addView(this.buttonsLayout, LayoutHelper.createLinear(-1, 52));
             if (this.topAnimationIsNew) {
-                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(8.0f));
+                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(f));
             }
             if (this.positiveButtonText != null) {
                 final TextViewWithLoading textViewWithLoading = new TextViewWithLoading(getContext()) {
@@ -963,7 +988,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     @Override
                     public void setTextColor(int i6) {
                         super.setTextColor(i6);
-                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
+                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i6));
                     }
                 };
                 textViewWithLoading.setMinWidth(AndroidUtilities.dp(64.0f));
@@ -973,12 +998,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading.setGravity(17);
                 textViewWithLoading.setTypeface(AndroidUtilities.bold());
                 textViewWithLoading.setText(this.positiveButtonText);
-                textViewWithLoading.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createLinear(-1, 36, 7));
+                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createLinear(-1, 40, 7));
                 } else {
-                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createFrame(-2, 36, 53));
+                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createFrame(-2, 40, 53));
                 }
                 textViewWithLoading.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -998,7 +1023,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     @Override
                     public void setTextColor(int i6) {
                         super.setTextColor(i6);
-                        setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
+                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i6));
                     }
                 };
                 textViewWithLoading2.setMinWidth(AndroidUtilities.dp(64.0f));
@@ -1010,12 +1035,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading2.setEllipsize(TextUtils.TruncateAt.END);
                 textViewWithLoading2.setSingleLine(true);
                 textViewWithLoading2.setText(this.negativeButtonText.toString());
-                textViewWithLoading2.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading2.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading2, 0, LayoutHelper.createLinear(-1, 36, 7));
+                    this.buttonsLayout.addView(textViewWithLoading2, 0, LayoutHelper.createLinear(-1, 40, 7));
                 } else {
-                    this.buttonsLayout.addView(textViewWithLoading2, LayoutHelper.createFrame(-2, 36, 53));
+                    this.buttonsLayout.addView(textViewWithLoading2, LayoutHelper.createFrame(-2, 40, 53));
                 }
                 textViewWithLoading2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1035,7 +1060,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     @Override
                     public void setTextColor(int i6) {
                         super.setTextColor(i6);
-                        setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
+                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i6));
                     }
                 };
                 textViewWithLoading3.setMinWidth(AndroidUtilities.dp(64.0f));
@@ -1047,17 +1072,54 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading3.setEllipsize(TextUtils.TruncateAt.END);
                 textViewWithLoading3.setSingleLine(true);
                 textViewWithLoading3.setText(this.neutralButtonText.toString());
-                textViewWithLoading3.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading3.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading3, 1, LayoutHelper.createLinear(-1, 36, 7));
+                    this.buttonsLayout.addView(textViewWithLoading3, 1, LayoutHelper.createLinear(-1, 40, 7));
                 } else {
-                    this.buttonsLayout.addView(textViewWithLoading3, LayoutHelper.createFrame(-2, 36, 51));
+                    this.buttonsLayout.addView(textViewWithLoading3, LayoutHelper.createFrame(-2, 40, 51));
                 }
                 textViewWithLoading3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view6) {
                         this.f$0.lambda$inflateContent$6(textViewWithLoading3, view6);
+                    }
+                });
+            }
+            if (this.negative2ButtonText != null) {
+                final TextViewWithLoading textViewWithLoading4 = new TextViewWithLoading(getContext()) {
+                    @Override
+                    public void setEnabled(boolean z4) {
+                        super.setEnabled(z4);
+                        setAlpha(z4 ? 1.0f : 0.5f);
+                    }
+
+                    @Override
+                    public void setTextColor(int i6) {
+                        super.setTextColor(i6);
+                        setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
+                    }
+                };
+                textViewWithLoading4.setMinWidth(AndroidUtilities.dp(64.0f));
+                textViewWithLoading4.setTag(-4);
+                textViewWithLoading4.setTextSize(1, 16.0f);
+                textViewWithLoading4.setTextColor(getThemedColor(this.dialogButtonColorKey));
+                textViewWithLoading4.setGravity(17);
+                textViewWithLoading4.setTypeface(AndroidUtilities.bold());
+                textViewWithLoading4.setEllipsize(TextUtils.TruncateAt.END);
+                textViewWithLoading4.setSingleLine(true);
+                textViewWithLoading4.setText(this.negative2ButtonText.toString());
+                textViewWithLoading4.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading4.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                if (this.verticalButtons) {
+                    this.buttonsLayout.addView(textViewWithLoading4, 0, LayoutHelper.createLinear(-1, 36, 7));
+                } else {
+                    this.buttonsLayout.addView(textViewWithLoading4, LayoutHelper.createFrame(-2, 36, 53));
+                }
+                textViewWithLoading4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view6) {
+                        this.f$0.lambda$inflateContent$7(textViewWithLoading4, view6);
                     }
                 });
             }
@@ -1127,7 +1189,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$inflateContent$7((Bitmap) obj);
+                        this.f$0.lambda$inflateContent$8((Bitmap) obj);
                     }
                 }, 8.0f);
             }
@@ -1191,7 +1253,20 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$inflateContent$7(Bitmap bitmap) {
+    public void lambda$inflateContent$7(TextViewWithLoading textViewWithLoading, View view) {
+        if (textViewWithLoading.isLoading()) {
+            return;
+        }
+        OnButtonClickListener onButtonClickListener = this.negative2ButtonListener;
+        if (onButtonClickListener != null) {
+            onButtonClickListener.onClick(this, -2);
+        }
+        if (this.dismissDialogByButtons) {
+            cancel();
+        }
+    }
+
+    public void lambda$inflateContent$8(Bitmap bitmap) {
         if (bitmap == null) {
             return;
         }
@@ -1226,23 +1301,23 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return new Browser.Progress(new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.lambda$makeButtonLoading$8(button);
+                AlertDialog.lambda$makeButtonLoading$9(button);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$makeButtonLoading$9(button, z);
+                this.f$0.lambda$makeButtonLoading$10(button, z);
             }
         });
     }
 
-    public static void lambda$makeButtonLoading$8(View view) {
+    public static void lambda$makeButtonLoading$9(View view) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(true, true);
         }
     }
 
-    public void lambda$makeButtonLoading$9(View view, boolean z) {
+    public void lambda$makeButtonLoading$10(View view, boolean z) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(false, true);
         }
@@ -1330,13 +1405,13 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             builder.setNegativeButton(LocaleController.getString(R.string.Stop), new OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$showCancelAlert$10(alertDialog, i);
+                    this.f$0.lambda$showCancelAlert$11(alertDialog, i);
                 }
             });
             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$showCancelAlert$11(dialogInterface);
+                    this.f$0.lambda$showCancelAlert$12(dialogInterface);
                 }
             });
             try {
@@ -1346,7 +1421,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$showCancelAlert$10(AlertDialog alertDialog, int i) {
+    public void lambda$showCancelAlert$11(AlertDialog alertDialog, int i) {
         DialogInterface.OnCancelListener onCancelListener = this.onCancelListener;
         if (onCancelListener != null) {
             onCancelListener.onCancel(this);
@@ -1354,7 +1429,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         dismiss();
     }
 
-    public void lambda$showCancelAlert$11(DialogInterface dialogInterface) {
+    public void lambda$showCancelAlert$12(DialogInterface dialogInterface) {
         this.cancelDialog = null;
     }
 
@@ -1719,6 +1794,27 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         public Builder setMessage(CharSequence charSequence) {
             this.alertDialog.message = charSequence;
+            return this;
+        }
+
+        public Builder setButton(int i, CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
+            if (i == -4) {
+                this.alertDialog.negative2ButtonText = charSequence;
+                this.alertDialog.negative2ButtonListener = onButtonClickListener;
+                return this;
+            }
+            if (i == -3) {
+                setNeutralButton(charSequence, onButtonClickListener);
+                return this;
+            }
+            if (i == -2) {
+                setNegativeButton(charSequence, onButtonClickListener);
+                return this;
+            }
+            if (i != -1) {
+                return this;
+            }
+            setPositiveButton(charSequence, onButtonClickListener);
             return this;
         }
 

@@ -41,6 +41,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     private final Drawable headerShadowDrawable;
     protected int headerTotalHeight;
     protected boolean ignoreTouchActionBar;
+    private float lastTop;
     protected LinearLayoutManager layoutManager;
     public NestedSizeNotifierLayout nestedSizeNotifierLayout;
     protected RecyclerListView recyclerListView;
@@ -82,6 +83,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     protected void onPreMeasure(int i, int i2) {
+    }
+
+    public void onSheetTop(float f) {
     }
 
     public void onViewCreated(FrameLayout frameLayout) {
@@ -518,6 +522,11 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
     public void preDrawInternal(android.graphics.Canvas r13, android.view.View r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.preDrawInternal(android.graphics.Canvas, android.view.View):void");
+    }
+
+    @Override
+    protected void onContainerViewTranslation() {
+        onSheetTop(this.lastTop);
     }
 
     @Override

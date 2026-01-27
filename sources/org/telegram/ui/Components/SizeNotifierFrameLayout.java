@@ -1041,6 +1041,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         drawBlurRect(canvas, f, rect, paint, z, Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow, getResourceProvider())));
     }
 
+    public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z, float f2) {
+        drawBlurRect(canvas, f, rect, paint, z, AndroidUtilities.lerp(255, Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow, getResourceProvider())), f2));
+    }
+
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z, int i) {
         float f2;
         if (!SharedConfig.chatBlurEnabled()) {

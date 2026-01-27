@@ -2,7 +2,6 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -61,7 +60,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     private boolean searchWas;
     private boolean searching;
     private ArrayList sortedLanguages;
-    private int translateSettingsBackgroundHeight;
     private ArrayList unofficialLanguages;
     private int settingsFromPosition = -1;
     private int settingsToPosition = -1;
@@ -149,21 +147,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         this.emptyView.showTextView();
         this.emptyView.setShowAtCenter(true);
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        RecyclerListView recyclerListView = new RecyclerListView(context) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (getAdapter() == LanguageSelectActivity.this.listAdapter && getItemAnimator() != null && getItemAnimator().isRunning()) {
-                    int color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
-                    drawItemBackground(canvas, 0, LanguageSelectActivity.this.translateSettingsBackgroundHeight, color);
-                    if (LanguageSelectActivity.this.settingsFromPosition != -1 && LanguageSelectActivity.this.settingsToPosition != -1) {
-                        drawSectionBackground(canvas, LanguageSelectActivity.this.settingsFromPosition, LanguageSelectActivity.this.settingsToPosition, color);
-                    }
-                }
-                super.dispatchDraw(canvas);
-            }
-        };
+        RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setEmptyView(this.emptyView);
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        this.listView.setEmptyView(this.emptyView);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setAdapter(this.listAdapter);
@@ -631,16 +619,12 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             View textRadioCell;
             if (i == 0) {
                 textRadioCell = new TextRadioCell(this.mContext);
-                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 2) {
                 textRadioCell = new TextCheckCell(this.mContext);
-                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 3) {
                 textRadioCell = new HeaderCell(this.mContext);
-                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4 || i == 5) {
                 textRadioCell = new TextSettingsCell(this.mContext);
-                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 6) {
                 textRadioCell = new TextInfoPrivacyCell(this.mContext);
             } else {
@@ -730,11 +714,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{LanguageCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        ActionBar actionBar = this.actionBar;
-        int i = ThemeDescription.FLAG_BACKGROUND;
-        int i2 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));

@@ -1380,7 +1380,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r60) {
+    protected void onDraw(android.graphics.Canvas r59) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1396,6 +1396,18 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (dialogCellDelegate != null) {
             dialogCellDelegate.onButtonLongPress(this);
         }
+    }
+
+    private TextPaint getTimeTextPaint() {
+        return this.drawCount ? isCounterMuted() ? Theme.dialogs_timePaintBold : Theme.dialogs_timePaintBoldAccent : Theme.dialogs_timePaint;
+    }
+
+    private boolean isCounterMuted() {
+        if (this.isTopic) {
+            return this.topicMuted;
+        }
+        TLRPC.Chat chat = this.chat;
+        return (chat != null && chat.forum && this.forumTopic == null) ? !this.hasUnmutedTopics : this.dialogMuted;
     }
 
     private Paint getPaintReorderGradient() {

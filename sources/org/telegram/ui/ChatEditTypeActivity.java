@@ -68,6 +68,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SectionsScrollView;
 import org.telegram.ui.Components.TypefaceSpan;
 
 public class ChatEditTypeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -230,7 +231,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
         this.doneButton = actionBarMenuCreateMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
-        ScrollView scrollView = new ScrollView(context) {
+        this.linearLayout = new SectionsScrollView.SectionsLinearLayout(context);
+        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, this.linearLayout, this.resourceProvider, false) {
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
                 rect.bottom += AndroidUtilities.dp(60.0f);
@@ -250,13 +252,12 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 return !ChatEditTypeActivity.this.ignoreScroll && super.onInterceptTouchEvent(motionEvent);
             }
         };
-        this.fragmentView = scrollView;
-        scrollView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        ScrollView scrollView2 = (ScrollView) this.fragmentView;
-        scrollView2.setFillViewport(true);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.linearLayout = linearLayout;
-        scrollView2.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
+        this.fragmentView = sectionsScrollView;
+        sectionsScrollView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        SectionsScrollView sectionsScrollView2 = (SectionsScrollView) this.fragmentView;
+        sectionsScrollView2.setFillViewport(true);
+        sectionsScrollView2.addView(this.linearLayout, new FrameLayout.LayoutParams(-1, -2));
+        this.actionBar.setAdaptiveBackground(sectionsScrollView2);
         this.linearLayout.setOrientation(1);
         if (this.isForcePublic) {
             this.actionBar.setTitle(LocaleController.getString(R.string.TypeLocationGroup));
@@ -265,12 +266,9 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         } else {
             this.actionBar.setTitle(LocaleController.getString(R.string.GroupSettingsTitle));
         }
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.linearLayoutTypeContainer = linearLayout2;
-        linearLayout2.setOrientation(1);
-        LinearLayout linearLayout3 = this.linearLayoutTypeContainer;
-        int i2 = Theme.key_windowBackgroundWhite;
-        linearLayout3.setBackgroundColor(Theme.getColor(i2));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.linearLayoutTypeContainer = linearLayout;
+        linearLayout.setOrientation(1);
         this.linearLayout.addView(this.linearLayoutTypeContainer, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell = new HeaderCell(context, 23);
         this.headerCell2 = headerCell;
@@ -283,11 +281,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.linearLayoutTypeContainer.addView(this.headerCell2);
         RadioButtonCell radioButtonCell = new RadioButtonCell(context);
         this.radioButtonCell2 = radioButtonCell;
-        radioButtonCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
         if (this.isChannel) {
-            this.radioButtonCell2.setTextAndValue(LocaleController.getString(R.string.ChannelPrivate), LocaleController.getString(R.string.ChannelPrivateInfo), false, this.isPrivate);
+            radioButtonCell.setTextAndValue(LocaleController.getString(R.string.ChannelPrivate), LocaleController.getString(R.string.ChannelPrivateInfo), false, this.isPrivate);
         } else {
-            this.radioButtonCell2.setTextAndValue(LocaleController.getString(R.string.MegaPrivate), LocaleController.getString(R.string.MegaPrivateInfo), false, this.isPrivate);
+            radioButtonCell.setTextAndValue(LocaleController.getString(R.string.MegaPrivate), LocaleController.getString(R.string.MegaPrivateInfo), false, this.isPrivate);
         }
         this.linearLayoutTypeContainer.addView(this.radioButtonCell2, LayoutHelper.createLinear(-1, -2));
         this.radioButtonCell2.setOnClickListener(new View.OnClickListener() {
@@ -298,11 +295,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         });
         RadioButtonCell radioButtonCell2 = new RadioButtonCell(context);
         this.radioButtonCell1 = radioButtonCell2;
-        radioButtonCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
         if (this.isChannel) {
-            this.radioButtonCell1.setTextAndValue(LocaleController.getString(R.string.ChannelPublic), LocaleController.getString(R.string.ChannelPublicInfo), false, !this.isPrivate);
+            radioButtonCell2.setTextAndValue(LocaleController.getString(R.string.ChannelPublic), LocaleController.getString(R.string.ChannelPublicInfo), false, !this.isPrivate);
         } else {
-            this.radioButtonCell1.setTextAndValue(LocaleController.getString(R.string.MegaPublic), LocaleController.getString(R.string.MegaPublicInfo), false, !this.isPrivate);
+            radioButtonCell2.setTextAndValue(LocaleController.getString(R.string.MegaPublic), LocaleController.getString(R.string.MegaPublicInfo), false, !this.isPrivate);
         }
         this.linearLayoutTypeContainer.addView(this.radioButtonCell1, LayoutHelper.createLinear(-1, -2));
         this.radioButtonCell1.setOnClickListener(new View.OnClickListener() {
@@ -320,28 +316,27 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             this.sectionCell2.setVisibility(8);
             this.headerCell2.setVisibility(8);
         }
-        LinearLayout linearLayout4 = new LinearLayout(context);
-        this.linkContainer = linearLayout4;
-        linearLayout4.setOrientation(1);
-        this.linkContainer.setBackgroundColor(Theme.getColor(i2));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        this.linkContainer = linearLayout2;
+        linearLayout2.setOrientation(1);
         this.linearLayout.addView(this.linkContainer, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell2 = new HeaderCell(context, 23);
         this.headerCell = headerCell2;
         this.linkContainer.addView(headerCell2);
-        LinearLayout linearLayout5 = new LinearLayout(context);
-        this.publicContainer = linearLayout5;
-        linearLayout5.setOrientation(0);
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        this.publicContainer = linearLayout3;
+        linearLayout3.setOrientation(0);
         this.linkContainer.addView(this.publicContainer, LayoutHelper.createLinear(-1, 36, 23.0f, 7.0f, 23.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setText(getMessagesController().linkPrefix + "/");
         this.editText.setTextSize(1, 18.0f);
         EditTextBoldCursor editTextBoldCursor2 = this.editText;
-        int i3 = Theme.key_windowBackgroundWhiteHintText;
-        editTextBoldCursor2.setHintTextColor(Theme.getColor(i3));
+        int i2 = Theme.key_windowBackgroundWhiteHintText;
+        editTextBoldCursor2.setHintTextColor(Theme.getColor(i2));
         EditTextBoldCursor editTextBoldCursor3 = this.editText;
-        int i4 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor3.setTextColor(Theme.getColor(i4));
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextBoldCursor3.setTextColor(Theme.getColor(i3));
         this.editText.setMaxLines(1);
         this.editText.setLines(1);
         this.editText.setEnabled(false);
@@ -366,8 +361,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         };
         this.usernameTextView = editTextBoldCursor4;
         editTextBoldCursor4.setTextSize(1, 18.0f);
-        this.usernameTextView.setHintTextColor(Theme.getColor(i3));
-        this.usernameTextView.setTextColor(Theme.getColor(i4));
+        this.usernameTextView.setHintTextColor(Theme.getColor(i2));
+        this.usernameTextView.setTextColor(Theme.getColor(i3));
         this.usernameTextView.setMaxLines(1);
         this.usernameTextView.setLines(1);
         this.usernameTextView.setBackgroundDrawable(null);
@@ -376,17 +371,17 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.usernameTextView.setInputType(163872);
         this.usernameTextView.setImeOptions(6);
         this.usernameTextView.setHint(LocaleController.getString(R.string.ChannelUsernamePlaceholder));
-        this.usernameTextView.setCursorColor(Theme.getColor(i4));
+        this.usernameTextView.setCursorColor(Theme.getColor(i3));
         this.usernameTextView.setCursorSize(AndroidUtilities.dp(20.0f));
         this.usernameTextView.setCursorWidth(1.5f);
         this.publicContainer.addView(this.usernameTextView, LayoutHelper.createLinear(-1, 36));
         this.usernameTextView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
                 if (ChatEditTypeActivity.this.ignoreTextChanges) {
                     return;
                 }
@@ -402,9 +397,9 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 ChatEditTypeActivity.this.checkDoneButton();
             }
         });
-        LinearLayout linearLayout6 = new LinearLayout(context);
-        this.privateContainer = linearLayout6;
-        linearLayout6.setOrientation(1);
+        LinearLayout linearLayout4 = new LinearLayout(context);
+        this.privateContainer = linearLayout4;
+        linearLayout4.setOrientation(1);
         this.linkContainer.addView(this.privateContainer, LayoutHelper.createLinear(-1, -2));
         LinkActionView linkActionView = new LinkActionView(context, this, null, this.chatId, true, ChatObject.isChannel(this.currentChat));
         this.permanentLinkView = linkActionView;
@@ -439,8 +434,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.privateContainer.addView(this.permanentLinkView);
         AnonymousClass6 anonymousClass6 = new AnonymousClass6(context);
         this.checkTextView = anonymousClass6;
-        anonymousClass6.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-        this.checkTextView.setBottomPadding(6);
+        anonymousClass6.setBottomPadding(6);
         this.linearLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
         this.typeInfoCell = textInfoPrivacyCell;
@@ -449,23 +443,21 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         LoadingCell loadingCell = new LoadingCell(context);
         this.loadingAdminedCell = loadingCell;
         this.linearLayout.addView(loadingCell, LayoutHelper.createLinear(-1, -2));
-        LinearLayout linearLayout7 = new LinearLayout(context);
-        this.adminnedChannelsLayout = linearLayout7;
-        linearLayout7.setBackgroundColor(Theme.getColor(i2));
-        this.adminnedChannelsLayout.setOrientation(1);
+        LinearLayout linearLayout5 = new LinearLayout(context);
+        this.adminnedChannelsLayout = linearLayout5;
+        linearLayout5.setOrientation(1);
         this.linearLayout.addView(this.adminnedChannelsLayout, LayoutHelper.createLinear(-1, -2));
         ShadowSectionCell shadowSectionCell2 = new ShadowSectionCell(context);
         this.adminedInfoCell = shadowSectionCell2;
         this.linearLayout.addView(shadowSectionCell2, LayoutHelper.createLinear(-1, -2));
-        LinearLayout linearLayout8 = this.linearLayout;
+        LinearLayout linearLayout6 = this.linearLayout;
         UsernamesListView usernamesListView = new UsernamesListView(context);
         this.usernamesListView = usernamesListView;
-        linearLayout8.addView(usernamesListView, LayoutHelper.createLinear(-1, -2));
+        linearLayout6.addView(usernamesListView, LayoutHelper.createLinear(-1, -2));
         this.usernamesListView.setVisibility((this.isPrivate || this.usernames.isEmpty()) ? 8 : 0);
         TextCell textCell = new TextCell(context);
         this.manageLinksTextView = textCell;
-        textCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-        this.manageLinksTextView.setTextAndIcon((CharSequence) LocaleController.getString(R.string.ManageInviteLinks), R.drawable.msg_link2, false);
+        textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.ManageInviteLinks), R.drawable.msg_link2, false);
         this.manageLinksTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -481,20 +473,18 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         TLRPC.ChatFull chatFull = this.info;
         joinToSendSettingsView.showJoinToSend((chatFull == null || chatFull.linked_chat_id == 0) ? false : true);
         this.linearLayout.addView(this.joinContainer);
-        LinearLayout linearLayout9 = new LinearLayout(context);
-        this.saveContainer = linearLayout9;
-        linearLayout9.setOrientation(1);
+        LinearLayout linearLayout7 = new LinearLayout(context);
+        this.saveContainer = linearLayout7;
+        linearLayout7.setOrientation(1);
         this.linearLayout.addView(this.saveContainer);
         HeaderCell headerCell3 = new HeaderCell(context, 23);
         this.saveHeaderCell = headerCell3;
         headerCell3.setHeight(46);
         this.saveHeaderCell.setText(LocaleController.getString(R.string.SavingContentTitle));
-        this.saveHeaderCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
         this.saveContainer.addView(this.saveHeaderCell, LayoutHelper.createLinear(-1, -2));
         TextCheckCell textCheckCell = new TextCheckCell(context);
         this.saveRestrictCell = textCheckCell;
-        textCheckCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-        this.saveRestrictCell.setTextAndCheck(LocaleController.getString(R.string.RestrictSavingContent), this.isSaveRestricted, false);
+        textCheckCell.setTextAndCheck(LocaleController.getString(R.string.RestrictSavingContent), this.isSaveRestricted, false);
         this.saveRestrictCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -1503,35 +1493,21 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             if (this.loadingAdminedChannels) {
                 this.loadingAdminedCell.setVisibility(0);
                 this.adminnedChannelsLayout.setVisibility(8);
-                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                this.adminedInfoCell.setBackgroundDrawable(null);
             } else {
-                ShadowSectionCell shadowSectionCell = this.adminedInfoCell;
-                Context context = shadowSectionCell.getContext();
-                int i3 = R.drawable.greydivider_bottom;
-                int i4 = Theme.key_windowBackgroundGrayShadow;
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i3, i4));
-                TextInfoPrivacyCell textInfoPrivacyCell2 = this.typeInfoCell;
-                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell2.getContext(), R.drawable.greydivider_top, i4));
                 this.loadingAdminedCell.setVisibility(8);
                 this.adminnedChannelsLayout.setVisibility(0);
             }
         } else {
-            TextInfoPrivacyCell textInfoPrivacyCell3 = this.typeInfoCell;
-            int i5 = Theme.key_windowBackgroundWhiteGrayText4;
-            textInfoPrivacyCell3.setTag(Integer.valueOf(i5));
-            this.typeInfoCell.setTextColor(Theme.getColor(i5));
+            TextInfoPrivacyCell textInfoPrivacyCell2 = this.typeInfoCell;
+            int i3 = Theme.key_windowBackgroundWhiteGrayText4;
+            textInfoPrivacyCell2.setTag(Integer.valueOf(i3));
+            this.typeInfoCell.setTextColor(Theme.getColor(i3));
             if (this.isForcePublic) {
                 this.sectionCell2.setVisibility(8);
             } else {
                 this.sectionCell2.setVisibility(0);
             }
             this.adminedInfoCell.setVisibility(8);
-            TextInfoPrivacyCell textInfoPrivacyCell4 = this.typeInfoCell;
-            Context context2 = textInfoPrivacyCell4.getContext();
-            int i6 = R.drawable.greydivider_bottom;
-            int i7 = Theme.key_windowBackgroundGrayShadow;
-            textInfoPrivacyCell4.setBackgroundDrawable(Theme.getThemedDrawableByKey(context2, i6, i7));
             this.adminnedChannelsLayout.setVisibility(8);
             this.linkContainer.setVisibility(0);
             this.loadingAdminedCell.setVisibility(8);
@@ -1552,17 +1528,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             TLRPC.TL_chatInviteExported tL_chatInviteExported = this.invite;
             linkActionView.setLink(tL_chatInviteExported != null ? tL_chatInviteExported.link : null);
             this.permanentLinkView.loadUsers(this.invite, this.chatId);
-            TextInfoPrivacyCell textInfoPrivacyCell5 = this.checkTextView;
-            textInfoPrivacyCell5.setVisibility((this.isPrivate || textInfoPrivacyCell5.length() == 0) ? 8 : 0);
+            TextInfoPrivacyCell textInfoPrivacyCell3 = this.checkTextView;
+            textInfoPrivacyCell3.setVisibility((this.isPrivate || textInfoPrivacyCell3.length() == 0) ? 8 : 0);
             TLRPC.ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
             this.manageLinksInfoCell.setText(LocaleController.getString((chatFull != null && chatFull.paid_media_allowed && ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(this.chatId)))) ? R.string.ManageLinksInfoHelpPaid : R.string.ManageLinksInfoHelp));
-            if (this.isPrivate) {
-                TextInfoPrivacyCell textInfoPrivacyCell6 = this.typeInfoCell;
-                textInfoPrivacyCell6.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell6.getContext(), R.drawable.greydivider, i7));
-                this.manageLinksInfoCell.setBackground(Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), i6, i7));
-            } else {
-                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() != 0 ? Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), i6, i7) : null);
-            }
         }
         this.radioButtonCell1.setChecked(!this.isPrivate, true);
         this.radioButtonCell2.setChecked(this.isPrivate, true);
@@ -1613,7 +1582,6 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         } else {
             this.checkTextView.setVisibility(8);
         }
-        this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
         Runnable runnable = this.checkRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -1794,7 +1762,6 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
         };
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
@@ -1891,7 +1858,6 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
         }
         this.permanentLinkView.updateColors();
-        this.manageLinksTextView.setBackgroundDrawable(Theme.getSelectorDrawable(true));
         InviteLinkBottomSheet inviteLinkBottomSheet = this.inviteLinkBottomSheet;
         if (inviteLinkBottomSheet != null) {
             inviteLinkBottomSheet.updateColors();

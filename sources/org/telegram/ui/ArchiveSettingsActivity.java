@@ -61,7 +61,9 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false) {
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
@@ -205,10 +207,8 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             View textInfoPrivacyCell;
             if (i == 0) {
                 textInfoPrivacyCell = new HeaderCell(ArchiveSettingsActivity.this.getContext());
-                textInfoPrivacyCell.setBackgroundColor(ArchiveSettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
             } else if (i == 1) {
                 textInfoPrivacyCell = new TextCheckCell(ArchiveSettingsActivity.this.getContext());
-                textInfoPrivacyCell.setBackgroundColor(ArchiveSettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
             } else {
                 textInfoPrivacyCell = new TextInfoPrivacyCell(ArchiveSettingsActivity.this.getContext());
             }

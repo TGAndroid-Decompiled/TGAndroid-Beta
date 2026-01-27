@@ -249,9 +249,11 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
     }
 
     public void updateColors() {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
         int iDp = AndroidUtilities.dp(20.0f);
         int i = Theme.key_windowBackgroundWhiteBlackText;
-        this.bg = Theme.createRoundRectDrawable(iDp, getThemedColor(i, 0.05f));
+        this.bg = Theme.createRoundRectDrawable(iDp, getThemedColor(i, zIsDark ? 0.07f : 0.05f));
         ImageView imageView = this.searchIcon;
         int themedColor = getThemedColor(i, 0.6f);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;

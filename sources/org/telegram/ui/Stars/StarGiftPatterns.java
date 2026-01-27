@@ -57,7 +57,7 @@ public abstract class StarGiftPatterns {
             float f10 = f5 * f4;
             float f11 = f7 * f4;
             drawable.setBounds((int) (AndroidUtilities.dp(f9) - (AndroidUtilities.dp(f11) / 2.0f)), (int) (AndroidUtilities.dp(f10) - (AndroidUtilities.dp(f11) / 2.0f)), (int) (AndroidUtilities.dp(f9) + (AndroidUtilities.dp(f11) / 2.0f)), (int) (AndroidUtilities.dp(f10) + (AndroidUtilities.dp(f11) / 2.0f)));
-            drawable.setAlpha((int) (255.0f * f3 * f8));
+            drawable.setAlpha((int) Utilities.clamp(f3 * 255.0f * f8, 255.0f, 0.0f));
             drawable.draw(canvas);
             i2 += 4;
         }

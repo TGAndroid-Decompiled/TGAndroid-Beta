@@ -489,14 +489,14 @@ public class LinkActionView extends LinearLayout {
         this.shareView.setTextColor(Theme.getColor(i));
         this.removeView.setTextColor(Theme.getColor(i));
         TextView textView2 = this.copyView;
-        int iDp = AndroidUtilities.dp(8.0f);
+        int iDp = AndroidUtilities.dp(21.0f);
         int i2 = Theme.key_featuredStickers_addButton;
         int color = Theme.getColor(i2);
         int i3 = Theme.key_featuredStickers_addButtonPressed;
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, color, Theme.getColor(i3)));
-        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i2), Theme.getColor(i3)));
-        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
+        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(21.0f), Theme.getColor(i2), Theme.getColor(i3)));
+        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(21.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(21.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
         this.linkView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.optionsView.setColorFilter(Theme.getColor(Theme.key_dialogTextGray3));
         TextView textView3 = this.avatarsContainer.countTextView;

@@ -78,7 +78,10 @@ public class PasskeysActivity extends BaseFragment {
             }
         }, null);
         this.listView = universalRecyclerView;
-        frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
+        universalRecyclerView.setSections();
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -138,7 +141,7 @@ public class PasskeysActivity extends BaseFragment {
             public final void run() {
                 this.f$0.lambda$openMenu$3(passkey, str, i);
             }
-        }).show();
+        }).setScrimViewBackground(this.listView.getClipBackground(passkeyCell)).show();
     }
 
     public void lambda$openMenu$3(final TL_account.Passkey passkey, final String str, final int i) {

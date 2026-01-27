@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -121,6 +122,30 @@ public class UniversalRecyclerView extends RecyclerListView {
                 super.onMoveAnimationUpdate(viewHolder);
                 UniversalRecyclerView.this.invalidate();
             }
+
+            @Override
+            protected void onRemoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onRemoveAnimationUpdate(viewHolder);
+                if (UniversalRecyclerView.this.hasSections()) {
+                    UniversalRecyclerView.this.invalidate();
+                }
+            }
+
+            @Override
+            protected void onAddAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onAddAnimationUpdate(viewHolder);
+                if (UniversalRecyclerView.this.hasSections()) {
+                    UniversalRecyclerView.this.invalidate();
+                }
+            }
+
+            @Override
+            protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onChangeAnimationUpdate(viewHolder);
+                if (UniversalRecyclerView.this.hasSections()) {
+                    UniversalRecyclerView.this.invalidate();
+                }
+            }
         };
         defaultItemAnimator.setSupportsChangeAnimations(false);
         defaultItemAnimator.setDelayAnimations(false);
@@ -232,7 +257,9 @@ public class UniversalRecyclerView extends RecyclerListView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        this.adapter.drawWhiteSections(canvas, this);
+        if (!hasSections()) {
+            this.adapter.drawWhiteSections(canvas, this);
+        }
         super.dispatchDraw(canvas);
     }
 
@@ -260,20 +287,6 @@ public class UniversalRecyclerView extends RecyclerListView {
             }
         }
         return -1;
-    }
-
-    public View findViewByPosition(int i) {
-        if (i == -1) {
-            return null;
-        }
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            View childAt = getChildAt(i2);
-            int childAdapterPosition = getChildAdapterPosition(childAt);
-            if (childAdapterPosition != -1 && childAdapterPosition == i) {
-                return childAt;
-            }
-        }
-        return null;
     }
 
     private class TouchHelperCallback extends ItemTouchHelper.Callback {
@@ -325,5 +338,43 @@ public class UniversalRecyclerView extends RecyclerListView {
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
         }
+    }
+
+    @Override
+    public void setSections() {
+        setSections(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
+    }
+
+    @Override
+    public void setSections(boolean z) {
+        setSections(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), z);
+    }
+
+    @Override
+    public void setSections(int i, float f, boolean z) {
+        super.setSections(new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return this.f$0.lambda$setSections$3((View) obj);
+            }
+        }, new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return Boolean.valueOf(UniversalAdapter.isShadow(((Integer) obj).intValue()));
+            }
+        }, i, f, new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                this.f$0.lambda$setSections$4((Canvas) obj, (RectF) obj2, ((Float) obj3).floatValue(), ((Float) obj4).floatValue());
+            }
+        }, z);
+    }
+
+    public Boolean lambda$setSections$3(View view) {
+        return view.getParent() != this ? Boolean.FALSE : Boolean.valueOf(!UniversalAdapter.isShadow(getChildViewHolder(view).getItemViewType()));
+    }
+
+    public void lambda$setSections$4(Canvas canvas, RectF rectF, float f, float f2) {
+        super.drawBackgroundRect(canvas, rectF, f, f2);
     }
 }

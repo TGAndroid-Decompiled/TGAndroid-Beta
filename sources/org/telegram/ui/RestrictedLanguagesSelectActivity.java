@@ -196,11 +196,13 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setEmptyView(this.emptyView);
+        recyclerListView.setSections();
+        this.listView.setEmptyView(this.emptyView);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setAdapter(this.listAdapter);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
@@ -412,20 +414,17 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell;
+            View textCheckbox2Cell;
             if (i == 0) {
-                View textCheckbox2Cell = new TextCheckbox2Cell(this.mContext);
-                textCheckbox2Cell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                shadowSectionCell = textCheckbox2Cell;
+                textCheckbox2Cell = new TextCheckbox2Cell(this.mContext);
             } else if (i == 2) {
                 HeaderCell headerCell = new HeaderCell(this.mContext);
-                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 headerCell.setText(LocaleController.getString(R.string.ChooseLanguages));
-                shadowSectionCell = headerCell;
+                textCheckbox2Cell = headerCell;
             } else {
-                shadowSectionCell = new ShadowSectionCell(this.mContext);
+                textCheckbox2Cell = new ShadowSectionCell(this.mContext);
             }
-            return new RecyclerListView.Holder(shadowSectionCell);
+            return new RecyclerListView.Holder(textCheckbox2Cell);
         }
 
         @Override
@@ -481,11 +480,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{LanguageCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        ActionBar actionBar = this.actionBar;
-        int i = ThemeDescription.FLAG_BACKGROUND;
-        int i2 = Theme.key_actionBarDefault;
-        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));

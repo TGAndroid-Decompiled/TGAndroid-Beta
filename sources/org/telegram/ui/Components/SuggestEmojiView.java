@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
@@ -269,7 +270,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
             if (SuggestEmojiView.this.enterView == null) {
                 return;
             }

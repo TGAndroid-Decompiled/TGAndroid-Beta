@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,6 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CircularProgressDrawable;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
@@ -113,7 +111,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
                 case 2:
-                    shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor(Theme.key_windowBackgroundGray));
+                    shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, 0);
                     overviewCell = shadowSectionCell;
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
@@ -234,15 +232,13 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
                 case 15:
-                    View view = new View(BoostsActivity.this.getContext()) {
+                    overviewCell = new View(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             LinearLayoutManager linearLayoutManager = BoostsActivity.this.layoutManager;
                             super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, linearLayoutManager instanceof FillLastLinearLayoutManager ? ((FillLastLinearLayoutManager) linearLayoutManager).getLastItemHeight() : 0), 1073741824));
                         }
                     };
-                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                    overviewCell = view;
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
             }
@@ -260,9 +256,6 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 chartHeaderView.showDate(false);
                 if (viewHolder.getItemViewType() == 12) {
                     chartHeaderView.setPadding(AndroidUtilities.dp(3.0f), chartHeaderView.getPaddingTop(), chartHeaderView.getPaddingRight(), chartHeaderView.getPaddingBottom());
-                }
-                if (viewHolder.getItemViewType() == 16) {
-                    chartHeaderView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), chartHeaderView.getPaddingBottom());
                     return;
                 }
                 return;
@@ -298,9 +291,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             if (viewHolder.getItemViewType() == 6) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setText(((ItemInternal) BoostsActivity.this.items.get(i)).title);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(BoostsActivity.this.getContext(), i == BoostsActivity.this.items.size() - 2 ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ((BaseFragment) BoostsActivity.this).resourceProvider)), 0, 0);
-                combinedDrawable.setFullsize(true);
-                textInfoPrivacyCell.setBackground(combinedDrawable);
+                textInfoPrivacyCell.setTextColor(Theme.multAlpha(-1, 0.875f));
                 return;
             }
             if (viewHolder.getItemViewType() == 9) {

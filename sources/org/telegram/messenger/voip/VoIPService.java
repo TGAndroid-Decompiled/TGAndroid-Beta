@@ -240,6 +240,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private Boolean mHasEarpiece;
     private boolean micMute;
     public boolean micSwitching;
+    private Boolean muteOnStart;
     private TLRPC.TL_dataJSON myParams;
     private boolean needPlayEndSound;
     private boolean needRateCall;
@@ -892,6 +893,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             SerializedData serializedData = new SerializedData(byteArrayExtra);
             this.joinConference = TLRPC.InputGroupCall.TLdeserialize(serializedData, serializedData.readInt32(true), true);
         }
+        if (intent.hasExtra("mute_on_start")) {
+            this.muteOnStart = Boolean.valueOf(intent.getBooleanExtra("mute_on_start", false));
+        }
         byte[] byteArrayExtra2 = intent.getByteArrayExtra("joinConferenceCall");
         if (byteArrayExtra2 != null) {
             SerializedData serializedData2 = new SerializedData(byteArrayExtra2);
@@ -997,7 +1001,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         VoIPGroupNotification.hide(this);
         if (this.joinConference != null) {
-            if (!PermissionRequest.hasPermission("android.permission.RECORD_AUDIO")) {
+            if (!MessagesController.getGlobalMainSettings().getBoolean("callmiconstart", true)) {
+                this.micMute = true;
+            } else if (!PermissionRequest.hasPermission("android.permission.RECORD_AUDIO")) {
                 this.micMute = true;
                 PermissionRequest.requestPermission("android.permission.RECORD_AUDIO", new Utilities.Callback() {
                     @Override

@@ -103,6 +103,7 @@ import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.InstantCameraView;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
@@ -120,7 +121,6 @@ import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.Gifts.ProfileGiftsContainer$$ExternalSyntheticLambda17;
 import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -179,10 +179,6 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int versionViewPressCount;
 
     public static void lambda$createView$2(DialogInterface dialogInterface) {
-    }
-
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        return false;
     }
 
     @Override
@@ -390,7 +386,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
         });
         this.listView = universalRecyclerView;
-        universalRecyclerView.setPadding(0, AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight + this.additionNavigationBarHeight);
+        universalRecyclerView.adapter.setApplyBackground(false);
+        this.listView.setSections();
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + AndroidUtilities.dp(12.0f), 0, AndroidUtilities.navigationBarHeight + this.additionNavigationBarHeight);
         this.listView.setClipToPadding(false);
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -409,8 +407,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         UniversalRecyclerView universalRecyclerView2 = this.listView;
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.contentView;
         Objects.requireNonNull(universalRecyclerView2);
-        this.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView2, sizeNotifierFrameLayout, new ProfileGiftsContainer$$ExternalSyntheticLambda17(universalRecyclerView2));
-        this.listView.setOverScrollListener(new Runnable() {
+        this.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView2, sizeNotifierFrameLayout, new CallLogActivity$$ExternalSyntheticLambda6(universalRecyclerView2));
+        this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$createView$0();
@@ -444,7 +442,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.topView = new FrameLayout(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.avatarContainer = frameLayout;
-        this.topView.addView(frameLayout, LayoutHelper.createFrame(120, 120.0f, 49, 0.0f, 23.0f, 0.0f, 0.0f));
+        this.topView.addView(frameLayout, LayoutHelper.createFrame(120, 120.0f, 49, 0.0f, 11.0f, 0.0f, 0.0f));
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -505,14 +503,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         TextView textView2 = this.titleView;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
-        this.topView.addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 138.333f, 0.0f, 0.0f));
+        this.topView.addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 126.33299f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.subtitleView = textView3;
         textView3.setTextSize(1, 13.0f);
         this.subtitleView.setGravity(17);
         this.subtitleView.setSingleLine();
         this.subtitleView.setEllipsize(truncateAt);
-        this.topView.addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 168.0f, 0.0f, 0.0f));
+        this.topView.addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 156.0f, 0.0f, 0.0f));
         TextView textView4 = new TextView(context);
         this.versionView = textView4;
         textView4.setTextSize(1, 14.0f);
@@ -674,7 +672,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.search.fillItems(arrayList);
             return;
         }
-        arrayList.add(UItem.asCustom(this.topView, 200));
+        arrayList.add(UItem.asCustomShadow(this.topView, 188));
         this.accountNumbers.clear();
         for (int i = 0; i < 4; i++) {
             if (UserConfig.getInstance(i).isClientActivated() && this.currentAccount != i) {
@@ -785,7 +783,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(SettingCell.Factory.of(21, -11154873, -14175180, 0, LocaleController.getString(R.string.DebugSendLastLogs)));
             arrayList.add(SettingCell.Factory.of(22, -765355, -2148011, 0, LocaleController.getString(R.string.DebugClearLogs)));
         }
-        arrayList.add(UItem.asCustom(this.versionView));
+        arrayList.add(UItem.asCustomShadow(this.versionView));
     }
 
     public static int lambda$fillItems$6(Integer num, Integer num2) {
@@ -917,6 +915,34 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
+    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        final String str;
+        if (!uItem.instanceOf(SettingsSearchCell.Factory.class)) {
+            return false;
+        }
+        Object obj = uItem.object;
+        if (obj instanceof ProfileActivity.SearchAdapter.SearchResult) {
+            str = ((ProfileActivity.SearchAdapter.SearchResult) obj).link;
+        } else {
+            str = obj instanceof MessagesController.FaqSearchResult ? ((MessagesController.FaqSearchResult) obj).url : null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        ItemOptions.makeOptions(this, view).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$onLongClick$13(str);
+            }
+        }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
+        return true;
+    }
+
+    public void lambda$onLongClick$13(String str) {
+        AndroidUtilities.addToClipboard(str);
+        BulletinFactory.of(this).createCopyLinkBulletin().show();
+    }
+
     public String getVersionName() throws PackageManager.NameNotFoundException {
         String str;
         try {
@@ -940,9 +966,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
         int i = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-        int i2 = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-        this.navigationBarHeight = i2;
-        this.listView.setPadding(0, i, 0, i2 + this.additionNavigationBarHeight);
+        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+        this.listView.setPadding(0, i + AndroidUtilities.dp(12.0f), 0, this.navigationBarHeight + this.additionNavigationBarHeight);
         return WindowInsetsCompat.CONSUMED;
     }
 
@@ -1377,14 +1402,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics" : null}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                this.f$0.lambda$openDebugMenu$16(dialogInterface, i3);
+                this.f$0.lambda$openDebugMenu$17(dialogInterface, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$openDebugMenu$16(DialogInterface dialogInterface, int i) {
+    public void lambda$openDebugMenu$17(DialogInterface dialogInterface, int i) {
         int i2;
         int i3;
         int i4 = 0;
@@ -1429,7 +1454,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         if (i == 6) {
             getMessagesStorage().clearSentMedia();
             SharedConfig.setNoSoundHintShowed(false);
-            MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").apply();
+            MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").remove("proxycheckstatusip").remove("callmiconstart").apply();
             MessagesController.getEmojiSettings(this.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             SharedConfig.textSelectionHintShows = 0;
             SharedConfig.lockRecordAudioVideoHint = 0;
@@ -1544,7 +1569,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$openDebugMenu$14(tLObject, tL_error);
+                        this.f$0.lambda$openDebugMenu$15(tLObject, tL_error);
                     }
                 });
                 return;
@@ -1569,7 +1594,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     builder.setItems(new CharSequence[]{spannableStringBuilderReplaceTags, spannableStringBuilderReplaceTags2, AndroidUtilities.replaceTags(sb3.toString())}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface2, int i5) {
-                            SettingsActivity.lambda$openDebugMenu$15(iMeasureDevicePerformanceClass, dialogInterface2, i5);
+                            SettingsActivity.lambda$openDebugMenu$16(iMeasureDevicePerformanceClass, dialogInterface2, i5);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1820,19 +1845,19 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$openDebugMenu$14(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openDebugMenu$15(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
         tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
         tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
         getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                this.f$0.lambda$openDebugMenu$13(tLObject2, tL_error2);
+                this.f$0.lambda$openDebugMenu$14(tLObject2, tL_error2);
             }
         });
     }
 
-    public void lambda$openDebugMenu$13(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openDebugMenu$14(TLObject tLObject, TLRPC.TL_error tL_error) {
         getMessagesController().loadAppConfig();
     }
 
@@ -1858,7 +1883,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void lambda$openDebugMenu$15(int i, DialogInterface dialogInterface, int i2) {
+    public static void lambda$openDebugMenu$16(int i, DialogInterface dialogInterface, int i2) {
         int i3 = 2 - i2;
         if (i3 == i) {
             SharedConfig.overrideDevicePerformanceClass(-1);
@@ -1959,21 +1984,21 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$19(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
+                this.f$0.lambda$didUploadPhoto$20(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$18(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$didUploadPhoto$19(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$17(tL_error, tLObject, str);
+                this.f$0.lambda$didUploadPhoto$18(tL_error, tLObject, str);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$17(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+    public void lambda$didUploadPhoto$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
         this.avatarUploadingRequest = -1;
         if (tL_error == null) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
@@ -2029,7 +2054,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didUploadPhoto$19(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public void lambda$didUploadPhoto$20(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
         if (inputFile != null || inputFile2 != null || videoSize != null) {
             if (this.avatar == null) {
                 return;
@@ -2052,7 +2077,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.avatarUploadingRequest = getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$didUploadPhoto$18(str, tLObject, tL_error);
+                    this.f$0.lambda$didUploadPhoto$19(str, tLObject, tL_error);
                 }
             });
         } else {

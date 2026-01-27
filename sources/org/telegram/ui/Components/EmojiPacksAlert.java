@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -277,7 +278,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
             if (EmojiPacksAlert.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiPacksAlert.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -733,11 +734,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    public void onBackPressed() {
+    public void lambda$openCrafting$8() {
         if (ContentPreviewViewer.getInstance().isVisible()) {
             ContentPreviewViewer.getInstance().closeWithMenu();
         } else {
-            super.onBackPressed();
+            super.lambda$openCrafting$8();
         }
     }
 

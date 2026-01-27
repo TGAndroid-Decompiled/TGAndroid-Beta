@@ -5,13 +5,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -42,13 +42,15 @@ public class LinkManager {
     private int currentRequestId = -1;
     private boolean done;
     private boolean inited;
+    private final boolean isExternalIntent;
     private final Browser.Progress progress;
     private AlertDialog progressDialog;
 
-    public LinkManager(LaunchActivity launchActivity, int i, Browser.Progress progress) {
+    public LinkManager(LaunchActivity launchActivity, int i, Browser.Progress progress, boolean z) {
         this.activity = launchActivity;
         this.currentAccount = i;
         this.progress = progress;
+        this.isExternalIntent = z;
     }
 
     public boolean handle(Uri uri) {
@@ -122,7 +124,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) throws IOException {
+    private boolean handleTg(Uri uri) {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {
@@ -138,8 +140,14 @@ public class LinkManager {
         }
         String str = (String) arrayList.get(0);
         String str2 = arrayList.size() > 1 ? (String) arrayList.get(1) : null;
+        if ("resolve".equalsIgnoreCase(str)) {
+            return handleTgResolve(uriNormalizeTgUri);
+        }
         if ("invoice".equalsIgnoreCase(str)) {
             return handleInvoiceSlug(uriNormalizeTgUri.getQueryParameter("slug"));
+        }
+        if ("oauth".equalsIgnoreCase(str)) {
+            return handleOAuth(uriNormalizeTgUri, uriNormalizeTgUri.getQueryParameter("token"));
         }
         if ("settings".equalsIgnoreCase(str)) {
             return handleSettings(arrayList.subList(1, arrayList.size()));
@@ -200,6 +208,28 @@ public class LinkManager {
             scrollTo("phonebookRow");
         }
         return true;
+    }
+
+    private boolean handleTgResolve(Uri uri) {
+        List<String> pathSegments = uri.getPathSegments();
+        if (pathSegments == null) {
+            return false;
+        }
+        ArrayList arrayList = new ArrayList(pathSegments);
+        String authority = uri.getAuthority();
+        if (!TextUtils.isEmpty(authority)) {
+            arrayList.add(0, authority);
+        }
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        arrayList.remove(0);
+        String queryParameter = uri.getQueryParameter("domain");
+        String queryParameter2 = uri.getQueryParameter("startapp");
+        if (!"oauth".equalsIgnoreCase(queryParameter) || isEmpty(queryParameter2)) {
+            return false;
+        }
+        return handleOAuth(uri, queryParameter2);
     }
 
     private boolean handleSettings(java.util.List r17) {
@@ -582,6 +612,32 @@ public class LinkManager {
         }
     }
 
+    private boolean handleOAuth(Uri uri, String str) {
+        if (isEmpty(str)) {
+            return false;
+        }
+        init();
+        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
+        tL_messages_requestUrlAuth.flags |= 4;
+        tL_messages_requestUrlAuth.url = uri.toString();
+        getConnectionsManager().sendRequestTyped(tL_messages_requestUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$handleOAuth$18(tL_messages_requestUrlAuth, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+        return true;
+    }
+
+    public void lambda$handleOAuth$18(TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+        lambda$handleInvoiceSlug$13();
+        if (tL_error != null) {
+            getBulletinFactory().showForError(tL_error);
+        } else {
+            OAuthSheet.handle(this.isExternalIntent, this.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
+        }
+    }
+
     private void setRequestId(int i) {
         this.currentRequestId = i;
     }
@@ -638,7 +694,7 @@ public class LinkManager {
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$init$18(dialogInterface);
+                    this.f$0.lambda$init$19(dialogInterface);
                 }
             });
             this.progressDialog.showDelayed(300L);
@@ -654,7 +710,7 @@ public class LinkManager {
         this.inited = true;
     }
 
-    public void lambda$init$18(DialogInterface dialogInterface) {
+    public void lambda$init$19(DialogInterface dialogInterface) {
         cancel();
     }
 
@@ -678,5 +734,13 @@ public class LinkManager {
             progress.end();
         }
         this.done = true;
+    }
+
+    private static boolean isEmpty(String str) {
+        return TextUtils.isEmpty(str);
+    }
+
+    public static boolean isWebAppLink(java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkManager.isWebAppLink(java.lang.String):boolean");
     }
 }

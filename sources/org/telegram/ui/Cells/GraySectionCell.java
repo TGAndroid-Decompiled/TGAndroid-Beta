@@ -21,6 +21,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 public class GraySectionCell extends FrameLayout implements Theme.Colorable {
     private int layerHeight;
+    private boolean noBackground;
     private final Theme.ResourcesProvider resourcesProvider;
     private AnimatedTextView rightTextView;
     private FrameLayout.LayoutParams rightTextViewLayoutParams;
@@ -31,6 +32,10 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
     }
 
     public GraySectionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, 16, resourcesProvider);
+    }
+
+    public GraySectionCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.layerHeight = 32;
         this.resourcesProvider = resourcesProvider;
@@ -40,10 +45,11 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         textViewEmojis.setTextSize(1, 14.0f);
         this.textView.setTypeface(AndroidUtilities.bold());
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis2 = this.textView;
-        int i = Theme.key_graySectionText;
-        textViewEmojis2.setTextColor(getThemedColor(i));
+        int i2 = Theme.key_graySectionText;
+        textViewEmojis2.setTextColor(getThemedColor(i2));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        float f = i;
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), true, true, true) {
             @Override
             public CharSequence getAccessibilityClassName() {
@@ -54,18 +60,23 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         animatedTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.rightTextView.setAnimationProperties(0.9f, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.rightTextView.setTextSize(AndroidUtilities.dp(14.0f));
-        this.rightTextView.setTextColor(getThemedColor(i));
+        this.rightTextView.setTextColor(getThemedColor(i2));
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         View view = this.rightTextView;
-        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f);
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f);
         this.rightTextViewLayoutParams = layoutParamsCreateFrame;
         addView(view, layoutParamsCreateFrame);
         ViewCompat.setAccessibilityHeading(this, true);
     }
 
+    public void setNoBackground(boolean z) {
+        this.noBackground = z;
+        updateColors();
+    }
+
     @Override
     public void updateColors() {
-        setBackgroundColor(getThemedColor(Theme.key_graySection));
+        setBackgroundColor(this.noBackground ? 0 : getThemedColor(Theme.key_graySection));
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
         int i = Theme.key_graySectionText;
         textViewEmojis.setTextColor(getThemedColor(i));

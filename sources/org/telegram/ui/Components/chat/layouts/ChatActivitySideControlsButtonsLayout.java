@@ -157,7 +157,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
                 i2 = 50;
                 i3 = 32;
             } else {
-                i2 = 58;
+                i2 = 56;
                 i3 = 48;
             }
             ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButtonCreate = ChatActivityBlurredRoundPageDownButton.create(getContext(), i2, i3, this.resourcesProvider, this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i]);
